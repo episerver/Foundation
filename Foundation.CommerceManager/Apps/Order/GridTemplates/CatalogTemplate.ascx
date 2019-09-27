@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CatalogTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Order.GridTemplates.CatalogTemplate" %>
+<asp:Literal runat="server" ID="CatalogLiteral"></asp:Literal>

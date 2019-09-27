@@ -1,0 +1,25 @@
+﻿@using Mediachase.Commerce
+@using Foundation.Commerce.Extensions
+@using EPiServer.Core
+@model IEnumerable<EntryContentBase>
+@{
+    var currentMarket = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<Mediachase.Commerce.ICurrentMarket>();
+    var market = currentMarket.GetCurrentMarket();
+    var priceClass = ((bool)(ViewData["IsBundle"] == null ? false : ViewData["IsBundle"])) ? "price__discount" : "price__old";
+}
+
+<div class="row">
+    <div class="col-12 variant__group">
+        @foreach (var variant in Model)
+        {
+            var price = Foundation.Commerce.Catalog.PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, market.DefaultCurrency);
+            var image = variant.GetDefaultAsset<IContentImage>();
+            
+            <div class="variant__item">
+                <img src="@image" alt="Alternate Text" class="img-fluid variant__image" />
+                <p class="title">@variant.DisplayName</p>
+                <p class="@priceClass">@(price != null ? price.UnitPrice.ToString() : (new Money(0, market.DefaultCurrency)).ToString())</p>
+            </div>
+        }
+    </div>
+</div>

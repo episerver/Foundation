@@ -1,0 +1,1263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Order_Country_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Obligatorisk felt mangler&lt;/b&gt;&lt;br /&gt;Der kræves et landenavn.</value>
+  </data>
+  <data name="Order_Payment_Plan" xml:space="preserve">
+    <value>Betalingsplan</value>
+  </data>
+  <data name="Order_Purchase_Order" xml:space="preserve">
+    <value>Indkøbsordre</value>
+  </data>
+  <data name="Order_Shopping_Cart" xml:space="preserve">
+    <value>Indkøbsvogn</value>
+  </data>
+  <data name="Payment_ACH_Payments" xml:space="preserve">
+    <value>ACH Payments</value>
+  </data>
+  <data name="Payment_Authorize_Net_Configure_Account" xml:space="preserve">
+    <value>Konfigurer Authorize.Net-konto</value>
+  </data>
+  <data name="Payment_Authorize_Net_Get_Account" xml:space="preserve">
+    <value>Få en Authorize.Net-konto på &lt;a target="_blank" href="http://www.authorizenet.com"&gt;www.authorizenet.com&lt;/a&gt;.</value>
+  </data>
+  <data name="Payment_ECX" xml:space="preserve">
+    <value>ECX</value>
+  </data>
+  <data name="Payment_Fast_Transact" xml:space="preserve">
+    <value>Fast Transact</value>
+  </data>
+  <data name="Payment_iTransact_RediCharge_HTML" xml:space="preserve">
+    <value>iTransact RediCharge HTML</value>
+  </data>
+  <data name="Payment_Merchant_Anywhere" xml:space="preserve">
+    <value>Merchant Anywhere (Transaction Central)</value>
+  </data>
+  <data name="Payment_Merchant_Partners" xml:space="preserve">
+    <value>Merchant Partners</value>
+  </data>
+  <data name="Payment_MPCS" xml:space="preserve">
+    <value>MPCS</value>
+  </data>
+  <data name="Payment_NetBilling" xml:space="preserve">
+    <value>NetBilling</value>
+  </data>
+  <data name="Payment_Options" xml:space="preserve">
+    <value>Betalingsindstillinger</value>
+  </data>
+  <data name="Payment_Options_Required" xml:space="preserve">
+    <value>Der skal vælges en betalingsindstilling.</value>
+  </data>
+  <data name="Payment_Payments_Gateway" xml:space="preserve">
+    <value>Payments Gateway</value>
+  </data>
+  <data name="Payment_Pick_A_Gateway" xml:space="preserve">
+    <value>Vælg en gateway</value>
+  </data>
+  <data name="Payment_Planet_Payment" xml:space="preserve">
+    <value>Planet Payment</value>
+  </data>
+  <data name="Payment_Processing_Url_Required" xml:space="preserve">
+    <value>'Behandler Url' må ikke være tom.</value>
+  </data>
+  <data name="Payment_RTWare" xml:space="preserve">
+    <value>RTWare</value>
+  </data>
+  <data name="Payment_TrustCommerce" xml:space="preserve">
+    <value>TrustCommerce</value>
+  </data>
+  <data name="Payment_USA_ePay" xml:space="preserve">
+    <value>USA ePay</value>
+  </data>
+  <data name="Payment_User_Required" xml:space="preserve">
+    <value>'Bruger' må ikke være tom.</value>
+  </data>
+  <data name="Order_New_Shipment" xml:space="preserve">
+    <value>Ny forsendelse</value>
+  </data>
+  <data name="Gateway_Authorize_Net" xml:space="preserve">
+    <value>Authorize.Net</value>
+  </data>
+  <data name="Gateway_DPI_Link" xml:space="preserve">
+    <value>DPI Link</value>
+  </data>
+  <data name="Gateway_eProcessing" xml:space="preserve">
+    <value>eProcessing</value>
+  </data>
+  <data name="Order_Pick_a_Gateway" xml:space="preserve">
+    <value>Vælg en gateway</value>
+  </data>
+  <data name="Gateway_GoRealTime" xml:space="preserve">
+    <value>GoRealTime</value>
+  </data>
+  <data name="Gateway_IBill_Processing_Plus" xml:space="preserve">
+    <value>IBill Processing Plus</value>
+  </data>
+  <data name="Gateway_Intellipay_ExpertLink" xml:space="preserve">
+    <value>Intellipay ExpertLink</value>
+  </data>
+  <data name="Gateway_Iongate" xml:space="preserve">
+    <value>Iongate</value>
+  </data>
+  <data name="Gateway_iTransact_RediCharge_HTML" xml:space="preserve">
+    <value>iTransact RediCharge HTML</value>
+  </data>
+  <data name="Gateway_NetBilling" xml:space="preserve">
+    <value>NetBilling</value>
+  </data>
+  <data name="Gateway_Verisign_PayFlow_Pro" xml:space="preserve">
+    <value>Verisign PayFlow Pro</value>
+  </data>
+  <data name="Gateway_Payready_Link" xml:space="preserve">
+    <value>Payready Link</value>
+  </data>
+  <data name="Gateway_NOVAs_Viaklix" xml:space="preserve">
+    <value>NOVA's Viaklix</value>
+  </data>
+  <data name="Gateway_USA_ePay" xml:space="preserve">
+    <value>USA ePay</value>
+  </data>
+  <data name="Gateway_Plug_n_Pay" xml:space="preserve">
+    <value>Plug 'n Pay</value>
+  </data>
+  <data name="Gateway_Planet_Payment" xml:space="preserve">
+    <value>Planet Payment</value>
+  </data>
+  <data name="Gateway_MPCS" xml:space="preserve">
+    <value>MPCS</value>
+  </data>
+  <data name="Gateway_RTWare" xml:space="preserve">
+    <value>RTWare</value>
+  </data>
+  <data name="Gateway_ECX" xml:space="preserve">
+    <value>ECX</value>
+  </data>
+  <data name="Gateway_Bank_of_America" xml:space="preserve">
+    <value>Bank of America</value>
+  </data>
+  <data name="Gateway_Innovative_Gateway" xml:space="preserve">
+    <value>Innovative Gateway</value>
+  </data>
+  <data name="Gateway_Merchant_Anywhere_Transaction_Central" xml:space="preserve">
+    <value>Merchant Anywhere (Transaction Central)</value>
+  </data>
+  <data name="Gateway_SkipJack" xml:space="preserve">
+    <value>SkipJack</value>
+  </data>
+  <data name="Gateway_ECHOnline" xml:space="preserve">
+    <value>ECHOnline</value>
+  </data>
+  <data name="Gateway_3DSI_EC_Linx" xml:space="preserve">
+    <value>3DSI EC-Linx</value>
+  </data>
+  <data name="Gateway_TrustCommerce" xml:space="preserve">
+    <value>TrustCommerce</value>
+  </data>
+  <data name="Gateway_PSIGate" xml:space="preserve">
+    <value>PSIGate</value>
+  </data>
+  <data name="Gateway_PayFuse_XML" xml:space="preserve">
+    <value>PayFuse XML</value>
+  </data>
+  <data name="Gateway_PayFlowLink" xml:space="preserve">
+    <value>PayFlowLink</value>
+  </data>
+  <data name="Gateway_Paymentech_Orbital_Gateway" xml:space="preserve">
+    <value>Paymentech Orbital Gateway</value>
+  </data>
+  <data name="Gateway_LinkPoint" xml:space="preserve">
+    <value>LinkPoint</value>
+  </data>
+  <data name="Gateway_Moneris_eSelect_Plus" xml:space="preserve">
+    <value>Moneris eSelect Plus</value>
+  </data>
+  <data name="Gateway_uSight_Gateway" xml:space="preserve">
+    <value>uSight Gateway</value>
+  </data>
+  <data name="Gateway_Fast_Transact" xml:space="preserve">
+    <value>Fast Transact</value>
+  </data>
+  <data name="Gateway_NetworkMerchants" xml:space="preserve">
+    <value>NetworkMerchants</value>
+  </data>
+  <data name="Gateway_Ogone_DirectLink" xml:space="preserve">
+    <value>Ogone DirectLink</value>
+  </data>
+  <data name="Gateway_Concord_EFSNet" xml:space="preserve">
+    <value>Concord EFSNet</value>
+  </data>
+  <data name="Gateway_Payment_Resources_International_PRIGate" xml:space="preserve">
+    <value>Payment Resources International PRIGate</value>
+  </data>
+  <data name="Gateway_Protx" xml:space="preserve">
+    <value>Protx</value>
+  </data>
+  <data name="Gateway_Optimal_Payments_FirePay" xml:space="preserve">
+    <value>Optimal Payments / FirePay</value>
+  </data>
+  <data name="Gateway_Merchant_Partners" xml:space="preserve">
+    <value>Merchant Partners</value>
+  </data>
+  <data name="Gateway_CyberCash" xml:space="preserve">
+    <value>CyberCash</value>
+  </data>
+  <data name="Gateway_FirstData_CardService_International" xml:space="preserve">
+    <value>FirstData / CardService International</value>
+  </data>
+  <data name="Gateway_YourPay" xml:space="preserve">
+    <value>YourPay</value>
+  </data>
+  <data name="Gateway_ACH_Payments" xml:space="preserve">
+    <value>ACH Payments</value>
+  </data>
+  <data name="Gateway_Payments_Gateway" xml:space="preserve">
+    <value>Payments Gateway</value>
+  </data>
+  <data name="Gateway_Cyber_Source" xml:space="preserve">
+    <value>Cyber Source</value>
+  </data>
+  <data name="Gateway_Eway" xml:space="preserve">
+    <value>Eway</value>
+  </data>
+  <data name="Gateway_Go_EMerchant" xml:space="preserve">
+    <value>Go EMerchant</value>
+  </data>
+  <data name="Gateway_Pay_Stream" xml:space="preserve">
+    <value>Pay Stream</value>
+  </data>
+  <data name="Gateway_Trans_First" xml:space="preserve">
+    <value>Trans First</value>
+  </data>
+  <data name="Gateway_Chase" xml:space="preserve">
+    <value>Chase</value>
+  </data>
+  <data name="Order_Payment_Options" xml:space="preserve">
+    <value>Betalingsindstillinger</value>
+  </data>
+  <data name="Payment_Merchant_Login" xml:space="preserve">
+    <value>Merchant Login</value>
+  </data>
+  <data name="Payment_Merchant_Password" xml:space="preserve">
+    <value>Merchant-adgangskode</value>
+  </data>
+  <data name="Payment_Transaction_Key" xml:space="preserve">
+    <value>Transaktionsnøgle</value>
+  </data>
+  <data name="Payment_Secret_Hash" xml:space="preserve">
+    <value>Secret Hash</value>
+  </data>
+  <data name="Payment_Gateway_URL" xml:space="preserve">
+    <value>URL til betalings-gateway (anvendes til testning)</value>
+  </data>
+  <data name="Payment_SSL_User_Id" xml:space="preserve">
+    <value>SSL bruger-Id</value>
+  </data>
+  <data name="Payment_Referer" xml:space="preserve">
+    <value>Henvist fra</value>
+  </data>
+  <data name="Payment_Test_Mode" xml:space="preserve">
+    <value>Testtilstand</value>
+  </data>
+  <data name="Payment_Sale" xml:space="preserve">
+    <value>Salg</value>
+  </data>
+  <data name="Payment_Authorization_Only" xml:space="preserve">
+    <value>Kun autorisation</value>
+  </data>
+  <data name="Payment_Merchant_Alias" xml:space="preserve">
+    <value>Merchant alias</value>
+  </data>
+  <data name="Payment_SSLCert_Store" xml:space="preserve">
+    <value>SSLCert butik</value>
+  </data>
+  <data name="Payment_SSLCert_Subject" xml:space="preserve">
+    <value>SSLCert emne</value>
+  </data>
+  <data name="Payment_SSLCert_Encoded" xml:space="preserve">
+    <value>SSLCert kodet</value>
+  </data>
+  <data name="Payment_Related_Security_Key" xml:space="preserve">
+    <value>Relateret sikkerhedsnøgle</value>
+  </data>
+  <data name="Payment_Related_Vendor_TX_Code" xml:space="preserve">
+    <value>Relateret sælger-TX-kode</value>
+  </data>
+  <data name="Payment_Related_TX_Auth_No" xml:space="preserve">
+    <value>Relateret TX-autorisationsnr.</value>
+  </data>
+  <data name="Payment_Account" xml:space="preserve">
+    <value>Konto</value>
+  </data>
+  <data name="Payment_Merchant_ID" xml:space="preserve">
+    <value>Grossist-ID</value>
+  </data>
+  <data name="Payment_Customer_ID" xml:space="preserve">
+    <value>Kunde-ID</value>
+  </data>
+  <data name="Payment_Zone_ID" xml:space="preserve">
+    <value>Zone-id</value>
+  </data>
+  <data name="Payment_Username" xml:space="preserve">
+    <value>Brugernavn</value>
+  </data>
+  <data name="Order_Management" xml:space="preserve">
+    <value>Ordrestyring</value>
+  </data>
+  <data name="Order_List" xml:space="preserve">
+    <value>Ordreliste</value>
+  </data>
+  <data name="Order_Search" xml:space="preserve">
+    <value>Søg efter ordre</value>
+  </data>
+  <data name="Order_View" xml:space="preserve">
+    <value>Vis ordre</value>
+  </data>
+  <data name="Order_View_Address" xml:space="preserve">
+    <value>Ordrevisning - adresse</value>
+  </data>
+  <data name="Order_View_LineItem" xml:space="preserve">
+    <value>Ordrevisning - LineItem</value>
+  </data>
+  <data name="Order_View_Payment" xml:space="preserve">
+    <value>Ordrevisning - betaling</value>
+  </data>
+  <data name="Order_View_Shipment" xml:space="preserve">
+    <value>Ordrevisning - forsendelse</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Beløb</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Kode</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Oprettet</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Kunde</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="Edit_Command" xml:space="preserve">
+    <value>Rediger kommando</value>
+  </data>
+  <data name="File_Name" xml:space="preserve">
+    <value>Filnavn</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>IsDefault</value>
+  </data>
+  <data name="Last_Modified" xml:space="preserve">
+    <value>Senest ændret</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Sidst opdateret</value>
+  </data>
+  <data name="LineItemId" xml:space="preserve">
+    <value>LineItemId</value>
+  </data>
+  <data name="List_Price" xml:space="preserve">
+    <value>Listepris</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Sti</value>
+  </data>
+  <data name="PaymentId" xml:space="preserve">
+    <value>PaymentId</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Mængde</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Valutakurs</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Størrelse</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>SortOrder</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="System_Name" xml:space="preserve">
+    <value>Systemnavn</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Synlig</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="OrderGroupAddressId" xml:space="preserve">
+    <value>OrderGroupAddressId</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>Bestilling</value>
+  </data>
+  <data name="Friendly_Name" xml:space="preserve">
+    <value>Kaldenavn</value>
+  </data>
+  <data name="Jurisdiction_Group_Configure_Price_Per_Weight" xml:space="preserve">
+    <value>Konfigurer pris pr. vægt for jurisdiktionsgruppe</value>
+  </data>
+  <data name="Payment_Attributes_Description" xml:space="preserve">
+    <value>bestemmer hvilke yderligere attributter der tilknyttes en betaling</value>
+  </data>
+  <data name="Payment_For_Description" xml:space="preserve">
+    <value>mængde, som denne betaling er for</value>
+  </data>
+  <data name="Payment_Method" xml:space="preserve">
+    <value>Betalingsmåde</value>
+  </data>
+  <data name="Payment_Name_Description" xml:space="preserve">
+    <value>betalingsnavn, som vises for en kunde</value>
+  </data>
+  <data name="Payment_Status_Description" xml:space="preserve">
+    <value>status for den aktuelle betaling</value>
+  </data>
+  <data name="Payment_Type" xml:space="preserve">
+    <value>Betalingstype</value>
+  </data>
+  <data name="Payment_API_User" xml:space="preserve">
+    <value>API UserId</value>
+  </data>
+  <data name="Cart_List" xml:space="preserve">
+    <value>Liste over indkøbsvogne</value>
+  </data>
+  <data name="Order_By_Status" xml:space="preserve">
+    <value>Ordre efter status</value>
+  </data>
+  <data name="PaymentPlan_List" xml:space="preserve">
+    <value>Liste over betalingsplaner</value>
+  </data>
+  <data name="Country_With_Code_Exists" xml:space="preserve">
+    <value>Der eksisterer allerede et land med den angivne kode</value>
+  </data>
+  <data name="JurisdictionGroup_With_Code_Exists" xml:space="preserve">
+    <value>Der eksisterer allerede en jurisdiktionsgruppe med den angivne kode</value>
+  </data>
+  <data name="Jurisdiction_With_Code_Exists" xml:space="preserve">
+    <value>Der eksisterer allerede en jurisdiktion med den angivne kode</value>
+  </data>
+  <data name="Tax_With_Name_Exists" xml:space="preserve">
+    <value>Der eksisterer allerede en afgift med det angivne navn.</value>
+  </data>
+  <data name="Package_Name_Exists" xml:space="preserve">
+    <value>Der eksisterer allerede en pakke med det angivne navn.</value>
+  </data>
+  <data name="RecurringMethod_Authorize" xml:space="preserve">
+    <value>Godkend</value>
+  </data>
+  <data name="RecurringMethod_Internal" xml:space="preserve">
+    <value>Intern</value>
+  </data>
+  <data name="RecurringPayment_CancelStatus" xml:space="preserve">
+    <value>Annuller status</value>
+  </data>
+  <data name="RecurringPayment_CancelStatus_Required" xml:space="preserve">
+    <value>CancelStatus er obligatorisk</value>
+  </data>
+  <data name="RecurringPayment_Select_CancelStatus" xml:space="preserve">
+    <value>vælg annuller status</value>
+  </data>
+  <data name="Recurring_Method" xml:space="preserve">
+    <value>Tilbagevendende metode</value>
+  </data>
+  <data name="Recurring_Payments" xml:space="preserve">
+    <value>Tilbagevendende betalinger</value>
+  </data>
+  <data name="Regular_Authorize_Payments" xml:space="preserve">
+    <value>Regelmæssige betalinger</value>
+  </data>
+  <data name="Jurisdictions" xml:space="preserve">
+    <value>Jurisdiktioner</value>
+  </data>
+  <data name="Jurisdictions_In_The_Group" xml:space="preserve">
+    <value>Jurisdiktioner i gruppen</value>
+  </data>
+  <data name="Jurisdiction_Edit" xml:space="preserve">
+    <value>Rediger jurisdiktion</value>
+  </data>
+  <data name="Jurisdiction_Group" xml:space="preserve">
+    <value>Jurisdiktionsgruppe</value>
+  </data>
+  <data name="Jurisdiction_Groups" xml:space="preserve">
+    <value>Jurisdiktionsgrupper</value>
+  </data>
+  <data name="Jurisdiction_Groups_Edit" xml:space="preserve">
+    <value>Rediger jurisdiktionsgruppe</value>
+  </data>
+  <data name="select_jurisdiction_group" xml:space="preserve">
+    <value>vælg jurisdiktionsgruppe</value>
+  </data>
+  <data name="Country_Edit" xml:space="preserve">
+    <value>Rediger land</value>
+  </data>
+  <data name="CountryRegions" xml:space="preserve">
+    <value>Landeregioner</value>
+  </data>
+  <data name="Payment_Method_Edit" xml:space="preserve">
+    <value>Rediger betalingsmåde</value>
+  </data>
+  <data name="Shipping_Method_Edit" xml:space="preserve">
+    <value>Rediger forsendelsesmåde</value>
+  </data>
+  <data name="Shipping_Package_Edit" xml:space="preserve">
+    <value>Rediger forsendelsespakke</value>
+  </data>
+  <data name="Shipping_Provider_Edit" xml:space="preserve">
+    <value>Rediger fragtudbyder</value>
+  </data>
+  <data name="Tax_Edit" xml:space="preserve">
+    <value>Rediger afgift</value>
+  </data>
+  <data name="New_Payment" xml:space="preserve">
+    <value>Ny betaling</value>
+  </data>
+  <data name="Tax_Add_Value" xml:space="preserve">
+    <value>Tilføj afgiftsværdi</value>
+  </data>
+  <data name="LineItemApproving" xml:space="preserve">
+    <value>Kvalitetsgodkendelse</value>
+  </data>
+  <data name="LineItemNew" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="LineItemNotAvailable" xml:space="preserve">
+    <value>Ikke tilgængelig - kan ikke leveres</value>
+  </data>
+  <data name="LineItemOrdered" xml:space="preserve">
+    <value>Bestilt</value>
+  </data>
+  <data name="LineItemProcessed" xml:space="preserve">
+    <value>Under behandling</value>
+  </data>
+  <data name="LineItemReadyToSend" xml:space="preserve">
+    <value>Klar til afsendelse</value>
+  </data>
+  <data name="LineItemReturnToSeller" xml:space="preserve">
+    <value>Returneret til sælger</value>
+  </data>
+  <data name="LineItemSent" xml:space="preserve">
+    <value>Sendt</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>vælg...</value>
+  </data>
+  <data name="Payment_Implementation_Class_Name" xml:space="preserve">
+    <value>Betalingsklasse</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="Shipping_Method" xml:space="preserve">
+    <value>Forsendelsesmåde</value>
+  </data>
+  <data name="Order_New" xml:space="preserve">
+    <value>Ny ordre</value>
+  </data>
+  <data name="OrderShipmentStatus_AwaitingInventory" xml:space="preserve">
+    <value>Afventer lageropgørelse</value>
+  </data>
+  <data name="OrderShipmentStatus_Cancelled" xml:space="preserve">
+    <value>Annulleret</value>
+  </data>
+  <data name="OrderShipmentStatus_InventoryAssigned" xml:space="preserve">
+    <value>Lageropgørelse tildelt</value>
+  </data>
+  <data name="OrderShipmentStatus_OnHold" xml:space="preserve">
+    <value>Sat i bero</value>
+  </data>
+  <data name="OrderShipmentStatus_Packing" xml:space="preserve">
+    <value>Pakning</value>
+  </data>
+  <data name="OrderShipmentStatus_Released" xml:space="preserve">
+    <value>Frigivet</value>
+  </data>
+  <data name="OrderShipmentStatus_Shipped" xml:space="preserve">
+    <value>Afsendt</value>
+  </data>
+  <data name="OrderStatus_AwaitingExchange" xml:space="preserve">
+    <value>Afventer ombytning</value>
+  </data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve">
+    <value>Annulleret</value>
+  </data>
+  <data name="OrderStatus_Completed" xml:space="preserve">
+    <value>Fuldført</value>
+  </data>
+  <data name="OrderStatus_InProgress" xml:space="preserve">
+    <value>Under udførelse</value>
+  </data>
+  <data name="OrderStatus_OnHold" xml:space="preserve">
+    <value>Sat i bero</value>
+  </data>
+  <data name="OrderStatus_PartiallyShipped" xml:space="preserve">
+    <value>Delleveret</value>
+  </data>
+  <data name="ReturnFormStatus_AwaitingCompletion" xml:space="preserve">
+    <value>Afventer fuldførelse</value>
+  </data>
+  <data name="ReturnFormStatus_AwaitingStockReturn" xml:space="preserve">
+    <value>Afventer returnering til lager</value>
+  </data>
+  <data name="ReturnFormStatus_Canceled" xml:space="preserve">
+    <value>Annulleret</value>
+  </data>
+  <data name="ReturnFormStatus_Complete" xml:space="preserve">
+    <value>Fuldfør</value>
+  </data>
+  <data name="Add_New_Address" xml:space="preserve">
+    <value>Tilføj ny adresse</value>
+  </data>
+  <data name="Error_No_Customer" xml:space="preserve">
+    <value>Den angivne kunde blev ikke fundet</value>
+  </data>
+  <data name="Warning_No_Addesses" xml:space="preserve">
+    <value>Den aktuelle kunde har ingen adresser. Der kræves mindst én adresse for at kunne oprette en ordre. Klik på nedenstående link for at tilføje en adresse.</value>
+  </data>
+  <data name="Order_Recalculate" xml:space="preserve">
+    <value>Foretag ny beregning</value>
+  </data>
+  <data name="Order_SendNotificationConfirmation" xml:space="preserve">
+    <value>Er du sikker på, at du vil sende meddelelsen?</value>
+  </data>
+  <data name="OrderNoteTypes_Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="OrderNoteTypes_Payments" xml:space="preserve">
+    <value>Betalinger</value>
+  </data>
+  <data name="OrderNoteTypes_ReturnsExchange" xml:space="preserve">
+    <value>Returvarer/ombytning</value>
+  </data>
+  <data name="OrderNoteTypes_Shipment" xml:space="preserve">
+    <value>Forsendelse</value>
+  </data>
+  <data name="Shipping_Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Shipping_Number" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Add_To_Customer_Address_Book" xml:space="preserve">
+    <value>Føj til kundens adressebog</value>
+  </data>
+  <data name="PickSite" xml:space="preserve">
+    <value>Vælg et websted</value>
+  </data>
+  <data name="SelectCatalog" xml:space="preserve">
+    <value>Vælg katalog</value>
+  </data>
+  <data name="SelectEntryType" xml:space="preserve">
+    <value>Vælg posttype</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Vælg sprog</value>
+  </data>
+  <data name="ConfigureSelectedEntry" xml:space="preserve">
+    <value>Konfigurer valgte post</value>
+  </data>
+  <data name="SelectedEntry" xml:space="preserve">
+    <value>Valgte post</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>Visningspris</value>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Føj vare til ordren</value>
+  </data>
+  <data name="PriceTier" xml:space="preserve">
+    <value>Prislag</value>
+  </data>
+  <data name="New_LineItem_Discount_Amount" xml:space="preserve">
+    <value>beløb</value>
+  </data>
+  <data name="New_LineItem_Discount_Description" xml:space="preserve">
+    <value>Rabatbeskrivelse</value>
+  </data>
+  <data name="PickVariation" xml:space="preserve">
+    <value>Vælg en variation</value>
+  </data>
+  <data name="PromotionGroup_Item" xml:space="preserve">
+    <value>Katalogpost</value>
+  </data>
+  <data name="PromotionGroup_Order" xml:space="preserve">
+    <value>Ordre</value>
+  </data>
+  <data name="PromotionGroup_Shipping" xml:space="preserve">
+    <value>Forsendelse</value>
+  </data>
+  <data name="OrderNote_AddNewLineItemPattern" xml:space="preserve">
+    <value>Nyt artikelnummer ({0} af {1}) føjet til forsendelsen #{2}, ordretotal ændret til {3}</value>
+  </data>
+  <data name="OrderNote_ChangeLineItemPattern" xml:space="preserve">
+    <value>Artikelnummer ({0} af {1}) er blevet ændret på forsendelsen #{2}, ordretotal ændret til {3}</value>
+  </data>
+  <data name="OrderNote_ChangeReturnStatusPattern" xml:space="preserve">
+    <value>Ordre retur med {0}  status ændret til {1}</value>
+  </data>
+  <data name="OrderNote_ChangeShipmentStatusPattern" xml:space="preserve">
+    <value>Status for forsendelse {0} ændres til {1}</value>
+  </data>
+  <data name="OrderNote_DeleteLineItemPattern" xml:space="preserve">
+    <value>Artikelnummer ({0} af {1}) er fjernet fra forsendelsen #{2}, ordretotal ændret til {3}</value>
+  </data>
+  <data name="OrderNote_MoveLineItemPattern" xml:space="preserve">
+    <value>Artikelnummer ({0} af {1}) er overført til forsendelse #{2}</value>
+  </data>
+  <data name="OrderNote_ReturnLineItemPattern" xml:space="preserve">
+    <value>Artikelnummer ({0} af {1}) er returneret til Returnering #{2} pga. {3}</value>
+  </data>
+  <data name="OrderNote_ChangeOrderStatusPattern" xml:space="preserve">
+    <value>Ordrestatus ændret til {0}</value>
+  </data>
+  <data name="OrderNote_AddNewPaymentPattern" xml:space="preserve">
+    <value>Ny {0} betaling på {1} er føjet til ordren</value>
+  </data>
+  <data name="OrderNote_NewOrderPattern" xml:space="preserve">
+    <value>Ny ordre afgivet af {0} i {1}</value>
+  </data>
+  <data name="OrderNote_SendNotificationPattern" xml:space="preserve">
+    <value>Send ordremeddelelse til {0}</value>
+  </data>
+  <data name="CouponCode_Apply_Fail" xml:space="preserve">
+    <value>Kuponkoden er ugyldig.</value>
+  </data>
+  <data name="CouponCode_Apply_Success" xml:space="preserve">
+    <value>Kuponkoden blev anvendt.</value>
+  </data>
+  <data name="ReturnForm_RefundAmount" xml:space="preserve">
+    <value>Refusionsbeløb</value>
+  </data>
+  <data name="PromotionGroup_Entry" xml:space="preserve">
+    <value>Katalogpost</value>
+  </data>
+  <data name="CancelOrderConfirmation" xml:space="preserve">
+    <value>Er du sikker på, at du vil annullere den aktuelle indkøbsordre?</value>
+  </data>
+  <data name="CancelReturnConfirmation" xml:space="preserve">
+    <value>Er du sikker på, at du vil annullere den aktuelle anmodning om returnering?</value>
+  </data>
+  <data name="CancelShipmentConfirmation" xml:space="preserve">
+    <value>Er du sikker på, at du vil annullere den aktuelle forsendelse?</value>
+  </data>
+  <data name="CompleteReturnConfirmation" xml:space="preserve">
+    <value>Er du sikker på, at du vil fuldføre den aktuelle anmodning om returnering?</value>
+  </data>
+  <data name="OrderStatus_HaveAwaitingReturnCompletable" xml:space="preserve">
+    <value>Afventer returnering til lager</value>
+  </data>
+  <data name="OrderStatus_HaveAwaitingStockReturns" xml:space="preserve">
+    <value>Afventer fuldførelse af returnering</value>
+  </data>
+  <data name="Pick_List" xml:space="preserve">
+    <value>Plukliste</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Lager</value>
+  </data>
+  <data name="PaymentPlan_New" xml:space="preserve">
+    <value>Ny betalingsplan</value>
+  </data>
+  <data name="Add_Shipment_To_Picklist" xml:space="preserve">
+    <value>Tilføj forsendelse til plukliste</value>
+  </data>
+  <data name="Order_Created" xml:space="preserve">
+    <value>Ordre oprettet</value>
+  </data>
+  <data name="Packing_Shipments" xml:space="preserve">
+    <value>Pakker forsendelser</value>
+  </data>
+  <data name="Pick_Lists" xml:space="preserve">
+    <value>Pluklister</value>
+  </data>
+  <data name="Released_Shipments" xml:space="preserve">
+    <value>Frigivne forsendelser</value>
+  </data>
+  <data name="Warehouse_Colon" xml:space="preserve">
+    <value>Lager:</value>
+  </data>
+  <data name="Add_Note" xml:space="preserve">
+    <value>Tilføj note</value>
+  </data>
+  <data name="Add_Order_Address" xml:space="preserve">
+    <value>Tilføj ordreadresse</value>
+  </data>
+  <data name="Balance_Due" xml:space="preserve">
+    <value>Balance forfalden</value>
+  </data>
+  <data name="Cancel_Order" xml:space="preserve">
+    <value>Annuller ordre</value>
+  </data>
+  <data name="Created_Date" xml:space="preserve">
+    <value>Oprettelsesdato</value>
+  </data>
+  <data name="Discounts_Total" xml:space="preserve">
+    <value>Rabatter i alt</value>
+  </data>
+  <data name="Item_Subtotal" xml:space="preserve">
+    <value>Vare subtotal</value>
+  </data>
+  <data name="Item_Taxes" xml:space="preserve">
+    <value>Vareafgifter</value>
+  </data>
+  <data name="Less_Shipment_Discount" xml:space="preserve">
+    <value>Med fradrag af forsendelsesrabat</value>
+  </data>
+  <data name="New_Line_Item" xml:space="preserve">
+    <value>Nyt linjeelement</value>
+  </data>
+  <data name="Order_No_Sign" xml:space="preserve">
+    <value>Ordrenr.</value>
+  </data>
+  <data name="Order_Total" xml:space="preserve">
+    <value>Ordre i alt</value>
+  </data>
+  <data name="Place_On_Hold" xml:space="preserve">
+    <value>Sæt i bero</value>
+  </data>
+  <data name="Release_Order_Hold" xml:space="preserve">
+    <value>Frigiv ordre i bero</value>
+  </data>
+  <data name="Return_Number" xml:space="preserve">
+    <value>Returnr.</value>
+  </data>
+  <data name="Shipping_Cost" xml:space="preserve">
+    <value>Forsendelsesomkostning</value>
+  </data>
+  <data name="Shipping_Total" xml:space="preserve">
+    <value>Forsendelse i alt</value>
+  </data>
+  <data name="Sub_Total" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="Taxes_Total" xml:space="preserve">
+    <value>Afgifter i alt</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>I alt</value>
+  </data>
+  <data name="Total_Before_Tax" xml:space="preserve">
+    <value>I alt før afgifter</value>
+  </data>
+  <data name="Acknowledge_Receipt_Items" xml:space="preserve">
+    <value>Godkend varer på kvittering</value>
+  </data>
+  <data name="Cancel_Return" xml:space="preserve">
+    <value>Annuller returnering</value>
+  </data>
+  <data name="Cancel_Shipment" xml:space="preserve">
+    <value>Annuller forsendelse</value>
+  </data>
+  <data name="Cardholders_Name" xml:space="preserve">
+    <value>Kortholders navn</value>
+  </data>
+  <data name="Catalog_Entry_Search_Dialog" xml:space="preserve">
+    <value>Dialogboksen Søg på katalogpost</value>
+  </data>
+  <data name="Complete_Return" xml:space="preserve">
+    <value>Komplet returnering</value>
+  </data>
+  <data name="Complete_Shipment" xml:space="preserve">
+    <value>Komplet forsendelse</value>
+  </data>
+  <data name="Create_Edit_Return" xml:space="preserve">
+    <value>Opret/rediger returnering</value>
+  </data>
+  <data name="Create_Exchange" xml:space="preserve">
+    <value>Opret ombytning</value>
+  </data>
+  <data name="Create_Exchange_Order" xml:space="preserve">
+    <value>Opret ombytningsordre</value>
+  </data>
+  <data name="Create_Payment" xml:space="preserve">
+    <value>Opret betaling</value>
+  </data>
+  <data name="Create_Refund" xml:space="preserve">
+    <value>Opret refusion</value>
+  </data>
+  <data name="Create_Return" xml:space="preserve">
+    <value>Opret returnering</value>
+  </data>
+  <data name="Credit_Card_Code" xml:space="preserve">
+    <value>Kortkode (CVV2, CVC2 eller CID)</value>
+  </data>
+  <data name="Credit_Card_Expiration_Date" xml:space="preserve">
+    <value>Udløbsdato (MM/ÅÅ)</value>
+  </data>
+  <data name="Credit_Card_Number" xml:space="preserve">
+    <value>Kreditkortnummer</value>
+  </data>
+  <data name="Edit_Information" xml:space="preserve">
+    <value>Rediger oplysninger</value>
+  </data>
+  <data name="Edit_Line_Item" xml:space="preserve">
+    <value>Rediger linjeelement</value>
+  </data>
+  <data name="Edit_Currency" xml:space="preserve">
+    <value>Rediger valuta</value>
+  </data>
+  <data name="Edit_Note" xml:space="preserve">
+    <value>Rediger note</value>
+  </data>
+  <data name="Edit_Payment" xml:space="preserve">
+    <value>Rediger betaling</value>
+  </data>
+  <data name="Edit_Return" xml:space="preserve">
+    <value>Rediger returnering</value>
+  </data>
+  <data name="Move_Line_Item" xml:space="preserve">
+    <value>Flyt linjeelement</value>
+  </data>
+  <data name="New_Note" xml:space="preserve">
+    <value>Ny note</value>
+  </data>
+  <data name="Order_Edit_By_Another" xml:space="preserve">
+    <value>Ordren redigeres af en anden bruger</value>
+  </data>
+  <data name="Order_Is_In_Edit_Mode" xml:space="preserve">
+    <value>Ordren er i redigeringstilstand Gem ændringer inden du afslutter.</value>
+  </data>
+  <data name="Order_No" xml:space="preserve">
+    <value>Ordrenr.</value>
+  </data>
+  <data name="Original_Order" xml:space="preserve">
+    <value>Oprindelig ordre</value>
+  </data>
+  <data name="Release_Shipment" xml:space="preserve">
+    <value>Frigiv forsendelse</value>
+  </data>
+  <data name="Shipping_Information" xml:space="preserve">
+    <value>Forsendelsesoplysninger</value>
+  </data>
+  <data name="View_Exchange" xml:space="preserve">
+    <value>Vis ombytning</value>
+  </data>
+  <data name="AsItAppearsOnTheCard" xml:space="preserve">
+    <value>(som det står på kortet)</value>
+  </data>
+  <data name="Existing_Payments" xml:space="preserve">
+    <value>Eksisterende betalinger</value>
+  </data>
+  <data name="Returns_Exchanges" xml:space="preserve">
+    <value>Returneringer/Ombytninger</value>
+  </data>
+  <data name="Shipment_Status" xml:space="preserve">
+    <value>Forsendelsesstatus</value>
+  </data>
+  <data name="Shipment_Summary" xml:space="preserve">
+    <value>Foresendelsesbeskrivelse</value>
+  </data>
+  <data name="Shipment_Total" xml:space="preserve">
+    <value>Forsendelse i alt</value>
+  </data>
+  <data name="Add_Shipments_To_Pick_List" xml:space="preserve">
+    <value>Tilføj forsendelser til plukliste</value>
+  </data>
+  <data name="Add_To_Pick_List" xml:space="preserve">
+    <value>Tilføj til plukliste</value>
+  </data>
+  <data name="Confirm_Return_Shipments_To_Released" xml:space="preserve">
+    <value>Returner de valgte forsendelser til frigivelse?</value>
+  </data>
+  <data name="Create_New_Pick_List" xml:space="preserve">
+    <value>Opret ny plukliste</value>
+  </data>
+  <data name="Date_Time_Initiated" xml:space="preserve">
+    <value>Dato/Tid for påbegyndelse</value>
+  </data>
+  <data name="Exchange_Actions" xml:space="preserve">
+    <value>Ombytningshandlinger</value>
+  </data>
+  <data name="Line_Item" xml:space="preserve">
+    <value>Linjeelement</value>
+  </data>
+  <data name="List_Name" xml:space="preserve">
+    <value>Listenavn</value>
+  </data>
+  <data name="Print_Packing_Slip" xml:space="preserve">
+    <value>Udskriv følgeseddel</value>
+  </data>
+  <data name="Print_Picklist" xml:space="preserve">
+    <value>Udskriv plukliste</value>
+  </data>
+  <data name="Remove_From_Picklist" xml:space="preserve">
+    <value>Fjern fra plukliste</value>
+  </data>
+  <data name="Returns_Actions" xml:space="preserve">
+    <value>Returneringshandlinger</value>
+  </data>
+  <data name="ReturnType" xml:space="preserve">
+    <value>Returneringstype</value>
+  </data>
+  <data name="Return_Max_Quantity_Error" xml:space="preserve">
+    <value>Maksimal mængde, der skal returneres: {0:#0.00}</value>
+  </data>
+  <data name="Return_Quantity" xml:space="preserve">
+    <value>Returneringsmængde</value>
+  </data>
+  <data name="Return_Reason" xml:space="preserve">
+    <value>Returneringsgrund</value>
+  </data>
+  <data name="Return_Total" xml:space="preserve">
+    <value>ReturnTotal</value>
+  </data>
+  <data name="RMA_Date" xml:space="preserve">
+    <value>RMA-dato</value>
+  </data>
+  <data name="Shipment_Details" xml:space="preserve">
+    <value>Forsendelsesdetaljer</value>
+  </data>
+  <data name="Shipment_No_Sign" xml:space="preserve">
+    <value>Forsendelsesnr.</value>
+  </data>
+  <data name="Tracking_Number" xml:space="preserve">
+    <value>Sporingsnummer</value>
+  </data>
+  <data name="Return_Reason_Edit" xml:space="preserve">
+    <value>Rediger returneringsgrund</value>
+  </data>
+  <data name="Return_Reason_Exists" xml:space="preserve">
+    <value>Returneringsgrunden eksisterer allerede</value>
+  </data>
+  <data name="Return_Reason_Name_Required" xml:space="preserve">
+    <value>Der kræves et navn på returneringsgrunden</value>
+  </data>
+  <data name="Error_No_Payment_Methods" xml:space="preserve">
+    <value>Der er ikke konfigureret betalingsmetoder for det aktuelle standardsprog ({0}).</value>
+  </data>
+  <data name="Order_Search_Fail" xml:space="preserve">
+    <value>Den anmodede søgning mislykkedes.</value>
+  </data>
+  <data name="Order_Search_FailAndRetry" xml:space="preserve">
+    <value>Den anmodede søgning mislykkedes. Viser alle varer.</value>
+  </data>
+  <data name="Order_Is_Locked" xml:space="preserve">
+    <value>Ordren er låst</value>
+  </data>
+  <data name="Return_Type" xml:space="preserve">
+    <value>Returneringstype</value>
+  </data>
+  <data name="Shipment_Is_Not_Found" xml:space="preserve">
+    <value>Forsendelsen blev ikke fundet</value>
+  </data>
+  <data name="Shipment_No_Sign_To_Validate" xml:space="preserve">
+    <value>Forsendelsesnummer, der skal valideres</value>
+  </data>
+  <data name="Cart_No_Sign" xml:space="preserve">
+    <value>Vognnr.</value>
+  </data>
+  <data name="Cart_Total" xml:space="preserve">
+    <value>Vogn i alt</value>
+  </data>
+  <data name="Create_Payment_Plan" xml:space="preserve">
+    <value>Opret betalingsplan</value>
+  </data>
+  <data name="Plan_No_Sign" xml:space="preserve">
+    <value>Plannr.</value>
+  </data>
+  <data name="Plan_Total" xml:space="preserve">
+    <value>Plan i alt</value>
+  </data>
+  <data name="ShoppingCart_New" xml:space="preserve">
+    <value>Ny indkøbsvogn</value>
+  </data>
+  <data name="Invalid_Return_Reason_Name" xml:space="preserve">
+    <value>Ugyldigt navn; bogstaver, tal, -, _ og mellemrum tilladt op til 50 tegn</value>
+  </data>
+  <data name="Line_Item_Discounts" xml:space="preserve">
+    <value>Rabatter på linjeelementer</value>
+  </data>
+  <data name="Order_Level_Discounts" xml:space="preserve">
+    <value>Rabatter på ordreniveau</value>
+  </data>
+  <data name="Shipping_Discounts" xml:space="preserve">
+    <value>Forsendelsesrabatter</value>
+  </data>
+  <data name="Shipping_Discount_Total" xml:space="preserve">
+    <value>Forsendelsesrabatter i alt</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Elementer</value>
+  </data>
+  <data name="Total_Before_Tax_And_Shipping" xml:space="preserve">
+    <value>I alt før afgifter og forsendelse</value>
+  </data>
+  <data name="Fulfillment_Warehouse" xml:space="preserve">
+    <value>Effektueringslager</value>
+  </data>
+  <data name="Inventory_Not_Check" xml:space="preserve">
+    <value>Ikke tilgængelig</value>
+  </data>
+  <data name="List_Name_Empty_Error" xml:space="preserve">
+    <value>Pluklisten er tom Opret en ny plukliste, eller vælg en eksisterende.</value>
+  </data>
+  <data name="Payment_Market_Selected" xml:space="preserve">
+    <value>Markerede markeder for betalingsmetode</value>
+  </data>
+  <data name="Payment_Market_Unselected" xml:space="preserve">
+    <value>Ikke-markerede markeder for betalingsmetode</value>
+  </data>
+  <data name="Payment_Password_Required" xml:space="preserve">
+    <value>'Adgangskode' må ikke være tom.</value>
+  </data>
+  <data name="Pickup_Orders" xml:space="preserve">
+    <value>Afhentningsordrer</value>
+  </data>
+  <data name="SelectWarehouse" xml:space="preserve">
+    <value>Vælg lager</value>
+  </data>
+  <data name="Shipment_ChargeForFromShipment" xml:space="preserve">
+    <value>Debiter kunden for den originale forsendelses forsendelsesomkostninger</value>
+  </data>
+  <data name="Shipment_ChargeForShipment" xml:space="preserve">
+    <value>Debiter kunden for ændringerne i forsendelsens forsendelsesomkostninger</value>
+  </data>
+  <data name="Shipment_ChargeForToShipment" xml:space="preserve">
+    <value>Debiter kunden for den nye forsendelses forsendelsesomkostninger</value>
+  </data>
+  <data name="Warehouse_Default_Fulfillment" xml:space="preserve">
+    <value>Levering til kunde</value>
+  </data>
+  <data name="Warehouse_PickFulfillment" xml:space="preserve">
+    <value>Vælg et effektueringsalternativ</value>
+  </data>
+  <data name="Warehouse_Pickup_Fulfillment" xml:space="preserve">
+    <value>Afhentes af kunden i {0}</value>
+  </data>
+  <data name="Shipment_Id" xml:space="preserve">
+    <value>Forsendelsesnr-ID</value>
+  </data>
+</root>

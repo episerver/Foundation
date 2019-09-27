@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<clear></clear>
+			<add>
+				<Block id="returnOrderView" name="">
+					<Placeholder id="Placeholder_1">
+						<Control id="ReturnOrderTitle" path="~/Apps/Order/Modules/ReturnOrderHeader.ascx">
+						</Control>
+						<Control id="ReturnOrderDetails" path="~/Apps/Order/Modules/ReturnOrderDetails.ascx">
+						</Control>
+						<Control id="LineItemsGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+							<Property name="RelatedClassName" value="LineItem" />
+							<Property name="RelatedToClassName" value="ReturnOrder"/>
+							<Property name="LeftPadding" value="5px"/>
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+		<ButtonSets>
+			<add>
+				<ButtonSet placeName="ExchangeButtonsHolder">
+					<Button id="ViewExchangeOrder" text="{OrderStrings:View_Exchange}" commandName="btn_ViewExchangeOrder" width="110" disableMode="true" permissions="order:mng:view"></Button>
+					<Button id="CreateExchangeOrder" text="{OrderStrings:Create_Exchange}" commandName="btn_CreateExchangeOrder" width="110" disableMode="true" permissions="order:mng:return:create:exchange"></Button>
+				</ButtonSet>
+				<ButtonSet placeName="ReturnButtonsHolder">
+					<Button id="EditReturn" text="{OrderStrings:Edit_Return}"  commandName="btn_EditReturn" width="150" disableMode="true" permissions="order:mng:edit"></Button>
+					<Button id="CancelReturn" text="{OrderStrings:Cancel_Return}" commandName="btn_CancelReturn" width="150" disableMode="true" permissions="order:mng:edit" ></Button>
+					<Button id="CompleteReturn" text="{OrderStrings:Complete_Return}" commandName="btn_CompleteReturn" width="150" disableMode="true" permissions="order:mng:discretionary:credit:payment"></Button>
+					<Button id="AcknowledgeReceiptItems" text="{OrderStrings:Acknowledge_Receipt_Items}" commandName="btn_AcknowledgeReceiptItems" width="150" disableMode="true" permissions="order:mng:return:receiving"></Button>
+				</ButtonSet>
+			</add>
+		</ButtonSets>
+		<Grids>
+			<add>
+				<Grid placeName="ReturnOrderLineItem-List">
+          <Columns>
+            <Column visible="false" allowSorting="true" dataField="LineItemId" headingText="{SharedStrings:LineItemId}"></Column>
+            <Column width="250" visible="true" allowSorting="false" dataField="Code" headingText="{SharedStrings:Code}"></Column>
+            <Column width="250" visible="true" allowSorting="false" dataField="DisplayName" headingText="{SharedStrings:Name}"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="ReturnQuantity" formatString="{0:#0.00}" headingText="{SharedStrings:Quantity}"></Column>
+            <Column width="120" allowSorting="false" dataField="LineItemId"  headingText="{SharedStrings:Placed_Price}" columnType="CustomTemplate">
+              <Template id="PlacedPriceTemplate" controlUrl="GridTemplates/PlacedPriceTemplate.ascx"></Template>
+            </Column>
+            <Column width="120" visible="true" allowSorting="false" dataField="LineItemId" headingText="Total Before Return" columnType="CustomTemplate">
+              <Template id="TotalNamesTemplate" controlUrl="GridTemplates/LineItemTotalTemplate.ascx"></Template>
+            </Column>
+            <Column width="120" visible="true" allowSorting="false" dataField="ReturnReason" headingText="{SharedStrings:Reason}"></Column>
+          </Columns>
+				</Grid>
+			</add>
+		</Grids>
+		<Commands>
+			<add>
+				<Command id="btn_ViewExchangeOrder">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'ExchangeOrderRedirect', 'ReturnFormId=[ClientParam:ContainerId]&amp;Id={QueryString:id}')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.ViewExchangeOrderReturnFormHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_CreateExchangeOrder">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Create_Exchange_Order}</PopupTitle>
+					<Url>~/Apps/Shell/Pages/ContentFrame.aspx?_a=Order&amp;_v=PurchaseOrder-New&amp;Id={HttpContext:OrderGroupId}&amp;CustomerId={QueryString:customerid}&amp;ReturnFormId=[ClientParam:ContainerId]&amp;GridViewId=NewOrderLineItem-List&amp;class=PurchaseOrder&amp;ReturnCommand=cmd_NeedRebind</Url>
+					<!--~/Apps/Core/Controls/DialogPage.aspx-->
+					<Width>1024</Width>
+					<Height>700</Height>
+					<Top>40</Top>
+					<Left>10</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.CreateExchangeOrderReturnFormHandler, Mediachase.ConsoleManager" />
+					<AutoHeightResize>True</AutoHeightResize>
+				</Command>
+				<Command id="btn_EditReturn">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Create_Edit_Return}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderCreateReturnForm&amp;Id={HttpContext:OrderGroupId}&amp;ReturnOrderFormId=[ClientParam:ContainerId]&amp;GridViewId=OrderCreateReturnForm&amp;ReturnCommand=cmd_NeedRebind</Url>
+					<Width>900</Width>
+					<Height>450</Height>
+					<Top>40</Top>
+					<Left>50</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.EditReturnFormHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_CancelReturn">
+					<ConfirmationText>{OrderStrings:CancelReturnConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.CancelReturnFormHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.CancelReturnFormHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_CompleteReturn">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Create_Refund}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderCompleteReturnForm&amp;Id={HttpContext:OrderGroupId}&amp;ReturnOrderFormId=[ClientParam:ContainerId]&amp;ReturnCommand=cmd_NeedRebind</Url>
+					<Width>600</Width>
+					<Height>510</Height>
+					<Top>55</Top>
+					<Left>55</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.CompleteReturnFormHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_AcknowledgeReceiptItems">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.AcknowledgeReceiptItemsReturnFormHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.AcknowledgeReceiptItemsReturnFormHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<!--<Command id="btn_CreateExchangeOrder">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Create Exchange Order</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=&amp;CommandPlaceName=OrderLineItem-List&amp;CommandName=cmdOrderLineItemGridMove&amp;LayoutClassName=PurchaseOrder&amp;LayoutPlaceName=ExchangeOrderCreate&amp;Id={QueryString:id}&amp;ContainerId=[ClientParam:ContainerId]&amp;ReturnCommandName=cmd_NeedRebind</Url>
+					<Width>420</Width>
+					<Height>300</Height>
+					<Top>170</Top>
+					<Left>200</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnFormHandlers.CreateExchangeOrderReturnFormHandler, Mediachase.ConsoleManager" />
+				</Command>-->
+			</add>
+		</Commands>
+	</Form>
+	
+	<ViewConfig>
+	</ViewConfig>
+</View>

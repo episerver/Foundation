@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="OrderPayment-Edit" name="Payment Edit" controlUrl="Order/Modules/OrderPaymentEdit.ascx"/>
+	</ViewConfig>
+</View>

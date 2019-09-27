@@ -1,0 +1,31 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Mediachase.Ibn.Web.UI.MasterPages.DialogMasterPage" Codebehind="DialogMasterPage.master.cs" %>
+<%@ Import Namespace="Mediachase.Commerce.Shared" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .ibn-BigTable {
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+    </style>
+	<link href="<%# CommerceHelper.GetAbsolutePath("~/Apps/MetaDataBase/styles/windows.css")%>" type="text/css" rel="stylesheet" />
+	<link href="<%# CommerceHelper.GetAbsolutePath("~/Apps/MetaDataBase/styles/theme.css")%>" rel="stylesheet" />
+	<link href="<%# CommerceHelper.GetAbsolutePath("~/Apps/MetaDataBase/styles/Forum.css")%>" rel="stylesheet" />
+	<link href="<%# CommerceHelper.GetAbsolutePath("~/Apps/MetaDataBase/styles/ibn.css")%>" rel="stylesheet" />
+	<!-- EPi Style-->
+	<link href="<%# CommerceHelper.GetAbsolutePath("~/Apps/Shell/EPi/Shell/Light/Shell-ext.css") %>" rel="stylesheet" type="text/css" />
+</head>
+<body class="ibn-WhiteBg">
+    <form id="frmMain" runat="server" method="post">
+    <div>
+		<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" EnableCdn="true"></asp:ScriptManager>
+        <asp:contentplaceholder id="phMain" runat="server">
+        </asp:contentplaceholder>
+    </div>
+    </form>
+</body>
+</html>

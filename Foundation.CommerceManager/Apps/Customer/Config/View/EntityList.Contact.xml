@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<BafGrid>
+		<add>
+			<ListViewProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<Id>{54a649a9-302f-48bd-b657-11ca3604fda9}</Id>
+				<Name>{Customer:AllContacts}</Name>
+				<IsSystem>true</IsSystem>
+				<IsPublic>true</IsPublic>
+				<FieldSetName>Contacts</FieldSetName>
+				<FieldSet>
+					<string>FullName</string>
+          <string>Email</string>
+					<string>FirstName</string>
+					<string>LastName</string>
+					<string>MiddleName</string>
+					<string>LastOrder</string>
+					<string>CustomerGroup</string>
+				</FieldSet>
+				<GroupByFieldName></GroupByFieldName>
+				<Filters />
+				<ColumnsUI>
+					<Column field="FullName" width="200" />
+          <Column field="Email" width="200" />
+					<Column field="FirstName" width="150" />
+					<Column field="LastName" width="150" />
+					<Column field="MiddleName" width="120" />
+					<Column field="LastOrder" width="150" />
+					<Column field="CustomerGroup" width="150" />
+				</ColumnsUI>
+			</ListViewProfile>
+		</add>
+
+		<Toolbar>
+			<clear/>
+			<add>
+				<Button id="NewItemButton" text="{Customer:NewContact}" imageUrl="~/Apps/MetaDataBase/images/contact.gif" commandName="MC_Cont_NewItem" itemSplitter="Right" permissions="businessfoundation:contact:create:permission"></Button>
+				<Button id="PrinterVersionButton" text="{Common:PrinterVersion}" imageUrl="~/Apps/MetaUIEntity/images/Print.png" commandName="MC_MUI_PrinterVersion" itemSplitter="Right"></Button>
+				<Button id="DeleteSelectedButton" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_Cont_DeleteSelected" itemSplitter="Right" permissions="businessfoundation:contact:delete:permission"></Button>
+			</add>
+		</Toolbar>
+		<CustomColumns>
+			<clear />
+			<add>
+				<Column id="8D581471-6838-48b8-85C6-85D63337C806" type="ColumnsActions" templateUrl="~/Apps/MetaUIEntity/Primitives/ColumnsActions.GridEntity.ascx">
+					<Item imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="MC_Cont_EditItem" paddingRight="5" />
+				</Column>
+			</add>
+		</CustomColumns>
+		<Commands>
+			<clear/>
+			<add>
+				<Command id="MC_Cont_NewItem">
+					<CommandType>ClientAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'Create')</ClientScript>
+				</Command>
+				<Command id="MC_Cont_EditItem">
+					<CommandType>ClientAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<ClientScript>CSCustomerManagementClient.EditContact(params)</ClientScript>
+				</Command>
+				<Command id="MC_Cont_DeleteSelected">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ServerAction</CommandType>
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.DeleteSelectedContactHandler, Mediachase.ConsoleManager" />
+					<ConfirmationText>{Common:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<UpdatePanelIds>grdMainPanel</UpdatePanelIds>
+				</Command>
+				<Command id="MC_MUI_ProfileEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:EditSystemView}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className={QueryString:ClassName}&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1&amp;uid=[ClientParam:uid]</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MC_MUI_ProfileNew">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:NewSystemView}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className={QueryString:ClassName}&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+
+				<Command id="MC_MUI_ProfileEdited">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.ProfileEditedHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="MC_MUI_ProfileEditAdmin">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:EditSystemView}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className=Contact&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1&amp;uid=[ClientParam:uid]&amp;commandName=MC_MUI_NeedToDataBind&amp;isSystem=1</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MC_MUI_ProfileNewAdmin">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:NewSystemView}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className=Contact&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1&amp;commandName=MC_MUI_NeedToDataBind&amp;isSystem=1</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+
+				<Command id="MC_MUI_NeedToDataBind">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.NeedToDataBindHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="MC_MUI_ExportTrue">
+					<CommandType>ServerAction</CommandType>
+				</Command>
+
+				<Command id="MC_MUI_PrinterVersion">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.PrinterVersionHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</BafGrid>
+	<ViewConfig>
+		<setAttributes id="ContactList" name="ContactList" controlUrl="MetaUIEntity/Modules/EntityList.ascx" permissions="businessfoundation:contact:view:permission"></setAttributes>
+	</ViewConfig>
+</View>

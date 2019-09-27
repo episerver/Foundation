@@ -1,0 +1,3 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeftMenuItems.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Customization.Modules.LeftMenuItems" %>
+<%@ Register Src="../../Core/Controls/EcfListViewControl.ascx" TagName="EcfListViewControl" TagPrefix="core" %>
+<core:EcfListViewControl id="MyListView" runat="server" AppId="Customization" ViewId="LeftMenuItem-List" ShowTopToolbar="true"></core:EcfListViewControl>

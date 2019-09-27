@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Toolbar>
+			<add>
+				<Button id="UpdateButton" text="{SharedStrings:Save_All}" imageUrl="~/Apps/Shell/styles/Images/toolbar/saveall.png" commandName="cmdCatalogBatchUpdate" permissions="catalog:ctlg:entries:mng:edit"/>
+			</add>
+		</Toolbar>
+		<Grid>
+			<add>
+				<Columns>
+					<Column width="290" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" columnType="CustomTemplate">
+						<Template id="LinkTemplate" controlUrl="GridTemplates/NodeHyperlinkTemplate.ascx"></Template>
+					</Column>
+					<Column width="710" allowSorting="false" headingText="{SharedStrings:Field_Name}" columnType="CustomTemplate">
+						<Template id="BatchUpdateControlTemplate" controlUrl="GridTemplates/ItemControlTemplate.ascx"></Template>
+					</Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Commands>
+			<add>
+				<Command id="cmdCatalogBatchUpdate">
+					<CommandType>ServerAction</CommandType>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogBatchUpdateHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogBatchUpdateHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="CatalogBatchUpdate-List" controlUrl="catalog/CatalogBatchUpdate.ascx" permissions="catalog:ctlg:entries:mng:edit" help="Catalog+Management"></setAttributes>
+	</ViewConfig>
+</View>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Catalog-Export" controlUrl="Catalog/CatalogExport.ascx" help="Catalog+Management" permissions="catalog:ctlg:mng:view"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Export}" controlUrl="Catalog/Tabs/CatalogExportTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

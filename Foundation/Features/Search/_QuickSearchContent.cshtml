@@ -1,0 +1,33 @@
+﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchPage>
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.UnifiedSearchResults != null)
+{
+    <ul>
+        <li class="searchbox__heading">
+            <p>Contents</p>
+        </li>
+        @foreach (var content in Model.UnifiedSearchResults)
+        {
+
+            <li class="searchbox__row">
+                <a href="@content.Url" class="searchbox__product-name">
+                    @Html.Raw(content.Title)
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <ul>
+        <li class="searchbox__row searchbox__heading">
+            <p>Contents</p>
+        </li>
+        <li class="searchbox__row">
+            <p class="searchbox__notfound">No result found.</p>
+        </li>
+    </ul>
+}

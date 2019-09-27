@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox" />
+					<Column visible="false" width="30" allowSorting="false" dataField="TaxCategoryId" headingText="{SharedStrings:ID}" />
+					<Column width="50" dataField="TaxCategoryId" headingText="" columnType="Action">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdCatalogGridTaxCategoryEdit" commandParameters="TaxCategoryId" toolTip="Edit" permissions="catalog:admin:taxcategories:mng:edit" />
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdCatalogGridTaxCategoryDelete" commandParameters="TaxCategoryId" toolTip="Delete" permissions="catalog:admin:taxcategories:mng:delete" />
+					</Column>
+					<Column width="400" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="NewTaxCategory" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdCatalogNewTaxCategory" permissions="catalog:admin:taxcategories:mng:create"/>
+				<Splitter id="ActionsSplitter"/>
+				<Menu id="ActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" permissions="catalog:admin:taxcategories:mng:delete">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdCatalogDeleteTaxCategory" permissions="catalog:admin:taxcategories:mng:delete"/>
+				</Menu>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdCatalogNewTaxCategory">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Catalog&amp;_v=TaxCategory-Edit</Url>
+					<Width>450</Width>
+					<Height>120</Height>
+					<PopupTitle>Create Tax Category</PopupTitle>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCatalogDeleteTaxCategory">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.TaxCategoryDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdCatalogGridTaxCategoryEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Catalog&amp;_v=TaxCategory-Edit&amp;tcId=[ClientParam:TaxCategoryId]</Url>
+					<Width>450</Width>
+					<Height>120</Height>
+					<PopupTitle>Edit Tax Category</PopupTitle>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCatalogGridTaxCategoryDelete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.TaxCategoryDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig >
+		<setAttributes id="TaxCategory-List" controlUrl="catalog/TaxCategoryList.ascx" help="Catalog+System" permissions="catalog:admin:taxcategories:mng:view"></setAttributes>
+	</ViewConfig>
+</View>

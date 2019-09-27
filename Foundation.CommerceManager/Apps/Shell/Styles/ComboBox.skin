@@ -1,0 +1,16 @@
+<ComponentArt:ComboBox runat="server" RunningMode="Callback"
+        AutoHighlight="false"
+        AutoComplete="true"
+        AutoFilter="true"
+        CssClass="comboBox"
+        HoverCssClass="comboBoxHover"
+        FocusedCssClass="comboBoxHover"
+        TextBoxCssClass="comboTextBox"
+        TextBoxHoverCssClass="comboBoxHover"
+        DropDownCssClass="comboDropDown"
+        ItemCssClass="comboItem"
+        ItemHoverCssClass="comboItemHover"
+        SelectedItemCssClass="comboItemHover"
+        DropHoverImageUrl="~/Apps/Shell/styles/images/combobox/drop_hover.gif"
+        DropImageUrl="~/Apps/Shell/styles/images/combobox/drop.gif">
+      </ComponentArt:ComboBox>     

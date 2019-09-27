@@ -1,0 +1,15 @@
+﻿@model ContentViewModel<ThreeColumnLandingPage>
+
+
+<div class="row">
+    <div class="col-@Model.CurrentContent.LeftHandContentAreaColumn">
+        @Html.PropertyFor(x => x.CurrentContent.LeftHandContentArea)
+    </div>
+    <div class="col-@Model.CurrentContent.MainContentAreaColumn">
+        @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+    </div>
+
+    <div class="col-@Model.CurrentContent.RightHandContentAreaColumn">
+        @Html.PropertyFor(x => x.CurrentContent.RightHandContentArea)
+    </div>
+</div>

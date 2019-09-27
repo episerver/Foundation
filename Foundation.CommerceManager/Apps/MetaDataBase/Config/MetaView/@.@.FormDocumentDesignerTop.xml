@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MetaView>
+	<Toolbar>
+		<add>
+			<Text text="{MetaForm:CommonTasks}" cssClass="ibn-WPTitle" />
+			<Button align="Right" id="reCreateForm" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" text="{MetaForm:RecreateForm}" handler="onReCreateClick"></Button>
+			<Button align="Right" id="editForm" imageUrl="~/Apps/MetaDataBase/images/dict_edit.gif" text="{MetaForm:EditForm}" handler="onEditFormClick" itemSplitter="Both"></Button>
+			<SplitButton align="Right" id="SaveSplitButton" text="{MetaForm:Save}" imageUrl="~/Apps/MetaDataBase/images/saveitem.gif" handler="onSaveClick">
+				<Button id="saveButton" imageUrl="~/Apps/MetaDataBase/images/saveitem.gif" text="{MetaForm:Save}" handler="onSaveClick"></Button>
+				<Button id="saveAndCloseButton" imageUrl="~/Apps/MetaDataBase/images/saveclose.gif" text="{MetaForm:SaveClose}" handler="onSaveCloseClick"></Button>
+			</SplitButton>
+		</add>
+	</Toolbar>
+	<Grid>
+	</Grid>
+	<Commands>
+		<add>
+		</add>
+	</Commands>
+</MetaView>

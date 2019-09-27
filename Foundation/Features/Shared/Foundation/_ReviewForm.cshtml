@@ -1,0 +1,61 @@
+﻿@model Foundation.Social.ViewModels.ReviewSubmissionViewModel
+
+@using (Html.BeginForm("AddAReview", "Product", FormMethod.Post, new { onsubmit = "return false" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProductCode)
+    <p class="title">@Html.TranslateFallback("/Reviews/WrtieYorOwn", "Write Your Own Review")</p>
+    <p> @Html.TranslateFallback("/Reviews/HowRate", "How do you rate this product?")<span class="required">*</span></p>
+
+    <div class="rating voting">
+        <span class="title">@Html.TranslateFallback("/Reviews/Rating", "Rating")</span>
+        <i data-feather="star"></i>
+        <i data-feather="star"></i>
+        <i data-feather="star"></i>
+        <i data-feather="star"></i>
+        <i data-feather="star"></i>
+    </div>
+    <div class="required error" for="Rating"></div>
+
+
+    <div class="row product--container">
+        <div class="col-sm-6 col-xs-12">
+            <ul>
+                <li>
+                    <label for="nickname_field">@Html.TranslateFallback("/Reviews/Nickname", "Nickname")<span class="required"> *</span></label>
+                    <div>
+                        @Html.TextBoxFor(m => m.Nickname, new { @class = "textbox", placeholder = "Example: abby2012" })
+                    </div>
+                    <div class="required error" for="Nickname"></div>
+                </li>
+                <li>
+                    <label for="Title">@Html.TranslateFallback("/Shared/Title", "Title")<span class="required"> *</span></label>
+                    <div>
+                        @Html.TextBoxFor(m => m.Title, new { @class = "textbox", placeholder = "Great product!" })
+                    </div>
+                    <div class="required error" for="Title"></div>
+                </li>
+                <li>
+                    <label for="Location">@Html.TranslateFallback("/Shared/Location", "Location")<span class="required"> *</span></label>
+                    <div>
+                        @Html.TextBoxFor(m => m.Location, new { @class = "textbox", placeholder = "Example: Las Vegas, NV" })
+                    </div>
+                    <div class="required error" for="Location"></div>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="col-sm-6 col-xs-12">
+            <li>
+                <label for="Body">@Html.TranslateFallback("/Reviews/Review", "Review")<span class="required">*</span></label>
+                <div class="input-box">
+                    @Html.TextAreaFor(m => m.Body, new { @class = "textbox", placeholder = "Example: I love this product. I will recommend it to all of my friends...", rows = 8, style = "height: 207px;" })
+                </div>
+                <div class="required error" for="Body"></div>
+            </li>
+        </ul>
+        <div class="col-sm-6 col-xs-12">
+            <button class="button-transparent-black--icon" title="Submit Review" id="submitReview"><i data-feather="play" style="fill: black"></i>@Html.TranslateFallback("/Reviews/SubmitReview", "Submit Review")</button>
+        </div>
+    </div>
+}

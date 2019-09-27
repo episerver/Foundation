@@ -1,0 +1,51 @@
+.NavBar
+{
+  background-color: #E1ECFC; 
+  border: 1px solid black; 
+  padding: 2px;
+  padding-bottom: 1px;
+  cursor: default; 
+}
+.TopItem{
+  color: Black;
+  background-image: url(../images/item_bg.gif);
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: bold;
+  border: 1px solid #7C7C94;
+  border-bottom-color: #95B7F3;
+  padding-top: 4px; 
+  padding-bottom: 2px;
+  cursor: pointer;
+  cursor: hand;
+}
+.TopItemHover{
+  color: black;
+  background-image: url(../images/item_expanded_bg.gif);
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: bold;
+  border: 1px solid #7C7C94;
+  border-bottom-color: #9593B2;
+  padding-top: 4px; 
+  padding-bottom: 2px; 
+  cursor: pointer;
+  cursor: hand;
+}
+.Level2Item{
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  padding-left: 10px; 
+  cursor: pointer;
+  cursor: hand;
+}
+.Level2ItemHover{
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  color: Red;
+  padding-left: 10px; 
+  cursor: pointer;
+  cursor: hand;
+}
+.Empty {
+}

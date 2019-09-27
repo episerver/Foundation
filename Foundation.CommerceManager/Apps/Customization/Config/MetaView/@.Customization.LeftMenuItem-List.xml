@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MetaView>
+  <Toolbar>
+    <add>
+      <Button id="AddLeftMenuItemButton" text="{Global:_mc_Add}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdCustomizationNewLeftMenuItem" permission="customization:admin:menu:new"/>
+    </add>
+  </Toolbar>
+
+  <Commands>
+    <add>
+      <Command id="cmdCustomizationNewLeftMenuItem">
+        <CommandType>OpenFrameModalPopup</CommandType>
+        <PopupTitle>{Common:Adding}</PopupTitle>
+        <Url>~/Apps/Customization/Pages/LeftMenuItemAdd.aspx</Url>
+        <Width>800</Width>
+        <Height>485</Height>
+        <Top>55</Top>
+        <Left>50</Left>
+        <Drag>True</Drag>
+		<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+      </Command>
+
+      <!-- Grid commands -->
+      <Command id="cmdCustomizationGridLeftMenuItemEdit">
+        <CommandType>OpenFrameModalPopup</CommandType>
+        <PopupTitle>{Common:Editing}</PopupTitle>
+        <Url>~/Apps/Customization/Pages/LeftMenuItemEdit.aspx?FullId=[ClientParam:primaryKeyId]&amp;added=[ClientParam:added]</Url>
+        <Width>500</Width>
+        <Height>280</Height>
+        <Top>55</Top>
+        <Left>100</Left>
+        <Drag>True</Drag>
+		<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+      </Command>
+
+      <Command id="cmdCustomizationGridLeftMenuItemDelete">
+        <CommandType>ServerAction</CommandType>
+        <Handler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.LeftMenuItemDeleteHandler, Mediachase.ConsoleManager" />
+        <UpdatePanelIds>panelMainListView</UpdatePanelIds>
+        <EnableHandler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.LeftMenuItemDeleteEnableHandler, Mediachase.ConsoleManager" />
+        <ConfirmationText>{Common:DeleteItemConfirmation}</ConfirmationText>
+      </Command>
+    </add>
+  </Commands>
+</MetaView>

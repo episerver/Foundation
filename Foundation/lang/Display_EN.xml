@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<languages>
+  <language name="English" id="en">
+    <displaychannels>
+      <displaychannel name="mobile">
+        <name>Mobile</name>
+      </displaychannel>
+      <displaychannel name="web">
+        <name>Web</name>
+      </displaychannel>
+    </displaychannels>
+    <resolutions>
+      <standard>Standard (1366x768)</standard>
+      <ipadhorizontal>iPad horizontal (1024x768)</ipadhorizontal>
+      <iphonevertical>iPhone vertical (320x568)</iphonevertical>
+      <androidvertical>Android vertical (480x800)</androidvertical>
+    </resolutions>
+  </language>
+</languages>

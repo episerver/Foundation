@@ -1,0 +1,246 @@
+.EditGridToolbar
+{
+	height: 24px;
+	border-top: solid 1px #A6A6A6;
+	border-bottom: solid 1px #A6A6A6;
+	margin: 0px 0px 2px 0px;
+	background-image:url(images/default/toolbar/backgroundgradient.gif);
+	background-repeat:repeat-x;
+}
+
+.toolbar
+{
+	height: 24px;
+}
+.item
+{
+  border:none;
+  padding:2px;
+  font-family:Verdana;
+  color:black;
+  cursor:default;
+}
+.itemHover
+{
+  border:solid 1px #0A246A;
+  padding:1px;
+  background-color:#B6BDD2;
+  background-image:none;
+  font-family:Verdana;
+  color:black;
+  cursor:default; 
+}
+.itemActive
+{
+  border:solid 1px #0A246A;
+  padding:1px;
+  background-color:#8592B5;
+  background-image:none;
+  font-family:Verdana;
+  color:white;
+  cursor:default; 
+}
+.itemChecked
+{
+  border:solid 1px #0A246A;
+  padding:1px;
+  background-color:#D4D5D8;
+  background-image:none;
+  font-family:Verdana;
+  color:black;
+  cursor:default; 
+}
+.itemDisabled
+{
+	border: none;
+	padding: 3px;
+	font-family: Verdana;
+	font-size: 8pt;
+	color: #808080;
+	cursor: default;
+}
+
+.itemDisabledChecked
+{
+  border-width:1px;
+  border-style:solid;
+  border-color:#D4D0C8;
+  padding:2px;
+  font-family:Verdana;
+  font-size:8pt;
+  color:#D4D0C8;
+  cursor:default; 
+}
+
+.customItem
+{
+  padding-top:1px;
+}
+
+
+
+
+
+.splitItem TABLE,
+.splitItemHover TABLE,
+.splitItemActive TABLE,
+.splitItemExpanded TABLE
+{
+  font-family:Verdana;
+  color:black;
+  cursor:default;
+  margin:0px;
+  padding:0px;
+  height: 24px;
+}
+
+.splitItem TABLE TR TD.ca_tb_img
+{
+  border:none;
+  padding:1px;
+}
+.splitItemHover TABLE TR TD.ca_tb_img
+{
+  border-top:solid 1px #0A246A;
+  border-left:solid 1px #0A246A;
+  border-bottom:solid 1px #0A246A;
+  border-right:none;
+  padding:0px;
+  padding-right:1px;
+  background-color:#B6BDD2;
+}
+.splitItemActive TABLE TR TD.ca_tb_img
+{
+  border-top:solid 1px #0A246A;
+  border-left:solid 1px #0A246A;
+  border-bottom:solid 1px #0A246A;
+  border-right:none;
+  padding:0px;
+  padding-right:1px;
+  background-color:#8592B5;
+}
+.splitItemExpanded TABLE TR TD.ca_tb_img
+{
+  border-top:solid 1px #666666;
+  border-left:solid 1px #666666;
+  border-bottom:solid 1px #666666;
+  border-right:none;
+  padding:0px;
+  padding-right:1px;
+  background-color:#F6F5F4;
+}
+.splitItem TABLE TR TD.ca_tb_img IMG,
+.splitItemHover TABLE TR TD.ca_tb_img IMG,
+.splitItemActive TABLE TR TD.ca_tb_img IMG,
+.splitItemExpanded TABLE TR TD.ca_tb_img IMG
+{
+  padding:1px;
+  padding-right:0px;
+}
+
+.splitItem TABLE TR TD.ca_tb_txt
+{
+  padding-left:2px;
+  padding-right:7px;
+  border:none;
+  padding-top:1px;
+  padding-bottom:1px;
+}
+.splitItemHover TABLE TR TD.ca_tb_txt
+{
+  padding-left:2px;
+  padding-right:7px;
+  border:none;
+  border-top:solid 1px #0A246A;
+  border-bottom:solid 1px #0A246A;
+  padding-top:0px;
+  padding-bottom:0px;
+  background-color:#B6BDD2;
+}
+.splitItemActive TABLE TR TD.ca_tb_txt
+{
+  padding-left:2px;
+  padding-right:7px;
+  border:none;
+  border-top:solid 1px #0A246A;
+  border-bottom:solid 1px #0A246A;
+  padding-top:0px;
+  padding-bottom:0px;
+  background-color:#8592B5;
+  color:white;
+}
+.splitItemExpanded TABLE TR TD.ca_tb_txt
+{
+  padding-left:2px;
+  padding-right:7px;
+  border:none;
+  border-top:solid 1px #666666;
+  border-bottom:solid 1px #666666;
+  padding-top:0px;
+  padding-bottom:0px;
+  background-color:#F6F5F4;
+}
+
+.splitItem TABLE TR TD.ca_tb_ddn
+{
+  border:none;
+  padding:1px;
+}
+.splitItemHover TABLE TR TD.ca_tb_ddn,
+.splitItemActive TABLE TR TD.ca_tb_ddn
+{
+  border:solid 1px #0A246A;
+  padding:0px;
+  background-color:#B6BDD2;
+}
+.splitItemExpanded TABLE TR TD.ca_tb_ddn
+{
+  border:solid 1px #666666;
+  border-left:none;
+  padding:0px;
+  padding-left:1px;
+  background-color:#F6F5F4;
+}
+
+
+.ToolbarMenuGroup
+{
+  background-image:url(../images/default/toolbar/menugroupbackground.gif);
+  background-color:white;
+  background-position:top left;
+  background-repeat:repeat-y;
+  border:solid 1px #7E7E81; 
+  cursor:default; 
+}
+
+.ToolbarMenuItem
+{
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  margin:1px;
+  cursor:default; 
+}
+
+.ToolbarMenuItemHover 
+{
+  background-color:#B6BDD2;
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #0A246A; 
+  cursor:default; 
+}
+
+.ToolbarMenuItem TR TD IMG,
+.ToolbarMenuItemHover TR TD IMG
+{
+  padding-left:1px;
+}
+
+.ToolbarMenuBreak
+{
+  background-image:url(../images/default/toolbar/menubreakbackground.gif);
+  width:100%;
+  height:1px;
+}

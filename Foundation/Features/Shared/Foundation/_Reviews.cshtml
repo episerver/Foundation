@@ -1,0 +1,13 @@
+﻿@model Foundation.Social.ViewModels.ReviewsViewModel
+<br />
+<div class="row">
+    <div class="col-12">
+        <h4 class="title">@Html.TranslateFallback("/Reviews/CustomerReviews", "Customer Reviews")</h4>
+        <ul class="row" id="reviewsListing">
+            @foreach (var review in Model.Reviews)
+            {
+                @Html.Partial("_ReviewItem", review)
+            }
+        </ul>
+    </div>
+</div>

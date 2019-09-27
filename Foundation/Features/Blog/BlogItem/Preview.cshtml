@@ -1,0 +1,37 @@
+﻿@using EPiServer.AddOns.Helpers
+@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@using Foundation.Cms.EditorDescriptors
+@model BlogItemPageModel
+
+<div class="blog__thumbnail">
+    <div>
+        <picture>
+            @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+            {
+                <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+            }
+            else
+            {
+                <img class="img-fluid" src="/Assets/imgs/blog-img1.jpg">
+            }
+        </picture>
+    </div>
+    <div class="blog__title-container">
+        <div class="blog__title-wrapper">
+            <span>
+                @foreach (var tag in Model.Tags)
+                {
+                    <b><a class="account-link" title="@tag.DisplayName" href="@tag.Url">#@tag.DisplayName</a></b>
+                }
+            </span>
+            <h2 class="blog__title">
+                <a href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
+            </h2>
+            @if (Model.CurrentContent.IsShowDescription)
+            {
+                <p>@Html.Raw(@Model.PreviewText)</p>
+            }
+        </div>
+    </div>
+</div>

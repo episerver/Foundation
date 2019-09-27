@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Return-Summary" name="RMA Summary" controlUrl="Order/Modules/ReturnSummary.ascx"/>
+	</ViewConfig>
+</View>

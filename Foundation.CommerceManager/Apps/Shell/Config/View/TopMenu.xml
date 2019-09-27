@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+	<Toolbar>
+		<add>
+			<Menu id="CreateMenu" text="{SharedStrings:Welcome}">
+				<Button id="MySettingsBtn" text="{CommerceManager:USER_SETTINGS}" imageUrl="" commandName="ECF_Top_MySettings"></Button>
+				<Button id="SignOutBtn" text="{ShellStrings:Sign_Out}" imageUrl="~/Apps/Shell/styles/Images/Shell/exit.gif" commandName="ECF_Top_SignOut"></Button>
+			</Menu>
+
+      <Button id="ChangeLanguageMenu" text="{ShellStrings:Change_Language}" imageUrl="" commandName="ECF_Top_ChangeLanguage"></Button>
+			
+			<Menu id="AboutMenu" text="{SharedStrings:About}">
+					<Button id="FeedbackBtn" text="{ShellStrings:Send_Feedback}" imageUrl="" commandName="ECF_Top_Feedback"></Button>
+				<Button id="HelpBtn" text="{ShellStrings:Open_Online_Help}" imageUrl="~/Apps/Shell/styles/Images/Shell/help.png" commandName="ECF_Top_Help" tooltip="{Common:Help}"></Button>
+			</Menu>
+
+			<Button id="HelpBtn" text="{ShellStrings:Get_Help_For_This_Page}" imageUrl="~/Apps/Shell/styles/Images/Shell/help.png" commandName="ECF_Top_PageHelp" tooltip="{Common:Help}" align="Right"></Button>
+		</add>
+	</Toolbar>
+	<Commands>
+		<add>
+			<Command id="ECF_Top_MySettings">
+				<CommandType>ClientAction</CommandType>
+        <ClientScript>CSManagementClient.ChangeBafView('Contact', 'View', 'ObjectId={Security:CurrentUserId}')</ClientScript>
+      </Command>
+			<Command id="ECF_Top_SignOut">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.OpenInternal('~/logout.aspx')</ClientScript>
+			</Command>
+      <Command id="ECF_Top_ChangeLanguage">
+        <CommandType>OpenFrameModalPopup</CommandType>
+        <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=LanguageSettings</Url>
+        <Width>300</Width>
+        <Height>100</Height>
+        <PopupTitle>Change Language</PopupTitle>
+        <Drag>True</Drag>
+      </Command>
+				<Command id="ECF_Top_Feedback">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.OpenExternal('http://world.episerver.com/Support/')</ClientScript>
+				</Command>
+			<Command id="ECF_Top_PageHelp">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.OpenHelp()</ClientScript>
+			</Command>
+			<Command id="ECF_Top_Help">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.OpenHelp()</ClientScript>
+			</Command>
+			<Command id="ECF_Top_Information">
+        <CommandType>OpenWindow</CommandType>
+				<Url>~/Apps/Core/Controls/PopupPage.aspx?_a=Core&amp;_v=DbInfo</Url>
+				<Width>440</Width>
+				<Height>300</Height>
+				<Resize>False</Resize>
+				<Scroll>False</Scroll>
+			</Command>
+			<Command id="ECF_Top_ExpandCollapse">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>ExpandCollapse()</ClientScript>
+			</Command>
+
+      <Command id="ECF_ChangeLanguage_Redirect">
+        <CommandType>ClientAction</CommandType>
+        <ClientScript>CSManagementClient.OpenInternal('~/default.aspx')</ClientScript>
+      </Command>
+		</add>
+	</Commands>
+
+	</ListViewUI>
+</View>

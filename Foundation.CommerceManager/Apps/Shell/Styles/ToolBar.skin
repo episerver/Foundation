@@ -1,0 +1,17 @@
+   <ComponentArt:ToolBar runat="server"
+        CssClass="toolbar"
+        ImagesBaseUrl="~/Apps/Shell/styles/images/toolbar/"
+        DefaultItemCssClass="item"
+        DefaultItemHoverCssClass="itemHover"
+        DefaultItemActiveCssClass="itemActive"
+        DefaultItemCheckedCssClass="itemChecked"
+        DefaultItemCheckedHoverCssClass="itemActive"
+        DefaultItemDisabledCssClass="itemDisabled"
+        DefaultItemDisabledCheckedCssClass="itemDisabledChecked"       
+        DefaultItemTextImageSpacing="2"
+        DefaultItemTextImageRelation="ImageBeforeText"
+        DefaultItemImageHeight="16"
+        DefaultItemImageWidth="16"
+        ItemSpacing="1"
+        Orientation="Horizontal">
+      </ComponentArt:ToolBar>

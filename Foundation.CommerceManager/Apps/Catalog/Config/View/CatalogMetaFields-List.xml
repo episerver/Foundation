@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<clear></clear>
+			<add>
+				<Columns>
+					<Column width="70" allowSorting="true" dataField="Id" headingText="{SharedStrings:ID}" />
+					<Column width="200" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="Id" dataNavigateUrlFormatString="javascript:CSManagementClient.ChangeView('Catalog', 'CatalogMetaField-Edit','id={0}&amp;fieldnamespace=Mediachase.Commerce.Catalog');" dataTextFields="Name" dataTextFormatString="{0}" permissions="catalog:admin:meta:fld:mng:edit" />
+					<Column width="100" allowSorting="true" dataField="DataType" headingText="{SharedStrings:Type}" />
+					<Column width="100" allowSorting="true" dataField="MultiLanguage" headingText="{SharedStrings:Multi_Language}" />
+					<Column width="50" allowSorting="true" dataField="Compare" headingText="{SharedStrings:Compare}" />
+					<Column width="50" allowSorting="true" dataField="Search" headingText="{SharedStrings:Search}" />
+					<Column width="200" allowSorting="true" dataField="FriendlyName" headingText="{SharedStrings:Friendly_Name}" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<clear></clear>
+			<add>
+				<Button id="NewMetaField" text="{CatalogStrings:MetaField_New_Meta_Field}" imageUrl="~/Apps/Shell/styles/Images/metafield.gif" commandName="cmdCatalogNewMetaField" permissions="catalog:admin:meta:fld:mng:create" />
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdCatalogNewMetaField">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>javascript:CSManagementClient.ChangeView('Catalog', 'CatalogMetaField-New','fieldnamespace=Mediachase.Commerce.Catalog')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="CatalogMetaFields-List" controlUrl="catalog/MetaFieldList.ascx" permissions="catalog:admin:meta:fld:mng:view" help="Catalog+System"/>
+	</ViewConfig>
+</View>

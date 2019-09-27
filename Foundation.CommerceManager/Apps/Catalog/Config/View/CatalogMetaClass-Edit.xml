@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="CatalogMetaClass-Edit" controlUrl="catalog/MetaClassEdit.ascx" help="Catalog+System" permissions="catalog:admin:meta:cls:mng:edit"/>
+		<add>
+			<Transitions>
+				<!-- !!! Transition attributes don't need to be localized !!! -->
+				<Transition name="List" viewId="CatalogMetaClass-List"></Transition>
+			</Transitions>
+		</add>
+	</ViewConfig>
+</View>

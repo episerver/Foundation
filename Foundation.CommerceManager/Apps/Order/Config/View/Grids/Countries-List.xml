@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column visible="false" allowSorting="false" dataField="CountryId" headingText=""></Column>
+					<Column width="50" dataField="CountryId" headingText="" columnType="Action">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderGridCountryEdit" commandParameters="CountryId" toolTip="Edit" permissions="catalog:admin:country:mng:edit"></Item>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderGridCountryDelete" commandParameters="CountryId" toolTip="Delete" permissions="catalog:admin:country:mng:delete"></Item>
+					</Column>
+					<Column width="400" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="CountryId" dataNavigateUrlFormatString="javascript:CSOrderClient.EditCountry({0});" dataTextFields="Name" dataTextFormatString="{0}" dataTextEncode="true"></Column>
+					<Column width="50" allowSorting="true" dataField="Code" headingText="{SharedStrings:Code}"></Column>
+					<Column width="60" allowSorting="true" dataField="Ordering" headingText="{SharedStrings:Ordering}"></Column>
+					<Column width="60" allowSorting="true" dataField="Visible" headingText="{SharedStrings:Visible}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="New" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdOrderNewCountry" permissions="catalog:admin:country:mng:create"/>								
+				<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderCountryDelete" permissions="catalog:admin:country:mng:delete"/>				
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewCountry">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewCountry()</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdOrderCountryDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.CountryDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>          
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdOrderGridCountryEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.EditCountry2(params)</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdOrderGridCountryDelete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.CountryDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Countries-List" controlUrl="Order/Countries.ascx" help="System+Settings"></setAttributes>
+	</ViewConfig>
+</View>

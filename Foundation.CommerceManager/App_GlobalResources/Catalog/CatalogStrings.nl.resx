@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Catalog_Save_File" xml:space="preserve">
+    <value>Het bestand opslaan.</value>
+  </data>
+  <data name="Catalog_Import_Warning" xml:space="preserve">
+    <value>Wij raden u ten zeerste aan een back-up te nemen van uw ECF-database alvorens de import uit te voeren.</value>
+  </data>
+  <data name="Catalog_Import_Instructions" xml:space="preserve">
+    <value>Om een catalogus te importeren, kiest u een bestaand bestand uit het onderstaande rooster of uploadt u een nieuw bestand. Klik vervolgens op de knop 'Import starten' om het importeren te starten.</value>
+  </data>
+  <data name="Catalog_Add_New_File" xml:space="preserve">
+    <value>Nieuw bestand toevoegen</value>
+  </data>
+  <data name="Catalog_Upload_File" xml:space="preserve">
+    <value>Bestand uploaden</value>
+  </data>
+  <data name="Catalog_Uploaded_File" xml:space="preserve">
+    <value>Geüpload bestand</value>
+  </data>
+  <data name="Catalog_Upload_Wait" xml:space="preserve">
+    <value>Gelieve te wachten tot het uploaden start.</value>
+  </data>
+  <data name="Catalog_Upload_Info" xml:space="preserve">
+    <value>Het bestand wordt geüpload. Gelieve even te wachten.</value>
+  </data>
+  <data name="Catalog_Import_Files_Available" xml:space="preserve">
+    <value>Beschikbare bestanden voor import</value>
+  </data>
+  <data name="Catalog_Choose_Mapping_File" xml:space="preserve">
+    <value>Mapping-bestand kiezen.</value>
+  </data>
+  <data name="Catalog_Choose_Catalog" xml:space="preserve">
+    <value>Catalogus kiezen voor import.</value>
+  </data>
+  <data name="Catalog_Edit_Existing_Mapping_File" xml:space="preserve">
+    <value>Bestaand mapping-bestand bewerken.</value>
+  </data>
+  <data name="Catalog_Load_Mapping_File" xml:space="preserve">
+    <value>Mapping-bestand laden.</value>
+  </data>
+  <data name="Catalog_MetaClass_Language" xml:space="preserve">
+    <value>Metaklasse, Taal</value>
+  </data>
+  <data name="Catalog_Mapping_Type" xml:space="preserve">
+    <value>Mapping-type</value>
+  </data>
+  <data name="Meta_Class" xml:space="preserve">
+    <value>Metaklasse</value>
+  </data>
+  <data name="Catalog_Data_File_CSV_Adjustment" xml:space="preserve">
+    <value>Gegevensbestand en CSV-aanpassing</value>
+  </data>
+  <data name="Catalog_Data_File" xml:space="preserve">
+    <value>Gegevensbestand</value>
+  </data>
+  <data name="Catalog_Text_Qualifier" xml:space="preserve">
+    <value>Text Qualifier</value>
+  </data>
+  <data name="Catalog_Save_Mapping_File" xml:space="preserve">
+    <value>Mapping-bestand opslaan.</value>
+  </data>
+  <data name="Catalog_Enter_File_Name" xml:space="preserve">
+    <value>Voer een bestandsnaam in.</value>
+  </data>
+  <data name="Catalog_About_To_Export" xml:space="preserve">
+    <value>U staat op het punt een catalogus te exporteren.</value>
+  </data>
+  <data name="Catalog_Click_Button_To_Start" xml:space="preserve">
+    <value>Klik op de knop om te starten.</value>
+  </data>
+  <data name="Catalog_Exported_Files" xml:space="preserve">
+    <value>Geëxporteerde bestandslijst</value>
+  </data>
+  <data name="Catalog_Exporting_Catalog" xml:space="preserve">
+    <value>Catalogus exporteren</value>
+  </data>
+  <data name="Catalog_Base_Weight" xml:space="preserve">
+    <value>Basisgewicht</value>
+  </data>
+  <data name="Catalog_Default_Currency" xml:space="preserve">
+    <value>Standaard munteenheid</value>
+  </data>
+  <data name="Catalog_Default_Language" xml:space="preserve">
+    <value>Standaardtaal</value>
+  </data>
+  <data name="Catalog_In_Kilograms" xml:space="preserve">
+    <value>in kilogram</value>
+  </data>
+  <data name="Catalog_In_Pounds" xml:space="preserve">
+    <value>in pond</value>
+  </data>
+  <data name="Catalog_Catalog_Name" xml:space="preserve">
+    <value>Catalogusnaam</value>
+  </data>
+  <data name="Catalog_Name_Description" xml:space="preserve">
+    <value>beschrijving van catalogusnaam</value>
+  </data>
+  <data name="Catalog_Other_Languages" xml:space="preserve">
+    <value>Andere talen</value>
+  </data>
+  <data name="Catalog_Select_Primary_Currency" xml:space="preserve">
+    <value>selecteer een primaire munteenheid</value>
+  </data>
+  <data name="Catalog_Select_Primary_Language" xml:space="preserve">
+    <value>selecteer een primaire taal</value>
+  </data>
+  <data name="Catalog_Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een catalogusnaam ingevuld te worden.</value>
+  </data>
+  <data name="Catalog_Default_Language_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een standaardtaal ingevuld te worden.</value>
+  </data>
+  <data name="Currency_Name" xml:space="preserve">
+    <value>Naam munteenheid</value>
+  </data>
+  <data name="Currency_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een naam van een munteenheid ingevuld te worden.</value>
+  </data>
+  <data name="Currency_With_Code_Exists" xml:space="preserve">
+    <value>Munteenheid met gespecificeerde code bestaat reeds.</value>
+  </data>
+  <data name="Entry_Enter_Association_Name" xml:space="preserve">
+    <value>Voer een associatienaam in.</value>
+  </data>
+  <data name="Entry_Association_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een associatienaam ingevuld te worden.</value>
+  </data>
+  <data name="Entry_Enter_Association_Description" xml:space="preserve">
+    <value>Voer een associatiebeschrijving in.</value>
+  </data>
+  <data name="Entry_Enter_Association_Sort_Order" xml:space="preserve">
+    <value>Voer een sorteervolgorde in.</value>
+  </data>
+  <data name="Entry_Association_Sort_Order_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een sorteervolgorde van de associatie ingevuld te worden.</value>
+  </data>
+  <data name="Entry_Save_Changes" xml:space="preserve">
+    <value>Wijzigingen opslaan</value>
+  </data>
+  <data name="Entry_Modify_Existing_Association" xml:space="preserve">
+    <value>Bestaande associatie wijzigen</value>
+  </data>
+  <data name="Catalog_Edit_Details" xml:space="preserve">
+    <value>Details bewerken</value>
+  </data>
+  <data name="Entry_Modify_Association" xml:space="preserve">
+    <value>Associatie wijzigen</value>
+  </data>
+  <data name="Entry_Pick_Item" xml:space="preserve">
+    <value>Item aanwijzen</value>
+  </data>
+  <data name="Entry_Add_Item" xml:space="preserve">
+    <value>Item toevoegen</value>
+  </data>
+  <data name="Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een naam ingevuld te worden.</value>
+  </data>
+  <data name="Select_Display_Template" xml:space="preserve">
+    <value>Weergavesjabloon selecteren.</value>
+  </data>
+  <data name="Entry_Code_Exists" xml:space="preserve">
+    <value>Er bestaat reeds een bijdrage met de gespecificeerde code.</value>
+  </data>
+  <data name="Catalog_Invalid_SortOrder_Value" xml:space="preserve">
+    <value>Ongeldige waarde van de SorteerVolgorde</value>
+  </data>
+  <data name="Entry_Sort_Order" xml:space="preserve">
+    <value>De sorteervolgorde voor de categoriebijdrage.</value>
+  </data>
+  <data name="Entry_Display_Price" xml:space="preserve">
+    <value>Prijs weergeven</value>
+  </data>
+  <data name="Entry_Price_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Er dient een prijs ingevuld te worden.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Display_Price" xml:space="preserve">
+    <value>Gelieve een geldige Weergaveprijs in te voeren.</value>
+  </data>
+  <data name="Entry_In_Stock" xml:space="preserve">
+    <value>In voorraad</value>
+  </data>
+  <data name="Entry_In_Stock_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Hoeveelheid in voorraad is verplicht.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Quantity" xml:space="preserve">
+    <value>Gelieve een geldige hoeveelheid in te voeren.</value>
+  </data>
+  <data name="Entry_Min_Quantity" xml:space="preserve">
+    <value>Min. hoeveelheid</value>
+  </data>
+  <data name="Entry_Min_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Minimumhoeveelheid is verplicht.</value>
+  </data>
+  <data name="Entry_Reserved_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Gereserveerde hoeveelheid is verplicht.</value>
+  </data>
+  <data name="Entry_Max_Quantity" xml:space="preserve">
+    <value>Max. hoeveelheid</value>
+  </data>
+  <data name="Entry_Max_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Max. hoeveelheid is verplicht.</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty" xml:space="preserve">
+    <value>Min. hvl bijbestellen</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Min. hoeveelheid is verplicht.</value>
+  </data>
+  <data name="Entry_Merchant" xml:space="preserve">
+    <value>Verkoper</value>
+  </data>
+  <data name="Entry_Select_Merchant" xml:space="preserve">
+    <value>verkoper selecteren</value>
+  </data>
+  <data name="Entry_Weight_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Gewicht is verplicht.</value>
+  </data>
+  <data name="Entry_Preorder_Qty" xml:space="preserve">
+    <value>Hvl vooruitbestelling</value>
+  </data>
+  <data name="Entry_Preorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Hoeveelheid van vooruitbestelling is verplicht.</value>
+  </data>
+  <data name="Entry_Select_Package" xml:space="preserve">
+    <value>pakket selecteren</value>
+  </data>
+  <data name="Entry_Preorder_Available" xml:space="preserve">
+    <value>Beschik. vooruitbestelling</value>
+  </data>
+  <data name="Entry_Tax_Category" xml:space="preserve">
+    <value>Belastingscategorie</value>
+  </data>
+  <data name="Entry_Select_Tax_Category" xml:space="preserve">
+    <value>belastingscategorie selecteren</value>
+  </data>
+  <data name="Entry_Select_Warehouse" xml:space="preserve">
+    <value>magazijn selecteren</value>
+  </data>
+  <data name="Entry_Backorder_Qty" xml:space="preserve">
+    <value>Hvl nabestelling</value>
+  </data>
+  <data name="Entry_Backorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Hoeveelheid van nabestelling is verplicht.</value>
+  </data>
+  <data name="Entry_Track_Inventory" xml:space="preserve">
+    <value>Inventaris opvolgen</value>
+  </data>
+  <data name="Entry_Backorder_Available" xml:space="preserve">
+    <value>Nabestelling beschik.</value>
+  </data>
+  <data name="Entry_Inventory_Status" xml:space="preserve">
+    <value>Status inventaris</value>
+  </data>
+  <data name="Entry_Pricing" xml:space="preserve">
+    <value>Prijsstelling</value>
+  </data>
+  <data name="Entry_Find_Item" xml:space="preserve">
+    <value>Item zoeken</value>
+  </data>
+  <data name="Item_Group_Name" xml:space="preserve">
+    <value>Groepsnaam</value>
+  </data>
+  <data name="Node_Name_Description" xml:space="preserve">
+    <value>beschrijving van catalogusknooppuntnaam</value>
+  </data>
+  <data name="Catalog_Node_With_Code_Exists" xml:space="preserve">
+    <value>Knooppunt met gespecificeerde code bestaat reeds.</value>
+  </data>
+  <data name="Sale_Type" xml:space="preserve">
+    <value>Verkoopstype</value>
+  </data>
+  <data name="Sale_Unit_Price" xml:space="preserve">
+    <value>Eenheidsprijs</value>
+  </data>
+  <data name="Catalog_Main_Adjustment" xml:space="preserve">
+    <value>Belangrijkste aanpassing</value>
+  </data>
+  <data name="Catalog_Entry_Type" xml:space="preserve">
+    <value>Bijdragetype</value>
+  </data>
+  <data name="Catalog_All_Types" xml:space="preserve">
+    <value>alle types</value>
+  </data>
+  <data name="Catalog_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Catalog_Variation_Sku" xml:space="preserve">
+    <value>Variatie/Sku</value>
+  </data>
+  <data name="Catalog_Bundle" xml:space="preserve">
+    <value>Bundel</value>
+  </data>
+  <data name="Catalog_Dynamic_Package" xml:space="preserve">
+    <value>Dynamisch pakket</value>
+  </data>
+  <data name="Catalog_Additional_Filters" xml:space="preserve">
+    <value>Extra filters</value>
+  </data>
+  <data name="Catalog_Catalog_Category" xml:space="preserve">
+    <value>Catalogus/categorie</value>
+  </data>
+  <data name="Catalog_Keyword" xml:space="preserve">
+    <value>Trefwoord(en)</value>
+  </data>
+  <data name="Catalog_Apply_Filter" xml:space="preserve">
+    <value>Filter toepassen</value>
+  </data>
+  <data name="Catalog_Fix_The_Following_Problems" xml:space="preserve">
+    <value>Gelieve de volgende problemen op te lossen of u kunt de wijzigen niet opslaan.</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Updated_Successfully" xml:space="preserve">
+    <value>Catalogusbijdrage is succesvol bijgewerkt.</value>
+  </data>
+  <data name="Catalog_Search_By_Keyword" xml:space="preserve">
+    <value>Zoeken op trefwoord(en)</value>
+  </data>
+  <data name="Catalog_Filter_By_Language" xml:space="preserve">
+    <value>Filteren op taal</value>
+  </data>
+  <data name="Catalog_Filter_By_Catalog" xml:space="preserve">
+    <value>Filteren op catalogus(sen)</value>
+  </data>
+  <data name="Catalog_Search_By_Code_Id" xml:space="preserve">
+    <value>Zoeken op code/Id</value>
+  </data>
+  <data name="Tax_Category_Name" xml:space="preserve">
+    <value>Naam van belastingscategorie</value>
+  </data>
+  <data name="Entry_Wrong_Value_Enter_Valid_Integer" xml:space="preserve">
+    <value>&lt;b&gt;Foutieve waarde&lt;/b&gt;&lt;br /&gt;Voer een geldig geheel getal in.</value>
+  </data>
+  <data name="Catalog_Batch_Update" xml:space="preserve">
+    <value>Bijwerking van catalogusbatch</value>
+  </data>
+  <data name="Catalog_CSV_Import_Catalog" xml:space="preserve">
+    <value>CSV-importcatalogus</value>
+  </data>
+  <data name="Catalog_Entry_Search" xml:space="preserve">
+    <value>Zoekopdracht catalogusbijdrage</value>
+  </data>
+  <data name="Catalog_Export_Catalog" xml:space="preserve">
+    <value>Catalogus exporteren</value>
+  </data>
+  <data name="Catalog_Import_Catalog" xml:space="preserve">
+    <value>Catalogus importeren</value>
+  </data>
+  <data name="Catalog_List" xml:space="preserve">
+    <value>Cataloguslijst</value>
+  </data>
+  <data name="Catalog_Management" xml:space="preserve">
+    <value>Catalogusbeheer</value>
+  </data>
+  <data name="Catalog_Move_Link_To_Folder" xml:space="preserve">
+    <value>Verplaatsen/koppelen naar map</value>
+  </data>
+  <data name="Catalog_New_Bundle" xml:space="preserve">
+    <value>Nieuwe bundel</value>
+  </data>
+  <data name="Catalog_New_Catalog" xml:space="preserve">
+    <value>Nieuwe catalogus</value>
+  </data>
+  <data name="Catalog_New_Category_Node" xml:space="preserve">
+    <value>Nieuwe categorie/knooppunt</value>
+  </data>
+  <data name="Catalog_New_Dynamic_Package" xml:space="preserve">
+    <value>Nieuw dynamisch pakket</value>
+  </data>
+  <data name="Catalog_New_Package" xml:space="preserve">
+    <value>Nieuw pakket</value>
+  </data>
+  <data name="Catalog_New_Product" xml:space="preserve">
+    <value>Nieuw product</value>
+  </data>
+  <data name="Catalog_New_Variation_Sku" xml:space="preserve">
+    <value>Nieuwe variatie/Sku</value>
+  </data>
+  <data name="Catalog_System" xml:space="preserve">
+    <value>Catalogussysteem</value>
+  </data>
+  <data name="Currency_New_Currency" xml:space="preserve">
+    <value>Nieuwe munteenheid</value>
+  </data>
+  <data name="MetaClass_Export_MetaData" xml:space="preserve">
+    <value>MetaGegevens exporteren</value>
+  </data>
+  <data name="MetaClass_Import_MetaData" xml:space="preserve">
+    <value>MetaGegevens importeren</value>
+  </data>
+  <data name="MetaClass_New_Meta_Class" xml:space="preserve">
+    <value>Nieuwe Metaklasse</value>
+  </data>
+  <data name="MetaField_New_Meta_Field" xml:space="preserve">
+    <value>Nieuw Metaveld</value>
+  </data>
+  <data name="Meta_Classes" xml:space="preserve">
+    <value>Metaklassen</value>
+  </data>
+  <data name="Meta_Fields" xml:space="preserve">
+    <value>Metavelden</value>
+  </data>
+  <data name="Tax_Categories" xml:space="preserve">
+    <value>Belastingscategorieën</value>
+  </data>
+  <data name="Meta_Data" xml:space="preserve">
+    <value>Metagegevens</value>
+  </data>
+  <data name="Catalog_Associations" xml:space="preserve">
+    <value>Associaties</value>
+  </data>
+  <data name="Catalog_Association_Id" xml:space="preserve">
+    <value>CatalogusAssociatieId</value>
+  </data>
+  <data name="Catalog_Catalog_Batch_Update" xml:space="preserve">
+    <value>Batch bijwerken</value>
+  </data>
+  <data name="Catalog_Catalog_Edit" xml:space="preserve">
+    <value>Catalogus bewerken</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Search" xml:space="preserve">
+    <value>Bijdrage zoeken</value>
+  </data>
+  <data name="Catalog_Catalog_List" xml:space="preserve">
+    <value>Cataloguslijst</value>
+  </data>
+  <data name="Catalog_Edit_Command" xml:space="preserve">
+    <value>Opdracht bewerken</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price" xml:space="preserve">
+    <value>VerkoopPrijsBijdrage</value>
+  </data>
+  <data name="Catalog_Node_Edit" xml:space="preserve">
+    <value>Catalogusknooppunt bewerken</value>
+  </data>
+  <data name="Catalog_Product_Edit" xml:space="preserve">
+    <value>Product bewerken</value>
+  </data>
+  <data name="Catalog_Variations_SKUs" xml:space="preserve">
+    <value>Variaties/SKU's</value>
+  </data>
+  <data name="Warehouse_Edit" xml:space="preserve">
+    <value>Magazijn bewerken</value>
+  </data>
+  <data name="Warehouse_List" xml:space="preserve">
+    <value>Magazijnlijst</value>
+  </data>
+  <data name="Entry_Bundle_Items" xml:space="preserve">
+    <value>Bundelitems</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Edit" xml:space="preserve">
+    <value>Dynamisch pakket van product bewerken</value>
+  </data>
+  <data name="Entry_Id" xml:space="preserve">
+    <value>Bijdrage-Id</value>
+  </data>
+  <data name="Entry_Item_Code" xml:space="preserve">
+    <value>ItemCode</value>
+  </data>
+  <data name="Entry_Package_Items" xml:space="preserve">
+    <value>Pakketitems</value>
+  </data>
+  <data name="Entry_Pricing_Inventory" xml:space="preserve">
+    <value>Prijsstelling/Inventaris</value>
+  </data>
+  <data name="Entry_Product_Bundle_Edit" xml:space="preserve">
+    <value>Productbundel bewerken</value>
+  </data>
+  <data name="Entry_Product_Package_Edit" xml:space="preserve">
+    <value>Productpakket bewerken</value>
+  </data>
+  <data name="Entry_Sale_Price_Id" xml:space="preserve">
+    <value>Verkoopprijs-Id</value>
+  </data>
+  <data name="Entry_Sale_Type" xml:space="preserve">
+    <value>Verkoopstype</value>
+  </data>
+  <data name="Entry_Variation_SKU_Edit" xml:space="preserve">
+    <value>Variatie/SKU bewerken</value>
+  </data>
+  <data name="Product_Associations" xml:space="preserve">
+    <value>Productassociaties</value>
+  </data>
+  <data name="Catalog_CSV_Import" xml:space="preserve">
+    <value>CSV-import</value>
+  </data>
+  <data name="Catalog_Entry_Association_View" xml:space="preserve">
+    <value>Bijdrageassociatie van catalogus bekijken - BijdrageAssociatie</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price_View" xml:space="preserve">
+    <value>Catalogusbijdrage bekijken - Verkoopprijs</value>
+  </data>
+  <data name="Catalog_Mapping_File" xml:space="preserve">
+    <value>Mapping-bestand</value>
+  </data>
+  <data name="Catalog_Move_Copy_To_Folder" xml:space="preserve">
+    <value>Verplaatsen/kopiëren naar map</value>
+  </data>
+  <data name="Catalog_Node_List" xml:space="preserve">
+    <value>Knooppuntlijst</value>
+  </data>
+  <data name="Currency_Edit" xml:space="preserve">
+    <value>Munteenheid bewerken</value>
+  </data>
+  <data name="Meta_Class_Edit" xml:space="preserve">
+    <value>Metaklasse bewerken</value>
+  </data>
+  <data name="Tax_Categories_List" xml:space="preserve">
+    <value>Lijst belastingscategorieën</value>
+  </data>
+  <data name="Tax_Category_Edit" xml:space="preserve">
+    <value>Belastingscategorie bewerken</value>
+  </data>
+  <data name="Currency_Add_Rate" xml:space="preserve">
+    <value>Koers toevoegen</value>
+  </data>
+  <data name="Catalog_Edit_Currency_Rate" xml:space="preserve">
+    <value>Wisselkoers bewerken</value>
+  </data>
+  <data name="Currency_CurrencyRateId" xml:space="preserve">
+    <value>Wisselkoers-Id</value>
+  </data>
+  <data name="Currency_Rates" xml:space="preserve">
+    <value>Wisselkoersen</value>
+  </data>
+  <data name="Currency_ToCurrencyId" xml:space="preserve">
+    <value>NaarWisselkoersId</value>
+  </data>
+  <data name="Currency_Average_Rate" xml:space="preserve">
+    <value>Gemiddelde koers</value>
+  </data>
+  <data name="Currency_End_Of_Day_Rate" xml:space="preserve">
+    <value>Koers aan het einde van de dag</value>
+  </data>
+  <data name="Currency_From" xml:space="preserve">
+    <value>Van munteenheid</value>
+  </data>
+  <data name="Currency_Rate_Date" xml:space="preserve">
+    <value>Wisselkoersdatum</value>
+  </data>
+  <data name="Currency_To" xml:space="preserve">
+    <value>Naar wisselkoers</value>
+  </data>
+  <data name="Warehouse_Code_AlreadyExists" xml:space="preserve">
+    <value>Er bestaat reeds een magazijn met de gespecificeerde code.</value>
+  </data>
+  <data name="Warehouse_Name_AlreadyExists" xml:space="preserve">
+    <value>Er bestaat reeds een magazijn met de gespecificeerde naam.</value>
+  </data>
+  <data name="Tax_Category_With_Name_Exists" xml:space="preserve">
+    <value>Er bestaat reeds een belastingscategorie met de gespecificeerde naam.</value>
+  </data>
+  <data name="Catalog_With_Name_AlreadyExists" xml:space="preserve">
+    <value>Er bestaat reeds een catalogus met de gespecificeerde naam.</value>
+  </data>
+  <data name="Catalog_Default_Currency_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Een standaardmunteenheid is verplicht.</value>
+  </data>
+  <data name="Catalog_Found_Entries" xml:space="preserve">
+    <value>Gevonden bijdragen</value>
+  </data>
+  <data name="Catalog_Save_Selection" xml:space="preserve">
+    <value>Selectie opslaan</value>
+  </data>
+  <data name="Catalog_Selected_Entries" xml:space="preserve">
+    <value>Geselecteerde bijdragen</value>
+  </data>
+  <data name="SecurityScope" xml:space="preserve">
+    <value>Cataloguseigenaar</value>
+  </data>
+  <data name="Entry_Min_Quantity_Greather_That_Max" xml:space="preserve">
+    <value>Min. hoeveelheid moet kleiner of gelijk zijn aan max. hoeveelheid.</value>
+  </data>
+  <data name="Catalog_Package" xml:space="preserve">
+    <value>Pakket</value>
+  </data>
+  <data name="Address_Required" xml:space="preserve">
+    <value>&lt;b&gt;Verplicht veld ontbreekt&lt;/b&gt;&lt;br /&gt;Adres is verplicht.</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Munteenheden</value>
+  </data>
+  <data name="Add_Association" xml:space="preserve">
+    <value>Vereniging toevoegen</value>
+  </data>
+  <data name="Catalog_Found_Catalog_Entries" xml:space="preserve">
+    <value>Gevonden catalogusbijdragen</value>
+  </data>
+  <data name="Catalog_Selected_Catalog_Entries" xml:space="preserve">
+    <value>Geselecteerde catalogusbijdragen</value>
+  </data>
+  <data name="Edit_Sale_Price_Information" xml:space="preserve">
+    <value>Informatie over verkoopprijs bewerken</value>
+  </data>
+  <data name="Select_Catalog_Entries" xml:space="preserve">
+    <value>Catalogusbijdragen selecteren</value>
+  </data>
+  <data name="Catalog_Catalog_Name_TooLong" xml:space="preserve">
+    <value>&lt;b&gt;Ongeldig veld&lt;/b&gt;&lt;br /&gt;De naam mag niet langer zijn dan 100 tekens.</value>
+  </data>
+  <data name="Entry_Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="Entry_Quantity" xml:space="preserve">
+    <value>Hoeveelheid</value>
+  </data>
+  <data name="Entry_AvailableFrom_Too_Late" xml:space="preserve">
+    <value>De geselecteerde datum is later dan of dezelfde als de vervaldatum</value>
+  </data>
+  <data name="Entry_ExpiresOn_Too_Early" xml:space="preserve">
+    <value>De geselecteerde datum is vroeger dan de begindatum.</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Items" xml:space="preserve">
+    <value>Items voor dynamische pakketten</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Catalogusbijdragewijzigingen zijn verwijderd.</value>
+  </data>
+  <data name="Catalog_Catalog_Node_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Catalogusknooppuntwijzigingen zijn verwijderd.</value>
+  </data>
+  <data name="Catalog_Language_Warning" xml:space="preserve">
+    <value>Geselecteerde/ingeschakelde talen moeten overeenkomen met de ingeschakelde talen die zijn gedefinieerd in CMS Admin-weergave onder Config en Websitetalen beheren. Gebruik CTRL + klik om meerdere talen te selecteren.</value>
+  </data>
+  <data name="Catalog_Overwrite_File" xml:space="preserve">
+    <value>Het bestaande bestand overschrijven.</value>
+  </data>
+  <data name="Entry_Market" xml:space="preserve">
+    <value>Markten</value>
+  </data>
+  <data name="Entry_Market_Available" xml:space="preserve">
+    <value>Bijdrage beschikbaar in markten</value>
+  </data>
+  <data name="Entry_Market_Unavailable" xml:space="preserve">
+    <value>Bijdrage niet beschikbaar in markten</value>
+  </data>
+  <data name="Filename_Exist" xml:space="preserve">
+    <value>De bestandsnaam bestaat al.</value>
+  </data>
+  <data name="List_Inactive_Markets" xml:space="preserve">
+    <value>Lijst van Inactieve markten</value>
+  </data>
+  <data name="Upload_CSV_Files" xml:space="preserve">
+    <value>.CSV-bestanden uploaden:</value>
+  </data>
+  <data name="Upload_File_Error" xml:space="preserve">
+    <value>Voorwaarde vooraf mislukt:  Geselecteerd bestand past niet bij vereiste type.</value>
+  </data>
+  <data name="Upload_XML_Files" xml:space="preserve">
+    <value>.XML-bestanden uploaden:</value>
+  </data>
+  <data name="Upload_Zip_Files" xml:space="preserve">
+    <value>.Zip-bestanden uploaden:</value>
+  </data>
+  <data name="Warehouse_Inventory" xml:space="preserve">
+    <value>Magazijninventaris</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation" xml:space="preserve">
+    <value>Is locatie levering</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation_Description" xml:space="preserve">
+    <value>Magazijn kan worden gebruikt als leveringslocatie (bijv. voor toekomstig ophalen in de winkel).</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter" xml:space="preserve">
+    <value>Is fulfilllmentcentrum</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter_Description" xml:space="preserve">
+    <value>Bestellingen kunnen vanuit dit magazijn worden geplaatst voor uitgaande verzendingen.</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation" xml:space="preserve">
+    <value>Is ophaallocatie</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation_Description" xml:space="preserve">
+    <value>Bestellingen kunnen vanuit dit magazijn worden geplaatst om in de winkel te worden opgehaald.</value>
+  </data>
+  <data name="Delete_Versions_Warning" xml:space="preserve">
+    <value>Waarschuwing. Als u dit item bijwerkt via Commerce Manager, worden alle vorige en in behandeling zijnde inhoudsversies overschreven. Die inhoudsversies kunnen zijn aangemaakt via andere interfaces.</value>
+  </data>
+</root>

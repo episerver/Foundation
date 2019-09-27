@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Navigation>
+		<Tabs id="mainTag">
+			<add>
+				<Tab id="navTabOrderManagement" text="{OrderStrings:Order_Management}" order="80"  contentType="default" imageUrl="~/Apps/Order/images/module.png" configUrl="" enableHandler="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.OrderTabEnableHandler, Mediachase.ConsoleManager" enableHandler2="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" permissions="order:tabviewpermission">
+					<Link id="Order_OrderSearch" text="{SharedStrings:Order_Search}" order="10" iconUrl="~/Apps/Shell/styles/images/search.gif" iconCss="treeIcon" command="cmdOrderSearch" permissions="order:mng:view"/>
+					<Link id="Order_PurchaseOrders" text="{SharedStrings:Purchase_Orders}" order="20" expanded="true" type="PurchaseOrders" iconUrl="~/Apps/Order/images/PurchaseOrders.png" iconCss="treeIcon" command="cmdOrderPurchaseOrders"
+						  treeLoaderPath="~/Apps/Order/Tree/TreeSource.aspx" permissions="order:mng:view"/>
+					<Link id="Order_PurchaseOrdersByStatus" text="{SharedStrings:Purchase_Orders_By_Status}" order="30" type="PurchaseOrdersByStatus" iconUrl="" iconCss="treeIcon" command="cmdOrderPurchaseOrdersByStatus"
+						  treeLoaderPath="~/Apps/Order/Tree/TreeSource.aspx" permissions="order:mng:view"/>
+					<Link id="Order_Carts" text="{SharedStrings:Carts}" order="40" iconUrl="" iconCss="treeIcon" type="Carts" command="cmdOrderCarts"
+						  treeLoaderPath="~/Apps/Order/Tree/TreeSource.aspx" permissions="order:mng:view"/>
+					<Link id="Order_PaymentPlans" text="{SharedStrings:Payment_Plans_Recurring}" order="50" iconUrl="" iconCss="treeIcon" command="cmdOrderPaymentPlans"
+						  treeLoaderPath="~/Apps/Order/Tree/TreeSource.aspx" permissions="order:mng:view"/>
+					<Link id="ShippingReceiving" text="{SharedStrings:Shipping_Receiving}" order="60" expanded="false" iconUrl="" iconCss="treeIcon" permissions="order:mng:view">
+						<Link id="Order_Shipments" text="{SharedStrings:Shipments}" order="70" expanded="false" iconUrl="~/Apps/Order/images/Parcel.png" iconCss="treeIcon" permissions="order:mng:view">
+							<Link id="Order_ShipmentsReleased" text="{SharedStrings:Released_For_Shipping}" order="10" iconUrl="" iconCss="" command="cmdOrderShipmentsReleased" permissions="order:mng:shipment:packing"/>
+							<Link id="Order_PickLists" text="{SharedStrings:Pick_Lists}" order="30" iconUrl="" iconCss="" command="cmdOrderPickLists" permissions="order:mng:shipment:complete"/>
+						</Link>
+						<Link id="Order_Returns" text="{SharedStrings:Returns}" order="90" iconUrl="~/Apps/Order/images/Remove.png" iconCss="treeIcon" command="cmdOrderReturns" permissions="order:mng:return:receiving"/>
+						<Link id="Order_Pickup" text="{SharedStrings:Pickup_Orders}" order="100" expanded="false" iconUrl="" iconCss="" command="cmdOrderPickups" permissions="order:mng:shipment:view"/>
+					</Link>
+				</Tab>
+			</add>
+		</Tabs>
+		<Commands>
+			<add>
+				<Command id="cmdOrderSearch">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'OrderSearch-List', 'class=PurchaseOrder')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderPurchaseOrders">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Orders-List', 'filter=all&amp;class=PurchaseOrder')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderCarts">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Orders-List', 'filter=all&amp;class=ShoppingCart')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderPurchaseOrdersByStatus">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Orders-List', 'filter=all&amp;class=PurchaseOrder')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderPaymentPlans">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Orders-List', 'filter=all&amp;class=PaymentPlan')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderShipmentsReleased">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Shipment-List-Released', 'status=Released')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderShipmentsPacking">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Shipment-List-Packing', 'status=Packing')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderPickLists">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'PickList-List', '')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderReturns">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Return-List', '')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderPickups">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Order', 'Pickup-List', '')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</Navigation>
+</View>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="OrderMetaData-Import" controlUrl="Core/MetaData/Admin/MetaDataImport.ascx" help="Order+System"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Import}" controlUrl="Core/MetaData/Admin/Tabs/MetaDataImportTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

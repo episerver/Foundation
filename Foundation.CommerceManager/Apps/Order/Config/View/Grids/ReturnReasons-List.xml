@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column visible="false" allowSorting="false" dataField="ReturnReasonId" headingText=""></Column>
+					<Column width="50" dataField="ReturnReasonId" headingText="" columnType="Action">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderGridReturnReasonEdit" commandParameters="ReturnReasonId" toolTip="Edit"></Item>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderGridReturnReasonDelete" commandParameters="ReturnReasonId" toolTip="Delete"></Item>
+					</Column>
+					<Column width="350" allowSorting="true" dataField="ReturnReasonText" headingText="{SharedStrings:Return_Reason}" id="ReturnReasonId" columnType="HyperLink" dataNavigateUrlFields="ReturnReasonId" dataNavigateUrlFormatString="javascript:CSOrderClient.EditReturnReason({0});" dataTextFields="ReturnReasonText" dataTextFormatString="{0}"></Column>
+					<Column width="100" allowSorting="true" dataField="Ordering" headingText="{SharedStrings:Ordering}"></Column>
+					<Column width="100" allowSorting="true" dataField="Visible" headingText="{SharedStrings:Visible}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="New" text="{SharedStrings:New_Return_Reason}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdOrderNewReturnReason"/>
+				<Splitter id="ActionsSplitter"/>
+				<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderReturnReasonDelete"/>
+				</Menu>
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewReturnReason">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewReturnReason()</ClientScript>
+				</Command>
+
+				<Command id="cmdOrderReturnReasonDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnReasonDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+
+				 <!--Grid commands--> 
+				<Command id="cmdOrderGridReturnReasonEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.EditReturnReason2(params)</ClientScript>
+				</Command>
+
+				<Command id="cmdOrderGridReturnReasonDelete">
+                    <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ReturnReasonDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="ReturnReasons-List" controlUrl="Order/ReturnReasonsList.ascx" help="System+Settings"></setAttributes>
+	</ViewConfig>
+</View>

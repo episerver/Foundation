@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Aktive elementer</value>
+  </data>
+  <data name="AddSelectedElement" xml:space="preserve">
+    <value>Tilføj valgt element</value>
+  </data>
+  <data name="AddSelectedElements" xml:space="preserve">
+    <value>Tilføj valgte elementer</value>
+  </data>
+  <data name="AllSelectedItemsWereProcessed" xml:space="preserve">
+    <value>Alle valgte elementer blev behandlet.</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>Vilkårlig</value>
+  </data>
+  <data name="Bytes" xml:space="preserve">
+    <value>bytes</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="DeleteSelectedItemsConfirmation" xml:space="preserve">
+    <value>Vil du slette de valgte elementer?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Eksporter</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Eksporter til Excel</value>
+  </data>
+  <data name="ExportToXML" xml:space="preserve">
+    <value>Eksporter til XML</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Foretrukne</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Hjælp og Supportcenter</value>
+  </data>
+  <data name="HideShow" xml:space="preserve">
+    <value>Skjul / Vis</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Oversigt</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Oplysninger</value>
+  </data>
+  <data name="KBytes" xml:space="preserve">
+    <value>Kb</value>
+  </data>
+  <data name="MBytes" xml:space="preserve">
+    <value>Mb</value>
+  </data>
+  <data name="NewEntry" xml:space="preserve">
+    <value>Ny post</value>
+  </data>
+  <data name="NewFile" xml:space="preserve">
+    <value>Ny fil</value>
+  </data>
+  <data name="NewList" xml:space="preserve">
+    <value>Ny liste</value>
+  </data>
+  <data name="NewReport" xml:space="preserve">
+    <value>Ny rapport</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Ny bruger</value>
+  </data>
+  <data name="NotAllSelectedItemsWereProcessed" xml:space="preserve">
+    <value>Ikke alle valgte elementer blev behandlet. Det kan afhænge af systembegrænsninger eller sikkerhedsindstillinger</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Udskriv den aktuelle side</value>
+  </data>
+  <data name="QuickAccess" xml:space="preserve">
+    <value>Hurtig adgang</value>
+  </data>
+  <data name="ReferencesExists" xml:space="preserve">
+    <value>Der er nogle referencer til dette element. Sletning annulleres.</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Forespørgsler</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>Obligatorisk felt</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Valgte elementer</value>
+  </data>
+  <data name="SelectElement" xml:space="preserve">
+    <value>Vælg element</value>
+  </data>
+  <data name="SelectElements" xml:space="preserve">
+    <value>Vælg elementer</value>
+  </data>
+  <data name="SelectUnselectAll" xml:space="preserve">
+    <value>Marker/fjern markering af alle</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="tLogOut" xml:space="preserve">
+    <value>Log ud</value>
+  </data>
+  <data name="tMyWorks" xml:space="preserve">
+    <value>Mit arbejde</value>
+  </data>
+  <data name="tQuickAdd" xml:space="preserve">
+    <value>Hurtigtilføjelse</value>
+  </data>
+  <data name="tWSCustomize" xml:space="preserve">
+    <value>Tilpasning af arbejdsområde</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Opdateringer</value>
+  </data>
+  <data name="SearchObjects" xml:space="preserve">
+    <value>Søg efter objekter</value>
+  </data>
+  <data name="btnOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="OnlyActiveObjects" xml:space="preserve">
+    <value>Vis kun aktive objekter</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontaktperson</value>
+  </data>
+  <data name="HistoryView" xml:space="preserve">
+    <value>Vis historik</value>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>Vis liste</value>
+  </data>
+  <data name="tActions" xml:space="preserve">
+    <value>Handlinger</value>
+  </data>
+  <data name="pagingFirst" xml:space="preserve">
+    <value>Første side</value>
+  </data>
+  <data name="pagingLast" xml:space="preserve">
+    <value>Sidste side</value>
+  </data>
+  <data name="pagingNext" xml:space="preserve">
+    <value>Næste side</value>
+  </data>
+  <data name="pagingPrev" xml:space="preserve">
+    <value>Forrige side</value>
+  </data>
+  <data name="tOf" xml:space="preserve">
+    <value>af</value>
+  </data>
+  <data name="tTotalRecords" xml:space="preserve">
+    <value>Poster i alt: {0}.</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="SelectObjects" xml:space="preserve">
+    <value>Vælg objekter</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Handlinger</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="tFilterAnd" xml:space="preserve">
+    <value>OG</value>
+  </data>
+  <data name="tFilterFrom" xml:space="preserve">
+    <value>fra</value>
+  </data>
+  <data name="tFilterMore" xml:space="preserve">
+    <value>{0} flere...</value>
+  </data>
+  <data name="tFilterSelectObject" xml:space="preserve">
+    <value>Vælg objekt</value>
+  </data>
+  <data name="tFilterTo" xml:space="preserve">
+    <value>til</value>
+  </data>
+  <data name="tAddEntity" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="ExcludeSelected" xml:space="preserve">
+    <value>Udelad markeringen</value>
+  </data>
+  <data name="ExcludeSelectedItemsConfirmation" xml:space="preserve">
+    <value>Vil du udelade de valgte elementer?</value>
+  </data>
+  <data name="ItemView" xml:space="preserve">
+    <value>Vis element</value>
+  </data>
+  <data name="tAddEntities" xml:space="preserve">
+    <value>Tilføj elementer</value>
+  </data>
+  <data name="ActionWasNotProcessed" xml:space="preserve">
+    <value>Handlingen blev ikke udført. Det kan afhænge af systembegrænsninger eller sikkerhedsindstillinger</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Oplysninger</value>
+  </data>
+  <data name="RelatedObjects" xml:space="preserve">
+    <value>Relaterede objekter</value>
+  </data>
+  <data name="GenericList" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="GenericView" xml:space="preserve">
+    <value>Oplysninger</value>
+  </data>
+  <data name="GenericEdit" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="DeleteItemConfirmation" xml:space="preserve">
+    <value>Vil du slette dette element?</value>
+  </data>
+  <data name="PrinterVersion" xml:space="preserve">
+    <value>Printerversion</value>
+  </data>
+  <data name="LeftMenu" xml:space="preserve">
+    <value>Venstre menu</value>
+  </data>
+  <data name="Adding" xml:space="preserve">
+    <value>Tilføjer</value>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Redigering</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Skjul</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Ordre</value>
+  </data>
+  <data name="PortalCustomization" xml:space="preserve">
+    <value>Tilpasning af Management Console</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Vis</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Fortryd ændringer og gendan til standardindstillinger</value>
+  </data>
+  <data name="UndoChanges" xml:space="preserve">
+    <value>Vil du fortryde ændringerne og gendanne til standardindstillingerne?</value>
+  </data>
+  <data name="CustomPages" xml:space="preserve">
+    <value>Brugerdefinerede sider</value>
+  </data>
+  <data name="NewCustomPage" xml:space="preserve">
+    <value>Ny brugerdefineret side</value>
+  </data>
+  <data name="PageTemplate" xml:space="preserve">
+    <value>Sideskabelon</value>
+  </data>
+  <data name="CustomPageEditing" xml:space="preserve">
+    <value>Rediger brugerdefineret side</value>
+  </data>
+  <data name="GenericCreate" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Vis</value>
+  </data>
+</root>

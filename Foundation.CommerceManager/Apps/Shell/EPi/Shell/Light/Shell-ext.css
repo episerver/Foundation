@@ -1,0 +1,1252 @@
+﻿/* Extra class */
+body {
+    background-color: #fbfbfb;
+    color: #000;
+    font: 75%/1.231 "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    font-size: 70%;
+    text-align: left; /* LTR */
+}
+
+.text {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+}
+
+input[type='text'].aspNetDisabled {
+    background-color: transparent;
+}
+
+body.view, div.LayoutBase {
+    background-color: #F4F4F4;
+}
+
+.epi-ecf-toolbar,
+.ext-el-mask-msg,
+.IbnWidgetHeader,
+.x-panel-header,
+.x-tree-node .x-tree-selected,
+.rightCustomHeader,
+div.epi-ecf-toolbar,
+div.ext-el-mask-msg,
+div.IbnWidgetHeader,
+div.x-panel-header,
+div.x-tree-node .x-tree-selected,
+div.rightCustomHeader,
+div.modalPopupHeaderMove,
+div.modalPopupHeader,
+table.ibn-toolbar,
+td.ibn-toolbar,
+td.x-btn-center,
+td.x-toolbar td.x-btn-over td.x-btn-center,
+td.CommonListHeaderLeftMost,
+#menu_panel .x-panel-header {
+    background: #F8F8F8 url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #F8F8F8 none; /* IE6 */
+    border-bottom: 1px solid #8C8C8C;
+}
+
+.x-toolbar,
+div.x-toolbar {
+    background: #F8F8F8 url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #F8F8F8 none; /* IE6 */
+    border: none;
+    padding: 0;
+}
+
+    .x-btn-wrap .x-btn .x-btn-over,
+    .x-toolbar .x-btn-over .x-btn-center,
+    div.x-btn-wrap .x-btn .x-btn-over,
+    div.x-toolbar .x-btn-over .x-btn-center {
+        background: #eee url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+        _background: #eee none;
+        border: 1px solid #8D8D8D;
+    }
+
+    .x-toolbar .x-btn-over .x-btn-left,
+    .x-toolbar .x-btn-over .x-btn-right,
+    .x-toolbar .x-btn-menu-active .x-btn-left,
+    .x-toolbar .x-btn-menu-active .x-btn-right,
+    div.x-toolbar .x-btn-over .x-btn-left,
+    div.x-toolbar .x-btn-over .x-btn-right,
+    div.x-toolbar .x-btn-menu-active .x-btn-left,
+    div.x-toolbar .x-btn-menu-active .x-btn-right {
+        background: none;
+    }
+
+    .x-tree-node-el,
+    .x-btn-center,
+    .x-toolbar .x-btn .x-btn-center,
+    div.x-tree-node-el,
+    div.x-btn-center,
+    div.x-toolbar .x-btn .x-btn-center,
+    td.x-btn-center {
+        border: 1px solid transparent;
+    }
+
+    .x-toolbar .x-btn-over .x-btn-center,
+    div.x-toolbar .x-btn-over .x-btn-center {
+        background: #eee url(../Resources/Gradients.png) repeat-x left -5400px;
+        _background: #eee none;
+        border: 1px solid #8D8D8D;
+    }
+
+.epi-ecf-toolbar-exp {
+    background: #F8F8F8 url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #F8F8F8 none; /* IE6 */
+    border: 1px solid #8C8C8C;
+}
+
+.searchPanel,
+.x-tree-node-anchor,
+div.searchPanel,
+div.x-tree-node-anchor {
+    background-color: Transparent;
+}
+
+.ext-el-mask-msg,
+.x-mask-loading div,
+.x-tree-node .x-tree-selected,
+div.ext-el-mask-msg,
+div.x-mask-loading,
+div.x-tree-node .x-tree-selected {
+    border: 1px solid #8D8D8D;
+    background: #F8F8F8 url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #F8F8F8 none; /* IE6 */
+}
+
+.x-menu,
+div.x-menu,
+.FileUploadFilesForSaving,
+td.FileUploadFilesForSaving {
+    border: 1px solid #8D8D8D;
+    background: #F8F8F8 url(../Resources/GradientsSubMenu.png) repeat-x scroll left -8800px;
+    _background: #F8F8F8 none; /* IE6 */
+}
+
+div.x-layer.x-menu {
+    width: auto !important;
+    min-width: 160px !important;
+}
+
+.x-tree-node-over,
+.x-toolbar .x-btn-menu-active .x-btn-center,
+div.x-tree-node-over,
+div.x-toolbar .x-btn-menu-active .x-btn-center {
+    background: #eee url(../Resources/Gradients.png) repeat-x left -5400px;
+    _background: #eee none;
+    border: 1px solid #8D8D8D;
+}
+
+#epi-ecf-banner {
+    background: none repeat scroll 0 0 #444444;
+    border-bottom: 1px solid Black;
+    border-top: 1px solid #444444;
+    overflow: hidden;
+    width: 100%;
+    border: 0 none;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+    #epi-ecf-banner div a {
+        border: none;
+    }
+
+h1.epi-ecf-title {
+    font-size: 1.7em;
+    font-weight: normal;
+    line-height: 1.3;
+    color: White;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    text-shadow: #000 0 1px 0;
+}
+
+.epi-ecf-normal,
+.epi-ecf-normal a,
+.epi-ecf-normal a:hover {
+    font-size: 1em;
+    font-weight: normal;
+    color: White;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    text-shadow: #000 0 1px 0;
+}
+
+#rightPart {
+    font-size: 1em;
+    font-weight: normal;
+    color: White;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    text-shadow: #000 0 1px 0;
+}
+
+.x-panel-body,
+.ibn-stylebox2noBottom,
+div.x-panel-body,
+div.ibn-stylebox2noBottom,
+div.serverGridFooter,
+div.serverGridHeader,
+table.ibn-stylebox2,
+#McCommandHandlerFramePopupDiv .modalPopupWindow,
+div.modalPopupWindow {
+    border: 1px solid #8b8b8b;
+}
+
+div.noBottomBorder,
+td.noBottomBorder {
+    border-top: 1px solid #8b8b8b;
+    border-left: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+}
+
+div.serverGridBody {
+    border-left: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-bottom: 1px solid #8b8b8b;
+}
+
+div.serverGridHeaderInner {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    text-decoration: none;
+}
+
+    div.serverGridHeaderInner a,
+    div.serverGridHeaderInner a:hover {
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        Color: #1D1D1D;
+        text-decoration: none;
+    }
+
+        div.serverGridHeaderInner a:hover {
+            text-decoration: underline;
+        }
+
+div.serverGridHeader,
+div.noBottomBorder {
+    background: #F0F0F0 url(../Resources/Gradients.png) repeat-x scroll left -5400px;
+    _background: #eee none; /* IE6 */
+}
+
+div.serverGridFooter {
+    background: #F0F0F0 url(../Resources/Gradients.png) repeat-x scroll left -5400px;
+    _background: #eee none; /* IE6 */
+}
+
+div.GridFooter {
+    background-color: Transparent;
+    border-top: 1px solid #8b8b8b;
+}
+
+.serverGridSelectedRow,
+div.serverGridSelectedRow,
+tr.serverGridSelectedRow {
+    background-color: #f1f1f1 !important;
+    border-bottom: 1px solid #8C8C8C;
+    border-top: 1px solid #F5F5F5;
+}
+
+.ca-SelectedRow td.ca-DataCell {
+    background-color: #f1f1f1 !important;
+    border-top: 1px solid #F5F5F5;
+    border-bottom: 1px solid #d7d7d7;
+    line-height: 20px;
+}
+
+tr.ca-Row {
+    line-height: 20px;
+    border: 1px solid Transparent;
+}
+
+table.ibn-toolbar,
+div.modalPopupHeaderMove {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+}
+
+div#McCommandHandlerFrameHeaderDiv.modalPopupHeader {
+    color: #1D1D1D;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+}
+
+div.modalPopupHeader {
+    color: #1D1D1D;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+}
+
+
+.IbnWidgetHeader,
+div.IbnWidgetHeader {
+    border: 1px solid #8b8b8b;
+    text-shadow: #fff 0 1px 0;
+}
+
+.IbnWidgetContainer,
+div.IbnWidgetContainer {
+    border-top: none;
+    border-left: 1px solid #8b8b8b;
+    border-right: 1px solid #8b8b8b;
+    border-bottom: 1px solid #8b8b8b;
+    overflow: hidden;
+}
+
+.x-panel-header,
+div.x-panel-header {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: bold;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.2em 0.6em;
+    Line-height: 1.4;
+}
+
+.x-border-layout-ct,
+div.x-border-layout-ct {
+    background: #C8C7C7;
+}
+
+#menu_panel .x-panel-header {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: bold;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.2em 0.6em;
+    Line-height: 1.4;
+}
+
+.x-panel-header-text,
+div.x-panel-header-text {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: bold;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.2em 0.6em;
+    Line-height: 1.4;
+}
+
+.button,
+div.button,
+button,
+button[type='button'],
+input[type='button'],
+input[type='submit'] {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    background-color: #F8F8F8;
+    background-image: url(../Resources/Gradients.png);
+    background-position: left -5100px;
+    border: 1px solid #4E4E4E;
+    text-shadow: 0 1px 0 #FFF;
+}
+
+    button[disabled] {
+        color: GrayText;
+    }
+
+.x-btn button,
+div.x-btn button,
+.FileUploadAddBtnBlock,
+div.FileUploadAddBtnBlock,
+.FileUploadHideBlock,
+span.FileUploadHideBlock,
+.FileUploadUploadBlock,
+span.FileUploadUploadBlock,
+a.text,
+.FileUpload .text {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: normal;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.0em 0.6em 0.2em 0em;
+    border: none;
+    background-color: Transparent;
+    background-image: none;
+    text-shadow: #fff 0 1px 0;
+}
+
+.FileUpload a:hover {
+    Color: #1D1D1D;
+    text-decoration: none;
+}
+
+.x-btn,
+div.x-btn {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+}
+
+select, textarea, input[type='text'] {
+    border: 1px solid #b4b4b4;
+    background-color: #fff;
+    color: #000;
+}
+
+.FormLabelCell,
+div.FormLabelCell {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+}
+
+.FormSpacerCell,
+div.FormSpacerCell {
+    border-top: none;
+}
+
+.x-tool,
+div.x-tool {
+    background: url(Resources/Refresh.gif) no-repeat;
+    height: 18px;
+    width: 18px;
+}
+
+.closeDivStyle,
+div.closeDivStyle {
+    background: url(Resources/Cancel.gif) no-repeat;
+    width: 18px;
+}
+
+.x-layout-split,
+div.x-layout-split {
+    background-color: #C8C7C7;
+    background-image: url("Resources/Drag.gif");
+    background-position: center center;
+    background-repeat: repeat-y;
+    z-index: 1001;
+}
+
+td.tab,
+td.tabSelected,
+.x-menu-list-item,
+div.x-menu-list-item,
+li.x-menu-list-item {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    text-shadow: 0 1px 0 #FFF;
+}
+
+.x-menu-item-active,
+div.x-menu-item-active,
+li.x-menu-item-active {
+    background: #eee url(../Resources/Gradients.png) repeat-x left -5400px;
+    _background: #eee none;
+    border: 1px solid #8D8D8D;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    text-shadow: 0 1px 0 #FFF;
+}
+
+    .x-menu-item-active a.x-menu-item,
+    div.x-menu-item-active a.x-menu-item,
+    li.x-menu-item-active a.x-menu-item {
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        Color: #222222;
+        text-shadow: 0 1px 0 #FFF;
+    }
+
+.FormFieldDescription,
+.FormSectionCell,
+.x-tree-node,
+.tabSelected,
+.tab,
+div.FormFieldDescription,
+div.FormSectionCell,
+div.x-tree-node,
+div.tabSelected,
+div.tab,
+input,
+select,
+pre {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+}
+
+.ibn-stylebox2,
+div.ibn-stylebox2 {
+    border: 1px solid #8D8D8D;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+}
+
+td.ibn-vb,
+td.DataCell,
+td.serverGridInner,
+table.DataForm,
+div.ajax__tab_panel,
+tr.GridItem,
+tr.AlternatingRow_GridItem,
+div.db-panel,
+div.text,
+.ibn-propertysheet,
+.ibn-toolbar,
+.ibn-propertysheet td,
+div.ibn-propertysheet,
+div.ibn-toolbar,
+td.ibn-propertysheet,
+div.ibn-propertysheet td {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    Color: #1D1D1D;
+    text-decoration: none;
+}
+
+    td.ibn-vb a,
+    td.ibn-vb a:hover,
+    td.DataCell a,
+    td.DataCell a:hover,
+    td.serverGridInner a,
+    td.serverGridInner a:hover,
+    table.DataForm a,
+    table.DataForm a:hover,
+    div.ajax__tab_panel a,
+    div.ajax__tab_panel a:hover,
+    tr.GridItem a,
+    tr.GridItem a:hover,
+    tr.AlternatingRow_GridItem a,
+    tr.AlternatingRow_GridItem a:hover,
+    div.db-panel a,
+    div.db-panel a:hover,
+    div.text a,
+    div.text a:hover,
+    .ibn-propertysheet a,
+    .ibn-propertysheet a:hover,
+    .ibn-toolbar a,
+    .ibn-toolbar a:hover,
+    div.ibn-toolbar a,
+    div.ibn-toolbar a:hover,
+    td.ibn-propertysheet a,
+    td.ibn-propertysheet a:hover {
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        font-size: 11px;
+        Color: #1A4AA4;
+        text-decoration: none;
+    }
+
+    div.ibn-propertysheet a,
+    div.ibn-propertysheet a:hover {
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        font-size: 11px;
+        Color: #1D1D1D;
+        text-decoration: none;
+    }
+
+    td.ibn-vb a:hover,
+    td.DataCell a:hover,
+    td.serverGridInner a:hover,
+    table.DataForm a:hover,
+    div.ajax__tab_panel a:hover,
+    tr.GridItem a:hover,
+    tr.AlternatingRow_GridItem a:hover,
+    div.db-panel a:hover,
+    div.text a:hover,
+    .ibn-toolbar a:hover,
+    div.ibn-toolbar a:hover {
+        Color: #4878D4;
+    }
+
+    .ibn-propertysheet a:hover,
+    div.ibn-propertysheet a:hover,
+    td.ibn-propertysheet a:hover {
+        Color: #1D1D1D;
+    }
+
+    td.ibn-propertysheet a:hover {
+        Color: yellow;
+    }
+
+a.tabELink,
+a.tabELinkSelected {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: normal;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.2em 0.6em;
+    Line-height: 1.4;
+    text-shadow: #fff 0 1px 0;
+    text-decoration: none;
+}
+
+a.tabELinkSelected {
+    Font-weight: bold;
+}
+
+div.CommonContent,
+td.tab,
+td.tabSelected {
+    border: 1px solid #8D8D8D;
+}
+
+td.bottomBorder,
+td.tabSelected {
+    border-bottom: none;
+    Font-weight: bold;
+}
+
+td.ibn-stylebox {
+    border-bottom: 1px solid #8D8D8D;
+}
+
+td.tab,
+td.tabSelected {
+    background: #dcdcdc url(../Resources/Gradients.png) repeat-x left -2300px;
+    _background: #dcdcdc none;
+    border-top: 1px solid #4d4d4d;
+    border-right: 1px solid #4d4d4d;
+    border-left: 1px solid #4d4d4d;
+    border-bottom: 1px solid #4d4d4d;
+    color: #1d1d1d;
+    text-shadow: #f8f8f8 0 1px 0;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+}
+
+td:hover.tab {
+    background: #efefef url(../Resources/Gradients.png) repeat-x left -2300px;
+    _background: #efefef none;
+    text-shadow: #f8f8f8 0 1px 0;
+    color: #000;
+    cursor: pointer;
+}
+
+td.CommonListHeaderLeftMost,
+a.tabTLink,
+a.tabTLinkSelected {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: normal;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.2em 0.6em;
+    Line-height: 1.4;
+    text-shadow: #fff 0 1px 0;
+    text-decoration: none;
+}
+
+    a.tabTLink:hover {
+        text-decoration: underline;
+    }
+
+a.tabTLinkSelected {
+    Font-weight: bold;
+}
+
+div.designTableLayoutItemHover,
+td.designTableLayoutItemHover {
+    background: #c7c7c7 none;
+    _background: transparent none;
+    border: none;
+}
+
+table.borderType1TableLayoutSection td.designTableLayoutItemSelected {
+    background: transparent none;
+    _background: transparent none;
+    border: 2px solid #c7c7c7;
+}
+
+
+
+div.designSmartTableLayoutItem,
+td.designSmartTableLayoutItem {
+    background: #fbfbfb none;
+    _background: #fbfbfb none;
+    border: none;
+}
+
+div#DataForm {
+    margin: 0;
+}
+/*
+table.x-btn-wrap x-btn x-btn-wrap x-btn x-btn-text-icon x-btn-over
+{
+	_background: #f1f1f1 none;
+}
+*/
+/*===========================================================================
+- START of copy mainLeftTemplate
+===========================================================================*/
+
+div#menu_panel .x-panel-header {
+    background: #f1f1f1 url(../Resources/Gradients.png) repeat-x scroll left -2200px;
+    _background: #f1f1f1 none; /* IE6 */
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #8b8b8b;
+}
+
+div#menu_panel .x-panel-body {
+    background-color: #E3E3E3;
+}
+
+div.NavigationNavBarItem {
+    background: #DCDCDC url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #DCDCDC none;
+    border-top: 1px solid #4D4D4D;
+    color: #1D1D1D;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    font-weight: normal;
+    cursor: pointer;
+    text-shadow: #f8f8f8 0 1px 0;
+}
+
+div.NavigationNavBarItemHover {
+    background: #efefef url(../Resources/Gradients.png) repeat-x left -2200px;
+    _background: #efefef none;
+    color: #000;
+    border-top: 1px solid #4d4d4d;
+    color: black;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    font-weight: normal;
+    cursor: pointer;
+    text-shadow: #f8f8f8 0 1px 0;
+}
+
+div.NavigationNavBarItemActive {
+    background: #F8F8F8 url("../Resources/Gradients.png") repeat-x scroll left -5200px;
+    _background: #F8F8F8 none;
+    border-top: 1px solid #4d4d4d;
+    color: #1D1D1D;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 13.3px;
+    text-shadow: #FFF 0 1px 0;
+}
+
+
+div.NavigationNavBarItemSmall {
+    background: #DCDCDC url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #DCDCDC none;
+    border: 1px solid transparent;
+    color: black;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px; /*12px; */
+    cursor: pointer;
+    padding: 2px 4px 2px 4px;
+    float: left;
+    width: 37px;
+}
+
+div.NavigationNavBarItemSmallHover {
+    background: #efefef url(../Resources/Gradients.png) repeat-x left -2200px;
+    _background: #efefef none;
+    border: 1px solid #8D8D8D;
+    color: black;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px; /*12px; */
+    cursor: pointer;
+    padding: 2px 4px 2px 4px;
+    float: left;
+    width: 37px;
+}
+
+div.NavigationNavBarItemSmallActive {
+    background: #F8F8F8 url("../Resources/Gradients.png") repeat-x scroll left -5200px;
+    _background: #F8F8F8 none;
+    border: 1px solid transparent;
+    color: black;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px; /*12px; */
+    cursor: pointer;
+    padding: 2px 4px 2px 4px;
+    float: left;
+    width: 37px;
+}
+
+/*
+.iconNodeCls
+{
+	background-image: url(../../images/Shell/rect.gif) !important;
+	width: 6px !important;
+	height: 7px !important;
+	vertical-align: middle !important;
+	padding: 3px !important;
+}
+*/
+
+div.nodeCls a span {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    Color: #1D1D1D;
+    Font-size: 1em;
+    Font-weight: normal;
+    Margin: 0 0 0.2em 0;
+    Padding: 0.2em 0.6em;
+    Line-height: 1.4;
+}
+
+/*===========================================================================
+- END of copy mainLeftTemplate
+===========================================================================*/
+
+/*===========================================================================
+- START of copy MetaDataBase/Style/Theme.css
+===========================================================================*/
+
+.ibn-stylebox {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    border: 1px solid #8D8D8D;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.ibn-stylebox2 {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    border: 1px solid #8D8D8D;
+    text-align: left;
+    margin-top: 0px;
+}
+
+.ibn-stylebox-light {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    border-left: 1px solid #8D8D8D;
+    border-right: 1px solid #8D8D8D;
+    border-bottom: 1px solid #8D8D8D;
+    text-align: left;
+}
+
+.ibn-toolbar-light {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 1em;
+    text-decoration: none;
+    color: #000000;
+}
+
+/*===========================================================================
+- END of copy MetaDataBase/Style/Theme.css
+===========================================================================*/
+
+/*===========================================================================
+- START of copy Shell/Style/css/tabs.css
+===========================================================================*/
+.gray .ajax__tab_header {
+    background: url(../Resources/tab_bottomBorder.gif) repeat-x scroll left bottom transparent;
+    font-size: 1.2em;
+    display: block;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0 0.7em;
+}
+
+    .gray .ajax__tab_header .ajax__tab_outer {
+        background: #dcdcdc url(../Resources/Gradients.png) repeat-x left -2300px;
+        _background: #dcdcdc none;
+        border-top: 1px solid #4d4d4d;
+        border-right: 1px solid #4d4d4d;
+        border-left: 1px solid #4d4d4d;
+        border-bottom: 1px solid #4d4d4d;
+        color: #1d1d1d;
+        text-shadow: #f8f8f8 0 1px 0;
+        -moz-border-radius-topleft: 3px;
+        -moz-border-radius-topright: 3px;
+    }
+
+    .gray .ajax__tab_header .ajax__tab_inner {
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        font-size: 0.9em;
+        background: none;
+        _background: none;
+        color: #1d1d1d;
+        text-shadow: #f8f8f8 0 1px 0;
+        margin: 0.2em;
+        position: relative;
+        padding-top: 0.5em float: left;
+    }
+
+.gray .ajax__tab_hover .ajax__tab_inner {
+    background: none;
+    _background: none;
+    text-shadow: #f8f8f8 0 1px 0;
+    color: #000;
+    cursor: pointer;
+}
+
+.gray .ajax__tab_hover .ajax__tab_outer {
+    background: #efefef url(../Resources/Gradients.png) repeat-x left -2300px;
+    _background: #efefef none;
+    text-shadow: #f8f8f8 0 1px 0;
+    color: #000;
+    cursor: pointer;
+}
+
+.gray .ajax__tab_active .ajax__tab_outer {
+    background: #F8F8F8 url(../Resources/Gradients.png) repeat-x scroll left -2300px;
+    _background: #F8F8F8 none;
+    border-bottom-color: #ffffff;
+}
+
+.gray .ajax__tab_active .ajax__tab_inner {
+    background: none;
+    _background: none;
+    color: #000;
+    border-color: #333;
+    font-weight: bold;
+}
+
+.gray .ajax__tab_body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    font-size: 11px;
+    background-color: White;
+    border: solid 1px #1D1D1D;
+    border-top-width: 0;
+    padding: 0.25em 0.5em;
+}
+
+.yui .ajax__tab_header {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, Sans-Serif;
+    font-size: small;
+    border-bottom: solid 5px #2647a0;
+}
+
+    .yui .ajax__tab_header .ajax__tab_outer {
+        background: url(../images/sprite.png) #d8d8d8 repeat-x;
+        margin: 0px 0.16em 0px 0px;
+        padding: 1px 0px 1px 0px;
+        vertical-align: bottom;
+        border: solid 1px #a3a3a3;
+        border-bottom-width: 0px;
+    }
+
+    .yui .ajax__tab_header .ajax__tab_tab {
+        color: #000;
+        padding: 0.35em 0.75em;
+        margin-right: 0.01em;
+    }
+
+.yui .ajax__tab_hover .ajax__tab_outer {
+    background: url(../images/sprite.png) #bfdaff repeat-x left -1300px;
+}
+
+.yui .ajax__tab_active .ajax__tab_tab {
+    color: #fff;
+}
+
+.yui .ajax__tab_active .ajax__tab_outer {
+    background: url(../images/sprite.png) #2647a0 repeat-x left -1400px;
+}
+
+.yui .ajax__tab_body {
+    font-size: 10pt;
+    padding: 0.25em 0.5em;
+    /*    background-color:#edf5ff;    */
+    border: solid 1px #808080;
+    border-top-width: 0px;
+}
+/*===========================================================================
+- END of copy Shell/Style/css/tabs.css
+===========================================================================*/
+
+
+/*===========================================================================
+- START of copy Shell/Style/GridStyle.css
+===========================================================================*/
+.ca-Grid {
+    background-color: #FFFFFF;
+    cursor: default;
+    width: 100%;
+    /*height: 100%;*/
+}
+
+.ca-HeadingCell {
+    background-color: #F1F1F1;
+    _background: #F1F1F1 none;
+    color: #000;
+    border: 1px solid #AEAEAE;
+    padding: 0.1em 0.4em;
+    text-shadow: #fff 0 1px 0;
+    text-align: left;
+}
+
+.ca-HeadingCellText {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-weight: normal;
+    font-size: 1em;
+    padding: 5px;
+}
+
+.ca-Row {
+    background-color: #FFFFFF;
+    cursor: default;
+}
+
+    .ca-Row td.ca-DataCell {
+        border-bottom: 1px solid #E6E6E6;
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        font-size: 1em;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 3px;
+        cursor: default;
+    }
+
+.ca-AlternatingRow {
+    cursor: default;
+}
+
+    .ca-AlternatingRow td.ca-DataCell {
+        background-color: #F6F6F8;
+        border-bottom: 1px solid #E6E6E6;
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        padding: 2px;
+        font-size: 1em;
+        cursor: default;
+    }
+
+.ca-HoverRow {
+}
+
+    .ca-HoverRow td.ca-DataCell {
+        background-color: #E6E6EE;
+        border-bottom: 1px solid #E6E6E6;
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        font-size: 1em;
+        padding: 2px;
+        cursor: default;
+    }
+
+.ca-SelectedRow {
+}
+
+    .ca-SelectedRow td.ca-DataCell {
+        background-color: #FFEEC2;
+        border-bottom: 1px solid #E6E6E6;
+        font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+        font-size: 1em;
+        cursor: default;
+    }
+
+td.ca-DataCell img {
+    border: none;
+}
+
+.ca-CellText {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 1em;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.ca-HiddenCell {
+    width: 0px;
+    visibility: hidden;
+}
+
+.ca-GridFooter {
+    background-color: #F0F0F0; /*#D8D8E6; */
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFFFF, endColorstr=#FFDDDDDD);	*/
+    cursor: default;
+    padding: 0px 0px 0px 0px;
+    height: 28px;
+    border-top: lightgrey 1px solid;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+}
+
+.ca-ScrollPopup {
+    background-color: #FFFFFF;
+    border: 1px solid #666666;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    height: 23px;
+}
+/*===========================================================================
+- END of copy Shell/Style/GridStyle.css
+===========================================================================*/
+
+.borderType1TableLayoutSection {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    border-left: 1px solid #8D8D8D;
+    border-right: 1px solid #8D8D8D;
+    border-bottom: 1px solid #8D8D8D;
+}
+
+table.borderType1TableLayoutSection {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    border-left: 1px solid #8D8D8D;
+    border-right: 1px solid #8D8D8D;
+    border-bottom: 1px solid #8D8D8D;
+}
+
+div.noTopBorder {
+    border-color: #8D8D8D;
+    border-right: 1px solid #8D8D8D;
+    border-style: solid;
+    border-width: 0 1px 1px;
+}
+
+.popupWindowHeader {
+    background: #dcdcdc url(../Resources/Gradients.png) repeat-x left -2300px;
+    _background: #dcdcdc none;
+    border-top: 1px solid #4d4d4d;
+    border-bottom: 1px solid #4d4d4d;
+    color: #1d1d1d;
+    text-shadow: #f8f8f8 0 1px 0;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 5px 4px;
+    overflow: hidden;
+    padding-left: 6px;
+    padding-right: 6px;
+    -moz-user-select: none;
+}
+
+/* Apply style for Asp:DataGrid*/
+table.Grid,
+table.Grid td,
+tr.Row_DataCell td,
+tr.AlternatingRow_DataCell td,
+tr.HeadingCell td,
+tr.GridHeader td,
+tr.GridItem td,
+tr.AlternatingRow_GridItem td {
+    border-color: #E6E6E6;
+    border-style: solid;
+}
+
+table.Grid {
+    border-width: 0 0 1px 1px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+    table.Grid td,
+    tr.Row_DataCell td,
+    tr.AlternatingRow_DataCell td,
+    tr.HeadingCell td,
+    tr.GridHeader td,
+    tr.GridItem td,
+    tr.AlternatingRow_GridItem td {
+        border-width: 1px 1px 0 0;
+        background-color: #FFFFFF;
+    }
+
+tr.Row_DataCell td,
+tr.AlternatingRow_DataCell td,
+tr.GridItem td,
+tr.AlternatingRow_GridItem td {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 1em;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 3px;
+    cursor: default;
+    line-height: 1.6em;
+}
+
+tr.HeadingCell,
+tr.GridHeader {
+    color: #000;
+    padding: 0.1em 0.4em;
+    text-align: left;
+    line-height: 2em;
+    text-align: center;
+    text-shadow: #fff 0 1px 0;
+}
+
+tr.AlternatingRow_DataCell td,
+tr.AlternatingRow_GridItem td {
+    background-color: #F6F6F8;
+}
+
+tr.HeadingCell td,
+tr.GridHeader td {
+    background-color: #F1F1F1;
+    _background: #F1F1F1 none;
+}
+
+#mainDiv ul.tabs li.tabSelected {
+    background-image: url("../Resources/GradientsSubMenu.png");
+    border: 1px solid #4D4D4D;
+    border-bottom-color: #C7C7C7;
+    color: #000000;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+#mainDiv ul.tabs li.tabUnselected {
+    background-color: #E9E9E9;
+    color: #000000;
+    border: 1px solid #4D4D4D;
+}
+
+#mainDiv .tabsHr {
+    border-top-color: #8D8D8D;
+}
+
+#mainDiv ul.tabs li.tabGap {
+    border-color: #FFFFFF #FFFFFF #8D8D8D;
+}
+
+#mainDiv table.orderform-blockheaderlight-datatable {
+    border-color: #8D8D8D;
+}
+
+#mainDiv .x-toolbar .ytb-sep, #IbnMainLayout .x-toolbar .ytb-sep {
+    background-image: url("../../../styles/images/ext/default/grid/grid-split.gif");
+}
+
+#IbnMainLayout .DockContainer {
+    background-color: #E9E9E9;
+}
+
+    #IbnMainLayout .DockContainer .x-toolbar .ytb-sep {
+        background-image: url("../../../styles/images/ext/default/grid/grid-split.gif");
+    }
+/* NewOrder select Customer dropdownlist */
+.ibn-propertysheet .dropstyle {
+    border: 1px solid #B4B4B4 !important;
+}
+/* Paging PageSize dropdownlist */
+.GridPaging {
+    border: 1px solid #B4B4B4 !important;
+}
+
+#IbnMainLayout table.orderform-blockheaderlight-datatable {
+    border-color: #8D8D8D;
+}
+
+.applyCouponButtonClass {
+    float: left;
+    margin-right: 2px;
+    margin-top: 2px;
+}
+
+/* Payment method edit for Pay By Credit Card */
+.DataForm .FormFieldCell fieldset {
+    border: 1px solid #B4B4B4;
+}
+
+#contentPanel table.orderform-blockheaderlight-datatable {
+    border-color: #8D8D8D;
+}
+
+select.FixedWidthOption > option {
+    width: 250px;
+    overflow: hidden;
+}
+
+#contentPanel table.ecf-Grid {
+    float: left;
+}
+
+#contentPanel div.serverGridHeader div.serverGridHeaderInner div.serverGridHeaderInnerNoPadding {
+    padding-left: 5px;
+}
+
+.btndown {
+    background-color: #F3F3F3 !important;
+    border-bottom: 1px solid #B4B4B4 !important;
+    border-right: 1px solid #B4B4B4 !important;
+    border-top: 1px solid #B4B4B4 !important;
+}

@@ -1,0 +1,3 @@
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="Mediachase.Commerce.Manager.Order.MetaFieldList" Codebehind="MetaFieldList.ascx.cs" %>
+<%@ Register Src="~/Apps/Core/Controls/EcfListViewControl.ascx" TagName="EcfListViewControl" TagPrefix="core" %>
+<core:EcfListViewControl id="MyListView" runat="server" DataKey="Id" AppId="Order" ViewId="OrderMetaFields-List" ShowTopToolbar="true"></core:EcfListViewControl>

@@ -1,0 +1,49 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+
+@model LargeCartViewModel
+
+
+<div class="large-cart--container">
+
+    @foreach (var shipment in Model.Shipments)
+    {
+        foreach (var cartItem in shipment.CartItems)
+        {
+            var viewData = new ViewDataDictionary();
+            viewData.Add(new KeyValuePair<string, object>("ShipmentId", shipment.ShipmentId));
+            <div class="row product-tile-list__item">
+                @Html.Partial("_ItemTemplate", cartItem, viewData)
+            </div>
+
+        }
+    }
+
+<div class="large-cart--btn-group__bottom">
+    <button onclick="window.location.href = '@Model.ReferrerUrl'" class="button-transparent-black btn-lower" title="@Html.TranslateFallback("/Checkout/Continue/Button", "Continue shopping")">
+        <span>
+            <i data-feather="arrow-right-circle"></i>
+            @Html.TranslateFallback("/Checkout/Continue/Button", "Continue shopping")
+        </span>
+    </button>
+    @if (Model.HasOrganization)
+    {
+        using (@Html.BeginForm("RequestQuote", "DefaultCart", FormMethod.Post, new { @class = "form-horizontal-block" }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="button" class="btn btn--light btn-lower jsCartRequestQuote">
+                <span>
+                    <i data-feather="arrow-right-circle"></i>
+                    @Html.TranslateFallback("/Shared/RequestQuote", "Request Quote")
+                </span>
+            </button>
+        }
+    }
+
+    <button id="clearCart" class="button-transparent-black btn-lower" title="Clear Cart" name="update_cart_action" type="Submit" url="@Url.Action("ClearCart", "DefaultCart")">
+        <i data-feather="alert-circle"></i>
+        <span>@Html.TranslateFallback("/Cart/Labels/ClearCart", "Clear Cart")</span>
+    </button>
+</div>
+</div>
+

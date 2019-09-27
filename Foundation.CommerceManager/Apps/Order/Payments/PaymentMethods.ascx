@@ -1,0 +1,3 @@
+<%@ Control Language="c#" Inherits="Mediachase.Commerce.Manager.Order.Payments.PaymentMethods" Codebehind="PaymentMethods.ascx.cs" %>
+<%@ Register Src="~/Apps/Core/Controls/EcfListViewControl.ascx" TagName="EcfListViewControl" TagPrefix="core" %>
+<core:EcfListViewControl id="MyListView" runat="server" DataKey="PaymentMethodId" AppId="Order" ViewId="PaymentMethods-List" ShowTopToolbar="true"></core:EcfListViewControl>

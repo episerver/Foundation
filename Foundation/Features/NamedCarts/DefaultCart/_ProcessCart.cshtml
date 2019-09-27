@@ -1,0 +1,148 @@
+﻿@using EPiServer.Web.Mvc.Html
+@model LargeCartViewModel
+
+<div class="row">
+    <div class="large-cart--block col-sm-4">
+        <h3>@Html.TranslateFallback("/Cart/Labels/EstimateShipping", "Estimate Shipping and Tax")</h3>
+        @using (Html.BeginForm("EstimateShipping", "DefaultCart", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <p>@Html.TranslateFallback("/Cart/Labels/ShippingEstimate", "Enter your destination to get a shipping estimate.")</p>
+            <ul class="form-list">
+                <li>
+                    <label for="country">Country <span class="required">*</span></label>
+                    <div class="input-box">
+                        @{
+                            var contries = Model.AddressModel.CountryOptions.Select(x =>
+                            {
+                                return new KeyValuePair<string, string>(x.Name, x.Code);
+                            });
+                        }
+                        @Helpers.RenderDropdown(contries, Model.AddressModel.CountryCode, "validate-select jsChangeCountry", "AddressModel.CountryCode")
+                        @*@Html.DropDownListFor(x => x.AddressModel.CountryCode, new SelectList(Model.AddressModel.CountryOptions, "Code", "Name", Model.AddressModel.CountryCode), new { @class = "validate-select jsChangeCountry" })*@
+                        @*@Html.Hidden("address-htmlfieldprefix", "AddressModel.CountryRegion")*@
+                    </div>
+                </li>
+                <li>
+                    @Html.EditorFor(x => x.AddressModel.CountryRegion)
+                </li>
+                <li class="large-cart__margin-top">
+                    <label for="postcode">Zip/Postal Code</label>
+                    <div class="input-box">
+                        @Html.TextBoxFor(x => x.AddressModel.PostalCode, new { @class = "textbox validate-postcode" })
+                    </div>
+                </li>
+            </ul>
+            <div class="large-cart__margin-top">
+                @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+                {
+                    <button class="button-transparent-black btn-lower" title="Get a Quote" type="Submit">
+                        <span>
+                            <i data-feather="file-text"></i>
+                            @Html.TranslateFallback("/Cart/Labels/Estimate", "Estimate")
+                        </span>
+                    </button>
+                }
+            </div>
+        }
+    </div>
+    <div class="large-cart--block col-sm-4">
+        <h3>@Html.TranslateFallback("/Checkout/Coupons/Heading", "Coupons and Promotional Codes")</h3>
+        <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
+        @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+        {
+            <form action="@Url.Action("AddCouponCode", "DefaultCart")" method="post">
+                <div>
+                    <input type="text" name="couponCode" class="textbox" id="coupon_code">
+                </div>
+                @{
+                    var couponError = ViewBag.CouponError != null ? (bool)ViewBag.CouponError : false;
+                }
+                <div class="large-cart__margin-top couponcode-errormessage required" style="@(couponError ? "" : "display: none")">
+                    <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
+                </div>
+                <div class="large-cart__margin-top">
+                    <span class="input-group-btn">
+                        <button type="submit" class="button-transparent-black btn-">
+                            @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
+                        </button>
+                    </span>
+                </div>
+            </form>
+
+        }
+        @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
+        {
+            <div class="col-xs-12">
+                <p class="title">@Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")</p>
+                <ul>
+                    @foreach (var couponCode in Model.AppliedCouponCodes)
+                    {
+                        <li>
+                            @Html.Label(couponCode)
+                            @Html.ActionLink(Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/RemoveButton", "Remove"), "RemoveCouponCode", "DefaultCart", new { }, new { @class = "btn btn-danger btn-xs js-remove-couponcode" })
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+
+    <div class="large-cart--block col-sm-4">
+        <h3>@Html.TranslateFallback("/Cart/Labels/ShoppingCartTotal", "Shopping Cart Total")</h3>
+        <ul class="list-group--info">
+            <li class="row">
+                <span class="col-6">@Html.TranslateFallback("/Cart/Labels/Subtotal", "Subtotal")</span>
+                <span class="col-6 largecart-Subtotal">@Model.Subtotal.ToString()</span>
+            </li>
+
+            @if (Model.TotalDiscount.Amount > 0)
+            {
+                <li class="row">
+                    <span class="col-6">
+                        @Html.TranslateFallback("/Cart/Labels/DiscountsApplied", "Discount Applied")
+                    </span>
+                    <span class="col-6">
+                        <strong>- <span class="largecart-TotalDiscount">@Model.TotalDiscount.ToString()</span></strong>
+                    </span>
+                </li>
+            }
+
+            <li class="row">
+                <span class="col-6">@Html.TranslateFallback("/Cart/Labels/TaxTotal", "Tax Total")</span>
+                <span class="col-6 largecart-TaxTotal">@Model.TaxTotal.ToString()</span>
+            </li>
+            <li class="row">
+                <span class="col-6">@Html.TranslateFallback("/Cart/Labels/ShippingTotal", "Shipping Total")</span>
+                <span class="col-6 largecart-ShippingTotal">@Model.ShippingTotal.ToString()</span>
+            </li>
+
+            <li class="row">
+                <span class="col-6 title">@Html.TranslateFallback("/Cart/Labels/Total", "Total")</span>
+                <span class="col-6 price__discount largecart-Total">@Model.Total.ToString()</span>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <button class="button-black--icon" title="Proceed to Checkout" type="button" onclick="window.location.href = '@Url.ContentUrl(Model.CheckoutPage)'">
+                    <span>
+                        <i data-feather="check"></i>
+                        @Html.TranslateFallback("/Cart/Labels/Checkout", "Check Out")
+                    </span>
+                </button>
+            </li>
+            <li>
+                <br>
+            </li>
+            @*<li>
+                <a class="account-link" title="Checkout with Multiple Addresses" href="@Url.ContentUrl(Model.MultiShipmentPage)">
+                    @Html.TranslateFallback("/Cart/Labels/MultipleAddresses", "Multiple Addresses")
+                </a>
+            </li>*@
+            <li>
+                <br>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Active Items</value>
+  </data>
+  <data name="AddSelectedElement" xml:space="preserve">
+    <value>Add Selected Element</value>
+  </data>
+  <data name="AddSelectedElements" xml:space="preserve">
+    <value>Add Selected Elements</value>
+  </data>
+  <data name="AllSelectedItemsWereProcessed" xml:space="preserve">
+    <value>All selected items were processed successfully.</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="Bytes" xml:space="preserve">
+    <value>bytes</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteSelectedItemsConfirmation" xml:space="preserve">
+    <value>Do you really want to delete the selected items?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="ExportToXML" xml:space="preserve">
+    <value>Export to XML</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help and Support Center</value>
+  </data>
+  <data name="HideShow" xml:space="preserve">
+    <value>Hide / Show</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="KBytes" xml:space="preserve">
+    <value>Kb</value>
+  </data>
+  <data name="MBytes" xml:space="preserve">
+    <value>Mb</value>
+  </data>
+  <data name="NewEntry" xml:space="preserve">
+    <value>New Entry</value>
+  </data>
+  <data name="NewFile" xml:space="preserve">
+    <value>New File</value>
+  </data>
+  <data name="NewList" xml:space="preserve">
+    <value>New List</value>
+  </data>
+  <data name="NewReport" xml:space="preserve">
+    <value>New Report</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New User</value>
+  </data>
+  <data name="NotAllSelectedItemsWereProcessed" xml:space="preserve">
+    <value>Not all selected items were processed. It may depend on system restrictions or security settings.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print Current Page</value>
+  </data>
+  <data name="QuickAccess" xml:space="preserve">
+    <value>Quick Access</value>
+  </data>
+  <data name="ReferencesExists" xml:space="preserve">
+    <value>There are some references to this element. Deleting is cancelled.</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Requests</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>Required Field</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Selected Items</value>
+  </data>
+  <data name="SelectElement" xml:space="preserve">
+    <value>Select Element</value>
+  </data>
+  <data name="SelectElements" xml:space="preserve">
+    <value>Select Elements</value>
+  </data>
+  <data name="SelectUnselectAll" xml:space="preserve">
+    <value>Select/Unselect All</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="tLogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="tMyWorks" xml:space="preserve">
+    <value>My Work</value>
+  </data>
+  <data name="tQuickAdd" xml:space="preserve">
+    <value>Quick Add</value>
+  </data>
+  <data name="tWSCustomize" xml:space="preserve">
+    <value>Workspace Customization</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="SearchObjects" xml:space="preserve">
+    <value>Objects Search</value>
+  </data>
+  <data name="btnOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="OnlyActiveObjects" xml:space="preserve">
+    <value>Show only active objects</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="HistoryView" xml:space="preserve">
+    <value>History View</value>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>List View</value>
+  </data>
+  <data name="tActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="pagingFirst" xml:space="preserve">
+    <value>First page</value>
+  </data>
+  <data name="pagingLast" xml:space="preserve">
+    <value>Last page</value>
+  </data>
+  <data name="pagingNext" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="pagingPrev" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="tOf" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="tTotalRecords" xml:space="preserve">
+    <value>Total Records: {0}.</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="SelectObjects" xml:space="preserve">
+    <value>Select objects</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="tFilterAnd" xml:space="preserve">
+    <value>AND</value>
+  </data>
+  <data name="tFilterFrom" xml:space="preserve">
+    <value>from</value>
+  </data>
+  <data name="tFilterMore" xml:space="preserve">
+    <value>{0} more...</value>
+  </data>
+  <data name="tFilterSelectObject" xml:space="preserve">
+    <value>Please select object</value>
+  </data>
+  <data name="tFilterTo" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="tAddEntity" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="ExcludeSelected" xml:space="preserve">
+    <value>Exclude Selected</value>
+  </data>
+  <data name="ExcludeSelectedItemsConfirmation" xml:space="preserve">
+    <value>Do you really want to exclude the selected items?</value>
+  </data>
+  <data name="ItemView" xml:space="preserve">
+    <value>View Item</value>
+  </data>
+  <data name="tAddEntities" xml:space="preserve">
+    <value>Add Items</value>
+  </data>
+  <data name="ActionWasNotProcessed" xml:space="preserve">
+    <value>The action was not processed. It may depend on system restrictions or security settings.</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="RelatedObjects" xml:space="preserve">
+    <value>Related Objects</value>
+  </data>
+  <data name="GenericList" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="GenericView" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="GenericEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DeleteItemConfirmation" xml:space="preserve">
+    <value>Do you really want to delete this item?</value>
+  </data>
+  <data name="PrinterVersion" xml:space="preserve">
+    <value>Printer Version</value>
+  </data>
+  <data name="LeftMenu" xml:space="preserve">
+    <value>Left Menu</value>
+  </data>
+  <data name="Adding" xml:space="preserve">
+    <value>Adding</value>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="PortalCustomization" xml:space="preserve">
+    <value>Management Console Customization</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo changes and reset to default settings</value>
+  </data>
+  <data name="UndoChanges" xml:space="preserve">
+    <value>Undo changes and reset to default settings?</value>
+  </data>
+  <data name="CustomPages" xml:space="preserve">
+    <value>Custom Pages</value>
+  </data>
+  <data name="NewCustomPage" xml:space="preserve">
+    <value>New Custom Page</value>
+  </data>
+  <data name="PageTemplate" xml:space="preserve">
+    <value>Page Template</value>
+  </data>
+  <data name="CustomPageEditing" xml:space="preserve">
+    <value>Custom Page Editing</value>
+  </data>
+  <data name="GenericCreate" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+</root>

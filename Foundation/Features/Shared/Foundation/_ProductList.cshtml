@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProductTileViewModel>
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var product in Model)
+    {
+        var urlQuickView = "/product/quickview";
+        if (product.EntryType.Equals(typeof(GenericBundle)))
+        {
+            urlQuickView = "/Bundle/QuickView";
+        }
+        if (product.EntryType.Equals(typeof(GenericPackage)))
+        {
+            urlQuickView = "/Package/QuickView";
+        }
+
+        <div class="row product-tile-list__item">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
+                <div class="product-tile-list__image">
+                    <img class="img-fluid" src="@product.ImageUrl" alt="">
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 col-sm-6 col-xs-6">
+                <div class="product-tile-list__right-box">
+                    <div class="title">
+                        <a href="@product.Url" class="account-link"><h5>@product.DisplayName</h5></a>
+                    </div>
+
+                    @*<div class="rating rate-@((int)product.ReviewStatistics.OverallRating)">
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <span class="content">@product.ReviewStatistics.TotalRatings Review(s)</span>
+                    </div>*@
+
+                    <div class="content product-tile-list__content">
+                        <div>
+                            @Html.Raw(product.Description)
+                        </div>
+                        <div>
+                            @if (product.DiscountedPrice != product.PlacedPrice)
+                            {
+                                <span class="price__old">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">@product.DiscountedPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
+                            }
+                        </div>
+                        <div class="action-icons">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span class="wishlist-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
+                            }
+                            <span class="jsQuickView" 
+                                  data-toggle="modal" 
+                                  data-target="#quickView" 
+                                  data="@product.FirstVariationCode" 
+                                  productCode="@product.Code"
+                                  urlQuickView="@urlQuickView"><i data-feather="eye"></i></span>
+                            <span class="addToCart" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

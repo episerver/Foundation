@@ -1,0 +1,734 @@
+body, form {
+    margin: 0;
+}
+body {
+    background: white;
+    color: black;
+}
+select {
+    font-size: 8pt; 
+    font-family: Verdana, sans-serif; 
+}
+hr {
+    color: #003399;
+    height: 2px;
+}
+.ibn-toolbar {
+    font-family: verdana; 
+    font-size: 8pt; 
+    text-decoration: none; 
+    color: #003399; 
+}
+table.ibn-toolbar {
+   background-image: url('../images/toolgrad.gif');
+   background-repeat: repeat-x;
+   border: 1px solid #95b7f3;
+   background-color: #9ebff6;
+}
+.ibn-main{
+}
+.ibn-rtetoolbarmenu 
+{
+	background-color: #B2CDF8;
+	color: black;
+}
+.ibn-rtetoolbarunsel {
+    padding: 3px;
+}
+.ibn-rtetoolbarsel {
+    padding: 2px;
+    border: solid 1px #000084;
+    background-image: url('rtebnsel.gif');
+	background-repeat: repeat-x;
+}
+.ibn-rtetoolbarhov 
+{
+    padding: 2px;
+    border: solid 1px #000084;
+    background-image: url('rtebnhov.gif');
+    background-repeat: repeat-x;
+    background-color: #fddd98;
+    cursor: hand;
+}
+.ibn-viewselect a:link {
+    font-size: 8pt; 
+    font-family: Verdana, sans-serif; 
+    color: #003399;
+}
+.ibn-bannerframe { 
+    background-image: url('topgrad.gif');
+    background-repeat: repeat-x;
+    padding-top:1px;
+    border-bottom:2px solid #FFD275;
+    BACKGROUND-COLOR: #90B3E9; 
+    color:white;
+}
+.ibn-bannerframe2 { 
+    background-image: url('topgrad.gif');
+    background-repeat: repeat-x;
+    BACKGROUND-COLOR: #90B3E9; 
+    color:white;
+    height:20px;
+    border-bottom:2px solid #FFD275;
+    z-index:1255;
+}
+.ibn-banner a:link {
+    font-family: Verdana, serif; 
+    font-size: 8pt; 
+    color: white;
+    font-weight: bold; 
+    text-decoration: none; 
+}
+.ibn-banner a:visited {
+    font-family: Verdana, serif; 
+    font-size: 8pt; 
+    color: white;
+    font-weight: bold; 
+    text-decoration: none; 
+   }
+.ibn-banner {
+    color: white;
+    font-size: 8pt; 
+    font-family: verdana; 
+}
+.ibn-nav, .ibn-nav td, .ibn-input {
+    font-family: Verdana, sans-serif; 
+    font-size: 8pt; 
+}
+.ibn-nav a {
+    text-decoration: none; 
+    font-family: Verdana, sans-serif; 
+    font-size: 8pt; 
+    font-weight: normal; 
+    color: #003399;
+}
+.ibn-nav a:link {
+}
+.ibn-nav a:hover {
+    text-decoration: underline; 
+    color: #798073;
+}
+.ibn-nav a:visited {
+   color: #003399;
+}
+.ibn-nav th {
+    font-size: 8pt; 
+    font-family: Verdana, sans-serif; 
+    font-weight: normal; 
+    text-align: left; 
+    color: black;
+}
+.ibn-navframe {
+    background: #e1ecfc;
+    border-right: none; 
+    border-left: 0px; 
+}
+.ibn-navline {
+    border-bottom: 1px solid #adadad;
+}
+
+.ibn-titlearea { 
+    font-family: verdana; 
+    font-size: 9pt; 
+}
+TD.ibn-titleareaframe {
+   color: black;
+}
+.ibn-titlearealine {
+    background-color: #ffd275;
+}
+.ibn-bodyareaframe {
+    vertical-align: top;
+    height: 100%;
+}
+.ibn-pagetitle {
+    color: black; 
+    font-family: arial; 
+    font-size: 14pt; 
+}
+.ibn-pagetitle a {
+    text-decoration:none; 
+    color: black;  
+}
+.ibn-pagetitle a:hover {
+    text-decoration: underline; 
+}
+.ibn-selected
+{
+    background-color: #2254b1;
+    color: white;
+}
+.ibn-selected SPAN
+{
+    color: white;
+}
+.ibn-selectedtitle
+{
+    background-color: #fafafa;
+    border: 1px solid #2254b1;
+    padding-top: 1px;
+    padding-left: 2px; 
+    padding-right: 0px; 
+    padding-bottom: 2px;
+}
+.ibn-menuimagecell
+{
+    background-color: #d7e7fd;
+    cursor:hand;
+}
+.ibn-descriptiontext 
+{
+    color: black;
+    font-family: verdana; 
+    font-size: 8pt; 
+}
+.ibn-alerttext
+{
+   color: red;
+   font-family: verdana; 
+   font-size: 8pt; 
+}
+.ibn-authoringcontrols
+{
+    background-color: #F2F2F2;
+    font-family: verdana; 
+    font-size: 8pt; 
+}
+.ibn-sectionheader
+{
+    color: #003399;
+    font-family: arial; 
+    font-size: 12pt; 
+    font-weight: bold; 
+}
+.ibn-sectionheader a
+{
+    color: #003399;
+    text-decoration: none; 
+}
+.ibn-sectionheader a:hover
+{
+    color: #003399;
+    text-decoration: none; 
+}
+.ibn-sectionheader a:visited
+{
+    color: #003399;
+    text-decoration: none; 
+}
+.ibn-sectionline
+{
+    background-color: #2254b1;
+}
+.ibn-propertysheet {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 8pt;    
+    text-align: left; 
+}
+.ibn-propertysheet th {
+    font-family: verdana; 
+    font-size: 8pt; 
+    color: gray;
+    font-weight: normal; 
+}
+.ibn-propertysheet a {
+    text-decoration: none; 
+    color: #1D1D1D;
+}
+.ibn-propertysheet a:hover {
+    text-decoration: none; 
+}
+.ibn-vh,.ibn-vh2, .ibn-vh4{
+    font-family: verdana; 
+    font-size: 8pt; 
+    color: #808080;
+    text-align: left; 
+    text-decoration: none; 
+    font-weight: normal; 
+    vertical-align: top;
+}
+.ibn-vh2, .ibn-vh4{
+    padding-left: 4px; 
+    padding-right: 0px; 
+		padding-top: 4px;
+		padding-bottom:4px;
+}
+.ibn-vh-left {
+    font-family: verdana; 
+    font-size: 8pt; 
+    color: #808080;
+    text-align: left; 
+    text-decoration: none; 
+    font-weight: normal; 
+}
+.ibn-vh-right, .ibn-vh4-right {
+    font-family: verdana; 
+    font-size: 8pt; 
+    color: #808080;
+    text-align: right; 
+    text-decoration: none; 
+    font-weight: normal; 
+}
+.ibn-vh2, .ibn-vh-right {
+    border-bottom: 1px solid #e4e4e4;
+}
+.ibn-vh4, .ibn-vh4-right {
+    border-bottom: 1px solid #999999;
+}
+.ibn-vh a,.ibn-vh a:visited,.ibn-vh2 a,.ibn-vh4 a,.ibn-vh-left a,.ibn-vh-right a,.ibn-vh4-right a {
+    color: #808080;
+    text-decoration: none; 
+}
+.ibn-vh a:hover, .ibn-vh2 a:hover, .ibn-vh4 a:hover {
+    text-decoration: underline; 
+}
+.ibn-vb, .ibn-vb2, .ibn-vb4 {
+    font-family: verdana; 
+    font-size: 8pt; 
+    vertical-align: top;
+}
+.ibn-vb a, .ibn-vb2 a, .ibn-vb4 a {
+    color: #003399;
+    text-decoration: none; 
+}
+.ibn-vb a:hover, .ibn-vb2 a:hover, .ibn-vb4 a:hover {
+    color: #ff3300;
+    text-decoration: underline; 
+}
+.ibn-vb a:visited, .ibn-vb2 a:visited, .ibn-vb4 a:visited {
+   color: #000066;
+   text-decoration: none; 
+}
+.ibn-vb a:visited:hover, .ibn-vb2 a:visited:hover, .ibn-vb4 a:visited:hover {
+    color: #ff3300;
+    text-decoration: underline; 
+}
+.ibn-vb2 {
+    border-top: 1px solid #e4e4e4;
+    padding-top: 3px;
+    padding-left: 4px; 
+    padding-right: 0px; 
+    padding-bottom: 4px;
+}
+.ibn-vb4 {
+		border-bottom: 1px solid #999999;
+   	padding-top: 3px;
+    padding-left: 4px; 
+    padding-right: 0px; 
+    padding-bottom: 4px;
+}
+.ibn-error {
+    font-family: Verdana, sans-serif; 
+    font-size: 8pt; 
+    font-weight: normal; 
+    color: #FF0000
+}
+.UserDottedLine 
+{
+    margin-bottom: 2px;
+    height: 1px;
+    overflow: hidden;
+    background-color: #3366cc; 
+    background-image: url('dot.gif'); 
+}
+.UserNotification {
+    font-family: verdana, sans-serif; 
+    padding: 4px;
+    COLOR: #808080
+}
+.UserGenericHeader 
+{
+    font-weight: bold; 
+    font-size: 12pt; 
+    color: #000000;
+    font-family: arial, sans-serif; 
+}
+.UserBackground 
+{
+    background-color: #FFFFFF;
+}
+.UserCellSelected 
+{
+    font-family: Verdana, Arial, Sans-Serif; 
+    font-size: 8pt; 
+    padding: 1px 4px 2px 4px;
+    background-color: #fee197;
+    border: solid 1px #2254b1;
+    color: #000000;
+}
+.UserCellSelected a
+{
+  text-decoration: none;
+}
+.ibn-ToolPaneFrame 
+{
+    padding: 0px;
+    background-color: #e1ecfc;
+}
+.ibn-ToolPaneError
+{
+    color: #ce3431;
+    font-family: verdana, arial, helvetica, sans-serif; 
+    font-size: 8pt; 
+    padding: 2px;
+}
+.ibn-TPHeader
+{
+    background-color: #cbdbf8;
+}
+.ibn-WPTitle
+{
+    font-weight: bold; 
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    color: #1D1D1D;
+    padding-left: 6px; 
+    padding-right: 7px; 
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 8pt; 
+}
+.ibn-WPTitle A:link, .ibn-WPTitle A:visited
+{
+    color:#003399;
+    text-decoration:none; 
+    cursor:hand;
+}
+.ibn-WPTitle A:hover
+{
+    color:red;
+    text-decoration:underline; 
+    cursor:hand;
+}
+.ibn-WPBorder
+{
+    border-color: #afc9ef;
+    border-width: 1px;
+    border-style: solid;
+    border-top-width: 0px;
+}
+.ibn-SPLink
+{
+    font-family:verdana; 
+    font-size: 8pt; 
+    color: #003399
+}
+.ibn-SPLink A:link, .ibn-SPLink A:visited
+{
+    color:midnightblue;
+    text-decoration:none; 
+}
+.ibn-WPHeader
+{
+    background-color: #b9d1f4;
+    background-image: url('partgrad.gif');
+    background-repeat: repeat-x;
+}
+.ibn-underline
+{
+   vertical-align: top;
+   border-bottom:1px solid #c2c2c2; 
+   padding-left: 4; 
+   padding-right: 4; 
+   padding-top: 3;
+   padding-bottom: 4;  
+}
+.ibn-padding5
+{
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+}
+.ibn-stylebox {
+	font-family: verdana; 
+	border:1px solid #95b7f3;
+	text-align:left;
+	margin-top:10px;
+}
+.ibn-stylebox2 {
+	font-family: verdana; 
+	border:1px solid #95b7f3;
+	text-align:left;
+	margin-top:0px;
+}
+
+.ibn-stylebox-light {
+	font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+	border-left:1px solid #8D8D8D;
+	border-right:1px solid #8D8D8D;
+	border-bottom:1px solid #8D8D8D;
+	text-align:left;
+}
+
+.ibn-styleheader{
+    font-family: verdana; 
+    font-size: 8pt; 
+	background-color: #EEEEEE;
+}
+.ibn-styleheader a:link {
+    color: #003399;
+    text-decoration: none; 
+}
+.ibn-styleheader a:visited {
+	text-decoration:none 
+}
+.ibn-styleheader a:hover {
+    color: #ff3300;
+    text-decoration: underline; 
+}
+.ibn-alternating {
+    background-color: #F2F2F2;
+}
+.ibn-label {
+	font-weight:bold;
+}
+.ibn-value
+{
+	font-weight:normal;
+}
+.ibn-value a
+{
+	font-weight:normal;
+}
+.ibn-description
+{
+	font-weight:normal;
+	font-style:italic;
+}
+.ibn-legend-default {
+    COLOR: blue;
+}
+.ibn-legend-greylight {
+    COLOR: #676767;
+    font-weight:bold;
+}
+.ibn-legend-greyblack {
+    COLOR: #606060;
+}
+.topMenuFrameBody
+{
+	background-color: #EEEEEE;
+	z-index:1255;
+}
+.topMenu
+{
+	position:static;
+/*	background-color: #90B3E9;  #E1ECFC; 
+	border-bottom: 2px solid #FFD275; 6486D4;*/
+	z-index:1255;
+}
+.topMenuItem
+{
+	background-image: url('topgrad.gif');
+	background-repeat: repeat-x;
+	border-left:2px solid #FFD275;
+	margin-left:5px;
+	padding-left:10px;
+	padding-right:10px;
+/*	padding-bottom:5px; */
+	background-color : #90B3E9; 
+	z-index:1255;
+	font-size:8pt;
+}
+.topMenuItem2
+{
+	border-left:2px solid #FFD275;
+	margin-left:5px;
+	padding-left:10px;
+	padding-right:10px;
+	background-color : #C02000; 
+	z-index:1255;
+	font-size:8pt;
+}
+.listFrame
+{
+	position:absolute; 
+	left:0px;
+	top:0px; 
+	display:none; 
+	width: 100%;
+	height: 210px;
+	border-bottom: 1px #95B7F3 solid;
+}
+A.tabLink 
+{ 
+	color: white;  /* #FFD275;  */
+	font-family: verdana; 
+	font-size: 8pt; 
+	text-decoration: none; 
+	font-weight:bold; 
+}
+A:hover.tabLink 
+{ 
+	color: #ECF2FC;
+	font-family: verdana; 
+	font-size: 8pt; 
+	text-decoration: none; 
+	font-weight:bold; 
+}
+.imgClass
+{
+	border:0px; 
+	width:16px; 
+	height:16px; 
+	vertical-align:middle;
+	text-align:center;
+}
+.relClass
+{
+	LEFT: 0px; 
+	POSITION: relative; 
+	TOP: 0px
+}
+.ibn-row
+{
+	background-color:#EEEEEE;
+    color: #000000;
+    border-bottom: 1px solid #6486D4;
+    height:20px;
+    font-family: verdana; 
+    font-size: 8pt; 
+    cursor:default;
+    table-layout:fixed;
+}
+.ibn-row-deleted, .ibn-rowHover-deleted
+{
+	background-color:#EEEEEE;
+    color: #666666;
+    border-bottom: 1px solid #6486D4;
+    height:20px;
+    font-family: verdana; 
+    font-size: 8pt; 
+    cursor:default;
+    table-layout:fixed;
+}
+.ibn-rowHover
+{
+	background-color:#FFD275;
+    color: #000000;
+    border-bottom: 1px solid #6486D4;
+    height:20px;
+    font-family: verdana; 
+    font-size: 8pt; 
+    cursor:hand;
+    table-layout:fixed;
+}
+/*
+.ibn-rowHover-deleted
+{
+	background-color:#FFD275;
+    color: #666666;
+    border-bottom: 1px solid #6486D4;
+    height:20px;
+    font-family: verdana; 
+    font-size: 8pt; 
+    cursor:default;
+}
+*/
+.ibn-separator 
+{
+    color: #444444;
+    font-size: 10pt; 
+}
+.ibn-separatorheader
+{
+	background-color:#EEEEEE;
+    color: #003399;
+    font-family: verdana; 
+    font-size: 8pt; 
+    font-weight: bold; 
+    border-bottom:solid 2px #6486D4;
+    height:32px;
+    cursor:default;
+}
+.ibn-separatorheaderHover
+{
+	background-color:#FFD275;
+    color: #003399;
+    font-family: verdana; 
+    font-size: 8pt; 
+    font-weight: bold; 
+    border-bottom:solid 2px #6486D4;
+    height:32px;
+    cursor:hand;
+}
+.ibn-priority
+{
+	color:#008000; font-weight:bold;
+}
+.ibn-light {
+    background-color:#F8F8F8;
+}
+.ibn-toolbar-light {
+    font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+    font-size: 8pt; 
+    text-decoration: none; 
+    color: #1D1D1D; 
+}
+table.orderform-blockheaderlight-datatable
+{
+	border-left: solid 1px #94B6F4;
+	border-right: solid 1px #94B6F4;
+	border-bottom: solid 1px #94B6F4;
+	border-top: 0;
+	width: 100%;
+}
+.ibn-separator {
+	font-family: verdana; 
+	color: #95b7f3;
+}
+.ibn-vb3 {
+    border-top: 1px solid #e4e4e4;
+}
+.ibn-vh3{
+    font-family: verdana; 
+    font-size: 8pt; 
+    color: #808080;
+    text-align: center; 
+    text-decoration: none; 
+    font-weight: normal; 
+    vertical-align: top;
+}
+.ibn-number
+{
+	color: #CE3431;
+}
+.ibn-bottomBlock {
+    border-top: 1px solid #95B7F3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.rightCustomTd
+{
+    border:1px solid #95B7F3;
+    width:200px;
+    background: #e1ecfc;
+}
+.rightCustomPanel
+{
+    padding:10px;
+}
+.rightCustomHeader
+{
+    background:#3364B9;
+    color:White;
+    font-weight:bold;
+    padding:5px;
+}
+
+ul.rightDesigner
+{
+  font-family: verdana; 
+  font-size:11px;
+  list-style-type:square; 
+  list-style-position:outside; 
+  padding-left:15px; 
+  margin-left:0px;
+  margin-top:5px; 
+  color:#666666;
+}
+ul.rightDesigner li
+{
+	margin: 3px;
+}

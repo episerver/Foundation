@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Create" controlUrl="MetaUIEntity/Modules/EntityEdit.ascx" help="Creating+a+Contact" permissions="businessfoundation:contact:edit:permission"></setAttributes>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="MetaUIEntity/Tabs/EntityEditTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

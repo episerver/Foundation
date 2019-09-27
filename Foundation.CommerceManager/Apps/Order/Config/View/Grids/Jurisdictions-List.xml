@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column visible="false" allowSorting="false" dataField="JurisdictionId" headingText=""></Column>
+					<Column width="50" headingText="" columnType="Action" dataField="JurisdictionGroupId">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderGridJurisdictionEdit" commandParameters="JurisdictionId,JurisdictionType" toolTip="Edit" permissions="order:admin:shipping:jur:mng:edit,order:admin:taxes:mng:edit"></Item>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderGridJurisdictionDelete" commandParameters="JurisdictionId" toolTip="Delete" permissions="order:admin:shipping:jur:mng:delete,order:admin:taxes:mng:delete"></Item>
+					</Column>
+					<Column width="250" allowSorting="true" dataField="DisplayName" headingText="{SharedStrings:Name}" id="DisplayName" columnType="HyperLink" dataNavigateUrlFields="JurisdictionId,JurisdictionType" dataNavigateUrlFormatString="javascript:CSOrderClient.EditJurisdiction('{0}', '{1}');" dataTextFields="DisplayName" dataTextFormatString="{0}" dataTextEncode="true"></Column>
+					<Column width="450" allowSorting="true" dataField="Code" headingText="{SharedStrings:Code}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="New" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdOrderNewJurisdiction" permissions="order:admin:shipping:jur:mng:create,order:admin:taxes:mng:create"/>
+				<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderJurisdictionDelete" permissions="order:admin:shipping:jur:mng:delete,order:admin:taxes:mng:delete" />
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewJurisdiction">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewJurisdiction()</ClientScript>
+				</Command>
+
+				<Command id="cmdOrderJurisdictionDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.JurisdictionDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdOrderGridJurisdictionEdit">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.EditJurisdiction2(params)</ClientScript>
+				</Command>
+
+				<Command id="cmdOrderGridJurisdictionDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.JurisdictionDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Jurisdictions-List" controlUrl="Order/Jurisdictions.ascx" help="Order+System"></setAttributes>
+	</ViewConfig>
+</View>

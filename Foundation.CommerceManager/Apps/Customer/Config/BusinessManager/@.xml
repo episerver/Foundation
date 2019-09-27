@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BusinessManager>
+	<Handlers>
+		<add>
+			<add metaClass="Contact" method="*" type="Mediachase.Commerce.Customers.Handlers.ContactRequestHandler, Mediachase.Commerce" />
+			<add metaClass="Organization" method="*" type="Mediachase.Commerce.Customers.Handlers.CustomerRequestHandlerBase, Mediachase.Commerce" />
+			<add metaClass="Address" method="*" type="Mediachase.Commerce.Customers.Handlers.CustomerRequestHandlerBase, Mediachase.Commerce" />
+			<add metaClass="CreditCard" method="*" type="Mediachase.Commerce.Customers.Handlers.CreditCardRequestHandler, Mediachase.Commerce" />
+		</add>
+	</Handlers>
+	<Plugins>
+		<Plugin id="CustomerMDAutoInstallModule1" method="*" metaClass="Contact" eventStage="PreMainOperation" type="Mediachase.Commerce.Customers.Modules.AutoInstallMetaDataModule, Mediachase.Commerce"/>
+		<Plugin id="CustomerMDAutoInstallModule2" method="*" metaClass="Organization" eventStage="PreMainOperation" type="Mediachase.Commerce.Customers.Modules.AutoInstallMetaDataModule, Mediachase.Commerce"/>
+		<Plugin id="CustomerMDAutoInstallModule3" method="*" metaClass="Address" eventStage="PreMainOperation" type="Mediachase.Commerce.Customers.Modules.AutoInstallMetaDataModule, Mediachase.Commerce"/>
+		<Plugin id="CustomerMDAutoInstallModule4" method="*" metaClass="CreditCard" eventStage="PreMainOperation" type="Mediachase.Commerce.Customers.Modules.AutoInstallMetaDataModule, Mediachase.Commerce"/>
+
+		<Plugin id="RecentReferenceModule1" method="Create" metaClass="*" eventStage="PreMainOperation" type="Mediachase.Commerce.Core.RecentReferenceHistory.RecentReferenceDetectPlugin, Mediachase.Commerce"/>
+		<Plugin id="RecentReferenceModule2" method="Update" metaClass="*" eventStage="PreMainOperation" type="Mediachase.Commerce.Core.RecentReferenceHistory.RecentReferenceDetectPlugin, Mediachase.Commerce"/>
+		<Plugin id="RecentReferenceModule3" method="Delete" metaClass="*" eventStage="PreMainOperation" type="Mediachase.Commerce.Core.RecentReferenceHistory.RecentReferenceCleanupPlugin, Mediachase.Commerce"/>
+	</Plugins>
+</BusinessManager>

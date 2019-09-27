@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column isDefault="true" headingText="{SharedStrings:Edit_Command}" dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="100" align="Center" />
+					<Column isDefault="true" width="30" visible="false" allowEditing="false" isSearchable="true" allowSorting="true" dataField="SecurityKey" headingText="{SharedStrings:SecurityKey}" />
+					<Column isDefault="true" width="30" visible="false" allowEditing="false" isSearchable="true" allowSorting="true" dataField="Scope" headingText="" />
+					<Column isDefault="true" width="200" visible="true" allowEditing="false" isSearchable="true" allowSorting="true" dataField="ScopeName" headingText="{SharedStrings:Scope}" />
+					<Column isDefault="true" visible="false" isSearchable="true" allowEditing="false" allowSorting="true" dataField="SID" headingText="" />
+					<Column isDefault="true" width="200" visible="true" allowEditing="false" isSearchable="true" allowSorting="true" dataField="SidName" headingText="{SharedStrings:Identity}" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:View}" dataField="View" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:Read}" dataField="Read" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:Edit}" dataField="Edit" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:Create}" dataField="Create" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:Delete}" dataField="Delete" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:Export}" dataField="Export" />
+					<Column isDefault="true" width="70" align="Center" dataCellClientTemplateId="CheckboxTemplate" dataType="System.Boolean" columnType="CheckBox" allowEditing="true" headingText="{SharedStrings:Admin}" dataField="Admin" />
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Permissions" controlUrl="" />
+	</ViewConfig>
+</View>

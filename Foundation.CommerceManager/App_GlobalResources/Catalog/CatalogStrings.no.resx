@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Catalog_Save_File" xml:space="preserve">
+    <value>Lagre filen.</value>
+  </data>
+  <data name="Catalog_Import_Warning" xml:space="preserve">
+    <value>Det anbefales på det sterkeste at du sikkerhetskopierer ECF-databasen før du utfører importen.</value>
+  </data>
+  <data name="Catalog_Import_Instructions" xml:space="preserve">
+    <value>Hvis du vil importere en produktkatalog, hent en eksisterende fil fra rutenettet nedenfor eller last opp en ny. Klikk deretter knappen Start import for å starte import.</value>
+  </data>
+  <data name="Catalog_Add_New_File" xml:space="preserve">
+    <value>Legg til ny fil</value>
+  </data>
+  <data name="Catalog_Upload_File" xml:space="preserve">
+    <value>Last opp fil</value>
+  </data>
+  <data name="Catalog_Uploaded_File" xml:space="preserve">
+    <value>Opplastet fil</value>
+  </data>
+  <data name="Catalog_Upload_Wait" xml:space="preserve">
+    <value>Vent til opplastingen starter.</value>
+  </data>
+  <data name="Catalog_Upload_Info" xml:space="preserve">
+    <value>Filen lastes opp. Vent litt.</value>
+  </data>
+  <data name="Catalog_Import_Files_Available" xml:space="preserve">
+    <value>Filer tilgjengelige for import</value>
+  </data>
+  <data name="Catalog_Choose_Mapping_File" xml:space="preserve">
+    <value>Velg tilordningsfil.</value>
+  </data>
+  <data name="Catalog_Choose_Catalog" xml:space="preserve">
+    <value>Velg produktkatalog for import.</value>
+  </data>
+  <data name="Catalog_Edit_Existing_Mapping_File" xml:space="preserve">
+    <value>Rediger eksisterende tilordningsfil.</value>
+  </data>
+  <data name="Catalog_Load_Mapping_File" xml:space="preserve">
+    <value>Last tilordningsfil.</value>
+  </data>
+  <data name="Catalog_MetaClass_Language" xml:space="preserve">
+    <value>Metaklasse, språk</value>
+  </data>
+  <data name="Catalog_Mapping_Type" xml:space="preserve">
+    <value>Tilordningstyper</value>
+  </data>
+  <data name="Meta_Class" xml:space="preserve">
+    <value>Metaklasse</value>
+  </data>
+  <data name="Catalog_Data_File_CSV_Adjustment" xml:space="preserve">
+    <value>Datafil og CSV-justering</value>
+  </data>
+  <data name="Catalog_Data_File" xml:space="preserve">
+    <value>Datafil</value>
+  </data>
+  <data name="Catalog_Text_Qualifier" xml:space="preserve">
+    <value>Tekstkvalifikator</value>
+  </data>
+  <data name="Catalog_Save_Mapping_File" xml:space="preserve">
+    <value>Lagre tilordningsfilen.</value>
+  </data>
+  <data name="Catalog_Enter_File_Name" xml:space="preserve">
+    <value>Angi filnavn.</value>
+  </data>
+  <data name="Catalog_About_To_Export" xml:space="preserve">
+    <value>Du er i ferd med å eksportere en produktkatalog.</value>
+  </data>
+  <data name="Catalog_Click_Button_To_Start" xml:space="preserve">
+    <value>Klikk knappen for å starte.</value>
+  </data>
+  <data name="Catalog_Exported_Files" xml:space="preserve">
+    <value>Liste over eksporterte filer</value>
+  </data>
+  <data name="Catalog_Exporting_Catalog" xml:space="preserve">
+    <value>Eksporterer produktkatalog</value>
+  </data>
+  <data name="Catalog_Base_Weight" xml:space="preserve">
+    <value>Standard vekt</value>
+  </data>
+  <data name="Catalog_Default_Currency" xml:space="preserve">
+    <value>Standardvaluta</value>
+  </data>
+  <data name="Catalog_Default_Language" xml:space="preserve">
+    <value>Standardspråk</value>
+  </data>
+  <data name="Catalog_In_Kilograms" xml:space="preserve">
+    <value>i kilogram</value>
+  </data>
+  <data name="Catalog_In_Pounds" xml:space="preserve">
+    <value>i pund</value>
+  </data>
+  <data name="Catalog_Catalog_Name" xml:space="preserve">
+    <value>Produktkatalognavn</value>
+  </data>
+  <data name="Catalog_Name_Description" xml:space="preserve">
+    <value>produktkatalognavnbeskrivelse</value>
+  </data>
+  <data name="Catalog_Other_Languages" xml:space="preserve">
+    <value>Andre språk</value>
+  </data>
+  <data name="Catalog_Select_Primary_Currency" xml:space="preserve">
+    <value>velg primærvaluta</value>
+  </data>
+  <data name="Catalog_Select_Primary_Language" xml:space="preserve">
+    <value>velg primærspråk</value>
+  </data>
+  <data name="Catalog_Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves et katalognavn.</value>
+  </data>
+  <data name="Catalog_Default_Language_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves et standardspråk.</value>
+  </data>
+  <data name="Currency_Name" xml:space="preserve">
+    <value>Valutanavn</value>
+  </data>
+  <data name="Currency_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves et valutanavn.</value>
+  </data>
+  <data name="Currency_With_Code_Exists" xml:space="preserve">
+    <value>Valuta med angitt kode finnes allerede.</value>
+  </data>
+  <data name="Entry_Enter_Association_Name" xml:space="preserve">
+    <value>Angi tilknytningsnavn.</value>
+  </data>
+  <data name="Entry_Association_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves et tilknytningsnavn.</value>
+  </data>
+  <data name="Entry_Enter_Association_Description" xml:space="preserve">
+    <value>Angi tilknytningsbeskrivelse.</value>
+  </data>
+  <data name="Entry_Enter_Association_Sort_Order" xml:space="preserve">
+    <value>Angi sorteringsrekkefølge.</value>
+  </data>
+  <data name="Entry_Association_Sort_Order_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves en tilknytning for sorteringsrekkefølge.</value>
+  </data>
+  <data name="Entry_Save_Changes" xml:space="preserve">
+    <value>Lagre endringer</value>
+  </data>
+  <data name="Entry_Modify_Existing_Association" xml:space="preserve">
+    <value>Endre eksisterende tilknytning</value>
+  </data>
+  <data name="Catalog_Edit_Details" xml:space="preserve">
+    <value>Rediger detaljer</value>
+  </data>
+  <data name="Entry_Modify_Association" xml:space="preserve">
+    <value>Endre tilknytning</value>
+  </data>
+  <data name="Entry_Pick_Item" xml:space="preserve">
+    <value>Velg artikkel</value>
+  </data>
+  <data name="Entry_Add_Item" xml:space="preserve">
+    <value>Legg til artikkel</value>
+  </data>
+  <data name="Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves et navn.</value>
+  </data>
+  <data name="Select_Display_Template" xml:space="preserve">
+    <value>Velg visningsmal.</value>
+  </data>
+  <data name="Entry_Code_Exists" xml:space="preserve">
+    <value>En oppføring med angitt kode finnes allerede.</value>
+  </data>
+  <data name="Catalog_Invalid_SortOrder_Value" xml:space="preserve">
+    <value>Ugyldig verdi for sorteringsrekkefølge</value>
+  </data>
+  <data name="Entry_Sort_Order" xml:space="preserve">
+    <value>Sorteringsrekkefølgen for kategorioppføringen.</value>
+  </data>
+  <data name="Entry_Display_Price" xml:space="preserve">
+    <value>Visningspris</value>
+  </data>
+  <data name="Entry_Price_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves en pris.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Display_Price" xml:space="preserve">
+    <value>Angi en gyldig visningspris.</value>
+  </data>
+  <data name="Entry_In_Stock" xml:space="preserve">
+    <value>På lager</value>
+  </data>
+  <data name="Entry_In_Stock_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves lagermengde.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Quantity" xml:space="preserve">
+    <value>Angi en gyldig mengde.</value>
+  </data>
+  <data name="Entry_Min_Quantity" xml:space="preserve">
+    <value>Min. mengde</value>
+  </data>
+  <data name="Entry_Min_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves minimumsmengde.</value>
+  </data>
+  <data name="Entry_Reserved_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves reservert mengde.</value>
+  </data>
+  <data name="Entry_Max_Quantity" xml:space="preserve">
+    <value>Maks. mengde</value>
+  </data>
+  <data name="Entry_Max_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves maks. mengde.</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty" xml:space="preserve">
+    <value>Min. mengde ved ombestilling</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves min. mengde ved ombestilling.</value>
+  </data>
+  <data name="Entry_Merchant" xml:space="preserve">
+    <value>Butikk</value>
+  </data>
+  <data name="Entry_Select_Merchant" xml:space="preserve">
+    <value>velg butikk</value>
+  </data>
+  <data name="Entry_Weight_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves vekt.</value>
+  </data>
+  <data name="Entry_Preorder_Qty" xml:space="preserve">
+    <value>Forhåndsbestillingsmengde</value>
+  </data>
+  <data name="Entry_Preorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves forhåndsbestillingsmengde.</value>
+  </data>
+  <data name="Entry_Select_Package" xml:space="preserve">
+    <value>velg pakke</value>
+  </data>
+  <data name="Entry_Preorder_Available" xml:space="preserve">
+    <value>Forhåndsbestilling tilgjengelig</value>
+  </data>
+  <data name="Entry_Tax_Category" xml:space="preserve">
+    <value>Merverdiavgiftskategori</value>
+  </data>
+  <data name="Entry_Select_Tax_Category" xml:space="preserve">
+    <value>velg merverdiavgiftskategori</value>
+  </data>
+  <data name="Entry_Select_Warehouse" xml:space="preserve">
+    <value>velg varehus</value>
+  </data>
+  <data name="Entry_Backorder_Qty" xml:space="preserve">
+    <value>Restordremengde</value>
+  </data>
+  <data name="Entry_Backorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves restordremengde.</value>
+  </data>
+  <data name="Entry_Track_Inventory" xml:space="preserve">
+    <value>Spor inventar</value>
+  </data>
+  <data name="Entry_Backorder_Available" xml:space="preserve">
+    <value>Restordre tilgjengelig</value>
+  </data>
+  <data name="Entry_Inventory_Status" xml:space="preserve">
+    <value>Inventarstatus</value>
+  </data>
+  <data name="Entry_Pricing" xml:space="preserve">
+    <value>Prising</value>
+  </data>
+  <data name="Entry_Find_Item" xml:space="preserve">
+    <value>Søk etter artikkel</value>
+  </data>
+  <data name="Item_Group_Name" xml:space="preserve">
+    <value>Gruppenavn</value>
+  </data>
+  <data name="Node_Name_Description" xml:space="preserve">
+    <value>nodenavnbeskrivelse for produktkatalog</value>
+  </data>
+  <data name="Catalog_Node_With_Code_Exists" xml:space="preserve">
+    <value>Node med angitt kode finnes allerede.</value>
+  </data>
+  <data name="Sale_Type" xml:space="preserve">
+    <value>Salgstype</value>
+  </data>
+  <data name="Sale_Unit_Price" xml:space="preserve">
+    <value>Enhetspris</value>
+  </data>
+  <data name="Catalog_Main_Adjustment" xml:space="preserve">
+    <value>Hovedjustering</value>
+  </data>
+  <data name="Catalog_Entry_Type" xml:space="preserve">
+    <value>Angi type</value>
+  </data>
+  <data name="Catalog_All_Types" xml:space="preserve">
+    <value>alle typer</value>
+  </data>
+  <data name="Catalog_Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Catalog_Variation_Sku" xml:space="preserve">
+    <value>Variasjon/artikkelnummer</value>
+  </data>
+  <data name="Catalog_Bundle" xml:space="preserve">
+    <value>Bunt</value>
+  </data>
+  <data name="Catalog_Dynamic_Package" xml:space="preserve">
+    <value>Dynamisk pakketering</value>
+  </data>
+  <data name="Catalog_Additional_Filters" xml:space="preserve">
+    <value>Tilleggsfiltre</value>
+  </data>
+  <data name="Catalog_Catalog_Category" xml:space="preserve">
+    <value>Produktkatalog/kategori</value>
+  </data>
+  <data name="Catalog_Keyword" xml:space="preserve">
+    <value>Nøkkelord</value>
+  </data>
+  <data name="Catalog_Apply_Filter" xml:space="preserve">
+    <value>Bruk filter</value>
+  </data>
+  <data name="Catalog_Fix_The_Following_Problems" xml:space="preserve">
+    <value>Løs følgende problemer ellers kan du ikke lagre endringene.</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Updated_Successfully" xml:space="preserve">
+    <value>Produktkatalogoppføringen er vellykket oppdatert.</value>
+  </data>
+  <data name="Catalog_Search_By_Keyword" xml:space="preserve">
+    <value>Søk etter nøkkelord</value>
+  </data>
+  <data name="Catalog_Filter_By_Language" xml:space="preserve">
+    <value>Filtrer etter språk</value>
+  </data>
+  <data name="Catalog_Filter_By_Catalog" xml:space="preserve">
+    <value>Filtrer etter produktkatalog(er)</value>
+  </data>
+  <data name="Catalog_Search_By_Code_Id" xml:space="preserve">
+    <value>Søk etter kode/ID</value>
+  </data>
+  <data name="Tax_Category_Name" xml:space="preserve">
+    <value>Kategorinavn for merverdiavgift</value>
+  </data>
+  <data name="Entry_Wrong_Value_Enter_Valid_Integer" xml:space="preserve">
+    <value>&lt;b&gt;Feil verdi&lt;/b&gt;&lt;br /&gt;Angi en gyldig verdi.</value>
+  </data>
+  <data name="Catalog_Batch_Update" xml:space="preserve">
+    <value>Oppdatering av produktkatalogparti</value>
+  </data>
+  <data name="Catalog_CSV_Import_Catalog" xml:space="preserve">
+    <value>Produktkatalog for CSV-import</value>
+  </data>
+  <data name="Catalog_Entry_Search" xml:space="preserve">
+    <value>Søk etter produktkatalogoppføring</value>
+  </data>
+  <data name="Catalog_Export_Catalog" xml:space="preserve">
+    <value>Eksporter produktkatalog</value>
+  </data>
+  <data name="Catalog_Import_Catalog" xml:space="preserve">
+    <value>Importer produktkatalog</value>
+  </data>
+  <data name="Catalog_List" xml:space="preserve">
+    <value>Produktkatalogliste</value>
+  </data>
+  <data name="Catalog_Management" xml:space="preserve">
+    <value>Produktkatalogadministrasjon</value>
+  </data>
+  <data name="Catalog_Move_Link_To_Folder" xml:space="preserve">
+    <value>Flytt/kobling til mappe</value>
+  </data>
+  <data name="Catalog_New_Bundle" xml:space="preserve">
+    <value>Ny bunt</value>
+  </data>
+  <data name="Catalog_New_Catalog" xml:space="preserve">
+    <value>Ny produktkatalog</value>
+  </data>
+  <data name="Catalog_New_Category_Node" xml:space="preserve">
+    <value>Ny kategori/node</value>
+  </data>
+  <data name="Catalog_New_Dynamic_Package" xml:space="preserve">
+    <value>Ny dynamisk pakketering</value>
+  </data>
+  <data name="Catalog_New_Package" xml:space="preserve">
+    <value>Ny pakketering</value>
+  </data>
+  <data name="Catalog_New_Product" xml:space="preserve">
+    <value>Nytt produkt</value>
+  </data>
+  <data name="Catalog_New_Variation_Sku" xml:space="preserve">
+    <value>Ny variasjon/artikkelnummer</value>
+  </data>
+  <data name="Catalog_System" xml:space="preserve">
+    <value>Produktkatalogsystem</value>
+  </data>
+  <data name="Currency_New_Currency" xml:space="preserve">
+    <value>Ny valuta</value>
+  </data>
+  <data name="MetaClass_Export_MetaData" xml:space="preserve">
+    <value>Eksporter metadata</value>
+  </data>
+  <data name="MetaClass_Import_MetaData" xml:space="preserve">
+    <value>Importer metadata</value>
+  </data>
+  <data name="MetaClass_New_Meta_Class" xml:space="preserve">
+    <value>Ny metaklasse</value>
+  </data>
+  <data name="MetaField_New_Meta_Field" xml:space="preserve">
+    <value>Nytt metafelt</value>
+  </data>
+  <data name="Meta_Classes" xml:space="preserve">
+    <value>Metaklasser</value>
+  </data>
+  <data name="Meta_Fields" xml:space="preserve">
+    <value>Metafelt</value>
+  </data>
+  <data name="Tax_Categories" xml:space="preserve">
+    <value>Merverdiavgiftskategorier</value>
+  </data>
+  <data name="Meta_Data" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="Catalog_Associations" xml:space="preserve">
+    <value>Tilknytninger</value>
+  </data>
+  <data name="Catalog_Association_Id" xml:space="preserve">
+    <value>CatalogAssociationId</value>
+  </data>
+  <data name="Catalog_Catalog_Batch_Update" xml:space="preserve">
+    <value>Oppdatering av satsvis fil</value>
+  </data>
+  <data name="Catalog_Catalog_Edit" xml:space="preserve">
+    <value>Rediger produktkatalog</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Search" xml:space="preserve">
+    <value>Angi søk</value>
+  </data>
+  <data name="Catalog_Catalog_List" xml:space="preserve">
+    <value>Produktkatalogliste</value>
+  </data>
+  <data name="Catalog_Edit_Command" xml:space="preserve">
+    <value>Rediger kommando</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price" xml:space="preserve">
+    <value>EntrySalePrice</value>
+  </data>
+  <data name="Catalog_Node_Edit" xml:space="preserve">
+    <value>Rediger produktkatalognode</value>
+  </data>
+  <data name="Catalog_Product_Edit" xml:space="preserve">
+    <value>Rediger produkt</value>
+  </data>
+  <data name="Catalog_Variations_SKUs" xml:space="preserve">
+    <value>Variasjoner/artikkelnumre</value>
+  </data>
+  <data name="Warehouse_Edit" xml:space="preserve">
+    <value>Rediger varehus</value>
+  </data>
+  <data name="Warehouse_List" xml:space="preserve">
+    <value>Varehusliste</value>
+  </data>
+  <data name="Entry_Bundle_Items" xml:space="preserve">
+    <value>Buntartikler</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Edit" xml:space="preserve">
+    <value>Rediger dynamisk produktpakketering</value>
+  </data>
+  <data name="Entry_Id" xml:space="preserve">
+    <value>Oppførings-ID</value>
+  </data>
+  <data name="Entry_Item_Code" xml:space="preserve">
+    <value>ItemCode</value>
+  </data>
+  <data name="Entry_Package_Items" xml:space="preserve">
+    <value>Pakkeartikler</value>
+  </data>
+  <data name="Entry_Pricing_Inventory" xml:space="preserve">
+    <value>Prising/inventar</value>
+  </data>
+  <data name="Entry_Product_Bundle_Edit" xml:space="preserve">
+    <value>Rediger produktbunt</value>
+  </data>
+  <data name="Entry_Product_Package_Edit" xml:space="preserve">
+    <value>Rediger produktpakketering</value>
+  </data>
+  <data name="Entry_Sale_Price_Id" xml:space="preserve">
+    <value>Salgspris-ID</value>
+  </data>
+  <data name="Entry_Sale_Type" xml:space="preserve">
+    <value>Salgstype</value>
+  </data>
+  <data name="Entry_Variation_SKU_Edit" xml:space="preserve">
+    <value>Rediger variasjon/artikkelnummer</value>
+  </data>
+  <data name="Product_Associations" xml:space="preserve">
+    <value>Produkttilknytninger</value>
+  </data>
+  <data name="Catalog_CSV_Import" xml:space="preserve">
+    <value>CSV-import</value>
+  </data>
+  <data name="Catalog_Entry_Association_View" xml:space="preserve">
+    <value>Vis oppføringstilknytning i produktkatalogen - EntryAssociation</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price_View" xml:space="preserve">
+    <value>Vis produktkatalogoppføring - SalePrice</value>
+  </data>
+  <data name="Catalog_Mapping_File" xml:space="preserve">
+    <value>Tilordningsfil</value>
+  </data>
+  <data name="Catalog_Move_Copy_To_Folder" xml:space="preserve">
+    <value>Flytt/kopier til mappe</value>
+  </data>
+  <data name="Catalog_Node_List" xml:space="preserve">
+    <value>Nodeliste</value>
+  </data>
+  <data name="Currency_Edit" xml:space="preserve">
+    <value>Rediger valuta</value>
+  </data>
+  <data name="Meta_Class_Edit" xml:space="preserve">
+    <value>Rediger metaklasse</value>
+  </data>
+  <data name="Tax_Categories_List" xml:space="preserve">
+    <value>Merverdiavgiftsliste</value>
+  </data>
+  <data name="Tax_Category_Edit" xml:space="preserve">
+    <value>Rediger merverdiavgiftskategori</value>
+  </data>
+  <data name="Currency_Add_Rate" xml:space="preserve">
+    <value>Legg til kurs</value>
+  </data>
+  <data name="Catalog_Edit_Currency_Rate" xml:space="preserve">
+    <value>Rediger valutakurs</value>
+  </data>
+  <data name="Currency_CurrencyRateId" xml:space="preserve">
+    <value>CurrencyRateId</value>
+  </data>
+  <data name="Currency_Rates" xml:space="preserve">
+    <value>Valutakurser</value>
+  </data>
+  <data name="Currency_ToCurrencyId" xml:space="preserve">
+    <value>ToCurrencyId</value>
+  </data>
+  <data name="Currency_Average_Rate" xml:space="preserve">
+    <value>Gjennomsnittlig kurs</value>
+  </data>
+  <data name="Currency_End_Of_Day_Rate" xml:space="preserve">
+    <value>Dagens sluttkurs</value>
+  </data>
+  <data name="Currency_From" xml:space="preserve">
+    <value>Fra valuta</value>
+  </data>
+  <data name="Currency_Rate_Date" xml:space="preserve">
+    <value>Dato for valutakurs</value>
+  </data>
+  <data name="Currency_To" xml:space="preserve">
+    <value>Til valuta</value>
+  </data>
+  <data name="Warehouse_Code_AlreadyExists" xml:space="preserve">
+    <value>Et varehus med angitt kode finnes allerede.</value>
+  </data>
+  <data name="Warehouse_Name_AlreadyExists" xml:space="preserve">
+    <value>Et varehus med angitt navn finnes allerede.</value>
+  </data>
+  <data name="Tax_Category_With_Name_Exists" xml:space="preserve">
+    <value>En merverdiavgiftskategori med angitt navn finnes allerede.</value>
+  </data>
+  <data name="Catalog_With_Name_AlreadyExists" xml:space="preserve">
+    <value>Det finnes allerede en produktkatalog med det angitte navnet.</value>
+  </data>
+  <data name="Catalog_Default_Currency_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves en standardvaluta.</value>
+  </data>
+  <data name="Catalog_Found_Entries" xml:space="preserve">
+    <value>Treff oppføringer</value>
+  </data>
+  <data name="Catalog_Save_Selection" xml:space="preserve">
+    <value>Lagre utvalg</value>
+  </data>
+  <data name="Catalog_Selected_Entries" xml:space="preserve">
+    <value>Valgte oppføringer</value>
+  </data>
+  <data name="SecurityScope" xml:space="preserve">
+    <value>Produktkatalogeier</value>
+  </data>
+  <data name="Entry_Min_Quantity_Greather_That_Max" xml:space="preserve">
+    <value>Min. mengde må være mindre enn eller lik maks. mengde.</value>
+  </data>
+  <data name="Catalog_Package" xml:space="preserve">
+    <value>Pakketering</value>
+  </data>
+  <data name="Address_Required" xml:space="preserve">
+    <value>&lt;b&gt;Påkrevd felt mangler&lt;/b&gt;&lt;br /&gt;Det kreves adresse.</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="Add_Association" xml:space="preserve">
+    <value>Legg til en assosiasjon</value>
+  </data>
+  <data name="Catalog_Found_Catalog_Entries" xml:space="preserve">
+    <value>Fant katalogoppføringer</value>
+  </data>
+  <data name="Catalog_Selected_Catalog_Entries" xml:space="preserve">
+    <value>Valgte katalogoppføringer</value>
+  </data>
+  <data name="Edit_Sale_Price_Information" xml:space="preserve">
+    <value>Rediger salgsprisinformasjon</value>
+  </data>
+  <data name="Select_Catalog_Entries" xml:space="preserve">
+    <value>Velg katalogoppføringer</value>
+  </data>
+  <data name="Catalog_Catalog_Name_TooLong" xml:space="preserve">
+    <value>&lt;b&gt;Ugyldig felt&lt;/b&gt;&lt;br /&gt;Navnet kan ikke inneholde flere enn 100 tegn.</value>
+  </data>
+  <data name="Entry_Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="Entry_Quantity" xml:space="preserve">
+    <value>Mengde</value>
+  </data>
+  <data name="Entry_AvailableFrom_Too_Late" xml:space="preserve">
+    <value>Den valgte datoen er senere eller den samme som utløpsdatoen.</value>
+  </data>
+  <data name="Entry_ExpiresOn_Too_Early" xml:space="preserve">
+    <value>Den valgte datoen er tidligere enn startdatoen.</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Items" xml:space="preserve">
+    <value>Dynamiske pakkeelementer</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Katalogoppføringsendringene er forkastet.</value>
+  </data>
+  <data name="Catalog_Catalog_Node_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Katalognodeendringer er forkastet.</value>
+  </data>
+  <data name="Catalog_Language_Warning" xml:space="preserve">
+    <value>Valgte/aktiverte språk må matche aktiverte språk i CMS Admin-visning under Konfig. og håndter språk på webområder. Bruk CTRL + klikk for å velge flere språk.</value>
+  </data>
+  <data name="Catalog_Overwrite_File" xml:space="preserve">
+    <value>Skriv over eksisterende fil</value>
+  </data>
+  <data name="Entry_Market" xml:space="preserve">
+    <value>Markeder</value>
+  </data>
+  <data name="Entry_Market_Available" xml:space="preserve">
+    <value>Oppføring tilgjengelig i markeder</value>
+  </data>
+  <data name="Entry_Market_Unavailable" xml:space="preserve">
+    <value>Oppføring ikke tilgjengelig i markeder</value>
+  </data>
+  <data name="Filename_Exist" xml:space="preserve">
+    <value>Filnavnet finnes fra før.</value>
+  </data>
+  <data name="List_Inactive_Markets" xml:space="preserve">
+    <value>Vis inaktive markeder</value>
+  </data>
+  <data name="Upload_CSV_Files" xml:space="preserve">
+    <value>Last opp CSV-filer:</value>
+  </data>
+  <data name="Upload_File_Error" xml:space="preserve">
+    <value>Betingelse mislyktes:  Valgt fil matcher ikke påkrevet type.</value>
+  </data>
+  <data name="Upload_XML_Files" xml:space="preserve">
+    <value>Last opp XML-filer:</value>
+  </data>
+  <data name="Upload_Zip_Files" xml:space="preserve">
+    <value>Last opp ZIP-filer:</value>
+  </data>
+  <data name="Warehouse_Inventory" xml:space="preserve">
+    <value>Lagerbeholdning</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation" xml:space="preserve">
+    <value>Er leveringssted</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation_Description" xml:space="preserve">
+    <value>Lager kan brukes som leveringssted (dvs. for fremtidig henting i butikk).</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter" xml:space="preserve">
+    <value>Er oppfyllelsessenter</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter_Description" xml:space="preserve">
+    <value>Bestillinger kan legges inn fra dette lageret for utgående leveringer.</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation" xml:space="preserve">
+    <value>Er hentested</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation_Description" xml:space="preserve">
+    <value>Bestillinger kan legges inn fra dette lageret for henting i butikk.</value>
+  </data>
+  <data name="Delete_Versions_Warning" xml:space="preserve">
+    <value>Advarsel! Hvis dette elementet oppdateres via Commerce Manager, vil tidligere og ventende innholdsversjoner bli overskrevet. Slike innholdsversjoner kan ha blitt opprettet via andre grensesnitt.</value>
+  </data>
+</root>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>{#epiquote_dlg.title}</title>
+    <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script type="text/javascript" src="js/epiquote.js"></script>
+</head>
+<body id="epiquote"> 
+    <form action="#" onsubmit="epiquote.insert();return false;">
+    <div class="tabs">
+		<ul>
+			<li id="general_tab" class="current"><span><a id="general_tab_title" href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#epiquote_dlg.title}</a></span></li>
+		</ul>
+	</div>
+
+	<div class="panel_wrapper">
+		<div id="general_panel" class="panel current">
+            <fieldset>
+                <legend>{#epiquote_dlg.legendtype}</legend>
+                <div>
+                    <input id="blockquote" class="radio" type="radio" name="quoteType" value="blockquote" checked="checked" />
+                    <label for="blockquote">{#epiquote_dlg.blockquote}</label>
+                </div>
+                <div>
+                    <input id="quote" class="radio" type="radio" name="quoteType" value="q" />
+                    <label for="quote">{#epiquote_dlg.quote}</label>
+                </div>
+            </fieldset>  
+            <fieldset>
+                <legend>{#epiquote_dlg.legendinformation}</legend>
+                <table border="0" cellpadding="0" cellspacing="4">
+			        <tr>
+			            <td>
+	                        <label for="title" class="">{#epiquote_dlg.titlelabel}</label>
+			            </td>
+			            <td>
+			                <input type="text" id="title" class="" />
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <label for="cite">{#epiquote_dlg.citelabel}</label>
+			            </td>
+			            <td>
+			                <input type="text" id="cite" class="" />
+			            </td>
+			        </tr>
+			    </table>
+            </fieldset>
+        </div>
+    </div>
+    <div class="mceActionPanel">
+        <input type="submit" name="insert" id="insert" data-epi-dialog-button="true" value="{#insert}" />
+        <input type="button" name="remove" id="remove" data-epi-dialog-button="true" class="button" value="{#epiquote_dlg.remove}" style="display:none" onclick="epiquote.remove();" />
+        <input type="button" name="cancel" id="cancel" data-epi-dialog-button="true" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+    </div>    
+	</form>
+</body> 
+</html>

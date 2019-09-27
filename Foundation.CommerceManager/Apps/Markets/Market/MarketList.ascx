@@ -1,0 +1,3 @@
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="Mediachase.Commerce.Manager.Markets.Market.MarketList" Codebehind="MarketList.ascx.cs" %>
+<%@ Register Src="~/Apps/Core/Controls/EcfListViewControl.ascx" TagName="EcfListViewControl" TagPrefix="core" %>
+<core:EcfListViewControl id="MarketsListView" runat="server" DataKey="MarketId" AppId="Markets" ViewId="Market-List" ShowTopToolbar="true"></core:EcfListViewControl>

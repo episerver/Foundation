@@ -1,0 +1,139 @@
+html, body
+{
+	height: 100%;
+	margin: 0px;
+	padding: 0;
+	border: none;
+	min-height: 100%;
+}
+
+body.view
+{
+	background-color: #eeeeee;
+	border: 0;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+input
+{
+	vertical-align: middle;
+}
+table.fill
+{
+	height: 100%;
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+div.editDiv
+{
+	vertical-align: top;
+	position: absolute;
+	left: 5px;
+	right: 5px;
+	top: 5px; /*width: 100%;*/
+}
+
+.SaveStatus
+{
+	text-align: center;
+	position: absolute;
+	top: 2px;
+	left: 440px;
+	top: 2px;
+	background-color: navajowhite;
+	border: black 1px solid;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	z-index: 1000000002;
+}
+.notification
+{
+	background-color: navajowhite;
+	border: black 1px solid;
+	padding: 4px 4px;
+	margin-bottom: 4px;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+.popupWindowHeader
+{
+	background-color: #CEDFFF;
+	border-bottom: 1px solid #95B7F3;
+	color: #15428B;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 4px;
+	overflow: hidden;
+	padding-left: 6px;
+	padding-right: 6px;
+	-moz-user-select: none;
+}
+.popupWindowBody
+{
+	background-color: #EAEAEA;
+	color: Black;
+}
+
+div.progressBarBorder
+{
+	border: 1px solid;
+	border-color: DarkGoldenRod;
+	padding: 0px;
+	text-align: left;
+	height: 17px;
+}
+div.progressBar
+{
+	font-family: verdana;
+	font-size: 8pt;
+	text-decoration: none;
+	background-color: Lime;
+	height: 15px;
+	margin: 1px;
+}
+.x-toolbar table
+{
+	width: 100%;
+}
+.clear_fix {
+
+  clear: both;
+}
+.clear_fix:after {
+
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0px;
+  line-height: 0px;
+  visibility: hidden;
+  color: transparent;
+  font-size: 0px;
+  width: 0px;
+}
+
+.scrollable{
+	overflow: auto;
+	width: 275px; /* adjust this width depending to amount of text to display */
+	height: 205px; /* adjust height depending on number of options to display */
+	border: 1px silver solid;
+}
+.scrollable select{
+	border: none;
+	width:275px;
+	overflow: hidden;
+}
+.radio input
+{
+	margin: 4px 0px 4px 0px;
+}
+.radio label
+{
+	margin-left: 4px;
+}

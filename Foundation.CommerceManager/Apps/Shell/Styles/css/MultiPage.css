@@ -1,0 +1,10 @@
+﻿.FormMultiPage
+{
+  border: 1px solid #919B9C;
+  width:100%;
+  /*height: 100%;*/
+  top:-4px;
+  left:1px;
+  /*background-color: #F9FBFD;*/
+  background-color: white; 
+}

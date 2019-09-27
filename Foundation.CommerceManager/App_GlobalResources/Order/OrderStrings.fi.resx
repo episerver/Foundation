@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Order_Country_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Maan nimi on pakollinen.</value>
+  </data>
+  <data name="Order_Payment_Plan" xml:space="preserve">
+    <value>Maksusuunnitelma</value>
+  </data>
+  <data name="Order_Purchase_Order" xml:space="preserve">
+    <value>Ostomääräys</value>
+  </data>
+  <data name="Order_Shopping_Cart" xml:space="preserve">
+    <value>Ostoskori</value>
+  </data>
+  <data name="Payment_ACH_Payments" xml:space="preserve">
+    <value>ACH-maksut</value>
+  </data>
+  <data name="Payment_Authorize_Net_Configure_Account" xml:space="preserve">
+    <value>Määritä Authorize.Net-tili</value>
+  </data>
+  <data name="Payment_Authorize_Net_Get_Account" xml:space="preserve">
+    <value>Hanki Authorize.Net-tili osoitteessa &lt;a target="_blank" href="http://www.authorizenet.com"&gt;www.authorizenet.com&lt;/a&gt;.</value>
+  </data>
+  <data name="Payment_ECX" xml:space="preserve">
+    <value>ECX</value>
+  </data>
+  <data name="Payment_Fast_Transact" xml:space="preserve">
+    <value>Fast Transact</value>
+  </data>
+  <data name="Payment_IBiz_E_Payment_Integrator_Configure" xml:space="preserve">
+    <value>Määritä IBiz E-Payment Integrator -komponentti</value>
+  </data>
+  <data name="Payment_iTransact_RediCharge_HTML" xml:space="preserve">
+    <value>iTransact RediCharge HTML</value>
+  </data>
+  <data name="Payment_Merchant_Anywhere" xml:space="preserve">
+    <value>Merchant Anywhere (Transaction Central)</value>
+  </data>
+  <data name="Payment_Merchant_Partners" xml:space="preserve">
+    <value>Merchant Partners</value>
+  </data>
+  <data name="Payment_MPCS" xml:space="preserve">
+    <value>MPCS</value>
+  </data>
+  <data name="Payment_NetBilling" xml:space="preserve">
+    <value>NetBilling</value>
+  </data>
+  <data name="Payment_Options" xml:space="preserve">
+    <value>Maksuvaihtoehdot</value>
+  </data>
+  <data name="Payment_Options_Required" xml:space="preserve">
+    <value>Maksuvaihtoehto on valittava.</value>
+  </data>
+  <data name="Payment_Payments_Gateway" xml:space="preserve">
+    <value>Payments Gateway</value>
+  </data>
+  <data name="Payment_Pick_A_Gateway" xml:space="preserve">
+    <value>Valitse yhdyskäytävä</value>
+  </data>
+  <data name="Payment_Planet_Payment" xml:space="preserve">
+    <value>Planet Payment</value>
+  </data>
+  <data name="Payment_Processing_Url_Required" xml:space="preserve">
+    <value>URL:n käsittely käynnissä -kenttää ei voi jättää tyhjäksi.</value>
+  </data>
+  <data name="Payment_RTWare" xml:space="preserve">
+    <value>RTWare</value>
+  </data>
+  <data name="Payment_TrustCommerce" xml:space="preserve">
+    <value>TrustCommerce</value>
+  </data>
+  <data name="Payment_USA_ePay" xml:space="preserve">
+    <value>USA ePay</value>
+  </data>
+  <data name="Payment_User_Required" xml:space="preserve">
+    <value>Käyttäjä-kenttää ei voi jättää tyhjäksi.</value>
+  </data>
+  <data name="Order_New_Shipment" xml:space="preserve">
+    <value>Uusi toimitus</value>
+  </data>
+  <data name="Gateway_Authorize_Net" xml:space="preserve">
+    <value>Authorize.Net</value>
+  </data>
+  <data name="Gateway_DPI_Link" xml:space="preserve">
+    <value>DPI Link</value>
+  </data>
+  <data name="Gateway_eProcessing" xml:space="preserve">
+    <value>eProcessing</value>
+  </data>
+  <data name="Order_Configure_IBiz_E_Payment_Integrator_Component" xml:space="preserve">
+    <value>Määritä IBiz E-Payment Integrator -komponentti</value>
+  </data>
+  <data name="Order_Pick_a_Gateway" xml:space="preserve">
+    <value>Valitse yhdyskäytävä</value>
+  </data>
+  <data name="Gateway_GoRealTime" xml:space="preserve">
+    <value>GoRealTime</value>
+  </data>
+  <data name="Gateway_IBill_Processing_Plus" xml:space="preserve">
+    <value>IBill Processing Plus</value>
+  </data>
+  <data name="Gateway_Intellipay_ExpertLink" xml:space="preserve">
+    <value>Intellipay ExpertLink</value>
+  </data>
+  <data name="Gateway_Iongate" xml:space="preserve">
+    <value>Iongate</value>
+  </data>
+  <data name="Gateway_iTransact_RediCharge_HTML" xml:space="preserve">
+    <value>iTransact RediCharge HTML</value>
+  </data>
+  <data name="Gateway_NetBilling" xml:space="preserve">
+    <value>NetBilling</value>
+  </data>
+  <data name="Gateway_Verisign_PayFlow_Pro" xml:space="preserve">
+    <value>Verisign PayFlow Pro</value>
+  </data>
+  <data name="Gateway_Payready_Link" xml:space="preserve">
+    <value>Payready-linkki</value>
+  </data>
+  <data name="Gateway_NOVAs_Viaklix" xml:space="preserve">
+    <value>NOVAn Viaklix</value>
+  </data>
+  <data name="Gateway_USA_ePay" xml:space="preserve">
+    <value>USA ePay</value>
+  </data>
+  <data name="Gateway_Plug_n_Pay" xml:space="preserve">
+    <value>Plug 'n Pay</value>
+  </data>
+  <data name="Gateway_Planet_Payment" xml:space="preserve">
+    <value>Planet Payment</value>
+  </data>
+  <data name="Gateway_MPCS" xml:space="preserve">
+    <value>MPCS</value>
+  </data>
+  <data name="Gateway_RTWare" xml:space="preserve">
+    <value>RTWare</value>
+  </data>
+  <data name="Gateway_ECX" xml:space="preserve">
+    <value>ECX</value>
+  </data>
+  <data name="Gateway_Bank_of_America" xml:space="preserve">
+    <value>Bank of America</value>
+  </data>
+  <data name="Gateway_Innovative_Gateway" xml:space="preserve">
+    <value>Innovative Gateway</value>
+  </data>
+  <data name="Gateway_Merchant_Anywhere_Transaction_Central" xml:space="preserve">
+    <value>Merchant Anywhere (Transaction Central)</value>
+  </data>
+  <data name="Gateway_SkipJack" xml:space="preserve">
+    <value>SkipJack</value>
+  </data>
+  <data name="Gateway_ECHOnline" xml:space="preserve">
+    <value>ECHOnline</value>
+  </data>
+  <data name="Gateway_3DSI_EC_Linx" xml:space="preserve">
+    <value>3DSI EC-Linx</value>
+  </data>
+  <data name="Gateway_TrustCommerce" xml:space="preserve">
+    <value>TrustCommerce</value>
+  </data>
+  <data name="Gateway_PSIGate" xml:space="preserve">
+    <value>PSIGate</value>
+  </data>
+  <data name="Gateway_PayFuse_XML" xml:space="preserve">
+    <value>PayFuse XML</value>
+  </data>
+  <data name="Gateway_PayFlowLink" xml:space="preserve">
+    <value>PayFlowLink</value>
+  </data>
+  <data name="Gateway_Paymentech_Orbital_Gateway" xml:space="preserve">
+    <value>Paymentech Orbital Gateway</value>
+  </data>
+  <data name="Gateway_LinkPoint" xml:space="preserve">
+    <value>LinkPoint</value>
+  </data>
+  <data name="Gateway_Moneris_eSelect_Plus" xml:space="preserve">
+    <value>Moneris eSelect Plus</value>
+  </data>
+  <data name="Gateway_uSight_Gateway" xml:space="preserve">
+    <value>uSight Gateway</value>
+  </data>
+  <data name="Gateway_Fast_Transact" xml:space="preserve">
+    <value>Fast Transact</value>
+  </data>
+  <data name="Gateway_NetworkMerchants" xml:space="preserve">
+    <value>NetworkMerchants</value>
+  </data>
+  <data name="Gateway_Ogone_DirectLink" xml:space="preserve">
+    <value>Ogone DirectLink</value>
+  </data>
+  <data name="Gateway_Concord_EFSNet" xml:space="preserve">
+    <value>Concord EFSNet</value>
+  </data>
+  <data name="Gateway_Payment_Resources_International_PRIGate" xml:space="preserve">
+    <value>Payment Resources International PRIGate</value>
+  </data>
+  <data name="Gateway_Protx" xml:space="preserve">
+    <value>Protx</value>
+  </data>
+  <data name="Gateway_Optimal_Payments_FirePay" xml:space="preserve">
+    <value>Optimal Payments / FirePay</value>
+  </data>
+  <data name="Gateway_Merchant_Partners" xml:space="preserve">
+    <value>Merchant Partners</value>
+  </data>
+  <data name="Gateway_CyberCash" xml:space="preserve">
+    <value>CyberCash</value>
+  </data>
+  <data name="Gateway_FirstData_CardService_International" xml:space="preserve">
+    <value>FirstData / CardService International</value>
+  </data>
+  <data name="Gateway_YourPay" xml:space="preserve">
+    <value>YourPay</value>
+  </data>
+  <data name="Gateway_ACH_Payments" xml:space="preserve">
+    <value>ACH-maksut</value>
+  </data>
+  <data name="Gateway_Payments_Gateway" xml:space="preserve">
+    <value>Payments Gateway</value>
+  </data>
+  <data name="Gateway_Cyber_Source" xml:space="preserve">
+    <value>Cyber Source</value>
+  </data>
+  <data name="Gateway_Eway" xml:space="preserve">
+    <value>Eway</value>
+  </data>
+  <data name="Gateway_Go_EMerchant" xml:space="preserve">
+    <value>Go EMerchant</value>
+  </data>
+  <data name="Gateway_Pay_Stream" xml:space="preserve">
+    <value>Pay Stream</value>
+  </data>
+  <data name="Gateway_Trans_First" xml:space="preserve">
+    <value>Trans First</value>
+  </data>
+  <data name="Gateway_Chase" xml:space="preserve">
+    <value>Chase</value>
+  </data>
+  <data name="Order_Payment_Options" xml:space="preserve">
+    <value>Maksuvaihtoehdot</value>
+  </data>
+  <data name="Payment_Merchant_Login" xml:space="preserve">
+    <value>Myyjän kirjautuminen</value>
+  </data>
+  <data name="Payment_Merchant_Password" xml:space="preserve">
+    <value>Myyjän salasana</value>
+  </data>
+  <data name="Payment_Transaction_Key" xml:space="preserve">
+    <value>Tapahtuma-avain</value>
+  </data>
+  <data name="Payment_Secret_Hash" xml:space="preserve">
+    <value>Salainen hajautus</value>
+  </data>
+  <data name="Payment_Gateway_URL" xml:space="preserve">
+    <value>Maksuyhdyskäytävän URL (testiä varten)</value>
+  </data>
+  <data name="Payment_SSL_User_Id" xml:space="preserve">
+    <value>SSL-käyttäjätunnus</value>
+  </data>
+  <data name="Payment_Referer" xml:space="preserve">
+    <value>Viittaaja</value>
+  </data>
+  <data name="Payment_Test_Mode" xml:space="preserve">
+    <value>Testitila</value>
+  </data>
+  <data name="Payment_Sale" xml:space="preserve">
+    <value>Myynti</value>
+  </data>
+  <data name="Payment_Authorization_Only" xml:space="preserve">
+    <value>Lupa vain</value>
+  </data>
+  <data name="Payment_Merchant_Alias" xml:space="preserve">
+    <value>Myyjän alias</value>
+  </data>
+  <data name="Payment_SSLCert_Store" xml:space="preserve">
+    <value>SSLCert-liike</value>
+  </data>
+  <data name="Payment_SSLCert_Subject" xml:space="preserve">
+    <value>SSLCert-subjekti</value>
+  </data>
+  <data name="Payment_SSLCert_Encoded" xml:space="preserve">
+    <value>SSLCert salattu</value>
+  </data>
+  <data name="Payment_Related_Security_Key" xml:space="preserve">
+    <value>Vastaava suojausavain</value>
+  </data>
+  <data name="Payment_Related_Vendor_TX_Code" xml:space="preserve">
+    <value>Vastaava myyjän TX-koodi</value>
+  </data>
+  <data name="Payment_Related_TX_Auth_No" xml:space="preserve">
+    <value>Vastaava TX-valtuutusnro</value>
+  </data>
+  <data name="Payment_Account" xml:space="preserve">
+    <value>Tili</value>
+  </data>
+  <data name="Payment_Merchant_ID" xml:space="preserve">
+    <value>Myyjän tunnus</value>
+  </data>
+  <data name="Payment_Customer_ID" xml:space="preserve">
+    <value>Asiakkaan tunnus</value>
+  </data>
+  <data name="Payment_Zone_ID" xml:space="preserve">
+    <value>Vyöhykkeen tunnus</value>
+  </data>
+  <data name="Payment_Username" xml:space="preserve">
+    <value>Käyttäjänimi</value>
+  </data>
+  <data name="Order_Management" xml:space="preserve">
+    <value>Tilaushallinta</value>
+  </data>
+  <data name="Order_List" xml:space="preserve">
+    <value>Tilausluettelo</value>
+  </data>
+  <data name="Order_Search" xml:space="preserve">
+    <value>Tilaushaku</value>
+  </data>
+  <data name="Order_View" xml:space="preserve">
+    <value>Tilausnäkymä</value>
+  </data>
+  <data name="Order_View_Address" xml:space="preserve">
+    <value>Tilausnäkymä – osoite</value>
+  </data>
+  <data name="Order_View_LineItem" xml:space="preserve">
+    <value>Tilausnäkymä – rivikohde</value>
+  </data>
+  <data name="Order_View_Payment" xml:space="preserve">
+    <value>Tilausnäkymä – maksu</value>
+  </data>
+  <data name="Order_View_Shipment" xml:space="preserve">
+    <value>Tilausnäkymä – toimitus</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Määrä</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Tuotekatalogi</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Koodi</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Luotu</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Asiakas</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Kuvaus</value>
+  </data>
+  <data name="Edit_Command" xml:space="preserve">
+    <value>Muokkaa komentoa</value>
+  </data>
+  <data name="File_Name" xml:space="preserve">
+    <value>Tiedoston nimi</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>OnAktiivinen</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>OnOletus</value>
+  </data>
+  <data name="Last_Modified" xml:space="preserve">
+    <value>Viimeksi muokattu</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Viimeksi päivitetty</value>
+  </data>
+  <data name="LineItemId" xml:space="preserve">
+    <value>RivikohteenTunnus</value>
+  </data>
+  <data name="List_Price" xml:space="preserve">
+    <value>Luettelohinta</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Polku</value>
+  </data>
+  <data name="PaymentId" xml:space="preserve">
+    <value>MaksunTunnus</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Määrä</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Kurssi</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Koko</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>Lajittelujärjestys</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Tila</value>
+  </data>
+  <data name="System_Name" xml:space="preserve">
+    <value>Järjestelmän nimi</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tyyppi</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Näkyvä</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>Tunnus</value>
+  </data>
+  <data name="OrderGroupAddressId" xml:space="preserve">
+    <value>TilausRyhmänOsoitteenTunnus</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>Tilaaminen</value>
+  </data>
+  <data name="Friendly_Name" xml:space="preserve">
+    <value>Lempinimi</value>
+  </data>
+  <data name="Jurisdiction_Group_Configure_Price_Per_Weight" xml:space="preserve">
+    <value>Määritä hinta painon mukaan veroalueryhmää varten</value>
+  </data>
+  <data name="Payment_Attributes_Description" xml:space="preserve">
+    <value>määrittää, mitä lisäattribuutteja maksuun yhdistetään</value>
+  </data>
+  <data name="Payment_For_Description" xml:space="preserve">
+    <value>summa, jolle tämä maksu on</value>
+  </data>
+  <data name="Payment_Method" xml:space="preserve">
+    <value>Maksumenetelmä</value>
+  </data>
+  <data name="Payment_Name_Description" xml:space="preserve">
+    <value>maksun nimi, joka näkyy asiakkaalle</value>
+  </data>
+  <data name="Payment_Status_Description" xml:space="preserve">
+    <value>nykyisen maksun tila</value>
+  </data>
+  <data name="Payment_Type" xml:space="preserve">
+    <value>Maksutyyppi</value>
+  </data>
+  <data name="Payment_API_User" xml:space="preserve">
+    <value>API UserId</value>
+  </data>
+  <data name="Cart_List" xml:space="preserve">
+    <value>Ostoskoriluettelo</value>
+  </data>
+  <data name="Order_By_Status" xml:space="preserve">
+    <value>Tilaukset tilan mukaan</value>
+  </data>
+  <data name="PaymentPlan_List" xml:space="preserve">
+    <value>Maksusuunnitelmaluettelo</value>
+  </data>
+  <data name="Country_With_Code_Exists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa maa.</value>
+  </data>
+  <data name="JurisdictionGroup_With_Code_Exists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa veroalueryhmä.</value>
+  </data>
+  <data name="Jurisdiction_With_Code_Exists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa veroalue.</value>
+  </data>
+  <data name="Tax_With_Name_Exists" xml:space="preserve">
+    <value>Samanniminen vero on jo olemassa.</value>
+  </data>
+  <data name="Package_Name_Exists" xml:space="preserve">
+    <value>Samanniminen paketti on jo olemassa.</value>
+  </data>
+  <data name="RecurringMethod_Authorize" xml:space="preserve">
+    <value>Anna lupa</value>
+  </data>
+  <data name="RecurringMethod_Internal" xml:space="preserve">
+    <value>Sisäinen</value>
+  </data>
+  <data name="RecurringPayment_CancelStatus" xml:space="preserve">
+    <value>Peruutuksen tila</value>
+  </data>
+  <data name="RecurringPayment_CancelStatus_Required" xml:space="preserve">
+    <value>PeruutuksenTila on pakollinen</value>
+  </data>
+  <data name="RecurringPayment_Select_CancelStatus" xml:space="preserve">
+    <value>valitse peruutuksen tila</value>
+  </data>
+  <data name="Recurring_Method" xml:space="preserve">
+    <value>Uusiutuva menetelmä</value>
+  </data>
+  <data name="Recurring_Payments" xml:space="preserve">
+    <value>Uusiutuvat maksut</value>
+  </data>
+  <data name="Regular_Authorize_Payments" xml:space="preserve">
+    <value>Säännölliset maksut</value>
+  </data>
+  <data name="Jurisdictions" xml:space="preserve">
+    <value>Veroalueet</value>
+  </data>
+  <data name="Jurisdictions_In_The_Group" xml:space="preserve">
+    <value>Ryhmän veroalueet</value>
+  </data>
+  <data name="Jurisdiction_Edit" xml:space="preserve">
+    <value>Muokkaa veroaluetta</value>
+  </data>
+  <data name="Jurisdiction_Group" xml:space="preserve">
+    <value>Veroalueryhmä</value>
+  </data>
+  <data name="Jurisdiction_Groups" xml:space="preserve">
+    <value>Veroalueryhmät</value>
+  </data>
+  <data name="Jurisdiction_Groups_Edit" xml:space="preserve">
+    <value>Muokkaa veroalueryhmää</value>
+  </data>
+  <data name="select_jurisdiction_group" xml:space="preserve">
+    <value>valitse veroalueryhmä</value>
+  </data>
+  <data name="Country_Edit" xml:space="preserve">
+    <value>Muokkaa maata</value>
+  </data>
+  <data name="CountryRegions" xml:space="preserve">
+    <value>Maan alueet</value>
+  </data>
+  <data name="Payment_Method_Edit" xml:space="preserve">
+    <value>Muokkaa maksumenetelmää</value>
+  </data>
+  <data name="Shipping_Method_Edit" xml:space="preserve">
+    <value>Muokkaa toimitusmenetelmää</value>
+  </data>
+  <data name="Shipping_Package_Edit" xml:space="preserve">
+    <value>Muokkaa toimituspakettia</value>
+  </data>
+  <data name="Shipping_Provider_Edit" xml:space="preserve">
+    <value>Muokkaa rahtia</value>
+  </data>
+  <data name="Tax_Edit" xml:space="preserve">
+    <value>Muokkaa veroa</value>
+  </data>
+  <data name="New_Payment" xml:space="preserve">
+    <value>Uusi maksu</value>
+  </data>
+  <data name="Tax_Add_Value" xml:space="preserve">
+    <value>Lisää veron arvo</value>
+  </data>
+  <data name="LineItemApproving" xml:space="preserve">
+    <value>Laadun hyväksyminen</value>
+  </data>
+  <data name="LineItemNew" xml:space="preserve">
+    <value>Uusi</value>
+  </data>
+  <data name="LineItemNotAvailable" xml:space="preserve">
+    <value>Ei saatavilla toimitusta varten</value>
+  </data>
+  <data name="LineItemOrdered" xml:space="preserve">
+    <value>Tilattu</value>
+  </data>
+  <data name="LineItemProcessed" xml:space="preserve">
+    <value>Käsitellään</value>
+  </data>
+  <data name="LineItemReadyToSend" xml:space="preserve">
+    <value>Lähetysvalmis</value>
+  </data>
+  <data name="LineItemReturnToSeller" xml:space="preserve">
+    <value>Palautettu myyjälle</value>
+  </data>
+  <data name="LineItemSent" xml:space="preserve">
+    <value>Lähetetty</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>valitse...</value>
+  </data>
+  <data name="Payment_Implementation_Class_Name" xml:space="preserve">
+    <value>Maksuluokka</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentti</value>
+  </data>
+  <data name="Shipping_Method" xml:space="preserve">
+    <value>Toimitusmenetelmä</value>
+  </data>
+  <data name="Order_New" xml:space="preserve">
+    <value>Uusi tilaus</value>
+  </data>
+  <data name="OrderShipmentStatus_AwaitingInventory" xml:space="preserve">
+    <value>Varastotietojen odotus</value>
+  </data>
+  <data name="OrderShipmentStatus_Cancelled" xml:space="preserve">
+    <value>Peruutettu</value>
+  </data>
+  <data name="OrderShipmentStatus_InventoryAssigned" xml:space="preserve">
+    <value>Varasto määritetty</value>
+  </data>
+  <data name="OrderShipmentStatus_OnHold" xml:space="preserve">
+    <value>Pidossa</value>
+  </data>
+  <data name="OrderShipmentStatus_Packing" xml:space="preserve">
+    <value>Pakkaaminen</value>
+  </data>
+  <data name="OrderShipmentStatus_Released" xml:space="preserve">
+    <value>Julkaistu</value>
+  </data>
+  <data name="OrderShipmentStatus_Shipped" xml:space="preserve">
+    <value>Toimitettu</value>
+  </data>
+  <data name="OrderStatus_AwaitingExchange" xml:space="preserve">
+    <value>Vaihdon odotus</value>
+  </data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve">
+    <value>Peruutettu</value>
+  </data>
+  <data name="OrderStatus_Completed" xml:space="preserve">
+    <value>Valmis</value>
+  </data>
+  <data name="OrderStatus_InProgress" xml:space="preserve">
+    <value>Käynnissä</value>
+  </data>
+  <data name="OrderStatus_OnHold" xml:space="preserve">
+    <value>Pidossa</value>
+  </data>
+  <data name="OrderStatus_PartiallyShipped" xml:space="preserve">
+    <value>Toimitettu osittain</value>
+  </data>
+  <data name="ReturnFormStatus_AwaitingCompletion" xml:space="preserve">
+    <value>Viimeistelyn odotus</value>
+  </data>
+  <data name="ReturnFormStatus_AwaitingStockReturn" xml:space="preserve">
+    <value>Varastopalautuksen odotus</value>
+  </data>
+  <data name="ReturnFormStatus_Canceled" xml:space="preserve">
+    <value>Peruutettu</value>
+  </data>
+  <data name="ReturnFormStatus_Complete" xml:space="preserve">
+    <value>Valmis</value>
+  </data>
+  <data name="Add_New_Address" xml:space="preserve">
+    <value>Lisää uusi osoite</value>
+  </data>
+  <data name="Error_No_Customer" xml:space="preserve">
+    <value>Määriteltyä asiakasta ei löydy.</value>
+  </data>
+  <data name="Warning_No_Addesses" xml:space="preserve">
+    <value>Nykyisellä asiakkaalla ei ole osoitetta. Tilausta varten tarvitaan vähintään yksi osoite. Lisää osoite napsauttamalla seuraavaa linkkiä.</value>
+  </data>
+  <data name="Order_Recalculate" xml:space="preserve">
+    <value>Laske uudelleen</value>
+  </data>
+  <data name="Order_SendNotificationConfirmation" xml:space="preserve">
+    <value>Haluatko varmasti lähettää ilmoituksen?</value>
+  </data>
+  <data name="OrderNoteTypes_Info" xml:space="preserve">
+    <value>Tietoja</value>
+  </data>
+  <data name="OrderNoteTypes_Payments" xml:space="preserve">
+    <value>Maksut</value>
+  </data>
+  <data name="OrderNoteTypes_ReturnsExchange" xml:space="preserve">
+    <value>Palautukset/vaihdot</value>
+  </data>
+  <data name="OrderNoteTypes_Shipment" xml:space="preserve">
+    <value>Toimitus</value>
+  </data>
+  <data name="Shipping_Address" xml:space="preserve">
+    <value>Osoite</value>
+  </data>
+  <data name="Shipping_Number" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Add_To_Customer_Address_Book" xml:space="preserve">
+    <value>Lisää asiakkaan osoitekirjaan</value>
+  </data>
+  <data name="PickSite" xml:space="preserve">
+    <value>Valitse sivusto</value>
+  </data>
+  <data name="SelectCatalog" xml:space="preserve">
+    <value>Valitse katalogi</value>
+  </data>
+  <data name="SelectEntryType" xml:space="preserve">
+    <value>Valitse merkinnän tyyppi</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Valitse kieli</value>
+  </data>
+  <data name="ConfigureSelectedEntry" xml:space="preserve">
+    <value>Määritä valittu merkintä</value>
+  </data>
+  <data name="SelectedEntry" xml:space="preserve">
+    <value>Valittu merkintä</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>Näyttöhinta</value>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Lisää kohde tilaukseen</value>
+  </data>
+  <data name="PriceTier" xml:space="preserve">
+    <value>Hintataso</value>
+  </data>
+  <data name="New_LineItem_Discount_Amount" xml:space="preserve">
+    <value>summa</value>
+  </data>
+  <data name="New_LineItem_Discount_Description" xml:space="preserve">
+    <value>Alennuksen kuvaus</value>
+  </data>
+  <data name="PickVariation" xml:space="preserve">
+    <value>Valitse varastotuote</value>
+  </data>
+  <data name="PromotionGroup_Item" xml:space="preserve">
+    <value>Tuotekuvaus</value>
+  </data>
+  <data name="PromotionGroup_Order" xml:space="preserve">
+    <value>Tilaus</value>
+  </data>
+  <data name="PromotionGroup_Shipping" xml:space="preserve">
+    <value>Toimitus</value>
+  </data>
+  <data name="OrderNote_AddNewLineItemPattern" xml:space="preserve">
+    <value>Uusi varastotuote ({0} / {1}) lisätty lähetykseen #{2}, tilauksen summa muutettu: {3}</value>
+  </data>
+  <data name="OrderNote_ChangeLineItemPattern" xml:space="preserve">
+    <value>Varastotuote ({0} / {1}) vaihdettu lähetykseen #{2}, tilauksen summa muutettu: {3}</value>
+  </data>
+  <data name="OrderNote_ChangeReturnStatusPattern" xml:space="preserve">
+    <value>Tilauspalautuksen #{0}  tilaksi muutettu {1}</value>
+  </data>
+  <data name="OrderNote_ChangeShipmentStatusPattern" xml:space="preserve">
+    <value>Lähetyksen {0} tilaksi muutettu {1}</value>
+  </data>
+  <data name="OrderNote_DeleteLineItemPattern" xml:space="preserve">
+    <value>Varastotuote ({0} / {1}) on poistettu lähetyksestä #{2}, tilauksen summa muutettu: {3}</value>
+  </data>
+  <data name="OrderNote_MoveLineItemPattern" xml:space="preserve">
+    <value>Varastotuote ({0} / {1}) on siirretty lähetykseen #{2}</value>
+  </data>
+  <data name="OrderNote_ReturnLineItemPattern" xml:space="preserve">
+    <value>Varastotuote ({0} / {1}) on palautettu palautukseen #{2}. Palautuksen syy: {3}</value>
+  </data>
+  <data name="OrderNote_ChangeOrderStatusPattern" xml:space="preserve">
+    <value>Tilauksen tilaksi muutettu {0}</value>
+  </data>
+  <data name="OrderNote_AddNewPaymentPattern" xml:space="preserve">
+    <value>Uusi {0} maksu, yhteensä {1} lisätty tilaukseen</value>
+  </data>
+  <data name="OrderNote_NewOrderPattern" xml:space="preserve">
+    <value>{0} on tehnyt tilauksen {1}</value>
+  </data>
+  <data name="OrderNote_SendNotificationPattern" xml:space="preserve">
+    <value>Tilausvahvistus lähetetty {0}</value>
+  </data>
+  <data name="CouponCode_Apply_Fail" xml:space="preserve">
+    <value>Kuponkikoodi on virheellinen.</value>
+  </data>
+  <data name="CouponCode_Apply_Success" xml:space="preserve">
+    <value>Kuponkikoodi on hyväksytty.</value>
+  </data>
+  <data name="ReturnForm_RefundAmount" xml:space="preserve">
+    <value>Hyvityssumma</value>
+  </data>
+  <data name="PromotionGroup_Entry" xml:space="preserve">
+    <value>Tuotekuvaus</value>
+  </data>
+  <data name="CancelOrderConfirmation" xml:space="preserve">
+    <value>Haluatko varmasti peruuttaa tämän ostotilauksen?</value>
+  </data>
+  <data name="CancelReturnConfirmation" xml:space="preserve">
+    <value>Haluatko varmasti peruuttaa tämän palautuspyynnön?</value>
+  </data>
+  <data name="CancelShipmentConfirmation" xml:space="preserve">
+    <value>Haluatko varmasti peruuttaa tämän lähetyksen?</value>
+  </data>
+  <data name="CompleteReturnConfirmation" xml:space="preserve">
+    <value>Haluatko varmasti viimeistellä tämän palautuspyynnön?</value>
+  </data>
+  <data name="OrderStatus_HaveAwaitingReturnCompletable" xml:space="preserve">
+    <value>Varastopalautuksen odotus</value>
+  </data>
+  <data name="OrderStatus_HaveAwaitingStockReturns" xml:space="preserve">
+    <value>Palautuksen viimeistelyn odotus</value>
+  </data>
+  <data name="Pick_List" xml:space="preserve">
+    <value>Valintaluettelo</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Varasto</value>
+  </data>
+  <data name="PaymentPlan_New" xml:space="preserve">
+    <value>Uusi maksusuunnitelma</value>
+  </data>
+  <data name="Add_Shipment_To_Picklist" xml:space="preserve">
+    <value>Lisää toimitus valintaluetteloon</value>
+  </data>
+  <data name="Order_Created" xml:space="preserve">
+    <value>Tilaus luotu</value>
+  </data>
+  <data name="Packing_Shipments" xml:space="preserve">
+    <value>Toimitusten pakkaus</value>
+  </data>
+  <data name="Pick_Lists" xml:space="preserve">
+    <value>Valintaluettelot</value>
+  </data>
+  <data name="Released_Shipments" xml:space="preserve">
+    <value>Luovutetut toimitukset</value>
+  </data>
+  <data name="Warehouse_Colon" xml:space="preserve">
+    <value>Varasto:</value>
+  </data>
+  <data name="Add_Note" xml:space="preserve">
+    <value>Lisää huomautus</value>
+  </data>
+  <data name="Add_Order_Address" xml:space="preserve">
+    <value>Lisää tilausosoite</value>
+  </data>
+  <data name="Balance_Due" xml:space="preserve">
+    <value>Saldon eräpäivä</value>
+  </data>
+  <data name="Cancel_Order" xml:space="preserve">
+    <value>Peruuta tilaus</value>
+  </data>
+  <data name="Created_Date" xml:space="preserve">
+    <value>Luontipäivämäärä</value>
+  </data>
+  <data name="Discounts_Total" xml:space="preserve">
+    <value>Alennukset yhteensä</value>
+  </data>
+  <data name="Item_Subtotal" xml:space="preserve">
+    <value>Kohteen välisumma</value>
+  </data>
+  <data name="Item_Taxes" xml:space="preserve">
+    <value>Kohteen ALV</value>
+  </data>
+  <data name="Less_Shipment_Discount" xml:space="preserve">
+    <value>Vähennettynä toimitusalennus</value>
+  </data>
+  <data name="New_Line_Item" xml:space="preserve">
+    <value>Uusi nimike</value>
+  </data>
+  <data name="Order_No_Sign" xml:space="preserve">
+    <value>Tilausnro</value>
+  </data>
+  <data name="Order_Total" xml:space="preserve">
+    <value>Tilaus yhteensä</value>
+  </data>
+  <data name="Place_On_Hold" xml:space="preserve">
+    <value>Aseta odottamaan</value>
+  </data>
+  <data name="Release_Order_Hold" xml:space="preserve">
+    <value>Poista tilauksen odotus</value>
+  </data>
+  <data name="Return_Number" xml:space="preserve">
+    <value>Palautusnro</value>
+  </data>
+  <data name="Shipping_Cost" xml:space="preserve">
+    <value>Toimituskulut</value>
+  </data>
+  <data name="Shipping_Total" xml:space="preserve">
+    <value>Toimitus yhteensä</value>
+  </data>
+  <data name="Sub_Total" xml:space="preserve">
+    <value>Välisumma</value>
+  </data>
+  <data name="Taxes_Total" xml:space="preserve">
+    <value>ALV yhteensä</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Yhteensä</value>
+  </data>
+  <data name="Total_Before_Tax" xml:space="preserve">
+    <value>Yhteensä ilman ALV:tä</value>
+  </data>
+  <data name="Acknowledge_Receipt_Items" xml:space="preserve">
+    <value>Kuittaa vastaanotetut kohteet</value>
+  </data>
+  <data name="Cancel_Return" xml:space="preserve">
+    <value>Peruuta palautus</value>
+  </data>
+  <data name="Cancel_Shipment" xml:space="preserve">
+    <value>Peruuta toimitus</value>
+  </data>
+  <data name="Cardholders_Name" xml:space="preserve">
+    <value>Kortinhaltijan nimi</value>
+  </data>
+  <data name="Catalog_Entry_Search_Dialog" xml:space="preserve">
+    <value>Luettelokohteen hakuikkuna</value>
+  </data>
+  <data name="Complete_Return" xml:space="preserve">
+    <value>Viimeistele palautus</value>
+  </data>
+  <data name="Complete_Shipment" xml:space="preserve">
+    <value>Viimeistele toimitus</value>
+  </data>
+  <data name="Create_Edit_Return" xml:space="preserve">
+    <value>Luo palautus / muokkaa palautusta</value>
+  </data>
+  <data name="Create_Exchange" xml:space="preserve">
+    <value>Luo vaihto</value>
+  </data>
+  <data name="Create_Exchange_Order" xml:space="preserve">
+    <value>Luo vaihtotilaus</value>
+  </data>
+  <data name="Create_Payment" xml:space="preserve">
+    <value>Luo maksu</value>
+  </data>
+  <data name="Create_Refund" xml:space="preserve">
+    <value>Luo hyvitys</value>
+  </data>
+  <data name="Create_Return" xml:space="preserve">
+    <value>Luo palautus</value>
+  </data>
+  <data name="Credit_Card_Code" xml:space="preserve">
+    <value>Kortin koodi (CVV2, CVC2 tai CID)</value>
+  </data>
+  <data name="Credit_Card_Expiration_Date" xml:space="preserve">
+    <value>Vanhenemispäivämäärä (KK/VV)</value>
+  </data>
+  <data name="Credit_Card_Number" xml:space="preserve">
+    <value>Luottokortin numero</value>
+  </data>
+  <data name="Edit_Information" xml:space="preserve">
+    <value>Muokkaa tietoja</value>
+  </data>
+  <data name="Edit_Line_Item" xml:space="preserve">
+    <value>Muokkaa nimikettä</value>
+  </data>
+  <data name="Edit_Currency" xml:space="preserve">
+    <value>Muokkaa valuuttaa</value>
+  </data>
+  <data name="Edit_Note" xml:space="preserve">
+    <value>Muokkaa huomautusta</value>
+  </data>
+  <data name="Edit_Payment" xml:space="preserve">
+    <value>Muokkaa maksua</value>
+  </data>
+  <data name="Edit_Return" xml:space="preserve">
+    <value>Muokkaa palautusta</value>
+  </data>
+  <data name="Move_Line_Item" xml:space="preserve">
+    <value>Siirrä nimikettä</value>
+  </data>
+  <data name="New_Note" xml:space="preserve">
+    <value>Uusi huomautus</value>
+  </data>
+  <data name="Order_Edit_By_Another" xml:space="preserve">
+    <value>Toinen käyttäjä muokkaa tilausta</value>
+  </data>
+  <data name="Order_Is_In_Edit_Mode" xml:space="preserve">
+    <value>Tilaus on muokkaustilassa. Tallenna muutokset ennen poistumista.</value>
+  </data>
+  <data name="Order_No" xml:space="preserve">
+    <value>Tilausnro</value>
+  </data>
+  <data name="Original_Order" xml:space="preserve">
+    <value>Alkuperäinen tilaus</value>
+  </data>
+  <data name="Release_Shipment" xml:space="preserve">
+    <value>Luovuta toimitus</value>
+  </data>
+  <data name="Shipping_Information" xml:space="preserve">
+    <value>Toimitustiedot</value>
+  </data>
+  <data name="View_Exchange" xml:space="preserve">
+    <value>Näytä vaihto</value>
+  </data>
+  <data name="AsItAppearsOnTheCard" xml:space="preserve">
+    <value>(kuten se on kortissa)</value>
+  </data>
+  <data name="Existing_Payments" xml:space="preserve">
+    <value>Aiemmat maksut</value>
+  </data>
+  <data name="Returns_Exchanges" xml:space="preserve">
+    <value>Palautukset/vaihdot</value>
+  </data>
+  <data name="Shipment_Status" xml:space="preserve">
+    <value>Toimituksen tila</value>
+  </data>
+  <data name="Shipment_Summary" xml:space="preserve">
+    <value>Toimituksen yhteenveto</value>
+  </data>
+  <data name="Shipment_Total" xml:space="preserve">
+    <value>Toimitus yhteensä</value>
+  </data>
+  <data name="Add_Shipments_To_Pick_List" xml:space="preserve">
+    <value>Lisää toimituksia valintaluetteloon</value>
+  </data>
+  <data name="Add_To_Pick_List" xml:space="preserve">
+    <value>Lisää valintaluetteloon</value>
+  </data>
+  <data name="Confirm_Return_Shipments_To_Released" xml:space="preserve">
+    <value>Palautetaanko valitut toimitukset luovutusvaiheeseen?</value>
+  </data>
+  <data name="Create_New_Pick_List" xml:space="preserve">
+    <value>Luo uusi valintaluettelo</value>
+  </data>
+  <data name="Date_Time_Initiated" xml:space="preserve">
+    <value>Aloituspäivämäärä/-aika</value>
+  </data>
+  <data name="Exchange_Actions" xml:space="preserve">
+    <value>Vaihtotoimenpiteet</value>
+  </data>
+  <data name="Line_Item" xml:space="preserve">
+    <value>Nimike</value>
+  </data>
+  <data name="List_Name" xml:space="preserve">
+    <value>Luettelon nimi</value>
+  </data>
+  <data name="Print_Packing_Slip" xml:space="preserve">
+    <value>Tulosta pakkausluettelo</value>
+  </data>
+  <data name="Print_Picklist" xml:space="preserve">
+    <value>Tulosta valintaluettelo</value>
+  </data>
+  <data name="Remove_From_Picklist" xml:space="preserve">
+    <value>Poista valintaluettelosta</value>
+  </data>
+  <data name="Returns_Actions" xml:space="preserve">
+    <value>Palautustoimenpiteet</value>
+  </data>
+  <data name="ReturnType" xml:space="preserve">
+    <value>Palautustyyppi</value>
+  </data>
+  <data name="Return_Max_Quantity_Error" xml:space="preserve">
+    <value>Palautuksen enimmäismäärä: {0:#0.00}</value>
+  </data>
+  <data name="Return_Quantity" xml:space="preserve">
+    <value>Palautusmäärä</value>
+  </data>
+  <data name="Return_Reason" xml:space="preserve">
+    <value>Palautussyy</value>
+  </data>
+  <data name="Return_Total" xml:space="preserve">
+    <value>ReturnTotal</value>
+  </data>
+  <data name="RMA_Date" xml:space="preserve">
+    <value>Palautusnumeron päivämäärä</value>
+  </data>
+  <data name="Shipment_Details" xml:space="preserve">
+    <value>Toimituksen tiedot</value>
+  </data>
+  <data name="Shipment_No_Sign" xml:space="preserve">
+    <value>Toimitusnro</value>
+  </data>
+  <data name="Tracking_Number" xml:space="preserve">
+    <value>Seurantanumero</value>
+  </data>
+  <data name="Return_Reason_Edit" xml:space="preserve">
+    <value>Muokkaa palautuksen syytä</value>
+  </data>
+  <data name="Return_Reason_Exists" xml:space="preserve">
+    <value>Palautuksen syy on jo olemassa</value>
+  </data>
+  <data name="Return_Reason_Name_Required" xml:space="preserve">
+    <value>Palautuksen syyn nimi vaaditaan</value>
+  </data>
+  <data name="Error_No_Payment_Methods" xml:space="preserve">
+    <value>Valitulle oletuskielelle ({0}) ei ole määritetty maksumenetelmiä.</value>
+  </data>
+  <data name="Order_Search_Fail" xml:space="preserve">
+    <value>Pyydetty haku epäonnistui.</value>
+  </data>
+  <data name="Order_Search_FailAndRetry" xml:space="preserve">
+    <value>Pyydetty haku epäonnistui. Kaikki kohteet näytetään.</value>
+  </data>
+  <data name="Order_Is_Locked" xml:space="preserve">
+    <value>Tilaus on lukittu</value>
+  </data>
+  <data name="Return_Type" xml:space="preserve">
+    <value>Palautustyyppi</value>
+  </data>
+  <data name="Shipment_Is_Not_Found" xml:space="preserve">
+    <value>Toimitusta ei löydy</value>
+  </data>
+  <data name="Shipment_No_Sign_To_Validate" xml:space="preserve">
+    <value>Vahvistettava toimitusnro</value>
+  </data>
+  <data name="Cart_No_Sign" xml:space="preserve">
+    <value>Korinumero</value>
+  </data>
+  <data name="Cart_Total" xml:space="preserve">
+    <value>Kori yhteensä</value>
+  </data>
+  <data name="Create_Payment_Plan" xml:space="preserve">
+    <value>Luo maksusuunnitelma</value>
+  </data>
+  <data name="Plan_No_Sign" xml:space="preserve">
+    <value>Suunnitelmanro</value>
+  </data>
+  <data name="Plan_Total" xml:space="preserve">
+    <value>Suunnitelma yhteensä</value>
+  </data>
+  <data name="ShoppingCart_New" xml:space="preserve">
+    <value>Uusi ostoskori</value>
+  </data>
+  <data name="Invalid_Return_Reason_Name" xml:space="preserve">
+    <value>Virheellinen nimi: vain kirjaimet, numerot, -, _ ja välit sallitaan enintään 50 merkkiin asti</value>
+  </data>
+  <data name="Line_Item_Discounts" xml:space="preserve">
+    <value>Nimikkeen alennukset</value>
+  </data>
+  <data name="Order_Level_Discounts" xml:space="preserve">
+    <value>Tilaustason alennukset</value>
+  </data>
+  <data name="Shipping_Discounts" xml:space="preserve">
+    <value>Toimituksen alennukset</value>
+  </data>
+  <data name="Shipping_Discount_Total" xml:space="preserve">
+    <value>Toimituksen alennus yhteensä</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Kohteet</value>
+  </data>
+  <data name="Total_Before_Tax_And_Shipping" xml:space="preserve">
+    <value>Yhteensä ilman ALV:tä tai toimituskuluja</value>
+  </data>
+  <data name="Inventory_Not_Check" xml:space="preserve">
+    <value>Ei käytettävissä</value>
+  </data>
+  <data name="List_Name_Empty_Error" xml:space="preserve">
+    <value>Keräysluettelo on tyhjä. Luo uusi tai valitse olemassa oleva keräysluettelo.</value>
+  </data>
+  <data name="Payment_Market_Selected" xml:space="preserve">
+    <value>Markkinat, jotka on valittu maksumenetelmälle</value>
+  </data>
+  <data name="Payment_Market_Unselected" xml:space="preserve">
+    <value>Markkinat, joita ei ole valittu maksumenetelmälle</value>
+  </data>
+  <data name="Payment_Password_Required" xml:space="preserve">
+    <value>Salasana-kenttää ei voi jättää tyhjäksi.</value>
+  </data>
+  <data name="Pickup_Orders" xml:space="preserve">
+    <value>Noutotilaukset</value>
+  </data>
+  <data name="SelectWarehouse" xml:space="preserve">
+    <value>Valitse varasto</value>
+  </data>
+  <data name="Shipment_ChargeForFromShipment" xml:space="preserve">
+    <value>Veloita asiakkaalta alkuperäisen toimituksen toimituskulut</value>
+  </data>
+  <data name="Shipment_ChargeForShipment" xml:space="preserve">
+    <value>Veloita asiakkaalta toimituksen toimituskulujen muutokset</value>
+  </data>
+  <data name="Shipment_ChargeForToShipment" xml:space="preserve">
+    <value>Veloita asiakkaalta uuden toimituksen toimituskulut</value>
+  </data>
+  <data name="Warehouse_Default_Fulfillment" xml:space="preserve">
+    <value>Toimitus asiakkaalle</value>
+  </data>
+  <data name="Warehouse_PickFulfillment" xml:space="preserve">
+    <value>Valitse toimitusvaihtoehto</value>
+  </data>
+  <data name="Warehouse_Pickup_Fulfillment" xml:space="preserve">
+    <value>Asiakas noutaa sijainnista {0}</value>
+  </data>
+  <data name="Shipment_Id" xml:space="preserve">
+    <value>Toimitusnro Tunnus</value>
+  </data>
+</root>

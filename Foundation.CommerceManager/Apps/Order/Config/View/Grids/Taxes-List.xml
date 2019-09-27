@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column visible="false" allowSorting="false" dataField="TaxId" headingText=""></Column>
+					<Column width="50" dataField="TaxId" headingText="" columnType="Action">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderGridTaxEdit" commandParameters="TaxId" toolTip="Edit" permissions="order:admin:taxes:mng:edit"></Item>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderGridTaxDelete" commandParameters="TaxId" toolTip="Delete" permissions="order:admin:taxes:mng:delete"></Item>
+					</Column>
+					<Column width="250" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="TaxId" dataNavigateUrlFormatString="javascript:CSOrderClient.EditTax('{0}', '');" dataTextFields="Name" dataTextFormatString="{0}" permissions="order:admin:taxes:mng:edit" dataTextEncode="true"></Column>
+					<!--<Column Width="100" AllowSorting="true" DataField="Percentage" HeadingText="{SharedStrings:Rate}" FormatString="{0:#0.##0}"></Column>
+			<Column Width="100" AllowSorting="true" DataField="TaxCategory" HeadingText="{SharedStrings:Category}"></Column>-->
+					<Column width="100" allowSorting="true" dataField="TaxTypeName" headingText="{SharedStrings:Type}"></Column>
+					<Column width="60" allowSorting="true" dataField="SortOrder" headingText="{SharedStrings:SortOrder}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="New" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdOrderNewTax" permissions="order:admin:taxes:mng:create"/>
+				<Splitter id="ActionsSplitter"/>
+        <Menu id="ImportExportSplitButton" text="{SharedStrings:Import_Export}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" permissions="order:admin:taxes:mng:import">
+          <Button id="ImportTaxes" text="{SharedStrings:Import_Taxes}" imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png" commandName="cmdTaxesImport" permissions="order:admin:taxes:mng:import"/>
+          <Button id="ExportTaxes" text="{SharedStrings:Export_Taxes}" imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png" commandName="cmdTaxesExport" permissions="order:admin:taxes:mng:import"/>
+        </Menu>
+				<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" permissions="order:admin:taxes:mng:delete">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderTaxDelete" permissions="order:admin:taxes:mng:delete"/>
+				</Menu>
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewTax">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewTax()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdTaxesImport">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.ImportTaxes()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+        <Command id="cmdTaxesExport">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSOrderClient.ExportTaxes(params)</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+				<Command id="cmdOrderTaxDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.TaxDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdOrderGridTaxEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.EditTax2(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderGridTaxDelete">
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.TaxDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Taxes-List" controlUrl="Order/Taxes.ascx" permissions="order:admin:taxes:mng:view" help="Order+System"></setAttributes>
+	</ViewConfig>
+</View>

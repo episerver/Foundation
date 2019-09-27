@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig id="CatalogMetaField-Edit" controlUrl="catalog/MetaFieldEdit.ascx" permissions="catalog:admin:meta:fld:mng:edit" help="Catalog+System">
+		<add>
+			<Transitions>
+				<Transition name="List" viewId="CatalogMetaFields-List" />
+			</Transitions>
+		</add>
+	</ViewConfig>
+</View>

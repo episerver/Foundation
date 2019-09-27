@@ -1,0 +1,61 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Mediachase.Ibn.Web.UI.MasterPages.ExtGrid" Codebehind="ExtGrid.master.cs" %>
+<%@ Import Namespace="Mediachase.Commerce.Shared" %>
+<%@ Import Namespace="Mediachase.Ibn.Web.UI"%>
+<%@ Register Namespace="Mediachase.BusinessFoundation" Assembly="Mediachase.BusinessFoundation" TagPrefix="mc" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%">
+<head runat="server">
+   <title>IBN NeXT</title>
+    
+    <script type="text/javascript">
+	function disableEnterKey(e) 
+	{ 
+		var _key = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+		try{
+			if (_key == 13)
+			{
+				return false;
+			}
+			else
+				return true;
+		}
+		catch (ex) {
+			return true;
+		}
+	}
+	</script>
+	<!-- EPi Style-->
+    <link href="<%# CommerceHelper.GetAbsolutePath("~/Apps/Shell/EPi/Shell/Light/Shell-ext.css") %>" rel="stylesheet" type="text/css" />
+</head>
+<body scroll="auto">
+<form id="form1" runat="server" onkeypress="return disableEnterKey(event);">
+<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" EnableScriptGlobalization="true" EnableScriptLocalization="true" EnableCdn="true" />
+<div id="hideAllDiv" runat="server" style="position: absolute; left: 0px; top: 0px; height: 100%; width: 100%; background-color: White; z-index: 100000;">&nbsp;</div>
+<mc:CommandManager ID="cm1" runat="server" ContainerId="divContainer" />  
+<div id="divContainer" runat="server"></div>	   
+        
+	<div id="center" style="height: 100%; padding: 7px;" >
+            <asp:contentplaceholder id="MainContent" runat="server" >
+            </asp:contentplaceholder>
+    </div>	
+</form>
+<script type="text/javascript">
+function _clearHidingDiv()
+{
+	var obj = document.getElementById("<%= hideAllDiv.ClientID %>");
+	if (obj != null)
+	{
+		obj.style.display = "none";
+	}
+}
+
+function clearHidingDiv()
+{
+	window.setTimeout(_clearHidingDiv, 200);
+}
+
+$addHandler(window, "load", clearHidingDiv);
+</script>        
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column isDefault="true" headingText="{SharedStrings:Edit_Command}" dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="100" align="Center" />
+					<Column isDefault="true" visible="false" allowSorting="false" dataField="CurrencyRateId" headingText="{CatalogStrings:Currency_CurrencyRateId}" />
+					<Column isDefault="true" visible="false" allowEditing="false" allowSorting="false" dataField="ToCurrencyId" headingText="{CatalogStrings:Currency_ToCurrencyId}" />
+					<Column isDefault="true" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="CurrencyCode" headingText="{SharedStrings:Currency}" />
+					<Column isDefault="true" width="100" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="EndOfDayRate" headingText="{SharedStrings:Rate}" formatString="#0.0000" />
+					<Column dataCellServerTemplateId="DateTimeTemplate" width="200" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="CurrencyRateDate" headingText="{SharedStrings:Rate_Date}">
+						<Template id="DateTimeTemplate" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx" DateArgument="CurrencyRateDate" FormatWithoutConversion="true" />
+					</Column>
+					<Column dataCellServerTemplateId="DateTimeTemplate2" width="200" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="ModifiedDate" headingText="{SharedStrings:Modified}">
+						<Template id="DateTimeTemplate2" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx" DateArgument="ModifiedDate" />
+					</Column>
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="CurrencyRates" controlUrl="" />
+	</ViewConfig>
+</View>

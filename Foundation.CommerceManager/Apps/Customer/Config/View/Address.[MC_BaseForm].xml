@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<FormDocument>
+		<Table width="100%" columns="50%;*" cellPadding="5">
+			<add>
+				<Row>
+					<Cell colSpan="2" name="cell_11">
+						<Section uid="a156fefd09b94620a0e347e53d773c5f" borderType="1" showLabel="true" itemIndex="1">
+							<Labels>
+								<Label title="{SharedStrings:Overview}" code="en" />
+							</Labels>
+							<Control controlType="SmartTableLayout" width="100%" uid="e21384ae186345209077826af983f9a6" cellPadding="5" columns="50%;*">
+								<Item rowIndex="1" cellIndex="1" rowSpan="2" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="0416d23c0de64424bb48a751b60684ff" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="AddressType" readOnly="False" uid="90e988a6efcd4fb0b20f4138b89bc7ad" />
+								</Item>
+								<Item rowIndex="3" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="38ed52c7d6d64ab2bb8842063f18ea4a" tabIndex="2">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="Name" readOnly="False" uid="1137de1c75ed49f4abc148d344222e2d" />
+								</Item>
+								<Item rowIndex="4" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="041f388fb9be4f9ca0beebdf1deab97c" tabIndex="3">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="LastName" readOnly="False" uid="2dc290803cda427f8789345c8de755e6" />
+								</Item>
+								<Item rowIndex="5" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="2257993111ef481fa6fe86136a5e4362" tabIndex="4">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="FirstName" readOnly="False" uid="dc071a9ef4214d77897a098b6e7bc2f0" />
+								</Item>
+								<Item rowIndex="6" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="37654997dd8947ad9e6cf2ae1bb41c44" tabIndex="5">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="DaytimePhoneNumber" readOnly="False" uid="7633e5de0a124290bf94deb6c19798c8" />
+								</Item>
+								<Item rowIndex="7" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="610fab5263734157a5316fbedb20b4b2" tabIndex="6">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="EveningPhoneNumber" readOnly="False" uid="041d5249471c47549d58be9db64d18d2" />
+								</Item>
+								<Item rowIndex="8" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="39cd00b0217b4cf5a09b9dd7faac28f6" tabIndex="7">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="Email" readOnly="False" uid="2f52c866aa5f4dbea72c4b49875f1925" />
+								</Item>
+								<Item rowIndex="1" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="0897bd89279342a8991b6a6283d91077" tabIndex="8">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="Line1" readOnly="False" uid="29615f0d479041e9a8f1d40b88470368" />
+								</Item>
+								<Item rowIndex="2" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="90ffbb093a0240a29ae42942acb7d54a" tabIndex="9">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="Line2" readOnly="False" uid="f9d18c6ddf214249b73b57c5079e7aae" />
+								</Item>
+								<Item rowIndex="3" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="454afe4c9b6b48bba8ebbbbacfc14398" tabIndex="10">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="City" readOnly="False" uid="cbeb7b4db2db4870890eb86f6b7ff00e" />
+								</Item>
+								<Item rowIndex="4" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="83b5b30b245c480b93d754503883f256" tabIndex="11">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="State" readOnly="False" uid="276c6804711c46a090d7cfba75b6a36e" />
+								</Item>
+								<Item rowIndex="5" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="4a49b03db6734750af29a86cb309009a" tabIndex="12">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="CountryCode" readOnly="False" uid="482a13fa37904bdb979b39e44720d5e3" />
+								</Item>
+								<Item rowIndex="6" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="9c79faf8b49f47d4949a0687f6315222" tabIndex="13">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="CountryName" readOnly="False" uid="b1a39a9651804602959e97182335f025" />
+								</Item>
+								<Item rowIndex="7" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="6d5164df1eaa482499d1aed4f8276e77" tabIndex="14">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="PostalCode" readOnly="False" uid="357460a8f9574e64a179631b412231b0" />
+								</Item>
+								<Item rowIndex="8" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="cbf1d00593384d74b52b87e59e9de186" tabIndex="15">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="RegionCode" readOnly="False" uid="93853c76847940b09949aa303b8965c3" />
+								</Item>
+							</Control>
+						</Section>
+					</Cell>
+				</Row>
+				<Row>
+					<Cell colSpan="1" name="cell_21" />
+					<Cell colSpan="1" name="cell_22" />
+				</Row>
+				<Row>
+					<Cell colSpan="2" name="cell_31" />
+				</Row>
+			</add>
+		</Table>
+	</FormDocument>
+</View>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.21.7" />
+    <PackageReference Include="EPiServer.Framework" Version="11.13.0" />
+    <PackageReference Include="EPiServer.Social.ActivityStreams" Version="1.5.4" />
+    <PackageReference Include="EPiServer.Social.Comments" Version="1.5.4" />
+    <PackageReference Include="EPiServer.Social.Common" Version="1.5.4" />
+    <PackageReference Include="EPiServer.Social.Common.Rest" Version="1.5.4" />
+    <PackageReference Include="EPiServer.Social.Groups" Version="1.5.4" />
+    <PackageReference Include="EPiServer.Social.Moderation" Version="1.5.4" />
+    <PackageReference Include="EPiServer.Social.Ratings" Version="1.5.4" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Cms\Foundation.Cms.csproj" />
+  </ItemGroup>
+
+</Project>

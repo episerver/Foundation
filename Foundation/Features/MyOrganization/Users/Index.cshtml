@@ -1,0 +1,78 @@
+﻿@using System.Web.Mvc.Html
+@using Foundation.Commerce.ViewModels.Header
+@model UsersPageViewModel
+
+<div class="users-page row">
+     @{Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Organization }); }
+    <div class="col-main col-sm-9">
+        @{Html.RenderAction("Index", "B2BNavigation");}
+        <div class="page-title">
+            <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+        </div>
+        <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+        <div class="spacer-left-l">
+            <section>
+                <div class="section-title spacer-bottom-m">
+                    <br />
+                    @if (Model.Organizations.Count == 0)
+                    {
+                        <a href="@Url.Action("AddUser", "UsersPage")" class="btn-primary btn-sm disabled">
+                            @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("AddUser", "UsersPage")" class="button-black btn-sm">
+                            @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
+                        </a>
+                    }
+                    <form class="pull-right" action="" method="get" role="search">
+                        <div class="custom-search">
+                            <input type="text" id="viewUsersAutocomplete" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
+                            <i id="js-reset-icon" class="close-icon" data-feather="x" style="display: none;"></i>
+                            <i id="js-search-icon" class="icon-search" data-feather="search" aria-hidden="true"></i>
+                        </div>
+                    </form>
+
+                </div>
+                @if (Model.Organizations.Count == 0)
+                {
+                    <p>@Html.TranslateFallback("/B2B/Users/NoOrgs", "At least one sub-organization needs to be configured before adding a user.")</p>
+                }
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                            <th>@Html.TranslateFallback("/Shared/Address/Form/Label/Address", "Address")</th>
+                            <th class="static-width">@Html.TranslateFallback("/Shared/Role", "Role")</th>
+                            <th>@Html.TranslateFallback("/B2B/Oganization/Organization", "Organization")</th>
+                            <th class="text-right">@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+                        </tr>
+                    </thead>
+                    <tbody class="js-users-table-body">
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td><a href="#" data-user="@user.FullName">@user.FullName</a></td>
+                                <td class="user-email">@user.Email</td>
+                                <td>@user.UserRole</td>
+                                <td>@user.FoundationOrganization.Name</td>
+                                <td class="text-right">
+                                    <a href="@Url.Action("EditUser","UsersPage", new {id=@user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(user.IsAdmin ? "disabled" : "")>
+                                        <i data-feather="edit"></i>
+                                    </a>
+                                    <a href="@Url.Action("RemoveUser","UsersPage", new {id=@user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(user.IsAdmin ? "disabled" : "")>
+                                        <i data-feather="trash"></i>
+                                    </a>
+                                    <a href="#" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Impersonate", "Impersonate")" @(user.IsAdmin ? "disabled" : "")>
+                                        <i data-feather="eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>

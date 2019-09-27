@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddChildItem" xml:space="preserve">
+    <value>Add Child Item</value>
+  </data>
+  <data name="AddInnerItem" xml:space="preserve">
+    <value>Add Inner Item</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllowedTransitions" xml:space="preserve">
+    <value>Allowed Transitions</value>
+  </data>
+  <data name="AllowNulls" xml:space="preserve">
+    <value>Allow Nulls</value>
+  </data>
+  <data name="AvailableColumns" xml:space="preserve">
+    <value>Available columns</value>
+  </data>
+  <data name="AvailableStates" xml:space="preserve">
+    <value>Available States</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BackReference" xml:space="preserve">
+    <value>BackReference</value>
+  </data>
+  <data name="BackToEnumInfo" xml:space="preserve">
+    <value>Back To Enum Info</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back To List</value>
+  </data>
+  <data name="BackToTableInfo" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Bridge" xml:space="preserve">
+    <value>Bridge</value>
+  </data>
+  <data name="BridgeCreate" xml:space="preserve">
+    <value>New Bridge</value>
+  </data>
+  <data name="BridgeEdit" xml:space="preserve">
+    <value>Bridge Edit</value>
+  </data>
+  <data name="BridgeExistsErrorMessage" xml:space="preserve">
+    <value>Relation with  system name {0} already exists. Try another relation system name.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>Extension</value>
+  </data>
+  <data name="CardCreate" xml:space="preserve">
+    <value>New Extension</value>
+  </data>
+  <data name="CardEdit" xml:space="preserve">
+    <value>Edit Extension</value>
+  </data>
+  <data name="CardExistsErrorMessage" xml:space="preserve">
+    <value>Extension with system name {0} already exists. Try other Extension system name.</value>
+  </data>
+  <data name="Cards" xml:space="preserve">
+    <value>Extensions</value>
+  </data>
+  <data name="CheckboxBoolean" xml:space="preserve">
+    <value>CheckboxBoolean</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ContextMenu" xml:space="preserve">
+    <value>Context Menu</value>
+  </data>
+  <data name="CounterLength" xml:space="preserve">
+    <value>Counter Length</value>
+  </data>
+  <data name="CounterReset" xml:space="preserve">
+    <value>Counter Reset</value>
+  </data>
+  <data name="CounterResetDay" xml:space="preserve">
+    <value>Every Day</value>
+  </data>
+  <data name="CounterResetMonth" xml:space="preserve">
+    <value>Every Month</value>
+  </data>
+  <data name="CounterResetNone" xml:space="preserve">
+    <value>[ Never ]</value>
+  </data>
+  <data name="CounterResetQuarter" xml:space="preserve">
+    <value>Every Quarter</value>
+  </data>
+  <data name="CounterResetYear" xml:space="preserve">
+    <value>Every Year</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateTable" xml:space="preserve">
+    <value>New Business Object</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="CustomPage" xml:space="preserve">
+    <value>Custom Page</value>
+  </data>
+  <data name="CustomSorting" xml:space="preserve">
+    <value>Custom sorting</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DetailsType" xml:space="preserve">
+    <value>Details type</value>
+  </data>
+  <data name="DropDownBoolean" xml:space="preserve">
+    <value>DropDownBoolean</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditColumns" xml:space="preserve">
+    <value>Edit columns</value>
+  </data>
+  <data name="EditField" xml:space="preserve">
+    <value>Edit Field</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Edit Page</value>
+  </data>
+  <data name="EditTable" xml:space="preserve">
+    <value>Edit Business Object</value>
+  </data>
+  <data name="EditType" xml:space="preserve">
+    <value>edit</value>
+  </data>
+  <data name="ElementType" xml:space="preserve">
+    <value>Element Type</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="EnableClientSort" xml:space="preserve">
+    <value>Enable client sorting</value>
+  </data>
+  <data name="EnableColumnDrag" xml:space="preserve">
+    <value>Enable columns drag'n'drop</value>
+  </data>
+  <data name="EnumCreate" xml:space="preserve">
+    <value>New Enum</value>
+  </data>
+  <data name="EnumEdit" xml:space="preserve">
+    <value>Enum Edit</value>
+  </data>
+  <data name="EnumInfo" xml:space="preserve">
+    <value>Manage List</value>
+  </data>
+  <data name="EnumList" xml:space="preserve">
+    <value>Enum List</value>
+  </data>
+  <data name="FieldExistsErrorMessage" xml:space="preserve">
+    <value>Field with  system name {0} already exists. Try another system name.</value>
+  </data>
+  <data name="FieldInfo" xml:space="preserve">
+    <value>Field Info</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Field Name</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Field Type</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Float" xml:space="preserve">
+    <value>Float</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="FormType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FriendlyName" xml:space="preserve">
+    <value>Friendly Name</value>
+  </data>
+  <data name="FromState" xml:space="preserve">
+    <value>From State</value>
+  </data>
+  <data name="Guid" xml:space="preserve">
+    <value>Guid</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="IdentifierList" xml:space="preserve">
+    <value>Identifier List</value>
+  </data>
+  <data name="IdentifierMask" xml:space="preserve">
+    <value>Mask</value>
+  </data>
+  <data name="IdentifierName" xml:space="preserve">
+    <value>Identifier Name</value>
+  </data>
+  <data name="IdentifierScope" xml:space="preserve">
+    <value>Scope</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Business Object</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="Integer" xml:space="preserve">
+    <value>Integer</value>
+  </data>
+  <data name="ItemDisplayValue" xml:space="preserve">
+    <value>Display Value</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="ItemValue" xml:space="preserve">
+    <value>Item Value</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="ListPage" xml:space="preserve">
+    <value>List Page</value>
+  </data>
+  <data name="ListType" xml:space="preserve">
+    <value>list</value>
+  </data>
+  <data name="LongText" xml:space="preserve">
+    <value>LongText</value>
+  </data>
+  <data name="MaskTooltip" xml:space="preserve">
+    <value>#:Counter, YYYY:Year, MM:Month, DD:Day, QQ:Quarter</value>
+  </data>
+  <data name="MaximumLength" xml:space="preserve">
+    <value>Maximum Length</value>
+  </data>
+  <data name="MenuItemLink" xml:space="preserve">
+    <value>Item Link</value>
+  </data>
+  <data name="MenuItemText" xml:space="preserve">
+    <value>Item Text</value>
+  </data>
+  <data name="MenuSection" xml:space="preserve">
+    <value>Section/Delimeter</value>
+  </data>
+  <data name="MetaClassList" xml:space="preserve">
+    <value>Tables List</value>
+  </data>
+  <data name="MetaClassName" xml:space="preserve">
+    <value>MetaClass name</value>
+  </data>
+  <data name="MultiValue" xml:space="preserve">
+    <value>Multi Value</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewCard" xml:space="preserve">
+    <value>New Extension</value>
+  </data>
+  <data name="NewField" xml:space="preserve">
+    <value>New Field</value>
+  </data>
+  <data name="NewIdentifier" xml:space="preserve">
+    <value>New Identifier</value>
+  </data>
+  <data name="NewItem" xml:space="preserve">
+    <value>New Item</value>
+  </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>New Link</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>[ Not Set ]</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="ParentTable" xml:space="preserve">
+    <value>Parent Business Object</value>
+  </data>
+  <data name="PluralName" xml:space="preserve">
+    <value>Plural Name</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Principal" xml:space="preserve">
+    <value>User/Group</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="ReferencedField" xml:space="preserve">
+    <value>ReferencedField</value>
+  </data>
+  <data name="ResourceTooltip" xml:space="preserve">
+    <value>Use the following syntax to get the values from the resource file: {ResourceName:ResourceKey}</value>
+  </data>
+  <data name="Root" xml:space="preserve">
+    <value>Root</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ScopeClass" xml:space="preserve">
+    <value>Business Object</value>
+  </data>
+  <data name="ScopeField" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="ScopeGlobal" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectedStates" xml:space="preserve">
+    <value>Selected States</value>
+  </data>
+  <data name="SelectItem" xml:space="preserve">
+    <value>Select Item</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Show details</value>
+  </data>
+  <data name="ShowFilters" xml:space="preserve">
+    <value>Show filters</value>
+  </data>
+  <data name="ShowGroups" xml:space="preserve">
+    <value>Show groups</value>
+  </data>
+  <data name="SingleValue" xml:space="preserve">
+    <value>Single Value</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="StateList" xml:space="preserve">
+    <value>State List</value>
+  </data>
+  <data name="StateMachine" xml:space="preserve">
+    <value>State Machine</value>
+  </data>
+  <data name="StateMachineList" xml:space="preserve">
+    <value>State Machines</value>
+  </data>
+  <data name="StateMachineName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SupportsCards" xml:space="preserve">
+    <value>Supports Extensions</value>
+  </data>
+  <data name="SystemName" xml:space="preserve">
+    <value>System Name</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Business Object</value>
+  </data>
+  <data name="TableExistsErrorMessage" xml:space="preserve">
+    <value>Business Object with system name {0} already exists. Try other Business Object system name.</value>
+  </data>
+  <data name="TableInfo" xml:space="preserve">
+    <value>Base Info</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Business Object Name</value>
+  </data>
+  <data name="TableOwner" xml:space="preserve">
+    <value>Parent Business Object</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="ToState" xml:space="preserve">
+    <value>To State</value>
+  </data>
+  <data name="TransitionName" xml:space="preserve">
+    <value>Transition Name</value>
+  </data>
+  <data name="TriggerAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="TriggerCondition" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="ViewPage" xml:space="preserve">
+    <value>View Page</value>
+  </data>
+  <data name="ViewType" xml:space="preserve">
+    <value>view</value>
+  </data>
+  <data name="VisibleColumns" xml:space="preserve">
+    <value>Visible columns</value>
+  </data>
+  <data name="AssignTypes" xml:space="preserve">
+    <value>Assignments Types</value>
+  </data>
+  <data name="SecurityPage" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="SecurityTemplates" xml:space="preserve">
+    <value>Inner Objects Security</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="BridgeCustomization" xml:space="preserve">
+    <value>Bridge Customization</value>
+  </data>
+  <data name="CardCustomization" xml:space="preserve">
+    <value>Business Object Extension Customization</value>
+  </data>
+  <data name="InfoCustomization" xml:space="preserve">
+    <value>Business Object Customization</value>
+  </data>
+  <data name="BusinessObjectExtension" xml:space="preserve">
+    <value>Business Object Extension</value>
+  </data>
+  <data name="MReferenceTypeList" xml:space="preserve">
+    <value>MultiReference Type List</value>
+  </data>
+  <data name="MReferenceTypeCreate" xml:space="preserve">
+    <value>New MultiReference Type</value>
+  </data>
+  <data name="MReferenceTypeEdit" xml:space="preserve">
+    <value>Edit MultiReference Type</value>
+  </data>
+  <data name="MReferenceMetaClasses" xml:space="preserve">
+    <value>Reference MetaClasses</value>
+  </data>
+  <data name="MReferenceTypeInfo" xml:space="preserve">
+    <value>MultiReference Type Info</value>
+  </data>
+  <data name="Field1Info" xml:space="preserve">
+    <value>Field 1 Info</value>
+  </data>
+  <data name="Field2Info" xml:space="preserve">
+    <value>Field 2 Info</value>
+  </data>
+  <data name="NewBridge" xml:space="preserve">
+    <value>New Bridge</value>
+  </data>
+  <data name="NewCard2" xml:space="preserve">
+    <value>New Extension</value>
+  </data>
+  <data name="NewInfoTable" xml:space="preserve">
+    <value>New Business Object</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="ErrorMessage_AllowNulls" xml:space="preserve">
+    <value>You should check Allow Nulls or specify Default Value</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="McDataType_Aggregation" xml:space="preserve">
+    <value>Aggregation</value>
+  </data>
+  <data name="McDataType_BackReference" xml:space="preserve">
+    <value>Back Reference</value>
+  </data>
+  <data name="McDataType_Boolean" xml:space="preserve">
+    <value>Boolean</value>
+  </data>
+  <data name="McDataType_Card" xml:space="preserve">
+    <value>Card</value>
+  </data>
+  <data name="McDataType_Complex" xml:space="preserve">
+    <value>Complex</value>
+  </data>
+  <data name="McDataType_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="McDataType_DateTime" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+  <data name="McDataType_Double" xml:space="preserve">
+    <value>Float</value>
+  </data>
+  <data name="McDataType_Enum" xml:space="preserve">
+    <value>Dictionary items</value>
+  </data>
+  <data name="McDataType_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="McDataType_Guid" xml:space="preserve">
+    <value>Guid</value>
+  </data>
+  <data name="McDataType_Identifier" xml:space="preserve">
+    <value>Identifier</value>
+  </data>
+  <data name="McDataType_Integer" xml:space="preserve">
+    <value>Integer</value>
+  </data>
+  <data name="McDataType_Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="McDataType_MultiReference" xml:space="preserve">
+    <value>Multi Reference</value>
+  </data>
+  <data name="McDataType_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="McDataType_ReferencedField" xml:space="preserve">
+    <value>Referenced Field (read-only)</value>
+  </data>
+  <data name="McDataType_String" xml:space="preserve">
+    <value>String</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page Size:</value>
+  </data>
+  <data name="NewSingleValue" xml:space="preserve">
+    <value>New - Single Value</value>
+  </data>
+  <data name="NewMultiValue" xml:space="preserve">
+    <value>New - Multi Value</value>
+  </data>
+  <data name="PageSize10" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="PageSize25" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="PageSize100" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="PageSize50" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="PageSizeAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="Modifier" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="ObjectId" xml:space="preserve">
+    <value>Source Object Id</value>
+  </data>
+  <data name="PrimaryKeyId" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="AddToForm" xml:space="preserve">
+    <value>Add Field To</value>
+  </data>
+  <data name="AscSort" xml:space="preserve">
+    <value>Sort Ascending</value>
+  </data>
+  <data name="DescSort" xml:space="preserve">
+    <value>Sort Descending</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Principals" xml:space="preserve">
+    <value>Users and Groups</value>
+  </data>
+  <data name="LatinOnlyError" xml:space="preserve">
+    <value>Only latin characters, numbers and the underscore are acceptable.</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="FloatPercent" xml:space="preserve">
+    <value>Float percent</value>
+  </data>
+  <data name="IntegerPercent" xml:space="preserve">
+    <value>Integer percent</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>User / Group</value>
+  </data>
+  <data name="RoleMultiValue" xml:space="preserve">
+    <value>Users / Groups</value>
+  </data>
+  <data name="Dictionary" xml:space="preserve">
+    <value>Dictionary</value>
+  </data>
+  <data name="Aggregation" xml:space="preserve">
+    <value>Aggregation</value>
+  </data>
+  <data name="ResetToDefault" xml:space="preserve">
+    <value>Reset To Default</value>
+  </data>
+  <data name="DecimalPercent" xml:space="preserve">
+    <value>Decimal percent</value>
+  </data>
+  <data name="Decimal" xml:space="preserve">
+    <value>Decimal</value>
+  </data>
+  <data name="McDataType_Decimal" xml:space="preserve">
+    <value>Decimal</value>
+  </data>
+  <data name="Relations1N" xml:space="preserve">
+    <value>1:N Relations</value>
+  </data>
+  <data name="RelationsNN" xml:space="preserve">
+    <value>N:N Relations</value>
+  </data>
+  <data name="RelationsN1" xml:space="preserve">
+    <value>N:1 Relations</value>
+  </data>
+  <data name="NewRelation1N" xml:space="preserve">
+    <value>New Relation "one to many"</value>
+  </data>
+  <data name="NewRelationN1" xml:space="preserve">
+    <value>New Relation "many to one"</value>
+  </data>
+  <data name="NewRelationNN" xml:space="preserve">
+    <value>New Relation "many to many"</value>
+  </data>
+  <data name="PrimaryObject" xml:space="preserve">
+    <value>Primary Object</value>
+  </data>
+  <data name="RelatedObject" xml:space="preserve">
+    <value>Related Object</value>
+  </data>
+  <data name="CurrentObject" xml:space="preserve">
+    <value>Current Object</value>
+  </data>
+  <data name="EditRelation1N" xml:space="preserve">
+    <value>Edit Realtion "one to many"</value>
+  </data>
+  <data name="EditRelationN1" xml:space="preserve">
+    <value>Edit Realtion "many to one"</value>
+  </data>
+  <data name="EditRelationNN" xml:space="preserve">
+    <value>Edit Realtion "many to many"</value>
+  </data>
+  <data name="BusinessObjectsBlock" xml:space="preserve">
+    <value>[ Business Objects ]</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>General Info</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Relation1N" xml:space="preserve">
+    <value>Relation 1:N</value>
+  </data>
+  <data name="RelationN1" xml:space="preserve">
+    <value>Relation N:1</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>Display Order</value>
+  </data>
+  <data name="DisplayRegion" xml:space="preserve">
+    <value>Display Region</value>
+  </data>
+  <data name="DisplayText" xml:space="preserve">
+    <value>Display Text</value>
+  </data>
+  <data name="RelationNN" xml:space="preserve">
+    <value>Relation N:N</value>
+  </data>
+  <data name="RelationName" xml:space="preserve">
+    <value>Relation Name</value>
+  </data>
+  <data name="SystemViews" xml:space="preserve">
+    <value>System Views</value>
+  </data>
+  <data name="AddSystemView" xml:space="preserve">
+    <value>Add System View</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Is between</value>
+  </data>
+  <data name="Contains" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="EndsWith" xml:space="preserve">
+    <value>Ends with</value>
+  </data>
+  <data name="Equal" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="Greater" xml:space="preserve">
+    <value>Is greater than</value>
+  </data>
+  <data name="GreaterOrEqual" xml:space="preserve">
+    <value>Is greater than or equal to</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>Is any of</value>
+  </data>
+  <data name="IsFalse" xml:space="preserve">
+    <value>Is false</value>
+  </data>
+  <data name="IsNotNull" xml:space="preserve">
+    <value>Is not null</value>
+  </data>
+  <data name="IsNull" xml:space="preserve">
+    <value>Is null</value>
+  </data>
+  <data name="IsTrue" xml:space="preserve">
+    <value>Is true</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Last month</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Last week</value>
+  </data>
+  <data name="LastYear" xml:space="preserve">
+    <value>Last year</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>Is less than</value>
+  </data>
+  <data name="LessOrEqual" xml:space="preserve">
+    <value>Is less than or equal to</value>
+  </data>
+  <data name="Like" xml:space="preserve">
+    <value>Is like</value>
+  </data>
+  <data name="NotContains" xml:space="preserve">
+    <value>Does not contain</value>
+  </data>
+  <data name="NotEqual" xml:space="preserve">
+    <value>Does not equal</value>
+  </data>
+  <data name="NotIn" xml:space="preserve">
+    <value>Is none of</value>
+  </data>
+  <data name="NotLike" xml:space="preserve">
+    <value>Is not like</value>
+  </data>
+  <data name="StartsWith" xml:space="preserve">
+    <value>Begins with</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>This month</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>This week</value>
+  </data>
+  <data name="ThisYear" xml:space="preserve">
+    <value>This year</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>New View</value>
+  </data>
+  <data name="UserViews" xml:space="preserve">
+    <value>User views</value>
+  </data>
+  <data name="SystemView" xml:space="preserve">
+    <value>System View</value>
+  </data>
+  <data name="NewSystemView" xml:space="preserve">
+    <value>New System View</value>
+  </data>
+  <data name="SystemViewEditing" xml:space="preserve">
+    <value>System View Editing</value>
+  </data>
+  <data name="ViewEditing" xml:space="preserve">
+    <value>View Editing</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More...</value>
+  </data>
+  <data name="ObjectNotSet" xml:space="preserve">
+    <value>Not Set</value>
+  </data>
+  <data name="ItemNotSelected" xml:space="preserve">
+    <value>&lt; nothing is selected &gt;</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publication</value>
+  </data>
+  <data name="ClientScript" xml:space="preserve">
+    <value>Client Script</value>
+  </data>
+  <data name="BafExport" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="BafImport" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ToolBarMenuBafNewItem" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="ToolBarMenuBafExportImport" xml:space="preserve">
+    <value>Export/Import</value>
+  </data>
+  <data name="WarningFile" xml:space="preserve">
+    <value>Do you really want to delete this file?</value>
+  </data>
+  <data name="MenuItemIcon" xml:space="preserve">
+    <value>Item Icon</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Access Permissions</value>
+  </data>
+  <data name="GeneralView" xml:space="preserve">
+    <value>General View</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Edit Dictionary</value>
+  </data>
+</root>

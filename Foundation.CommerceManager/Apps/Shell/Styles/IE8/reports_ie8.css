@@ -1,0 +1,42 @@
+﻿.report-view
+{
+	width: 100%;
+	height: 100%;
+	background-color: White;
+	margin: 0px 0px 0px 0px;
+}
+.report-filter
+{
+	margin: 0px;
+	padding: 5px;
+	height: 30px;
+}
+.report-content
+{
+	margin: 0px;
+	padding: 0x;
+}
+
+.report-content table 
+{
+    min-width: 600px;
+}
+
+.report-content div[class] > table[style] /*~="display: inline"] */,
+.report-content div > table[ToolbarSpacer="true"],
+.report-content table[title]
+{
+    min-width: 1px;
+}
+
+.report-content table td
+{
+    min-width: 70px;
+}
+
+.report-content div[class] > table[style] /*~="display: inline"]*/ td,
+.report-content div > table[ToolbarSpacer="true"] td,
+.report-content table[title] td
+{
+    min-width: 1px;
+}

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="ShippingMethod-Edit" controlUrl="Order/Shipping/ShippingMethodEdit.ascx" permissions="order:admin:shipping:methods:mng:edit" help="Order+System"/> 
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Order/Shipping/Tabs/ShippingMethodEditBaseTab.ascx"></Tab>
+				<Tab name="{SharedStrings:Settings}" controlUrl="Order/Shipping/Tabs/ShippingMethodEditSettings.ascx"></Tab>
+				<Tab name="{SharedStrings:Parameters}" controlUrl="Order/Shipping/Tabs/ShippingMethodEditParameters.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

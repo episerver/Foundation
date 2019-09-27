@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Navigation>
+		<Tabs id="mainTag" sort="order" sortDataType="number" sortSubNodes="true">
+			<add>
+				<Tab id="navTabCustomerManagement" text="{Customer:CustomerManagement}" order="40"  contentType="default" imageUrl="~/Apps/Customer/images/module.png" configUrl="" enableHandler2="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" permissions="customer:tabviewpermission,businessfoundation:tabviewpermission,businessfoundation:organization:list:permission,businessfoundation:contact:list:permission,customer:roles:mng:view">
+					<Link id="Profile_Organizations" text="{Customer:Organizations}" order="30" iconUrl="~/Apps/Customer/images/Profile-Organization-List.png" iconCss="treeIcon" command="cmdProfileOrgaizations" permissions="businessfoundation:organization:list:permission" />
+					<Link id="Profile_Contacts" text="{Customer:Contacts}" order="40" iconUrl="~/Apps/Customer/images/Profile-Account-List.png" iconCss="treeIcon" command="cmdContactList" permissions="businessfoundation:contact:list:permission" />
+					<Link id="Profile_Roles" text="{Customer:Roles}" order="50" iconUrl="~/Apps/Customer/images/Profile-Roles-List.png" iconCss="treeIcon" command="cmdProfileRoles" permissions="customer:roles:mng:view" />
+				</Tab>
+			</add>
+		</Tabs>
+		<Commands>
+			<add>
+				<Command id="cmdContactList">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('Contact', 'List', '')</ClientScript>
+				</Command>
+				<Command id="cmdProfileOrgaizations">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('Organization', 'List', '')</ClientScript>
+				</Command>
+				<Command id="cmdProfileRoles">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Customer', 'Roles-List', '')</ClientScript>
+				</Command>
+			</add>
+		</Commands>
+	</Navigation>
+</View>

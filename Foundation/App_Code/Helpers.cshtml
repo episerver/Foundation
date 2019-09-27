@@ -1,0 +1,99 @@
+﻿@using System.Linq
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using EPiServer.Commerce.Catalog.ContentTypes
+@using Mediachase.Commerce
+@using EPiServer.ServiceLocation
+@using Mediachase.Commerce.Markets
+@using EPiServer.Core;
+@using EPiServer.Web.Routing
+@using Foundation.Cms.Extensions
+@using Foundation.Commerce.Models.Catalog
+@using Foundation.Commerce.Order.ViewModels
+
+@functions
+{
+    private static WebViewPage page { get { return PageContext.Page as WebViewPage; } }
+
+    private static MvcHtmlString CreateAlternateLinkWithHrefLang(string pageUrl, string lang)
+    {
+        var tagBuilder = new TagBuilder("link");
+        tagBuilder.MergeAttribute("rel", "alternate");
+        tagBuilder.MergeAttribute("href", pageUrl);
+        tagBuilder.MergeAttribute("hreflang", lang);
+        return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.SelfClosing) + Environment.NewLine);
+    }
+
+    private static string GetAbsoluteUrl(ContentReference requestContentLink, string language)
+    {
+        return Request.Url.GetLeftPart(UriPartial.Authority) + UrlResolver.Current.GetUrl(Request, requestContentLink, language);
+    }
+
+    private static IEnumerable<string> GetAllSiteAvailableLanguages()
+    {
+        var marketService = ServiceLocator.Current.GetInstance<IMarketService>();
+        var allMarkets = marketService.GetAllMarkets().Where(x => x.IsEnabled).ToList();
+        var languages = allMarkets.SelectMany(x => x.Languages).Distinct();
+        return languages.Select(l => l.Name);
+    }
+}
+
+@helper RenderMoney(decimal amount, Currency currency)
+{
+    Money money = new Money(amount, currency);
+    @Helpers.RenderMoney(money);
+}
+
+@helper RenderMoney(Money money)
+{
+    <span>
+        @page.Html.Raw(money.ToString().Replace(money.Currency.Format.CurrencySymbol, @"<span class=""product-price__currency-marker"">" + money.Currency.Format.CurrencySymbol + "</span>"))
+    </span>
+}
+
+@helper RenderSize(EntryContentBase content)
+{
+    var variant = content as GenericVariant;
+    if (variant != null && variant.Size != null)
+    {
+        @page.Html.Hidden("size", variant.Size.Trim())
+        <span>@variant.Size</span>
+    }
+}
+
+@helper RenderSizeDropDown(CartItemViewModel cartItem)
+{
+    var variant = cartItem.Entry as GenericVariant;
+    if (variant != null && variant.Size != null)
+    {
+        <span>
+            @page.Html.Hidden("size", variant.Size.Trim())
+            @page.Html.DropDownList("newSize", new SelectList(cartItem.AvailableSizes, variant.Size), new { @class = "form-control cart-control jsChangeCartItem" })
+        </span>
+    }
+}
+
+@helper RenderDropdown(IEnumerable<KeyValuePair<string, string>> list, string selectedValue = "", string selectorClassItem = "", string name = "", bool isDisabled = false, bool isShow = true)
+{
+    <div class="dropdown" style="@(isShow ? "" : "display: none")">
+        <div class="dropdown__selected" @(isDisabled ? "disabled" : "")>
+            <span class="current">@selectedValue</span>
+            <span><i data-feather="chevron-down"></i></span>
+        </div>
+        <ul class="dropdown__group">
+            @{ var i = 1; }
+            @foreach (var item in list)
+            {
+                <li class="dropdown__item dropdown__item--none-padding">
+                    <label class="checkbox @selectorClassItem dropdown__item-label" type="@name">
+                        @item.Key
+                        <input type="radio" name="@name" value="@item.Value" @(string.IsNullOrEmpty(selectedValue)  && i == 1 ? "checked=checked" : "") @(selectedValue == item.Value ? "checked=checked" : "") @(isShow ? "" : "disabled=disabled") />
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+                i++;
+            }
+
+        </ul>
+    </div>
+}

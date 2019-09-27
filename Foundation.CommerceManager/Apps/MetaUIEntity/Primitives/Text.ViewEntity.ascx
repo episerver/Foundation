@@ -1,0 +1,2 @@
+<%@ Control Language="C#" Inherits="Mediachase.BusinessFoundation.BaseEntityType" AutoEventWireup="true" ClassName="Mediachase.Ibn.Web.UI.MetaUI.EntityPrimitives.Text_ViewEntity" %>
+<%# (DataItem == null || DataItem.Properties[FieldName] == null || DataItem[FieldName] == null) ? "" : HttpUtility.HtmlEncode(Mediachase.Ibn.Web.UI.CHelper.GetResFileString(DataItem[FieldName].ToString())) %>

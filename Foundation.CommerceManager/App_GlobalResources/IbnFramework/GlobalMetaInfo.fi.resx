@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddChildItem" xml:space="preserve">
+    <value>Lisää alakohde</value>
+  </data>
+  <data name="AddInnerItem" xml:space="preserve">
+    <value>Lisää sisäkohde</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="AllowedTransitions" xml:space="preserve">
+    <value>Sallitut siirtymät</value>
+  </data>
+  <data name="AllowNulls" xml:space="preserve">
+    <value>Salli tyhjät arvot</value>
+  </data>
+  <data name="AvailableColumns" xml:space="preserve">
+    <value>Käytettävissä olevat sarakkeet</value>
+  </data>
+  <data name="AvailableStates" xml:space="preserve">
+    <value>Käytettävissä olevat osavaltiot</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Takaisin</value>
+  </data>
+  <data name="BackReference" xml:space="preserve">
+    <value>TakaisinViittaus</value>
+  </data>
+  <data name="BackToEnumInfo" xml:space="preserve">
+    <value>Takaisin valintalistatietoihin</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Takaisin luetteloon</value>
+  </data>
+  <data name="BackToTableInfo" xml:space="preserve">
+    <value>Takaisin</value>
+  </data>
+  <data name="Bridge" xml:space="preserve">
+    <value>Silta</value>
+  </data>
+  <data name="BridgeCreate" xml:space="preserve">
+    <value>Uusi silta</value>
+  </data>
+  <data name="BridgeEdit" xml:space="preserve">
+    <value>Muokkaa siltaa</value>
+  </data>
+  <data name="BridgeExistsErrorMessage" xml:space="preserve">
+    <value>Suhde järjestelmänimellä {0} on jo olemassa. Kokeile toista suhteen järjestelmänimeä.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Peruuta</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>Laajennus</value>
+  </data>
+  <data name="CardCreate" xml:space="preserve">
+    <value>Uusi laajennus</value>
+  </data>
+  <data name="CardEdit" xml:space="preserve">
+    <value>Muokkaa laajennusta</value>
+  </data>
+  <data name="CardExistsErrorMessage" xml:space="preserve">
+    <value>Laajennus järjestelmänimellä {0} on jo olemassa. Kokeile toista laajennuksen järjestelmänimeä.</value>
+  </data>
+  <data name="Cards" xml:space="preserve">
+    <value>Laajennukset</value>
+  </data>
+  <data name="CheckboxBoolean" xml:space="preserve">
+    <value>ValintaruutuBoolenArvo</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Tyhjennä</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Sulje</value>
+  </data>
+  <data name="ContextMenu" xml:space="preserve">
+    <value>Pikavalikko</value>
+  </data>
+  <data name="CounterLength" xml:space="preserve">
+    <value>Laskurin pituus</value>
+  </data>
+  <data name="CounterReset" xml:space="preserve">
+    <value>Laskurin nollaus</value>
+  </data>
+  <data name="CounterResetDay" xml:space="preserve">
+    <value>Joka päivä</value>
+  </data>
+  <data name="CounterResetMonth" xml:space="preserve">
+    <value>Joka kuu</value>
+  </data>
+  <data name="CounterResetNone" xml:space="preserve">
+    <value>[ Ei koskaan ]</value>
+  </data>
+  <data name="CounterResetQuarter" xml:space="preserve">
+    <value>Joka neljännesvuosi</value>
+  </data>
+  <data name="CounterResetYear" xml:space="preserve">
+    <value>Joka vuosi</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Luo</value>
+  </data>
+  <data name="CreateTable" xml:space="preserve">
+    <value>Uusi Business-objekti</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Valuutta</value>
+  </data>
+  <data name="CustomPage" xml:space="preserve">
+    <value>Mukautettu sivu</value>
+  </data>
+  <data name="CustomSorting" xml:space="preserve">
+    <value>Mukautettu lajittelu</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Päivämäärä</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>PäivämääräAika</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Kuvaus</value>
+  </data>
+  <data name="DetailsType" xml:space="preserve">
+    <value>Tietojen tyyppi</value>
+  </data>
+  <data name="DropDownBoolean" xml:space="preserve">
+    <value>PudotusBoolenArvo</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Muokkaa</value>
+  </data>
+  <data name="EditColumns" xml:space="preserve">
+    <value>Muokkaa sarakkeita</value>
+  </data>
+  <data name="EditField" xml:space="preserve">
+    <value>Muokkaa kenttää</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Muokkaa sivua</value>
+  </data>
+  <data name="EditTable" xml:space="preserve">
+    <value>Muokkaa Business-objektia</value>
+  </data>
+  <data name="EditType" xml:space="preserve">
+    <value>muokkaa</value>
+  </data>
+  <data name="ElementType" xml:space="preserve">
+    <value>Elementin tyyppi</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>sähköposti</value>
+  </data>
+  <data name="EnableClientSort" xml:space="preserve">
+    <value>Ota asiakkaiden lajittelu käyttöön</value>
+  </data>
+  <data name="EnableColumnDrag" xml:space="preserve">
+    <value>Ota käyttöön sarakkeiden veto ja pudotus</value>
+  </data>
+  <data name="EnumCreate" xml:space="preserve">
+    <value>Uusi valintalista</value>
+  </data>
+  <data name="EnumEdit" xml:space="preserve">
+    <value>Muokkaa valintalistaa</value>
+  </data>
+  <data name="EnumInfo" xml:space="preserve">
+    <value>Järjestä luettelo</value>
+  </data>
+  <data name="EnumList" xml:space="preserve">
+    <value>Valintalista</value>
+  </data>
+  <data name="FieldExistsErrorMessage" xml:space="preserve">
+    <value>Kenttä järjestelmänimellä {0} on jo olemassa. Kokeile toista järjestelmänimeä.</value>
+  </data>
+  <data name="FieldInfo" xml:space="preserve">
+    <value>Kentän tiedot</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Kentän nimi</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Kentän tyyppi</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Tiedosto</value>
+  </data>
+  <data name="Float" xml:space="preserve">
+    <value>Kellutus</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Muotoilu</value>
+  </data>
+  <data name="FormType" xml:space="preserve">
+    <value>Tyyppi</value>
+  </data>
+  <data name="FriendlyName" xml:space="preserve">
+    <value>Lempinimi</value>
+  </data>
+  <data name="FromState" xml:space="preserve">
+    <value>Tilasta</value>
+  </data>
+  <data name="Guid" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="IdentifierList" xml:space="preserve">
+    <value>Tunnisteluettelo</value>
+  </data>
+  <data name="IdentifierMask" xml:space="preserve">
+    <value>Peite</value>
+  </data>
+  <data name="IdentifierName" xml:space="preserve">
+    <value>Tunnisteen nimi</value>
+  </data>
+  <data name="IdentifierScope" xml:space="preserve">
+    <value>Alue</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Kuva</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Business-objekti</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Asenna</value>
+  </data>
+  <data name="Integer" xml:space="preserve">
+    <value>Kokonaisluku</value>
+  </data>
+  <data name="ItemDisplayValue" xml:space="preserve">
+    <value>Näyttöarvo</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Kohteen nimi</value>
+  </data>
+  <data name="ItemValue" xml:space="preserve">
+    <value>Kohteen arvo</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Luettelo</value>
+  </data>
+  <data name="ListPage" xml:space="preserve">
+    <value>Luettelosivu</value>
+  </data>
+  <data name="ListType" xml:space="preserve">
+    <value>luettelo</value>
+  </data>
+  <data name="LongText" xml:space="preserve">
+    <value>PitkäTeksti</value>
+  </data>
+  <data name="MaskTooltip" xml:space="preserve">
+    <value>#:Laskuri, VVVV:Vuosi, KK:Kuukausi, PP:Päivä, NN:Neljännesvuosi</value>
+  </data>
+  <data name="MaximumLength" xml:space="preserve">
+    <value>Enimmäispituus</value>
+  </data>
+  <data name="MenuItemLink" xml:space="preserve">
+    <value>Kohdelinkki</value>
+  </data>
+  <data name="MenuItemText" xml:space="preserve">
+    <value>Kohteen teksti</value>
+  </data>
+  <data name="MenuSection" xml:space="preserve">
+    <value>Osa/rajamerkki</value>
+  </data>
+  <data name="MetaClassList" xml:space="preserve">
+    <value>Taulukkoluettelo</value>
+  </data>
+  <data name="MetaClassName" xml:space="preserve">
+    <value>Metaluokan nimi</value>
+  </data>
+  <data name="MultiValue" xml:space="preserve">
+    <value>Moniarvo</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="NewCard" xml:space="preserve">
+    <value>Uusi laajennus</value>
+  </data>
+  <data name="NewField" xml:space="preserve">
+    <value>Uusi kenttä</value>
+  </data>
+  <data name="NewIdentifier" xml:space="preserve">
+    <value>Uusi tunniste</value>
+  </data>
+  <data name="NewItem" xml:space="preserve">
+    <value>Uusi kohde</value>
+  </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>Uusi linkki</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>[ Ei määritetty ]</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operaatio</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parametrit</value>
+  </data>
+  <data name="ParentTable" xml:space="preserve">
+    <value>Ylätason Business-objekti</value>
+  </data>
+  <data name="PluralName" xml:space="preserve">
+    <value>Monikollinen nimi</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Asema</value>
+  </data>
+  <data name="Principal" xml:space="preserve">
+    <value>Käyttäjä/ryhmä</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Yksityinen</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Julkinen</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Viite</value>
+  </data>
+  <data name="ReferencedField" xml:space="preserve">
+    <value>ViiteKenttä</value>
+  </data>
+  <data name="ResourceTooltip" xml:space="preserve">
+    <value>Käytä seuraavaa syntaksia arvojen saamiseksi resurssitiedostosta: {ResurssinNimi:ResurssiAvain}</value>
+  </data>
+  <data name="Root" xml:space="preserve">
+    <value>Juuri</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Tallenna</value>
+  </data>
+  <data name="ScopeClass" xml:space="preserve">
+    <value>Business-objekti</value>
+  </data>
+  <data name="ScopeField" xml:space="preserve">
+    <value>Kenttä</value>
+  </data>
+  <data name="ScopeGlobal" xml:space="preserve">
+    <value>Globaali</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Hae</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Valitse</value>
+  </data>
+  <data name="SelectedStates" xml:space="preserve">
+    <value>Valitut osavaltiot</value>
+  </data>
+  <data name="SelectItem" xml:space="preserve">
+    <value>Valitse kohde</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Palvelut</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Näytä</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Näytä tiedot</value>
+  </data>
+  <data name="ShowFilters" xml:space="preserve">
+    <value>Näytä suodattimet</value>
+  </data>
+  <data name="ShowGroups" xml:space="preserve">
+    <value>Näytä ryhmät</value>
+  </data>
+  <data name="SingleValue" xml:space="preserve">
+    <value>Yksittäinen arvo</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Osavaltio</value>
+  </data>
+  <data name="StateList" xml:space="preserve">
+    <value>Tilaluettelo</value>
+  </data>
+  <data name="StateMachine" xml:space="preserve">
+    <value>Tilakone</value>
+  </data>
+  <data name="StateMachineList" xml:space="preserve">
+    <value>Tilakoneet</value>
+  </data>
+  <data name="StateMachineName" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="SupportsCards" xml:space="preserve">
+    <value>Tukee laajennuksia</value>
+  </data>
+  <data name="SystemName" xml:space="preserve">
+    <value>Järjestelmän nimi</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Business-objekti</value>
+  </data>
+  <data name="TableExistsErrorMessage" xml:space="preserve">
+    <value>Business-objekti järjestelmänimellä {0} on jo olemassa. Kokeile toista Business-objektin järjestelmänimeä.</value>
+  </data>
+  <data name="TableInfo" xml:space="preserve">
+    <value>Perustiedot</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Business-objektin nimi</value>
+  </data>
+  <data name="TableOwner" xml:space="preserve">
+    <value>Ylätason Business-objekti</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Teksti</value>
+  </data>
+  <data name="ToState" xml:space="preserve">
+    <value>Tilaan</value>
+  </data>
+  <data name="TransitionName" xml:space="preserve">
+    <value>Siirtymän nimi</value>
+  </data>
+  <data name="TriggerAction" xml:space="preserve">
+    <value>Toimenpide</value>
+  </data>
+  <data name="TriggerCondition" xml:space="preserve">
+    <value>Ehto</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tyyppi</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Poista asennus</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Lataa</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="ViewPage" xml:space="preserve">
+    <value>Katso sivu</value>
+  </data>
+  <data name="ViewType" xml:space="preserve">
+    <value>katso</value>
+  </data>
+  <data name="VisibleColumns" xml:space="preserve">
+    <value>Näkyvät sarakkeet</value>
+  </data>
+  <data name="AssignTypes" xml:space="preserve">
+    <value>Osoitustyypit</value>
+  </data>
+  <data name="SecurityPage" xml:space="preserve">
+    <value>Suojaus</value>
+  </data>
+  <data name="SecurityTemplates" xml:space="preserve">
+    <value>Sisäobjektien suojaus</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Käyttäjäryhmät</value>
+  </data>
+  <data name="BridgeCustomization" xml:space="preserve">
+    <value>Sillan muokkaus</value>
+  </data>
+  <data name="CardCustomization" xml:space="preserve">
+    <value>Business-objektin laajennuksen muokkaus</value>
+  </data>
+  <data name="InfoCustomization" xml:space="preserve">
+    <value>Business-objektin muokkaus</value>
+  </data>
+  <data name="BusinessObjectExtension" xml:space="preserve">
+    <value>Business-objektin laajennus</value>
+  </data>
+  <data name="MReferenceTypeList" xml:space="preserve">
+    <value>Moniviitetyyppien luettelo</value>
+  </data>
+  <data name="MReferenceTypeCreate" xml:space="preserve">
+    <value>Uusi moniviitetyyppi</value>
+  </data>
+  <data name="MReferenceTypeEdit" xml:space="preserve">
+    <value>Muokkaa moniviitetyyppiä</value>
+  </data>
+  <data name="MReferenceMetaClasses" xml:space="preserve">
+    <value>Viitemetaluokat</value>
+  </data>
+  <data name="MReferenceTypeInfo" xml:space="preserve">
+    <value>Moniviitetyyppien tiedot</value>
+  </data>
+  <data name="Field1Info" xml:space="preserve">
+    <value>Kentän 1 tiedot</value>
+  </data>
+  <data name="Field2Info" xml:space="preserve">
+    <value>Kentän 2 tiedot</value>
+  </data>
+  <data name="NewBridge" xml:space="preserve">
+    <value>Uusi silta</value>
+  </data>
+  <data name="NewCard2" xml:space="preserve">
+    <value>Uusi laajennus</value>
+  </data>
+  <data name="NewInfoTable" xml:space="preserve">
+    <value>Uusi Business-objekti</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Taulukot</value>
+  </data>
+  <data name="ErrorMessage_AllowNulls" xml:space="preserve">
+    <value>Valitse Salli tyhjät arvot tai määritä oletusarvo</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Latautuu</value>
+  </data>
+  <data name="McDataType_Aggregation" xml:space="preserve">
+    <value>Kooste</value>
+  </data>
+  <data name="McDataType_BackReference" xml:space="preserve">
+    <value>Takaisinviittaus</value>
+  </data>
+  <data name="McDataType_Boolean" xml:space="preserve">
+    <value>Boolen arvo</value>
+  </data>
+  <data name="McDataType_Card" xml:space="preserve">
+    <value>Kortti</value>
+  </data>
+  <data name="McDataType_Complex" xml:space="preserve">
+    <value>Monimutkainen</value>
+  </data>
+  <data name="McDataType_Currency" xml:space="preserve">
+    <value>Valuutta</value>
+  </data>
+  <data name="McDataType_DateTime" xml:space="preserve">
+    <value>PäivämääräAika</value>
+  </data>
+  <data name="McDataType_Double" xml:space="preserve">
+    <value>Kellutus</value>
+  </data>
+  <data name="McDataType_Enum" xml:space="preserve">
+    <value>Sanakirjan kohteet</value>
+  </data>
+  <data name="McDataType_File" xml:space="preserve">
+    <value>Tiedosto</value>
+  </data>
+  <data name="McDataType_Guid" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="McDataType_Identifier" xml:space="preserve">
+    <value>Tunniste</value>
+  </data>
+  <data name="McDataType_Integer" xml:space="preserve">
+    <value>Kokonaisluku</value>
+  </data>
+  <data name="McDataType_Link" xml:space="preserve">
+    <value>Linkki</value>
+  </data>
+  <data name="McDataType_MultiReference" xml:space="preserve">
+    <value>Moniviittaus</value>
+  </data>
+  <data name="McDataType_Reference" xml:space="preserve">
+    <value>Viite</value>
+  </data>
+  <data name="McDataType_ReferencedField" xml:space="preserve">
+    <value>Viitattu kenttä (vain luku)</value>
+  </data>
+  <data name="McDataType_String" xml:space="preserve">
+    <value>Ketju</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Sivun koko:</value>
+  </data>
+  <data name="NewSingleValue" xml:space="preserve">
+    <value>Uusi – yksittäinen arvo</value>
+  </data>
+  <data name="NewMultiValue" xml:space="preserve">
+    <value>Uusi – moniarvo</value>
+  </data>
+  <data name="PageSize10" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="PageSize25" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="PageSize100" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="PageSize50" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="PageSizeAll" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Luotu</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Laatija</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Muokattu</value>
+  </data>
+  <data name="Modifier" xml:space="preserve">
+    <value>Muokkaaja</value>
+  </data>
+  <data name="ObjectId" xml:space="preserve">
+    <value>Lähdeobjektin tunnus</value>
+  </data>
+  <data name="PrimaryKeyId" xml:space="preserve">
+    <value>Tunnus</value>
+  </data>
+  <data name="AddToForm" xml:space="preserve">
+    <value>Lisää kenttä kohteeseen</value>
+  </data>
+  <data name="AscSort" xml:space="preserve">
+    <value>Lajittelujärjestys nouseva</value>
+  </data>
+  <data name="DescSort" xml:space="preserve">
+    <value>Lajittelujärjestys laskeva</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Tila</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Kohde</value>
+  </data>
+  <data name="Principals" xml:space="preserve">
+    <value>Käyttäjät ja ryhmät</value>
+  </data>
+  <data name="LatinOnlyError" xml:space="preserve">
+    <value>Vain latinalaiset merkit, numerot ja alaviiva ovat hyväksyttäviä.</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Kesto</value>
+  </data>
+  <data name="FloatPercent" xml:space="preserve">
+    <value>Kellutusprosentti</value>
+  </data>
+  <data name="IntegerPercent" xml:space="preserve">
+    <value>Kokonaislukuprosentti</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Käyttäjä/ryhmä</value>
+  </data>
+  <data name="RoleMultiValue" xml:space="preserve">
+    <value>Käyttäjät/ryhmät</value>
+  </data>
+  <data name="Dictionary" xml:space="preserve">
+    <value>Sanakirja</value>
+  </data>
+  <data name="Aggregation" xml:space="preserve">
+    <value>Kooste</value>
+  </data>
+  <data name="ResetToDefault" xml:space="preserve">
+    <value>Palauta oletukseen</value>
+  </data>
+  <data name="DecimalPercent" xml:space="preserve">
+    <value>Desimaaliprosentti</value>
+  </data>
+  <data name="Decimal" xml:space="preserve">
+    <value>Desimaali</value>
+  </data>
+  <data name="McDataType_Decimal" xml:space="preserve">
+    <value>Desimaali</value>
+  </data>
+  <data name="Relations1N" xml:space="preserve">
+    <value>1:N-suhteet</value>
+  </data>
+  <data name="RelationsNN" xml:space="preserve">
+    <value>N:N-suhteet</value>
+  </data>
+  <data name="RelationsN1" xml:space="preserve">
+    <value>N:1-suhteet</value>
+  </data>
+  <data name="NewRelation1N" xml:space="preserve">
+    <value>Uusi suhde "yksi useaan"</value>
+  </data>
+  <data name="NewRelationN1" xml:space="preserve">
+    <value>Uusi suhde "usea yhteen"</value>
+  </data>
+  <data name="NewRelationNN" xml:space="preserve">
+    <value>Uusi suhde "usea useaan"</value>
+  </data>
+  <data name="PrimaryObject" xml:space="preserve">
+    <value>Ensisijainen objekti</value>
+  </data>
+  <data name="RelatedObject" xml:space="preserve">
+    <value>Läheiset objektit</value>
+  </data>
+  <data name="CurrentObject" xml:space="preserve">
+    <value>Nykyinen objekti</value>
+  </data>
+  <data name="EditRelation1N" xml:space="preserve">
+    <value>Muokkaa suhdetta "yksi useaan"</value>
+  </data>
+  <data name="EditRelationN1" xml:space="preserve">
+    <value>Muokkaa suhdetta "usea yhteen"</value>
+  </data>
+  <data name="EditRelationNN" xml:space="preserve">
+    <value>Muokkaa suhdetta "usea useaan"</value>
+  </data>
+  <data name="BusinessObjectsBlock" xml:space="preserve">
+    <value>[ Business-objektit ]</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>Yleiset tiedot</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Objekti</value>
+  </data>
+  <data name="Relation1N" xml:space="preserve">
+    <value>Suhde 1:N</value>
+  </data>
+  <data name="RelationN1" xml:space="preserve">
+    <value>Suhde N:1</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>Näytä järjestys</value>
+  </data>
+  <data name="DisplayRegion" xml:space="preserve">
+    <value>Näytä seutu</value>
+  </data>
+  <data name="DisplayText" xml:space="preserve">
+    <value>Näytä teksti</value>
+  </data>
+  <data name="RelationNN" xml:space="preserve">
+    <value>Suhde N:N</value>
+  </data>
+  <data name="RelationName" xml:space="preserve">
+    <value>Suhteen nimi</value>
+  </data>
+  <data name="SystemViews" xml:space="preserve">
+    <value>Järjestelmänäkymät</value>
+  </data>
+  <data name="AddSystemView" xml:space="preserve">
+    <value>Lisää järjestelmänäkymä</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>On välissä</value>
+  </data>
+  <data name="Contains" xml:space="preserve">
+    <value>Sisältää</value>
+  </data>
+  <data name="EndsWith" xml:space="preserve">
+    <value>Päättyy</value>
+  </data>
+  <data name="Equal" xml:space="preserve">
+    <value>On yhtä suuri kuin</value>
+  </data>
+  <data name="Greater" xml:space="preserve">
+    <value>On suurempi kuin</value>
+  </data>
+  <data name="GreaterOrEqual" xml:space="preserve">
+    <value>On suurempi tai yhtä suuri kuin</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>On mikä tahansa:</value>
+  </data>
+  <data name="IsFalse" xml:space="preserve">
+    <value>On epätosi</value>
+  </data>
+  <data name="IsNotNull" xml:space="preserve">
+    <value>Ei ole tyhjä arvo</value>
+  </data>
+  <data name="IsNull" xml:space="preserve">
+    <value>On tyhjä arvo</value>
+  </data>
+  <data name="IsTrue" xml:space="preserve">
+    <value>On tosi</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Viime kuu</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Viime viikko</value>
+  </data>
+  <data name="LastYear" xml:space="preserve">
+    <value>Viime vuosi</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>On pienempi kuin</value>
+  </data>
+  <data name="LessOrEqual" xml:space="preserve">
+    <value>On pienempi tai yhtä suuri kuin</value>
+  </data>
+  <data name="Like" xml:space="preserve">
+    <value>On kuin</value>
+  </data>
+  <data name="NotContains" xml:space="preserve">
+    <value>Ei sisällä</value>
+  </data>
+  <data name="NotEqual" xml:space="preserve">
+    <value>Ei ole yhtä suuri kuin</value>
+  </data>
+  <data name="NotIn" xml:space="preserve">
+    <value>Ei ole mikään seuraavista:</value>
+  </data>
+  <data name="NotLike" xml:space="preserve">
+    <value>Ei ole kuin</value>
+  </data>
+  <data name="StartsWith" xml:space="preserve">
+    <value>Alkaa</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Tämä kuukausi</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Tämä viikko</value>
+  </data>
+  <data name="ThisYear" xml:space="preserve">
+    <value>Tämä vuosi</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Tänään</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Eilen</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>Uusi näkymä</value>
+  </data>
+  <data name="UserViews" xml:space="preserve">
+    <value>Käyttäjänäkymät</value>
+  </data>
+  <data name="SystemView" xml:space="preserve">
+    <value>Järjestelmänäkymä</value>
+  </data>
+  <data name="NewSystemView" xml:space="preserve">
+    <value>Uusi järjestelmänäkymä</value>
+  </data>
+  <data name="SystemViewEditing" xml:space="preserve">
+    <value>Muokkaa järjestelmänäkymää</value>
+  </data>
+  <data name="ViewEditing" xml:space="preserve">
+    <value>Muokkaa näkymää</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Lisää...</value>
+  </data>
+  <data name="ObjectNotSet" xml:space="preserve">
+    <value>Ei määritetty</value>
+  </data>
+  <data name="ItemNotSelected" xml:space="preserve">
+    <value>&lt; mitään ei ole valittu &gt;</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Julkaise</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Julkaisu</value>
+  </data>
+  <data name="ClientScript" xml:space="preserve">
+    <value>Asiakasohjelmakoodi</value>
+  </data>
+  <data name="BafExport" xml:space="preserve">
+    <value>Vie</value>
+  </data>
+  <data name="BafImport" xml:space="preserve">
+    <value>Tuo</value>
+  </data>
+  <data name="ToolBarMenuBafNewItem" xml:space="preserve">
+    <value>Luo uusi</value>
+  </data>
+  <data name="ToolBarMenuBafExportImport" xml:space="preserve">
+    <value>Vie/Tuo</value>
+  </data>
+  <data name="WarningFile" xml:space="preserve">
+    <value>Haluatko varmasti poistaa tämän tiedoston?</value>
+  </data>
+  <data name="MenuItemIcon" xml:space="preserve">
+    <value>Kohteen kuvake</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Käyttöluvat</value>
+  </data>
+  <data name="GeneralView" xml:space="preserve">
+    <value>Yleinen näkymä</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Muokkaa sanakirjaa</value>
+  </data>
+</root>

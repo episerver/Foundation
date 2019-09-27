@@ -1,0 +1,3 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TaxCategoryList.ascx.cs" Inherits="Mediachase.Commerce.Manager.Catalog.TaxCategoryList" %>
+<%@ Register Src="../Core/Controls/EcfListViewControl.ascx" TagName="EcfListViewControl" TagPrefix="core" %>
+<core:EcfListViewControl id="MyListView" runat="server" AppId="Catalog" ViewId="TaxCategory-List" ShowTopToolbar="true"></core:EcfListViewControl>
