@@ -1,0 +1,12 @@
+@model SearchViewModel<GenericNode>
+
+@{
+    var colStyle = string.Format("width: {0:0.0000}%", (double)100 / Model.FilterOption.PageSize);
+}
+
+@foreach (var product in Model.ProductViewModels)
+{
+  <div class="jsProductTile product-row__tile col-xs-12 col-sm-6" style="@colStyle">
+    @Html.Partial("_Product", product)
+  </div>
+}

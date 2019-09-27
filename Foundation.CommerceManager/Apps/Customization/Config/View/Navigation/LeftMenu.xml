@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Navigation>
+		<Tabs id="mainTag">
+			<Tab id="navTabAdmin">
+				<Link id="Core_System">
+					<add>
+						<Link order="60" id="LeftMenu" text="{Common:LeftMenu}" iconUrl="" iconCss="" command="cmd_LeftMenu" permissions="core:mng:leftmenu" />
+					</add>
+				</Link>
+			</Tab>
+		</Tabs>
+		<Commands>
+			<add>
+				<Command id="cmd_LeftMenu">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Customization', 'LeftMenuItem-List')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</Navigation>
+</View>

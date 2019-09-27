@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<clear></clear>
+			<add>
+				<Block id="shipview" name="">
+					<Placeholder id="Placeholder_1">
+						<Control id="ShippingTitle" path="~/Apps/Order/Modules/ShipmentInfo.ascx">
+						</Control>
+						<Control id="LineItemsGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+							<Property name="RelatedClassName" value="LineItem" />
+							<Property name="RelatedToClassName" value="Order"/>
+							<Property name="LeftPadding" value="5px"/>
+						</Control>
+						<Control id="ShippingInfo" path="~/Apps/Order/Modules/ShippingInformation.ascx">
+						</Control>
+						<Control id="ShipSummary" path="~/Apps/Order/Modules/ShipmentSummary.ascx">
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+		<ButtonSets>
+			<clear></clear>
+			<add>
+				<ButtonSet placeName="StatusChanger">
+					<Button id="CompleteShipment" text="{OrderStrings:Complete_Shipment}" commandName="btn_CompleteShipment" width="170" disableMode="true" permissions="order:mng:shipment:complete"></Button>
+					<Button id="ReleaseShipment" text="{OrderStrings:Release_Shipment}" commandName="btn_ReleaseShipment" width="170" disableMode="true" permissions="order:mng:edit"></Button>
+					<Button id="CancelShipment" text="{OrderStrings:Cancel_Shipment}" commandName="btn_CancelShipment" width="170" disableMode="true" permissions="order:mng:edit"></Button>
+				</ButtonSet>
+        <ButtonSet placeName="CompletePickup">
+          <Button id="CompletePickupOrder" text="{OrderStrings:Pickup_Orders}" commandName="btn_CompletePickupOrder" width="170" disableMode="true" permissions="order:mng:shipment:complete"/>
+        </ButtonSet>
+				<ButtonSet placeName="OrderView">
+					<Button id="CreateReturn" text="{OrderStrings:Create_Return}" commandName="cmdOrderCreateEditReturn" width="170" disableMode="true" permissions="order:mng:return:create"></Button>
+				</ButtonSet>
+				<ButtonSet placeName="ButtonsHolder">
+					<Button id="SaveButton" text="{SharedStrings:Save}" imageUrl="~/Apps/MetaDataBase/images/ok-button.gif" commandName="btn_SaveBtn" width="100" tooltip="My Save" disableMode="true" permissions="order:mng:edit"></Button>
+					<Button id="CancelButton" text="{SharedStrings:Cancel}" imageUrl="~/Apps/MetaDataBase/images/cancel-button.gif" commandName="btn_CancelBtn" width="100" disableMode="false" permissions="order:mng:edit"></Button>
+					<Button id="UnlockButton" text="{Customer:UnlockUser}" imageUrl="~/Apps/Order/images/unlock_s.jpg" commandName="btn_UnlockBtn" width="100" disableMode="false" permissions="order:mng:edit"></Button>
+				</ButtonSet>
+			</add>
+		</ButtonSets>
+		<Commands>
+			<add>
+				<Command id="cmdOrderCreateEditReturn">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Create/Edit Return</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderCreateReturnForm&amp;Id={HttpContext:OrderGroupId}&amp;ShipmentId=[ClientParam:ContainerId]&amp;GridViewId=OrderCreateReturnForm&amp;ReturnCommand=cmd_NeedRebind</Url>
+					<Width>900</Width>
+					<Height>450</Height>
+					<Left>50</Left>
+					<Top>40</Top>
+					<Drag>True</Drag>
+					<AutoHeightResize>true</AutoHeightResize>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CreateReturnShipmentHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_SaveBtn">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.SaveChangesHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.SaveChangesHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_CancelBtn">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CancelEditModeHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CancelEditModeHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_UnlockBtn">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.UnlockHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.UnlockHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="btn_QuickEditOrder">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Currency</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderGroup-QuickEdit&amp;Id={QueryString:id}&amp;customerId={QueryString:customerId}&amp;commandName=cmd_NeedRebind</Url>
+					<Width>490</Width>
+					<Height>280</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.QuickEditOrderInfoHandler, Mediachase.ConsoleManager" />
+				</Command>
+				
+				<Command id="btn_CompleteShipment">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CompleteShipmentHandler, Mediachase.ConsoleManager"></Handler>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CompleteShipmentHandler, Mediachase.ConsoleManager"></EnableHandler>
+				</Command>
+
+				<Command id="btn_ReleaseShipment">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.ReleaseShipmentHandler, Mediachase.ConsoleManager"></Handler>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.ReleaseShipmentHandler, Mediachase.ConsoleManager"></EnableHandler>
+				</Command>
+
+				<Command id="btn_CancelShipment">
+					<ConfirmationText>{OrderStrings:CancelShipmentConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CancelShipmentHandler, Mediachase.ConsoleManager"></Handler>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CancelShipmentHandler, Mediachase.ConsoleManager"></EnableHandler>
+				</Command>
+
+        <Command id="btn_CompletePickupOrder">
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.PickupOrderHandler, Mediachase.ConsoleManager"></Handler>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.PickupOrderHandler, Mediachase.ConsoleManager"></EnableHandler>
+        </Command>
+			</add>
+		</Commands>
+	</Form>
+	<ViewConfig>
+	</ViewConfig>
+</View>

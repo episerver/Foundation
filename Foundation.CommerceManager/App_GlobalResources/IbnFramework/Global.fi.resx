@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_mc_Actions" xml:space="preserve">
+    <value>Toimenpiteet</value>
+  </data>
+  <data name="_mc_BackToList" xml:space="preserve">
+    <value>Takaisin luetteloon</value>
+  </data>
+  <data name="_mc_Cancel" xml:space="preserve">
+    <value>Peruuta</value>
+  </data>
+  <data name="_mc_ColumnEditor" xml:space="preserve">
+    <value>Sarake-editori</value>
+  </data>
+  <data name="_mc_Department" xml:space="preserve">
+    <value>Osasto</value>
+  </data>
+  <data name="_mc_DepartmentList" xml:space="preserve">
+    <value>Osastoluettelo</value>
+  </data>
+  <data name="_mc_DepartmentView" xml:space="preserve">
+    <value>Osastonäkymä</value>
+  </data>
+  <data name="_mc_Designer" xml:space="preserve">
+    <value>Suunnitteluohjelma</value>
+  </data>
+  <data name="_mc_Details" xml:space="preserve">
+    <value>Tiedot</value>
+  </data>
+  <data name="_mc_General" xml:space="preserve">
+    <value>Yleistä</value>
+  </data>
+  <data name="_mc_Layout" xml:space="preserve">
+    <value>Asettelu</value>
+  </data>
+  <data name="_mc_Location" xml:space="preserve">
+    <value>Sijainti</value>
+  </data>
+  <data name="_mc_NotSet" xml:space="preserve">
+    <value>Ei määritetty</value>
+  </data>
+  <data name="_mc_PageSize" xml:space="preserve">
+    <value>Sivun koko</value>
+  </data>
+  <data name="_mc_ParentTitle" xml:space="preserve">
+    <value>Yläotsikko</value>
+  </data>
+  <data name="_mc_Records" xml:space="preserve">
+    <value> kohteet</value>
+  </data>
+  <data name="_mc_Save" xml:space="preserve">
+    <value>Tallenna</value>
+  </data>
+  <data name="_mc_Selected" xml:space="preserve">
+    <value>Valittu: %selCount%</value>
+  </data>
+  <data name="_mc_Title" xml:space="preserve">
+    <value>Otsikko</value>
+  </data>
+  <data name="_mc_UserList" xml:space="preserve">
+    <value>Käyttäjät</value>
+  </data>
+  <data name="_mc_WorkgroupList" xml:space="preserve">
+    <value>Työryhmät</value>
+  </data>
+  <data name="_mc_WorkgroupView" xml:space="preserve">
+    <value>Työryhmänäkymä</value>
+  </data>
+  <data name="_mc_Reset" xml:space="preserve">
+    <value>Nollaa</value>
+  </data>
+  <data name="_mc_All" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="_mc_Add" xml:space="preserve">
+    <value>Lisää</value>
+  </data>
+  <data name="_mc_ObjectForms" xml:space="preserve">
+    <value>Objektilomakkeet</value>
+  </data>
+  <data name="_mc_FieldAdd" xml:space="preserve">
+    <value>Lisää kenttä</value>
+  </data>
+  <data name="_mc_FieldsAdd" xml:space="preserve">
+    <value>Lisää kentät</value>
+  </data>
+  <data name="_mc_FieldProperties" xml:space="preserve">
+    <value>Kentän ominaisuudet</value>
+  </data>
+  <data name="_mc_FormAdd" xml:space="preserve">
+    <value>Uusi lomake</value>
+  </data>
+  <data name="_mc_SectionNew" xml:space="preserve">
+    <value>Uusi osa</value>
+  </data>
+  <data name="_mc_TabNew" xml:space="preserve">
+    <value>Uusi välilehti</value>
+  </data>
+  <data name="_mc_CommonTasks" xml:space="preserve">
+    <value>Yhteiset tehtävät</value>
+  </data>
+  <data name="_mc_Class" xml:space="preserve">
+    <value>Luokka</value>
+  </data>
+  <data name="_mc_Form" xml:space="preserve">
+    <value>Lomake</value>
+  </data>
+  <data name="_mc_Type" xml:space="preserve">
+    <value>Tyyppi</value>
+  </data>
+  <data name="_mc_Remove" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="_mc_SaveChanges" xml:space="preserve">
+    <value>Tallenna muutokset</value>
+  </data>
+  <data name="_mc_ChangeProperties" xml:space="preserve">
+    <value>Muuta ominaisuuksia</value>
+  </data>
+  <data name="_mc_DeleteFieldWarning" xml:space="preserve">
+    <value>Haluatko varmasti poistaa valitun kentän?</value>
+  </data>
+  <data name="_mc_DeleteSectionWarning" xml:space="preserve">
+    <value>Haluatko varmasti poistaa valitun osan?</value>
+  </data>
+  <data name="_mc_DeleteFormWarning" xml:space="preserve">
+    <value>Haluatko varmasti poistaa tämän lomakkeen?</value>
+  </data>
+  <data name="_mc_TitleIsNotEntered" xml:space="preserve">
+    <value>Otsikkoa ei ole annettu</value>
+  </data>
+  <data name="_mc_NoTitle" xml:space="preserve">
+    <value>Ei otsikkoa</value>
+  </data>
+  <data name="_mc_AddFieldsText" xml:space="preserve">
+    <value>Valitse osaan lisättävät kentät.</value>
+  </data>
+  <data name="_mc_MetaField" xml:space="preserve">
+    <value>Metakenttä</value>
+  </data>
+  <data name="_mc_Tab" xml:space="preserve">
+    <value>Välilehti</value>
+  </data>
+  <data name="_mc_Section" xml:space="preserve">
+    <value>Osa</value>
+  </data>
+  <data name="_mc_FieldAddText" xml:space="preserve">
+    <value>Valitse kenttä osaa varten.</value>
+  </data>
+  <data name="_mc_Field" xml:space="preserve">
+    <value>Kenttä</value>
+  </data>
+  <data name="_mc_FieldPropertiesText" xml:space="preserve">
+    <value>Voit muuttaa kentän ominaisuuksia.</value>
+  </data>
+  <data name="_mc_Label" xml:space="preserve">
+    <value>Merkki</value>
+  </data>
+  <data name="_mc_LayoutOneColumn" xml:space="preserve">
+    <value>Yksi sarake</value>
+  </data>
+  <data name="_mc_LayoutTwoColumn" xml:space="preserve">
+    <value>Kaksi saraketta</value>
+  </data>
+  <data name="_mc_Rows" xml:space="preserve">
+    <value>Rivit</value>
+  </data>
+  <data name="_mc_DisplayLabel" xml:space="preserve">
+    <value>Näytä merkki lomakkeessa.</value>
+  </data>
+  <data name="_mc_FormAddText" xml:space="preserve">
+    <value>Lisää järjestelmään uusi lomake.</value>
+  </data>
+  <data name="_mc_TitleExistsError" xml:space="preserve">
+    <value>Tämä otsikko on jo käytössä!</value>
+  </data>
+  <data name="_mc_SectionNewText" xml:space="preserve">
+    <value>Lisää välilehteen uusi osa.</value>
+  </data>
+  <data name="_mc_SectionEdit" xml:space="preserve">
+    <value>Muokkaa osaa</value>
+  </data>
+  <data name="_mc_SectionEditText" xml:space="preserve">
+    <value>Voit muuttaa osan ominaisuuksia.</value>
+  </data>
+  <data name="_mc_Region" xml:space="preserve">
+    <value>Seutu</value>
+  </data>
+  <data name="_mc_ShowBorder" xml:space="preserve">
+    <value>Näytä tämän osan rajaviiva.</value>
+  </data>
+  <data name="_mc_ShowName" xml:space="preserve">
+    <value>Näytä tämän osan nimi lomakkeessa.</value>
+  </data>
+  <data name="_mc_TopRegion" xml:space="preserve">
+    <value>Yläseutu</value>
+  </data>
+  <data name="_mc_MLeftRegion" xml:space="preserve">
+    <value>Vasen keskiseutu</value>
+  </data>
+  <data name="_mc_MRightRegion" xml:space="preserve">
+    <value>Oikea keskiseutu</value>
+  </data>
+  <data name="_mc_BottomRegion" xml:space="preserve">
+    <value>Alaseutu</value>
+  </data>
+  <data name="_mc_TabNewText" xml:space="preserve">
+    <value>Lisää lomakkeeseen uusi välilehti.</value>
+  </data>
+  <data name="_mc_TabEdit" xml:space="preserve">
+    <value>Muokkaa välilehteä</value>
+  </data>
+  <data name="_mc_TabEditText" xml:space="preserve">
+    <value>Voit muokata välilehteä.</value>
+  </data>
+  <data name="_mc_TimeManagement" xml:space="preserve">
+    <value>Ajanhallinta</value>
+  </data>
+  <data name="_mc_User" xml:space="preserve">
+    <value>Käyttäjä</value>
+  </data>
+  <data name="_mc_TimePeriod" xml:space="preserve">
+    <value>Aikajakso</value>
+  </data>
+  <data name="_mc_Project" xml:space="preserve">
+    <value>Projekti</value>
+  </data>
+  <data name="_mc_Description" xml:space="preserve">
+    <value>Kuvaus</value>
+  </data>
+  <data name="_mc_NoSelectedItems" xml:space="preserve">
+    <value>Valittuja kohteita ei ole</value>
+  </data>
+  <data name="_mc_Total" xml:space="preserve">
+    <value>Yhteensä</value>
+  </data>
+  <data name="_mc_Apply" xml:space="preserve">
+    <value>Käytä</value>
+  </data>
+  <data name="_mc_ReadOnly" xml:space="preserve">
+    <value>Tee lomakkeesta vain luku.</value>
+  </data>
+  <data name="_mc_Events" xml:space="preserve">
+    <value>Tapahtumat</value>
+  </data>
+  <data name="principalDepartment" xml:space="preserve">
+    <value>Osasto</value>
+  </data>
+  <data name="principalEveryone" xml:space="preserve">
+    <value>Jokainen</value>
+  </data>
+  <data name="principalMainCompany" xml:space="preserve">
+    <value>Pääyritys</value>
+  </data>
+  <data name="principalPartnerCompany" xml:space="preserve">
+    <value>Kumppaniyritys</value>
+  </data>
+  <data name="principalPartners" xml:space="preserve">
+    <value>Kumppanit</value>
+  </data>
+  <data name="principalRestricted" xml:space="preserve">
+    <value>Rajoitettu</value>
+  </data>
+  <data name="principalRole" xml:space="preserve">
+    <value>Rooli</value>
+  </data>
+  <data name="principalRoles" xml:space="preserve">
+    <value>Käyttäjäryhmät</value>
+  </data>
+  <data name="principalTeam" xml:space="preserve">
+    <value>Tiimi</value>
+  </data>
+  <data name="principalTeams" xml:space="preserve">
+    <value>Tiimit</value>
+  </data>
+  <data name="principalUser" xml:space="preserve">
+    <value>Käyttäjä</value>
+  </data>
+  <data name="_mc_NoItemSelected" xml:space="preserve">
+    <value>Valitse yksi ruutu tai useampi</value>
+  </data>
+  <data name="_mc_SelectedNoNumber" xml:space="preserve">
+    <value>Valittu:</value>
+  </data>
+  <data name="_mc_ActiveActivities" xml:space="preserve">
+    <value>Aktiivinen&amp;nbsp;tehtävä-&amp;nbsp;luettelo</value>
+  </data>
+  <data name="_mc_ActiveDocuments" xml:space="preserve">
+    <value>Aktiiviset&amp;nbsp; asiakirjat</value>
+  </data>
+  <data name="_mc_ActiveProjects" xml:space="preserve">
+    <value>Aktiiviset&amp;nbsp; projektit</value>
+  </data>
+  <data name="_mc_Calendar" xml:space="preserve">
+    <value>Viikoittainen&amp;nbsp;kalenteri</value>
+  </data>
+  <data name="_mc_HelpInfo" xml:space="preserve">
+    <value>Avustajat/tietoisuus-&amp;nbsp;työkalut</value>
+  </data>
+  <data name="_mc_InActivities" xml:space="preserve">
+    <value>&amp;nbsp;Minulle&amp;nbsp;annetut&amp;nbsp;tehtävät</value>
+  </data>
+  <data name="_mc_OutActivities" xml:space="preserve">
+    <value>&amp;nbsp;Minun&amp;nbsp;antamat&amp;nbsp;tehtävät</value>
+  </data>
+  <data name="_mc_RssNews" xml:space="preserve">
+    <value>Uutis-&amp;nbsp;kanava</value>
+  </data>
+  <data name="_mc_ControlVisible" xml:space="preserve">
+    <value>Näytä sivulla</value>
+  </data>
+  <data name="_mc_SetDefault" xml:space="preserve">
+    <value>Määritä oletukseksi</value>
+  </data>
+  <data name="_mc_1_1_1Column_Description" xml:space="preserve">
+    <value>Kolmen sarakkeen malli</value>
+  </data>
+  <data name="_mc_1_1_1Column_Name" xml:space="preserve">
+    <value>Kolmen sarakkeen malli</value>
+  </data>
+  <data name="_mc_1_1Column_Description" xml:space="preserve">
+    <value>Kahden sarakkeen malli</value>
+  </data>
+  <data name="_mc_1_1Column_Name" xml:space="preserve">
+    <value>Oletus kahden sarakkeen malli</value>
+  </data>
+  <data name="_mc_1_2Column_Description" xml:space="preserve">
+    <value>Kahden sarakkeen malli</value>
+  </data>
+  <data name="_mc_1_2Column_Name" xml:space="preserve">
+    <value>Kahden sarakkeen malli (leveys 1 : 2)</value>
+  </data>
+  <data name="_mc_1Column_Description" xml:space="preserve">
+    <value>Yksi yksisarakkeinen malli</value>
+  </data>
+  <data name="_mc_1Column_Name" xml:space="preserve">
+    <value>Yhden sarakkeen malli</value>
+  </data>
+  <data name="_mc_2_1Column_Description" xml:space="preserve">
+    <value>Kahden sarakkeen malli</value>
+  </data>
+  <data name="_mc_2_1Column_Name" xml:space="preserve">
+    <value>Kahden sarakkeen malli (leveys 2 : 1)</value>
+  </data>
+  <data name="_mc_Forms" xml:space="preserve">
+    <value>Lomakkeet</value>
+  </data>
+  <data name="_mc_FavoriteLists" xml:space="preserve">
+    <value>Omat&amp;nbsp;suosikki-&amp;nbsp;luettelot</value>
+  </data>
+  <data name="_mc_ActiveActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ActiveDocumentsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ActiveProjectsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_CalendarDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_FavoriteListsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_HelpInfoDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_InActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_OutActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_RssNewsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_RemoveBlock" xml:space="preserve">
+    <value>Poistetaanko esto "Oma työni" -sivulta?</value>
+  </data>
+  <data name="_mc_NoItems" xml:space="preserve">
+    <value>Ei kohteita</value>
+  </data>
+  <data name="_mc_LastAlert" xml:space="preserve">
+    <value>Lähetys-&amp;nbsp;varoitus</value>
+  </data>
+  <data name="_mc_LastAlertDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ControlsSettings" xml:space="preserve">
+    <value>Valvonnan asetukset</value>
+  </data>
+  <data name="_mc_TemplateSettings" xml:space="preserve">
+    <value>Malliasetukset</value>
+  </data>
+  <data name="GroupAdministrators" xml:space="preserve">
+    <value>Järjestelmänvalvojat</value>
+  </data>
+  <data name="GroupEveryone" xml:space="preserve">
+    <value>Jokainen</value>
+  </data>
+  <data name="GroupExec" xml:space="preserve">
+    <value>Toimitusjohtajat</value>
+  </data>
+  <data name="GroupExtranet" xml:space="preserve">
+    <value>Extranet</value>
+  </data>
+  <data name="GroupHDM" xml:space="preserve">
+    <value>Käyttötuen johtajat</value>
+  </data>
+  <data name="GroupIntranet" xml:space="preserve">
+    <value>Intranet</value>
+  </data>
+  <data name="GroupPM" xml:space="preserve">
+    <value>Projektipäälliköt</value>
+  </data>
+  <data name="GroupPPM" xml:space="preserve">
+    <value>Power-projektipäälliköt</value>
+  </data>
+  <data name="GroupRoles" xml:space="preserve">
+    <value>Käyttäjäryhmät</value>
+  </data>
+  <data name="GroupTM" xml:space="preserve">
+    <value>Ajanhallinta</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Toimenpide</value>
+  </data>
+  <data name="_mc_ie6update" xml:space="preserve">
+    <value>Olet asentanut Internet Explorer 6:n tai vanhemman version. Asenna Internet Explorer 7.0 tai uudempi versio, jotta voit työskennellä oikein. Voita ladata Internet Explorer 7.0:n &lt;a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'&gt;täältä&lt;/a&gt;.</value>
+  </data>
+  <data name="ChangeFilter" xml:space="preserve">
+    <value>Vaihda suodatinta</value>
+  </data>
+  <data name="FilterIsSet" xml:space="preserve">
+    <value>Suodatin on määritetty</value>
+  </data>
+  <data name="FilterIsNotSet" xml:space="preserve">
+    <value>Suodatinta ei ole määritetty</value>
+  </data>
+  <data name="ShowGroupInfo" xml:space="preserve">
+    <value>Näytä yhteenvetotiedot</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Ryhmä</value>
+  </data>
+  <data name="MustBeUnique" xml:space="preserve">
+    <value>Tämä kenttä oli merkitty yksilölliseksi! Anna toinen arvo!</value>
+  </data>
+  <data name="_mc_NoGridData" xml:space="preserve">
+    <value>Ei saatavana olevia kohteita</value>
+  </data>
+  <data name="_mc_State" xml:space="preserve">
+    <value>Osavaltio</value>
+  </data>
+  <data name="_mc_Horizontal" xml:space="preserve">
+    <value>Vaakasuuntainen</value>
+  </data>
+  <data name="_mc_Vertical" xml:space="preserve">
+    <value>Pystysuuntainen</value>
+  </data>
+  <data name="_mc_Delete" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="_mc_New" xml:space="preserve">
+    <value>Uusi</value>
+  </data>
+  <data name="SortingTitle" xml:space="preserve">
+    <value>Lajittelusarjat</value>
+  </data>
+  <data name="AddSort" xml:space="preserve">
+    <value>Lisää lajittelusarja</value>
+  </data>
+  <data name="NoSortings" xml:space="preserve">
+    <value>Lajittelusarjoja ei ole</value>
+  </data>
+  <data name="ViewFieldSet" xml:space="preserve">
+    <value>Katso</value>
+  </data>
+  <data name="_mc_DeleteView" xml:space="preserve">
+    <value>PoistaNäkymä</value>
+  </data>
+  <data name="_mc_DeleteViewWarning" xml:space="preserve">
+    <value>Haluatko varmasti poistaa tämän näkymän?</value>
+  </data>
+  <data name="FieldsTab" xml:space="preserve">
+    <value>Kentät</value>
+  </data>
+  <data name="FiltersTab" xml:space="preserve">
+    <value>Suodattimet</value>
+  </data>
+  <data name="GeneralTab" xml:space="preserve">
+    <value>Yleistä</value>
+  </data>
+  <data name="GroupsTab" xml:space="preserve">
+    <value>Ryhmät</value>
+  </data>
+  <data name="IsPublicView" xml:space="preserve">
+    <value>Näytä tämä näkymä kaikille käyttäjille</value>
+  </data>
+  <data name="NewViewGeneralTabComment" xml:space="preserve">
+    <value>Kaikki on valmiina uutta kokonaisuusluettelonäkymää varten. Kirjoita näkymän nimi.</value>
+  </data>
+  <data name="SelectTitle" xml:space="preserve">
+    <value>Kirjoita otsikko</value>
+  </data>
+  <data name="tClose" xml:space="preserve">
+    <value>Sulje</value>
+  </data>
+  <data name="TitleIsRequired" xml:space="preserve">
+    <value>Otsikko on pakollinen!</value>
+  </data>
+  <data name="tSave" xml:space="preserve">
+    <value>Tallenna</value>
+  </data>
+  <data name="GoToViewLink" xml:space="preserve">
+    <value>Siirry näkymään</value>
+  </data>
+  <data name="DoubleClick" xml:space="preserve">
+    <value>Valitse kaksoisnapsauttamalla</value>
+  </data>
+  <data name="_mc_Print" xml:space="preserve">
+    <value>Tulosta</value>
+  </data>
+</root>

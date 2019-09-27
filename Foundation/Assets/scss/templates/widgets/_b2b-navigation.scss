@@ -1,0 +1,29 @@
+﻿.sub-navigation {
+    width: 100%;
+    display: flex;
+
+    a {
+        flex: 1 0 auto;
+        text-align: center;
+        /*border-top: 4px solid black;*/
+        border-bottom: 4px solid black;
+        border-left: 4px solid white;
+        border-right: 4px solid white;
+
+        &:last-child {
+            border-right: 0;
+        }
+
+        &.current {
+            background-color: #333;
+            color: white;
+            border-left: 4px solid #333;
+            border-right: 4px solid #333;
+        }
+
+        &:hover {
+            border-left: 4px solid #333;
+            border-right: 4px solid #333;
+        }
+    }
+}

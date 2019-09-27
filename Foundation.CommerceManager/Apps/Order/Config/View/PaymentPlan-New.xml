@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <ViewConfig>
+    <setAttributes id="PaymentPlan-New" controlUrl="Order/Modules/OrderCreateContainer.ascx" help="Order+Management" permissions="order:mng:create"></setAttributes>
+    <add>
+      <CustomParams>
+        <Param key="ClassName" value="PaymentPlan"></Param>
+        <Param key="LayoutType" value="ObjectView"></Param>
+        <Param key="LayoutMode" value="JQueryMode"></Param>
+        <Param key="SelectTabByPostback" value="true"></Param>
+      </CustomParams>
+    </add>
+  </ViewConfig>
+</View>

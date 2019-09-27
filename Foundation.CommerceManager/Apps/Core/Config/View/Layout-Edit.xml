@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Layout-Edit" controlUrl="" />
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Controls_Set}" controlUrl="Core/Layout/Modules/Tabs/ControlSetTab.ascx" />
+				<Tab name="{SharedStrings:Page_Template}" controlUrl="Core/Layout/Modules/Tabs/PageTemplateTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

@@ -1,0 +1,209 @@
+﻿/* Generic */
+body {
+font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif; 
+font-size:11px;
+scrollbar-3dlight-color: #F0F0EE;
+scrollbar-arrow-color: #676662;
+scrollbar-base-color: #F0F0EE;
+scrollbar-darkshadow-color: #DDDDDD;
+scrollbar-face-color: #E0E0DD;
+scrollbar-highlight-color: #F0F0EE;
+scrollbar-shadow-color: #F0F0EE;
+scrollbar-track-color: #F5F5F5;
+background: #eee;
+padding: 0;
+margin: 8px 8px 0 8px;
+overflow: hidden;
+}
+
+html {background: #eee;}
+td {font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif; font-size: 11px;}
+textarea {resize: none;outline: none;}
+a:link, a:visited {color: black;}
+a:hover {color: #2B6FB6;}
+a:active {color: black;}
+.nowrap {white-space: nowrap}
+
+/* Forms */
+fieldset {border: 1px solid #919B9C; font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif; font-size: 11px; margin: 6px 0 0 0; padding: 4px;}
+legend {font-weight: bold; padding: 0 8px 0 4px;}
+label.msg {display: none;}
+label.invalid {color: #EE0000; display: inline;}
+input.invalid {border: 1px solid #EE0000;}
+input {background: #FFF;}
+input, select, textarea {font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif; font-size: 11px; border: 1px solid #808080;}
+input.radio, input[type=radio] {background: transparent; border: 0; vertical-align: middle;}
+input.checkbox, input[type=checkbox] {background: transparent; border: 1px none #000000; vertical-align: middle;}
+.input_noborder {border: 0;}
+
+/* Buttons */
+#insert, #cancel, input.button, .updateButton {
+border: 1px solid #8d8d8d;
+margin: 0 0 0 8px; 
+background: url(img/btn_bg.gif);
+background-repeat: repeat-x;
+background-color: #bdbdbd;
+cursor: pointer;
+padding: 0 0.25em 2px 0.25em;
+text-align: center;
+width: auto;
+-webkit-border-radius: 2px; 
+-moz-border-radius: 2px;
+}
+
+#insert {font-weight: bold;}
+
+/* Browse */
+a.pickcolor, a.browse {text-decoration:none}
+a.browse span {display:block; width:20px; height:18px; background:url(../../img/icons.gif) -860px 0; border:1px solid #FFF; margin-left:1px;}
+.mceOldBoxModel a.browse span {width:22px; height:20px;}
+a.browse:hover span {border:1px solid #0A246A; background-color:#B2BBD0;}
+a.browse span.disabled {border:1px solid white; opacity:0.3; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=30)}
+a.browse:hover span.disabled {border:1px solid white; background-color:transparent;}
+a.pickcolor span {display:block; width:20px; height:16px; background:url(../../img/icons.gif) -840px 0; margin-left:2px;}
+.mceOldBoxModel a.pickcolor span {width:21px; height:17px;}
+a.pickcolor:hover span {background-color:#B2BBD0;}
+a.pickcolor:hover span.disabled {}
+
+/* Charmap */
+table.charmap {border:1px solid #AAA; text-align:center}
+td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #AAA; text-align:center; font-size:12px; vertical-align:middle; line-height: 18px;}
+#charmap a {display:block; color:#000; text-decoration:none; border:0}
+#charmap a:hover {background:#CCC;color:#2B6FB6}
+#charmap #codeN {font-size:10px; font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif; text-align:center}
+#charmap #codeV {font-size:40px; height:80px; border:1px solid #AAA; text-align:center}
+
+/* Source */
+.wordWrapCode {vertical-align:middle; border:1px none #000000; background:transparent;}
+.mceActionPanel {margin-top: 8px; text-align: right; overflow: hidden;}
+
+/* Tabs classes */
+.tabs {width: 100%; line-height: normal; border-bottom: 1px solid #8b8b8b; overflow: hidden;}
+.tabs ul {margin:0; padding:0; list-style:none;}
+.tabs li {
+	float: left; 
+	background: url(img/tab.gif) left -64px repeat-x; 
+	background-color: #c6c7c7; 
+	border-top: 1px solid #8b8b8b; 
+	border-right: 1px solid #8b8b8b; 
+	border-left: 1px solid #8b8b8b; 
+	margin: 0 2px 0 0; 
+	padding: 0 0 0 10px; 
+	line-height: 19px;
+	display: block;
+}
+.tabs li.current {background: url(img/tab.gif) left -1px repeat-x; background-color: #bebebd; margin-right: 2px;}
+.tabs li,
+.tabs li.current {
+	-webkit-border-top-left-radius: 3px; 
+	-webkit-border-top-right-radius: 3px; 
+	-moz-border-radius-topright: 3px; 
+	-moz-border-radius-topleft: 3px;
+}
+.tabs span {float: left; display: block; padding: 0px 10px 0 0;}
+.tabs a {text-decoration: none; font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif; font-size: 11px;}
+.tabs a:link, .tabs a:visited, .tabs a:hover {color: black;}
+
+.tabs li.current span a,
+.tabs li.current span a:visited,
+.tabs li.current span a:hover,
+.tabs li.current span a:active {
+	color: black;
+	font-weight: bold;
+}
+
+/* Panels */
+.panel_wrapper div.panel {display: none;}
+.panel_wrapper div.current {display: block; width: 100%; height: 300px; overflow: visible;}
+.panel_wrapper {border:1px solid #8b8b8b; border-top:0px; padding:10px; padding-top:5px; clear:both; background:#fcfcfc;}
+
+/* Columns */
+.column {float: left;}
+.properties {width: 100%;}
+.properties .column1 {}
+.properties .column2 {text-align: left;}
+
+/* Titles */
+h1, h2, h3, h4 {color: #2B6FB6; margin: 0; padding: 0; padding-top: 5px;}
+h3 {font-size:14px;}
+.title {font-size:12px; font-weight:bold;}
+
+/* Dialog specific */
+#link .panel_wrapper, #link div.current {height:125px;}
+#image .panel_wrapper, #image div.current {height:200px;}
+#plugintable thead {font-weight:bold; background:#DDD;}
+#plugintable, #about #plugintable td {border:1px solid #919B9C;}
+#plugintable {width:96%; margin-top:10px;}
+#pluginscontainer {height:290px; overflow:auto;}
+#colorpicker #preview {float:left; width:50px; height:16px;line-height:1px; border:1px solid black; margin: 0px 10px 0px 10px;}
+#colorpicker #colors {float:left; border:1px solid gray; cursor:crosshair;}
+#colorpicker #light {border:1px solid gray; margin-left:5px; float:left;width:15px; height:150px; cursor:crosshair;}
+#colorpicker #light div {overflow:hidden;}
+#colorpicker #previewblock {margin-right: 10px; height:20px;}
+#colorpicker .panel_wrapper div.current {height:175px;}
+#colorpicker #namedcolors {width:150px;}
+#colorpicker #namedcolors a {display:block; float:left; width:10px; height:10px; margin:1px 1px 0 0; overflow:hidden;}
+#colorpicker #colornamecontainer {margin-top:5px;}
+/* Should this be commented out*/
+#colorpicker #picker_panel fieldset {margin:auto;width:325px;}
+
+/* Color picker specific rules added by EPiServer*/
+#colorpicker .mceActionPanel {text-align: left;}
+#colorpicker .mceActionPanel #insert{float: right;}
+
+/*****************************
+     Dialog specific rules
+******************************/
+
+/*  
+    Set panel height to auto by default.
+    Only plugin dialogs with multiple tabs need to specify height.
+    Since some dialogs didn't have an id on body element and they also have multiple tabs
+    we have added id to be able to specify height of these dialogs.
+ */
+body .panel_wrapper div.current {
+    height: auto;
+}
+
+body#advimage .panel_wrapper div.current {
+	height: 290px;
+}
+
+body#advlink .panel_wrapper div.current {
+	height: 355px;
+}
+
+body#searchreplace .panel_wrapper div.current {
+	height: 110px;
+}
+
+body#styleprops .panel_wrapper div.current {
+	height: 230px;
+}
+
+body#media .panel_wrapper div.current {
+	height: 390px;
+}
+
+body#table .panel_wrapper div.current {
+	height: 280px;
+}
+
+body#tablecell .panel_wrapper div.current {
+	height: 205px;
+}
+
+body#tablerow .panel_wrapper div.current {
+	height: 190px;
+}
+
+body#xhtmlxtrasins .panel_wrapper div.current,
+body#xhtmlxtrasdel .panel_wrapper div.current {
+    height: auto;
+}
+
+body#xhtmlxtrasattributes .panel_wrapper div.current {
+	height: 330px;
+}
+
+

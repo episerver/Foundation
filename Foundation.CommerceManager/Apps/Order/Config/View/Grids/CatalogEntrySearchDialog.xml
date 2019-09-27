@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column width="50" allowSorting="false" headingText="{SharedStrings:Picture}" columnType="CustomTemplate">
+						<Template id="PictureTemplate" controlUrl="GridTemplates/PictureTemplate.ascx"></Template>
+					</Column>
+					<Column width="310" visible="true" allowSorting="true" dataField="Name" sortExpression="displayname" headingText="{SharedStrings:Name}"  ></Column>
+					<Column width="100" allowSorting="false" headingText="{SharedStrings:Catalog}" columnType="CustomTemplate">
+						<Template id="CatalogTemplate" controlUrl="GridTemplates/CatalogTemplate.ascx"></Template>
+					</Column>
+					<Column width="70" visible="true" allowSorting="false" dataField="ClassTypeId" headingText="{SharedStrings:Type}"></Column>
+					<Column width="60" allowSorting="false" headingText="{SharedStrings:Price}" columnType="CustomTemplate">
+						<Template id="ListPriceTemplate" controlUrl="GridTemplates/ListPriceTemplate.ascx"></Template>
+					</Column>
+          <Column width="50" allowSorting="false" headingText="{CatalogStrings:Entry_In_Stock}" columnType="CustomTemplate">
+            <Template id="InStockQuantityTemplate" controlUrl="GridTemplates/InStockQuantityTemplate.ascx"></Template>
+          </Column>
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+</View>

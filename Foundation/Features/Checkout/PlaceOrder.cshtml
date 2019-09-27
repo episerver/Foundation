@@ -1,0 +1,195 @@
+﻿@model CheckoutViewModel
+@{
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+}
+@Html.Partial("_CheckoutStatusBar", 6)
+
+<div class="row">
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 checkout--panel-block">
+                <div class="checkout--panel">
+                    <div class="checkout__panel-heading">
+                        <h3>@Html.TranslateFallback("/Checkout/Billing/Payment", "Payment")</h3>
+                    </div>
+                    <div class="checkout__panel-body">
+                        <p class="title light-text">
+                            @if (Model.SelectedPayment != null)
+                            {
+                                @Model.SelectedPayment
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 checkout--panel-block">
+                <div class="checkout--panel">
+                    <div class="checkout__panel-heading">
+                        <h3 class="panel-title">@Html.TranslateFallback("/Checkout/Coupons/Heading", "Coupons and Promotional Codes")</h3>
+                    </div>
+                    <div class="checkout__panel-body">
+                        <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
+                        @if (!((bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"])))
+                        {
+                            <div class="full-width flex-between checkout--panel-block">
+                                <input type="text" class="textbox" id="coupon_code">
+                                <button type="submit" class="button-black jsAddCoupon" data-url="@Url.Action("AddCouponCode", "Checkout", null)">
+                                    @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
+                                </button>
+                            </div>
+
+                            <div class="alert alert-danger square-box" id="errorCouponCode" style="display: none">
+                                <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
+                            </div>
+                        }
+                        @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
+                        {
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>@Html.Translate("/Checkout/Coupons/AppliedCoupons/Heading")</h5>
+                                    @foreach (var couponCode in Model.AppliedCouponCodes)
+                                    {
+                                        <label class="tag">
+                                            @couponCode
+                                            <i class="cursor-pointer" data-feather="x" data="@couponCode" url="@Url.Action("RemoveCouponCode", "Checkout")"></i>
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
+        {
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="panel-title">
+                                Shipment @shipmentIndex of @Model.Shipments.Count() - @Model.Shipments[shipmentIndex - 1].CurrentShippingMethodName - @Model.Shipments[shipmentIndex - 1].CurrentShippingMethodPrice.ToString()
+                            </h3>
+                            <strong>
+                                @Html.TranslateFallback("/Shipment/ShippingTo", "Shipping To"):
+                            </strong>
+                            @string.Format("{0}, {1}, {2}, {3}", Model.Shipments[shipmentIndex - 1].Address.Line1,
+                                Model.Shipments[shipmentIndex - 1].Address.City,
+                                Model.Shipments[shipmentIndex - 1].Address.CountryRegion.Region,
+                                Model.Shipments[shipmentIndex - 1].Address.PostalCode)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+
+                            @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
+                            {
+                                var viewData = new ViewDataDictionary();
+                                viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
+                                <div class="checkout__cart-item">
+                                    <div class="row">
+                                        @Html.Partial("~/Features/NamedCarts/DefaultCart/_ItemTemplate.cshtml", cartItem, viewData)
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="title checkout--panel-block">
+                                        Total:
+                                        @Model.Shipments[shipmentIndex - 1].GetShipmentItemsTotal(Model.Currency).ToString()
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+        <div class="row">
+            <div class="col-12">
+                <div class="checkout--bill__group">
+                    <div class="checkout--bill__item">
+                        <div class="flex-between">
+                            <p class="title">@Html.TranslateFallback("/Checkout/SubTotal", "Sub Total For Your Items")</p>
+                            <p class="title">@Model.OrderSummary.SubTotal.ToString()</p>
+                        </div>
+                    </div>
+                    <div class="checkout--bill__item">
+                        <div class="flex-between">
+                            <p class="title"> @Html.TranslateFallback("/Checkout/OrderLevelDiscounts", "Additional Order Level Discounts")</p>
+                            <p class="title">- @Model.OrderSummary.OrderDiscountTotal.ToString()</p>
+                        </div>
+
+                        @foreach (var discount in Model.OrderSummary.OrderDiscounts)
+                        {
+                            <div class="flex-between">
+                                <span>@discount.DisplayName</span>
+                                <span>- @discount.Discount.ToString()</span>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="checkout--bill__item">
+                        <div class="flex-between">
+                            <p class="title">@Html.Translate("/Checkout/ShippingAndTax")</p>
+                            <p class="title pull-right">@Model.OrderSummary.ShippingTaxTotal.ToString()</p>
+                        </div>
+                        <div class="checkout--bill__sub-item">
+                            <div class="flex-between">
+                                <span>@Html.Translate("/Checkout/ShippingSubtotal")</span>
+                                <span>@Model.OrderSummary.ShippingSubtotal.ToString()</span>
+                            </div>
+                        </div>
+                        <div class="checkout--bill__sub-item">
+                            <div class="flex-between">
+                                <span>@Html.Translate("/Checkout/ShippingDiscount")</span>
+                                <span>- @Model.OrderSummary.ShippingDiscountTotal.ToString()</span>
+                            </div>
+                        </div>
+                        <div class="checkout--bill__sub-item">
+                            <div class="flex-between">
+                                <span>@Html.Translate("/Checkout/ShippingTotal")</span>
+                                <span>@Model.OrderSummary.ShippingTotal.ToString()</span>
+                            </div>
+                        </div>
+                        <div class="checkout--bill__sub-item">
+                            <div class="flex-between">
+                                <span>@Html.Translate("/Checkout/TaxTotal")</span>
+                                <span>@Model.OrderSummary.TaxTotal.ToString()</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="checkout--bill__item">
+                        <div class="flex-between">
+                            <p class="title">@Html.TranslateFallback("/Checkout/CartTotal", "Total for cart")</p>
+                            <p class="title">@Model.OrderSummary.CartTotal.ToString()</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    @using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="button-transparent-black pull-right">
+                            <span>
+                                @Html.TranslateFallback("/Checkout/PlaceOrder", "Place Order")
+                            </span>
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

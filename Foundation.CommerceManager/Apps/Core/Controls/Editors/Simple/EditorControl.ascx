@@ -1,0 +1,2 @@
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="Module_Editors_Simple_EditorControl" Codebehind="EditorControl.ascx.cs" %>
+<asp:TextBox runat="server" id="HtmlTextBoxCtrl" TextMode="MultiLine" Width="600" Height="400"></asp:TextBox>

@@ -1,0 +1,60 @@
+﻿@using System.Web.Mvc.Html
+@using Foundation.Commerce.ViewModels.Header
+@model UsersPageViewModel
+
+<div class="users-page row">
+     @{Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Organization }); }
+    <div class="col-main col-sm-9">
+        @{Html.RenderAction("Index", "B2BNavigation");}
+        <div class="page-title">
+            <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+        </div>
+        <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+        <div>
+            <section class="spacer-bottom-l">
+                <div class="section-title spacer-bottom-l">
+                    <h2 class="h3">@Html.TranslateFallback("/B2B/Users/EditUserRole", "Editing user role")</h2>
+                </div>
+                @using (Html.BeginForm("UpdateUser", "UsersPage", FormMethod.Post, new { @id = "editUserForm" }))
+                {
+                    <div class="form-group">
+                        <label>@Html.TranslateFallback("/Shared/Name", "Name")</label>
+                        <br />
+                        @Html.TextBoxFor(x => x.Contact.FullName, new { disabled = "disabled", @class="textbox" })
+                    </div>
+                    <div class="form-group">
+                        <label>@Html.TranslateFallback("/Shared/Email", "Email")</label>
+                        <br />
+                        @Html.TextBoxFor(x => x.Contact.Email, new { disabled = "disabled", @class="textbox" })
+                    </div>
+                    <div class="form-group">
+                        <label>@Html.TranslateFallback("/B2B/Organization/Organization", "Organization")</label>
+                        <br />
+                        @Html.TextBoxFor(x => x.Contact.FoundationOrganization.Name, new { disabled = "disabled", @class="textbox" })
+                    </div>
+                    <div class="form-group">
+                        <label>@Html.TranslateFallback("/Shared/Role", "Role")</label>
+                        <br />
+                        @Html.DropDownListFor(m => m.Contact.UserRole, new SelectList(new List<SelectListItem>
+                                                                    {
+                                                                        new SelectListItem {Text = Html.TranslateFallback("/B2B/Approver", "Approver"), Value = "Approver"},
+                                                                        new SelectListItem {Text = Html.TranslateFallback("/B2B/Purchaser", "Purchaser"), Value = "Purchaser"}
+                                                                    }, "Value", "Text", Model.Contact.UserRole), new { @class = "textbox" })
+                    </div>
+                    <div class="form-group">
+                        <label>@Html.TranslateFallback("/B2B/Users/Location", "Location")</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                   model => model.Contact.UserLocationId,
+                                   new SelectList(Model.SubOrganization.Locations, "AddressId", "Name", Model.Contact.UserLocationId), new { @id = "select-location", @class="textbox" })
+                    </div>
+                    <div class="spacer-top-l">
+                        <button type="submit" class="button-black">Save</button>
+                        <a href="@Url.Action("Index", "UsersPage")" class="button-transparent-black">Cancel</a>
+                    </div>
+                    @Html.HiddenFor(m => m.Contact.ContactId)
+                }
+            </section>
+        </div>
+    </div>
+</div>

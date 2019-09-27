@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<clear></clear>
+			<add>
+				<Block id="shipview" name="">
+					<Placeholder id="Placeholder_1">
+						<Control id="ShippingTitle" path="~/Apps/Order/Modules/ShipmentInfo.ascx">
+						</Control>
+						<Control id="LineItemsGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+							<Property name="RelatedClassName" value="LineItem" />
+							<Property name="RelatedToClassName" value="PaymentPlan"/>
+							<Property name="LeftPadding" value="5px"/>
+						</Control>
+						<Control id="ShippingInfo" path="~/Apps/Order/Modules/ShippingInformation.ascx">
+						</Control>
+						<Control id="ShipSummary" path="~/Apps/Order/Modules/ShipmentSummary.ascx">
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+		<ButtonSets>
+			<clear></clear>
+			<add>
+				<ButtonSet placeName="StatusChanger">
+				</ButtonSet>
+				<ButtonSet placeName="OrderView">
+				</ButtonSet>
+				<ButtonSet placeName="ButtonsHolder">
+					<Button id="SaveButton" text="Save" imageUrl="~/Apps/MetaDataBase/images/ok-button.gif" commandName="btn_SaveBtnPP" width="100" tooltip="My Save" disableMode="true" permissions="order:mng:edit"></Button>
+					<Button id="CancelButton" text="Cancel" imageUrl="~/Apps/MetaDataBase/images/cancel-button.gif" commandName="btn_CancelBtnPP" width="100" disableMode="false" permissions="order:mng:edit"></Button>
+					<Button id="UnlockButton" text="Unlock" imageUrl="~/Apps/Order/images/unlock_s.jpg" commandName="btn_UnlockBtnPP" width="100" disableMode="false" permissions="order:mng:edit"></Button>
+				</ButtonSet>
+			</add>
+		</ButtonSets>
+		<Commands>
+			<add>
+				<Command id="cmdOrderCreateEditReturnPP">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Create/Edit Return</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderCreateReturnForm&amp;Id={HttpContext:OrderGroupId}&amp;ShipmentId=[ClientParam:ContainerId]&amp;GridViewId=OrderCreateReturnForm&amp;ReturnCommand=cmd_NeedRebind</Url>
+					<Width>900</Width>
+					<Height>450</Height>
+					<Left>50</Left>
+					<Top>40</Top>
+					<Drag>False</Drag>
+					<AutoHeightResize>true</AutoHeightResize>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CreateReturnShipmentHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_SaveBtnPP">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.SaveChangesHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.SaveChangesHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_CancelBtnPP">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CancelEditModeHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CancelEditModeHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="btn_UnlockBtnPP">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.UnlockHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.UnlockHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="btn_QuickEditOrderPP">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Currency</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderGroup-QuickEdit&amp;Id={QueryString:id}&amp;customerId={QueryString:customerId}&amp;commandName=cmd_NeedRebind&amp;CommandViewName=PaymentPlan-ObjectView</Url>
+					<Width>490</Width>
+					<Height>280</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.QuickEditOrderInfoHandler, Mediachase.ConsoleManager" />
+				</Command>
+				
+				<Command id="btn_CompleteShipmentPP">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CompleteShipmentHandler, Mediachase.ConsoleManager"></Handler>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CompleteShipmentHandler, Mediachase.ConsoleManager"></EnableHandler>
+				</Command>
+
+				<Command id="btn_ReleaseShipmentPP">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.ReleaseShipmentHandler, Mediachase.ConsoleManager"></Handler>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.ReleaseShipmentHandler, Mediachase.ConsoleManager"></EnableHandler>
+				</Command>
+
+				<Command id="btn_CancelShipmentPP">
+					<ConfirmationText>{OrderStrings:CancelShipmentConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CancelShipmentHandler, Mediachase.ConsoleManager"></Handler>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CancelShipmentHandler, Mediachase.ConsoleManager"></EnableHandler>
+				</Command>
+			</add>
+		</Commands>
+	</Form>
+	<ViewConfig>
+	</ViewConfig>
+</View>

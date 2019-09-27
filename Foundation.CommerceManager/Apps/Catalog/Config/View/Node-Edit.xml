@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Node-Edit" controlUrl="catalog/CatalogNodeEdit.ascx" permissions="catalog:ctlg:nodes:mng:edit" help="Catalog+Management"></setAttributes>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="catalog/tabs/NodeOverviewEditTab.ascx"></Tab>
+				<Tab name="{SharedStrings:SEO}" controlUrl="catalog/tabs/NodeSeoTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

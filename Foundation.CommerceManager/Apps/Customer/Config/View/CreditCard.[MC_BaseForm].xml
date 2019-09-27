@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<FormDocument>
+		<Table width="100%" columns="50%;*" cellPadding="5">
+			<add>
+			<Row>
+				<Cell colSpan="2" name="cell_11">
+					<Section uid="ce2ab26dd3cf4e43a880fe5549fa5db3" borderType="1" showLabel="true" itemIndex="2">
+						<Labels>
+							<Label title="{SharedStrings:Overview}" code="en" />
+						</Labels>
+						<Control controlType="SmartTableLayout" width="100%" uid="baa70e1dc91d466f97326ac561cc095e" columns="50%;*" cellPadding="5">
+							<Item rowIndex="1" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="d8a5ca7852d9489f9592ac0778272c93">
+								<Labels>
+									<Label title="[MC_DefaultLabel]" code="en" />
+								</Labels>
+								<Control controlType="MetaPrimitive" source="CardType" readOnly="False" uid="a5e2c01a3f7a44da906fe05ab738b285" />
+							</Item>
+							<Item rowIndex="2" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="93f16b033c3f4562a874b4ebde3669e3">
+								<Labels>
+									<Label title="[MC_DefaultLabel]" code="en" />
+								</Labels>
+								<Control controlType="MetaPrimitive" source="LastFourDigits" readOnly="False" uid="cddcac5987c347ac866b105bf22d1cf5" />
+							</Item>
+							<Item rowIndex="3" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="b841962e9c7b4ef79cbb45caf9a29a71">
+								<Labels>
+									<Label title="[MC_DefaultLabel]" code="en" />
+								</Labels>
+								<Control controlType="MetaPrimitive" source="CreditCardNumber" readOnly="False" uid="015cb06ed0044ccb96b16f7d056bba8c" />
+							</Item>
+							<Item rowIndex="3" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="24f876b4be4243a396e8e6b216dde444">
+								<Labels>
+									<Label title="[MC_DefaultLabel]" code="en" />
+								</Labels>
+								<Control controlType="MetaPrimitive" source="ExpirationYear" readOnly="False" uid="7de3f4bb9c584948a2aca563a3185b35" />
+							</Item>
+							<Item rowIndex="2" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="b2614a48f41a45d0bb551c2fd5417d25">
+								<Labels>
+									<Label title="[MC_DefaultLabel]" code="en" />
+								</Labels>
+								<Control controlType="MetaPrimitive" source="ExpirationMonth" readOnly="False" uid="ccf6e7ca8add4d8cae78f26f2b212539" />
+							</Item>
+							<Item rowIndex="4" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="120px" uid="8b6f8389782d4c239b59dc7b9b1d1d0b">
+								<Labels>
+									<Label title="[MC_DefaultLabel]" code="ru-RU" />
+								</Labels>
+								<Control controlType="MetaPrimitive" source="SecurityCode" readOnly="False" uid="e985de4d29d241768280fdbe2cf086b4" />
+							</Item>
+						</Control>
+					</Section>
+				</Cell>
+			</Row>
+			<Row>
+				<Cell colSpan="1" name="cell_21" />
+				<Cell colSpan="1" name="cell_22" />
+			</Row>
+			<Row>
+				<Cell colSpan="2" name="cell_31" />
+			</Row>
+			</add>
+		</Table>
+	</FormDocument>
+</View>

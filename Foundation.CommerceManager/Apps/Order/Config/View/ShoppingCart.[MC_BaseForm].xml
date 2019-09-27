@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<FormDocument>
+		<Table width="100%" columns="50%;*" cellPadding="5">
+			<add>
+				<Row>
+					<Cell colSpan="2" name="cell_11">
+						<Section uid="5755fbcfd64e4d67b579d98080d1cc14" borderType="1" showLabel="true" itemIndex="1">
+							<Labels>
+								<Label title="Overview" code="en"/>
+							</Labels>
+							<Control controlType="SmartTableLayout" width="100%" uid="2a662646c2b645c5869c82fced6f87a6" cellPadding="0" columns="50%;*">
+								<Item rowIndex="1" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="false" labelWidth="0px" uid="a600b6ad6e6746b99af1b39cd43c199d" tabIndex="2">
+									<Labels />
+									<Control controlType="CustomControl" uid="26afff91397643e2b6ea064d00ede591">
+										<Prop data="~/Apps/Order/CustomPrimitives/ShoppingCartStatus.ascx"></Prop>
+									</Control>
+								</Item>
+								<Item rowIndex="2" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="false" labelWidth="0px" uid="71c0e9a5d9054bf7af822868133f3702" tabIndex="3">
+									<Labels />
+									<Control controlType="CustomControl" uid="3ea7ef416de3454b8a07d93d70a8e790">
+										<Prop data="~/Apps/Order/CustomPrimitives/CartCustomer.ascx"></Prop>
+									</Control>
+								</Item>
+								<!--<Item rowIndex="3" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="false" labelWidth="0px" uid="55340e3bd1194de588c7563421e60742" tabIndex="3">
+									<Labels />
+									<Control controlType="CustomControl" uid="6da2aebd6a12481abcf4da2bb9405e71">
+										<Prop data="~/Apps/Order/CustomPrimitives/OrderBillingAddress.ascx"></Prop>
+									</Control>
+								</Item>-->
+							</Control>
+						</Section>
+					</Cell>
+				</Row>
+				<Row>
+					<Cell colSpan="1" name="cell_21" />
+					<Cell colSpan="1" name="cell_22" />
+				</Row>
+				<Row>
+					<Cell colSpan="2" name="cell_31" />
+				</Row>
+			</add>
+		</Table>
+	</FormDocument>
+</View>

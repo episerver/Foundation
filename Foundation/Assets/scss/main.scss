@@ -1,0 +1,89 @@
+﻿@charset 'UTF-8';
+
+// 1. Configuration and helpers
+@import
+    'utils/variables';
+
+// 2. Vendors
+@import
+    'vendors/bootstrap-4.3.1/bootstrap';
+
+// 3. Base stuff
+@import
+    'base/typography',
+    'base/helpers';
+
+// 4. Layout-related sections
+@import
+    'layout/header',
+    'layout/footer',
+    'layout/navigation-bar';
+
+// 5. Components
+@import
+    'components/buttons',
+    'components/textbox',
+    'components/checkbox',
+    'components/select-menu',
+    'components/icon-menu',
+    'components/hamburger-menu',
+    'components/navigation',
+    'components/mobile-navigation',
+    'components/loading-box',
+    'components/listgroup',
+    'components/dropdown',
+    'components/table',
+    'components/icon-buttons',
+    'components/easy-autocomplete',
+    'components/teaser';
+
+// 6. Template specific styles
+@import
+    'templates/widgets/market-selector',
+    'templates/widgets/product-tile',
+    'templates/widgets/profile-group',
+    'templates/widgets/product-quick-view',
+    'templates/widgets/login-users',
+    'templates/widgets/logged-in-user',
+    'templates/widgets/cart.scss',
+    'templates/widgets/profile-sidebar',
+    'templates/widgets/toolbar',
+    'templates/widgets/b2b-navigation',
+    'templates/widgets/breadcrumb';
+
+@import 
+    'templates/blocks/hero-block',
+    'templates/blocks/button-block',
+    'templates/blocks/featurebox-block', 
+    'templates/blocks/vimeo-block', 
+    'templates/blocks/content-recommendation-block', 
+    'templates/blocks/teaser-block',
+    'templates/blocks/video-block';
+
+@import 
+    'templates/forms/form';
+
+@import 
+    'templates/pages/home',
+    'templates/pages/standard-page', 
+    'templates/pages/order-history',
+    'templates/pages/store-locator',
+    'templates/pages/product-detail',
+    'templates/pages/my-account-pages', 
+    'templates/pages/credit-card', 
+    'templates/pages/checkout-page', 
+    'templates/pages/cart-page', 
+    'templates/pages/order-confirmation-page',
+    'templates/pages/location', 
+    'templates/pages/order-detail-page',
+    'templates/pages/category-page',
+    'templates/pages/search-page',
+    'templates/pages/order-pads',
+    'templates/pages/orders-page',
+    'templates/pages/users-page',
+    'templates/pages/blog-list',
+    'templates/pages/blog-item';
+
+// 7. Themes
+@import
+    'themes/default';

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?> <root>
+  <!--      Microsoft ResX Schema           Version 2.0          The primary goals of this format is to allow a simple XML format      that is mostly human readable. The generation and parsing of the      various data types are done through the TypeConverter classes      associated with the data types.          Example:          ... ado.net/XML headers & schema ...     <resheader name="resmimetype">text/microsoft-resx</resheader>     <resheader name="version">2.0</resheader>     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">         <value>[base64 mime encoded serialized .NET Framework object]</value>     </data>     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>         <comment>This is a comment</comment>     </data>                      There are any number of "resheader" rows that contain simple      name/value pairs.          Each data row contains a name, and value. The row also contains a      type or mimetype. Type corresponds to a .NET class that support      text/value conversion through the TypeConverter architecture.      Classes that don't support this are serialized and stored with the      mimetype set.          The mimetype is used for serialized objects, and tells the      ResXResourceReader how to depersist the object. This is currently not      extensible. For a given mimetype the value must be set accordingly:          Note - application/x-microsoft.net.object.binary.base64 is the format      that the ResXResourceWriter will generate, however the reader can      read any of the formats listed below.          mimetype: application/x-microsoft.net.object.binary.base64     value   : The object must be serialized with              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter             : and then encoded with base64 encoding.          mimetype: application/x-microsoft.net.object.soap.base64     value   : The object must be serialized with              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter             : and then encoded with base64 encoding.      mimetype: application/x-microsoft.net.object.bytearray.base64     value   : The object must be serialized into a byte array              : using a System.ComponentModel.TypeConverter             : and then encoded with base64 encoding.     -->
+  <xsd:schema xmlns="" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommonTasks" xml:space="preserve">
+    <value>Häufige Aufgaben</value>
+  </data>
+  <data name="MetaClass" xml:space="preserve">
+    <value>Klasse</value>
+  </data>
+  <data name="FormName" xml:space="preserve">
+    <value>Formular</value>
+  </data>
+  <data name="SelectedElements" xml:space="preserve">
+    <value>Ausgewählte Elemente</value>
+  </data>
+  <data name="WarningSection" xml:space="preserve">
+    <value>Möchten Sie den ausgewählten Abschnitt wirklich löschen?</value>
+  </data>
+  <data name="WarningField" xml:space="preserve">
+    <value>Möchten sie das ausgwählte Feld wirklich löschen?</value>
+  </data>
+  <data name="AddForm" xml:space="preserve">
+    <value>Formular hinzufügen</value>
+  </data>
+  <data name="EditForm" xml:space="preserve">
+    <value>Formular bearbeiten</value>
+  </data>
+  <data name="AddSection" xml:space="preserve">
+    <value>Abschnitt hinzufügen</value>
+  </data>
+  <data name="EditSection" xml:space="preserve">
+    <value>Abschnitt bearbeiten</value>
+  </data>
+  <data name="AddField" xml:space="preserve">
+    <value>Feld hinzufügen</value>
+  </data>
+  <data name="EditField" xml:space="preserve">
+    <value>Feld bearbeiten</value>
+  </data>
+  <data name="RemoveSection" xml:space="preserve">
+    <value>Abschnitt entfernen</value>
+  </data>
+  <data name="RemoveField" xml:space="preserve">
+    <value>Feld entfernen</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="FormType" xml:space="preserve">
+    <value>Formulartyp</value>
+  </data>
+  <data name="DuplicateTitleException" xml:space="preserve">
+    <value>Dieser Titel wurde bereits verwendet!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="ViewType" xml:space="preserve">
+    <value>Typ anzeigen</value>
+  </data>
+  <data name="OneCol" xml:space="preserve">
+    <value>Eine Spalte</value>
+  </data>
+  <data name="TwoCols11" xml:space="preserve">
+    <value>Zwei Spalten (1:1)</value>
+  </data>
+  <data name="TwoCols12" xml:space="preserve">
+    <value>Zwei Spalten (1:2)</value>
+  </data>
+  <data name="TwoCols21" xml:space="preserve">
+    <value>Zwei Spalten (2:1)</value>
+  </data>
+  <data name="ThreeCols" xml:space="preserve">
+    <value>Drei Spalten (1:1:1)</value>
+  </data>
+  <data name="CellPadding" xml:space="preserve">
+    <value>Zellenfüllung</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="AddFormComment" xml:space="preserve">
+    <value>Neues Formular zum System hinzufügen.</value>
+  </data>
+  <data name="EditFormComment" xml:space="preserve">
+    <value>Sie können das Formular bearbeiten.</value>
+  </data>
+  <data name="CustomForm" xml:space="preserve">
+    <value>Benutzerdefiniertes Formular</value>
+  </data>
+  <data name="LabelWidth" xml:space="preserve">
+    <value>Labelbreite</value>
+  </data>
+  <data name="ColSpan1" xml:space="preserve">
+    <value>Eine Spalte</value>
+  </data>
+  <data name="ColSpan2" xml:space="preserve">
+    <value>Zwei Spalten</value>
+  </data>
+  <data name="Rows" xml:space="preserve">
+    <value>Reihen</value>
+  </data>
+  <data name="Control" xml:space="preserve">
+    <value>Steuerung</value>
+  </data>
+  <data name="AddFieldComment" xml:space="preserve">
+    <value>Neues Formularelement zum Formular hinzufügen.</value>
+  </data>
+  <data name="EditFieldComment" xml:space="preserve">
+    <value>Sie können das Formularelement bearbeiten.</value>
+  </data>
+  <data name="ShowName" xml:space="preserve">
+    <value>Label für das Element wird im Formular angezeigt.</value>
+  </data>
+  <data name="NoControl" xml:space="preserve">
+    <value>Keine Steuerung</value>
+  </data>
+  <data name="EditSectionComment" xml:space="preserve">
+    <value>Sie können den Abschnitt bearbeiten.</value>
+  </data>
+  <data name="AddSectionComment" xml:space="preserve">
+    <value>Neuen Abschnitt zum Formular hinzufügen.</value>
+  </data>
+  <data name="Section1" xml:space="preserve">
+    <value>Abschnitt1</value>
+  </data>
+  <data name="ShowBorderSection" xml:space="preserve">
+    <value>Grenzlinie für diesen Abschnitt anzeigen.</value>
+  </data>
+  <data name="ShowNameSection" xml:space="preserve">
+    <value>Namen dieses Abschnitts im Formular anzeigen.</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>Feld</value>
+  </data>
+  <data name="FieldIsReadOnly" xml:space="preserve">
+    <value>Feld ist schreibgeschützt</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Tabelle</value>
+  </data>
+  <data name="RemoveElement" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="WarningElement" xml:space="preserve">
+    <value>Möchten sie das ausgewählte Element wirklich löschen?</value>
+  </data>
+  <data name="EditElement" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="AddElement" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="MoveElement" xml:space="preserve">
+    <value>Verschieben</value>
+  </data>
+  <data name="Form_Create" xml:space="preserve">
+    <value>Formular erstellen</value>
+  </data>
+  <data name="Form_Edit" xml:space="preserve">
+    <value>Formular bearbeiten</value>
+  </data>
+  <data name="Form_ShortInfo" xml:space="preserve">
+    <value>Kurzes Info-Formular</value>
+  </data>
+  <data name="Form_PublicInfo" xml:space="preserve">
+    <value>Formular zur öffentlichen Bearbeitung</value>
+  </data>
+  <data name="Form_View" xml:space="preserve">
+    <value>Formular anzeigen</value>
+  </data>
+  <data name="SaveClose" xml:space="preserve">
+    <value>Speichern und schließen</value>
+  </data>
+  <data name="RecreateForm" xml:space="preserve">
+    <value>Formular wiederherstellen</value>
+  </data>
+  <data name="RecreateFormWarning" xml:space="preserve">
+    <value>Möchten Sie dieses Formular wirklich wiederherstellen?</value>
+  </data>
+  <data name="SmartTableLayout" xml:space="preserve">
+    <value>Felder-Tabelle</value>
+  </data>
+  <data name="MetaPrimitive" xml:space="preserve">
+    <value>Feld Primitiv</value>
+  </data>
+  <data name="HideLabel" xml:space="preserve">
+    <value>Label verbergen</value>
+  </data>
+  <data name="SystemLabel" xml:space="preserve">
+    <value>Systemlabel</value>
+  </data>
+  <data name="CustomLabel" xml:space="preserve">
+    <value>Benutzerdefiniertes Label</value>
+  </data>
+  <data name="TabIndex" xml:space="preserve">
+    <value>Tab-Index</value>
+  </data>
+</root>

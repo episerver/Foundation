@@ -1,0 +1,38 @@
+﻿/* Containers */
+.epi-lightSkinOpe table { background-color: Transparent;}
+
+/* External */
+.epi-lightSkinOpe .mceExternalToolbar {position:static; border:none; display:block;}
+.epi-lightSkinOpe .mceExternalClose {display: none;}
+
+/* Layout */
+.epi-lightSkinOpe .mceStatusbar a.mceResize {background:url(img/icons_ope.png);}
+.epi-lightSkinOpe .mceToolbar .mceToolbarStart span {background:url(img/button_bg_ope.png);}
+.epi-lightSkinOpe .mceToolbar .mceToolbarEnd span {display:block; background:url(img/button_bg_ope.png); }
+.epi-lightSkinOpe .mceIcon {background:url(img/icons_ope.png);}
+
+/* Button */
+.epi-lightSkinOpe .mceButton {background:url(img/button_bg_ope.png);}
+
+/* Separator */
+.epi-lightSkinOpe .mceSeparator {background:url(img/button_bg_ope.png);}
+
+/* ListBox */
+.epi-lightSkinOpe .mceListBox .mceText {border:0; background:#454545;color: #fff;}
+.epi-lightSkinOpe .mceListBox .mceOpen {background:url(img/button_bg_ope.png);}
+.epi-lightSkinOpe table.mceListBoxEnabled:hover .mceText, 
+.epi-lightSkinOpe .mceListBoxHover .mceText, 
+.epi-lightSkinOpe .mceListBoxSelected .mceText {background:#464646;}
+.epi-lightSkinOpe .mceSplitButton span.mceAction {background-image:url(img/icons_ope.png);}
+
+/* SplitButton */
+.epi-lightSkinOpe .mceSplitButton {background:url(img/button_bg_ope.png);}
+.epi-lightSkinOpe .mceSplitButton span.mceAction {width:22px; background-image:url(img/icons_ope.png);}
+.epi-lightSkinOpe .mceSplitButton a.mceOpen {background:url(img/button_bg_ope.png);}
+.epi-lightSkinOpe table.mceSplitButtonEnabled:hover a.mceAction, .epi-lightSkinOpe .mceSplitButtonHover a.mceAction, .epi-lightSkinOpe .mceSplitButtonSelected {background:url(img/button_bg_ope.png);}
+
+
+table.mceLayout tr.mceLast td,
+table.mceLayout tr.mceFirst td,
+.mceIframeContainer,
+.mceLayout { border: none !important; }

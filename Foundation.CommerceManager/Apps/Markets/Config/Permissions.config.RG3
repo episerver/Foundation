@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<Configuration version="5.2">
+	<Acl>
+		<Group id="market" text="{SharedStrings:Markets}">
+			<Group id="mng" text="{SharedStrings:Manage}">
+				<Permission id="view" text="{SharedStrings:View}"></Permission>
+				<Permission id="create" text="{SharedStrings:Create}"></Permission>
+				<Permission id="edit" text="{SharedStrings:Edit}"></Permission>
+				<Permission id="delete" text="{SharedStrings:Delete}"></Permission>
+				<Permission id="import" text="{SharedStrings:Import}"></Permission>
+				<Permission id="export" text="{SharedStrings:Export}"></Permission>
+			</Group>
+		</Group>
+	</Acl>
+</Configuration>

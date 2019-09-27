@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommonTasks" xml:space="preserve">
+    <value>Vanliga uppgifter</value>
+  </data>
+  <data name="MetaClass" xml:space="preserve">
+    <value>Klass</value>
+  </data>
+  <data name="FormName" xml:space="preserve">
+    <value>Formulär</value>
+  </data>
+  <data name="SelectedElements" xml:space="preserve">
+    <value>Markerade element</value>
+  </data>
+  <data name="WarningSection" xml:space="preserve">
+    <value>Vill du ta bort det markerade avsnittet?</value>
+  </data>
+  <data name="WarningField" xml:space="preserve">
+    <value>Vill du ta bort det markerade fältet?</value>
+  </data>
+  <data name="AddForm" xml:space="preserve">
+    <value>Lägg till formulär</value>
+  </data>
+  <data name="EditForm" xml:space="preserve">
+    <value>Redigera formulär</value>
+  </data>
+  <data name="AddSection" xml:space="preserve">
+    <value>Lägg till avsnitt</value>
+  </data>
+  <data name="EditSection" xml:space="preserve">
+    <value>Redigera avsnitt</value>
+  </data>
+  <data name="AddField" xml:space="preserve">
+    <value>Lägg till fält</value>
+  </data>
+  <data name="EditField" xml:space="preserve">
+    <value>Redigera fält</value>
+  </data>
+  <data name="RemoveSection" xml:space="preserve">
+    <value>Ta bort avsnitt</value>
+  </data>
+  <data name="RemoveField" xml:space="preserve">
+    <value>Ta bort fält</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="FormType" xml:space="preserve">
+    <value>Formulärtyp</value>
+  </data>
+  <data name="DuplicateTitleException" xml:space="preserve">
+    <value>Titeln har redan använts!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="ViewType" xml:space="preserve">
+    <value>Visa typ</value>
+  </data>
+  <data name="OneCol" xml:space="preserve">
+    <value>En kolumn</value>
+  </data>
+  <data name="TwoCols11" xml:space="preserve">
+    <value>Två kolumner (1:1)</value>
+  </data>
+  <data name="TwoCols12" xml:space="preserve">
+    <value>Två kolumner (1:2)</value>
+  </data>
+  <data name="TwoCols21" xml:space="preserve">
+    <value>Två kolumner (2:1)</value>
+  </data>
+  <data name="ThreeCols" xml:space="preserve">
+    <value>Tre kolumner (1:1:1)</value>
+  </data>
+  <data name="CellPadding" xml:space="preserve">
+    <value>Cellutfyllnad</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="AddFormComment" xml:space="preserve">
+    <value>Lägg till ett nytt formulär i systemet.</value>
+  </data>
+  <data name="EditFormComment" xml:space="preserve">
+    <value>Du kan redigera formulär.</value>
+  </data>
+  <data name="CustomForm" xml:space="preserve">
+    <value>Eget formulär</value>
+  </data>
+  <data name="LabelWidth" xml:space="preserve">
+    <value>Etikettbredd</value>
+  </data>
+  <data name="ColSpan1" xml:space="preserve">
+    <value>En kolumn</value>
+  </data>
+  <data name="ColSpan2" xml:space="preserve">
+    <value>Två kolumner</value>
+  </data>
+  <data name="Rows" xml:space="preserve">
+    <value>Rader</value>
+  </data>
+  <data name="Control" xml:space="preserve">
+    <value>Kontroll</value>
+  </data>
+  <data name="AddFieldComment" xml:space="preserve">
+    <value>Lägg till en ny formulärartikel i formuläret.</value>
+  </data>
+  <data name="EditFieldComment" xml:space="preserve">
+    <value>Du kan redigera formulärartiklar.</value>
+  </data>
+  <data name="ShowName" xml:space="preserve">
+    <value>Visa artikeletikett på formuläret.</value>
+  </data>
+  <data name="NoControl" xml:space="preserve">
+    <value>Ingen kontroll</value>
+  </data>
+  <data name="EditSectionComment" xml:space="preserve">
+    <value>Du kan redigera avsnitt.</value>
+  </data>
+  <data name="AddSectionComment" xml:space="preserve">
+    <value>Lägg till ett nytt avsnitt i formuläret.</value>
+  </data>
+  <data name="Section1" xml:space="preserve">
+    <value>Avsnitt1</value>
+  </data>
+  <data name="ShowBorderSection" xml:space="preserve">
+    <value>Visa kantlinje för det här avsnittet.</value>
+  </data>
+  <data name="ShowNameSection" xml:space="preserve">
+    <value>Visa det här avsnittets namn på formuläret.</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>Fält</value>
+  </data>
+  <data name="FieldIsReadOnly" xml:space="preserve">
+    <value>Fältet är skrivskyddat</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Tabell</value>
+  </data>
+  <data name="RemoveElement" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="WarningElement" xml:space="preserve">
+    <value>Vill du ta bort det markerade elementet?</value>
+  </data>
+  <data name="EditElement" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="AddElement" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="MoveElement" xml:space="preserve">
+    <value>Flytta</value>
+  </data>
+  <data name="Form_Create" xml:space="preserve">
+    <value>Skapa formulär</value>
+  </data>
+  <data name="Form_Edit" xml:space="preserve">
+    <value>Redigera formulär</value>
+  </data>
+  <data name="Form_ShortInfo" xml:space="preserve">
+    <value>Formulär för kort info</value>
+  </data>
+  <data name="Form_PublicInfo" xml:space="preserve">
+    <value>Publikt redigeringsformulär</value>
+  </data>
+  <data name="Form_View" xml:space="preserve">
+    <value>Visa formulär</value>
+  </data>
+  <data name="SaveClose" xml:space="preserve">
+    <value>Spara och stäng</value>
+  </data>
+  <data name="RecreateForm" xml:space="preserve">
+    <value>Återskapa formulär</value>
+  </data>
+  <data name="RecreateFormWarning" xml:space="preserve">
+    <value>Vill du återskapa det här formuläret?</value>
+  </data>
+  <data name="SmartTableLayout" xml:space="preserve">
+    <value>Fälttabell</value>
+  </data>
+  <data name="MetaPrimitive" xml:space="preserve">
+    <value>Fältprimitiv</value>
+  </data>
+  <data name="HideLabel" xml:space="preserve">
+    <value>Dölj etikett</value>
+  </data>
+  <data name="SystemLabel" xml:space="preserve">
+    <value>Systemetikett</value>
+  </data>
+  <data name="CustomLabel" xml:space="preserve">
+    <value>Egen etikett</value>
+  </data>
+  <data name="TabIndex" xml:space="preserve">
+    <value>Flikindex</value>
+  </data>
+</root>

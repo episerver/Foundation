@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column width="20" headingText="" columnType="Action" dataField="ShipmentId" commandParameters="ShipmentId,OrderGroupId,CustomerId">
+						<Item imageUrl="~/Apps/Order/images/information-2.png" commandName="cmdShipmentDetails" permissions="order:mng:view" toolTip="{OrderStrings:Shipment_Details}" commandParameters="ShipmentId,OrderGroupId,CustomerId"></Item>
+					</Column>
+					<Column width="20" headingText="" columnType="Action" dataField="ShipmentId" commandParameters="ShipmentId,OrderGroupId,CustomerId">
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" commandName="cmdCompleteShipment" permissions="order:mng:shipment:complete" toolTip="{SharedStrings:Complete}" commandParameters="ShipmentId,OrderGroupId,CustomerId"></Item>
+					</Column>
+					<Column visible="false" allowSorting="false" dataField="OrderGroupId" headingText=""></Column>
+					<Column visible="false" allowSorting="false" dataField="CustomerId" headingText=""></Column>
+					<Column width="200" columnType="DateTime" allowSorting="true" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+					<Column width="100" allowSorting="true" dataField="ShipmentId" headingText="{OrderStrings:Shipping_Number}" dataTextFields="OrderTrackingNumber,ShipmentId" dataTextFormatString="{0}-{1}" columnType="HyperLink"></Column>
+					<Column width="100" allowSorting="true" dataField="CustomerName" headingText="{SharedStrings:Customer}"></Column>
+					<Column width="200" allowSorting="true" dataField="ShippingMethodName" headingText="{OrderStrings:Shipping_Method}"></Column>
+					<Column width="400" allowSorting="true" dataField="ShippingAddress"  headingText="{OrderStrings:Shipping_Address}"></Column>
+					<Column width="200" allowSorting="true" dataField="WarehouseName" headingText="{OrderStrings:Warehouse}"></Column>
+					<Column width="200" allowSorting="true" dataField="PickListName" headingText="{OrderStrings:Pick_List}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="CompleteShipment" text="{OrderStrings:Complete_Shipment}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif"  commandName="cmdCompleteAnyShipment" permissions="order:mng:shipment:complete"/>
+				<Splitter id="ActionsSplitter"/>
+				<Button id="PickListReport" text="{OrderStrings:Print_Picklist}" imageUrl="~/Apps/Order/Images/Print-list.png" commandName="cmdShipmentPickListReport" permissions="order:mng:view"/>
+				<Splitter id="ActionsSplitter"/>
+				<Button id="InvoiceReport" text="{OrderStrings:Print_Packing_Slip}" imageUrl="~/Apps/Order/Images/Print-Labels.png" commandName="cmdShipmentInvoiceReceiptReport" permissions="order:mng:view"/>
+				<Splitter id="ActionsSplitter"/>
+				<Button id="BackToRelease" text="{OrderStrings:Remove_From_Picklist}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdBackToRelease" permissions="order:mng:shipment:packing"/>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdPermissionCheck">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdBackToRelease">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{OrderStrings:Confirm_Return_Shipments_To_Released}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.ShipmentBackToReleaseHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCompleteShipment">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Complete_Shipment}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=Shipment-List-Packing&amp;CommandPlaceName=&amp;CommandName=cmdCompleteShipment&amp;LayoutClassName=Shipment&amp;LayoutPlaceName=CompleteShipment&amp;ShipmentId=[ClientParam:ShipmentId]&amp;OrderGroupId=[ClientParam:OrderGroupId]&amp;ReturnCommandName=cmd_NeedRebind</Url>
+					<Width>680</Width>
+					<Height>480</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CompleteShipmentHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.CompleteShipmentHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCompleteAny">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Complete_Shipment}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=Shipment-Complete-Any&amp;CommandClassName=&amp;CommandViewName=Shipment-List-Packing&amp;CommandPlaceName=&amp;CommandName=cmdCompleteAny&amp;LayoutClassName=Shipment&amp;LayoutPlaceName=CompleteShipmentAny&amp;ReturnCommandName=cmd_NeedRebind&amp;ShipmentId=[ClientParam:ShipmentId]&amp;OrderGroupId=[ClientParam:OrderGroupId]&amp;CustomerId=[ClientParam:CustomerId]</Url>
+					<Width>680</Width>
+					<Height>480</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+
+        <Command id="cmdCompleteAnyShipment">
+          <CommandType>ServerAction</CommandType>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.PurchaseOrderHandlers.ShipmentPickListCompleteHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.PurchaseOrderHandlers.ShipmentPickListCompleteHandler, Mediachase.ConsoleManager"></Handler>
+        </Command>
+        
+				<Command id="cmdShipmentDetails">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{SharedStrings:Shipment_Details}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=Shipment-Details&amp;ShipmentId=[ClientParam:ShipmentId]&amp;OrderGroupId=[ClientParam:OrderGroupId]&amp;CustomerId=[ClientParam:CustomerId]</Url>
+					<Width>680</Width>
+					<Height>480</Height>
+					<Top>35</Top>
+					<Drag>False</Drag>
+				</Command>
+
+
+				<Command id="cmdShipmentInvoiceReceiptReport">
+					<CommandType>OpenWindow</CommandType>
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText></ConfirmationText>
+					<PopupTitle>Report</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Reporting&amp;_v=InvoiceReceiptReport&amp;Ids=[ClientParam:GridSelectedItems]&amp;ReportFileName=InvoiceReceiptReport.rdlc</Url>
+					<Width>820</Width>
+					<Height>650</Height>
+					<Top>15</Top>
+				</Command>
+
+				<Command id="cmdShipmentPickListReport">
+					<CommandType>OpenWindow</CommandType>
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText></ConfirmationText>
+					<PopupTitle>Report</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Reporting&amp;_v=PickListReport&amp;Ids=[ClientParam:GridSelectedItems]&amp;ReportFileName=PickListReport.rdlc</Url>
+					<!--<Url>~/Apps/Reporting/PickListReport.aspx?Ids=[ClientParam:GridSelectedItems]</Url>-->
+					<Width>720</Width>
+					<Height>650</Height>
+					<Top>15</Top>
+				</Command>
+
+			</add>
+
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Shipment-List-Packing" name="Packing Shipments" controlUrl="Order/Modules/ShipmentList.ascx" permissions="order:mng:view" help="Shipping+and+Receiving+Workflow"></setAttributes>
+	</ViewConfig>
+</View>

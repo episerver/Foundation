@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+    <ListViewUI>
+        <Grid>
+            <add>
+                <Columns>
+                    <Column isDefault="true" headingText="{SharedStrings:Edit_Command}" dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="100" align="Center"/>
+
+                    <Column isDefault="true" visible="false" allowSorting="false" dataField="TaxValueId" headingText="Tax Value Id"/>
+                    <Column isDefault="true" visible="false" allowEditing="false" allowSorting="false" dataField="TaxId" headingText="TaxId"/>
+                    <Column isDefault="true" width="120" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="TaxCategory" headingText="{SharedStrings:Tax_Category}"/>
+                    <Column isDefault="true" width="150" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="JurisdictionGroup" headingText="{OrderStrings:Jurisdiction_Group}"/>
+                    <Column isDefault="true" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="Percentage" headingText="{SharedStrings:Rate}" formatString="#0.000"/>
+                    <Column dataCellServerTemplateId="DateTimeTemplate" width="200" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="AffectiveDate" headingText="{SharedStrings:Effective_Date}">
+                        <Template id="DateTimeTemplate" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx" DateArgument="AffectiveDate"/>
+                    </Column>
+                </Columns>
+            </add>
+        </Grid>
+    </ListViewUI>
+    <ViewConfig>
+        <setAttributes id="TaxValues" controlUrl=""></setAttributes>
+    </ViewConfig>
+</View>

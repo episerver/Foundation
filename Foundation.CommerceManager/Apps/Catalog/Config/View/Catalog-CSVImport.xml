@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Catalog-CSVImport" controlUrl="Catalog/CatalogCSVImport.ascx" permissions="catalog:ctlg:mng:view"/>
+		<add>
+			<Tabs>
+				<Tab name="{CatalogStrings:Catalog_CSV_Import}" controlUrl="Catalog/Tabs/CatalogCSVImportTab.ascx" />
+				<Tab name="{CatalogStrings:Catalog_Mapping_File}" controlUrl="Catalog/Tabs/CatalogCSVMappingTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

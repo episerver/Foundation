@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Country-Edit" controlUrl="Order/CountryEdit.ascx" help="System+Settings"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Order/Tabs/CountryEditTab.ascx"></Tab>
+				<Tab name="{SharedStrings:Regions}" controlUrl="Order/Tabs/CountryRegionsTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

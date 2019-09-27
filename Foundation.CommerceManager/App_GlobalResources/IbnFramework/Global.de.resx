@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?> <root>
+  <!--      Microsoft ResX Schema           Version 2.0          The primary goals of this format is to allow a simple XML format      that is mostly human readable. The generation and parsing of the      various data types are done through the TypeConverter classes      associated with the data types.          Example:          ... ado.net/XML headers & schema ...     <resheader name="resmimetype">text/microsoft-resx</resheader>     <resheader name="version">2.0</resheader>     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">         <value>[base64 mime encoded serialized .NET Framework object]</value>     </data>     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>         <comment>This is a comment</comment>     </data>                      There are any number of "resheader" rows that contain simple      name/value pairs.          Each data row contains a name, and value. The row also contains a      type or mimetype. Type corresponds to a .NET class that support      text/value conversion through the TypeConverter architecture.      Classes that don't support this are serialized and stored with the      mimetype set.          The mimetype is used for serialized objects, and tells the      ResXResourceReader how to depersist the object. This is currently not      extensible. For a given mimetype the value must be set accordingly:          Note - application/x-microsoft.net.object.binary.base64 is the format      that the ResXResourceWriter will generate, however the reader can      read any of the formats listed below.          mimetype: application/x-microsoft.net.object.binary.base64     value   : The object must be serialized with              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter             : and then encoded with base64 encoding.          mimetype: application/x-microsoft.net.object.soap.base64     value   : The object must be serialized with              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter             : and then encoded with base64 encoding.      mimetype: application/x-microsoft.net.object.bytearray.base64     value   : The object must be serialized into a byte array              : using a System.ComponentModel.TypeConverter             : and then encoded with base64 encoding.     -->
+  <xsd:schema xmlns="" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_mc_Actions" xml:space="preserve">
+    <value>Aktionen</value>
+  </data>
+  <data name="_mc_BackToList" xml:space="preserve">
+    <value>Zurück zur Liste</value>
+  </data>
+  <data name="_mc_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="_mc_ColumnEditor" xml:space="preserve">
+    <value>Spalteneditor</value>
+  </data>
+  <data name="_mc_Department" xml:space="preserve">
+    <value>Abteilung</value>
+  </data>
+  <data name="_mc_DepartmentList" xml:space="preserve">
+    <value>Abteilungsliste</value>
+  </data>
+  <data name="_mc_DepartmentView" xml:space="preserve">
+    <value>Abteilungsansicht</value>
+  </data>
+  <data name="_mc_Designer" xml:space="preserve">
+    <value>Designer</value>
+  </data>
+  <data name="_mc_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="_mc_General" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="_mc_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="_mc_Location" xml:space="preserve">
+    <value>Standort</value>
+  </data>
+  <data name="_mc_NotSet" xml:space="preserve">
+    <value>Nicht gesetzt</value>
+  </data>
+  <data name="_mc_PageSize" xml:space="preserve">
+    <value>Seitengröße</value>
+  </data>
+  <data name="_mc_ParentTitle" xml:space="preserve">
+    <value>Übergeordnete Bezeichnung</value>
+  </data>
+  <data name="_mc_Records" xml:space="preserve">
+    <value> Elemente</value>
+  </data>
+  <data name="_mc_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="_mc_Selected" xml:space="preserve">
+    <value>Markiert: %selCount%</value>
+  </data>
+  <data name="_mc_Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="_mc_UserList" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="_mc_WorkgroupList" xml:space="preserve">
+    <value>Arbeitsgruppen</value>
+  </data>
+  <data name="_mc_WorkgroupView" xml:space="preserve">
+    <value>Arbeitsgruppenansicht</value>
+  </data>
+  <data name="_mc_Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="_mc_All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="_mc_Add" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="_mc_ObjectForms" xml:space="preserve">
+    <value>Objektformulare</value>
+  </data>
+  <data name="_mc_FieldAdd" xml:space="preserve">
+    <value>Feld hinzufügen</value>
+  </data>
+  <data name="_mc_FieldsAdd" xml:space="preserve">
+    <value>Felder hinzufügen</value>
+  </data>
+  <data name="_mc_FieldProperties" xml:space="preserve">
+    <value>Feldeigenschaften</value>
+  </data>
+  <data name="_mc_FormAdd" xml:space="preserve">
+    <value>Neues Formular</value>
+  </data>
+  <data name="_mc_SectionNew" xml:space="preserve">
+    <value>Neuer Abschnitt</value>
+  </data>
+  <data name="_mc_TabNew" xml:space="preserve">
+    <value>Neuer Tab</value>
+  </data>
+  <data name="_mc_CommonTasks" xml:space="preserve">
+    <value>Häufige Aufgaben</value>
+  </data>
+  <data name="_mc_Class" xml:space="preserve">
+    <value>Klasse</value>
+  </data>
+  <data name="_mc_Form" xml:space="preserve">
+    <value>Formular</value>
+  </data>
+  <data name="_mc_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="_mc_Remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="_mc_SaveChanges" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="_mc_ChangeProperties" xml:space="preserve">
+    <value>Eigenschaften ändern</value>
+  </data>
+  <data name="_mc_DeleteFieldWarning" xml:space="preserve">
+    <value>Möchten sie das markierte Feld wirklich löschen?</value>
+  </data>
+  <data name="_mc_DeleteSectionWarning" xml:space="preserve">
+    <value>Möchten Sie den markierten Abschnitt wirklich löschen?</value>
+  </data>
+  <data name="_mc_DeleteFormWarning" xml:space="preserve">
+    <value>Möchten sie dieses Formular wirklich löschen?</value>
+  </data>
+  <data name="_mc_TitleIsNotEntered" xml:space="preserve">
+    <value>Titel nicht eingegeben</value>
+  </data>
+  <data name="_mc_NoTitle" xml:space="preserve">
+    <value>Kein Titel</value>
+  </data>
+  <data name="_mc_AddFieldsText" xml:space="preserve">
+    <value>Die Felder markieren, die zum Abschnitt hinzugefügt werden sollen.</value>
+  </data>
+  <data name="_mc_MetaField" xml:space="preserve">
+    <value>Metafeld</value>
+  </data>
+  <data name="_mc_Tab" xml:space="preserve">
+    <value>Tab</value>
+  </data>
+  <data name="_mc_Section" xml:space="preserve">
+    <value>Abschnitt</value>
+  </data>
+  <data name="_mc_FieldAddText" xml:space="preserve">
+    <value>Feld für den Abschnitt markieren.</value>
+  </data>
+  <data name="_mc_Field" xml:space="preserve">
+    <value>Feld</value>
+  </data>
+  <data name="_mc_FieldPropertiesText" xml:space="preserve">
+    <value>Sie können Feldeigenschaften ändern.</value>
+  </data>
+  <data name="_mc_Label" xml:space="preserve">
+    <value>Etikett</value>
+  </data>
+  <data name="_mc_LayoutOneColumn" xml:space="preserve">
+    <value>Einspaltig</value>
+  </data>
+  <data name="_mc_LayoutTwoColumn" xml:space="preserve">
+    <value>Zweispaltig</value>
+  </data>
+  <data name="_mc_Rows" xml:space="preserve">
+    <value>Reihen</value>
+  </data>
+  <data name="_mc_DisplayLabel" xml:space="preserve">
+    <value>Etikett auf Formular anzeigen.</value>
+  </data>
+  <data name="_mc_FormAddText" xml:space="preserve">
+    <value>Neues Formular zum System hinzufügen.</value>
+  </data>
+  <data name="_mc_TitleExistsError" xml:space="preserve">
+    <value>Dieser Titel wurde schon verwendet!</value>
+  </data>
+  <data name="_mc_SectionNewText" xml:space="preserve">
+    <value>Neuen Abschnitt zum Tab hinzufügen.</value>
+  </data>
+  <data name="_mc_SectionEdit" xml:space="preserve">
+    <value>Abschnitt bearbeiten</value>
+  </data>
+  <data name="_mc_SectionEditText" xml:space="preserve">
+    <value>Sie können Abschnittseigenschaften ändern.</value>
+  </data>
+  <data name="_mc_Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="_mc_ShowBorder" xml:space="preserve">
+    <value>Grenzlinie für diesen Abschnitt anzeigen.</value>
+  </data>
+  <data name="_mc_ShowName" xml:space="preserve">
+    <value>Namen dieses Abschnitts im Formular anzeigen.</value>
+  </data>
+  <data name="_mc_TopRegion" xml:space="preserve">
+    <value>Bereich oben</value>
+  </data>
+  <data name="_mc_MLeftRegion" xml:space="preserve">
+    <value>Bereich Mitte links</value>
+  </data>
+  <data name="_mc_MRightRegion" xml:space="preserve">
+    <value>Bereich Mitte rechts</value>
+  </data>
+  <data name="_mc_BottomRegion" xml:space="preserve">
+    <value>Bereich unten</value>
+  </data>
+  <data name="_mc_TabNewText" xml:space="preserve">
+    <value>Neuen Tab zum Formular hinzufügen.</value>
+  </data>
+  <data name="_mc_TabEdit" xml:space="preserve">
+    <value>Tab bearbeiten</value>
+  </data>
+  <data name="_mc_TabEditText" xml:space="preserve">
+    <value>Sie können den Tab bearbeiten.</value>
+  </data>
+  <data name="_mc_TimeManagement" xml:space="preserve">
+    <value>Zeitmanagement</value>
+  </data>
+  <data name="_mc_User" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="_mc_TimePeriod" xml:space="preserve">
+    <value>Zeitraum</value>
+  </data>
+  <data name="_mc_Project" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="_mc_Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="_mc_NoSelectedItems" xml:space="preserve">
+    <value>Es wurden keine Elemente markiert</value>
+  </data>
+  <data name="_mc_Total" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="_mc_Apply" xml:space="preserve">
+    <value>Anwenden</value>
+  </data>
+  <data name="_mc_ReadOnly" xml:space="preserve">
+    <value>Formular auf Nur lesen setzen.</value>
+  </data>
+  <data name="_mc_Events" xml:space="preserve">
+    <value>Ereignisse</value>
+  </data>
+  <data name="principalDepartment" xml:space="preserve">
+    <value>Abteilung</value>
+  </data>
+  <data name="principalEveryone" xml:space="preserve">
+    <value>Jeder</value>
+  </data>
+  <data name="principalMainCompany" xml:space="preserve">
+    <value>Haupt-Unternehmen</value>
+  </data>
+  <data name="principalPartnerCompany" xml:space="preserve">
+    <value>Partner-Unternehmen</value>
+  </data>
+  <data name="principalPartners" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="principalRestricted" xml:space="preserve">
+    <value>Beschränkt</value>
+  </data>
+  <data name="principalRole" xml:space="preserve">
+    <value>Rolle</value>
+  </data>
+  <data name="principalRoles" xml:space="preserve">
+    <value>Rollen</value>
+  </data>
+  <data name="principalTeam" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="principalTeams" xml:space="preserve">
+    <value>Teams</value>
+  </data>
+  <data name="principalUser" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="_mc_NoItemSelected" xml:space="preserve">
+    <value>Bitte mindestens ein Kästchen markieren</value>
+  </data>
+  <data name="_mc_SelectedNoNumber" xml:space="preserve">
+    <value>Markiert:</value>
+  </data>
+  <data name="_mc_ActiveActivities" xml:space="preserve">
+    <value>Aktive To-do-Liste</value>
+  </data>
+  <data name="_mc_ActiveDocuments" xml:space="preserve">
+    <value>Aktive Dokumente</value>
+  </data>
+  <data name="_mc_ActiveProjects" xml:space="preserve">
+    <value>Aktive Projekte</value>
+  </data>
+  <data name="_mc_Calendar" xml:space="preserve">
+    <value>Wochenkalender</value>
+  </data>
+  <data name="_mc_HelpInfo" xml:space="preserve">
+    <value>Assistenten/Situationstools</value>
+  </data>
+  <data name="_mc_InActivities" xml:space="preserve">
+    <value>Meine Aufgaben/To-dos</value>
+  </data>
+  <data name="_mc_OutActivities" xml:space="preserve">
+    <value>Von mir erteilte Aufgaben/To-dos</value>
+  </data>
+  <data name="_mc_RssNews" xml:space="preserve">
+    <value>Neue Kanäle</value>
+  </data>
+  <data name="_mc_ControlVisible" xml:space="preserve">
+    <value>Auf Seite anzeigen</value>
+  </data>
+  <data name="_mc_SetDefault" xml:space="preserve">
+    <value>Auf Standard zurücksetzen</value>
+  </data>
+  <data name="_mc_1_1_1Column_Description" xml:space="preserve">
+    <value>Dreispaltige Vorlage</value>
+  </data>
+  <data name="_mc_1_1_1Column_Name" xml:space="preserve">
+    <value>Dreispaltige Vorlage</value>
+  </data>
+  <data name="_mc_1_1Column_Description" xml:space="preserve">
+    <value>Zweispaltige Vorlage</value>
+  </data>
+  <data name="_mc_1_1Column_Name" xml:space="preserve">
+    <value>Standard zweispaltige Vorlage</value>
+  </data>
+  <data name="_mc_1_2Column_Description" xml:space="preserve">
+    <value>Zweispaltige Vorlage</value>
+  </data>
+  <data name="_mc_1_2Column_Name" xml:space="preserve">
+    <value>Zweispaltige Vorlage (Breite 1 : 2)</value>
+  </data>
+  <data name="_mc_1Column_Description" xml:space="preserve">
+    <value>Einfache einspaltige Vorlage</value>
+  </data>
+  <data name="_mc_1Column_Name" xml:space="preserve">
+    <value>Einspaltige Vorlage</value>
+  </data>
+  <data name="_mc_2_1Column_Description" xml:space="preserve">
+    <value>Zweispaltige Vorlage</value>
+  </data>
+  <data name="_mc_2_1Column_Name" xml:space="preserve">
+    <value>Zweispaltige Vorlage (Breite 2 : 1)</value>
+  </data>
+  <data name="_mc_Forms" xml:space="preserve">
+    <value>Formulare</value>
+  </data>
+  <data name="_mc_FavoriteLists" xml:space="preserve">
+    <value>Meine Favoritenlisten</value>
+  </data>
+  <data name="_mc_ActiveActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ActiveDocumentsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ActiveProjectsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_CalendarDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_FavoriteListsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_HelpInfoDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_InActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_OutActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_RssNewsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_RemoveBlock" xml:space="preserve">
+    <value>Block aus Seite „Meine Arbeit“ entfernen?</value>
+  </data>
+  <data name="_mc_NoItems" xml:space="preserve">
+    <value>Keine Elemente</value>
+  </data>
+  <data name="_mc_LastAlert" xml:space="preserve">
+    <value>Sendewarnung</value>
+  </data>
+  <data name="_mc_LastAlertDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ControlsSettings" xml:space="preserve">
+    <value>Einstellung Bedienelemente</value>
+  </data>
+  <data name="_mc_TemplateSettings" xml:space="preserve">
+    <value>Einstellungen Vorlage</value>
+  </data>
+  <data name="GroupAdministrators" xml:space="preserve">
+    <value>Administratoren</value>
+  </data>
+  <data name="GroupEveryone" xml:space="preserve">
+    <value>Jeder</value>
+  </data>
+  <data name="GroupExec" xml:space="preserve">
+    <value>Führungskräfte</value>
+  </data>
+  <data name="GroupExtranet" xml:space="preserve">
+    <value>Extranet</value>
+  </data>
+  <data name="GroupHDM" xml:space="preserve">
+    <value>Helpdesk-Manager</value>
+  </data>
+  <data name="GroupIntranet" xml:space="preserve">
+    <value>Intranet</value>
+  </data>
+  <data name="GroupPM" xml:space="preserve">
+    <value>Projektmanager</value>
+  </data>
+  <data name="GroupPPM" xml:space="preserve">
+    <value>Power-Projektmanager</value>
+  </data>
+  <data name="GroupRoles" xml:space="preserve">
+    <value>Rollen</value>
+  </data>
+  <data name="GroupTM" xml:space="preserve">
+    <value>Zeitmanager</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="_mc_ie6update" xml:space="preserve">
+    <value>Sie haben Internet Explorer 6 oder niedriger installiert. Für eine korrekte Funktion benötigen Sie Internet Explorer 7.0 oder höher. Sie können den Internet Explorer 7.0 &lt;a href="http://www.microsoft.com/windows/downloads/ie/getitnow.mspx"&gt;hier&lt;/a&gt; herunterladen.</value>
+  </data>
+  <data name="ChangeFilter" xml:space="preserve">
+    <value>Filter ändern</value>
+  </data>
+  <data name="FilterIsSet" xml:space="preserve">
+    <value>Filter ist gesetzt</value>
+  </data>
+  <data name="FilterIsNotSet" xml:space="preserve">
+    <value>Filter ist nicht gesetzt</value>
+  </data>
+  <data name="ShowGroupInfo" xml:space="preserve">
+    <value>Zusammenfassung anzeigen</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Gruppe</value>
+  </data>
+  <data name="MustBeUnique" xml:space="preserve">
+    <value>Dieses Feld war als eindeutig gekennzeichnet! Wählen Sie einen anderen Wert!</value>
+  </data>
+  <data name="_mc_NoGridData" xml:space="preserve">
+    <value>Keine Elemente verfügbar</value>
+  </data>
+  <data name="_mc_State" xml:space="preserve">
+    <value>Staat</value>
+  </data>
+  <data name="_mc_Horizontal" xml:space="preserve">
+    <value>Horizontal</value>
+  </data>
+  <data name="_mc_Vertical" xml:space="preserve">
+    <value>Vertikal</value>
+  </data>
+  <data name="_mc_Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="_mc_New" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="SortingTitle" xml:space="preserve">
+    <value>Sortiereinstellungen</value>
+  </data>
+  <data name="AddSort" xml:space="preserve">
+    <value>Sortiereinstellungen hinzufügen</value>
+  </data>
+  <data name="NoSortings" xml:space="preserve">
+    <value>Es wurden keine Sortiereinstellungen vorhanden</value>
+  </data>
+  <data name="ViewFieldSet" xml:space="preserve">
+    <value>Anzeigen</value>
+  </data>
+  <data name="_mc_DeleteView" xml:space="preserve">
+    <value>Ansicht löschen</value>
+  </data>
+  <data name="_mc_DeleteViewWarning" xml:space="preserve">
+    <value>Möchten Sie diese Ansicht wirklich löschen?</value>
+  </data>
+  <data name="FieldsTab" xml:space="preserve">
+    <value>Felder</value>
+  </data>
+  <data name="FiltersTab" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="GeneralTab" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="GroupsTab" xml:space="preserve">
+    <value>Gruppen</value>
+  </data>
+  <data name="IsPublicView" xml:space="preserve">
+    <value>Diese Ansicht allen Benutzern zeigen</value>
+  </data>
+  <data name="NewViewGeneralTabComment" xml:space="preserve">
+    <value>Fertig zur Erstellung einer neuen Ansicht für Einheitenlisten. Ansichtennamen eingeben.</value>
+  </data>
+  <data name="SelectTitle" xml:space="preserve">
+    <value>Titel eingeben</value>
+  </data>
+  <data name="tClose" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="TitleIsRequired" xml:space="preserve">
+    <value>Titel ist erforderlich!</value>
+  </data>
+  <data name="tSave" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="GoToViewLink" xml:space="preserve">
+    <value>Zur Ansicht wechseln</value>
+  </data>
+  <data name="DoubleClick" xml:space="preserve">
+    <value>Zum Auswählen doppelt anklicken</value>
+  </data>
+  <data name="_mc_Print" xml:space="preserve">
+    <value>Drucken</value>
+  </data>
+</root>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<languages>
+  <language name="English" id="en">
+    <visitorgroupsforabtest>
+      <criteria>
+        <category>A/B Test criteria</category>
+        <displayname>Partcipating in A/B test</displayname>
+        <description>Check if current user is partcipating in A/B test or not</description>
+      </criteria>
+      <model>
+        <testdescriptionfieldlabel>Running test</testdescriptionfieldlabel>
+        <viewingversionfieldlabel>Viewing this version of content</viewingversionfieldlabel>
+      </model>
+      <viewingversion>
+        <any>Any version</any>
+        <control>Control version</control>
+        <challenger>Challenger version</challenger>
+    </viewingversion>
+    </visitorgroupsforabtest>
+  </language>
+</languages>

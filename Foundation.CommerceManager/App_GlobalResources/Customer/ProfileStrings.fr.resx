@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Search_By_User_Name" xml:space="preserve">
+    <value>Rechercher par nom d'utilisateur</value>
+  </data>
+  <data name="Additional_Filters" xml:space="preserve">
+    <value>Filtres supplémentaires</value>
+  </data>
+  <data name="Filter_By_Organization_s" xml:space="preserve">
+    <value>Filtrer par organisation(s)</value>
+  </data>
+  <data name="Search_By_Address" xml:space="preserve">
+    <value>Rechercher par adresse</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Customer_Group" xml:space="preserve">
+    <value>Groupe de clients</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>État</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Créé</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approuvé</value>
+  </data>
+  <data name="Locked_Out" xml:space="preserve">
+    <value>Verrouillé</value>
+  </data>
+  <data name="Last_Activity" xml:space="preserve">
+    <value>Dernière activité</value>
+  </data>
+  <data name="Account_Id" xml:space="preserve">
+    <value>Identifiant du compte</value>
+  </data>
+  <data name="Last_Modified" xml:space="preserve">
+    <value>Date de la dernière modification</value>
+  </data>
+  <data name="Role_Name" xml:space="preserve">
+    <value>Nom du rôle</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Friendly_Name" xml:space="preserve">
+    <value>Pseudonyme</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Chemin</value>
+  </data>
+  <data name="File_Name" xml:space="preserve">
+    <value>Nom de fichier</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Dernière mise à jour</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Présentation</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="HelpPrefix" xml:space="preserve">
+    <value>HelpPrefix</value>
+  </data>
+  <data name="Account_Search_List" xml:space="preserve">
+    <value>Liste de recherche de comptes</value>
+  </data>
+  <data name="Account_List" xml:space="preserve">
+    <value>Liste de comptes</value>
+  </data>
+  <data name="Organization_List" xml:space="preserve">
+    <value>Liste des organisations</value>
+  </data>
+  <data name="Account_View" xml:space="preserve">
+    <value>Affichage du compte</value>
+  </data>
+  <data name="Organization_View" xml:space="preserve">
+    <value>Affichage de l'organisation</value>
+  </data>
+  <data name="Roles_List" xml:space="preserve">
+    <value>Liste des rôles</value>
+  </data>
+  <data name="Role_Edit" xml:space="preserve">
+    <value>Modification du rôle</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="Customer_Info_Section" xml:space="preserve">
+    <value>Section Informations sur le client</value>
+  </data>
+  <data name="Please_Select_Status" xml:space="preserve">
+    <value>Veuillez sélectionner le statut.</value>
+  </data>
+  <data name="Status_Description" xml:space="preserve">
+    <value>utiliser ce statut pour contrôler les comptes habilités à accéder au site Web frontal</value>
+  </data>
+  <data name="Group_Description" xml:space="preserve">
+    <value>indiquer le groupe auquel le client appartient, peut être utilisé pour la tarification</value>
+  </data>
+  <data name="Security_Account_Section" xml:space="preserve">
+    <value>Section Sécurité du compte</value>
+  </data>
+  <data name="Perform_Account_Actions" xml:space="preserve">
+    <value>Effectuer des actions sur le compte</value>
+  </data>
+  <data name="Recover_Password" xml:space="preserve">
+    <value>Récupérer le mot de passe</value>
+  </data>
+  <data name="Customer_Management" xml:space="preserve">
+    <value>Gestion des clients</value>
+  </data>
+  <data name="Account_Search" xml:space="preserve">
+    <value>Recherche d'un compte</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Comptes</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Organisations</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Rôles</value>
+  </data>
+  <data name="Profile_System" xml:space="preserve">
+    <value>Système de profils</value>
+  </data>
+  <data name="User_Name_Colon" xml:space="preserve">
+    <value>Nom d'utilisateur :</value>
+  </data>
+  <data name="Client_List" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Password_Change_Description" xml:space="preserve">
+    <value>Le mot de passe doit posséder au moins {0} caractères. Les espaces précédant ou suivant seront supprimés.</value>
+  </data>
+  <data name="LoginAsUser" xml:space="preserve">
+    <value>Se connecter en tant qu'utilisateur</value>
+  </data>
+</root>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListViewProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Id>{FDFA05F5-D146-4b6d-9434-BA1B9DE2230B}</Id>
+	<Name>CustomPage</Name>
+	<IsSystem>true</IsSystem>
+	<IsPublic>true</IsPublic>
+	<FieldSetName>CustomPage</FieldSetName>
+	<FieldSet>
+		<string>Title</string>
+		<string>Description</string>
+	</FieldSet>
+	<Filters>
+	</Filters>
+	<ColumnsUI>
+		<Column field="Title" width="200px" title="{Global:_mc_Title}" />
+		<Column field="Description" width="400px" title="{Global:_mc_Description}" />
+	</ColumnsUI>
+</ListViewProfile>

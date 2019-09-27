@@ -1,0 +1,7 @@
+﻿.LoginPanel{ float:left; border-bottom: solid 1px #CCCCCC; border-top: solid 1px #CCCCCC; background-color:#EEEEEE;width: 100%; padding-top: 5px;}
+.LoginTable{ float: left; width: 500;padding: 10px 0px 10px 10px;}
+.LoginFooter{ float: left; width: 500; padding: 10px 0px 10px 10px;}
+.LoginTable h1
+{
+    font-size: 100%;
+}

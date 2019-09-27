@@ -1,0 +1,19 @@
+@model IEnumerable<EntryContentBase>
+
+<div class="bblock block-list block-viewed">
+    <div class="block-title"> @Html.TranslateFallback("/Category/RecentlyViewed", "Recently Viewed") </div>
+    <div class="block-content">
+        <ol id="recently-viewed-items">
+            @foreach (var  entry in Model)
+            {
+                <li class="item odd">
+                    <p class="product-name">
+                        <a href="@entry.GetUrl()">
+                            @entry.DisplayName
+                        </a>
+                    </p>
+                </li>
+            }
+        </ol>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+using EPiServer.Core;
+using Foundation.Social.Models.Blocks;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Foundation.Social.ViewModels
+{
+    public class RatingBlockViewModel
+    {
+        public RatingBlockViewModel(RatingBlock block, ContentReference currentLink)
+        {
+            Heading = block.Heading;
+            ShowHeading = block.ShowHeading;
+            SendActivity = block.SendActivity;
+            CurrentLink = currentLink;
+            LoadRatingSettings(block);
+        }
+
+        public ContentReference CurrentLink { get; set; }
+
+        public string Heading { get; }
+
+        public bool ShowHeading { get; set; }
+
+        public List<int> RatingSettings { get; set; }
+
+        public long TotalCount { get; set; }
+
+        public double Average { get; set; }
+
+        public int? CurrentRating { get; set; }
+
+        public int SubmittedRating { get; set; }
+
+        public List<MessageViewModel> Messages { get; set; }
+
+        public string NoStatisticsFoundMessage { get; set; }
+
+        public bool SendActivity { get; }
+
+        public bool IsMemberOfGroup { get; set; }
+
+        private void LoadRatingSettings(RatingBlock block)
+        {
+            RatingSettings = new List<int>();
+            RatingSettings.AddRange(block.RatingSettings.Select(r => r.Value).ToList());
+            RatingSettings.Sort();
+        }
+    }
+}

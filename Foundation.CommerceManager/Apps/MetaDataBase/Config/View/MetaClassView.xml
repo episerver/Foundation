@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<add>
+				<Block id="Block_1">
+					<Placeholder id="Block_1.Placeholder_1">
+							<Control id="Block_1.Placeholder_1.Control_1" path="~/Apps/MetadataBase/Modules/MetaClassViewControls/MetaClassInfo.ascx" />
+					</Placeholder>
+				</Block>
+				<Block id="Block_2" name="{Global:FieldsTab}">
+					<Placeholder id="Block_2.Placeholder_1">
+						<Control id="Block_2.Placeholder_1.Control_1" path="~/Apps/MetadataBase/Modules/MetaClassViewControls/MetaClassFields.ascx" />
+					</Placeholder>
+					<Placeholder id="Block_2.Placeholder_2" />
+					<Placeholder id="Block_2.Placeholder_3" />
+					<Placeholder id="Block_2.Placeholder_4" />
+				</Block>
+				<Block id="Rel1N" name="{GlobalMetaInfo:Relations1N}">
+					<Placeholder id="Rel1N_1">
+						<Control id="MetaClassRelations1N" path="~/Apps/MetadataBase/Modules/MetaClassViewControls/MetaClassRelations1N.ascx" />
+					</Placeholder>
+					<Placeholder id="Rel1N_2" />
+					<Placeholder id="Rel1N_3" />
+					<Placeholder id="Rel1N_4" />
+				</Block>
+				<Block id="RelN1" name="{GlobalMetaInfo:RelationsN1}">
+					<Placeholder id="RelN1_1">
+						<Control id="MetaClassRelationsN1" path="~/Apps/MetadataBase/Modules/MetaClassViewControls/MetaClassRelationsN1.ascx" />
+					</Placeholder>
+					<Placeholder id="RelN1_2" />
+					<Placeholder id="RelN1_3" />
+					<Placeholder id="RelN1_4" />
+				</Block>
+				<Block id="RelNN" name="{GlobalMetaInfo:RelationsNN}">
+					<Placeholder id="RelNN_1">
+						<Control id="MetaClassRelationsNN" path="~/Apps/MetadataBase/Modules/MetaClassViewControls/MetaClassRelationsNN.ascx" />
+					</Placeholder>
+					<Placeholder id="RelNN_2" />
+					<Placeholder id="RelNN_3" />
+					<Placeholder id="RelNN_4" />
+				</Block>
+				<Block id="Block_9" name="{Global:_mc_Forms}">
+					<Placeholder id="Block_9.Placeholder_1">
+						<Control id="Block_9.Placeholder_1.Control_1" path="~/Apps/MetaDataBase/MetaUI/Modules/MetaClassViewControls/Forms.ascx" />
+					</Placeholder>
+					<Placeholder id="Block_9.Placeholder_2" />
+					<Placeholder id="Block_9.Placeholder_3" />
+					<Placeholder id="Block_9.Placeholder_4" />
+				</Block>
+				<Block id="Block_10" name="{GlobalMetaInfo:SystemViews}">
+					<Placeholder id="Block_10.Placeholder_1">
+						<Control id="Block_10.Placeholder_1.Control_1" path="~/Apps/MetaDataBase/MetaUI/Modules/MetaClassViewControls/ListProfiles.ascx" />
+					</Placeholder>
+					<Placeholder id="Block_10.Placeholder_2" />
+					<Placeholder id="Block_10.Placeholder_3" />
+					<Placeholder id="Block_10.Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+	</Form>
+</View>

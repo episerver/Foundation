@@ -1,0 +1,64 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@model Foundation.Cms.ViewModels.Pages.StandardPageViewModel
+
+@{
+    var heroClass = "";
+    var boxClass = "";
+    switch (Model.CurrentContent.TopPaddingMode)
+    {
+        case FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.Half:
+            heroClass = "hero__half";
+            boxClass = "box__half";
+            break;
+        case FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.Full:
+            heroClass = "hero__full";
+            boxClass = "box__full";
+            break;
+        default:
+            break;
+    }
+}
+<div class="row">
+    <div class="col-12 standard-page__container">
+        <div class="standard-page__hero @heroClass">
+            <picture class="standard-page__banner">
+                <source srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
+                <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
+            </picture>
+            @if (Model.CurrentContent.MainBackgroundVideo != null)
+            {
+                <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(Model.CurrentContent.MainBackgroundVideo)" type="video/mp4" @Html.EditAttributes(x => x.CurrentContent.MainBackgroundVideo)>
+                </video>
+            }
+            <div class="hero__gradient">
+            </div>
+        </div>
+        <div class="standard-page__box @boxClass">
+
+            <div class="article__title">
+                @if (!Model.CategoryName.IsEmpty())
+                {
+                    <h4 class="color-light">@Model.CategoryName</h4>
+                }
+                <h1 class="color-light margin-bottom-z">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
+            </div>
+            <div class="standard-page__content">
+                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.PropertyFor(m => m.CurrentContent.MainBody)
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-12">
+                        @Html.PropertyFor(x => x.CurrentContent.MainContentItems)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

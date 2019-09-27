@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Foundation.Find.Cms</id>
+    <version>$Version$</version>
+    <authors>Episerver</authors>
+    <owners>Episerver</owners>
+    <licenseUrl>http://www.episerver.com/eula/</licenseUrl>
+    <projectUrl>http://www.episerver.com/e-commerce/</projectUrl>
+    <iconUrl>http://www.episerver.com/Framework/Styles/Images/Products/Integration.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Foundation Find Cms Assemblies</description>
+    <copyright>Copyright Episerver 2019</copyright>
+    <tags>Foundation Find Cms</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="EPiServer.Find" version="13.2.2" />
+        <dependency id="EPiServer.Find.Cms" version="13.2.2" />
+        <dependency id="EPiServer.Find.Framework" version="13.2.2" />
+        <dependency id="EPiServer.Framework" version="11.13.0" />
+        <dependency id="Foundation.Cms" version="$Version$" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Foundation.Find.Cms\bin\Release\net472\Foundation.Find.Cms.pdb" target="lib\net472\" />
+    <file src="Foundation.Find.Cms\bin\Release\net472\Foundation.Find.Cms.dll" target="lib\net472\" />
+    <file src="Output\Foundation.Find.Cms\**\*.*" target="Content" />
+  </files>
+</package>

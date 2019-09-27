@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+
+  <language name="中文 (Chinese)" id="zh-CN">
+
+    <groups>
+      <basicelements>Basic Elements</basicelements>
+    </groups>
+
+    <enums>
+      <episerver>
+        <forms>
+          <samples>
+            <criteria>
+              <submissionstatus>
+                <hassubmitted>Has submitted</hassubmitted>
+                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+              </submissionstatus>
+
+              <fieldvaluecomparecondition>
+                <equals>equals</equals>
+                <notequals>not equal to</notequals>
+                <contains>contains</contains>
+                <notcontains>does not contain</notcontains>
+              </fieldvaluecomparecondition>
+            </criteria>
+          </samples>
+        </forms>
+      </episerver>
+    </enums>
+
+    <episerver>
+      <forms>
+        <samples>
+          <criteria>
+            <formcriterion>
+              <category>Episerver Forms</category>
+              <displayname>Submitted Form</displayname>
+              <description>Checks for form submission by the visitor.</description>
+              <submissionstatus>Submission status</submissionstatus>
+              <selectedform>Selected form</selectedform>
+            </formcriterion>
+
+            <submittedvaluecriterion>
+              <category>Episerver Forms</category>
+              <displayname>Submitted Form Value</displayname>
+              <description>Checks for form submission value by the visitor.</description>
+              <selectedform>Selected form</selectedform>
+              <selectedfield>Selected field</selectedfield>
+              <condition>Condition</condition>
+              <value>Value</value>
+            </submittedvaluecriterion>
+          </criteria>
+
+          <datetimepickertype>
+            <datepicker>Date picker</datepicker>
+            <timepicker>Time picker</timepicker>
+            <datetimepicker>Date time picker</datetimepicker>
+          </datetimepickertype>
+
+          <confirmationdialog>
+            <title>Summary</title>
+            <buttons>
+              <ok>OK</ok>
+              <cancel>Cancel</cancel>
+            </buttons>
+          </confirmationdialog>
+
+          <editview>
+            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+          </editview>
+          <messages>
+            <imagesubmitbutton>
+              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+            </imagesubmitbutton>
+          </messages>
+        </samples>
+        <viewmode>
+          <addresselement>
+            <addresslabel>地址</addresslabel>
+            <streetlabel>街道</streetlabel>
+            <citylabel>城市</citylabel>
+            <statelabel>状态</statelabel>
+            <postallabel>邮编</postallabel>
+            <countrylabel>国家</countrylabel>
+          </addresselement>          
+        </viewmode>
+        <validators>
+          <episerver.forms.samples.implementation.validation.datetimevalidator>
+            <displayname>Datetime validator</displayname>
+            <message>Enter a valid date time in {0} hh:mm format.</message>
+          </episerver.forms.samples.implementation.validation.datetimevalidator>
+          <episerver.forms.samples.implementation.validation.datevalidator>
+            <displayname>Date validator</displayname>
+            <message>Enter a valid date in {0} format.</message>
+          </episerver.forms.samples.implementation.validation.datevalidator>
+          <episerver.forms.samples.implementation.validation.timevalidator>
+            <displayname>Time validator</displayname>
+            <message>Enter a valid time, e.g. 10:20 AM.</message>
+          </episerver.forms.samples.implementation.validation.timevalidator>
+          <episerver.forms.samples.implementation.validation.recaptchavalidator>
+            <displayname>Recaptcha validator</displayname>
+            <message>Invalid captcha value.</message>
+          </episerver.forms.samples.implementation.validation.recaptchavalidator>
+          <episerver.forms.implementation.validation.datetimerangevalidator>
+            <displayname>日期时间范围</displayname>
+            <message>请输入有效的日期时间范围。</message>
+          </episerver.forms.implementation.validation.datetimerangevalidator>
+          <episerver.forms.implementation.validation.addressvalidator>
+            <displayname>地址</displayname>
+            <message>请输入有效地址。</message>
+          </episerver.forms.implementation.validation.addressvalidator>
+        </validators>
+      </forms>
+    </episerver>
+    <contenttypes>
+      <datetimeelementblock>
+        <name>Date time</name>
+        <description></description>
+        <newitemdefaultname>New date time</newitemdefaultname>
+        <properties>
+
+          <description>
+            <caption>Tooltip</caption>
+            <help>Displays as a tooltip or help text of an element.</help>
+          </description>
+
+          <pickertype>
+            <caption>Picker type</caption>
+            <help>Select picker type for the property.</help>
+          </pickertype>
+        </properties>
+      </datetimeelementblock>
+      <recaptchaelementblock>
+        <name>reCAPTCHA</name>
+        <description></description>
+        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <properties>
+          <sitekey>
+            <caption>Site key</caption>
+            <help>Enter site key for reCAPTCHA.</help>
+          </sitekey>
+          <secretkey>
+            <caption>Secret key</caption>
+            <help>The shared key between your site and reCAPTCHA.</help>
+          </secretkey>
+        </properties>
+      </recaptchaelementblock>
+      <datetimerangeelementblock>
+        <name>日期时间范围</name>
+        <description/>
+        <newitemdefaultname>新的日期时间范围</newitemdefaultname>
+        <properties>
+
+          <description>
+            <caption>提示工具</caption>
+            <help>显示为元素的提示工具或帮助文本。</help>
+          </description>
+
+          <pickertype>
+            <caption>选择器类型</caption>
+            <help>选择适用于该属性的选择器类型。</help>
+          </pickertype>
+        </properties>
+      </datetimerangeelementblock>
+      <addresseselementblock>
+        <name>地址</name>
+        <description/>
+        <newitemdefaultname>新地址</newitemdefaultname>
+        <properties>
+
+          <description>
+            <caption>提示工具</caption>
+            <help>显示为元素的提示工具或帮助文本。</help>
+          </description>
+
+          <mapwidth>
+            <caption>映射宽度</caption>
+            <help>与元素关联的映射宽度。</help>
+          </mapwidth>
+          <mapheight>
+            <caption>映射高度</caption>
+            <help>与元素关联的映射高度。</help>
+          </mapheight>
+          <addresslabel>
+            <caption>详细地址</caption>
+            <help/>
+          </addresslabel>
+          <streetlabel>
+            <caption>街道标签</caption>
+            <help/>
+          </streetlabel>
+          <citylabel>
+            <caption>城市标签</caption>
+            <help/>
+          </citylabel>
+          <statelabel>
+            <caption>州标签</caption>
+            <help/>
+          </statelabel>
+          <postalLabel>
+            <caption>邮政标签</caption>
+            <help/>
+          </postalLabel>
+          <countrylabel>
+            <caption>国家标签</caption>
+            <help/>
+          </countrylabel>
+        </properties>
+      </addresseselementblock>
+    </contenttypes>
+  </language>
+</languages>

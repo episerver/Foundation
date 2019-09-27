@@ -1,0 +1,470 @@
+.modalBackground
+{
+	background-color:Gray;
+	filter:alpha(opacity=70);
+	opacity:0.7;
+
+}
+.modalPopup {
+	background-color:#ffffdd;
+	border-width:3px;
+	border-style:solid;
+	border-color:Gray;
+	padding:3px;
+	/*width: 600px;
+	height: 200px;*/
+}
+
+.MCManagerCss {
+	background-color:#ffffdd;
+	border-width:3px;
+	border-style:solid;
+	border-color:Gray;
+	padding:3px;
+}
+
+table.mcFixedTable
+{
+	table-layout: fixed;
+}
+
+.GridTitle
+{
+	padding: 3px;
+}
+.GridLayout
+{
+	width: 100%; 
+	border: solid 1px #98C0F4;
+
+	/*border-top: solid 2px #90ADD5; 
+	border-bottom: solid 2px #90ADD5;*/
+}
+.SelectorMenuItem
+{
+	/*border: solid 1px Transparent;*/
+	color:#003399; 
+	font-family:tahoma; 
+	font-size:11px; 	
+	margin: 1px;
+}
+.toolbarButton
+{
+	margin-right: 5px;	
+}
+.toobarButtonStatic
+{
+	margin-right: 10px;	
+}
+.toolbarButton button
+{
+	color: #15428B;
+}
+.toolbarDisabledItem em button
+{
+	color: Gray;
+}
+
+
+/*menu in toobar*/
+.menuItem .x-btn-center .x-btn-text
+{
+	padding-left: 3px;
+}
+
+.toolbarButtonStatic .x-btn-left
+{
+	border-left: solid 1px #98C0F4;
+}
+
+.GridPanel
+{
+	height: 100%;
+	/*background-color: #C8C8D0;*/
+	font-size: 12pt;
+	color: Blue;
+}
+/*
+.x-btn-text-icon .x-btn-center x-btn-text
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+}*/
+.GridPaging
+{
+	margin-left: 5px;
+	top: 10px;
+	/*background-color: #FAE6C9;*/
+	vertical-align: top;
+	border: solid 1px #7F9DB9;
+	/*position: relative;*/
+}
+
+.GridPagingContainer
+{
+	padding: 2px;	
+	top: 4px;
+}
+
+.GridMainPanel
+{
+	border: solid 1px #6B92CE;
+	border-top: solid 0px Black;
+	border-bottom: solid  0px Black;
+}
+/* Priorities */
+
+.LowPriority
+{
+	background-color: #F7FDF7;
+}
+.NormalPriority
+{
+	background-color: White;
+}
+.HighPriority
+{
+	background-color: #FEFEF0;
+}
+.VeryHighPriority
+{
+	background-color: #FFF8F0;
+}
+.UrgentPriority
+{
+	background-color: #FFF0F0;
+}
+.BoldRow
+{
+	font-weight: bold;
+}
+
+.HiddenToolbarButton
+{
+	display: none;
+}
+.x-small-editor td
+{
+	height: 18px;
+}
+/*убрать для календаря*/
+html,body,form
+{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	overflow: hidden;
+}
+
+.LayoutBase
+{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	border: 0px;
+	/*background-color: olive;*/
+	padding-top: 1px;
+	/*ibn only styles*/
+	background-color: #DFE8F6;
+}
+.DockContainer
+{
+	position: absolute;
+	/*border: dashed 1px Red; 
+	background-color: #999999*/
+	overflow: hidden;
+}
+
+.DockContainer2
+{
+	border: solid 5px #CEDFFF; 
+}
+
+.DockContainerInner
+{
+	border: solid 1px #C4C4C4;
+	height: 100%;
+}
+
+.Splitter
+{
+	background-color: #FCEED9;
+	position: absolute;
+}
+
+.HorizontalSplitter
+{
+	cursor: n-resize;
+	background-image: url(../../../Apps/MetaDataBase/images/splitterH.gif);
+	background-repeat: repeat; 
+	/*border: solid 1px #98C0F4;	*/
+	border-top: solid 1px #6B92CE;
+	
+}
+
+div.HorizontalSplitter:hover
+{
+	cursor: n-resize;
+	background-image: url(../../../Apps/MetaDataBase/images/splitterHoverH.gif);
+	background-repeat: repeat; 
+	border-top: solid 1px #99BBE8;
+	/*border: solid 1px White;	*/
+	
+}
+
+.VerticalSplitter
+{
+	cursor: w-resize;
+	background-image: url(../../../Apps/MetaDataBase/images/splitterV.gif);
+	background-repeat: repeat; 
+	border: solid 1px #98C0F4;
+}
+
+div.VerticalSplitter:hover
+{
+	cursor: w-resize;
+	background-image: url(../../../Apps/MetaDataBase/images/splitterHoverV.gif);
+	background-repeat: repeat; 
+	border: solid 1px #98C0F4;	
+	
+}
+
+/* report flters*/
+
+.FilterContainer
+{
+	height: 145px;
+	background-color: #DDD;
+	width: 100%;
+}
+
+table.FilterTable
+{
+	width: 100%;
+	border: 0px;
+}
+
+table.FilterTable td
+{
+	padding: 2px;
+}
+
+table.WrapperDiv
+{
+	table-layout: fixed;
+}
+
+.WrapperDiv tr td
+{
+	overflow: hidden;
+	white-space: nowrap;/*IE ONLY hack*/
+	padding: 3px 3px 3px 4px;
+	/*!padding: 1px 3px 1px 4px; /*IE only hack*/
+}
+
+
+
+.WrapperDiv tr td a, div.serverGridHeader div a
+{
+	text-decoration: underline;
+}
+
+
+tr.serverGridFooter td
+{
+	padding: 0px;
+}
+
+.WrapperDiv tr.serverGridHeaderOnly td
+{
+	border-bottom: solid 1px #A6A6A6;
+	border-right: solid 1px #D6D3D6;
+	padding-top: 0px ! important;
+	padding-bottom: 5px ! important;
+	*padding-bottom: 4px ! important;
+	padding-left: 3px ! important;
+	background-color: #F7F3F7;
+}
+
+.WrapperDiv tr th
+{
+	overflow: hidden;
+	white-space: nowrap;/*IE ONLY hack*/
+	padding: 0px 3px 5px 3px;
+	*padding: 0px 3px 4px 3px;
+	border-bottom: solid 1px #A6A6A6;
+	border-right: solid 1px #D6D3D6;
+	background-color: #F7F3F7;
+	/*!padding: 1px 3px 1px 4px; /*IE only hack*/
+}
+
+
+/* server grid styles */
+
+.serverGridHeader
+{
+	border-left: solid 1px #6B92CE;
+	border-right: solid 1px #6B92CE;	
+	border-top: solid 1px #A6A6A6;
+	border-bottom: solid 1px #A6A6A6;
+	background:#F0F0F0 repeat-x 0 bottom;
+	cursor:default;
+	zoom:1;
+}
+
+.serverGridHeaderOnly
+{
+	border-left: solid 1px #6B92CE;
+	border-right: solid 1px #6B92CE;	
+	border-top: solid 1px #A6A6A6;	
+	border-bottom: solid 1px #A6A6A6;
+	background:#F0F0F0 repeat-x 0 bottom;
+	height: 24px;
+	*height: 20px;
+}
+
+.serverGridBody
+{
+	border-left: solid 1px #6B92CE;
+	border-right: solid 1px #6B92CE;
+	overflow: auto;
+	border-spacing: 0px;
+	background-color: White;
+}
+
+.serverGridBodyEmpty
+{
+	border-left: solid 1px #6B92CE;
+	border-right: solid 1px #6B92CE;
+	border-bottom: solid 1px #6B92CE;
+	overflow: auto;
+	border-spacing: 0px;
+	background-color: White;	
+	margin-left: 1px;
+	vertical-align: top;
+	text-align: center;
+}
+
+/*x-grid3-row
+.serverGridBody tr
+{
+	cursor:default;
+	background-color: White;	
+}*/
+
+.serverGridFooter
+{
+	border-left: solid 1px #6B92CE;
+	border-right: solid 1px #6B92CE;
+	border-bottom: solid 1px #6B92CE;
+	background:#d0def0 url(../../../Apps/Shell/Styles/images/ext/default/toolbar/bg.gif) repeat-x top left;
+	height: 28px;
+}
+
+.serverGridHeaderInner
+{
+	padding: 3px;
+	*padding: 2px 3px 0px 3px; /*IE only hack*/
+	border-right: solid 1px #D0D0D0;
+	float: left;
+	/*white-space: nowrap;*/
+	overflow: hidden;
+	text-overflow: ellipsis; /*ie 7 fix*/	
+}
+
+.serverGridHeaderInnerNoPadding
+{
+	float: left;
+	/*white-space: nowrap;*/
+	overflow: hidden;
+	text-overflow: ellipsis; /*ie 7 fix*/	
+}
+
+.serverGridInner
+{
+	padding: 3px 3px 3px 4px;
+	text-overflow: ellipsis; /*ie 7 fix*/
+	border-bottom:1px solid #ededed;
+		/*!padding: 1px 3px 1px 4px; /*IE only hack*/
+	/*white-space: nowrap;*/
+	overflow: hidden;
+	/*border-left: solid 1px White;#D0D0D0;*/
+	
+}
+
+.serverGridSelectedRow
+{
+	background-color: #DFE8F6 ! important;
+}
+
+.NoWrapGridCell
+{
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis; /*ie 7 fix*/
+}
+
+.serverGridInnerMCGrid
+{
+	padding: 3px 3px 3px 4px;
+	text-overflow: ellipsis; /*ie 7 fix*/
+	border-bottom:1px solid #ededed;	
+	
+}
+
+.serverGridPagingRight
+{
+	float: right;
+}
+
+.columnContainer
+{
+	/*padding: 5px;*/
+}
+
+.IbnWidgetHeaderNoCursor
+{
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	background-image: url('../../../Apps/Shell/Styles/images/ext/default/panel/top-bottom.gif');
+	position: relative;
+	border: solid 1px #9CBAEF;
+	border-top: none;
+}
+
+.IbnWidgetHeader
+{
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	background-image: url('../../../Apps/Shell/Styles/images/ext/default/panel/top-bottom.gif');
+	position: relative;
+	cursor: move;
+	border: solid 1px #9CBAEF;
+	border-top: none;
+}
+.IbnWidgetContainer
+{
+	margin: 0px 5px 5px 5px;
+	border-left: solid 1px #ADC7F7;
+	border-right: solid 1px #ADC7F7;
+	border-bottom: solid 1px #ADC7F7;
+}
+
+.IbnHeaderWidgetButton
+{
+	
+	position: absolute;
+	top: 3px;
+}
+
+input.IbnHeaderWidgetButton
+{
+	cursor: pointer;
+}
+
+

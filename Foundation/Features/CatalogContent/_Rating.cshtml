@@ -1,0 +1,14 @@
+﻿@model Foundation.Demo.ViewModels.DemoGenericProductViewModel
+<div class="product-detail__rating jsReviewRating">
+    @if (Model.Reviews != null)
+    {
+        <div class="rating rate-@((int)Model.Reviews.Statistics.OverallRating)">
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+        </div>
+        <span>@Model.Reviews.Statistics.TotalRatings Review(s)</span>
+    }
+</div>

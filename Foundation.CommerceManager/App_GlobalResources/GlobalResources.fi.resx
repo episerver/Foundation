@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddAnotherButtonLabel" xml:space="preserve">
+    <value>Lisää toinen</value>
+  </data>
+  <data name="Alphabet" xml:space="preserve">
+    <value>A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="BackButtonLabel" xml:space="preserve">
+    <value>Takaisin</value>
+  </data>
+  <data name="ErrorHeader" xml:space="preserve">
+    <value>Korjaa seuraavat virheet:</value>
+  </data>
+  <data name="GenericSuccess" xml:space="preserve">
+    <value>Yhteys tietokantaan luotu.</value>
+  </data>
+  <data name="GenericFailure" xml:space="preserve">
+    <value>Yhteyden luonti tietokantaan ei onnistunut.</value>
+  </data>
+  <data name="NoButtonLabel" xml:space="preserve">
+    <value>Ei</value>
+  </data>
+  <data name="NonemptyRole" xml:space="preserve">
+    <value>Rooli on valittava</value>
+  </data>
+  <data name="NonemptyUser" xml:space="preserve">
+    <value>Käyttäjänimi ei voi olla tyhjä.</value>
+  </data>
+  <data name="InvalidRuleName" xml:space="preserve">
+    <value>Lupasäännön nimet eivät voi sisältää merkkiä ”*”</value>
+  </data>
+  <data name="OKButtonLabel" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SaveButtonLabel" xml:space="preserve">
+    <value>Tallenna</value>
+  </data>
+  <data name="SpecificFailureCreateDB" xml:space="preserve">
+    <value>Yhteyden luonti tietokantaan ei onnistunut. &lt;br&gt; Jos et ole vielä luonut SQL Server -tietokantaa, poistu Web Site Administration -työkalusta, luo ja määritä tietokanta aspnet_regsql-komentoriviapuohjelmalla ja palaa sitten tähän työkaluun toimittajan määrittämistä varten.</value>
+  </data>
+  <data name="YesButtonLabel" xml:space="preserve">
+    <value>Kyllä</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Etusivu</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Suojaus</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Sovellus</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Toimittaja</value>
+  </data>
+  <data name="AlphabetInfo" xml:space="preserve">
+    <value>Jokerimerkit * ja ? on sallittu.</value>
+  </data>
+  <data name="HtmlDirectionality" xml:space="preserve">
+    <value>Kirjain</value>
+  </data>
+  <data name="ASPXFileIcon" xml:space="preserve">
+    <value>ASPX-tiedoston kuvake</value>
+  </data>
+  <data name="FolderIcon" xml:space="preserve">
+    <value>Hakemiston kuvake</value>
+  </data>
+  <data name="BrandingFull2Gif" xml:space="preserve">
+    <value>ASP.NET-logo</value>
+  </data>
+  <data name="HelpIconSolidGif" xml:space="preserve">
+    <value>Kysymysmerkin kuva</value>
+  </data>
+  <data name="YellowCornerGif" xml:space="preserve">
+    <value>Keltainen taustakuva</value>
+  </data>
+  <data name="UserGif" xml:space="preserve">
+    <value>Käyttäjä</value>
+  </data>
+  <data name="RoleGif" xml:space="preserve">
+    <value>Rooli</value>
+  </data>
+  <data name="FullTrustRequired" xml:space="preserve">
+    <value>Web Site Administration Tool täytyy suorittaa täydellisen luottamuksen tilassa.  Määritä Web Site Administration Tool suoritettavaksi täydellisen luottamuksen tilassa.</value>
+  </data>
+  <data name="ToolTipFormat" xml:space="preserve">
+    <value>{0} [{1}]</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>ASP.Net Web Application Administration</value>
+  </data>
+  <data name="WebAdmin_ConfigurationIsLocalOnly" xml:space="preserve">
+    <value>Sivuston hallintatyökalu on määritetty käytettäväksi vain paikalliselta koneelta.</value>
+  </data>
+</root>

@@ -1,0 +1,28 @@
+﻿.formcontainerblock {
+    .EPiServerForms {
+        .hide {
+            display: none !important;
+        }
+
+        .Form__Element {
+            margin: 0px;
+        }
+
+        .FormSubmitButton {
+            width: 100%;
+        }
+
+        .block.submitbuttonelementblock {
+            vertical-align: bottom;
+        }
+
+        .choiceelementblock .radio, .choiceelementblock .checkmark {
+            position: initial;
+            top: auto;
+            left: auto;
+            height: auto;
+            width: auto;
+            border: 0;
+        }
+    }
+}

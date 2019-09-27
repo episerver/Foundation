@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListPriceTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Order.GridTemplates.ListPriceTemplate" %>
+<asp:Literal runat="server" ID="ListPriceLiteral"></asp:Literal>

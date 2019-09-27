@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="CommonSettings" controlUrl="Core/CommonSettings.ascx" permissions="core:mng:settings" help="System+Settings"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Core/Tabs/CommonSettingsTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

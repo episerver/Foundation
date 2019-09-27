@@ -1,0 +1,2138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Allt</value>
+  </data>
+  <data name="Authorize_Only" xml:space="preserve">
+    <value>Ge endast behörighet</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Stad</value>
+  </data>
+  <data name="Class_Type" xml:space="preserve">
+    <value>Klasstyp</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="Code_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;En kod krävs.</value>
+  </data>
+  <data name="Country_Code" xml:space="preserve">
+    <value>Landskod</value>
+  </data>
+  <data name="Country_Name" xml:space="preserve">
+    <value>Landsnamn</value>
+  </data>
+  <data name="Country_With_Id_Not_Found" xml:space="preserve">
+    <value>Det gick inte att hitta landet med id={0}.</value>
+  </data>
+  <data name="County" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Kund</value>
+  </data>
+  <data name="Date_Range" xml:space="preserve">
+    <value>Datumintervall</value>
+  </data>
+  <data name="Day_Phone" xml:space="preserve">
+    <value>Telefon, dag</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="Display_Name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Område</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-post</value>
+  </data>
+  <data name="Evening_Phone" xml:space="preserve">
+    <value>Telefon, kväll</value>
+  </data>
+  <data name="Fax_Number" xml:space="preserve">
+    <value>Faxnummer</value>
+  </data>
+  <data name="First_Name" xml:space="preserve">
+    <value>Förnamn</value>
+  </data>
+  <data name="From_Lowercase" xml:space="preserve">
+    <value>från</value>
+  </data>
+  <data name="Generic_Configure_AllCaps" xml:space="preserve">
+    <value>ALLMÄN KONFIGURATION</value>
+  </data>
+  <data name="Geo_Code" xml:space="preserve">
+    <value>Geokod</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Infoga</value>
+  </data>
+  <data name="Last_Name" xml:space="preserve">
+    <value>Efternamn</value>
+  </data>
+  <data name="Line_1" xml:space="preserve">
+    <value>Rad 1</value>
+  </data>
+  <data name="Line_2" xml:space="preserve">
+    <value>Rad 2</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Laddar...</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="New_Address" xml:space="preserve">
+    <value>Ny adress</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Lösenord</value>
+  </data>
+  <data name="Postal_Code" xml:space="preserve">
+    <value>Postnummer</value>
+  </data>
+  <data name="Processing_Url" xml:space="preserve">
+    <value>Bearbetar URL</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Regions" xml:space="preserve">
+    <value>Regioner</value>
+  </data>
+  <data name="Region_Code" xml:space="preserve">
+    <value>Regionkod</value>
+  </data>
+  <data name="Region_Name" xml:space="preserve">
+    <value>Regionnamn</value>
+  </data>
+  <data name="Region_Name_Exists" xml:space="preserve">
+    <value>Det finns redan en region med det angivna namnet</value>
+  </data>
+  <data name="Region_Name_New" xml:space="preserve">
+    <value>Nytt regionnamn</value>
+  </data>
+  <data name="Sale" xml:space="preserve">
+    <value>Försäljning</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Försäljningar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Sök</value>
+  </data>
+  <data name="Shipping" xml:space="preserve">
+    <value>Leverans</value>
+  </data>
+  <data name="Sort_Order" xml:space="preserve">
+    <value>Sorteringsordning</value>
+  </data>
+  <data name="Sort_Order_Invalid" xml:space="preserve">
+    <value>Ogiltigt värde för sorteringsordning.</value>
+  </data>
+  <data name="Sort_Order_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Sorteringsordning krävs.</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Region/område</value>
+  </data>
+  <data name="This_Month" xml:space="preserve">
+    <value>Den här månaden</value>
+  </data>
+  <data name="This_Week" xml:space="preserve">
+    <value>Den här veckan</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Idag</value>
+  </data>
+  <data name="To_Lowercase" xml:space="preserve">
+    <value>till</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Uppdatera</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Användare</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Synlig</value>
+  </data>
+  <data name="Zip_Code" xml:space="preserve">
+    <value>Postnummer</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Åtgärder</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adress</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="ASCII" xml:space="preserve">
+    <value>ASCII</value>
+  </data>
+  <data name="Assets" xml:space="preserve">
+    <value>Resurser</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Tillgängliga</value>
+  </data>
+  <data name="Available_From" xml:space="preserve">
+    <value>Tillgängliga från</value>
+  </data>
+  <data name="Bundle" xml:space="preserve">
+    <value>Buntning</value>
+  </data>
+  <data name="Cancel_Uploading" xml:space="preserve">
+    <value>Avbryt uppladdning</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Katalog</value>
+  </data>
+  <data name="Catalogs" xml:space="preserve">
+    <value>Kataloger</value>
+  </data>
+  <data name="Classes" xml:space="preserve">
+    <value>Klasser</value>
+  </data>
+  <data name="Clone_Selected" xml:space="preserve">
+    <value>Vald klon</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Stänga</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopiera</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Länder</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Skapa</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Skapad</value>
+  </data>
+  <data name="Create_New" xml:space="preserve">
+    <value>Skapa nytt</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Valutor</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Delete_Selected" xml:space="preserve">
+    <value>Ta bort vald</value>
+  </data>
+  <data name="Delimiter" xml:space="preserve">
+    <value>Avgränsare</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Avaktiverad</value>
+  </data>
+  <data name="Display_Template" xml:space="preserve">
+    <value>Visningsmall</value>
+  </data>
+  <data name="Meta_Field_Edit" xml:space="preserve">
+    <value>Redigera metafält</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Aktiverad</value>
+  </data>
+  <data name="Encoding" xml:space="preserve">
+    <value>Kodning</value>
+  </data>
+  <data name="End_Date" xml:space="preserve">
+    <value>Slutdatum</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>Poster</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Utgår</value>
+  </data>
+  <data name="Expires_On" xml:space="preserve">
+    <value>Utgår den</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
+  <data name="Export_Meta_Data" xml:space="preserve">
+    <value>Exportera metadata</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>Fält</value>
+  </data>
+  <data name="Fields" xml:space="preserve">
+    <value>Fält</value>
+  </data>
+  <data name="Field_Name" xml:space="preserve">
+    <value>Fältnamn</value>
+  </data>
+  <data name="File_Name" xml:space="preserve">
+    <value>Filnamn</value>
+  </data>
+  <data name="Friendly_Name" xml:space="preserve">
+    <value>Eget namn</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grupp</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Dölj</value>
+  </data>
+  <data name="Hide_Panel" xml:space="preserve">
+    <value>Dölj panel</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>Ignorerad</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="Import_Export" xml:space="preserve">
+    <value>Importera/exportera</value>
+  </data>
+  <data name="Import_Meta_Data" xml:space="preserve">
+    <value>Importera metadata</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="Is_Primary" xml:space="preserve">
+    <value>Är primär</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Nyckelord</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Senast uppdaterad</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Hantera</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modifierad</value>
+  </data>
+  <data name="Modified_Date" xml:space="preserve">
+    <value>Modifierad den</value>
+  </data>
+  <data name="More_Actions" xml:space="preserve">
+    <value>Fler åtgärder</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Flytta</value>
+  </data>
+  <data name="Name_Lowercase" xml:space="preserve">
+    <value>namn</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="New_Warehouse" xml:space="preserve">
+    <value>Nytt lager</value>
+  </data>
+  <data name="Nodes" xml:space="preserve">
+    <value>Noder</value>
+  </data>
+  <data name="None_Parenthesized" xml:space="preserve">
+    <value>(ingen)</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Översikt</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Sökväg</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Pris</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Ant</value>
+  </data>
+  <data name="Rates" xml:space="preserve">
+    <value>Växlingskurser</value>
+  </data>
+  <data name="Reserved" xml:space="preserve">
+    <value>Reserverad</value>
+  </data>
+  <data name="Sale_Code" xml:space="preserve">
+    <value>Försäljningskod</value>
+  </data>
+  <data name="Save_All" xml:space="preserve">
+    <value>Spara alla</value>
+  </data>
+  <data name="SEO" xml:space="preserve">
+    <value>SEO</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="Sites" xml:space="preserve">
+    <value>Webbplatser</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Storlek</value>
+  </data>
+  <data name="Space" xml:space="preserve">
+    <value>Mellanslag</value>
+  </data>
+  <data name="Start_Date" xml:space="preserve">
+    <value>Startdatum</value>
+  </data>
+  <data name="Start_Export" xml:space="preserve">
+    <value>Starta export</value>
+  </data>
+  <data name="Start_Import" xml:space="preserve">
+    <value>Starta import</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Tab" xml:space="preserve">
+    <value>Flik</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="UTF8" xml:space="preserve">
+    <value>UTF8</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Lager</value>
+  </data>
+  <data name="Warehouses" xml:space="preserve">
+    <value>Lager</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Vikt</value>
+  </data>
+  <data name="Edit_Command" xml:space="preserve">
+    <value>Redigera kommando</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Växlingskurs</value>
+  </data>
+  <data name="Rate_Date" xml:space="preserve">
+    <value>Frekvensdatum</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Adresser</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Belopp</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Från</value>
+  </data>
+  <data name="State_Province_Code" xml:space="preserve">
+    <value>Region-/områdeskod</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Till</value>
+  </data>
+  <data name="Configuration_Parameters" xml:space="preserve">
+    <value>Konfigurationsparametrar</value>
+  </data>
+  <data name="Gateway" xml:space="preserve">
+    <value>Gateway</value>
+  </data>
+  <data name="Save_Changes" xml:space="preserve">
+    <value>Spara ändringar</value>
+  </data>
+  <data name="Class_Name" xml:space="preserve">
+    <value>Klassnamn</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>IsDefault</value>
+  </data>
+  <data name="Restricted_Shipping_Methods" xml:space="preserve">
+    <value>Begränsade leveransmetoder</value>
+  </data>
+  <data name="select_class" xml:space="preserve">
+    <value>välj klass</value>
+  </data>
+  <data name="select_language" xml:space="preserve">
+    <value>välj språk</value>
+  </data>
+  <data name="Supports_Recurring" xml:space="preserve">
+    <value>Stöder återkommande</value>
+  </data>
+  <data name="System_Keyword" xml:space="preserve">
+    <value>Systemnyckelord</value>
+  </data>
+  <data name="Latin_Symbols_Only" xml:space="preserve">
+    <value>&lt;b&gt;Fel värde&lt;/b&gt;&lt;br/&gt;Använd bara latinska bokstäver och siffror, inga specialsymboler.</value>
+  </data>
+  <data name="Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Ett namn krävs.</value>
+  </data>
+  <data name="Payment_Method_Exists" xml:space="preserve">
+    <value>Det finns redan en betalningsmetod med det angivna namnet.</value>
+  </data>
+  <data name="System_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Ett systemnamn namn krävs.</value>
+  </data>
+  <data name="Carts" xml:space="preserve">
+    <value>Kundvagnar</value>
+  </data>
+  <data name="Meta_Classes" xml:space="preserve">
+    <value>Metaklasser</value>
+  </data>
+  <data name="Meta_Fields" xml:space="preserve">
+    <value>Metafält</value>
+  </data>
+  <data name="Order_Search" xml:space="preserve">
+    <value>Ordersökning</value>
+  </data>
+  <data name="Order_System" xml:space="preserve">
+    <value>Ordersystem</value>
+  </data>
+  <data name="Payment_Plans_Recurring" xml:space="preserve">
+    <value>Betalningsplaner (återkommande)</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Betalningar</value>
+  </data>
+  <data name="Purchase_Orders" xml:space="preserve">
+    <value>Inköpsorder</value>
+  </data>
+  <data name="Purchase_Orders_By_Status" xml:space="preserve">
+    <value>Inköpsorder efter status</value>
+  </data>
+  <data name="Shipping_Jurisdiction_Groups" xml:space="preserve">
+    <value>Leveransjurisdiktionsgrupper</value>
+  </data>
+  <data name="Shipping_Jurisdictions" xml:space="preserve">
+    <value>Leveransjurisdiktioner</value>
+  </data>
+  <data name="Shipping_Methods" xml:space="preserve">
+    <value>Leveransmetoder</value>
+  </data>
+  <data name="Shipping_Packages" xml:space="preserve">
+    <value>Leveranspaket</value>
+  </data>
+  <data name="Shipping_Providers" xml:space="preserve">
+    <value>Leveranstillhandahållare</value>
+  </data>
+  <data name="Tax_Jurisdiction_Groups" xml:space="preserve">
+    <value>Skattejurisdiktionsgrupper</value>
+  </data>
+  <data name="Tax_Jurisdictions" xml:space="preserve">
+    <value>Skattejurisdiktioner</value>
+  </data>
+  <data name="Taxes" xml:space="preserve">
+    <value>Skatter</value>
+  </data>
+  <data name="Taxes_Configuration" xml:space="preserve">
+    <value>Skattekonfiguration</value>
+  </data>
+  <data name="New_Meta_Class" xml:space="preserve">
+    <value>Ny metaklass</value>
+  </data>
+  <data name="New_Meta_Field" xml:space="preserve">
+    <value>Nytt metafält</value>
+  </data>
+  <data name="Import_MetaData" xml:space="preserve">
+    <value>Importera metadata</value>
+  </data>
+  <data name="Export_MetaData" xml:space="preserve">
+    <value>Exportera metadata</value>
+  </data>
+  <data name="New_Purchase_Order" xml:space="preserve">
+    <value>Ny inköpsorder</value>
+  </data>
+  <data name="New_Payment_Plan" xml:space="preserve">
+    <value>Ny betalningsplan</value>
+  </data>
+  <data name="New_Shopping_Cart" xml:space="preserve">
+    <value>Ny kundvagn</value>
+  </data>
+  <data name="New_Order" xml:space="preserve">
+    <value>Ny order</value>
+  </data>
+  <data name="Send_Notifications" xml:space="preserve">
+    <value>Skicka notifieringar</value>
+  </data>
+  <data name="Create_Purchase_Order" xml:space="preserve">
+    <value>Skapa inköpsorder</value>
+  </data>
+  <data name="Calculate_Totals" xml:space="preserve">
+    <value>Beräkna summor</value>
+  </data>
+  <data name="Process_Payments" xml:space="preserve">
+    <value>Bearbetar betalningar</value>
+  </data>
+  <data name="Convert_To_Purchase_Order" xml:space="preserve">
+    <value>Konvertera till inköpsorder</value>
+  </data>
+  <data name="Import_Taxes" xml:space="preserve">
+    <value>Importskatter</value>
+  </data>
+  <data name="Providers" xml:space="preserve">
+    <value>Tillhandahållare</value>
+  </data>
+  <data name="Packages" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Methods" xml:space="preserve">
+    <value>Metoder</value>
+  </data>
+  <data name="Meta_Data" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="Cart_View" xml:space="preserve">
+    <value>Kundvagnsvy</value>
+  </data>
+  <data name="Credit_Card" xml:space="preserve">
+    <value>Kreditkort</value>
+  </data>
+  <data name="Line_Items" xml:space="preserve">
+    <value>Radartiklar</value>
+  </data>
+  <data name="Meta_Class_Edit" xml:space="preserve">
+    <value>Redigera metaklass</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parametrar</value>
+  </data>
+  <data name="Payment_Methods" xml:space="preserve">
+    <value>Betalningsmetoder</value>
+  </data>
+  <data name="Payment_Plan_New" xml:space="preserve">
+    <value>Ny betalningsplan</value>
+  </data>
+  <data name="Payment_Plan_View" xml:space="preserve">
+    <value>Visa betalningsplan</value>
+  </data>
+  <data name="Purchase_Order_New" xml:space="preserve">
+    <value>Ny order</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+  <data name="Shipments" xml:space="preserve">
+    <value>Leveranser</value>
+  </data>
+  <data name="Shopping_Cart_New" xml:space="preserve">
+    <value>Ny kundvagn</value>
+  </data>
+  <data name="Enter_Valid_Value" xml:space="preserve">
+    <value>Ange ett giltigt värde.</value>
+  </data>
+  <data name="or_more" xml:space="preserve">
+    <value>eller mer</value>
+  </data>
+  <data name="Group_Name" xml:space="preserve">
+    <value>Gruppens namn</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Ändra</value>
+  </data>
+  <data name="Weight_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Vikt krävs.</value>
+  </data>
+  <data name="Add_Item" xml:space="preserve">
+    <value>Lägg till artikel</value>
+  </data>
+  <data name="Base_Price" xml:space="preserve">
+    <value>Baspris</value>
+  </data>
+  <data name="Base_Price_Invalid" xml:space="preserve">
+    <value>Ogiltigt värde för baspris.</value>
+  </data>
+  <data name="Base_Price_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Baspris krävs.</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Dimensioner</value>
+  </data>
+  <data name="Friendly_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Ett eget namn krävs.</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Höjd</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Längd</value>
+  </data>
+  <data name="Package_Name" xml:space="preserve">
+    <value>Paketnamn</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Tillhandahållare</value>
+  </data>
+  <data name="Restricted_Payments" xml:space="preserve">
+    <value>Begränsade betalningar</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="select_currency" xml:space="preserve">
+    <value>välj valuta</value>
+  </data>
+  <data name="select_shipping_option" xml:space="preserve">
+    <value>välj leveransalternativ</value>
+  </data>
+  <data name="Set_Dimensions" xml:space="preserve">
+    <value>Ange dimensioner</value>
+  </data>
+  <data name="Shipping_Method_Exists" xml:space="preserve">
+    <value>Det finns redan en leveransmetod med det angivna namnet.</value>
+  </data>
+  <data name="Shipping_Option_Name_Exists" xml:space="preserve">
+    <value>Det finns redan ett leveransalternativ med det angivna namnet.</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Bredd</value>
+  </data>
+  <data name="Add_Line_Item" xml:space="preserve">
+    <value>Lägg till radartikel</value>
+  </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>Koncernbolag</value>
+  </data>
+  <data name="Billing_Address" xml:space="preserve">
+    <value>Faktureringsadress</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Rabatt</value>
+  </data>
+  <data name="Discount_Total" xml:space="preserve">
+    <value>Summa rabatt</value>
+  </data>
+  <data name="Handling_Total" xml:space="preserve">
+    <value>Summa hantering</value>
+  </data>
+  <data name="List_Price" xml:space="preserve">
+    <value>Listpris</value>
+  </data>
+  <data name="Order_Summary" xml:space="preserve">
+    <value>Ordersammanställning</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Antal</value>
+  </data>
+  <data name="select_affiliate" xml:space="preserve">
+    <value>välj koncernbolag</value>
+  </data>
+  <data name="Shipping_Address" xml:space="preserve">
+    <value>Leveransadress</value>
+  </data>
+  <data name="Shipping_Method" xml:space="preserve">
+    <value>Leveransmetod</value>
+  </data>
+  <data name="Shipping_Total" xml:space="preserve">
+    <value>Summa leverans</value>
+  </data>
+  <data name="Sub_Total" xml:space="preserve">
+    <value>Delsumma</value>
+  </data>
+  <data name="Tax_Total" xml:space="preserve">
+    <value>Summa skatt</value>
+  </data>
+  <data name="TOTAL_AllCaps" xml:space="preserve">
+    <value>SUMMA</value>
+  </data>
+  <data name="Address_Required" xml:space="preserve">
+    <value>Adress krävs.</value>
+  </data>
+  <data name="Add_New_File" xml:space="preserve">
+    <value>Lägg till en ny fil</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Effective_Date" xml:space="preserve">
+    <value>Gäller från</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Misslyckades</value>
+  </data>
+  <data name="Files_Available_For_Import" xml:space="preserve">
+    <value>Filer tillgängliga för import</value>
+  </data>
+  <data name="File_Uploading" xml:space="preserve">
+    <value>Filen laddas upp. Vänta...</value>
+  </data>
+  <data name="Items_To_Ship" xml:space="preserve">
+    <value>Artiklar att leverera</value>
+  </data>
+  <data name="Last_Modified" xml:space="preserve">
+    <value>Senast sparad</value>
+  </data>
+  <data name="link_to_folder" xml:space="preserve">
+    <value>&amp;nbsp;länk till mapp:</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Ladda</value>
+  </data>
+  <data name="Method_Name" xml:space="preserve">
+    <value>Metodnamn</value>
+  </data>
+  <data name="move_or" xml:space="preserve">
+    <value>flytta eller</value>
+  </data>
+  <data name="New_Shipment" xml:space="preserve">
+    <value>Ny leverans</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>Sortering</value>
+  </data>
+  <data name="Payment_Method_Description" xml:space="preserve">
+    <value>konfigurerade betalningsmetoder, vilka normalt motsvarar betalningsprocessorer</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Avvaktande</value>
+  </data>
+  <data name="Processed" xml:space="preserve">
+    <value>Behandlade</value>
+  </data>
+  <data name="Save_The_File" xml:space="preserve">
+    <value>Spara filen</value>
+  </data>
+  <data name="select_tax_category" xml:space="preserve">
+    <value>välj skattekategori</value>
+  </data>
+  <data name="Shipping_Method_Required" xml:space="preserve">
+    <value>Leveransmetod krävs.</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>SortOrder</value>
+  </data>
+  <data name="System_Name" xml:space="preserve">
+    <value>Systemnamn</value>
+  </data>
+  <data name="Tax_Category" xml:space="preserve">
+    <value>Skattekategori</value>
+  </data>
+  <data name="Tax_Category_Required" xml:space="preserve">
+    <value>Skattekategori krävs.</value>
+  </data>
+  <data name="Tax_Import_Instructions" xml:space="preserve">
+    <value>Om du vill importera skatter väljer du en befintlig fil i rutnätet nedan eller laddar upp en ny. Klicka sedan på 'Starta import' för att börja importera.</value>
+  </data>
+  <data name="Tax_Import_Warning" xml:space="preserve">
+    <value>Vi rekommenderar att du säkerhetskopierar din ECF-databas innan du importerar.</value>
+  </data>
+  <data name="Tax_Type_Description" xml:space="preserve">
+    <value>typ av skatt</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Totalt</value>
+  </data>
+  <data name="Tracking_Number" xml:space="preserve">
+    <value>Spårningsnummer</value>
+  </data>
+  <data name="Uploaded_File" xml:space="preserve">
+    <value>Uppladdad fil</value>
+  </data>
+  <data name="Upload_File" xml:space="preserve">
+    <value>Ladda upp fil</value>
+  </data>
+  <data name="Wait_For_Uploading_To_Start" xml:space="preserve">
+    <value>Vänta tills uppladdningen startar.</value>
+  </data>
+  <data name="Load_Ellipsis" xml:space="preserve">
+    <value>Ladda...</value>
+  </data>
+  <data name="Loading_Ellipsis" xml:space="preserve">
+    <value>Laddar...</value>
+  </data>
+  <data name="Starts" xml:space="preserve">
+    <value>Startar</value>
+  </data>
+  <data name="Ends" xml:space="preserve">
+    <value>Slutar</value>
+  </data>
+  <data name="Is_Active" xml:space="preserve">
+    <value>Är aktiv</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Prioritet</value>
+  </data>
+  <data name="Policy_Id" xml:space="preserve">
+    <value>Policy-ID</value>
+  </data>
+  <data name="IsLocal" xml:space="preserve">
+    <value>IsLocal</value>
+  </data>
+  <data name="Condition_Id" xml:space="preserve">
+    <value>Villkors-ID</value>
+  </data>
+  <data name="ExpressionId" xml:space="preserve">
+    <value>ExpressionId</value>
+  </data>
+  <data name="Expression" xml:space="preserve">
+    <value>Uttryck</value>
+  </data>
+  <data name="NodeId" xml:space="preserve">
+    <value>NodeId</value>
+  </data>
+  <data name="Node" xml:space="preserve">
+    <value>Nod</value>
+  </data>
+  <data name="EntryId" xml:space="preserve">
+    <value>EntryId</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="Policy_Name" xml:space="preserve">
+    <value>Policynamn</value>
+  </data>
+  <data name="Policy_Status" xml:space="preserve">
+    <value>Policystatus</value>
+  </data>
+  <data name="Expression_Id" xml:space="preserve">
+    <value>Uttrycks-ID</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>Kampanjer</value>
+  </data>
+  <data name="Promotions" xml:space="preserve">
+    <value>Marknadsföring</value>
+  </data>
+  <data name="Customer_Segments" xml:space="preserve">
+    <value>Kundsegment</value>
+  </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Policies</value>
+  </data>
+  <data name="Expressions" xml:space="preserve">
+    <value>Uttryck</value>
+  </data>
+  <data name="Conditions" xml:space="preserve">
+    <value>Villkor</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inaktiv</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Borttagen</value>
+  </data>
+  <data name="Campaign" xml:space="preserve">
+    <value>Kampanj</value>
+  </data>
+  <data name="Coupon_Code" xml:space="preserve">
+    <value>Kupongkod</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Avbruten</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="Catalog_Node" xml:space="preserve">
+    <value>Katalog_nod</value>
+  </data>
+  <data name="Catalog_Entry" xml:space="preserve">
+    <value>Katalog_post</value>
+  </data>
+  <data name="Archived" xml:space="preserve">
+    <value>Arkiverad</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="New_Segment" xml:space="preserve">
+    <value>Nytt segment</value>
+  </data>
+  <data name="New_Promotion" xml:space="preserve">
+    <value>Nytt erbjudande</value>
+  </data>
+  <data name="Flip_Status" xml:space="preserve">
+    <value>Ändra status (aktiv/inaktiv)</value>
+  </data>
+  <data name="New_Policy" xml:space="preserve">
+    <value>Ny policy</value>
+  </data>
+  <data name="New_Expression" xml:space="preserve">
+    <value>Nytt uttryck</value>
+  </data>
+  <data name="New_Campaign" xml:space="preserve">
+    <value>Ny kampanj</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marknadsföring</value>
+  </data>
+  <data name="Exclude" xml:space="preserve">
+    <value>Undanta</value>
+  </data>
+  <data name="Minimum_Quantity" xml:space="preserve">
+    <value>Minsta kvantitet</value>
+  </data>
+  <data name="Variations" xml:space="preserve">
+    <value>Artikelnummer</value>
+  </data>
+  <data name="Folders_And_Pages" xml:space="preserve">
+    <value>Kataloger och sidor</value>
+  </data>
+  <data name="Design" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Menus" xml:space="preserve">
+    <value>Menyer</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Arbetsgången</value>
+  </data>
+  <data name="Templates" xml:space="preserve">
+    <value>Templates</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="Params" xml:space="preserve">
+    <value>Parametrar</value>
+  </data>
+  <data name="MenuID" xml:space="preserve">
+    <value>MenuID</value>
+  </data>
+  <data name="MenuItemID" xml:space="preserve">
+    <value>MenuItemID</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentera</value>
+  </data>
+  <data name="Editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Edit_Date" xml:space="preserve">
+    <value>Redigera datum</value>
+  </data>
+  <data name="SiteId" xml:space="preserve">
+    <value>SiteId</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Katalog</value>
+  </data>
+  <data name="Default_Site" xml:space="preserve">
+    <value>Standardwebbplats</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Nyckel</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Värde</value>
+  </data>
+  <data name="WorkflowId" xml:space="preserve">
+    <value>WorkflowId</value>
+  </data>
+  <data name="StatusId" xml:space="preserve">
+    <value>StatusId</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="SecurityKey" xml:space="preserve">
+    <value>SecurityKey</value>
+  </data>
+  <data name="Scope" xml:space="preserve">
+    <value>Scope</value>
+  </data>
+  <data name="Identity" xml:space="preserve">
+    <value>Identitet</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Läs</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Menu_Overview" xml:space="preserve">
+    <value>Menyöversikt</value>
+  </data>
+  <data name="Site_Overview" xml:space="preserve">
+    <value>Webbplatsöversikt</value>
+  </data>
+  <data name="Additional_Settings" xml:space="preserve">
+    <value>Ytterligare inställningar</value>
+  </data>
+  <data name="Folders_List" xml:space="preserve">
+    <value>Kataloglista</value>
+  </data>
+  <data name="Move_To_Folder" xml:space="preserve">
+    <value>Flytta till katalog</value>
+  </data>
+  <data name="Add_New" xml:space="preserve">
+    <value>Lägg till ny</value>
+  </data>
+  <data name="Command_List" xml:space="preserve">
+    <value>Kommandolista</value>
+  </data>
+  <data name="Menu_List" xml:space="preserve">
+    <value>Menylista</value>
+  </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>Redigera meny</value>
+  </data>
+  <data name="Menu_Item_List" xml:space="preserve">
+    <value>Menyobjektlista</value>
+  </data>
+  <data name="Menu_Item_Edit" xml:space="preserve">
+    <value>Redigera menyobjekt</value>
+  </data>
+  <data name="Draft_List" xml:space="preserve">
+    <value>List över utkast</value>
+  </data>
+  <data name="Rejected_List" xml:space="preserve">
+    <value>Lista över avböjda</value>
+  </data>
+  <data name="Waiting_Approval_List" xml:space="preserve">
+    <value>List över väntande godkännande</value>
+  </data>
+  <data name="Site_List" xml:space="preserve">
+    <value>Webbplatslista</value>
+  </data>
+  <data name="Site_Edit" xml:space="preserve">
+    <value>Redigera webbplats</value>
+  </data>
+  <data name="Templates_List" xml:space="preserve">
+    <value>Mallista</value>
+  </data>
+  <data name="Template_Edit" xml:space="preserve">
+    <value>Redigera mall</value>
+  </data>
+  <data name="Workflow_List" xml:space="preserve">
+    <value>Arbetsflödeslista</value>
+  </data>
+  <data name="Workflow_Edit" xml:space="preserve">
+    <value>Redigera arbetsflöde</value>
+  </data>
+  <data name="State_List" xml:space="preserve">
+    <value>Tillståndslista</value>
+  </data>
+  <data name="Workflow_State_Edit" xml:space="preserve">
+    <value>Redigera arbetsflödestillstånd</value>
+  </data>
+  <data name="Site_Permissions" xml:space="preserve">
+    <value>Webbplatsrättigheter</value>
+  </data>
+  <data name="Export_Site" xml:space="preserve">
+    <value>Exportera webbplats</value>
+  </data>
+  <data name="Import_Site" xml:space="preserve">
+    <value>Importera webbplats</value>
+  </data>
+  <data name="Language_Edit" xml:space="preserve">
+    <value>Redigera språk</value>
+  </data>
+  <data name="Add_State" xml:space="preserve">
+    <value>Lägg till tillstånd</value>
+  </data>
+  <data name="Back_to_Workflow_List" xml:space="preserve">
+    <value>Tillbaka till arbetsflödeslista</value>
+  </data>
+  <data name="New_Site" xml:space="preserve">
+    <value>Ny webbplats</value>
+  </data>
+  <data name="Approve_Selected" xml:space="preserve">
+    <value>Godkänn markerad</value>
+  </data>
+  <data name="New_Command" xml:space="preserve">
+    <value>Nytt kommando</value>
+  </data>
+  <data name="Back_to_Folders_List" xml:space="preserve">
+    <value>Tillbaka till kataloglista</value>
+  </data>
+  <data name="New_Top_Menu" xml:space="preserve">
+    <value>Ny övermeny</value>
+  </data>
+  <data name="New_Menu_Item" xml:space="preserve">
+    <value>Nytt menyobjekt</value>
+  </data>
+  <data name="New_Language" xml:space="preserve">
+    <value>Nytt språk</value>
+  </data>
+  <data name="New_Page" xml:space="preserve">
+    <value>Ny sida</value>
+  </data>
+  <data name="New_Folder" xml:space="preserve">
+    <value>Ny katalog</value>
+  </data>
+  <data name="Page_Navigation" xml:space="preserve">
+    <value>Sidnavigering</value>
+  </data>
+  <data name="Move_Folders_Pages" xml:space="preserve">
+    <value>Flytta kataloger/sidor</value>
+  </data>
+  <data name="Copy_Languages" xml:space="preserve">
+    <value>Kopiera språk</value>
+  </data>
+  <data name="Reject_Selected" xml:space="preserve">
+    <value>Avböj markerad</value>
+  </data>
+  <data name="Content_Management" xml:space="preserve">
+    <value>Innehållshantering</value>
+  </data>
+  <data name="My_Work" xml:space="preserve">
+    <value>Mitt arbete</value>
+  </data>
+  <data name="Site_Templates" xml:space="preserve">
+    <value>Webbplatsmallar</value>
+  </data>
+  <data name="List_Of_Sites" xml:space="preserve">
+    <value>Lista med webbplatser</value>
+  </data>
+  <data name="Add_Attribute" xml:space="preserve">
+    <value>Lägg till attribut</value>
+  </data>
+  <data name="Upload_Instructions" xml:space="preserve">
+    <value>Vänta tills uppladdningen startar</value>
+  </data>
+  <data name="Upload_Status" xml:space="preserve">
+    <value>Filen laddas upp. Vänta...</value>
+  </data>
+  <data name="Empty_Parenthesis" xml:space="preserve">
+    <value>(tom)</value>
+  </data>
+  <data name="Admin_Url" xml:space="preserve">
+    <value>Admin-URL</value>
+  </data>
+  <data name="Is_Default" xml:space="preserve">
+    <value>Är standard</value>
+  </data>
+  <data name="Domains" xml:space="preserve">
+    <value>Domäner</value>
+  </data>
+  <data name="Google_Analytics" xml:space="preserve">
+    <value>Google Analytics</value>
+  </data>
+  <data name="Weight_Range_Warning" xml:space="preserve">
+    <value>&lt;b&gt;Ogiltigt värde&lt;/b&gt;&lt;br /&gt;Vikt måste vara ett heltal mellan -1 och 100.</value>
+  </data>
+  <data name="Delete_All" xml:space="preserve">
+    <value>Ta bort alla</value>
+  </data>
+  <data name="Google_Analytics_Description" xml:space="preserve">
+    <value>(Google Analytics och annan text som du vill infoga på varje sida)</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Hantering</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Inloggning</value>
+  </data>
+  <data name="Licensing" xml:space="preserve">
+    <value>Licensiering</value>
+  </data>
+  <data name="Search_Index" xml:space="preserve">
+    <value>Sökindex</value>
+  </data>
+  <data name="System_Log" xml:space="preserve">
+    <value>Systemlogg</value>
+  </data>
+  <data name="Application_Log" xml:space="preserve">
+    <value>Applikationslogg</value>
+  </data>
+  <data name="Log_Id" xml:space="preserve">
+    <value>Logg-ID</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Åtgärd</value>
+  </data>
+  <data name="Object_Key" xml:space="preserve">
+    <value>Objektnyckel</value>
+  </data>
+  <data name="Object_Type" xml:space="preserve">
+    <value>Objekttyp</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>Användarnamn</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>Lyckades</value>
+  </data>
+  <data name="IP_Address" xml:space="preserve">
+    <value>IP-adress</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Anteckningar</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Källa</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Sakregister</value>
+  </data>
+  <data name="Controls_Set" xml:space="preserve">
+    <value>Sätt kontroller</value>
+  </data>
+  <data name="Page_Template" xml:space="preserve">
+    <value>Sidmall</value>
+  </data>
+  <data name="Common_Settings" xml:space="preserve">
+    <value>Gemensamma inställningar</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+  <data name="Replication_Wizard" xml:space="preserve">
+    <value>Replikeringsguiden</value>
+  </data>
+  <data name="View_Database_Information" xml:space="preserve">
+    <value>Visa databasinformation</value>
+  </data>
+  <data name="Search_Manager" xml:space="preserve">
+    <value>Sökhanterare</value>
+  </data>
+  <data name="Change_Language" xml:space="preserve">
+    <value>Ändra språk</value>
+  </data>
+  <data name="Layout_Management" xml:space="preserve">
+    <value>Layouthantering</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>egenskaper</value>
+  </data>
+  <data name="Dashboard_DashboardHome" xml:space="preserve">
+    <value>Startsida för Dashboard</value>
+  </data>
+  <data name="Application_System_Version" xml:space="preserve">
+    <value>Version av applikationssystem</value>
+  </data>
+  <data name="Business_Foundation_System_Version" xml:space="preserve">
+    <value>Version av Business Foundation-system</value>
+  </data>
+  <data name="Catalog_System_Version" xml:space="preserve">
+    <value>Version av katalogsystem</value>
+  </data>
+  <data name="Content_System_Version" xml:space="preserve">
+    <value>Version av innehållssytem</value>
+  </data>
+  <data name="Marketing_System_Version" xml:space="preserve">
+    <value>Version av marknadsföringssystem</value>
+  </data>
+  <data name="Order_System_Version" xml:space="preserve">
+    <value>Version av ordersystem</value>
+  </data>
+  <data name="Security_System_Version" xml:space="preserve">
+    <value>Version av säkerhetssystem</value>
+  </data>
+  <data name="System_Settings" xml:space="preserve">
+    <value>Systeminställningar</value>
+  </data>
+  <data name="Dictionaries" xml:space="preserve">
+    <value>Ordlistor</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Loggar</value>
+  </data>
+  <data name="Business_Foundation" xml:space="preserve">
+    <value>Business Foundation</value>
+  </data>
+  <data name="License_Info" xml:space="preserve">
+    <value>Licensinformation</value>
+  </data>
+  <data name="EPiServer_Commerce_Manager" xml:space="preserve">
+    <value>EPiServer Commerce Manager</value>
+  </data>
+  <data name="Export_Log" xml:space="preserve">
+    <value>Exportlogg</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Valid_Date_Required" xml:space="preserve">
+    <value>&lt;b&gt;Felaktigt datumvärde&lt;/b&gt;&lt;br /&gt;Ange ett giltigt datum.</value>
+  </data>
+  <data name="Valid_Date_Format_Required" xml:space="preserve">
+    <value>&lt;b&gt;Felaktigt datumvärde&lt;/b&gt;&lt;br /&gt;Ange ett giltigt datum.</value>
+  </data>
+  <data name="Page_Size" xml:space="preserve">
+    <value>Sidstorlek</value>
+  </data>
+  <data name="Days_Ago" xml:space="preserve">
+    <value>{0} dagar, {1} timmar sedan</value>
+  </data>
+  <data name="Day_Ago" xml:space="preserve">
+    <value>{0} dag, {1} timmar sedan</value>
+  </data>
+  <data name="Hours_Ago" xml:space="preserve">
+    <value>{0} timmar, {1} minuter sedan</value>
+  </data>
+  <data name="Hour_Ago" xml:space="preserve">
+    <value>{0} timme, {1} minuter sedan</value>
+  </data>
+  <data name="Minutes_Ago" xml:space="preserve">
+    <value>{0} minuter sedan</value>
+  </data>
+  <data name="Minute_Ago" xml:space="preserve">
+    <value>några sekunder sedan</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>I går</value>
+  </data>
+  <data name="Close_Window" xml:space="preserve">
+    <value>Stäng fönstret</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>Ignorera</value>
+  </data>
+  <data name="Ignore_All" xml:space="preserve">
+    <value>Ignorera alla</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Ersätt</value>
+  </data>
+  <data name="Spell_Check" xml:space="preserve">
+    <value>Rättstavning</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Filter_Settings" xml:space="preserve">
+    <value>Filterinställningar</value>
+  </data>
+  <data name="Apply_Filter" xml:space="preserve">
+    <value>Tillämpa filter</value>
+  </data>
+  <data name="Source_Type" xml:space="preserve">
+    <value>Källtyp</value>
+  </data>
+  <data name="select_length_unit" xml:space="preserve">
+    <value>välj längdenhet</value>
+  </data>
+  <data name="select_weight_unit" xml:space="preserve">
+    <value>välj viktenhet</value>
+  </data>
+  <data name="Default_Language" xml:space="preserve">
+    <value>Standardspråk</value>
+  </data>
+  <data name="Default_Currency" xml:space="preserve">
+    <value>Standardvaluta</value>
+  </data>
+  <data name="Default_Length_Unit" xml:space="preserve">
+    <value>Standardenhet för längd</value>
+  </data>
+  <data name="Default_Weight_Unit" xml:space="preserve">
+    <value>Standardenhet för vikt</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Installera</value>
+  </data>
+  <data name="Browse_Ellipses" xml:space="preserve">
+    <value>Bläddra...</value>
+  </data>
+  <data name="E_mail" xml:space="preserve">
+    <value>E-postadress</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Företag</value>
+  </data>
+  <data name="Estimated" xml:space="preserve">
+    <value>Uppskattad</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>Återstående</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Etikett</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>Sant</value>
+  </data>
+  <data name="False" xml:space="preserve">
+    <value>Falskt</value>
+  </data>
+  <data name="Required_Field_Missing" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;.</value>
+  </data>
+  <data name="Valid_Email_Required" xml:space="preserve">
+    <value>En giltig e-postadress måste användas.</value>
+  </data>
+  <data name="Delete_File" xml:space="preserve">
+    <value>Ta bort fil</value>
+  </data>
+  <data name="Upload_Files" xml:space="preserve">
+    <value>Ladda upp filer</value>
+  </data>
+  <data name="File_For_Saving" xml:space="preserve">
+    <value>Fil för att spara</value>
+  </data>
+  <data name="Delete_Picture" xml:space="preserve">
+    <value>Ta bort bild</value>
+  </data>
+  <data name="Add_Value" xml:space="preserve">
+    <value>Lägg till värde</value>
+  </data>
+  <data name="Add_Lowercase" xml:space="preserve">
+    <value>lägg till</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Sida</value>
+  </data>
+  <data name="Replace_All" xml:space="preserve">
+    <value>Ersätt alla</value>
+  </data>
+  <data name="Suggestions" xml:space="preserve">
+    <value>Förslag</value>
+  </data>
+  <data name="Posted_Values" xml:space="preserve">
+    <value>Postade värden</value>
+  </data>
+  <data name="Untitled" xml:space="preserve">
+    <value>Namnlös</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Ladda ner</value>
+  </data>
+  <data name="Move_Copy" xml:space="preserve">
+    <value>Flytta/kopiera</value>
+  </data>
+  <data name="New_File" xml:space="preserve">
+    <value>Ny fil</value>
+  </data>
+  <data name="copy_to_folder_colon" xml:space="preserve">
+    <value>kopiera till katalog:</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Produkter</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategorier</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Kunder</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Välkommen</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Om...</value>
+  </data>
+  <data name="LITERAL" xml:space="preserve">
+    <value>År</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>År</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Månad</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Dag</value>
+  </data>
+  <data name="Group_By" xml:space="preserve">
+    <value>Gruppera efter</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Konton</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Organisationer</value>
+  </data>
+  <data name="Login_As_Customer" xml:space="preserve">
+    <value>Logga in som kund</value>
+  </data>
+  <data name="Customer_Group" xml:space="preserve">
+    <value>Kundgrupp</value>
+  </data>
+  <data name="not_set_parenthesized" xml:space="preserve">
+    <value>(ej angiven)</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Godkänd</value>
+  </data>
+  <data name="Locked_Out" xml:space="preserve">
+    <value>Utlåst</value>
+  </data>
+  <data name="Last_Activity" xml:space="preserve">
+    <value>Senaste aktivitet</value>
+  </data>
+  <data name="Last_Lockout" xml:space="preserve">
+    <value>Senaste utlåsning</value>
+  </data>
+  <data name="Last_Login" xml:space="preserve">
+    <value>Senaste inloggning</value>
+  </data>
+  <data name="Last_Password_Changed" xml:space="preserve">
+    <value>Senaste lösenordsändringen</value>
+  </data>
+  <data name="Customer_With_Name_Exists" xml:space="preserve">
+    <value>Det finns redan en kund med det angivna namnet.</value>
+  </data>
+  <data name="Select_Status_Bold" xml:space="preserve">
+    <value>&lt;b&gt;Välj status.&lt;/b&gt;</value>
+  </data>
+  <data name="User_Name_Is_Required" xml:space="preserve">
+    <value>Ett användarnamn krävs.</value>
+  </data>
+  <data name="User_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;/b&gt;&lt;br /&gt;Ett användarnamn krävs.</value>
+  </data>
+  <data name="User_With_Name_Exists" xml:space="preserve">
+    <value>Det finns redan en användare med det angivna namnet.</value>
+  </data>
+  <data name="Role_Name" xml:space="preserve">
+    <value>Rollnamn</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Rättigheter</value>
+  </data>
+  <data name="Role_Exists" xml:space="preserve">
+    <value>Det finns redan en roll med det angivna namnet.</value>
+  </data>
+  <data name="Unlock_Selected" xml:space="preserve">
+    <value>Lås upp markerad</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Medlemmar</value>
+  </data>
+  <data name="MetaField_With_Name_AlreadyExists" xml:space="preserve">
+    <value>Det finns redan ett MetaField med det angivna namnet.</value>
+  </data>
+  <data name="ExportLog" xml:space="preserve">
+    <value>Exportlogg</value>
+  </data>
+  <data name="Time_Required" xml:space="preserve">
+    <value>Tid krävs.</value>
+  </data>
+  <data name="Valid_Time_Required" xml:space="preserve">
+    <value>&lt;b&gt;Felaktigt tidvärde&lt;/b&gt;&lt;br /&gt;Ange en giltig tid.</value>
+  </data>
+  <data name="Order_Select_Billing_Address" xml:space="preserve">
+    <value>välj en adress</value>
+  </data>
+  <data name="Validation_Fix_The_Following_Problems" xml:space="preserve">
+    <value>Korrigera följande problem om du vill kunna spara ändringarna.</value>
+  </data>
+  <data name="New_Password" xml:space="preserve">
+    <value>Nytt lösenord</value>
+  </data>
+  <data name="Password_Min_Length_ValidationError" xml:space="preserve">
+    <value>Lösenord måste bestå av minst '{0}' tecken.</value>
+  </data>
+  <data name="Password_Strong_ValidationError" xml:space="preserve">
+    <value>Lösenordet måste vara starkt</value>
+  </data>
+  <data name="Pasword_NonAlphabetChars_Num_ValidationError" xml:space="preserve">
+    <value>Lösenord måste innehålla minst '{0}' icke-alfanumeriska tecken .</value>
+  </data>
+  <data name="NewPassword_Description" xml:space="preserve">
+    <value>Ange ett nytt lösenord om du vill ändra det, eller lämna fältet tomt</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>Fältet är obligatoriskt </value>
+  </data>
+  <data name="ConfirmAndNewPasswordNotEquals" xml:space="preserve">
+    <value>Värdet för Bekräfta nytt lösenord måste matcha värdet för Nytt lösenord.</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Bekräfta nytt lösenord</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Överordnad</value>
+  </data>
+  <data name="Tooltip" xml:space="preserve">
+    <value>Skärmtips</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Transaktionstyp</value>
+  </data>
+  <data name="Address_Edit" xml:space="preserve">
+    <value>Redigera adress</value>
+  </data>
+  <data name="BooleanNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="BooleanYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No_Items" xml:space="preserve">
+    <value>Inga objekt att visa</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Sök</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>Avancerad sökning</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Bild</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Tillbaka</value>
+  </data>
+  <data name="AddressEditBilling" xml:space="preserve">
+    <value>Redigera faktureringsadress</value>
+  </data>
+  <data name="Total_Discount" xml:space="preserve">
+    <value>Summa rabatt</value>
+  </data>
+  <data name="Discount_Descr" xml:space="preserve">
+    <value>Rabattbeskrivning</value>
+  </data>
+  <data name="Full_Path" xml:space="preserve">
+    <value>Katalog full sökväg</value>
+  </data>
+  <data name="Product_Relations_List" xml:space="preserve">
+    <value>Produktrelationslista</value>
+  </data>
+  <data name="Product_Relations_Tab_Label" xml:space="preserve">
+    <value>Relationer</value>
+  </data>
+  <data name="Created_Before" xml:space="preserve">
+    <value>Skapad före</value>
+  </data>
+  <data name="Tax_Values" xml:space="preserve">
+    <value>Momsvärden</value>
+  </data>
+  <data name="Return_Reasons" xml:space="preserve">
+    <value>Anledningar till retur</value>
+  </data>
+  <data name="New_Return_Reason" xml:space="preserve">
+    <value>Ny anledning till retur</value>
+  </data>
+  <data name="Return_Reason" xml:space="preserve">
+    <value>Anledning till retur</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Ägare</value>
+  </data>
+  <data name="Created_By" xml:space="preserve">
+    <value>Skapad av</value>
+  </data>
+  <data name="Pick_Lists" xml:space="preserve">
+    <value>Plocklistor</value>
+  </data>
+  <data name="Released_For_Shipping" xml:space="preserve">
+    <value>Släppt för leverans</value>
+  </data>
+  <data name="Returns" xml:space="preserve">
+    <value>Returer</value>
+  </data>
+  <data name="Shipping_Receiving" xml:space="preserve">
+    <value>Leverans/mottagande</value>
+  </data>
+  <data name="Payment_Plan_Edit" xml:space="preserve">
+    <value>Redigera betalningsplan</value>
+  </data>
+  <data name="Meta_Data_Edit" xml:space="preserve">
+    <value>Redigera metadata</value>
+  </data>
+  <data name="OrderStatus_AwaitingExchange" xml:space="preserve">
+    <value>Inväntar utbyte</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve">
+    <value>Avbruten</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_Completed" xml:space="preserve">
+    <value>Klar</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_InProgress" xml:space="preserve">
+    <value>Pågående</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_OnHold" xml:space="preserve">
+    <value>Väntande</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_PartiallyShipped" xml:space="preserve">
+    <value>Delvis levererad</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Verkställ</value>
+  </data>
+  <data name="Basic_Order_Information" xml:space="preserve">
+    <value>Grundläggande orderinformation</value>
+  </data>
+  <data name="Created_On" xml:space="preserve">
+    <value>Skapad den</value>
+  </data>
+  <data name="Customer_Information" xml:space="preserve">
+    <value>Kundinformation</value>
+  </data>
+  <data name="Date_Slash_Time" xml:space="preserve">
+    <value>Datum/tid</value>
+  </data>
+  <data name="Edit_Shipping_Address" xml:space="preserve">
+    <value>Redigera leveransadress</value>
+  </data>
+  <data name="Edit_Shipping_Method" xml:space="preserve">
+    <value>Redigera leveranssätt</value>
+  </data>
+  <data name="Email_Address" xml:space="preserve">
+    <value>E-postadress</value>
+  </data>
+  <data name="New_Item" xml:space="preserve">
+    <value>Ny artikel</value>
+  </data>
+  <data name="Note_Text" xml:space="preserve">
+    <value>Anteckningstext</value>
+  </data>
+  <data name="Open_Customer_Profile" xml:space="preserve">
+    <value>Öppna kundprofil</value>
+  </data>
+  <data name="Originated_By" xml:space="preserve">
+    <value>Skapad av</value>
+  </data>
+  <data name="Phone_Number" xml:space="preserve">
+    <value>Telefonnummer</value>
+  </data>
+  <data name="Shipment_Details" xml:space="preserve">
+    <value>Leveransinformation</value>
+  </data>
+  <data name="Shipment_Summary" xml:space="preserve">
+    <value>Leveranssammanfattning</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Webbplats</value>
+  </data>
+  <data name="Site_Name" xml:space="preserve">
+    <value>Webbplatsnamn</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Sammanfattning</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Additional_Information" xml:space="preserve">
+    <value>Ytterligare information</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Anledning</value>
+  </data>
+  <data name="Total_Return_Amount" xml:space="preserve">
+    <value>Totalt returbelopp</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>Jämför</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Fullständig</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historik</value>
+  </data>
+  <data name="Multi_Language" xml:space="preserve">
+    <value>Flera språk</value>
+  </data>
+  <data name="Total_Information" xml:space="preserve">
+    <value>Total information</value>
+  </data>
+  <data name="Search_Help" xml:space="preserve">
+    <value>Sök i hjälpen</value>
+  </data>
+  <data name="Asset" xml:space="preserve">
+    <value>Resurs</value>
+  </data>
+  <data name="BusinessFoundation" xml:space="preserve">
+    <value>Business Foundation</value>
+    <comment>Permissions</comment>
+  </data>
+  <data name="Core" xml:space="preserve">
+    <value>Kärna</value>
+  </data>
+  <data name="Create_Exchange" xml:space="preserve">
+    <value>Skapa utbyte</value>
+  </data>
+  <data name="Credit_Payment" xml:space="preserve">
+    <value>Kreditbetalning</value>
+  </data>
+  <data name="Customization" xml:space="preserve">
+    <value>Anpassning</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Meny</value>
+  </data>
+  <data name="Packing" xml:space="preserve">
+    <value>Paketerar</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>Mottager</value>
+  </data>
+  <data name="Reporting" xml:space="preserve">
+    <value>Rapportering</value>
+  </data>
+  <data name="Split_Shipment" xml:space="preserve">
+    <value>Delad leverans</value>
+  </data>
+  <data name="Change_Price" xml:space="preserve">
+    <value>Ändra pris på radartikel </value>
+  </data>
+  <data name="Extended_Attributes" xml:space="preserve">
+    <value>Utökade attribut</value>
+  </data>
+  <data name="Payment_Plan_Details" xml:space="preserve">
+    <value>Betalningsplaninformation</value>
+  </data>
+  <data name="Placed_Price" xml:space="preserve">
+    <value>Placerat pris</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>Validera</value>
+  </data>
+  <data name="Customer_ID" xml:space="preserve">
+    <value>Kund-ID</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Innehåll</value>
+  </data>
+  <data name="Shipment" xml:space="preserve">
+    <value>Leverans</value>
+    <comment>Permissions</comment>
+  </data>
+  <data name="Latin_Symbols_Only_Start_With_Letter" xml:space="preserve">
+    <value>&lt;b&gt;Fel värde&lt;/b&gt;&lt;br/&gt;Starta med en latinsk bokstav och använd bara latinska bokstäver och siffror, inga specialsymboler.</value>
+  </data>
+  <data name="Custom_Pages" xml:space="preserve">
+    <value>Anpassade sidor</value>
+  </data>
+  <data name="Customization_Item" xml:space="preserve">
+    <value>Anpassningsartikel</value>
+  </data>
+  <data name="Customization_Items" xml:space="preserve">
+    <value>Anpassningsartiklar</value>
+  </data>
+  <data name="Customization_Item_Argument" xml:space="preserve">
+    <value>Argument för anpassningsartikel</value>
+  </data>
+  <data name="Customization_Item_Arguments" xml:space="preserve">
+    <value>Argument för anpassningsartikel</value>
+  </data>
+  <data name="Custom_Page" xml:space="preserve">
+    <value>Egen sida</value>
+  </data>
+  <data name="Code_Validation" xml:space="preserve">
+    <value>Du kan bara använda följande tecken i kod: "a"-"z", "0"-"9", "-", "_", ".", "(", ")", "," och blanksteg.</value>
+  </data>
+  <data name="Default_Country" xml:space="preserve">
+    <value>Standardland</value>
+  </data>
+  <data name="Friendly_Name_MaxLength" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;Eget namn&lt;/b&gt; får innehålla maximalt 199 tecken.</value>
+  </data>
+  <data name="Pickup_Orders" xml:space="preserve">
+    <value>Pickup-order</value>
+  </data>
+  <data name="Select_All" xml:space="preserve">
+    <value>Välj alla</value>
+  </data>
+  <data name="Shipping_Warehouse" xml:space="preserve">
+    <value>Leveranslager</value>
+  </data>
+  <data name="System_Keyword_MaxLength" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;Systemnyckelord&lt;/b&gt; får innehålla maximalt 29 tecken.</value>
+  </data>
+  <data name="System_Keyword_Required" xml:space="preserve">
+    <value>&lt;b&gt;Ett obligatoriskt fält saknas&lt;br/&gt;&lt;br/&gt;Ett systemnyckelord krävs.</value>
+  </data>
+  <data name="System_Name_MaxLength" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;Systemnamn&lt;/b&gt; får innehålla maximalt 29 tecken.</value>
+  </data>
+  <data name="Enabled_Markets" xml:space="preserve">
+    <value>Aktiva Marknader</value>
+  </data>
+  <data name="Restrictions" xml:space="preserve">
+    <value>Begränsningar</value>
+  </data>
+  <data name="Prices_Include_Tax" xml:space="preserve">
+    <value>Priser inkluderar moms</value>
+  </data>
+  <data name="Prices_Include_Tax_Information" xml:space="preserve">
+    <value>Styr hur den här marknadens priser beräknas i ordrar</value>
+  </data>
+</root>

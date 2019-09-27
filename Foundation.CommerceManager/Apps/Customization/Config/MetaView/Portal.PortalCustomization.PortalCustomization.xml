@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MetaView>
+	<Toolbar>
+		<add>
+			<Text text="{Common:PortalCustomization}" cssClass="ibn-WPTitle"></Text>
+		</add>
+	</Toolbar>
+	<Grid>
+	</Grid>
+	<Commands>
+	</Commands>
+</MetaView>

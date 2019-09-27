@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <BafGrid>
+    <Toolbar>
+      <add>
+        <Button id="AddButton" text="{Common:tAddEntities}" imageUrl="~/Apps/MetaUIEntity/Images/addselected.gif" commandName="MC_MUI_AddSelected" itemSplitter="Right" permissions="businessfoundation:{ClassName}:create:permission"></Button>
+        <Button id="DeleteSelectedButton" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/Images/delete.gif" commandName="MC_MUI_DeleteSelected" itemSplitter="Right" permissions="businessfoundation:{ClassName}:delete:permission"></Button>
+      </add>
+    </Toolbar>
+    <CustomColumns id="CM_MUI_Columns">
+      <add>
+        <Column id="472F004E-AF2F-4d64-91A0-17B37248A71C" type="ColumnsActions" templateUrl="~/Apps/MetaUIEntity/Primitives/ColumnsActions.GridEntity.ascx">
+          <Item imageUrl="~/Apps/MetaUIEntity/Images/list_view.gif" commandName="MC_MUI_ViewItem" paddingRight="5" tooltip="{Common:ItemView}" />
+          <Item imageUrl="~/Apps/MetaDataBase/Images/edit.gif" commandName="MC_MUI_EditItem" paddingRight="5" tooltip="{Common:Edit}" />
+        </Column>
+      </add>
+    </CustomColumns>
+    <Commands>
+      <add>
+        <Command id="MC_MUI_AddSelected">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>{Common:SearchObjects}</PopupTitle>
+          <Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes={HttpContext:ClassName}&amp;refreshName=SelectItems_Refresh&amp;ReturnCommand=MC_MUI_AddSelected&amp;MultipleSelect=1&amp;CanCreate=1</Url>
+          <Width>640</Width>
+          <Height>480</Height>
+          <Left>100</Left>
+          <Top>50</Top>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.BusinessObjectPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="MC_MUI_DeleteSelected">
+          <CommandType>ServerAction</CommandType>
+          <ConfirmationText>{Common:DeleteSelectedItemsConfirmation}</ConfirmationText>
+          <Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.DeleteSelectedBridgeEntityHandler, Mediachase.ConsoleManager" />
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.BusinessObjectPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="MC_MUI_ViewItem">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeBafView('{HttpContext:ClassName}', 'View', 'ObjectId=[ClientParam:primaryKeyId]')</ClientScript>
+        </Command>
+        <Command id="MC_MUI_EditItem">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeBafView('{HttpContext:ClassName}', 'Edit', 'ObjectId=[ClientParam:primaryKeyId]')</ClientScript>
+        </Command>
+        <Command id="MC_MUI_RefN_NeedToDataBind">
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.NeedToDataBindHandler, Mediachase.ConsoleManager" />
+        </Command>
+      </add>
+    </Commands>
+  </BafGrid>
+</View>

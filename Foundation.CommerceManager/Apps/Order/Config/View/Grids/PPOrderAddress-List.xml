@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Toolbar>
+			<add>
+				<!--<Text id="txtTitle" text="Addresses" itemSplitter="Right"></Text>-->
+				<Button id="NewItem" text="New Item" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="OrderAddress_NewPP"></Button>
+				<Button id="Delete" text="Delete"  imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="OrderAddress_DeletePP" itemSplitter="Right"></Button>
+				<!--<Text id="txtT" text="&lt;div style='height:7px;'>&amp;nbsp;&lt;/div>"></Text>-->
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="OrderAddress_NewPP">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>New Address</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;commandName=cmd_NeedRebind&amp;Id={HttpContext:OrderGroupId}&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}</Url>
+					<Width>600</Width>
+					<Height>500</Height>
+					<Top>55</Top>
+					<Left>55</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="OrderAddress_DeletePP">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.DeleteSelectedAddressHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdOrderAddressEditPP">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Address</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;Id={QueryString:id}&amp;OrderGroupAddressId=[ClientParam:OrderGroupAddressId]&amp;commandName=cmd_NeedRebind&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}&amp;IsShippingAddress=false</Url>
+					<Width>600</Width>
+					<Height>500</Height>
+					<Top>15</Top>
+					<Drag>False</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditBillingAddressHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdShipmentAddressEditPP">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Address</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;Id={QueryString:id}&amp;OrderGroupAddressId=[ClientParam:OrderGroupAddressId]&amp;ShipmentId=[ClientParam:ShipmentId]&amp;CommandName=cmdShipmentAddressEdit_Rebind&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}&amp;IsShippingAddress=true</Url>
+					<Width>600</Width>
+					<Height>500</Height>
+					<Top>15</Top>
+					<Drag>False</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditShipmentAddressHandler, Mediachase.ConsoleManager" />
+					<DependCommand>cmdShipmentAddressEdit_Rebind</DependCommand>
+				</Command>
+				<Command id="cmdShipmentAddressEdit_Rebind">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditShipmentAddressHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderShippingMethodEditPP">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Shipping Method</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=PPOrderAddress-List&amp;CommandPlaceName=PaymentPlan-ObjectView&amp;CommandName=cmdOrderShippingMethodEditPP&amp;LayoutClassName=PaymentPlan&amp;LayoutPlaceName=ShippingMethodEdit&amp;Id={QueryString:id}&amp;ShipmentId=[ClientParam:ShipmentId]&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+					<Width>400</Width>
+					<Height>150</Height>
+					<Top>200</Top>
+					<Left>100</Left>
+					<Drag>False</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditShipmentMethodHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditShipmentMethodHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+</View>

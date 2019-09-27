@@ -1,0 +1,13 @@
+body, textarea
+{
+	font-family: Tahoma,Arial,Helvetica;
+	font-size: 70%;
+}
+select, input, textarea, button, label, table, pre
+{
+	font-size: 100%;
+}
+input, select, pre
+{
+	font-family: Tahoma,Arial,Helvetica;
+}

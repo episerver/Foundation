@@ -1,0 +1,200 @@
+﻿@model VisualCompareMode.Models.GetDiffBootstrapperModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <style>
+        html {
+            height: 100vh;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        @@keyframes lds-rolling {
+            0% {
+                -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @@-webkit-keyframes lds-rolling {
+            0% {
+                -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .lds-rolling {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            .lds-rolling div,
+            .lds-rolling div:after {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                border: 20px solid #1ba4fa;
+                border-top-color: transparent;
+                border-radius: 50%;
+            }
+
+            .lds-rolling div {
+                -webkit-animation: lds-rolling 1s linear infinite;
+                animation: lds-rolling 1s linear infinite;
+                top: 100px;
+                left: 100px;
+            }
+
+                .lds-rolling div:after {
+                    -webkit-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                }
+
+        .lds-rolling {
+            width: 200px !important;
+            height: 200px !important;
+            -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+            transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+            top: 30%;
+        }
+
+        .epi-spinnerOverlay {
+            display: block; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100vh; /* Full height (cover the whole page) */
+            min-height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /*background-color: rgba(0,0,0,0.5); /* Black background with opacity */ */ z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer; /* Add a pointer on hover */
+        }
+
+        .Sleek {
+            font-family: Verdana,Arial,Helvetica,sans-serif;
+            color: #131313;
+            font-size: 13px;
+        }
+
+        .binary-files-differ {
+            align-content: center;
+            text-align: center;
+            vertical-align: central;
+        }
+    </style>
+</head>
+<body class="Sleek">
+
+    <div class="epi-spinnerOverlay" id="draftThumbnail-spinner">
+        <div class="lds-rolling epi-abtest-thumbnail">
+            <div></div>
+        </div>
+    </div>
+
+    <div class="epi-spinnerOverlay binary-files-differ">
+        Files are different
+    </div>
+
+    <script>
+
+    $(document).ready(function() {
+
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        var rootUrl = "/@Model.EpiserverUiUrl/";
+        var fallbackLang = "/@Model.FallbackLanguage/";
+    var $ = window.jQuery;
+
+    var contentLength1 = 0;
+    var contentLength2 = 0;
+
+    var firstLang = getUrlVars()["firstlang"];
+    var secondLang = getUrlVars()["secondlang"];
+
+    $(".binary-files-differ").hide();
+
+    if (firstLang == "") {
+        firstLang = fallbackLang;
+    }
+
+    if (secondLang == "") {
+        secondLang = fallbackLang;
+    }
+
+    $.ajax({
+        url: rootUrl +
+            "Content/" +
+            secondLang +
+            "/,," +
+            getUrlVars()["second"] +
+            "/?epieditmode=False",
+        context: document.body
+    }).done(function (data, textStatus, request) {
+        console.log("VisualCompare: Got first set of content");
+        if (request.getResponseHeader('content-type').match("text/html") == null) {
+            // Do something to check if binary files differ
+            contentLength1 = request.getResponseHeader('content-length');
+        }
+
+        $.ajax({
+            url: rootUrl +
+                "Content/" +
+                firstLang +
+                "/,," +
+                getUrlVars()["first"] +
+                "/?epieditmode=False",
+            context: document.body
+        }).done(function (data2, textStatus, request) {
+            console.log("VisualCompare: Got second set of content");
+            if (request.getResponseHeader('content-type').match("text/html") == null) {
+                contentLength2 = request.getResponseHeader('content-length');
+            }
+            if (contentLength1 > 0 && contentLength2 > 0 && contentLength1 != contentLength2) {
+                $("#draftThumbnail-spinner").hide();
+                $(".binary-files-differ").show();
+
+            } else {
+                var postData = "version1=" + encodeURIComponent(data) + "&version2=" + encodeURIComponent(data2);
+                $.post(rootUrl + "VisualCompare/",
+                    postData,
+                    function(data3) {
+                        console.log("VisualCompare: Showing diff version");
+                        document.write(data3);
+                    });
+            }
+        });
+    });
+
+});
+
+    </script>
+</body>
+</html>

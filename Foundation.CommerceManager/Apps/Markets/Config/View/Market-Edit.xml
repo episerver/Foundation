@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+    <Grid>
+      <add>
+        <Columns>
+          <Column isDefault="true" headingText="{SharedStrings:Edit_Command}" dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="100" align="Center" />
+          <Column isDefault="false" visible="false" width="50" allowSorting="true" dataField="GlobalVariableId" headingText="{SharedStrings:ID}" />
+          <Column isDefault="true" width="200" allowEditing="false" allowSorting="true" dataField="KEY" headingText="{SharedStrings:Key}" />
+          <Column isDefault="true" width="400" allowSorting="true" dataField="VALUE" headingText="{SharedStrings:Value}" />
+        </Columns>
+      </add>
+    </Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Market-Edit" controlUrl="Markets/Market/MarketEdit.ascx" permissions="markets:market:mng:edit" help="Markets+Management" />
+    <add>	
+      <Tabs>
+				<Tab name="{SharedStrings:Market_Overview}" controlUrl="Markets/Market/Tabs/MarketEditTab.ascx" />
+				<!--<Tab name="{SharedStrings:Additional_Settings}" controlUrl="Markets/Market/Tabs/MarketSettingsTab.ascx" />-->
+			</Tabs>
+    </add>
+	</ViewConfig>
+</View>

@@ -1,0 +1,118 @@
+﻿table.orderform-blockheaderlight-datatable
+{
+	border-left: solid 1px #94B6F4;
+	border-right: solid 1px #94B6F4;
+	border-bottom: solid 1px #94B6F4;
+	border-top: 0;
+	width: 100%;
+}
+table.orderform-blockheaderlight-datatable td
+{
+	padding: 5px;
+}
+td.orderform-datatable-column
+{
+    padding: 5px;
+    vertical-align: top;
+}
+td.orderform-datatable-column-last
+{
+    padding: 5px;
+    vertical-align: top;
+    text-align: right;
+}
+table.orderform-innertable
+{
+    border: 0;
+    width: 100%;
+}
+table.orderform-innertable {
+    border-collapse: collapse; /* 'cellspacing' equivalent*/
+}
+table.orderform-innertable td,
+table.orderform-innertable th {
+    padding: 5px; /* 'cellpadding' equivalent*/
+}
+table.orderform-blockheaderlight-datatable .label-divider
+{
+    border-bottom: 1px solid #aaa;    
+}
+table.orderform-blockheaderlight-datatable .label-divider-red
+{
+    color: red;
+}
+.orderform-label
+{
+    color: black;
+    font-weight: bold;
+}
+td.orderform-label
+{
+    text-align: right;
+    vertical-align: top;
+}
+td.orderform-label-left
+{
+    text-align: left;
+    vertical-align: top;
+}
+.orderform-label-normal
+{
+    font-weight: normal;
+}
+.orderform-field
+{
+    color: black;
+}
+td.orderform-field
+{
+    vertical-align: top;
+}
+table.orderform-lineitem-add
+{
+    table-layout:fixed;
+    border: 0 none;
+    width: 100%;
+}
+.orderform-lineitem-add td.half
+{
+    width: 50%;
+}
+.orderform-lineitem-add td.top
+{
+    vertical-align: top;
+}
+table .orderform-lineitem-add-search
+{
+    background-color: #F4F4F4;
+}
+table .orderform-lineitem-add-search td
+{
+    padding: 5px;
+}
+hr.orderform-lineitem-add
+{
+    height: 1px;
+    background-color: #95B7F3;
+    border: 0 none;
+    width: 100%;
+}
+table td.centertext
+{
+    text-align: center;
+    vertical-align: middle;
+}
+div.popup-outer
+{
+    padding: 5px 5px 5px 5px;
+}
+table td.popup-buttons
+{
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+table td.popup-buttons .btn-save
+{
+    width: 105px;
+}

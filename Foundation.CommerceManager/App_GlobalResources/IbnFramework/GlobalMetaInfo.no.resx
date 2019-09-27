@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddChildItem" xml:space="preserve">
+    <value>Legg til underordnet artikkel</value>
+  </data>
+  <data name="AddInnerItem" xml:space="preserve">
+    <value>Legg til internt element</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="AllowedTransitions" xml:space="preserve">
+    <value>Tillatte overganger</value>
+  </data>
+  <data name="AllowNulls" xml:space="preserve">
+    <value>Tillat nuller</value>
+  </data>
+  <data name="AvailableColumns" xml:space="preserve">
+    <value>Tilgjengelige kolonner</value>
+  </data>
+  <data name="AvailableStates" xml:space="preserve">
+    <value>Tilgjengelige statuser</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Tilbake</value>
+  </data>
+  <data name="BackReference" xml:space="preserve">
+    <value>BackReference</value>
+  </data>
+  <data name="BackToEnumInfo" xml:space="preserve">
+    <value>Tilbake til enuminformasjon</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Tilbake til listen</value>
+  </data>
+  <data name="BackToTableInfo" xml:space="preserve">
+    <value>Tilbake</value>
+  </data>
+  <data name="Bridge" xml:space="preserve">
+    <value>Bro</value>
+  </data>
+  <data name="BridgeCreate" xml:space="preserve">
+    <value>Ny bro</value>
+  </data>
+  <data name="BridgeEdit" xml:space="preserve">
+    <value>Rediger bro</value>
+  </data>
+  <data name="BridgeExistsErrorMessage" xml:space="preserve">
+    <value>Relasjon med systemnavnet {0} finnes allerede. Prøv et annet relasjonssystemnavn.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>Utvidelse</value>
+  </data>
+  <data name="CardCreate" xml:space="preserve">
+    <value>Ny utvidelse</value>
+  </data>
+  <data name="CardEdit" xml:space="preserve">
+    <value>Rediger utvidelse</value>
+  </data>
+  <data name="CardExistsErrorMessage" xml:space="preserve">
+    <value>Utvidelse med systemnavnet {0} finnes allerede. Prøv et annet utvidelsessystemnavn.</value>
+  </data>
+  <data name="Cards" xml:space="preserve">
+    <value>Utvidelser</value>
+  </data>
+  <data name="CheckboxBoolean" xml:space="preserve">
+    <value>CheckboxBoolean</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Tøm</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Lukk</value>
+  </data>
+  <data name="ContextMenu" xml:space="preserve">
+    <value>Kontekstmeny</value>
+  </data>
+  <data name="CounterLength" xml:space="preserve">
+    <value>Tellerlengde</value>
+  </data>
+  <data name="CounterReset" xml:space="preserve">
+    <value>Tilbakestill teller</value>
+  </data>
+  <data name="CounterResetDay" xml:space="preserve">
+    <value>Hver dag</value>
+  </data>
+  <data name="CounterResetMonth" xml:space="preserve">
+    <value>Hver måned</value>
+  </data>
+  <data name="CounterResetNone" xml:space="preserve">
+    <value>[ Aldri ]</value>
+  </data>
+  <data name="CounterResetQuarter" xml:space="preserve">
+    <value>Hvert kvartal</value>
+  </data>
+  <data name="CounterResetYear" xml:space="preserve">
+    <value>Hvert år</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Opprett</value>
+  </data>
+  <data name="CreateTable" xml:space="preserve">
+    <value>Nytt forretningsobjekt</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="CustomPage" xml:space="preserve">
+    <value>Tilpasset side</value>
+  </data>
+  <data name="CustomSorting" xml:space="preserve">
+    <value>Egendefinert sortering</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slett</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="DetailsType" xml:space="preserve">
+    <value>Type detaljer</value>
+  </data>
+  <data name="DropDownBoolean" xml:space="preserve">
+    <value>DropDownBoolean</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="EditColumns" xml:space="preserve">
+    <value>Rediger kolonner</value>
+  </data>
+  <data name="EditField" xml:space="preserve">
+    <value>Rediger felt</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Rediger side</value>
+  </data>
+  <data name="EditTable" xml:space="preserve">
+    <value>Rediger forretningsobjekt</value>
+  </data>
+  <data name="EditType" xml:space="preserve">
+    <value>redigerer</value>
+  </data>
+  <data name="ElementType" xml:space="preserve">
+    <value>Elementtype</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>e-post</value>
+  </data>
+  <data name="EnableClientSort" xml:space="preserve">
+    <value>Aktiver kundesortering</value>
+  </data>
+  <data name="EnableColumnDrag" xml:space="preserve">
+    <value>Aktiver dra og slipp for kolonner</value>
+  </data>
+  <data name="EnumCreate" xml:space="preserve">
+    <value>Ny enum</value>
+  </data>
+  <data name="EnumEdit" xml:space="preserve">
+    <value>Rediger enum</value>
+  </data>
+  <data name="EnumInfo" xml:space="preserve">
+    <value>Administrer liste</value>
+  </data>
+  <data name="EnumList" xml:space="preserve">
+    <value>Enumsliste</value>
+  </data>
+  <data name="FieldExistsErrorMessage" xml:space="preserve">
+    <value>Felt med systemnavnet {0} finnes allerede. Prøv et annet systemnavn.</value>
+  </data>
+  <data name="FieldInfo" xml:space="preserve">
+    <value>Feltinformasjon</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Feltnavn</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Felttype</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="Float" xml:space="preserve">
+    <value>Fristill</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="FormType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FriendlyName" xml:space="preserve">
+    <value>Egendefinert navn</value>
+  </data>
+  <data name="FromState" xml:space="preserve">
+    <value>Fra status</value>
+  </data>
+  <data name="Guid" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="IdentifierList" xml:space="preserve">
+    <value>Identifikatorliste</value>
+  </data>
+  <data name="IdentifierMask" xml:space="preserve">
+    <value>Maske</value>
+  </data>
+  <data name="IdentifierName" xml:space="preserve">
+    <value>Identifikatornavn</value>
+  </data>
+  <data name="IdentifierScope" xml:space="preserve">
+    <value>Område</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Bilde</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Forretningsobjekt</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="Integer" xml:space="preserve">
+    <value>Heltall</value>
+  </data>
+  <data name="ItemDisplayValue" xml:space="preserve">
+    <value>Vis verdi</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Artikkelnavn</value>
+  </data>
+  <data name="ItemValue" xml:space="preserve">
+    <value>Artikkelverdi</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="ListPage" xml:space="preserve">
+    <value>List opp side</value>
+  </data>
+  <data name="ListType" xml:space="preserve">
+    <value>liste</value>
+  </data>
+  <data name="LongText" xml:space="preserve">
+    <value>LongText</value>
+  </data>
+  <data name="MaskTooltip" xml:space="preserve">
+    <value>#:teller, ÅÅÅÅ:år, MM:måned, DD:dag, KK:kvartal</value>
+  </data>
+  <data name="MaximumLength" xml:space="preserve">
+    <value>Maksimal lengde</value>
+  </data>
+  <data name="MenuItemLink" xml:space="preserve">
+    <value>Artikkelkobling</value>
+  </data>
+  <data name="MenuItemText" xml:space="preserve">
+    <value>Artikkeltekst</value>
+  </data>
+  <data name="MenuSection" xml:space="preserve">
+    <value>Del/avgrenser</value>
+  </data>
+  <data name="MetaClassList" xml:space="preserve">
+    <value>Tabelliste</value>
+  </data>
+  <data name="MetaClassName" xml:space="preserve">
+    <value>Metaklasse, navn</value>
+  </data>
+  <data name="MultiValue" xml:space="preserve">
+    <value>Flere verdier</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="NewCard" xml:space="preserve">
+    <value>Ny utvidelse</value>
+  </data>
+  <data name="NewField" xml:space="preserve">
+    <value>Nytt felt</value>
+  </data>
+  <data name="NewIdentifier" xml:space="preserve">
+    <value>Ny identifikator</value>
+  </data>
+  <data name="NewItem" xml:space="preserve">
+    <value>Ny artikkel</value>
+  </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>Ny kobling</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>[ Ikke konfigurert ]</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operasjon</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="ParentTable" xml:space="preserve">
+    <value>Overordnet forretningsobjekt</value>
+  </data>
+  <data name="PluralName" xml:space="preserve">
+    <value>Flere navn</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Posisjon</value>
+  </data>
+  <data name="Principal" xml:space="preserve">
+    <value>Bruker/gruppe</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Privat</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Offentlig</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Referanse</value>
+  </data>
+  <data name="ReferencedField" xml:space="preserve">
+    <value>ReferencedField</value>
+  </data>
+  <data name="ResourceTooltip" xml:space="preserve">
+    <value>Bruk følgende syntaks for å hente verdiene fra ressursfilen: {ResourceName:ResourceKey}</value>
+  </data>
+  <data name="Root" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lagre</value>
+  </data>
+  <data name="ScopeClass" xml:space="preserve">
+    <value>Forretningsobjekt</value>
+  </data>
+  <data name="ScopeField" xml:space="preserve">
+    <value>Felt</value>
+  </data>
+  <data name="ScopeGlobal" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søk</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Velg</value>
+  </data>
+  <data name="SelectedStates" xml:space="preserve">
+    <value>Valgte statuser</value>
+  </data>
+  <data name="SelectItem" xml:space="preserve">
+    <value>Velg artikkel</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Tjenester</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Vis</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Vise detaljer</value>
+  </data>
+  <data name="ShowFilters" xml:space="preserve">
+    <value>Vis filtre</value>
+  </data>
+  <data name="ShowGroups" xml:space="preserve">
+    <value>Vis grupper</value>
+  </data>
+  <data name="SingleValue" xml:space="preserve">
+    <value>Enkel verdi</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StateList" xml:space="preserve">
+    <value>Statusliste</value>
+  </data>
+  <data name="StateMachine" xml:space="preserve">
+    <value>Status maskin</value>
+  </data>
+  <data name="StateMachineList" xml:space="preserve">
+    <value>Status maskiner</value>
+  </data>
+  <data name="StateMachineName" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="SupportsCards" xml:space="preserve">
+    <value>Støtter utvidelser</value>
+  </data>
+  <data name="SystemName" xml:space="preserve">
+    <value>Systemnavn</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Forretningsobjekt</value>
+  </data>
+  <data name="TableExistsErrorMessage" xml:space="preserve">
+    <value>Forretningsobjekt med systemnavnet {0} finnes allerede. Prøv et annet forretningsobjektssystemnavn.</value>
+  </data>
+  <data name="TableInfo" xml:space="preserve">
+    <value>Standard informasjon</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Forretningsobjektsnavn</value>
+  </data>
+  <data name="TableOwner" xml:space="preserve">
+    <value>Overordnet forretningsobjekt</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="ToState" xml:space="preserve">
+    <value>Til status</value>
+  </data>
+  <data name="TransitionName" xml:space="preserve">
+    <value>Overgangsnavn</value>
+  </data>
+  <data name="TriggerAction" xml:space="preserve">
+    <value>Handling</value>
+  </data>
+  <data name="TriggerCondition" xml:space="preserve">
+    <value>Betingelse</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Avinstaller</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Last opp</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL-adresse</value>
+  </data>
+  <data name="ViewPage" xml:space="preserve">
+    <value>Vis side</value>
+  </data>
+  <data name="ViewType" xml:space="preserve">
+    <value>visning</value>
+  </data>
+  <data name="VisibleColumns" xml:space="preserve">
+    <value>Synlige kolonner</value>
+  </data>
+  <data name="AssignTypes" xml:space="preserve">
+    <value>Tildelingstyper</value>
+  </data>
+  <data name="SecurityPage" xml:space="preserve">
+    <value>Sikkerhet</value>
+  </data>
+  <data name="SecurityTemplates" xml:space="preserve">
+    <value>Sikkerhet interne objekter</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="BridgeCustomization" xml:space="preserve">
+    <value>Tilpassing av bro</value>
+  </data>
+  <data name="CardCustomization" xml:space="preserve">
+    <value>Tilpassing av forretningsobjektsutvidelse</value>
+  </data>
+  <data name="InfoCustomization" xml:space="preserve">
+    <value>Tilpassing av forretningsobjekt</value>
+  </data>
+  <data name="BusinessObjectExtension" xml:space="preserve">
+    <value>Forretningsobjektsutvidelse</value>
+  </data>
+  <data name="MReferenceTypeList" xml:space="preserve">
+    <value>Typeliste for flere referanser</value>
+  </data>
+  <data name="MReferenceTypeCreate" xml:space="preserve">
+    <value>Ny type for flere referanser</value>
+  </data>
+  <data name="MReferenceTypeEdit" xml:space="preserve">
+    <value>Rediger type for flere referanser</value>
+  </data>
+  <data name="MReferenceMetaClasses" xml:space="preserve">
+    <value>Referanse metaklasser</value>
+  </data>
+  <data name="MReferenceTypeInfo" xml:space="preserve">
+    <value>Typeinformasjon for flere referanser</value>
+  </data>
+  <data name="Field1Info" xml:space="preserve">
+    <value>Felt 1 informasjon</value>
+  </data>
+  <data name="Field2Info" xml:space="preserve">
+    <value>Felt 2 informasjon</value>
+  </data>
+  <data name="NewBridge" xml:space="preserve">
+    <value>Ny bro</value>
+  </data>
+  <data name="NewCard2" xml:space="preserve">
+    <value>Ny utvidelse</value>
+  </data>
+  <data name="NewInfoTable" xml:space="preserve">
+    <value>Nytt forretningsobjekt</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Tabeller</value>
+  </data>
+  <data name="ErrorMessage_AllowNulls" xml:space="preserve">
+    <value>Du må kontrollere Tillat nuller eller angi standardverdi</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Laster</value>
+  </data>
+  <data name="McDataType_Aggregation" xml:space="preserve">
+    <value>Aggregering</value>
+  </data>
+  <data name="McDataType_BackReference" xml:space="preserve">
+    <value>Tilbake til referanse</value>
+  </data>
+  <data name="McDataType_Boolean" xml:space="preserve">
+    <value>Boolsk</value>
+  </data>
+  <data name="McDataType_Card" xml:space="preserve">
+    <value>Kort</value>
+  </data>
+  <data name="McDataType_Complex" xml:space="preserve">
+    <value>Kompleks</value>
+  </data>
+  <data name="McDataType_Currency" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="McDataType_DateTime" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+  <data name="McDataType_Double" xml:space="preserve">
+    <value>Fristill</value>
+  </data>
+  <data name="McDataType_Enum" xml:space="preserve">
+    <value>Ordbokelementer</value>
+  </data>
+  <data name="McDataType_File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="McDataType_Guid" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="McDataType_Identifier" xml:space="preserve">
+    <value>Identifikator</value>
+  </data>
+  <data name="McDataType_Integer" xml:space="preserve">
+    <value>Heltall</value>
+  </data>
+  <data name="McDataType_Link" xml:space="preserve">
+    <value>Kobling</value>
+  </data>
+  <data name="McDataType_MultiReference" xml:space="preserve">
+    <value>Flere referanser</value>
+  </data>
+  <data name="McDataType_Reference" xml:space="preserve">
+    <value>Referanse</value>
+  </data>
+  <data name="McDataType_ReferencedField" xml:space="preserve">
+    <value>Referert felt (skrivebeskyttet)</value>
+  </data>
+  <data name="McDataType_String" xml:space="preserve">
+    <value>Streng</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Sidestørrelse:</value>
+  </data>
+  <data name="NewSingleValue" xml:space="preserve">
+    <value>Ny - enkel verdi</value>
+  </data>
+  <data name="NewMultiValue" xml:space="preserve">
+    <value>Ny - flere verdier</value>
+  </data>
+  <data name="PageSize10" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="PageSize25" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="PageSize100" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="PageSize50" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="PageSizeAll" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Opprettet</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Oppretter</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Endret</value>
+  </data>
+  <data name="Modifier" xml:space="preserve">
+    <value>Modifikator</value>
+  </data>
+  <data name="ObjectId" xml:space="preserve">
+    <value>Kildeobjekt-ID</value>
+  </data>
+  <data name="PrimaryKeyId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="AddToForm" xml:space="preserve">
+    <value>Legg felt til</value>
+  </data>
+  <data name="AscSort" xml:space="preserve">
+    <value>Sorter i stigende rekkefølge</value>
+  </data>
+  <data name="DescSort" xml:space="preserve">
+    <value>Sorter i synkende rekkefølge</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Artikler</value>
+  </data>
+  <data name="Principals" xml:space="preserve">
+    <value>Brukere og grupper</value>
+  </data>
+  <data name="LatinOnlyError" xml:space="preserve">
+    <value>Bare latinske tegn, numre og lav bindestrek aksepteres.</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Varighet</value>
+  </data>
+  <data name="FloatPercent" xml:space="preserve">
+    <value>Flytprosent</value>
+  </data>
+  <data name="IntegerPercent" xml:space="preserve">
+    <value>Heltallsprosent</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Bruker/gruppe</value>
+  </data>
+  <data name="RoleMultiValue" xml:space="preserve">
+    <value>Brukere / grupper</value>
+  </data>
+  <data name="Dictionary" xml:space="preserve">
+    <value>Ordbok</value>
+  </data>
+  <data name="Aggregation" xml:space="preserve">
+    <value>Aggregering</value>
+  </data>
+  <data name="ResetToDefault" xml:space="preserve">
+    <value>Tilbakestill til standard</value>
+  </data>
+  <data name="DecimalPercent" xml:space="preserve">
+    <value>Desimaltallsprosent</value>
+  </data>
+  <data name="Decimal" xml:space="preserve">
+    <value>Desimal</value>
+  </data>
+  <data name="McDataType_Decimal" xml:space="preserve">
+    <value>Desimal</value>
+  </data>
+  <data name="Relations1N" xml:space="preserve">
+    <value>1:N-relasjoner</value>
+  </data>
+  <data name="RelationsNN" xml:space="preserve">
+    <value>N:N-relasjoner</value>
+  </data>
+  <data name="RelationsN1" xml:space="preserve">
+    <value>N:1-relasjoner</value>
+  </data>
+  <data name="NewRelation1N" xml:space="preserve">
+    <value>Ny relasjon "én til mange"</value>
+  </data>
+  <data name="NewRelationN1" xml:space="preserve">
+    <value>Ny relasjon "mange til én"</value>
+  </data>
+  <data name="NewRelationNN" xml:space="preserve">
+    <value>Ny relasjon "mange til mange"</value>
+  </data>
+  <data name="PrimaryObject" xml:space="preserve">
+    <value>Hovedobjekt</value>
+  </data>
+  <data name="RelatedObject" xml:space="preserve">
+    <value>Tilhørende objekt</value>
+  </data>
+  <data name="CurrentObject" xml:space="preserve">
+    <value>Gjeldende objekt</value>
+  </data>
+  <data name="EditRelation1N" xml:space="preserve">
+    <value>Rediger relasjon "én til mange"</value>
+  </data>
+  <data name="EditRelationN1" xml:space="preserve">
+    <value>Rediger relasjon "mange til én"</value>
+  </data>
+  <data name="EditRelationNN" xml:space="preserve">
+    <value>Rediger relasjon "mange til mange"</value>
+  </data>
+  <data name="BusinessObjectsBlock" xml:space="preserve">
+    <value>[ Forretningsobjekter ]</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>Generell informasjon</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Objekt</value>
+  </data>
+  <data name="Relation1N" xml:space="preserve">
+    <value>Relasjon 1:N</value>
+  </data>
+  <data name="RelationN1" xml:space="preserve">
+    <value>Relasjon N:1</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>Vis bestilling</value>
+  </data>
+  <data name="DisplayRegion" xml:space="preserve">
+    <value>Vis område</value>
+  </data>
+  <data name="DisplayText" xml:space="preserve">
+    <value>Vis tekst</value>
+  </data>
+  <data name="RelationNN" xml:space="preserve">
+    <value>Relasjon N:N</value>
+  </data>
+  <data name="RelationName" xml:space="preserve">
+    <value>Relasjonsnavn</value>
+  </data>
+  <data name="SystemViews" xml:space="preserve">
+    <value>Systemvisninger</value>
+  </data>
+  <data name="AddSystemView" xml:space="preserve">
+    <value>Legg til systemvisning</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Er mellom</value>
+  </data>
+  <data name="Contains" xml:space="preserve">
+    <value>Inneholder</value>
+  </data>
+  <data name="EndsWith" xml:space="preserve">
+    <value>Slutter på</value>
+  </data>
+  <data name="Equal" xml:space="preserve">
+    <value>Er lik</value>
+  </data>
+  <data name="Greater" xml:space="preserve">
+    <value>Er større enn</value>
+  </data>
+  <data name="GreaterOrEqual" xml:space="preserve">
+    <value>Er større enn eller lik</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>Er én av</value>
+  </data>
+  <data name="IsFalse" xml:space="preserve">
+    <value>Er usann</value>
+  </data>
+  <data name="IsNotNull" xml:space="preserve">
+    <value>Er ikke null</value>
+  </data>
+  <data name="IsNull" xml:space="preserve">
+    <value>Er null</value>
+  </data>
+  <data name="IsTrue" xml:space="preserve">
+    <value>Er sann</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Sist måned</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Sist uke</value>
+  </data>
+  <data name="LastYear" xml:space="preserve">
+    <value>Sist år</value>
+  </data>
+  <data name="Less" xml:space="preserve">
+    <value>Er mindre enn</value>
+  </data>
+  <data name="LessOrEqual" xml:space="preserve">
+    <value>Er mindre enn eller lik</value>
+  </data>
+  <data name="Like" xml:space="preserve">
+    <value>Er lik</value>
+  </data>
+  <data name="NotContains" xml:space="preserve">
+    <value>Inneholder ikke</value>
+  </data>
+  <data name="NotEqual" xml:space="preserve">
+    <value>Er ikke lik</value>
+  </data>
+  <data name="NotIn" xml:space="preserve">
+    <value>Er ikke én av</value>
+  </data>
+  <data name="NotLike" xml:space="preserve">
+    <value>Er ikke lik</value>
+  </data>
+  <data name="StartsWith" xml:space="preserve">
+    <value>Begynner på</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Denne måneden</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Denne uken</value>
+  </data>
+  <data name="ThisYear" xml:space="preserve">
+    <value>Dette året</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>I dag</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>I går</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>Ny visning</value>
+  </data>
+  <data name="UserViews" xml:space="preserve">
+    <value>Brukervisninger</value>
+  </data>
+  <data name="SystemView" xml:space="preserve">
+    <value>Systemvisning</value>
+  </data>
+  <data name="NewSystemView" xml:space="preserve">
+    <value>Ny systemvisning</value>
+  </data>
+  <data name="SystemViewEditing" xml:space="preserve">
+    <value>Redigering av systemvisning</value>
+  </data>
+  <data name="ViewEditing" xml:space="preserve">
+    <value>Vis redigering</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Mer...</value>
+  </data>
+  <data name="ObjectNotSet" xml:space="preserve">
+    <value>Ikke konfigurert</value>
+  </data>
+  <data name="ItemNotSelected" xml:space="preserve">
+    <value>&lt; ingenting er merket &gt;</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publiser</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publikasjon</value>
+  </data>
+  <data name="ClientScript" xml:space="preserve">
+    <value>Klientskript</value>
+  </data>
+  <data name="BafExport" xml:space="preserve">
+    <value>Eksporter</value>
+  </data>
+  <data name="BafImport" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="ToolBarMenuBafNewItem" xml:space="preserve">
+    <value>Opprett ny</value>
+  </data>
+  <data name="ToolBarMenuBafExportImport" xml:space="preserve">
+    <value>Importer/eksporter</value>
+  </data>
+  <data name="WarningFile" xml:space="preserve">
+    <value>Er du sikker på du vil slette denne filen?</value>
+  </data>
+  <data name="MenuItemIcon" xml:space="preserve">
+    <value>Artikkelikon</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Få adgang til tillatelser</value>
+  </data>
+  <data name="GeneralView" xml:space="preserve">
+    <value>Generell visning</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Rediger ordbok</value>
+  </data>
+</root>

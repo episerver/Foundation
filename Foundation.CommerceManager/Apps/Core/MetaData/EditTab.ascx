@@ -1,0 +1,2 @@
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="Mediachase.Commerce.Manager.Core.MetaData.EditTab" Codebehind="EditTab.ascx.cs" %>
+<asp:PlaceHolder Runat="server" ID="MetaControls" EnableViewState="true"></asp:PlaceHolder>

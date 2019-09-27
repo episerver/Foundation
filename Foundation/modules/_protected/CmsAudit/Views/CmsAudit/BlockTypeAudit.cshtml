@@ -1,0 +1,33 @@
+@using N1990.Episerver.Cms.Audit.Models
+@model N1990.Episerver.Cms.Audit.Models.ContentTypeAudit
+
+@{
+	Layout = null;
+	var blockTypeCtr = 1;
+}
+
+<tr>
+	<td class="number">@(blockTypeCtr++)</td>
+	<td>@Model.Name</td>
+	<td>@RenderBlockUsages(Model.Usages)</td>
+	<td>@Html.Raw(Model.UsagesExpandButton)</td>
+</tr>
+<tr class="hidden">
+	<td>&nbsp;</td>
+	<td colspan="3">
+		<ul>
+			@foreach (var usage in Model.Usages.OrderByDescending(u => u.PageReferences.Count))
+			{
+				<li>
+					<a target="_blank" href="/episerver/cms/#viewsetting=&context=epi.cms.contentdata:///@usage.ContentLink">@usage.Name</a> - @usage.PageReferences.Count reference(s)
+				</li>
+			}
+		</ul>
+	</td>
+</tr>
+
+@helper RenderBlockUsages(List<ContentTypeAudit.ContentItem> usages)
+{
+	var siteUsages = usages.SelectMany(u => u.PageReferences.Select(pr => pr.SiteId)).Distinct().ToList().Count;
+	<span>@siteUsages site(s), @usages.Count block(s)</span>
+}

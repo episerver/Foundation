@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox" />
+					<Column visible="false" width="30" headingText="{SharedStrings:Log_Id}" dataField="LogId"  />
+					<Column width="100" headingText="{SharedStrings:Source}" dataField="Source" />
+					<Column width="60" headingText="{SharedStrings:Operation}" dataField="Operation" />
+					<Column width="120" headingText="{SharedStrings:Object_Key}" dataField="ObjectKey" />
+					<Column width="320" headingText="{SharedStrings:Object_Type}" dataField="ObjectType" />
+					<Column width="100" headingText="{SharedStrings:User_Name}" dataField="UserName" />
+					<Column width="100" headingText="{SharedStrings:Created}" dataField="Created" columnType="DateTime" />
+					<Column width="400" headingText="{SharedStrings:Notes}" dataField="Notes" />
+					<Column width="100" headingText="{SharedStrings:IP_Address}" dataField="IPAddress" />
+					<Column width="60" headingText="{SharedStrings:Succeeded}" dataField="Succeeded" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="ExportLog"  text="{SharedStrings:Export_Log}" imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png" commandName="cmdOpenLogExportDialog"  permissions="core:admin:applog:mng:view"/>
+				<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdApplicationLogDelete"  permissions="core:admin:applog:mng:delete"/>
+					<Button id="DeleteAll"  text="{SharedStrings:Delete_All}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdApplicationLogDeleteAll"  permissions="core:admin:applog:mng:delete"/>
+				</Menu>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdApplicationLogDelete">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.DeleteSelectedItemsHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdApplicationLogDeleteAll">
+					<ConfirmationText>Are you sure you want to delete all items?</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.LogDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdLogExport">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.LogExportHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOpenLogExportDialog">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=ExportLogDialog&amp;GridId=[ClientParam:GridId]&amp;DataSourceId=ApplicationLogDataSource1</Url>
+					<Width>340</Width>
+					<Height>180</Height>
+					<PopupTitle>Export Application Log</PopupTitle>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<DependCommand>cmdLogExport</DependCommand>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="ApplicationLog" controlUrl="Core/StoreLogs/ApplicationLog.ascx" permissions="core:admin:applog:mng:view" help="System+Settings"/>
+	</ViewConfig>
+</View>
