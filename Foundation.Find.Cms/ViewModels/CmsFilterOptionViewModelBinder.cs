@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Web.Routing;
+using System;
 using System.Web.Mvc;
 
 namespace Foundation.Find.Cms.ViewModels
@@ -9,15 +10,21 @@ namespace Foundation.Find.Cms.ViewModels
     {
         private readonly IContentLoader _contentLoader;
 
-        public CmsFilterOptionViewModelBinder(IContentLoader contentLoader)
-        {
-            _contentLoader = contentLoader;
-        }
+        public CmsFilterOptionViewModelBinder(IContentLoader contentLoader) => _contentLoader = contentLoader;
 
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             bindingContext.ModelName = "FilterOption";
-            var model = (CmsFilterOptionViewModel)base.BindModel(controllerContext, bindingContext);
+            CmsFilterOptionViewModel model = null;
+            try
+            {
+                model = (CmsFilterOptionViewModel)base.BindModel(controllerContext, bindingContext);
+            }
+            catch
+            {
+                model = new CmsFilterOptionViewModel();
+            }
+
             if (model == null)
             {
                 return model;
