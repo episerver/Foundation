@@ -5,6 +5,6 @@ namespace Foundation.Find.Cms
 {
     public interface ICmsSearchService
     {
-        UnifiedSearchResults SearchContent(CmsFilterOptionViewModel filterOptions);
+        ContentSearchViewModel SearchContent(CmsFilterOptionViewModel filterOptions);
     }
 }

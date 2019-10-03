@@ -198,3 +198,43 @@ class FilterOption {
         this.ViewSwitcher = "Grid";
     }
 }
+
+class ContentSearch {
+
+    changePageContent(page) {
+        var search = new ProductSearch();
+        var inst = this;
+        var form = $(document).find('.jsSearchContentForm');
+        $('.jsSearchContentPage').val(page);
+        $('.jsSelectedFacet').val($(this).data('facetgroup') + ':' + $(this).data('facetkey'));
+        var url = search.getUrlWithFacets();
+        inst.updatePageContent(url, form.serialize(), null);
+    }
+
+    updatePageContent(url, data, onSuccess) {
+        axios.post(url || "", data)
+            .then(function (result) {
+                $('#contentResult').replaceWith($(result.data).find('#contentResult'));
+                if (onSuccess) {
+                    onSuccess(result);
+                }
+            })
+            .catch(function (error) {
+                notification.Error(error);
+            })
+            .finally(function () {
+                $('.loading-box').hide();
+            });
+    }
+
+    Init() {
+        var inst = this;
+        $('.jsChangePageContent').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var page = $(this).attr('page');
+                inst.changePageContent(page);
+            });
+        });
+    }
+}

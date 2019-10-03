@@ -49,13 +49,13 @@ namespace Foundation.Find.Cms.ViewModels
                 return model;
             }
 
-            model.UnifiedSearchResults = _searchService.SearchContent(cmsArgs.FilterOption);
+            model.ContentSearchResult = _searchService.SearchContent(cmsArgs.FilterOption);
             model.CurrentContent = currentContent;
             model.FilterOption = cmsArgs.FilterOption;
             model.Query = cmsArgs.FilterOption.Q;
             model.IsMobile = _httpContextBase.GetOverriddenBrowser().IsMobileDevice;
 
-            if (!model.UnifiedSearchResults.Any() && model.FilterOption.Q.IsNullOrEmpty())
+            if (!model.ContentSearchResult.Hits.Any() && model.FilterOption.Q.IsNullOrEmpty())
             {
                 model.DidYouMeans = _findClient.Statistics().GetDidYouMean(model.FilterOption.Q);
             }

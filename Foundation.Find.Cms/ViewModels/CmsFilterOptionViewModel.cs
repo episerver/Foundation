@@ -20,7 +20,6 @@ namespace Foundation.Find.Cms.ViewModels
         public bool HighlightExcerpt { get; set; }
         public string SectionFilter { get; set; }
         public bool SearchContent { get; set; }
-        public bool SearchPdf { get; set; }
         public bool TrackData { get; set; } = true;
 
         public List<int> Pages
