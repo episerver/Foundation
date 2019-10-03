@@ -5,70 +5,86 @@
 }
 <div class="row">
     <div class="col-12" id="contentResult">
-        @if (Model != null && Model.UnifiedSearchResults != null)
+        @if (Model != null && Model.ContentSearchResult.Hits != null)
         {
-            <div>
-                <h2>@ViewData["SearchLabel"]</h2>
-            </div>
-            <div class="list-group--header content-search-results">
-                @foreach (var content in Model.UnifiedSearchResults)
-                {
-                    <a href="@content.Url" class="list-group--header__item" style="display: flex">
-                        @if (content.ImageUri != null)
-                        {
-                            <div class="col-2 content__item">
-                                <img src="@content.ImageUri" alt="@content.Title" class="img-fluid" />
-                            </div>
-                        }
-                        <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">
-                            <b class="title">@Html.Raw(content.Title)</b>
-                            <div class="sub-title">
-                                <p>@Html.Raw(content.Excerpt)</p>
-                            </div>
-                        </div>
-                    </a>
-                }
-            </div>
-            <br />
-            @* Display paging controls.*@
-            if (Model.FilterOption.TotalCount > 0)
+            if (Model.ContentSearchResult.Hits.Any())
             {
-                <div class="row">
-                    <div class="col-12">
-                        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "jsSearchContentForm" }))
-                        {
-                            <input class="jsSearchContentPage" hidden id="FilterOption_Page" name="FilterOption.Page" type="text" value="@Model.FilterOption.Page" />
-                            <input class="jsSearchContentPageSize" hidden id="FilterOption_PageSize" name="FilterOption.PageSize" type="text" value="@Model.FilterOption.PageSize" />
-                            <input class="jsSearchProduct" hidden id="FilterOption_SearchProduct" name="FilterOption.SearchProduct" type="text" value="false" />
-                            <input class="jsSearchContent" hidden id="FilterOption_@ViewData["IdFilter"]" name="FilterOption.@ViewData["IdFilter"]" type="text" value="true" />
+                if (Model.ShowProductSearchResults)
+                {
+                    <div>
+                        <h2>@ViewData["SearchLabel"]</h2>
+                    </div>
+                }
+                <div class="list-group--header content-search-results">
+                    @foreach (var content in Model.ContentSearchResult.Hits)
+                    {
+                        <a href="@content.Url" class="list-group--header__item" style="display: flex">
+                            @if (content.ImageUri != null)
+                            {
+                                <div class="col-2 content__item">
+                                    <img src="@content.ImageUri" alt="@content.Title" class="img-fluid" />
+                                </div>
+                            }
+                            <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">
+                                <b class="title">@Html.Raw(content.Title)</b>
+                                <div class="sub-title">
+                                    <p>@Html.Raw(content.Excerpt)</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+                <br />
+                @* Display paging controls.*@
+                if (Model.ContentSearchResult.FilterOption.TotalCount > 0)
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "jsSearchContentForm" }))
+                            {
+                                <input class="jsSearchContentPage" hidden id="FilterOption_Page" name="FilterOption.Page" type="text" value="@Model.ContentSearchResult.FilterOption.Page" />
+                                <input class="jsSearchContentPageSize" hidden id="FilterOption_PageSize" name="FilterOption.PageSize" type="text" value="@Model.ContentSearchResult.FilterOption.PageSize" />
+                                <input class="jsSearchProduct" hidden id="FilterOption_SearchProduct" name="FilterOption.SearchProduct" type="text" value="false" />
+                                <input class="jsSearchContent" hidden id="FilterOption_@ViewData["FilterId"]" name="FilterOption.@ViewData["FilterId"]" type="text" value="true" />
 
-                            <div @*class="flex-center"*@ id="pagingForContent">
-                                <ul class="pagination">
-                                    <li>
-                                        <a onclick="Search.changePageContent(@(Model.FilterOption.Page > 1 ? Model.FilterOption.Page - 1 : Model.FilterOption.Page))">
-                                            &laquo;
-                                        </a>
-                                    </li>
-
-                                    @foreach (var page in Model.FilterOption.Pages)
-                                    {
-                                        <li class="@(Model.FilterOption.Page == page ? "active" : "")">
-                                            <a onclick="Search.changePageContent(@page)">
-                                                @page.ToString()
+                                <div @*class="flex-center"*@ id="pagingForContent">
+                                    <ul class="pagination">
+                                        <li class="jsChangePageContent" page="@(Model.ContentSearchResult.FilterOption.Page > 1 ? Model.ContentSearchResult.FilterOption.Page - 1 : Model.ContentSearchResult.FilterOption.Page))">
+                                            <a href="javascript:void(0)">
+                                                &laquo;
                                             </a>
                                         </li>
-                                    }
-                                    <li>
-                                        <a onclick="Search.changePageContent(@(Model.FilterOption.Page + 1 > Model.FilterOption.Pages.Last() ? Model.FilterOption.Pages.Last() : Model.FilterOption.Page + 1))">
-                                            &raquo;
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
 
-                        }
+                                        @foreach (var page in Model.ContentSearchResult.FilterOption.Pages)
+                                        {
+                                            <li class="jsChangePageContent @(Model.ContentSearchResult.FilterOption.Page == page ? "active" : "")" page="@page">
+                                                <a href="javascript:void(0)">
+                                                    @page.ToString()
+                                                </a>
+                                            </li>
+                                        }
+                                        <li class="jsChangePageContent" page="@(Model.ContentSearchResult.FilterOption.Page + 1 > Model.ContentSearchResult.FilterOption.Pages.Last() ? Model.ContentSearchResult.FilterOption.Pages.Last() : Model.ContentSearchResult.FilterOption.Page + 1))">
+                                            <a href="javascript:void(0)">
+                                                &raquo;
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            }
+                        </div>
                     </div>
-                </div>
+                }
+            }
+            else
+            {
+                if (Model.ShowProductSearchResults)
+                {
+                    <div>
+                        <h2>@ViewData["SearchLabel"]</h2>
+                    </div>
+                }
+                <h4>No contents matched your search criteria.</h4>
             }
             @*End of search results area. *@
         }

@@ -31,5 +31,11 @@
         // Blog
         var blog = new Blog();
         blog.init();
+        // --- End
+
+        //Content Search
+        var contentSearch = new ContentSearch();
+        contentSearch.Init();
+        // --- End
     }
 }

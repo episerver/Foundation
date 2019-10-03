@@ -66,7 +66,7 @@ namespace Foundation.Features.Search
             {
                 FilterOption = filterOptions,
                 SelectedFacets = HttpContext.Request.QueryString["facets"],
-                CatalogId = startPage.SearchCatalog
+                CatalogId = startPage.SearchCatalog,
             });
 
             if (viewModel == null)
@@ -90,13 +90,13 @@ namespace Foundation.Features.Search
                         await _recommendationService.TrackSearch(HttpContext, filterOptions.Q, filterOptions.PageSize,
                             viewModel.ProductViewModels.Select(x => x.Code));
                     viewModel.Recommendations = trackingResult.GetSearchResultRecommendations(_referenceConverter);
-                }
+                }   
             }
 
             await _cmsTrackingService.SearchedKeyword(_httpContextBase, filterOptions.Q);
             if (startPage.ShowContentSearchResults)
             {
-                viewModel.UnifiedSearchResults = _cmsSearchService.SearchContent(new CmsFilterOptionViewModel()
+                viewModel.ContentSearchResult = _cmsSearchService.SearchContent(new CmsFilterOptionViewModel()
                 {
                     Q = filterOptions.Q,
                     PageSize = 5,
@@ -106,7 +106,7 @@ namespace Foundation.Features.Search
             }
 
             var productCount = viewModel.ProductViewModels?.Count() ?? 0;
-            var contentCount = viewModel.UnifiedSearchResults?.Count() ?? 0;
+            var contentCount = viewModel.ContentSearchResult.Hits?.Count() ?? 0;
 
             if (productCount + contentCount == 1)
             {
@@ -117,10 +117,13 @@ namespace Foundation.Features.Search
                 }
                 else
                 {
-                    var content = viewModel.UnifiedSearchResults.FirstOrDefault();
+                    var content = viewModel.ContentSearchResult.Hits.FirstOrDefault();
                     return Redirect(content.Url);
                 }
             }
+
+            viewModel.ShowContentSearchResults = startPage.ShowContentSearchResults;
+            viewModel.ShowProductSearchResults = startPage.ShowProductSearchResults;
 
             return View(viewModel);
         }
@@ -164,8 +167,8 @@ namespace Foundation.Features.Search
                     PageSize = 5,
                     Page = 1,
                 });
-                model.UnifiedSearchResults = contentResult;
-                contentCount = contentResult?.Count() ?? 0;
+                model.ContentSearchResult = contentResult;
+                contentCount = contentResult?.Hits.Count() ?? 0;
             }
 
             if (productCount + contentCount == 1)

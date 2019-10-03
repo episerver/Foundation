@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace Foundation.Features.MyAccount.Bookmarks
 {
     /// <summary>
-    /// A page to list all gift card belonging to a customer
+    /// A page to list all bookmarks belonging to a customer
     /// </summary>
     public class BookmarksController : PageController<BookmarksPage>
     {
