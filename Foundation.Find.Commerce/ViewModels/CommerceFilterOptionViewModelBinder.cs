@@ -35,11 +35,28 @@ namespace Foundation.Find.Commerce.ViewModels
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             bindingContext.ModelName = "FilterOption";
-            var model = (CommerceFilterOptionViewModel)base.BindModel(controllerContext, bindingContext);
+            var model = new CommerceFilterOptionViewModel();
+
+            try
+            {
+                var cmsModel = (CmsFilterOptionViewModel)base.BindModel(controllerContext, bindingContext);
+                model = cmsModel as CommerceFilterOptionViewModel;
+
+                if (cmsModel != null && model == null)
+                {
+                    model = new CommerceFilterOptionViewModel();
+                }
+            }
+            catch
+            {
+                model = new CommerceFilterOptionViewModel();
+            }
+
             if (model == null)
             {
                 return model;
             }
+            
 
             var contentLink = controllerContext.RequestContext.GetContentLink();
             IContent content = null;
