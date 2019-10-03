@@ -36,7 +36,6 @@ namespace Foundation.Find.Cms
                 page => new Uri(context.Locate.Advanced.GetInstance<UrlResolver>().GetUrl(page.PageImage), UriKind.Relative));
 
             SearchClient.Instance.Conventions.ForInstancesOf<LocationItemPage>().IncludeField(dp => dp.TagString());
-            ContentIndexer.Instance.Conventions.ForInstancesOf<ImageMediaData>().ShouldIndex(x => false);
 
             //ModelBinderProviders.BinderProviders.Insert(0, new FindCmsModelBinderProvider());
         }
