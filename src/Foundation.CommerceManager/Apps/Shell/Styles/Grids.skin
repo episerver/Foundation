@@ -1,0 +1,75 @@
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<%@ Register Assembly="ComponentArt.Web.UI" Namespace="ComponentArt.Web.UI" TagPrefix="ComponentArt" %>
+<ComponentArt:Grid runat="server" 
+              FooterCssClass="ca-GridFooter"
+              FooterTextCssClass="ca-GridFooterText"
+              CssClass="ca-Grid" 
+              PagerStyle="Numbered"
+              SearchTextCssClass="ca-GridHeaderText"
+              ImagesBaseUrl="~/Apps/Shell/styles/images/" 
+              PagerImagesFolderUrl="~/Apps/Shell/styles/images/pager/"
+              width="100%">
+</ComponentArt:Grid>
+
+<ComponentArt:Grid SkinID="Default" runat="server" 
+              FooterTextCssClass="ca-GridFooterText"
+              ImagesBaseUrl="~/Apps/Shell/styles/images/" 
+              CssClass="ca-Grid" AllowMultipleSelect="false"
+    AllowEditing="false" ShowFooter="true" SearchTextCssClass="ca-GridHeaderText" SearchOnKeyPress="false"
+    HeaderCssClass="ca-GridHeader" FooterCssClass="ca-GridFooter" GroupByCssClass="ca-GroupByCell"
+    GroupByTextCssClass="ca-GroupByText" PageSize="20" PagerStyle="Numbered" PagerTextCssClass="ca-GridFooterText"
+    PagerButtonWidth="41" PagerButtonHeight="22" SliderHeight="20" SliderWidth="150"
+    SliderGripWidth="9" SliderPopupOffsetX="20" GroupingPageSize="5" PreExpandOnGroup="true"
+    IndentCellWidth="1" GroupingNotificationTextCssClass="ca-GridHeaderText" GroupBySortAscendingImageUrl="group_asc.gif"
+    GroupBySortDescendingImageUrl="group_desc.gif" GroupBySortImageWidth="10" GroupBySortImageHeight="10" LoadingPanelClientTemplateId="LoadingFeedbackTemplate" LoadingPanelPosition="MiddleCenter">
+    <Levels>
+        <ComponentArt:GridLevel ShowTableHeading="false" ShowSelectorCells="false"  RowCssClass="ca-Row"
+            DataCellCssClass="ca-DataCell" HeadingCellCssClass="ca-HeadingCell"
+            HeadingCellHoverCssClass="ca-HeadingCellHover" HeadingCellActiveCssClass="ca-HeadingCellActive"
+            HeadingRowCssClass="ca-HeadingRow" HeadingTextCssClass="ca-HeadingCellText" SelectedRowCssClass="ca-SelectedRow"
+            GroupHeadingCssClass="ca-GroupHeading" SortAscendingImageUrl="grid/asc.gif" SortDescendingImageUrl="grid/desc.gif"
+            SortImageWidth="10" SortImageHeight="19" EditCommandClientTemplateId="EditCommandTemplate" InsertCommandClientTemplateId="InsertCommandTemplate">
+            <Columns>
+            </Columns>
+        </ComponentArt:GridLevel>
+    </Levels>
+    
+</ComponentArt:Grid>
+
+<ComponentArt:Grid SkinID="Inline" runat="server" Width="700" FooterTextCssClass="ca-GridFooterText" ImagesBaseUrl="~/Apps/Shell/styles/images/" CssClass="ca-Grid" AllowMultipleSelect="false"
+    SearchTextCssClass="ca-GridHeaderText"
+    HeaderCssClass="ca-GridHeader" FooterCssClass="ca-GridFooter" GroupByCssClass="ca-GroupByCell"
+    GroupByTextCssClass="ca-GroupByText" PageSize="20" PagerStyle="Numbered" PagerTextCssClass="ca-GridFooterText"
+    PagerButtonWidth="41" PagerButtonHeight="22" SliderHeight="20" SliderWidth="150"
+    SliderGripWidth="9" SliderPopupOffsetX="20" GroupingPageSize="5" PreExpandOnGroup="true"    
+    IndentCellWidth="1" GroupingNotificationTextCssClass="ca-GridHeaderText" GroupBySortImageWidth="10" GroupBySortImageHeight="10"
+    LoadingPanelClientTemplateId="LoadingFeedbackTemplate" LoadingPanelPosition="MiddleCenter">
+    <Levels>
+        <ComponentArt:GridLevel ShowTableHeading="false" ShowSelectorCells="false"  RowCssClass="ca-Row"
+            DataCellCssClass="ca-DataCell" HeadingCellCssClass="ca-HeadingCell"
+            HeadingCellHoverCssClass="ca-HeadingCellHover" HeadingCellActiveCssClass="ca-HeadingCellActive"
+            HeadingRowCssClass="ca-HeadingRow" HeadingTextCssClass="ca-HeadingCellText" SelectedRowCssClass="ca-SelectedRow"
+            GroupHeadingCssClass="ca-GroupHeading" SortAscendingImageUrl="grid/asc.gif" SortDescendingImageUrl="grid/desc.gif"
+            SortImageWidth="10" SortImageHeight="19" EditCommandClientTemplateId="EditCommandTemplate" InsertCommandClientTemplateId="InsertCommandTemplate">
+            <Columns>
+            </Columns>
+        </ComponentArt:GridLevel>
+    </Levels>
+    
+</ComponentArt:Grid>
+
+

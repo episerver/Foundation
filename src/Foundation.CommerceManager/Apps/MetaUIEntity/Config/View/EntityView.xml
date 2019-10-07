@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<BafGrid>
+		<Toolbar>
+			<add>
+				<Button id="EditButton" text="{Common:Edit}"  imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="EntityEdit" itemSplitter="Right"></Button>
+				<Button id="DeleteButton" text="{Common:Delete}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="EntityDelete" itemSplitter="Right"></Button>
+				<Button id="ListButton" text="{Global:_mc_BackToList}" imageUrl="~/Apps/MetaDataBase/images/back.gif" commandName="EntityList" ></Button>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="EntityEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'Edit', 'ObjectId={QueryString:ObjectId}&amp;back=view')</ClientScript>
+				</Command>
+				<Command id="EntityDelete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.DeleteEntityHandler, Mediachase.ConsoleManager" />
+					<ConfirmationText>{Common:DeleteItemConfirmation}</ConfirmationText>
+				</Command>
+				<Command id="EntityList">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'List')</ClientScript>
+				</Command>
+			</add>
+		</Commands>
+	</BafGrid>
+	<Form>
+		<Layout>
+			<clear />
+			<add>
+				<Block id="Block_1">
+					<Placeholder id="Block_1.Placeholder_1">
+						<Control id="Toolbar" path="~/Apps/Core/Controls/MetaToolbar.ascx">
+							<Property name="PlaceName" value="EntityView" />
+							<Property name="ToolbarMode" value="ListViewUI" />
+						</Control>
+						<Control id="Block_1.Placeholder_1.Control_1" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+							<Property name="FormName" value="[MC_ShortViewForm]" />
+						</Control>
+					</Placeholder>
+					<Placeholder id="Block_1.Placeholder_2" />
+					<Placeholder id="Block_1.Placeholder_3" />
+					<Placeholder id="Block_1.Placeholder_4" />
+				</Block>
+				<Block id="InfoBlock" name="{Common:Info}">
+					<Block id="Block_2" name="{Global:_mc_Details}">
+						<Placeholder id="Block_2.Placeholder_1">
+							<Control id="Block_2.Placeholder_1.Control_1" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+								<Property name="FormName" value="[MC_GeneralViewForm]" />
+							</Control>
+						</Placeholder>
+						<Placeholder id="Block_2.Placeholder_2" />
+						<Placeholder id="Block_2.Placeholder_3" />
+						<Placeholder id="Block_2.Placeholder_4" />
+					</Block>
+				</Block>
+				<Block id="Relations" name="{Common:RelatedObjects}">
+					<Block id="Dummy">
+						<Placeholder id="Block_3.Placeholder_1" />
+						<Placeholder id="Block_3.Placeholder_2" />
+						<Placeholder id="Block_3.Placeholder_3" />
+						<Placeholder id="Block_3.Placeholder_4" />
+					</Block>
+				</Block>
+			</add>
+		</Layout>
+	</Form>
+</View>

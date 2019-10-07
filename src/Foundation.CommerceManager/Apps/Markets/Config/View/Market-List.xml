@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox" />
+					<Column width="50" headingText="" columnType="Action" dataField="MarketId">
+						<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdMarketsGridMarketEdit" commandParameters="MarketId" toolTip="Edit" permissions="markets:market:mng:edit" />
+						<Item imageUrl="~/Apps/Shell/styles/images/toolbar/copy.gif" commandName="cmdMarketsGridMarketCopy" commandParameters="MarketId" toolTip="Copy" permissions="markets:market:mng:edit" />
+						<!--<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png" commandName="cmdMarketsGridMarketExport" commandParameters="MarketId,MarketName" toolTip="Export" permissions="markets:market:mng:export" />-->
+					</Column>
+					<Column headingText="{SharedStrings:Market_ID}" visible="true" width="100"  allowSorting="true" dataField="MarketId"  columnType="HyperLink" dataNavigateUrlFields="MarketId" dataNavigateUrlFormatString="javascript:CSManagementClient.ChangeView('Markets', 'Market-Edit','marketid={0}');" dataTextFields="MarketId" dataTextFormatString="{0}" />/>
+					<Column headingText="{SharedStrings:Name}" id="marketName" width="200" allowSorting="true" dataField="marketName" />
+          <Column headingText="{SharedStrings:Default_Language}" width="200" allowSorting="true" dataField="DefaultLanguage" />
+          <Column headingText="{SharedStrings:Default_Currency}" allowSorting="true" dataField="DefaultCurrency" />
+					<Column headingText="{SharedStrings:Active}" id="active" allowSorting="true" dataField="IsEnabled" />
+          <Column headingText="{SharedStrings:Prices_Include_Tax}" id="pricesIncludeTax" allowSorting="true" dataField="PricesIncludeTax" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Menu id="ActionsSplitButton" text="{SharedStrings:Create_New}" imageUrl="~/Apps/Shell/styles/Images/new.png" permissions="markets:market:mng:create">
+					<Button id="NewMarket" text="{SharedStrings:Market_New}" imageUrl="~/Apps/Shell/styles/Images/Icons/Node.gif" commandName="cmdNewMarket" permissions="markets:market:mng:create"/>
+				</Menu>
+				<Splitter id="ActionsSplitter"/>
+				<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdMarketDelete" permissions="markets:market:mng:delete"/>
+					<!--<Button id="ImportMarket" text="{SharedStrings:Market_Import}" imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png" commandName="cmdMarketImport" permissions="markets:market:mng:import"/>
+					<Button id="ExportMarket" text="{SharedStrings:Market_Export}" imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png" commandName="cmdMarketExport" permissions="markets:market:mng:export"/>-->
+				</Menu>
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdNewMarket">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSMarketsClient.NewMarket()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdMarketDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Markets.CommandHandlers.MarketDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdMarketImport">
+					<!--<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.SiteImportEnableHandler, Mediachase.ConsoleManager" />-->
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSContentClient.ImportMarket()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdMarketExport">
+					<!--<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.SiteExportEnableHandler, Mediachase.ConsoleManager" />-->
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSContentClient.ExportMarket(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<!-- Grid commands -->
+                <Command id="cmdMarketsGridMarketEdit">
+                  <CommandType>ClientAction</CommandType>
+                  <ClientScript>CSMarketsClient.EditMarket(params)</ClientScript>
+                  <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+                </Command>
+				<Command id="cmdMarketsGridMarketCopy">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSMarketsClient.CopyMarket(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdMarketsGridMarketExport">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSMarketsClient.ExportMarket2(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Market-List" controlUrl="Markets/Market/MarketList.ascx" permissions="markets:market:mng:view" help="Markets+Management" />
+	</ViewConfig>
+</View>

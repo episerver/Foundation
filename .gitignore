@@ -75,16 +75,15 @@ UpgradeLog*.htm
 Setup*.log
 
 # Foundation
-Foundation/Assets/scss/main.min.css
-Foundation/Assets/scss/main.min.css.map
-Foundation/Assets/js/main.min.js
-Foundation/Assets/js/main.min.js.map
-Foundation/License.config
-Foundation/connectionStrings.config
-Foundation.CommerceManager/connectionStrings.config
-Foundation.CommerceManager/App_Data/ImportExport/*
-appdata/*
-BuildLogs/*.log
-Foundation/App_Data/GeoLiteCity.dat
-Output/
-artifacts/
+Build/Logs/*.log
+src/appdata/*
+src/Foundation/App_Data/GeoLiteCity.dat
+src/Foundation/Assets/scss/main.min.css
+src/Foundation/Assets/scss/main.min.css.map
+src/Foundation/Assets/js/main.min.js
+src/Foundation/Assets/js/main.min.js.map
+src/Foundation/License.config
+src/Foundation/connectionStrings.config
+src/Foundation.CommerceManager/connectionStrings.config
+src/Foundation.CommerceManager/App_Data/ImportExport/*
+

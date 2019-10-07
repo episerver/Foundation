@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Tax-Edit" controlUrl="Order/TaxEdit.ascx" help="Order+System"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Order/Tabs/TaxEditTab.ascx"></Tab>
+				<Tab name="Tax Values" controlUrl="Order/Tabs/TaxValueEditTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

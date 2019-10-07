@@ -1,0 +1,14 @@
+﻿@using Foundation.Commerce.Extensions
+@model Foundation.Commerce.ViewModels.Header.NavigationViewModel
+
+@if (Model.UserLinks != null && Model.UserLinks.Any())
+{
+    <div class="sub-navigation">
+        @foreach (var userLink in Model.UserLinks)
+        {
+            var selected = userLink.GetContentReference() == Model.CurrentContentLink;
+            <a href="@Url.PageUrl(userLink.Href)" class="@(selected ? "current" : "") btn sub-title">@userLink.Text</a>
+        }
+    </div>
+    <br />
+}

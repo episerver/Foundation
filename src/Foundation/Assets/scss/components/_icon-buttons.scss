@@ -1,0 +1,17 @@
+﻿.icon-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-color: #000;
+    padding: 3px;
+
+    &:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+    &:disabled {
+        color: #fff;
+        background-color: #7f7f7f;
+        border-color: #7f7f7f;
+    }
+}

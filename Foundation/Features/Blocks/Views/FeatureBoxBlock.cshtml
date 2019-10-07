@@ -1,8 +1,0 @@
-﻿@model IBlockViewModel<FeatureBoxBlock>
-
-<div class="feature-box">
-    <div class="feature-box__icon">
-        <i class="@Html.DisplayTextFor(x => x.CurrentBlock.IconName)" @Html.EditAttributes(x => x.CurrentBlock.IconName)></i>
-    </div>
-    <div class="feature-box__content">@Html.PropertyFor(x => x.CurrentBlock.Content)</div>
-</div>

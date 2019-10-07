@@ -1,0 +1,41 @@
+﻿.ecf-Grid th.HeadingCell 
+{ 
+  background-color: #D8D8E6;
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFFFF, endColorstr=#FFDDDDDD);*/
+  border: 1px solid gray; 
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-left-color: #E6E6E6;
+  padding: 2px;
+}
+
+.ecf-Grid tr.Row td.DataCell 
+{ 
+  border-bottom: 1px solid #E6E6E6; 
+  font-family: verdana; 
+  font-size: 10px;
+  padding-top: 4px; 
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 3px;
+}
+
+.ecf-Grid tr.AlternatingRow td.DataCell 
+{
+  border-bottom: 1px solid #E6E6E6; 
+  font-family: verdana; 
+  font-size: 10px; 
+  padding-top: 4px; 
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 3px;
+}
+
+.ecf-Grid .HoverRow td.DataCell 
+{ 
+  background-color: #E6E6EE; 
+  border-bottom: 1px solid #E6E6E6; 
+  font-family: verdana; 
+  font-size: 10px; 
+  padding:4px;
+}

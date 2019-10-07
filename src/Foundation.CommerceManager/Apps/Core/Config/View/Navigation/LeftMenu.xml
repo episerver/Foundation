@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <Navigation>
+    <Tabs id="mainTag" sort="order" sortDataType="number" sortSubNodes="true">
+      <add>
+        <Tab id="navTabAdmin" text="{SharedStrings:Administration}" contentType="default" order="200"  imageUrl="~/Apps/Core/images/module.png" configUrl="" enableHandler2="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.CoreAdministrationTabEnableHandler, Mediachase.ConsoleManager">
+          <Link id="Core_System" text="{SharedStrings:System_Settings}" order="10" iconUrl="" iconCss="treeIcon" command="cmdCoreSystemLink">
+            <!-- Dictionaries -->
+            <Link id="Core_Dictionaries" text="{SharedStrings:Dictionaries}" iconUrl="" iconCss="treeIcon" order="10" command="cmdCoreDictionaryLink" >              
+              <Link id="Core_CountriesDictionary" text="{SharedStrings:Countries}" order="20" iconUrl="" iconCss="" command="cmdOrderCountriesDictionary"
+                permissions="catalog:admin:country:mng:view, catalog:admin:country:mng:create, catalog:admin:country:mng:delete, catalog:admin:country:mng:edit"/>
+              <Link id="Core_ReturnReasonDictionary" text="{SharedStrings:Return_Reasons}" order="25" iconUrl="" iconCss="" command="cmdOrderReturnReasonsDictionary"
+                permissions="catalog:admin:country:mng:view, catalog:admin:country:mng:create, catalog:admin:country:mng:delete, catalog:admin:country:mng:edit"/>
+              <Link id="Core_CurrenciesDictionary" text="{SharedStrings:Currencies}" order="30" iconUrl="~/Apps/Catalog/images/Currency.png" iconCss="treeIcon" command="cmdCatalogCurrenciesDictionary" permissions="catalog:admin:currencies:mng:view,catalog:admin:currencies:mng:create,catalog:admin:currencies:mng:delete,catalog:admin:currencies:mng:edit"/>
+            </Link>
+            <!-- Logs -->
+            <Link id="Core_Logs" text="{SharedStrings:Logs}" order="15" iconUrl="" iconCss="treeIcon" command="cmdCoreLogsLink" >
+              <Link id="Core_SystemLog" text="{SharedStrings:System_Log}" order="10" iconUrl="" iconCss="" command="cmdSystemLog" permissions="core:admin:syslog:mng:view,core:admin:syslog:mng:delete" />
+              <Link id="Core_ApplicationLog" text="{SharedStrings:Application_Log}" order="20" iconUrl="" iconCss="" command="cmdApplicationLog" permissions="core:admin:applog:mng:view,core:admin:applog:mng:delete" />
+            </Link>
+            <!-- Common Settings -->
+            <Link id="Core_CommonSettings" text="{SharedStrings:Common_Settings}" order="20" iconUrl="" iconCss="" command="cmdCoreCommonSettings" permissions="core:mng:settings"/>            
+            <!-- Business Foundation -->
+            <Link id="Core_BAF" text="{SharedStrings:Business_Foundation}" order="30" iconUrl="" iconCss="" command="cmdCoreBF" permissions="core:mng:businessfoundation" />            
+            <!-- Search -->
+            <Link id="Core_Search" text="{SharedStrings:Search_Index}" order="50" iconUrl="" iconCss="" command="cmdSearch" permissions="core:mng:search" />
+          </Link>
+          <!-- Catalog System -->
+          <Link id="Core_CatalogSystem" text="{CatalogStrings:Catalog_System}" order="20" iconUrl="" iconCss="treeIcon" command="cmdCatalogSystemLink">
+            <Link id="Core_Warehouses" text="{SharedStrings:Warehouses}" order="5" iconUrl="" iconCss="" command="cmdCatalogWarehouses" permissions="catalog:admin:warehouses:mng:create,catalog:admin:warehouses:mng:delete,catalog:admin:warehouses:mng:edit,catalog:admin:warehouses:mng:view"/>
+            <Link id="Core_TaxCategories" text="{CatalogStrings:Tax_Categories}" order="10" iconUrl="" iconCss="" command="cmdCatalogTaxCategories" permissions="catalog:admin:taxcategories:mng:view"/>
+            <Link id="Core_CatalogMetaClasses" text="{CatalogStrings:Meta_Classes}" order="15" iconUrl="" iconCss="" command="cmdCatalogMetaClasses" permissions="catalog:admin:meta:cls:mng:view"/>
+            <Link id="Core_CatalogMetaFields" text="{CatalogStrings:Meta_Fields}" order="20" iconUrl="" iconCss="" command="cmdCatalogMetaFields" permissions="catalog:admin:meta:fld:mng:view"/>
+          </Link>
+          <!-- Order System -->
+          <Link id="Core_OrderSystem" text="{SharedStrings:Order_System}" order="30" iconUrl="" iconCss="treeIcon" command="cmdOrderSystemLink">
+            <Link id="Core_OrderMetaClasses" text="{SharedStrings:Meta_Classes}" order="10" iconUrl="" iconCss="" command="cmdOrderMetaClasses" permissions="order:admin:meta:cls:mng:view"/>
+            <Link id="Core_OrderMetaFields" text="{SharedStrings:Meta_Fields}" order="20" iconUrl="" iconCss="" command="cmdOrderMetaFields" permissions="order:admin:meta:fld:mng:view"/>
+            <Link id="Core_OrderPaymentMethods" text="{SharedStrings:Payments}" type="PaymentMethods" order="30" iconUrl="" iconCss="treeIcon" treeLoaderPath="~/Apps/Order/Tree/TreeSource.aspx" command="cmdCheckPermissions" permissions="order:admin:payments:mng:view"/>
+            <Link id="Core_ShippingConfig" text="{SharedStrings:Shipping}" order="35" iconUrl="" iconCss="treeIcon" command="cmdCheckPermissions" permissions="order:admin:shipping:jur:mng:view,order:admin:shipping:providers:mng:view,order:admin:shipping:packages:mng:view,order:admin:shipping:methods:mng:view">
+              <Link id="Core_OrderJurisdictionGroupsShippingType" text="{SharedStrings:Shipping_Jurisdiction_Groups}" order="10" iconUrl="" iconCss="" command="cmdOrderJurisdictionGroupsShippingType" permissions="order:admin:shipping:jur:mng:view"/>
+              <Link id="Core_OrderJurisdictionsShippingType" text="{SharedStrings:Shipping_Jurisdictions}" order="20" iconUrl="" iconCss="" command="cmdOrderJurisdictionsShippingType" permissions="order:admin:shipping:jur:mng:view"/>
+              <Link id="Core_OrderShippingProviders" text="{SharedStrings:Shipping_Providers}" order="40" iconUrl="" iconCss="" command="cmdOrderShippingProviders" permissions="order:admin:shipping:providers:mng:view"/>
+              <Link id="Core_OrderShippingPackages" text="{SharedStrings:Shipping_Packages}" order="50" iconUrl="" iconCss="" command="cmdOrderShippingPackages" permissions="order:admin:shipping:packages:mng:view"/>
+              <Link id="Core_OrderShippingMethods" text="{SharedStrings:Shipping_Methods}" type="ShippingMethods" order="60" iconUrl="" iconCss="treeIcon" treeLoaderPath="~/Apps/Order/Tree/TreeSource.aspx" permissions="order:admin:shipping:methods:mng:view"/>
+            </Link>
+            <Link id="Core_TaxConfig" text="{SharedStrings:Taxes_Configuration}" order="70" iconUrl="" iconCss="treeIcon" command="cmdCheckPermissions" permissions="order:admin:taxes:mng:view">
+              <Link id="Core_OrderJurisdictionGroupsTaxType" text="{SharedStrings:Tax_Jurisdiction_Groups}" order="10" iconUrl="" iconCss="" command="cmdOrderJurisdictionGroupsTaxType" permissions="order:admin:taxes:mng:view"/>
+              <Link id="Core_OrderJurisdictionsTaxType" text="{SharedStrings:Tax_Jurisdictions}" order="20" iconUrl="" iconCss="" command="cmdOrderJurisdictionsTaxType" permissions="order:admin:taxes:mng:view"/>
+              <Link id="Core_OrderTaxes" text="{SharedStrings:Taxes}" type="Taxes" order="30" iconUrl="" iconCss="" command="cmdOrderTaxes" permissions="order:admin:taxes:mng:view"/>
+            </Link>
+          </Link>
+        </Tab>
+      </add>
+    </Tabs>
+    <Commands>
+      <add>
+        <Command id="cmdCoreSystemLink">
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.CoreSystemSettingEnableHandler, Mediachase.ConsoleManager" />          
+        </Command>
+        <!--Dicionaries Commands-->
+        <Command id="cmdCoreDictionaryLink">
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.DictionaryTabEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdContentLanguagesDictionary">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Content', 'Languages-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderCountriesDictionary">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'Countries-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.OrderSchemaEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderReturnReasonsDictionary">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'ReturnReasons-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.OrderSchemaEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdCatalogCurrenciesDictionary">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Catalog', 'Currencies-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- Logs commands -->
+        <Command id="cmdCoreLogsLink">
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.CoreLogsEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdSystemLog">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Core', 'SystemLog')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdApplicationLog">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Core', 'ApplicationLog')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!--Common Settings commands-->
+        <Command id="cmdCoreCommonSettings">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Core', 'CommonSettings')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!--Business Foundation commands-->
+        <Command id="cmdCoreBF">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Core', 'Configuration')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.CoreBusinessFoundationEnableHandler, Mediachase.ConsoleManager" />
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- Search commands -->
+        <Command id="cmdSearch">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Core', 'Search')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- Catalog Settings commands -->
+        <Command id="cmdCatalogSystemLink">
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogSchemaEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdCatalogWarehouses">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Catalog', 'Warehouse-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdCatalogTaxCategories">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Catalog', 'TaxCategory-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdCatalogMetaClasses">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Catalog', 'CatalogMetaClass-List', 'namespace=Mediachase.Commerce.Catalog&amp;fieldnamespace=Mediachase.Commerce.Catalog&amp;mfview=CatalogMetaField-Edit')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdCatalogMetaFields">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Catalog', 'CatalogMetaFields-List', 'fieldnamespace=Mediachase.Commerce.Catalog')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- Order Settings commands -->
+        <Command id="cmdOrderSystemLink">
+            <EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.CoreOrderSystemEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderMetaClasses">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'OrderMetaClass-List', 'namespace=Mediachase.Commerce.Orders&amp;fieldnamespace=Mediachase.Commerce.Orders&amp;mfview=OrderMetaField-Edit')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderMetaFields">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'OrderMetaFields-List', 'fieldnamespace=Mediachase.Commerce.Orders')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdCheckPermissions">
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderJurisdictionGroupsShippingType">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'JurisdictionGroups-List', 'type=2')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderJurisdictionsShippingType">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'Jurisdictions-List', 'type=2')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderShippingProviders">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'ShippingOptions-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderShippingPackages">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'Packages-List')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderJurisdictionGroupsTaxType">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'JurisdictionGroups-List', 'type=1')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderJurisdictionsTaxType">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'Jurisdictions-List', 'type=1')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderTaxes">
+          <CommandType>ClientAction</CommandType>
+          <ClientScript>CSManagementClient.ChangeView('Order', 'Taxes-List', '')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+      </add>
+    </Commands>
+  </Navigation>
+</View>

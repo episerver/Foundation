@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListViewUI>
+	<Toolbar>
+		<clear/>
+		<add>
+			<Button id="NewItemButton" text="{Common:NewCustomPage}" imageUrl="~/Apps/MetaDatabase/images/newitem.gif" commandName="MC_WE_NewPage" itemSplitter="Right"></Button>
+		</add>
+	</Toolbar>
+	<Grid>
+		<add>
+			<CustomColumns id="CustomPages_Columns">
+				<Column id="460743ED-0CB4-41C5-8BA1-5C479D694F2C" type="ColumnsActions" templateUrl="~/Apps/Customization/ColumnTemplates/ColumnsActions.GridEntity.CustomPage.ascx">
+					<Item imageUrl="~/Apps/MetaDatabase/images/Publish.png" commandName="MC_WE_PublishPage" paddingRight="5" tooltip="{GlobalMetaInfo:Publish}" />
+					<Item imageUrl="~/Apps/MetaDatabase/images/edit.gif" commandName="MC_WE_EditPage" paddingRight="5" tooltip="{Common:Edit}" />
+					<Item imageUrl="~/Apps/MetaDatabase/images/undo.png" commandName="MC_WE_PageUndo" paddingRight="5" tooltip="{Common:Undo}" />
+					<Item imageUrl="~/Apps/MetaDatabase/images/delete.gif" commandName="MC_WE_PageDelete" paddingRight="5" tooltip="{Common:Delete}" />
+				</Column>
+			</CustomColumns>
+		</add>
+	</Grid>
+	<Commands>
+		<clear/>
+		<add>
+			<Command id="MC_WE_NewPage">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/Customization/Pages/CustomPageEdit.aspx</Url>
+			</Command>
+			<Command id="MC_WE_EditPage">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/Customization/Pages/CustomPageEdit.aspx?Id=[ClientParam:primaryKeyId]</Url>
+			</Command>
+			<Command id="MC_WE_PageUndo">
+				<CommandType>ServerAction</CommandType>
+				<Handler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.UndoPageHandler, Mediachase.ConsoleManager" />
+				<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.UndoPageEnableHandler, Mediachase.ConsoleManager" />
+				<ConfirmationText>{Common:UndoChanges}</ConfirmationText>
+			</Command>
+			<Command id="MC_WE_PageDelete">
+				<CommandType>ServerAction</CommandType>
+				<Handler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.DeletePageHandler, Mediachase.ConsoleManager" />
+				<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.DeletePageEnableHandler, Mediachase.ConsoleManager" />
+				<ConfirmationText>{Common:DeleteItemConfirmation}</ConfirmationText>
+			</Command>
+			<Command id="MC_WE_PublishPage">
+				<CommandType>OpenFrameModalPopup</CommandType>
+				<PopupTitle>{GlobalMetaInfo:Publication}</PopupTitle>
+				<Url>~/Apps/Customization/Pages/CustomPagePublish.aspx?Uid=[ClientParam:Uid]</Url>
+				<Width>750</Width>
+				<Height>485</Height>
+				<Top>55</Top>
+				<Left>55</Left>
+				<Drag>True</Drag>
+			</Command>
+		</add>
+	</Commands>
+</ListViewUI>

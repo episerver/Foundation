@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.21.7" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.7.1" />
+    <PackageReference Include="EPiServer.Find" Version="13.2.3" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="13.2.3" />
+    <PackageReference Include="EPiServer.Find.Commerce" Version="11.1.1" />
+    <PackageReference Include="EPiServer.Find.Framework" Version="13.2.3" />
+    <PackageReference Include="EPiServer.Framework" Version="11.13.0" />
+    <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Commerce\Foundation.Commerce.csproj" />
+    <ProjectReference Include="..\Foundation.Find.Cms\Foundation.Find.Cms.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column width="150" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" columnType="HyperLink" dataNavigateUrlFormatString="~/Apps/Shell/Pages/ContentFrame.aspx?_a=Order&amp;_v=Shipment-List-Packing&amp;status=Packing&amp;PickListId={0}" dataNavigateUrlFields="PickListId"></Column>
+					<Column width="150" allowSorting="true" dataField="PackingShipments" headingText="{OrderStrings:Packing_Shipments}"></Column>
+					<Column width="200" allowSorting="true" dataField="WarehouseName" headingText="{OrderStrings:Warehouse}"></Column>
+					<Column width="200" allowSorting="true" dataField="CreatorName" headingText="{SharedStrings:Created_By}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+
+		<Toolbar>
+			<add>
+				<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdPickListDelete" permissions="order:mng:delete"/>
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdPickListDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.DeleteSelectedPickListHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.DeleteSelectedPickListHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="PickList-List" controlUrl="Order/Modules/PickLists.ascx" permissions="order:mng:view" help="Shipping+and+Receiving+Workflow"></setAttributes>
+	</ViewConfig>
+</View>

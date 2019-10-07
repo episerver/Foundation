@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<clear></clear>
+			<add>
+				<Block id="ShortInfo">
+					<Placeholder id="Placeholder_1">
+						<!-- 
+					Toolbar is defined in file 
+					Apps/ClientManagement/Config/ListViewUI/Contact.Contact.ContactView.xml 
+				-->
+						<Control id="Toolbar" path="~/Apps/Core/Controls/MetaToolbar.ascx">
+							<Property name="ClassName" value="Contact" />
+							<Property name="ViewName" value="EntityView" />
+							<Property name="PlaceName" value="ContactView" />
+							<Property name="ToolbarMode" value="ListViewUI" />
+						</Control>
+						<Control id="ShortViewForm" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+							<Property name="FormName" value="[MC_ShortViewForm]" />
+							<Property name="OuterCssClass" value="ibn-underline" />
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2" />
+					<Placeholder id="Placeholder_3" />
+          <Placeholder id="Placeholder_4" />
+          <Placeholder id="Placeholder_5" />
+				</Block>
+				<Block id="InfoBlock" name="{Customer:TabInfo}">
+					<Block id="Info" name="{Customer:TabInfo}">
+						<Placeholder id="Placeholder_1">
+							<Control id="GeneralViewForm" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+								<Property name="FormName" value="[MC_GeneralViewForm]" />
+							</Control>
+							<Control id="MembershipAccountView" path="~/Apps/Customer/Modules/MembershipAccountView.ascx">
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+					<Block id="Addr" name="{Customer:Addresses}">
+						<Placeholder id="Placeholder_1">
+							<Control id="Addresses" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="Address" />
+								<Property name="RelatedToClassName" value="Contact"/>
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+					<Block id="card" name="{Customer:CreditCards}">
+						<Placeholder id="Placeholder_1">
+							<Control id="ContactCreditCard" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="CreditCard" />
+								<Property name="RelatedToClassName" value="Contact"/>
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+          <Block id="Notes" name="Contact Notes">
+            <Block id="contactOrderNotes" name="{Customer:OrderNotes}">
+              <Placeholder id="Placeholder_1">
+                <Control id="ContactOrderNotes" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+                  <Property name="RelatedClassName" value="OrderNote" />
+                  <Property name="RelatedToClassName" value="Contact"/>
+                </Control>
+              </Placeholder>
+              <Placeholder id="Placeholder_2" />
+              <Placeholder id="Placeholder_3" />
+              <Placeholder id="Placeholder_4" />
+              <Placeholder id="Placeholder_5" />
+            </Block>
+            <Block id="contactNotes" name="{Customer:ContactNotes}">
+              <Placeholder id="Placeholder_1">
+                <Control id="ContactNotes" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+                  <Property name="RelatedClassName" value="ContactNote" />
+                  <Property name="RelatedToClassName" value="Contact"/>
+                </Control>
+              </Placeholder>
+              <Placeholder id="Placeholder_2" />
+              <Placeholder id="Placeholder_3" />
+              <Placeholder id="Placeholder_4" />
+              <Placeholder id="Placeholder_5" />
+            </Block>
+          </Block>
+        </Block>
+
+        <Block id="Security" name="{Customer:Security}">
+					<!--<Block id="Account" name="Accounts">
+				<Placeholder id="Placeholder_1">
+					-->
+					<!-- Related Objects -->
+					<!--
+					<Control id="ContactMembershipAccount" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+						<Property name="RelatedClassName" value="MembershipAccount" />
+						<Property name="RelatedToClassName" value="Contact"/>
+					</Control>
+					-->
+					<!--<Control id="MembershipAccountEdit" path="~/Apps/Customer/Modules/MemebershipAccountView.ascx">
+					</Control>-->
+					<!--
+				</Placeholder>
+				<Placeholder id="Placeholder_2" />
+				<Placeholder id="Placeholder_3" />
+				<Placeholder id="Placeholder_4" />
+			</Block>-->
+					<Block id="SecurityRole" name="{Customer:Roles}">
+						<Placeholder id="Placeholder_1">
+							<Control id="SecurityRoleAssignment" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="RoleAssignment" />
+								<Property name="RelatedToClassName" value="Contact"/>
+								<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.SecurityRoleAssignmentEnableHandler, Mediachase.ConsoleManager" />
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+				</Block>
+
+				<Block id="CustomerOrders" name="{Customer:Orders}">
+					<Block id="OrdersAll" name="{Customer:OrderHistory}">
+						<Placeholder id="Placeholder_1">
+							<Control id="OrdersA" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="OrdersAll" />
+								<Property name="RelatedToClassName" value="Contact"/>
+								<!--<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.SecurityRoleAssignmentEnableHandler, Mediachase.ConsoleManager" />-->
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+				</Block>
+
+				<Block id="CustomerShoppingLists" name="{Customer:ShoppingLists}">
+					<Block id="WishLists" name="{Customer:WishLists}">
+						<Placeholder id="Placeholder_1">
+							<Control id="WishList" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="WishLists" />
+								<Property name="RelatedToClassName" value="Contact"/>
+								<!--<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.SecurityRoleAssignmentEnableHandler, Mediachase.ConsoleManager" />-->
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+					<Block id="ShoppingCarts" name="{Customer:ShoppingCarts}">
+						<Placeholder id="Placeholder_1">
+							<Control id="ShoppingCart" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="ShoppingCarts" />
+								<Property name="RelatedToClassName" value="Contact"/>
+								<!--<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.SecurityRoleAssignmentEnableHandler, Mediachase.ConsoleManager" />-->
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+            <Placeholder id="Placeholder_5" />
+          </Block>
+				</Block>
+			</add>
+		</Layout>
+		<Grids>
+			<add>
+				<Grid placeName="ContactAddress-List">
+					<Columns>
+						<Column columnType="CheckBox" />
+						<Column width="20" headingText="" columnType="Action" dataField="PrimaryKeyId">
+							<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdContactAddressGridEdit" commandParameters="PrimaryKeyId"></Item>
+						</Column>
+						<Column width="200" allowSorting="false" dataField="Name" headingText="{Customer:Address_mf_Name}"></Column>
+						<Column width="200" allowSorting="false" dataField="Line1" headingText="{Customer:Address_mf_Line1}"></Column>
+						<Column width="100" allowSorting="false" dataField="City" headingText="{Customer:Address_mf_City}"></Column>
+                        <Column width="100" allowSorting="false" dataField="PostalCode" headingText="{Customer:Address_mf_PostalCode}"></Column>
+                        <Column width="100" allowSorting="false" dataField="CountryCode" headingText="{Customer:Address_mf_CountryCode}"></Column>
+                    </Columns>
+				</Grid>
+        <Grid placeName="ContactOrderNotes-List">
+          <Columns>
+            <!--<Column columnType="CheckBox" dataField="OrderNoteId" />
+            <Column width="50" dataField="OrderNoteId" headingText="" columnType="Action">
+              <Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderNoteGridEdit" commandParameters="OrderNoteId" toolTip="Edit" permissions="order:mng:edit"></Item>
+              <Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderNoteGridDelete" commandParameters="OrderNoteId" toolTip="Delete" permissions="order:mng:edit"></Item>
+            </Column>-->
+            <Column visible="false" allowSorting="false" dataField="OrderNoteId" headingText="{SharedStrings:Id}"></Column>
+            <Column visible="false" allowSorting="false" dataField="CustomerId" headingText="{SharedStrings:Id}"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="UserName" headingText="{SharedStrings:Originated_By}"></Column>
+            <Column width="165" visible="true" allowSorting="false" dataField="Created" headingText="{SharedStrings:Date_Slash_Time}" columnType="DateTime"></Column>
+            <!--<Column width="200" visible="true" allowSorting="false" dataField="Title" headingText="{SharedStrings:Title}"></Column>-->
+            <Column width="920" visible="true" allowSorting="false" dataField="Detail" headingText="{SharedStrings:Note_Text}"></Column>
+          </Columns>
+        </Grid>
+        <Grid placeName="ContactContactNotes-List">
+          <Columns>
+            <!--<Column columnType="CheckBox" dataField="OrderNoteId" />
+            <Column width="50" dataField="OrderNoteId" headingText="" columnType="Action">
+              <Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderNoteGridEdit" commandParameters="OrderNoteId" toolTip="Edit" permissions="order:mng:edit"></Item>
+              <Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderNoteGridDelete" commandParameters="OrderNoteId" toolTip="Delete" permissions="order:mng:edit"></Item>
+            </Column>-->
+            <Column columnType="CheckBox" />
+            <Column visible="false" allowSorting="false" dataField="ContactNoteId" headingText="{SharedStrings:Id}"></Column>
+            <Column visible="false" allowSorting="false" dataField="CustomerId" headingText="{SharedStrings:Id}"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="NoteTitle" headingText="{SharedStrings:Title}"></Column>
+            <Column width="165" visible="true" allowSorting="false" dataField="NoteContent" headingText="{SharedStrings:Note_Text}"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="Creator" headingText="{SharedStrings:Originated_By}"></Column>
+            <Column width="165" visible="true" allowSorting="false" dataField="Created" headingText="{SharedStrings:Date_Slash_Time}" columnType="DateTime"></Column>         
+            <!--<Column width="200" visible="true" allowSorting="false" dataField="Title" headingText="{SharedStrings:Title}"></Column>-->            
+          </Columns>
+        </Grid>
+				<Grid placeName="ContactCreditCards-List">
+					<Columns>
+						<Column columnType="CheckBox" />
+						<Column width="20" headingText="" columnType="Action" dataField="PrimaryKeyId">
+							<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdCreditCardGridEdit" commandParameters="PrimaryKeyId"></Item>
+						</Column>
+						<Column width="200" allowSorting="false" dataField="CreditCardTypeFriendlyName" headingText="{Customer:CreditCard_mf_CardType}"></Column>
+						<Column width="100" allowSorting="false" dataField="LastFourDigits" headingText="{Customer:CreditCard_mf_LastFourDigits}"></Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="ContactMembershipAccount-List">
+					<Columns>
+						<Column columnType="CheckBox" />
+						<Column width="20" headingText="" columnType="Action" dataField="UserName">
+							<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="MembershipAccount_Edit" commandParameters="UserName"></Item>
+						</Column>
+						<Column width="200" allowSorting="false" dataField="UserName" headingText="{Customer:Account_UserName}"></Column>
+						<Column width="100" allowSorting="false" dataField="Comment" headingText="{Customer:Account_Comment}"></Column>
+						<Column width="200" allowSorting="false" dataField="Email" headingText="{Customer:Account_Email}"></Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="ContactRoleAssignment-List">
+					<Columns>
+						<Column width="150" allowSorting="false" dataField="RoleName" headingText="{Customer:RoleAssignment_RoleName}"></Column>
+						<Column width="150" allowSorting="false" dataField="OrganizationName" headingText="{Customer:RoleAssignment_OrganizationName}"></Column>
+						<Column width="100" allowSorting="false" dataField="CheckModeFriendlyName" headingText="{Customer:RoleAssignment_CheckMode}"></Column>
+						<Column width="150" allowSorting="true" dataField="OnlyForOwner" headingText="{Customer:RoleAssignment_OnlyForOwner}"></Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="CustomerOrders-List">
+					<Columns>
+						
+						<Column headingText="{SharedStrings:ID}" id="id" width="50" columnType="HyperLink" allowSorting="false" dataNavigateUrlFields="OrderGroupId,CustomerId" dataNavigateUrlFormatString="javascript:CSOrderClient.ViewOrder2('PurchaseOrder', {0},'{1}');" dataTextFields="OrderGroupId" dataTextFormatString="{0}" dataField="OrderGroupId"></Column>
+						<Column width="200" allowSorting="false" dataField="CustomerName" headingText="{SharedStrings:Customer}"></Column>
+						<Column width="100" allowSorting="false" dataField="Total" headingText="{SharedStrings:Total}" formatString="{0:F2}"></Column>
+						<Column width="100" allowSorting="false" dataField="Status" headingText="{SharedStrings:Status}"></Column>
+						<Column width="200" columnType="DateTime" allowSorting="false" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="CustomerShoppingList-List">
+					<Columns>
+						<Column columnType="CheckBox"/>
+						<Column width="50" allowSorting="false" dataField="OrderGroupId"  headingText="{SharedStrings:ID}" columnType="CustomTemplate">
+							<Template id="LinkTemplate" controlUrl="~/Apps/Order/GridTemplates/OrderLinkTemplate.ascx"></Template>
+						</Column>
+						<Column width="200" allowSorting="false" dataField="CustomerName" headingText="{SharedStrings:Customer}"></Column>
+						<Column width="100" allowSorting="false" dataField="Total" headingText="{SharedStrings:Total}" formatString="{0:F2}"></Column>
+						<Column width="100" allowSorting="false" dataField="Status" headingText="{SharedStrings:Status}"></Column>
+						<Column width="200" columnType="DateTime" allowSorting="false" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+					</Columns>
+				</Grid>
+			</add>
+		</Grids>
+		<Toolbars>
+			<add>
+				<Toolbar placeName="ContactAddress-List">
+					<Button id="NewAddress" text="{Customer:AddressNew}" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" commandName="MC_ContactAddress_NewItem" itemSplitter="Right"></Button>
+					<Button id="DeleteSelectedAddress" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_Address_DeleteSelected" ></Button>
+				</Toolbar>
+				<Toolbar placeName="ContactView">
+					<Button id="EditButton" text="{Common:Edit}" imageUrl="~/Apps/MetaDataBase/images/edit.gif" tooltip="{Common:Edit}" commandName="Contact_Edit" itemSplitter="Right"></Button>
+					<Button id="DeleteButton" text="{Customer:DeleteContact}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="Contact_Delete" itemSplitter="Right" permissions="businessfoundation:contact:delete:permission"></Button>
+					<Button id="ListButton" text="{Customer:Contacts}" imageUrl="~/Apps/MetaDataBase/images/back.gif" tooltip="{Customer:Contacts}" commandName="Contact_List" ></Button>
+					<Splitter id="ActionsSplitter"></Splitter>
+          <Button id="NewOrderButton" text="{OrderStrings:Order_New}" imageUrl="~/Apps/Shell/styles/Images/new.png" tooltip="{OrderStrings:Order_New}" commandName="cmdPurchaseOrderNew" permissions="order:mng:create"></Button>
+				</Toolbar>
+				<Toolbar placeName="ContactCreditCards-List">
+					<Button id="NewCreditCard" text="{Customer:NewCreditCard}" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" commandName="MC_CreditCard_NewItem" itemSplitter="Right"></Button>
+					<Button id="DeleteSelectedCreditCard" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_CreditCard_DeleteSelected" ></Button>
+				</Toolbar>
+				<Toolbar placeName="ContactMembershipAccount-List">
+					<Button id="CreateAccount" text="{Customer:NewAccount}" commandName="MembershipAccount_New"></Button>
+					<Button id="DeleteAccount" text="{Customer:DeleteAccount}"  commandName="MembershipAccount_Delete" itemSplitter="Right"></Button>
+				</Toolbar>
+        <Toolbar placeName="ContactContactNotes-List">
+          <Button id="AddContactNote" text="{Customer:AddNewContactNote}" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" commandName="MC_ContactNote_NewItem" itemSplitter="Right"></Button>
+          <Button id="DeleteSelectedContactNote" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_ContactNote_DeleteSelected" ></Button>
+        </Toolbar>       
+      </add>
+		</Toolbars>
+		<Commands>
+			<add>
+				<!--*********************-->
+				<!--*ContactAddress-List*-->
+				<!--*********************-->
+				<Command id="MC_Address_DeleteSelected">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.DeleteSelectedAddressHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+				<Command id="MC_ContactAddress_NewItem">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:AddressNew}</PopupTitle>
+					<!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=Address-Edit&amp;ContactId={QueryString:ObjectId}&amp;commandName=MC_ContactAddress_NewItem</Url>-->
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=Address&amp;ContainerFieldName=ContactId&amp;ContainerId={QueryString:ObjectId}</Url>
+					<Width>590</Width>
+					<Height>380</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+					<DependCommand>cmdContactAddressGridEdit</DependCommand>
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdContactAddressGridEdit">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:AddressEdit}</PopupTitle>
+					<!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=Address-Edit&amp;ContactId={QueryString:ObjectId}&amp;ObjectId=[ClientParam:PrimaryKeyId]&amp;commandName=cmdContactAddressGridEdit</Url>-->
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=Address&amp;ObjectId=[ClientParam:PrimaryKeyId]&amp;commandName=cmdOrganizationAddressGridEdit</Url>
+					<Width>590</Width>
+					<Height>380</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+				</Command>
+				<!--*********************-->
+				<!--*ContactView Toolbar*-->
+				<!--*********************-->
+				<Command id="Contact_Edit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'Edit', 'ObjectId={QueryString:ObjectId}&amp;back=view')</ClientScript>
+                    <EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="Contact_List">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'List')</ClientScript>
+				</Command>
+				<Command id="Contact_Delete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.Customer.CommandHandlers.DeleteContactHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+					<ConfirmationText>{Customer:DeleteContactConfirmation}</ConfirmationText>
+				</Command>
+				<Command id="cmdPurchaseOrderNew">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewPurchaseOrder('{QueryString:ObjectId}', 'Contact-View')</ClientScript>
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				
+				<!--************************-->
+				<!--*ContactView CreditCard*-->
+				<!--************************-->
+				<Command id="MC_CreditCard_NewItem">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:NewCreditCard}</PopupTitle>
+					<!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=Address-Edit&amp;formName=[MC_BaseForm]&amp;className=Address&amp;</Url>-->
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=CreditCard&amp;ContainerFieldName=ContactId&amp;ContainerId={QueryString:ObjectId}</Url>
+					<Width>590</Width>
+					<Height>280</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+					<DependCommand>cmdCreditCardGridEdit</DependCommand>
+				</Command>
+
+				<Command id="MC_CreditCard_DeleteSelected">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.DeleteSelectedCreditCardHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdCreditCardGridEdit">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=CreditCard&amp;ObjectId=[ClientParam:PrimaryKeyId]&amp;commandName=cmdCreditCardGridEdit</Url>
+					<Width>590</Width>
+					<Height>280</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+				</Command>
+        <!--************************-->
+        <!--*ContactView ContactNote*-->
+        <!--************************-->
+        <Command id="MC_ContactNote_NewItem">
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>{Customer:ContactNoteNew}</PopupTitle>
+          <Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=ContactNote&amp;ContainerFieldName=ContactId&amp;ContainerId={QueryString:ObjectId}</Url>
+          <Width>640</Width>
+          <Height>480</Height>
+          <Left>100</Left>
+          <Top>50</Top>
+          <Drag>True</Drag>
+          <UpdatePanelIds>panelMainListView</UpdatePanelIds>          
+        </Command>      
+        
+        <Command id="MC_ContactNote_DeleteSelected">
+          <EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+          <BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+          <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.DeleteSelectedContactNoteHandler, Mediachase.ConsoleManager" />
+          <UpdatePanelIds>panelMainListView</UpdatePanelIds>
+        </Command>       
+       
+				<!--*******************************-->
+				<!--*ContactMembershipAccount-List*-->
+				<!--*******************************-->
+				<Command id="MembershipAccount_Edit">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:EditAccount}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=MembershipAccount-Edit&amp;UserName=[ClientParam:UserName]&amp;commandName=MembershipAccount_Edit&amp;ReturnCommand=MembershipAccount_Edit&amp;refreshName=fn_rebind</Url>
+					<Width>370</Width>
+					<Height>300</Height>
+					<Top>55</Top>
+					<Left>55</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MembershipAccount_New">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:NewAccount}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=MembershipAccount-Edit&amp;ContactId=[ClientParam:ContactId]&amp;commandName=MembershipAccount_New&amp;ReturnCommand=MembershipAccount_New&amp;refreshName=fn_rebind</Url>
+					<Width>370</Width>
+					<Height>300</Height>
+					<Top>55</Top>
+					<Left>55</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MembershipAccount_ChangePassword">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditContactEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:ChangePassword}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=MembershipAccount-ChangePassword&amp;ContactId=[ClientParam:ContactId]&amp;commandName=MembershipAccount_New&amp;ReturnCommand=MembershipAccount_ChangePassword&amp;refreshName=fn_rebind</Url>
+					<Width>370</Width>
+					<Height>300</Height>
+					<Top>55</Top>
+					<Left>55</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MembershipAccount_Unlock">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.UnlockUserHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<!--****************************-->
+				<!--*ContactRoleAssignment-List*-->
+				<!--****************************-->
+				
+
+			</add>
+		</Commands>
+	</Form>
+</View>

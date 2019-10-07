@@ -1,0 +1,61 @@
+﻿@using EPiServer.SpecializedProperties;
+
+@model IContentViewModel<IContent>
+
+<hr class="bottom-line">
+<footer class="footer container">
+    <h5 class="footer__introduction">
+        @Html.PropertyFor(x => x.StartPage.FooterIntroduction)
+    </h5>
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.FooterCompanyHeader)> @Html.DisplayFor(x => x.StartPage.FooterCompanyHeader)</h3>
+            <p>
+                Phone: <a href="tel:@Html.DisplayFor(x => x.StartPage.FooterCompanyPhone)" @Html.EditAttributes(x => x.StartPage.FooterCompanyPhone)>@Html.DisplayFor(x => x.StartPage.FooterCompanyPhone)</a>
+            </p>
+            <p>
+                Email: <a href="mailto:@Html.DisplayFor(x => x.StartPage.FooterCompanyEmail)" @Html.EditAttributes(x => x.StartPage.FooterCompanyEmail)>@Html.DisplayFor(x => x.StartPage.FooterCompanyEmail)</a>
+            </p>
+            <p @Html.EditAttributes(x => x.StartPage.FooterCompanyAddress)>
+                @Html.DisplayFor(x => x.StartPage.FooterCompanyAddress)
+            </p>
+        </div>
+        <div class="col-md-6 col-lg-2">
+            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.FooterLinksHeader)> @Html.DisplayFor(x => x.StartPage.FooterLinksHeader)</h3>
+
+            @if (Model != null)
+            {
+                <div @Html.EditAttributes(x => x.StartPage.FooterColumnLinks)>
+                    @foreach (var item in Model.StartPage.FooterColumnLinks ?? new LinkItemCollection())
+                    {
+                        <a class="footer__link" href="@Url.PageUrl(item.Href)">
+                            @item.Text
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-md-6 col-lg-2">
+            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.FooterFollowHeader)>@Html.DisplayFor(x => x.StartPage.FooterFollowHeader)</h3>
+
+            <a class="footer__link" href="https://www.facebook.com/Episerver" target="_blank">
+                Facebook
+            </a>
+            <a class="footer__link" href="https://twitter.com/episerver" target="_blank">
+                Twitter
+            </a>
+            <a class="footer__link" href="http://www.linkedin.com/company/episerver-ab" target="_blank">
+                Linkedin
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            @Html.PropertyFor(x => x.StartPage.FooterContentArea)
+        </div>
+    </div>
+
+    <div class="row">
+        <p class="footer__subtext col-12" @Html.EditAttributes(x => x.StartPage.FooterCopyrightText)>
+            © @DateTime.Now.Year.ToString() @Html.DisplayFor(x => x.StartPage.FooterCopyrightText)
+        </p>
+    </div>
+</footer>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<clear></clear>
+			<add>
+				<Columns>
+					<Column width="70" allowSorting="true" dataField="Id" headingText="{SharedStrings:ID}" />
+					<Column width="200" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="Id" dataNavigateUrlFormatString="javascript:CSManagementClient.ChangeView('Order', 'OrderMetaField-Edit','id={0}&amp;namespace=Mediachase.Commerce.Orders&amp;fieldnamespace=Mediachase.Commerce.Orders');" dataTextFields="Name" dataTextFormatString="{0}" />
+					<Column width="100" allowSorting="true" dataField="DataType" headingText="{SharedStrings:Type}" />
+					<Column width="100" allowSorting="true" dataField="MultiLanguage" headingText="{SharedStrings:Multi_Language}" />
+					<Column width="50" allowSorting="true" dataField="Compare" headingText="{SharedStrings:Compare}" />
+					<Column width="50" allowSorting="true" dataField="Search" headingText="{SharedStrings:Search}" />
+					<Column width="200" allowSorting="true" dataField="FriendlyName" headingText="{SharedStrings:Friendly_Name}" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<clear></clear>
+			<add>
+				<Button id="NewMetaField" text="{SharedStrings:New_Meta_Field}" imageUrl="~/Apps/Shell/styles/Images/metafield.gif" commandName="cmdOrderNewMetaField" permissions="order:admin:meta:fld:mng:create" />
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewMetaField">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>javascript:CSManagementClient.ChangeView('Order', 'OrderMetaField-New','fieldnamespace=Mediachase.Commerce.Orders')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="OrderMetaFields-List" controlUrl="Order/MetaFieldList.ascx" permissions="order:admin:meta:fld:mng:view" help="Order+System"/>
+	</ViewConfig>
+</View>

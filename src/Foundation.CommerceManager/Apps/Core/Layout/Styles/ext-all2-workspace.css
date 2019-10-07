@@ -1,0 +1,33 @@
+/*.x-panel-body p {
+    margin:5px;
+}*/
+
+#containerLayout, #mainPortal, #mainPortal div
+{
+	position: relative;
+}
+
+.x-portlet {
+    margin-bottom:4px;
+    padding: 4px;
+    zoom: 1;
+    position: relative;
+    /*height: 1%;*/
+}
+
+html,body,form
+{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	overflow: hidden;
+}
+
+.ibn-portlet-addButton
+{
+    cursor: pointer;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=45); /* for IE8 */
+	/*filter: alpha(opacity=45);*/ /* for IE5-7 */
+	opacity: .45; /* for all other browsers*/
+}

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Toolbar>
+			<add>
+				<Menu id="ActionsSplitButton" text="{SharedStrings:Create_New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdBlankPermissions" permissions="order:admin:meta:cls:mng:create,order:admin:meta:fld:mng:create">
+					<Button id="NewMetaClass" text="{SharedStrings:New_Meta_Class}" imageUrl="~/Apps/Shell/styles/Images/metaclass.gif" commandName="cmdOrderNewMetaClass" permissions="order:admin:meta:cls:mng:create"/>
+					<Button id="NewMetaField" text="{SharedStrings:New_Meta_Field}" imageUrl="~/Apps/Shell/styles/Images/metafield.gif" commandName="cmdOrderNewMetaField" permissions="order:admin:meta:fld:mng:create"/>
+				</Menu>
+				<Splitter id="ActionsSplitter"/>
+				<Menu id="ImportExportSplitButton" text="{SharedStrings:Import_Export}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif">
+					<Button id="ImportMetaData" text="{SharedStrings:Import_MetaData}" imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png" commandName="cmdOrderImportMetaData" permissions="order:admin:meta:cls:mng:create,order:admin:meta:fld:mng:create"/>
+					<Button id="ExportMetaData" text="{SharedStrings:Export_MetaData}" imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png" commandName="cmdOrderExportMetaData"/>
+				</Menu>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdBlankPermissions">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderNewMetaClass">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCoreClient.CreateMetaClass('Order', 'OrderMetaClass-Edit', 'Mediachase.Commerce.Orders', 'Mediachase.Commerce.Orders', 'OrderMetaFields-Edit')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderNewMetaField">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCoreClient.CreateMetaField('Order', 'OrderMetaField-New', 'Mediachase.Commerce.Orders')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderImportMetaData">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCoreClient.ImportMetaData('Order')</ClientScript>
+				</Command>
+				<Command id="cmdOrderExportMetaData">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCoreClient.ExportMetaData('Order')</ClientScript>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="OrderMetaClass-List" controlUrl="Order/MetaClassList.ascx" help="Order+System"/>
+	</ViewConfig>
+</View>

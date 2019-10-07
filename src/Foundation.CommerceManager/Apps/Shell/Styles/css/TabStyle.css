@@ -1,0 +1,38 @@
+.FormTab 
+{
+  color: white; 
+  background-color: #6F8AD2;
+  font-family: verdana; 
+  font-weight:bold;
+  font-size:11px; 
+  cursor:pointer;
+}
+
+.FormTabHover 
+{
+  color: white; 
+  background-color: #6F8AD2;
+  font-family: verdana; 
+  font-weight:bold;
+  font-size:11px; 
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+.FormSelectedTab 
+{
+  color: white; 
+  background-color: #4544AF;
+  font-family: verdana; 
+  font-size:11px; 
+  font-weight:bold;
+  position:relative;
+  top:1px;
+  cursor:default;
+}
+
+
+.FormSpacer
+{
+  background-color: #4544AF;
+}

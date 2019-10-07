@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Jurisdiction-Edit" controlUrl="Order/JurisdictionEdit.ascx" help="Order+System"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Order/Tabs/JurisdictionEditTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Navigation>
+		<Tabs id="mainTag">
+			<add>
+				<Tab id="navTabCatalogManagement" text="{CatalogStrings:Catalog_Management}" order="60"  contentType="default" imageUrl="~/Apps/Catalog/images/module.png" configUrl="" enableHandler="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogTabEnableHandler, Mediachase.ConsoleManager" enableHandler2="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" permissions="catalog:tabviewpermission">
+					<Link id="Catalog_CatalogEntrySearch" text="{CatalogStrings:Catalog_Entry_Search}" order="10" iconUrl="~/Apps/Shell/Styles/images/search_magnifier.png" iconCss="treeIcon" command="cmdCatalogEntrySearch" permissions="catalog:ctlg:entries:mng:view"/>
+					<Link id="Catalog_CatalogBatchUpdate" text="{CatalogStrings:Catalog_Batch_Update}" order="20" iconUrl="" iconCss="" command="cmdCatalogBatchUpdate" permissions="catalog:ctlg:entries:mng:edit" />
+					<Link id="Catalog_Catalogs" text="{SharedStrings:Catalogs}" iconUrl="" type="Catalogs" order="30" iconCss="treeIcon" command="cmdCatalogCatalogList" treeLoaderPath="~/Apps/Catalog/Tree/TreeSource.aspx" permissions="catalog:ctlg:mng:view,catalog:ctlg:entries:mng:create" />
+				</Tab>
+			</add>
+		</Tabs>
+		<Commands>
+			<add>
+				<Command id="cmdCatalogEntrySearch">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Catalog', 'CatalogEntrySearch-List')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogSchemaEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdCatalogBatchUpdate">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Catalog', 'CatalogBatchUpdate-List')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdCatalogCatalogList">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Catalog', 'Catalog-List')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</Navigation>
+</View>

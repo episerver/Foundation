@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Toolbar>
+			<add>
+				<Menu id="ActionMenu" text="{MetaForm:AddElement}">
+					<Button id="addSection" text="{MetaForm:AddSection}" imageUrl="~/Apps/MetaDataBase/Images/Columns2.png" handler="onAddSectionClick"></Button>
+					<Button id="addField" text="{MetaForm:AddField}" imageUrl="~/Apps/MetaDataBase/Images/metainfo/metafield.gif" handler="onAddFieldClick"></Button>
+				</Menu>
+				<Splitter id="split4"></Splitter>
+				<Button id="upButton" imageUrl="~/Apps/MetaDataBase/Images/Arrows/Arrow_Up_Green.png" cssClass="imageMiddle" handler="onArrowClick"></Button>
+				<Button id="downButton" imageUrl="~/Apps/MetaDataBase/Images/Arrows/Arrow_Down_Green.png" cssClass="imageMiddle" handler="onArrowClick"></Button>
+				<Button id="leftButton" imageUrl="~/Apps/MetaDataBase/Images/Arrows/Arrow_Left_Green.png" cssClass="imageMiddle" handler="onArrowClick"></Button>
+				<Button id="rightButton" imageUrl="~/Apps/MetaDataBase/Images/Arrows/Arrow_Right_Green.png" cssClass="imageMiddle" handler="onArrowClick"></Button>
+				<Splitter id="split1"></Splitter>
+				<Button id="editSection" imageUrl="~/Apps/MetaDataBase/Images/edit.gif" text="{MetaForm:EditElement}" handler="onEditClick"></Button>
+				<Splitter id="split5"></Splitter>
+
+				<Button id="removeElement" imageUrl="~/Apps/MetaDataBase/Images/delete.gif" text="{MetaForm:RemoveElement}" handler="onRemoveClick"></Button>
+			</add>
+		</Toolbar>
+	</ListViewUI>
+</View>

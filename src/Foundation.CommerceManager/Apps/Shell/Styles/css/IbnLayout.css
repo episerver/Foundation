@@ -1,0 +1,65 @@
+﻿html, form, body
+{
+	height: 100%;	
+}
+.LayoutBase
+{
+ position: relative;
+ height: 100%;
+ width: 100%;
+ border: 0px;
+ padding-top: 1px;
+}
+
+
+
+.DockContainer
+{
+ position: absolute;
+ /*border: dashed 1px Red; 
+ background-color: #999999*/
+ overflow: hidden;
+}
+.Splitter
+{
+ background-color: green; /*#FCEED9;*/
+ position: absolute;
+}
+
+.customizeWSRow
+{
+	border-collapse: separate;
+	border-bottom: solid 1px Gray;
+} 
+
+.customizeWSTemplateItem
+{
+	border: dashed 1px #AAAAAA; 
+	margin: 5px; 
+	padding: 5px;
+	cursor: pointer;
+}
+
+.customizeWSTemplateItemSelected
+{
+	border: solid 1px #048204; 
+	margin: 5px; 
+	padding: 5px;	
+}
+
+.customizeWSTemplateItemHover
+{
+	border: solid 1px #AAAAAA; 
+	margin: 5px; 
+	padding: 5px;
+	cursor: pointer;
+	background-color: #dddddd;
+}
+
+.section {
+	color: windowtext; font-family: Verdana, Arial, Helvetica; background-color: white
+}
+
+.text {
+	color: windowtext; font-family: Verdana, Arial, Helvetica
+}

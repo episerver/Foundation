@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Navigation>
+		<Tabs id="mainTag">
+			<add>
+				<Tab id="navTabReporting" text="{ReportingStrings:Reporting}" order="130"  contentType="default" imageUrl="~/Apps/Reporting/images/module.png" configUrl="" enableHandler2="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" permissions="reporting:tabviewpermission">
+					<Link id="Sales" text="{ReportingStrings:Sales}" order="10" iconUrl="~/Apps/Reporting/images/report-group.png" iconCss="treeIcon" permissions="reporting:mng:view" >
+						<Link id="SalesReport" text="{ReportingStrings:Sales_Report}" order="10" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command="SalesReportCommand" permissions="reporting:mng:view"/>
+						<Link id="ShippingReport" text="{ReportingStrings:Shipping_Report}" order="20" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command="ShippingReportCommand" permissions="reporting:mng:view"/>
+						<!--
+				<Link id="TaxReport" text="{ReportingStrings:Tax_Report}" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon"/>
+				-->
+					</Link>
+					<Link id="Products" text="{ReportingStrings:Products}" order="20" iconUrl="~/Apps/Reporting/images/report-group.png" iconCss="treeIcon" permissions="reporting:mng:view">
+						<Link id="BestSellers" text="{ReportingStrings:Best_Sellers_Report}" order="10" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command ="BestSellersReportCommand" permissions="reporting:mng:view"/>
+						<!--
+				<Link id="MostViewed" text="{ReportingStrings:Most_Viewed_Report}" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon"/>
+				-->
+						<Link id="LowStock" text="{ReportingStrings:Low_Stock_Report}" order="20" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command="LowStockReportCommand" permissions="reporting:mng:view"/>
+					</Link>
+					<!--
+			<Link id="Customers" text="{ReportingStrings:Customers}" iconUrl="~/Apps/Reporting/images/report-group.png" iconCss="treeIcon">
+				<Link id="NewAccounts" text="{ReportingStrings:New_Accounts_Report}" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command ="NewAccountsReportCommand" />
+				<Link id="CustomerOrderTotals" text="{ReportingStrings:Customers_By_Orders_Total_Report}" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command ="CustomerOrderTotalsReportCommand"/>
+				<Link id="CustomerNumOrders" text="{ReportingStrings:Customers_By_Number_Of_Orders_Report}" iconUrl="~/Apps/Reporting/images/report.png" iconCss="treeIcon" command ="CustomerNumOrdersReportCommand"/>
+			</Link>
+			-->
+				</Tab>
+			</add>
+		</Tabs>
+		<Commands>
+			<add>
+				<Command id="SalesReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'Sales')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="LowStockReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'LowStock')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="BestSellersReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'BestSellers')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="ShippingReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'Shipping')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="NewAccountsReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'NewAccounts')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="CustomerOrderTotalsReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'CustomerOrderTotals')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="CustomerNumOrdersReportCommand">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Reporting', 'CustomerNumOrders')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</Navigation>
+</View>

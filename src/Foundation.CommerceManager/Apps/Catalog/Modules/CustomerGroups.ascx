@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CustomerGroups.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Catalog.Modules.CustomerGroups" %>
+<asp:DropDownList runat="server" ID="CustomerGroupList"></asp:DropDownList>

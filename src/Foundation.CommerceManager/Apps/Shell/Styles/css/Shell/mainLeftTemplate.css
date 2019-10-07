@@ -1,0 +1,100 @@
+#menu_panel .x-panel-header {
+    background:#eee url(../../images/Shell/navbar/cmp-bg.gif) repeat-x;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ccc;
+}
+
+#menu_panel .x-panel-body {
+    /*background-color: #D9E8FB;*/
+}
+
+.NavigationNavBarItem
+{
+  color: black;
+  background-image:url(../../images/Shell/navbar/item_bg.gif);
+  background-color:#C0DBFF;
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: normal;
+  border-top: 1px solid #7C7C94;
+  cursor: pointer;
+}
+
+.NavigationNavBarItemHover
+{
+  color: black;
+  background-image: url(../../images/Shell/navbar/item_bg_hover.gif);
+  background-color:#FFE69E;
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: normal;
+  border-top: 1px solid #7C7C94;
+  cursor: pointer;
+}
+
+.NavigationNavBarItemActive
+{
+  color:black;
+  background-image:url(../../images/Shell/navbar/item_bg_selected.gif);
+  background-color:#FEE17A;
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: normal;
+  border-top: 1px solid #7C7C94;
+  cursor: pointer;
+} 
+
+
+.NavigationNavBarItemSmall
+{
+  color: black;
+  background-image:url(../../images/Shell/navbar/item_bg.gif);
+  background-color:#C0DBFF;
+  font-family: tahoma, verdana; 
+  font-size: 11px;/*12px; */
+  cursor: pointer;  
+  padding: 2px 4px 2px 4px;  
+  float: left;
+  width: 37px;
+}
+
+.NavigationNavBarItemSmallHover
+{
+  color: black;
+  background-image:url(../../images/Shell/navbar/item_bg_hover.gif);
+  background-color:#FFE69E;
+  font-family: tahoma, verdana; 
+  font-size: 11px;/*12px; */
+  cursor: pointer;  
+  padding: 2px 4px 2px 4px;  
+  float: left;
+  width: 37px;
+}
+
+.NavigationNavBarItemSmallActive
+{
+  color: black;
+  background-image:url(../../images/Shell/navbar/item_bg_selected.gif);
+  background-color:#FFE69E;
+  font-family: tahoma, verdana; 
+  font-size: 11px;/*12px; */
+  cursor: pointer;  
+  padding: 2px 4px 2px 4px;  
+  float: left;
+  width: 37px;
+}
+
+.iconNodeCls
+{
+	background-image: url(../../images/Shell/rect.gif) !important;
+	width: 6px !important;
+	height: 7px !important;
+	vertical-align: middle !important;
+	padding: 3px !important;
+}
+
+.nodeCls a span {
+  font-family: tahoma;
+  /*color: #003399;*/
+  font-size: 11px; 
+}

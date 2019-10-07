@@ -1,0 +1,54 @@
+.modalPopupBackground {
+	background-color: #EAEAEA;
+	filter:alpha(opacity=70);
+	opacity:0.7;
+}
+
+.modalPopupWindow
+{
+	background-color: #FFFFFF;
+	overflow: auto;
+	border: 1px solid #95B7F3;
+}
+
+.modalPopupHeaderMove
+{
+	background-color: #CEDFFF;
+	border-bottom: 1px solid #95B7F3;
+	color: #15428B;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 4px;
+	overflow: hidden;
+	padding-left: 6px;
+	padding-right: 6px;
+	-moz-user-select: none;
+	cursor: move;
+}
+
+.modalPopupHeader
+{
+	background-color: #CEDFFF;
+	border-bottom: 1px solid #95B7F3;
+	color: #15428B;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 4px;
+	overflow: hidden;
+	padding-left: 6px;
+	padding-right: 6px;
+	-moz-user-select: none;
+}
+
+.closeDivStyle
+{
+	background-position: 0pt;
+	text-align: center;
+	width: 15px;
+	height: 15px;
+	float: right;
+	overflow: hidden;
+	cursor: pointer;
+}

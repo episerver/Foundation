@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Toolbar>
+			<add>
+				<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" commandName="cmdBlankPermissions" permissions="catalog:ctlg:entries:mng:delete,catalog:ctlg:entries:mng:create">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdCatalogDelete" permissions="catalog:ctlg:entries:mng:delete,catalog:ctlg:nodes:mng:delete"/>
+					<Button id="CloneSelected" text="{SharedStrings:Clone_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/copy.gif" commandName="cmdCatalogCopy" permissions="catalog:ctlg:entries:mng:create"/>
+				</Menu>
+			</add>
+		</Toolbar>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox" />
+					<Column width="450" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" columnType="CustomTemplate">
+						<Template id="LinkTemplate" controlUrl="GridTemplates/NodeHyperlinkTemplateSearch.ascx"></Template>
+					</Column>
+					<Column width="150" allowSorting="true" dataField="Code" headingText="{SharedStrings:Code}" sortExpression="Code"></Column>
+					<Column width="150" columnType="DateTime" allowSorting="true" dataField="StartDate" headingText="{SharedStrings:Available_From}"></Column>
+					<Column width="150" columnType="DateTime" allowSorting="true" dataField="EndDate" headingText="{SharedStrings:Expires}"></Column>
+					<Column width="50" allowSorting="true" dataField="IsActive" headingText="{SharedStrings:Status}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Commands>
+			<add>
+				<Command id="cmdBlankPermissions">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogPermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdCatalogDelete">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogEntryDeleteHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CatalogEntryDeleteHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdCatalogCopy">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<CommandType>ServerAction</CommandType>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CloneSelectedItemsHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CloneSelectedItemsHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="CatalogEntrySearch-List" controlUrl="catalog/CatalogEntrySearch.ascx" permissions="catalog:ctlg:entries:mng:view" help="Catalog+Management"></setAttributes>
+	</ViewConfig>
+</View>

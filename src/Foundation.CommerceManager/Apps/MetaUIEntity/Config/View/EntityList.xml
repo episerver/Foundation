@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<BafGrid>
+		<Toolbar>
+			<add>
+				<Button id="NewItemButton" text="{Common:tAddEntity}" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" commandName="MC_MUI_NewItem" itemSplitter="Right"></Button>
+				<Button id="PrinterVersionButton" text="{Common:PrinterVersion}" imageUrl="~/Apps/MetaUIEntity/images/Print.png" commandName="MC_MUI_PrinterVersion" itemSplitter="Right"></Button>
+				<Button id="DeleteSelectedButton" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_MUI_DeleteSelected" itemSplitter="Right"></Button>
+			</add>
+		</Toolbar>
+		<CustomColumns id="CM_MUI_Columns">
+			<add>
+				<Column id="472F004E-AF2F-4d64-91A0-17B37248A71C" type="ColumnsActions" templateUrl="~/Apps/MetaUIEntity/Primitives/ColumnsActions.GridEntity.ascx">
+					<Item imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="MC_MUI_EditItem" paddingRight="5" />
+				</Column>
+			</add>
+		</CustomColumns>
+		<Commands>
+			<add>
+				<Command id="MC_MUI_NewItem">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'Create')</ClientScript>
+				</Command>
+				<Command id="MC_MUI_EditItem">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'Edit', 'ObjectId=[ClientParam:primaryKeyId]')</ClientScript>
+				</Command>
+
+				<Command id="MC_MUI_DeleteSelected">
+					<CommandType>ServerAction</CommandType>
+					<ConfirmationText>{Common:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.DeleteSelectedEntityHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>grdMainPanel</UpdatePanelIds>
+				</Command>
+
+				<Command id="MC_MUI_ProfileEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{GlobalMetaInfo:ViewEditing}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className=[ClientParam:ClassName]&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1&amp;uid=[ClientParam:uid]</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MC_MUI_ProfileNew">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{GlobalMetaInfo:NewView}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className=[ClientParam:ClassName]&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+
+				<Command id="MC_MUI_ProfileEdited">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.ProfileEditedHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="MC_MUI_ProfileEditAdmin">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{GlobalMetaInfo:SystemViewEditing}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className=[ClientParam:ClassName]&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1&amp;uid=[ClientParam:uid]&amp;commandName=MC_MUI_NeedToDataBind&amp;isSystem=1</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MC_MUI_ProfileNewAdmin">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{GlobalMetaInfo:NewSystemView}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/ProfileEdit.aspx?className=[ClientParam:ClassName]&amp;placeName=EntityList&amp;showGrouping=0&amp;showFilters=1&amp;commandName=MC_MUI_NeedToDataBind&amp;isSystem=1</Url>
+					<Width>590</Width>
+					<Height>390</Height>
+					<Top>5</Top>
+					<Left>5</Left>
+					<Drag>False</Drag>
+				</Command>
+
+				<Command id="MC_MUI_NeedToDataBind">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.NeedToDataBindHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="MC_MUI_PrinterVersion">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.PrinterVersionHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+			</add>
+		</Commands>
+	</BafGrid>
+</View>

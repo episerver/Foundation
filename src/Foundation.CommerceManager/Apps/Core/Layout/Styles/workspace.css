@@ -1,0 +1,30 @@
+.IbnWidgetHeader
+{
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	background-image: url('../../../Shell/styles/images/ext/default/panel/top-bottom.gif');
+	position: relative;
+	cursor: move;
+	border: solid 1px #9CBAEF;
+	border-top: none;
+}
+.IbnWidgetContainer
+{
+	margin: 0px 5px 0px 5px;
+	border-left: solid 1px #ADC7F7;
+	border-right: solid 1px #ADC7F7;
+	border-bottom: solid 1px #ADC7F7;
+}
+
+.IbnHeaderWidgetButton
+{
+	position: absolute;
+	top: 3px;
+}
+
+input.IbnHeaderWidgetButton
+{
+	cursor: pointer;
+}

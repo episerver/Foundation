@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Order_Country_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un nom de pays est requis.</value>
+  </data>
+  <data name="Order_Payment_Plan" xml:space="preserve">
+    <value>Échéancier de paiement</value>
+  </data>
+  <data name="Order_Purchase_Order" xml:space="preserve">
+    <value>Bon de commande</value>
+  </data>
+  <data name="Order_Shopping_Cart" xml:space="preserve">
+    <value>Panier</value>
+  </data>
+  <data name="Payment_ACH_Payments" xml:space="preserve">
+    <value>Paiements ACH</value>
+  </data>
+  <data name="Payment_Authorize_Net_Configure_Account" xml:space="preserve">
+    <value>Configurer le compte Authorize.Net</value>
+  </data>
+  <data name="Payment_Authorize_Net_Get_Account" xml:space="preserve">
+    <value>Obtenir un compte Authorize.Net sur &lt;a target="_blank" href="http://www.authorizenet.com"&gt;www.authorizenet.com&lt;/a&gt;.</value>
+  </data>
+  <data name="Payment_ECX" xml:space="preserve">
+    <value>ECX</value>
+  </data>
+  <data name="Payment_Fast_Transact" xml:space="preserve">
+    <value>Fast Transact</value>
+  </data>
+  <data name="Payment_IBiz_E_Payment_Integrator_Configure" xml:space="preserve">
+    <value>Configurer le composant IBiz E-Payment Integrator</value>
+  </data>
+  <data name="Payment_iTransact_RediCharge_HTML" xml:space="preserve">
+    <value>iTransact RediCharge HTML</value>
+  </data>
+  <data name="Payment_Merchant_Anywhere" xml:space="preserve">
+    <value>Merchant Anywhere (Transaction Central)</value>
+  </data>
+  <data name="Payment_Merchant_Partners" xml:space="preserve">
+    <value>Commerçants partenaires</value>
+  </data>
+  <data name="Payment_MPCS" xml:space="preserve">
+    <value>MPCS</value>
+  </data>
+  <data name="Payment_NetBilling" xml:space="preserve">
+    <value>NetBilling</value>
+  </data>
+  <data name="Payment_Options" xml:space="preserve">
+    <value>Options de paiement</value>
+  </data>
+  <data name="Payment_Options_Required" xml:space="preserve">
+    <value>Une option de paiement doit être sélectionnée.</value>
+  </data>
+  <data name="Payment_Payments_Gateway" xml:space="preserve">
+    <value>Passerelle de paiement</value>
+  </data>
+  <data name="Payment_Pick_A_Gateway" xml:space="preserve">
+    <value>Choisir une passerelle</value>
+  </data>
+  <data name="Payment_Planet_Payment" xml:space="preserve">
+    <value>Planet Payment</value>
+  </data>
+  <data name="Payment_Processing_Url_Required" xml:space="preserve">
+    <value>Le champ Traitement de l'URL doit être renseigné.</value>
+  </data>
+  <data name="Payment_RTWare" xml:space="preserve">
+    <value>RTWare</value>
+  </data>
+  <data name="Payment_TrustCommerce" xml:space="preserve">
+    <value>TrustCommerce</value>
+  </data>
+  <data name="Payment_USA_ePay" xml:space="preserve">
+    <value>USA ePay</value>
+  </data>
+  <data name="Payment_User_Required" xml:space="preserve">
+    <value>Le champ Utilisateur doit être renseigné.</value>
+  </data>
+  <data name="Order_New_Shipment" xml:space="preserve">
+    <value>Nouvelle expédition</value>
+  </data>
+  <data name="Gateway_Authorize_Net" xml:space="preserve">
+    <value>Authorize.Net</value>
+  </data>
+  <data name="Gateway_DPI_Link" xml:space="preserve">
+    <value>DPI Link</value>
+  </data>
+  <data name="Gateway_eProcessing" xml:space="preserve">
+    <value>eProcessing</value>
+  </data>
+  <data name="Order_Configure_IBiz_E_Payment_Integrator_Component" xml:space="preserve">
+    <value>Configurer le composant IBiz E-Payment Integrator</value>
+  </data>
+  <data name="Order_Pick_a_Gateway" xml:space="preserve">
+    <value>Choisir une passerelle</value>
+  </data>
+  <data name="Gateway_GoRealTime" xml:space="preserve">
+    <value>GoRealTime</value>
+  </data>
+  <data name="Gateway_IBill_Processing_Plus" xml:space="preserve">
+    <value>IBill Processing Plus</value>
+  </data>
+  <data name="Gateway_Intellipay_ExpertLink" xml:space="preserve">
+    <value>Intellipay ExpertLink</value>
+  </data>
+  <data name="Gateway_Iongate" xml:space="preserve">
+    <value>Iongate</value>
+  </data>
+  <data name="Gateway_iTransact_RediCharge_HTML" xml:space="preserve">
+    <value>iTransact RediCharge HTML</value>
+  </data>
+  <data name="Gateway_NetBilling" xml:space="preserve">
+    <value>NetBilling</value>
+  </data>
+  <data name="Gateway_Verisign_PayFlow_Pro" xml:space="preserve">
+    <value>Verisign PayFlow Pro</value>
+  </data>
+  <data name="Gateway_Payready_Link" xml:space="preserve">
+    <value>Payready Link</value>
+  </data>
+  <data name="Gateway_NOVAs_Viaklix" xml:space="preserve">
+    <value>NOVA's Viaklix</value>
+  </data>
+  <data name="Gateway_USA_ePay" xml:space="preserve">
+    <value>USA ePay</value>
+  </data>
+  <data name="Gateway_Plug_n_Pay" xml:space="preserve">
+    <value>Plug 'n Pay</value>
+  </data>
+  <data name="Gateway_Planet_Payment" xml:space="preserve">
+    <value>Planet Payment</value>
+  </data>
+  <data name="Gateway_MPCS" xml:space="preserve">
+    <value>MPCS</value>
+  </data>
+  <data name="Gateway_RTWare" xml:space="preserve">
+    <value>RTWare</value>
+  </data>
+  <data name="Gateway_ECX" xml:space="preserve">
+    <value>ECX</value>
+  </data>
+  <data name="Gateway_Bank_of_America" xml:space="preserve">
+    <value>Bank of America</value>
+  </data>
+  <data name="Gateway_Innovative_Gateway" xml:space="preserve">
+    <value>Innovative Gateway</value>
+  </data>
+  <data name="Gateway_Merchant_Anywhere_Transaction_Central" xml:space="preserve">
+    <value>Merchant Anywhere (Transaction Central)</value>
+  </data>
+  <data name="Gateway_SkipJack" xml:space="preserve">
+    <value>SkipJack</value>
+  </data>
+  <data name="Gateway_ECHOnline" xml:space="preserve">
+    <value>ECHOnline</value>
+  </data>
+  <data name="Gateway_3DSI_EC_Linx" xml:space="preserve">
+    <value>3DSI EC-Linx</value>
+  </data>
+  <data name="Gateway_TrustCommerce" xml:space="preserve">
+    <value>TrustCommerce</value>
+  </data>
+  <data name="Gateway_PSIGate" xml:space="preserve">
+    <value>PSIGate</value>
+  </data>
+  <data name="Gateway_PayFuse_XML" xml:space="preserve">
+    <value>PayFuse XML</value>
+  </data>
+  <data name="Gateway_PayFlowLink" xml:space="preserve">
+    <value>PayFlowLink</value>
+  </data>
+  <data name="Gateway_Paymentech_Orbital_Gateway" xml:space="preserve">
+    <value>Paymentech Orbital Gateway</value>
+  </data>
+  <data name="Gateway_LinkPoint" xml:space="preserve">
+    <value>LinkPoint</value>
+  </data>
+  <data name="Gateway_Moneris_eSelect_Plus" xml:space="preserve">
+    <value>Moneris eSelect Plus</value>
+  </data>
+  <data name="Gateway_uSight_Gateway" xml:space="preserve">
+    <value>uSight Gateway</value>
+  </data>
+  <data name="Gateway_Fast_Transact" xml:space="preserve">
+    <value>Fast Transact</value>
+  </data>
+  <data name="Gateway_NetworkMerchants" xml:space="preserve">
+    <value>NetworkMerchants</value>
+  </data>
+  <data name="Gateway_Ogone_DirectLink" xml:space="preserve">
+    <value>Ogone DirectLink</value>
+  </data>
+  <data name="Gateway_Concord_EFSNet" xml:space="preserve">
+    <value>Concord EFSNet</value>
+  </data>
+  <data name="Gateway_Payment_Resources_International_PRIGate" xml:space="preserve">
+    <value>Payment Resources International PRIGate</value>
+  </data>
+  <data name="Gateway_Protx" xml:space="preserve">
+    <value>Protx</value>
+  </data>
+  <data name="Gateway_Optimal_Payments_FirePay" xml:space="preserve">
+    <value>Optimal Payments / FirePay</value>
+  </data>
+  <data name="Gateway_Merchant_Partners" xml:space="preserve">
+    <value>Commerçants partenaires</value>
+  </data>
+  <data name="Gateway_CyberCash" xml:space="preserve">
+    <value>CyberCash</value>
+  </data>
+  <data name="Gateway_FirstData_CardService_International" xml:space="preserve">
+    <value>FirstData / CardService International</value>
+  </data>
+  <data name="Gateway_YourPay" xml:space="preserve">
+    <value>YourPay</value>
+  </data>
+  <data name="Gateway_ACH_Payments" xml:space="preserve">
+    <value>Paiements ACH</value>
+  </data>
+  <data name="Gateway_Payments_Gateway" xml:space="preserve">
+    <value>Passerelle de paiement</value>
+  </data>
+  <data name="Gateway_Cyber_Source" xml:space="preserve">
+    <value>Cyber Source</value>
+  </data>
+  <data name="Gateway_Eway" xml:space="preserve">
+    <value>Eway</value>
+  </data>
+  <data name="Gateway_Go_EMerchant" xml:space="preserve">
+    <value>Go EMerchant</value>
+  </data>
+  <data name="Gateway_Pay_Stream" xml:space="preserve">
+    <value>Pay Stream</value>
+  </data>
+  <data name="Gateway_Trans_First" xml:space="preserve">
+    <value>Trans First</value>
+  </data>
+  <data name="Gateway_Chase" xml:space="preserve">
+    <value>Chase</value>
+  </data>
+  <data name="Order_Payment_Options" xml:space="preserve">
+    <value>Options de paiement</value>
+  </data>
+  <data name="Payment_Merchant_Login" xml:space="preserve">
+    <value>Connexion du commerçant</value>
+  </data>
+  <data name="Payment_Merchant_Password" xml:space="preserve">
+    <value>Mot de passe du commerçant</value>
+  </data>
+  <data name="Payment_Transaction_Key" xml:space="preserve">
+    <value>Clé de transaction</value>
+  </data>
+  <data name="Payment_Secret_Hash" xml:space="preserve">
+    <value>Dièse secret</value>
+  </data>
+  <data name="Payment_Gateway_URL" xml:space="preserve">
+    <value>URL de la passerelle de paiement (utilisée à des fins de test)</value>
+  </data>
+  <data name="Payment_SSL_User_Id" xml:space="preserve">
+    <value>ID utilisateur SSL</value>
+  </data>
+  <data name="Payment_Referer" xml:space="preserve">
+    <value>Référent</value>
+  </data>
+  <data name="Payment_Test_Mode" xml:space="preserve">
+    <value>Mode Test</value>
+  </data>
+  <data name="Payment_Sale" xml:space="preserve">
+    <value>Vente</value>
+  </data>
+  <data name="Payment_Authorization_Only" xml:space="preserve">
+    <value>Autorisation uniquement</value>
+  </data>
+  <data name="Payment_Merchant_Alias" xml:space="preserve">
+    <value>Alias du commerçant</value>
+  </data>
+  <data name="Payment_SSLCert_Store" xml:space="preserve">
+    <value>Magasin de certificats SSL</value>
+  </data>
+  <data name="Payment_SSLCert_Subject" xml:space="preserve">
+    <value>Sujet de certificats SSL</value>
+  </data>
+  <data name="Payment_SSLCert_Encoded" xml:space="preserve">
+    <value>Certificats SSL codés</value>
+  </data>
+  <data name="Payment_Related_Security_Key" xml:space="preserve">
+    <value>Clé de sécurité associée</value>
+  </data>
+  <data name="Payment_Related_Vendor_TX_Code" xml:space="preserve">
+    <value>Code TX fournisseur associé</value>
+  </data>
+  <data name="Payment_Related_TX_Auth_No" xml:space="preserve">
+    <value>N° d'autorisation TX associé</value>
+  </data>
+  <data name="Payment_Account" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="Payment_Merchant_ID" xml:space="preserve">
+    <value>ID du commerçant</value>
+  </data>
+  <data name="Payment_Customer_ID" xml:space="preserve">
+    <value>ID client</value>
+  </data>
+  <data name="Payment_Zone_ID" xml:space="preserve">
+    <value>ID de la zone</value>
+  </data>
+  <data name="Payment_Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Order_Management" xml:space="preserve">
+    <value>Gestion des commandes</value>
+  </data>
+  <data name="Order_List" xml:space="preserve">
+    <value>Liste des commandes</value>
+  </data>
+  <data name="Order_Search" xml:space="preserve">
+    <value>Rechercher une commande</value>
+  </data>
+  <data name="Order_View" xml:space="preserve">
+    <value>Affichage de la commande</value>
+  </data>
+  <data name="Order_View_Address" xml:space="preserve">
+    <value>Affichage de la commande - Adresse</value>
+  </data>
+  <data name="Order_View_LineItem" xml:space="preserve">
+    <value>Affichage de la commande - Article</value>
+  </data>
+  <data name="Order_View_Payment" xml:space="preserve">
+    <value>Affichage de la commande - Paiement</value>
+  </data>
+  <data name="Order_View_Shipment" xml:space="preserve">
+    <value>Affichage de la commande - Expédition</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Créé</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Edit_Command" xml:space="preserve">
+    <value>Modifier la commande</value>
+  </data>
+  <data name="File_Name" xml:space="preserve">
+    <value>Nom de fichier</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>IsDefault</value>
+  </data>
+  <data name="Last_Modified" xml:space="preserve">
+    <value>Date de la dernière modification</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Dernière mise à jour</value>
+  </data>
+  <data name="LineItemId" xml:space="preserve">
+    <value>LineItemId</value>
+  </data>
+  <data name="List_Price" xml:space="preserve">
+    <value>Liste de prix</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Chemin</value>
+  </data>
+  <data name="PaymentId" xml:space="preserve">
+    <value>PaymentId</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantité</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Taux</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>SortOrder</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="System_Name" xml:space="preserve">
+    <value>Nom du système</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="OrderGroupAddressId" xml:space="preserve">
+    <value>OrderGroupAddressId</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="Friendly_Name" xml:space="preserve">
+    <value>Pseudonyme</value>
+  </data>
+  <data name="Jurisdiction_Group_Configure_Price_Per_Weight" xml:space="preserve">
+    <value>Configurer le prix par poids pour le groupe de juridictions</value>
+  </data>
+  <data name="Payment_Attributes_Description" xml:space="preserve">
+    <value>détermine les attributs supplémentaires qui seront associés à un paiement</value>
+  </data>
+  <data name="Payment_For_Description" xml:space="preserve">
+    <value>quantité correspondant à ce paiement</value>
+  </data>
+  <data name="Payment_Method" xml:space="preserve">
+    <value>Méthode de paiement</value>
+  </data>
+  <data name="Payment_Name_Description" xml:space="preserve">
+    <value>nom du paiement qui apparaîtra au client</value>
+  </data>
+  <data name="Payment_Status_Description" xml:space="preserve">
+    <value>statut du paiement en cours</value>
+  </data>
+  <data name="Payment_Type" xml:space="preserve">
+    <value>Type de paiement</value>
+  </data>
+  <data name="Payment_API_User" xml:space="preserve">
+    <value>API UserId</value>
+  </data>
+  <data name="Cart_List" xml:space="preserve">
+    <value>Liste des paniers</value>
+  </data>
+  <data name="Order_By_Status" xml:space="preserve">
+    <value>Commandes par statut</value>
+  </data>
+  <data name="PaymentPlan_List" xml:space="preserve">
+    <value>Liste des échéanciers de paiement</value>
+  </data>
+  <data name="Country_With_Code_Exists" xml:space="preserve">
+    <value>Un pays avec le code spécifié existe déjà.</value>
+  </data>
+  <data name="JurisdictionGroup_With_Code_Exists" xml:space="preserve">
+    <value>Un groupe de juridictions avec le code spécifié existe déjà.</value>
+  </data>
+  <data name="Jurisdiction_With_Code_Exists" xml:space="preserve">
+    <value>Une juridiction avec le code spécifié existe déjà.</value>
+  </data>
+  <data name="Tax_With_Name_Exists" xml:space="preserve">
+    <value>Une taxe avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="Package_Name_Exists" xml:space="preserve">
+    <value>Un package avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="RecurringMethod_Authorize" xml:space="preserve">
+    <value>Autoriser</value>
+  </data>
+  <data name="RecurringMethod_Internal" xml:space="preserve">
+    <value>Interne</value>
+  </data>
+  <data name="RecurringPayment_CancelStatus" xml:space="preserve">
+    <value>Annuler le statut</value>
+  </data>
+  <data name="RecurringPayment_CancelStatus_Required" xml:space="preserve">
+    <value>CancelStatus est requis</value>
+  </data>
+  <data name="RecurringPayment_Select_CancelStatus" xml:space="preserve">
+    <value>sélectionner annuler le statut</value>
+  </data>
+  <data name="Recurring_Method" xml:space="preserve">
+    <value>Méthode récurrente</value>
+  </data>
+  <data name="Recurring_Payments" xml:space="preserve">
+    <value>Paiements récurrents</value>
+  </data>
+  <data name="Regular_Authorize_Payments" xml:space="preserve">
+    <value>Paiements normaux</value>
+  </data>
+  <data name="Jurisdictions" xml:space="preserve">
+    <value>Juridictions</value>
+  </data>
+  <data name="Jurisdictions_In_The_Group" xml:space="preserve">
+    <value>Juridictions du groupe</value>
+  </data>
+  <data name="Jurisdiction_Edit" xml:space="preserve">
+    <value>Modification de la juridiction</value>
+  </data>
+  <data name="Jurisdiction_Group" xml:space="preserve">
+    <value>Groupe de juridictions</value>
+  </data>
+  <data name="Jurisdiction_Groups" xml:space="preserve">
+    <value>Groupes de juridictions</value>
+  </data>
+  <data name="Jurisdiction_Groups_Edit" xml:space="preserve">
+    <value>Modification du groupe de juridictions</value>
+  </data>
+  <data name="select_jurisdiction_group" xml:space="preserve">
+    <value>sélectionner un groupe de juridictions</value>
+  </data>
+  <data name="Country_Edit" xml:space="preserve">
+    <value>Modification du pays</value>
+  </data>
+  <data name="CountryRegions" xml:space="preserve">
+    <value>Régions du pays</value>
+  </data>
+  <data name="Payment_Method_Edit" xml:space="preserve">
+    <value>Modification de la méthode de paiement</value>
+  </data>
+  <data name="Shipping_Method_Edit" xml:space="preserve">
+    <value>Modification de la méthode d'expédition</value>
+  </data>
+  <data name="Shipping_Package_Edit" xml:space="preserve">
+    <value>Modification du package d'expédition</value>
+  </data>
+  <data name="Shipping_Provider_Edit" xml:space="preserve">
+    <value>Modification du prestataire de services d'expédition</value>
+  </data>
+  <data name="Tax_Edit" xml:space="preserve">
+    <value>Modification des taxes</value>
+  </data>
+  <data name="New_Payment" xml:space="preserve">
+    <value>Nouveau paiement</value>
+  </data>
+  <data name="Tax_Add_Value" xml:space="preserve">
+    <value>Ajouter une valeur de taxe</value>
+  </data>
+  <data name="LineItemApproving" xml:space="preserve">
+    <value>Qualité d'approbation</value>
+  </data>
+  <data name="LineItemNew" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="LineItemNotAvailable" xml:space="preserve">
+    <value>Non disponible à la livraison</value>
+  </data>
+  <data name="LineItemOrdered" xml:space="preserve">
+    <value>Commandé</value>
+  </data>
+  <data name="LineItemProcessed" xml:space="preserve">
+    <value>En traitement</value>
+  </data>
+  <data name="LineItemReadyToSend" xml:space="preserve">
+    <value>Prêt à être envoyé</value>
+  </data>
+  <data name="LineItemReturnToSeller" xml:space="preserve">
+    <value>Renvoyé au vendeur</value>
+  </data>
+  <data name="LineItemSent" xml:space="preserve">
+    <value>Envoyé</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>veuillez sélectionner...</value>
+  </data>
+  <data name="Payment_Implementation_Class_Name" xml:space="preserve">
+    <value>Classe de paiement</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="Shipping_Method" xml:space="preserve">
+    <value>Méthode d'expédition</value>
+  </data>
+  <data name="Order_New" xml:space="preserve">
+    <value>Nouvelle commande</value>
+  </data>
+  <data name="OrderShipmentStatus_AwaitingInventory" xml:space="preserve">
+    <value>Stock en attente </value>
+  </data>
+  <data name="OrderShipmentStatus_Cancelled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
+  <data name="OrderShipmentStatus_InventoryAssigned" xml:space="preserve">
+    <value>Stock affecté</value>
+  </data>
+  <data name="OrderShipmentStatus_OnHold" xml:space="preserve">
+    <value>En attente</value>
+  </data>
+  <data name="OrderShipmentStatus_Packing" xml:space="preserve">
+    <value>Conditionnement</value>
+  </data>
+  <data name="OrderShipmentStatus_Released" xml:space="preserve">
+    <value>Publié</value>
+  </data>
+  <data name="OrderShipmentStatus_Shipped" xml:space="preserve">
+    <value>Expédié</value>
+  </data>
+  <data name="OrderStatus_AwaitingExchange" xml:space="preserve">
+    <value>En attente de l'échange</value>
+  </data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
+  <data name="OrderStatus_Completed" xml:space="preserve">
+    <value>Terminé</value>
+  </data>
+  <data name="OrderStatus_InProgress" xml:space="preserve">
+    <value>En cours</value>
+  </data>
+  <data name="OrderStatus_OnHold" xml:space="preserve">
+    <value>En attente</value>
+  </data>
+  <data name="OrderStatus_PartiallyShipped" xml:space="preserve">
+    <value>Partiellement expédié</value>
+  </data>
+  <data name="ReturnFormStatus_AwaitingCompletion" xml:space="preserve">
+    <value>En attente d'achèvement</value>
+  </data>
+  <data name="ReturnFormStatus_AwaitingStockReturn" xml:space="preserve">
+    <value>En attente de retour de stock</value>
+  </data>
+  <data name="ReturnFormStatus_Canceled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
+  <data name="ReturnFormStatus_Complete" xml:space="preserve">
+    <value>Terminé</value>
+  </data>
+  <data name="Add_New_Address" xml:space="preserve">
+    <value>Ajouter nouvelle adresse</value>
+  </data>
+  <data name="Error_No_Customer" xml:space="preserve">
+    <value>Le client spécifié est introuvable.</value>
+  </data>
+  <data name="Warning_No_Addesses" xml:space="preserve">
+    <value>Le client en cours ne possède aucune adresse. Pour créer une commande, une adresse doit être indiquée. Pour ajouter une adresse, cliquez sur le lien ci-dessous.</value>
+  </data>
+  <data name="Order_Recalculate" xml:space="preserve">
+    <value>Recalculer</value>
+  </data>
+  <data name="Order_SendNotificationConfirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment envoyer les notifications ?</value>
+  </data>
+  <data name="OrderNoteTypes_Info" xml:space="preserve">
+    <value>Informations</value>
+  </data>
+  <data name="OrderNoteTypes_Payments" xml:space="preserve">
+    <value>Paiements</value>
+  </data>
+  <data name="OrderNoteTypes_ReturnsExchange" xml:space="preserve">
+    <value>Retours/Échanges</value>
+  </data>
+  <data name="OrderNoteTypes_Shipment" xml:space="preserve">
+    <value>Expédition</value>
+  </data>
+  <data name="Shipping_Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Shipping_Number" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Add_To_Customer_Address_Book" xml:space="preserve">
+    <value>Ajouter dans le carnet d'adresses du client</value>
+  </data>
+  <data name="PickSite" xml:space="preserve">
+    <value>Choisir un site</value>
+  </data>
+  <data name="SelectCatalog" xml:space="preserve">
+    <value>Sélectionner un catalogue</value>
+  </data>
+  <data name="SelectEntryType" xml:space="preserve">
+    <value>Sélectionner un type d'entrée</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Sélectionner une langue</value>
+  </data>
+  <data name="ConfigureSelectedEntry" xml:space="preserve">
+    <value>Configurer l'entrée sélectionnée</value>
+  </data>
+  <data name="SelectedEntry" xml:space="preserve">
+    <value>Entrée sélectionnée</value>
+  </data>
+  <data name="DisplayPrice" xml:space="preserve">
+    <value>Prix d'affichage</value>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Ajouter un article à la commande</value>
+  </data>
+  <data name="PriceTier" xml:space="preserve">
+    <value>Niveau de prix</value>
+  </data>
+  <data name="New_LineItem_Discount_Amount" xml:space="preserve">
+    <value>montant</value>
+  </data>
+  <data name="New_LineItem_Discount_Description" xml:space="preserve">
+    <value>Description de la remise</value>
+  </data>
+  <data name="PickVariation" xml:space="preserve">
+    <value>Choisir une variation</value>
+  </data>
+  <data name="PromotionGroup_Item" xml:space="preserve">
+    <value>Entrée de catalogue</value>
+  </data>
+  <data name="PromotionGroup_Order" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="PromotionGroup_Shipping" xml:space="preserve">
+    <value>Expédition</value>
+  </data>
+  <data name="OrderNote_AddNewLineItemPattern" xml:space="preserve">
+    <value>Nouvelle UGS ({0} de {1}) ajoutée à l'expédition #{2}, le montant total de la commande est passé à {3}</value>
+  </data>
+  <data name="OrderNote_ChangeLineItemPattern" xml:space="preserve">
+    <value>L'UGS ({0} de {1}) a été modifiée dans l'expédition #{2}, le montant total de la commande est passé à {3}</value>
+  </data>
+  <data name="OrderNote_ChangeReturnStatusPattern" xml:space="preserve">
+    <value>Le statut du retour de commande avec le n°{0}  a été remplacé par {1}</value>
+  </data>
+  <data name="OrderNote_ChangeShipmentStatusPattern" xml:space="preserve">
+    <value>Le statut de l'expédition {0} a été remplacé par {1}</value>
+  </data>
+  <data name="OrderNote_DeleteLineItemPattern" xml:space="preserve">
+    <value>L'UGS ({0} de {1}) a été supprimée de l'expédition #{2}, le montant total de la commande est passé à {3}</value>
+  </data>
+  <data name="OrderNote_MoveLineItemPattern" xml:space="preserve">
+    <value>L'UGS ({0} de {1}) a été déplacée dans l'expédition #{2}</value>
+  </data>
+  <data name="OrderNote_ReturnLineItemPattern" xml:space="preserve">
+    <value>L'UGS ({0} de {1}) a été renvoyée avec le n° de retour #{2} pour le motif {3}</value>
+  </data>
+  <data name="OrderNote_ChangeOrderStatusPattern" xml:space="preserve">
+    <value>Le statut de la commande a été remplacé par {0}</value>
+  </data>
+  <data name="OrderNote_AddNewPaymentPattern" xml:space="preserve">
+    <value>Le nouveau {0} paiement d'un montant de {1} a été ajouté à la commande</value>
+  </data>
+  <data name="OrderNote_NewOrderPattern" xml:space="preserve">
+    <value>Une nouvelle commande a été passée par {0} dans {1}</value>
+  </data>
+  <data name="OrderNote_SendNotificationPattern" xml:space="preserve">
+    <value>La notification de commande a été envoyée à {0}</value>
+  </data>
+  <data name="CouponCode_Apply_Fail" xml:space="preserve">
+    <value>Le code du coupon est incorrect.</value>
+  </data>
+  <data name="CouponCode_Apply_Success" xml:space="preserve">
+    <value>Le code du coupon a été appliqué avec succès.</value>
+  </data>
+  <data name="ReturnForm_RefundAmount" xml:space="preserve">
+    <value>Montant remboursé</value>
+  </data>
+  <data name="PromotionGroup_Entry" xml:space="preserve">
+    <value>Entrée de catalogue</value>
+  </data>
+  <data name="CancelOrderConfirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment annuler le bon d'achat en cours ?</value>
+  </data>
+  <data name="CancelReturnConfirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment annuler la demande de retour en cours ?</value>
+  </data>
+  <data name="CancelShipmentConfirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment annuler l'expédition en cours ?</value>
+  </data>
+  <data name="CompleteReturnConfirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment finaliser la demande de retour en cours ?</value>
+  </data>
+  <data name="OrderStatus_HaveAwaitingReturnCompletable" xml:space="preserve">
+    <value>En attente de retour de stock</value>
+  </data>
+  <data name="OrderStatus_HaveAwaitingStockReturns" xml:space="preserve">
+    <value>En attente de l'achèvement de la procédure de retour</value>
+  </data>
+  <data name="Pick_List" xml:space="preserve">
+    <value>Sélectionner une liste</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Entrepôt</value>
+  </data>
+  <data name="PaymentPlan_New" xml:space="preserve">
+    <value>Nouvel échéancier de paiement</value>
+  </data>
+  <data name="Add_Shipment_To_Picklist" xml:space="preserve">
+    <value>Ajouter une expédition à la liste de sélection</value>
+  </data>
+  <data name="Order_Created" xml:space="preserve">
+    <value>Commande créée</value>
+  </data>
+  <data name="Packing_Shipments" xml:space="preserve">
+    <value>Conditionnement des expéditions</value>
+  </data>
+  <data name="Pick_Lists" xml:space="preserve">
+    <value>Sélectionner des listes</value>
+  </data>
+  <data name="Released_Shipments" xml:space="preserve">
+    <value>Expéditions libérées</value>
+  </data>
+  <data name="Warehouse_Colon" xml:space="preserve">
+    <value>Entrepôt :</value>
+  </data>
+  <data name="Add_Note" xml:space="preserve">
+    <value>Ajouter une note</value>
+  </data>
+  <data name="Add_Order_Address" xml:space="preserve">
+    <value>Ajouter l'adresse de commande</value>
+  </data>
+  <data name="Balance_Due" xml:space="preserve">
+    <value>Solde dû</value>
+  </data>
+  <data name="Cancel_Order" xml:space="preserve">
+    <value>Annuler la commande</value>
+  </data>
+  <data name="Created_Date" xml:space="preserve">
+    <value>Date créée</value>
+  </data>
+  <data name="Discounts_Total" xml:space="preserve">
+    <value>Total des remises</value>
+  </data>
+  <data name="Item_Subtotal" xml:space="preserve">
+    <value>Sous-total des articles</value>
+  </data>
+  <data name="Item_Taxes" xml:space="preserve">
+    <value>Taxes des articles</value>
+  </data>
+  <data name="Less_Shipment_Discount" xml:space="preserve">
+    <value>Remise inférieure sur l'expédition</value>
+  </data>
+  <data name="New_Line_Item" xml:space="preserve">
+    <value>Nouvel article</value>
+  </data>
+  <data name="Order_No_Sign" xml:space="preserve">
+    <value>N° de commande</value>
+  </data>
+  <data name="Order_Total" xml:space="preserve">
+    <value>Total de la commande</value>
+  </data>
+  <data name="Place_On_Hold" xml:space="preserve">
+    <value>Mettre en attente</value>
+  </data>
+  <data name="Release_Order_Hold" xml:space="preserve">
+    <value>Débloquer la commande</value>
+  </data>
+  <data name="Return_Number" xml:space="preserve">
+    <value>N° de retour</value>
+  </data>
+  <data name="Shipping_Cost" xml:space="preserve">
+    <value>Frais d'expédition</value>
+  </data>
+  <data name="Shipping_Total" xml:space="preserve">
+    <value>Total de l'expédition</value>
+  </data>
+  <data name="Sub_Total" xml:space="preserve">
+    <value>Sous-total</value>
+  </data>
+  <data name="Taxes_Total" xml:space="preserve">
+    <value>Total des taxes</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Total_Before_Tax" xml:space="preserve">
+    <value>Total avant taxes</value>
+  </data>
+  <data name="Acknowledge_Receipt_Items" xml:space="preserve">
+    <value>Accusé de réception des articles</value>
+  </data>
+  <data name="Cancel_Return" xml:space="preserve">
+    <value>Annuler le retour</value>
+  </data>
+  <data name="Cancel_Shipment" xml:space="preserve">
+    <value>Annuler l'expédition</value>
+  </data>
+  <data name="Cardholders_Name" xml:space="preserve">
+    <value>Nom du titulaire de la carte</value>
+  </data>
+  <data name="Catalog_Entry_Search_Dialog" xml:space="preserve">
+    <value>Boîte de dialogue Rechercher l'entrée de catalogue</value>
+  </data>
+  <data name="Complete_Return" xml:space="preserve">
+    <value>Finaliser le retour</value>
+  </data>
+  <data name="Complete_Shipment" xml:space="preserve">
+    <value>Finaliser l'expédition</value>
+  </data>
+  <data name="Create_Edit_Return" xml:space="preserve">
+    <value>Créer/Modifier le retour</value>
+  </data>
+  <data name="Create_Exchange" xml:space="preserve">
+    <value>Créer un échange</value>
+  </data>
+  <data name="Create_Exchange_Order" xml:space="preserve">
+    <value>Créer un ordre d'échange</value>
+  </data>
+  <data name="Create_Payment" xml:space="preserve">
+    <value>Créer un paiement</value>
+  </data>
+  <data name="Create_Refund" xml:space="preserve">
+    <value>Créer un remboursement</value>
+  </data>
+  <data name="Create_Return" xml:space="preserve">
+    <value>Créer un retour</value>
+  </data>
+  <data name="Credit_Card_Code" xml:space="preserve">
+    <value>Code de carte (CVV2, CVC2 ou CID)</value>
+  </data>
+  <data name="Credit_Card_Expiration_Date" xml:space="preserve">
+    <value>Date d'expiration (MM/AA)</value>
+  </data>
+  <data name="Credit_Card_Number" xml:space="preserve">
+    <value>Numéro de carte de crédit</value>
+  </data>
+  <data name="Edit_Information" xml:space="preserve">
+    <value>Modifier les informations</value>
+  </data>
+  <data name="Edit_Line_Item" xml:space="preserve">
+    <value>Modifier l'article</value>
+  </data>
+  <data name="Edit_Currency" xml:space="preserve">
+    <value>Modifier la devise</value>
+  </data>
+  <data name="Edit_Note" xml:space="preserve">
+    <value>Modifier la note</value>
+  </data>
+  <data name="Edit_Payment" xml:space="preserve">
+    <value>Modifier le paiement</value>
+  </data>
+  <data name="Edit_Return" xml:space="preserve">
+    <value>Modifier le retour</value>
+  </data>
+  <data name="Move_Line_Item" xml:space="preserve">
+    <value>Déplacer l'article</value>
+  </data>
+  <data name="New_Note" xml:space="preserve">
+    <value>Nouvelle note</value>
+  </data>
+  <data name="Order_Edit_By_Another" xml:space="preserve">
+    <value>La commande est en cours de modification par un autre utilisateur</value>
+  </data>
+  <data name="Order_Is_In_Edit_Mode" xml:space="preserve">
+    <value>La commande est en mode de modification. Enregistrez les changements avant de fermer l'application.</value>
+  </data>
+  <data name="Order_No" xml:space="preserve">
+    <value>N° de commande</value>
+  </data>
+  <data name="Original_Order" xml:space="preserve">
+    <value>Commande d'origine</value>
+  </data>
+  <data name="Release_Shipment" xml:space="preserve">
+    <value>Libérer l'expédition</value>
+  </data>
+  <data name="Shipping_Information" xml:space="preserve">
+    <value>Informations d'expédition</value>
+  </data>
+  <data name="View_Exchange" xml:space="preserve">
+    <value>Voir l'échange</value>
+  </data>
+  <data name="AsItAppearsOnTheCard" xml:space="preserve">
+    <value>(comme indiqué sur la carte)</value>
+  </data>
+  <data name="Existing_Payments" xml:space="preserve">
+    <value>Paiements existants</value>
+  </data>
+  <data name="Returns_Exchanges" xml:space="preserve">
+    <value>Retours/Échanges</value>
+  </data>
+  <data name="Shipment_Status" xml:space="preserve">
+    <value>Statut d'expédition</value>
+  </data>
+  <data name="Shipment_Summary" xml:space="preserve">
+    <value>Récapitulatif de l'expédition</value>
+  </data>
+  <data name="Shipment_Total" xml:space="preserve">
+    <value>Total de l'expédition</value>
+  </data>
+  <data name="Add_Shipments_To_Pick_List" xml:space="preserve">
+    <value>Ajouter des expéditions à la liste de sélection</value>
+  </data>
+  <data name="Add_To_Pick_List" xml:space="preserve">
+    <value>Ajouter à la liste de sélection</value>
+  </data>
+  <data name="Confirm_Return_Shipments_To_Released" xml:space="preserve">
+    <value>Réaffecter le statut de déblocage aux expéditions sélectionnées ?</value>
+  </data>
+  <data name="Create_New_Pick_List" xml:space="preserve">
+    <value>Créer une liste de sélection</value>
+  </data>
+  <data name="Date_Time_Initiated" xml:space="preserve">
+    <value>Date/Heure de début</value>
+  </data>
+  <data name="Exchange_Actions" xml:space="preserve">
+    <value>Actions d'échange</value>
+  </data>
+  <data name="Line_Item" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="List_Name" xml:space="preserve">
+    <value>Nom de la liste</value>
+  </data>
+  <data name="Print_Packing_Slip" xml:space="preserve">
+    <value>Imprimer le bon de livraison</value>
+  </data>
+  <data name="Print_Picklist" xml:space="preserve">
+    <value>Imprimer la liste de sélection</value>
+  </data>
+  <data name="Remove_From_Picklist" xml:space="preserve">
+    <value>Supprimer de la liste de sélection</value>
+  </data>
+  <data name="Returns_Actions" xml:space="preserve">
+    <value>Actions de retours</value>
+  </data>
+  <data name="ReturnType" xml:space="preserve">
+    <value>Type de retour</value>
+  </data>
+  <data name="Return_Max_Quantity_Error" xml:space="preserve">
+    <value>Quantité maximum à renvoyer : {0:#0.00}</value>
+  </data>
+  <data name="Return_Quantity" xml:space="preserve">
+    <value>Quantité renvoyée</value>
+  </data>
+  <data name="Return_Reason" xml:space="preserve">
+    <value>Motifs de retour</value>
+  </data>
+  <data name="Return_Total" xml:space="preserve">
+    <value>Total du retour</value>
+  </data>
+  <data name="RMA_Date" xml:space="preserve">
+    <value>Date d'autorisation de retour</value>
+  </data>
+  <data name="Shipment_Details" xml:space="preserve">
+    <value>Détails de l'expédition</value>
+  </data>
+  <data name="Shipment_No_Sign" xml:space="preserve">
+    <value>N° d'expédition</value>
+  </data>
+  <data name="Tracking_Number" xml:space="preserve">
+    <value>Numéro de suivi</value>
+  </data>
+  <data name="Return_Reason_Edit" xml:space="preserve">
+    <value>Modification du motif de retour</value>
+  </data>
+  <data name="Return_Reason_Exists" xml:space="preserve">
+    <value>Le motif de retour existe déjà</value>
+  </data>
+  <data name="Return_Reason_Name_Required" xml:space="preserve">
+    <value>Un motif de retour est requis</value>
+  </data>
+  <data name="Error_No_Payment_Methods" xml:space="preserve">
+    <value>Aucune méthode de paiement n'est configurée pour la langue par défaut actuelle ({0}).</value>
+  </data>
+  <data name="Order_Search_Fail" xml:space="preserve">
+    <value>La recherche demandée a échoué.</value>
+  </data>
+  <data name="Order_Search_FailAndRetry" xml:space="preserve">
+    <value>La recherche demandée a échoué. Affichage de tous les éléments.</value>
+  </data>
+  <data name="Order_Is_Locked" xml:space="preserve">
+    <value>La commande est verrouillée</value>
+  </data>
+  <data name="Return_Type" xml:space="preserve">
+    <value>Type de retour</value>
+  </data>
+  <data name="Shipment_Is_Not_Found" xml:space="preserve">
+    <value>L'expédition est introuvable</value>
+  </data>
+  <data name="Shipment_No_Sign_To_Validate" xml:space="preserve">
+    <value>N° d'expédition à valider</value>
+  </data>
+  <data name="Cart_No_Sign" xml:space="preserve">
+    <value>N° du panier</value>
+  </data>
+  <data name="Cart_Total" xml:space="preserve">
+    <value>Total du panier</value>
+  </data>
+  <data name="Create_Payment_Plan" xml:space="preserve">
+    <value>Créer un échéancier de paiement</value>
+  </data>
+  <data name="Plan_No_Sign" xml:space="preserve">
+    <value>N° de plan</value>
+  </data>
+  <data name="Plan_Total" xml:space="preserve">
+    <value>Total du plan</value>
+  </data>
+  <data name="ShoppingCart_New" xml:space="preserve">
+    <value>Nouveau panier</value>
+  </data>
+  <data name="Invalid_Return_Reason_Name" xml:space="preserve">
+    <value>Nom incorrect ; les lettres, les nombres, -, _, et les espaces sont autorisés jusqu'à 50 caractères</value>
+  </data>
+  <data name="Line_Item_Discounts" xml:space="preserve">
+    <value>Remises sur les articles</value>
+  </data>
+  <data name="Order_Level_Discounts" xml:space="preserve">
+    <value>Remises sur la commande</value>
+  </data>
+  <data name="Shipping_Discounts" xml:space="preserve">
+    <value>Remises sur l'expédition</value>
+  </data>
+  <data name="Shipping_Discount" xml:space="preserve">
+    <value>Remise sur l'expédition</value>
+  </data>
+  <data name="Shipping_Discount_Total" xml:space="preserve">
+    <value>Total de la remise sur l'expédition</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="Total_Before_Tax_And_Shipping" xml:space="preserve">
+    <value>Total avant l'application des taxes et des frais d'expédition</value>
+  </data>
+  <data name="OrderNote_NewPOPattern_ViaPP" xml:space="preserve">
+    <value>Nouveau bon de commande émis par {0} dans {1} à partir de l'échéancier de paiement {2}</value>
+  </data>
+  <data name="Invalid_Zip_Code_Format" xml:space="preserve">
+    <value>Format de code postal incorrect</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Cannot_Configure" xml:space="preserve">
+    <value>Les packages dynamiques ne peuvent pas être ajoutés à partir de Commerce Manager</value>
+  </data>
+  <data name="Inventory_Not_Check" xml:space="preserve">
+    <value>Indisponible</value>
+  </data>
+  <data name="List_Name_Empty_Error" xml:space="preserve">
+    <value>La liste de sélection est vide. Créez-en une nouvelle ou sélectionnez une liste de sélection existante.</value>
+  </data>
+  <data name="Payment_Market_Selected" xml:space="preserve">
+    <value>Marchés sélectionnés pour la méthode de paiement</value>
+  </data>
+  <data name="Payment_Market_Unselected" xml:space="preserve">
+    <value>Marchés non sélectionnés pour la méthode de paiement</value>
+  </data>
+  <data name="Payment_Password_Required" xml:space="preserve">
+    <value>Le champ Mot de passe doit être renseigné.</value>
+  </data>
+  <data name="Pickup_Orders" xml:space="preserve">
+    <value>Commandes à retirer sur place</value>
+  </data>
+  <data name="SelectWarehouse" xml:space="preserve">
+    <value>Sélectionner un entrepôt</value>
+  </data>
+  <data name="Shipment_ChargeForFromShipment" xml:space="preserve">
+    <value>Facturer le client pour les frais de transport de l'expédition d'origine</value>
+  </data>
+  <data name="Shipment_ChargeForShipment" xml:space="preserve">
+    <value>Facturer le client pour les modifications des frais de transport de l'expédition</value>
+  </data>
+  <data name="Shipment_ChargeForToShipment" xml:space="preserve">
+    <value>Facturer le client pour les frais de transport de la nouvelle expédition</value>
+  </data>
+  <data name="Warehouse_Default_Fulfillment" xml:space="preserve">
+    <value>Livraison au client</value>
+  </data>
+  <data name="Warehouse_PickFulfillment" xml:space="preserve">
+    <value>Sélectionner une option de distribution</value>
+  </data>
+  <data name="Warehouse_Pickup_Fulfillment" xml:space="preserve">
+    <value>Retrait du client à {0}</value>
+  </data>
+  <data name="Shipment_Id" xml:space="preserve">
+    <value>ID d'expédition</value>
+  </data>
+</root>

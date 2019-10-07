@@ -1,0 +1,75 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@model RecentPageCategoryRecommendationViewModel
+@if (Model.CategoryPages.Any())
+{
+    <div class="row">
+        @{
+            var categoryPage = Model.CategoryPages.First();
+            var page = categoryPage.Page;
+        }
+        <div class="@(Model.CategoryPages.Count > 1 ? "col-xs-12 col-md-6" : "col-xs-12")">
+            <div class="teaser @page.ThemeCssClass @page.AlignmentCssClass @(page.ApplyHoverEffect ? "show-details" : String.Empty)">
+                <div class="teaser-text-container">
+                    <div class="teaser-text">
+                        <h2>@page.PageName</h2>
+                        <p>@categoryPage.Name</p>
+                        <div class="teaser-details">
+                            @if (!String.IsNullOrWhiteSpace(page.TeaserText))
+                            {
+                                <p>@page.TeaserText</p>
+                            }
+                            @if (!String.IsNullOrWhiteSpace(page.TeaserButtonText))
+                            {
+                                <p><a class="button" href="@Url.ContentUrl(page.ContentLink)">@page.TeaserButtonText</a></p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="teaser-image" style="background-image: url('@Url.ContentUrl(page.PageImage)'">
+                    @if (page.TeaserVideo != null)
+                    {
+                        <video class="video-container" autoplay loop playsinline muted>
+                            <source src="@Url.ContentUrl(page.TeaserVideo)" type="video/mp4">
+                        </video>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (Model.CategoryPages.Count > 1)
+        {
+            var secondCategoryPage = Model.CategoryPages[1];
+            var secondPage = secondCategoryPage.Page;
+            <div class="col-xs-12 col-md-6">
+                <div class="teaser @secondPage.ThemeCssClass @secondPage.AlignmentCssClass @(secondPage.ApplyHoverEffect ? "show-details" : String.Empty)">
+                    <div class="teaser-text-container">
+                        <div class="teaser-text">
+                            <h2>@secondPage.PageName</h2>
+                            <p>@secondCategoryPage.Name</p>
+                            <div class="teaser-details">
+                                @if (!String.IsNullOrWhiteSpace(secondPage.TeaserText))
+                                {
+                                    <p>@secondPage.TeaserText</p>
+                                }
+                                @if (!String.IsNullOrWhiteSpace(secondPage.TeaserButtonText))
+                                {
+                                    <p><a class="button" href="@Url.ContentUrl(secondPage.ContentLink)">@secondPage.TeaserButtonText</a></p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teaser-image" style="background-image: url('@Url.ContentUrl(secondPage.PageImage)'">
+                        @if (secondPage.TeaserVideo != null)
+                        {
+                            <video class="video-container" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(secondPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+

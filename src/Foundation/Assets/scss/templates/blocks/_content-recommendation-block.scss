@@ -1,0 +1,23 @@
+﻿.content-recommendation-block {
+    .teaser {
+        &__text-container {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            top: 40%;
+        }
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            background-image: url(img/woman-blue-sky.jpg);
+            background-size: cover;
+
+            video {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

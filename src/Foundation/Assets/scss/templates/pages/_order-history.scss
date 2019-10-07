@@ -1,0 +1,50 @@
+﻿.order {
+    &__item {
+        border-bottom: 1px solid #eeeeee;
+        padding-bottom: 15px;
+        &:last-child {
+            border: none;
+        }
+    }
+
+    &--box {
+        & > *:last-child {
+            margin-bottom: 15px;
+        }
+
+        & > *:first-child {
+            margin-top: 15px;
+        }
+    }
+
+    &--form-group {
+        display: flex;
+        justify-content: space-between;
+
+        & * {
+            width: 30%;
+        }
+
+        @media screen and (max-width: 766px) {
+            display: block;
+
+            & * {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            & * {
+                width: 40%;
+            }
+        }
+
+        &:last-child {
+            padding: 0;
+        }
+    }
+}

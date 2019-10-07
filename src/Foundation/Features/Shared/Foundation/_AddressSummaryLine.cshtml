@@ -1,0 +1,5 @@
+﻿@model AddressModel
+
+<address>
+    <strong>@Html.TranslateFallback("/Shipment/ShippingTo", "Shipping To")</strong> @String.Format("{0}, {1} {2}", Model.Line1, Model.PostalCode, Model.City)
+</address>

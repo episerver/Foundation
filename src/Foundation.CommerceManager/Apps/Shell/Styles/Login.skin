@@ -1,0 +1,25 @@
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<asp:Login runat="server" BorderStyle="None">
+    <LoginButtonStyle   ></LoginButtonStyle>
+    <HyperLinkStyle        Font-Size=".9em" Font-Names="Verdana" font-underline="true" ForeColor="#585880" BackColor="transparent"></HyperLinkStyle>
+    <CheckBoxStyle         CssClass="text" ForeColor="#000000" BorderColor="transparent" BackColor="transparent"></CheckBoxStyle>
+    <InstructionTextStyle  Font-Size=".9em" Font-Names="Verdana" ForeColor="#585880" font-italic="True" BackColor="transparent"></InstructionTextStyle>
+    <FailureTextStyle      Font-Size=".9em" Font-Names="Verdana" ForeColor="#585880"  BackColor="transparent" Font-Bold="True"></FailureTextStyle>
+    <TextBoxStyle          Width="300px"></TextBoxStyle>
+    <TitleTextStyle        Font-Size=".9em" Font-Names="Verdana" Font-Bold="True" ForeColor="#585880" BorderColor="#CCCCCC" BorderWidth="1pt" cssclass="form-header"></TitleTextStyle>
+    <LabelStyle        Width="150px" HorizontalAlign="Left" CssClass="text" ForeColor="#000000" BackColor="transparent"></LabelStyle>
+</asp:Login>

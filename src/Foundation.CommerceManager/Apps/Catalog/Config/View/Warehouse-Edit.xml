@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Warehouse-Edit" controlUrl="catalog/WarehouseEdit.ascx" help="Catalog+System"></setAttributes>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="catalog/tabs/WarehouseEditTab.ascx"></Tab>
+				<Tab name="{SharedStrings:Address}" controlUrl="catalog/tabs/WarehouseAddressEditTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

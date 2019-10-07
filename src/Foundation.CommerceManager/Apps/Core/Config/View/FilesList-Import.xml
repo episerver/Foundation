@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column isDefault="true" width="120" isSearchable="true" dataField="" headingText="{SharedStrings:Actions}" dataCellServerTemplateId="LinkButtonsTemplate">
+						<Template id="LinkButtonsTemplate" filePathArgument="FullName" controlUrl="~/Apps/Core/Controls/GridTemplates/FileListEditTemplate.ascx" />
+					</Column>
+					<Column visible="true" width="1" allowEditing="false" allowSorting="false" dataField="FullName" headingText="{SharedStrings:Path}" />
+					<Column visible="true" width="400" isSearchable="false" allowEditing="false" allowSorting="true" dataField="Name" headingText="{SharedStrings:File_Name}" />
+					<Column dataCellServerTemplateId="FileSizeTemplate" width="70" isSearchable="true" allowSorting="true" dataField="Length" headingText="{SharedStrings:Size}">
+						<Template id="FileSizeTemplate" fileSizeArgument="Length" controlUrl="~/Apps/Core/Controls/GridTemplates/FileSizeTemplate.ascx" />
+					</Column>
+					<Column dataCellServerTemplateId="DateTimeTemplate" isSearchable="false" width="150" allowSorting="true" dataField="CreationTime" headingText="{SharedStrings:Created}">
+						<Template id="DateTimeTemplate" dateArgument="CreationTime" convertFromServerTime="true" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx" />
+					</Column>
+					<Column dataCellServerTemplateId="DateTimeTemplate2" isSearchable="false" width="150" allowSorting="true" dataField="LastWriteTime" headingText="{SharedStrings:Last_Updated}">
+						<Template id="DateTimeTemplate2" dateArgument="LastWriteTime" convertFromServerTime="true" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx" />
+					</Column>
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="FilesList-Import" name="{GlobalMetaInfo:BafImport}" controlUrl="Core/Controls/FileListControl.ascx" help="importexportcatalogs" />
+	</ViewConfig>
+</View>

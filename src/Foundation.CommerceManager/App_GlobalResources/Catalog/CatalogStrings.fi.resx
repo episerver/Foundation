@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Catalog_Save_File" xml:space="preserve">
+    <value>Tallenna tiedosto.</value>
+  </data>
+  <data name="Catalog_Import_Warning" xml:space="preserve">
+    <value>On erittäin suositeltavaa tehdä varmuuskopio ECF-tietokannasta ennen tuontia.</value>
+  </data>
+  <data name="Catalog_Import_Instructions" xml:space="preserve">
+    <value>Tuo katalogi valitsemalla tiedosto alla olevasta ruudukosta tai lataamalla uusi tiedosto. Käynnistä sitten tuonti napsauttamalla painiketta ”Aloita tuonti”.</value>
+  </data>
+  <data name="Catalog_Add_New_File" xml:space="preserve">
+    <value>Lisää uusi tiedosto</value>
+  </data>
+  <data name="Catalog_Upload_File" xml:space="preserve">
+    <value>Lataa tiedosto</value>
+  </data>
+  <data name="Catalog_Uploaded_File" xml:space="preserve">
+    <value>Ladattu tiedosto</value>
+  </data>
+  <data name="Catalog_Upload_Wait" xml:space="preserve">
+    <value>Odota, että lataus käynnistyy.</value>
+  </data>
+  <data name="Catalog_Upload_Info" xml:space="preserve">
+    <value>Tiedosto latautuu. Odota.</value>
+  </data>
+  <data name="Catalog_Import_Files_Available" xml:space="preserve">
+    <value>Tuotavissa olevat tiedostot</value>
+  </data>
+  <data name="Catalog_Choose_Mapping_File" xml:space="preserve">
+    <value>Valitse kartoitustiedosto.</value>
+  </data>
+  <data name="Catalog_Choose_Catalog" xml:space="preserve">
+    <value>Valitse tuotava katalogi.</value>
+  </data>
+  <data name="Catalog_Edit_Existing_Mapping_File" xml:space="preserve">
+    <value>Muokkaa olemassa olevaa kartoitustiedostoa.</value>
+  </data>
+  <data name="Catalog_Load_Mapping_File" xml:space="preserve">
+    <value>Lataa kartoitustiedosto.</value>
+  </data>
+  <data name="Catalog_MetaClass_Language" xml:space="preserve">
+    <value>Metaluokka, kieli</value>
+  </data>
+  <data name="Catalog_Mapping_Type" xml:space="preserve">
+    <value>Kartoitustyyppi</value>
+  </data>
+  <data name="Meta_Class" xml:space="preserve">
+    <value>Metaluokka</value>
+  </data>
+  <data name="Catalog_Data_File_CSV_Adjustment" xml:space="preserve">
+    <value>Datatiedosto ja CSV-säätö</value>
+  </data>
+  <data name="Catalog_Data_File" xml:space="preserve">
+    <value>Datatiedosto</value>
+  </data>
+  <data name="Catalog_Text_Qualifier" xml:space="preserve">
+    <value>Tekstin tarkenne</value>
+  </data>
+  <data name="Catalog_Save_Mapping_File" xml:space="preserve">
+    <value>Tallenna kartoitustiedosto.</value>
+  </data>
+  <data name="Catalog_Enter_File_Name" xml:space="preserve">
+    <value>Kirjoita tiedoston nimi.</value>
+  </data>
+  <data name="Catalog_About_To_Export" xml:space="preserve">
+    <value>Olet aloittamassa katalogin viennin.</value>
+  </data>
+  <data name="Catalog_Click_Button_To_Start" xml:space="preserve">
+    <value>Aloita napsauttamalla painiketta.</value>
+  </data>
+  <data name="Catalog_Exported_Files" xml:space="preserve">
+    <value>Vietyjen tiedostojen luettelo</value>
+  </data>
+  <data name="Catalog_Exporting_Catalog" xml:space="preserve">
+    <value>Katalogin vienti käynnissä</value>
+  </data>
+  <data name="Catalog_Base_Weight" xml:space="preserve">
+    <value>Peruspaino</value>
+  </data>
+  <data name="Catalog_Default_Currency" xml:space="preserve">
+    <value>Oletusvaluutta</value>
+  </data>
+  <data name="Catalog_Default_Language" xml:space="preserve">
+    <value>Oletuskieli</value>
+  </data>
+  <data name="Catalog_In_Kilograms" xml:space="preserve">
+    <value>kilogrammoina</value>
+  </data>
+  <data name="Catalog_In_Pounds" xml:space="preserve">
+    <value>paunoina</value>
+  </data>
+  <data name="Catalog_Catalog_Name" xml:space="preserve">
+    <value>Katalogin nimi</value>
+  </data>
+  <data name="Catalog_Name_Description" xml:space="preserve">
+    <value>katalogin nimen kuvaus</value>
+  </data>
+  <data name="Catalog_Other_Languages" xml:space="preserve">
+    <value>Muut kielet</value>
+  </data>
+  <data name="Catalog_Select_Primary_Currency" xml:space="preserve">
+    <value>valitse ensisijainen valuutta</value>
+  </data>
+  <data name="Catalog_Select_Primary_Language" xml:space="preserve">
+    <value>valitse ensisijainen kieli</value>
+  </data>
+  <data name="Catalog_Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Katalogin nimi on pakollinen.</value>
+  </data>
+  <data name="Catalog_Default_Language_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Oletuskieli on pakollinen.</value>
+  </data>
+  <data name="Currency_Name" xml:space="preserve">
+    <value>Valuutan nimi</value>
+  </data>
+  <data name="Currency_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Valuutan nimi on pakollinen.</value>
+  </data>
+  <data name="Currency_With_Code_Exists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa valuutta.</value>
+  </data>
+  <data name="Entry_Enter_Association_Name" xml:space="preserve">
+    <value>Kirjoita yhteenliittymän nimi.</value>
+  </data>
+  <data name="Entry_Association_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Yhteenliittymän nimi on pakollinen.</value>
+  </data>
+  <data name="Entry_Enter_Association_Description" xml:space="preserve">
+    <value>Kirjoita yhteenliittymän kuvaus.</value>
+  </data>
+  <data name="Entry_Enter_Association_Sort_Order" xml:space="preserve">
+    <value>Anna lajittelujärjestys</value>
+  </data>
+  <data name="Entry_Association_Sort_Order_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Yhteenliittymän lajittelujärjestys on pakollinen.</value>
+  </data>
+  <data name="Entry_Save_Changes" xml:space="preserve">
+    <value>Tallenna muutokset</value>
+  </data>
+  <data name="Entry_Modify_Existing_Association" xml:space="preserve">
+    <value>Muuta olemassa olevaa yhteenliittymää</value>
+  </data>
+  <data name="Catalog_Edit_Details" xml:space="preserve">
+    <value>Muokkaa tietoja</value>
+  </data>
+  <data name="Entry_Modify_Association" xml:space="preserve">
+    <value>Muuta yhteenliittymää</value>
+  </data>
+  <data name="Entry_Pick_Item" xml:space="preserve">
+    <value>Valitse kohde</value>
+  </data>
+  <data name="Entry_Add_Item" xml:space="preserve">
+    <value>Lisää kohde</value>
+  </data>
+  <data name="Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Nimi on pakollinen.</value>
+  </data>
+  <data name="Select_Display_Template" xml:space="preserve">
+    <value>Valitse näyttömalli.</value>
+  </data>
+  <data name="Entry_Code_Exists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa merkintä.</value>
+  </data>
+  <data name="Catalog_Invalid_SortOrder_Value" xml:space="preserve">
+    <value>Virheellinen lajittelujärjestyksen arvo</value>
+  </data>
+  <data name="Entry_Sort_Order" xml:space="preserve">
+    <value>Tuotekatalogimerkinnän lajittelujärjestys.</value>
+  </data>
+  <data name="Entry_Display_Price" xml:space="preserve">
+    <value>Näyttöhinta</value>
+  </data>
+  <data name="Entry_Price_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Hinta on pakollinen.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Display_Price" xml:space="preserve">
+    <value>Anna hyväksyttävä näyttöhinta.</value>
+  </data>
+  <data name="Entry_In_Stock" xml:space="preserve">
+    <value>Varastossa</value>
+  </data>
+  <data name="Entry_In_Stock_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Varastomäärä on pakollinen.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Quantity" xml:space="preserve">
+    <value>Anna hyväksyttävä määrä.</value>
+  </data>
+  <data name="Entry_Min_Quantity" xml:space="preserve">
+    <value>Vähimmäismäärä</value>
+  </data>
+  <data name="Entry_Min_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Vähimmäismäärä on pakollinen.</value>
+  </data>
+  <data name="Entry_Reserved_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Varattu määrä on pakollinen.</value>
+  </data>
+  <data name="Entry_Max_Quantity" xml:space="preserve">
+    <value>Enimmäismäärä</value>
+  </data>
+  <data name="Entry_Max_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Enimmäismäärä on pakollinen.</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty" xml:space="preserve">
+    <value>Uudelleentilauksen vähimmäismäärä</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Uudelleentilauksen vähimmäismäärä on pakollinen.</value>
+  </data>
+  <data name="Entry_Merchant" xml:space="preserve">
+    <value>Myyjä</value>
+  </data>
+  <data name="Entry_Select_Merchant" xml:space="preserve">
+    <value>valitse myyjä</value>
+  </data>
+  <data name="Entry_Weight_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Paino on pakollinen.</value>
+  </data>
+  <data name="Entry_Preorder_Qty" xml:space="preserve">
+    <value>Ennakkotilausmäärä</value>
+  </data>
+  <data name="Entry_Preorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Ennakkotilausmäärä on pakollinen.</value>
+  </data>
+  <data name="Entry_Select_Package" xml:space="preserve">
+    <value>valitse paketti</value>
+  </data>
+  <data name="Entry_Preorder_Available" xml:space="preserve">
+    <value>Ennakkotilaus saatavana</value>
+  </data>
+  <data name="Entry_Tax_Category" xml:space="preserve">
+    <value>Veroluokka</value>
+  </data>
+  <data name="Entry_Select_Tax_Category" xml:space="preserve">
+    <value>valitse veroluokka</value>
+  </data>
+  <data name="Entry_Select_Warehouse" xml:space="preserve">
+    <value>valitse varasto</value>
+  </data>
+  <data name="Entry_Backorder_Qty" xml:space="preserve">
+    <value>Jälkitilausmäärä</value>
+  </data>
+  <data name="Entry_Backorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Jälkitilausmäärä on pakollinen.</value>
+  </data>
+  <data name="Entry_Track_Inventory" xml:space="preserve">
+    <value>Seuraa varastoa</value>
+  </data>
+  <data name="Entry_Backorder_Available" xml:space="preserve">
+    <value>Jälkitilaus saatavana</value>
+  </data>
+  <data name="Entry_Inventory_Status" xml:space="preserve">
+    <value>Varaston tila</value>
+  </data>
+  <data name="Entry_Pricing" xml:space="preserve">
+    <value>Hinnoittelu</value>
+  </data>
+  <data name="Entry_Find_Item" xml:space="preserve">
+    <value>Etsi tuote</value>
+  </data>
+  <data name="Item_Group_Name" xml:space="preserve">
+    <value>Ryhmän nimi</value>
+  </data>
+  <data name="Node_Name_Description" xml:space="preserve">
+    <value>alakategorian nimen kuvaus</value>
+  </data>
+  <data name="Catalog_Node_With_Code_Exists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa alakategoria.</value>
+  </data>
+  <data name="Sale_Type" xml:space="preserve">
+    <value>Myyntityyppi</value>
+  </data>
+  <data name="Sale_Unit_Price" xml:space="preserve">
+    <value>Yksikköhinta</value>
+  </data>
+  <data name="Catalog_Main_Adjustment" xml:space="preserve">
+    <value>Ensisijainen säätö</value>
+  </data>
+  <data name="Catalog_Entry_Type" xml:space="preserve">
+    <value>Merkinnän tyyppi</value>
+  </data>
+  <data name="Catalog_All_Types" xml:space="preserve">
+    <value>kaikki tyypit</value>
+  </data>
+  <data name="Catalog_Product" xml:space="preserve">
+    <value>Tuote</value>
+  </data>
+  <data name="Catalog_Variation_Sku" xml:space="preserve">
+    <value>Varastotuote</value>
+  </data>
+  <data name="Catalog_Bundle" xml:space="preserve">
+    <value>Niputus</value>
+  </data>
+  <data name="Catalog_Dynamic_Package" xml:space="preserve">
+    <value>Dynaaminen paketointi</value>
+  </data>
+  <data name="Catalog_Additional_Filters" xml:space="preserve">
+    <value>Lisäsuodattimet</value>
+  </data>
+  <data name="Catalog_Catalog_Category" xml:space="preserve">
+    <value>Katalogi/tuotekatalogi</value>
+  </data>
+  <data name="Catalog_Keyword" xml:space="preserve">
+    <value>Avainsana(t)</value>
+  </data>
+  <data name="Catalog_Apply_Filter" xml:space="preserve">
+    <value>Käytä suodatusta</value>
+  </data>
+  <data name="Catalog_Fix_The_Following_Problems" xml:space="preserve">
+    <value>Korjaa seuraavat ongelmat, jotta pystyt tallentamaan muutokset.</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Updated_Successfully" xml:space="preserve">
+    <value>Tuotekuvaus on päivitetty onnistuneesti.</value>
+  </data>
+  <data name="Catalog_Search_By_Keyword" xml:space="preserve">
+    <value>Etsi avainsanan tai -sanojen perusteella</value>
+  </data>
+  <data name="Catalog_Filter_By_Language" xml:space="preserve">
+    <value>Suodata kielen mukaan</value>
+  </data>
+  <data name="Catalog_Filter_By_Catalog" xml:space="preserve">
+    <value>Suodata katalogin/katalogien mukaan</value>
+  </data>
+  <data name="Catalog_Search_By_Code_Id" xml:space="preserve">
+    <value>Etsi koodin/tunnuksen perusteella</value>
+  </data>
+  <data name="Tax_Category_Name" xml:space="preserve">
+    <value>Veroluokan nimi</value>
+  </data>
+  <data name="Entry_Wrong_Value_Enter_Valid_Integer" xml:space="preserve">
+    <value>&lt;b&gt;Virheellinen arvo&lt;/b&gt;&lt;br /&gt;Anna hyväksyttävä kokonaislukuarvo.</value>
+  </data>
+  <data name="Catalog_Batch_Update" xml:space="preserve">
+    <value>Katalogin eräpäivitys</value>
+  </data>
+  <data name="Catalog_CSV_Import_Catalog" xml:space="preserve">
+    <value>CSV Tuo katalogi</value>
+  </data>
+  <data name="Catalog_Entry_Search" xml:space="preserve">
+    <value>Tuotekuvaushaku</value>
+  </data>
+  <data name="Catalog_Export_Catalog" xml:space="preserve">
+    <value>Vie katalogi</value>
+  </data>
+  <data name="Catalog_Import_Catalog" xml:space="preserve">
+    <value>Tuo katalogi</value>
+  </data>
+  <data name="Catalog_List" xml:space="preserve">
+    <value>Katalogiluettelo</value>
+  </data>
+  <data name="Catalog_Management" xml:space="preserve">
+    <value>Katalogin hallinta</value>
+  </data>
+  <data name="Catalog_Move_Link_To_Folder" xml:space="preserve">
+    <value>Siirrä/linkitä hakemistoon</value>
+  </data>
+  <data name="Catalog_New_Bundle" xml:space="preserve">
+    <value>Uusi niputus</value>
+  </data>
+  <data name="Catalog_New_Catalog" xml:space="preserve">
+    <value>Uusi katalogi</value>
+  </data>
+  <data name="Catalog_New_Category_Node" xml:space="preserve">
+    <value>Uusi tuotekatalogi</value>
+  </data>
+  <data name="Catalog_New_Dynamic_Package" xml:space="preserve">
+    <value>Uusi dynaaminen paketointi</value>
+  </data>
+  <data name="Catalog_New_Package" xml:space="preserve">
+    <value>Uusi paketti</value>
+  </data>
+  <data name="Catalog_New_Product" xml:space="preserve">
+    <value>Uusi tuote</value>
+  </data>
+  <data name="Catalog_New_Variation_Sku" xml:space="preserve">
+    <value>Uusi varastotuote</value>
+  </data>
+  <data name="Catalog_System" xml:space="preserve">
+    <value>Katalogijärjestelmä</value>
+  </data>
+  <data name="Currency_New_Currency" xml:space="preserve">
+    <value>Uusi valuutta</value>
+  </data>
+  <data name="MetaClass_Export_MetaData" xml:space="preserve">
+    <value>Vie metatiedot</value>
+  </data>
+  <data name="MetaClass_Import_MetaData" xml:space="preserve">
+    <value>Tuo metatiedot</value>
+  </data>
+  <data name="MetaClass_New_Meta_Class" xml:space="preserve">
+    <value>Uusi metaluokka</value>
+  </data>
+  <data name="MetaField_New_Meta_Field" xml:space="preserve">
+    <value>Uusi metakenttä</value>
+  </data>
+  <data name="Meta_Classes" xml:space="preserve">
+    <value>Metaluokat</value>
+  </data>
+  <data name="Meta_Fields" xml:space="preserve">
+    <value>Metakentät</value>
+  </data>
+  <data name="Tax_Categories" xml:space="preserve">
+    <value>Veroluokat</value>
+  </data>
+  <data name="Meta_Data" xml:space="preserve">
+    <value>Metatiedot</value>
+  </data>
+  <data name="Catalog_Associations" xml:space="preserve">
+    <value>Yhteenliittymät</value>
+  </data>
+  <data name="Catalog_Association_Id" xml:space="preserve">
+    <value>KataloginYhteenliittymänTunnus</value>
+  </data>
+  <data name="Catalog_Catalog_Batch_Update" xml:space="preserve">
+    <value>Eräpäivitys</value>
+  </data>
+  <data name="Catalog_Catalog_Edit" xml:space="preserve">
+    <value>Muokkaa katalogia</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Search" xml:space="preserve">
+    <value>Hae kuvauksista</value>
+  </data>
+  <data name="Catalog_Catalog_List" xml:space="preserve">
+    <value>Katalogiluettelo</value>
+  </data>
+  <data name="Catalog_Edit_Command" xml:space="preserve">
+    <value>Muokkaa komentoa</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price" xml:space="preserve">
+    <value>KuvausMyyntiHinta</value>
+  </data>
+  <data name="Catalog_Node_Edit" xml:space="preserve">
+    <value>Muokkaa alakategoriaa</value>
+  </data>
+  <data name="Catalog_Product_Edit" xml:space="preserve">
+    <value>Muokkaa tuotetta</value>
+  </data>
+  <data name="Catalog_Variations_SKUs" xml:space="preserve">
+    <value>Varastotuotteet</value>
+  </data>
+  <data name="Warehouse_Edit" xml:space="preserve">
+    <value>Muokkaa varastoa</value>
+  </data>
+  <data name="Warehouse_List" xml:space="preserve">
+    <value>Varastoluettelo</value>
+  </data>
+  <data name="Entry_Bundle_Items" xml:space="preserve">
+    <value>Niputa kohteet</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Edit" xml:space="preserve">
+    <value>Muokkaa tuotteen dynaamista paketointia</value>
+  </data>
+  <data name="Entry_Id" xml:space="preserve">
+    <value>Kuvauksen tunnus</value>
+  </data>
+  <data name="Entry_Item_Code" xml:space="preserve">
+    <value>KohteenKoodi</value>
+  </data>
+  <data name="Entry_Package_Items" xml:space="preserve">
+    <value>Paketoi kohteet</value>
+  </data>
+  <data name="Entry_Pricing_Inventory" xml:space="preserve">
+    <value>Hinnoittelu/varasto</value>
+  </data>
+  <data name="Entry_Product_Bundle_Edit" xml:space="preserve">
+    <value>Muokkaa tuoteniputusta</value>
+  </data>
+  <data name="Entry_Product_Package_Edit" xml:space="preserve">
+    <value>Muokkaa tuotteen paketointia</value>
+  </data>
+  <data name="Entry_Sale_Price_Id" xml:space="preserve">
+    <value>Myyntihinnan tunnus</value>
+  </data>
+  <data name="Entry_Sale_Type" xml:space="preserve">
+    <value>Myyntityyppi</value>
+  </data>
+  <data name="Entry_Variation_SKU_Edit" xml:space="preserve">
+    <value>Muokkaa varastotuotetta</value>
+  </data>
+  <data name="Product_Associations" xml:space="preserve">
+    <value>Tuotteen yhteenliittymät</value>
+  </data>
+  <data name="Catalog_CSV_Import" xml:space="preserve">
+    <value>CSV Tuo</value>
+  </data>
+  <data name="Catalog_Entry_Association_View" xml:space="preserve">
+    <value>Katso tuotekuvausten yhteenliittymä – KuvaustenYhteenliittymä</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price_View" xml:space="preserve">
+    <value>Katso tuotekuvaus – MyyntiHinta</value>
+  </data>
+  <data name="Catalog_Mapping_File" xml:space="preserve">
+    <value>Kartoitustiedosto</value>
+  </data>
+  <data name="Catalog_Move_Copy_To_Folder" xml:space="preserve">
+    <value>Siirrä/kopioi hakemistoon</value>
+  </data>
+  <data name="Catalog_Node_List" xml:space="preserve">
+    <value>Tuotekatalogiluettelo</value>
+  </data>
+  <data name="Currency_Edit" xml:space="preserve">
+    <value>Muokkaa valuuttaa</value>
+  </data>
+  <data name="Meta_Class_Edit" xml:space="preserve">
+    <value>Metaluokan muokkaus</value>
+  </data>
+  <data name="Tax_Categories_List" xml:space="preserve">
+    <value>Veroluokkaluettelo</value>
+  </data>
+  <data name="Tax_Category_Edit" xml:space="preserve">
+    <value>Muokkaa veroluokkaa</value>
+  </data>
+  <data name="Currency_Add_Rate" xml:space="preserve">
+    <value>Lisää kurssi</value>
+  </data>
+  <data name="Catalog_Edit_Currency_Rate" xml:space="preserve">
+    <value>Muokkaa valuuttakurssia</value>
+  </data>
+  <data name="Currency_CurrencyRateId" xml:space="preserve">
+    <value>ValuuttakurssinTunnus</value>
+  </data>
+  <data name="Currency_Rates" xml:space="preserve">
+    <value>Valuuttakurssit</value>
+  </data>
+  <data name="Currency_ToCurrencyId" xml:space="preserve">
+    <value>ValuuttaanTunnus</value>
+  </data>
+  <data name="Currency_Average_Rate" xml:space="preserve">
+    <value>Keskikurssi</value>
+  </data>
+  <data name="Currency_End_Of_Day_Rate" xml:space="preserve">
+    <value>Päätöskurssi</value>
+  </data>
+  <data name="Currency_From" xml:space="preserve">
+    <value>Valuutasta</value>
+  </data>
+  <data name="Currency_Rate_Date" xml:space="preserve">
+    <value>Valuuttakurssin päivämäärä</value>
+  </data>
+  <data name="Currency_To" xml:space="preserve">
+    <value>Valuuttaan</value>
+  </data>
+  <data name="Warehouse_Code_AlreadyExists" xml:space="preserve">
+    <value>Samalla koodilla on jo olemassa varasto.</value>
+  </data>
+  <data name="Warehouse_Name_AlreadyExists" xml:space="preserve">
+    <value>Samalla nimellä on jo olemassa varasto.</value>
+  </data>
+  <data name="Tax_Category_With_Name_Exists" xml:space="preserve">
+    <value>Samanniminen veroluokka on jo olemassa</value>
+  </data>
+  <data name="Catalog_With_Name_AlreadyExists" xml:space="preserve">
+    <value>Samanniminen katalogi on jo olemassa.</value>
+  </data>
+  <data name="Catalog_Default_Currency_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Oletusvaluutta on pakollinen.</value>
+  </data>
+  <data name="Catalog_Found_Entries" xml:space="preserve">
+    <value>Löydetyt kuvaukset</value>
+  </data>
+  <data name="Catalog_Save_Selection" xml:space="preserve">
+    <value>Tallenna valinta</value>
+  </data>
+  <data name="Catalog_Selected_Entries" xml:space="preserve">
+    <value>Valitut kuvaukset</value>
+  </data>
+  <data name="SecurityScope" xml:space="preserve">
+    <value>Katalogin omistaja</value>
+  </data>
+  <data name="Entry_Min_Quantity_Greather_That_Max" xml:space="preserve">
+    <value>Vähimmäismäärän täytyy olla pienempi tai yhtä suuri kuin enimmäismäärä.</value>
+  </data>
+  <data name="Catalog_Package" xml:space="preserve">
+    <value>Paketti</value>
+  </data>
+  <data name="Address_Required" xml:space="preserve">
+    <value>&lt;b&gt;Pakollinen kenttä puuttuu&lt;/b&gt;&lt;br /&gt;Osoite on pakollinen.</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Valuutat</value>
+  </data>
+  <data name="Add_Association" xml:space="preserve">
+    <value>Lisää yhteenliittymä</value>
+  </data>
+  <data name="Catalog_Found_Catalog_Entries" xml:space="preserve">
+    <value>Löydetyt luettelokohteet</value>
+  </data>
+  <data name="Catalog_Selected_Catalog_Entries" xml:space="preserve">
+    <value>Valitut luettelokohteet</value>
+  </data>
+  <data name="Edit_Sale_Price_Information" xml:space="preserve">
+    <value>Muokkaa myyntihintatietoja</value>
+  </data>
+  <data name="Select_Catalog_Entries" xml:space="preserve">
+    <value>Valitse luettelokohteita</value>
+  </data>
+  <data name="Catalog_Catalog_Name_TooLong" xml:space="preserve">
+    <value>&lt;b&gt;Virheellinen kenttä&lt;/b&gt;&lt;br /&gt;Nimessä saa olla enintään 100 merkkiä.</value>
+  </data>
+  <data name="Entry_Name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="Entry_Quantity" xml:space="preserve">
+    <value>Määrä</value>
+  </data>
+  <data name="Entry_AvailableFrom_Too_Late" xml:space="preserve">
+    <value>Valittu päivämäärä on sama tai myöhempi kuin erääntymispäivämäärä.</value>
+  </data>
+  <data name="Entry_ExpiresOn_Too_Early" xml:space="preserve">
+    <value>Valittu päivämäärä on ennen aloituspäivämäärää.</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Items" xml:space="preserve">
+    <value>Dynaamiset pakettikohteet</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Katalogin kohdan muutokset on hylätty.</value>
+  </data>
+  <data name="Catalog_Catalog_Node_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Katalogin alaluokan muutokset on hylätty.</value>
+  </data>
+  <data name="Catalog_Language_Warning" xml:space="preserve">
+    <value>Valittujen / käytössä olevien kielten täytyy vastata kieliä, jotka on valittu käyttöön CMS:n hallintanäkymän kohdassa Hallinta – Sivuston kielten hallinta. Pidä Ctrl-näppäintä painettuna, niin voit valita useita kieliä napsauttamalla.</value>
+  </data>
+  <data name="Catalog_Overwrite_File" xml:space="preserve">
+    <value>Korvaa olemassa oleva tiedosto.</value>
+  </data>
+  <data name="Entry_Market" xml:space="preserve">
+    <value>Markkinat</value>
+  </data>
+  <data name="Entry_Market_Available" xml:space="preserve">
+    <value>Kohde on käytettävissä markkinoilla</value>
+  </data>
+  <data name="Entry_Market_Unavailable" xml:space="preserve">
+    <value>Kohde ei ole käytettävissä markkinoilla</value>
+  </data>
+  <data name="Filename_Exist" xml:space="preserve">
+    <value>Tämän niminen tiedosto on jo olemassa.</value>
+  </data>
+  <data name="List_Inactive_Markets" xml:space="preserve">
+    <value>Luettele ei-aktiiviset markkinat</value>
+  </data>
+  <data name="Upload_CSV_Files" xml:space="preserve">
+    <value>Lataa .CSV-tiedostoja:</value>
+  </data>
+  <data name="Upload_File_Error" xml:space="preserve">
+    <value>Ehto epäonnistui:  Valittu tiedosto ei vastaa pakollista tyyppiä.</value>
+  </data>
+  <data name="Upload_XML_Files" xml:space="preserve">
+    <value>Lataa .XML-tiedostoja:</value>
+  </data>
+  <data name="Upload_Zip_Files" xml:space="preserve">
+    <value>Lataa .Zip-tiedostoja:</value>
+  </data>
+  <data name="Warehouse_Inventory" xml:space="preserve">
+    <value>Varastoinventaario</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation" xml:space="preserve">
+    <value>On toimitussijainti</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation_Description" xml:space="preserve">
+    <value>Varastoa voidaan käyttää toimitussijaintina (esim. myöhemmissä noutotilauksissa).</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter" xml:space="preserve">
+    <value>On toimituskeskus</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter_Description" xml:space="preserve">
+    <value>Tästä varastosta voidaan lähettää toimitettavia tilauksia.</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation" xml:space="preserve">
+    <value>On noutosijainti</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation_Description" xml:space="preserve">
+    <value>Tästä varastosta voidaan lähettää myymälästä noudettavia tilauksia.</value>
+  </data>
+  <data name="Delete_Versions_Warning" xml:space="preserve">
+    <value>Varoitus. Tämän kohteen päivittäminen Content Managerin kautta korvaa kaikki aiemmat ja odottavat sisältöversiot. Tällaiset sisältöversiot on voitu luoda muiden käyttöliittymien kautta.</value>
+  </data>
+</root>

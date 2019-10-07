@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <ListViewUI>
+    <Grid>
+      <add>
+        <Columns>
+          <Column columnType="CheckBox"/>
+          <Column width="20" headingText="" columnType="Action" dataField="ShipmentId" commandParameters="ShipmentId,OrderGroupId,CustomerId">
+            <Item imageUrl="~/Apps/Order/images/information-2.png" commandName="cmdShipmentDetails" permissions="order:mng:view" toolTip="{OrderStrings:Shipment_Details}" commandParameters="ShipmentId,OrderGroupId,CustomerId"></Item>
+          </Column>
+          <Column width="20" headingText="" columnType="Action" dataField="ShipmentId" commandParameters="ShipmentId,OrderGroupId,CustomerId">
+            <Item imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" commandName="cmdCompletePickupShipment" permissions="order:mng:shipment:complete" toolTip="{SharedStrings:Complete}" commandParameters="ShipmentId,OrderGroupId,CustomerId"></Item>
+          </Column>
+          <Column visible="false" allowSorting="false" dataField="OrderGroupId" headingText=""></Column>
+          <Column visible="false" allowSorting="false" dataField="CustomerId" headingText=""></Column>
+          <Column width="100" allowSorting="true" dataField="ShipmentStatus" headingText="{OrderStrings:Shipment_Status}"></Column>
+          <Column width="200" columnType="DateTime" allowSorting="true" dataField="OrderCreated" headingText="{OrderStrings:Order_Created}"></Column>
+          <Column width="200" columnType="DateTime" allowSorting="true" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+          <Column width="100" allowSorting="true" dataField="ShipmentId" headingText="{OrderStrings:Shipping_Number}" dataTextFields="OrderTrackingNumber,ShipmentId" dataTextFormatString="{0}-{1}" columnType="HyperLink"></Column>
+          <Column width="100" allowSorting="true" dataField="CustomerName" headingText="{SharedStrings:Customer}"></Column>
+          <Column width="200" allowSorting="true" dataField="ShippingMethodName" headingText="{OrderStrings:Shipping_Method}"></Column>
+          <Column width="400" allowSorting="true" dataField="ShippingAddress" headingText="{OrderStrings:Shipping_Address}"></Column>
+          <Column width="200" allowSorting="true" dataField="WarehouseName" headingText="{OrderStrings:Warehouse}"></Column>
+        </Columns>
+      </add>
+    </Grid>
+    <Toolbar>
+      <add></add>
+    </Toolbar>
+    <Commands>
+      <add>
+        <Command id="cmdPermissionCheck">
+          <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdShipmentDetails">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>{SharedStrings:Shipment_Details}</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=Shipment-Details&amp;ShipmentId=[ClientParam:ShipmentId]&amp;OrderGroupId=[ClientParam:OrderGroupId]&amp;CustomerId=[ClientParam:CustomerId]</Url>
+          <Width>680</Width>
+          <Height>480</Height>
+          <Top>35</Top>
+          <Drag>False</Drag>
+        </Command>
+        <Command id="cmdCompletePickupShipment">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>{OrderStrings:Complete_Shipment}</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=Pickup-List&amp;CommandPlaceName=&amp;CommandName=cmdCompletePickupShipment&amp;LayoutClassName=Shipment&amp;LayoutPlaceName=CompletePickupShipment&amp;ShipmentId=[ClientParam:ShipmentId]&amp;OrderGroupId=[ClientParam:OrderGroupId]&amp;ReturnCommandName=cmd_NeedRebind</Url>
+          <Width>680</Width>
+          <Height>480</Height>
+          <Top>55</Top>
+          <Drag>True</Drag>
+          <UpdatePanelIds>panelMainListView</UpdatePanelIds>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.PickupOrderHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.PickupOrderHandler, Mediachase.ConsoleManager" />
+        </Command>
+      </add>
+    </Commands>
+  </ListViewUI>
+  <ViewConfig>
+    <setAttributes id="Pickup-List" name="Pickups" controlUrl="Order/PickupList.ascx" permissions="order:mng:view"></setAttributes>
+  </ViewConfig>
+</View>

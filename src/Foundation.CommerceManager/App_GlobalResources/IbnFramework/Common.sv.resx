@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiva artiklar</value>
+  </data>
+  <data name="AddSelectedElement" xml:space="preserve">
+    <value>Lägg till markerade element</value>
+  </data>
+  <data name="AddSelectedElements" xml:space="preserve">
+    <value>Lägg till markerade element</value>
+  </data>
+  <data name="AllSelectedItemsWereProcessed" xml:space="preserve">
+    <value>Alla markerade artiklar bearbetades.</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>Valfritt</value>
+  </data>
+  <data name="Bytes" xml:space="preserve">
+    <value>bytes</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="DeleteSelectedItemsConfirmation" xml:space="preserve">
+    <value>Vill du verkligen ta bort de markerade artiklarna?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Exportera till Excel</value>
+  </data>
+  <data name="ExportToXML" xml:space="preserve">
+    <value>Exportera till XML</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favoriter</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Hjälp- och supportcenter</value>
+  </data>
+  <data name="HideShow" xml:space="preserve">
+    <value>Dölj/visa</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historik</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="KBytes" xml:space="preserve">
+    <value>Kb</value>
+  </data>
+  <data name="MBytes" xml:space="preserve">
+    <value>Mb</value>
+  </data>
+  <data name="NewEntry" xml:space="preserve">
+    <value>Ny post</value>
+  </data>
+  <data name="NewFile" xml:space="preserve">
+    <value>Ny fil</value>
+  </data>
+  <data name="NewList" xml:space="preserve">
+    <value>Ny lista</value>
+  </data>
+  <data name="NewReport" xml:space="preserve">
+    <value>Ny rapport</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Ny användare</value>
+  </data>
+  <data name="NotAllSelectedItemsWereProcessed" xml:space="preserve">
+    <value>Det gick inte att bearbeta alla markerade artiklar. Det kan bero på systembegränsningar eller säkerhetsinställningar.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Skriv ut aktuell sida</value>
+  </data>
+  <data name="QuickAccess" xml:space="preserve">
+    <value>Snabbåtkomst</value>
+  </data>
+  <data name="ReferencesExists" xml:space="preserve">
+    <value>Det finns några referenser till det här elementet. Borttagningen avbröts.</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Begäranden</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>Begärt fält</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Sök</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Markerade artiklar</value>
+  </data>
+  <data name="SelectElement" xml:space="preserve">
+    <value>Markera element</value>
+  </data>
+  <data name="SelectElements" xml:space="preserve">
+    <value>Markera element</value>
+  </data>
+  <data name="SelectUnselectAll" xml:space="preserve">
+    <value>Markera/avmarkera alla</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Skicka</value>
+  </data>
+  <data name="tLogOut" xml:space="preserve">
+    <value>Logga ut</value>
+  </data>
+  <data name="tMyWorks" xml:space="preserve">
+    <value>Mitt arbete</value>
+  </data>
+  <data name="tQuickAdd" xml:space="preserve">
+    <value>Lägg till</value>
+  </data>
+  <data name="tWSCustomize" xml:space="preserve">
+    <value>Anpassning av arbetsyta</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Uppdateringar</value>
+  </data>
+  <data name="SearchObjects" xml:space="preserve">
+    <value>Objektsökning</value>
+  </data>
+  <data name="btnOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="OnlyActiveObjects" xml:space="preserve">
+    <value>Visa endast aktiva objekt</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="HistoryView" xml:space="preserve">
+    <value>Historikvy</value>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>Listvy</value>
+  </data>
+  <data name="tActions" xml:space="preserve">
+    <value>Åtgärder</value>
+  </data>
+  <data name="pagingFirst" xml:space="preserve">
+    <value>Första sidan</value>
+  </data>
+  <data name="pagingLast" xml:space="preserve">
+    <value>Sista sidan</value>
+  </data>
+  <data name="pagingNext" xml:space="preserve">
+    <value>Nästa sida</value>
+  </data>
+  <data name="pagingPrev" xml:space="preserve">
+    <value>Föregående sida</value>
+  </data>
+  <data name="tOf" xml:space="preserve">
+    <value>av</value>
+  </data>
+  <data name="tTotalRecords" xml:space="preserve">
+    <value>Totalt antal poster: {0}.</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="SelectObjects" xml:space="preserve">
+    <value>Markera objekt</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Åtgärder</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="tFilterAnd" xml:space="preserve">
+    <value>OCH</value>
+  </data>
+  <data name="tFilterFrom" xml:space="preserve">
+    <value>från</value>
+  </data>
+  <data name="tFilterMore" xml:space="preserve">
+    <value>{0} fler...</value>
+  </data>
+  <data name="tFilterSelectObject" xml:space="preserve">
+    <value>Markera objekt</value>
+  </data>
+  <data name="tFilterTo" xml:space="preserve">
+    <value>till</value>
+  </data>
+  <data name="tAddEntity" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="ExcludeSelected" xml:space="preserve">
+    <value>Undanta markerade</value>
+  </data>
+  <data name="ExcludeSelectedItemsConfirmation" xml:space="preserve">
+    <value>Vill du verkligen undanta de markerade artiklarna?</value>
+  </data>
+  <data name="ItemView" xml:space="preserve">
+    <value>Visa artikel</value>
+  </data>
+  <data name="tAddEntities" xml:space="preserve">
+    <value>Lägg till artiklar</value>
+  </data>
+  <data name="ActionWasNotProcessed" xml:space="preserve">
+    <value>Det gick inte att bearbeta åtgärden. Det kan bero på systembegränsningar eller säkerhetsinställningar.</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="RelatedObjects" xml:space="preserve">
+    <value>Relaterade objekt</value>
+  </data>
+  <data name="GenericList" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="GenericView" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="GenericEdit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="DeleteItemConfirmation" xml:space="preserve">
+    <value>Vill du radera den här artikeln?</value>
+  </data>
+  <data name="PrinterVersion" xml:space="preserve">
+    <value>Skrivarversion</value>
+  </data>
+  <data name="LeftMenu" xml:space="preserve">
+    <value>Vänster meny</value>
+  </data>
+  <data name="Adding" xml:space="preserve">
+    <value>Lägger till</value>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Redigering</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Dölj</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="PortalCustomization" xml:space="preserve">
+    <value>Anpassning av hanteringskonsolen</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Ångra ändringar och återställ till standardinställningar</value>
+  </data>
+  <data name="UndoChanges" xml:space="preserve">
+    <value>Ångra ändringar och återställ till standardinställningar?</value>
+  </data>
+  <data name="CustomPages" xml:space="preserve">
+    <value>Anpassade sidor</value>
+  </data>
+  <data name="NewCustomPage" xml:space="preserve">
+    <value>Ny egen sida</value>
+  </data>
+  <data name="PageTemplate" xml:space="preserve">
+    <value>Sidmall</value>
+  </data>
+  <data name="CustomPageEditing" xml:space="preserve">
+    <value>Redigering av egen sida</value>
+  </data>
+  <data name="GenericCreate" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Skapa</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+</root>

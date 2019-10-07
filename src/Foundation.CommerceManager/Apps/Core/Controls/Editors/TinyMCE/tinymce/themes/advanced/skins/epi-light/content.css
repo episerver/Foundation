@@ -1,0 +1,200 @@
+﻿body {margin: 0em 2px 0em 2px; background-color:#FFF;}
+body.mceForceColors {background:#FFF; color:#000;}
+body.mceContentBody {height: 100%; padding-left: 3px;}
+.mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {border: 1px dashed #BBB;}
+a.mceItemAnchor {display:inline-block; width:11px !important; height:11px  !important; background:url(../default/img/items.gif) no-repeat 0 0;}
+span.mceItemNbsp {background: #DDD}
+td.mceSelected, th.mceSelected {background-color:#3399ff !important}
+img {border:0;}
+table {cursor:default}
+table td, table th {cursor:text}
+ins {border-bottom:1px solid green; text-decoration: none; color:green}
+del {color:red; text-decoration:line-through}
+cite {border-bottom:1px dashed blue}
+acronym {border-bottom:1px dotted #CCC; cursor:help}
+abbr {border-bottom:1px dashed #CCC; cursor:help}
+
+/* IE */
+* html body {
+scrollbar-3dlight-color:#F0F0EE;
+scrollbar-arrow-color:#676662;
+scrollbar-base-color:#F0F0EE;
+scrollbar-darkshadow-color:#DDD;
+scrollbar-face-color:#E0E0DD;
+scrollbar-highlight-color:#F0F0EE;
+scrollbar-shadow-color:#F0F0EE;
+scrollbar-track-color:#F5F5F5;
+}
+
+img:-moz-broken {-moz-force-broken-image-icon:1; width:24px; height:24px}
+font[face=mceinline] {font-family:inherit !important}
+
+/****** EPiServer specific rules ******/
+/* Classes used by EPiServer Visual Aid plugin */
+body.epi_visualaid a { background-color: Yellow; }
+body.epi_visualaid a.mceItemAnchor { background-color: Transparent !important; } /* Don't want yellow bg on anchors */
+body.epi_visualaid q { background-color: #c5d2fb; }
+
+/* Selected Pers Content Indication */
+.epi_pc.mceSelected {
+   border: 1px dashed Blue !important;
+}
+
+.mceContentBody .epi_dc, 
+.mceContentBody .epi_pc {
+	padding: 0;
+	margin-bottom: 2px;
+}
+
+.mceContentBody .epi_dc {
+	border: 1px solid #aaadb2;
+}
+
+.mceContentBody .epi_pc {
+	border: 1px dashed #aaadb2;
+	border-top: 1px solid #aaadb2;
+}
+
+/* Wrappers for Dyn and Pers Content Areas */
+.epi_dc_preview, .epi_pc_content {
+    background-color: #FFF;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    border-top: solid 1px #aaadb2;
+}
+
+/* Dyn Content Inline */
+span.epi_dc, span.epi_dc_h {display: inline-block; line-height: 15px; white-space: nowrap; margin-bottom:0 !important; padding: 0 !important;}
+
+/* Dyn and Pers Content Header Block */
+.epi_dc_h,
+.epi_pc_h { 
+    background: #f5f5f5;
+	padding: 0px;
+	overflow: hidden;
+	padding: 1px;
+}
+
+.epi_pc_f {
+    height: 1px;
+    clear: both;
+	padding: 0px;
+	overflow: hidden;
+}
+
+.epi_dc_h,
+.epi_pc_h,
+.epi_dc_preview {
+    font-family: Tahoma, MS Sans Serif, Arial, Geneva, Helvetica;
+	font-size: 11px;
+}
+
+/* Pers Content - Leading (Block) */
+.epi_pc_l {
+    float: left;
+    background: url(img/personalizationIcon.png) 2px 1px no-repeat;
+    padding-left: 30px;
+}
+
+/* Dyn Content - Leading (Block) */
+.epi_dc_l {
+    float: left;
+}
+
+/* Dyn Content Title */
+.epi_dc_title{ vertical-align: middle;  padding-left: 22px; height: 17px; background: url(img/dynamicContentIcon.png) 0 0 no-repeat; margin: 1px;}
+div.epi_dc_title, div.epi_pc_title { float: left; }
+span.epi_dc_title { display: inline-block; padding: 0 4px 0 24px !important; background: url(img/dynamicContentIcon.png) 2px 0 no-repeat; margin: 1px !important; }
+
+/* Dyn and Pers Content - Trailing (Block) */
+div.epi_dc_t, 
+div.epi_pc_t  {
+	float: right;
+	line-height: 0;
+}
+
+/* Dyn and Per Content Trailing Tools */
+.epi_dc_t a, 
+.epi_pc_t a  {
+	vertical-align: inherit; 
+	display: inline-block; 
+	background-color: Transparent !important; 
+	color: #aaa !important; 
+	text-decoration: none !important;
+	font-size: 11px !important;
+	text-indent: -9999px;
+	/* IE 6 & 7 fix to make the disapearing buttons visible */
+	*text-indent: -2px;
+}
+
+/* Dyn & Pers Content Action Buttons */
+.epi_pc_icon { width: 26px; height: 17px; background: url(img/personalizationIcon.png) center center no-repeat; cursor: pointer !important; margin: 2px 1px 2px 1px; display: inline-block; text-indent: -9999pt; }
+
+a.epi_pc_editBtn { width: 25px; height: 17px; background: url(img/editicon.png) 0 0 no-repeat; cursor: pointer !important; margin: 1px 2px 1px 2px; }
+a.epi_pc_editBtn:hover { background: url(img/editicon-hover.png) 0 0 no-repeat; cursor: pointer !important;}
+.mceReadOnly a.epi_pc_editBtn { display: none;}
+
+a.epi_dc_editBtn { width: 25px; height: 17px; background: url(img/editicon.png) 0 0 no-repeat; cursor: pointer !important; margin: 1px 2px 1px 4px; }
+a.epi_dc_editBtn:hover { background: url(img/editicon-hover.png) 0 0 no-repeat; cursor: pointer !important; }
+.mceReadOnly a.epi_dc_editBtn { display: none;}
+
+a.epi_dc_previewBtn { width: 25px; height: 17px; background: url(img/previewIcon.png) 0 0 no-repeat; cursor: pointer !important; margin: 1px 2px 1px 1px; }
+a.epi_dc_previewBtn:hover { background: url(img/previewIcon-hover.png) 0 0 no-repeat; cursor: pointer !important;}
+
+/* Dyn Content Property List */
+.epi_dc_preview ul { margin: 0px; padding: 5px; }
+
+/* Visitor Group & Linked Group */
+.epi_vg,
+.epi_vg_deleted,
+.epi_lg { 
+    background-color: #868e98 !important;
+    border: 1px solid rgb(50, 50, 50);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    color: White; 
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 0 6px 0 6px;
+    margin: 1px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    float: left;
+}
+
+/* Linked Group */
+.epi_lg { 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0 4px 0 4px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* Visitor Group & Linked Group */
+.epi_vg,
+.epi_lg {
+    background-image: url(img/gradient.png);
+}
+
+/* Visitor Group Icon */
+.epi_vg_icon {
+	width: 26px; height: 17px; background: url(img/personalizationIcon.png) center center no-repeat; cursor: pointer !important; margin: 1px; display: inline-block; text-indent: -9999pt;
+}
+
+/* Deleted Visitor Group Indication */
+.epi_vg_deleted {
+    background-color: #d6404d !important; 
+}
+
+/* Linked Group Icon */
+.epi_lg span {
+    background: url(img/linkedGroupIcon.png) 0 2px no-repeat;
+    padding-left: 13px;
+}
+
+/* Linked Group Color */
+.epi_lg { background-color: #4670a3 !important; }
+
+table.mceItemTable td {padding: 2px 6px;} /* Make it easier to select empty cells */

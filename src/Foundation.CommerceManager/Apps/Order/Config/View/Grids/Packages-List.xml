@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column visible="false" allowSorting="false" dataField="PackageId" headingText=""></Column>
+					<Column width="50" headingText="" columnType="Action" dataField="PackageId">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderGridPackageEdit" commandParameters="PackageId" toolTip="Edit" permissions="order:admin:shipping:packages:mng:edit"></Item>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderGridPackageDelete" commandParameters="PackageId" toolTip="Delete" permissions="order:admin:shipping:packages:mng:delete"></Item>
+					</Column>
+					<Column width="250" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="PackageId" dataNavigateUrlFormatString="javascript:CSManagementClient.ChangeView('Order', 'OrderPackage-Edit','PackageId={0}');" dataTextFields="Name" dataTextFormatString="{0}" permissions="order:admin:shipping:packages:mng:edit"></Column>
+					<Column width="450" allowSorting="true" dataField="Description" headingText="{SharedStrings:Description}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="New" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdOrderNewPackage" permissions="order:admin:shipping:packages:mng:create"/>
+				<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderPackageDelete" permissions="order:admin:shipping:packages:mng:delete"/>
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewPackage">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewPackage()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdOrderPackageDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PackageDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdOrderGridPackageEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.EditPackage(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdOrderGridPackageDelete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PackageDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes  id="Packages-List" controlUrl="Order/Shipping/Packages.ascx" permissions="order:admin:shipping:packages:mng:view" help="Order+System"></setAttributes>
+	</ViewConfig>
+</View>

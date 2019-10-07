@@ -1,0 +1,250 @@
+BODY {
+	FONT-SIZE: 70%; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+TABLE {
+	FONT-SIZE: 100%; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+BUTTON {
+	FONT-SIZE: 95%
+}
+INPUT {
+	FONT-SIZE: 100%; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+BUTTON {
+	FONT-SIZE: 100%; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+SELECT {
+	FONT-SIZE: 100%; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+TEXTAREA {
+	FONT-SIZE: 100%; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.Dialog {
+	COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: silver
+}
+.HyperLink {
+	COLOR: blue; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.HyperLink:hover {
+	COLOR: #f35050; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.HyperLinkButton {
+	FONT-SIZE: 100%; COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white; TEXT-DECORATION: none
+}
+.InputButton {
+	BORDER-RIGHT: #4d4a46 1px solid; BORDER-TOP: #4d4a46 1px solid; FONT-SIZE: 100%; BORDER-LEFT: #4d4a46 1px solid; COLOR: buttontext; BORDER-BOTTOM: #4d4a46 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: buttonface
+}
+.InputCheckbox {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.InputRadioButton {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.InputText {
+	BORDER-RIGHT: #4d4a46 1px solid; BORDER-TOP: #4d4a46 1px solid; BORDER-LEFT: #4d4a46 1px solid; COLOR: windowtext; BORDER-BOTTOM: #4d4a46 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.Listbox {
+	BORDER-RIGHT: silver 3px double; BORDER-TOP: silver 3px solid; OVERFLOW: auto; BORDER-LEFT: silver 3px outset; BORDER-BOTTOM: silver 3px double; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.ms-nav A {
+	COLOR: #3366cc; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.ms-nav A:link {
+	
+}
+.ms-nav A:visited {
+	COLOR: #3366cc
+}
+.ms-nav A:hover {
+	COLOR: #3366cc; TEXT-DECORATION: underline
+}
+.ms-nav TD {
+	FONT-WEIGHT: normal; FONT-FAMILY: Verdana
+}
+.ms-nav TH {
+	FONT-WEIGHT: normal; COLOR: black; FONT-FAMILY: Verdana; TEXT-ALIGN: left
+}
+.ms-toolbar {
+	COLOR: #3366cc; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.ms-verticaldots {
+	BACKGROUND-POSITION: left 50%; BACKGROUND-IMAGE: url(../../images/BLUEDOT.gif); BACKGROUND-REPEAT: repeat-y
+}
+.PageTitle {
+	PADDING-LEFT: 12px; FONT-WEIGHT: bold; PADDING-BOTTOM: 0.2em; COLOR: windowtext; LINE-HEIGHT: 2em; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.ResourceSubhead {
+	FONT-SIZE: 130%
+}
+.Section {
+	COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.SectionHeader {
+	PADDING-LEFT: 12px; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: #d7d7d7
+}
+.SectionTable {
+	BORDER-RIGHT: #c4c4b4 thin solid; BORDER-TOP: #c4c4b4 thin solid; BORDER-LEFT: #c4c4b4 thin solid; COLOR: windowtext; BORDER-BOTTOM: #c4c4b4 thin solid; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.SectionTableHeader {
+	FONT-WEIGHT: bold; COLOR: #8a99a4; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: #dcdce4; TEXT-DECORATION: none
+}
+.SectionTableRow {
+	COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none
+}
+.SectionTableRowAlt {
+	COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: #f2f2f2; TEXT-DECORATION: none
+}
+.SectionTableRow:hover {
+	COLOR: #f35050; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.Text {
+	COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.Toolbar {
+	FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: #d7d7d7
+}
+.Workspace {
+	OVERFLOW: auto; COLOR: windowtext; FONT-FAMILY: Verdana, Arial, Helvetica; BACKGROUND-COLOR: white
+}
+.link {
+	COLOR: #3366cc; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.link2 {
+	COLOR: #0000ff; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.page_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 150%; COLOR: windowtext; FONT-FAMILY: Verdana
+}
+.selected_link {
+	COLOR: red; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.SectionTableHeader TD A {
+	COLOR: #3366cc; FONT-FAMILY: Verdana; TEXT-DECORATION: underline
+}
+.thCenter 
+{
+	font-family: verdana; 
+    font-size: 8pt; 
+	text-align:center;
+	color: #808080;
+	text-decoration: none; 
+}
+
+.MCManagerCss {
+	background-color:#ffffdd;
+	border-width:3px;
+	border-style:solid;
+	border-color:Gray;
+	padding:3px;
+}
+.upProgressMain 
+{
+	position: absolute; top: 0px; left: 0px;
+	width: 100%; 
+	height: 100%;
+	background-color: Transparent;
+	background-image: url(../../images/point8.gif);
+	background-repeat: repeat;
+	z-index:1100;
+	text-align:center;
+	vertical-align: middle;
+}
+
+.upProgressCenter 
+{
+	position: absolute; top: 35%; left: 40%;
+	
+	width: 200px; 
+	height: 70px;
+	background-color: White;
+	z-index:120;
+	border:2px solid Black;
+	text-align:center;
+	padding-top:35px;
+	vertical-align:middle;
+}
+.section {
+	FONT-WEIGHT: bold; FONT-SIZE: 120%; COLOR: windowtext; FONT-FAMILY: Verdana
+}
+.ibn-splitter
+{
+	background-color: #FCEED9; /*F7D4D4*/
+	
+}
+
+.ibn-active-splitter
+{
+	background-color: #CCCCCC;
+}
+
+.menuBlock
+{
+  background-color:#E1ECFC;
+  border: 1px solid #919B9C;
+  margin:7px 7px 7px 7px;
+}
+.menuBlockHeader{
+	background-image: url(../../images/item_bg.gif);
+	border-bottom : 1px solid #7C7C94;
+	color: Black;
+	font-size: 11px; 
+	font-weight: bold;
+	padding-bottom: 3px;
+	padding-top: 3px; 
+	padding-left: 5px; 
+}
+.menuBlockHeaderNoPadding{
+	background-image: url(../../images/item_bg.gif);
+	border-bottom : 1px solid #7C7C94;
+	color: Black;
+	font-size: 11px; 
+	font-weight: bold;
+}
+.topItem2{
+  color: Black;
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: bold;
+  padding-top: 3px; 
+  padding-bottom: 3px;
+  cursor: pointer;
+  cursor: hand;
+}
+.topItemHover2{
+  color: black;
+  background-image: url(../../images/item_expanded_bg.gif);
+  font-family: tahoma, verdana; 
+  font-size: 11px; 
+  font-weight: bold;
+  padding-top: 3px; 
+  padding-bottom: 3px;
+  cursor: pointer;
+  cursor: hand;
+}
+.topTextBox
+{
+	z-index: 10001;
+}
+.ffBugFix
+{
+	position: fixed;
+    position:expression("absolute"); 
+}
+.rowsSelect 
+{
+}
+
+.rowsSelect:hover
+{
+	background-color: #FBFAD0;
+}
+.ibn-bottomBorderLight
+{
+	border-bottom: solid 1px #E4E4E4;
+}
+.labelSmartTableLayoutItem
+{
+	font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,Sans-Serif;
+	font-weight:normal!important;
+	color: #1D1D1D;	
+}

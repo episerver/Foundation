@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column width="20" headingText="" columnType="Action" dataField="OrderFormId">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdReturnSummary" toolTip="RMA Summary" commandParameters="OrderFormId,OrderGroupId,CustomerId"></Item>
+					</Column>
+					<Column visible="false" allowSorting="false" dataField="CustomerId" headingText=""></Column>
+					<Column visible="false" allowSorting="false" dataField="OrderFormId" headingText=""></Column>
+					<Column width="100" allowSorting="true" dataField="RMANumber" headingText="{OrderStrings:Return_Number}"></Column>
+					<Column width="100" allowSorting="true" dataField="TrackingNumber" headingText="{OrderStrings:Order_No_Sign}"></Column>
+					<Column width="150" allowSorting="true" dataField="ReturnType" headingText="{OrderStrings:Return_Type}"></Column>
+					<Column width="200" allowSorting="true" dataField="CustomerName" headingText="{SharedStrings:Customer}"></Column>
+					<Column width="200" columnType="DateTime" allowSorting="true" dataField="Created" headingText="{OrderStrings:RMA_Date}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdReturnSummary">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>RMA Summary</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=Return-Summary&amp;OrderFormId=[ClientParam:OrderFormId]&amp;OrderGroupId=[ClientParam:OrderGroupId]&amp;CustomerId=[ClientParam:CustomerId]&amp;commandName=cmd_NeedRebind</Url>
+					<Width>690</Width>
+					<Height>380</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Return-List" name="Returns" controlUrl="Order/ReturnList.ascx" permissions="order:mng:view" help="Returns"></setAttributes>
+	</ViewConfig>
+</View>

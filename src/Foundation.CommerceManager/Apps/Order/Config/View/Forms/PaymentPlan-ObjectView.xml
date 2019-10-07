@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <Form>
+    <Layout>
+      <add>
+        <Block id="Null" name="">
+          <Placeholder id="Placeholder_1">
+            <Control id="EditModeCtrl" path="~/Apps/Order/Modules/EditModeMarker.ascx">
+            </Control>
+            <Control id="Toolbar" path="~/Apps/Core/Controls/MetaToolbar.ascx">
+              <Property name="ClassName" value="PaymentPlan" />
+              <Property name="ViewName" value="PaymentPlan-ObjectView" />
+              <Property name="PlaceName" value="OrderView" />
+              <Property name="ToolbarMode" value="ListViewUI" />
+            </Control>
+            <Control id="SplitterCtrl1" path="~/Apps/Order/Modules/SplitterControl.ascx">
+            </Control>
+            <Control id="GeneralInfoCtrl1" path="~/Apps/Order/Modules/ShortInfo.ascx">
+
+            </Control>
+          </Placeholder>
+          <Placeholder id="Placeholder_2">
+          </Placeholder>
+          <Placeholder id="Placeholder_3" />
+          <Placeholder id="Placeholder_4" />
+        </Block>
+        <Block id="summaryblock" name="Summary">
+          <Placeholder id="Placeholder_1">
+            <Control id="ShortViewForm2" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+              <Property name="FormName" value="[MC_BaseForm]" />
+              <!-- <Property name="OuterCssClass" value="ibn-underline" />-->
+              <Property name="ClassName" value="PaymentPlan" />
+            </Control>
+          </Placeholder>
+          <Placeholder id="Placeholder_2">
+          </Placeholder>
+          <Placeholder id="Placeholder_3" />
+          <Placeholder id="Placeholder_4" />
+        </Block>
+        <Block id="lineitems" name="Details">
+          <Placeholder id="Placeholder_1">
+            <Control id="ShippingRepeater" path="~/Apps/Order/Modules/ObjectRepeater.ascx">
+              <Property name="ClassName" value="PaymentPlan" />
+              <Property name="PlaceName" value="OrderShipment" />
+              <Property name="LayoutTypeValue" value="ObjectView" />
+            </Control>
+            <Control id="PromotionsGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+              <Property name="RelatedClassName" value="Promotion" />
+              <Property name="RelatedToClassName" value="Order"/>
+            </Control>
+          </Placeholder>
+          <Placeholder id="Placeholder_2">
+          </Placeholder>
+          <Placeholder id="Placeholder_3">
+          </Placeholder>
+          <Placeholder id="Placeholder_4" />
+        </Block>
+        <Block id="payments" name="Payments">
+          <Placeholder id="Placeholder_1">
+            <Control id="PaymentsGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+              <Property name="RelatedClassName" value="Payment" />
+              <Property name="RelatedToClassName" value="PaymentPlan"/>
+            </Control>
+          </Placeholder>
+          <Placeholder id="Placeholder_2">
+          </Placeholder>
+          <Placeholder id="Placeholder_3" />
+          <Placeholder id="Placeholder_4" />
+        </Block>
+        <Block id="notes" name="Notes">
+          <Placeholder id="Placeholder_1">
+            <Control id="NotesGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+              <Property name="RelatedClassName" value="Note" />
+              <Property name="RelatedToClassName" value="PaymentPlan"/>
+            </Control>
+          </Placeholder>
+          <Placeholder id="Placeholder_2">
+          </Placeholder>
+          <Placeholder id="Placeholder_3" />
+          <Placeholder id="Placeholder_4" />
+        </Block>
+        <Block id="purchaseorders" name="Orders">
+          <Placeholder id="Placeholder_1">
+            <Control id="PurchaseOrdersGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+              <Property name="RelatedClassName" value="PurchaseOrders" />
+              <Property name="RelatedToClassName" value="PaymentPlan"/>
+            </Control>
+          </Placeholder>
+          <Placeholder id="Placeholder_2">
+          </Placeholder>
+          <Placeholder id="Placeholder_3" />
+          <Placeholder id="Placeholder_4" />
+        </Block>
+      </add>
+    </Layout>
+    <ButtonSets>
+      <add>
+        <ButtonSet placeName="StatusChanger">
+          <Button id="CancelOrderButton" text="Cancel Payment Plan" commandName="btn_CancelOrderBtnPP" width="120" disableMode="true" permissions="order:mng:edit"></Button>
+        </ButtonSet>
+      </add>
+    </ButtonSets>
+    <Grids>
+      <add>
+        <Grid placeName="OrderLineItem-List">
+          <Columns>
+            <Column columnType="CheckBox" width="25" dataField="LineItemId"/>
+            <Column width="50" headingText="" columnType="Action" dataField="LineItemId">
+              <Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdOrderLineItemGridEditPP" commandParameters="LineItemId,ShipmentId" toolTip="Edit" permissions="order:mng:edit"></Item>
+              <Item imageUrl="~/Apps/Shell/Styles/images/move.png" commandName="cmdOrderLineItemGridMovePP" commandParameters="LineItemId,ShipmentId" toolTip="Move" permissions="order:mng:split:shipments"></Item>
+            </Column>
+            <Column visible="false" allowSorting="true" dataField="ShipmentId" headingText=""></Column>
+            <Column visible="false" allowSorting="true" dataField="LineItemId" headingText="{SharedStrings:LineItemId}"></Column>
+            <Column width="150" visible="true" allowSorting="false" dataField="Code" headingText="{SharedStrings:Code}"></Column>
+            <Column width="400" visible="true" allowSorting="false" dataField="DisplayName" headingText="{SharedStrings:Name}"></Column>
+            <Column width="60" visible="true" allowSorting="false" dataField="Quantity" headingText="{SharedStrings:Quantity}" formatString="{0:#0.00}"></Column>
+            <Column width="70" visible="true" allowSorting="false" dataField="ListPrice" columnType="Currency" currencyCodeField="Parent.Parent.BillingCurrency" headingText="{SharedStrings:List_Price}"></Column>
+            <Column width="70" visible="true" allowSorting="false" dataField="PlacedPrice" columnType="Currency" currencyCodeField="Parent.Parent.BillingCurrency" headingText="{SharedStrings:Placed_Price}"></Column>
+            <Column width="100" allowSorting="false" dataField="LineItemId"  headingText="{SharedStrings:Total_Discount}" Align="Center" columnType="CustomTemplate">
+              <Template id="LineItemDiscountTemplate" controlUrl="GridTemplates/LineItemDiscountTemplate.ascx"></Template>
+            </Column>
+            <Column width="180" visible="true" allowSorting="false" dataField="CustomDiscountDescr" headingText="{SharedStrings:Discount_Descr}"></Column>
+            <Column width="70" visible="true" allowSorting="false" dataField="LineItemId" headingText="{SharedStrings:Total}" columnType="CustomTemplate">
+              <Template id="TotalNamesTemplate" controlUrl="GridTemplates/LineItemTotalTemplate.ascx"></Template>
+            </Column>
+          </Columns>
+        </Grid>
+        <Grid placeName="OrderPayment-List">
+          <Columns>
+            <Column columnType="CheckBox" width="25" visible="true" dataField="PaymentId"/>
+            <Column width="25" headingText="" columnType="Action">
+              <Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="OrderPayment_DeletePP" commandParameters="PaymentId" toolTip="Delete" permissions="order:mng:edit"></Item>
+            </Column>
+            <Column visible="false" allowSorting="false" dataField="PaymentId" headingText="{SharedStrings:PaymentId}"></Column>
+            <Column width="200" visible="true" allowSorting="false" dataField="PaymentMethodName" headingText="{SharedStrings:Name}"></Column>
+            <Column width="150" visible="true" allowSorting="false" dataField="TransactionType" headingText="{SharedStrings:TransactionType}"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="Amount" headingText="{SharedStrings:Amount}" columnType="CustomTemplate">
+              <Template id="PaymentAmountTemplate" controlUrl="GridTemplates/PaymentAmountTemplate.ascx"></Template>
+            </Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="Status" headingText="{SharedStrings:Status}"></Column>
+          </Columns>
+        </Grid>
+        <Grid placeName="OrderNote-List">
+          <Columns>
+            <Column columnType="CheckBox" dataField="OrderNoteId" />
+            <Column width="50" dataField="OrderNoteId" headingText="" columnType="Action">
+              <Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderNoteGridEditPP" commandParameters="OrderNoteId" toolTip="Edit" permissions="order:mng:edit"></Item>
+              <Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderNoteGridDeletePP" commandParameters="OrderNoteId" toolTip="Delete" permissions="order:mng:edit"></Item>
+            </Column>
+            <Column visible="false" allowSorting="false" dataField="OrderNoteId" headingText="{SharedStrings:Id}"></Column>
+            <Column visible="false" allowSorting="false" dataField="CustomerId" headingText="{SharedStrings:Id}"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="UserName" headingText="{SharedStrings:Originated_By}"></Column>
+            <Column width="165" visible="true" allowSorting="false" dataField="Created" headingText="{SharedStrings:Date_Slash_Time}" columnType="DateTime"></Column>
+            <!--<Column width="200" visible="true" allowSorting="false" dataField="Title" headingText="{SharedStrings:Title}"></Column>-->
+            <Column width="920" visible="true" allowSorting="false" dataField="Detail" headingText="{SharedStrings:Note_Text}"></Column>
+          </Columns>
+        </Grid>
+        <Grid placeName="OrderPromotion-List">
+          <Columns>
+            <Column width="70" visible="true" allowSorting="false" dataField="Type" headingText="Type"></Column>
+            <Column width="200" visible="true" allowSorting="false" dataField="Name" headingText="Name" columnType="DateTime"></Column>
+            <Column width="100" visible="true" allowSorting="false" dataField="CouponCode" headingText="Coupon Code"></Column>
+          </Columns>
+        </Grid>
+        <Grid placeName="OrderPurchaseOrders-List">
+          <Columns>
+            <Column width="80" allowSorting="true" dataField="OrderGroupId"  headingText="{SharedStrings:ID}" columnType="CustomTemplate" permissions="order:mng:view">
+              <Template id="LinkTemplate" controlUrl="GridTemplates/OrderLinkFromPaymentPlan.ascx"></Template>
+            </Column>
+            <Column width="200" allowSorting="true" dataField="CustomerName" headingText="{SharedStrings:Customer}"></Column>
+            <!--<Column width="100" allowSorting="true" dataField="Total" headingText="{SharedStrings:Total}" columnType="Currency" currencyCodeField="BillingCurrency" align="Right"></Column>-->
+            <Column width="100" allowSorting="true" dataField="Total" headingText="{SharedStrings:Total}" columnType="CustomTemplate" align="Right">
+              <Template id="OrderTotalAmountTemplate" controlUrl="GridTemplates/OrderTotalAmountTemplate.ascx"></Template>
+            </Column>
+            <Column width="150" allowSorting="true" dataField="OrderGroupId"  headingText="{SharedStrings:Status}" Align="Center" columnType="CustomTemplate">
+              <Template id="OrderStatusTemplate" controlUrl="GridTemplates/OrderStatusTemplate.ascx"></Template>
+            </Column>
+            <Column width="200" columnType="DateTime" allowSorting="false" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+          </Columns>
+        </Grid>
+      </add>
+    </Grids>
+    <Toolbars>
+      <add>
+        <Toolbar placeName="OrderView">
+          <Button id="AddNote" text="Add Note" commandName="cmdPurchaseOrderAddNotePP" imageUrl="~/Apps/Order/images/Note-New.png" permissions="order:mng:edit"/>
+          <Button id="CreateOrderAddress" text="Add Order Address" commandName="cmdPurchaseOrderCreateOrderAddressPP" imageUrl="~/Apps/Order/images/Address-add.png" permissions="order:mng:edit"/>
+          <Button id="ConvertToPO" text="Create First Purchase Order" commandName="cmdPurchaseOrderConvertPP" imageUrl="~/Apps/Order/images/PurchaseOrders.png" permissions="order:mng:create"/>
+        </Toolbar>
+        <Toolbar placeName="OrderLineItem-List">
+          <Button id="NewItem" text="New Item" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="cmdOrderLineItemNewPP" itemSplitter="Right" permissions="order:mng:edit"></Button>
+          <Button id="Delete" text="Delete"  imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="cmdOrderLineItemDeletePP" itemSplitter="Right" permissions="order:mng:edit"></Button>
+        </Toolbar>
+        <Toolbar placeName="OrderPromotion-List">
+          <Text id="txtTitle" text="Promotions" itemSplitter="Right"></Text>
+        </Toolbar>
+        <Toolbar placeName="OrderPayment-List">
+          <!--<Text id="txtTitle" text="Payments" itemSplitter="Right"></Text>-->
+          <Button id="NewItem" text="Create Payment" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="OrderPayment_NewPP" itemSplitter="Right" permissions="order:mng:edit"></Button>
+          <!--<Button id="Delete" text="Delete"  imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="OrderPayment_Delete" itemSplitter="Right"></Button>-->
+          <!--<Text id="txtT" text="&lt;div style='height:7px;'>&amp;nbsp;&lt;/div>"></Text>-->
+        </Toolbar>
+        <Toolbar placeName="OrderNote-List">
+          <Button id="NewItem" text="New Note" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="cmdOrderNoteNewPP" permissions="order:mng:edit"></Button>
+        </Toolbar>
+      </add>
+    </Toolbars>
+    <Commands>
+      <add>
+        <Command id="btn_CancelOrderBtnPP">
+          <ConfirmationText>{OrderStrings:CancelPaymentPlanConfirmation}</ConfirmationText>
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CancelPaymentPlanHandler, Mediachase.ConsoleManager">
+          </Handler>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CancelPaymentPlanHandler, Mediachase.ConsoleManager"></EnableHandler>
+        </Command>
+        <Command id="btn_OnHoldOrderBtnPP">
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.HoldPaymentPlanHandler, Mediachase.ConsoleManager">
+          </Handler>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.HoldPaymentPlanHandler, Mediachase.ConsoleManager"></EnableHandler>
+        </Command>
+        <Command id="btn_ReleaseHoldOrderBtnPP">
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.ReleaseHoldPaymentPlanHandler, Mediachase.ConsoleManager">
+          </Handler>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.ReleaseHoldPaymentPlanHandler, Mediachase.ConsoleManager"></EnableHandler>
+        </Command>
+        <Command id="cmdPurchaseOrderConvertPP">
+          <CommandType>ServerAction</CommandType>
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.ConvertToPurchaseOrderPaymentPlanHandler, Mediachase.ConsoleManager">
+          </Handler>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.ConvertToPurchaseOrderPaymentPlanHandler, Mediachase.ConsoleManager"></EnableHandler>
+        </Command>
+        <!-- LineItem commands -->
+        <Command id="cmdOrderLineItemNewPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>{OrderStrings:New_Line_Item}</PopupTitle>
+          <Url>~/Apps/Shell/Pages/ContentFrame.aspx?_a=Order&amp;_v=OrderLineItem-New&amp;commandName=cmd_NeedRebind&amp;Id={HttpContext:OrderGroupId}&amp;ContainerId=[ClientParam:ContainerId]&amp;ReturnCommandName=cmd_NeedRebind&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}</Url>
+          <Width>720</Width>
+          <Height>450</Height>
+          <Top>10</Top>
+          <Left>10</Left>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.AddLineItemToShipmentEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderLineItemDeletePP">
+          <BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+          <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+          <CommandType>ServerAction</CommandType>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.DeleteLineItemFromShipmentHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.DeleteLineItemFromShipmentHandler, Mediachase.ConsoleManager" />
+          <!--<UpdatePanelIds>panelMainListView</UpdatePanelIds>-->
+        </Command>
+        <!-- Grid commands -->
+        <Command id="cmdOrderLineItemGridEditPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>{OrderStrings:Edit_Line_Item}</PopupTitle>
+          <!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderLineItem-Edit&amp;Id={QueryString:id}&amp;LineItemId=[ClientParam:LineItemId]&amp;ContainerId=[ClientParam:ShipmentId]&amp;commandName=cmd_NeedRebind</Url>-->
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OrderLineItem-Edit&amp;CommandClassName=&amp;CommandViewName=PaymentPlan-ObjectView&amp;CommandPlaceName=&amp;CommandName=cmdOrderLineItemGridEditPP&amp;Id={QueryString:id}&amp;LineItemId=[ClientParam:LineItemId]&amp;ContainerId=[ClientParam:ShipmentId]&amp;ReturnCommandName=cmdOrderLineItemGridEditPP&amp;customerid={QueryString:customerid}</Url>
+          <Width>590</Width>
+          <Height>250</Height>
+          <Top>170</Top>
+          <Left>150</Left>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditShipmentLineItemHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditShipmentLineItemHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderLineItemGridMovePP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Move LineItem</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=PaymentPlan-ObjectView&amp;CommandPlaceName=&amp;CommandName=cmdOrderLineItemGridMovePP&amp;LayoutClassName=PaymentPlan&amp;LayoutPlaceName=ShipmentLineItemMove&amp;Id={QueryString:id}&amp;LineItemId=[ClientParam:LineItemId]&amp;ContainerId=[ClientParam:ShipmentId]&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+          <Width>480</Width>
+          <Height>300</Height>
+          <Top>170</Top>
+          <Left>200</Left>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.MoveShipmentLineItemHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.MoveShipmentLineItemHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- ********************* -->
+        <!-- Payments toolbar/grid -->
+        <!-- ********************* -->
+        <Command id="OrderPayment_NewPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Create Payment</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderPayment-Create&amp;commandName=OrderPayment_Create&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommand=OrderPayment_NewPP&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}</Url>
+          <Width>600</Width>
+          <Height>510</Height>
+          <Top>55</Top>
+          <Left>55</Left>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.AddPaymentEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="OrderPayment_DeletePP">
+          <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+          <CommandType>ServerAction</CommandType>
+          <EnableHandler type=" Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.DeleteSelectedPaymentHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.DeleteSelectedPaymentHandler, Mediachase.ConsoleManager" />
+          <!--<UpdatePanelIds>panelMainListView</UpdatePanelIds>-->
+        </Command>
+        <!-- Grid commands -->
+        <Command id="cmdOrderPaymentGridEditPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Edit Payment</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderPayment-Edit&amp;Id={QueryString:id}&amp;PaymentId=[ClientParam:PaymentId]&amp;commandName=cmdOrderPaymentGridEditPP&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}</Url>
+          <Width>600</Width>
+          <Height>510</Height>
+          <Top>15</Top>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditPaymentEnableHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- ********************* -->
+        <!-- OrderNote-List toolbar/grid -->
+        <!-- ********************* -->
+        <Command id="cmdOrderNoteNewPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>New Note</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=PaymentPlan-ObjectView&amp;CommandPlaceName=OrderNote-List&amp;CommandName=cmdOrderNoteNewPP&amp;LayoutClassName=PaymentPlan&amp;LayoutPlaceName=AddNote&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+          <!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderNote-Edit&amp;commandName=cmdOrderNoteNew&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommand=cmdOrderNoteNew</Url>-->
+          <Width>400</Width>
+          <Height>250</Height>
+          <Top>55</Top>
+          <Left>100</Left>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.AddNoteHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.AddNoteHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <!-- Grid commands -->
+        <Command id="cmdOrderNoteGridEditPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Edit Note</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=PaymentPlan-ObjectView&amp;CommandPlaceName=OrderNote-List&amp;CommandName=cmdOrderNoteGridEditPP&amp;LayoutClassName=PaymentPlan&amp;LayoutPlaceName=AddNote&amp;Id={HttpContext:OrderGroupId}&amp;OrderNoteId=[ClientParam:OrderNoteId]&amp;ReturnCommandName=cmd_NeedRebind</Url>
+          <!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderNote-Edit&amp;Id={QueryString:id}&amp;OrderNoteId=[ClientParam:OrderNoteId]&amp;commandName=cmdOrderNoteGridEdit</Url>-->
+          <Width>400</Width>
+          <Height>250</Height>
+          <Top>40</Top>
+          <Left>100</Left>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditNoteHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.EditNoteHandler, Mediachase.ConsoleManager" />
+        </Command>
+        <Command id="cmdOrderNoteGridDeletePP">
+          <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+          <CommandType>ServerAction</CommandType>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.OrderNoteDeleteHandler, Mediachase.ConsoleManager" />
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.OrderNoteDeleteHandler, Mediachase.ConsoleManager" />
+          <!--<UpdatePanelIds>panelMainListView</UpdatePanelIds>-->
+        </Command>
+
+        <Command id="cmdPurchaseOrderSendNotificationPP">
+          <CommandType>ServerAction</CommandType>
+          <ConfirmationText>{OrderStrings:Order_SendNotificationConfirmation}</ConfirmationText>
+          <Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.SendNotificationHandler, Mediachase.ConsoleManager" />
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.SendNotificationHandler, Mediachase.ConsoleManager" />
+        </Command>
+
+        <Command id="cmdPurchaseOrderCreateOrderAddressPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Add Order Address</PopupTitle>
+          <Width>600</Width>
+          <Height>500</Height>
+          <Top>15</Top>
+          <Drag>False</Drag>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;Id={QueryString:id}&amp;OrderGroupAddressId=&amp;commandName=cmd_NeedRebind&amp;CommandViewName=PaymentPlan-ObjectView&amp;customerid={QueryString:customerid}&amp;IsShippingAddress=false</Url>
+        </Command>
+        <!-- Addidional Commands on OrderView page -->
+        <Command id="cmdOrderCreateEditReturnPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Create/Edit Return</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderCreateReturnForm&amp;Id={HttpContext:OrderGroupId}&amp;ShipmentId=[ClientParam:ContainerId]&amp;GridViewId=OrderCreateReturnForm&amp;ReturnCommand=cmd_NeedRebind</Url>
+          <Width>900</Width>
+          <Height>450</Height>
+          <Top>40</Top>
+          <Left>50</Left>
+          <Drag>False</Drag>
+          <AutoHeightResize>true</AutoHeightResize>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PaymentPlanHandlers.CreateReturnShipmentHandler, Mediachase.ConsoleManager" />
+        </Command>
+
+        <Command id="cmdPurchaseOrderAddNotePP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>New Note</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=PaymentPlan-ObjectView&amp;CommandPlaceName=OrderNote-List&amp;CommandName=cmdOrderNoteNewPP&amp;LayoutClassName=PaymentPlan&amp;LayoutPlaceName=AddNote&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+          <Width>400</Width>
+          <Height>250</Height>
+          <Top>55</Top>
+          <Left>100</Left>
+          <Drag>False</Drag>
+        </Command>
+        <Command id="cmdEditOrderMetaDataPP">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Edit Payment Plan Details</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OrderExtendedAttributes-Edit&amp;CommandClassName=PaymentPlan&amp;CommandViewName=PaymentPlan-ObjectView&amp;CommandPlaceName=OrderMetaData&amp;CommandName=cmdEditOrderMetaDataPP&amp;LayoutClassName=PaymentPlan&amp;LayoutPlaceName=EditMetaData&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+          <Width>600</Width>
+          <Height>600</Height>
+          <Top>55</Top>
+          <Left>100</Left>
+          <Drag>False</Drag>
+        </Command>
+      </add>
+    </Commands>
+  </Form>
+  <ViewConfig>
+    <set name="id" value="PaymentPlan-ObjectView"></set>
+    <set name="controlUrl" value="Order/Modules/OrderView.ascx"></set>
+    <set name="permissions" value="order:mng:view"></set>
+    <add>
+      <CustomParams>
+        <Param key="ClassName" value="PaymentPlan"></Param>
+        <Param key="LayoutType" value="ObjectView"></Param>
+        <Param key="LayoutMode" value="JQueryMode"></Param>
+        <Param key="SelectTabByPostback" value="true"></Param>
+      </CustomParams>
+    </add>
+  </ViewConfig>
+</View>

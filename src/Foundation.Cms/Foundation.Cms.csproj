@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.TinyMce" Version="2.8.1" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="11.21.7" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.21.7" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.21.7" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.6.1" />
+    <PackageReference Include="EPiServer.Framework" Version="11.13.0" />
+    <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.6" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.0.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+</Project>

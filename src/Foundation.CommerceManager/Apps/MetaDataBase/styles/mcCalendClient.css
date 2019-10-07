@@ -1,0 +1,62 @@
+td.mcCalend_StdYM {
+	padding: 2px 0;
+}
+td.mcCalend_StdYM div {
+	position: relative;
+	text-align: center;
+	font-weight: bold;
+	font-size: 10px;
+}
+td.mcCalend_StdYM div div {
+	border: 0 none inherit;
+}
+td.mcCalend_StdYM img {
+	cursor: pointer;
+	cursor: hand;
+}
+td.mcCalend_StdYM div.mcCalend_SdvY {
+	width: 9em;
+}
+td.mcCalend_StdYM div td.mcCalend_StdHeader {
+	overflow: hidden;
+	overflow-x: hidden;
+	padding: 2px;
+	font-weight: bold;
+	font-size: 11px;
+	font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+}
+tr.mcCalend_StrDays td {
+	padding: 1px 0;
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+	font-size: 10px;
+	font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+}
+td.mcCalend_StdDay1 {
+	border: 1px solid #0066cc;
+	color: #0066cc;
+}
+td.mcCalend_StdDay2 {
+	border: 1px solid #cc3300;
+	color: #cc3300;
+}
+td.mcCalend_StdDay0 {
+	border: 1px solid #696969;
+	color: #696969;
+}
+tr.mcCalend_StrWDs {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+tr.mcCalend_StrWDs td {
+	padding: 0 2px;
+	color: #000000;
+	font-size: 12px;
+	font-family: "Courier New",Courier,monospace;
+	text-align: center;
+	width: 14.25%;
+}
+tr.mcCalend_StrWDs td.mcCalend_StdWDs {
+	width: 1.5em;/* value >= 1.5 - to change in js = 0.5(1+x), x - max length */
+}

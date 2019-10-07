@@ -1,2 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Mediachase.Commerce.Manager.Apps.Catalog.GridTemplates.SaleTypeTemplate" Codebehind="SaleTypeTemplate.ascx.cs" %>
-<asp:Label runat="server" ID="SaleTypeLabel"></asp:Label>

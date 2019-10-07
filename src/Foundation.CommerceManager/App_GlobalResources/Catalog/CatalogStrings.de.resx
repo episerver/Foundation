@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="utf-8"?> <root>
+  <!--      Microsoft ResX Schema           Version 2.0          The primary goals of this format is to allow a simple XML format      that is mostly human readable. The generation and parsing of the      various data types are done through the TypeConverter classes      associated with the data types.          Example:          ... ado.net/XML headers & schema ...     <resheader name="resmimetype">text/microsoft-resx</resheader>     <resheader name="version">2.0</resheader>     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">         <value>[base64 mime encoded serialized .NET Framework object]</value>     </data>     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>         <comment>This is a comment</comment>     </data>                      There are any number of "resheader" rows that contain simple      name/value pairs.          Each data row contains a name, and value. The row also contains a      type or mimetype. Type corresponds to a .NET class that support      text/value conversion through the TypeConverter architecture.      Classes that don't support this are serialized and stored with the      mimetype set.          The mimetype is used for serialized objects, and tells the      ResXResourceReader how to depersist the object. This is currently not      extensible. For a given mimetype the value must be set accordingly:          Note - application/x-microsoft.net.object.binary.base64 is the format      that the ResXResourceWriter will generate, however the reader can      read any of the formats listed below.          mimetype: application/x-microsoft.net.object.binary.base64     value   : The object must be serialized with              : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter             : and then encoded with base64 encoding.          mimetype: application/x-microsoft.net.object.soap.base64     value   : The object must be serialized with              : System.Runtime.Serialization.Formatters.Soap.SoapFormatter             : and then encoded with base64 encoding.      mimetype: application/x-microsoft.net.object.bytearray.base64     value   : The object must be serialized into a byte array              : using a System.ComponentModel.TypeConverter             : and then encoded with base64 encoding.     -->
+  <xsd:schema xmlns="" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Catalog_Save_File" xml:space="preserve">
+    <value>Speichern Sie die Datei.</value>
+  </data>
+  <data name="Catalog_Overwrite_File" xml:space="preserve">
+    <value>Überschreiben Sie die vorhandene Datei.</value>
+  </data>
+  <data name="Catalog_Import_Warning" xml:space="preserve">
+    <value>Es wird dringend empfohlen, vor dem Import die ECF-Datei zu sichern.</value>
+  </data>
+  <data name="Catalog_Import_Instructions" xml:space="preserve">
+    <value>Um den Katalog zu importieren, eine bestehende Datei aus dem Gitter unten greifen oder eine neue Datei hochladen. Dann durch Klicken auf „Import starten“ den Importvorgang starten.</value>
+  </data>
+  <data name="Catalog_Add_New_File" xml:space="preserve">
+    <value>Neue Datei hinzufügen</value>
+  </data>
+  <data name="Catalog_Upload_File" xml:space="preserve">
+    <value>Datei hochladen</value>
+  </data>
+  <data name="Catalog_Uploaded_File" xml:space="preserve">
+    <value>Hochgeladene Datei</value>
+  </data>
+  <data name="Catalog_Upload_Wait" xml:space="preserve">
+    <value>Bitte warten, das Hochladen beginnt gleich.</value>
+  </data>
+  <data name="Catalog_Upload_Info" xml:space="preserve">
+    <value>Die Datei wird hochgeladen. Bitte warten.</value>
+  </data>
+  <data name="Catalog_Import_Files_Available" xml:space="preserve">
+    <value>Importierbare Dateien verfügbar</value>
+  </data>
+  <data name="Catalog_Choose_Mapping_File" xml:space="preserve">
+    <value>Zuordnungsdatei wählen.</value>
+  </data>
+  <data name="Catalog_Choose_Catalog" xml:space="preserve">
+    <value>Katalog für Import wählen.</value>
+  </data>
+  <data name="Catalog_Edit_Existing_Mapping_File" xml:space="preserve">
+    <value>Bestehende Zuordnungsdatei bearbeiten.</value>
+  </data>
+  <data name="Catalog_Load_Mapping_File" xml:space="preserve">
+    <value>Zuordnungsdatei laden.</value>
+  </data>
+  <data name="Catalog_MetaClass_Language" xml:space="preserve">
+    <value>Metaklasse, Sprache</value>
+  </data>
+  <data name="Catalog_Mapping_Type" xml:space="preserve">
+    <value>Zuordnungstypen</value>
+  </data>
+  <data name="Meta_Class" xml:space="preserve">
+    <value>Metaklasse</value>
+  </data>
+  <data name="Catalog_Data_File_CSV_Adjustment" xml:space="preserve">
+    <value>Datendatei und CSV-Anpassung</value>
+  </data>
+  <data name="Catalog_Data_File" xml:space="preserve">
+    <value>Datendatei</value>
+  </data>
+  <data name="Catalog_Text_Qualifier" xml:space="preserve">
+    <value>Textqualifizierer</value>
+  </data>
+  <data name="Catalog_Save_Mapping_File" xml:space="preserve">
+    <value>Zuordnungsdatei speichern.</value>
+  </data>
+  <data name="Catalog_Enter_File_Name" xml:space="preserve">
+    <value>Dateinamen eingeben.</value>
+  </data>
+  <data name="Catalog_About_To_Export" xml:space="preserve">
+    <value>Sie sind dabei, einen Katalog zu exportieren.</value>
+  </data>
+  <data name="Catalog_Click_Button_To_Start" xml:space="preserve">
+    <value>Zum Bearbeiten auf das Symbol klicken.</value>
+  </data>
+  <data name="Catalog_Exported_Files" xml:space="preserve">
+    <value>Exportierte Dateilisten</value>
+  </data>
+  <data name="Catalog_Exporting_Catalog" xml:space="preserve">
+    <value>Exportiere Katalog</value>
+  </data>
+  <data name="Catalog_Base_Weight" xml:space="preserve">
+    <value>Basisgewicht</value>
+  </data>
+  <data name="Catalog_Base_Length" xml:space="preserve">
+    <value>Basislänge</value>
+  </data>
+  <data name="Catalog_Default_Currency" xml:space="preserve">
+    <value>Standardwährung</value>
+  </data>
+  <data name="Catalog_Default_Language" xml:space="preserve">
+    <value>Standardsprache</value>
+  </data>
+  <data name="Catalog_In_Kilograms" xml:space="preserve">
+    <value>in kg</value>
+  </data>
+  <data name="Catalog_In_Pounds" xml:space="preserve">
+    <value>in Pfund</value>
+  </data>
+  <data name="Catalog_In_Centimeters" xml:space="preserve">
+    <value>in cm</value>
+  </data>
+  <data name="Catalog_In_Inches" xml:space="preserve">
+    <value>in Zoll</value>
+  </data>
+  <data name="Catalog_Catalog_Name" xml:space="preserve">
+    <value>Katalogname</value>
+  </data>
+  <data name="Catalog_Name_Description" xml:space="preserve">
+    <value>Katalogname Beschreibung</value>
+  </data>
+  <data name="Catalog_Other_Languages" xml:space="preserve">
+    <value>Andere Sprachen</value>
+  </data>
+  <data name="Catalog_Select_Primary_Currency" xml:space="preserve">
+    <value>Primäre Währung wählen</value>
+  </data>
+  <data name="Catalog_Select_Primary_Language" xml:space="preserve">
+    <value>Primäre Sprache wählen</value>
+  </data>
+  <data name="Catalog_Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Ein Katalogname muss angegeben werden.</value>
+  </data>
+  <data name="Catalog_Default_Language_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Eine Standardsprache muss angegeben werden.</value>
+  </data>
+  <data name="Currency_Name" xml:space="preserve">
+    <value>Währung</value>
+  </data>
+  <data name="Currency_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Eine Währung muss angegeben werden.</value>
+  </data>
+  <data name="Currency_With_Code_Exists" xml:space="preserve">
+    <value>Eine Währung mit dem angegebenen Code ist bereits vorhanden.</value>
+  </data>
+  <data name="Entry_Enter_Association_Name" xml:space="preserve">
+    <value>Verknüpfungsnamen eingeben.</value>
+  </data>
+  <data name="Entry_Association_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Ein Verknüpfungsname muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Enter_Association_Description" xml:space="preserve">
+    <value>Verknüpfungsbeschreibung eingeben.</value>
+  </data>
+  <data name="Entry_Enter_Association_Sort_Order" xml:space="preserve">
+    <value>Sortierreihenfolge angeben.</value>
+  </data>
+  <data name="Entry_Association_Sort_Order_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Ein Verknüpfungs-Sortierbefehl muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Save_Changes" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
+  <data name="Entry_Cancel_Changes" xml:space="preserve">
+    <value>Änderungen verwerfen</value>
+  </data>
+  <data name="Entry_Modify_Existing_Association" xml:space="preserve">
+    <value>Bestehende Verknüpfung ändern</value>
+  </data>
+  <data name="Catalog_Edit_Details" xml:space="preserve">
+    <value>Details bearbeiten</value>
+  </data>
+  <data name="Entry_Modify_Association" xml:space="preserve">
+    <value>Verknüpfung ändern</value>
+  </data>
+  <data name="Entry_Pick_Item" xml:space="preserve">
+    <value>Element wählen</value>
+  </data>
+  <data name="Entry_Add_Item" xml:space="preserve">
+    <value>Element hinzufügen</value>
+  </data>
+  <data name="Catalog_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Ein Name muss angegeben werden.</value>
+  </data>
+  <data name="Select_Display_Template" xml:space="preserve">
+    <value>Anzeigevorlage auswählen.</value>
+  </data>
+  <data name="Entry_Code_Exists" xml:space="preserve">
+    <value>Ein Eintag mit dem angegebenen Code ist bereits vorhanden.</value>
+  </data>
+  <data name="Catalog_Invalid_SortOrder_Value" xml:space="preserve">
+    <value>Ungültiger Wert für Sortierreihenfolge</value>
+  </data>
+  <data name="Entry_Sort_Order" xml:space="preserve">
+    <value>Sortierreihenfolge für Katalogeintrag.</value>
+  </data>
+  <data name="Entry_Display_Price" xml:space="preserve">
+    <value>Preis anzeigen</value>
+  </data>
+  <data name="Entry_Price_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Ein Preis muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Display_Price" xml:space="preserve">
+    <value>Geben Sie einen gültigen Anzeigepreis ein.</value>
+  </data>
+  <data name="Entry_In_Stock" xml:space="preserve">
+    <value>Am Lager</value>
+  </data>
+  <data name="Entry_In_Stock_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Bestandsmenge ist erforderlich.</value>
+  </data>
+  <data name="Entry_Enter_Valid_Quantity" xml:space="preserve">
+    <value>Geben Sie eine gültige Nummer ein.</value>
+  </data>
+  <data name="Entry_Min_Quantity" xml:space="preserve">
+    <value>Min. Menge</value>
+  </data>
+  <data name="Entry_Min_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Mindestmenge ist erforderlich.</value>
+  </data>
+  <data name="Entry_Reserved_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Reservierte Menge ist erforderlich.</value>
+  </data>
+  <data name="Entry_Max_Quantity" xml:space="preserve">
+    <value>Max. Menge</value>
+  </data>
+  <data name="Entry_Max_Quantity_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Max. Menge ist erforderlich.</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty" xml:space="preserve">
+    <value>Mind.-Menge bei Nachbestellung</value>
+  </data>
+  <data name="Entry_Reorder_Min_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Mindestmenge bei Nachbestellung ist erforderlich.</value>
+  </data>
+  <data name="Entry_Merchant" xml:space="preserve">
+    <value>Händler</value>
+  </data>
+  <data name="Entry_Select_Merchant" xml:space="preserve">
+    <value>Händler wählen</value>
+  </data>
+  <data name="Entry_Weight_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Gewicht muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Height_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Höhe muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Length_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Länge muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Width_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Breite muss angegeben werden.</value>
+  </data>
+  <data name="Entry_Preorder_Qty" xml:space="preserve">
+    <value>Vorbestellmenge</value>
+  </data>
+  <data name="Entry_Preorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Eine Vorbestellmenge ist erforderlich.</value>
+  </data>
+  <data name="Entry_Select_Package" xml:space="preserve">
+    <value>Paket auswählen</value>
+  </data>
+  <data name="Entry_Preorder_Available" xml:space="preserve">
+    <value>Vorbestellungsverfüg.</value>
+  </data>
+  <data name="Entry_Tax_Category" xml:space="preserve">
+    <value>Steuerkategorie</value>
+  </data>
+  <data name="Entry_Select_Tax_Category" xml:space="preserve">
+    <value>Steuerkategorie auswählen</value>
+  </data>
+  <data name="Entry_Select_Warehouse" xml:space="preserve">
+    <value>Lager auswählen</value>
+  </data>
+  <data name="Entry_Backorder_Qty" xml:space="preserve">
+    <value>Rückstandsmenge</value>
+  </data>
+  <data name="Entry_Backorder_Qty_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Eine Rückstandsmenge ist erforderlich.</value>
+  </data>
+  <data name="Entry_Track_Inventory" xml:space="preserve">
+    <value>Bestand verfolgen</value>
+  </data>
+  <data name="Entry_Backorder_Available" xml:space="preserve">
+    <value>Rückstandsverfüg.</value>
+  </data>
+  <data name="Entry_Inventory_Status" xml:space="preserve">
+    <value>Bestandsstatus</value>
+  </data>
+  <data name="Entry_Pricing" xml:space="preserve">
+    <value>Preisgestaltung</value>
+  </data>
+  <data name="Entry_Find_Item" xml:space="preserve">
+    <value>Element suchen</value>
+  </data>
+  <data name="Item_Group_Name" xml:space="preserve">
+    <value>Gruppenname</value>
+  </data>
+  <data name="Node_Name_Description" xml:space="preserve">
+    <value>Katalogknoten Name Beschreibung</value>
+  </data>
+  <data name="Catalog_Node_With_Code_Exists" xml:space="preserve">
+    <value>Ein Knoten mit dem angegebenen Code ist bereits vorhanden.</value>
+  </data>
+  <data name="Sale_Type" xml:space="preserve">
+    <value>Verkaufstyp</value>
+  </data>
+  <data name="Sale_Unit_Price" xml:space="preserve">
+    <value>Stückpreis</value>
+  </data>
+  <data name="Catalog_Main_Adjustment" xml:space="preserve">
+    <value>Zentrale Einstellung</value>
+  </data>
+  <data name="Catalog_Entry_Type" xml:space="preserve">
+    <value>Eintragstyp</value>
+  </data>
+  <data name="Catalog_All_Types" xml:space="preserve">
+    <value>alle Typen</value>
+  </data>
+  <data name="Catalog_Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="Catalog_Variation_Sku" xml:space="preserve">
+    <value>Variante/SKU</value>
+  </data>
+  <data name="Catalog_Bundle" xml:space="preserve">
+    <value>Bundle</value>
+  </data>
+  <data name="Catalog_Dynamic_Package" xml:space="preserve">
+    <value>Dynamisches Paket</value>
+  </data>
+  <data name="Catalog_Additional_Filters" xml:space="preserve">
+    <value>Zusätzliche Filter</value>
+  </data>
+  <data name="Catalog_Catalog_Category" xml:space="preserve">
+    <value>Katalog/Kategorie</value>
+  </data>
+  <data name="Catalog_Keyword" xml:space="preserve">
+    <value>Stichwörter</value>
+  </data>
+  <data name="Catalog_Apply_Filter" xml:space="preserve">
+    <value>Filter anwenden</value>
+  </data>
+  <data name="Catalog_Fix_The_Following_Problems" xml:space="preserve">
+    <value>Bitte folgende Probleme beheben, anderenfalls können die Änderungen nicht gespeichert werden.</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Updated_Successfully" xml:space="preserve">
+    <value>Katalogeintrag wurde erfolgreich aktualisiert.</value>
+  </data>
+  <data name="Catalog_Catalog_Node_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Änderungen am Katalogknoten wurden verworfen.</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Changes_Has_Been_Discarded" xml:space="preserve">
+    <value>Änderungen am Katalogeintrag wurden verworfen.</value>
+  </data>
+  <data name="Catalog_Search_By_Keyword" xml:space="preserve">
+    <value>Stichwortsuche</value>
+  </data>
+  <data name="Catalog_Filter_By_Language" xml:space="preserve">
+    <value>Filtern nach Sprache</value>
+  </data>
+  <data name="Catalog_Filter_By_Catalog" xml:space="preserve">
+    <value>Filtern nach Katalog(en)</value>
+  </data>
+  <data name="Catalog_Search_By_Code_Id" xml:space="preserve">
+    <value>Suche nach Code/ID</value>
+  </data>
+  <data name="Tax_Category_Name" xml:space="preserve">
+    <value>Steuerkategoriename</value>
+  </data>
+  <data name="Entry_Wrong_Value_Enter_Valid_Integer" xml:space="preserve">
+    <value>&lt;b&gt;Falscher Wert&lt;/b&gt;&lt;br/&gt;Bitte gültige ganze Zahl eingeben.</value>
+  </data>
+  <data name="Catalog_Batch_Update" xml:space="preserve">
+    <value>Katalog-Stapelaktualisierung</value>
+  </data>
+  <data name="Catalog_CSV_Import_Catalog" xml:space="preserve">
+    <value>CSV-Import Katalog</value>
+  </data>
+  <data name="Catalog_Entry_Search" xml:space="preserve">
+    <value>Suche Katalogeintrag</value>
+  </data>
+  <data name="Catalog_Export_Catalog" xml:space="preserve">
+    <value>Katalog exportieren</value>
+  </data>
+  <data name="Catalog_Import_Catalog" xml:space="preserve">
+    <value>Katalog importieren</value>
+  </data>
+  <data name="Catalog_List" xml:space="preserve">
+    <value>Katalogliste</value>
+  </data>
+  <data name="Catalog_Management" xml:space="preserve">
+    <value>Katalogverwaltung</value>
+  </data>
+  <data name="Catalog_Move_Link_To_Folder" xml:space="preserve">
+    <value>Verschieben in/Verweisen auf Ordner</value>
+  </data>
+  <data name="Catalog_New_Bundle" xml:space="preserve">
+    <value>Neues Bundle</value>
+  </data>
+  <data name="Catalog_New_Catalog" xml:space="preserve">
+    <value>Neuer Katalog</value>
+  </data>
+  <data name="Catalog_New_Category_Node" xml:space="preserve">
+    <value>Neue Kategorie/neuer Knoten</value>
+  </data>
+  <data name="Catalog_New_Dynamic_Package" xml:space="preserve">
+    <value>Neues dynamisches Paket</value>
+  </data>
+  <data name="Catalog_New_Package" xml:space="preserve">
+    <value>Neues Paket</value>
+  </data>
+  <data name="Catalog_New_Product" xml:space="preserve">
+    <value>Neues Produkt</value>
+  </data>
+  <data name="Catalog_New_Variation_Sku" xml:space="preserve">
+    <value>Neue Variante/SKU</value>
+  </data>
+  <data name="Catalog_System" xml:space="preserve">
+    <value>Katalogsystem</value>
+  </data>
+  <data name="Currency_New_Currency" xml:space="preserve">
+    <value>Neue Währung</value>
+  </data>
+  <data name="MetaClass_Export_MetaData" xml:space="preserve">
+    <value>Metadaten exportieren</value>
+  </data>
+  <data name="MetaClass_Import_MetaData" xml:space="preserve">
+    <value>Metadaten importieren</value>
+  </data>
+  <data name="MetaClass_New_Meta_Class" xml:space="preserve">
+    <value>Neue Metaklasse</value>
+  </data>
+  <data name="MetaField_New_Meta_Field" xml:space="preserve">
+    <value>Neues Metafeld</value>
+  </data>
+  <data name="Meta_Classes" xml:space="preserve">
+    <value>Metaklassen</value>
+  </data>
+  <data name="Meta_Fields" xml:space="preserve">
+    <value>Metafelder</value>
+  </data>
+  <data name="Tax_Categories" xml:space="preserve">
+    <value>Steuerkategorien</value>
+  </data>
+  <data name="Meta_Data" xml:space="preserve">
+    <value>Metadaten</value>
+  </data>
+  <data name="Catalog_Associations" xml:space="preserve">
+    <value>Verknüpfungen</value>
+  </data>
+  <data name="Catalog_Association_Id" xml:space="preserve">
+    <value>Katalogverknüpfungs-ID</value>
+  </data>
+  <data name="Catalog_Catalog_Batch_Update" xml:space="preserve">
+    <value>Stapelaktualisierung</value>
+  </data>
+  <data name="Catalog_Catalog_Edit" xml:space="preserve">
+    <value>Katalog bearbeiten</value>
+  </data>
+  <data name="Catalog_Catalog_Entry_Search" xml:space="preserve">
+    <value>Eintrag suchen</value>
+  </data>
+  <data name="Catalog_Catalog_List" xml:space="preserve">
+    <value>Katalogliste</value>
+  </data>
+  <data name="Catalog_Edit_Command" xml:space="preserve">
+    <value>Befehl bearbeiten</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price" xml:space="preserve">
+    <value>Eintrag Verkaufspreis</value>
+  </data>
+  <data name="Catalog_Node_Edit" xml:space="preserve">
+    <value>Katalogknoten bearbeiten</value>
+  </data>
+  <data name="Catalog_Product_Edit" xml:space="preserve">
+    <value>Produkt bearbeiten</value>
+  </data>
+  <data name="Catalog_Variations_SKUs" xml:space="preserve">
+    <value>Varianten/SKU</value>
+  </data>
+  <data name="Warehouse_Edit" xml:space="preserve">
+    <value>Lager bearbeiten</value>
+  </data>
+  <data name="Warehouse_List" xml:space="preserve">
+    <value>Lagerliste</value>
+  </data>
+  <data name="Entry_Bundle_Items" xml:space="preserve">
+    <value>Bundle-Elemente</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Edit" xml:space="preserve">
+    <value>Produkt dynamisches Paket bearbeiten</value>
+  </data>
+  <data name="Entry_Id" xml:space="preserve">
+    <value>Eintrags-ID</value>
+  </data>
+  <data name="Entry_Item_Code" xml:space="preserve">
+    <value>Element Code</value>
+  </data>
+  <data name="Entry_Package_Items" xml:space="preserve">
+    <value>Paketelemente</value>
+  </data>
+  <data name="Entry_Pricing_Inventory" xml:space="preserve">
+    <value>Preisgestaltung</value>
+  </data>
+  <data name="Entry_Product_Bundle_Edit" xml:space="preserve">
+    <value>Produkt-Bundle bearbeiten</value>
+  </data>
+  <data name="Entry_Product_Package_Edit" xml:space="preserve">
+    <value>Produkt-Paket bearbeiten</value>
+  </data>
+  <data name="Entry_Sale_Price_Id" xml:space="preserve">
+    <value>Verkaufspreis-ID</value>
+  </data>
+  <data name="Entry_Sale_Type" xml:space="preserve">
+    <value>Verkaufstyp</value>
+  </data>
+  <data name="Entry_Variation_SKU_Edit" xml:space="preserve">
+    <value>Variante/SKU bearbeiten</value>
+  </data>
+  <data name="Product_Associations" xml:space="preserve">
+    <value>Produktverknüpfungen</value>
+  </data>
+  <data name="Catalog_CSV_Import" xml:space="preserve">
+    <value>CSV-Import</value>
+  </data>
+  <data name="Catalog_Entry_Association_View" xml:space="preserve">
+    <value>Katalogeintrag Verknüpfung anzeigen - Eintragsverknüpfung</value>
+  </data>
+  <data name="Catalog_Entry_Sale_Price_View" xml:space="preserve">
+    <value>Katalogeintrag anzeigen - Verkaufspreis</value>
+  </data>
+  <data name="Catalog_Mapping_File" xml:space="preserve">
+    <value>Zuordnungsdatei</value>
+  </data>
+  <data name="Catalog_Move_Copy_To_Folder" xml:space="preserve">
+    <value>In Ordner verschieben/kopieren</value>
+  </data>
+  <data name="Catalog_Node_List" xml:space="preserve">
+    <value>Knotenliste</value>
+  </data>
+  <data name="Currency_Edit" xml:space="preserve">
+    <value>Währung bearbeiten</value>
+  </data>
+  <data name="Meta_Class_Edit" xml:space="preserve">
+    <value>Metaklasse bearbeiten</value>
+  </data>
+  <data name="Tax_Categories_List" xml:space="preserve">
+    <value>Steuerkategorienliste</value>
+  </data>
+  <data name="Tax_Category_Edit" xml:space="preserve">
+    <value>Steuerkategorie bearbeiten</value>
+  </data>
+  <data name="Currency_Add_Rate" xml:space="preserve">
+    <value>Kurs hinzufügen</value>
+  </data>
+  <data name="Catalog_Edit_Currency_Rate" xml:space="preserve">
+    <value>Wechselkurs bearbeiten</value>
+  </data>
+  <data name="Currency_CurrencyRateId" xml:space="preserve">
+    <value>Wechselkurs-ID</value>
+  </data>
+  <data name="Currency_Rates" xml:space="preserve">
+    <value>Wechselkurse</value>
+  </data>
+  <data name="Currency_ToCurrencyId" xml:space="preserve">
+    <value>Zielwährungs-ID</value>
+  </data>
+  <data name="Currency_Average_Rate" xml:space="preserve">
+    <value>Durchschnittskurs</value>
+  </data>
+  <data name="Currency_End_Of_Day_Rate" xml:space="preserve">
+    <value>Tagesendkurs</value>
+  </data>
+  <data name="Currency_From" xml:space="preserve">
+    <value>Ausgangswährung</value>
+  </data>
+  <data name="Currency_Rate_Date" xml:space="preserve">
+    <value>Wechselkurs Datum</value>
+  </data>
+  <data name="Currency_To" xml:space="preserve">
+    <value>Zielwährung</value>
+  </data>
+  <data name="Warehouse_Code_AlreadyExists" xml:space="preserve">
+    <value>Ein Lager mit dem angegebenen Code ist bereits vorhanden.</value>
+  </data>
+  <data name="Warehouse_Name_AlreadyExists" xml:space="preserve">
+    <value>Ein Lager mit dem angegebenen Namen ist bereits vorhanden.</value>
+  </data>
+  <data name="Tax_Category_With_Name_Exists" xml:space="preserve">
+    <value>Eine Kategorie mit dem angegebenen Namen ist bereits vorhanden.</value>
+  </data>
+  <data name="Catalog_With_Name_AlreadyExists" xml:space="preserve">
+    <value>Ein Katalog mit dem angegebenen Namen ist bereits vorhanden.</value>
+  </data>
+  <data name="Catalog_Default_Currency_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliches Feld fehlt&lt;/b&gt;&lt;br/&gt;Eine Standardwährung muss angegeben werden.</value>
+  </data>
+  <data name="Catalog_Found_Entries" xml:space="preserve">
+    <value>Gefundene Einträge</value>
+  </data>
+  <data name="Catalog_Save_Selection" xml:space="preserve">
+    <value>Auswahl speichern</value>
+  </data>
+  <data name="Catalog_Selected_Entries" xml:space="preserve">
+    <value>Ausgewählte Einträge</value>
+  </data>
+  <data name="SecurityScope" xml:space="preserve">
+    <value>Katalogeigentümer</value>
+  </data>
+  <data name="Entry_Min_Quantity_Greather_That_Max" xml:space="preserve">
+    <value>Die Mindestmenge darf nicht höher als die Höchstmenge sein.</value>
+  </data>
+  <data name="Catalog_Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Address_Required" xml:space="preserve">
+    <value>&lt;b&gt;Erforderliche Felder fehlen&lt;/b&gt;&lt;br/&gt;Adresse ist erforderlich.</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Währungen</value>
+  </data>
+  <data name="Add_Association" xml:space="preserve">
+    <value>Verknüpfung hinzufügen</value>
+  </data>
+  <data name="Catalog_Found_Catalog_Entries" xml:space="preserve">
+    <value>Katalogeinträge gefunden</value>
+  </data>
+  <data name="Catalog_Selected_Catalog_Entries" xml:space="preserve">
+    <value>Gewählte Katalogeinträge</value>
+  </data>
+  <data name="New_Sale_Price_Information" xml:space="preserve">
+    <value>Neue Verkaufspreisinformation hinzufügen</value>
+  </data>
+  <data name="Edit_Sale_Price_Information" xml:space="preserve">
+    <value>Verkaufspreisinformation bearbeiten</value>
+  </data>
+  <data name="Select_Catalog_Entries" xml:space="preserve">
+    <value>Katalogeinträge wählen</value>
+  </data>
+  <data name="Catalog_Catalog_Name_TooLong" xml:space="preserve">
+    <value>&lt;b&gt;Ungültiges Feld&lt;/b&gt;&lt;br/&gt;Der Name darf nicht mehr als 100 Zeichen umfassen.</value>
+  </data>
+  <data name="Entry_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Entry_Quantity" xml:space="preserve">
+    <value>Menge</value>
+  </data>
+  <data name="Entry_AvailableFrom_Too_Late" xml:space="preserve">
+    <value>Das gewählte Datum muss vor dem Ablaufdatum liegen.</value>
+  </data>
+  <data name="Entry_ExpiresOn_Too_Early" xml:space="preserve">
+    <value>Das gewählte Datum liegt vor dem Startdatum.</value>
+  </data>
+  <data name="Entry_Dynamic_Package_Items" xml:space="preserve">
+    <value>Dynamische Paketelemente</value>
+  </data>
+  <data name="Currency_Code_Only_Allow_Characters" xml:space="preserve">
+    <value>Nur Buchstaben erlaubt</value>
+  </data>
+  <data name="Warehouse_Delete_Error_ExistsProcessingShipment" xml:space="preserve">
+    <value>Lager können nicht gelöscht werden, da Versandvorgänge verarbeitet werden. </value>
+  </data>
+  <data name="Warehouse_Code_Invalid" xml:space="preserve">
+    <value>Ein Lagercode muss Buchstaben und Ziffern enthalten und weniger als 50 Zeichen umfassen.</value>
+  </data>
+  <data name="Warehouse_Name_Invalid" xml:space="preserve">
+    <value>Ein Lagername muss Buchstaben und Ziffern enthalten und weniger als 255 Zeichen umfassen.</value>
+  </data>
+  <data name="Entry_Market" xml:space="preserve">
+    <value>Märkte</value>
+  </data>
+  <data name="Warehouse_Inventory" xml:space="preserve">
+    <value>Lagerbestand</value>
+  </data>
+  <data name="Entry_Market_Available" xml:space="preserve">
+    <value>Einträge in Märkten verfügbar</value>
+  </data>
+  <data name="Entry_Market_Unavailable" xml:space="preserve">
+    <value>Einträge in Märkten nicht verfügbar</value>
+  </data>
+  <data name="Filename_Exist" xml:space="preserve">
+    <value>Der Dateiname ist bereits vorhanden.</value>
+  </data>
+  <data name="List_Inactive_Markets" xml:space="preserve">
+    <value>Liste inaktiver Märkte</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation" xml:space="preserve">
+    <value>Ist Lieferort</value>
+  </data>
+  <data name="Warehouse_IsDeliveryLocation_Description" xml:space="preserve">
+    <value>Store kann als Lieferort verwendet werden (z.B. für künftige In-store Pickups).</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter" xml:space="preserve">
+    <value>Ist Erfüllungszentrum</value>
+  </data>
+  <data name="Warehouse_IsFulfillmentCenter_Description" xml:space="preserve">
+    <value>Bestellungen können von diesem Lager für abgehende Sendungen aufgegeben werden.</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation" xml:space="preserve">
+    <value>Ist Pickup-Ort</value>
+  </data>
+  <data name="Warehouse_IsPickupLocation_Description" xml:space="preserve">
+    <value>Bestellungen können von diesem Store für In-store Pickups aufgegeben werden.</value>
+  </data>
+  <data name="Upload_CSV_Files" xml:space="preserve">
+    <value>CSV-Dateien hochladen:</value>
+  </data>
+  <data name="Upload_XML_Files" xml:space="preserve">
+    <value>XML-Dateien hochladen:</value>
+  </data>
+  <data name="Upload_File_Error" xml:space="preserve">
+    <value>Vorbedingung fehlgeschlagen:  Ausgewählte Datei entspricht nicht dem erforderlichen Typ.</value>
+  </data>
+  <data name="Upload_Zip_Files" xml:space="preserve">
+    <value>ZIP-Dateien hochladen:</value>
+  </data>
+  <data name="Catalog_Language_Warning" xml:space="preserve">
+    <value>Gewählte/aktivierte Sprachen müssen den in CMS Admin-Ansicht unter Config und Webseiten-Sprachen verwalten aktivierten Sprachen entsprechen. Mit STRG + Klicken mehrere Sprachen wählen.</value>
+  </data>
+  <data name="Entry_Inventory_ReservedQty_Invalid" xml:space="preserve">
+    <value>Reservierte Menge darf nicht größer als Bestandsmenge sein.</value>
+  </data>
+  <data name="Delete_Versions_Warning" xml:space="preserve">
+    <value>Achtung! Bei Aktualisierung dieses Elements durch den Commerce Manager werden alle vorherigen oder offenen Fassungen überschrieben. Solche Fassungen können auch durch andere Schnittstellen erstellt worden sein.</value>
+  </data>
+</root>

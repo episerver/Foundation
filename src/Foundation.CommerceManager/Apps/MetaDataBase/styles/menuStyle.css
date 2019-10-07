@@ -1,0 +1,56 @@
+.TopGroup
+{
+  background-color:#DBD7D0; 
+  border:solid 1px gray; 
+  cursor:default; 
+}
+
+.MenuGroup
+{
+  background-image:url(../../images/background.gif);
+  background-color:#F9F8F7;
+  border:solid 1px #7E7E81; 
+  cursor:default; 
+}
+
+.TopMenuItem
+{
+  background-color:#DBD7D0; 
+  color:black; 
+  font-family:MS Sans Serif; 
+  font-size:12px; 
+  border:solid 1px #DBD7D0; 
+  cursor:default; 
+}
+
+.TopMenuItemHover 
+{
+  background-color:#C2C5C8; 
+  color:black; 
+  font-family:MS Sans Serif; 
+  font-size:12px; 
+  border:solid 1px #A6A8B2; 
+  cursor:default; 
+}
+
+.MenuItem
+{
+  font-family:MS Sans Serif; 
+  font-size:9px; 
+  cursor:default; 
+}
+
+.MenuItemHover 
+{
+  background-color:#C2C5C8; 
+  font-family:MS Sans Serif; 
+  font-size:9px; 
+  cursor:default; 
+}
+
+.MenuBreak
+{
+  background-image:url(../../images/break_bg.gif);
+  width:100%;
+  height:1px;
+}

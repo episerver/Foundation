@@ -1,0 +1,14 @@
+﻿.orders-page-filter {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 15px 0;
+
+    > div {
+        margin-right: 10px;
+    }
+
+    > select {
+        width: auto;
+        height: 30px;
+    }
+}

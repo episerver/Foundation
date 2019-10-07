@@ -1,0 +1,65 @@
+﻿.order-confirm {
+    &--invoice__header {
+        &-lg {
+            font-weight: bold;
+            padding-top: 15px;
+            padding-bottom: 15px;
+
+            @media screen and (max-width: 991px) {
+                display: none;
+            }
+
+            @media screen and (min-width: 991px) {
+                display: flex;
+            }
+        }
+
+        &-sm {
+            @media screen and (max-width: 991px) {
+                display: inline-block;
+            }
+
+            @media screen and (min-width: 991px) {
+                display: none;
+            }
+        }
+    }
+
+    &__item {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    &__unit {
+        @media screen and (min-width: 991px) {
+            text-align: right;
+        }
+
+        @media screen and (max-width: 991px) {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__unit-group {
+        @media screen and (max-width: 991px) {
+            text-align: right;
+        }
+    }
+
+    &__invoice {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 100%;
+
+        & li {
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eeeeee;
+        }
+    }
+}

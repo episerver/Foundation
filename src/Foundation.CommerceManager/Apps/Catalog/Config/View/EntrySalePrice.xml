@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <ListViewUI>
+    <Grid>
+      <add>
+        <Columns>
+          <Column isDefault="true" headingText="{CatalogStrings:Catalog_Edit_Command}"
+                  dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="100" align="Center" />
+          <Column isDefault="true" visible="false" isSearchable="true" allowSorting="false" dataField="PriceValueId"
+                  headingText="Price Grid Row ID" />
+          <Column dataCellServerTemplateId="MarketTemplate" width="150" visible="true" allowSorting="false"
+                  dataField="MarketId.Value" headingText="Market">
+            <Template id="MarketTemplate" controlUrl="~/Apps/Catalog/GridTemplates/MarketTemplate.ascx" />
+          </Column>
+          <Column isDefault="true" visible="false" isSearchable="true" allowSorting="false"
+                  dataField="CatalogKey.CatalogEntryCode" headingText="{CatalogStrings:Entry_Item_Code}" />
+          <Column dataCellServerTemplateId="SaleTypeTemplate" width="150" visible="true" allowSorting="false"
+                  dataField="CustomerPricing.PriceTypeId" headingText="{CatalogStrings:Entry_Sale_Type}">
+            <Template id="SaleTypeTemplate" controlUrl="~/Apps/Catalog/GridTemplates/SaleTypeTemplate.ascx" />
+          </Column>
+          <Column isDefault="true" width="120" visible="true" isSearchable="true" allowSorting="false"
+                  dataField="CustomerPricing.PriceCode" headingText="{SharedStrings:Sale_Code}" />
+          <Column dataCellServerTemplateId="CurrencyTemplate" width="70" visible="true" isSearchable="true"
+                  allowSorting="false" dataField="UnitPrice.Currency.CurrencyCode"
+                  headingText="{SharedStrings:Currency}">
+            <Template id="CurrencyTemplate" controlUrl="~/Apps/Catalog/GridTemplates/CurrencyTemplate.ascx" />
+          </Column>
+          <Column isDefault="true" width="100" visible="true" isSearchable="true" allowSorting="false"
+                  dataField="UnitPrice.Amount" headingText="{SharedStrings:Price}" formatString="#0.00" />
+          <Column isDefault="true" width="90" visible="true" isSearchable="true" allowSorting="false"
+                  dataField="MinQuantity" headingText="{CatalogStrings:Entry_Min_Quantity}" />
+          <Column dataCellServerTemplateId="DateTimeTemplate" width="140" isSearchable="true" dataField="ValidFrom"
+                  headingText="{SharedStrings:Start_Date}">
+            <Template id="DateTimeTemplate" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx"
+                      DateArgument="ValidFrom" />
+          </Column>
+          <Column dataCellServerTemplateId="DateTimeTemplate2" width="140" isSearchable="true" dataField="ValidUntil"
+                  headingText="{SharedStrings:End_Date}">
+            <Template id="DateTimeTemplate2" controlUrl="~/Apps/Core/Controls/GridTemplates/DateTimeTemplate.ascx"
+                      DateArgument="ValidUntil" />
+          </Column>
+        </Columns>
+      </add>
+    </Grid>
+  </ListViewUI>
+  <ViewConfig>
+    <setAttributes id="EntrySalePrice" controlUrl="" />
+  </ViewConfig>
+</View>

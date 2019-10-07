@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column visible="false" allowSorting="false" dataField="ShippingOptionId" headingText=""></Column>
+					<Column width="50" dataField="ShippingOptionId" headingText="" columnType="Action">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdOrderGridShippingOptionEdit" commandParameters="ShippingOptionId" toolTip="Edit" permissions="order:admin:shipping:providers:mng:edit"></Item>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderGridShippingOptionDelete" commandParameters="ShippingOptionId" toolTip="Delete" permissions="order:admin:shipping:providers:mng:delete"></Item>
+					</Column>
+					<Column width="250" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="ShippingOptionId" dataNavigateUrlFormatString="javascript:CSOrderClient.EditShippingOption('{0}');" dataTextFields="Name" dataTextFormatString="{0}" permissions="order:admin:shipping:providers:mng:edit"></Column>
+					<Column width="150" allowSorting="true" dataField="SystemKeyword" headingText="{SharedStrings:System_Name}"></Column>
+					<Column width="150" columnType="DateTime" allowSorting="true" dataField="Created" headingText="{SharedStrings:Created}"></Column>
+					<Column width="150" columnType="DateTime" allowSorting="true" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="New" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdOrderNewShippingOption" permissions="order:admin:shipping:providers:mng:create"/>
+                <Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderShippingOptionDelete" permissions="order:admin:shipping:providers:mng:delete"/>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdOrderNewShippingOption">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.NewShippingOption()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderShippingOptionDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ShippingOptionDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdOrderGridShippingOptionEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSOrderClient.EditShippingOption2(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderGridShippingOptionDelete">
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.ShippingOptionDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="ShippingOptions-List" controlUrl="Order/Shipping/ShippingOptions.ascx" permissions="order:admin:shipping:providers:mng:view" help="Order+System"></setAttributes>
+	</ViewConfig>
+</View>

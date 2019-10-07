@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column isDefault="true" headingText="{CatalogStrings:Catalog_Edit_Command}" dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="100" align="Center"/>
+					<Column isDefault="true" allowEditing="false" width="30" isSearchable="true" allowSorting="true" dataField="ID" headingText="{SharedStrings:ID}"></Column>
+          <Column dataField="Name" visible="false" allowEditing="false" />
+          <Column dataField="Type" visible="false" allowEditing="false" />
+          <Column isDefault="true" headingText="{SharedStrings:Name}" dataCellClientTemplateId="RelatedItemLinkTemplate" allowEditing="false" isSearchable="true" allowSorting="true" align="Left" />
+          <Column isDefault="true" width="80" dataField="Quantity" headingText="{SharedStrings:Qty}"></Column>
+					<Column isDefault="true" width="80" dataField="GroupName" headingText="{SharedStrings:Group}"></Column>
+					<Column isDefault="true" width="100" dataField="SortOrder" headingText="{SharedStrings:Sort_Order}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="DynamicPackage-Edit" controlUrl="catalog/CatalogEntryEdit.ascx" permissions="catalog:ctlg:entries:mng:edit" help="Catalog+Management"></setAttributes>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="catalog/tabs/EntryOverviewEditTab.ascx"></Tab>
+        <Tab name="{CatalogStrings:Entry_Market}" controlUrl="catalog/tabs/EntryMarketEditTab.ascx"></Tab>
+        <Tab name="{CatalogStrings:Entry_Package_Items}" controlUrl="catalog/tabs/EntryBundleItemsEditTab.ascx"></Tab>
+				<Tab name="{SharedStrings:SEO}" controlUrl="catalog/tabs/EntrySeoTab.ascx"></Tab>
+				<Tab name="{CatalogStrings:Product_Associations}" controlUrl="catalog/tabs/EntryAssociationEditTab.ascx"></Tab>
+				<Tab name="{SharedStrings:Product_Relations_Tab_Label}" controlUrl="catalog/tabs/EditProductRelationTab.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

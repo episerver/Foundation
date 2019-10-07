@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Layout>
+	<add>
+		<Block id="Block_1">
+			<Placeholder id="Block_1.Placeholder_1" />
+			<Placeholder id="Block_1.Placeholder_2" />
+			<Placeholder id="Block_1.Placeholder_3" />
+			<Placeholder id="Block_1.Placeholder_4" />
+		</Block>
+	</add>
+</Layout>

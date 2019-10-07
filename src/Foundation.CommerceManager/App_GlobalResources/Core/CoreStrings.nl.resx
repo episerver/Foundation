@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Progress_Indicator" xml:space="preserve">
+    <value>Vooruitgangsindicator</value>
+  </data>
+  <data name="LogExport_All_Logs_Export" xml:space="preserve">
+    <value>Alle logs exporteren</value>
+  </data>
+  <data name="LogExport_View_Logs_Export" xml:space="preserve">
+    <value>Logexport bekijken</value>
+  </data>
+  <data name="LogExport_Current_Page_Logs_Export" xml:space="preserve">
+    <value>Huidige export van paginalogs</value>
+  </data>
+  <data name="Search_Rebuild_Index" xml:space="preserve">
+    <value>Index opnieuw maken</value>
+  </data>
+  <data name="Search_Build_Index" xml:space="preserve">
+    <value>Index maken</value>
+  </data>
+  <data name="CommonSettings_Language_Description" xml:space="preserve">
+    <value>Taal die standaard geselecteerd wordt in keuzelijsten, enz.</value>
+  </data>
+  <data name="CommonSettings_Currency_Description" xml:space="preserve">
+    <value>Munteenheid die gebruikt wordt in gevallen waar de munteenheid noodzakelijk, maar niet gespecificeerd is</value>
+  </data>
+  <data name="CommonSettings_Length_Unit_Description" xml:space="preserve">
+    <value>Standaard lengte-eenheid</value>
+  </data>
+  <data name="CommonSettings_Weight_Unit_Description" xml:space="preserve">
+    <value>Standaard gewichtseenheid</value>
+  </data>
+  <data name="License_Activated" xml:space="preserve">
+    <value>Geactiveerd</value>
+  </data>
+  <data name="License_Expires" xml:space="preserve">
+    <value>Verloopt</value>
+  </data>
+  <data name="License_Installation" xml:space="preserve">
+    <value>Licentie-installatie</value>
+  </data>
+  <data name="License_Install_By_Key" xml:space="preserve">
+    <value>Installeren door licentiesleutel</value>
+  </data>
+  <data name="License_Install_File" xml:space="preserve">
+    <value>Licentiebestand (*.lic) installeren</value>
+  </data>
+  <data name="License_Licensed_To" xml:space="preserve">
+    <value>Toegestaan om</value>
+  </data>
+  <data name="Search_Build_Instructions" xml:space="preserve">
+    <value>De zoekindex te maken Deze bewerking zal een index maken voor alle items die bijgewerkt zijn sinds de laatste indexering.</value>
+  </data>
+  <data name="Search_Rebuild_Instructions" xml:space="preserve">
+    <value>De zoekindex opnieuw te maken Met deze bewerking kunt u de index volledig opnieuw maken.</value>
+  </data>
+  <data name="License_Edition" xml:space="preserve">
+    <value>Uitgave</value>
+  </data>
+  <data name="License_Component" xml:space="preserve">
+    <value>Onderdeel</value>
+  </data>
+  <data name="Config_Replication_Controls" xml:space="preserve">
+    <value>Kopieknoppen</value>
+  </data>
+  <data name="Uploader_File_Uploading_Progress" xml:space="preserve">
+    <value>Vooruitgang van het uploaden van het bestand</value>
+  </data>
+  <data name="Uploader_Browse_Instructions" xml:space="preserve">
+    <value>Klik op &lt;b&gt;Bladeren&lt;/b&gt; en selecteer het bestand, of voer het bestandspad in</value>
+  </data>
+  <data name="MetaData_Save_The_File" xml:space="preserve">
+    <value>Het bestand opslaan</value>
+  </data>
+  <data name="MetaData_Start_Import" xml:space="preserve">
+    <value>Import starten</value>
+  </data>
+  <data name="MetaData_Db_Backup_Recommendation" xml:space="preserve">
+    <value>Wij raden u ten zeerste aan een back-up te nemen van uw ECF-database alvorens de import uit te voeren.</value>
+  </data>
+  <data name="MetaData_Import_Instructions" xml:space="preserve">
+    <value>Om metagegevens te importeren, kiest u een bestaand bestand uit het onderstaande rooster of uploadt een nieuw bestand. Klik vervolgens op de knop 'Import starten' om het importeren te starten.</value>
+  </data>
+  <data name="MetaData_Files_Available_For_Import" xml:space="preserve">
+    <value>Beschikbare bestanden voor import</value>
+  </data>
+  <data name="MetaData_Catalog_Meta_Classes" xml:space="preserve">
+    <value>Metaklassen van de catalogus</value>
+  </data>
+  <data name="MetaData_Order_Meta_Classes" xml:space="preserve">
+    <value>Metaklassen van de volgorde</value>
+  </data>
+  <data name="MetaData_Baf_Meta_Classes" xml:space="preserve">
+    <value>Metaklassen van de bedrijfsstichting</value>
+  </data>
+  <data name="MetaData_Store_The_Value" xml:space="preserve">
+    <value>De waarde opslaan</value>
+  </data>
+  <data name="MetaData_Auto_Resize_Image" xml:space="preserve">
+    <value>Grootte van de afbeelding automatisch aanpassen</value>
+  </data>
+  <data name="MetaData_Stretch_Image" xml:space="preserve">
+    <value>Beeld uitstrekken</value>
+  </data>
+  <data name="MetaData_Auto_Create_Thumbnail_Image" xml:space="preserve">
+    <value>Automatisch miniatuurafbeeldingen maken</value>
+  </data>
+  <data name="MetaData_Stretch_Thumbnail_Image" xml:space="preserve">
+    <value>Miniatuurafbeelding uitstrekken</value>
+  </data>
+  <data name="MetaData_Add_Value" xml:space="preserve">
+    <value>Waarde toevoegen</value>
+  </data>
+  <data name="MetaData_Precision_LessThanOrEqual_38" xml:space="preserve">
+    <value>Precisie+schaal moet &amp;lt;= 38 zijn</value>
+  </data>
+  <data name="MetaData_Search_Properties" xml:space="preserve">
+    <value>Zoekeigenschappen</value>
+  </data>
+  <data name="MetaData_Indexing_Option" xml:space="preserve">
+    <value>Indexeringsopties</value>
+  </data>
+  <data name="MetaData_Tokenized" xml:space="preserve">
+    <value>Gesymboliseerd</value>
+  </data>
+  <data name="MetaData_Not_Tokenized" xml:space="preserve">
+    <value>Niet gesymboliseerd</value>
+  </data>
+  <data name="Cycle_No" xml:space="preserve">
+    <value>Geen cyclus</value>
+  </data>
+  <data name="Cycle_Daily" xml:space="preserve">
+    <value>Dagelijkse cyclus</value>
+  </data>
+  <data name="Cycle_Weekly" xml:space="preserve">
+    <value>Wekelijkse cyclus</value>
+  </data>
+  <data name="Cycle_Monthly" xml:space="preserve">
+    <value>Maandelijkse cyclus</value>
+  </data>
+  <data name="Cycle_Yearly" xml:space="preserve">
+    <value>Jaarlijkse cyclus</value>
+  </data>
+  <data name="Cycle_Custom1" xml:space="preserve">
+    <value>Aangepaste1 cyclus</value>
+  </data>
+  <data name="Cycle_Custom2" xml:space="preserve">
+    <value>Aangepaste2 cyclus</value>
+  </data>
+  <data name="MetaData_Error_CreateMetaClass_AlreadyExists" xml:space="preserve">
+    <value>Er bestaat reeds een metaklasse met een dergelijke naam. Probeer een andere naam te gebruiken.</value>
+  </data>
+  <data name="Template_Image" xml:space="preserve">
+    <value>Sjabloonafbeelding</value>
+  </data>
+  <data name="DialogControl_Select_Line_Items" xml:space="preserve">
+    <value>Lijnitems selecteren</value>
+  </data>
+  <data name="Progress_Operation_Log" xml:space="preserve">
+    <value>Bewerkingslog</value>
+  </data>
+  <data name="Spell_Check" xml:space="preserve">
+    <value>Spellingcontrole</value>
+  </data>
+  <data name="Spell_Word_Not_In_Dictionary" xml:space="preserve">
+    <value>Woord niet in woordenboek</value>
+  </data>
+  <data name="Spell_Change_To" xml:space="preserve">
+    <value>Vervangen door</value>
+  </data>
+  <data name="MetaData_Import_Title" xml:space="preserve">
+    <value>Import van metagegevens</value>
+  </data>
+  <data name="MetaData_Error_CreateMetaClass_FriendlyName_AlreadyExists" xml:space="preserve">
+    <value>Er bestaat reeds een metaklasse met een dergelijke vriendelijke naam. Probeer een andere vriendelijke naam te gebruiken.</value>
+  </data>
+  <data name="MetaData_Baf_Enums" xml:space="preserve">
+    <value>Enums bedrijfsstichting</value>
+  </data>
+  <data name="MetaDataView_BinaryValue" xml:space="preserve">
+    <value>[Binaire waarde]</value>
+  </data>
+  <data name="MetaDataView_Value_Not_Set" xml:space="preserve">
+    <value>
+          &lt;not set&gt;
+        </value>
+  </data>
+  <data name="Search_Default_Provider" xml:space="preserve">
+    <value>Standaard zoekprovider:</value>
+  </data>
+  <data name="Search_Indexers" xml:space="preserve">
+    <value>Indexers:</value>
+  </data>
+  <data name="Search_Installed_Providers" xml:space="preserve">
+    <value>Geïnstalleerde zoekproviders:</value>
+  </data>
+  <data name="Search_Operations" xml:space="preserve">
+    <value>Indexoperaties</value>
+  </data>
+  <data name="Search_Settings" xml:space="preserve">
+    <value>Zoekconfiguratie</value>
+  </data>
+  <data name="RecentReferenceMetaClassFriendlyName" xml:space="preserve">
+    <value>Recente referentie van gebruiker</value>
+  </data>
+  <data name="RecentReferenceMetaClassName" xml:space="preserve">
+    <value>RecentReferenceHistory</value>
+  </data>
+  <data name="RecentReferenceMetaClassPluralName" xml:space="preserve">
+    <value>Recente referenties van gebruiker</value>
+  </data>
+  <data name="Search_Generated_Configuration" xml:space="preserve">
+    <value>Tekst van gegenereerde configuratie:</value>
+  </data>
+</root>

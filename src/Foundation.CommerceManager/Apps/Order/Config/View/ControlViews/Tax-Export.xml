@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <ViewConfig>
+    <setAttributes id="Tax-Export" controlUrl="Order/TaxExport.ascx" permissions="order:admin:taxes:mng:import" help="Order+System"/>
+    <add>
+      <Tabs>
+        <Tab name="Tax Export" controlUrl="Order/Tabs/TaxExportTab.ascx"></Tab>
+      </Tabs>
+    </add>
+  </ViewConfig>
+</View>

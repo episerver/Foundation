@@ -1,0 +1,44 @@
+﻿@using EPiServer.Find
+@using EPiServer.Shell.Web.Mvc.Html
+@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchPage>
+@{
+    Layout = null;
+}
+
+<div class="bblock block-layered-nav jsSearchFacets">
+    <div class="selection--cm__label">
+        @Html.TranslateFallback("/Category/ContentFilters", "Content Filters")
+    </div>
+    <ul class="selection--cm">
+        <li class="selection--cm__inline-item">
+            Filtered by:
+            @{
+                if (string.IsNullOrEmpty(Model.ContentSearchResult.SectionFilter))
+                {
+                    <label class="content-filters-tag">
+                        All
+                    </label>
+                }
+                else
+                {
+                    <label class="content-filters-tag">
+                        @Model.ContentSearchResult.SectionFilter
+                    </label>
+                }
+            }
+        </li>
+        <li class="">
+            <span class="selection--cm__sub-label">
+                <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
+            </span>
+        </li>
+        @foreach (var sectionGroup in Model.ContentSearchResult.Hits.TermsFacetFor(x => x.SearchSection))
+        {
+            <li class="">
+                <span class="selection--cm__sub-label">
+                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl(sectionGroup.Term)">@sectionGroup.Term (@sectionGroup.Count)</a>
+                </span>
+            </li>
+        }
+    </ul>
+</div>

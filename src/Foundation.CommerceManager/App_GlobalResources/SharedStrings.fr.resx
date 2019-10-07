@@ -1,0 +1,2141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tous</value>
+  </data>
+  <data name="Authorize_Only" xml:space="preserve">
+    <value>Autoriser uniquement</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="Class_Type" xml:space="preserve">
+    <value>Type de classe</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Code_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un code est requis.</value>
+  </data>
+  <data name="Country_Code" xml:space="preserve">
+    <value>Code du pays</value>
+  </data>
+  <data name="Country_Name" xml:space="preserve">
+    <value>Nom du pays</value>
+  </data>
+  <data name="Country_With_Id_Not_Found" xml:space="preserve">
+    <value>Le pays avec l'identifiant={0} est introuvable.</value>
+  </data>
+  <data name="County" xml:space="preserve">
+    <value>Comté</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Date_Range" xml:space="preserve">
+    <value>Période</value>
+  </data>
+  <data name="Day_Phone" xml:space="preserve">
+    <value>Téléphone (jour)</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Display_Name" xml:space="preserve">
+    <value>Nom d'affichage</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Evening_Phone" xml:space="preserve">
+    <value>Téléphone (soirée)</value>
+  </data>
+  <data name="Fax_Number" xml:space="preserve">
+    <value>Numéro de fax</value>
+  </data>
+  <data name="First_Name" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="From_Lowercase" xml:space="preserve">
+    <value>de</value>
+  </data>
+  <data name="Generic_Configure_AllCaps" xml:space="preserve">
+    <value>CONFIGURER GÉNÉRIQUE</value>
+  </data>
+  <data name="Geo_Code" xml:space="preserve">
+    <value>Code géographique</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Insérer</value>
+  </data>
+  <data name="Last_Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Line_1" xml:space="preserve">
+    <value>Ligne 1</value>
+  </data>
+  <data name="Line_2" xml:space="preserve">
+    <value>Ligne 2</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="New_Address" xml:space="preserve">
+    <value>Nouvelle adresse</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="Postal_Code" xml:space="preserve">
+    <value>Code postal</value>
+  </data>
+  <data name="Processing_Url" xml:space="preserve">
+    <value>Traitement de l'URL</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Région</value>
+  </data>
+  <data name="Regions" xml:space="preserve">
+    <value>Régions</value>
+  </data>
+  <data name="Region_Code" xml:space="preserve">
+    <value>Code de la région</value>
+  </data>
+  <data name="Region_Name" xml:space="preserve">
+    <value>Nom de la région</value>
+  </data>
+  <data name="Region_Name_Exists" xml:space="preserve">
+    <value>La région avec le nom spécifié existe déjà</value>
+  </data>
+  <data name="Region_Name_New" xml:space="preserve">
+    <value>Nom de la nouvelle région</value>
+  </data>
+  <data name="Sale" xml:space="preserve">
+    <value>Vente</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Ventes</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Rechercher</value>
+  </data>
+  <data name="Shipping" xml:space="preserve">
+    <value>Expédition</value>
+  </data>
+  <data name="Sort_Order" xml:space="preserve">
+    <value>Ordre de tri</value>
+  </data>
+  <data name="Sort_Order_Invalid" xml:space="preserve">
+    <value>Valeur incorrecte pour l'ordre de tri.</value>
+  </data>
+  <data name="Sort_Order_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un ordre de tri est requis.</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>État</value>
+  </data>
+  <data name="This_Month" xml:space="preserve">
+    <value>Ce mois</value>
+  </data>
+  <data name="This_Week" xml:space="preserve">
+    <value>Cette semaine</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Aujourd'hui</value>
+  </data>
+  <data name="To_Lowercase" xml:space="preserve">
+    <value>à</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="Zip_Code" xml:space="preserve">
+    <value>Code postal</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="ASCII" xml:space="preserve">
+    <value>ASCII</value>
+  </data>
+  <data name="Assets" xml:space="preserve">
+    <value>Actifs</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Disponible</value>
+  </data>
+  <data name="Available_From" xml:space="preserve">
+    <value>Disponible à partir de</value>
+  </data>
+  <data name="Bundle" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Cancel_Uploading" xml:space="preserve">
+    <value>Annuler le téléchargement</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalogue</value>
+  </data>
+  <data name="Catalogs" xml:space="preserve">
+    <value>Catalogues</value>
+  </data>
+  <data name="Classes" xml:space="preserve">
+    <value>Classes</value>
+  </data>
+  <data name="Clone_Selected" xml:space="preserve">
+    <value>Clone sélectionné</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Créé</value>
+  </data>
+  <data name="Create_New" xml:space="preserve">
+    <value>Créer nouveau</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Devises</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Par défaut</value>
+  </data>
+  <data name="Delete_Selected" xml:space="preserve">
+    <value>Supprimer la sélection</value>
+  </data>
+  <data name="Delimiter" xml:space="preserve">
+    <value>Délimiteur</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="Display_Template" xml:space="preserve">
+    <value>Modèle d'affichage</value>
+  </data>
+  <data name="Meta_Field_Edit" xml:space="preserve">
+    <value>Modification du méta-champ</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="Encoding" xml:space="preserve">
+    <value>Codage</value>
+  </data>
+  <data name="End_Date" xml:space="preserve">
+    <value>Date de fin</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>Entrées</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Expirations</value>
+  </data>
+  <data name="Expires_On" xml:space="preserve">
+    <value>Expire le</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="Export_Meta_Data" xml:space="preserve">
+    <value>Exporter les méta-données</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>Champ</value>
+  </data>
+  <data name="Fields" xml:space="preserve">
+    <value>Champs</value>
+  </data>
+  <data name="Field_Name" xml:space="preserve">
+    <value>Nom du champ</value>
+  </data>
+  <data name="File_Name" xml:space="preserve">
+    <value>Nom de fichier</value>
+  </data>
+  <data name="Friendly_Name" xml:space="preserve">
+    <value>Pseudonyme</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Masquer</value>
+  </data>
+  <data name="Hide_Panel" xml:space="preserve">
+    <value>Masquer le panneau</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>Ignoré</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Import_Export" xml:space="preserve">
+    <value>Importer/Exporter</value>
+  </data>
+  <data name="Import_Meta_Data" xml:space="preserve">
+    <value>Importer les méta-données</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="Is_Primary" xml:space="preserve">
+    <value>Est Principal</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Mots-clés</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Dernière mise à jour</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Gérer</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modifié</value>
+  </data>
+  <data name="Modified_Date" xml:space="preserve">
+    <value>Date modifiée</value>
+  </data>
+  <data name="More_Actions" xml:space="preserve">
+    <value>Plus d'actions</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Déplacer</value>
+  </data>
+  <data name="Name_Lowercase" xml:space="preserve">
+    <value>nom</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="New_Warehouse" xml:space="preserve">
+    <value>Nouvel entrepôt</value>
+  </data>
+  <data name="Nodes" xml:space="preserve">
+    <value>Nœuds</value>
+  </data>
+  <data name="None_Parenthesized" xml:space="preserve">
+    <value>(aucun)</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Présentation</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Chemin</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Prix</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Qté</value>
+  </data>
+  <data name="Rates" xml:space="preserve">
+    <value>Taux</value>
+  </data>
+  <data name="Reserved" xml:space="preserve">
+    <value>Réservé</value>
+  </data>
+  <data name="Sale_Code" xml:space="preserve">
+    <value>Code de vente</value>
+  </data>
+  <data name="Save_All" xml:space="preserve">
+    <value>Enregistrer tout</value>
+  </data>
+  <data name="SEO" xml:space="preserve">
+    <value>SEO</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Afficher</value>
+  </data>
+  <data name="Sites" xml:space="preserve">
+    <value>Sites</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="Space" xml:space="preserve">
+    <value>Espace</value>
+  </data>
+  <data name="Start_Date" xml:space="preserve">
+    <value>Date de début</value>
+  </data>
+  <data name="Start_Export" xml:space="preserve">
+    <value>Démarrer l'exportation</value>
+  </data>
+  <data name="Start_Import" xml:space="preserve">
+    <value>Démarrer l'importation</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Tab" xml:space="preserve">
+    <value>Onglet</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="UTF8" xml:space="preserve">
+    <value>UTF8</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Afficher</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Entrepôt</value>
+  </data>
+  <data name="Warehouses" xml:space="preserve">
+    <value>Entrepôts</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Poids</value>
+  </data>
+  <data name="Edit_Command" xml:space="preserve">
+    <value>Modifier la commande</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Taux</value>
+  </data>
+  <data name="Rate_Date" xml:space="preserve">
+    <value>Date du taux</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Adresses</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="State_Province_Code" xml:space="preserve">
+    <value>Code de la province</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>À</value>
+  </data>
+  <data name="Configuration_Parameters" xml:space="preserve">
+    <value>Paramètres de configuration</value>
+  </data>
+  <data name="Gateway" xml:space="preserve">
+    <value>Passerelle</value>
+  </data>
+  <data name="Save_Changes" xml:space="preserve">
+    <value>Enregistrer les changements</value>
+  </data>
+  <data name="Class_Name" xml:space="preserve">
+    <value>Nom de la classe</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>IsDefault</value>
+  </data>
+  <data name="Restricted_Shipping_Methods" xml:space="preserve">
+    <value>Méthodes d'expédition limitées</value>
+  </data>
+  <data name="select_class" xml:space="preserve">
+    <value>sélectionner la classe</value>
+  </data>
+  <data name="select_language" xml:space="preserve">
+    <value>sélectionner la langue</value>
+  </data>
+  <data name="Supports_Recurring" xml:space="preserve">
+    <value>Prend en charge les commandes récurrentes</value>
+  </data>
+  <data name="System_Keyword" xml:space="preserve">
+    <value>Mot-clé système</value>
+  </data>
+  <data name="Latin_Symbols_Only" xml:space="preserve">
+    <value>&lt;b&gt;Valeur incorrecte&lt;/b&gt;&lt;br/&gt;Utilisez uniquement des caractères et des chiffres latins. Vous ne devez pas utiliser de symboles spéciaux.</value>
+  </data>
+  <data name="Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un nom est requis.</value>
+  </data>
+  <data name="Payment_Method_Exists" xml:space="preserve">
+    <value>La méthode de paiement avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="System_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un nom système est requis.</value>
+  </data>
+  <data name="Carts" xml:space="preserve">
+    <value>Paniers</value>
+  </data>
+  <data name="Meta_Classes" xml:space="preserve">
+    <value>Méta-classes</value>
+  </data>
+  <data name="Meta_Fields" xml:space="preserve">
+    <value>Méta-champs</value>
+  </data>
+  <data name="Order_Search" xml:space="preserve">
+    <value>Rechercher une commande</value>
+  </data>
+  <data name="Order_System" xml:space="preserve">
+    <value>Système de commandes</value>
+  </data>
+  <data name="Payment_Plans_Recurring" xml:space="preserve">
+    <value>Échéanciers de paiements (récurrents)</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Paiements</value>
+  </data>
+  <data name="Purchase_Orders" xml:space="preserve">
+    <value>Bons de commande</value>
+  </data>
+  <data name="Purchase_Orders_By_Status" xml:space="preserve">
+    <value>Bons de commande par statut</value>
+  </data>
+  <data name="Shipping_Jurisdiction_Groups" xml:space="preserve">
+    <value>Groupes de juridictions d'expédition</value>
+  </data>
+  <data name="Shipping_Jurisdictions" xml:space="preserve">
+    <value>Juridictions d'expédition</value>
+  </data>
+  <data name="Shipping_Methods" xml:space="preserve">
+    <value>Méthodes d'expédition</value>
+  </data>
+  <data name="Shipping_Packages" xml:space="preserve">
+    <value>Packages d'expédition</value>
+  </data>
+  <data name="Shipping_Providers" xml:space="preserve">
+    <value>Prestataires de services d'expédition</value>
+  </data>
+  <data name="Tax_Jurisdiction_Groups" xml:space="preserve">
+    <value>Groupes de juridictions fiscales</value>
+  </data>
+  <data name="Tax_Jurisdictions" xml:space="preserve">
+    <value>Juridictions fiscales</value>
+  </data>
+  <data name="Taxes" xml:space="preserve">
+    <value>Taxes</value>
+  </data>
+  <data name="Taxes_Configuration" xml:space="preserve">
+    <value>Configuration fiscale</value>
+  </data>
+  <data name="New_Meta_Class" xml:space="preserve">
+    <value>Nouvelle méta-classe</value>
+  </data>
+  <data name="New_Meta_Field" xml:space="preserve">
+    <value>Nouveau méta-champ</value>
+  </data>
+  <data name="Import_MetaData" xml:space="preserve">
+    <value>Importer MétaDonnées</value>
+  </data>
+  <data name="Export_MetaData" xml:space="preserve">
+    <value>Exporter MétaDonnées</value>
+  </data>
+  <data name="New_Purchase_Order" xml:space="preserve">
+    <value>Nouveau bon de commande</value>
+  </data>
+  <data name="New_Payment_Plan" xml:space="preserve">
+    <value>Nouvel échéancier de paiement</value>
+  </data>
+  <data name="New_Shopping_Cart" xml:space="preserve">
+    <value>Nouveau panier</value>
+  </data>
+  <data name="New_Order" xml:space="preserve">
+    <value>Nouvelle commande</value>
+  </data>
+  <data name="Send_Notifications" xml:space="preserve">
+    <value>Envoyer les notifications</value>
+  </data>
+  <data name="Create_Purchase_Order" xml:space="preserve">
+    <value>Créer un bon de commande</value>
+  </data>
+  <data name="Calculate_Totals" xml:space="preserve">
+    <value>Calculer les totaux</value>
+  </data>
+  <data name="Process_Payments" xml:space="preserve">
+    <value>Traiter les paiements</value>
+  </data>
+  <data name="Convert_To_Purchase_Order" xml:space="preserve">
+    <value>Convertir en bon de commande</value>
+  </data>
+  <data name="Import_Taxes" xml:space="preserve">
+    <value>Importer les taxes</value>
+  </data>
+  <data name="Providers" xml:space="preserve">
+    <value>Prestataires</value>
+  </data>
+  <data name="Packages" xml:space="preserve">
+    <value>Packages</value>
+  </data>
+  <data name="Methods" xml:space="preserve">
+    <value>Méthodes</value>
+  </data>
+  <data name="Meta_Data" xml:space="preserve">
+    <value>Méta-données</value>
+  </data>
+  <data name="Cart_View" xml:space="preserve">
+    <value>Voir le panier</value>
+  </data>
+  <data name="Credit_Card" xml:space="preserve">
+    <value>Carte de crédit</value>
+  </data>
+  <data name="Line_Items" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="Meta_Class_Edit" xml:space="preserve">
+    <value>Modifier la méta-classe</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Payment_Methods" xml:space="preserve">
+    <value>Méthodes de paiement</value>
+  </data>
+  <data name="Payment_Plan_New" xml:space="preserve">
+    <value>Nouvel échéancier de paiement</value>
+  </data>
+  <data name="Payment_Plan_View" xml:space="preserve">
+    <value>Voir l'échéancier de paiement</value>
+  </data>
+  <data name="Purchase_Order_New" xml:space="preserve">
+    <value>Nouvelle commande</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Réglages</value>
+  </data>
+  <data name="Shipments" xml:space="preserve">
+    <value>Expéditions</value>
+  </data>
+  <data name="Shopping_Cart_New" xml:space="preserve">
+    <value>Nouveau panier</value>
+  </data>
+  <data name="Enter_Valid_Value" xml:space="preserve">
+    <value>Veuillez entrer une valeur correcte.</value>
+  </data>
+  <data name="or_more" xml:space="preserve">
+    <value>ou plus</value>
+  </data>
+  <data name="Group_Name" xml:space="preserve">
+    <value>Nom du groupe</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Weight_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un poids est requis.</value>
+  </data>
+  <data name="Add_Item" xml:space="preserve">
+    <value>Ajouter un élément</value>
+  </data>
+  <data name="Base_Price" xml:space="preserve">
+    <value>Prix de base</value>
+  </data>
+  <data name="Base_Price_Invalid" xml:space="preserve">
+    <value>Valeur de prix de base incorrecte.</value>
+  </data>
+  <data name="Base_Price_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un prix de base est requis.</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="Friendly_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un pseudonyme est requis.</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Hauteur</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Longueur</value>
+  </data>
+  <data name="Package_Name" xml:space="preserve">
+    <value>Nom du package</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Prestataire</value>
+  </data>
+  <data name="Restricted_Payments" xml:space="preserve">
+    <value>Paiements restreints</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="select_currency" xml:space="preserve">
+    <value>sélectionner une devise</value>
+  </data>
+  <data name="select_shipping_option" xml:space="preserve">
+    <value>sélectionner une option d'expédition</value>
+  </data>
+  <data name="Set_Dimensions" xml:space="preserve">
+    <value>Définir les dimensions</value>
+  </data>
+  <data name="Shipping_Method_Exists" xml:space="preserve">
+    <value>Une méthode d'expédition avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="Shipping_Option_Name_Exists" xml:space="preserve">
+    <value>Une option d'expédition avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Largeur</value>
+  </data>
+  <data name="Add_Line_Item" xml:space="preserve">
+    <value>Ajouter un article</value>
+  </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>Affilié</value>
+  </data>
+  <data name="Billing_Address" xml:space="preserve">
+    <value>Adresse de facturation</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Remise</value>
+  </data>
+  <data name="Discount_Total" xml:space="preserve">
+    <value>Total des remises</value>
+  </data>
+  <data name="Handling_Total" xml:space="preserve">
+    <value>Total des frais de manutention</value>
+  </data>
+  <data name="List_Price" xml:space="preserve">
+    <value>Liste de prix</value>
+  </data>
+  <data name="Order_Summary" xml:space="preserve">
+    <value>Récapitulatif de la commande</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantité</value>
+  </data>
+  <data name="select_affiliate" xml:space="preserve">
+    <value>sélectionner un affilié</value>
+  </data>
+  <data name="Shipping_Address" xml:space="preserve">
+    <value>Adresse d'expédition</value>
+  </data>
+  <data name="Shipping_Method" xml:space="preserve">
+    <value>Méthode d'expédition</value>
+  </data>
+  <data name="Shipping_Total" xml:space="preserve">
+    <value>Total de l'expédition</value>
+  </data>
+  <data name="Sub_Total" xml:space="preserve">
+    <value>Sous-total</value>
+  </data>
+  <data name="Tax_Total" xml:space="preserve">
+    <value>Total des taxes</value>
+  </data>
+  <data name="TOTAL_AllCaps" xml:space="preserve">
+    <value>TOTAL</value>
+  </data>
+  <data name="Address_Required" xml:space="preserve">
+    <value>Une adresse doit être indiquée</value>
+  </data>
+  <data name="Add_New_File" xml:space="preserve">
+    <value>Ajouter nouveau fichier</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="Effective_Date" xml:space="preserve">
+    <value>Date d'entrée en vigueur</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Échoué</value>
+  </data>
+  <data name="Files_Available_For_Import" xml:space="preserve">
+    <value>Fichiers disponibles pour l'importation</value>
+  </data>
+  <data name="File_Uploading" xml:space="preserve">
+    <value>Le fichier est en cours de téléchargement. Patientez...</value>
+  </data>
+  <data name="Items_To_Ship" xml:space="preserve">
+    <value>Articles à expédier</value>
+  </data>
+  <data name="Last_Modified" xml:space="preserve">
+    <value>Date de la dernière modification</value>
+  </data>
+  <data name="link_to_folder" xml:space="preserve">
+    <value> lien au dossier :</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Charger</value>
+  </data>
+  <data name="Method_Name" xml:space="preserve">
+    <value>Nom de la méthode</value>
+  </data>
+  <data name="move_or" xml:space="preserve">
+    <value>déplacer ou</value>
+  </data>
+  <data name="New_Shipment" xml:space="preserve">
+    <value>Nouvelle expédition</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="Payment_Method_Description" xml:space="preserve">
+    <value>méthodes de paiement configurées, qui correspondent généralement à certains processeurs de paiement</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>En attente</value>
+  </data>
+  <data name="Processed" xml:space="preserve">
+    <value>Traité</value>
+  </data>
+  <data name="Save_The_File" xml:space="preserve">
+    <value>Enregistrer dans le fichier</value>
+  </data>
+  <data name="select_tax_category" xml:space="preserve">
+    <value>sélectionner la catégorie de taxe</value>
+  </data>
+  <data name="Shipping_Method_Required" xml:space="preserve">
+    <value>Une méthode d'expédition est requise.</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>SortOrder</value>
+  </data>
+  <data name="System_Name" xml:space="preserve">
+    <value>Nom du système</value>
+  </data>
+  <data name="Tax_Category" xml:space="preserve">
+    <value>Catégorie de taxe</value>
+  </data>
+  <data name="Tax_Category_Required" xml:space="preserve">
+    <value>Une catégorie de taxe est requise.</value>
+  </data>
+  <data name="Tax_Import_Instructions" xml:space="preserve">
+    <value>Pour importer les taxes, veuillez sélectionner un fichier existant dans la grille ou en télécharger un nouveau. Cliquez ensuite sur le bouton Démarrer importation pour lancer l'opération.</value>
+  </data>
+  <data name="Tax_Import_Warning" xml:space="preserve">
+    <value>Il est vivement recommandé d'effectuer une sauvegarde de votre base de données ECF avant de procéder à l'importation.</value>
+  </data>
+  <data name="Tax_Type_Description" xml:space="preserve">
+    <value>type de taxe</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Tracking_Number" xml:space="preserve">
+    <value>Numéro de suivi</value>
+  </data>
+  <data name="Uploaded_File" xml:space="preserve">
+    <value>Fichier téléchargé</value>
+  </data>
+  <data name="Upload_File" xml:space="preserve">
+    <value>Fichier téléchargé</value>
+  </data>
+  <data name="Wait_For_Uploading_To_Start" xml:space="preserve">
+    <value>Patientez jusqu'au début de l'importation.</value>
+  </data>
+  <data name="Load_Ellipsis" xml:space="preserve">
+    <value>Charger...</value>
+  </data>
+  <data name="Loading_Ellipsis" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="Starts" xml:space="preserve">
+    <value>Démarre</value>
+  </data>
+  <data name="Ends" xml:space="preserve">
+    <value>Se termine</value>
+  </data>
+  <data name="Is_Active" xml:space="preserve">
+    <value>Est actif</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priorité</value>
+  </data>
+  <data name="Policy_Id" xml:space="preserve">
+    <value>Identifiant de la politique</value>
+  </data>
+  <data name="IsLocal" xml:space="preserve">
+    <value>IsLocal</value>
+  </data>
+  <data name="Condition_Id" xml:space="preserve">
+    <value>Identifiant de la condition</value>
+  </data>
+  <data name="ExpressionId" xml:space="preserve">
+    <value>ExpressionId</value>
+  </data>
+  <data name="Expression" xml:space="preserve">
+    <value>Expression</value>
+  </data>
+  <data name="NodeId" xml:space="preserve">
+    <value>NodeId</value>
+  </data>
+  <data name="Node" xml:space="preserve">
+    <value>Nœud</value>
+  </data>
+  <data name="EntryId" xml:space="preserve">
+    <value>EntryId</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>Entrée</value>
+  </data>
+  <data name="Policy_Name" xml:space="preserve">
+    <value>Nom de la politique</value>
+  </data>
+  <data name="Policy_Status" xml:space="preserve">
+    <value>Statut de la politique</value>
+  </data>
+  <data name="Expression_Id" xml:space="preserve">
+    <value>Identifiant de l'expression</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>Campagnes</value>
+  </data>
+  <data name="Promotions" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="Customer_Segments" xml:space="preserve">
+    <value>Segments clients</value>
+  </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Politiques</value>
+  </data>
+  <data name="Expressions" xml:space="preserve">
+    <value>Expressions</value>
+  </data>
+  <data name="Conditions" xml:space="preserve">
+    <value>Conditions</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Actif</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactif</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Supprimé</value>
+  </data>
+  <data name="Campaign" xml:space="preserve">
+    <value>Campagne</value>
+  </data>
+  <data name="Coupon_Code" xml:space="preserve">
+    <value>Code du coupon</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspendu</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="Catalog_Node" xml:space="preserve">
+    <value>Nœud_Catalogue</value>
+  </data>
+  <data name="Catalog_Entry" xml:space="preserve">
+    <value>Entrée_Catalogue</value>
+  </data>
+  <data name="Archived" xml:space="preserve">
+    <value>Archivé</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Commentaires</value>
+  </data>
+  <data name="New_Segment" xml:space="preserve">
+    <value>Nouveau segment</value>
+  </data>
+  <data name="New_Promotion" xml:space="preserve">
+    <value>Nouvelle promotion</value>
+  </data>
+  <data name="Flip_Status" xml:space="preserve">
+    <value>Basculer le statut (actif/inactif)</value>
+  </data>
+  <data name="New_Policy" xml:space="preserve">
+    <value>Nouvelle politique</value>
+  </data>
+  <data name="New_Expression" xml:space="preserve">
+    <value>Nouvelle expression</value>
+  </data>
+  <data name="New_Campaign" xml:space="preserve">
+    <value>Nouvelle campagne</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="Exclude" xml:space="preserve">
+    <value>Exclure</value>
+  </data>
+  <data name="Minimum_Quantity" xml:space="preserve">
+    <value>Quantité minimum</value>
+  </data>
+  <data name="Variations" xml:space="preserve">
+    <value>Variations</value>
+  </data>
+  <data name="Folders_And_Pages" xml:space="preserve">
+    <value>Dossiers et pages</value>
+  </data>
+  <data name="Design" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Menus" xml:space="preserve">
+    <value>Menus</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Flux de travail</value>
+  </data>
+  <data name="Templates" xml:space="preserve">
+    <value>Modèles</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Langues</value>
+  </data>
+  <data name="Params" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="MenuID" xml:space="preserve">
+    <value>MenuID</value>
+  </data>
+  <data name="MenuItemID" xml:space="preserve">
+    <value>MenuItemID</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="Editor" xml:space="preserve">
+    <value>Éditeur</value>
+  </data>
+  <data name="Edit_Date" xml:space="preserve">
+    <value>Modifier la date</value>
+  </data>
+  <data name="SiteId" xml:space="preserve">
+    <value>SiteId</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Dossier</value>
+  </data>
+  <data name="Default_Site" xml:space="preserve">
+    <value>Site par défaut</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Clé</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Valeur</value>
+  </data>
+  <data name="WorkflowId" xml:space="preserve">
+    <value>WorkflowId</value>
+  </data>
+  <data name="StatusId" xml:space="preserve">
+    <value>StatusId</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="SecurityKey" xml:space="preserve">
+    <value>SecurityKey</value>
+  </data>
+  <data name="Scope" xml:space="preserve">
+    <value>Portée</value>
+  </data>
+  <data name="Identity" xml:space="preserve">
+    <value>Identité</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Lire</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Menu_Overview" xml:space="preserve">
+    <value>Présentation du menu</value>
+  </data>
+  <data name="Site_Overview" xml:space="preserve">
+    <value>Présentation du site</value>
+  </data>
+  <data name="Additional_Settings" xml:space="preserve">
+    <value>Paramètres supplémentaires</value>
+  </data>
+  <data name="Folders_List" xml:space="preserve">
+    <value>Liste des dossiers</value>
+  </data>
+  <data name="Move_To_Folder" xml:space="preserve">
+    <value>Déplacer dans le dossier</value>
+  </data>
+  <data name="Add_New" xml:space="preserve">
+    <value>Ajouter nouveau</value>
+  </data>
+  <data name="Command_List" xml:space="preserve">
+    <value>Liste de commandes</value>
+  </data>
+  <data name="Menu_List" xml:space="preserve">
+    <value>Liste de menus</value>
+  </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>Modifier le menu</value>
+  </data>
+  <data name="Menu_Item_List" xml:space="preserve">
+    <value>Liste des éléments de menus</value>
+  </data>
+  <data name="Menu_Item_Edit" xml:space="preserve">
+    <value>Modifier élément de menu</value>
+  </data>
+  <data name="Draft_List" xml:space="preserve">
+    <value>Liste provisoire</value>
+  </data>
+  <data name="Rejected_List" xml:space="preserve">
+    <value>Liste rejetée</value>
+  </data>
+  <data name="Waiting_Approval_List" xml:space="preserve">
+    <value>En attente de la liste d'approbations</value>
+  </data>
+  <data name="Site_List" xml:space="preserve">
+    <value>Liste du site</value>
+  </data>
+  <data name="Site_Edit" xml:space="preserve">
+    <value>Modifier le site</value>
+  </data>
+  <data name="Templates_List" xml:space="preserve">
+    <value>Liste des modèles</value>
+  </data>
+  <data name="Template_Edit" xml:space="preserve">
+    <value>Modifier le modèle</value>
+  </data>
+  <data name="Workflow_List" xml:space="preserve">
+    <value>Liste de flux de travail</value>
+  </data>
+  <data name="Workflow_Edit" xml:space="preserve">
+    <value>Modifier le flux de travail</value>
+  </data>
+  <data name="State_List" xml:space="preserve">
+    <value>Liste des états</value>
+  </data>
+  <data name="Workflow_State_Edit" xml:space="preserve">
+    <value>Modifier l'état du flux de travail</value>
+  </data>
+  <data name="Site_Permissions" xml:space="preserve">
+    <value>Droits d'accès au site</value>
+  </data>
+  <data name="Export_Site" xml:space="preserve">
+    <value>Exporter le site</value>
+  </data>
+  <data name="Import_Site" xml:space="preserve">
+    <value>Importer le site</value>
+  </data>
+  <data name="Language_Edit" xml:space="preserve">
+    <value>Modification de la langue</value>
+  </data>
+  <data name="Add_State" xml:space="preserve">
+    <value>Ajouter un état</value>
+  </data>
+  <data name="Back_to_Workflow_List" xml:space="preserve">
+    <value>Revenir à la liste des flux de travail</value>
+  </data>
+  <data name="New_Site" xml:space="preserve">
+    <value>Nouveau site</value>
+  </data>
+  <data name="Approve_Selected" xml:space="preserve">
+    <value>Approuver la sélection</value>
+  </data>
+  <data name="New_Command" xml:space="preserve">
+    <value>Nouvelle commande</value>
+  </data>
+  <data name="Back_to_Folders_List" xml:space="preserve">
+    <value>Revenir à la liste des dossiers</value>
+  </data>
+  <data name="New_Top_Menu" xml:space="preserve">
+    <value>Nouveau menu supérieur</value>
+  </data>
+  <data name="New_Menu_Item" xml:space="preserve">
+    <value>Nouvel élément de menu</value>
+  </data>
+  <data name="New_Language" xml:space="preserve">
+    <value>Nouvelle langue</value>
+  </data>
+  <data name="New_Page" xml:space="preserve">
+    <value>Nouvelle page</value>
+  </data>
+  <data name="New_Folder" xml:space="preserve">
+    <value>Nouveau dossier</value>
+  </data>
+  <data name="Page_Navigation" xml:space="preserve">
+    <value>Navigation vers la page</value>
+  </data>
+  <data name="Move_Folders_Pages" xml:space="preserve">
+    <value>Déplacer les dossier/pages</value>
+  </data>
+  <data name="Copy_Languages" xml:space="preserve">
+    <value>Copier les langues</value>
+  </data>
+  <data name="Reject_Selected" xml:space="preserve">
+    <value>Refuser la sélection</value>
+  </data>
+  <data name="Content_Management" xml:space="preserve">
+    <value>Gestion du contenu</value>
+  </data>
+  <data name="My_Work" xml:space="preserve">
+    <value>Mon travail</value>
+  </data>
+  <data name="Site_Templates" xml:space="preserve">
+    <value>Modèles de site</value>
+  </data>
+  <data name="List_Of_Sites" xml:space="preserve">
+    <value>Liste des sites</value>
+  </data>
+  <data name="Add_Attribute" xml:space="preserve">
+    <value>Ajouter un attribut</value>
+  </data>
+  <data name="Upload_Instructions" xml:space="preserve">
+    <value>Patienter jusqu'au démarrage du téléchargement</value>
+  </data>
+  <data name="Upload_Status" xml:space="preserve">
+    <value>Le fichier est en cours de téléchargement. Patientez...</value>
+  </data>
+  <data name="Empty_Parenthesis" xml:space="preserve">
+    <value>(vide)</value>
+  </data>
+  <data name="Admin_Url" xml:space="preserve">
+    <value>URL administrateur</value>
+  </data>
+  <data name="Is_Default" xml:space="preserve">
+    <value>Est la Valeur par Défaut</value>
+  </data>
+  <data name="Domains" xml:space="preserve">
+    <value>Domaines</value>
+  </data>
+  <data name="Google_Analytics" xml:space="preserve">
+    <value>Google Analytics</value>
+  </data>
+  <data name="Weight_Range_Warning" xml:space="preserve">
+    <value>&lt;b&gt;Valeur incorrecte&lt;/b&gt;&lt;br/&gt;Le poids doit être un nombre entier compris entre -1 et 100.</value>
+  </data>
+  <data name="Delete_All" xml:space="preserve">
+    <value>Supprimer tout</value>
+  </data>
+  <data name="Google_Analytics_Description" xml:space="preserve">
+    <value>(Google Analytics ou tout autre texte que vous souhaitez insérer sur chaque page)</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Gestion</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="Licensing" xml:space="preserve">
+    <value>Octroi d'une licence</value>
+  </data>
+  <data name="Search_Index" xml:space="preserve">
+    <value>Index de recherche</value>
+  </data>
+  <data name="System_Log" xml:space="preserve">
+    <value>Journal système</value>
+  </data>
+  <data name="Application_Log" xml:space="preserve">
+    <value>Journal de l'application</value>
+  </data>
+  <data name="Log_Id" xml:space="preserve">
+    <value>Identifiant du journal</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Opération</value>
+  </data>
+  <data name="Object_Key" xml:space="preserve">
+    <value>Clé de l'objet</value>
+  </data>
+  <data name="Object_Type" xml:space="preserve">
+    <value>Type d'objet</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>Réussi</value>
+  </data>
+  <data name="IP_Address" xml:space="preserve">
+    <value>Adresse IP</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Controls_Set" xml:space="preserve">
+    <value>Ensemble de commandes</value>
+  </data>
+  <data name="Page_Template" xml:space="preserve">
+    <value>Modèle de page</value>
+  </data>
+  <data name="Common_Settings" xml:space="preserve">
+    <value>Paramètres courants</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="Replication_Wizard" xml:space="preserve">
+    <value>Assistant de réplication</value>
+  </data>
+  <data name="View_Database_Information" xml:space="preserve">
+    <value>Afficher les informations de la base de données</value>
+  </data>
+  <data name="Search_Manager" xml:space="preserve">
+    <value>Gestionnaire de recherche</value>
+  </data>
+  <data name="Change_Language" xml:space="preserve">
+    <value>Modifier la langue</value>
+  </data>
+  <data name="Layout_Management" xml:space="preserve">
+    <value>Gestion de la mise en page</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Propriétés</value>
+  </data>
+  <data name="Dashboard_DashboardHome" xml:space="preserve">
+    <value>Accueil tableau de bord</value>
+  </data>
+  <data name="Application_System_Version" xml:space="preserve">
+    <value>Version de l'application</value>
+  </data>
+  <data name="Business_Foundation_System_Version" xml:space="preserve">
+    <value>Version du système Business Foundation</value>
+  </data>
+  <data name="Catalog_System_Version" xml:space="preserve">
+    <value>Version du système de catalogues</value>
+  </data>
+  <data name="Content_System_Version" xml:space="preserve">
+    <value>Version du système de contenu</value>
+  </data>
+  <data name="Marketing_System_Version" xml:space="preserve">
+    <value>Version du système marketing</value>
+  </data>
+  <data name="Order_System_Version" xml:space="preserve">
+    <value>Version du système de commandes</value>
+  </data>
+  <data name="Security_System_Version" xml:space="preserve">
+    <value>Version du système de sécurité</value>
+  </data>
+  <data name="System_Settings" xml:space="preserve">
+    <value>Paramètres du système</value>
+  </data>
+  <data name="Dictionaries" xml:space="preserve">
+    <value>Dictionnaires</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Journaux</value>
+  </data>
+  <data name="Business_Foundation" xml:space="preserve">
+    <value>Business Foundation</value>
+  </data>
+  <data name="License_Info" xml:space="preserve">
+    <value>Informations de licence</value>
+  </data>
+  <data name="EPiServer_Commerce_Manager" xml:space="preserve">
+    <value>EPiServer Commerce Manager</value>
+  </data>
+  <data name="Export_Log" xml:space="preserve">
+    <value>Exporter le journal</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="Valid_Date_Required" xml:space="preserve">
+    <value>&lt;b&gt;Valeur de date incorrecte&lt;/b&gt;&lt;br/&gt;Entrez une date valide.</value>
+  </data>
+  <data name="Valid_Date_Format_Required" xml:space="preserve">
+    <value>&lt;b&gt;Format de date incorrect&lt;/b&gt;&lt;br/&gt;Entrez une date valide.</value>
+  </data>
+  <data name="Page_Size" xml:space="preserve">
+    <value>Taille de la page</value>
+  </data>
+  <data name="Days_Ago" xml:space="preserve">
+    <value>{0} jours, {1} heures auparavant</value>
+  </data>
+  <data name="Day_Ago" xml:space="preserve">
+    <value>{0} jour, {1} heures auparavant</value>
+  </data>
+  <data name="Hours_Ago" xml:space="preserve">
+    <value>{0} heures, {1} minutes auparavant</value>
+  </data>
+  <data name="Hour_Ago" xml:space="preserve">
+    <value>{0} heure, {1} minutes auparavant</value>
+  </data>
+  <data name="Minutes_Ago" xml:space="preserve">
+    <value>{0} minutes auparavant</value>
+  </data>
+  <data name="Minute_Ago" xml:space="preserve">
+    <value>quelques secondes auparavant</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Hier</value>
+  </data>
+  <data name="Close_Window" xml:space="preserve">
+    <value>Fermer la fenêtre</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>Ignorer</value>
+  </data>
+  <data name="Ignore_All" xml:space="preserve">
+    <value>Ignorer tout</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Remplacer</value>
+  </data>
+  <data name="Spell_Check" xml:space="preserve">
+    <value>Correcteur d'orthographe</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Système</value>
+  </data>
+  <data name="Filter_Settings" xml:space="preserve">
+    <value>Paramètres de filtre</value>
+  </data>
+  <data name="Apply_Filter" xml:space="preserve">
+    <value>Appliquer filtre</value>
+  </data>
+  <data name="Source_Type" xml:space="preserve">
+    <value>Type de source</value>
+  </data>
+  <data name="select_length_unit" xml:space="preserve">
+    <value>sélectionner unité de longueur</value>
+  </data>
+  <data name="select_weight_unit" xml:space="preserve">
+    <value>sélectionner unité de poids</value>
+  </data>
+  <data name="Default_Language" xml:space="preserve">
+    <value>Langue par défaut</value>
+  </data>
+  <data name="Default_Currency" xml:space="preserve">
+    <value>Devise par défaut</value>
+  </data>
+  <data name="Default_Length_Unit" xml:space="preserve">
+    <value>Unité de longueur par défaut</value>
+  </data>
+  <data name="Default_Weight_Unit" xml:space="preserve">
+    <value>Unité de poids par défaut</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="Browse_Ellipses" xml:space="preserve">
+    <value>Parcourir...</value>
+  </data>
+  <data name="E_mail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Société</value>
+  </data>
+  <data name="Estimated" xml:space="preserve">
+    <value>Estimé</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>Restant</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Étiquette</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>Vrai</value>
+  </data>
+  <data name="False" xml:space="preserve">
+    <value>Faux</value>
+  </data>
+  <data name="Required_Field_Missing" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;.</value>
+  </data>
+  <data name="Valid_Email_Required" xml:space="preserve">
+    <value>Doit utiliser une adresse e-mail correcte.</value>
+  </data>
+  <data name="Delete_File" xml:space="preserve">
+    <value>Supprimer le fichier</value>
+  </data>
+  <data name="Upload_Files" xml:space="preserve">
+    <value>Télécharger les fichiers</value>
+  </data>
+  <data name="File_For_Saving" xml:space="preserve">
+    <value>Fichier à enregistrer</value>
+  </data>
+  <data name="Delete_Picture" xml:space="preserve">
+    <value>Supprimer l'image</value>
+  </data>
+  <data name="Add_Value" xml:space="preserve">
+    <value>Ajouter une valeur</value>
+  </data>
+  <data name="Add_Lowercase" xml:space="preserve">
+    <value>ajouter</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Replace_All" xml:space="preserve">
+    <value>Remplacer tout</value>
+  </data>
+  <data name="Suggestions" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
+  <data name="Posted_Values" xml:space="preserve">
+    <value>Valeurs publiées</value>
+  </data>
+  <data name="Untitled" xml:space="preserve">
+    <value>Sans titre</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="Move_Copy" xml:space="preserve">
+    <value>Déplacer/Copier</value>
+  </data>
+  <data name="New_File" xml:space="preserve">
+    <value>Nouveau fichier</value>
+  </data>
+  <data name="copy_to_folder_colon" xml:space="preserve">
+    <value>copier dans le dossier :</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Produits</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Catégories</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Commandes</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>À propos de</value>
+  </data>
+  <data name="LITERAL" xml:space="preserve">
+    <value>Année</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Année</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mois</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Jour</value>
+  </data>
+  <data name="Group_By" xml:space="preserve">
+    <value>Grouper par</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Comptes</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Rôles</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Organisations</value>
+  </data>
+  <data name="Login_As_Customer" xml:space="preserve">
+    <value>Se connecter en tant que client</value>
+  </data>
+  <data name="Customer_Group" xml:space="preserve">
+    <value>Groupe de clients</value>
+  </data>
+  <data name="not_set_parenthesized" xml:space="preserve">
+    <value>(non défini)</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approuvé</value>
+  </data>
+  <data name="Locked_Out" xml:space="preserve">
+    <value>Verrouillé</value>
+  </data>
+  <data name="Last_Activity" xml:space="preserve">
+    <value>Dernière activité</value>
+  </data>
+  <data name="Last_Lockout" xml:space="preserve">
+    <value>Dernier verrouillage</value>
+  </data>
+  <data name="Last_Login" xml:space="preserve">
+    <value>Dernière connexion</value>
+  </data>
+  <data name="Last_Password_Changed" xml:space="preserve">
+    <value>Dernier mot de passe modifié</value>
+  </data>
+  <data name="Customer_With_Name_Exists" xml:space="preserve">
+    <value>Un client avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="Select_Status_Bold" xml:space="preserve">
+    <value>&lt;b&gt;Veuillez sélectionner le statut.&lt;/b&gt;</value>
+  </data>
+  <data name="User_Name_Is_Required" xml:space="preserve">
+    <value>Un nom d'utilisateur est requis.</value>
+  </data>
+  <data name="User_Name_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&lt;br /&gt;Un nom d'utilisateur est requis.</value>
+  </data>
+  <data name="User_With_Name_Exists" xml:space="preserve">
+    <value>Un utilisateur avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="Role_Name" xml:space="preserve">
+    <value>Nom du rôle</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="Role_Exists" xml:space="preserve">
+    <value>Un rôle avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="Unlock_Selected" xml:space="preserve">
+    <value>Déverrouillé sélectionné</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Membres</value>
+  </data>
+  <data name="MetaField_With_Name_AlreadyExists" xml:space="preserve">
+    <value>Un méta-champ avec le nom spécifié existe déjà.</value>
+  </data>
+  <data name="ExportLog" xml:space="preserve">
+    <value>Exporter le journal</value>
+  </data>
+  <data name="Time_Required" xml:space="preserve">
+    <value>L'heure doit être indiquée</value>
+  </data>
+  <data name="Valid_Time_Required" xml:space="preserve">
+    <value>&lt;b&gt;Valeur d'heure incorrecte&lt;/b&gt;&lt;br/&gt;Entrez une date valide.</value>
+  </data>
+  <data name="Order_Select_Billing_Address" xml:space="preserve">
+    <value>sélectionner une adresse</value>
+  </data>
+  <data name="Validation_Fix_The_Following_Problems" xml:space="preserve">
+    <value>Veuillez résoudre les problèmes suivants pour enregistrer les changements.</value>
+  </data>
+  <data name="New_Password" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="Password_Min_Length_ValidationError" xml:space="preserve">
+    <value>La longueur du mot de passe doit être supérieure ou égale à « {0} ».</value>
+  </data>
+  <data name="Password_Strong_ValidationError" xml:space="preserve">
+    <value>Le mot de passe doit être sécurisé</value>
+  </data>
+  <data name="Pasword_NonAlphabetChars_Num_ValidationError" xml:space="preserve">
+    <value>Les caractères non alpha numériques du mot de passe doivent être supérieurs ou égaux à « {0} ».</value>
+  </data>
+  <data name="NewPassword_Description" xml:space="preserve">
+    <value>Indiquez le nouveau mot de passe pour effectuer la modification ou laissez le champ vierge</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>Champ Non Obligatoire </value>
+  </data>
+  <data name="ConfirmAndNewPasswordNotEquals" xml:space="preserve">
+    <value>La valeur du champ Confirmer nouveau mot de passe doit être identique à celle du champ Nouveau mot de passe.</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmer nouveau mot de passe</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="Tooltip" xml:space="preserve">
+    <value>Info-bulle</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Type de transaction</value>
+  </data>
+  <data name="Address_Edit" xml:space="preserve">
+    <value>Modifier l'adresse</value>
+  </data>
+  <data name="BooleanNo" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="BooleanYes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="No_Items" xml:space="preserve">
+    <value>Il n'y a aucun élément à afficher</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Rechercher</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>Recherche avancée</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Précédent</value>
+  </data>
+  <data name="AddressEditBilling" xml:space="preserve">
+    <value>Modifier l'adresse de facturation</value>
+  </data>
+  <data name="Total_Discount" xml:space="preserve">
+    <value>Total des remises</value>
+  </data>
+  <data name="Discount_Descr" xml:space="preserve">
+    <value>Description des remises</value>
+  </data>
+  <data name="Full_Path" xml:space="preserve">
+    <value>Chemin d'accès complet au catalogue</value>
+  </data>
+  <data name="Product_Relations_List" xml:space="preserve">
+    <value>Liste des relations de produits</value>
+  </data>
+  <data name="Product_Relations_Tab_Label" xml:space="preserve">
+    <value>Relations</value>
+  </data>
+  <data name="Created_Before" xml:space="preserve">
+    <value>Créé avant</value>
+  </data>
+  <data name="Tax_Values" xml:space="preserve">
+    <value>Valeurs de taxes</value>
+  </data>
+  <data name="Return_Reasons" xml:space="preserve">
+    <value>Motifs de retour</value>
+  </data>
+  <data name="New_Return_Reason" xml:space="preserve">
+    <value>Nouveau motif de retour</value>
+  </data>
+  <data name="Return_Reason" xml:space="preserve">
+    <value>Motifs de retour</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Propriétaire</value>
+  </data>
+  <data name="Created_By" xml:space="preserve">
+    <value>Créé par</value>
+  </data>
+  <data name="Pick_Lists" xml:space="preserve">
+    <value>Sélectionner des listes</value>
+  </data>
+  <data name="Released_For_Shipping" xml:space="preserve">
+    <value>Libéré pour l'expédition</value>
+  </data>
+  <data name="Returns" xml:space="preserve">
+    <value>Retours</value>
+  </data>
+  <data name="Shipping_Receiving" xml:space="preserve">
+    <value>Expédition/Réception</value>
+  </data>
+  <data name="Payment_Plan_Edit" xml:space="preserve">
+    <value>Modifier l'échéancier de paiement</value>
+  </data>
+  <data name="Meta_Data_Edit" xml:space="preserve">
+    <value>Modifier les méta-données</value>
+  </data>
+  <data name="Purchase_Order_Edit" xml:space="preserve">
+    <value>Modifier le bon de commande</value>
+  </data>
+  <data name="OrderStatus_AwaitingExchange" xml:space="preserve">
+    <value>En attente de l'échange</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve">
+    <value>Annulé</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_Completed" xml:space="preserve">
+    <value>Terminé</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_InProgress" xml:space="preserve">
+    <value>En cours</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_OnHold" xml:space="preserve">
+    <value>En attente</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="OrderStatus_PartiallyShipped" xml:space="preserve">
+    <value>Partiellement expédié</value>
+    <comment>Enum Value for Order Status</comment>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="Basic_Order_Information" xml:space="preserve">
+    <value>Informations de commande de base</value>
+  </data>
+  <data name="Created_On" xml:space="preserve">
+    <value>Créé le</value>
+  </data>
+  <data name="Customer_Information" xml:space="preserve">
+    <value>Informations sur le client</value>
+  </data>
+  <data name="Date_Slash_Time" xml:space="preserve">
+    <value>Date/Heure</value>
+  </data>
+  <data name="Edit_Shipping_Address" xml:space="preserve">
+    <value>Modifier l'adresse d'expédition</value>
+  </data>
+  <data name="Edit_Shipping_Method" xml:space="preserve">
+    <value>Modifier la méthode d'expédition</value>
+  </data>
+  <data name="Email_Address" xml:space="preserve">
+    <value>Adresse e-mail</value>
+  </data>
+  <data name="New_Item" xml:space="preserve">
+    <value>Nouvel élément</value>
+  </data>
+  <data name="Note_Text" xml:space="preserve">
+    <value>Texte de la note</value>
+  </data>
+  <data name="Open_Customer_Profile" xml:space="preserve">
+    <value>Ouvrir le profil client</value>
+  </data>
+  <data name="Originated_By" xml:space="preserve">
+    <value>Généré par</value>
+  </data>
+  <data name="Phone_Number" xml:space="preserve">
+    <value>Numéro de téléphone</value>
+  </data>
+  <data name="Shipment_Details" xml:space="preserve">
+    <value>Détails de l'expédition</value>
+  </data>
+  <data name="Shipment_Summary" xml:space="preserve">
+    <value>Récapitulatif de l'expédition</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="Site_Name" xml:space="preserve">
+    <value>Nom du site</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Résumé</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="Additional_Information" xml:space="preserve">
+    <value>Informations supplémentaires</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Motif</value>
+  </data>
+  <data name="Total_Return_Amount" xml:space="preserve">
+    <value>Montant total renvoyé</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>Comparer</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Terminé</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historique</value>
+  </data>
+  <data name="Multi_Language" xml:space="preserve">
+    <value>Multi-langues</value>
+  </data>
+  <data name="Total_Information" xml:space="preserve">
+    <value>Informations totales</value>
+  </data>
+  <data name="Search_Help" xml:space="preserve">
+    <value>Rechercher l'aide</value>
+  </data>
+  <data name="Asset" xml:space="preserve">
+    <value>Actifs</value>
+  </data>
+  <data name="BusinessFoundation" xml:space="preserve">
+    <value>Business Foundation</value>
+    <comment>Permissions</comment>
+  </data>
+  <data name="Core" xml:space="preserve">
+    <value>Noyau</value>
+  </data>
+  <data name="Create_Exchange" xml:space="preserve">
+    <value>Créer un échange</value>
+  </data>
+  <data name="Credit_Payment" xml:space="preserve">
+    <value>Paiement</value>
+  </data>
+  <data name="Customization" xml:space="preserve">
+    <value>Personnalisation</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Packing" xml:space="preserve">
+    <value>Conditionnement</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>Réception</value>
+  </data>
+  <data name="Reporting" xml:space="preserve">
+    <value>Reporting</value>
+  </data>
+  <data name="Split_Shipment" xml:space="preserve">
+    <value>Expédition fractionnée</value>
+  </data>
+  <data name="Change_Price" xml:space="preserve">
+    <value>Modifier le prix de l'article </value>
+  </data>
+  <data name="Extended_Attributes" xml:space="preserve">
+    <value>Attributs étendus</value>
+  </data>
+  <data name="Payment_Plan_Details" xml:space="preserve">
+    <value>Détails de l'échéancier de paiement</value>
+  </data>
+  <data name="Placed_Price" xml:space="preserve">
+    <value>Prix fixé</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>Valider</value>
+  </data>
+  <data name="Customer_ID" xml:space="preserve">
+    <value>ID client</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Informations</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Contenu</value>
+  </data>
+  <data name="Shipment" xml:space="preserve">
+    <value>Expédition</value>
+    <comment>Permissions</comment>
+  </data>
+  <data name="Latin_Symbols_Only_Start_With_Letter" xml:space="preserve">
+    <value>&lt;b&gt;Valeur incorrecte&lt;/b&gt;&lt;br/&gt;Commencez avec un caractère latin, utilisez uniquement des caractères et des chiffres latins. Vous ne devez pas utiliser de symboles spéciaux.</value>
+  </data>
+  <data name="Custom_Pages" xml:space="preserve">
+    <value>Pages personnalisées</value>
+  </data>
+  <data name="Customization_Item" xml:space="preserve">
+    <value>Personnalisation d'un élément</value>
+  </data>
+  <data name="Customization_Items" xml:space="preserve">
+    <value>Personnalisation d'éléments</value>
+  </data>
+  <data name="Customization_Item_Argument" xml:space="preserve">
+    <value>Personnalisation de l'argument d'un élément</value>
+  </data>
+  <data name="Customization_Item_Arguments" xml:space="preserve">
+    <value>Personnalisation des arguments d'un élément</value>
+  </data>
+  <data name="Custom_Page" xml:space="preserve">
+    <value>Page personnalisée</value>
+  </data>
+  <data name="items" xml:space="preserve">
+    <value>éléments</value>
+  </data>
+  <data name="Purchase_Order_Details" xml:space="preserve">
+    <value>Détails du bon de commande</value>
+  </data>
+  <data name="Code_Validation" xml:space="preserve">
+    <value>Seuls les caractères suivants sont autorisés pour le code : "a"-"z", "0"-"9", "-", "_", ".", "(", ")", "," et espace.</value>
+  </data>
+  <data name="Default_Country" xml:space="preserve">
+    <value>Pays par défaut</value>
+  </data>
+  <data name="Friendly_Name_MaxLength" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;Le pseudonyme&lt;/b&gt; doit contenir moins de 200 caractères.</value>
+  </data>
+  <data name="Pickup_Orders" xml:space="preserve">
+    <value>Commandes à retirer sur place</value>
+  </data>
+  <data name="Select_All" xml:space="preserve">
+    <value>Sélectionner tout</value>
+  </data>
+  <data name="Shipping_Warehouse" xml:space="preserve">
+    <value>Entrepôt d'expédition</value>
+  </data>
+  <data name="System_Keyword_MaxLength" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;Le mot-clé système&lt;/b&gt; doit contenir moins de 30 caractères.</value>
+  </data>
+  <data name="System_Keyword_Required" xml:space="preserve">
+    <value>&lt;b&gt;Champ obligatoire manquant&lt;/b&gt;&lt;br/&gt;Un mot-clé système est requis.</value>
+  </data>
+  <data name="System_Name_MaxLength" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;b&gt;Le nom du système&lt;/b&gt; doit contenir moins de 30 caractères.</value>
+  </data>
+  <data name="Enabled_Markets" xml:space="preserve">
+    <value>Enabled Markets</value>
+  </data>
+  <data name="Restrictions" xml:space="preserve">
+    <value>Restrictions</value>
+  </data>
+</root>

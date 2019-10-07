@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<clear />
+			<add>
+				<Block id="block1" name="">
+					<Placeholder id="Placeholder_1">
+						<Control id="SplitterCtrl1" path="~/Apps/Order/Modules/OrderLineItemMove.ascx">
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+	</Form>
+</View>

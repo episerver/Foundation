@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<add>
+		<Navigation>
+			<Tabs></Tabs>
+			<Commands></Commands>
+		</Navigation>
+		<FormDocument>
+			<Handlers></Handlers>
+			<Table></Table>
+		</FormDocument>
+		<BafGrid>
+			<Toolbar></Toolbar>
+			<Commands></Commands>
+			<CustomColumns></CustomColumns>
+		</BafGrid>
+		<Form>
+			<Layout></Layout>
+			<Grids></Grids>
+			<Toolbars></Toolbars>
+			<ButtonSets></ButtonSets>
+			<Commands></Commands>
+		</Form>
+		<ListViewUI>
+			<Toolbar></Toolbar>
+			<Grid></Grid>
+			<ButtonSet></ButtonSet>
+			<Commands>
+				<Command id="cmd_NeedRebind">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.NeedToRebindHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="MC_MUI_EntityDD">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:SelectObjects}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes=[ClientParam:Classes]&amp;refreshName=EntityDD_Refresh&amp;ReturnCommand=MC_MUI_EntityDD&amp;SelectCtrlId=[ClientParam:SelectCtrlId]&amp;CanCreate=0&amp;FilterName=[ClientParam:FilterName]&amp;FilterValue=[ClientParam:FilterValue]</Url>
+					<Width>540</Width>
+					<Height>340</Height>
+					<Left>25</Left>
+					<Top>15</Top>
+					<Drag>True</Drag>
+				</Command>
+				<Command id="MC_MUI_EntityDDSmall">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:SelectObjects}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes=[ClientParam:Classes]&amp;refreshName=[ClientParam:Refresh]&amp;ReturnCommand=MC_MUI_EntityDD&amp;SelectCtrlId=[ClientParam:SelectCtrlId]</Url>
+					<Width>520</Width>
+					<Height>300</Height>
+					<Left>50</Left>
+					<Top>50</Top>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="MC_MUI_EntityDD_Inner">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:SelectObjects}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes=[ClientParam:Classes]&amp;refreshName=EntityDD_Refresh&amp;ReturnCommand=MC_MUI_EntityDD_Inner&amp;SelectCtrlId=[ClientParam:SelectCtrlId]&amp;CanCreate=0&amp;FilterName=[ClientParam:FilterName]&amp;FilterValue=[ClientParam:FilterValue]</Url>
+					<Width>520</Width>
+					<Height>300</Height>
+					<Left>5</Left>
+					<Top>5</Top>
+					<Drag>False</Drag>
+				</Command>
+			</Commands>
+		</ListViewUI>
+		<ViewConfig></ViewConfig>
+	</add>
+</View>

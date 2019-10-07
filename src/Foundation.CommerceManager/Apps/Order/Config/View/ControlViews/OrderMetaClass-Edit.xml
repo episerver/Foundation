@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="OrderMetaClass-Edit" controlUrl="Order/MetaClassEdit.ascx" help="Order+System"/>
+		<add>
+			<Transitions>
+				<!-- !!! Transition attributes don't need to be localized !!! -->
+				<Transition name="List" viewId="OrderMetaClass-List"></Transition>
+			</Transitions>
+		</add>
+	</ViewConfig>
+</View>

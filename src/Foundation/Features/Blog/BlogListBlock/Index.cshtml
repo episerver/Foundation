@@ -1,0 +1,121 @@
+﻿@using System.Web.Mvc.Html
+
+@model BlogListBlockViewModel
+@{
+    var grid = (Model.Blogs.Count() - 1) / 4;
+    grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
+    var firstBlog = Model.Blogs.ElementAt(0);
+    var listGridBlogs = new List<List<PageData>>();
+    var listLargeBlogs = new List<PageData>();
+
+    for (var g = 0; g < grid; g++)
+    {
+        var list = new List<PageData>();
+        for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
+        {
+            list.Add(Model.Blogs.ElementAt(i));
+        }
+        listGridBlogs.Add(list);
+    }
+
+    for (var i = grid * 4 + 1; i < Model.Blogs.Count(); i++)
+    {
+        listLargeBlogs.Add(Model.Blogs.ElementAt(i));
+    }
+}
+
+<div class="blog__gallery">
+    @*<a class="blog__external" href="javascript:void(0)">Show all</a>*@
+
+    <div class="blog__row">
+
+        <div class="blog__large-col">
+            @Html.Action("Preview", "BlogItem", new { currentPage = firstBlog, blogModel = Model })
+        </div>
+        @foreach (var list in listGridBlogs)
+        {
+            <div class="blog__large-col">
+                <div class="blog__grid">
+                    @foreach (var page in list)
+                    {
+                        @Html.Action("Preview", "BlogItem", new { currentPage = page, blogModel = Model })
+                    }
+                </div>
+            </div>
+        }
+        @foreach (var page in listLargeBlogs)
+        {
+            <div class="blog__large-col">
+                @Html.Action("Preview", "BlogItem", new { currentPage = page, blogModel = Model })
+            </div>
+        }
+    </div>
+</div>
+
+<br />
+@using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))
+{
+    <input hidden id="PageId" name="PageId" type="text" value="@Model.PagingInfo.PageId" />
+    <input hidden id="PageNumber" name="PageNumber" type="text" value="@Model.PagingInfo.PageNumber" />
+    <input hidden id="PageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />
+}
+
+<div class="col-12 toolbar">
+    <div class="toolbar__left">
+        <strong>
+            @Model.PagingInfo.PageCount @Html.TranslateFallback("/Blog/Items", "Items")
+        </strong>
+    </div>
+
+    <div class="toolbar__center">
+        @if (Model.PagingInfo.PageCount > 0)
+        {
+            <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
+            <ul class="pagination">
+                <li class="jsPaginateBlog " data="1">
+                    <a href="javascript:void(0)" >
+                        &laquo;
+                    </a>
+                </li>
+                @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
+                {
+                    <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "") jsPaginateBlog " data="@page">
+                        <a href="javascript:void(0)" >
+                            @page.ToString()
+                        </a>
+                    </li>
+                }
+                <li class="jsPaginateBlog " data="@Model.PagingInfo.Pages.Last()">
+                    <a href="javascript:void(0)" >
+                        &raquo;
+                    </a>
+                </li>
+            </ul>
+        }
+    </div>
+    <div class="toolbar__right">
+        <div id="limiter">
+            <label>@Html.TranslateFallback("/Search/View", "View"): </label>
+            <ul class="selection">
+                <li>
+                    <a href="#">
+                        @Model.PagingInfo.PageSize
+                        <i style="font-size: 5px;" data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="selection__dropdown">
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.PagingInfo.PageSize == 15 ? 20 : 15)" >@(Model.PagingInfo.PageSize == 15 ? 20 : 15)</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.PagingInfo.PageSize == 30 || Model.PagingInfo.PageSize == 35 ? 20 : 30)" >@(Model.PagingInfo.PageSize == 30 || Model.PagingInfo.PageSize == 35 ? 20 : 30)</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.PagingInfo.PageSize == 35 ? 30 : 35)" >@(Model.PagingInfo.PageSize == 35 ? 30 : 35)</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

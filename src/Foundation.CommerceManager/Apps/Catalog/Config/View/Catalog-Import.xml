@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Catalog-Import" controlUrl="Catalog/CatalogImport.ascx" help="Catalog+Management" permissions="catalog:ctlg:mng:edit"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Import}" controlUrl="Catalog/Tabs/CatalogImportTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

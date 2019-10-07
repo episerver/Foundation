@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Commands>
+			<remove nodeId="MC_MUI_EntityDD"/>
+			<add>
+				<Command id="MC_MUI_EntityDD">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:SelectContact}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes=[ClientParam:Classes]&amp;refreshName=EntityDD_Refresh&amp;ReturnCommand=MC_MUI_EntityDD&amp;SelectCtrlId=[ClientParam:SelectCtrlId]&amp;CanCreate=0&amp;FilterName=[ClientParam:FilterName]&amp;FilterValue=[ClientParam:FilterValue]&amp;ShowClasses=false</Url>
+					<Width>540</Width>
+					<Height>340</Height>
+					<Left>25</Left>
+					<Top>10</Top>
+					<Drag>True</Drag>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+</View>

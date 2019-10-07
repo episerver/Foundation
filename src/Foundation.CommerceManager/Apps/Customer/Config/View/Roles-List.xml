@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox" />
+					<Column width="50" headingText="" columnType="Action" dataField="Name" permissions="customer:roles:mng:edit">
+						<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdProfileGridRoleEdit" commandParameters="Name" toolTip="Edit" permissions="customer:roles:mng:edit"></Item>
+						<Item imageUrl="~/Apps/Shell/Styles/images/toolbar/delete.gif" commandName="cmdProfileGridRoleDelete" commandParameters="Name" toolTip="Delete" permissions="customer:roles:mng:delete"></Item>
+					</Column>
+					<Column width="300" allowSorting="true" dataField="Name" headingText="{Customer:Role_Name}"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="NewRole" text="{SharedStrings:New}" imageUrl="~/Apps/Shell/Styles/images/new.png" commandName="cmdProfileNewRole" permissions="customer:roles:mng:create"/>
+				<Splitter id="ActionsSplitter" permissions="customer:roles:mng:delete"/>
+				<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/Styles/images/toolbar/newtask.gif" permissions="customer:roles:mng:delete">
+					<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/Styles/images/toolbar/delete.gif" commandName="cmdProfileDeleteRole" permissions="customer:roles:mng:delete"/>
+				</Menu>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdProfileNewRole">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCustomerManagementClient.NewRole()</ClientScript>
+				</Command>
+
+				<Command id="cmdProfileDeleteRole">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.RoleDeleteEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteRolesConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.RoleDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdProfileGridRoleEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCustomerManagementClient.EditRole2(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.RoleEditEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdProfileGridRoleDelete">
+					<ConfirmationText>{CommerceManager:DeleteRolesConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.RoleDeleteEnableHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.RoleDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Roles-List" controlUrl="Customer/Modules/RolesList.ascx" help="Customer+Management" permissions="customer:roles:mng:view"></setAttributes>
+	</ViewConfig>
+</View>
