@@ -10,7 +10,7 @@
             var methodId = checked.attr('methodId');
             var keyword = checked.attr('keyword');
             //var paymentTotal = $('input[name="OrderSummary.PaymentTotal"]').val();
-            
+
             var additionVal = {
                 PaymentMethodId: methodId,
                 SystemKeyword: keyword
@@ -169,4 +169,74 @@
             }
         });
     }
+
+    // Coupon code handle 
+    ApplyCouponCode() {
+        var inst = this;
+        $('.jsAddCoupon').click(function () {
+            var form = $(this).closest('form');
+            var url = form[0].action;
+            var couponCode = form.find('.jsCouponCode').val();
+            var data = convertFormData({ couponCode: couponCode });
+            axios.post(url, data)
+                .then(function (r) {
+                    if (r.status == 200) {
+                        $('.jsCouponLabel').removeClass('hidden');
+                        $('.jsCouponListing').append(inst.couponTemplate(couponCode));
+                        inst.RemoveCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
+                        $('.jsOrderSummary').html(r.data);
+                        feather.replace();
+                        form.find('.jsCouponCode').val("");
+                        $('.jsCouponErrorMess').hide();
+                    } else {
+                        $('.jsCouponErrorMess').show();
+                    }
+                })
+                .catch(function (e) {
+                    notification.Error(e);
+                })
+        })
+    }
+
+    RemoveCouponCode(selector) {
+        var inst = this;
+        if (selector) {
+            inst.removeCoupon(selector);
+        } else {
+            $('.jsRemoveCoupon').each(function (i, e) {
+                inst.removeCoupon(e);
+            })
+        }
+    }
+
+    removeCoupon(e) {
+        $(e).click(function () {
+            var element = $(this);
+            var url = $('#jsRenoveCouponUrl').val();
+            var couponCode = $(this).data('couponcode');
+            var data = convertFormData({ couponCode: couponCode });
+            axios.post(url, data)
+                .then(function (r) {
+                    element.remove();
+                    var coupons = $('.jsCouponListing').find('.jsRemoveCoupon');
+                    if (coupons.length == 0) {
+                        $('.jsCouponLabel').addClass('hidden');
+                    }
+
+                    $('.jsOrderSummary').html(r.data);
+                    $('.jsCouponErrorMess').hide();
+                })
+                .catch(function (e) {
+                    notification.Error(e);
+                })
+        })
+    }
+
+    couponTemplate(couponCode) {
+        return `<label class="filters-tag jsRemoveCoupon" data-couponcode="${couponCode}">
+                    <span>${couponCode}</span>
+                    <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
+                </label>`;
+    }
+    //////////////////
 }

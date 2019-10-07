@@ -19,6 +19,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -251,25 +252,29 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult AddCouponCode(CheckoutPage currentPage, string couponCode)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCouponCode(string couponCode)
         {
             if (_cartService.AddCouponCode(CartWithValidationIssues.Cart, couponCode))
             {
                 _orderRepository.Save(CartWithValidationIssues.Cart);
+                var model = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+                return PartialView("_OrderSummary", model);
             }
-            var viewModel = CreateCheckoutViewModel(currentPage);
-            viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-            return View("PlaceOrder", viewModel);
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
         }
 
         [HttpPost]
-        public ActionResult RemoveCouponCode(CheckoutPage currentPage, string couponCode)
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveCouponCode(string couponCode)
         {
             _cartService.RemoveCouponCode(CartWithValidationIssues.Cart, couponCode);
             _orderRepository.Save(CartWithValidationIssues.Cart);
-            var viewModel = CreateCheckoutViewModel(currentPage);
-            viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-            return View("PlaceOrder", viewModel);
+            var model = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+            return PartialView("_OrderSummary", model);
         }
 
         [HttpPost]

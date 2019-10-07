@@ -18,13 +18,12 @@
                                 return new KeyValuePair<string, string>(x.Name, x.Code);
                             });
                         }
-                        @Helpers.RenderDropdown(contries, Model.AddressModel.CountryCode, "validate-select jsChangeCountry", "AddressModel.CountryCode")
-                        @*@Html.DropDownListFor(x => x.AddressModel.CountryCode, new SelectList(Model.AddressModel.CountryOptions, "Code", "Name", Model.AddressModel.CountryCode), new { @class = "validate-select jsChangeCountry" })*@
-                        @*@Html.Hidden("address-htmlfieldprefix", "AddressModel.CountryRegion")*@
+                        @Html.DisplayFor(model => Model.AddressModel.CountryOptions, "CountryOptions",
+                                                    new { SelectItem = Model.AddressModel.CountryCode, Name = "AddressModel.CountryCode" })
                     </div>
                 </li>
-                <li>
-                    @Html.EditorFor(x => x.AddressModel.CountryRegion)
+                <li class="jsCountryRegionContainer">
+                    @Html.EditorFor(x => x.AddressModel.CountryRegion, new { Name = "AddressModel.CountryRegion.Region" })
                 </li>
                 <li class="large-cart__margin-top">
                     <label for="postcode">Zip/Postal Code</label>
@@ -52,18 +51,19 @@
         @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
         {
             <form action="@Url.Action("AddCouponCode", "DefaultCart")" method="post">
+                @Html.AntiForgeryToken()
                 <div>
-                    <input type="text" name="couponCode" class="textbox" id="coupon_code">
+                    <input type="text" name="couponCode" class="textbox jsCouponCode">
                 </div>
                 @{
                     var couponError = ViewBag.CouponError != null ? (bool)ViewBag.CouponError : false;
                 }
-                <div class="large-cart__margin-top couponcode-errormessage required" style="@(couponError ? "" : "display: none")">
+                <div class="large-cart__margin-top couponcode-errormessage required jsCouponErrorMess" style="@(couponError ? "" : "display: none")">
                     <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
                 </div>
                 <div class="large-cart__margin-top">
                     <span class="input-group-btn">
-                        <button type="submit" class="button-transparent-black btn-">
+                        <button type="button" class="button-transparent-black jsAddCoupon">
                             @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
                         </button>
                     </span>
@@ -71,57 +71,34 @@
             </form>
 
         }
-        @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
-        {
-            <div class="col-xs-12">
-                <p class="title">@Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")</p>
-                <ul>
-                    @foreach (var couponCode in Model.AppliedCouponCodes)
+
+
+        <div class="col-xs-12">
+            <h5 class="jsCouponLabel title @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
+                @Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")
+            </h5>
+
+            <div class="jsCouponListing">
+                <input type="hidden" id="jsRenoveCouponUrl" value="@Url.Action("RemoveCouponCode", "DefaultCart")" />
+                @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
+                {
+                    foreach (var couponCode in Model.AppliedCouponCodes)
                     {
-                        <li>
-                            @Html.Label(couponCode)
-                            @Html.ActionLink(Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/RemoveButton", "Remove"), "RemoveCouponCode", "DefaultCart", new { }, new { @class = "btn btn-danger btn-xs js-remove-couponcode" })
-                        </li>
+                        <label class="filters-tag jsRemoveCoupon" data-couponcode="@couponCode" data-url="@Url.Action("RemoveCouponCode", "DefaultCart")">
+                            <span>@couponCode</span>
+                            <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
+                        </label>
                     }
-                </ul>
+                }
             </div>
-        }
+        </div>
+
     </div>
 
     <div class="large-cart--block col-sm-4">
-        <h3>@Html.TranslateFallback("/Cart/Labels/ShoppingCartTotal", "Shopping Cart Total")</h3>
-        <ul class="list-group--info">
-            <li class="row">
-                <span class="col-6">@Html.TranslateFallback("/Cart/Labels/Subtotal", "Subtotal")</span>
-                <span class="col-6 largecart-Subtotal">@Model.Subtotal.ToString()</span>
-            </li>
-
-            @if (Model.TotalDiscount.Amount > 0)
-            {
-                <li class="row">
-                    <span class="col-6">
-                        @Html.TranslateFallback("/Cart/Labels/DiscountsApplied", "Discount Applied")
-                    </span>
-                    <span class="col-6">
-                        <strong>- <span class="largecart-TotalDiscount">@Model.TotalDiscount.ToString()</span></strong>
-                    </span>
-                </li>
-            }
-
-            <li class="row">
-                <span class="col-6">@Html.TranslateFallback("/Cart/Labels/TaxTotal", "Tax Total")</span>
-                <span class="col-6 largecart-TaxTotal">@Model.TaxTotal.ToString()</span>
-            </li>
-            <li class="row">
-                <span class="col-6">@Html.TranslateFallback("/Cart/Labels/ShippingTotal", "Shipping Total")</span>
-                <span class="col-6 largecart-ShippingTotal">@Model.ShippingTotal.ToString()</span>
-            </li>
-
-            <li class="row">
-                <span class="col-6 title">@Html.TranslateFallback("/Cart/Labels/Total", "Total")</span>
-                <span class="col-6 price__discount largecart-Total">@Model.Total.ToString()</span>
-            </li>
-        </ul>
+        <div class="jsOrderSummary">
+            @Html.Partial("_CartSummary", Model)
+        </div>
 
         <ul>
             <li>
@@ -136,10 +113,10 @@
                 <br>
             </li>
             @*<li>
-                <a class="account-link" title="Checkout with Multiple Addresses" href="@Url.ContentUrl(Model.MultiShipmentPage)">
-                    @Html.TranslateFallback("/Cart/Labels/MultipleAddresses", "Multiple Addresses")
-                </a>
-            </li>*@
+                    <a class="account-link" title="Checkout with Multiple Addresses" href="@Url.ContentUrl(Model.MultiShipmentPage)">
+                        @Html.TranslateFallback("/Cart/Labels/MultipleAddresses", "Multiple Addresses")
+                    </a>
+                </li>*@
             <li>
                 <br>
             </li>

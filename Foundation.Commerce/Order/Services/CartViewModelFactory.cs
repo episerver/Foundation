@@ -78,6 +78,39 @@ namespace Foundation.Commerce.Order.Services
             };
         }
 
+        public virtual LargeCartViewModel CreateSimpleLargeCartViewModel(ICart cart)
+        {
+            if (cart == null)
+            {
+                var zeroAmount = new Money(0, _currencyService.GetCurrentCurrency());
+                return new LargeCartViewModel()
+                {
+                    TotalDiscount = zeroAmount,
+                    Total = zeroAmount,
+                    TaxTotal = zeroAmount,
+                    ShippingTotal = zeroAmount,
+                    Subtotal = zeroAmount,
+                };
+            }
+
+            var totals = _orderGroupCalculator.GetOrderGroupTotals(cart);
+            var orderDiscountTotal = _orderGroupCalculator.GetOrderDiscountTotal(cart);
+            var shippingDiscountTotal = cart.GetShippingDiscountTotal();
+            var discountTotal = shippingDiscountTotal + orderDiscountTotal;
+
+            var model = new LargeCartViewModel()
+            {
+                TotalDiscount = discountTotal,
+                Total = totals.Total,
+                ShippingTotal = totals.ShippingTotal,
+                Subtotal = totals.SubTotal,
+                TaxTotal = totals.TaxTotal,
+                ReferrerUrl = GetReferrerUrl(),
+            };
+            
+            return model;
+        }
+
         public virtual LargeCartViewModel CreateLargeCartViewModel(ICart cart, CartPage cartPage)
         {
             var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
@@ -107,7 +140,9 @@ namespace Foundation.Commerce.Order.Services
             }
 
             var totals = _orderGroupCalculator.GetOrderGroupTotals(cart);
-            var discountTotal = new Money(cart.GetAllLineItems().Sum(x => x.GetEntryDiscount()), cart.Currency);
+            var orderDiscountTotal = _orderGroupCalculator.GetOrderDiscountTotal(cart);
+            var shippingDiscountTotal = cart.GetShippingDiscountTotal();
+            var discountTotal = shippingDiscountTotal + orderDiscountTotal;
 
             var model = new LargeCartViewModel(cartPage)
             {
@@ -115,7 +150,7 @@ namespace Foundation.Commerce.Order.Services
                 TotalDiscount = discountTotal,
                 Total = totals.Total,
                 ShippingTotal = totals.ShippingTotal,
-                Subtotal = totals.SubTotal + discountTotal,
+                Subtotal = totals.SubTotal,
                 TaxTotal = totals.TaxTotal,
                 ReferrerUrl = GetReferrerUrl(),
                 CheckoutPage = startPage.CheckoutPage,

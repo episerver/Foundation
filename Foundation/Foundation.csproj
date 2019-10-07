@@ -1211,6 +1211,7 @@
     <Content Include="ClientResources\Scripts\ContentEditing\CreateContent.js" />
     <Content Include="ClientResources\Scripts\Initialize.js" />
     <Content Include="ClientResources\Styles\Styles.css" />
+    <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
     <Content Include="Features\NamedCarts\Wishlist\Index.cshtml" />
     <Content Include="Features\Search\Category\Index.cshtml" />
@@ -2119,6 +2120,7 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="modules\_protected\EPiServer.ChangeApproval\EPiServer.ChangeApproval.zip" />
+    <Content Include="Features\NamedCarts\DefaultCart\_CartSummary.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -23,6 +23,7 @@ using Mediachase.Commerce.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -639,30 +640,30 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public ActionResult AddCouponCode(CartPage currentPage, string couponCode)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCouponCode(string couponCode)
         {
-            var couponError = false;
             if (_cartService.AddCouponCode(CartWithValidationIssues.Cart, couponCode))
             {
                 _orderRepository.Save(CartWithValidationIssues.Cart);
             }
             else
             {
-                couponError = true;
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-
-            ViewBag.CouponError = couponError;
-            var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage);
-            return View("LargeCart", viewModel);
+            
+            var viewModel = _cartViewModelFactory.CreateSimpleLargeCartViewModel(CartWithValidationIssues.Cart);
+            return PartialView("_CartSummary", viewModel);
         }
 
         [HttpPost]
-        public ActionResult RemoveCouponCode(CartPage currentPage, string couponCode)
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveCouponCode(string couponCode)
         {
             _cartService.RemoveCouponCode(CartWithValidationIssues.Cart, couponCode);
             _orderRepository.Save(CartWithValidationIssues.Cart);
-            var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage); ;
-            return View("LargeCart", viewModel);
+            var viewModel = _cartViewModelFactory.CreateSimpleLargeCartViewModel(CartWithValidationIssues.Cart); ;
+            return PartialView("_CartSummary", viewModel);
         }
 
         [HttpPost]
