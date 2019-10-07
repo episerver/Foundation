@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="ReturnOrderLineItem-Edit" name="ReturnLineItem Edit" controlUrl="Order/Modules/ReturnOrderLineItemEdit.ascx"/>
+	</ViewConfig>
+</View>

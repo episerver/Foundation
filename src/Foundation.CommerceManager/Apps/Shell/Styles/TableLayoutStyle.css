@@ -1,0 +1,42 @@
+.designSmartTableLayoutItem
+{
+	background-color: #FFFFFF;
+	border: dashed 1px #DADADA;
+	cursor: pointer;
+	padding:4px;
+}
+.designTableLayoutItem 
+{
+	cursor: pointer;
+    padding:5px;
+}
+
+.designTableLayoutItemHover
+{
+	background-color: #E0E0E0;
+}
+
+.designTableLayoutCell
+{
+    border: dashed 1px #A0A0A0;
+}
+
+.designTableLayoutItemSelected
+{
+	border: solid 2px #8DD485;
+	padding:3px;
+}
+
+.borderType1TableLayoutSection
+{
+	font-family: verdana; 
+	border-left:1px solid #95b7f3;
+	border-right:1px solid #95b7f3;
+	border-bottom:1px solid #95b7f3;
+	text-align:left;
+}
+
+.labelSmartTableLayoutItem
+{
+	font-weight: bold;
+}

@@ -1,0 +1,3 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WarehouseList.ascx.cs" Inherits="Mediachase.Commerce.Manager.Catalog.WarehouseList" %>
+<%@ Register Src="../Core/Controls/EcfListViewControl.ascx" TagName="EcfListViewControl" TagPrefix="core" %>
+<core:EcfListViewControl id="MyListView" runat="server" AppId="Catalog" ViewId="Warehouse-List" ShowTopToolbar="true"></core:EcfListViewControl>

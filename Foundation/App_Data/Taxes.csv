@@ -1,3 +1,0 @@
-JurisdictionName,StateProvinceCode,CountryCode,ZipPostalCodeStart,ZipPostalCodeEnd,City,District,County,GeoCode,JurisdictionCode,JurisdictionGroupName,JurisdictionGroupCode,TaxNativeName,TaxName,SortOrder,LanguageCode,TaxCategory,Percentage,EffectiveDate
-California - GeneralSales,California,USA,Null,Null,Null,Null,Null,Null,California,California Tax Group,CA-Group,California Sales Tax 9%,CA Sales Tax 9%,1,en-US,General Sales,9,1/1/2009
-Massachusetts - GeneralSales,Massachusetts,USA,Null,Null,Null,Null,Null,Null,Massachusetts,Massachusetts Tax Group,MA-Group,Massachusetts Sales Tax 6%,MA Sales Tax 6%,2,en-US,General Sales,6,1/1/2009

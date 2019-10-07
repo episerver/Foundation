@@ -1,0 +1,90 @@
+﻿.FileUploadAddBtnBlock
+{
+	text-align: left;
+	color: Blue;
+}
+
+.FileUploadHideBlock
+{
+	color: Blue;
+}
+
+.FileUploadUploadBlock
+{
+	color: Blue;
+}
+.FileUploadFilesForSaving
+{
+	border-top:solid 1px blue;
+	background-color:#E5ECF9;
+	height: 10px;
+}
+
+.FileUpload
+{
+    font-family: verdana,Arial,Helvetica,sans-serif;
+    font-size: 8pt;
+    color: black;
+}
+
+.FileUpload html, .FileUpload body
+{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height:100%;
+  margin:0;
+  width: 100%;
+  background-color: #F5F5F5;
+  font-family: verdana,Arial,Helvetica,sans-serif;
+  font-size: 8pt;
+  color: black;
+}
+
+.FileUpload div, .FileUpload span, .FileUpload form
+{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+
+  margin:0;
+  padding:0;
+  background-color: transparent;
+}
+
+.FileUpload .text{
+    font-family: Verdana, sans-serif; 
+    font-size: 8pt; 
+}
+
+.FileUpload p
+{
+    padding:5px 0px 5px 0px;margin: 0px;
+}
+
+.FileUpload a{
+  color: black;
+  text-decoration: none;
+}
+.FileUpload a:hover
+{
+    color: red;
+    text-decoration: underline;
+}
+.FileUpload textarea{
+  font-family: verdana,Arial,Helvetica,sans-serif;
+  font-size: 8pt;
+}
+.FileUpload input{
+  font-family: verdana,Arial,Helvetica,sans-serif;
+  font-size: 8pt;
+}
+.FileUpload hr
+{
+    color: #002D96;
+}
+
+.FileUpload table
+{
+  font-family: verdana,Arial,Helvetica,sans-serif;
+  font-size: 8pt;
+  color: black;
+}

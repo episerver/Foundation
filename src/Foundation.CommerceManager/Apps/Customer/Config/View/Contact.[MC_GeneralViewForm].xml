@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<FormDocument>
+		<Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" width="100%" columns="50%;*" cellPadding="5">
+			<add>
+				<Row>
+					<Cell colSpan="2" name="cell_11">
+						<Section uid="e4778d5c2d6040a3bd0e26116512934c" borderType="1" showLabel="true" itemIndex="1">
+							<Labels>
+								<Label title="{Customer:Contact}" code="en" />
+							</Labels>
+							<Control controlType="SmartTableLayout" width="100%" uid="7af334bd4be74a5fad7b4746ee7467f7" cellPadding="5" columns="50%;*">
+								<Item rowIndex="1" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="d4dab11f4074435795e7d9fc0a8ba297" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="FullName" readOnly="False" uid="49bd64177aa144c6a8b5d2a5847ff63e" />
+								</Item>
+								<Item rowIndex="3" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="9641dc70faa94a2e9041ff30f9f75ff6" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="MiddleName" readOnly="False" uid="0a46501a728c400293eef59ba824cd32" />
+								</Item>
+								<Item rowIndex="4" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="2a8cf55de94d4a84bd566f4a848d5adc" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="LastName" readOnly="False" uid="6c2459511b10424ead604e66aa040094" />
+								</Item>
+								<Item rowIndex="2" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="f52b8b85aba94e18addfb67621ea2835" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="FirstName" readOnly="False" uid="9558ebd6c1924f0489a6ac9d763a302a" />
+								</Item>
+								<Item rowIndex="5" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="4e77e502abfe44b6b76e34821de4f4c1" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="LastOrder" readOnly="False" uid="3e4ffa59b61f4a5b9b833443005cc236" />
+								</Item>
+								<Item rowIndex="1" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="c4b0ab8643664c3d9b4da16c528ff365" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="CustomerGroup" readOnly="False" uid="94c45f3e9fde4af8badb2fb537ab9af4" />
+								</Item>
+								<Item rowIndex="3" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="9047e7317bb64fa9a44404a67c6415ee" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru-RU" />
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="PreferredLanguage" readOnly="False" uid="ee1affe0a4bd43d3b71dd11f023ca18e" />
+								</Item>
+								<Item rowIndex="2" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="d4fdc75c79f043989a94652995854305" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru-RU" />
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="PreferredCurrency" readOnly="False" uid="b055030ea24541518cf2a1cf8f36f7a3" />
+								</Item>
+								<Item rowIndex="4" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="9f897212471445a4bacaa46adb8082b3" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="ru-RU" />
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="RegistrationSource" readOnly="False" uid="718eff0965af4a2fb754d6ba190ee65b" />
+								</Item>
+								<Item rowIndex="5" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="b63756ca8b0f4b85881dae772432ced3" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="OwnerId" readOnly="False" uid="3fbddab657444729b3abac5452625ec4" />
+								</Item>
+								<Item rowIndex="6" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="a333a84917b642719ae33ecdc55c49ed" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="PreferredShippingAddressId" readOnly="False" uid="fff75fbbd671465f82f83a2ebea4586d" />
+								</Item>
+								<Item rowIndex="7" cellIndex="1" rowSpan="1" colSpan="1" borderType="0" showLabel="true" labelWidth="150px" uid="1049f24177ff4d7394ae06bee5252f11" tabIndex="0">
+									<Labels>
+										<Label title="[MC_DefaultLabel]" code="en" />
+									</Labels>
+									<Control controlType="MetaPrimitive" source="PreferredBillingAddressId" readOnly="False" uid="d40e10382461425e98e44c93da017d11" />
+								</Item>
+							</Control>
+						</Section>
+					</Cell>
+				</Row>
+				<Row>
+					<Cell colSpan="1" name="cell_21" />
+					<Cell colSpan="1" name="cell_22" />
+				</Row>
+				<Row>
+					<Cell colSpan="2" name="cell_31" />
+				</Row>
+			</add>
+		</Table>
+	</FormDocument>
+</View>

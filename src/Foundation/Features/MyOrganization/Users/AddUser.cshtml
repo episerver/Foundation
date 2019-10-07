@@ -1,0 +1,98 @@
+﻿@using System.Web.Mvc.Html
+@using Foundation.Commerce.ViewModels.Header
+@model UsersPageViewModel
+
+<div class="users-page row">
+    @{Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Organization }); }
+    <div class="col-main col-sm-9">
+        @{Html.RenderAction("Index", "B2BNavigation");}
+        <div class="page-title">
+            <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+        </div>
+        <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+        <div>
+            <section class="spacer-bottom-l">
+                <div class="section-title spacer-bottom-l">
+                    <h2 class="h3">@Html.TranslateFallback("/B2B/Users/Lookup", "Look up user or fill in their details")</h2>
+                </div>
+                <div class="custom-search">
+                    <input type="text" id="addUsersAutocomplete" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
+                    <i id="js-reset-icon" class="close-icon" data-feather="x" style="display: none;"></i>
+                    <i id="js-search-icon" class="icon-search" data-feather="search" aria-hidden="true"></i>
+                </div>
+                <button class="btn js-autocomplete-result" type="button" style="display:none">
+                    <span class="js-user-name v-align-middle"></span><span class="js-close-icon close-icon v-align-middle"></span>
+                </button>
+            </section>
+            <section class="spacer-bottom-l">
+                <div class="section-title spacer-bottom-l">
+                    <h2 class="h3">@Html.TranslateFallback("/B2B/Users/UserDetails", "User Details")</h2>
+                </div>
+                @using (Html.BeginForm("AddUser", "UsersPage", FormMethod.Post, new { @id = "addUserForm" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Contact.FirstName)
+                        <br />
+                        @Html.TextBoxFor(x => x.Contact.FirstName, new { @class = "textbox" })
+                        @Html.ValidationMessageFor(x => x.Contact.FirstName)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Contact.LastName)
+                        <br />
+                        @Html.TextBoxFor(x => x.Contact.LastName, new { @class = "textbox" })
+                        @Html.ValidationMessageFor(x => x.Contact.LastName)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Contact.Email)
+                        <br />
+                        @Html.TextBoxFor(x => x.Contact.Email, new { @class = "textbox" })
+                        @Html.ValidationMessageFor(x => x.Contact.Email)
+                    </div>
+                    <div class="form-group" id="organization-div" style="display: none">
+                        @Html.LabelFor(x => x.Contact.FoundationOrganization, Html.TranslateFallback("/B2B/SubOrganization", "SubOrganization"))
+                        <br />
+                        <div class="custom-select">
+                            <span class="custom-select-split"></span>
+                            <span class="custom-select-arrow arrow-down"></span>
+                            @Html.ValidationMessageFor(model => model.Contact.FoundationOrganization.OrganizationId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>@Html.TranslateFallback("/Shared/Role", "Role")</label>
+                        <br />
+                        @Html.DropDownListFor(m => m.Contact.UserRole, new SelectList(new List<SelectListItem>
+                                                                    {
+                                                                        new SelectListItem { Text = Html.TranslateFallback("/B2B/Admin", "Admin"), Value = "Admin" },
+                                                                        new SelectListItem { Text = Html.TranslateFallback("/B2B/Approver", "Approver"), Value = "Approver" },
+                                                                        new SelectListItem { Text = Html.TranslateFallback("/B2B/Purchaser", "Purchaser"), Value = "Purchaser" }
+                                                                    }, "Value", "Text", Model.Contact.UserRole), new { @id = "select-role", @class = "textbox" })
+                    </div>
+                    <div class="form-group" id="location-div" style="display: none">
+                        <label>@Html.LabelFor(x => x.Contact.UserLocationId)</label>
+                        <br />
+                        <div class="custom-select">
+                            <span class="custom-select-split"></span>
+                            <span class="custom-select-arrow arrow-down"></span>
+                            @Html.DropDownListFor(model => model.Contact.UserLocationId, new List<SelectListItem>(), Html.TranslateFallback("/B2B/Users/SelectLocation", "Select location"), new { @id = "select-location" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Contact.UserLocationId)
+                    </div>
+
+                    if (Model.Contact.ShowOrganizationError)
+                    {
+                        <div class="form-group">
+                            <p class="text-danger">@Html.TranslateFallback("/B2B/Users/Already", "Already")</p>
+                        </div>
+                    }
+
+                    <div class="spacer-top-l">
+                        <button type="submit" class="button-black">
+                            @Html.TranslateFallback("/Shared/Add", "Add")
+                        </button>
+                        <a href="@Url.Action("Index", "Users")" class="button-transparent-black">@Html.TranslateFallback("/Shared/Cancel", "Cancel")</a>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>

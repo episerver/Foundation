@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox"/>
+					<Column width="20" headingText="" columnType="Action" dataField="OrderGroupId">
+						<Item imageUrl="~/Apps/Shell/styles/Images/summary.gif" commandName="cmdOrderSummary" toolTip="Order Summary" commandParameters="OrderGroupId,CustomerId,MetaClass.Name"></Item>
+					</Column>
+					<Column width="80" allowSorting="true" dataField="OrderGroupId"  headingText="{SharedStrings:ID}" columnType="CustomTemplate" permissions="order:mng:view">
+						<Template id="LinkTemplate" controlUrl="GridTemplates/OrderLinkTemplate.ascx"></Template>
+					</Column>
+					<Column width="200" allowSorting="true" dataField="CustomerName" headingText="{SharedStrings:Customer}" columnType="CustomTemplate">
+						<Template id="CustomerTemplate" controlUrl="GridTemplates/OrderCustomerTemplate.ascx"></Template>
+					</Column>
+					<Column width="100" allowSorting="true" dataField="Total" headingText="{SharedStrings:Total}" columnType="Currency" currencyCodeField="BillingCurrency" align="Right"></Column>
+					<Column width="150" allowSorting="true" dataField="Status"  headingText="{SharedStrings:Status}" Align="Center" columnType="CustomTemplate">
+						<Template id="OrderStatusTemplate" controlUrl="GridTemplates/OrderStatusTemplate.ascx"></Template>
+					</Column>
+					<Column width="100" allowSorting="true" dataField="MarketId" headingText="{SharedStrings:Market_Id}"></Column>
+					<Column width="200" columnType="DateTime" allowSorting="false" dataField="Modified" headingText="{SharedStrings:Last_Modified}"></Column>
+					<Column width="200" columnType="DateTime" allowSorting="false" dataField="Created" headingText="{SharedStrings:Created}"></Column>
+					<Column width="200" allowSorting="false" dataField="OrderGroupId" headingText="Order Id"></Column>
+					<Column width="200" allowSorting="false" dataField="Name" headingText="{SharedStrings:Name}"></Column>
+					<Column width="200" allowSorting="false" dataField="ProviderId" headingText="ProviderId"></Column>
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdOrderDelete" permissions="order:mng:delete"/>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdOrderSummary">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Order Summary</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=Order-Summary&amp;id=[ClientParam:OrderGroupId]&amp;CustomerId=[ClientParam:CustomerId]&amp;ClassName=[ClientParam:MetaClass.Name]&amp;commandName=cmd_NeedRebind</Url>
+					<Width>690</Width>
+					<Height>680</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+				<Command id="cmdOrderDelete">
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.CommonEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.OrderDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="OrderSearch-List" controlUrl="Order/OrderSearch.ascx" permissions="order:mng:view" help="Order+Management"></setAttributes>
+	</ViewConfig>
+</View>

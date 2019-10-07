@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DateTimeTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Core.Controls.GridTemplates.DateTimeTemplate" %>
+<asp:Label runat="server" ID="FieldText"></asp:Label>

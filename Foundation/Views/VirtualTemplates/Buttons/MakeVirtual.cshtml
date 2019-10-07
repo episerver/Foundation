@@ -1,7 +1,0 @@
-﻿@using System.Web.Mvc.Html
-@using EPiServer.Shell.Web.Mvc.Html
-
-<a class="btn btn-sm btn-primary"
-   href="@Url.Action("MakeVirtual", "VirtualTemplates", new { VirtualPath = @Model.VirtualPath })">
-    <i class="fas fa-edit"></i> @Html.TranslateFallback("/virtualtemplatesystem/buttons/makevirtual", "Edit now")
-</a>

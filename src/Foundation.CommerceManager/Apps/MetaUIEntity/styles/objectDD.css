@@ -1,0 +1,49 @@
+table.ibn-propertysheet td
+{
+    padding: 0 !important;
+}
+table.ibn-propertysheet td.cellclass, table.ibn-propertysheet td.hovercellclass
+{
+    padding: 3px !important;
+}
+.btndown{
+	border-right: 1px solid #7F9DB9;
+	border-top: 1px solid #7F9DB9;
+	border-bottom: 1px solid #7F9DB9;
+	background-color: #C5D6FC;
+	width: 17px;
+	text-align: center !important;
+}
+
+.btndown2{
+	
+}
+
+.dropstyle{
+	border: 1px solid #7F9DB9;
+	overflow: hidden;
+	padding: 3px 0 3px 3px;
+	white-space: nowrap;
+}
+.cellclass {
+	background-color: #fafafa;
+	border-bottom: 1px solid #7F9DB9;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.hovercellclass{
+	background-color: #FFEEC2;
+	border-bottom: 1px solid #7F9DB9;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.rest-gray{
+	color: #C9A8BD;
+}
+.rest-black{
+	color: black;
+}
+.dropstyle *
+{
+    vertical-align: middle;
+}

@@ -1,0 +1,118 @@
+
+.comboBox 
+{ 
+  border: 1px solid #A6A7AA; 
+  background-color: white; 
+}
+
+.comboBoxHover
+{ 
+  border: 1px solid #555555; 
+  background-color: white; 
+}
+
+.comboDropDown 
+{ 
+  border: 1px solid #868686; 
+  background-color: white; 
+  padding: 1px;
+  padding-right: 0px;
+  width: 500px;
+  cursor: default;
+}
+
+.comboTextBox
+{
+  border: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.comboTextBoxHover
+{
+  background-color: #B2B4BF; 
+}
+
+.comboItem
+{
+  font-family: Verdana; 
+  font-size: 11px; 
+  padding: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.comboItemHover
+{
+  background-color: #B2B4BF; 
+  background-image: url(images/combobox/comboItemBg.gif);
+  font-family: Verdana; 
+  font-size: 11px; 
+  border: 1px solid #DBCE99;
+  padding: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.WindowsStyle .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input
+{
+    margin: 0;
+    border: solid 1px #7F9DB9;
+    border-right: 0px none;
+    padding: 1px 0px 0px 5px;
+    font-size: 13px;
+    height: 18px;
+}
+.WindowsStyle .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button
+{
+    margin: 0;
+    padding: 0;
+    background-image: url(/images/windows-arrow.gif);
+    background-position: top left;
+    border: 0px none;
+    height: 21px;
+    width: 21px;
+}
+.WindowsStyle .ajax__combobox_itemlist
+{
+    border-color: #7F9DB9;
+}
+
+.WindowsStyle .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input
+{
+    margin: 0;
+    border: solid 1px #A6A7AA; /*#7F9DB9;*/
+    border-right: 0px none;
+    padding: 1px 0px 0px 5px;
+    font-family: Verdana;
+    font-size: 11px;
+    height: 22px;
+}
+.WindowsStyle2 .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button
+{
+    margin: 0;
+    padding: 0;
+    background-image: url(images/combobox/drop.gif);
+    background-position: top left;
+    /*border-width: 1px 1px 1px 0;
+    border-color: #A6A7AA;*/
+    border: 0 none;
+    height: 20px;
+    width: 17px;
+}
+
+.WindowsStyle2 .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer td
+{
+    margin: 0;
+    padding: 0;
+    border-width: 1px 1px 1px 0;
+    border-color: #A6A7AA;
+    border-style: solid;
+    height: 22px;
+    width: 18px;
+}
+
+.WindowsStyle2 .ajax__combobox_itemlist
+{
+    border-color: #A6A7AA; /*#7F9DB9;*/
+}

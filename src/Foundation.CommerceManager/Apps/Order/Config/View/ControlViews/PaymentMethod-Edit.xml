@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="PaymentMethod-Edit" controlUrl="Order/Payments/PaymentMethodEdit.ascx" help="Order+System"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Order/Payments/Tabs/PaymentMethodEditBaseTab.ascx"></Tab>
+				<Tab name="{SharedStrings:Parameters}" controlUrl="Order/Payments/Tabs/PaymentMethodEditParameters.ascx"></Tab>
+        <Tab name="{SharedStrings:Markets}" controlUrl ="Order/Payments/Tabs/PaymentMethodEditMarkets.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

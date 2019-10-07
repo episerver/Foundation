@@ -3,37 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Foundation\Foundation.csproj", "{856C325A-2CC0-422C-B964-1BD10EA14C99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Src\Foundation\Foundation.csproj", "{856C325A-2CC0-422C-B964-1BD10EA14C99}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{84E6E5D6-6B1F-4714-ACF1-1B3A83B25072}"
-	ProjectSection(SolutionItems) = preProject
-		SqlScripts\aspnet_identity.sql = SqlScripts\aspnet_identity.sql
-		Build.bat = Build.bat
-		SqlScripts\FoundationConfigurationSchema.sql = SqlScripts\FoundationConfigurationSchema.sql
-		SqlScripts\ServiceApiCms.sql = SqlScripts\ServiceApiCms.sql
-		SqlScripts\ServiceApiCommerce.sql = SqlScripts\ServiceApiCommerce.sql
-		SqlScripts\UniqueCouponSchema.sql = SqlScripts\UniqueCouponSchema.sql
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.CommerceManager", "src\Foundation.CommerceManager\Foundation.CommerceManager.csproj", "{121D8737-4300-4828-83D4-61D807A6339F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.CommerceManager", "Foundation.CommerceManager\Foundation.CommerceManager.csproj", "{121D8737-4300-4828-83D4-61D807A6339F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Cms", "src\Foundation.Cms\Foundation.Cms.csproj", "{C9638F52-7402-446D-BF89-993686E26A52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Cms", "Foundation.Cms\Foundation.Cms.csproj", "{C9638F52-7402-446D-BF89-993686E26A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Commerce", "src\Foundation.Commerce\Foundation.Commerce.csproj", "{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Commerce", "Foundation.Commerce\Foundation.Commerce.csproj", "{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Find.Cms", "src\Foundation.Find.Cms\Foundation.Find.Cms.csproj", "{07C19549-7028-4CBA-BA73-FADD93BE8E5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Find.Cms", "Foundation.Find.Cms\Foundation.Find.Cms.csproj", "{07C19549-7028-4CBA-BA73-FADD93BE8E5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Campaign", "src\Foundation.Campaign\Foundation.Campaign.csproj", "{A3830DA6-FBF6-4ECC-83CA-294809C87965}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Campaign", "Foundation.Campaign\Foundation.Campaign.csproj", "{A3830DA6-FBF6-4ECC-83CA-294809C87965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Social", "src\Foundation.Social\Foundation.Social.csproj", "{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Social", "Foundation.Social\Foundation.Social.csproj", "{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Commerce.Personalization", "src\Foundation.Commerce.Personalization\Foundation.Commerce.Personalization.csproj", "{1172550B-7582-43B9-B6F3-17702C7D851E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Commerce.Personalization", "Foundation.Commerce.Personalization\Foundation.Commerce.Personalization.csproj", "{1172550B-7582-43B9-B6F3-17702C7D851E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Cms.Personalization", "src\Foundation.Cms.Personalization\Foundation.Cms.Personalization.csproj", "{65E9E4BE-5A1E-4D90-AA48-CDF000B227F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Cms.Personalization", "Foundation.Cms.Personalization\Foundation.Cms.Personalization.csproj", "{65E9E4BE-5A1E-4D90-AA48-CDF000B227F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Demo", "src\Foundation.Demo\Foundation.Demo.csproj", "{08FFAD15-F974-435D-A6D1-8B0C8069594F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Demo", "Foundation.Demo\Foundation.Demo.csproj", "{08FFAD15-F974-435D-A6D1-8B0C8069594F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Find.Commerce", "Foundation.Find.Commerce\Foundation.Find.Commerce.csproj", "{61B070FB-1343-465B-9C3B-14DD8C7722E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Find.Commerce", "src\Foundation.Find.Commerce\Foundation.Find.Commerce.csproj", "{61B070FB-1343-465B-9C3B-14DD8C7722E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

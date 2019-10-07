@@ -1,0 +1,47 @@
+.TopGroup
+{
+  z-index:99;
+  position:relative;
+}
+
+.DefaultTab 
+{
+  color:black; 
+  background-image: url(../../images/tabs/tab_bg.gif);
+  font-family:MS Sans Serif, Verdana; 
+  font-size:10px; 
+  cursor:default;
+}
+
+.DefaultTabHover 
+{
+  color:black; 
+  background-image: url(../../images/tabs/hover_tab_bg.gif);
+  font-family:MS Sans Serif, Verdana; 
+  font-size:10px; 
+  cursor:default;
+}
+
+.SelectedTab 
+{
+  color:black; 
+  background-image: url(../../images/tabs/selected_tab_bg.gif);
+  font-family:MS Sans Serif, Verdana; 
+  font-size:10px; 
+  cursor:default;
+}
+
+.PageContent
+{
+  font-family:MS Sans Serif, Verdana; 
+  font-size:10px; 
+  background-color:White;
+  border: 1px solid #919B9C;
+  width:95%;
+  /*height:150px;*/
+  position:relative;
+  padding:10px;
+  top:-3px;
+  left:1px;
+  z-index:98;
+}

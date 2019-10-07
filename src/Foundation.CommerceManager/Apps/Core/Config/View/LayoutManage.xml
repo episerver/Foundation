@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Commands>
+			<add>
+				<Command id="cmdCoreLayoutAddControl">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{SharedStrings:Information}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=LayoutAddControl&amp;ColumnId=[ClientParam:ColumnId]&amp;PageUid=[ClientParam:PageUid]</Url>
+					<Width>750</Width>
+					<Height>375</Height>
+					<Left>50</Left>
+					<Top>50</Top>
+					<Drag>True</Drag>
+					<RefreshMethod>dashboardGetRefreshLight</RefreshMethod>
+				</Command>
+				<Command id="cmdCoreLayoutPropertyPage">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{SharedStrings:Information}</PopupTitle>
+					<Url>~/Apps/Core/Layout/Pages/PropertyPageContainer.aspx?propertyControlUid=[ClientParam:controlUid]</Url>
+					<Width>750</Width>
+					<Height>350</Height>
+					<Left>50</Left>
+					<Top>50</Top>
+					<Drag>True</Drag>
+					<RefreshMethod>dashboardGetRefreshLight</RefreshMethod>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+</View>

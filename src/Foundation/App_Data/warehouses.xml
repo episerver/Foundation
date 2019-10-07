@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Warehouses>
+      <Warehouse>
+        <Name>Abha</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Abha</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Guraiger</Line1>
+        <Line2 />
+        <City>Abha</City>
+        <State />
+        <CountryCode>SAU</CountryCode>
+        <CountryName>Saudi Arabia</CountryName>
+        <PostalCode>625529</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Amsterdam</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Amsterdam</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Stadhouderskade 78</Line1>
+        <Line2 />
+        <City>Amsterdam</City>
+        <State />
+        <CountryCode>NLD</CountryCode>
+        <CountryName>Netherlands</CountryName>
+        <PostalCode>1072</PostalCode>
+        <RegionCode>AE</RegionCode>
+        <RegionName>AE</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Barcelona</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Barcelona</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Carrer de Sant Quintí, 89,</Line1>
+        <Line2 />
+        <City>Barcelona</City>
+        <State />
+        <CountryCode>ESP</CountryCode>
+        <CountryName>Spain</CountryName>
+        <PostalCode>08041</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Bergen</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Bergen</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Torgallmenningen 8</Line1>
+        <Line2 />
+        <City>Bergen</City>
+        <State />
+        <CountryCode>NOR</CountryCode>
+        <CountryName>Norway</CountryName>
+        <PostalCode>5014</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Berlin</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Berlin</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Bodestraße 1-3</Line1>
+        <Line2 />
+        <City>Berlin</City>
+        <State />
+        <CountryCode>DEU</CountryCode>
+        <CountryName>Germany</CountryName>
+        <PostalCode>10178</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Brasília</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Brasilia</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>704 Bloco M casa 9 - Asa Sul</Line1>
+        <Line2 />
+        <City>Brasília</City>
+        <State />
+        <CountryCode>BRA</CountryCode>
+        <CountryName>Brazil</CountryName>
+        <PostalCode>70200-050</PostalCode>
+        <RegionCode>DF</RegionCode>
+        <RegionName>Brasília - DF</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Göteborg</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Goteborg</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Berzeliigatan 15</Line1>
+        <Line2 />
+        <City>Göteborg</City>
+        <State />
+        <CountryCode>SWE</CountryCode>
+        <CountryName>Sweden</CountryName>
+        <PostalCode>412 53</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>London</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>London</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Great Russell St</Line1>
+        <Line2 />
+        <City>London</City>
+        <State />
+        <CountryCode>GBR</CountryCode>
+        <CountryName>United Kingdom</CountryName>
+        <PostalCode>WC1B 3DG</PostalCode>
+        <RegionCode>Bloomsbury</RegionCode>
+        <RegionName>Bloomsbury</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Los Angeles</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Los Angeles</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>900 W Exposition Blvd</Line1>
+        <Line2 />
+        <City>Los Angeles</City>
+        <State />
+        <CountryCode>USA</CountryCode>
+        <CountryName>United States</CountryName>
+        <PostalCode>90007</PostalCode>
+        <RegionCode>CA</RegionCode>
+        <RegionName>California</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Madrid</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Madrid</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Calle de Jorge Juan, 62</Line1>
+        <Line2 />
+        <City>Madrid</City>
+        <State />
+        <CountryCode>ESP</CountryCode>
+        <CountryName>Spain</CountryName>
+        <PostalCode>28009</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Manchester</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Manchester</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Sir Matt Busby Way</Line1>
+        <Line2 />
+        <City>Manchester</City>
+        <State />
+        <CountryCode>GBR</CountryCode>
+        <CountryName>United Kingdom</CountryName>
+        <PostalCode>M16 0RA</PostalCode>
+        <RegionCode>Stretford</RegionCode>
+        <RegionName>Stretford</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Mecca</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Mecca</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Al Jamiah</Line1>
+        <Line2 />
+        <City>Mecca</City>
+        <State />
+        <CountryCode>SAU</CountryCode>
+        <CountryName>Saudi Arabia</CountryName>
+        <PostalCode>242243</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Melbourne</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Melbourne</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>122 Albert St</Line1>
+        <Line2 />
+        <City>Port Melbourne</City>
+        <State />
+        <CountryCode>AUS</CountryCode>
+        <CountryName>Australia</CountryName>
+        <PostalCode>3207</PostalCode>
+        <RegionCode>VIC</RegionCode>
+        <RegionName>Victoria</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Montreal</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Montreal</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>1015 Rue du Marché Central</Line1>
+        <Line2 />
+        <City>Saint-Laurent</City>
+        <State />
+        <CountryCode>CAN</CountryCode>
+        <CountryName>Canada</CountryName>
+        <PostalCode>H4N 1J4</PostalCode>
+        <RegionCode>QC</RegionCode>
+        <RegionName>Quebec City</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>München</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Munich</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Barer Str. 40</Line1>
+        <Line2 />
+        <City>München</City>
+        <State />
+        <CountryCode>DEU</CountryCode>
+        <CountryName>Germany</CountryName>
+        <PostalCode>80333</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>New York</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>New York</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>155 Varick St</Line1>
+        <Line2 />
+        <City>New York</City>
+        <State />
+        <CountryCode>USA</CountryCode>
+        <CountryName>United States</CountryName>
+        <PostalCode>10013</PostalCode>
+        <RegionCode>NY</RegionCode>
+        <RegionName>New York</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Osaka</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Osaka</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Bakuromachi, 4</Line1>
+        <Line2 />
+        <City>Ōsaka-shi</City>
+        <State />
+        <CountryCode>JPN</CountryCode>
+        <CountryName>Japan</CountryName>
+        <PostalCode>541-0059</PostalCode>
+        <RegionCode>Chūō-ku, </RegionCode>
+        <RegionName>Chūō-ku, </RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Oslo</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Oslo</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Brenneriveien 9</Line1>
+        <Line2 />
+        <City>Olso</City>
+        <State />
+        <CountryCode>NOR</CountryCode>
+        <CountryName>Norway</CountryName>
+        <PostalCode>0182</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Rio</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Rio</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>728 - Vila São Luís</Line1>
+        <Line2 />
+        <City>Rio de Janeiro</City>
+        <State />
+        <CountryCode>BRA</CountryCode>
+        <CountryName>Brazil</CountryName>
+        <PostalCode>25065-090</PostalCode>
+        <RegionCode>RJ</RegionCode>
+        <RegionName>Duque de Caxias - RJ</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Santiago</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Santiago</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Av. República 475</Line1>
+        <Line2 />
+        <City>Santiago</City>
+        <State />
+        <CountryCode>CHL</CountryCode>
+        <CountryName>Chile</CountryName>
+        <PostalCode />
+        <RegionCode>Región Metropolitana</RegionCode>
+        <RegionName>Región Metropolitana</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Stockholm</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Stockholm</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Hötorget 3</Line1>
+        <Line2 />
+        <City>Stockholm</City>
+        <State />
+        <CountryCode>SWE</CountryCode>
+        <CountryName>Sweden</CountryName>
+        <PostalCode>111 57</PostalCode>
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Sydney</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Sydney</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>3 Doris St</Line1>
+        <Line2 />
+        <City>North Sydney</City>
+        <State />
+        <CountryCode>AUS</CountryCode>
+        <CountryName>Australia</CountryName>
+        <PostalCode>2060</PostalCode>
+        <RegionCode>NSW</RegionCode>
+        <RegionName>New South Wales</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Tokoyo</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Tokoyo</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Marunouchi, 1</Line1>
+        <Line2 />
+        <City>Tōkyō-to</City>
+        <State />
+        <CountryCode>JPN</CountryCode>
+        <CountryName>Japan</CountryName>
+        <PostalCode>100-0005</PostalCode>
+        <RegionCode>Chiyoda-ku</RegionCode>
+        <RegionName>Chiyoda-ku</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Toronto</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Toronto</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>123 Queen St W</Line1>
+        <Line2 />
+        <City>Toronto</City>
+        <State />
+        <CountryCode>CAN</CountryCode>
+        <CountryName>Canada</CountryName>
+        <PostalCode>M5H 2M9</PostalCode>
+        <RegionCode>ON</RegionCode>
+        <RegionName>Ontario</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Utrecht</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Utrecht</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Agnietenstraat 1</Line1>
+        <Line2 />
+        <City>Utrecht</City>
+        <State />
+        <CountryCode>NLD</CountryCode>
+        <CountryName>Netherlands</CountryName>
+        <PostalCode>3512</PostalCode>
+        <RegionCode>XA</RegionCode>
+        <RegionName>XA</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Viña del Mar</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>False</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>Vina del Mar</Code>
+        <IsFulfillmentCenter>False</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>True</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1>Calle Trece Norte 635</Line1>
+        <Line2 />
+        <City>Viña del Mar</City>
+        <State />
+        <CountryCode>CHL</CountryCode>
+        <CountryName>Chile</CountryName>
+        <PostalCode />
+        <RegionCode>Valparaíso</RegionCode>
+        <RegionName>Región de Valparaíso</RegionName>
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>sales@company.com</Email>
+      </Warehouse>
+      <Warehouse>
+        <Name>Default Warehouse</Name>
+        <IsActive>True</IsActive>
+        <IsPrimary>True</IsPrimary>
+        <SortOrder>0</SortOrder>
+        <Code>default</Code>
+        <IsFulfillmentCenter>True</IsFulfillmentCenter>
+        <IsPickupLocation>True</IsPickupLocation>
+        <IsDeliveryLocation>False</IsDeliveryLocation>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Organization />
+        <Line1> 28401 Rancho California Rd</Line1>
+        <Line2 />
+        <City>Temecula</City>
+        <State>California</State>
+        <CountryCode>US</CountryCode>
+        <CountryName>United States</CountryName>
+        <PostalCode>92590</PostalCode>
+        <RegionCode>CA</RegionCode>
+        <RegionName>California</RegionName>
+        <DaytimePhoneNumber>9558554422</DaytimePhoneNumber>
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>admin@example.com</Email>
+      </Warehouse>
+    </Warehouses>

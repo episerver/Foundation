@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column isDefault="true" headingText="{CatalogStrings:Catalog_Edit_Command}" dataCellClientTemplateId="EditTemplate" editControlType="EditCommand" width="120" Align="Center"/>
+					<Column isDefault="true" width="50" visible="false" isSearchable="true" allowSorting="true" allowEditing="false" dataField="CatalogAssociationId" headingText="{CatalogStrings:Catalog_Association_Id}"></Column>
+					<Column isDefault="true" width="50" visible="false" isSearchable="true" allowSorting="true" allowEditing="false" dataField="CatalogEntryId" headingText="{CatalogStrings:Entry_Id}"></Column>
+					<Column isDefault="true" visible="true" allowEditing="false" isSearchable="true" allowSorting="true" dataField="EntryName" headingText="{SharedStrings:Name}"></Column>
+					<Column isDefault="true" width="100"  visible="true" isSearchable="true" allowSorting="true" dataField="SortOrder" headingText="{SharedStrings:Sort_Order}"></Column>
+					<Column isDefault="true" width="100" visible="true" isSearchable="true" allowSorting="true" dataField="AssociationTypeId" headingText="{SharedStrings:Type}" foreignTable="AssociationType" foreignDataKeyField="AssociationTypeId" foreignDisplayField="Description"></Column>
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="ProductAssociations"></setAttributes>
+	</ViewConfig>
+</View>

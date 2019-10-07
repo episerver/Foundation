@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Search" controlUrl="Core/Search/SearchManager.ascx" permissions="core:mng:search" help="System+Settings"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Index}" controlUrl="Core/Search/Tabs/IndexTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

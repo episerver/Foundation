@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column width="50" allowSorting="false" dataField="FullId" headingText="" columnType="CustomTemplate">
+						<Template id="ItemActionsTemplate" controlUrl="GridTemplates/LeftMenuItemActionsTemplate.ascx" />
+					</Column>
+                    <!--<Column visible="true" width="100" dataField="Added" headingText="Added" />
+					<Column visible="true" width="100" dataField="FullId" headingText="FullId" />-->
+					<Column width="400" allowSorting="true" dataField="Title" headingText="{Common:Title}" />
+					<Column width="100" allowSorting="true" dataField="Order" headingText="{Common:Order}" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="AddLeftMenuItemButton" text="{Global:_mc_Add}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdCustomizationNewLeftMenuItem" permissions="core:mng:leftmenu"/>
+			</add>
+		</Toolbar>
+
+		<Commands>
+			<add>
+				<Command id="cmdCustomizationNewLeftMenuItem">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:Adding}</PopupTitle>
+					<Url>~/Apps/Customization/Pages/LeftMenuItemAdd.aspx</Url>
+					<Width>800</Width>
+					<Height>485</Height>
+					<Top>55</Top>
+					<Left>50</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdCustomizationGridLeftMenuItemEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:Editing}</PopupTitle>
+					<Url>~/Apps/Customization/Pages/LeftMenuItemEdit.aspx?FullId=[ClientParam:primaryKeyId]&amp;added=[ClientParam:added]</Url>
+					<Width>500</Width>
+					<Height>280</Height>
+					<Top>55</Top>
+					<Left>100</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCustomizationGridLeftMenuItemDelete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.LeftMenuItemDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customization.CommandHandlers.LeftMenuItemDeleteEnableHandler, Mediachase.ConsoleManager" />
+					<ConfirmationText>{Common:DeleteItemConfirmation}</ConfirmationText>
+				</Command>
+			</add>
+		</Commands>
+
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="LeftMenuItem-List" controlUrl="Customization/Modules/LeftMenuItems.ascx" />
+	</ViewConfig>
+</View>

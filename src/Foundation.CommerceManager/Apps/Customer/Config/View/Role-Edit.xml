@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Role-Edit" controlUrl="Customer/Modules/RoleEdit.ascx" help="Customer+Management"></setAttributes>
+		<add>
+			<Tabs>
+				<Tab name="{Customer:Overview}" controlUrl="Customer/Tabs/RoleOverviewEditTab.ascx" permissions="customer:roles:mng:edit"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

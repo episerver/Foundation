@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Variation-Edit" controlUrl="catalog/CatalogEntryEdit.ascx" permissions="catalog:ctlg:entries:mng:edit" help="Catalog+Management"></setAttributes>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="catalog/tabs/EntryOverviewEditTab.ascx"></Tab>
+        <Tab name="{CatalogStrings:Entry_Market}" controlUrl="catalog/tabs/EntryMarketEditTab.ascx"></Tab>
+        <Tab name="{CatalogStrings:Entry_Pricing}" controlUrl="catalog/tabs/EntryPricingEditTab.ascx"></Tab>
+        <Tab name="{CatalogStrings:Warehouse_Inventory}" controlUrl="catalog/tabs/WarehouseInventoryEditTab.ascx"></Tab>
+				<Tab name="{SharedStrings:SEO}" controlUrl="catalog/tabs/EntrySeoTab.ascx"></Tab>
+				<Tab name="{CatalogStrings:Catalog_Associations}" controlUrl="catalog/tabs/EntryAssociationEditTab.ascx"></Tab>
+        <Tab name="{SharedStrings:Product_Relations_Tab_Label}" controlUrl="catalog/tabs/EditProductRelationTab.ascx"></Tab>
+      </Tabs>
+		</add>
+	</ViewConfig>
+</View>

@@ -1,0 +1,39 @@
+@model N1990.Episerver.Cms.Audit.Models.SiteAudit
+@{
+	Layout = null;
+}
+<table class="table table-responsive">
+	<thead>
+	<tr>
+		<th>Type</th>
+		<th>Usages</th>
+		<th>
+			<i class="glyphicon glyphicon-info-sign"></i>
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var contentType in Model.ContentTypes.OrderByDescending(ct => ct.Usages.Count))
+	{
+		<tr>
+			<td>@contentType.Name</td>
+			<td>@contentType.Usages.Count</td>
+			<td>
+				<button class="btn btn-xs btn-info" onclick="toggleNextHiddenTr(this)">
+					<i class="glyphicon glyphicon-collapse-down"></i>
+				</button>
+			</td>
+		</tr>
+		<tr class="hidden">
+			<td colspan="3">
+				<ul>
+					@foreach (var usage in contentType.Usages)
+					{
+						<li>@Html.Partial("RenderUsage", usage)</li>
+					}
+				</ul>
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>

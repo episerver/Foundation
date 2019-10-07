@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+        <Columns>
+
+          <Column columnType="CheckBox"/>
+          <Column width="50" headingText="" columnType="Action" dataField="LineItemId">
+            <Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdNewOrderLineItemGridEdit" commandParameters="LineItemId" toolTip="Edit" permissions="order:mng:edit"></Item>
+          </Column>
+          <Column visible="false" allowSorting="true" dataField="ShipmentId" headingText=""></Column>
+          <Column visible="false" allowSorting="true" dataField="LineItemId" headingText="{SharedStrings:LineItemId}"></Column>
+          <Column width="150" visible="true" allowSorting="false" dataField="Code" headingText="{SharedStrings:Code}"></Column>
+          <Column width="400" visible="true" allowSorting="false" dataField="DisplayName" headingText="{SharedStrings:Name}"></Column>
+          <Column width="60" visible="true" allowSorting="false" dataField="Quantity" headingText="{SharedStrings:Quantity}" formatString="{0:#0.00}"></Column>
+          <Column width="70" visible="true" allowSorting="false" dataField="ListPrice" columnType="Currency" currencyCodeField="Parent.Parent.BillingCurrency" headingText="{SharedStrings:List_Price}"></Column>
+          <Column width="70" visible="true" allowSorting="false" dataField="PlacedPrice" columnType="Currency" currencyCodeField="Parent.Parent.BillingCurrency" headingText="{SharedStrings:Placed_Price}"></Column>
+          <Column width="100" allowSorting="false" dataField="LineItemId"  headingText="{SharedStrings:Total_Discount}" Align="Center" columnType="CustomTemplate">
+            <Template id="LineItemDiscountTemplate" controlUrl="GridTemplates/LineItemDiscountTemplate.ascx"></Template>
+          </Column>
+          <Column width="180" visible="true" allowSorting="false" dataField="LineItemId" headingText="{SharedStrings:Discount_Descr}" Align="Center" columnType="CustomTemplate">
+            <Template id="DiscountNamesTemplate" controlUrl="GridTemplates/DiscountNamesTemplate.ascx"></Template>
+          </Column>
+          <Column width="70" visible="true" allowSorting="false" dataField="LineItemId" headingText="{SharedStrings:Total}" columnType="CustomTemplate">
+            <Template id="TotalNamesTemplate" controlUrl="GridTemplates/LineItemTotalTemplate.ascx"></Template>
+          </Column>
+        </Columns>
+			</add>
+		</Grid>
+
+		<Toolbar>
+			<add>
+				<!--<Text id="txtTitle" text="Line Items" itemSplitter="Right"></Text>-->
+				<Button id="NewItem" text="{SharedStrings:New_Item}" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="cmdOrderLineItemNew" itemSplitter="Right"></Button>
+				<Button id="Delete" text="{SharedStrings:Delete}"  imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="cmdOrderLineItemDelete" itemSplitter="Right"></Button>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdOrderLineItemNew">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:New_Line_Item}</PopupTitle>
+					<Url>~/Apps/Shell/Pages/ContentFrame.aspx?_a=Order&amp;_v=OrderLineItem-New&amp;commandName=cmd_NeedRebind&amp;Id={HttpContext:ExchangeOrderGroupId}&amp;ContainerId={HttpContext:ExchangeShipmentId}&amp;ParentOrderId={HttpContext:ParentOrderId}&amp;ReturnFormId={HttpContext:ReturnFormId}&amp;ReturnCommandName=cmd_NeedRebind</Url>
+					<Width>720</Width>
+					<Height>450</Height>
+					<Top>10</Top>
+					<Left>10</Left>
+					<Drag>True</Drag>
+				</Command>
+				<Command id="cmdOrderLineItemDelete">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.DeleteLineItemHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.DeleteLineItemHandler, Mediachase.ConsoleManager" />
+					<!--<UpdatePanelIds>panelMainListView</UpdatePanelIds>-->
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdNewOrderLineItemGridEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Edit_Line_Item}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderLineItem-Edit&amp;Id={QueryString:ExchangeOrderGroupId}&amp;LineItemId=[ClientParam:LineItemId]&amp;ParentOrderId={HttpContext:ParentOrderId}&amp;ReturnFormId={QueryString:ReturnFormId}&amp;commandName=cmd_NeedRebind</Url>
+					<Width>590</Width>
+					<Height>250</Height>
+					<Top>170</Top>
+					<Left>50</Left>
+					<Drag>True</Drag>
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+</View>

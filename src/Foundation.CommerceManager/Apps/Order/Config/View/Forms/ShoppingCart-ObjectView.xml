@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<add>
+				<Block id="Null" name="">
+					<Placeholder id="Placeholder_1">
+						<!-- 
+					Toolbar is defined in file 
+					Apps/ClientManagement/Config/ListViewUI/Contact.Contact.ContactView.xml 
+				-->
+						<Control id="Toolbar" path="~/Apps/Core/Controls/MetaToolbar.ascx">
+							<Property name="ClassName" value="ShoppingCart" />
+							<Property name="ViewName" value="ShoppingCart-ObjectView" />
+							<Property name="PlaceName" value="ShoppingCartView" />
+							<Property name="ToolbarMode" value="ListViewUI" />
+						</Control>
+
+						<Control id="ShortViewForm2" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+							<Property name="FormName" value="[MC_BaseForm]" />
+							<!-- <Property name="OuterCssClass" value="ibn-underline" />-->
+							<Property name="ClassName" value="ShoppingCart" />
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+				<Block id="lineitems" name="Line Items">
+					<Placeholder id="Placeholder_1">
+						<Control id="LineItemsGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+							<Property name="RelatedClassName" value="LineItem" />
+							<Property name="RelatedToClassName" value="ShoppingCart"/>
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+				<Block id="payments" name="Notes">
+					<Placeholder id="Placeholder_1">
+						<Control id="NotesGrid" path="~/Apps/Order/Modules/RelatedEntityView.ascx">
+							<Property name="RelatedClassName" value="Notes" />
+							<Property name="RelatedToClassName" value="ShoppingCart"/>
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2">
+					</Placeholder>
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+		<ButtonSets>
+		</ButtonSets>
+		<Grids>
+			<add>
+				<Grid placeName="ShoppingCartLineItem-List">
+          <Columns>
+            <Column columnType="CheckBox" width="25" />
+            <Column width="50" headingText="" columnType="Action" dataField="LineItemId">
+              <Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdShoppingCartLineItemGridEdit" commandParameters="LineItemId" toolTip="Edit" permissions="order:mng:edit"></Item>
+            </Column>
+            <Column visible="false" allowSorting="true" dataField="ShipmentId" headingText=""></Column>
+            <Column visible="false" allowSorting="true" dataField="LineItemId" headingText="{SharedStrings:LineItemId}"></Column>
+            <Column width="150" visible="true" allowSorting="false" dataField="Code" headingText="{SharedStrings:Code}"></Column>
+            <Column width="400" visible="true" allowSorting="false" dataField="DisplayName" headingText="{SharedStrings:Name}"></Column>
+            <Column width="60" visible="true" allowSorting="false" dataField="Quantity" headingText="{SharedStrings:Quantity}" formatString="{0:#0.00}"></Column>
+            <Column width="70" visible="true" allowSorting="false" dataField="ListPrice" headingText="{SharedStrings:List_Price}"></Column>
+            <Column width="70" visible="true" allowSorting="false" dataField="PlacedPrice" columnType="Currency" currencyCodeField="Parent.Parent.BillingCurrency" headingText="{SharedStrings:Placed_Price}"></Column>
+            <Column width="100" allowSorting="false" dataField="LineItemId"  headingText="{SharedStrings:Total_Discount}" Align="Center" columnType="CustomTemplate">
+              <Template id="LineItemDiscountTemplate" controlUrl="GridTemplates/LineItemDiscountTemplate.ascx"></Template>
+            </Column>
+            <Column width="180" visible="true" allowSorting="false" dataField="CustomDiscountDescr" headingText="{SharedStrings:Discount_Descr}"></Column>
+            <Column width="70" visible="true" allowSorting="false" dataField="LineItemId" headingText="{SharedStrings:Total}" columnType="CustomTemplate">
+              <Template id="TotalNamesTemplate" controlUrl="GridTemplates/LineItemTotalTemplate.ascx"></Template>
+            </Column>
+          </Columns>
+				</Grid>
+				<Grid placeName="ShoppingCartNotes-List">
+					<Columns>
+						<Column columnType="CheckBox" />
+						<Column width="50" dataField="OrderNoteId" headingText="" columnType="Action">
+							<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdShoppingCartNoteGridEdit" commandParameters="OrderNoteId" toolTip="Edit"></Item>
+							<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdShoppingCartNoteGridDelete" commandParameters="OrderNoteId" toolTip="Delete"></Item>
+						</Column>
+						<Column visible="false" allowSorting="false" dataField="OrderNoteId" headingText="{SharedStrings:Id}"></Column>
+						<Column visible="false" allowSorting="false" dataField="CustomerId" headingText="{SharedStrings:Id}"></Column>
+						<Column width="150" visible="true" allowSorting="false" dataField="UserName" headingText="{SharedStrings:Originated_By}"></Column>
+						<Column width="150" visible="true" allowSorting="false" dataField="Created" headingText="{SharedStrings:Date_Slash_Time}" columnType="DateTime"></Column>
+						<Column width="150" visible="true" allowSorting="false" dataField="Title" headingText="{SharedStrings:Title}"></Column>
+						<Column width="350" visible="true" allowSorting="false" dataField="Detail" headingText="{SharedStrings:Note_Text}"></Column>
+					</Columns>
+				</Grid>
+			</add>
+		</Grids>
+		<Toolbars>
+			<add>
+				<Toolbar placeName="ShoppingCartView">
+					<Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif">
+						<Button id="ConvertToPurchaseOrder" text="{SharedStrings:Convert_To_Purchase_Order}" commandName="cmdCartConvertPurchaseOrder" permissions="order:mng:create"/>
+						<Button id="CartCreatePaymentPlan" text="{OrderStrings:Create_Payment_Plan}" commandName="cmdCartCreatePaymentPlan" permissions="order:mng:create" />
+					</Menu>
+				</Toolbar>
+				<Toolbar placeName="ShoppingCartLineItem-List">
+					<Button id="NewItem" text="{OrderStrings:New_Line_Item}" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="cmdShoppingCartLineItemNew" itemSplitter="Right" permissions="order:mng:edit"></Button>
+					<Button id="Delete" text="{SharedStrings:Delete}"  imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="cmdShoppingCartLineItemDelete" itemSplitter="Right" permissions="order:mng:edit"></Button>
+				</Toolbar>
+				<Toolbar placeName="ShoppingCartNotes-List">
+					<Button id="NewNote" text="{OrderStrings:New_Note}" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="cmdShoppingCartNoteNew" permissions="order:mng:edit"></Button>
+				</Toolbar>
+			</add>
+		</Toolbars>
+		<Commands>
+			<add>
+				<Command id="cmdCartConvertPurchaseOrder">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.CartCreatePurchaseOrderHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.CartCreatePurchaseOrderHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdCartCreatePaymentPlan">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.CartCreatePaymentPlanHandler, Mediachase.ConsoleManager" />
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.CartCreatePaymentPlanHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdShoppingCartLineItemNew">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:New_Line_Item}</PopupTitle>
+					<Url>~/Apps/Shell/Pages/ContentFrame.aspx?_a=Order&amp;_v=OrderLineItem-New&amp;commandName=cmd_NeedRebind&amp;Id={HttpContext:OrderGroupId}&amp;ContainerId=[ClientParam:ContainerId]&amp;ReturnCommandName=cmd_NeedRebind&amp;CommandViewName=ShoppingCart-ObjectView&amp;customerid={QueryString:customerid}</Url>
+					<Width>720</Width>
+					<Height>450</Height>
+					<Top>10</Top>
+					<Left>10</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.AddLineItemEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdShoppingCartLineItemGridEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Edit_Line_Item}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OrderLineItem-Edit&amp;CommandClassName=&amp;CommandViewName=ShoppingCart-ObjectView&amp;CommandPlaceName=&amp;CommandName=cmdShoppingCartLineItemGridEdit&amp;Id={QueryString:id}&amp;LineItemId=[ClientParam:LineItemId]&amp;ContainerId=[ClientParam:ShipmentId]&amp;ReturnCommandName=cmdShoppingCartLineItemGridEdit&amp;customerid={QueryString:customerid}</Url>
+					<Width>590</Width>
+					<Height>250</Height>
+					<Top>170</Top>
+					<Left>150</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.EditLineItemHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.EditLineItemHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdShoppingCartLineItemDelete">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.DeleteLineItemHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.DeleteLineItemHandler, Mediachase.ConsoleManager" />
+					<!--<UpdatePanelIds>panelMainListView</UpdatePanelIds>-->
+				</Command>
+				<Command id="cmdShoppingCartNoteNew">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:New_Note}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=ShoppingCart-ObjectView&amp;CommandPlaceName=ShoppingCartNotes-List&amp;CommandName=cmdShoppingCartNoteNew&amp;LayoutClassName=ShoppingCart&amp;LayoutPlaceName=AddNote&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+					<!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderNote-Edit&amp;commandName=cmdOrderNoteNew&amp;Id={HttpContext:OrderGroupId}&amp;ReturnCommand=cmdOrderNoteNew</Url>-->
+					<Width>400</Width>
+					<Height>250</Height>
+					<Top>55</Top>
+					<Left>100</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.AddNoteHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.AddNoteHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdShoppingCartNoteGridEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{OrderStrings:Edit_Note}</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=ShoppingCart-ObjectView&amp;CommandPlaceName=ShoppingCartNotes-List&amp;CommandName=cmdShoppingCartNoteGridEdit&amp;LayoutClassName=ShoppingCart&amp;LayoutPlaceName=AddNote&amp;Id={HttpContext:OrderGroupId}&amp;OrderNoteId=[ClientParam:OrderNoteId]&amp;ReturnCommandName=cmd_NeedRebind&amp;customerid={QueryString:customerid}</Url>
+					<Width>400</Width>
+					<Height>250</Height>
+					<Top>40</Top>
+					<Left>100</Left>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.EditNoteHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.EditNoteHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdShoppingCartNoteGridDelete">
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.OrderNoteDeleteHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Apps.Order.CommandHandlers.CartHandlers.OrderNoteDeleteHandler, Mediachase.ConsoleManager" />
+					<!--<UpdatePanelIds>panelMainListView</UpdatePanelIds>-->
+				</Command>
+				<Command id="btn_QuickEditOrderSC">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Currency</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderGroup-QuickEdit&amp;Id={QueryString:id}&amp;customerId={QueryString:customerId}&amp;commandName=cmd_NeedRebind&amp;CommandViewName=ShoppingCart-ObjectView</Url>
+					<Width>490</Width>
+					<Height>280</Height>
+					<Top>55</Top>
+					<Drag>True</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.QuickEditOrderInfoHandler, Mediachase.ConsoleManager" />
+				</Command>
+        <Command id="btn_QuickEditOrderMarket">
+          <CommandType>OpenFrameModalPopup</CommandType>
+          <PopupTitle>Edit Market</PopupTitle>
+          <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderGroup-Market-QuickEdit&amp;Id={QueryString:id}&amp;customerId={QueryString:customerId}&amp;commandName=cmd_NeedRebind&amp;CommandViewName=ShoppingCart-ObjectView</Url>
+          <Width>490</Width>
+          <Height>280</Height>
+          <Top>55</Top>
+          <Drag>True</Drag>
+          <EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.QuickEditOrderInfoHandler, Mediachase.ConsoleManager" />
+        </Command>
+			</add>
+		</Commands>
+	</Form>
+	<ViewConfig>
+		<setAttributes id="ShoppingCart-ObjectView" controlUrl="Order/Modules/OrderView.ascx" permissions="order:mng:view" help="Shopping+Carts"></setAttributes>
+		<add>
+			<CustomParams>
+				<Param key="ClassName" value="ShoppingCart"></Param>
+				<Param key="LayoutType" value="ObjectView"></Param>
+				<Param key="LayoutMode" value="JQueryMode"></Param>
+				<Param key="SelectTabByPostback" value="true"></Param>
+				<Param key="PlaceName" value="Light"></Param>
+			</CustomParams>
+		</add>
+	</ViewConfig>
+</View>

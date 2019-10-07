@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Navigation>
+		<Tabs id="mainTag">
+			<add>
+				<Tab id="navTabMarketManagement" text="{SharedStrings:Market_Management}" order="20" contentType="default" imageUrl="~/Apps/Markets/images/module.png" configUrl="" enableHandler2="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" permissions="markets:tabviewpermission">
+					<Link id="Markets_Markets" text="{SharedStrings:Markets}" order="20" iconUrl="" iconCss="treeIcon" type="Markets" command="cmdMarketsMarketList" treeLoaderPath="~/Apps/Markets/Tree/TreeSource.aspx" permissions="markets:market:mng:view"/>
+				</Tab>
+			</add>
+		</Tabs>
+		<Commands>
+			<add>
+				<!-- Admin commands -->
+				<Command id="cmdMarketsMarketList">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeView('Markets', 'Market-List')</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</Navigation>
+</View>

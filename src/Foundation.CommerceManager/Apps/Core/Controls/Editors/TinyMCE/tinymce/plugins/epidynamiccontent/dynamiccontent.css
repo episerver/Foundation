@@ -1,0 +1,21 @@
+﻿#epi-dcPreview {
+    background-color: #252c2c;
+    border: solid 1px #5b5b5b;
+	-moz-user-select: none;
+	-moz-box-shadow: #333 0px 3px 16px -7px;
+    -webkit-box-shadow: #333 0px 3px 16px -7px;
+    padding: 10px;
+    z-index: 299999; /* tiny uses z-index 200000 when full-screen */
+}
+
+#epi-dcPreviewButtons {
+    float: right;
+    margin-top: 10px;
+}
+
+#epi-dcPreviewDescription {
+    color: #fff;
+    float: left;
+    margin-top: 10px;
+    text-align: left;
+}

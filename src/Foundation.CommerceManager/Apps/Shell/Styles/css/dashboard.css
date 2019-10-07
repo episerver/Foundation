@@ -1,0 +1,12 @@
+﻿.db-panel-outer { padding-top:10px; width: 100%; }
+.db-panel { margin: 10px 10px 10px 10px; width: 100%;}
+.db-panel .explanation {margin: 10px 0px 10px 0px}
+.db-panel ul {list-style: circle inside lower-alpha}
+.db-panel ol { margin: 0px 5px 0px 0px;}
+.db-panel ol li { margin: 0px 7px 5px 0px; font-size: larger;}
+
+.stat .image {float: left;}
+.stat .name {float: left; font-size: 10pt; margin-left: 5px; font-weight: normal; text-align:center; height: 20px; padding-top: 2px;}
+.stat .value {float: left; font-weight: bold; font-size: 12pt; margin-left: 3px; font-family: Arial;}
+.summary-item { margin-right: 20px; float: left;}
+.summary-row { width: 100%; text-align: center; height: 50px; }

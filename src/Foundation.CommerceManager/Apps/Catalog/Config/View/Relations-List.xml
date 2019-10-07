@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column isDefault="true" dataCellClientTemplateId="EditTemplate" width="20" editControlType="EditCommand" align="Center" headingText="" />
+          <Column isDefault="true" allowEditing="false" width="100" isSearchable="true" allowSorting="true" visible="true" dataField="ID" headingText="{SharedStrings:ID}" />
+          <Column isDefault="true" allowEditing="false" visible="true" width="200" isSearchable="true" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" />          
+          <Column isDefault="true" allowEditing="false" isSearchable="true" allowSorting="true" dataField="FullPath" headingText="{SharedStrings:Full_Path}" />
+				</Columns>
+			</add>
+		</Grid>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Relations-List" controlUrl="" />
+	</ViewConfig>
+</View>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="ShippingOption-Edit" controlUrl="Order/Shipping/ShippingOptionEdit.ascx" help="Order+System"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Order/Shipping/Tabs/ShippingOptionEditBaseTab.ascx"></Tab>
+				<Tab name="{SharedStrings:Parameters}" controlUrl="Order/Shipping/Tabs/ShippingOptionEditParameters.ascx"></Tab>
+				<Tab name="{SharedStrings:Packages}" controlUrl="Order/Shipping/Tabs/ShippingOptionEditPackages.ascx"></Tab>
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

@@ -1,1 +1,0 @@
-<%@ Page Language="C#" AutoEventWireup="True" Inherits="Mediachase.Commerce.Manager.Apps.Shell.Pages.TreeSource" Codebehind="TreeSource.aspx.cs" %>

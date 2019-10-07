@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="en-us/order-confirm.xsl" type="text/xsl"?>
+<ContextDoc>
+  <PurchaseOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Created>2008-05-15T12:30:02.17</Created>
+    <Modified>2008-05-15T12:30:02.17</Modified>
+    <OrderForms>
+      <OrderForm>
+        <Created>2008-05-15T12:29:39.013</Created>
+        <Modified>2008-05-15T12:29:39.013</Modified>
+        <Shipments>
+          <Shipment>
+            <Created>2008-05-15T12:30:01.78</Created>
+            <Modified>2008-05-15T12:30:01.78</Modified>
+            <Discounts />
+            <OrderGroupId>131</OrderGroupId>
+            <OrderFormId>141</OrderFormId>
+            <ShippingMethodId>17995798-a2cc-43ad-81e8-bb932f6827e4</ShippingMethodId>
+            <ShippingMethodName>Online Download</ShippingMethodName>
+            <ShippingAddressId>Home</ShippingAddressId>
+            <ShipmentTrackingNumber />
+            <ShipmentTotal>10.0000</ShipmentTotal>
+            <ShippingDiscountAmount>0.0000</ShippingDiscountAmount>
+            <Status />
+            <LineItemIds />
+          </Shipment>
+        </Shipments>
+        <Payments>
+          <Payment xsi:type="CreditCardPayment">
+            <Created>2008-05-15T12:29:39.513</Created>
+            <Modified>2008-05-15T12:29:39.513</Modified>
+            <OrderFormId>141</OrderFormId>
+            <OrderGroupId>131</OrderGroupId>
+            <BillingAddressId />
+            <PaymentMethodId>e2dff5b7-8ec1-4f14-91a1-357c1bb968a1</PaymentMethodId>
+            <PaymentMethodName>Pay By Credit Card</PaymentMethodName>
+            <CustomerName />
+            <Amount>10.0000</Amount>
+            <PaymentType>CreditCard</PaymentType>
+            <ValidationCode />
+            <AuthorizationCode />
+            <Status />
+            <CardType />
+            <CreditCardNumber />
+            <CreditCardSecurityCode />
+            <ExpirationMonth>7</ExpirationMonth>
+            <ExpirationYear>2009</ExpirationYear>
+          </Payment>
+        </Payments>
+        <LineItems>
+          <LineItem>
+            <Created>2008-05-15T12:29:39.373</Created>
+            <Modified>2008-05-15T12:29:39.373</Modified>
+            <Discounts />
+            <OrderFormId>141</OrderFormId>
+            <OrderGroupId>131</OrderGroupId>
+            <Catalog>Everything2</Catalog>
+            <CatalogNode>Everything</CatalogNode>
+            <ParentCatalogEntryId />
+            <Code>thecode</Code>
+            <Quantity>2.0000</Quantity>
+            <MinQuantity>1.0000</MinQuantity>
+            <MaxQuantity>100.0000</MaxQuantity>
+            <PlacedPrice>0.0000</PlacedPrice>
+            <ListPrice>100.0000</ListPrice>
+            <LineItemDiscountAmount>0.0000</LineItemDiscountAmount>
+            <OrderLevelDiscountAmount>0.0000</OrderLevelDiscountAmount>
+            <ShippingAddressId>Home</ShippingAddressId>
+            <ShippingMethodName>Online Download</ShippingMethodName>
+            <ShippingMethodId>17995798-a2cc-43ad-81e8-bb932f6827e4</ShippingMethodId>
+            <ExtendedPrice>200.0000</ExtendedPrice>
+            <Description />
+            <Status />
+            <DisplayName>matts tv</DisplayName>
+            <AllowBackordersAndPreorders>false</AllowBackordersAndPreorders>
+            <InStockQuantity>0.0000</InStockQuantity>
+            <PreorderQuantity>0.0000</PreorderQuantity>
+            <BackorderQuantity>0.0000</BackorderQuantity>
+            <InventoryStatus>0</InventoryStatus>
+            <LineItemOrdering>2008-05-15T12:29:39.373</LineItemOrdering>
+            <ConfigurationId />
+            <ProviderId />
+          </LineItem>
+          <LineItem>
+            <Created>2008-05-15T12:29:39.42</Created>
+            <Modified>2008-05-15T12:29:39.42</Modified>
+            <Discounts />
+            <OrderFormId>141</OrderFormId>
+            <OrderGroupId>131</OrderGroupId>
+            <Catalog>Everything2</Catalog>
+            <CatalogNode>Everything</CatalogNode>
+            <ParentCatalogEntryId />
+            <Code>thecode</Code>
+            <Quantity>2.0000</Quantity>
+            <MinQuantity>1.0000</MinQuantity>
+            <MaxQuantity>100.0000</MaxQuantity>
+            <PlacedPrice>0.0000</PlacedPrice>
+            <ListPrice>100.0000</ListPrice>
+            <LineItemDiscountAmount>0.0000</LineItemDiscountAmount>
+            <OrderLevelDiscountAmount>0.0000</OrderLevelDiscountAmount>
+            <ShippingAddressId>Home</ShippingAddressId>
+            <ShippingMethodName>Online Download</ShippingMethodName>
+            <ShippingMethodId>17995798-a2cc-43ad-81e8-bb932f6827e4</ShippingMethodId>
+            <ExtendedPrice>200.0000</ExtendedPrice>
+            <Description />
+            <Status />
+            <DisplayName>matts tv</DisplayName>
+            <AllowBackordersAndPreorders>false</AllowBackordersAndPreorders>
+            <InStockQuantity>0.0000</InStockQuantity>
+            <PreorderQuantity>0.0000</PreorderQuantity>
+            <BackorderQuantity>0.0000</BackorderQuantity>
+            <InventoryStatus>0</InventoryStatus>
+            <LineItemOrdering>2008-05-15T12:29:39.42</LineItemOrdering>
+            <ConfigurationId />
+            <ProviderId />
+          </LineItem>
+          <LineItem>
+            <Created>2008-05-15T12:29:39.467</Created>
+            <Modified>2008-05-15T12:29:39.467</Modified>
+            <Discounts />
+            <OrderFormId>141</OrderFormId>
+            <OrderGroupId>131</OrderGroupId>
+            <Catalog>Everything2</Catalog>
+            <CatalogNode>Everything</CatalogNode>
+            <ParentCatalogEntryId />
+            <Code>thecode</Code>
+            <Quantity>2.0000</Quantity>
+            <MinQuantity>1.0000</MinQuantity>
+            <MaxQuantity>100.0000</MaxQuantity>
+            <PlacedPrice>0.0000</PlacedPrice>
+            <ListPrice>100.0000</ListPrice>
+            <LineItemDiscountAmount>0.0000</LineItemDiscountAmount>
+            <OrderLevelDiscountAmount>0.0000</OrderLevelDiscountAmount>
+            <ShippingAddressId>Home</ShippingAddressId>
+            <ShippingMethodName>Online Download</ShippingMethodName>
+            <ShippingMethodId>17995798-a2cc-43ad-81e8-bb932f6827e4</ShippingMethodId>
+            <ExtendedPrice>200.0000</ExtendedPrice>
+            <Description />
+            <Status />
+            <DisplayName>matts tv</DisplayName>
+            <AllowBackordersAndPreorders>false</AllowBackordersAndPreorders>
+            <InStockQuantity>0.0000</InStockQuantity>
+            <PreorderQuantity>0.0000</PreorderQuantity>
+            <BackorderQuantity>0.0000</BackorderQuantity>
+            <InventoryStatus>0</InventoryStatus>
+            <LineItemOrdering>2008-05-15T12:29:39.467</LineItemOrdering>
+            <ConfigurationId />
+            <ProviderId />
+          </LineItem>
+        </LineItems>
+        <Discounts />
+        <Name>default</Name>
+        <BillingAddressId>Home</BillingAddressId>
+        <ShippingTotal>10.0000</ShippingTotal>
+        <HandlingTotal>0.0000</HandlingTotal>
+        <TaxTotal>0.0000</TaxTotal>
+        <DiscountAmount>0.0000</DiscountAmount>
+        <SubTotal>600.0000</SubTotal>
+        <Total>610.0000</Total>
+        <Status />
+        <ProviderId />
+      </OrderForm>
+    </OrderForms>
+    <OrderAddresses>
+      <OrderAddress>
+        <Created>2008-05-15T12:29:39.013</Created>
+        <Modified>2008-05-15T12:29:39.013</Modified>
+        <OrderGroupId>131</OrderGroupId>
+        <Name>Home</Name>
+        <FirstName />
+        <LastName />
+        <Organization>Mediachase</Organization>
+        <Line1 />
+        <Line2 />
+        <City />
+        <State />
+        <CountryCode />
+        <CountryName />
+        <PostalCode />
+        <RegionCode />
+        <RegionName />
+        <DaytimePhoneNumber />
+        <EveningPhoneNumber />
+        <FaxNumber />
+        <Email>say@mediachase.com</Email>
+      </OrderAddress>
+    </OrderAddresses>
+    <InstanceId>a74023d4-4abd-4615-8d5e-51c766c158c4</InstanceId>
+    <ApplicationId>e1dff5b7-8ec1-4f14-91a1-357c1bb968a0</ApplicationId>
+    <AffiliateId>00000000-0000-0000-0000-000000000000</AffiliateId>
+    <Name>Default</Name>
+    <CustomerId>bf6da67a-8917-4173-ac96-7776efdb77e1</CustomerId>
+    <CustomerName>Alexander Siniouauinge</CustomerName>
+    <AddressId />
+    <ShippingTotal>10.0000</ShippingTotal>
+    <HandlingTotal>0.0000</HandlingTotal>
+    <TaxTotal>0.0000</TaxTotal>
+    <SubTotal>600.0000</SubTotal>
+    <Total>610.0000</Total>
+    <BillingCurrency>USD</BillingCurrency>
+    <Status>NewOrder</Status>
+    <ProviderId />
+    <TrackingNumber>PO131336</TrackingNumber>
+    <ExpirationDate>9999-12-31T23:59:59.9999999</ExpirationDate>
+  </PurchaseOrder>
+</ContextDoc>

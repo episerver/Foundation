@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ViewConfig>
+		<setAttributes id="Currency-Edit" controlUrl="Catalog/CurrencyEdit.ascx" help="System+Settings"/>
+		<add>
+			<Tabs>
+				<Tab name="{SharedStrings:Overview}" controlUrl="Catalog/Tabs/CurrencyEditTab.ascx" />
+				<Tab name="{SharedStrings:Rates}" controlUrl="Catalog/Tabs/CurrencyRatesTab.ascx" />
+			</Tabs>
+		</add>
+	</ViewConfig>
+</View>

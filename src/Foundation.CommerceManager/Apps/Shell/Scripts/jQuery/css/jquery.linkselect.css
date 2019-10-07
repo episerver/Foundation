@@ -1,0 +1,104 @@
+/*
+ * define styles for linkselect plug-in
+ */
+a.linkselectLink {
+	-khtml-user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-moz-user-focus: ignore; 
+	-moz-user-input: disabled; 
+}
+
+a.linkselectLink:hover, a.linkselectLinkFocus {
+	color: #fff !important;
+	background-color: #565770 !important;
+	outline: 1px solid #565770; /* prevent the link from being outlined */
+}
+
+a.linkselectLinkOpen {
+	outline: 0; /* prevent the link from being outlined */
+}
+
+span.linkselectDisabled {
+	filter: alpha(opacity=75);
+	-moz-opacity: 0.75;
+	opacity: 0.75;
+	-khtml-user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-moz-user-focus: ignore; 
+	-moz-user-input: disabled; 
+}
+
+.linkselectContainer {
+	position: absolute;
+	/* this is required to correctly calculate the width of the container */
+	left: 0; top: 0;
+	display: none;
+	/* 
+	 * move the box up 3 pixels so that the title bar aligns with original anchor text, this 
+	 * should be adjusted according to the padding/margin differences between the two links 
+	 */
+	margin-top: -3px;
+	max-width: 500px;
+	z-index: 50000;
+}
+
+.linkselectContainer .title {
+	background: #565770 url(../images/linkselect_bkgrd.png) no-repeat 100% 50% !important;
+	color: #fff !important;
+	padding-right: 20px !important;
+	white-space: nowrap;
+	font-size: 11px !important;
+	font-weight: bold !important;
+	line-height: 11px !important;
+}
+
+.linkselectContainer .title span {
+	display: block;
+	padding: 3px 4px;
+}
+
+.linkselectContainer .scrollable {
+	width: auto;
+	background-color: white;
+	border: 1px solid #565770;
+	margin: 0;
+	padding: 0px;
+	font-size: 11px;
+	text-align: left;
+	overflow: auto;
+	max-height: 216px;
+	clear: both;
+	height: 160px;
+	width: 300px;
+}
+
+.linkselectContainer ul {
+	list-style-type: decimal !important;
+	margin: 0px;
+	padding: 0px;
+}
+
+.linkselectContainer ul li.selected { 
+	background-color: #cfcfea;
+}
+
+.linkselectContainer ul li.current { 
+	background-color: #a3a4bd;
+	color: #fff;
+}
+
+.linkselectContainer ul li {
+	display: block;
+	border-bottom: dotted 1px #aaa;
+	margin: 0;
+	padding: 2px;
+	font-size: 11px;
+	cursor: pointer;
+	-khtml-user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-moz-user-focus: ignore; 
+	-moz-user-input: disabled;
+}

@@ -1,0 +1,13 @@
+.tab { text-align: center; padding: 2px 5px 2px 5px;}
+.tabSelected { border-bottom:none;padding: 2px 5px 2px 5px; text-align: center; font-family: verdana; font-size: 12px; font-weight:bold; color: #CE3431; }
+.tabGap { border-left: none;border-top: none;border-right: none;}	
+.tabGap1 {border-top: none;border-right: none;}	
+.tabGap2 { border-left: none;border-top: none;}
+A.tabTLink { color: #003399; font-family: verdana; font-size: 12px; text-decoration: none; font-weight:normal; }
+A:hover.tabTLink { color: #CE3431; font-family: verdana; font-size: 12px; text-decoration: none; font-weight:normal; }
+A.tabT1Link { color: #cecece; font-family: verdana; font-size: 12px; text-decoration: none; font-weight:normal; }
+A:hover.tabT1Link { color: #757575; font-family: verdana; font-size: 12px; text-decoration: none; font-weight:normal; }
+.subTab { border-left:none; width: 110px; text-align: center; font-weight: normal;font-family: verdana; font-size: 11px; height:20px; }
+.subTabSelected { padding:0px; border-bottom:none; border-left:none; width: 130px; text-align: center; font-family: verdana; font-size: 11px; height:20px; font-weight:bold; }
+.subTab A { color: #003399; text-decoration: none; }
+.subTab A:hover { color: #CE3431; text-decoration: none; }

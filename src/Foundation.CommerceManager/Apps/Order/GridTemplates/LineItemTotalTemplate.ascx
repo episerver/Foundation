@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LineItemTotalTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Order.GridTemplates.LineItemTotalTemplate" %>
+<asp:Label runat="server" ID="label1"></asp:Label>

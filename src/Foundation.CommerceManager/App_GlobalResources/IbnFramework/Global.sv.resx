@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_mc_Actions" xml:space="preserve">
+    <value>Åtgärder</value>
+  </data>
+  <data name="_mc_BackToList" xml:space="preserve">
+    <value>Tillbaka till listan</value>
+  </data>
+  <data name="_mc_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="_mc_ColumnEditor" xml:space="preserve">
+    <value>Kolumneditor</value>
+  </data>
+  <data name="_mc_Department" xml:space="preserve">
+    <value>Avdelning</value>
+  </data>
+  <data name="_mc_DepartmentList" xml:space="preserve">
+    <value>Avdelningslista</value>
+  </data>
+  <data name="_mc_DepartmentView" xml:space="preserve">
+    <value>Avdelningsvy</value>
+  </data>
+  <data name="_mc_Designer" xml:space="preserve">
+    <value>Designer</value>
+  </data>
+  <data name="_mc_Details" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="_mc_General" xml:space="preserve">
+    <value>Generellt</value>
+  </data>
+  <data name="_mc_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="_mc_Location" xml:space="preserve">
+    <value>Plats</value>
+  </data>
+  <data name="_mc_NotSet" xml:space="preserve">
+    <value>Ej angiven</value>
+  </data>
+  <data name="_mc_PageSize" xml:space="preserve">
+    <value>Sidstorlek</value>
+  </data>
+  <data name="_mc_ParentTitle" xml:space="preserve">
+    <value>Överordnad rubrik</value>
+  </data>
+  <data name="_mc_Records" xml:space="preserve">
+    <value> artiklar</value>
+  </data>
+  <data name="_mc_Save" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="_mc_Selected" xml:space="preserve">
+    <value>Markerade: %selCount%</value>
+  </data>
+  <data name="_mc_Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="_mc_UserList" xml:space="preserve">
+    <value>Användare</value>
+  </data>
+  <data name="_mc_WorkgroupList" xml:space="preserve">
+    <value>Arbetsgrupper</value>
+  </data>
+  <data name="_mc_WorkgroupView" xml:space="preserve">
+    <value>Arbetsgruppsvy</value>
+  </data>
+  <data name="_mc_Reset" xml:space="preserve">
+    <value>Återställ</value>
+  </data>
+  <data name="_mc_All" xml:space="preserve">
+    <value>Allt</value>
+  </data>
+  <data name="_mc_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="_mc_ObjectForms" xml:space="preserve">
+    <value>Objektformulär</value>
+  </data>
+  <data name="_mc_FieldAdd" xml:space="preserve">
+    <value>Lägg till fält</value>
+  </data>
+  <data name="_mc_FieldsAdd" xml:space="preserve">
+    <value>Lägg till fält</value>
+  </data>
+  <data name="_mc_FieldProperties" xml:space="preserve">
+    <value>Fältegenskaper</value>
+  </data>
+  <data name="_mc_FormAdd" xml:space="preserve">
+    <value>Nytt formulär</value>
+  </data>
+  <data name="_mc_SectionNew" xml:space="preserve">
+    <value>Nytt avsnitt</value>
+  </data>
+  <data name="_mc_TabNew" xml:space="preserve">
+    <value>Ny flik</value>
+  </data>
+  <data name="_mc_CommonTasks" xml:space="preserve">
+    <value>Vanliga uppgifter</value>
+  </data>
+  <data name="_mc_Class" xml:space="preserve">
+    <value>Klass</value>
+  </data>
+  <data name="_mc_Form" xml:space="preserve">
+    <value>Formulär</value>
+  </data>
+  <data name="_mc_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="_mc_Remove" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="_mc_SaveChanges" xml:space="preserve">
+    <value>Spara ändringar.</value>
+  </data>
+  <data name="_mc_ChangeProperties" xml:space="preserve">
+    <value>Ändra egenskaper</value>
+  </data>
+  <data name="_mc_DeleteFieldWarning" xml:space="preserve">
+    <value>Vill du ta bort det markerade fältet?</value>
+  </data>
+  <data name="_mc_DeleteSectionWarning" xml:space="preserve">
+    <value>Vill du ta bort det markerade avsnittet?</value>
+  </data>
+  <data name="_mc_DeleteFormWarning" xml:space="preserve">
+    <value>Vill du ta bort det här formuläret?</value>
+  </data>
+  <data name="_mc_TitleIsNotEntered" xml:space="preserve">
+    <value>Det har inte angetts någon titel</value>
+  </data>
+  <data name="_mc_NoTitle" xml:space="preserve">
+    <value>Ingen titel</value>
+  </data>
+  <data name="_mc_AddFieldsText" xml:space="preserve">
+    <value>Markera de fält som ska läggas till i det här avsnittet.</value>
+  </data>
+  <data name="_mc_MetaField" xml:space="preserve">
+    <value>Metafält</value>
+  </data>
+  <data name="_mc_Tab" xml:space="preserve">
+    <value>Flik</value>
+  </data>
+  <data name="_mc_Section" xml:space="preserve">
+    <value>Avsnitt</value>
+  </data>
+  <data name="_mc_FieldAddText" xml:space="preserve">
+    <value>Markera fältet för avsnitt.</value>
+  </data>
+  <data name="_mc_Field" xml:space="preserve">
+    <value>Fält</value>
+  </data>
+  <data name="_mc_FieldPropertiesText" xml:space="preserve">
+    <value>Du kan ändra fältegenskaper.</value>
+  </data>
+  <data name="_mc_Label" xml:space="preserve">
+    <value>Etikett</value>
+  </data>
+  <data name="_mc_LayoutOneColumn" xml:space="preserve">
+    <value>En kolumn</value>
+  </data>
+  <data name="_mc_LayoutTwoColumn" xml:space="preserve">
+    <value>Två kolumner</value>
+  </data>
+  <data name="_mc_Rows" xml:space="preserve">
+    <value>Rader</value>
+  </data>
+  <data name="_mc_DisplayLabel" xml:space="preserve">
+    <value>Visa etikett på formuläret.</value>
+  </data>
+  <data name="_mc_FormAddText" xml:space="preserve">
+    <value>Lägg till ett nytt formulär i systemet.</value>
+  </data>
+  <data name="_mc_TitleExistsError" xml:space="preserve">
+    <value>Titeln har redan använts!</value>
+  </data>
+  <data name="_mc_SectionNewText" xml:space="preserve">
+    <value>Lägg till ett nytt avsnitt på fliken.</value>
+  </data>
+  <data name="_mc_SectionEdit" xml:space="preserve">
+    <value>Redigera avsnitt</value>
+  </data>
+  <data name="_mc_SectionEditText" xml:space="preserve">
+    <value>Du kan ändra avsnittsegenskaper.</value>
+  </data>
+  <data name="_mc_Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="_mc_ShowBorder" xml:space="preserve">
+    <value>Visa kantlinje för det här avsnittet.</value>
+  </data>
+  <data name="_mc_ShowName" xml:space="preserve">
+    <value>Visa det här avsnittets namn på formuläret.</value>
+  </data>
+  <data name="_mc_TopRegion" xml:space="preserve">
+    <value>Regionen högst upp</value>
+  </data>
+  <data name="_mc_MLeftRegion" xml:space="preserve">
+    <value>Regionen i mitten till vänster</value>
+  </data>
+  <data name="_mc_MRightRegion" xml:space="preserve">
+    <value>Regionen i mitten till höger</value>
+  </data>
+  <data name="_mc_BottomRegion" xml:space="preserve">
+    <value>Regionen längst ner</value>
+  </data>
+  <data name="_mc_TabNewText" xml:space="preserve">
+    <value>Lägg till en ny flik i formuläret.</value>
+  </data>
+  <data name="_mc_TabEdit" xml:space="preserve">
+    <value>Redigera flik</value>
+  </data>
+  <data name="_mc_TabEditText" xml:space="preserve">
+    <value>Du kan redigera flikar.</value>
+  </data>
+  <data name="_mc_TimeManagement" xml:space="preserve">
+    <value>Tidsadministration</value>
+  </data>
+  <data name="_mc_User" xml:space="preserve">
+    <value>Användare</value>
+  </data>
+  <data name="_mc_TimePeriod" xml:space="preserve">
+    <value>Tidsperiod</value>
+  </data>
+  <data name="_mc_Project" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="_mc_Description" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="_mc_NoSelectedItems" xml:space="preserve">
+    <value>Det har inte markerats några artiklar</value>
+  </data>
+  <data name="_mc_Total" xml:space="preserve">
+    <value>Totalt</value>
+  </data>
+  <data name="_mc_Apply" xml:space="preserve">
+    <value>Verkställ</value>
+  </data>
+  <data name="_mc_ReadOnly" xml:space="preserve">
+    <value>Gör formuläret skrivskyddat.</value>
+  </data>
+  <data name="_mc_Events" xml:space="preserve">
+    <value>Händelser</value>
+  </data>
+  <data name="principalDepartment" xml:space="preserve">
+    <value>Avdelning</value>
+  </data>
+  <data name="principalEveryone" xml:space="preserve">
+    <value>Everyone</value>
+  </data>
+  <data name="principalMainCompany" xml:space="preserve">
+    <value>Huvudföretag</value>
+  </data>
+  <data name="principalPartnerCompany" xml:space="preserve">
+    <value>Partnerföretag</value>
+  </data>
+  <data name="principalPartners" xml:space="preserve">
+    <value>Partners</value>
+  </data>
+  <data name="principalRestricted" xml:space="preserve">
+    <value>Begränsad</value>
+  </data>
+  <data name="principalRole" xml:space="preserve">
+    <value>Roll</value>
+  </data>
+  <data name="principalRoles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="principalTeam" xml:space="preserve">
+    <value>Grupp</value>
+  </data>
+  <data name="principalTeams" xml:space="preserve">
+    <value>Grupper</value>
+  </data>
+  <data name="principalUser" xml:space="preserve">
+    <value>Användare</value>
+  </data>
+  <data name="_mc_NoItemSelected" xml:space="preserve">
+    <value>Markera minst en kryssruta</value>
+  </data>
+  <data name="_mc_SelectedNoNumber" xml:space="preserve">
+    <value>Markerade:</value>
+  </data>
+  <data name="_mc_ActiveActivities" xml:space="preserve">
+    <value>Aktiv&amp;nbsp;att-göra-&amp;nbsp;lista</value>
+  </data>
+  <data name="_mc_ActiveDocuments" xml:space="preserve">
+    <value>Aktiva&amp;nbsp; dokument</value>
+  </data>
+  <data name="_mc_ActiveProjects" xml:space="preserve">
+    <value>Aktiva&amp;nbsp; projekt</value>
+  </data>
+  <data name="_mc_Calendar" xml:space="preserve">
+    <value>Vecko&amp;nbsp;kalender</value>
+  </data>
+  <data name="_mc_HelpInfo" xml:space="preserve">
+    <value>Assistenter/kännedom&amp;nbsp;verktyg</value>
+  </data>
+  <data name="_mc_InActivities" xml:space="preserve">
+    <value>Uppgifter-att-göra&amp;nbsp;som har&amp;nbsp;tilldelats&amp;nbsp;mig</value>
+  </data>
+  <data name="_mc_OutActivities" xml:space="preserve">
+    <value>Uppgifter/att-göra&amp;nbsp;som har tilldelats&amp;nbsp;av&amp;nbsp;mig</value>
+  </data>
+  <data name="_mc_RssNews" xml:space="preserve">
+    <value>Nyhets&amp;nbsp;kanal</value>
+  </data>
+  <data name="_mc_ControlVisible" xml:space="preserve">
+    <value>Visa på sida</value>
+  </data>
+  <data name="_mc_SetDefault" xml:space="preserve">
+    <value>Ange till standardvärden</value>
+  </data>
+  <data name="_mc_1_1_1Column_Description" xml:space="preserve">
+    <value>Mall med tre kolumner</value>
+  </data>
+  <data name="_mc_1_1_1Column_Name" xml:space="preserve">
+    <value>Mall med tre kolumner</value>
+  </data>
+  <data name="_mc_1_1Column_Description" xml:space="preserve">
+    <value>Mall med två kolumner</value>
+  </data>
+  <data name="_mc_1_1Column_Name" xml:space="preserve">
+    <value>Standardmall med två kolumner</value>
+  </data>
+  <data name="_mc_1_2Column_Description" xml:space="preserve">
+    <value>Mall med två kolumner</value>
+  </data>
+  <data name="_mc_1_2Column_Name" xml:space="preserve">
+    <value>Mall med två kolumner (bredd 1 : 2)</value>
+  </data>
+  <data name="_mc_1Column_Description" xml:space="preserve">
+    <value>Enkel mall med en kolumn</value>
+  </data>
+  <data name="_mc_1Column_Name" xml:space="preserve">
+    <value>Mall med en kolumn</value>
+  </data>
+  <data name="_mc_2_1Column_Description" xml:space="preserve">
+    <value>Mall med två kolumner</value>
+  </data>
+  <data name="_mc_2_1Column_Name" xml:space="preserve">
+    <value>Mall med två kolumner (bredd 2 : 1)</value>
+  </data>
+  <data name="_mc_Forms" xml:space="preserve">
+    <value>Formulär</value>
+  </data>
+  <data name="_mc_FavoriteLists" xml:space="preserve">
+    <value>Mina&amp;nbsp;favorit&amp;nbsp;listor</value>
+  </data>
+  <data name="_mc_ActiveActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ActiveDocumentsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ActiveProjectsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_CalendarDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_FavoriteListsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_HelpInfoDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_InActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_OutActivitiesDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_RssNewsDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_RemoveBlock" xml:space="preserve">
+    <value>Ta bort blockeringen från sidan Mitt arbete?</value>
+  </data>
+  <data name="_mc_NoItems" xml:space="preserve">
+    <value>Inga artiklar</value>
+  </data>
+  <data name="_mc_LastAlert" xml:space="preserve">
+    <value>Sändnings&amp;nbsp;varning</value>
+  </data>
+  <data name="_mc_LastAlertDescription" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_mc_ControlsSettings" xml:space="preserve">
+    <value>Kontrollinställningar</value>
+  </data>
+  <data name="_mc_TemplateSettings" xml:space="preserve">
+    <value>Mallinställningar</value>
+  </data>
+  <data name="GroupAdministrators" xml:space="preserve">
+    <value>Administratörer</value>
+  </data>
+  <data name="GroupEveryone" xml:space="preserve">
+    <value>Everyone</value>
+  </data>
+  <data name="GroupExec" xml:space="preserve">
+    <value>Chefer</value>
+  </data>
+  <data name="GroupExtranet" xml:space="preserve">
+    <value>Extranät</value>
+  </data>
+  <data name="GroupHDM" xml:space="preserve">
+    <value>Help desk-chefer</value>
+  </data>
+  <data name="GroupIntranet" xml:space="preserve">
+    <value>Intranät</value>
+  </data>
+  <data name="GroupPM" xml:space="preserve">
+    <value>Projektledare</value>
+  </data>
+  <data name="GroupPPM" xml:space="preserve">
+    <value>Chefer över större projekt</value>
+  </data>
+  <data name="GroupRoles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="GroupTM" xml:space="preserve">
+    <value>Tidshanterare</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Åtgärd</value>
+  </data>
+  <data name="_mc_ie6update" xml:space="preserve">
+    <value>Du använder Internet Explorer 6 eller en tidigare version. Om du vill försäkra dig om att allt fungerar som det ska bör du installera Internet Explorer 7.0 eller senare. &lt;a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'&gt;Här&lt;/a&gt; kan du hämta Internet Explorer 7.0.</value>
+  </data>
+  <data name="ChangeFilter" xml:space="preserve">
+    <value>Ändra filter</value>
+  </data>
+  <data name="FilterIsSet" xml:space="preserve">
+    <value>Filter har angetts</value>
+  </data>
+  <data name="FilterIsNotSet" xml:space="preserve">
+    <value>Filter har inte angetts</value>
+  </data>
+  <data name="ShowGroupInfo" xml:space="preserve">
+    <value>Visa sammanfattningsinformation</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grupp</value>
+  </data>
+  <data name="MustBeUnique" xml:space="preserve">
+    <value>Det här fältet markerades som unikt! Ange något annat värde!</value>
+  </data>
+  <data name="_mc_NoGridData" xml:space="preserve">
+    <value>Det finns inga artiklar tillgängliga</value>
+  </data>
+  <data name="_mc_State" xml:space="preserve">
+    <value>Region/område</value>
+  </data>
+  <data name="_mc_Horizontal" xml:space="preserve">
+    <value>Horisontellt</value>
+  </data>
+  <data name="_mc_Vertical" xml:space="preserve">
+    <value>Vertikalt</value>
+  </data>
+  <data name="_mc_Delete" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="_mc_New" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="SortingTitle" xml:space="preserve">
+    <value>Sorteringsuppsättningar</value>
+  </data>
+  <data name="AddSort" xml:space="preserve">
+    <value>Lägg till sorteringsuppsättning</value>
+  </data>
+  <data name="NoSortings" xml:space="preserve">
+    <value>Det finns inga sorteringsuppsättningar</value>
+  </data>
+  <data name="ViewFieldSet" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="_mc_DeleteView" xml:space="preserve">
+    <value>Ta bort vy</value>
+  </data>
+  <data name="_mc_DeleteViewWarning" xml:space="preserve">
+    <value>Vill du ta bort den här vyn?</value>
+  </data>
+  <data name="FieldsTab" xml:space="preserve">
+    <value>Fält</value>
+  </data>
+  <data name="FiltersTab" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="GeneralTab" xml:space="preserve">
+    <value>Generellt</value>
+  </data>
+  <data name="GroupsTab" xml:space="preserve">
+    <value>Grupper</value>
+  </data>
+  <data name="IsPublicView" xml:space="preserve">
+    <value>Visa den här vyn för alla användare</value>
+  </data>
+  <data name="NewViewGeneralTabComment" xml:space="preserve">
+    <value>Nu går det att skapa en ny vy för enhetslista. Ange ett namn.</value>
+  </data>
+  <data name="SelectTitle" xml:space="preserve">
+    <value>Ange titel</value>
+  </data>
+  <data name="tClose" xml:space="preserve">
+    <value>Stänga</value>
+  </data>
+  <data name="TitleIsRequired" xml:space="preserve">
+    <value>Titel är obligatoriskt!</value>
+  </data>
+  <data name="tSave" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="GoToViewLink" xml:space="preserve">
+    <value>Gå till vy</value>
+  </data>
+  <data name="DoubleClick" xml:space="preserve">
+    <value>Dubbelklicka för att välja</value>
+  </data>
+  <data name="_mc_Print" xml:space="preserve">
+    <value>Skriv ut</value>
+  </data>
+</root>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MetaView>
+	<Toolbar>
+		<add>
+			<Menu id="ActionMenu"  text="{GlobalMetaInfo:ToolBarMenuBafNewItem}" align="Left" itemSplitter="Right" imageUrl="~/Apps/Shell/styles/Images/new.png">
+				<Button id="NewInfoTable" text="{GlobalMetaInfo:NewInfoTable}" commandName="MC_NewInfoTable"  imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png"></Button>
+				<Button id="NewBridge" text="{GlobalMetaInfo:NewBridge}" commandName="MC_NewBridge"  imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png"></Button>
+				<Button id="NewCard" text="{GlobalMetaInfo:NewCard2}" commandName="MC_NewCard"  imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png"></Button>
+			</Menu>
+			<Menu id="ExportImportMenu"  text="{GlobalMetaInfo:ToolBarMenuBafExportImport}" align="Left" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif" >
+				<Button id="Export" text="{GlobalMetaInfo:BafExport}" commandName="MC_BafExport" imageUrl="~/Apps/Shell/styles/Images/toolbar/import.png"></Button>
+				<Button id="Import" text="{GlobalMetaInfo:BafImport}" commandName="MC_BafImport" imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png"></Button>
+			</Menu>
+		</add>
+	</Toolbar>
+	<Commands>
+		<add>
+			<Command id="MC_BafExport">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/Shell/Pages/ContentFrame.aspx?_a=Core&amp;_v=BAF-Export</Url>
+			</Command>
+			<Command id="MC_BafImport">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/Shell/Pages/ContentFrame.aspx?_a=Core&amp;_v=BAF-Import</Url>
+			</Command>
+			<Command id="MC_NewInfoTable">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/MetaDataBase/Pages/Admin/MetaClassEdit.aspx</Url>
+			</Command>
+			<Command id="MC_NewBridge">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/MetaDataBase/Pages/Admin/MetaBridgeEdit.aspx</Url>
+			</Command>
+			<Command id="MC_NewCard">
+				<CommandType>Navigate</CommandType>
+				<Url>~/Apps/MetaDataBase/Pages/Admin/MetaCardEdit.aspx</Url>
+			</Command>
+		</add>
+	</Commands>
+</MetaView>

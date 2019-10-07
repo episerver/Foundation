@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+    <ListViewUI>
+        <Grid>
+            <add>
+                <Columns>
+                    <Column isDefault="true" headingText="{SharedStrings:Edit_Command}" dataCellClientTemplateId="EditTemplate" dditControlType="EditCommand" width="100" align="Center"/>
+                    <!--<Column IsDefault="true" Width="1" Visible="true" IsSearchable="true" AllowSorting="true" AllowEditing="false" DataField="StateProvinceId" HeadingText="{SharedStrings:StateProvinceId}"></Column>
+                    <Column IsDefault="true" Width="1" Visible="true" IsSearchable="true" AllowSorting="true" AllowEditing="false" DataField="CountryId" HeadingText="{SharedStrings:CountryId}"></Column>-->
+                    <Column isDefault="true" visible="true" allowEditing="false" isSearchable="false" allowSorting="false" dataField="Name" headingText="{SharedStrings:Name}"/>
+                    <Column isDefault="true" width="80" visible="true" isSearchable="false" allowSorting="false" dataField="Ordering" headingText="{SharedStrings:Ordering}"/>
+                    <Column isDefault="true" width="80" visible="true" isSearchable="false" allowSorting="false" dataField="Visible" headingText="{SharedStrings:Visible}" columnType="CheckBox" />
+                </Columns>
+            </add>
+        </Grid>
+    </ListViewUI>
+    <ViewConfig>
+        <setAttributes id="CountryRegions" controlUrl=""></setAttributes>
+    </ViewConfig>    
+</View>

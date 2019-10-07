@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<clear></clear>
+			<add>
+				<Block id="ShortInfo">
+					<Placeholder id="Placeholder_1">
+						<!-- 
+					Toolbar is defined in file 
+					Apps/ClientManagement/Config/ListViewUI/Organization.Organization.OrganizationView.xml 
+				-->
+						<Control id="Toolbar" path="~/Apps/Core/Controls/MetaToolbar.ascx">
+							<Property name="ClassName" value="Organization" />
+							<Property name="ViewName" value="EntityView" />
+							<Property name="PlaceName" value="OrganizationView" />
+							<Property name="ToolbarMode" value="ListViewUI" />
+						</Control>
+						<Control id="ShortViewForm" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+							<Property name="FormName" value="[MC_ShortViewForm]" />
+							<Property name="OuterCssClass" value="ibn-underline" />
+						</Control>
+					</Placeholder>
+					<Placeholder id="Placeholder_2" />
+					<Placeholder id="Placeholder_3" />
+					<Placeholder id="Placeholder_4" />
+				</Block>
+				<Block id="InfoBlock" name="{Customer:TabInfo}">
+					<Block id="Info" name="{Customer:TabInfo}">
+						<Placeholder id="Placeholder_1">
+							<Control id="GeneralViewForm" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+								<Property name="FormName" value="[MC_GeneralViewForm]" />
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+					</Block>
+
+					<Block id="Contacts" name="{Customer:Contacts}">
+						<Placeholder id="Placeholder_1">
+							<Control id="Contacts" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="Contact" />
+								<Property name="RelatedToClassName" value="Organization" />
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+					</Block>
+					<Block id="Orgs" name="{Customer:Organizations}">
+						<Placeholder id="Placeholder_1">
+							<Control id="ChildOrganizations" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="Organization" />
+								<Property name="RelatedToClassName" value="Organization" />
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+					</Block>
+					<Block id="Addr" name="{Customer:Addresses}">
+						<Placeholder id="Placeholder_1">
+							<Control id="Addresses" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="Address" />
+								<Property name="RelatedToClassName" value="Organization" />
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+					</Block>
+					<Block id="card" name="{Customer:CreditCards}">
+						<Placeholder id="Placeholder_1">
+							<Control id="ContactCreditCard" path="~/Apps/Customer/Modules/RelatedEntityView.ascx">
+								<Property name="RelatedClassName" value="CreditCard" />
+								<Property name="RelatedToClassName" value="Organization"/>
+							</Control>
+						</Placeholder>
+						<Placeholder id="Placeholder_2" />
+						<Placeholder id="Placeholder_3" />
+						<Placeholder id="Placeholder_4" />
+					</Block>
+				</Block>
+
+			</add>
+		</Layout>
+		<Grids>
+			<add>
+				<Grid placeName="OrganizationContact-List">
+					<Columns>
+						<Column width="450" allowSorting="false" dataField="FullName" headingText="{Customer:Contact_mf_FullName}" columnType="CustomTemplate">
+							<Template id="LinkTemplate" controlUrl="~/Apps/Customer/GridTemplates/CustomerLinkTemplate.ascx"></Template>
+						</Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="OrganizationChild-List">
+					<Columns>
+						<Column width="100" allowSorting="false" dataField="Name" headingText="{Customer:Organization_mf_Name}"></Column>
+						<Column width="200" allowSorting="false" dataField="Description" headingText="{Customer:Organization_mf_Description}"></Column>
+            <Column width="80" allowSorting="false" dataField="OrganizationType" headingText="{Customer:Organization_mf_OrganizationType}"></Column>
+            <Column width="170" allowSorting="false" dataField="OrgCustomerGroup" headingText="{Customer:Organization_mf_OrgCustomerGroup}"></Column>
+						<Column width="120" allowSorting="false" dataField="BusinessCategory" headingText="{Customer:Organization_mf_BusinessCategory}"></Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="OrganizationAddress-List">
+					<Columns>
+						<Column columnType="CheckBox" />
+						<Column width="20" headingText="" columnType="Action" dataField="PrimaryKeyId">
+							<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdOrganizationAddressGridEdit" commandParameters="PrimaryKeyId" ></Item>
+						</Column>
+						<Column width="200" allowSorting="false" dataField="Name" headingText="{Customer:Address_mf_Name}"></Column>
+						<Column width="120" allowSorting="false" dataField="Line1" headingText="{Customer:Address_mf_Line1}"></Column>
+						<Column width="100" allowSorting="false" dataField="City" headingText="{Customer:Address_mf_City}"></Column>
+					</Columns>
+				</Grid>
+				<Grid placeName="OrganizationCreditCards-List">
+					<Columns>
+						<Column columnType="CheckBox" />
+						<Column width="20" headingText="" columnType="Action" dataField="PrimaryKeyId">
+							<Item imageUrl="~/Apps/Shell/Styles/images/edit.gif" commandName="cmdCreditCardGridEdit" commandParameters="PrimaryKeyId"></Item>
+						</Column>
+						<Column width="200" allowSorting="false" dataField="CreditCardTypeFriendlyName" headingText="{Customer:CreditCard_mf_CardType}"></Column>
+						<Column width="100" allowSorting="false" dataField="LastFourDigits" headingText="{Customer:CreditCard_mf_LastFourDigits}"></Column>
+					</Columns>
+				</Grid>
+			</add>
+		</Grids>
+		<Toolbars>
+			<add>
+				<Toolbar placeName="OrganizationView">
+					<Button id="EditButton" text="{Common:Edit}"  imageUrl="~/Apps/MetaDataBase/images/edit.gif" tooltip="{Common:Edit}" commandName="Organization_Edit" itemSplitter="Right" ></Button>
+					<Button id="ListButton" text="{Customer:Organizations}" imageUrl="~/Apps/MetaDataBase/images/back.gif" tooltip="{Customer:Organizations}" commandName="Organization_List" ></Button>
+				</Toolbar>
+				<Toolbar placeName="OrganizationAddress-List">
+					<Button id="NewAddress" text="{Customer:AddressNew}" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" commandName="MC_OrgAddress_NewItem" itemSplitter="Right"></Button>
+					<Button id="DeleteSelectedAddress" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_Address_DeleteSelected" ></Button>
+				</Toolbar>
+				<Toolbar placeName="OrganizationCreditCards-List">
+					<Button id="NewCreditCard" text="{Customer:NewCreditCard}" imageUrl="~/Apps/MetaDataBase/images/newitem.gif" commandName="MC_CreditCard_NewItem" itemSplitter="Right"></Button>
+					<Button id="DeleteSelectedCreditCard" text="{Common:DeleteSelected}" imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="MC_CreditCard_DeleteSelected" ></Button>
+				</Toolbar>
+				<Toolbar placeName="OrganizationContact-List">
+					<Button id="AddButton" text="{Global:_mc_Add}" imageUrl="~/Apps/MetaUIEntity/Images/addselected.gif" commandName="MC_MUI_AddSelectedContact" itemSplitter="Right"></Button>
+				</Toolbar>
+				<Toolbar placeName="OrganizationChild-List">
+					<Button id="AddOrgButton" text="{Global:_mc_Add}" imageUrl="~/Apps/MetaUIEntity/Images/addselected.gif" commandName="MC_MUI_AddSelectedOrg" itemSplitter="Right"></Button>
+				</Toolbar>
+			</add>
+		</Toolbars>
+		<Commands>
+			<add>
+				<!--********************-->
+				<!--* OrganizationView *-->
+				<!--********************-->
+				<Command id="Organization_Edit">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'Edit', 'ObjectId={QueryString:ObjectId}&amp;back=view')</ClientScript>
+				</Command>
+				<Command id="Organization_List">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSManagementClient.ChangeBafView('{QueryString:ClassName}', 'List')</ClientScript>
+				</Command>
+				<Command id="Organization_Delete">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Ibn.Web.UI.MetaUIEntity.CommandHandlers.DeleteSelectedEntityHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<!--****************************-->
+				<!--* OrganizationAddress-List *-->
+				<!--****************************-->
+				<Command id="MC_Address_DeleteSelected">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.DeleteSelectedAddressHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+				<Command id="MC_OrgAddress_NewItem">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:AddressNew}</PopupTitle>
+					<!--<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Customer&amp;_v=Address-Edit&amp;formName=[MC_BaseForm]&amp;className=Address&amp;</Url>-->
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=Address&amp;ContainerFieldName=OrganizationId&amp;ContainerId={QueryString:ObjectId}</Url>
+					<Width>590</Width>
+					<Height>380</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+					<DependCommand>cmdOrganizationAddressGridEdit</DependCommand>
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdOrganizationAddressGridEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=Address&amp;ObjectId=[ClientParam:PrimaryKeyId]&amp;commandName=cmdOrganizationAddressGridEdit</Url>
+					<Width>590</Width>
+					<Height>380</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+				</Command>
+				<!--********************************-->
+				<!--* OrganizationCreditCards-List *-->
+				<!--********************************-->
+				<Command id="MC_CreditCard_DeleteSelected">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.DeleteSelectedCreditCardHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+				<Command id="MC_CreditCard_NewItem">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Customer:NewCreditCard}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=CreditCard&amp;ContainerFieldName=OrganizationId&amp;ContainerId={QueryString:ObjectId}</Url>
+					<Width>590</Width>
+					<Height>280</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+					<DependCommand>cmdCreditCardGridEdit</DependCommand>
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdCreditCardGridEdit">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<Url>~/Apps/MetaUIEntity/Pages/EntityEditPopup.aspx?formName=[MC_BaseForm]&amp;className=CreditCard&amp;ObjectId=[ClientParam:PrimaryKeyId]&amp;commandName=cmdCreditCardGridEdit</Url>
+					<Width>590</Width>
+					<Height>280</Height>
+					<Top>15</Top>
+					<Drag>True</Drag>
+				</Command>
+				<!--********************************-->
+				<!--* OrganizationContact-List *-->
+				<!--********************************-->
+				<Command id="MC_MUI_AddSelectedContact">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:SearchObjects}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes=Contact&amp;refreshName=SelectItems_Refresh&amp;ReturnCommand=MC_MUI_AddSelectedContact&amp;MultipleSelect=1&amp;CanCreate=0&amp;ContainerFieldName=OrganizationId&amp;ContainerId={QueryString:ObjectId}</Url>
+					<Width>640</Width>
+					<Height>480</Height>
+					<Left>100</Left>
+					<Top>50</Top>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+				<!--********************************-->
+				<!--* OrganizationChild-List *-->
+				<!--********************************-->
+				<Command id="MC_MUI_AddSelectedOrg">
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Customer.CommandHandlers.EditOrganizationEnableHandler, Mediachase.ConsoleManager" />
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>{Common:SearchObjects}</PopupTitle>
+					<Url>~/Apps/MetaUIEntity/Pages/EntitySelect.aspx?Classes=Organization&amp;refreshName=SelectItems_Refresh&amp;ReturnCommand=MC_MUI_AddSelectedOrg&amp;MultipleSelect=1&amp;CanCreate=0&amp;ContainerFieldName=OrganizationId&amp;ContainerId={QueryString:ObjectId}</Url>
+					<Width>640</Width>
+					<Height>480</Height>
+					<Left>100</Left>
+					<Top>50</Top>
+					<Drag>True</Drag>
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+				</Command>
+			</add>
+		</Commands>
+	</Form>
+</View>

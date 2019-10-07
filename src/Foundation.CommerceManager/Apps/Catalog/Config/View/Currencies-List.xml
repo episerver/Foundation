@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Grid>
+			<add>
+				<Columns>
+					<Column columnType="CheckBox" />
+					<Column visible="false" allowSorting="false" dataField="CurrencyId" headingText="" />
+					<Column width="50" dataField="CurrencyId" headingText="" columnType="Action">
+						<Item imageUrl="~/Apps/Shell/styles/Images/edit.gif" commandName="cmdCatalogGridCurrencyEdit" commandParameters="CurrencyId" toolTip="Edit" permissions="catalog:admin:currencies:mng:edit"/>
+						<Item imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdCatalogGridCurrencyDelete" commandParameters="CurrencyId" toolTip="Delete" permissions="catalog:admin:currencies:mng:delete"/>
+					</Column>
+					<Column width="200" allowSorting="true" dataField="Name" headingText="{SharedStrings:Name}" id="Name" columnType="HyperLink" dataNavigateUrlFields="CurrencyId" dataNavigateUrlFormatString="javascript:CSCatalogClient.EditCurrency({0});" dataTextFields="Name" dataTextFormatString="{0}" dataTextEncode="true"/>
+					<Column width="50" allowSorting="true" dataField="CurrencyCode" headingText="{SharedStrings:Code}" />
+					<Column width="150" columnType="DateTime" allowSorting="true" dataField="ModifiedDate" headingText="{SharedStrings:Modified_Date}" />
+				</Columns>
+			</add>
+		</Grid>
+		<Toolbar>
+			<add>
+				<Button id="NewCurrency" text="{CatalogStrings:Currency_New_Currency}" imageUrl="~/Apps/Shell/styles/Images/new.png" commandName="cmdCatalogNewCurrency" permissions="catalog:admin:currencies:mng:create"/>
+				<Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdCatalogDeleteCurrency" permissions="catalog:admin:currencies:mng:delete"/>
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="cmdCatalogNewCurrency">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCatalogClient.NewCurrency()</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCatalogDeleteCurrency">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CurrencyDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+
+				<!-- Grid commands -->
+				<Command id="cmdCatalogGridCurrencyEdit">
+					<CommandType>ClientAction</CommandType>
+					<ClientScript>CSCatalogClient.EditCurrency2(params)</ClientScript>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+
+				<Command id="cmdCatalogGridCurrencyDelete">
+          <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+          <CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Apps.Catalog.CommandHandlers.CurrencyDeleteHandler, Mediachase.ConsoleManager" />
+					<UpdatePanelIds>panelMainListView</UpdatePanelIds>
+					<EnableHandler type="Mediachase.Commerce.Manager.Apps.Core.CommandHandlers.Common.CommandHandlerBase, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+	<ViewConfig>
+		<setAttributes id="Currencies-List" controlUrl="Catalog/CurrenciesList.ascx" help="System+Settings" ></setAttributes>
+	</ViewConfig>
+</View>

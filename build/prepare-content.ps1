@@ -4,8 +4,8 @@ $ErrorActionPreference = "Stop"
 $RootDir = (Get-Item $PSScriptRoot).Parent.FullName
 Push-Location $RootDir
 
-$sourceRoot = ".\Foundation"
-$destinationRoot = ".\Output"
+$sourceRoot = ".\src\Foundation"
+$destinationRoot = ".\artifacts\Output"
 
 Remove-Item $destinationRoot -Recurse -ErrorAction Ignore
 New-Item -ItemType directory -Path "$destinationRoot"
@@ -52,7 +52,7 @@ Get-ChildItem -Path "$destinationRoot\Foundation.Cms\Assets\scss\templates\widge
     Remove-Item $_.fullname -Force -Recurse
 }
 
-Copy-Item "Packaging\Foundation.Cms\foundation.init.js" -Destination "$destinationRoot\Foundation.Cms\Assets\js\features\foundation.init.js" -Force -Recurse -Container | Out-Null
+Copy-Item "Build\Content\Foundation.Cms\foundation.init.js" -Destination "$destinationRoot\Foundation.Cms\Assets\js\features\foundation.init.js" -Force -Recurse -Container | Out-Null
 Copy-Item "$destinationRoot\Foundation\ClientResources" -Destination "$destinationRoot\Foundation.Cms\ClientResources" -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\Helpers" -Destination "$destinationRoot\Foundation.Cms\Helpers" -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\lang\Foundation.Core_EN.xml" -Destination "$destinationRoot\Foundation.Cms\lang\Foundation.Core_EN.xml" -Force -Recurse
@@ -65,7 +65,7 @@ Copy-Item "$destinationRoot\Foundation\Features\Blocks\RssReaderBlockController.
 Copy-Item "$destinationRoot\Foundation\Features\Blocks\Views" -Destination "$destinationRoot\Foundation.Cms\Features\Blocks\Views" -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\Features\Blog" -Destination "$destinationRoot\Foundation.Cms\Features\Blog" -Exclude BlogCommentBlock -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\Features\Events" -Destination "$destinationRoot\Foundation.Cms\Features\Events" -Force -Recurse
-Copy-Item "Packaging\Foundation.Cms\HeaderController.cs" -Destination "$destinationRoot\Foundation.Cms\Features\Header\HeaderController.cs" -Force -Recurse
+Copy-Item "Build\Content\Foundation.Cms\HeaderController.cs" -Destination "$destinationRoot\Foundation.Cms\Features\Header\HeaderController.cs" -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\Features\Home" -Destination "$destinationRoot\Foundation.Cms\Features\Home" -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\Features\Media" -Destination "$destinationRoot\Foundation.Cms\Features\Media" -Force -Recurse
 Copy-Item "$destinationRoot\Foundation\Features\Pages\LandingPage" -Destination "$destinationRoot\Foundation.Cms\Features\Pages\LandingPage" -Force -Recurse
@@ -118,7 +118,7 @@ Copy-Item "$destinationRoot\Foundation\features" -Force -Recurse -Destination "$
 Copy-Item "$destinationRoot\Foundation\modules\_protected\Foundation.Commerce" -Destination "$destinationRoot\Foundation.Commerce\modules\_protected\Foundation.Commerce" -Force -Recurse
 
 #Foundation.Find.Cms
-Copy-Item "Packaging\Foundation.Find.Cms\Search" -Force -Recurse -Destination "$destinationRoot\Foundation.Find.Cms\Features\Search"
+Copy-Item "Build\Content\Foundation.Find.Cms\Search" -Force -Recurse -Destination "$destinationRoot\Foundation.Find.Cms\Features\Search"
 Copy-Item  "$destinationRoot\Foundation\Features\Locations" -Force -Recurse -Destination "$destinationRoot\Foundation.Find.Cms\Features\Locations"
 
 #Foundation.Find.Commerce

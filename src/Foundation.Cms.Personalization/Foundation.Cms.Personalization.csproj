@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.13.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.21.7" />
+    <PackageReference Include="EPiServer.Framework" Version="11.13.0" />
+    <PackageReference Include="EPiServer.Framework.AspNet" Version="11.13.0" />
+    <PackageReference Include="EPiServer.Tracking.Cms" Version="1.10.0" />
+    <PackageReference Include="EPiServer.Tracking.Core" Version="1.10.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="EPiServer.Personalization.CMS" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Cms\Foundation.Cms.csproj" />
+  </ItemGroup>
+
+</Project>

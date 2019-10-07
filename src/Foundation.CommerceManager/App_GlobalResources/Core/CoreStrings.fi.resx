@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Progress_Indicator" xml:space="preserve">
+    <value>Etenemisen ilmaisin</value>
+  </data>
+  <data name="LogExport_All_Logs_Export" xml:space="preserve">
+    <value>Kaikkien lokien vienti</value>
+  </data>
+  <data name="LogExport_View_Logs_Export" xml:space="preserve">
+    <value>Katso lokien vientitiedosto</value>
+  </data>
+  <data name="LogExport_Current_Page_Logs_Export" xml:space="preserve">
+    <value>Nykyisen sivun lokien vientitiedosto</value>
+  </data>
+  <data name="Search_Rebuild_Index" xml:space="preserve">
+    <value>Kokoa indeksi uudelleen</value>
+  </data>
+  <data name="Search_Build_Index" xml:space="preserve">
+    <value>Kokoa indeksi</value>
+  </data>
+  <data name="CommonSettings_Language_Description" xml:space="preserve">
+    <value>Kieli, joka on oletusarvoisesti valittuna pudotusvalikoissa jne.</value>
+  </data>
+  <data name="CommonSettings_Currency_Description" xml:space="preserve">
+    <value>Valuutta, jota käytetään tapauksissa, kun tarvitaan valuutta, mutta sitä ei ole määritetty</value>
+  </data>
+  <data name="CommonSettings_Length_Unit_Description" xml:space="preserve">
+    <value>Pituuden oletusyksikkö</value>
+  </data>
+  <data name="CommonSettings_Weight_Unit_Description" xml:space="preserve">
+    <value>Painon oletusyksikkö</value>
+  </data>
+  <data name="License_Activated" xml:space="preserve">
+    <value>Aktivoitu</value>
+  </data>
+  <data name="License_Expires" xml:space="preserve">
+    <value>Vanhenee</value>
+  </data>
+  <data name="License_Installation" xml:space="preserve">
+    <value>Lisenssin asennus</value>
+  </data>
+  <data name="License_Install_By_Key" xml:space="preserve">
+    <value>Asenna lisenssiavaimen mukaan</value>
+  </data>
+  <data name="License_Install_File" xml:space="preserve">
+    <value>Asenna lisenssitiedosto (*.lic)</value>
+  </data>
+  <data name="License_Licensed_To" xml:space="preserve">
+    <value>Lisenssin haltija</value>
+  </data>
+  <data name="Search_Build_Instructions" xml:space="preserve">
+    <value>Kokoa hakuindeksi. Tämä toimenpide kokoaa indeksin kohteista, jotka on päivitetty edellisen kokoamisen jälkeen.</value>
+  </data>
+  <data name="Search_Rebuild_Instructions" xml:space="preserve">
+    <value>Kokoa hakuindeksi uudelleen. Tämä toimenpide kokoaa koko indeksin uudelleen.</value>
+  </data>
+  <data name="License_Edition" xml:space="preserve">
+    <value>Versio</value>
+  </data>
+  <data name="License_Component" xml:space="preserve">
+    <value>Komponentti</value>
+  </data>
+  <data name="Config_Replication_Controls" xml:space="preserve">
+    <value>Toiston hallinta</value>
+  </data>
+  <data name="Uploader_File_Uploading_Progress" xml:space="preserve">
+    <value>Tiedosto lataaminen</value>
+  </data>
+  <data name="Uploader_Browse_Instructions" xml:space="preserve">
+    <value>Napsauta &lt;b&gt;Selaa&lt;/b&gt; ja valitse tiedosto, tai näppäile tiedoston polku</value>
+  </data>
+  <data name="MetaData_Save_The_File" xml:space="preserve">
+    <value>Tallenna tiedosto</value>
+  </data>
+  <data name="MetaData_Start_Import" xml:space="preserve">
+    <value>Aloita tuonti</value>
+  </data>
+  <data name="MetaData_Db_Backup_Recommendation" xml:space="preserve">
+    <value>On erittäin suositeltavaa tehdä varmuuskopio ECF-tietokannasta ennen tuontia.</value>
+  </data>
+  <data name="MetaData_Import_Instructions" xml:space="preserve">
+    <value>Tuo metatiedot valitsemalla tiedosto alla olevasta ruudukosta tai lataamalla uusi tiedosto. Käynnistä sitten tuonti napsauttamalla painiketta ”Aloita tuonti”.</value>
+  </data>
+  <data name="MetaData_Files_Available_For_Import" xml:space="preserve">
+    <value>Tuotavissa olevat tiedostot</value>
+  </data>
+  <data name="MetaData_Catalog_Meta_Classes" xml:space="preserve">
+    <value>Katalogin metaluokat</value>
+  </data>
+  <data name="MetaData_Order_Meta_Classes" xml:space="preserve">
+    <value>Tilauksen metaluokat</value>
+  </data>
+  <data name="MetaData_Baf_Meta_Classes" xml:space="preserve">
+    <value>Business Foundationin metaluokat</value>
+  </data>
+  <data name="MetaData_Store_The_Value" xml:space="preserve">
+    <value>Tallenna arvo</value>
+  </data>
+  <data name="MetaData_Auto_Resize_Image" xml:space="preserve">
+    <value>Automaattinen kuvan koon muuttaminen</value>
+  </data>
+  <data name="MetaData_Stretch_Image" xml:space="preserve">
+    <value>Venytä kuvaa</value>
+  </data>
+  <data name="MetaData_Auto_Create_Thumbnail_Image" xml:space="preserve">
+    <value>Luo automaattisesti miniatyyrikuva</value>
+  </data>
+  <data name="MetaData_Stretch_Thumbnail_Image" xml:space="preserve">
+    <value>Venytä miniatyyrikuvaa</value>
+  </data>
+  <data name="MetaData_Add_Value" xml:space="preserve">
+    <value>Lisää arvo</value>
+  </data>
+  <data name="MetaData_Precision_LessThanOrEqual_38" xml:space="preserve">
+    <value>Tarkkuus + asteikko täytyy olla &amp;lt;= 38</value>
+  </data>
+  <data name="MetaData_Search_Properties" xml:space="preserve">
+    <value>Haun ominaisuudet</value>
+  </data>
+  <data name="MetaData_Indexing_Option" xml:space="preserve">
+    <value>Indeksointivaihtoehto</value>
+  </data>
+  <data name="MetaData_Tokenized" xml:space="preserve">
+    <value>Merkitty</value>
+  </data>
+  <data name="MetaData_Not_Tokenized" xml:space="preserve">
+    <value>Ei merkitty</value>
+  </data>
+  <data name="Cycle_No" xml:space="preserve">
+    <value>Ei sykliä</value>
+  </data>
+  <data name="Cycle_Daily" xml:space="preserve">
+    <value>Päivittäinen sykli</value>
+  </data>
+  <data name="Cycle_Weekly" xml:space="preserve">
+    <value>Viikoittainen sykli</value>
+  </data>
+  <data name="Cycle_Monthly" xml:space="preserve">
+    <value>Kuukausittainen sykli</value>
+  </data>
+  <data name="Cycle_Yearly" xml:space="preserve">
+    <value>Vuotuinen sykli</value>
+  </data>
+  <data name="Cycle_Custom1" xml:space="preserve">
+    <value>Mukautettu 1 sykli</value>
+  </data>
+  <data name="Cycle_Custom2" xml:space="preserve">
+    <value>Mukautettu 2 sykli</value>
+  </data>
+  <data name="MetaData_Error_CreateMetaClass_AlreadyExists" xml:space="preserve">
+    <value>Samanniminen metaluokka on jo olemassa. Kokeile toista nimeä.</value>
+  </data>
+  <data name="Template_Image" xml:space="preserve">
+    <value>Mallin kuva</value>
+  </data>
+  <data name="DialogControl_Select_Line_Items" xml:space="preserve">
+    <value>Valitse rivin kohteet</value>
+  </data>
+  <data name="Progress_Operation_Log" xml:space="preserve">
+    <value>Operaatioloki</value>
+  </data>
+  <data name="Spell_Check" xml:space="preserve">
+    <value>Oikeinkirjoitus</value>
+  </data>
+  <data name="Spell_Word_Not_In_Dictionary" xml:space="preserve">
+    <value>Sanaa ei ole sanakirjassa</value>
+  </data>
+  <data name="Spell_Change_To" xml:space="preserve">
+    <value>Muuta:</value>
+  </data>
+  <data name="MetaData_Import_Title" xml:space="preserve">
+    <value>Tuo metatiedot</value>
+  </data>
+  <data name="MetaData_Error_CreateMetaClass_FriendlyName_AlreadyExists" xml:space="preserve">
+    <value>Samalla lempinimellä on jo olemassa metaluokka. Kokeile toista lempinimeä.</value>
+  </data>
+  <data name="MetaData_Baf_Enums" xml:space="preserve">
+    <value>Business Foundationin valintalista</value>
+  </data>
+  <data name="MetaDataView_BinaryValue" xml:space="preserve">
+    <value>[Binääriarvo]</value>
+  </data>
+  <data name="MetaDataView_Value_Not_Set" xml:space="preserve">
+    <value>
+          &lt;not set&gt;
+        </value>
+  </data>
+  <data name="Search_Default_Provider" xml:space="preserve">
+    <value>Oletushakutarjoaja:</value>
+  </data>
+  <data name="Search_Indexers" xml:space="preserve">
+    <value>Luetteloijat:</value>
+  </data>
+  <data name="Search_Installed_Providers" xml:space="preserve">
+    <value>Asennetut hakutarjoajat:</value>
+  </data>
+  <data name="Search_Operations" xml:space="preserve">
+    <value>Hakemistotoiminnot</value>
+  </data>
+  <data name="Search_Settings" xml:space="preserve">
+    <value>Hakumääritykset</value>
+  </data>
+  <data name="RecentReferenceMetaClassFriendlyName" xml:space="preserve">
+    <value>Käyttäjän viimeisin viite</value>
+  </data>
+  <data name="RecentReferenceMetaClassName" xml:space="preserve">
+    <value>RecentReferenceHistory</value>
+  </data>
+  <data name="RecentReferenceMetaClassPluralName" xml:space="preserve">
+    <value>Käyttäjän viimeisimmät viitteet</value>
+  </data>
+  <data name="Search_Generated_Configuration" xml:space="preserve">
+    <value>Luotu määritysteksti:</value>
+  </data>  
+</root>

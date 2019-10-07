@@ -1,0 +1,927 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Organizations</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Addresses</value>
+  </data>
+  <data name="AddressType" xml:space="preserve">
+    <value>Address Type</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>Is Default</value>
+  </data>
+  <data name="Line1" xml:space="preserve">
+    <value>Line 1</value>
+  </data>
+  <data name="Line2" xml:space="preserve">
+    <value>Line 2</value>
+  </data>
+  <data name="Line3" xml:space="preserve">
+    <value>Line 3</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="PostOfficeBox" xml:space="preserve">
+    <value>Post Office Box</value>
+  </data>
+  <data name="Telephone1" xml:space="preserve">
+    <value>Primary Telephone</value>
+  </data>
+  <data name="Telephone2" xml:space="preserve">
+    <value>Telephone 2</value>
+  </data>
+  <data name="Telephone3" xml:space="preserve">
+    <value>Telephone 3</value>
+  </data>
+  <data name="Primary" xml:space="preserve">
+    <value>Primary</value>
+  </data>
+  <data name="Billing" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="Shipping" xml:space="preserve">
+    <value>Shipping</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobile Phone</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>Nick Name</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Job Title</value>
+  </data>
+  <data name="WebSiteUrl" xml:space="preserve">
+    <value>Web Site Url</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="EMailAddress1" xml:space="preserve">
+    <value>Primary E-Mail Address</value>
+  </data>
+  <data name="EMailAddress2" xml:space="preserve">
+    <value>E-Mail Address 2</value>
+  </data>
+  <data name="EMailAddress3" xml:space="preserve">
+    <value>E-Mail Address 3</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PrimaryContact" xml:space="preserve">
+    <value>Primary Contact</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="OrganizationInfo" xml:space="preserve">
+    <value>Organization Info</value>
+  </data>
+  <data name="TabDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="TabGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>Contact Info</value>
+  </data>
+  <data name="AllContacts" xml:space="preserve">
+    <value>All contacts</value>
+  </data>
+  <data name="AllOrganizations" xml:space="preserve">
+    <value>All organizations</value>
+  </data>
+  <data name="NewContact" xml:space="preserve">
+    <value>New Contact</value>
+  </data>
+  <data name="NewOrganization" xml:space="preserve">
+    <value>New Organization</value>
+  </data>
+  <data name="EditSystemView" xml:space="preserve">
+    <value>View Editing</value>
+  </data>
+  <data name="NewSystemView" xml:space="preserve">
+    <value>New View</value>
+  </data>
+  <data name="ChildOrganizations" xml:space="preserve">
+    <value>Child Organizations</value>
+  </data>
+  <data name="TabInfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="AddressEdit" xml:space="preserve">
+    <value>Address Editing</value>
+  </data>
+  <data name="AddressNew" xml:space="preserve">
+    <value>New Address</value>
+  </data>
+  <data name="AddressInfo" xml:space="preserve">
+    <value>Address Info</value>
+  </data>
+  <data name="SetDefaultAddress" xml:space="preserve">
+    <value>Set Default Address</value>
+  </data>
+  <data name="DeleteOrganizationsAndContacts" xml:space="preserve">
+    <value>Delete Organizations, Child Organizations and Contacts.</value>
+  </data>
+  <data name="DeleteOrganizationsOnly" xml:space="preserve">
+    <value>Delete Organizations Only.</value>
+  </data>
+  <data name="OrganizationsDeleteType" xml:space="preserve">
+    <value>Selected organizations can have related contacts and child organizations. What do you want to delete?</value>
+  </data>
+  <data name="DeleteOrganizationAndContacts" xml:space="preserve">
+    <value>Delete Organization, Child Organizations and Contacts.</value>
+  </data>
+  <data name="DeleteOrganizationOnly" xml:space="preserve">
+    <value>Delete Organization Only.</value>
+  </data>
+  <data name="OrganizationDeleteType" xml:space="preserve">
+    <value>The organization can have related contacts and child organizations. What do you want to delete?</value>
+  </data>
+  <data name="SetPrimaryContact" xml:space="preserve">
+    <value>Set Primary Contact</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="ImportContacts" xml:space="preserve">
+    <value>Import Contacts</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="OrganizationUnit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="RelatedObjects" xml:space="preserve">
+    <value>Related Objects</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="ToDos" xml:space="preserve">
+    <value>ToDos</value>
+  </data>
+  <data name="ExportVCF" xml:space="preserve">
+    <value>Export to VCard</value>
+  </data>
+  <data name="ImportOrgs" xml:space="preserve">
+    <value>Import Organizations</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="StateSector" xml:space="preserve">
+    <value>State sector</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Entertainment Retail</value>
+  </data>
+  <data name="eCommerce" xml:space="preserve">
+    <value>eCommerce</value>
+  </data>
+  <data name="NonProfitOrg" xml:space="preserve">
+    <value>Non-profit organizations</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="Financial" xml:space="preserve">
+    <value>Financial</value>
+  </data>
+  <data name="Energy" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="AllCreditCard" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OrganizationEmpty" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="AssignRole" xml:space="preserve">
+    <value>Assign Role</value>
+  </data>
+  <data name="CreditCards" xml:space="preserve">
+    <value>Credit Cards</value>
+  </data>
+  <data name="CustomerManagement" xml:space="preserve">
+    <value>Customer Management</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Remove Account</value>
+  </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>Remove Roles</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Edit Account</value>
+  </data>
+  <data name="EditRoleAssignment" xml:space="preserve">
+    <value>Edit Role Assignment</value>
+  </data>
+  <data name="NewAccount" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="NewCreditCard" xml:space="preserve">
+    <value>New Credit Card</value>
+  </data>
+  <data name="RoleAssignments" xml:space="preserve">
+    <value>Security Role Assignments</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="Account_Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Account_Edit" xml:space="preserve">
+    <value>Account Edit</value>
+  </data>
+  <data name="Account_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Account_UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Address_mc" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Address_mf_AddressType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Address_mf_ApplicationId" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Address_mf_City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Address_mf_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Address_mf_CountryName" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
+  <data name="Address_mf_CountryCode" xml:space="preserve">
+    <value>Country Code</value>
+  </data>
+  <data name="Address_mf_DaytimePhoneNumber" xml:space="preserve">
+    <value>Day Phone</value>
+  </data>
+  <data name="Address_mf_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Address_mf_EveningPhoneNumber" xml:space="preserve">
+    <value>Evening Phone</value>
+  </data>
+  <data name="Address_mf_FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Address_mf_IsDefault" xml:space="preserve">
+    <value>Is default</value>
+  </data>
+  <data name="Address_mf_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Address_mf_Line1" xml:space="preserve">
+    <value>Line #1</value>
+  </data>
+  <data name="Address_mf_Line2" xml:space="preserve">
+    <value>Line #2</value>
+  </data>
+  <data name="Address_mf_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Address_mf_Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Address_mf_OrganizationName" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="Address_mf_PostalCode" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="Address_mf_RegionCode" xml:space="preserve">
+    <value>Region Code</value>
+  </data>
+  <data name="Address_mf_RegionName" xml:space="preserve">
+    <value>Region Name</value>
+  </data>
+  <data name="Address_mf_State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Contact_mc" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Contact_mf_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Contact_mf_CustomerGroup" xml:space="preserve">
+    <value>Customer Group</value>
+  </data>
+  <data name="Contact_mf_FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Contact_mf_FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Contact_mf_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Contact_mf_LastOrder" xml:space="preserve">
+    <value>Last Order Date</value>
+  </data>
+  <data name="Contact_mf_MiddleName" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="Contact_mf_Owner" xml:space="preserve">
+    <value>Parent Organization</value>
+  </data>
+  <data name="Contact_mf_PreferredCurrency" xml:space="preserve">
+    <value>Preferred Currency</value>
+  </data>
+  <data name="Contact_mf_PreferredLanguage" xml:space="preserve">
+    <value>Preferred Language</value>
+  </data>
+  <data name="Contact_mf_RegistrationSource" xml:space="preserve">
+    <value>Registration Source</value>
+  </data>
+  <data name="Contact_mf_AcceptMarketingEmail" xml:space="preserve">
+    <value>Accept marketing e-mail</value>
+  </data>
+  <data name="Contact_mf_ConsentUpdated" xml:space="preserve">
+    <value>Consent updated</value>
+  </data>
+  <data name="CreditCard_mc" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="CreditCard_mf_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="CreditCard_mf_CardType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="CreditCard_mf_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="CreditCard_mf_CreditCardNumber" xml:space="preserve">
+    <value>Card Number</value>
+  </data>
+  <data name="CreditCard_mf_ExpirationMonth" xml:space="preserve">
+    <value>Expiration Month</value>
+  </data>
+  <data name="CreditCard_mf_ExpirationYear" xml:space="preserve">
+    <value>Expiration Year</value>
+  </data>
+  <data name="CreditCard_mf_LastFourDigits" xml:space="preserve">
+    <value>Last Four Digits</value>
+  </data>
+  <data name="CreditCard_mf_Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="EntityEdit" xml:space="preserve">
+    <value>Customer Editing</value>
+  </data>
+  <data name="EntityList" xml:space="preserve">
+    <value>Customer List</value>
+  </data>
+  <data name="EntityPopupEdit" xml:space="preserve">
+    <value>Entity Popup Edit</value>
+  </data>
+  <data name="EntityView" xml:space="preserve">
+    <value>Customer View</value>
+  </data>
+  <data name="Organization_mc" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Organization_mf_BusinessCategory" xml:space="preserve">
+    <value>Business Category</value>
+  </data>
+  <data name="Organization_mf_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Organization_mf_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Organization_mf_OrganizationType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Organization_mf_Parent" xml:space="preserve">
+    <value>Parent Organization</value>
+  </data>
+  <data name="Organization_mf_PrimaryContact" xml:space="preserve">
+    <value>Primary Contact</value>
+  </data>
+  <data name="Organization_mf_PrimaryContactId_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RoleAssignment_CheckMode" xml:space="preserve">
+    <value>Inheritance</value>
+  </data>
+  <data name="RoleAssignment_Edit" xml:space="preserve">
+    <value>Role Assignment Edit</value>
+  </data>
+  <data name="RoleAssignment_OrganizationName" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="RoleAssignment_RoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Deleting" xml:space="preserve">
+    <value>Deleting</value>
+  </data>
+  <data name="SecurityCheckMode_AllowInheritRole" xml:space="preserve">
+    <value>Inherited</value>
+  </data>
+  <data name="SecurityCheckMode_DoNotAllowInheritRole" xml:space="preserve">
+    <value>Not Inherited</value>
+  </data>
+  <data name="SecurityCheckMode_UnsetRole" xml:space="preserve">
+    <value>Unset</value>
+  </data>
+  <data name="SecurityRole" xml:space="preserve">
+    <value>Security Role</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="OrderHistory" xml:space="preserve">
+    <value>Order History</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="ContactEdit" xml:space="preserve">
+    <value>Contact Edit</value>
+  </data>
+  <data name="OrganizationEdit" xml:space="preserve">
+    <value>Organization Edit</value>
+  </data>
+  <data name="ShoppingCarts" xml:space="preserve">
+    <value>Shopping Carts</value>
+  </data>
+  <data name="ShoppingLists" xml:space="preserve">
+    <value>Shopping Lists</value>
+  </data>
+  <data name="WishLists" xml:space="preserve">
+    <value>Wish Lists</value>
+  </data>
+  <data name="Contact_mf_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Contact_mf_BirthDate" xml:space="preserve">
+    <value>Date Of Birth</value>
+  </data>
+  <data name="CreditCard_mf_SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
+  <data name="Address_mf_AddressType_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_City_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_CountryCode_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_DaytimePhoneNumber_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_Email_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_EveningPhoneNumber_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_FirstName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_LastName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_Line1_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_Line2_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_Name_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_PostalCode_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_RegionCode_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_RegionName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Address_mf_State_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_BirthDate_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_Code_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_CustomerGroup_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_Email_Description" xml:space="preserve">
+    <value>Contact Email Description</value>
+  </data>
+  <data name="Contact_mf_FirstName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_FullName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_LastName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_LastOrder_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_MiddleName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_Owner_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_PreferredCurrency_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_PreferredLanguage_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_RegistrationSource_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_Address_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_CardType_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_CreditCardNumber_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_ExpirationMonth_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_ExpirationYear_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_LastFourDigits_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CreditCard_mf_SecurityCode_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MembershipUser_LastActivity" xml:space="preserve">
+    <value>Last Activity:</value>
+  </data>
+  <data name="MembershipUser_LastLockout" xml:space="preserve">
+    <value>Last Lockout:</value>
+  </data>
+  <data name="MembershipUser_IsLockedOutFalse" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="MembershipUser_LastLogin" xml:space="preserve">
+    <value>Last Login:</value>
+  </data>
+  <data name="MembershipUser_LastPasswordChanged" xml:space="preserve">
+    <value>Last Password Changed:</value>
+  </data>
+  <data name="Contact_mf_OwnerId_Description" xml:space="preserve">
+    <value>Contact Organization</value>
+  </data>
+  <data name="Organization_mf_BusinessCategory_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Organization_mf_Description_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Organization_mf_Name_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Organization_mf_OrganizationType_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Organization_mf_Parent_Description" xml:space="preserve">
+    <value>Parent Organization</value>
+  </data>
+  <data name="Address_mf_CountryName_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Organization_mf_ParentId_Description" xml:space="preserve">
+    <value>Parent Organization</value>
+  </data>
+  <data name="Role_List" xml:space="preserve">
+    <value>Role List</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>Contact List</value>
+  </data>
+  <data name="OrganizationList" xml:space="preserve">
+    <value>Organization List</value>
+  </data>
+  <data name="HelpPrefix" xml:space="preserve">
+    <value>HelpPrefix</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Role_Edit" xml:space="preserve">
+    <value>Role Edit</value>
+  </data>
+  <data name="Role_Name" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChangeUserPassword" xml:space="preserve">
+    <value>Change User Password</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Change Your Password</value>
+  </data>
+  <data name="SecurityCheckMode_Undefined" xml:space="preserve">
+    <value>[undefined]</value>
+  </data>
+  <data name="RoleAssignment_OnlyForOwner" xml:space="preserve">
+    <value>Only For Owner</value>
+  </data>
+  <data name="MembershipUser_IsLockedOut" xml:space="preserve">
+    <value>Is Locked Out:</value>
+  </data>
+  <data name="MembershipUser_IsLockedOutTrue" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="UnlockUser" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
+  <data name="MembershipUser_Account_Not_Found" xml:space="preserve">
+    <value>Account not found</value>
+  </data>
+  <data name="DeleteContactIsOrganizationPrimary" xml:space="preserve">
+    <value>One of selected Contact(s) is an organization's primary contact. Cannot delete Contact.</value>
+  </data>
+  <data name="Contact_mf_PreferredBillingAddress" xml:space="preserve">
+    <value>Preferred Billing Address</value>
+  </data>
+  <data name="Contact_mf_PreferredShippingAddress" xml:space="preserve">
+    <value>Preferred Shipping Address</value>
+  </data>
+  <data name="Contact_mf_PreferredBillingAddressId_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Contact_mf_PreferredShippingAddressId_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeleteContact" xml:space="preserve">
+    <value>Delete Contact</value>
+  </data>
+  <data name="DeleteContactConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this contact?</value>
+  </data>
+  <data name="SelectContact" xml:space="preserve">
+    <value>Select Contact</value>
+  </data>
+  <data name="Add_New_Address" xml:space="preserve">
+    <value>Add new address</value>
+  </data>
+  <data name="Same_As_Billing_Address" xml:space="preserve">
+    <value>Same as Billing Address</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="CreditCards_mc" xml:space="preserve">
+    <value>Credit Cards</value>
+  </data>
+  <data name="Address_msg_Deleted" xml:space="preserve">
+    <value>Address has been deleted.</value>
+  </data>
+  <data name="ContactNotes" xml:space="preserve">
+    <value>Contact Notes</value>
+  </data>
+  <data name="ContactNote_mc" xml:space="preserve">
+    <value>Contact Note</value>
+  </data>
+  <data name="NoteContent" xml:space="preserve">
+    <value>Note Content</value>
+  </data>
+  <data name="NoteTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="NoteType" xml:space="preserve">
+    <value>Note Type</value>
+  </data>
+  <data name="OrderNotes" xml:space="preserve">
+    <value>Order Notes</value>
+  </data>
+  <data name="ContactNote_mf_NoteTitle_Description" xml:space="preserve">
+    <value>Note title</value>
+  </data>
+  <data name="ContactNote_mf_ContactId_Description" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ContactNote_mf_NoteContent_Description" xml:space="preserve">
+    <value>Note content</value>
+  </data>
+  <data name="AddNewContactNote" xml:space="preserve">
+    <value>Add Contact Note</value>
+  </data>
+  <data name="ContactNoteNew" xml:space="preserve">
+    <value>New Contact Note</value>
+  </data>
+  <data name="Organization_mf_OrgCustomerGroup" xml:space="preserve">
+    <value>Organization Customer Group</value>
+  </data>
+  <data name="Organization_mf_OrgCustomerGroup_Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotUseLegacySecurityRoleSystem_Warning" xml:space="preserve">
+    <value>Role management in Commerce Manager is obsolete, instead use CMS Admin view to manage roles.</value>
+  </data>
+</root>

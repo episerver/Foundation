@@ -1,0 +1,97 @@
+.BTopGroup
+{
+  cursor:default; 
+}
+
+.BMenuGroup
+{
+  background-image:url(../images/group_background.gif);
+  background-color:gray;
+  border:solid 1px #7E7E81; 
+  cursor:default; 
+}
+
+.BTopMenuItem
+{
+  color:#003399; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #CBDDFC; 
+  cursor:default; 
+}
+
+.BTopMenuItemHover 
+{
+  background-color: #FFEEC2; 
+  color: #003399; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #7C7C94; 
+  cursor:default; 
+}
+
+.BTopMenuItemHover2 
+{
+  background-color: #FFEEC2; 
+  color: #003399; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #FFEEC2; 
+  cursor:default; 
+}
+
+.BTopMenuItemExpanded
+{
+  background-color:#FFEEC2; 
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #7C7C94; 
+  border-bottom-color:#BAB9CD; 
+  cursor:default; 
+}
+
+.BTopMenuItemExpanded2
+{
+  background-color:#FFEEC2; 
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #FFEEC2; 
+  cursor:default; 
+}
+
+.BMenuItem
+{
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  margin:1px; 
+  cursor:default; 
+}
+
+.BMenuItemHover 
+{
+  background-color:#FFEEC2; 
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  border:solid 1px #4B4B6F; 
+  cursor:default; 
+}
+.BMenuItemHover2
+{
+  background-color:#FFEEC2; 
+  color:black; 
+  font-family:tahoma; 
+  font-size:11px; 
+  margin:1px; 
+  cursor:default; 
+}
+
+.BMenuBreak
+{
+  background-image:url(../images/break_bg.gif);
+  width:100%;
+  height:1px;
+}

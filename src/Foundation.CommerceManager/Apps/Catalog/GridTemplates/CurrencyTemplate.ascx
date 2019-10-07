@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CurrencyTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Catalog.GridTemplates.CurrencyTemplate" %>
+<asp:Label runat="server" ID="CurrencyLabel"></asp:Label>

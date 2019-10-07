@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<ListViewUI>
+		<Toolbar>
+			<add>
+				<!--<Text id="txtTitle" text="Addresses" itemSplitter="Right"></Text>-->
+				<Button id="NewItem" text="New Item" imageUrl="~/Apps/MetaDataBase/images/edit.gif" commandName="OrderAddress_New"></Button>
+				<Button id="Delete" text="Delete"  imageUrl="~/Apps/MetaDataBase/images/delete.gif" commandName="OrderAddress_Delete" itemSplitter="Right"></Button>
+				<!--<Text id="txtT" text="&lt;div style='height:7px;'>&amp;nbsp;&lt;/div>"></Text>-->
+			</add>
+		</Toolbar>
+		<Commands>
+			<add>
+				<Command id="OrderAddress_New">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>New Address</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;commandName=cmd_NeedRebind&amp;Id={HttpContext:OrderGroupId}</Url>
+					<Width>600</Width>
+					<Height>500</Height>
+					<Top>55</Top>
+					<Left>55</Left>
+					<Drag>False</Drag>
+				</Command>
+				<Command id="OrderAddress_Delete">
+					<BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+					<ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.DeleteSelectedAddressHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<!-- Grid commands -->
+				<Command id="cmdOrderAddressEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Address</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;Id={QueryString:id}&amp;OrderGroupAddressId=[ClientParam:OrderGroupAddressId]&amp;commandName=cmd_NeedRebind&amp;IsShippingAddress=false</Url>
+					<Width>600</Width>
+					<Height>500</Height>
+					<Top>15</Top>
+					<Drag>False</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.EditBillingAddressHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdShipmentAddressEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Address</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Order&amp;_v=OrderAddress-Edit&amp;Id={QueryString:id}&amp;OrderGroupAddressId=[ClientParam:OrderGroupAddressId]&amp;ShipmentId=[ClientParam:ShipmentId]&amp;CommandName=cmdShipmentAddressEdit_Rebind&amp;IsShippingAddress=true</Url>
+					<Width>600</Width>
+					<Height>500</Height>
+					<Top>15</Top>
+					<Drag>False</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.EditShipmentAddressHandler, Mediachase.ConsoleManager" />
+					<DependCommand>cmdShipmentAddressEdit_Rebind</DependCommand>
+				</Command>
+				<Command id="cmdShipmentAddressEdit_Rebind">
+					<CommandType>ServerAction</CommandType>
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.EditShipmentAddressHandler, Mediachase.ConsoleManager" />
+				</Command>
+				<Command id="cmdOrderShippingMethodEdit">
+					<CommandType>OpenFrameModalPopup</CommandType>
+					<PopupTitle>Edit Shipping Method</PopupTitle>
+					<Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=OpenFrameXmlFormBuilderView&amp;CommandClassName=&amp;CommandViewName=OrderAddress-List&amp;CommandPlaceName=&amp;CommandName=cmdOrderShippingMethodEdit&amp;LayoutClassName=PurchaseOrder&amp;LayoutPlaceName=ShippingMethodEdit&amp;Id={QueryString:id}&amp;ShipmentId=[ClientParam:ShipmentId]&amp;ReturnCommandName=cmd_NeedRebind</Url>
+					<Width>400</Width>
+					<Height>150</Height>
+					<Top>200</Top>
+					<Left>100</Left>
+					<Drag>False</Drag>
+					<EnableHandler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.EditShipmentMethodHandler, Mediachase.ConsoleManager" />
+					<Handler type="Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers.EditShipmentMethodHandler, Mediachase.ConsoleManager" />
+				</Command>
+			</add>
+		</Commands>
+	</ListViewUI>
+</View>

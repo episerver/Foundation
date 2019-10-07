@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+  <FormDocument>
+    <Handlers>
+      <add>
+        <Handler name="hideThis" type="Mediachase.Commerce.Manager.Order.CommandHandlers.TestHiddenItemEnableHandler, Mediachase.ConsoleManager" />
+      </add>
+    </Handlers>
+    <Table width="100%" columns="50%;*" cellPadding="5">
+      <add>
+        <Row>
+          <Cell colSpan="2" name="cell_11">
+            <Section uid="4f417b6ea93e48a0b7ff3473c7d3e175" borderType="1" showLabel="true" itemIndex="1">
+              <Labels>
+                <Label title="Overview" code="en"/>
+              </Labels>
+              <Control controlType="SmartTableLayout" width="100%" uid="e9a4ee4fc0e34be8ae9c30d883132ad5" cellPadding="0" columns="50%;*">
+                <Item rowIndex="1" cellIndex="1" rowSpan="2" colSpan="1" borderType="0" showLabel="false" labelWidth="0px" uid="61c0953f6103456d9798e0854362725e" tabIndex="1">
+                  <Labels />
+                  <Control controlType="CustomControl" uid="8be0fe1477b3434a81b638d4ec5f677f">
+                    <Prop data="~/Apps/Order/CustomPrimitives/OrderStatus.ascx"></Prop>
+                  </Control>
+                </Item>
+                <Item rowIndex="1" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="false" labelWidth="0px" uid="897b2877f2304d24a8f832cf328b5f7d" tabIndex="2">
+                  <Labels />
+                  <Control controlType="CustomControl" uid="95877d2645ad424fbb3920ea71216441">
+                    <Prop data="~/Apps/Order/CustomPrimitives/OrderStatusTitle.ascx"></Prop>
+                  </Control>
+                </Item>
+                <Item rowIndex="2" cellIndex="2" rowSpan="1" colSpan="1" borderType="0" showLabel="false" labelWidth="0px" uid="9d0a3320fc104c309eececaa9b71bee8" tabIndex="2">
+                  <Labels />
+                  <Control controlType="CustomControl" uid="601688fb76184c30a0f41d4f98875c44">
+                    <Prop data="~/Apps/Order/CustomPrimitives/OrderStatusChanger.ascx"></Prop>
+                  </Control>
+                </Item>
+              </Control>
+            </Section>
+            <Section uid="b0eaa6cfa3804fc0935ee098b9c4eca0" borderType="1" showLabel="true" itemIndex="2">
+              <Labels>
+                <Label title="Customer Information" code="en"/>
+              </Labels>
+              <Control controlType="SmartTableLayout" width="100%" uid="2bffc07cdfe549cfaf35bc11032aa0dd" cellPadding="0" columns="50%;*">
+                <Item rowIndex="1" cellIndex="1" rowSpan="1" colSpan="2" borderType="0" showLabel="false" labelWidth="0px" uid="2552d129221542c489e586efee81d509" tabIndex="3">
+                  <Labels />
+                  <Control controlType="CustomControl" uid="3cc9e1835fdc448da20d343cb47954dc">
+                    <Prop data="~/Apps/Order/CustomPrimitives/OrderCustomer.ascx"></Prop>
+                  </Control>
+                </Item>
+              </Control>
+            </Section>
+            <Section uid="99528b7714e14842a25763283b9f907a" borderType="1" showLabel="true" itemIndex="3">
+              <Labels>
+                <Label title="Billing Address" code="en"/>
+              </Labels>
+              <Control controlType="SmartTableLayout" width="100%" uid="1f74eb6e33f84dd299e1947196950044" cellPadding="0" columns="50%;*">
+                <Item rowIndex="1" cellIndex="1" rowSpan="1" colSpan="2" borderType="0" showLabel="false" labelWidth="0px" uid="bff7f60bd3f3409eaa575814f03a1dc1" tabIndex="4">
+                  <Labels />
+                  <Control controlType="CustomControl" uid="01e650204b39472ebec0c73e66454cac">
+                    <Prop data="~/Apps/Order/CustomPrimitives/OrderBillingAddress.ascx"></Prop>
+                  </Control>
+                </Item>
+              </Control>
+            </Section>
+            <Section uid="1dccdc0dad5941369850fabcc513a181" borderType="1" showLabel="true" itemIndex="4">
+              <Labels>
+                <Label title="{SharedStrings:Payment_Plan_Details}" code="en"/>
+              </Labels>
+              <Control controlType="SmartTableLayout" width="100%" uid="ccffd0f4fad94adb854a0a6ea59cdb7e" cellPadding="0" columns="50%;*">
+                <Item rowIndex="1" cellIndex="1" rowSpan="1" colSpan="2" borderType="0" showLabel="false" labelWidth="0px" uid="928be8d13d4b47718174549710371966" tabIndex="5">
+                  <Labels />
+                  <Control controlType="CustomControl" uid="6471028487f6463e87b7ea8b156cc785">
+                    <Prop data="~/Apps/Order/CustomPrimitives/OrderMetaData.ascx"></Prop>
+                  </Control>
+                </Item>
+              </Control>
+            </Section>
+          </Cell>
+        </Row>
+        <Row>
+          <Cell colSpan="1" name="cell_21" />
+          <Cell colSpan="1" name="cell_22" />
+        </Row>
+        <Row>
+          <Cell colSpan="2" name="cell_31" />
+        </Row>
+      </add>
+    </Table>
+  </FormDocument>
+</View>

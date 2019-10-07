@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MetaView>
+  <Toolbar>
+    <add>
+      <Button id="ExportLog"  text="{SharedStrings:Export_Log}" imageUrl="~/Apps/Shell/styles/Images/toolbar/export.png" commandName="cmdOpenLogExportDialog"  permissions="core:admin:applog:mng:view"/>
+      <Menu id="MoreActionsSplitButton" text="{SharedStrings:More_Actions}" imageUrl="~/Apps/Shell/styles/Images/toolbar/newtask.gif">
+        <Button id="DeleteSelected" text="{SharedStrings:Delete_Selected}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdApplicationLogDelete"  permissions="core:admin:applog:mng:delete"/>
+        <Button id="DeleteAll"  text="{SharedStrings:Delete_All}" imageUrl="~/Apps/Shell/styles/Images/toolbar/delete.gif" commandName="cmdApplicationLogDeleteAll"  permissions="core:admin:applog:mng:delete"/>
+      </Menu>
+    </add>
+  </Toolbar>
+  <Commands>
+    <add>
+      <Command id="cmdApplicationLogDelete">
+        <BeforeClientScript>Toolbar_GridHasItemsSelected</BeforeClientScript>
+        <ConfirmationText>{CommerceManager:DeleteSelectedItemsConfirmation}</ConfirmationText>
+        <CommandType>ServerAction</CommandType>
+        <Handler type="Mediachase.Commerce.Manager.Core.CommandHandlers.DeleteSelectedItemsHandler, Mediachase.ConsoleManager" />
+        <UpdatePanelIds>panelMainListView</UpdatePanelIds>
+        <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+      </Command>
+      <Command id="cmdApplicationLogDeleteAll">
+        <ConfirmationText>Are you sure you want to delete all items?</ConfirmationText>
+        <CommandType>ServerAction</CommandType>
+        <Handler type="Mediachase.Commerce.Manager.Core.CommandHandlers.LogDeleteHandler, Mediachase.ConsoleManager" />
+        <UpdatePanelIds>panelMainListView</UpdatePanelIds>
+        <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+      </Command>
+      <Command id="cmdLogExport">
+        <CommandType>ServerAction</CommandType>
+        <Handler type="Mediachase.Commerce.Manager.Core.CommandHandlers.LogExportHandler, Mediachase.ConsoleManager" />
+      </Command>
+      <Command id="cmdOpenLogExportDialog">
+        <CommandType>OpenFrameModalPopup</CommandType>
+        <Url>~/Apps/Core/Controls/DialogPage.aspx?_a=Core&amp;_v=ExportLogDialog&amp;GridId=[ClientParam:GridId]&amp;DataSourceId=ApplicationLogDataSource1&amp;logType=ApplicationLog</Url>
+        <Width>340</Width>
+        <Height>180</Height>
+        <PopupTitle>Export Application Log</PopupTitle>
+        <Drag>True</Drag>
+        <EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+        <DependCommand>cmdLogExport</DependCommand>
+      </Command>
+    </add>
+  </Commands>
+</MetaView>

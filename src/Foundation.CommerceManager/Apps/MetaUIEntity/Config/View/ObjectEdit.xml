@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<View xmlns="http://schemas.mediachase.com/ecf/view">
+	<Form>
+		<Layout>
+			<add>
+				<Block id="Block_1" name="Block_1">
+					<Placeholder id="Block_1_Placeholder_1">
+						<Control id="Block_1_Placeholder_1_Control_1" path="~/Apps/MetaDataBase/MetaUI/MetaForm/FormDocumentView.ascx">
+							<Property name="FormName" value="[MC_BaseForm]" />
+						</Control>
+					</Placeholder>
+					<Placeholder id="Block_1_Placeholder_2" />
+					<Placeholder id="Block_1_Placeholder_3" />
+					<Placeholder id="Block_1_Placeholder_4" />
+				</Block>
+			</add>
+		</Layout>
+	</Form>
+</View>

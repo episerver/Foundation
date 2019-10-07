@@ -1,0 +1,36 @@
+﻿
+ins, del { display: inline-block; max-width: 100%; }
+
+ins {
+    background-color: #cfc;
+    text-decoration: none;
+}
+
+del {
+    color: #999;
+    background-color:#FEC8C8;
+}
+
+ins.diff-image-inserted {
+    display: inline-block;
+    color: #999;
+    background-color: #cfc;
+    text-decoration: none;
+	position: relative;
+	z-index: 1;
+	margin: -3px;
+	padding: 3px;
+}
+
+del.diff-image-deleted {
+	position: relative;
+	padding: 0;
+	background: 0;    
+}
+del.diff-image-deleted::after {
+	content: "";
+    background: repeating-linear-gradient(45deg, #FEC8C8, #FEC8C8 10px, #F78F8F 10px, #F78F8F 20px);
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	opacity: 0.4;
+}

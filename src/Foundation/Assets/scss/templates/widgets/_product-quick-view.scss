@@ -1,0 +1,27 @@
+﻿.quick-view--modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    & .modal-dialog {
+        width: 100%;
+
+        & .modal-content {
+            border-radius: 0;
+        }
+    }
+
+    & .row {
+        margin-bottom: 15px;
+    }
+
+    & .modal-footer {
+        padding: 0;
+
+        & .btn-fullwidth {
+            width: 100%;
+        }
+    }
+}

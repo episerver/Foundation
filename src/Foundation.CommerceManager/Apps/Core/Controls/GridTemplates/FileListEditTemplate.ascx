@@ -1,0 +1,4 @@
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="Mediachase.Commerce.Manager.Core.Controls.GridTemplates.FileListEditTemplate" Codebehind="FileListEditTemplate.ascx.cs" %>
+<%@ Import Namespace="ComponentArt.Web.UI" %>
+<asp:LinkButton ID="btnDownload" runat="server" CommandName="Download" CausesValidation="false" Text="<%$ Resources:SharedStrings, Download %>"></asp:LinkButton>&nbsp;|&nbsp;
+<asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CausesValidation="false" OnClientClick="return confirm('Are you sure you want to delete?');" Text="<%$ Resources:SharedStrings, Delete %>"></asp:LinkButton>

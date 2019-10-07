@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Navigation>
+	<Tabs id="mainTag" sort="order" sortDataType="number" sortSubNodes="true">
+		<add>
+			<Tab id="navTabAdmin" text="{SharedStrings:Administration}" contentType="default" order="200"  imageUrl="~/Apps/Core/images/module.png" configUrl="" enableHandler="Mediachase.Commerce.Manager.Core.CommandHandlers.CoreAdministrationTabEnableHandler, Mediachase.ConsoleManager">
+				<Link id="Core_System" text="{SharedStrings:System_Settings}" order="10" iconUrl="" iconCss="treeIcon" command="cmdCoreSystemLink">
+					<Link id="Core_Dictionaries" text="{SharedStrings:Dictionaries}" iconUrl="" iconCss="treeIcon" order="10" command="cmdCoreDictionaryLink"/>
+					<Link id="Core_Logs" text="{SharedStrings:Logs}" order="15" iconUrl="" iconCss="treeIcon" command="" permissions="core:admin:syslog:mng:view,core:admin:applog:mng:view">
+						<Link id="Core_SystemLog" text="{SharedStrings:System_Log}" order="10" iconUrl="" iconCss="" command="cmdSystemLog" permissions="core:admin:syslog:mng:view" />
+            <Link id="Core_ApplicationLog" text="{SharedStrings:Application_Log}" order="20" iconUrl="" iconCss="" command="cmdApplicationLog" permissions="core:admin:applog:mng:view" />
+					</Link>
+					<Link id="Core_CommonSettings" text="{SharedStrings:Common_Settings}" order="20" iconUrl="" iconCss="" command="cmdCoreCommonSettings" permissions="core:mng:settings"/>
+					<Link id="Core_BAF" text="{SharedStrings:Business_Foundation}" order="30" iconUrl="" iconCss="" command="cmdCoreBF" permissions="asset:mng:view, asset:admin:mng:view" />
+					<Link id="Core_LIC" text="{SharedStrings:License_Info}" order="40" iconUrl="" iconCss="" command="cmdCoreLIC" permissions="core:mng:licensing" />
+					<Link id="Core_Search" text="{SharedStrings:Search_Index}" order="50" iconUrl="" iconCss="" command="cmdSearch" permissions="core:mng:search" />
+				</Link>
+			</Tab>
+		</add>
+	</Tabs>
+	<Commands>
+		<add>
+			<Command id="cmdCoreDictionaryLink">
+				<EnableHandler type="Mediachase.Commerce.Manager.Core.CommandHandlers.DictionaryTabEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdCoreSystemLink">
+				<EnableHandler type="Mediachase.Commerce.Manager.Core.CommandHandlers.CoreAdministrationTabEnableHandler, Mediachase.ConsoleManager" />
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdCoreCommonSettings">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.ChangeView('Core', 'CommonSettings')</ClientScript>
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdCoreBF">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.ChangeView('Core', 'Configuration')</ClientScript>
+				<EnableHandler type="Mediachase.Commerce.Manager.Core.CommandHandlers.CoreBusinessFoundationEnableHandler, Mediachase.ConsoleManager" />
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdCoreLIC">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.ChangeView('Core', 'Licensing')</ClientScript>
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdSearch">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.ChangeView('Core', 'Search')</ClientScript>
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdSystemLog">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.ChangeView('Core', 'SystemLog')</ClientScript>
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+			<Command id="cmdApplicationLog">
+				<CommandType>ClientAction</CommandType>
+				<ClientScript>CSManagementClient.ChangeView('Core', 'ApplicationLog')</ClientScript>
+				<EnableHandler type="Mediachase.Commerce.Manager.CommandHandlers.PermissionEnableHandler, Mediachase.ConsoleManager" />
+			</Command>
+		</add>
+	</Commands>
+</Navigation>

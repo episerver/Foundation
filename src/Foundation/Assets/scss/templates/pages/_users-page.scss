@@ -1,0 +1,40 @@
+﻿.users-page {
+
+    a.btn-xs {
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+    }
+
+    .spacer-bottom-m {
+        margin-bottom: 16px;
+    }
+
+    .spacer-bottom-l {
+        margin-bottom: 32px;
+    }
+
+    .custom-search {
+         max-width: 240px;
+         width: 100%;
+         position: relative;
+
+        .icon-search {
+            position: absolute;
+            right: 10px;
+            top: 8px;
+        }
+
+        .close-icon {
+            position: absolute;
+            right: 10px;
+            top: 6px;
+        }
+
+    }
+
+    .textbox {
+        width: 240px;
+    }
+}
