@@ -185,10 +185,10 @@ namespace Foundation.Features.MyOrganization.Users
         }
 
         [NavigationAuthorize("Admin")]
-        public JsonResult ImpersonateUser(string username)
+        public JsonResult ImpersonateUser(string id)
         {
             var success = false;
-            var user = _userManager.FindByEmail(username);
+            var user = _userManager.FindById(id);
             if (user != null)
             {
                 _cookieService.Set(Constant.Cookies.B2BImpersonatingAdmin, User.Identity.GetUserName(), true);

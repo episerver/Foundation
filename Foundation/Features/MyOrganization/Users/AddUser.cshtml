@@ -3,7 +3,7 @@
 @model UsersPageViewModel
 
 <div class="users-page row">
-     @{Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Organization }); }
+    @{Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Organization }); }
     <div class="col-main col-sm-9">
         @{Html.RenderAction("Index", "B2BNavigation");}
         <div class="page-title">
@@ -65,7 +65,7 @@
                                                                         new SelectListItem { Text = Html.TranslateFallback("/B2B/Admin", "Admin"), Value = "Admin" },
                                                                         new SelectListItem { Text = Html.TranslateFallback("/B2B/Approver", "Approver"), Value = "Approver" },
                                                                         new SelectListItem { Text = Html.TranslateFallback("/B2B/Purchaser", "Purchaser"), Value = "Purchaser" }
-                                                                    }, "Value", "Text", Model.Contact.UserRole), new { @id = "select-role", @class="textbox" })
+                                                                    }, "Value", "Text", Model.Contact.UserRole), new { @id = "select-role", @class = "textbox" })
                     </div>
                     <div class="form-group" id="location-div" style="display: none">
                         <label>@Html.LabelFor(x => x.Contact.UserLocationId)</label>
@@ -89,7 +89,7 @@
                         <button type="submit" class="button-black">
                             @Html.TranslateFallback("/Shared/Add", "Add")
                         </button>
-                        <a href="@Url.Action("Index", "UsersPage")" class="button-transparent-black">@Html.TranslateFallback("/Shared/Cancel", "Cancel")</a>
+                        <a href="@Url.Action("Index", "Users")" class="button-transparent-black">@Html.TranslateFallback("/Shared/Cancel", "Cancel")</a>
                     </div>
                 }
             </section>

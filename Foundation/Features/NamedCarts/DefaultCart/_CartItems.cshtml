@@ -31,7 +31,7 @@
         using (@Html.BeginForm("RequestQuote", "DefaultCart", FormMethod.Post, new { @class = "form-horizontal-block" }))
         {
             @Html.AntiForgeryToken()
-            <button type="button" class="btn btn--light btn-lower jsCartRequestQuote">
+            <button type="submit" class="btn btn--light btn-lower jsCartRequestQuote">
                 <span>
                     <i data-feather="arrow-right-circle"></i>
                     @Html.TranslateFallback("/Shared/RequestQuote", "Request Quote")

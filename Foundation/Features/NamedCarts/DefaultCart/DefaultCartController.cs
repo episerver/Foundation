@@ -737,12 +737,16 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             {
                 succesRequest = _cartService.PlaceCartForQuote(CartWithValidationIssues.Cart);
             }
-            _cartService.DeleteCart(_cart.Cart);
-            _cart = new CartWithValidationIssues
+
+            if (succesRequest)
             {
-                Cart = _cartService.CreateNewCart(),
-                ValidationIssues = new Dictionary<ILineItem, List<ValidationIssue>>()
-            };
+                _cartService.DeleteCart(_cart.Cart);
+                _cart = new CartWithValidationIssues
+                {
+                    Cart = _cartService.CreateNewCart(),
+                    ValidationIssues = new Dictionary<ILineItem, List<ValidationIssue>>()
+                };
+            }
 
             return Json(new { result = succesRequest });
         }
