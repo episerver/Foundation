@@ -52,6 +52,8 @@
         checkout.PaymentMethodChange();
         checkout.CreditCardChange();
         checkout.CheckoutAsGuestOrRegister();
+        checkout.ApplyCouponCode();
+        checkout.RemoveCouponCode();
         // --- End
 
         // Order Detail
