@@ -54,6 +54,10 @@ namespace Foundation.Commerce.Extensions
 
             TryAddMetaField(orderContext, purchaseOrderMetaClass, Constant.Quote.QuoteExpireDate, MetaDataType.DateTime, 8);
             TryAddMetaField(orderContext, purchaseOrderMetaClass, Constant.Quote.QuoteStatus, MetaDataType.LongString, 4000);
+            TryAddMetaField(orderContext, purchaseOrderMetaClass, Constant.Quote.PreQuoteTotal, MetaDataType.Decimal, 17, false, false, false);
+            TryAddMetaField(orderContext, purchaseOrderMetaClass, Constant.Customer.CurrentCustomerOrganization, MetaDataType.ShortString, 512);
+            TryAddMetaField(orderContext, purchaseOrderMetaClass, Constant.Customer.CustomerFullName, MetaDataType.ShortString, 512);
+            TryAddMetaField(orderContext, purchaseOrderMetaClass, Constant.Customer.CustomerEmailAddress, MetaDataType.ShortString, 512);
         }
 
         private static void AddBusinessFoundationIfNeccessary()

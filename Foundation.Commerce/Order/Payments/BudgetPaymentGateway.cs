@@ -27,7 +27,7 @@ namespace Foundation.Commerce.Order.Payments
                 return PaymentProcessingResult.CreateUnsuccessfulResult("Failed to process your payment.");
             }
 
-            var currentOrder = OrderGroup;
+            var currentOrder = orderGroup;
             var customer = _customerService.Service.GetContactViewModelById(currentOrder.CustomerId.ToString());
             if (customer == null)
             {

@@ -18,7 +18,7 @@ namespace Foundation.Find.Commerce
 
             conventionBuilder
                 .ExcludeField(x => x.Variations())
-                .IncludeField(x => x.VariationContents());
+                .IncludeField(x => x.VariationModels());
 
             conventionBuilder.IncludeField(x => x.DefaultPrice())
                 .IncludeField(x => x.Prices())
@@ -52,9 +52,9 @@ namespace Foundation.Find.Commerce
         {
             base.ApplyConventions(clientConventions);
             ContentIndexer.Instance.Conventions.ForInstancesOf<GenericVariant>().ShouldIndex(x => false);
-
             SearchClient.Instance.Conventions.ForInstancesOf<GenericProduct>().IncludeField(x => x.AvailableSizes());
             SearchClient.Instance.Conventions.ForInstancesOf<GenericProduct>().IncludeField(x => x.AvailableColors());
+            SearchClient.Instance.Conventions.NestedConventions.ForInstancesOf<GenericProduct>().Add(v => v.VariationModels());
         }
 
     }

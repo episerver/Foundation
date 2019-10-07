@@ -587,18 +587,20 @@ namespace Foundation.Find.Commerce
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
 
-            var searchQuery = _findClient.Search<VariationContent>();
-            searchQuery = searchQuery.Filter(x => x.Code.PrefixCaseInsensitive(query));
-            searchQuery = searchQuery.FilterMarket(market);
-            searchQuery = searchQuery.Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name));
-            searchQuery = searchQuery.Track();
-            searchQuery = searchQuery.FilterForVisitor();
-            var searchResults = searchQuery.GetContentResult();
+            var results = _findClient.Search<GenericProduct>()
+                .Filter(_ => _.VariationModels(), x => x.Code.PrefixCaseInsensitive(query))
+                .FilterMarket(market)
+                .Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name))
+                .Track()
+                .FilterForVisitor()
+                .Select(_ => _.VariationModels())
+                .GetResult()
+                .SelectMany(x => x)
+                .ToList(); ;
 
-            if (searchResults != null && searchResults.Any())
+            if (results != null && results.Any())
             {
-                var searchResult = searchResults.Items;
-                return searchResult.Select(variation =>
+                return results.Select(variation =>
                 {
                     var defaultPrice = _priceService.GetDefaultPrice(market.MarketId, DateTime.Now,
                         new CatalogKey(variation.Code), currency);
@@ -607,7 +609,7 @@ namespace Foundation.Find.Commerce
                     return new SkuSearchResultModel
                     {
                         Sku = variation.Code,
-                        ProductName = variation.DisplayName,
+                        ProductName = variation.Name,
                         UnitPrice = discountedPrice?.UnitPrice.Amount ?? 0
                     };
                 });

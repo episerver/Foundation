@@ -40,7 +40,8 @@ namespace Foundation.Commerce.Customer.Services
             var parentOrganization = GetFoundationOrganizationById(organization.ParentOrganizationId.ToString());
             return new OrganizationModel(organization)
             {
-                ParentOrganization = new OrganizationModel(parentOrganization)
+                ParentOrganization = new OrganizationModel(parentOrganization),
+                ParentOrganizationId = parentOrganization.OrganizationId
             };
         }
 
@@ -60,7 +61,8 @@ namespace Foundation.Commerce.Customer.Services
             var parentOrganization = GetFoundationOrganizationById(subOrganization.ParentOrganizationId.ToString());
             return new SubOrganizationModel(subOrganization)
             {
-                ParentOrganization = new OrganizationModel(parentOrganization)
+                ParentOrganization = new OrganizationModel(parentOrganization),
+                ParentOrganizationId = parentOrganization.OrganizationId
             };
         }
 
@@ -81,7 +83,8 @@ namespace Foundation.Commerce.Customer.Services
             var parentOrganization = GetFoundationOrganizationById(subOrganization.ParentOrganizationId.ToString());
             return new SubFoundationOrganizationModel(subOrganization)
             {
-                ParentOrganization = parentOrganization
+                ParentOrganization = parentOrganization,
+                ParentOrganizationId = parentOrganization.OrganizationId
             };
         }
 

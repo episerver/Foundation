@@ -55,10 +55,10 @@ namespace Foundation.Features.MyAccount
 
             var model = new MyAccountNavigationViewModel
             {
-                Organization = canSeeOrganizationNav ? new OrganizationModel(organization) : null,
+                Organization = canSeeOrganizationNav ? _organizationService.GetOrganizationModel(organization): null,
                 CurrentOrganization = canSeeOrganizationNav ? !string.IsNullOrEmpty(selectedSubNav) ?
-                    new OrganizationModel(_organizationService.GetSubFoundationOrganizationById(selectedSubNav)) :
-                    new OrganizationModel(organization) : null,
+                    _organizationService.GetOrganizationModel(_organizationService.GetSubFoundationOrganizationById(selectedSubNav)) :
+                    _organizationService.GetOrganizationModel(organization) : null,
                 CurrentPageType = id,
                 OrganizationPage = startPage.OrganizationMainPage,
                 SubOrganizationPage = startPage.SubOrganizationPage,
