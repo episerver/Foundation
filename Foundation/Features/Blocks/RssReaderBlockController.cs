@@ -41,13 +41,10 @@ namespace Foundation.Features.Blocks
                     viewModel.DescriptiveText = currentBlock.DescriptiveText;
                 }
             }
-            catch (System.Net.WebException)
+            catch (Exception)
             {
-
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-
+                viewModel.HasHeadingText = true;
+                viewModel.Heading = "Invalid RSS Feed URL.";
             }
 
 
