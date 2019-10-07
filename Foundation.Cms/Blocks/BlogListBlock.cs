@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(GUID = "4149A1C1-5DE7-4BAF-899A-D7F09636AB32", DisplayName = "Blog List Block", GroupName = "Blog")]
+    [ContentType(GUID = "4149A1C1-5DE7-4BAF-899A-D7F09636AB32", DisplayName = "Blog List Block", GroupName = "Blog", AvailableInEditMode = false)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-28.png")]
     public class BlogListBlock : BlockData
     {

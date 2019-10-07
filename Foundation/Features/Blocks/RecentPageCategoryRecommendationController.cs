@@ -62,7 +62,7 @@ namespace Foundation.Features.Blocks
             {
                 if (ContentReference.IsNullOrEmpty(currentBlock.InspirationFolder))
                 {
-                    return PartialView("/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
+                    return PartialView("~/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
                 }
 
                 pages = _contentLoader.GetChildren<StandardPage>(currentBlock.InspirationFolder)
@@ -85,21 +85,31 @@ namespace Foundation.Features.Blocks
                     categoryInt = categories[_random.Next(0, categories.Count - 1)];
                 }
 
-                if (categoryInt == 0)
+                if (categoryInt == 0 && categoryCount > 0)
                 {
                     categoryInt = page.Category[_random.Next(0, categoryCount - 1)];
                 }
 
                 var category = _categoryRepository.Get(categoryInt);
-                model.CategoryPages.Add(new CategoryViewModel
+                if (category != null)
                 {
-                    Id = category.ID,
-                    Name = category.Name,
-                    Page = page
-                });
+                    model.CategoryPages.Add(new CategoryViewModel
+                    {
+                        Id = category.ID,
+                        Name = category.Name,
+                        Page = page
+                    });
+                }
+                else
+                {
+                    model.CategoryPages.Add(new CategoryViewModel
+                    {
+                        Page = page
+                    });
+                }
 
             }
-            return PartialView("/Features/Blocks/RecentPageCategoryRecommendation.cshtml", model);
+            return PartialView("~/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
         }
 
         private IEnumerable<T> PickSomeInRandomOrder<T>(IEnumerable<T> someTypes,

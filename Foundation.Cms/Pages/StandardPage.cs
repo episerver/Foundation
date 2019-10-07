@@ -24,10 +24,6 @@ namespace Foundation.Cms.Pages
         [SelectOne(SelectionFactoryType = typeof(FoundationStandardPageTopPaddingModeSelectionFactory))]
         public virtual string TopPaddingMode { get; set; }
 
-        [CultureSpecific]
-        [Display(Name = "Main Content Items", GroupName = SystemTabNames.Content)]
-        public virtual ContentArea MainContentItems { get; set; }
-
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);

@@ -1,12 +1,13 @@
-using EPiServer.Shell;
+﻿using EPiServer.Shell;
+using Foundation.Find.Cms.Locations;
 using System.Collections.Generic;
 
-namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
+namespace Foundation.Cms.EditorDescriptors
 {
     [UIDescriptorRegistration]
-    public class CatalogContentUiDescriptor : UIDescriptor<FilterBaseBlock>
+    public class FilterLocationUIDescriptor : UIDescriptor<IFilterBlock>
     {
-        public CatalogContentUiDescriptor()
+        public FilterLocationUIDescriptor()
         {
             DefaultView = CmsViewNames.AllPropertiesView;
             if (DisabledViews == null)

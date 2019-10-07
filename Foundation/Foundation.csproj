@@ -1954,6 +1954,7 @@
     <Content Include="Features\Blocks\Views\LinkedInCompanyBlock.cshtml" />
     <Content Include="Features\Blocks\Views\PageListBlock.cshtml" />
     <Content Include="Features\Blocks\Views\RecentPageCategoryRecommendation.cshtml" />
+    <Content Include="Features\Blocks\Views\RssReaderBlock.cshtml" />
     <Content Include="Features\Blocks\Views\TeaserBlock.cshtml" />
     <Content Include="Features\Blocks\Views\TeaserBlockWide.cshtml" />
     <Content Include="Features\Blocks\Views\TextBlock.cshtml" />
