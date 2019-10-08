@@ -10,7 +10,7 @@
     <iconUrl>http://www.episerver.com/Framework/Styles/Images/Products/Integration.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Foundation Cms Assemblies</description>
-    <copyright>Copyright Episerver 2019</copyright>
+    <copyright>Copyright Episerver $Year$</copyright>
     <tags>Foundation CMS</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2">
@@ -64,8 +64,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Foundation.Cms\bin\Release\net472\Foundation.Cms.pdb" target="lib\net472\" />
-    <file src="src\Foundation.Cms\bin\Release\net472\Foundation.Cms.dll" target="lib\net472\" />
+    <file src="src\Foundation.Cms\bin\$configuration$\net472\Foundation.Cms.pdb" target="lib\net472\" />
+    <file src="src\Foundation.Cms\bin\$configuration$\net472\Foundation.Cms.dll" target="lib\net472\" />
     <file src="artifacts\Output\Foundation.Cms\**\*.*" target="Content" />
   </files>
 </package>

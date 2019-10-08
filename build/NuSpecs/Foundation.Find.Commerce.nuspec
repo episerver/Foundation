@@ -25,8 +25,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Foundation.Find.Commerce\bin\Release\net472\Foundation.Find.Commerce.pdb" target="lib\net472\" />
-    <file src="src\Foundation.Find.Commerce\bin\Release\net472\Foundation.Find.Commerce.dll" target="lib\net472\" />
+    <file src="src\Foundation.Find.Commerce\bin\$configuration$\net472\Foundation.Find.Commerce.pdb" target="lib\net472\" />
+    <file src="src\Foundation.Find.Commerce\bin\$configuration$\net472\Foundation.Find.Commerce.dll" target="lib\net472\" />
     <file src="artifacts\Output\Foundation.Find.Commerce\**\*.*" target="Content" />
   </files>
 </package>
