@@ -10,7 +10,7 @@
     <iconUrl>http://www.episerver.com/Framework/Styles/Images/Products/Integration.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Foundation Commerce Personalization Assemblies</description>
-    <copyright>Copyright Episerver 2019</copyright>
+    <copyright>Copyright Episerver $Year$</copyright>
     <tags>Foundation Commerce Personalization</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2">
@@ -22,8 +22,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Foundation.Commerce.Personalization\bin\Release\net472\Foundation.Commerce.Personalization.pdb" target="lib\net472\" />
-    <file src="src\Foundation.Commerce.Personalization\bin\Release\net472\Foundation.Commerce.Personalization.dll" target="lib\net472\" />
+    <file src="src\Foundation.Commerce.Personalization\bin\$configuration$\net472\Foundation.Commerce.Personalization.pdb" target="lib\net472\" />
+    <file src="src\Foundation.Commerce.Personalization\bin\$configuration$\net472\Foundation.Commerce.Personalization.dll" target="lib\net472\" />
     <file src="artifacts\Output\Foundation.Commerce.Personalization\**\*.*" target="Content" />
   </files>
 </package>

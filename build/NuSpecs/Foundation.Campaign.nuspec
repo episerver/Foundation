@@ -10,7 +10,7 @@
     <iconUrl>http://www.episerver.com/Framework/Styles/Images/Products/Integration.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Foundation Campaign Assemblies</description>
-    <copyright>Copyright Episerver 2019</copyright>
+    <copyright>Copyright Episerver $Year$</copyright>
     <tags>Foundation Campaign</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2">
@@ -22,7 +22,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Foundation.Campaign\bin\Release\net472\Foundation.Campaign.pdb" target="lib\net472\" />
-    <file src="src\Foundation.Campaign\bin\Release\net472\Foundation.Campaign.dll" target="lib\net472\" />
+    <file src="src\Foundation.Campaign\bin\$configuration$\net472\Foundation.Campaign.pdb" target="lib\net472\" />
+    <file src="src\Foundation.Campaign\bin\$configuration$\net472\Foundation.Campaign.dll" target="lib\net472\" />
   </files>
 </package>

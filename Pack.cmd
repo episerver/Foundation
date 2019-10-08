@@ -1,13 +1,10 @@
 @echo off
-openfiles > NUL 2>&1
-if %ERRORLEVEL% NEQ 0 (
-	set "errorMessage=Build.bat script must be run in an elevated (admin) command prompt"
-	goto error
-)
 
 mode con:cols=120 lines=4000
 set ROOTPATH=%cd%
 set ROOTDIR=%cd%
+set Configuration=%1
+if "%Configuration%"=="" (set Configuration=Release)
 
 echo ## Building Foundation please check the Build\Logs directory if you receive errors
 echo ## Gettting MSBuildPath ##
@@ -25,14 +22,14 @@ for %%v in (15.0, 14.0) do (
 
 :finish
 echo msbuild.exe path: %InstallDir%%msBuildPath%
-
+md "%ROOTPATH%\Build\Logs" 2>nul
 echo ## Restoring Nuget packages ##
 echo ## Restoring Nuget packages ## >> Build\Logs\Pack.log
 .\build\nuget restore %ROOTPATH%\Foundation.sln >> Build\Logs\Pack.log
 
 echo ## Clean and build ##
 echo ## Clean and build ## >> Build\Logs\Pack.log				 
-"%InstallDir%""%msBuildPath%" %ROOTPATH%\Foundation.sln /t:Clean,Build  >> Build\Logs\Pack.log
+"%InstallDir%""%msBuildPath%" %ROOTPATH%\Foundation.sln /t:Clean,Build /p:Configuration=%Configuration% >> Build\Logs\Pack.log
 
 echo ## Prepare content for packages ##
 echo ## Prepare content for packages ## >> Build\Logs\Pack.log	
@@ -56,13 +53,13 @@ for /F "skip=1 delims=" %%F in ('
 echo ## Year %CurrYear% ##
 echo ## Year %CurrYear% ## >> Build\Logs\Pack.log
 
-.\build\nuget pack ./build/Nuspecs/Foundation.campaign.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Cms.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Cms.Personalization.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.Personalization.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Find.Cms.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Find.Commerce.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Social.nuspec -Properties Configuration=Release;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.campaign.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Cms.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Cms.Personalization.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.Personalization.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Find.Cms.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Find.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Social.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
 
 pause

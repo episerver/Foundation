@@ -10,7 +10,7 @@
     <iconUrl>http://www.episerver.com/Framework/Styles/Images/Products/Integration.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Foundation Social Assemblies</description>
-    <copyright>Copyright Episerver 2019</copyright>
+    <copyright>Copyright Episerver $Year$</copyright>
     <tags>Foundation Social</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2">
@@ -26,8 +26,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Foundation.Social\bin\Release\net472\Foundation.Social.pdb" target="lib\net472\" />
-    <file src="src\Foundation.Social\bin\Release\net472\Foundation.Social.dll" target="lib\net472\" />
+    <file src="src\Foundation.Social\bin\$configuration$\net472\Foundation.Social.pdb" target="lib\net472\" />
+    <file src="src\Foundation.Social\bin\$configuration$\net472\Foundation.Social.dll" target="lib\net472\" />
     <file src="artifacts\Output\Foundation.Social\**\*.*" target="Content" />
   </files>
 </package>
