@@ -4,6 +4,6 @@ namespace Foundation.Social.ViewModels
 {
     public class SubscriptionFormViewModel
     {
-        public ContentReference CurrentLink { get; set; }
+        public PageReference CurrentLink { get; set; }
     }
 }
