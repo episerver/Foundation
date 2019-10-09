@@ -101,6 +101,6 @@ namespace Foundation.Cms.Blocks
             }
         }
 
-        public string GetIframeUrl(bool autoPlay) => "//player.vimeo.com/video/" + Id + "?title=0&byline=0&portrait=0" + (autoPlay ? "&autoplay=1" : "");
+        public string GetIframeUrl(bool autoPlay) => "//player.vimeo.com/video/" + Id + "?title=0&byline=0&portrait=0&muted=1&loop=1&autopause=0" + (autoPlay ? "&autoplay=1" : "");
     }
 }
