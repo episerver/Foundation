@@ -46,12 +46,12 @@ for /F "skip=1 delims=" %%F in ('
 echo ## Year %CurrYear% ##
 echo ## Year %CurrYear% ## >> Build\Logs\Pack.log
 
-.\build\nuget pack ./build/Nuspecs/Foundation.campaign.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Cms.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Cms.Personalization.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.Personalization.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Find.Cms.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Find.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
-.\build\nuget pack ./build/Nuspecs/Foundation.Social.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.campaign.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Cms.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Cms.Personalization.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Commerce.Personalization.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Find.Cms.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Find.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
+.\build\nuget pack ./build/Nuspecs/Foundation.Social.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts/nuget -BasePath .
 
