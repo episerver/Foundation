@@ -25,15 +25,14 @@ Including as of now projects for CMS, Commerce, Personalisation, Find and Social
 1. Visual Studio 2017 or higher - [VS Downloads](https://visualstudio.microsoft.com/downloads/)
 2. Sql Server Express or Developer or Sql Azure Server - [SQL Downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using Sql Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
 3. Nodejs - [Download](https://nodejs.org/en/download/)
-4. Gulp - Run "npm install gulp -g" on command prompt
-5. IIS Role - [Instructions](https://help.k2.com/onlinehelp/k2blackpearl/icg/4.7/default.htm#Con_Role_Services_IIS.htm)
+4. IIS Role - [Instructions](https://help.k2.com/onlinehelp/k2blackpearl/icg/4.7/default.htm#Con_Role_Services_IIS.htm)
 
 ---
 
 ## Installation
 
 Run Build.cmd and supply requested parameters. The build process will log to the console and the following files.
-
+Note that application name should contain only letters and numbers as it used as the prefix to create the website and database components.
 ```
 Build\Logs\Build.log
 Build\Logs\Database.log
