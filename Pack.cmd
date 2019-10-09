@@ -4,7 +4,7 @@ mode con:cols=120 lines=4000
 set ROOTPATH=%cd%
 set ROOTDIR=%cd%
 set Configuration=%1
-if "%Configuration%"=="" (set Configuration=Release)
+set Version=%2
 
 echo ## Building Foundation please check the Build\Logs directory if you receive errors
 echo ## Gettting MSBuildPath ##
@@ -36,13 +36,6 @@ echo ## Prepare content for packages ## >> Build\Logs\Pack.log
 powershell "%ROOTPATH%\build\prepare-content.ps1" >> Build\Logs\Pack.log	
 
 
-echo ## Get Version ##
-echo ## Get Version## >> Build\Logs\Pack.log
-set /p Version=<.\build\version.props
-echo ## Version %Version% ##
-echo ## Version %Version% ## >> Build\Logs\Pack.log
-
-
 for /F "skip=1 delims=" %%F in ('
     wmic PATH Win32_LocalTime GET Day^,Month^,Year /FORMAT:TABLE
 ') do (
@@ -62,4 +55,3 @@ echo ## Year %CurrYear% ## >> Build\Logs\Pack.log
 .\build\nuget pack ./build/Nuspecs/Foundation.Find.Commerce.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
 .\build\nuget pack ./build/Nuspecs/Foundation.Social.nuspec -Properties Configuration=%Configuration%;Year=%CurrYear% -Version %Version% -OutputDirectory ./artifacts -BasePath .
 
-pause
