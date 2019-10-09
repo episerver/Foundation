@@ -15,7 +15,8 @@ This repository is the Mosey demo site.
 # Installation
 ------------
 
-Run Build.bat and supply requested parameters. The build process will log to the following files.
+Run Build.cmd and supply requested parameters. The build process will log to the following files.
+Note that application name should not contain spaces or any other special symbols.
 
 ```
 BuildLogs\Build.log
@@ -41,4 +42,4 @@ create connectionstrings files
 Start the site to finish setup in browser
 ```
 
-Login with admin@example/store account once it's finished.
+Login with admin@example.com/store account once it's finished.
