@@ -111,12 +111,16 @@ echo ## Restoring Nuget packages ## >> Build\Logs\Build.log
 echo ## NPM Install ##  
 echo ## NPM Install >> Build\Logs\Build.log
 cd %SOURCEPATH%\Foundation
-call npm install --no-audit
+CALL npm ci
+IF %errorlevel% NEQ 0 (
+	set errorMessage=%errorlevel%
+	goto error
+)
 cd %ROOTPATH%
 
 echo ## Gulp Install ##
 echo ## Gulp Install ## >> Build\Logs\Build.log			  
-call gulp -b "%SOURCEPATH%\Foundation" --color --gulpfile "%SOURCEPATH%\Foundation\Gulpfile.js" >> Build\Logs\Build.log
+call gulp -b "%SOURCEPATH%\Foundation" --color --gulpfile "%SOURCEPATH%\Foundation\Gulpfile.js" >> Build\Logs\Build.log || call npm install gulp -g && call gulp -b "%SOURCEPATH%\Foundation" --color --gulpfile "%SOURCEPATH%\Foundation\Gulpfile.js" >> Build\Logs\Build.log
 
 echo ## Clean and build ##
 echo ## Clean and build ## >> Build\Logs\Build.log				 
