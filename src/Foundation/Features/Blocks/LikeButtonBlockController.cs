@@ -14,7 +14,7 @@ using Foundation.Cms.Blocks;
 using Foundation.Social.ViewModels;
 using Microsoft.AspNet.Identity;
 
-namespace Foundation.Social
+namespace Foundation.Features.Blocks
 {
     /// <summary>
     /// The LikeButtonBlockController is a simple implementation of a Like button using

@@ -2,13 +2,14 @@
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Blocks;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.ViewModels;
 
-namespace Foundation.Social
+namespace Foundation.Features.Blocks
 {
     /// <summary>
     /// The SubscriptionBlockController handles the rendering of the subscription block frontend view as well

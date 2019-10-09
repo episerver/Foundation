@@ -4,13 +4,14 @@ using System.Web.Mvc;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.ServiceLocation;
 using EPiServer.Social.Groups.Core;
+using Foundation.Social;
 using Foundation.Social.Models.Blocks;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.ViewModels;
 
-namespace Foundation.Social
+namespace Foundation.Features.Blocks
 {
     /// <summary>
     /// The MembershipDisplayController handles the rendering of the list of members from the designated group configured in the admin view
