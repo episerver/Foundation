@@ -1,4 +1,7 @@
 @model  IBlockViewModel<VimeoBlock>
+@{
+    var iframeUrl = @Model.CurrentBlock.VimeoVideo.GetIframeUrl(Model.CurrentBlock.HasCoverImage);
+}
 
 <div style="@Model.CurrentBlock.PaddingStyles">
     @if (Model.CurrentBlock.HasHeadingText)
@@ -16,7 +19,10 @@
                 <a href="javascript:;" class="starter"><span class="sr-only">Play video</span></a>
                 <img src="@Url.ContentUrl(Model.CurrentBlock.CoverImage)" />
             }
-            <iframe @(string.IsNullOrEmpty(Model.CurrentBlock.VimeoVideo.GetIframeUrl(Model.CurrentBlock.HasCoverImage)) ? "" : "id=" + Model.CurrentBlock.VimeoVideo.GetIframeUrl(Model.CurrentBlock.HasCoverImage)) @(Model.CurrentBlock.HasCoverImage ? "src=about:blank data-" : "") src="@Model.CurrentBlock.VimeoVideo.GetIframeUrl(Model.CurrentBlock.HasCoverImage)" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            @if (!string.IsNullOrEmpty(iframeUrl))
+            {
+                <iframe id="@Model.CurrentBlock.VimeoVideo.Id" src="@iframeUrl" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            }
         </div>
     }
 </div>

@@ -43,13 +43,18 @@
                 );
             },
             _onSearchTextChanged: function (queryText) {
+                if (queryText) {
+                    domStyle.set(this.contentTypeList._suggestedContentTypes.domNode, "display", "none");
+                } else {
+                    domStyle.set(this.contentTypeList._suggestedContentTypes.domNode, "display", "");
+                }
                 this._originalGroups = this._originalGroups || lang.clone(this.contentTypeList.model.groups);
                 var groupKeys = Object.keys(this._originalGroups);
 
                 array.forEach(groupKeys, function (key) {
                     var contentTypes = this._originalGroups[key].get("contentTypes");
                     contentTypes = array.filter(contentTypes, function (item) {
-                        return item.name.toLowerCase().indexOf(queryText.toLowerCase()) !== -1;
+                        return item.name.toLowerCase().indexOf(queryText.toLowerCase()) !== -1 || item.localizedName.toLowerCase().indexOf(queryText.toLowerCase()) !== -1;
                     });
                     if (!contentTypes.length) {
                         domStyle.set(this.contentTypeList.model.groups[key].domNode, "display", "none");
