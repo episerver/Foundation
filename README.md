@@ -62,7 +62,6 @@ Login with admin@example.com/store account once it's finished.
 ---
 
 ## Contributing
-
+[Contribution guidelines for this project](docs/CONTRIBUTING.md)
 
 ---
-
