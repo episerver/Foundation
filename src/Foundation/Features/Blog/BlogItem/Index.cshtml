@@ -3,10 +3,6 @@
 @model BlogItemPageModel
 
 @{
-    BlogListPage tagRootPage;
-    BlogListPage archiveRootPage;
-    TagCloudBlock tagBlock;
-    BlogArchiveBlock archivedBlock;
     var contentLoader = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>();
 }
 
@@ -48,6 +44,11 @@
             {
                 <div class="col-12 link" @Html.EditAttributes("PageStartPublish")>
                     @Html.PropertyFor(x => x.CurrentContent.StartPublish, new EPiServer.Web.Mvc.EditHint() { ContentDataPropertyName = "PageStartPublish" })
+                    @if (!Model.CurrentContent.Author.IsNullOrEmpty())
+                    {
+                        <span> - </span>
+                        @Html.PropertyFor(x => x.CurrentContent.Author);
+                    }
                 </div>
             }
             <div class="col-12">
