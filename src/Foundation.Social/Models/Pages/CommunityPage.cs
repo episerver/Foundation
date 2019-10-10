@@ -1,0 +1,66 @@
+﻿using System.ComponentModel.DataAnnotations;
+using EPiServer.DataAbstraction;
+using EPiServer.DataAnnotations;
+using Foundation.Cms.Pages;
+using Foundation.Social.Models.Blocks;
+
+namespace Foundation.Social.Models.Pages
+{
+    /// <summary>
+    /// Used for the pages that wish to contain Social community features
+    /// </summary>
+    [ContentType(DisplayName = "Community", GUID = "56ba715e-3fb9-4050-a5e3-ab7fe1690742", Description = "A reseller's community page using Episerver Social.", GroupName = "Social")]
+    [ImageUrl("~/content/icons/blocks/cms-icon-block-25.png")]
+    public class CommunityPage : FoundationPageData
+    {
+        /// <summary>
+        /// The comment section of the page. Local comment block will display comments only for this page
+        /// </summary>
+        [Display(
+            Name = "Comment Block",
+            Description = "The comment section of the page. Local comment block will display comments only for this page",
+            GroupName = SystemTabNames.Content,
+            Order = 2)]
+        public virtual CommentsBlock Comments { get; set; }
+
+        /// <summary>
+        /// The comment section of the page. Local ratings block will allow a logged in user to rate this page
+        /// </summary>
+        [Display(
+            Name = "Ratings Block",
+            Description = "The comment section of the page. Local ratings block will allow a logged in user to rate this page",
+            GroupName = SystemTabNames.Content,
+            Order = 3)]
+        public virtual RatingBlock Ratings { get; set; }
+
+        /// <summary>
+        /// The subscription section of the page. Local subscription block will allow a logged in user to subscribe to this page
+        /// </summary>
+        [Display(
+            Name = "Subscription Block",
+            Description = "The subscription section of the page. Local subscription block will allow a logged in user to subscribe to this page",
+            GroupName = SystemTabNames.Content,
+            Order = 4)]
+        public virtual SubscriptionBlock Subscriptions { get; set; }
+
+        /// <summary>
+        /// The membership display section of the page. Local membership display block will display existing membership for the group that corresponds to this page
+        /// </summary>
+        [Display(
+            Name = "Membership Display Block",
+            Description = "The membership display section of the page. Local membership display block will display existing membership for the group that corresponds to this page",
+            GroupName = SystemTabNames.Content,
+            Order = 5)]
+        public virtual MembershipDisplayBlock Memberships { get; set; }
+
+        /// <summary>
+        /// The group admission section of the page. Local group creation block will allow a logged in user to submit a request for membrship admission for the group that corresponds to this page
+        /// </summary>
+        [Display(
+            Name = "Group Admission Block",
+            Description = "The group admission section of the page. Local group creation block will allow a logged in user to submit a request for membrship admission for the group that corresponds to this page",
+            GroupName = SystemTabNames.Content,
+            Order = 6)]
+        public virtual GroupAdmissionBlock GroupAdmission { get; set; }
+    }
+}

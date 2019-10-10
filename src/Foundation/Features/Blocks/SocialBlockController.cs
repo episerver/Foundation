@@ -6,7 +6,7 @@ using Foundation.Social.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Social
+namespace Foundation.Features.Blocks
 {
     public abstract class SocialBlockController<T> : BlockController<T> where T : BlockData
     {
