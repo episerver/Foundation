@@ -1,4 +1,5 @@
 ﻿using EPiServer.Framework.DataAnnotations;
+using Foundation.Social;
 using Foundation.Social.Models.Blocks;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
@@ -9,12 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Foundation.Social
+namespace Foundation.Features.Blocks
 {
     /// <summary>
     /// The MembershipDisplayController handles the rendering of the list of members from the designated group configured in the admin view
     /// </summary>
-
     [TemplateDescriptor(Default = true)]
     public class MembershipAffiliationBlockController : SocialBlockController<MembershipAffiliationBlock>
     {
@@ -44,7 +44,7 @@ namespace Foundation.Social
 
             try
             {
-                //Retrieve the groups that are associated with the currently loogged in user.
+                //Retrieve the groups that are associated with the currently logged in user.
                 var userId = _userRepository.GetUserId(this.User);
                 if (!String.IsNullOrWhiteSpace(userId))
                 {

@@ -846,6 +846,12 @@
   <ItemGroup>
     <Compile Include="Features\Api\AuthorizedApiController.cs" />
     <Compile Include="Features\Api\PublicApiController.cs" />
+    <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
+    <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
+    <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
+    <Compile Include="Features\Blocks\RatingBlockController.cs" />
+    <Compile Include="Features\Blocks\SocialBlockController.cs" />
+    <Compile Include="Features\Blocks\SubscriptionBlockController.cs" />
     <Compile Include="Features\Blog\BlogCommentBlock\BlogCommentBlockController.cs" />
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListBlock\BlogListBlockController.cs" />
@@ -1211,6 +1217,11 @@
     <Content Include="ClientResources\Scripts\ContentEditing\CreateContent.js" />
     <Content Include="ClientResources\Scripts\Initialize.js" />
     <Content Include="ClientResources\Styles\Styles.css" />
+    <Content Include="Features\Blocks\Views\CarouselItemBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\LikeButtonBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\MembershipDisplayBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\RatingBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\SubscriptionBlock.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
     <Content Include="Features\NamedCarts\Wishlist\Index.cshtml" />

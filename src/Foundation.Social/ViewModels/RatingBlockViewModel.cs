@@ -7,7 +7,7 @@ namespace Foundation.Social.ViewModels
 {
     public class RatingBlockViewModel
     {
-        public RatingBlockViewModel(RatingBlock block, ContentReference currentLink)
+        public RatingBlockViewModel(RatingBlock block, PageReference currentLink)
         {
             Heading = block.Heading;
             ShowHeading = block.ShowHeading;
@@ -16,7 +16,7 @@ namespace Foundation.Social.ViewModels
             LoadRatingSettings(block);
         }
 
-        public ContentReference CurrentLink { get; set; }
+        public PageReference CurrentLink { get; set; }
 
         public string Heading { get; }
 

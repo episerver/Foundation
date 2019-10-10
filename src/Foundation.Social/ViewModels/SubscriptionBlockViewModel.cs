@@ -6,7 +6,7 @@ namespace Foundation.Social.ViewModels
 {
     public class SubscriptionBlockViewModel
     {
-        public SubscriptionBlockViewModel(SubscriptionBlock block, ContentReference currentLink)
+        public SubscriptionBlockViewModel(SubscriptionBlock block, PageReference currentLink)
         {
             Heading = block.Heading;
             ShowHeading = block.ShowHeading;
@@ -23,7 +23,7 @@ namespace Foundation.Social.ViewModels
 
         public bool UserSubscribedToPage { get; set; }
 
-        public ContentReference CurrentLink { get; set; }
+        public PageReference CurrentLink { get; set; }
 
         public List<MessageViewModel> Messages { get; set; }
     }

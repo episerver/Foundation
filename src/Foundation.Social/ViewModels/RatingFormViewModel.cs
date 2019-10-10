@@ -8,6 +8,6 @@ namespace Foundation.Social.ViewModels
 
         public bool SendActivity { get; set; }
 
-        public ContentReference CurrentLink { get; set; }
+        public PageReference CurrentLink { get; set; }
     }
 }

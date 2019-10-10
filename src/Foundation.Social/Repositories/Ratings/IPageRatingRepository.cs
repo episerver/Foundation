@@ -8,7 +8,7 @@ namespace Foundation.Social.Repositories.Ratings
     ///     The IPageRatingRepository interface defines the operations that can be issued
     ///     against a rating repository.
     /// </summary>
-    internal interface IPageRatingRepository
+    public interface IPageRatingRepository
     {
         /// <summary>
         ///     Gets the value of the submitted rating, if any, based on the target and user reference specified in the filter.
