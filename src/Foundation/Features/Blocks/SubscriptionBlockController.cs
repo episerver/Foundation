@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
@@ -18,12 +17,12 @@ namespace Foundation.Features.Blocks
     [TemplateDescriptor(Default = true)]
     public class SubscriptionBlockController : SocialBlockController<SubscriptionBlock>
     {
-        private readonly IUserRepository userRepository;
-        private readonly IPageSubscriptionRepository subscriptionRepository;
-        private readonly IPageRepository pageRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IPageSubscriptionRepository _subscriptionRepository;
+        private readonly IPageRepository _pageRepository;
 
-        private const string Action_Subscribe = "Subscribe";
-        private const string Action_Unsubscribe = "Unsubscribe";
+        private const string ActionSubscribe = "Subscribe";
+        private const string ActionUnsubscribe = "Unsubscribe";
         private const string SubmitSuccessMessage = "Your request was processed successfully!";
         private const string MessageKey = "SubscriptionBlock";
         private const string ErrorMessage = "Error";
@@ -32,11 +31,11 @@ namespace Foundation.Features.Blocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public SubscriptionBlockController()
+        public SubscriptionBlockController(IUserRepository userRepository, IPageSubscriptionRepository pageSubscriptionRepository, IPageRepository pageRepository)
         {
-            this.userRepository = ServiceLocator.Current.GetInstance<IUserRepository>();
-            this.subscriptionRepository = ServiceLocator.Current.GetInstance<IPageSubscriptionRepository>();
-            this.pageRepository = ServiceLocator.Current.GetInstance<IPageRepository>();
+            _userRepository = userRepository;
+            _subscriptionRepository = pageSubscriptionRepository;
+            _pageRepository = pageRepository;
         }
 
         /// <summary>
@@ -70,7 +69,7 @@ namespace Foundation.Features.Blocks
         [HttpPost]
         public ActionResult Subscribe(SubscriptionFormViewModel formViewModel)
         {
-            return HandleAction(Action_Subscribe, formViewModel);
+            return HandleAction(ActionSubscribe, formViewModel);
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Foundation.Features.Blocks
         [HttpPost]
         public ActionResult Unsubscribe(SubscriptionFormViewModel formViewModel)
         {
-            return HandleAction(Action_Unsubscribe, formViewModel);
+            return HandleAction(ActionUnsubscribe, formViewModel);
         }
 
         /// <summary>
@@ -95,19 +94,19 @@ namespace Foundation.Features.Blocks
         {
             var subscription = new PageSubscription
             {
-                Subscriber = this.userRepository.GetUserId(this.User),
-                Target = this.pageRepository.GetPageId(formViewModel.CurrentLink),
+                Subscriber = _userRepository.GetUserId(User),
+                Target = _pageRepository.GetPageId(formViewModel.CurrentLink)
             };
 
             try
             {
-                if (actionName == Action_Subscribe)
+                if (actionName == ActionSubscribe)
                 {
-                    this.subscriptionRepository.Add(subscription);
+                    _subscriptionRepository.Add(subscription);
                 }
                 else
                 {
-                    this.subscriptionRepository.Remove(subscription);
+                    _subscriptionRepository.Remove(subscription);
                 }
                 AddMessage(MessageKey, new MessageViewModel(SubmitSuccessMessage, SuccessMessage));
             }
@@ -125,7 +124,7 @@ namespace Foundation.Features.Blocks
         /// <param name="blockViewModel">The subscription block view model.</param>
         private void SetBlockViewModelProperties(SubscriptionBlockViewModel blockViewModel)
         {
-            if (this.User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 blockViewModel.ShowSubscriptionForm = true;
                 SetUserSubscribedToPage(blockViewModel);
@@ -142,11 +141,11 @@ namespace Foundation.Features.Blocks
             {
                 var filter = new PageSubscriptionFilter
                 {
-                    Subscriber = this.userRepository.GetUserId(this.User),
-                    Target = this.pageRepository.GetPageId(blockViewModel.CurrentLink),
+                    Subscriber = _userRepository.GetUserId(User),
+                    Target = _pageRepository.GetPageId(blockViewModel.CurrentLink)
                 };
 
-                if (this.subscriptionRepository.Exist(filter))
+                if (_subscriptionRepository.Exist(filter))
                 {
                     blockViewModel.UserSubscribedToPage = true;
                 }

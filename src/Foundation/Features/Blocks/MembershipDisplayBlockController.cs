@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.ServiceLocation;
 using EPiServer.Social.Groups.Core;
 using Foundation.Social;
 using Foundation.Social.Models.Blocks;
@@ -19,19 +18,19 @@ namespace Foundation.Features.Blocks
     [TemplateDescriptor(Default = true)]
     public class MembershipDisplayBlockController : SocialBlockController<MembershipDisplayBlock>
     {
-        private readonly IUserRepository userRepository;
-        private readonly ICommunityRepository communityRepository;
-        private readonly ICommunityMemberRepository memberRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ICommunityRepository _communityRepository;
+        private readonly ICommunityMemberRepository _memberRepository;
         private const string ErrorMessage = "Error";
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public MembershipDisplayBlockController()
+        public MembershipDisplayBlockController(ICommunityRepository communityRepository, ICommunityMemberRepository memberRepository, IUserRepository userRepository)
         {
-            communityRepository = ServiceLocator.Current.GetInstance<ICommunityRepository>();
-            memberRepository = ServiceLocator.Current.GetInstance<ICommunityMemberRepository>();
-            userRepository = ServiceLocator.Current.GetInstance<IUserRepository>();
+            _communityRepository = communityRepository;
+            _memberRepository = memberRepository;
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -43,10 +42,10 @@ namespace Foundation.Features.Blocks
             //Populate model to pass to the membership display view
             var membershipDisplayBlockModel = new MembershipDisplayBlockViewModel(currentBlock);
 
-            //Retrieve the group id assigned to the block and populate the memberlist
+            //Retrieve the group id assigned to the block and populate the member list
             try
             {
-                var group = communityRepository.Get(currentBlock.GroupName);
+                var group = _communityRepository.Get(currentBlock.GroupName);
 
                 //Validate that the group exists
                 if (group != null)
@@ -57,7 +56,7 @@ namespace Foundation.Features.Blocks
                         CommunityId = groupId,
                         PageSize = currentBlock.DisplayPageSize
                     };
-                    var socialMembers = memberRepository.Get(memberFilter).ToList();
+                    var socialMembers = _memberRepository.Get(memberFilter).ToList();
                     membershipDisplayBlockModel.Members = Adapt(socialMembers);
                 }
                 else
@@ -81,7 +80,7 @@ namespace Foundation.Features.Blocks
 
         public List<CommunityMemberViewModel> Adapt(List<CommunityMember> socialMembers)
         {
-            return socialMembers.Select(x => new CommunityMemberViewModel(x.Company, this.userRepository.ParseUserUri(x.User))).ToList();
+            return socialMembers.Select(x => new CommunityMemberViewModel(x.Company, _userRepository.ParseUserUri(x.User))).ToList();
         }
     }
 }

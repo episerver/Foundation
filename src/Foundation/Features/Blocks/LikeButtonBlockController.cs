@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using EPiServer;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.ServiceLocation;
 using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
 using EPiServer.Web;
@@ -25,24 +23,22 @@ namespace Foundation.Features.Blocks
     [TemplateDescriptor(Default = true)]
     public class LikeButtonBlockController : BlockController<LikeButtonBlock>
     {
-        private readonly IRatingService ratingService;
-        private readonly IRatingStatisticsService ratingStatisticsService;
-        private readonly IPageRouteHelper pageRouteHelper;
-        private readonly IContentRepository contentRepository;
-        private const int Liked_Rating = 1;
+        private readonly IRatingService _ratingService;
+        private readonly IRatingStatisticsService _ratingStatisticsService;
+        private readonly IPageRouteHelper _pageRouteHelper;
+        private const int LikedRating = 1;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public LikeButtonBlockController(IRatingStatisticsService ratingStatisticsService)
+        public LikeButtonBlockController(IRatingService ratingService, IRatingStatisticsService ratingStatisticsService, IPageRouteHelper pageRouteHelper)
         {
-            this.ratingStatisticsService = ratingStatisticsService;
+            _ratingStatisticsService = ratingStatisticsService;
             // This is all wired up by the installation of the EPiServer.Social.Ratings.Site package
-            this.ratingService = ServiceLocator.Current.GetInstance<IRatingService>();
+            _ratingService = ratingService;
 
             // This is wired up by Episerver Core/Framework
-            this.contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
-            this.pageRouteHelper = ServiceLocator.Current.GetInstance<IPageRouteHelper>();
+            _pageRouteHelper = pageRouteHelper;
         }
 
         /// <summary>
@@ -52,9 +48,9 @@ namespace Foundation.Features.Blocks
         /// <returns>Result of the redirect to the current page.</returns>
         public override ActionResult Index(LikeButtonBlock currentBlock)
         {
-            var pageLink = this.pageRouteHelper.PageLink;
-            var targetPageRef = EPiServer.Social.Common.Reference.Create(PermanentLinkUtility.FindGuid(pageLink).ToString());
-            var anonymousUser = this.User.Identity.GetUserId() == null ? true : false;
+            var pageLink = _pageRouteHelper.PageLink;
+            var targetPageRef = Reference.Create(PermanentLinkUtility.FindGuid(pageLink).ToString());
+            var anonymousUser = User.Identity.GetUserId() == null ? true : false;
 
             // Create a rating block view model to fill the frontend block view
             var blockModel = new LikeButtonBlockViewModel
@@ -71,13 +67,13 @@ namespace Foundation.Features.Blocks
                 if (!anonymousUser)
                 {
                     var raterUserRef = GetRaterRef();
-                    var ratingPage = ratingService.Get(
+                    var ratingPage = _ratingService.Get(
                         new Criteria<RatingFilter>
                         {
                             Filter = new RatingFilter
                             {
                                 Rater = raterUserRef,
-                                Targets = new List<EPiServer.Social.Common.Reference>
+                                Targets = new List<Reference>
                                 {
                                     targetPageRef
                                 }
@@ -101,12 +97,12 @@ namespace Foundation.Features.Blocks
                 }
 
                 // Using the Episerver Social Rating service, get the existing Like statistics for the page (target)
-                var ratingStatisticsPage = ratingStatisticsService.Get(
+                var ratingStatisticsPage = _ratingStatisticsService.Get(
                     new Criteria<RatingStatisticsFilter>
                     {
                         Filter = new RatingStatisticsFilter
                         {
-                            Targets = new List<EPiServer.Social.Common.Reference>
+                            Targets = new List<Reference>
                             {
                                 targetPageRef
                             }
@@ -146,17 +142,17 @@ namespace Foundation.Features.Blocks
         [HttpPost]
         public ActionResult Submit(LikeButtonBlockViewModel likeButtonBlock)
         {
-            var targetPageRef = EPiServer.Social.Common.Reference.Create(PermanentLinkUtility.FindGuid(likeButtonBlock.Link).ToString());
+            var targetPageRef = Reference.Create(PermanentLinkUtility.FindGuid(likeButtonBlock.Link).ToString());
             var raterUserRef = GetRaterRef();
 
             try
             {
                 // Add the rating using the Episerver Social Rating service
-                var addedRating = ratingService.Add(
+                var addedRating = _ratingService.Add(
                     new Rating(
                         raterUserRef,
                         targetPageRef,
-                        new RatingValue(Liked_Rating)
+                        new RatingValue(LikedRating)
                     )
                 );
             }
@@ -169,19 +165,19 @@ namespace Foundation.Features.Blocks
             return Redirect(UrlResolver.Current.GetUrl(likeButtonBlock.Link));
         }
 
-        private EPiServer.Social.Common.Reference GetRaterRef()
+        private Reference GetRaterRef()
         {
-            var raterUserRef = EPiServer.Social.Common.Reference.Empty;
+            Reference raterUserRef;
 
             // If we have a user identity use it;  if not we generate a unique anonymous user for the rater reference
-            var userIdentity = this.User.Identity.GetUserId();
+            var userIdentity = User.Identity.GetUserId();
             if (userIdentity != null)
             {
-                raterUserRef = EPiServer.Social.Common.Reference.Create(userIdentity);
+                raterUserRef = Reference.Create(userIdentity);
             }
             else
             {
-                raterUserRef = EPiServer.Social.Common.Reference.Create("anonymous-" + Guid.NewGuid());
+                raterUserRef = Reference.Create("anonymous-" + Guid.NewGuid());
             }
 
             return raterUserRef;

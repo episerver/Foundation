@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Blocks;
 using Foundation.Social.Models.Groups;
@@ -15,7 +15,7 @@ using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.ViewModels;
 
-namespace Foundation.Social
+namespace Foundation.Features.Blocks
 {
     /// <summary>
     /// The RatingBlockController handles the rendering of any existing rating statistics
@@ -26,14 +26,14 @@ namespace Foundation.Social
     [TemplateDescriptor(Default = true)]
     public class RatingBlockController : SocialBlockController<RatingBlock>
     {
-        private readonly IUserRepository userRepository;
-        private readonly IPageRatingRepository ratingRepository;
-        private readonly ICommunityActivityRepository activityRepository;
-        private readonly IPageRepository pageRepository;
-        private readonly ICommunityRepository communityRepository;
-        private readonly ICommunityMemberRepository memberRepository;
-        private string userId;
-        private string pageId;
+        private readonly IUserRepository _userRepository;
+        private readonly IPageRatingRepository _ratingRepository;
+        private readonly ICommunityActivityRepository _activityRepository;
+        private readonly IPageRepository _pageRepository;
+        private readonly ICommunityRepository _communityRepository;
+        private readonly ICommunityMemberRepository _memberRepository;
+        private string _userId;
+        private string _pageId;
         private const string MessageKey = "RatingBlock";
         private const string ErrorMessage = "Error";
         private const string SuccessMessage = "Success";
@@ -41,14 +41,20 @@ namespace Foundation.Social
         /// <summary>
         /// Constructor
         /// </summary>
-        public RatingBlockController()
+        public RatingBlockController(
+            IUserRepository userRepository,
+            IPageRatingRepository ratingRepository,
+            IPageRepository pageRepository,
+            ICommunityActivityRepository activityRepository,
+            ICommunityRepository communityRepository,
+            ICommunityMemberRepository memberRepository)
         {
-            this.userRepository = ServiceLocator.Current.GetInstance<IUserRepository>();
-            this.ratingRepository = ServiceLocator.Current.GetInstance<IPageRatingRepository>();
-            this.pageRepository = ServiceLocator.Current.GetInstance<IPageRepository>();
-            this.activityRepository = ServiceLocator.Current.GetInstance<ICommunityActivityRepository>();
-            this.communityRepository = ServiceLocator.Current.GetInstance<ICommunityRepository>();
-            this.memberRepository = ServiceLocator.Current.GetInstance<ICommunityMemberRepository>();
+            _userRepository = userRepository;
+            _ratingRepository = ratingRepository;
+            _pageRepository = pageRepository;
+            _activityRepository = activityRepository;
+            _communityRepository = communityRepository;
+            _memberRepository = memberRepository;
         }
 
         /// <summary>
@@ -66,7 +72,7 @@ namespace Foundation.Social
 
             var group = string.IsNullOrEmpty(groupName)
                         ? null
-                        : communityRepository.Get(groupName);
+                        : _communityRepository.Get(groupName);
 
             var currentPageLink = PageRouteHelper.PageLink;
 
@@ -79,7 +85,7 @@ namespace Foundation.Social
             };
 
             // If user logged in, check if logged in user has already rated the page
-            if (this.User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 //Validate that the group exists
                 if (group != null)
@@ -90,14 +96,14 @@ namespace Foundation.Social
                         CommunityId = groupId,
                         PageSize = 10000
                     };
-                    var socialMembers = memberRepository.Get(memberFilter).ToList();
-                    var userId = userRepository.GetUserId(this.User);
+                    var socialMembers = _memberRepository.Get(memberFilter).ToList();
+                    var userId = _userRepository.GetUserId(User);
                     blockModel.IsMemberOfGroup = socialMembers.FirstOrDefault(m => m.User.IndexOf(userId) > -1) != null;
                 }
                 GetRating(target, blockModel);
             }
 
-            //Conditionally retrieving ratingstatistics based on any errors that might have been encountered
+            //Conditionally retrieving rating statistics based on any errors that might have been encountered
             var noMessages = blockModel.Messages.Count == 0;
             var noErrors = blockModel.Messages.Any(x => x.Type != ErrorMessage);
             if (noMessages || noErrors)
@@ -142,11 +148,11 @@ namespace Foundation.Social
 
             try
             {
-                var userId = userRepository.GetUserId(this.User);
-                if (!String.IsNullOrWhiteSpace(userId))
+                var userId = _userRepository.GetUserId(User);
+                if (!string.IsNullOrWhiteSpace(userId))
                 {
                     blockModel.CurrentRating =
-                        this.ratingRepository.GetRating(new PageRatingFilter
+                        _ratingRepository.GetRating(new PageRatingFilter
                         {
                             Rater = userId,
                             Target = target
@@ -172,11 +178,11 @@ namespace Foundation.Social
         /// populate with rating statistics for the current page and errors, if any</param>
         private void GetRatingStatistics(string target, RatingBlockViewModel blockModel)
         {
-            blockModel.NoStatisticsFoundMessage = String.Empty;
+            blockModel.NoStatisticsFoundMessage = string.Empty;
 
             try
             {
-                var result = ratingRepository.GetRatingStatistics(target);
+                var result = _ratingRepository.GetRatingStatistics(target);
                 if (result != null)
                 {
                     blockModel.Average = result.Average;
@@ -187,7 +193,7 @@ namespace Foundation.Social
                     var loggedInMessage = "This page has not been rated. Be the first!";
                     var loggedOutMessage = "This page has not been rated. Log in and be the first!";
                     var loggedInNotMemberMessage = "This page has not been rated. Join group and be the first!";
-                    blockModel.NoStatisticsFoundMessage = this.User.Identity.IsAuthenticated
+                    blockModel.NoStatisticsFoundMessage = User.Identity.IsAuthenticated
                                                             ? (blockModel.IsMemberOfGroup ? loggedInMessage : loggedInNotMemberMessage)
                                                             : loggedOutMessage;
                 }
@@ -206,7 +212,7 @@ namespace Foundation.Social
         {
             try
             {
-                ratingRepository.AddRating(this.userId, this.pageId, value);
+                _ratingRepository.AddRating(_userId, _pageId, value);
                 var message = "Thank you for submitting your rating!";
                 AddMessage(MessageKey, new MessageViewModel(message, SuccessMessage));
                 return true;
@@ -227,7 +233,7 @@ namespace Foundation.Social
             try
             {
                 var activity = new PageRatingActivity { Value = value };
-                activityRepository.Add(this.userId, this.pageId, activity);
+                _activityRepository.Add(_userId, _pageId, activity);
             }
             catch (SocialRepositoryException ex)
             {
@@ -243,7 +249,7 @@ namespace Foundation.Social
         {
             string message = string.Empty;
             // Validate user is logged in
-            if (!this.User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
                 message = "Session timed out, you have to be logged in to submit your rating. Please login and try again.";
             }
@@ -257,16 +263,16 @@ namespace Foundation.Social
                 else
                 {
                     // Retrieve and validate the page identifier of the page that was rated
-                    this.pageId = this.pageRepository.GetPageId(ratingForm.CurrentLink);
-                    if (String.IsNullOrWhiteSpace(this.pageId))
+                    _pageId = _pageRepository.GetPageId(ratingForm.CurrentLink);
+                    if (String.IsNullOrWhiteSpace(_pageId))
                     {
                         message = "The page id of this page could not be determined. Please try rating this page again.";
                     }
                     else
                     {
                         // Retrieve and validate the user identifier of the rater
-                        this.userId = userRepository.GetUserId(this.User);
-                        if (String.IsNullOrWhiteSpace(this.userId))
+                        _userId = _userRepository.GetUserId(User);
+                        if (String.IsNullOrWhiteSpace(_userId))
                         {
                             message = "There was an error identifying the logged in user. Please make sure you are logged in and try again.";
                         }
