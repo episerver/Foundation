@@ -7,34 +7,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Page List Block", GUID = "30685434-33DE-42AF-88A7-3126B936AEAD", GroupName = CmsTabs.Content)]
+    [ContentType(DisplayName = "Page List Block", GUID = "30685434-33DE-42AF-88A7-3126B936AEAD", GroupName = SystemTabNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class PageListBlock : FoundationBlockData
     {
-        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
-        [DefaultValue(false)]
         public virtual bool IncludePublishDate { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 30)]
-        [DefaultValue(true)]
         public virtual bool IncludeIntroduction { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 40)]
         [Required]
+        [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual int Count { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 50)]
-        [DefaultValue(FilterSortOrder.PublishedDescending)]
         [UIHint("SortOrder")]
         [BackingType(typeof(PropertyNumber))]
+        [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual FilterSortOrder SortOrder { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 60)]
         [Required]
+        [Display(GroupName = SystemTabNames.Content, Order = 60)]
         public virtual PageReference Root { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 70)]

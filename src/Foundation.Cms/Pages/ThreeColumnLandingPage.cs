@@ -7,51 +7,38 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(
+    [ContentType(DisplayName = "Three Column Landing Page",
        GUID = "947EDF31-8C8C-4595-8591-A17DEF75685E",
-       DisplayName = "Three Column Landing Page",
-       Description = "Three column landing page with properties to determin column size.",
-       GroupName = CmsTabs.Content)]
+       Description = "Three column landing page with properties to determin column size",
+       GroupName = SystemTabNames.Content)]
     [ImageUrl("~/assets/icons/gfx/page-type-thumbnail-landingpage-threecol.png")]
     public class ThreeColumnLandingPage : LandingPage
     {
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 300)]
         [CultureSpecific]
+        [Display(Name = "Left Hand Content Area", GroupName = SystemTabNames.Content, Order = 195)]
         public virtual ContentArea LeftHandContentArea { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 350)]
         [CultureSpecific]
+        [Display(Name = "Right Hand Content Area", GroupName = SystemTabNames.Content, Order = 205)]
         public virtual ContentArea RightHandContentArea { get; set; }
 
-        [Display(
-            Name = "Column quantity of MainContentArea",
-            GroupName = SystemTabNames.Content,
-            Order = 400)]
         [CultureSpecific]
+        [Display(Name = "Column Quantity of Main Content Area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual int MainContentAreaColumn { get; set; }
 
-        [Display(
-            Name = "Column quantity of RightHandContentArea",
-            GroupName = SystemTabNames.Content,
-            Order = 450)]
         [CultureSpecific]
+        [Display(Name = "Column Quantity of Right Hand Content Area", GroupName = SystemTabNames.Content, Order = 211)]
         public virtual int RightHandContentAreaColumn { get; set; }
 
-        [Display(
-            Name = "Column quantity of LeftHandContentArea",
-            GroupName = SystemTabNames.Content,
-            Order = 500)]
         [CultureSpecific]
+        [Display(Name = "Column Quantity of Left Hand Content Area", GroupName = SystemTabNames.Content, Order = 212)]
         public virtual int LeftHandContentAreaColumn { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
-            this.MainContentAreaColumn = this.RightHandContentAreaColumn = this.LeftHandContentAreaColumn = 4;
             base.SetDefaultValues(contentType);
+
+            MainContentAreaColumn = RightHandContentAreaColumn = this.LeftHandContentAreaColumn = 4;
         }
     }
 

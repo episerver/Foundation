@@ -10,35 +10,30 @@ namespace Foundation.Social.Models.Blocks
     /// The RatingBlock class defines the configuration used for rendering rating views.
     /// </summary>
     [ContentType(DisplayName = "Rating Block",
-                 GUID = "069e2c52-fd48-49c5-8993-7a0347ea1f78",
-                 Description = "Configures the frontend view properties of a rating block", GroupName = "Social")]
+        GUID = "069e2c52-fd48-49c5-8993-7a0347ea1f78",
+        Description = "Configures the frontend view properties of a rating block",
+        GroupName = SocialTabNames.Social)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
     public class RatingBlock : BlockData
     {
         /// <summary>
         /// Configures the heading that should be used when displaying the block view in the frontend.
         /// </summary>
-        [Display(
-        GroupName = SystemTabNames.Content,
-            Order = 1)]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         [CultureSpecific]
         public virtual string Heading { get; set; }
 
         /// <summary>
         /// Configures whether the heading should be displayed in the block's frontend view.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 2)]
+        [Display(Name = "Show heading", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual bool ShowHeading { get; set; }
 
         /// <summary>
         /// Configures whether an activity should be sent to the Episerver Social 
         /// Activity Streams system when a rating a submitted using the rating block.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 3)]
+        [Display(Name = "Send activity", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual bool SendActivity { get; set; }
 
         /// <summary>
@@ -46,6 +41,7 @@ namespace Foundation.Social.Models.Blocks
         /// </summary>
         [Editable(false)]
         [ScaffoldColumn(false)]
+        [Display(Name = "Rating settings", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual IList<RatingSetting> RatingSettings { get; set; }
 
         /// <summary>

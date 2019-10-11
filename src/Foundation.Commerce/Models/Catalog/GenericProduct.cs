@@ -24,19 +24,19 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         public virtual string LegalDisclaimer { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 25)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 25)]
         [BackingType(typeof(PropertyString))]
         public virtual string Manufacturer { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 26)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 26)]
         [CultureSpecific]
         public virtual string ManufacturerPartsWarrantyDescription { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 27)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 27)]
         [BackingType(typeof(PropertyString))]
         public virtual string Model { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 28)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 28)]
         [BackingType(typeof(PropertyString))]
         public virtual string ModelYear { get; set; }
 
@@ -55,7 +55,7 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         public virtual string ProductTypeSubcategory { get; set; }
 
-        [Display(Order = 40, GroupName = CommerceTabs.Manufacturer)]
+        [Display(Order = 40, GroupName = CommerceTabNames.Manufacturer)]
         [BackingType(typeof(PropertyString))]
         public virtual string Warranty { get; set; }
 

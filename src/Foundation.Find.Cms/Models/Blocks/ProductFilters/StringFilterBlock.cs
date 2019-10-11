@@ -6,18 +6,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
 {
-    [ContentType(DisplayName = "String Filter",
+    [ContentType(DisplayName = "String Filter Block",
         GUID = "efcb0aef-5427-49bb-ab1b-2b429a2f2cc3",
         Description = "Filter product search blocks by field values",
         GroupName = "Commerce")]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-14.png")]
     public class StringFilterBlock : FilterBaseBlock
     {
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 5,
-            Name = "Filter Value",
-            Description = "The value to filter search results on")]
+        [Display(Name = "Filter Value", Description = "The value to filter search results on", GroupName = SystemTabNames.Content, Order = 20)]
         [CultureSpecific(true)]
         public virtual string FieldValue { get; set; }
 

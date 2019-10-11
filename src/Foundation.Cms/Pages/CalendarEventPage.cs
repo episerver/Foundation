@@ -5,24 +5,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Calendar Event",
-        GUID = "f086fd08-4e54-4eb9-8367-c45630415226",
-        Description = "",
-        GroupName = "Calendar Event")]
+    [ContentType(DisplayName = "Calendar Event Page", GUID = "f086fd08-4e54-4eb9-8367-c45630415226", GroupName = CmsTabNames.CalendarEvent)]
     [ImageUrl("~/assets/icons/cms/pages/calendar.png")]
     public class CalendarEventPage : FoundationPageData
     {
-
         [CultureSpecific]
-        [Display(Name = "Start date", GroupName = SystemTabNames.Content, Order = 200)]
+        [Display(Name = "Start date", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual DateTime StartDate { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "End date", GroupName = SystemTabNames.Content, Order = 300)]
+        [Display(Name = "End date", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual DateTime EndDate { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Location", GroupName = SystemTabNames.Content, Order = 400)]
+        [Display(GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string Location { get; set; }
     }
 }

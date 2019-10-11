@@ -59,7 +59,7 @@ namespace Foundation.Commerce.Order.Services
                 {
                     ItemCount = 0,
                     CheckoutPage = startPage.CheckoutPage,
-                    CartPage = isSharedCart ? startPage.SharedCartPage : startPage.CartPage,
+                    CartPage = isSharedCart ? startPage.SharedCartPage : startPage.ShoppingCartPage,
                     Label = isSharedCart ? startPage.SharedCartLabel : startPage.CartLabel,
                     Shipments = Enumerable.Empty<ShipmentViewModel>(),
                     Total = new Money(0, _currencyService.GetCurrentCurrency()),
@@ -70,7 +70,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),
                 CheckoutPage = startPage.CheckoutPage,
-                CartPage = isSharedCart ? startPage.SharedCartPage : startPage.CartPage,
+                CartPage = isSharedCart ? startPage.SharedCartPage : startPage.ShoppingCartPage,
                 Label = isSharedCart ? startPage.SharedCartLabel : startPage.CartLabel,
                 Shipments = _shipmentViewModelFactory.CreateShipmentsViewModel(cart),
                 Total = _orderGroupCalculator.GetSubTotal(cart),
