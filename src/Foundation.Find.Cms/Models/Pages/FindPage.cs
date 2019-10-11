@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Cms;
 using Foundation.Cms.Pages;
@@ -10,14 +11,14 @@ namespace Foundation.Find.Cms.Models.Pages
     [ContentType(DisplayName = "Find Search Page",
         GUID = "39c8b336-bcb1-4e31-9705-9eb0fda1263b",
         Description = "Search page based on EPiServer Find",
-        GroupName = CmsTabs.Content,
+        GroupName = SystemTabNames.Content,
         AvailableInEditMode = false)]
     [AvailableContentTypes(IncludeOn = new[] { typeof(CmsHomePage) })]
     [SiteImageUrl]
     public class FindPage : FoundationPageData
     {
         [Display(
-            GroupName = CmsTabs.Content,
+            GroupName = SystemTabNames.Content,
             Order = 310)]
         [CultureSpecific]
         public virtual ContentArea RelatedContentArea { get; set; }
@@ -26,7 +27,7 @@ namespace Foundation.Find.Cms.Models.Pages
         [Display(
             Name = "Page Heading",
             Description = "The main heading displayed before search results.",
-            GroupName = CmsTabs.Content,
+            GroupName = SystemTabNames.Content,
             Order = 300)]
         public virtual string Heading { get; set; }
 

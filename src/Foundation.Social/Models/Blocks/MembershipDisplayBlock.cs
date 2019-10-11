@@ -8,42 +8,37 @@ namespace Foundation.Social.Models.Blocks
     /// <summary>
     /// The MembershipDisplayBlock class defines the configuration used for rendering group creation views.
     /// </summary>
-    [ContentType(DisplayName = "Membership Display Block", GUID = "0d5075ad-31ea-40cb-ae8f-a88b519db35f", Description = "Configures the properties of a membership display block view", GroupName = "Social")]
+    [ContentType(DisplayName = "Membership Display Block",
+        GUID = "0d5075ad-31ea-40cb-ae8f-a88b519db35f",
+        Description = "Configures the properties of a membership display block view",
+        GroupName = SocialTabNames.Social)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
     public class MembershipDisplayBlock : BlockData
     {
         /// <summary>
         /// Configures the heading that should be used when displaying the block view in the frontend.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 1)]
         [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
         /// <summary>
         /// Configures whether the heading should be displayed in the block's frontend view.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 2)]
+        [Display(Name = "Show heading", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual bool ShowHeading { get; set; }
 
         /// <summary>
         /// The name of the group entered in the admin view and used to display membership.
         /// </summary>
-        [Display(
-             GroupName = SystemTabNames.Content,
-             Order = 3)]
         [CultureSpecific]
+        [Display(Name = "Group name", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string GroupName { get; set; }
 
         /// <summary>
         /// Configures the maximum number of members that should be displayed in the view.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 4)]
+        [Display(Name = "Display page size", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual int DisplayPageSize { get; set; }
 
         /// <summary>
@@ -53,6 +48,7 @@ namespace Foundation.Social.Models.Blocks
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
+
             Heading = "Group Membership Display";
             ShowHeading = false;
             GroupName = "Default Group";

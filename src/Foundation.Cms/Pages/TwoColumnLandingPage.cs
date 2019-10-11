@@ -7,41 +7,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(
+    [ContentType(DisplayName = "Two Column Landing Page",
        GUID = "F94571B0-65C4-4E49-8A88-5930D045E19D",
-       DisplayName = "Two Column Landing Page",
        Description = "Two column landing page with properties to determine column size",
-       GroupName = CmsTabs.Content)]
+       GroupName = SystemTabNames.Content)]
     [ImageUrl("~/assets/icons/gfx/page-type-thumbnail-landingpage-twocol.png")]
     public class TwoColumnLandingPage : LandingPage
     {
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 350)]
         [CultureSpecific]
+        [Display(Name = "Right Hand ContentArea", GroupName = SystemTabNames.Content, Order = 205)]
         public virtual ContentArea RightHandContentArea { get; set; }
 
-        [Display(
-            Name = "Column quantity of MainContentArea",
-            GroupName = SystemTabNames.Content,
-            Order = 400)]
         [CultureSpecific]
+        [Display(Name = "Column Quantity of Main ContentArea", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual int MainContentAreaColumn { get; set; }
 
-        [Display(
-            Name = "Column quantity of RightHandContentArea",
-            GroupName = SystemTabNames.Content,
-            Order = 450)]
         [CultureSpecific]
+        [Display(Name = "Column quantity of Right Hand ContentArea", GroupName = SystemTabNames.Content, Order = 211)]
         public virtual int RightHandContentAreaColumn { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
-            this.MainContentAreaColumn = this.RightHandContentAreaColumn = 6;
             base.SetDefaultValues(contentType);
+
+            MainContentAreaColumn = RightHandContentAreaColumn = 6;
         }
     }
-
 
     public class TwoColumnLandingPageValidation : IValidate<TwoColumnLandingPage>
     {

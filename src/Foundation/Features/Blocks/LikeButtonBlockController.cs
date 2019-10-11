@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Blocks;
+using Foundation.Social.Blocks;
 using Foundation.Social.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {

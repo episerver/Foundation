@@ -5,28 +5,28 @@
 <hr class="bottom-line">
 <footer class="footer container">
     <h5 class="footer__introduction">
-        @Html.PropertyFor(x => x.StartPage.FooterIntroduction)
+        @Html.PropertyFor(x => x.StartPage.Introduction)
     </h5>
     <div class="row">
         <div class="col-md-6 col-lg-4">
-            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.FooterCompanyHeader)> @Html.DisplayFor(x => x.StartPage.FooterCompanyHeader)</h3>
+            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.CompanyHeader)> @Html.DisplayFor(x => x.StartPage.CompanyHeader)</h3>
             <p>
-                Phone: <a href="tel:@Html.DisplayFor(x => x.StartPage.FooterCompanyPhone)" @Html.EditAttributes(x => x.StartPage.FooterCompanyPhone)>@Html.DisplayFor(x => x.StartPage.FooterCompanyPhone)</a>
+                Phone: <a href="tel:@Html.DisplayFor(x => x.StartPage.CompanyPhone)" @Html.EditAttributes(x => x.StartPage.CompanyPhone)>@Html.DisplayFor(x => x.StartPage.CompanyPhone)</a>
             </p>
             <p>
-                Email: <a href="mailto:@Html.DisplayFor(x => x.StartPage.FooterCompanyEmail)" @Html.EditAttributes(x => x.StartPage.FooterCompanyEmail)>@Html.DisplayFor(x => x.StartPage.FooterCompanyEmail)</a>
+                Email: <a href="mailto:@Html.DisplayFor(x => x.StartPage.CompanyEmail)" @Html.EditAttributes(x => x.StartPage.CompanyEmail)>@Html.DisplayFor(x => x.StartPage.CompanyEmail)</a>
             </p>
-            <p @Html.EditAttributes(x => x.StartPage.FooterCompanyAddress)>
-                @Html.DisplayFor(x => x.StartPage.FooterCompanyAddress)
+            <p @Html.EditAttributes(x => x.StartPage.CompanyAddress)>
+                @Html.DisplayFor(x => x.StartPage.CompanyAddress)
             </p>
         </div>
         <div class="col-md-6 col-lg-2">
-            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.FooterLinksHeader)> @Html.DisplayFor(x => x.StartPage.FooterLinksHeader)</h3>
+            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.LinksHeader)> @Html.DisplayFor(x => x.StartPage.LinksHeader)</h3>
 
             @if (Model != null)
             {
-                <div @Html.EditAttributes(x => x.StartPage.FooterColumnLinks)>
-                    @foreach (var item in Model.StartPage.FooterColumnLinks ?? new LinkItemCollection())
+                <div @Html.EditAttributes(x => x.StartPage.Links)>
+                    @foreach (var item in Model.StartPage.Links ?? new LinkItemCollection())
                     {
                         <a class="footer__link" href="@Url.PageUrl(item.Href)">
                             @item.Text
@@ -36,7 +36,7 @@
             }
         </div>
         <div class="col-md-6 col-lg-2">
-            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.FooterFollowHeader)>@Html.DisplayFor(x => x.StartPage.FooterFollowHeader)</h3>
+            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.SocialHeader)>@Html.DisplayFor(x => x.StartPage.SocialHeader)</h3>
 
             <a class="footer__link" href="https://www.facebook.com/Episerver" target="_blank">
                 Facebook
@@ -49,7 +49,7 @@
             </a>
         </div>
         <div class="col-md-6 col-lg-4">
-            @Html.PropertyFor(x => x.StartPage.FooterContentArea)
+            @Html.PropertyFor(x => x.StartPage.ContentArea)
         </div>
     </div>
 

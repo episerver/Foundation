@@ -4,9 +4,13 @@ using System.ComponentModel.DataAnnotations;
 namespace Foundation.Find.Cms
 {
     [GroupDefinitions]
-    public static class FindTabs
+    public static class FindTabNames
     {
-        [Display(Name = "Location", Order = 8)]
+        #region Groupnames for Content Types
+
+        [Display(Order = 560)]
         public const string Location = "Location";
+
+        #endregion
     }
 }

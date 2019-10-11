@@ -11,12 +11,7 @@ namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
         public abstract Filter GetFilter();
 
         [CultureSpecific]
-        [Display(
-            Name = "Field Name",
-            Description = "Name of field in index",
-            GroupName = SystemTabNames.Content,
-            Order = 1)]
+        [Display(Name = "Field Name", Description = "Name of field in index", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string FieldName { get; set; }
-
     }
 }
