@@ -15,7 +15,7 @@ namespace Foundation.Demo.Personalization
 
         public void Intercept<TPayload>(TrackingData<TPayload> trackingData)
         {
-            if (!string.IsNullOrWhiteSpace(trackingData.Scope))
+            if (string.IsNullOrWhiteSpace(trackingData.Scope))
             {
                 var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as DemoHomePage;
                 if (homePage != null && !string.IsNullOrWhiteSpace(homePage.TrackingScope))
@@ -23,9 +23,9 @@ namespace Foundation.Demo.Personalization
                     trackingData.Scope = homePage.TrackingScope;
                     return;
                 }
-            }
 
-            trackingData.Scope = "foundation";
+                trackingData.Scope = "foundation";
+            }
         }
     }
 }
