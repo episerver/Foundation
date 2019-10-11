@@ -499,6 +499,7 @@
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.13.0\lib\net461\EPiServer.Web.WebControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Geta.EpiCategories, Version=1.2.9.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>

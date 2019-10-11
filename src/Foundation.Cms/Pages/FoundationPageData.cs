@@ -5,11 +5,14 @@ using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
+using Geta.EpiCategories;
+using Geta.EpiCategories.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    public abstract class FoundationPageData : PageData
+    public abstract class FoundationPageData : PageData, ICategorizableContent
     {
         public const string MetaData = CmsTabs.MetaData;
         public const string Styles = CmsTabs.Styles;
@@ -216,7 +219,10 @@ namespace Foundation.Cms.Pages
             Order = 600)]
         [CultureSpecific]
         public virtual bool ExcludeFromSearch { get; set; }
-
         #endregion
+
+        [Display(Name = "Categories", GroupName = SystemTabNames.PageHeader)]
+        [Categories]
+        public virtual IList<ContentReference> Categories { get; set; }
     }
 }
