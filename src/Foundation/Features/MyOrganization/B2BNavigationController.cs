@@ -40,9 +40,9 @@ namespace Foundation.Features.MyOrganization
                 return PartialView("_B2BNavigation", viewModel);
             }
 
-            if (startPage.B2BMenu != null)
+            if (startPage.OrganizationMenu != null)
             {
-                viewModel.UserLinks.AddRange(_b2bNavigationService.FilterB2BNavigationForCurrentUser(startPage.B2BMenu));
+                viewModel.UserLinks.AddRange(_b2bNavigationService.FilterB2BNavigationForCurrentUser(startPage.OrganizationMenu));
             }
 
             return PartialView("_B2BNavigation", viewModel);

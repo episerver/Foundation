@@ -8,7 +8,7 @@ namespace Foundation.Commerce.Models.Pages
     [ContentType(DisplayName = "Cart Page",
         GUID = "4d32f8b1-7651-49db-88e2-cdcbec8ed11c",
         Description = "Page for managing cart",
-        GroupName = CommerceTabs.Commerce,
+        GroupName = CommerceTabNames.Commerce,
         AvailableInEditMode = false)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-08.png")]
     public class CartPage : FoundationPageData

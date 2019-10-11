@@ -21,7 +21,7 @@ using System.Web.Mvc;
 
 namespace Foundation.Features.Search
 {
-    public class SearchController : PageController<SearchPage>
+    public class SearchController : PageController<SearchResultPage>
     {
         private readonly ISearchViewModelFactory _viewModelFactory;
         private readonly ICommerceSearchService _commerceSearchService;
@@ -54,7 +54,7 @@ namespace Foundation.Features.Search
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
-        public async Task<ActionResult> Index(SearchPage currentPage, CommerceFilterOptionViewModel filterOptions)
+        public async Task<ActionResult> Index(SearchResultPage currentPage, CommerceFilterOptionViewModel filterOptions)
         {
             if (filterOptions == null)
             {
@@ -62,7 +62,7 @@ namespace Foundation.Features.Search
             }
 
             var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
-            var viewModel = _viewModelFactory.Create<DemoSearchViewModel<SearchPage>, SearchPage>(currentPage, new CommerceArgs
+            var viewModel = _viewModelFactory.Create<DemoSearchViewModel<SearchResultPage>, SearchResultPage>(currentPage, new CommerceArgs
             {
                 FilterOption = filterOptions,
                 SelectedFacets = HttpContext.Request.QueryString["facets"],
@@ -137,7 +137,7 @@ namespace Foundation.Features.Search
             var productCount = 0;
             var contentCount = 0;
 
-            var model = new DemoSearchViewModel<SearchPage>();
+            var model = new DemoSearchViewModel<SearchResultPage>();
 
             if (startPage.ShowProductSearchResults)
             {
@@ -190,7 +190,7 @@ namespace Foundation.Features.Search
         }
 
         [ChildActionOnly]
-        public ActionResult Facet(SearchPage currentPage, CommerceFilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
+        public ActionResult Facet(SearchResultPage currentPage, CommerceFilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
 
 
         public class AssetPreloadLink

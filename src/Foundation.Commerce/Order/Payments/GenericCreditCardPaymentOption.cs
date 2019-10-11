@@ -41,7 +41,6 @@ namespace Foundation.Commerce.Order.Payments
         [DefaultValue(true)]
         public bool UseSelectedCreditCard { get; set; }
 
-
         [LocalizedDisplay("/Checkout/Payment/Methods/CreditCard/Labels/CreditCardName")]
         [LocalizedRequired("/Checkout/Payment/Methods/CreditCard/Empty/CreditCardName")]
         public string CreditCardName { get; set; }
@@ -231,7 +230,6 @@ namespace Foundation.Commerce.Order.Payments
             }
             return null;
         }
-
 
         public void InitializeValues()
         {

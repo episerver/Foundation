@@ -8,43 +8,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Teaser Block", GUID = "EB67A99A-E239-41B8-9C59-20EAA5936047", GroupName = CmsTabs.Content)]
+    [ContentType(DisplayName = "Teaser Block", GUID = "EB67A99A-E239-41B8-9C59-20EAA5936047", GroupName = CmsTabNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class TeaserBlock : FoundationBlockData
     {
         [CultureSpecific]
         [Required(AllowEmptyStrings = false)]
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 1)]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
         [CultureSpecific]
-        [Required(AllowEmptyStrings = false)]
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 2)]
         [UIHint(UIHint.Textarea)]
+        [Required(AllowEmptyStrings = false)]
+        [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string Text { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Name = "Text placement",
-            Order = 3)]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockTextPlacementSelectionFactory))]
+        [Display(Name = "Text placement", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string TextPlacement { get; set; }
 
         [CultureSpecific]
-        [Required(AllowEmptyStrings = false)]
         [UIHint(UIHint.Image)]
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 4)]
+        [Required(AllowEmptyStrings = false)]
+        [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual ContentReference Image { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 5)]
+        [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual PageReference Link { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

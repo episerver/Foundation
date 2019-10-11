@@ -7,7 +7,7 @@ namespace Foundation.Commerce.Models.Pages
         GUID = "9699e421-1e17-4590-a66b-d41b1058eaa1",
         Description = "Manage a sub organization",
         AvailableInEditMode = false,
-        GroupName = CommerceTabs.Commerce)]
+        GroupName = CommerceTabNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/elected.png")]
     public class SubOrganizationPage : FoundationPageData
     {

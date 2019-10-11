@@ -5,43 +5,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(
-        DisplayName = "Tags",
+    [ContentType(DisplayName = "Tags Page",
         GUID = "fc83ded1-be4a-40fe-99b2-9ab739b018d5",
-        GroupName = CmsTabs.Blog,
-        Description = "Used to define a Tag")]
+        Description = "Used to define a Tag",
+        GroupName = CmsTabNames.Content)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-27.png")]
     public class TagPage : FoundationPageData
     {
-        [Display(
-            Name = "Images",
-            GroupName = SystemTabNames.Content,
-            Description = "",
-            Order = 5)]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         [AllowedTypes(typeof(ImageData))]
         public virtual ContentArea Images { get; set; }
 
-        [Display(
-            Name = "Top area",
-            GroupName = SystemTabNames.Content,
-            Description = "",
-            Order = 100)]
+        [Display(Name = "Top area", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual ContentArea TopArea { get; set; }
 
-        [Display(
-            Name = "Bottom area",
-            GroupName = SystemTabNames.Content,
-            Description = "",
-            Order = 200)]
+        [Display(Name = "Bottom area", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual ContentArea BottomArea { get; set; }
 
-        [Display(
-            Name = "Intro text",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 30)]
         [StringLength(5000)]
-        //[UIHint(UIHint.Textarea)]
+        [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual string MainIntro { get; set; }
 
         [Ignore]

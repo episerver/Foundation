@@ -6,19 +6,20 @@ using Foundation.Find.Cms.Locations;
 using Foundation.Find.Cms.Models.Pages;
 using System;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Foundation.Find.Cms.Models.Blocks
 {
-    [ContentType(
-        DisplayName = "Filter Temperatures Block",
+    [ContentType(DisplayName = "Filter Temperatures Block",
         GUID = "28629b4b-9475-4c44-9c15-31961391f166",
         Description = "Temperature slider for locations",
-        GroupName = FindTabs.Location)]
+        GroupName = FindTabNames.Location)]
     [ImageUrl("~/assets/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage) })]
     public class FilterTemperaturesBlock : FoundationBlockData, IFilterBlock
     {
+        [Display(Name = "Filter title")]
         public virtual string FilterTitle { get; set; }
 
         public ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query)
@@ -31,9 +32,8 @@ namespace Foundation.Find.Cms.Models.Blocks
             var filterString = filters["t"];
             if (!string.IsNullOrWhiteSpace(filterString))
             {
-                int f, t;
                 var temperatures = filterString.Split(',').ToList();
-                if (Int32.TryParse(temperatures.First(), out f) && Int32.TryParse(temperatures.Last(), out t) && f <= t && f >= -20 && t <= 40)
+                if (int.TryParse(temperatures.First(), out var f) && int.TryParse(temperatures.Last(), out var t) && f <= t && f >= -20 && t <= 40)
                 {
                     query = query.Filter(x => x.AvgTempDbl.InRange(f, t));
                 }

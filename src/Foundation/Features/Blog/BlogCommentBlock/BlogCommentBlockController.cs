@@ -51,7 +51,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         public override ActionResult Index(Cms.Blocks.BlogCommentBlock currentBlock)
         {
 
-            var pagingInfo = new PagingInfo(_pageRouteHelper.PageLink.ID, currentBlock.RecordPerPage == 0 ? RecordPerPage : currentBlock.RecordPerPage, 1);
+            var pagingInfo = new PagingInfo(_pageRouteHelper.PageLink.ID, currentBlock.NumberOfComments == 0 ? RecordPerPage : currentBlock.NumberOfComments, 1);
             return GetComment(pagingInfo);
         }
 

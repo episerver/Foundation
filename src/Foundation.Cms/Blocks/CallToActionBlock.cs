@@ -6,42 +6,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Call To Action", GUID = "f82da800-c923-48f6-b701-fd093078c5d9", GroupName = CmsTabs.Content,
-        Description = "Provides a CTA anchor or link")]
+    [ContentType(DisplayName = "Call To Action Block", 
+        GUID = "f82da800-c923-48f6-b701-fd093078c5d9", 
+        Description = "Provides a CTA anchor or link",
+        GroupName = CmsTabNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class CallToActionBlock : FoundationBlockData
     {
         [CultureSpecific]
-        [Display(
-            Name = "Title",
-            Description = "Title displayed",
-            GroupName = SystemTabNames.Content,
-            Order = 10)]
+        [Display(Name = "Title", Description = "Title displayed", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Title { get; set; }
 
         [CultureSpecific]
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 20)]
+        [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual XhtmlString Subtext { get; set; }
 
-        [Display(
-            Name = "Text Color",
-            GroupName = SystemTabNames.Content,
-            Order = 30)]
+        [Display(Name = "Text color", GroupName = SystemTabNames.Content,  Order = 30)]
         public virtual string TextColor { get; set; }
 
-        [Display(
-            Name = "Background Image",
-            GroupName = SystemTabNames.Content,
-            Order = 40)]
+        [Display(Name = "Background image", GroupName = SystemTabNames.Content, Order = 40)]
         [UIHint(UIHint.Image)]
         public virtual ContentReference BackgroundImage { get; set; }
 
-
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 50)]
+        [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual ButtonBlock Button { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

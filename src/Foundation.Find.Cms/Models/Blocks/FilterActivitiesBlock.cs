@@ -7,20 +7,21 @@ using Foundation.Find.Cms.Locations;
 using Foundation.Find.Cms.Models.Pages;
 using System;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace Foundation.Find.Cms.Models.Blocks
 {
-    [ContentType(
-        DisplayName = "Filter Activities Block",
+    [ContentType(DisplayName = "Filter Activities Block",
         GUID = "918c590e-b2cd-4b87-9116-899b1db19117",
         Description = "Activity facets for locations",
-        GroupName = FindTabs.Location)]
+        GroupName = FindTabNames.Location)]
     [ImageUrl("~/assets/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage) })]
     public class FilterActivitiesBlock : FoundationBlockData, IFilterBlock
     {
+        [Display(Name = "Filter title")]
         public virtual string FilterTitle { get; set; }
 
         public ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query)

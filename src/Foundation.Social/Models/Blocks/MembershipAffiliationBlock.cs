@@ -8,33 +8,30 @@ namespace Foundation.Social.Models.Blocks
     /// <summary>
     /// The MembershipAffiliationBlock class defines the configuration used for the list of groups that a member is associated with.
     /// </summary>
-    [ContentType(DisplayName = "Membership Affiliation Block", GUID = "d7f22a41-a26c-4e85-b4a5-15929d4222fc", Description = "Configures the properties of a membership affiliation block view", GroupName = "Social")]
+    [ContentType(DisplayName = "Membership Affiliation Block",
+        GUID = "d7f22a41-a26c-4e85-b4a5-15929d4222fc", 
+        Description = "Configures the properties of a membership affiliation block view", 
+        GroupName = SocialTabNames.Social)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
     public class MembershipAffiliationBlock : BlockData
     {
         /// <summary>
         /// Configures the heading that should be used when displaying the block view in the frontend.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 1)]
         [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
         /// <summary>
         /// Configures whether the heading should be displayed in the block's frontend view.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 2)]
+        [Display(Name = "Show heading", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual bool ShowHeading { get; set; }
 
         /// <summary>
         /// Configures the maximum number of members that should be displayed in the view.
         /// </summary>
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 4)]
+        [Display(Name = "Display page size", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual int DisplayPageSize { get; set; }
 
         /// <summary>
@@ -44,6 +41,7 @@ namespace Foundation.Social.Models.Blocks
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
+
             Heading = "Membership Affiliation";
             ShowHeading = false;
             DisplayPageSize = 10;
