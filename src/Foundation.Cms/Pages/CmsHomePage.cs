@@ -14,79 +14,68 @@ namespace Foundation.Cms.Pages
         #region Content
 
         [CultureSpecific]
-        [Display(
-            Name = "Top content area",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 4)]
+        [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual ContentArea TopContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "Bottom content area",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 6)]
+        [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 110)]
         public virtual ContentArea BottomContentArea { get; set; }
 
         #endregion
 
         #region Menu   
-        [Display(Name = "Mobile Navigation", GroupName = CmsTabs.Menu, Order = 3)]
+
+        [AllowedTypes(new[] { typeof(MenuItemBlock) })]
+        [UIHint("HideContentAreaActionsContainer", PresentationLayer.Edit)]
+        [Display(Name = "Main menu", GroupName = CmsTabNames.Menu, Order = 10)]
+        public virtual ContentArea MainMenu { get; set; }
+
+        [Display(Name = "Mobile menu", GroupName = CmsTabNames.Menu, Order = 20)]
         public virtual LinkItemCollection MobileNavigationPages { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "My Account Cms Navigation",
+        [Display(Name = "My account menu (CMS)",
             Description = "This menu will show if show commerce components in header is false",
-            GroupName = CmsTabs.Menu,
-            Order = 4)]
+            GroupName = CmsTabNames.Menu,
+            Order = 40)]
         public virtual LinkItemCollection MyAccountCmsMenu { get; set; }
-
-        [Display(Name = "Main Menu", GroupName = CmsTabs.Menu, Order = 1)]
-        [UIHint("HideContentAreaActionsContainer", PresentationLayer.Edit)]
-        [AllowedTypes(new[] { typeof(MenuItemBlock) })]
-        public virtual ContentArea MainMenu { get; set; }
 
         #endregion
 
         #region Footer
 
-        [Display(Name = "Footer Company Header", GroupName = CmsTabs.Footer, Order = 30)]
-        public virtual string FooterCompanyHeader { get; set; }
+        [Display(Name = "Introduction", GroupName = CmsTabNames.Footer, Order = 10)]
+        public virtual string Introduction { get; set; }
 
-        [Display(Name = "Footer Follow Social Header", GroupName = CmsTabs.Footer, Order = 50)]
-        public virtual string FooterFollowHeader { get; set; }
+        [Display(Name = "Company header", GroupName = CmsTabNames.Footer, Order = 20)]
+        public virtual string CompanyHeader { get; set; }
 
-        [Display(Name = "Footer Links Header", GroupName = CmsTabs.Footer, Order = 70)]
-        public virtual string FooterLinksHeader { get; set; }
+        [Display(Name = "Comapny address", GroupName = CmsTabNames.Footer, Order = 30)]
+        public virtual string CompanyAddress { get; set; }
 
-        [Display(Name = "Footer Links", GroupName = CmsTabs.Footer, Order = 80)]
+        [Display(Name = "Company phone", GroupName = CmsTabNames.Footer, Order = 40)]
+        public virtual string CompanyPhone { get; set; }
+
+        [Display(Name = "Company email", GroupName = CmsTabNames.Footer, Order = 50)]
+        public virtual string CompanyEmail { get; set; }
+
+        [Display(Name = "Links header", GroupName = CmsTabNames.Footer, Order = 60)]
+        public virtual string LinksHeader { get; set; }
+
         [UIHint("FooterColumnNavigation")]
-        public virtual LinkItemCollection FooterColumnLinks { get; set; }
+        [Display(Name = "Footer links", GroupName = CmsTabNames.Footer, Order = 70)]
+        public virtual LinkItemCollection Links { get; set; }
 
-        [Display(Name = "Footer Comapny Address", GroupName = CmsTabs.Footer, Order = 100)]
-        public virtual string FooterCompanyAddress { get; set; }
-
-        [Display(Name = "Footer Comapny Phone", GroupName = CmsTabs.Footer, Order = 110)]
-        public virtual string FooterCompanyPhone { get; set; }
-
-        [Display(Name = "Footer Company Email", GroupName = CmsTabs.Footer, Order = 120)]
-        public virtual string FooterCompanyEmail { get; set; }
-
-        [Display(Name = "Footer Copyright", GroupName = CmsTabs.Footer, Order = 130)]
-        public virtual string FooterCopyrightText { get; set; }
-
-        [Display(Name = "Footer Introduction", GroupName = CmsTabs.Footer, Order = 140)]
-        public virtual string FooterIntroduction { get; set; }
+        [Display(Name = "Social header", GroupName = CmsTabNames.Footer, Order = 80)]
+        public virtual string SocialHeader { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "Footer content area",
-            Description = "",
-            GroupName = CmsTabs.Footer,
-            Order = 150)]
-        public virtual ContentArea FooterContentArea { get; set; }
+        [Display(Name = "Content area", GroupName = CmsTabNames.Footer, Order = 90)]
+        public virtual ContentArea ContentArea { get; set; }
+
+        [Display(Name = "Copyright", GroupName = CmsTabNames.Footer, Order = 130)]
+        public virtual string FooterCopyrightText { get; set; }
+        
         #endregion
     }
 }

@@ -9,19 +9,20 @@ using Foundation.Find.Cms.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Foundation.Find.Cms.Models.Blocks
 {
-    [ContentType(
-        DisplayName = "Filter Distances Block",
+    [ContentType(DisplayName = "Filter Distances Block",
         GUID = "eab40a8c-9006-4766-a87e-1dec153e735f",
         Description = "Distance facets for locations",
-        GroupName = FindTabs.Location)]
+        GroupName = FindTabNames.Location)]
     [ImageUrl("~/assets/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage) })]
     public class FilterDistancesBlock : FoundationBlockData, IFilterBlock
     {
+        [Display(Name = "Filter title")]
         public virtual string FilterTitle { get; set; }
 
         public ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query)

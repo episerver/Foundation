@@ -14,31 +14,31 @@ namespace Foundation.Commerce.Models.Catalog
     public class GenericVariant : VariationContent, IProductRecommendations
     {
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 20)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 20)]
         [BackingType(typeof(PropertyString))]
         public virtual string Mpn { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 21)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 21)]
         [BackingType(typeof(PropertyString))]
         public virtual string PackageQuantity { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 22)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 22)]
         [BackingType(typeof(PropertyString))]
         public virtual string PartNumber { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 24)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 24)]
         [BackingType(typeof(PropertyString))]
         public virtual string RegionCode { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 26)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 26)]
         [BackingType(typeof(PropertyString))]
         public virtual string Sku { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 27)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 27)]
         [BackingType(typeof(PropertyString))]
         public virtual string SubscriptionLength { get; set; }
 
-        [Display(GroupName = CommerceTabs.Manufacturer, Order = 29)]
+        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 29)]
         [BackingType(typeof(PropertyString))]
         public virtual string Upc { get; set; }
 

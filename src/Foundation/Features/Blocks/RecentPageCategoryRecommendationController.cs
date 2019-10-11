@@ -65,8 +65,7 @@ namespace Foundation.Features.Blocks
                     return PartialView("~/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
                 }
 
-                pages = _contentLoader.GetChildren<StandardPage>(currentBlock.InspirationFolder)
-                    .ToList();
+                pages = _contentLoader.GetChildren<StandardPage>(currentBlock.InspirationFolder).ToList();
             }
 
             var pageCount = pages.Count;
