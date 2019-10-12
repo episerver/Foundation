@@ -26,7 +26,7 @@ namespace Foundation.Demo.Install.Steps
     public class AddPromotions : BaseInstallStep
     {
         public AddPromotions(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
         {

@@ -22,7 +22,7 @@ namespace Foundation.Demo.Install.Steps
     public class AddPaymentMethods : BaseInstallStep
     {
         public AddPaymentMethods(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
         {

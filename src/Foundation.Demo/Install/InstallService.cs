@@ -20,7 +20,7 @@ namespace Foundation.Demo.Install
     public class InstallService : IInstallService
     {
         private readonly ILogger _logger = LogManager.GetLogger(typeof(InstallService));
-        private readonly IDataImporter _dataImporter;
+        private readonly ServiceAccessor<IDataImporter> _dataImporter;
         private readonly ILanguageBranchRepository _languageBranchRepository;
         private readonly ISiteDefinitionRepository _siteDefinitionRepository;
         private readonly ContentExportProcessor _contentExportProcessor;
@@ -29,7 +29,7 @@ namespace Foundation.Demo.Install
         private InstallProgressMessenger _progressMessenger;
         private IEnumerable<IInstallStep> _installSteps;
 
-        public InstallService(IDataImporter dataImporter,
+        public InstallService(ServiceAccessor<IDataImporter> dataImporter,
             ILanguageBranchRepository languageBranchRepository,
             ISiteDefinitionRepository siteDefinitionRepository,
             ContentExportProcessor contentExportProcessor,
@@ -128,11 +128,11 @@ namespace Foundation.Demo.Install
             var success = false;
             try
             {
-                var log = _dataImporter.Import(stream, destinationRoot, new ImportOptions
+                var log = _dataImporter().Import(stream, destinationRoot, new ImportOptions
                 {
                     KeepIdentity = true,
                 });
-                var status = _dataImporter.Status;
+                var status = _dataImporter().Status;
                 var logError = ReportStatus(log);
                 if (log.Errors.Any())
                 {

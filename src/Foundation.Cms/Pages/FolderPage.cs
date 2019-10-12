@@ -1,3 +1,4 @@
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 
@@ -9,7 +10,7 @@ namespace Foundation.Cms.Pages
         GroupName = SystemTabNames.Content)]
     [AvailableContentTypes(IncludeOn = new[] { typeof(CmsHomePage), typeof(FolderPage) })]
     [ImageUrl("~/assets/icons/cms/pages/container.png")]
-    public class FolderPage : FoundationPageData
+    public class FolderPage : PageData
     {
     }
 }
