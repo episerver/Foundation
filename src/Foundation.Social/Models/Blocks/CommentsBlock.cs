@@ -37,7 +37,7 @@ namespace Foundation.Social.Models.Blocks
         /// <summary>
         /// Configures the max length of a comment.
         /// </summary>
-        [Display(Name = "Comment nax length", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Comment max length", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual int CommentMaxLength { get; set; }
 
         /// <summary>

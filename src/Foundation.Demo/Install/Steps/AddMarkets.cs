@@ -18,7 +18,7 @@ namespace Foundation.Demo.Install.Steps
     public class AddMarkets : BaseInstallStep
     {
         public AddMarkets(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
         {
