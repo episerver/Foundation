@@ -26,7 +26,7 @@ namespace Foundation.Cms.Pages
         #region Metadata
 
         [CultureSpecific]
-        [Display(Name = "Mega Title", GroupName = CmsTabNames.MetaData, Order = 100)]
+        [Display(Name = "Meta Title", GroupName = CmsTabNames.MetaData, Order = 100)]
         public virtual string MetaTitle
         {
             get

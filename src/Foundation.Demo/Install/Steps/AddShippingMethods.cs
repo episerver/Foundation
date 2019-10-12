@@ -20,7 +20,7 @@ namespace Foundation.Demo.Install.Steps
     public class AddShippingMethods : BaseInstallStep
     {
         public AddShippingMethods(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
         {

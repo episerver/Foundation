@@ -37,6 +37,7 @@ namespace Foundation.Features.Locations.LocationItemPage
             model.LocationNavigation.ContinentLocations = SearchClient.Instance
                 .Search<Find.Cms.Models.Pages.LocationItemPage>()
                 .Filter(x => x.Continent.Match(currentPage.Continent))
+                .PublishedInCurrentLanguage()
                 .OrderBy(x => x.PageName)
                 .FilterForVisitor()
                 .Take(100)
@@ -47,6 +48,7 @@ namespace Foundation.Features.Locations.LocationItemPage
                 .Search<Find.Cms.Models.Pages.LocationItemPage>()
                 .Filter(x => x.Continent.Match(currentPage.Continent)
                              & !x.PageLink.Match(currentPage.PageLink))
+                .PublishedInCurrentLanguage()
                 .FilterForVisitor()
                 .OrderBy(x => x.Coordinates)
                 .DistanceFrom(currentPage.Coordinates)
@@ -81,6 +83,7 @@ namespace Foundation.Features.Locations.LocationItemPage
 
             return query
                 .Filter(x => !x.PageLink.Match(currentPage.PageLink))
+                .PublishedInCurrentLanguage()
                 .FilterForVisitor()
                 .Take(3)
                 .GetPagesResult();
