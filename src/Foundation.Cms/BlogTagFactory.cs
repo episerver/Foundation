@@ -27,11 +27,11 @@ namespace Foundation.Cms
             _urlResolver = urlResolver;
             _categoryRepository = categoryRepository;
         }
-        public string GetTagUrl(PageData currentPage, Category cat)
+        public string GetTagUrl(PageData currentPage, ContentReference cat)
         {
             var start = FindParentByPageType(currentPage, typeof(BlogListPage));
             var pageUrl = _urlResolver.GetUrl(start.ContentLink);
-            var url = $"{pageUrl}?category={cat.Name}";
+            var url = $"{pageUrl}?category={cat.ID}";
             return url;
         }
 

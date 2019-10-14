@@ -21,6 +21,14 @@ namespace Foundation.Cms.Pages
 
         #region Content
 
+        [Categories]
+        [Display(
+            Name = "Categories",
+            Description = "Categories associated with this content",
+            GroupName = SystemTabNames.PageHeader,
+            Order = 0)]
+        public virtual IList<ContentReference> Categories { get; set; }
+
         [Display(GroupName = SystemTabNames.Content, Name = "Main body", Order = 2)]
         [CultureSpecific]
         public virtual XhtmlString MainBody { get; set; }
@@ -220,9 +228,5 @@ namespace Foundation.Cms.Pages
         [CultureSpecific]
         public virtual bool ExcludeFromSearch { get; set; }
         #endregion
-
-        [Display(Name = "Categories", GroupName = SystemTabNames.PageHeader)]
-        [Categories]
-        public virtual IList<ContentReference> Categories { get; set; }
     }
 }

@@ -1,11 +1,22 @@
+using System.Collections.Generic;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using System.ComponentModel.DataAnnotations;
+using Geta.EpiCategories;
+using Geta.EpiCategories.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    public abstract class FoundationBlockData : BlockData
+    public abstract class FoundationBlockData : BlockData, ICategorizableContent
     {
+        [Categories]
+        [Display(
+            Name = "Categories",
+            Description = "Categories associated with this content",
+            GroupName = SystemTabNames.PageHeader,
+            Order = 0)]
+        public virtual IList<ContentReference> Categories { get; set; }
+
         [Display(Name = "Padding Top", GroupName = CmsTabs.BlockPadding, Order = 1)]
         public virtual int PaddingTop { get; set; }
 
