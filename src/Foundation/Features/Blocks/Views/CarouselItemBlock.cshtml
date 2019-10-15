@@ -5,11 +5,11 @@
     <img @Html.EditAttributes(x => x.CurrentBlock.Image) src="@Url.ContentUrl(Model.CurrentBlock.Image)" />
     <div style="position: relative">
         <div class="carousel-caption">
-            <h1 @Html.EditAttributes(x => x.CurrentBlock.Title)>
-                @Model.CurrentBlock.Title
+            <h1 @Html.EditAttributes(x => x.CurrentBlock.Heading)>
+                @Model.CurrentBlock.Heading
             </h1>
-            <p @Html.EditAttributes(x => x.CurrentBlock.SubTitle)>
-                @Model.CurrentBlock.SubTitle
+            <p @Html.EditAttributes(x => x.CurrentBlock.Subhead)>
+                @Model.CurrentBlock.Subhead
             </p>
         </div>
     </div>

@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EPiServer.DataAbstraction;
+﻿using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Cms.Pages;
 using Foundation.Social.Models.Blocks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Social.Models.Pages
 {
@@ -10,7 +10,7 @@ namespace Foundation.Social.Models.Pages
     /// Used for the pages that wish to contain Social community features
     /// </summary>
     [ContentType(DisplayName = "Community", GUID = "56ba715e-3fb9-4050-a5e3-ab7fe1690742", Description = "A reseller's community page using Episerver Social.", GroupName = "Social")]
-    [ImageUrl("~/content/icons/blocks/cms-icon-block-25.png")]
+    [ImageUrl("~/assets/icons/cms/pages/elected.png")]
     public class CommunityPage : FoundationPageData
     {
         /// <summary>

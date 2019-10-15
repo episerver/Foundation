@@ -9,7 +9,7 @@ namespace Foundation.Cms.ViewModels.Blocks
         public BlogListBlockViewModel(BlogListBlock block) : base(block)
         {
             Heading = block.Heading;
-            ShowIntroduction = block.IncludeIntroduction;
+            ShowIntroduction = block.IncludeTeaserText;
             ShowPublishDate = block.IncludePublishDate;
         }
         public string Heading { get; set; }

@@ -14,14 +14,18 @@ namespace Foundation.Cms.Pages
 {
     public abstract class FoundationPageData : PageData, ICategorizableContent
     {
-       #region Content
+        #region Page Header
+
         [Categories]
-        [Display(
-            Name = "Categories",
-            Description = "Categories associated with this content",
+        [Display(Name = "Categories",
+            Description = "Categories associated with this content.",
             GroupName = SystemTabNames.PageHeader,
-            Order = 0)]
+            Order = 10)]
         public virtual IList<ContentReference> Categories { get; set; }
+
+        #endregion
+
+        #region Content
 
         [CultureSpecific]
         [Display(Name = "Main body", GroupName = SystemTabNames.Content, Order = 100)]
@@ -36,7 +40,7 @@ namespace Foundation.Cms.Pages
         #region Metadata
 
         [CultureSpecific]
-        [Display(Name = "Meta Title", GroupName = CmsTabNames.MetaData, Order = 100)]
+        [Display(Name = "Title", GroupName = CmsTabNames.MetaData, Order = 100)]
         public virtual string MetaTitle
         {
             get
@@ -71,16 +75,16 @@ namespace Foundation.Cms.Pages
         [CultureSpecific]
         [Display(Name = "Exclude from search",
             Description = "This will determine whether or not to show on search",
-            GroupName = SystemTabNames.Settings,
+            GroupName = CmsTabNames.Settings,
             Order = 100)]
         public virtual bool ExcludeFromSearch { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Hide site header", GroupName = SystemTabNames.Settings, Order = 200)]
+        [Display(Name = "Hide site header", GroupName = CmsTabNames.Settings, Order = 200)]
         public virtual bool HideSiteHeader { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Hide site footer", GroupName = SystemTabNames.Settings, Order = 300)]
+        [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 300)]
         public virtual bool HideSiteFooter { get; set; }
 
         #endregion
@@ -88,17 +92,17 @@ namespace Foundation.Cms.Pages
         #region Teaser
 
         [UIHint(UIHint.Image)]
-        [Display(Name = "Page image", GroupName = CmsTabNames.Teaser, Order = 100)]
+        [Display(Name = "Image", GroupName = CmsTabNames.Teaser, Order = 100)]
         public virtual ContentReference PageImage { get; set; }
 
         [CultureSpecific]
         [UIHint(UIHint.Video)]
-        [Display(Name = "Teaser video", GroupName = CmsTabNames.Teaser, Order = 200)]
+        [Display(Name = "Video", GroupName = CmsTabNames.Teaser, Order = 200)]
         public virtual ContentReference TeaserVideo { get; set; }
 
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
-        [Display(Name = "Teaser text", GroupName = CmsTabNames.Teaser, Order = 300)]
+        [Display(Name = "Text", GroupName = CmsTabNames.Teaser, Order = 300)]
         public virtual string TeaserText
         {
             get
@@ -115,21 +119,21 @@ namespace Foundation.Cms.Pages
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(CalloutContentAlignmentSelectionFactory))]
-        [Display(Name = "Teaser text alignment", GroupName = CmsTabNames.Teaser, Order = 400)]
+        [Display(Name = "Text alignment", GroupName = CmsTabNames.Teaser, Order = 400)]
         public virtual string TeaserTextAlignment { get; set; }
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserColorThemeSelectionFactory))]
-        [Display(Name = "Teaser color theme", GroupName = CmsTabNames.Teaser, Order = 500)]
+        [Display(Name = "Color theme", GroupName = CmsTabNames.Teaser, Order = 500)]
         public virtual string TeaserColorTheme { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Teaser button text", GroupName = CmsTabNames.Teaser, Order = 600)]
+        [Display(Name = "Button text", GroupName = CmsTabNames.Teaser, Order = 600)]
         public virtual string TeaserButtonText { get; set; }
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(ButtonBlockStyleSelectionFactory))]
-        [Display(Name = "Teaser button style", GroupName = CmsTabNames.Teaser, Order = 700)]
+        [Display(Name = "Button style", GroupName = CmsTabNames.Teaser, Order = 700)]
         public virtual string TeaserButtonStyle { get; set; }
 
         [CultureSpecific]

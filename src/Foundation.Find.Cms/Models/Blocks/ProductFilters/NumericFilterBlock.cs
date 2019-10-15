@@ -22,7 +22,7 @@ namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
         public virtual string FieldOperator { get; set; }
 
         [CultureSpecific(true)]
-        [Display(Name = "Filter Value", Description = "The value to filter search results on", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Value", Description = "The value to filter search results on", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual double FieldValue { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

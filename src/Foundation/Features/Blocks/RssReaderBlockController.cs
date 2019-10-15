@@ -38,7 +38,7 @@ namespace Foundation.Features.Blocks
                     viewModel.RssList = posts.ToList();
                     viewModel.HasHeadingText = HasHeadingText(currentBlock);
                     viewModel.Heading = currentBlock.Heading;
-                    viewModel.DescriptiveText = currentBlock.DescriptiveText;
+                    viewModel.DescriptiveText = currentBlock.MainBody;
                 }
             }
             catch (Exception)
@@ -53,7 +53,7 @@ namespace Foundation.Features.Blocks
 
         private bool HasHeadingText(RssReaderBlock currentBlock)
         {
-            return ((!string.IsNullOrEmpty(currentBlock.Heading)) || ((currentBlock.DescriptiveText != null) && (!currentBlock.DescriptiveText.IsEmpty)));
+            return ((!string.IsNullOrEmpty(currentBlock.Heading)) || ((currentBlock.MainBody != null) && (!currentBlock.MainBody.IsEmpty)));
         }
     }
 }

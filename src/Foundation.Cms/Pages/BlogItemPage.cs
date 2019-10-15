@@ -8,7 +8,7 @@ namespace Foundation.Cms.Pages
     [ContentType(DisplayName = "Blog Item Page", 
         GUID = "EAACADF2-3E89-4117-ADEB-F8D43565D2F4",
         Description = "Blog Item Page created underneath the start page and moved to the right area",
-        GroupName = CmsTabNames.Blog)]
+        GroupName = CmsGroupNames.Blog)]
     [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage) })]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-18.png")]
     public class BlogItemPage : FoundationPageData
@@ -25,7 +25,7 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Comment block",
             Description = "The comment section of the page. Local comment block will display comments only for this page",
             GroupName = SystemTabNames.Content,
-            Order = 110)]
+            Order = 210)]
         public virtual BlogCommentBlock Comments { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
