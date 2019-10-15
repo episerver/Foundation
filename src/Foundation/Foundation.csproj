@@ -501,6 +501,7 @@
     </Reference>
     <Reference Include="Geta.EpiCategories, Version=1.2.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Geta.EpiCategories.1.2.9\lib\net461\Geta.EpiCategories.dll</HintPath>
+    </Reference>
     <Reference Include="Geta.SEO.Sitemaps, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Geta.SEO.Sitemaps.3.1.0\lib\net461\Geta.SEO.Sitemaps.dll</HintPath>
     </Reference>
