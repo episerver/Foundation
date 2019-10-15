@@ -23,7 +23,6 @@ using System.Web;
 
 namespace Foundation.Commerce.Personalization
 {
-    [ServiceConfiguration(typeof(ICommerceTrackingService), Lifecycle = ServiceInstanceScope.Transient)]
     public class CommerceTrackingService : ICommerceTrackingService
     {
         private readonly IContentLoader _contentLoader;

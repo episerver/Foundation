@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Cms.DynamicData;
 using Foundation.Cms.Extensions;
@@ -12,7 +11,6 @@ using System.Linq;
 
 namespace Foundation.Cms
 {
-    [ServiceConfiguration(typeof(BlogTagFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class BlogTagFactory
     {
         private readonly IContentRepository _contentRepository;

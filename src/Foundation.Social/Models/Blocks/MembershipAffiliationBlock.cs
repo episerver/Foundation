@@ -9,8 +9,8 @@ namespace Foundation.Social.Models.Blocks
     /// The MembershipAffiliationBlock class defines the configuration used for the list of groups that a member is associated with.
     /// </summary>
     [ContentType(DisplayName = "Membership Affiliation Block",
-        GUID = "d7f22a41-a26c-4e85-b4a5-15929d4222fc", 
-        Description = "Configures the properties of a membership affiliation block view", 
+        GUID = "d7f22a41-a26c-4e85-b4a5-15929d4222fc",
+        Description = "Configures the properties of a membership affiliation block view",
         GroupName = SocialTabNames.Social)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
     public class MembershipAffiliationBlock : BlockData

@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
@@ -12,7 +11,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order
 {
-    [ServiceConfiguration(Lifecycle = ServiceInstanceScope.Singleton, ServiceType = typeof(IPlacedPriceProcessor))]
     public class FoundationPlacedPriceProcessor : DefaultPlacedPriceProcessor
     {
         private readonly IContentLoader _contentLoader;

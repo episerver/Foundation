@@ -2,7 +2,6 @@ using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
 using EPiServer.Globalization;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Markets;
@@ -17,7 +16,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order.Services
 {
-    [ServiceConfiguration(typeof(ShipmentViewModelFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class ShipmentViewModelFactory
     {
         private readonly IContentLoader _contentLoader;

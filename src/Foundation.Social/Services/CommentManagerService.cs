@@ -1,11 +1,9 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.Social.Comments.Core;
+﻿using EPiServer.Social.Comments.Core;
 using Foundation.Social.ViewModels;
 using System.Collections.Generic;
 
 namespace Foundation.Social.Services
 {
-    [ServiceConfiguration(typeof(ICommentManagerService))]
     public class CommentManagerService : ICommentManagerService
     {
         private readonly ICommentService _commentService;

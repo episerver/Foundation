@@ -1,12 +1,10 @@
-﻿using EPiServer.ServiceLocation;
-using Foundation.Cms;
+﻿using Foundation.Cms;
 using Mediachase.Commerce;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Foundation.Commerce.Markets
 {
-    [ServiceConfiguration(typeof(ICurrencyService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CurrencyService : ICurrencyService
     {
         private const string CurrencyCookie = "Currency";

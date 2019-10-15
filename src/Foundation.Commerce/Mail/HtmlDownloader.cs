@@ -1,11 +1,9 @@
-﻿using EPiServer.ServiceLocation;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Http;
 
 namespace Foundation.Commerce.Mail
 {
-    [ServiceConfiguration(typeof(IHtmlDownloader), Lifecycle = ServiceInstanceScope.Singleton)]
     public class HtmlDownloader : IHtmlDownloader
     {
         public string Download(string baseUrl, string relativeUrl)

@@ -1,9 +1,7 @@
-﻿using EPiServer.ServiceLocation;
-using Mediachase.Commerce.Customers;
+﻿using Mediachase.Commerce.Customers;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(ILoyaltyService))]
     public class LoyaltyService : ILoyaltyService
     {
         public void AddNumberOfOrders()

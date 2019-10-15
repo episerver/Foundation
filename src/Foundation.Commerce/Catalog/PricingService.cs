@@ -1,5 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using Foundation.Commerce.Markets;
+﻿using Foundation.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Pricing;
@@ -9,7 +8,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Catalog
 {
-    [ServiceConfiguration(typeof(IPricingService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class PricingService : IPricingService
     {
         private readonly IPriceService _priceService;

@@ -1,5 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using Foundation.Demo.Extensions;
+﻿using Foundation.Demo.Extensions;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -12,7 +11,6 @@ using System.Web;
 
 namespace Foundation.Demo.Install
 {
-    [ServiceConfiguration(ServiceType = typeof(IStorageService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class StorageService : IStorageService
     {
         private readonly StorageCredentials _storageCredentials;

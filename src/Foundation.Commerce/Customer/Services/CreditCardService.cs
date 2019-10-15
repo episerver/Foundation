@@ -1,5 +1,4 @@
 ﻿using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.ViewModels;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
@@ -14,7 +13,6 @@ namespace Foundation.Commerce.Customer.Services
     /// <summary>
     /// All action on credit card data
     /// </summary>
-    [ServiceConfiguration(typeof(ICreditCardService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CreditCardService : ICreditCardService
     {
 

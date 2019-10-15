@@ -12,7 +12,6 @@ using System.Linq;
 
 namespace Foundation.Demo.Install.Steps
 {
-    [ServiceConfiguration(ServiceType = typeof(IInstallStep), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddCurrencies : BaseInstallStep
     {
         public AddCurrencies(IContentRepository contentRepository,

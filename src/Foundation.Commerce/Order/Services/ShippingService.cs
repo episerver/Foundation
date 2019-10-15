@@ -10,7 +10,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order.Services
 {
-    [ServiceConfiguration(Lifecycle = ServiceInstanceScope.Singleton, ServiceType = typeof(IShippingService))]
     public class ShippingService : IShippingService
     {
         public const string PickupShippingMethodName = ShippingManager.PickupShippingMethodName;
