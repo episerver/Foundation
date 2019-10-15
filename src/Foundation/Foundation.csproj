@@ -865,6 +865,7 @@
     <Compile Include="Features\Blog\TagCloudBlock\TagCloudBlockController.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
+    <Compile Include="Features\Category\StandardCategoryController.cs" />
     <Compile Include="Features\Checkout\CheckoutController.cs" />
     <Compile Include="Features\Events\CalendarEventBlock\CalendarEventBlockController.cs" />
     <Compile Include="Features\Events\CalendarEvent\CalendarEventController.cs" />
@@ -1228,6 +1229,9 @@
     <Content Include="Features\Blocks\Views\MembershipDisplayBlock.cshtml" />
     <Content Include="Features\Blocks\Views\RatingBlock.cshtml" />
     <Content Include="Features\Blocks\Views\SubscriptionBlock.cshtml" />
+    <Content Include="Features\Category\Index.cshtml" />
+    <Content Include="Features\Category\_PageListing.cshtml" />
+    <Content Include="Features\Category\_Preview.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
     <Content Include="Features\NamedCarts\Wishlist\Index.cshtml" />
