@@ -23,7 +23,6 @@ namespace Foundation.Cms.Pages
             Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Name = "Main body", Order = 2)]
         [CultureSpecific]
         [Display(Name = "Main body", GroupName = SystemTabNames.Content, Order = 100)]
         public virtual XhtmlString MainBody { get; set; }
