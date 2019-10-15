@@ -6,7 +6,7 @@ namespace Foundation.Commerce.Models.Pages
     [ContentType(DisplayName = "Checkout Page",
         GUID = "6709cd32-7bb6-4d29-9b0b-207369799f4f",
         Description = "Checkout page",
-        GroupName = CommerceTabs.Commerce,
+        GroupName = CommerceTabNames.Commerce,
         AvailableInEditMode = false)]
 
     [AvailableContentTypes(Include = new[] { typeof(OrderConfirmationPage) }, IncludeOn = new[] { typeof(CommerceHomePage) })]

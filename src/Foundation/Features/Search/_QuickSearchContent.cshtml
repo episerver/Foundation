@@ -1,15 +1,15 @@
-﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchPage>
+﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
 @{
     Layout = null;
 }
 
-@if (Model != null && Model.UnifiedSearchResults != null)
+@if (Model != null && Model.ContentSearchResult != null)
 {
-    <ul>
+    <ul class="style-list-none">
         <li class="searchbox__heading">
             <p>Contents</p>
         </li>
-        @foreach (var content in Model.UnifiedSearchResults)
+        @foreach (var content in Model.ContentSearchResult.Hits)
         {
 
             <li class="searchbox__row">
@@ -22,7 +22,7 @@
 }
 else
 {
-    <ul>
+    <ul class="style-list-none">
         <li class="searchbox__row searchbox__heading">
             <p>Contents</p>
         </li>

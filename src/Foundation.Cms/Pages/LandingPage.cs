@@ -5,25 +5,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(
-       DisplayName = "Standard Single Column Landing Page",
-       Description = "Defauult standard page that has top content area, main body, and main content area.",
+    [ContentType(DisplayName = "Standard Single Column Landing Page",
        GUID = "DBED4258-8213-48DB-A11F-99C034172A54",
-       GroupName = CmsTabs.Content)]
+       Description = "Default standard page that has top content area, main body, and main content area",
+       GroupName = CmsTabNames.Content)]
     [ImageUrl("~/assets/icons/gfx/page-type-thumbnail-landingpage-onecol.png")]
     public class LandingPage : FoundationPageData
     {
-        [Display(
-           GroupName = SystemTabNames.Content,
-           Order = 330)]
+        [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual ContentArea TopContentArea { get; set; }
-
-        public override void SetDefaultValues(ContentType contentType)
-        {
-            base.SetDefaultValues(contentType);
-
-            HideSiteFooter = true;
-            HideSiteHeader = true;
-        }
     }
 }

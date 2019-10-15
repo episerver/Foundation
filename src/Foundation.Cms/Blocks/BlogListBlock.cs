@@ -9,44 +9,30 @@ using Geta.EpiCategories.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(GUID = "4149A1C1-5DE7-4BAF-899A-D7F09636AB32", DisplayName = "Blog List Block", GroupName = "Blog", AvailableInEditMode = false)]
+    [ContentType(DisplayName = "Blog List Block", GUID = "4149A1C1-5DE7-4BAF-899A-D7F09636AB32", GroupName = CmsTabNames.Blog, AvailableInEditMode = false)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-28.png")]
     public class BlogListBlock : BlockData
     {
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 1)]
         [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 2, Name = "Include Publish Date")]
-        [DefaultValue(false)]
+        [Display(Name = "Include publish date", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual bool IncludePublishDate { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 3, Name = "Include Introduction")]
-        [DefaultValue(true)]
+        [Display(Name = "Include introduction", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual bool IncludeIntroduction { get; set; }
-
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 4, Name = "Sort Order")]
-        [DefaultValue(FilterSortOrder.PublishedDescending)]
+        
         [UIHint("SortOrder")]
         [BackingType(typeof(PropertyNumber))]
+        [DefaultValue(FilterSortOrder.PublishedDescending)]
+        [Display(Name = "Sort order", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual FilterSortOrder SortOrder { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 5)]
+        [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual PageReference Root { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 6, Name = "Page Type Filter")]
+        [Display(Name = "Page type filter", GroupName = SystemTabNames.Content, Order = 60)]
         public virtual PageType PageTypeFilter { get; set; }
 
         [Categories]
@@ -57,12 +43,8 @@ namespace Foundation.Cms.Blocks
             Order = 70)]
         public virtual IList<ContentReference> CategoryListFilter { get; set; }
 
-        [Display(
-            GroupName = SystemTabNames.Content,
-            Order = 8)]
+        [Display(GroupName = SystemTabNames.Content, Order = 80)]
         public virtual bool Recursive { get; set; }
-
-        #region IInitializableContent
 
         public override void SetDefaultValues(ContentType contentType)
         {
@@ -73,7 +55,5 @@ namespace Foundation.Cms.Blocks
             SortOrder = FilterSortOrder.PublishedDescending;
             Recursive = true;
         }
-
-        #endregion
     }
 }

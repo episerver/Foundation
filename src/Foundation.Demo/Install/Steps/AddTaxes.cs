@@ -16,7 +16,7 @@ namespace Foundation.Demo.Install.Steps
         private readonly TaxImportExport _taxImportExport;
 
         public AddTaxes(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
             TaxImportExport taxImportExport) : base(contentRepository, dataImporter, referenceConverter, marketService) => _taxImportExport = taxImportExport;

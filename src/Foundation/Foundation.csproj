@@ -53,9 +53,6 @@
     <Reference Include="AbTestVisitorGroupCriteria, Version=11.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AbTestVisitorGroupCriteria.11.1.1\lib\net45\AbTestVisitorGroupCriteria.dll</HintPath>
     </Reference>
-    <Reference Include="AceEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AceEditor.11.0.1\lib\net45\AceEditor.dll</HintPath>
-    </Reference>
     <Reference Include="AddOn.Edit.ContextMenuOpenInNewTab, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AddOn.Edit.ContextMenuOpenInNewTab.1.2.1\lib\net461\AddOn.Edit.ContextMenuOpenInNewTab.dll</HintPath>
     </Reference>
@@ -70,6 +67,9 @@
     </Reference>
     <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AuthorizeNet.1.9.4\lib\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="BVNetwork.EPi404, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BVN.404Handler.11.3.0\lib\net461\BVNetwork.EPi404.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
@@ -501,6 +501,8 @@
     </Reference>
     <Reference Include="Geta.EpiCategories, Version=1.2.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Geta.EpiCategories.1.2.9\lib\net461\Geta.EpiCategories.dll</HintPath>
+    <Reference Include="Geta.SEO.Sitemaps, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Geta.SEO.Sitemaps.3.1.0\lib\net461\Geta.SEO.Sitemaps.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
@@ -1695,6 +1697,7 @@
     <Content Include="Features\NamedCarts\DefaultCart\LargeCart.cshtml" />
     <Content Include="Features\Shared\Foundation\Header\_HeaderCart.cshtml" />
     <Content Include="Features\Shared\Foundation\_AddressSummaryLine.cshtml" />
+    <Content Include="NotFound.aspx" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1887,7 +1890,6 @@
     <Content Include="modules\_protected\CmsAudit\Views\CmsAudit\_layout.cshtml" />
     <Content Include="modules\_protected\CmsAudit\Views\web.config" />
     <Content Include="modules\_protected\AddOn.Edit.ContextMenuOpenInNewTab\AddOn.Edit.ContextMenuOpenInNewTab.zip" />
-    <Content Include="modules\_protected\AceEditor\module.config" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\EPiServer.ConnectForCampaign.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\Campaign.config" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\Web.config" />
@@ -2138,6 +2140,8 @@
     <Content Include="modules\_protected\EPiServer.ChangeApproval\EPiServer.ChangeApproval.zip" />
     <Content Include="Features\NamedCarts\DefaultCart\_CartSummary.cshtml" />
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
+    <Content Include="modules\_protected\Geta.SEO.Sitemaps\Geta.SEO.Sitemaps.zip" />
+    <Content Include="modules\_protected\BVNetwork.404Handler\BVNetwork.404Handler.zip" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -112,14 +112,14 @@ namespace Foundation.Cms.Extensions
                 output.AppendLine(string.Format(MetaFormat, "title", sitePageData.MetaTitle));
             }
 
-            if (!string.IsNullOrEmpty(sitePageData.Keyword))
+            if (!string.IsNullOrEmpty(sitePageData.Keywords))
             {
-                output.AppendLine(string.Format(MetaFormat, "keywords", sitePageData.Keyword));
+                output.AppendLine(string.Format(MetaFormat, "keywords", sitePageData.Keywords));
             }
 
-            if (!string.IsNullOrWhiteSpace(sitePageData.MetaDescription))
+            if (!string.IsNullOrWhiteSpace(sitePageData.PageDescription))
             {
-                output.AppendLine(string.Format(MetaFormat, "description", sitePageData.MetaDescription));
+                output.AppendLine(string.Format(MetaFormat, "description", sitePageData.PageDescription));
             }
 
             if (sitePageData.DisableIndexing)

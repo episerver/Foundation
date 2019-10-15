@@ -8,17 +8,13 @@ namespace Foundation.Cms.Blocks
     [ContentType(DisplayName = "YouTube Block",
         GUID = "67429E0D-9365-407C-8A49-69489382BBDC",
         Description = "Display YouTube video",
-        GroupName = "Multimedia")]
+        GroupName = CmsTabNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/video.png")]
     public class YouTubeBlock : FoundationBlockData
     {
-        [Editable(true)]
-        [Display(
-            Name = "YouTube Link",
-            Description = "URL link to YouTube video",
-            GroupName = SystemTabNames.Content,
-            Order = 1)]
         [Required]
+        [Editable(true)]
+        [Display(Name = "YouTube link", Description = "URL link to YouTube video", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string YouTubeLink
         {
             get
@@ -50,21 +46,13 @@ namespace Foundation.Cms.Blocks
         }
 
         [Editable(true)]
-        [Display(
-            Name = "Heading",
-            Description = "Heading for the video",
-            GroupName = SystemTabNames.Content,
-            Order = 2)]
         [CultureSpecific]
+        [Display(Description = "Heading for the video", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string Heading { get; set; }
 
         [Editable(true)]
-        [Display(
-            Name = "Video Text",
-            Description = "Descriptive text for the video",
-            GroupName = SystemTabNames.Content,
-            Order = 3)]
         [CultureSpecific]
+        [Display(Name = "Video text", Description = "Descriptive text for the video", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual XhtmlString VideoText { get; set; }
 
         [Editable(false)] public bool HasVideo => !string.IsNullOrEmpty(YouTubeLink);

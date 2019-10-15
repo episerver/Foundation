@@ -17,16 +17,17 @@ namespace Foundation.Cms.Blocks
             Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
-        [Display(Name = "Padding Top", GroupName = CmsTabs.BlockPadding, Order = 1)]
+        [Display(Name = "Padding top", GroupName = CmsTabNames.BlockPadding, Order = 1)]
+
         public virtual int PaddingTop { get; set; }
 
-        [Display(Name = "Padding Right", GroupName = CmsTabs.BlockPadding, Order = 2)]
+        [Display(Name = "Padding right", GroupName = CmsTabNames.BlockPadding, Order = 2)]
         public virtual int PaddingRight { get; set; }
 
-        [Display(Name = "Padding Bottom", GroupName = CmsTabs.BlockPadding, Order = 3)]
+        [Display(Name = "Padding bottom", GroupName = CmsTabNames.BlockPadding, Order = 3)]
         public virtual int PaddingBottom { get; set; }
 
-        [Display(Name = "Padding Left", GroupName = CmsTabs.BlockPadding, Order = 4)]
+        [Display(Name = "Padding left", GroupName = CmsTabNames.BlockPadding, Order = 4)]
         public virtual int PaddingLeft { get; set; }
 
         public string PaddingStyles

@@ -49,7 +49,7 @@ namespace Foundation.Demo.Install.Steps
             new ApplicationRoleManager<SiteUser>(new RoleStore<IdentityRole>(new ApplicationDbContext<SiteUser>("EcfSqlConnection")));
 
         public AddCustomers(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
         {

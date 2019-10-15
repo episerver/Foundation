@@ -6,7 +6,7 @@ using EPiServer.Find.Framework;
 
 namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
 {
-    [ContentType(DisplayName = "Exists Filter",
+    [ContentType(DisplayName = "Exists Filter Block",
         GUID = "E93C9A50-4B62-4116-8E56-1DF84AB93EF7",
         Description = "Filter product that has a value for the given field",
         GroupName = "Commerce")]

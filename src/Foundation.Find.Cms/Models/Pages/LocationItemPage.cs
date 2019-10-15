@@ -11,112 +11,66 @@ using System.Linq;
 
 namespace Foundation.Find.Cms.Models.Pages
 {
-    [ContentType(
-        DisplayName = "Location item page",
+    [ContentType(DisplayName = "Location Item Page",
         GUID = "ac26ee4b-104f-4719-8aab-ad6d3fcb0d75",
-        GroupName = FindTabs.Location,
-        Description = "Used to display the details of a location")]
+        Description = "Used to display the details of a location",
+        GroupName = FindTabNames.Location)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-27.png")]
     public class LocationItemPage : FoundationPageData
     {
-        [Display(
-            Name = "Image",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 100)]
-        [Required]
-        [UIHint(UIHint.Image)]
-        public virtual ContentReference Image { get; set; }
-
-        [Display(Name = "Tags", Description = "",
-            GroupName = SystemTabNames.Content)]
-        [AllowedTypes(typeof(TagPage))]
-        public virtual ContentArea Tags { get; set; }
-
-        [Display(
-            Name = "Continent",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 130)]
-        [BackingType(typeof(PropertyString))]
-        [Required]
-        public virtual string Continent { get; set; }
-
-        [Display(
-            Name = "Country",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 140)]
-        [BackingType(typeof(PropertyString))]
-        [Required]
-        public virtual string Country { get; set; }
-
-        [Display(
-            Name = "Airport initials",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 150)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string AirportInitials { get; set; }
-
-        [Display(
-            Name = "Yearly passengers",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 160)]
-        public virtual int YearlyPassengers { get; set; }
-
-        [Display(
-            Name = "Latitude",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 170)]
-        [Required]
-        public virtual double Latitude { get; set; }
-
-        [Display(
-            Name = "Longitude",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 180)]
-        [Required]
-        public virtual double Longitude { get; set; }
-
-        [Display(
-            Name = "Average temperature",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 190)]
-        public virtual double? AvgTemp { get; set; }
-
-        [Display(
-            Name = "Sidebar Area",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 200)]
-        public virtual ContentArea SidebarContentArea { get; set; }
-
-        [Display(Name = "Promoted Destination",
-            Description = "Check this, in order to boost this destination and promote it in suggestions",
-            GroupName = SystemTabNames.Content,
-            Order = 215)]
-        public virtual bool Promoted { get; set; }
-
-        [Display(
-            Name = "Is new?",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 210)]
-        public virtual bool New { get; set; }
-
-        [Display(
-            Name = "Intro text",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 30)]
         [StringLength(5000)]
         [UIHint(UIHint.Textarea)]
+        [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string MainIntro { get; set; }
+
+        [Required]
+        [UIHint(UIHint.Image)]
+        [Display(GroupName = SystemTabNames.Content, Order = 110)]
+        public virtual ContentReference Image { get; set; }
+
+        [AllowedTypes(typeof(TagPage))]
+        [Display(GroupName = SystemTabNames.Content, Order = 210)]
+        public virtual ContentArea Tags { get; set; }
+
+        [Display(Name = "Sidebar area", GroupName = SystemTabNames.Content, Order = 220)]
+        public virtual ContentArea SidebarContentArea { get; set; }
+
+        [Display(Name = "Promoted destination",
+            Description = "Check this, in order to boost this destination and promote it in suggestions",
+            GroupName = SystemTabNames.Content,
+            Order = 120)]
+        public virtual bool Promoted { get; set; }
+
+        [Display(Name = "Is new?", GroupName = SystemTabNames.Content, Order = 230)]
+        public virtual bool New { get; set; }
+
+        [Required]
+        [BackingType(typeof(PropertyString))]
+        [Display(GroupName = FindTabNames.Location, Order = 10)]
+        public virtual string Continent { get; set; }
+
+        [Required]
+        [BackingType(typeof(PropertyString))]
+        [Display(GroupName = FindTabNames.Location, Order = 20)]
+        public virtual string Country { get; set; }
+
+        [Required]
+        [Display(GroupName = FindTabNames.Location, Order = 30)]
+        public virtual double Latitude { get; set; }
+
+        [Required]
+        [Display(GroupName = FindTabNames.Location, Order = 40)]
+        public virtual double Longitude { get; set; }
+
+        [Display(Name = "Average temperature", GroupName = FindTabNames.Location, Order = 50)]
+        public virtual double? AvgTemp { get; set; }
+
+        [BackingType(typeof(PropertyString))]
+        [Display(Name = "Airport initials", GroupName = FindTabNames.Location, Order = 60)]
+        public virtual string AirportInitials { get; set; }
+
+        [Display(Name = "Yearly passengers", GroupName = FindTabNames.Location, Order = 70)]
+        public virtual int YearlyPassengers { get; set; }
 
         [Ignore]
         public double AvgTempDbl => AvgTemp ?? double.NaN;

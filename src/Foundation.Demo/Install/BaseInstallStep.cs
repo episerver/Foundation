@@ -2,6 +2,7 @@
 using EPiServer.Core;
 using EPiServer.Enterprise;
 using EPiServer.Logging;
+using EPiServer.ServiceLocation;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Markets;
@@ -26,7 +27,7 @@ namespace Foundation.Demo.Install
         protected IConnectionStringHandler ConnectionStringHandler { get; }
         protected IContentRepository ContentRepository { get; }
         protected CustomerContext CustomerContext { get; }
-        protected IDataImporter DataImporter { get; }
+        protected ServiceAccessor<IDataImporter> DataImporter { get; }
         protected ReferenceConverter ReferenceConverter { get; }
         protected IMarketService MarketService { get; }
         protected ILogger Logger { get; }
@@ -34,7 +35,7 @@ namespace Foundation.Demo.Install
 
 
         protected BaseInstallStep(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService)
         {
@@ -74,12 +75,12 @@ namespace Foundation.Demo.Install
         protected abstract void ExecuteInternal(IProgressMessenger progressMessenger);
 
         protected virtual void TryAddMetaField(Mediachase.MetaDataPlus.MetaDataContext context,
-            Mediachase.MetaDataPlus.Configurator.MetaClass metaClass,
+            MetaClass metaClass,
             string name,
             MetaDataType metaDataType,
             int length)
         {
-            var metaField = Mediachase.MetaDataPlus.Configurator.MetaField.Load(context, name) ?? Mediachase.MetaDataPlus.Configurator.MetaField.Create(
+            var metaField = MetaField.Load(context, name) ?? MetaField.Create(
                                 context: context,
                                 metaNamespace: metaClass.Namespace,
                                 name: name,
@@ -113,7 +114,7 @@ namespace Foundation.Demo.Install
 
             var options = new ImportOptions { KeepIdentity = true };
 
-            var log = DataImporter.Import(stream, destinationRoot, options);
+            var log = DataImporter().Import(stream, destinationRoot, options);
 
             if (log.Errors.Any())
             {

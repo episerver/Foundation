@@ -18,7 +18,7 @@ namespace Foundation.Demo.Install.Steps
         private readonly IWarehouseRepository _warehouseRepository;
 
         public AddWarehouses(IContentRepository contentRepository,
-            IDataImporter dataImporter,
+            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
             IWarehouseRepository warehouseRepository) : base(contentRepository, dataImporter, referenceConverter, marketService) => _warehouseRepository = warehouseRepository;
