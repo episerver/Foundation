@@ -21,7 +21,7 @@ namespace Foundation.Cms.Blocks
         public virtual bool IncludePublishDate { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 30)]
-        public virtual bool IncludeIntroduction { get; set; }
+        public virtual bool IncludeTeaserText { get; set; }
 
         [Required]
         [Display(GroupName = SystemTabNames.Content, Order = 40)]
@@ -55,7 +55,7 @@ namespace Foundation.Cms.Blocks
             base.SetDefaultValues(contentType);
 
             Count = 3;
-            IncludeIntroduction = true;
+            IncludeTeaserText = true;
             IncludePublishDate = false;
             SortOrder = FilterSortOrder.PublishedDescending;
         }

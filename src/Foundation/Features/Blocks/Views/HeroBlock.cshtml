@@ -52,12 +52,12 @@
             </div>
         }
     </div>
-    <div class="hero-block__callout @(Model.CurrentBlock.Callout.ShowBackgroundColor? "" : "transparent-callout")" id="blockCallout" style="@calloutPaddings @colorStyle">
+    <div class="hero-block__callout @(string.IsNullOrEmpty(Model.CurrentBlock.Callout.BackgroundColor)? "" : "transparent-callout")" id="blockCallout" style="@calloutPaddings @colorStyle">
         @Html.PropertyFor(m => m.CurrentBlock.Callout)
     </div>
     <style>
             #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
-                background: @(Model.CurrentBlock.Callout.ShowBackgroundColor ? Model.CurrentBlock.Callout.BackgroundColor: "none");
+                background: @(string.IsNullOrEmpty(Model.CurrentBlock.Callout.BackgroundColor) ? "none" : Model.CurrentBlock.Callout.BackgroundColor);
                 content: '';
                 position: absolute;
                 top: 0;

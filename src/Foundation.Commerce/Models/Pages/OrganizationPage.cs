@@ -8,7 +8,7 @@ namespace Foundation.Commerce.Models.Pages
         GUID = "e50f0e69-0851-40dc-b00c-38f0acec3f32",
         Description = "Page to manage an organization",
         AvailableInEditMode = false,
-        GroupName = CommerceTabNames.Commerce)]
+        GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/elected.png")]
     public class OrganizationPage : FoundationPageData
     {

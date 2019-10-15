@@ -14,11 +14,11 @@ namespace Foundation.Cms.Pages
         #region Content
 
         [CultureSpecific]
-        [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 90)]
+        [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual ContentArea TopContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 110)]
+        [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea BottomContentArea { get; set; }
 
         #endregion

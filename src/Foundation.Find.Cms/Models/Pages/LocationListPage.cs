@@ -16,7 +16,7 @@ namespace Foundation.Find.Cms.Models.Pages
     public class LocationListPage : FoundationPageData
     {
         [AllowedTypes(new[] { typeof(FilterActivitiesBlock), typeof(FilterContinentsBlock), typeof(FilterDistancesBlock), typeof(FilterTemperaturesBlock) })]
-        [Display(Name = "Filter area")]
+        [Display(Name = "Filter area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea FilterArea { get; set; }
     }
 }
