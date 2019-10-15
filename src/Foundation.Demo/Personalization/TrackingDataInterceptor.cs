@@ -6,7 +6,6 @@ using Foundation.Demo.Models;
 
 namespace Foundation.Demo.Personalization
 {
-    [ServiceConfiguration(ServiceType = typeof(ITrackingDataInterceptor), Lifecycle = ServiceInstanceScope.Singleton)]
     public class TrackingDataInterceptor : ITrackingDataInterceptor
     {
         private readonly IContentLoader _contentLoader;
