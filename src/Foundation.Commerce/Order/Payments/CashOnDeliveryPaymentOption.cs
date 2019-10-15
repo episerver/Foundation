@@ -7,7 +7,6 @@ using Mediachase.Commerce.Orders;
 
 namespace Foundation.Commerce.Order.Payments
 {
-    [ServiceConfiguration(typeof(IPaymentMethod))]
     public class CashOnDeliveryPaymentOption : PaymentOptionBase
     {
         public override string SystemKeyword => "CashOnDelivery";
