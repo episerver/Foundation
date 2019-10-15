@@ -9,7 +9,7 @@ namespace Foundation.Cms.Blocks
     [ContentType(DisplayName = "Call To Action Block", 
         GUID = "f82da800-c923-48f6-b701-fd093078c5d9", 
         Description = "Provides a CTA anchor or link",
-        GroupName = CmsTabNames.Content)]
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class CallToActionBlock : FoundationBlockData
     {

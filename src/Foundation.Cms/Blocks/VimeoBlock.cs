@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Vimeo Video", GUID = "a8172c33-e087-4e68-980e-a79b0e093675", Description = "Displays Vimeo Video", GroupName = CmsTabNames.Content)]
+    [ContentType(DisplayName = "Vimeo Video", GUID = "a8172c33-e087-4e68-980e-a79b0e093675", Description = "Displays Vimeo Video", GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/gfx/Multimedia-thumbnail.png")]
     public class VimeoBlock : FoundationBlockData
     {
@@ -47,12 +47,12 @@ namespace Foundation.Cms.Blocks
         }
 
         [CultureSpecific]
-        [Display(Description = "Heading for the video", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual string Heading { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Video text", Description = "Descriptive text for the video", GroupName = SystemTabNames.Content, Order = 50)]
-        public virtual XhtmlString VideoText { get; set; }
+        [Display(Description = "Descriptive text for the video", GroupName = SystemTabNames.Content, Order = 50)]
+        public virtual XhtmlString MainBody { get; set; }
 
         [ScaffoldColumn(false)]
         public bool HasVideo => !string.IsNullOrEmpty(VimeoVideoLink);
@@ -61,7 +61,7 @@ namespace Foundation.Cms.Blocks
         public bool HasCoverImage => CoverImage != null;
 
         [Editable(false)]
-        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || VideoText != null && !VideoText.IsEmpty;
+        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;
     }
 
     public class VimeoUrl

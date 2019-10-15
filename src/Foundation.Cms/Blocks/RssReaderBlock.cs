@@ -9,7 +9,7 @@ namespace Foundation.Cms.Blocks
     [ContentType(DisplayName = "RSS Reader Block", 
         GUID = "8fc5a3bb-727c-4871-8b2e-5ff337e30e82", 
         Description = "Display content from a RSS feed", 
-        GroupName = CmsTabNames.Content)]
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/gfx/block-type-thumbnail-rss.png")]
     public class RssReaderBlock : FoundationBlockData
     {
@@ -19,23 +19,24 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "RSS feed URL", Description = "URL for RSS feed", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual Url RssUrl { get; set; }
 
+
+        [Editable(true)]
+        [Display(Name = "Number of results", Description = "Maximum number of items to display", GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual int MaxCount { get; set; }
+
+        [Editable(true)]
+        [Display(Name = "Include publish date", Description = "Include publish date for each item in list", GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual bool IncludePublishDate { get; set; }
+
         [Editable(true)]
         [CultureSpecific]
-        [Display(Description = "Heading for the RSS feed", GroupName = SystemTabNames.Content, Order = 20)]
+        [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual string Heading { get; set; }
 
         [Editable(true)]
         [CultureSpecific]
-        [Display(Name = "Descriptive text", Description = "Descriptive text for the RSS feed", GroupName = SystemTabNames.Content, Order = 30)]
-        public virtual XhtmlString DescriptiveText { get; set; }
-
-        [Editable(true)]
-        [Display(Name = "Max count", Description = "Maximum number of items to display", GroupName = SystemTabNames.Content, Order = 40)]
-        public virtual int MaxCount { get; set; }
-
-        [Editable(true)]
-        [Display(Name = "Include publish date", Description = "Include publish date for each item in list", GroupName = SystemTabNames.Content, Order = 50)]
-        public virtual bool IncludePublishDate { get; set; }
+        [Display(Name = "Main body", Description = "Descriptive text for the RSS feed", GroupName = SystemTabNames.Content, Order = 50)]
+        public virtual XhtmlString MainBody { get; set; }
 
         /// <summary>
         /// Sets the default property values on the content data.

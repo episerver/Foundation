@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Blocks
 {
-    [ContentType(DisplayName = "Order History Block", GUID = "6b910185-7270-43bf-90e5-fc57cc0d1b5c", GroupName = CommerceTabNames.Commerce, AvailableInEditMode = true)]
+    [ContentType(DisplayName = "Order History Block", GUID = "6b910185-7270-43bf-90e5-fc57cc0d1b5c", GroupName = CommerceGroupNames.Commerce, AvailableInEditMode = true)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-18.png")]
     public class OrderHistoryBlock : FoundationBlockData
     {

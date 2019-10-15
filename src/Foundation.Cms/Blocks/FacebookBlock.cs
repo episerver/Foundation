@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Facebook Feed Block", GUID = "fe935bfb-44b0-4ce2-a448-1d366ff3bbc0", GroupName = CmsTabNames.SocialMedia)]
+    [ContentType(DisplayName = "Facebook Feed Block", GUID = "fe935bfb-44b0-4ce2-a448-1d366ff3bbc0", GroupName = CmsGroupNames.SocialMedia)]
     [ImageUrl("~/assets/icons/cms/blocks/rss.png")]
     public class FacebookBlock : FoundationBlockData
     {

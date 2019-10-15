@@ -30,21 +30,21 @@ namespace Foundation.Commerce.Models.Pages
 
         #endregion
 
-        #region Labels
+        #region Site Labels
 
-        [Display(Name = "My account label", GroupName = CommerceTabNames.SiteLabels, Order = 10)]
+        [Display(Name = "My account", GroupName = CommerceTabNames.SiteLabels, Order = 10)]
         public virtual string MyAccountLabel { get; set; }
 
-        [Display(Name = "Cart label", GroupName = CommerceTabNames.SiteLabels, Order = 20)]
+        [Display(Name = "Shopping cart", GroupName = CommerceTabNames.SiteLabels, Order = 20)]
         public virtual string CartLabel { get; set; }
 
-        [Display(Name = "Search label", GroupName = CommerceTabNames.SiteLabels, Order = 30)]
+        [Display(Name = "Search", GroupName = CommerceTabNames.SiteLabels, Order = 30)]
         public virtual string SearchLabel { get; set; }
 
-        [Display(Name = "Wishlist label", GroupName = CommerceTabNames.SiteLabels, Order = 40)]
+        [Display(Name = "Wishlist", GroupName = CommerceTabNames.SiteLabels, Order = 40)]
         public virtual string WishlistLabel { get; set; }
 
-        [Display(Name = "Shared cart label", GroupName = CommerceTabNames.SiteLabels, Order = 50)]
+        [Display(Name = "Shared cart", GroupName = CommerceTabNames.SiteLabels, Order = 50)]
         public virtual string SharedCartLabel { get; set; }
 
         #endregion
@@ -72,7 +72,7 @@ namespace Foundation.Commerce.Models.Pages
 
         [AllowedTypes(typeof(CartPage))]
         [Display(Name = "Shopping cart page", GroupName = CommerceTabNames.SiteStructure, Order = 60)]
-        public virtual ContentReference ShoppingCartPage { get; set; }
+        public virtual ContentReference CartPage { get; set; }
 
         [AllowedTypes(typeof(SharedCartPage))]
         [Display(Name = "Shared cart page", GroupName = CommerceTabNames.SiteStructure, Order = 70)]

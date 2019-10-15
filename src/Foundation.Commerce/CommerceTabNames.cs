@@ -7,33 +7,22 @@ namespace Foundation.Commerce
     [GroupDefinitions]
     public static class CommerceTabNames
     {
-        #region Groupnames for Tabs
-
         [Display(Name = "Search settings", Order = 65)]
         public const string SearchSettings = "SearchSettings";
 
-        [Display(Name = "Site labels", Order = 66)]
+        [Display(Name = "Site labels", Order = 75)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string SiteLabels = "SiteLabels";
 
-        [Display(Order = 67)]
+        [Display(Order = 76)]
         public const string Manufacturer = "Manufacturer";
 
-        [Display(Name = "Site structure", Order = 140)]
+        [Display(Name = "Site structure", Order = 77)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string SiteStructure = "SiteStructure";
 
-        [Display(Name = "Mail templates", Order = 150)]
+        [Display(Name = "Mail templates", Order = 78)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string MailTemplates = "MailTemplates";
-
-        #endregion
-
-        #region Groupnames for Content Types
-
-        [Display(Order = 520)]
-        public const string Commerce = "Commerce";
-
-        #endregion
     }
 }

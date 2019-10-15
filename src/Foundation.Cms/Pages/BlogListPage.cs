@@ -10,7 +10,7 @@ namespace Foundation.Cms.Pages
     [ContentType(DisplayName = "Blog List Page", 
         GUID = "EAADAFF2-3E89-4117-ADEB-F8D43565D2F4",
         Description = "Blog List Page for dates such as year and month",
-        GroupName = CmsTabNames.Blog)]
+        GroupName = CmsGroupNames.Blog)]
     [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage) })]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-20.png")]
     public class BlogListPage : FoundationPageData

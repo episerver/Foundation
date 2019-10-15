@@ -2,6 +2,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Security;
+using Foundation.Cms.Blocks;
 using Foundation.Commerce.Catalog.ViewModels;
 using Mediachase.Commerce.Security;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Blocks
 {
-    [ContentType(DisplayName = "Quick Order Block", GUID = "003076FD-659C-485E-9480-254A447CC809", GroupName = CommerceTabNames.Commerce)]
+    [ContentType(DisplayName = "Quick Order Block", GUID = "003076FD-659C-485E-9480-254A447CC809", GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-14.png")]
-    public class QuickOrderBlock : BlockData
+    public class QuickOrderBlock : FoundationBlockData
     {
         [CultureSpecific]
         [Display(Name = "Main body", GroupName = SystemTabNames.Content, Order = 10)]

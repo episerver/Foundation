@@ -59,10 +59,10 @@ namespace Foundation.Commerce.Models.Catalog
         [BackingType(typeof(PropertyString))]
         public virtual string Warranty { get; set; }
 
-        [Display(Name = "On Sale", Order = 41, Description = "Is on sale?")]
+        [Display(Name = "On sale", Order = 41, Description = "Is on sale?")]
         public virtual bool OnSale { get; set; }
 
-        [Display(Name = "New Arrival", Order = 42, Description = "Is on a new arroval?")]
+        [Display(Name = "New arrival", Order = 42, Description = "Is on a new arrival?")]
         public virtual bool NewArrival { get; set; }
 
         [Searchable]

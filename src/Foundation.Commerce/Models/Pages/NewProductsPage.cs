@@ -9,12 +9,12 @@ namespace Foundation.Commerce.Models.Pages
     [ContentType(DisplayName = "New Products Page",
         GUID = "3ce903a3-3d48-4fe3-92f5-14b5e6f393b5",
         Description = "Show the top new products by sorted by the creation date",
-        GroupName = CommerceTabNames.Commerce)]
+        GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-21.png")]
     public class NewProductsPage : FoundationPageData
     {
         [PositiveNumber]
-        [Display(Name = "Number of products")]
+        [Display(Name = "Number of products", Order = 210)]
         public virtual int NumberOfProducts { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

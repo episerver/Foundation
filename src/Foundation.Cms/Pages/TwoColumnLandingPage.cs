@@ -15,15 +15,15 @@ namespace Foundation.Cms.Pages
     public class TwoColumnLandingPage : LandingPage
     {
         [CultureSpecific]
-        [Display(Name = "Right Hand ContentArea", GroupName = SystemTabNames.Content, Order = 205)]
+        [Display(Name = "Right content area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea RightHandContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Column Quantity of Main ContentArea", GroupName = SystemTabNames.Content, Order = 210)]
+        [Display(Name = "Left column", GroupName = SystemTabNames.Content, Order = 220)]
         public virtual int MainContentAreaColumn { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Column quantity of Right Hand ContentArea", GroupName = SystemTabNames.Content, Order = 211)]
+        [Display(Name = "Right column", GroupName = SystemTabNames.Content, Order = 221)]
         public virtual int RightHandContentAreaColumn { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

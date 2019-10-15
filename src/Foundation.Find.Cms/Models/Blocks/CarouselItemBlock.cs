@@ -13,15 +13,15 @@ namespace Foundation.Find.Cms.Models.Blocks
     {
         [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
-        public virtual string Title { get; set; }
+        public virtual string Heading { get; set; }
 
         [CultureSpecific]
-        [Display(Description = "Second heading line", GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual string Subtitle { get; set; }
+        [Display(GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual string Subhead { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Main Body", GroupName = SystemTabNames.Content, Order = 30)]
-        public virtual string MainBody { get; set; }
+        [Display(GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual string Description { get; set; }
 
         [UIHint(UIHint.Image)]
         [Display(GroupName = SystemTabNames.Content, Order = 40)]

@@ -11,7 +11,7 @@ namespace Foundation.Cms.Blocks
     [ContentType(GUID = "D5148C01-DFB0-4E57-8399-6CEEBF48F38E",
         DisplayName = "Calendar Event Block",
         Description = "Display list of events on calendar",
-        GroupName = CmsTabNames.CalendarEvent)]
+        GroupName = CmsGroupNames.CalendarEvent)]
     [ImageUrl("~/assets/icons/cms/pages/calendar.png")]
     public class CalendarEventBlock : FoundationBlockData
     {
@@ -26,7 +26,7 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual PageReference Root { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Number of events", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual int Count { get; set; }
 
         [Display(Name = "Category filter", GroupName = SystemTabNames.Content, Order = 40)]
