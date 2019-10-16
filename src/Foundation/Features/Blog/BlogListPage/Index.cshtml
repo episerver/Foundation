@@ -3,7 +3,7 @@
 
 <div class="row blog">
     <div class="col-12">
-        <h1 class="blog__heading">@Model.CurrentContent.Heading</h1>
+        <h1 class="blog__heading">@Html.PropertyFor(x => x.CurrentContent.Heading)</h1>
         <nav>
             <ul class="blog__navbar">
                 @foreach (var n in Model.SubNavigation)
