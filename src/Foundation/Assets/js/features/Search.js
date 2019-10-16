@@ -212,12 +212,11 @@ class ContentSearch {
     }
 
     updatePageContent(url, data, onSuccess) {
+        var inst = this;
         axios.post(url || "", data)
             .then(function (result) {
                 $('#contentResult').replaceWith($(result.data).find('#contentResult'));
-                if (onSuccess) {
-                    onSuccess(result);
-                }
+                inst.Init();
             })
             .catch(function (error) {
                 notification.Error(error);
