@@ -1225,7 +1225,10 @@
     <Content Include="Features\Blocks\Views\MembershipDisplayBlock.cshtml" />
     <Content Include="Features\Blocks\Views\RatingBlock.cshtml" />
     <Content Include="Features\Blocks\Views\SubscriptionBlock.cshtml" />
+    <Content Include="Features\CatalogContent\_SocialIconsListing.cshtml" />
+    <Content Include="Features\CatalogContent\_BuyNow.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
+    <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
     <Content Include="Features\NamedCarts\Wishlist\Index.cshtml" />
     <Content Include="Features\Search\Category\Index.cshtml" />
@@ -1749,7 +1752,6 @@
     <Content Include="modules\_protected\Foundation.Social\Views\Web.config" />
     <Content Include="modules\_protected\Foundation.Social\Views\_viewstart.cshtml" />
     <Content Include="Features\Shared\Foundation\_ReviewItem.cshtml" />
-    <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="modules\_protected\Episerver.Marketing.Connector\module.config" />
     <Content Include="modules\_protected\Shell\web.config" />
     <Content Include="modules\_protected\Shell\Shell.zip" />

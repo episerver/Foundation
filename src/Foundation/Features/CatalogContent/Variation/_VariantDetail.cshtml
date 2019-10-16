@@ -74,21 +74,7 @@
 
             @Html.Partial("_Store", Model.Stores)
 
-            <div class="row product-detail__buy">
-                <div class="col-3 col-md-5 col-lg-4">
-                    <input type="number" value="1" min="1" id="qty" name="qty" class="textbox" onClick="this.select();">
-                </div>
-                <div class="col-9 col-md-7 col-lg-6">
-                    <button class="button-black--icon addToCart" data="@Model.CurrentContent.Code" qty="1" store="delivery" selectedstore="" href="javascript:void(0);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        Add to cart
-                    </button>
-                    <button type="button" class="button-transparent-black btn-lower jsBuyNow">
-                        <span>Buy Now</span>
-                    </button>
-
-                </div>
-            </div>
+            @Html.Partial("_BuyNow", Model.CurrentContent.Code)
             <hr />
             <div class="row">
                 <div class="col-12">
