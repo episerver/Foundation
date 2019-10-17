@@ -17,6 +17,7 @@
     <PackageReference Include="EPiServer.Framework.AspNet" Version="11.13.0" />
     <PackageReference Include="EPiServer.Tracking.Cms" Version="1.10.0" />
     <PackageReference Include="EPiServer.Tracking.Core" Version="1.10.0" />
+    <PackageReference Include="EPiServer.Tracking.PageView" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="EPiServer.Personalization.CMS" Version="1.0.0" />
   </ItemGroup>
