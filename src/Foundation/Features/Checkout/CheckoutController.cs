@@ -660,7 +660,7 @@ namespace Foundation.Features.Checkout
         public ActionResult AddSubscription(CheckoutViewModel checkoutViewModel)
         {
             _checkoutService.UpdatePaymentPlan(CartWithValidationIssues.Cart, checkoutViewModel);
-
+            _orderRepository.Save(CartWithValidationIssues.Cart);
             return RedirectToAction("PlaceOrder", "Checkout");
         }
 
