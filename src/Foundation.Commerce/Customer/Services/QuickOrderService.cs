@@ -11,8 +11,13 @@ namespace Foundation.Commerce.Customer.Services
     public class QuickOrderService : IQuickOrderService
     {
         private readonly IContentLoader _contentLoader;
+        private readonly IInventoryService _inventoryService;
 
-        public QuickOrderService(IContentLoader contentLoader) => _contentLoader = contentLoader;
+        public QuickOrderService(IContentLoader contentLoader, IInventoryService inventoryService)
+        {
+            _contentLoader = contentLoader;
+            _inventoryService = inventoryService;
+        }
 
         public string ValidateProduct(ContentReference variationReference, decimal quantity, string code)
         {
@@ -49,8 +54,7 @@ namespace Foundation.Commerce.Customer.Services
 
         public decimal GetTotalInventoryByEntry(string code)
         {
-            var inventoryService = ServiceLocator.Current.GetInstance<IInventoryService>();
-            return inventoryService.QueryByEntry(new[] { code }).Sum(x => x.PurchaseAvailableQuantity);
+            return _inventoryService.QueryByEntry(new[] { code }).Sum(x => x.PurchaseAvailableQuantity);
         }
     }
 }

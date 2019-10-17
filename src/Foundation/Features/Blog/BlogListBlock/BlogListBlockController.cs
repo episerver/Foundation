@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Core.Html;
-using EPiServer.DataAbstraction;
 using EPiServer.Filters;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
@@ -13,10 +12,13 @@ using Foundation.Cms.ViewModels;
 using Foundation.Cms.ViewModels.Blocks;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using Foundation.Cms.Categories;
+using Geta.EpiCategories;
 
 namespace Foundation.Features.Blog.BlogListBlock
 {
@@ -25,18 +27,15 @@ namespace Foundation.Features.Blog.BlogListBlock
     {
         private readonly IContentLoader _contentLoader;
         private readonly BlogTagFactory _blogTagFactory;
-        private readonly CategoryRepository _categoryRepository;
         private readonly IContentRepository _contentRepository;
         private readonly IPageRouteHelper _pageRouteHelper;
 
         public BlogListBlockController(IContentLoader contentLoader,
-            CategoryRepository categoryRepository,
             BlogTagFactory blogTagFactory,
             IContentRepository contentRepository,
             IPageRouteHelper pageRouteHelper)
         {
             _contentLoader = contentLoader;
-            _categoryRepository = categoryRepository;
             _blogTagFactory = blogTagFactory;
             _contentRepository = contentRepository;
             _pageRouteHelper = pageRouteHelper;
@@ -66,8 +65,19 @@ namespace Foundation.Features.Blog.BlogListBlock
             }
 
             var currentBlock = currentPage.BlogList;
-            var categoryQuery = Request.QueryString["category"] ?? "";
-            var category = _categoryRepository.Get(categoryQuery);
+            var categoryQuery = Request.QueryString["category"] ?? string.Empty;
+            IContent category = null;
+            if (categoryQuery != string.Empty)
+            {
+                if (int.TryParse(categoryQuery, out var categoryContentId))
+                {
+                    var content = _contentLoader.Get<StandardPage>(new ContentReference(categoryContentId));
+                    if (content != null)
+                    {
+                        category = content;
+                    }
+                }
+            }
             var pageSize = pagingInfo.PageSize;
 
             // TODO: Need a better solution to get data by page
@@ -116,13 +126,18 @@ namespace Foundation.Features.Blog.BlogListBlock
 
         public IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
         {
-            return currentPage.Category.Select(item => _categoryRepository.Get(item)).
-                Select(cat => new BlogItemPageModel.TagItem()
-                {
-                    Title = cat.Name,
-                    Url = _blogTagFactory.GetTagUrl(currentPage, cat),
-                    DisplayName = cat.Description,
-                }).ToList();
+            if (currentPage.Categories != null)
+            {
+                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentCulture);
+                return allCategories.
+                    Select(cat => new BlogItemPageModel.TagItem()
+                    {
+                        Title = cat.Name,
+                        Url = _blogTagFactory.GetTagUrl(currentPage, cat.ContentLink),
+                        DisplayName = (cat as StandardCategory)?.Description,
+                    }).ToList();
+            }
+            return new List<BlogItemPageModel.TagItem>();
         }
 
         protected string GetPreviewText(BlogItemPage page)
@@ -152,7 +167,7 @@ namespace Foundation.Features.Blog.BlogListBlock
             return TextIndexer.StripHtml(previewText, PreviewTextLength);
         }
 
-        private IEnumerable<PageData> FindPages(Cms.Blocks.BlogListBlock currentBlock, Category category, PageData currentPage)
+        private IEnumerable<PageData> FindPages(Cms.Blocks.BlogListBlock currentBlock, IContent category, PageData currentPage)
         {
             var listRoot = currentBlock.Root ?? currentPage.ContentLink;
 
@@ -175,18 +190,23 @@ namespace Foundation.Features.Blog.BlogListBlock
                 }
             }
 
-            if (currentBlock.CategoryFilter != null && currentBlock.CategoryFilter.Any())
+            if (currentBlock.CategoryListFilter != null && currentBlock.CategoryListFilter.Any())
             {
-                pages = pages.Where(x => x.Category.Intersect(currentBlock.CategoryFilter).Any());
+                pages = pages.Where(x =>
+                {
+                    var contentReferences = ((ICategorizableContent)x).Categories;
+                    return contentReferences != null &&
+                           contentReferences.Intersect(currentBlock.CategoryListFilter).Any();
+                });
             }
             else if (category != null)
             {
-                var catlist = new CategoryList
+                pages = pages.Where(x =>
                 {
-                    category.ID
-                };
-
-                pages = pages.Where(x => x.Category.Intersect(catlist).Any());
+                    var contentReferences = ((ICategorizableContent)x).Categories;
+                    return contentReferences != null && contentReferences
+                               .Intersect(new List<ContentReference>() { category.ContentLink }).Any();
+                });
             }
             pages = pages.Where(p => p.PageTypeName == typeof(BlogItemPage).GetPageType().Name).ToList();
             return pages;

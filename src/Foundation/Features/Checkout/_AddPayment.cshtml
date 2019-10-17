@@ -53,6 +53,12 @@
             <h6>Payment Method is invalid</h6>
         </div>
     }
+    if (ViewData.ModelState["PaymentTotal"] != null && ViewData.ModelState["PaymentTotal"].Errors.Count > 0)
+    {
+        <div class="address-required-message alert alert-danger square-box">
+            <h6>Payments total is invalid</h6>
+        </div>
+    }
 
     <div class="form-group">
         <button type="button" class="jsAddPayment button-black" url="@Url.Action("UpdatePayment", "Checkout")">

@@ -12,11 +12,13 @@ using Foundation.Cms.ViewModels;
 using Foundation.Cms.ViewModels.Blocks;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Foundation.Cms.Categories;
 
 namespace Foundation.Features.Blog.BlogItem
 {
@@ -81,16 +83,22 @@ namespace Foundation.Features.Blog.BlogItem
             return PartialView("Preview", model);
         }
 
-        private IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
+        public IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
         {
-            return currentPage.Category.Select(item => _categoryRepository.Get(item)).
-                Select(cat => new BlogItemPageModel.TagItem()
-                {
-                    Title = cat.Name,
-                    DisplayName = cat.Description,
-                    Url = _blogTagFactory.GetTagUrl(currentPage, cat)
-                }).ToList();
+            if (currentPage.Categories != null)
+            {
+                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentCulture);
+                return allCategories.
+                    Select(cat => new BlogItemPageModel.TagItem()
+                    {
+                        Title = cat.Name,
+                        Url = _blogTagFactory.GetTagUrl(currentPage, cat.ContentLink),
+                        DisplayName = (cat as StandardCategory)?.Description,
+                    }).ToList();
+            }
+            return new List<BlogItemPageModel.TagItem>();
         }
+
 
         private string GetPreviewText(BlogItemPage page)
         {

@@ -43,6 +43,9 @@ namespace Foundation.Demo.Models
         [Display(Name = "Header menu style", GroupName = CmsTabNames.Header, Order = 5)]
         public virtual string HeaderMenuStyle { get; set; }
 
+        [Display(Name = "Tracking scope", GroupName = CmsTabs.SiteSettings, Order = 6)]
+        public virtual string TrackingScope { get; set; }
+
         #endregion
 
         #region Search Settings

@@ -129,7 +129,6 @@ namespace Foundation.Demo.Install.Steps
         private IList<Guid> GetShippingMethodIds()
         {
             var shippingMethods = new List<Guid>();
-            var marketService = ServiceLocator.Current.GetInstance<IMarketService>();
             var enabledMarkets = MarketService.GetAllMarkets().Where(x => x.IsEnabled).ToList();
             foreach (var language in enabledMarkets.SelectMany(x => x.Languages).Distinct())
             {
