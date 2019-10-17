@@ -5,13 +5,23 @@ using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
+using Geta.EpiCategories;
+using Geta.EpiCategories.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    public abstract class FoundationPageData : PageData
+    public abstract class FoundationPageData : PageData, ICategorizableContent
     {
-        #region Content     
+       #region Content
+        [Categories]
+        [Display(
+            Name = "Categories",
+            Description = "Categories associated with this content",
+            GroupName = SystemTabNames.PageHeader,
+            Order = 0)]
+        public virtual IList<ContentReference> Categories { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Main body", GroupName = SystemTabNames.Content, Order = 100)]

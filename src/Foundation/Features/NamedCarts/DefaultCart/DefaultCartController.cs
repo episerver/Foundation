@@ -516,7 +516,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             foreach (var item in lineitems)
             {
                 var result = _cartService.AddToCart(CartWithValidationIssues.Cart, item.Code, item.Quantity, "delivery", "");
-                if (!result.EntriesAddedToCart)
+                if (result.EntriesAddedToCart)
                 {
                     await _recommendationService.TrackCart(HttpContext, CartWithValidationIssues.Cart);
                 }

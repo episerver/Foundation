@@ -4,7 +4,6 @@ using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Globalization;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Extensions;
@@ -20,7 +19,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Catalog
 {
-    [ServiceConfiguration(typeof(IProductService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class ProductService : IProductService
     {
         private readonly IContentLoader _contentLoader;

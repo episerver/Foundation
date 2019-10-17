@@ -14,7 +14,6 @@ using System.Web;
 
 namespace Foundation.Find.Cms.PowerSlices
 {
-    [ServiceConfiguration(typeof(IContentQuery)), ServiceConfiguration(typeof(IContentSlice))]
     public class EverythingSlice : ContentSliceBase<IContent>
     {
         public override string Name => "Everything";
@@ -22,7 +21,6 @@ namespace Foundation.Find.Cms.PowerSlices
         public override int SortOrder => 1;
     }
 
-    [ServiceConfiguration(typeof(IContentQuery)), ServiceConfiguration(typeof(IContentSlice))]
     public class MyContentSlice : ContentSliceBase<IContent>
     {
         public override string Name => "My content";
@@ -36,7 +34,6 @@ namespace Foundation.Find.Cms.PowerSlices
         public override int SortOrder => 2;
     }
 
-    [ServiceConfiguration(typeof(IContentQuery)), ServiceConfiguration(typeof(IContentSlice))]
     public class MyPagesSlice : ContentSliceBase<FoundationPageData>
     {
         public override string Name => "My pages";
@@ -50,7 +47,6 @@ namespace Foundation.Find.Cms.PowerSlices
         public override int SortOrder => 3;
     }
 
-    [ServiceConfiguration(typeof(IContentQuery)), ServiceConfiguration(typeof(IContentSlice))]
     public class UnusedMediaSlice : ContentSliceBase<MediaData>
     {
         protected IContentRepository ContentRepository;
@@ -86,7 +82,6 @@ namespace Foundation.Find.Cms.PowerSlices
         public override int SortOrder => 200;
     }
 
-    [ServiceConfiguration(typeof(IContentQuery)), ServiceConfiguration(typeof(IContentSlice))]
     public class UnusedBlocksSlice : ContentSliceBase<BlockData>
     {
         protected IContentRepository ContentRepository;

@@ -66,7 +66,7 @@
                         </div>
                         <div class="row product--container">
                             <div class="col-12">
-                                @using (Html.BeginForm("Reorder", "Cart", FormMethod.Post, new { @class = "form-inline", data_container = "MiniCart" }))
+                                @using (Html.BeginForm("Reorder", "DefaultCart", FormMethod.Post, new { @class = "form-inline", data_container = "MiniCart" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.Hidden("orderId", order.PurchaseOrder.OrderLink.OrderGroupId.ToString())

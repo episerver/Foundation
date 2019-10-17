@@ -499,6 +499,9 @@
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.13.0\lib\net461\EPiServer.Web.WebControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Geta.EpiCategories, Version=1.2.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Geta.EpiCategories.1.2.9\lib\net461\Geta.EpiCategories.dll</HintPath>
+    </Reference>
     <Reference Include="Geta.SEO.Sitemaps, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Geta.SEO.Sitemaps.3.1.0\lib\net461\Geta.SEO.Sitemaps.dll</HintPath>
     </Reference>
@@ -862,6 +865,7 @@
     <Compile Include="Features\Blog\TagCloudBlock\TagCloudBlockController.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
+    <Compile Include="Features\Category\StandardCategoryController.cs" />
     <Compile Include="Features\Checkout\CheckoutController.cs" />
     <Compile Include="Features\Events\CalendarEventBlock\CalendarEventBlockController.cs" />
     <Compile Include="Features\Events\CalendarEvent\CalendarEventController.cs" />
@@ -1227,6 +1231,9 @@
     <Content Include="Features\Blocks\Views\SubscriptionBlock.cshtml" />
     <Content Include="Features\CatalogContent\_SocialIconsListing.cshtml" />
     <Content Include="Features\CatalogContent\_BuyNow.cshtml" />
+    <Content Include="Features\Category\Index.cshtml" />
+    <Content Include="Features\Category\_PageListing.cshtml" />
+    <Content Include="Features\Category\_Preview.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
@@ -1250,6 +1257,7 @@
     <Content Include="lang\EPiServer.ContentApi.OAuth.UI_en.xml" />
     <Content Include="lang\Facets.xml" />
     <Content Include="lang\Foundation.Core_EN.xml" />
+    <Content Include="lang\geta.epicategories.xml" />
     <Content Include="modules\_protected\CookieDropBlock\Images\block-type-thumbnail-cookiedrop.png" />
     <Content Include="lang\Episerver.Marketing.Automation.Forms_EN.xml" />
     <Content Include="modules\_protected\EPiServer.ContentDeliveryApi.OAuth\ContentApiUserSettings.ascx" />
@@ -1764,6 +1772,7 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="modules\_protected\EPiServer.ChangeApproval\EPiServer.ChangeApproval.zip" />
     <Content Include="Features\NamedCarts\DefaultCart\_CartSummary.cshtml" />
+    <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
     <Content Include="modules\_protected\Geta.SEO.Sitemaps\Geta.SEO.Sitemaps.zip" />
     <Content Include="modules\_protected\BVNetwork.404Handler\BVNetwork.404Handler.zip" />
     <None Include="packages.config">

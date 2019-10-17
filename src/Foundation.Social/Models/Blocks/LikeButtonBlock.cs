@@ -1,7 +1,7 @@
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 
-namespace Foundation.Social.Blocks
+namespace Foundation.Social.Models.Blocks
 {
     /// <summary>
     /// The LikeButtonBlock class defines the configuration used for rendering like button views.

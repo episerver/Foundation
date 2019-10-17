@@ -1,6 +1,5 @@
 ﻿using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Order;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Markets;
 using Foundation.Commerce.Order.ViewModels;
 using Mediachase.Commerce;
@@ -8,7 +7,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order.ViewModelFactories
 {
-    [ServiceConfiguration(typeof(OrderSummaryViewModelFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class OrderSummaryViewModelFactory
     {
         private readonly IOrderGroupCalculator _orderGroupCalculator;

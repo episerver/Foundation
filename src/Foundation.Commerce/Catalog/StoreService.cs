@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.ServiceLocation;
 using Foundation.Cms;
 using Foundation.Commerce.Catalog.ViewModels;
 using Mediachase.Commerce;
@@ -13,7 +12,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Catalog
 {
-    [ServiceConfiguration(ServiceType = typeof(IStoreService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class StoreService : IStoreService
     {
         private const string StoreCookie = "CurrentStore";

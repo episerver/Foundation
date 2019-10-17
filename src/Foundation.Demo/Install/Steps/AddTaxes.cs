@@ -10,7 +10,6 @@ using System.Web.Hosting;
 
 namespace Foundation.Demo.Install.Steps
 {
-    [ServiceConfiguration(ServiceType = typeof(IInstallStep), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddTaxes : BaseInstallStep
     {
         private readonly TaxImportExport _taxImportExport;

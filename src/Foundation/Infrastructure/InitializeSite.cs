@@ -12,6 +12,7 @@ using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Owin;
+using Foundation.Infrastructure.Services;
 
 namespace Foundation.Infrastructure
 {
@@ -36,6 +37,7 @@ namespace Foundation.Infrastructure
                 .SetSearchCacheDuration(TimeSpan.FromMinutes(60));
             });
 
+            context.Services.AddSingleton<ICampaignService, CampaignService>();
         }
 
         public void Initialize(InitializationEngine context)

@@ -1,5 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using Foundation.Commerce.Customer.ViewModels;
+﻿using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Order.Payments;
 using Mediachase.BusinessFoundation.Data;
@@ -10,7 +9,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IGiftCardService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class GiftCardService : IGiftCardService
     {
         public List<GiftCard> GetAllGiftCards()

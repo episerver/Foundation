@@ -1,19 +1,19 @@
 ﻿using EPiServer.Find.ClientConventions;
-using EPiServer.Find.Cms;
-using EPiServer.Find.Cms.Conventions;
 using EPiServer.Find.Framework;
 using EPiServer.Find.UnifiedSearch;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Media;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Models.Pages;
 using Foundation.Find.Cms.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using EPiServer.Shell.ContentQuery;
+using Foundation.Find.Cms.PowerSlices;
+using PowerSlice;
 
 namespace Foundation.Find.Cms
 {
@@ -26,6 +26,28 @@ namespace Foundation.Find.Cms
             services.AddSingleton<IFacetRegistry>(new FacetRegistry(new List<FacetDefinition>()));
             services.AddSingleton<ICmsSearchService, CmsSearchService>();
             services.AddSingleton<IModelBinderProvider, FindCmsModelBinderProvider>();
+            services.AddTransient<IContentQuery, LandingPagesSlice>();
+            services.AddTransient<IContentSlice, LandingPagesSlice>();
+            services.AddTransient<IContentQuery, StandardPagesSlice>();
+            services.AddTransient<IContentSlice, StandardPagesSlice>();
+            services.AddTransient<IContentQuery, BlogsSlice>();
+            services.AddTransient<IContentSlice, BlogsSlice>();
+            services.AddTransient<IContentQuery, BlocksSlice>();
+            services.AddTransient<IContentSlice, BlocksSlice>();
+            services.AddTransient<IContentQuery, MediaSlice>();
+            services.AddTransient<IContentSlice, MediaSlice>();
+            services.AddTransient<IContentQuery, ImagesSlice>();
+            services.AddTransient<IContentSlice, ImagesSlice>();
+            services.AddTransient<IContentQuery, EverythingSlice>();
+            services.AddTransient<IContentSlice, EverythingSlice>();
+            services.AddTransient<IContentQuery, MyContentSlice>();
+            services.AddTransient<IContentSlice, MyContentSlice>();
+            services.AddTransient<IContentQuery, MyPagesSlice>();
+            services.AddTransient<IContentSlice, MyPagesSlice>();
+            services.AddTransient<IContentQuery, UnusedMediaSlice>();
+            services.AddTransient<IContentSlice, UnusedMediaSlice>();
+            services.AddTransient<IContentQuery, UnusedBlocksSlice>();
+            services.AddTransient<IContentSlice, UnusedBlocksSlice>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

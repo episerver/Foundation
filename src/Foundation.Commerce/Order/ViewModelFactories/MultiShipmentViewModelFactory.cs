@@ -17,7 +17,6 @@ using System.Web;
 
 namespace Foundation.Commerce.Order.ViewModelFactories
 {
-    [ServiceConfiguration(typeof(MultiShipmentViewModelFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class MultiShipmentViewModelFactory
     {
         private readonly LocalizationService _localizationService;

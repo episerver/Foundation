@@ -1,5 +1,4 @@
-﻿using Castle.Core.Internal;
-using EPiServer;
+﻿using EPiServer;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Enterprise;
 using EPiServer.ServiceLocation;
@@ -28,7 +27,6 @@ using System.Xml.Serialization;
 
 namespace Foundation.Demo.Install.Steps
 {
-    [ServiceConfiguration(ServiceType = typeof(IInstallStep), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddCustomers : BaseInstallStep
     {
         private readonly XmlSerializer _listViewProfileXmlSerializer = new XmlSerializer(typeof(ListViewProfile), new Type[]{
