@@ -8,6 +8,8 @@ using Foundation.Cms.ViewModels;
 using Foundation.Cms.ViewModels.Blocks;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Foundation.Cms.Categories;
+using Geta.EpiCategories;
 
 namespace Foundation.Features.Blog.TagCloudBlock
 {
@@ -15,17 +17,17 @@ namespace Foundation.Features.Blog.TagCloudBlock
     public class TagCloudBlockController : BlockController<Cms.Blocks.TagCloudBlock>
     {
         private readonly IContentLoader _contentLoader;
-        private readonly CategoryRepository _categoryRepository;
         private readonly BlogTagFactory _blogTagFactory;
+        private readonly ICategoryContentLoader _categoryContentLoader;
 
         public TagCloudBlockController(IContentLoader contentLoader,
             CategoryRepository categoryRepository,
             BlogTagRepository blogTagRepository,
-            BlogTagFactory blogTagFactory)
+            BlogTagFactory blogTagFactory, ICategoryContentLoader categoryContentLoader)
         {
             _contentLoader = contentLoader;
-            _categoryRepository = categoryRepository;
             _blogTagFactory = blogTagFactory;
+            _categoryContentLoader = categoryContentLoader;
         }
 
         public override ActionResult Index(Cms.Blocks.TagCloudBlock currentBlock)
@@ -43,18 +45,17 @@ namespace Foundation.Features.Blog.TagCloudBlock
             var tags = new List<BlogItemPageModel.TagItem>();
             foreach (var item in BlogTagRepository.Instance.LoadTags())
             {
-                var cat = _categoryRepository.Get(item.TagName);
+                var cat = _categoryContentLoader.GetFirstBySegment<StandardCategory>(item.TagName); // Assumes tag name == url segment
                 var url = string.Empty;
 
                 if (startTagLink != null)
                 {
-                    url = _blogTagFactory.GetTagUrl(_contentLoader.Get<PageData>(startTagLink.ToPageReference()), cat);
+                    url = _blogTagFactory.GetTagUrl(_contentLoader.Get<PageData>(startTagLink.ToPageReference()), cat.ContentLink);
                 }
 
                 tags.Add(new BlogItemPageModel.TagItem() { Count = item.Count, Title = item.DisplayName, Weight = item.Weight, Url = url });
             }
             return tags;
         }
-
     }
 }
