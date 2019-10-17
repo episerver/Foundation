@@ -25,6 +25,8 @@
     <PackageReference Include="EPiServer.Find.Framework" Version="13.2.3" />
     <PackageReference Include="EPiServer.Framework" Version="11.13.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.2" />
+    <PackageReference Include="Geta.EpiCategories" Version="1.2.9" />
+    <PackageReference Include="Geta.EpiCategories.Find" Version="1.2.8" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.Owin.Security" Version="4.0.1" />
     <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.0.1" />

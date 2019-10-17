@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Geta.EpiCategories.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
@@ -37,8 +39,13 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 70)]
         public virtual PageType PageTypeFilter { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 80)]
-        public virtual CategoryList CategoryFilter { get; set; }
+        [Categories]
+        [Display(
+            Name = "Category filter (match all selected)",
+            Description = "Categories to filter the list on",
+            GroupName = SystemTabNames.Content,
+            Order = 80)]
+        public virtual IList<ContentReference> CategoryListFilter { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 90)]
         public virtual bool Recursive { get; set; }

@@ -8,6 +8,7 @@ using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Find.Cms.ViewModels;
+using Geta.EpiCategories.Find.Extensions;
 using System.Linq;
 
 namespace Foundation.Find.Cms
@@ -16,10 +17,7 @@ namespace Foundation.Find.Cms
     {
         private readonly IClient _findClient;
 
-        public CmsSearchService(IClient findClient)
-        {
-            _findClient = findClient;
-        }
+        public CmsSearchService(IClient findClient) => _findClient = findClient;
 
         public ContentSearchViewModel SearchContent(CmsFilterOptionViewModel filterOptions)
         {
@@ -64,6 +62,43 @@ namespace Foundation.Find.Cms
                 model.Hits = query.GetResult(hitSpec);
                 filterOptions.TotalCount = model.Hits.TotalMatching;
             }
+
+            return model;
+        }
+
+        public CategorySearchResults SearchByCategory(Pagination pagination)
+        {
+            if (pagination == null)
+            {
+                pagination = new Pagination();
+            }
+
+            var query = _findClient.Search<FoundationPageData>();
+            query = query.FilterByCategories(pagination.Categories);
+
+            if (pagination.Sort == CategorySorting.PublishedDate.ToString())
+            {
+                if (pagination.SortDirection.ToLower() == "asc")
+                    query = query.OrderBy(x => x.StartPublish);
+                else
+                    query = query.OrderByDescending(x => x.StartPublish);
+            }
+
+            if (pagination.Sort == CategorySorting.Name.ToString())
+            {
+                if (pagination.SortDirection.ToLower() == "asc")
+                    query = query.OrderBy(x => x.Name);
+                else
+                    query = query.OrderByDescending(x => x.Name);
+            }
+            
+            query = query.Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize);
+            var results = query.GetContentResult();
+            var model = new CategorySearchResults();
+            model.Pagination = pagination;
+            model.RelatedPages = results;
+            model.Pagination.TotalMatching = results.TotalMatching;
+            model.Pagination.TotalPage = model.Pagination.TotalMatching / pagination.PageSize + (model.Pagination.TotalMatching % pagination.PageSize > 0 ? 1 : 0);
 
             return model;
         }

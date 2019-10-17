@@ -1,0 +1,132 @@
+﻿@using EPiServer.AddOns.Helpers
+@model Foundation.Find.Cms.ViewModels.CategorySearchViewModel
+
+
+@if (Model.SearchResults.RelatedPages != null && Model.SearchResults.RelatedPages.Any())
+{
+    var grid = (Model.SearchResults.RelatedPages.Count() - 1) / 4;
+    grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
+    var firstBlog = Model.SearchResults.RelatedPages.ElementAt(0);
+    var listGridBlogs = new List<List<FoundationPageData>>();
+    var listLargeBlogs = new List<FoundationPageData>();
+
+    for (var g = 0; g < grid; g++)
+    {
+        var list = new List<FoundationPageData>();
+        for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
+        {
+            list.Add(Model.SearchResults.RelatedPages.ElementAt(i));
+        }
+        listGridBlogs.Add(list);
+    }
+
+    for (var i = grid * 4 + 1; i < Model.SearchResults.RelatedPages.Count(); i++)
+    {
+        listLargeBlogs.Add(Model.SearchResults.RelatedPages.ElementAt(i));
+    }
+
+
+    <div class="row">
+        <div class="col-12">
+            <h1 class="blog__heading">
+                <a class="sub-title" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.Name</a>
+            </h1>
+        </div>
+    </div>
+    <div class="blog__gallery">
+        <div class="blog__row">
+
+            <div class="blog__large-col">
+                @Html.Action("Preview", "StandardCategory", new { pageData = firstBlog })
+            </div>
+            @foreach (var list in listGridBlogs)
+            {
+                <div class="blog__large-col">
+                    <div class="blog__grid">
+                        @foreach (var page in list)
+                        {
+                            @Html.Action("Preview", "StandardCategory", new { pageData = page })
+                        }
+                    </div>
+                </div>
+            }
+            @foreach (var page in listLargeBlogs)
+            {
+                <div class="blog__large-col">
+                    @Html.Action("Preview", "StandardCategory", new { pageData = page })
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<br />
+@using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))
+{
+    <input hidden id="RequestUrl" type="text" value="@Model.CurrentContent.ContentLink.GetPublicUrl().TrimEnd('/')/GetListPages" />
+    <input hidden id="PageNumber" name="Page" type="text" value="@Model.SearchResults.Pagination.Page" />
+    <input hidden id="PageSize" name="PageSize" type="text" value="@Model.SearchResults.Pagination.PageSize" />
+}
+
+<div class="col-12 toolbar">
+    <div class="toolbar__left">
+        <strong>
+            @Model.SearchResults.Pagination.TotalMatching @Html.TranslateFallback("/Blog/Items", "Items")
+        </strong>
+    </div>
+
+    <div class="toolbar__center">
+        @if (Model.SearchResults.Pagination.TotalPage > 0)
+        {
+            <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
+            <ul class="pagination">
+                <li class="jsPaginateBlog " data="1">
+                    <a href="javascript:void(0)">
+                        &laquo;
+                    </a>
+                </li>
+                @for (int page = 1; page <= Model.SearchResults.Pagination.TotalPage; page++)
+                {
+                    <li class="@(Model.SearchResults.Pagination.Page == page ? "active" : "") jsPaginateBlog " data="@page">
+                        <a href="javascript:void(0)">
+                            @page.ToString()
+                        </a>
+                    </li>
+                }
+                <li class="jsPaginateBlog " data="@Model.SearchResults.Pagination.TotalPage">
+                    <a href="javascript:void(0)">
+                        &raquo;
+                    </a>
+                </li>
+            </ul>
+        }
+    </div>
+    <div class="toolbar__right">
+        <div id="limiter">
+            <label>@Html.TranslateFallback("/Search/View", "View"): </label>
+            <ul class="selection">
+                <li>
+                    <a href="#">
+                        @Model.SearchResults.Pagination.PageSize
+                        <i style="font-size: 5px;" data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="selection__dropdown">
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="1">1</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.SearchResults.Pagination.PageSize == 15 ? 20 : 15)">@(Model.SearchResults.Pagination.PageSize == 15 ? 20 : 15)</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.SearchResults.Pagination.PageSize == 30 || Model.SearchResults.Pagination.PageSize == 35 ? 20 : 30)">@(Model.SearchResults.Pagination.PageSize == 30 || Model.SearchResults.Pagination.PageSize == 35 ? 20 : 30)</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.SearchResults.Pagination.PageSize == 35 ? 30 : 35)">@(Model.SearchResults.Pagination.PageSize == 35 ? 30 : 35)</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
