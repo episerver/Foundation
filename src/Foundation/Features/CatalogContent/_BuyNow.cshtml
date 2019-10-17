@@ -1,0 +1,17 @@
+﻿@model string
+
+<div class="row product-detail__buy">
+    <div class="col-3 col-md-5 col-lg-4">
+        <input type="number" value="1" min="1" id="qty" name="qty" class="textbox" onClick="this.select();">
+    </div>
+    <div class="col-9 col-md-7 col-lg-6">
+        <button class="button-black--icon addToCart" data="@Model" qty="1" store="delivery" selectedstore="" href="javascript:void(0);">
+            <i data-feather="shopping-cart"></i>
+            Add to cart
+        </button>
+        <button type="button" class="button-transparent-black btn-lower jsBuyNow" data="@Model" qty="1" store="delivery" selectedstore="">
+            <span>Buy Now</span>
+        </button>
+
+    </div>
+</div>

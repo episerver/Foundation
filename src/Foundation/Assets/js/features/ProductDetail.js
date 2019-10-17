@@ -74,21 +74,23 @@
             });
     }
 
-
     InStorePickupClick() {
         var inst = this;
         $(this.DivContainerId).find('.jsSelectDelivery').each(function (i, e) {
             $(e).click(function () {
                 var valueChecked = $(this).find('input').first().val();
                 $(inst.DivContainerId).find('.addToCart').attr('store', valueChecked);
+                $(inst.DivContainerId).find('.jsBuyNow').attr('store', valueChecked);
                 if (valueChecked === 'instore') {
-                    var selectedStore = $(inst.DivContainerId).find('.selectedStoreIcon:not(.hidden)');
+                    var selectedStore = $(inst.DivContainerId).find('.jsSelectStore.hidden').attr('data');
                     $(inst.DivContainerId).find('.addToCart').attr('selectedStore', selectedStore);
+                    $(inst.DivContainerId).find('.jsBuyNow').attr('selectedStore', selectedStore);
                     if (!$(inst.DivContainerId).find('#pickupStoreBox').is(':visible')) {
                         $(inst.DivContainerId).find('#pickupStoreBox').fadeToggle();
                     }
                 } else {
                     $(inst.DivContainerId).find('.addToCart').attr('selectedStore', '');
+                    $(inst.DivContainerId).find('.jsBuyNow').attr('selectedStore', '');
                     if ($(inst.DivContainerId).find('#pickupStoreBox').is(':visible')) {
                         $(inst.DivContainerId).find('#pickupStoreBox').fadeOut(300);
                     }
@@ -114,6 +116,7 @@
                 $(this).siblings('.selectedStoreIcon').removeClass('hidden');
 
                 $(inst.DivContainerId).find('.addToCart').attr('selectedStore', storeCode);
+                $(inst.DivContainerId).find('.jsBuyNow').attr('selectedStore', storeCode);
             });
         });
     }
@@ -131,10 +134,10 @@
         });
     }
 
-
     ChangeQuantityKeyup() {
         $('#qty').keyup(function () {
             $('.addToCart').attr('qty', $(this).val());
+            $('.jsBuyNow').attr('qty', $(this).val());
         });
     }
 
@@ -158,6 +161,27 @@
                 onZoomOut: true
             });
         });
+    }
+
+    BuyNowClick() {
+        $(this.DivContainerId).find('.jsBuyNow').each(function (i, e) {
+            $(e).click(function () {
+                var code = $(this).attr('data');
+                var data = {
+                    Code: code
+                };
+
+                if ($(this).attr('qty')) data.Quantity = $(this).attr('qty');
+                if ($(this).attr('store')) data.Store = $(this).attr('store');
+                if ($(this).attr('selectedStore')) data.SelectedStore = $(this).attr('selectedStore');
+
+                var callback = () => {
+                    $('.jsCheckoutBtn').click();
+                };
+                var inst = new Product();
+                inst.addToCart(data, '/DefaultCart/AddToCart', callback);
+            })
+        })
     }
 
     InitProductDetail() {
@@ -185,12 +209,14 @@
                     inst.SelectStoreClick();
                     inst.ChangeImageClick();
                     inst.ZoomImage();
+                    inst.BuyNowClick();
                 }
             }
         );
         this.ZoomImage();
         this.ChangeImageClick();
         this.ChangeQuantityKeyup();
+        this.BuyNowClick();
     }
 
     InitQuickView() {

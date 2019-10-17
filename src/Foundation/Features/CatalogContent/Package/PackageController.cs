@@ -1,6 +1,5 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce.Catalog.ViewModels;
@@ -36,7 +35,7 @@ namespace Foundation.Features.CatalogContent.Package
         }
 
         [HttpGet]
-        public async  Task<ActionResult> Index(GenericPackage currentContent, bool skipTracking = false)
+        public async Task<ActionResult> Index(GenericPackage currentContent, bool skipTracking = false)
         {
             var viewModel = _viewModelFactory.CreatePackage<GenericPackage, GenericVariant, DemoGenericPackageViewModel>(currentContent);
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
