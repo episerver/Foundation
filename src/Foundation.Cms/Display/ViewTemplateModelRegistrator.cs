@@ -1,12 +1,10 @@
 ﻿using EPiServer.DataAbstraction;
 using EPiServer.Framework.Web;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Pages;
 
 namespace Foundation.Cms.Display
 {
-    [ServiceConfiguration(typeof(IViewTemplateModelRegistrator))]
     public class ViewTemplateModelRegistrator : IViewTemplateModelRegistrator
     {
         public const string FoundationFolder = "~/Features/Shared/Foundation/";

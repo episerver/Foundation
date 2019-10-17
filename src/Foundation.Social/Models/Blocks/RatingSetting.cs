@@ -1,7 +1,7 @@
 namespace Foundation.Social.Models.Blocks
 {
     /// <summary>
-    /// This class is used by the rating block to encapsulate one of the 
+    /// This class is used by the rating block to encapsulate one of the
     /// possible rating values that can be submitted using that rating block
     /// </summary>
     public class RatingSetting

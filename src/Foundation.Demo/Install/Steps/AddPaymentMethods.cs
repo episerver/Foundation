@@ -18,7 +18,6 @@ using System.Web.Hosting;
 
 namespace Foundation.Demo.Install.Steps
 {
-    [ServiceConfiguration(ServiceType = typeof(IInstallStep), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddPaymentMethods : BaseInstallStep
     {
         public AddPaymentMethods(IContentRepository contentRepository,

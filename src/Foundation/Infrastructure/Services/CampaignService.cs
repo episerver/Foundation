@@ -1,6 +1,5 @@
 using EPiServer.ConnectForCampaign.Services.Implementation;
 using EPiServer.Logging;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.Services;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ using System.Linq;
 
 namespace Foundation.Infrastructure.Services
 {
-    [ServiceConfiguration(typeof(ICampaignService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CampaignService : ICampaignService
     {
         protected readonly IRecipientListService _campaignRecipientList;
@@ -71,7 +69,7 @@ namespace Foundation.Infrastructure.Services
                 // Get current point of recipient
                 var currentPoints = _campaignRecipient.GetRecipientDetails(currentRecipientListId, email, new List<string>() { bonusPoints, score }).ToArray();
 
-                // Update recipient 
+                // Update recipient
                 if (currentRecipientListId != -1)
                 {
                     long.TryParse(currentPoints[0], out long oldBonusPoints);
@@ -143,7 +141,7 @@ namespace Foundation.Infrastructure.Services
             {
                 var currentRecipientListId = GetRecipientListId(recipientName);
 
-                // Update recipient 
+                // Update recipient
                 if (currentRecipientListId != -1)
                 {
                     var dictionary = new Dictionary<string, string>

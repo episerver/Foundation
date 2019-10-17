@@ -14,7 +14,6 @@ using System.Web.Hosting;
 
 namespace Foundation.Demo.Install.Steps
 {
-    [ServiceConfiguration(ServiceType = typeof(IInstallStep), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddMarkets : BaseInstallStep
     {
         public AddMarkets(IContentRepository contentRepository,

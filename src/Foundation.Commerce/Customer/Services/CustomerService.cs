@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(ICustomerService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CustomerService : ICustomerService
     {
         private readonly CustomerContext _customerContext;

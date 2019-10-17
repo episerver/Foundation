@@ -1,6 +1,5 @@
 ﻿using EPiServer;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.Tracking.Core;
 using EPiServer.Web;
 using Foundation.Commerce.Customer.ViewModels;
@@ -18,7 +17,6 @@ using System.Web;
 
 namespace Foundation.Demo.ProfileStore
 {
-    [ServiceConfiguration(typeof(IProfileStoreService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class ProfileStoreService : IProfileStoreService
     {
         private readonly HttpClient _client = new HttpClient();

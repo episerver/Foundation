@@ -5,7 +5,6 @@ using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Order;
 using EPiServer.Logging;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Customer.Services;
@@ -27,7 +26,6 @@ using System.Text;
 
 namespace Foundation.Commerce.Order.Services
 {
-    [ServiceConfiguration(typeof(ICartService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CartService : ICartService
     {
         private readonly IProductService _productService;

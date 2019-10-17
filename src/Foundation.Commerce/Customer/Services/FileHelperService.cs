@@ -1,10 +1,8 @@
-﻿using EPiServer.ServiceLocation;
-using FileHelpers;
+﻿using FileHelpers;
 using System.IO;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IFileHelperService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class FileHelperService : IFileHelperService
     {
         public T[] GetImportData<T>(Stream file) where T : class

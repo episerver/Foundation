@@ -1,5 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using Foundation.Commerce.Customer.ViewModels;
+﻿using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Extensions;
 using Mediachase.Commerce.Customers;
 using System;
@@ -8,7 +7,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IOrganizationService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class OrganizationService : IOrganizationService
     {
         private readonly IAddressBookService _addressBookService;

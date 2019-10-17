@@ -21,6 +21,9 @@ using System.Configuration;
 using System.Linq;
 using System.Security.Authentication;
 using System.Web;
+using Foundation.Demo.Install;
+using Foundation.Demo.Install.Steps;
+using Foundation.Demo.ProfileStore;
 
 namespace Foundation.Demo
 {
@@ -37,6 +40,18 @@ namespace Foundation.Demo
             services.AddTransient(_ => HttpContext.Current.GetOwinContext());
             services.AddSingleton<IHeaderViewModelFactory, DemoHeaderViewModelFactory>();
             services.AddSingleton<ISearchViewModelFactory, DemoSearchViewModelFactory>();
+            services.AddTransient<ContentExportProcessor>();
+            services.AddSingleton<IInstallService, InstallService>();
+            services.AddSingleton<IInstallStep, AddCurrencies>();
+            services.AddSingleton<IInstallStep, AddCustomers>();
+            services.AddSingleton<IInstallStep, AddMarkets>();
+            services.AddSingleton<IInstallStep, AddPaymentMethods>();
+            services.AddSingleton<IInstallStep, AddPromotions>();
+            services.AddSingleton<IInstallStep, AddShippingMethods>();
+            services.AddSingleton<IInstallStep, AddTaxes>();
+            services.AddSingleton<IInstallStep, AddWarehouses>();
+            services.AddSingleton<IStorageService, StorageService>();
+            services.AddSingleton<IProfileStoreService, ProfileStoreService>();
             services.AddSingleton<ITrackingDataInterceptor, TrackingDataInterceptor>();
 
             context.ConfigurationComplete += (o, e) =>

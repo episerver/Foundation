@@ -27,7 +27,6 @@ namespace Foundation.Demo.Install
         ExportPropertySettings = 256
     }
 
-    [ServiceConfiguration]
     public class ContentExportProcessor
     {
         private readonly ServiceAccessor<IDataExporter> _dataExporterAccessor;

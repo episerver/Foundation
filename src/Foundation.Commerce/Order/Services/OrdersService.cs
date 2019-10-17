@@ -2,7 +2,6 @@
 using EPiServer.Commerce.Order;
 using EPiServer.Logging;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Order.ViewModels;
@@ -16,7 +15,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order.Services
 {
-    [ServiceConfiguration(typeof(IOrdersService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class OrdersService : IOrdersService
     {
         private readonly CustomerContext _customerContext;

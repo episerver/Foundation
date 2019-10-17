@@ -16,7 +16,6 @@ using System.Web.Mvc;
 
 namespace Foundation.Commerce.Order.Payments
 {
-    [ServiceConfiguration(typeof(IPaymentMethod))]
     public class GenericCreditCardPaymentOption : PaymentOptionBase, IDataErrorInfo
     {
         private static readonly string[] ValidatedProperties =

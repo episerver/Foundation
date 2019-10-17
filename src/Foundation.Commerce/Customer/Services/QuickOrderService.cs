@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IQuickOrderService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class QuickOrderService : IQuickOrderService
     {
         private readonly IContentLoader _contentLoader;
