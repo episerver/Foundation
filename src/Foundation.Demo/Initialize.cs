@@ -6,8 +6,10 @@ using EPiServer.Data.Dynamic;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
+using EPiServer.Tracking.Core;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
+using Foundation.Demo.Personalization;
 using Foundation.Demo.ViewModels;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
@@ -35,6 +37,7 @@ namespace Foundation.Demo
             services.AddTransient(_ => HttpContext.Current.GetOwinContext());
             services.AddSingleton<IHeaderViewModelFactory, DemoHeaderViewModelFactory>();
             services.AddSingleton<ISearchViewModelFactory, DemoSearchViewModelFactory>();
+            services.AddSingleton<ITrackingDataInterceptor, TrackingDataInterceptor>();
 
             context.ConfigurationComplete += (o, e) =>
             {
