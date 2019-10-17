@@ -1,55 +1,79 @@
-﻿using EPiServer.Core;
+﻿using EPiServer;
+using EPiServer.Core;
 using EPiServer.Editor;
 using EPiServer.Logging;
+using EPiServer.Personalization;
 using EPiServer.Personalization.CMS.Model;
 using EPiServer.Personalization.CMS.Recommendation;
+using EPiServer.Security;
 using EPiServer.Tracking.Core;
+using EPiServer.Tracking.PageView;
 using EPiServer.Web;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 namespace Foundation.Cms.Personalization
 {
     public class CmsTrackingService : ICmsTrackingService
     {
-        private readonly IRecommendationService _personalizationRecommendationService;
+        private readonly IContentLoader _contentLoader;
         private readonly ITrackingService _trackingService;
         private readonly IContextModeResolver _contextModeResolver;
+        private readonly ISiteDefinitionResolver _siteDefinitionResolver;
+        private readonly IRecommendationService _personalizationRecommendationService;
         private readonly ILogger _logger = LogManager.GetLogger(typeof(CmsTrackingService));
 
-        public CmsTrackingService(IRecommendationService personalizationRecommendationService,
+        public CmsTrackingService(IContentLoader contentLoader,
             ITrackingService trackingService,
-            IContextModeResolver contextModeResolver)
+            IContextModeResolver contextModeResolver,
+            ISiteDefinitionResolver siteDefinitionResolver,
+            IRecommendationService personalizationRecommendationService)
         {
-            _personalizationRecommendationService = personalizationRecommendationService;
+            _contentLoader = contentLoader;
             _trackingService = trackingService;
             _contextModeResolver = contextModeResolver;
+            _siteDefinitionResolver = siteDefinitionResolver;
+            _personalizationRecommendationService = personalizationRecommendationService;
         }
 
-        public virtual async System.Threading.Tasks.Task PageViewed(HttpContextBase context, PageData currentContent)
+        public virtual async System.Threading.Tasks.Task PageViewed(HttpContextBase context, PageData pageData)
         {
-            if (currentContent == null || !PageIsInViewMode())
+            if (pageData == null || !PageIsInViewMode())
             {
                 await System.Threading.Tasks.Task.CompletedTask;
             }
 
+            var site = _siteDefinitionResolver.GetByContent(pageData.ContentLink, true);
+            var ancesctors = _contentLoader.GetAncestors(pageData.ContentLink).Select(c => c.ContentGuid).ToArray();
+
             try
             {
-                var trackingData = new TrackingData<dynamic>
+                var user = new UserData
+                {
+                    Name = PrincipalInfo.CurrentPrincipal?.Identity?.Name,
+                    Email = EPiServerProfile.Current?.Email,
+                };
+
+                var pageDataTrackingModel = new EpiPageViewWrapper
+                {
+                    Epi = new EpiPageView
+                    {
+                        ContentGuid = pageData.ContentGuid,
+                        Language = pageData.Language?.Name,
+                        SiteId = site.Id,
+                        Ancestors = ancesctors,
+                    }
+                };
+
+                var trackingData = new TrackingData<EpiPageViewWrapper>
                 {
                     EventType = "epiPageView",
-                    PageTitle = currentContent.Name,
-                    Value = currentContent.ContentLink.ToString(),
-                    PageUri = context.Request.Url.AbsoluteUri,
-                    Payload = new
-                    {
-                        currentContent.Name,
-                        currentContent.ContentGuid,
-                        ContentLink = currentContent.ContentLink.ToString(),
-                        currentContent.ContentTypeID,
-                        ParentLink = currentContent.ParentLink.ToString()
-                    },
+                    PageTitle = pageData.Name,
+                    User = user,
+                    Value = $"Viewed {pageData.Name}",
+                    Payload = pageDataTrackingModel
                 };
 
                 await _trackingService.Track(trackingData, context);
