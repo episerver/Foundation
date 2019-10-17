@@ -132,6 +132,7 @@ namespace Foundation.Commerce.Models.Pages
         [Display(Name = "Order confirmation", GroupName = CommerceTabNames.MailTemplates, Order = 20)]
         public virtual ContentReference OrderConfirmationMail { get; set; }
 
+        [AllowedTypes(typeof(MailBasePage))]
         [Display(Name = "Reset password mail", GroupName = CommerceTabNames.MailTemplates, Order = 30)]
         public virtual ContentReference ResetPasswordMail { get; set; }
 

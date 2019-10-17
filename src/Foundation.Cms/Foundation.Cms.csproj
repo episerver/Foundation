@@ -31,6 +31,17 @@
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EPiServer">
+      <HintPath>EPiServer</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Data">
+      <HintPath>EPiServer.Data</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Framework">
+      <HintPath>EPiServer.Framework</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
 </Project>
