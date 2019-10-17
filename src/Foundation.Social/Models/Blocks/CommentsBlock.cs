@@ -1,6 +1,6 @@
-using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms.Blocks;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Social.Models.Blocks
@@ -13,7 +13,7 @@ namespace Foundation.Social.Models.Blocks
         Description = "Configures the frontend view properties of a comment block",
         GroupName = "Social")]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
-    public class CommentsBlock : BlockData
+    public class CommentsBlock : FoundationBlockData
     {
         /// <summary>
         /// Configures the heading that should be used when displaying the block view in the frontend.
@@ -37,19 +37,19 @@ namespace Foundation.Social.Models.Blocks
         /// <summary>
         /// Configures the max length of a comment.
         /// </summary>
-        [Display(Name = "Comment max length", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Maximum length of a comment", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual int CommentMaxLength { get; set; }
 
         /// <summary>
         /// Configures the max number of comments that should be displayed in the frontend view.
         /// </summary>
-        [Display(Name = "Comment display max", GroupName = SystemTabNames.Content, Order = 50)]
+        [Display(Name = "Maximum number of comments to show", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual int CommentsDisplayMax { get; set; }
 
         /// <summary>
         /// Configures whether an activity should be sent to the Episerver Social Activity Streams system.
         /// </summary>
-        [Display(Name = "Send activity", GroupName = SystemTabNames.Content, Order = 60)]
+        [Display(Name = "Enable sending comment notifications", GroupName = SystemTabNames.Content, Order = 60)]
         public virtual bool SendActivity { get; set; }
 
         /// <summary>

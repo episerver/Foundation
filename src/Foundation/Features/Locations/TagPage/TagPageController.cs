@@ -50,7 +50,7 @@ namespace Foundation.Features.Locations.TagPage
                 foreach (var img in currentPage.Images.FilteredItems.Select(ci => ci.ContentLink))
                 {
                     var t = _contentLoader.Get<ImageMediaData>(img).Title;
-                    carousel.Items.Add(new CarouselItemBlock { Image = img, Title = t });
+                    carousel.Items.Add(new CarouselItemBlock { Image = img, Heading = t });
                 }
             }
             var q = SearchClient.Instance.Search<Find.Cms.Models.Pages.LocationItemPage>()
@@ -74,7 +74,7 @@ namespace Foundation.Features.Locations.TagPage
                 carousel.Items.Add(new CarouselItemBlock
                 {
                     Image = d.Image,
-                    Title = d.Name,
+                    Heading = d.Name,
                 });
             }
 

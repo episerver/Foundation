@@ -6,7 +6,7 @@
         {
             <div class="col-12">
                 <h1 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h1>
-                @Html.PropertyFor(x => x.CurrentBlock.VideoText)
+                @Html.PropertyFor(x => x.CurrentBlock.MainBody)
             </div>
         }
         @if (Model.CurrentBlock.HasVideo)

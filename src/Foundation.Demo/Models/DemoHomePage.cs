@@ -16,7 +16,7 @@ namespace Foundation.Demo.Models
         GUID = "452d1812-7385-42c3-8073-c1b7481e7b20",
         Description = "Used for home page of all sites",
         AvailableInEditMode = true,
-        GroupName = CmsTabNames.Content)]
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-02.png")]
     public class DemoHomePage : CommerceHomePage
     {
@@ -26,24 +26,28 @@ namespace Foundation.Demo.Models
             SearchCatalog = 0;
         }
 
-        #region Site Settings
+        #region Header
 
-        [Display(Name = "Site logo", GroupName = CmsTabNames.Header, Order = 1)]
+        [Display(Name = "Site logo", GroupName = CmsTabNames.Header, Order = 10)]
         [UIHint(UIHint.Image)]
         [CultureSpecific]
         public virtual ContentReference SiteLogo { get; set; }
 
-        [Display(Name = "Show commerce header components", GroupName = CmsTabNames.Header, Order = 3)]
-        public virtual bool ShowCommerceHeaderComponents { get; set; }
-
-        [Display(Name = "Show product ratings on all product tiles", GroupName = CmsTabNames.Header, Order = 4)]
-        public virtual bool ShowProductRatingsOnListings { get; set; }
-
         [SelectOne(SelectionFactoryType = typeof(HeaderMenuSelectionFactory))]
-        [Display(Name = "Header menu style", GroupName = CmsTabNames.Header, Order = 5)]
+        [Display(Name = "Menu style", GroupName = CmsTabNames.Header, Order = 30)]
         public virtual string HeaderMenuStyle { get; set; }
 
-        [Display(Name = "Tracking scope", GroupName = CmsTabs.SiteSettings, Order = 6)]
+        [Display(Name = "Show commerce header components", GroupName = CmsTabNames.Header, Order = 40)]
+        public virtual bool ShowCommerceHeaderComponents { get; set; }
+
+        [Display(Name = "Show product ratings on all product tiles", GroupName = CmsTabNames.Header, Order = 50)]
+        public virtual bool ShowProductRatingsOnListings { get; set; }
+
+        #endregion
+
+        #region Settings
+
+        [Display(Name = "Tracking scope", GroupName = CmsTabNames.Settings, Order = 400)]
         public virtual string TrackingScope { get; set; }
 
         #endregion

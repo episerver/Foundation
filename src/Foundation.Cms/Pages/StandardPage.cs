@@ -17,11 +17,14 @@ namespace Foundation.Cms.Pages
     {
         [CultureSpecific]
         [UIHint(UIHint.Video)]
-        [Display(Name = "Main background video", GroupName = SystemTabNames.Content)]
+        [Display(Name = "Background video", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentReference MainBackgroundVideo { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(FoundationStandardPageTopPaddingModeSelectionFactory))]
-        [Display(Name = "Top padding mode", Description = "Sets how much padding should be at the top of the standard content", GroupName = SystemTabNames.Content)]
+        [Display(Name = "Top padding mode", 
+            Description = "Sets how much padding should be at the top of the standard content", 
+            GroupName = SystemTabNames.Content,
+            Order = 220)]
         public virtual string TopPaddingMode { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

@@ -62,8 +62,9 @@ namespace Foundation.Features.MyAccount.ResetPassword
             }
 
             var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
-            var body = _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), language);
+            //var body = _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), language);
             var mailPage = _contentLoader.Get<MailBasePage>(startPage.ResetPasswordMail);
+            var body = mailPage.MainBody.ToHtmlString();
             var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
             var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language }, Request.Url.Scheme);
 

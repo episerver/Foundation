@@ -29,20 +29,20 @@ namespace Foundation.Find.Cms.Models.Pages
         public virtual ContentReference Image { get; set; }
 
         [AllowedTypes(typeof(TagPage))]
-        [Display(GroupName = SystemTabNames.Content, Order = 210)]
+        [Display(GroupName = SystemTabNames.Content, Order = 120)]
         public virtual ContentArea Tags { get; set; }
 
-        [Display(Name = "Sidebar area", GroupName = SystemTabNames.Content, Order = 220)]
-        public virtual ContentArea SidebarContentArea { get; set; }
+        [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 220)]
+        public virtual ContentArea LeftContentArea { get; set; }
+
+        [Display(Name = "Is new?", GroupName = SystemTabNames.Content, Order = 230)]
+        public virtual bool New { get; set; }
 
         [Display(Name = "Promoted destination",
             Description = "Check this, in order to boost this destination and promote it in suggestions",
             GroupName = SystemTabNames.Content,
-            Order = 120)]
+            Order = 240)]
         public virtual bool Promoted { get; set; }
-
-        [Display(Name = "Is new?", GroupName = SystemTabNames.Content, Order = 230)]
-        public virtual bool New { get; set; }
 
         [Required]
         [BackingType(typeof(PropertyString))]

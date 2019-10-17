@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Container Block", GUID = "8bdfac81-1dbd-43b9-a012-522bd67ee8b3", GroupName = CmsTabNames.Content)]
+    [ContentType(DisplayName = "Container Block", GUID = "8bdfac81-1dbd-43b9-a012-522bd67ee8b3", GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-04.png")]
     public class ContainerBlock : FoundationBlockData
     {
