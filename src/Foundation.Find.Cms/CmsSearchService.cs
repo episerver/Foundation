@@ -8,7 +8,9 @@ using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Find.Cms.ViewModels;
+using Geta.EpiCategories;
 using Geta.EpiCategories.Find.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Foundation.Find.Cms
@@ -101,6 +103,11 @@ namespace Foundation.Find.Cms
             model.Pagination.TotalPage = model.Pagination.TotalMatching / pagination.PageSize + (model.Pagination.TotalMatching % pagination.PageSize > 0 ? 1 : 0);
 
             return model;
+        }
+
+        public ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent
+        {
+            return query.FilterByCategories(categories);
         }
     }
 }

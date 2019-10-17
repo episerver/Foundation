@@ -1,6 +1,8 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
@@ -12,8 +14,12 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Number of recommendations")]
         public virtual int NumberOfRecommendations { get; set; }
 
-        [Display(Name = "Inspiration folder")]
+        [Display(Name = "Filter root")]
         public virtual ContentReference InspirationFolder { get; set; }
+
+        [Display(Name = "Filter types")]
+        [SelectMany(SelectionFactoryType = typeof(AvailablePageTypesSelectionFactory))]
+        public virtual string FilterTypes {get;set;}
 
         public override void SetDefaultValues(ContentType contentType)
         {

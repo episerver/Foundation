@@ -18,6 +18,6 @@ namespace Foundation.Cms.ViewModels.Blocks
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public StandardPage Page { get; set; }
+        public FoundationPageData Page { get; set; }
     }
 }

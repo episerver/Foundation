@@ -24,34 +24,49 @@ namespace Foundation.Features.Blocks
         private readonly IClient _findClient;
         private readonly Random _random = new Random();
         private readonly IContentLoader _contentLoader;
+        private readonly ICmsSearchService _cmsSearchService;
+        private readonly IContentTypeRepository<PageType> _contentTypeRepository;
 
         public RecentPageCategoryRecommendationController(CategoryRepository categoryRepository,
             IClient findClient,
-            IContentLoader contentLoader)
+            IContentLoader contentLoader,
+            ICmsSearchService cmsSearchService,
+            IContentTypeRepository<PageType> contentTypeRepository)
         {
             _categoryRepository = categoryRepository;
             _findClient = findClient;
             _contentLoader = contentLoader;
+            _cmsSearchService = cmsSearchService;
+            _contentTypeRepository = contentTypeRepository;
         }
 
         public override ActionResult Index(RecentPageCategoryRecommendation currentBlock)
         {
             var categories = Cms.Extensions.ContentExtensions.GetPageBrowseHistory()
                 .Reverse()
-                .SelectMany(x => x.Category)
+                .Where(x => x is FoundationPageData)
+                .Select(x => x as FoundationPageData)
+                .SelectMany(x => x.Categories)
                 .ToList();
 
-            var pages = new List<StandardPage>();
+            var pages = new List<FoundationPageData>();
+            var rootFilterId = currentBlock.InspirationFolder != null ? currentBlock.InspirationFolder.ID : ContentReference.RootPage.ID;
+            var pageTypesFilterId = currentBlock.FilterTypes?.Split(',').ToList().Select(x => int.Parse(x));
+            var query = _findClient.Search<FoundationPageData>()
+                    .Filter(x => x.Language.Name.Match(ContentLanguage.PreferredCulture.Name))
+                    .Filter(x => x.ParentLink.ID.Match(rootFilterId));
 
             if (categories.Any())
             {
-                var pageResult = _findClient.Search<StandardPage>()
-                    .Filter(x => x.Language.Name.Match(ContentLanguage.PreferredCulture.Name))
-                    .AddFilterForIntList(categories, "Category")
-                    .GetContentResult();
-
-                pages = pageResult.Items.ToList();
+                query = _cmsSearchService.FilterByCategories(query, categories);
             }
+
+            if (pageTypesFilterId != null && pageTypesFilterId.Count() > 0)
+            {
+                query = query.Filter(x => x.ContentTypeID.In(pageTypesFilterId));
+            }
+
+            pages = query.GetContentResult().Items.ToList();
 
             var model = new RecentPageCategoryRecommendationViewModel(currentBlock)
             {
@@ -65,7 +80,7 @@ namespace Foundation.Features.Blocks
                     return PartialView("~/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
                 }
 
-                pages = _contentLoader.GetChildren<StandardPage>(currentBlock.InspirationFolder).ToList();
+                pages = _contentLoader.GetChildren<FoundationPageData>(currentBlock.InspirationFolder).ToList();
             }
 
             var pageCount = pages.Count;
@@ -76,17 +91,17 @@ namespace Foundation.Features.Blocks
             }
             foreach (var page in PickSomeInRandomOrder(pages, count))
             {
-                var categoryCount = page.Category.Count;
+                var categoryCount = page.Categories?.Count;
                 var categoryInt = 0;
 
                 if (categories.Any())
                 {
-                    categoryInt = categories[_random.Next(0, categories.Count - 1)];
+                    categoryInt = categories[_random.Next(0, categories.Count - 1)].ID;
                 }
 
                 if (categoryInt == 0 && categoryCount > 0)
                 {
-                    categoryInt = page.Category[_random.Next(0, categoryCount - 1)];
+                    categoryInt = page.Categories[_random.Next(0, categoryCount.Value - 1)].ID;
                 }
 
                 var category = _categoryRepository.Get(categoryInt);

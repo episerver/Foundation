@@ -8,7 +8,7 @@
             var categoryPage = Model.CategoryPages.First();
             var page = categoryPage.Page;
         }
-        <div class="@(Model.CategoryPages.Count > 1 ? "col-xs-12 col-md-6" : "col-xs-12")">
+        <div class="@(Model.CategoryPages.Count > 1 ? "col-xs-12 col-md-6" : "col-12")">
             <div class="teaser @page.ThemeCssClass @page.AlignmentCssClass @(page.ApplyHoverEffect ? "show-details" : String.Empty)">
                 <div class="teaser-text-container">
                     <div class="teaser-text">
@@ -21,7 +21,7 @@
                             }
                             @if (!String.IsNullOrWhiteSpace(page.TeaserButtonText))
                             {
-                                <p><a class="button" href="@Url.ContentUrl(page.ContentLink)">@page.TeaserButtonText</a></p>
+                                <p><a class="button @page.TeaserButtonStyle" href="@Url.ContentUrl(page.ContentLink)">@page.TeaserButtonText</a></p>
                             }
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                 }
                                 @if (!String.IsNullOrWhiteSpace(secondPage.TeaserButtonText))
                                 {
-                                    <p><a class="button" href="@Url.ContentUrl(secondPage.ContentLink)">@secondPage.TeaserButtonText</a></p>
+                                    <p><a class="button @page.TeaserButtonStyle" href="@Url.ContentUrl(secondPage.ContentLink)">@secondPage.TeaserButtonText</a></p>
                                 }
                             </div>
                         </div>
