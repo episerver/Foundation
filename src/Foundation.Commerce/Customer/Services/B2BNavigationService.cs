@@ -1,9 +1,7 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.SpecializedProperties;
+﻿using EPiServer.SpecializedProperties;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IB2BNavigationService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class B2BNavigationService : IB2BNavigationService
     {
         private readonly ICustomerService _customerService;

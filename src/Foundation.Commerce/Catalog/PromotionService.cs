@@ -2,7 +2,6 @@ using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Order;
 using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Markets;
@@ -13,7 +12,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Catalog
 {
-    [ServiceConfiguration(typeof(IPromotionService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class PromotionService : IPromotionService
     {
         private readonly IMarketService _marketService;

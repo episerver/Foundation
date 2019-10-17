@@ -1,12 +1,10 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.Social.ActivityStreams.Core;
+﻿using EPiServer.Social.ActivityStreams.Core;
 using EPiServer.Social.Common;
 using Foundation.Social.Models.ActivityStreams;
 
 namespace Foundation.Social.Services
 
 {
-    [ServiceConfiguration(typeof(IReviewActivityService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class ReviewActivityService : IReviewActivityService
     {
         private readonly IActivityService _activityService;

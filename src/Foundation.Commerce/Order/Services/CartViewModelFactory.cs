@@ -18,7 +18,6 @@ using System.Web;
 
 namespace Foundation.Commerce.Order.Services
 {
-    [ServiceConfiguration(typeof(CartViewModelFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CartViewModelFactory
     {
         private readonly IContentLoader _contentLoader;
@@ -107,7 +106,7 @@ namespace Foundation.Commerce.Order.Services
                 TaxTotal = totals.TaxTotal,
                 ReferrerUrl = GetReferrerUrl(),
             };
-            
+
             return model;
         }
 

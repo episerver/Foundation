@@ -1,5 +1,4 @@
 ﻿using EPiServer.Logging;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.ViewModels;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
@@ -9,7 +8,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IBudgetService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class BudgetService : IBudgetService
     {
         public List<FoundationBudget> GetActiveUserBudgets(Guid contactId)

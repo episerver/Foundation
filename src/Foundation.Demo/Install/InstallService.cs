@@ -16,7 +16,6 @@ using System.Text;
 
 namespace Foundation.Demo.Install
 {
-    [ServiceConfiguration(Lifecycle = ServiceInstanceScope.Singleton, ServiceType = typeof(IInstallService))]
     public class InstallService : IInstallService
     {
         private readonly ILogger _logger = LogManager.GetLogger(typeof(InstallService));

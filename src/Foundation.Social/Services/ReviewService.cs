@@ -1,5 +1,4 @@
 ﻿using EPiServer.Logging;
-using EPiServer.ServiceLocation;
 using EPiServer.Social.Comments.Core;
 using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
@@ -10,7 +9,6 @@ using System.Linq;
 
 namespace Foundation.Social.Services
 {
-    [ServiceConfiguration(typeof(IReviewService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class ReviewService : IReviewService
     {
         private readonly ICommentService _commentService;

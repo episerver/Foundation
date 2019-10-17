@@ -1,5 +1,4 @@
 ﻿using EPiServer.Commerce.Order;
-using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Models.Pages;
@@ -15,7 +14,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Customer.Services
 {
-    [ServiceConfiguration(typeof(IAddressBookService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddressBookService : IAddressBookService
     {
         private readonly ICustomerService _customerService;

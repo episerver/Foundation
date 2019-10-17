@@ -1,4 +1,3 @@
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
@@ -12,7 +11,6 @@ using System.Web;
 
 namespace Foundation.Commerce.Order.Payments
 {
-    [ServiceConfiguration(typeof(IPaymentService), Lifecycle = ServiceInstanceScope.Singleton)]
     public class PaymentService : IPaymentService
     {
         private readonly ICustomerService _customerService;

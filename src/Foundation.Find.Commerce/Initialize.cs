@@ -4,6 +4,9 @@ using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using Foundation.Find.Commerce.ViewModels;
 using System.Web.Mvc;
+using EPiServer.Shell.ContentQuery;
+using Foundation.Find.Commerce.PowerSlices;
+using PowerSlice;
 
 namespace Foundation.Find.Commerce
 {
@@ -17,6 +20,20 @@ namespace Foundation.Find.Commerce
             services.AddTransient<IModelBinderProvider, FindCommerceModelBinderProvider>();
             services.AddTransient<ICommerceSearchService, CommerceSearchService>();
             services.AddSingleton<CatalogContentEventListener, FoundationCatalogContentEventListener>();
+            services.AddTransient<IContentQuery, ProductsSlice>();
+            services.AddTransient<IContentSlice, ProductsSlice>();
+            services.AddTransient<IContentQuery, PackagesSlice>();
+            services.AddTransient<IContentSlice, PackagesSlice>();
+            services.AddTransient<IContentQuery, BundlesSlice>();
+            services.AddTransient<IContentSlice, BundlesSlice>();
+            services.AddTransient<IContentQuery, VariantsSlice>();
+            services.AddTransient<IContentSlice, VariantsSlice>();
+            services.AddTransient<IContentQuery, OrderPromotionsSlice>();
+            services.AddTransient<IContentSlice, OrderPromotionsSlice>();
+            services.AddTransient<IContentQuery, ShippingPromotionsSlice>();
+            services.AddTransient<IContentSlice, ShippingPromotionsSlice>();
+            services.AddTransient<IContentQuery, EntryPromotionsSlice>();
+            services.AddTransient<IContentSlice, EntryPromotionsSlice>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

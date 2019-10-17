@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Marketing;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Markets
 {
-    [ServiceConfiguration(typeof(MarketContentLoader), Lifecycle = ServiceInstanceScope.Singleton)]
     public class MarketContentLoader
     {
         private readonly CampaignInfoExtractor _campaignInfoExtractor;

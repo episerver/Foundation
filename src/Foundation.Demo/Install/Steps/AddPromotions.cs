@@ -22,7 +22,6 @@ using System.Xml.Linq;
 
 namespace Foundation.Demo.Install.Steps
 {
-    [ServiceConfiguration(ServiceType = typeof(IInstallStep), Lifecycle = ServiceInstanceScope.Singleton)]
     public class AddPromotions : BaseInstallStep
     {
         public AddPromotions(IContentRepository contentRepository,

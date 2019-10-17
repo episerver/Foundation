@@ -1,6 +1,5 @@
 ﻿using EPiServer;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Models.Pages;
 using Microsoft.AspNet.Identity;
@@ -12,7 +11,6 @@ using System.Web;
 
 namespace Foundation.Commerce.Mail
 {
-    [ServiceConfiguration(typeof(IMailService), Lifecycle = ServiceInstanceScope.Transient)]
     public class MailService : IMailService
     {
         private readonly IContentLoader _contentLoader;

@@ -13,6 +13,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System.Web;
 using System.Web.Mvc;
+using EPiServer.Web.Mvc;
+using EPiServer.Web.PageExtensions;
 
 namespace Foundation.Cms
 {
@@ -31,6 +33,9 @@ namespace Foundation.Cms
             services.AddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
             services.AddTransient<IModelBinderProvider, ModelBinderProvider>();
             services.AddSingleton<CookieService>();
+            services.AddSingleton<BlogTagFactory>();
+            services.AddTransient<IQuickNavigatorItemProvider, FoundationQuickNavigatorItemProvider>();
+            services.AddTransient<IViewTemplateModelRegistrator, ViewTemplateModelRegistrator>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

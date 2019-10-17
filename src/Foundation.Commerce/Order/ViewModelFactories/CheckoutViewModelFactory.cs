@@ -18,7 +18,6 @@ using System.Web;
 
 namespace Foundation.Commerce.Order.ViewModelFactories
 {
-    [ServiceConfiguration(typeof(CheckoutViewModelFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CheckoutViewModelFactory
     {
         private readonly LocalizationService _localizationService;
