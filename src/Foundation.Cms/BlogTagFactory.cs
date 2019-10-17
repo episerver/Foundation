@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Cms.DynamicData;
 using Foundation.Cms.Extensions;
@@ -12,7 +11,6 @@ using System.Linq;
 
 namespace Foundation.Cms
 {
-    [ServiceConfiguration(typeof(BlogTagFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class BlogTagFactory
     {
         private readonly IContentRepository _contentRepository;
@@ -27,11 +25,11 @@ namespace Foundation.Cms
             _urlResolver = urlResolver;
             _categoryRepository = categoryRepository;
         }
-        public string GetTagUrl(PageData currentPage, Category cat)
+        public string GetTagUrl(PageData currentPage, ContentReference cat)
         {
             var start = FindParentByPageType(currentPage, typeof(BlogListPage));
             var pageUrl = _urlResolver.GetUrl(start.ContentLink);
-            var url = $"{pageUrl}?category={cat.Name}";
+            var url = $"{pageUrl}?category={cat.ID}";
             return url;
         }
 

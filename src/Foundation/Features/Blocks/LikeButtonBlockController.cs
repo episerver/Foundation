@@ -4,7 +4,7 @@ using EPiServer.Social.Ratings.Core;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Social.Blocks;
+using Foundation.Social.Models.Blocks;
 using Foundation.Social.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;

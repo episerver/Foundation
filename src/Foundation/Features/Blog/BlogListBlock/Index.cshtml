@@ -58,6 +58,7 @@
 <br />
 @using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))
 {
+    <input hidden id="RequestUrl" type="text" value="/BlogListBlock/GetItemList" />
     <input hidden id="PageId" name="PageId" type="text" value="@Model.PagingInfo.PageId" />
     <input hidden id="PageNumber" name="PageNumber" type="text" value="@Model.PagingInfo.PageNumber" />
     <input hidden id="PageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />

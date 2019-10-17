@@ -23,13 +23,18 @@ namespace Foundation.Infrastructure.Kpi
         private readonly LocalizationService _localization;
         private readonly FormsEvents _formsEvents;
 
-        public FilledInFormKpi()
+        public FilledInFormKpi(
+            IFormRepository formRepository,
+            IContentRepository contentRepository,
+            IEPiServerFormsCoreConfig formsConfig,
+            LocalizationService localization,
+            FormsEvents formsEvents)
         {
-            _formRepository = _servicelocator.GetInstance<IFormRepository>();
-            _contentRepository = _servicelocator.GetInstance<IContentRepository>();
-            _formsConfig = _servicelocator.GetInstance<IEPiServerFormsCoreConfig>();
-            _localization = _servicelocator.GetInstance<LocalizationService>();
-            _formsEvents = _servicelocator.GetInstance<FormsEvents>();
+            _formRepository = formRepository;
+            _contentRepository = contentRepository;
+            _formsConfig = formsConfig;
+            _localization = localization;
+            _formsEvents = formsEvents;
         }
 
         [DataMember]
@@ -42,7 +47,7 @@ namespace Foundation.Infrastructure.Kpi
 
                 sb.Append("<p>");
                 sb.Append("<select data-dojo-type=\"dijit/form/ComboBox\" id=\"FormKPIFormId\" name=\"FormKPIFormId\">");
-                foreach (var form in this.GetAllFormNamesandIds())
+                foreach (var form in GetAllFormNamesandIds())
                 {
                     sb.Append("<option value=\"" + form.Item1 + "\">" + WebUtility.HtmlEncode(form.Item2) + "</option>");
                 }
@@ -97,7 +102,7 @@ namespace Foundation.Infrastructure.Kpi
 
         public override IKpiResult Evaluate(object sender, EventArgs e)
         {
-            var conversionResult = new KpiConversionResult() { KpiId = Id, HasConverted = false };
+            var conversionResult = new KpiConversionResult { KpiId = Id, HasConverted = false };
             try
             {
                 if (e is FormsSubmittedEventArgs formSubmission)

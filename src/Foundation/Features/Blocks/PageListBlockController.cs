@@ -9,18 +9,19 @@ using Foundation.Cms.ViewModels.Blocks;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Geta.EpiCategories;
 
 namespace Foundation.Features.Blocks
 {
     [TemplateDescriptor(Default = true)]
     public class PageListBlockController : BlockController<PageListBlock>
     {
-        private ContentLocator contentLocator;
-        private IContentLoader contentLoader;
+        private readonly ContentLocator _contentLocator;
+        private readonly IContentLoader _contentLoader;
         public PageListBlockController(ContentLocator contentLocator, IContentLoader contentLoader)
         {
-            this.contentLocator = contentLocator;
-            this.contentLoader = contentLoader;
+            _contentLocator = contentLocator;
+            _contentLoader = contentLoader;
         }
 
         public override ActionResult Index(PageListBlock currentBlock)
@@ -53,30 +54,36 @@ namespace Foundation.Features.Blocks
             {
                 if (currentBlock.PageTypeFilter != null)
                 {
-                    pages = contentLocator.FindPagesByPageType(listRoot, true, currentBlock.PageTypeFilter.ID);
+                    pages = _contentLocator.FindPagesByPageType(listRoot, true, currentBlock.PageTypeFilter.ID);
                 }
                 else
                 {
-                    pages = contentLocator.GetAll<PageData>(listRoot);
+                    pages = _contentLocator.GetAll<PageData>(listRoot);
                 }
             }
             else
             {
                 if (currentBlock.PageTypeFilter != null)
                 {
-                    pages = contentLoader.GetChildren<PageData>(listRoot)
+                    pages = _contentLoader.GetChildren<PageData>(listRoot)
                         .Where(p => p.ContentTypeID == currentBlock.PageTypeFilter.ID);
                 }
                 else
                 {
-                    pages = contentLoader.GetChildren<PageData>(listRoot);
+                    pages = _contentLoader.GetChildren<PageData>(listRoot);
                 }
             }
 
-            if (currentBlock.CategoryFilter != null && currentBlock.CategoryFilter.Any())
+            if (currentBlock.CategoryListFilter != null && currentBlock.CategoryListFilter.Any())
             {
-                pages = pages.Where(x => x.Category.Intersect(currentBlock.CategoryFilter).Any());
+                pages = pages.Where(x =>
+                {
+                    var categories = (x as ICategorizableContent)?.Categories;
+                    return categories != null &&
+                           categories.Intersect(currentBlock.CategoryListFilter).Any();
+                });
             }
+
             return pages;
         }
 

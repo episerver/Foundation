@@ -54,9 +54,13 @@
     getBlogList() {
         var inst = this;
         var form = $(document).find('#jsGetBlogItemListPage');
+        var url = form.find('#RequestUrl').val();
+        if (url == undefined || url == "") {
+            url = "/BlogListBlock/GetItemList";
+        }
         axios({
             method: 'post',
-            url: "/BlogListBlock/GetItemList",
+            url: url,
             data: form.serialize()
         }).then(function (response) {
             $('#blog-list').html($(response.data));

@@ -3,7 +3,6 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Extensions;
@@ -17,7 +16,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order.Services
 {
-    [ServiceConfiguration(typeof(CartItemViewModelFactory), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CartItemViewModelFactory
     {
         private readonly IContentLoader _contentLoader;

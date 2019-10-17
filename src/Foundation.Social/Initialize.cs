@@ -32,6 +32,10 @@ namespace Foundation.Social
             services.AddSingleton<ICommunityMembershipModerationRepository, CommunityMembershipModerationRepository>();
             services.AddSingleton<IReviewActivityService, ReviewActivityService>();
             services.AddSingleton<IBlogCommentRepository, BlogCommentRepository>();
+            services.AddTransient<ICommentManagerService, CommentManagerService>();
+            services.AddSingleton<IReviewService, ReviewService>();
+            services.AddSingleton<IReviewActivityService, ReviewActivityService>();
+            services.AddSingleton<ICommentManagerService, CommentManagerService>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

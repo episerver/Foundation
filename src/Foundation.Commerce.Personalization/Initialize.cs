@@ -10,8 +10,7 @@ namespace Foundation.Commerce.Personalization
         void IConfigurableModule.ConfigureContainer(ServiceConfigurationContext context)
         {
             var services = context.Services;
-
-
+            services.AddTransient<ICommerceTrackingService, CommerceTrackingService>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

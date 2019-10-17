@@ -574,11 +574,12 @@ namespace Foundation.Features.Checkout
         [HttpPost]
         public ActionResult UpdatePaymentAddress(CheckoutPage currentPage, CheckoutViewModel viewModel)
         {
-            if (!CartWithValidationIssues.Cart.Forms.SelectMany(x => x.Payments).Any())
+            var orderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+            var isMissingPayment = !CartWithValidationIssues.Cart.Forms.SelectMany(x => x.Payments).Any();
+            if (isMissingPayment || orderSummary.PaymentTotal != 0)
             {
-                ModelState.AddModelError("SelectedPayment", _localizationService.GetString("/Shared/PaymentRequired"));
                 var model = CreateCheckoutViewModel(currentPage);
-                model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+                model.OrderSummary = orderSummary;
                 model.AddressType = viewModel.AddressType;
                 model.BillingAddress = viewModel.BillingAddress;
 
@@ -591,6 +592,16 @@ namespace Foundation.Features.Checkout
                     }
                 }
 
+                if (isMissingPayment)
+                {
+                    ModelState.AddModelError("SelectedPayment", _localizationService.GetString("/Shared/PaymentRequired"));
+                }
+
+                if (orderSummary.PaymentTotal != 0)
+                {
+                    ModelState.AddModelError("PaymentTotal", "PaymentTotal is invalid.");
+                }
+
                 return View("BillingInformation", model);
             }
 
@@ -600,7 +611,7 @@ namespace Foundation.Features.Checkout
                 {
                     ModelState.AddModelError("BillingAddress.AddressId", "Address is required.");
                     var model = CreateCheckoutViewModel(currentPage);
-                    model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+                    model.OrderSummary = orderSummary;
                     model.AddressType = 1;
                     return View("BillingInformation", model);
                 }

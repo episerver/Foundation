@@ -1,5 +1,4 @@
 ﻿using EPiServer.Logging;
-using EPiServer.ServiceLocation;
 using Mediachase.Data.Provider;
 using Powells.CouponCode;
 using System;
@@ -9,7 +8,6 @@ using System.Data.SqlClient;
 
 namespace Foundation.Commerce.Marketing
 {
-    [ServiceConfiguration]
     public class UniqueCouponService
     {
         private readonly IConnectionStringHandler _connectionHandler;

@@ -1,5 +1,4 @@
 ﻿using EPiServer.Commerce.Order;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Markets;
 using Foundation.Commerce.Order.Payments;
@@ -11,7 +10,6 @@ using System.Linq;
 
 namespace Foundation.Commerce.Order.ViewModelFactories
 {
-    [ServiceConfiguration(typeof(PaymentMethodViewModelFactory), Lifecycle = ServiceInstanceScope.Hybrid)]
     public class PaymentMethodViewModelFactory
     {
         private readonly ICurrentMarket _currentMarket;

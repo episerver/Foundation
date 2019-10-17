@@ -12,7 +12,6 @@ using System.Web.Mvc;
 
 namespace Foundation.Commerce.Order.Payments
 {
-    [ServiceConfiguration(typeof(IPaymentMethod))]
     public class GiftCardPaymentOption : PaymentOptionBase
     {
         private readonly IOrderGroupFactory _orderGroupFactory;

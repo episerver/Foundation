@@ -321,4 +321,20 @@ start http://%FOUNDATIONDOMAIN%/setup
 :error
 if NOT "%errorMessage%"=="" echo %errorMessage%
 
+echo Run rebuild.cmd to rebuild solution
+echo @echo off > rebuild.cmd
+echo cls >> rebuild.cmd
+echo echo ###################################################################### >> rebuild.cmd
+echo echo #           Rebuid the current application from default              # >> rebuild.cmd
+echo echo ###################################################################### >> rebuild.cmd
+echo echo #                                                                    # >> rebuild.cmd
+echo echo #       NOTE: This will **DROP** the existing DB                     # >> rebuild.cmd
+echo echo #             and rebuild so use with caution!!                      # >> rebuild.cmd
+echo echo #                                                                    # >> rebuild.cmd
+echo echo #       Crtl+C NOW if you are unsure!                                # >> rebuild.cmd
+echo echo #                                                                    # >> rebuild.cmd
+echo echo ###################################################################### >> rebuild.cmd
+echo pause >> rebuild.cmd
+echo build %APPNAME% %FOUNDATIONDOMAIN% %CMDOMAIN% %LICENSEPATH% %SQLSERVER% %ADDITIONAL_SQLCMD% >> rebuild.cmd
+
 pause

@@ -30,7 +30,7 @@ namespace Foundation.Social.Models.Blocks
         public virtual bool ShowHeading { get; set; }
 
         /// <summary>
-        /// Configures whether an activity should be sent to the Episerver Social 
+        /// Configures whether an activity should be sent to the Episerver Social
         /// Activity Streams system when a rating a submitted using the rating block.
         /// </summary>
         [Display(Name = "Send activity", GroupName = SystemTabNames.Content, Order = 30)]
@@ -56,11 +56,11 @@ namespace Foundation.Social.Models.Blocks
             // By default do not display a heading on the rating block
             ShowHeading = false;
 
-            // By default send a rating activity to the Episerver Social 
+            // By default send a rating activity to the Episerver Social
             // Activity Streams system when a rating a submitted.
             SendActivity = true;
 
-            // For the sake of the simplicity of this sample we allow items 
+            // For the sake of the simplicity of this sample we allow items
             // to be rated on a scale of 1 through 5 by initializing this
             // non-editable property list.
             RatingSettings = new List<RatingSetting>

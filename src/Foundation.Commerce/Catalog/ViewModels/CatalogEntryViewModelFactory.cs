@@ -5,7 +5,6 @@ using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Globalization;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Media;
 using Foundation.Commerce.Customer.Services;
@@ -23,7 +22,6 @@ using System.Web.Mvc;
 
 namespace Foundation.Commerce.Catalog.ViewModels
 {
-    [ServiceConfiguration(Lifecycle = ServiceInstanceScope.Singleton)]
     public class CatalogEntryViewModelFactory
     {
         private readonly IPromotionService _promotionService;

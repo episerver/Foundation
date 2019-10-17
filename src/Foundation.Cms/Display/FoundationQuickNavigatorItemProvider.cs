@@ -1,14 +1,12 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.PageExtensions;
 using System.Collections.Generic;
 
 namespace Foundation.Cms.Display
 {
-    [ServiceConfiguration(typeof(IQuickNavigatorItemProvider))]
     public class FoundationQuickNavigatorItemProvider : IQuickNavigatorItemProvider
     {
         public IDictionary<string, QuickNavigatorMenuItem> GetMenuItems(ContentReference currentContent)
