@@ -30,7 +30,7 @@
                             <div class="spur-card-title"> @Html.TranslateFallback("Import Content", "Import Content")</div>
                         </div>
                         <div class="card-body">
-                            @using (Html.BeginForm("Create", "Setup", FormMethod.Post))
+                            @using (Html.BeginForm("Create", "Setup", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="custom-control custom-radio">
@@ -46,7 +46,7 @@
                                     </label>
                                 </div>
                                 <div id="localSiteDiv" class="form-group">
-                                    <label for="siteFile"> @Html.TranslateFallback("Import site episerverdata file", "Import site episerverdata file")</label>
+                                    <label for="SiteFile"> @Html.TranslateFallback("Import site episerverdata file", "Import site episerverdata file")</label>
                                     @Html.TextBoxFor(x => x.SiteFile, new { type = "file", name = "SiteFile", @class = "form-control-file" })
                                 </div>
                                 <div id="remoteSiteDiv" class="form-group">

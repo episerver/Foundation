@@ -127,11 +127,12 @@ namespace Foundation.Demo.Install
             var success = false;
             try
             {
-                var log = _dataImporter().Import(stream, destinationRoot, new ImportOptions
+                var importer = _dataImporter();
+                var log = importer.Import(stream, destinationRoot, new ImportOptions
                 {
                     KeepIdentity = true,
                 });
-                var status = _dataImporter().Status;
+                var status = importer.Status;
                 var logError = ReportStatus(log);
                 if (log.Errors.Any())
                 {

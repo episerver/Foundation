@@ -3,9 +3,7 @@ using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Marketing.Promotions;
 using EPiServer.Core;
 using EPiServer.DataAccess;
-using EPiServer.Enterprise;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Mediachase.Commerce;
@@ -25,9 +23,8 @@ namespace Foundation.Demo.Install.Steps
     public class AddPromotions : BaseInstallStep
     {
         public AddPromotions(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
-            IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
+            IMarketService marketService) : base(contentRepository, referenceConverter, marketService)
         {
 
         }

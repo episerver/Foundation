@@ -1,6 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Enterprise;
-using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
@@ -17,10 +15,9 @@ namespace Foundation.Demo.Install.Steps
         private readonly IWarehouseRepository _warehouseRepository;
 
         public AddWarehouses(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            IWarehouseRepository warehouseRepository) : base(contentRepository, dataImporter, referenceConverter, marketService) => _warehouseRepository = warehouseRepository;
+            IWarehouseRepository warehouseRepository) : base(contentRepository, referenceConverter, marketService) => _warehouseRepository = warehouseRepository;
 
         public override int Order => 3;
 

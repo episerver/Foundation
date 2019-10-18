@@ -1,6 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Enterprise;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Orders.ImportExport;
@@ -15,10 +13,9 @@ namespace Foundation.Demo.Install.Steps
         private readonly TaxImportExport _taxImportExport;
 
         public AddTaxes(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            TaxImportExport taxImportExport) : base(contentRepository, dataImporter, referenceConverter, marketService) => _taxImportExport = taxImportExport;
+            TaxImportExport taxImportExport) : base(contentRepository,  referenceConverter, marketService) => _taxImportExport = taxImportExport;
 
         public override int Order => 4;
 
