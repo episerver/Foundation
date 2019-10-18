@@ -182,9 +182,18 @@ namespace Foundation.Commerce.Customer.Services
                 ?? false;
         }
 
-        public void Save(AddressModel addressModel)
+        public void Save(AddressModel addressModel, FoundationContact contact = null)
         {
-            var currentContact = _customerService.GetCurrentContact();
+            FoundationContact currentContact;
+            if (contact != null)
+            {
+                currentContact = contact;
+            }
+            else
+            {
+                currentContact = _customerService.GetCurrentContact();
+            }
+
             if (currentContact == null)
             {
                 return;

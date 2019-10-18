@@ -224,14 +224,12 @@ namespace Foundation.Commerce.Customer.Services
 
         public virtual async Task<ExternalLoginInfo> GetExternalLoginInfoAsync() => await AuthenticationManager().GetExternalLoginInfoAsync();
 
-        public virtual async Task<IdentityResult> CreateUser(SiteUser user)
+        public virtual async Task<IdentityContactResult> CreateUser(SiteUser user)
         {
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-
-            FoundationContact contact = null;
 
             if (user.Password.IsNullOrEmpty())
             {
@@ -243,20 +241,20 @@ namespace Foundation.Commerce.Customer.Services
                 throw new MissingFieldException("Email");
             }
 
-            IdentityResult result;
+            var result = new IdentityContactResult();
             if (UserManager().FindByEmail(user.Email) != null)
             {
-                result = new IdentityResult(_localizationService.GetString("/Registration/Form/Error/UsedEmail", "This email address is already used"));
+                result.IdentityResult = new IdentityResult(_localizationService.GetString("/Registration/Form/Error/UsedEmail", "This email address is already used"));
             }
             else
             {
-                result = await UserManager().CreateAsync(user, user.Password);
+                result.IdentityResult = await UserManager().CreateAsync(user, user.Password);
 
-                if (result.Succeeded)
+                if (result.IdentityResult.Succeeded)
                 {
                     var identity = UserManager().GenerateUserIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie).Result;
                     AuthenticationManager().SignIn(identity);
-                    contact = CreateFoundationContact(user);
+                    result.FoundationContact = CreateFoundationContact(user);
                 }
             }
 
@@ -328,7 +326,7 @@ namespace Foundation.Commerce.Customer.Services
             contact.FirstName = user.FirstName;
             contact.LastName = user.LastName;
             contact.Email = user.Email;
-            contact.UserId = "String:" + user.Email; // The UserId needs to be set in the format "String:{email}". Else a duplicate CustomerContact will be created later on.
+            contact.UserId = user.Email;
             contact.RegistrationSource = user.RegistrationSource;
 
             //if (user.Addresses != null && user.Addresses.Any())
