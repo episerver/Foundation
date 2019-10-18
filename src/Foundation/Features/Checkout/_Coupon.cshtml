@@ -30,7 +30,7 @@
                     <div class="col-12">
 
                         <h5 class="jsCouponLabel @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
-                            @Html.Translate("/Checkout/Coupons/AppliedCoupons/Heading")
+                            @Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")
                         </h5>
                         <div class="jsCouponListing">
                             <input type="hidden" id="jsRenoveCouponUrl" value="@Url.Action("RemoveCouponCode", "Checkout")" />
