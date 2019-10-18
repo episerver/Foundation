@@ -951,7 +951,6 @@
   <ItemGroup>
     <Folder Include="Assets\scss\templates\catalog\" />
     <Folder Include="Assets\scss\templates\media\" />
-    <Folder Include="Views\ResetPassword\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\customers.xml" />

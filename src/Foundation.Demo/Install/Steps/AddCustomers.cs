@@ -1,7 +1,5 @@
 ﻿using EPiServer;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Enterprise;
-using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Identity;
 using Foundation.Commerce.Customer;
@@ -47,9 +45,8 @@ namespace Foundation.Demo.Install.Steps
             new ApplicationRoleManager<SiteUser>(new RoleStore<IdentityRole>(new ApplicationDbContext<SiteUser>("EcfSqlConnection")));
 
         public AddCustomers(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
-            IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
+            IMarketService marketService) : base(contentRepository, referenceConverter, marketService)
         {
         }
 

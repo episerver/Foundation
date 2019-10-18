@@ -1,6 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Enterprise;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Catalog.Dto;
 using Mediachase.Commerce.Catalog.Managers;
@@ -15,9 +13,8 @@ namespace Foundation.Demo.Install.Steps
     public class AddCurrencies : BaseInstallStep
     {
         public AddCurrencies(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
-            IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
+            IMarketService marketService) : base(contentRepository, referenceConverter, marketService)
         {
         }
 
