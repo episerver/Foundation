@@ -11,7 +11,7 @@
 
     <div class="col-12">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 checkout--panel-block">
+            <div class="col-12 checkout--panel-block">
                 <div class="checkout--panel">
                     <div class="checkout__panel-heading">
                         <h3>@Html.TranslateFallback("/Checkout/Billing/Payment", "Payment")</h3>
@@ -23,57 +23,6 @@
                                 @Model.SelectedPayment
                             }
                         </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 checkout--panel-block">
-                <div class="checkout--panel">
-                    <div class="checkout__panel-heading">
-                        <h3 class="panel-title">@Html.TranslateFallback("/Checkout/Coupons/Heading", "Coupons and Promotional Codes")</h3>
-                    </div>
-                    <div class="checkout__panel-body">
-                        <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
-                        @if (!((bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"])))
-                        {
-                            <form action="@Url.Action("AddCouponCode", "Checkout")" method="post">
-                                @Html.AntiForgeryToken()
-                                <div class="full-width flex-between checkout--panel-block">
-                                    <input type="text" class="textbox jsCouponCode">
-                                    <button type="button" class="button-black jsAddCoupon">
-                                        @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
-                                    </button>
-                                </div>
-                            </form>
-
-                            <div class="alert alert-danger square-box jsCouponErrorMess" style="display: none">
-                                <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
-                            </div>
-                        }
-
-                        <div class="row">
-                            <div class="col-12">
-
-                                <h5 class="jsCouponLabel @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
-                                    @Html.Translate("/Checkout/Coupons/AppliedCoupons/Heading")
-                                </h5>
-                                <div class="jsCouponListing">
-                                    <input type="hidden" id="jsRenoveCouponUrl" value="@Url.Action("RemoveCouponCode", "Checkout")" />
-                                    @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
-                                    {
-                                        foreach (var couponCode in Model.AppliedCouponCodes)
-                                        {
-                                            <label class="filters-tag jsRemoveCoupon" data-couponcode="@couponCode">
-                                                <span>@couponCode</span>
-                                                <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
-                                            </label>
-                                        }
-                                    }
-                                </div>
-
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -130,7 +79,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="jsOrderSummary">
+                <div>
                     @Html.Partial("_OrderSummary", Model.OrderSummary)
                 </div>
                 <div>

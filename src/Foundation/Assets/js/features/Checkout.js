@@ -173,8 +173,16 @@
     // Coupon code handle 
     ApplyCouponCode() {
         var inst = this;
+        $('.jsCouponCode').keypress(function (e) {
+            if (e.keyCode == 13) {
+                $('.jsAddCoupon').click();
+                return false;
+            }
+        })
+
         $('.jsAddCoupon').click(function () {
-            var form = $(this).closest('form');
+            var e = this;
+            var form = $(this).parents('form').first();
             var url = form[0].action;
             var couponCode = form.find('.jsCouponCode').val();
             var data = convertFormData({ couponCode: couponCode });
@@ -184,8 +192,11 @@
                         $('.jsCouponLabel').removeClass('hidden');
                         $('.jsCouponListing').append(inst.couponTemplate(couponCode));
                         inst.RemoveCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
-                        $('.jsOrderSummary').html(r.data);
+                        $('.jsCouponReplaceHtml').html(r.data); 
                         feather.replace();
+                        if ($(e).hasClass('jsInCheckout')) {
+                            inst.InitPayment();
+                        }
                         form.find('.jsCouponCode').val("");
                         $('.jsCouponErrorMess').hide();
                     } else {
@@ -210,6 +221,7 @@
     }
 
     removeCoupon(e) {
+        var inst = this;
         $(e).click(function () {
             var element = $(this);
             var url = $('#jsRenoveCouponUrl').val();
@@ -222,8 +234,12 @@
                     if (coupons.length == 0) {
                         $('.jsCouponLabel').addClass('hidden');
                     }
+                    $('.jsCouponReplaceHtml').html(r.data);
+                    if ($(e).hasClass('jsInCheckout')) {
+                        feather.replace();
+                        inst.InitPayment();
+                    }
 
-                    $('.jsOrderSummary').html(r.data);
                     $('.jsCouponErrorMess').hide();
                 })
                 .catch(function (e) {
