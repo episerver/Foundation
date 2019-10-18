@@ -10,7 +10,6 @@ namespace Foundation.Cms.EditorDescriptors
         {
             var dic = new Dictionary<string, string>
             {
-                {"None", ColorThemes.None},
                 {"Light", ColorThemes.Light},
                 {"Dark", ColorThemes.Dark}
             };

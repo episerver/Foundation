@@ -213,5 +213,13 @@ namespace Foundation.Cms.Pages
         public virtual string Scripts { get; set; }
 
         #endregion
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            TeaserTextAlignment = "Left";
+            TeaserColorTheme = "Dark";
+        }
     }
 }

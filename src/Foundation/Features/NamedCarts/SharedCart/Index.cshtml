@@ -106,7 +106,7 @@
                 @using (@Html.BeginForm("AddAllToCart", "DefaultCart", FormMethod.Post, new { @style = "display: inline-block;" }))
                 {
                     @Html.AntiForgeryToken()
-                    <button type="button" class="button-transparent-black jsAddAllToCart" url="@Url.Action("AddAllToCart", "DefaultCart")" title="Add All to Cart">
+                    <button type="button" class="button-transparent-black--icon jsAddAllToCart" url="@Url.Action("AddAllToCart", "DefaultCart")" title="Add All to Cart">
                         <span>
                             <i data-feather="plus"></i>
                             @Html.TranslateFallback("/WishList/AddAll", "Add All")
