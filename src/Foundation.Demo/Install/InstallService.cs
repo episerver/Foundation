@@ -132,14 +132,15 @@ namespace Foundation.Demo.Install
                 {
                     KeepIdentity = true,
                 });
+
                 var status = importer.Status;
-                var logError = ReportStatus(log);
-                if (log.Errors.Any())
+                if (status == null)
                 {
-                    throw new Exception(" Site Content Data could not be imported due to: " + logError);
+                    return false;
                 }
+
                 UpdateLanguageBranches(status);
-                if (siteDefinition != null)
+                if (siteDefinition != null && !ContentReference.IsNullOrEmpty(status.ImportedRoot))
                 {
                     siteDefinition.StartPage = status.ImportedRoot;
                     _siteDefinitionRepository.Save(siteDefinition);
@@ -195,34 +196,14 @@ namespace Foundation.Demo.Install
             return success;
         }
 
-        private string ReportStatus(ITransferLog log)
+        private void UpdateLanguageBranches(IImportStatus status)
         {
-            if (log == null)
+            if (status.ContentLanguages == null)
             {
-                throw new ArgumentNullException(nameof(log));
-            }
-            var logMessage = new StringBuilder();
-            if (log.Errors.Any())
-            {
-                foreach (var err in log.Errors)
-                {
-                    logMessage.AppendLine(err);
-                }
+                return;
             }
 
-            if (log.Warnings.Any())
-            {
-                foreach (var err in log.Warnings)
-                {
-                    logMessage.AppendLine(err);
-                }
-            }
-            return logMessage.ToString();
-        }
-
-        private void UpdateLanguageBranches(IImportStatus importer)
-        {
-            foreach (var languageId in importer.ContentLanguages)
+            foreach (var languageId in status.ContentLanguages)
             {
                 var languageBranch = _languageBranchRepository.Load(languageId);
 
