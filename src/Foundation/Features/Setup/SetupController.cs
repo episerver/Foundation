@@ -1,5 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
+using EPiServer.Scheduler;
 using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Foundation.Demo.Configuration;
@@ -20,8 +22,10 @@ namespace Foundation.Features.Setup
             IStorageService storageService,
             IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
-            ISiteDefinitionRepository siteDefinitionRepository) :
-            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository)
+            ISiteDefinitionRepository siteDefinitionRepository,
+            IScheduledJobExecutor scheduledJobExecutor,
+            IScheduledJobRepository scheduledJobRepository) :
+            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository, scheduledJobExecutor, scheduledJobRepository)
         {
         }
 

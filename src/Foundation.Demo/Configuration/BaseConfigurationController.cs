@@ -1,6 +1,8 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
+using EPiServer.Scheduler;
 using EPiServer.Web;
 using Foundation.Demo.Extensions;
 using Foundation.Demo.Install;
@@ -24,13 +26,17 @@ namespace Foundation.Demo.Configuration
             IStorageService storageService,
             IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
-            ISiteDefinitionRepository siteDefinitionRepository)
+            ISiteDefinitionRepository siteDefinitionRepository,
+            IScheduledJobExecutor scheduledJobExecutor,
+            IScheduledJobRepository scheduledJobRepository)
         {
             InstallService = installService;
             StorageService = storageService;
             ContentRepository = contentRepository;
             ReferenceConverter = referenceConverter;
             SiteDefinitionRepository = siteDefinitionRepository;
+            ScheduledJobExecutor = scheduledJobExecutor;
+            ScheduledJobRepository = scheduledJobRepository;
         }
 
         protected virtual IInstallService InstallService { get; }
@@ -38,6 +44,8 @@ namespace Foundation.Demo.Configuration
         protected virtual IContentRepository ContentRepository { get; }
         protected virtual ReferenceConverter ReferenceConverter { get; }
         protected virtual ISiteDefinitionRepository SiteDefinitionRepository { get; }
+        protected IScheduledJobExecutor ScheduledJobExecutor { get; }
+        protected IScheduledJobRepository ScheduledJobRepository { get; }
 
         protected virtual List<SelectListItem> GetRemoteCatalogs()
         {
@@ -87,7 +95,22 @@ namespace Foundation.Demo.Configuration
                  .ToList();
         }
 
-        protected virtual void CreateSite(Stream stream, SiteDefinition siteDefinition, ContentReference startPage) => InstallService.ImportEpiserverContent(stream, startPage, siteDefinition);
+        protected virtual void CreateSite(Stream stream, SiteDefinition siteDefinition, ContentReference startPage)
+        {
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
+            InstallService.ImportEpiserverContent(stream, startPage, siteDefinition);
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
+
+            var job = ScheduledJobRepository.Get(new Guid("8EB257F9-FF22-40EC-9958-C1C5BA8C2A53"));
+            if (job == null)
+            {
+                return;
+            }
+
+            ScheduledJobExecutor.StartAsync(job, new JobExecutionOptions { Trigger = ScheduledJobTrigger.User });
+        }
 
         protected virtual void CreateVisitorGroup(Stream stream, ContentReference startPage) => InstallService.ImportEpiserverContent(stream, startPage);
 
