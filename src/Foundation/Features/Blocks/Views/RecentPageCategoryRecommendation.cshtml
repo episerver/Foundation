@@ -8,7 +8,7 @@
             var categoryPage = Model.CategoryPages.First();
             var page = categoryPage.Page;
         }
-        <div class="@(Model.CategoryPages.Count > 1 ? "col-xs-12 col-md-6" : "col-12")">
+        <div class="@(Model.CategoryPages.Count > 1 ? "col-xs-12 col-6" : "col-12")">
             <div class="teaser @page.ThemeCssClass @page.AlignmentCssClass @(page.ApplyHoverEffect ? "show-details" : String.Empty)">
                 <div class="teaser-text-container">
                     <div class="teaser-text">
@@ -40,7 +40,7 @@
         {
             var secondCategoryPage = Model.CategoryPages[1];
             var secondPage = secondCategoryPage.Page;
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-6">
                 <div class="teaser @secondPage.ThemeCssClass @secondPage.AlignmentCssClass @(secondPage.ApplyHoverEffect ? "show-details" : String.Empty)">
                     <div class="teaser-text-container">
                         <div class="teaser-text">
