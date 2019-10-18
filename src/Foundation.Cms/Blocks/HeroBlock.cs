@@ -79,7 +79,7 @@ namespace Foundation.Cms.Blocks
             PaddingBottom = 15;
             PaddingLeft = 60;
             CalloutTextColor = ColorThemes.None;
-            CalloutContentAlignment = "None";
+            CalloutContentAlignment = "Left";
         }
     }
 }

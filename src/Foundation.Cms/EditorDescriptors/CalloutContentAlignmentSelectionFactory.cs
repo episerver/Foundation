@@ -10,7 +10,6 @@ namespace Foundation.Cms.EditorDescriptors
         {
             var dic = new Dictionary<string, string>
             {
-                {"None", CalloutContentAlignments.None},
                 {"Left", CalloutContentAlignments.Left},
                 {"Right", CalloutContentAlignments.Right},
                 {"Center", CalloutContentAlignments.Center}
