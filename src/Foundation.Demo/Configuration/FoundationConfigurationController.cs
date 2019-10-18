@@ -1,7 +1,9 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.Personalization.VisitorGroups;
+using EPiServer.Scheduler;
 using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Foundation.Demo.Install;
@@ -33,8 +35,10 @@ namespace Foundation.Demo.Configuration
             ReferenceConverter referenceConverter,
             ISiteDefinitionRepository siteDefinitionRepository,
             IVisitorGroupRepository visitorGroupRepository,
-            ContentExportProcessor contentExportProcessor) :
-            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository)
+            ContentExportProcessor contentExportProcessor,
+            IScheduledJobExecutor scheduledJobExecutor,
+            IScheduledJobRepository scheduledJobRepository) :
+            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository, scheduledJobExecutor, scheduledJobRepository)
         {
             _visitorGroupRepository = visitorGroupRepository;
             _contentExportProcessor = contentExportProcessor;
