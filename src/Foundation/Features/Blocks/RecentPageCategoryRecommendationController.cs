@@ -50,11 +50,12 @@ namespace Foundation.Features.Blocks
                 .ToList();
 
             var pages = new List<FoundationPageData>();
-            var rootFilterId = currentBlock.InspirationFolder != null ? currentBlock.InspirationFolder.ID : ContentReference.RootPage.ID;
+            var rootFilterId = currentBlock.FilterRoot != null ? currentBlock.FilterRoot.ID : ContentReference.RootPage.ID;
             var pageTypesFilterId = currentBlock.FilterTypes?.Split(',').ToList().Select(x => int.Parse(x));
             var query = _findClient.Search<FoundationPageData>()
                     .Filter(x => x.Language.Name.Match(ContentLanguage.PreferredCulture.Name))
-                    .Filter(x => x.ParentLink.ID.Match(rootFilterId));
+                    .Filter(x => x.Ancestors().Match(rootFilterId.ToString()));
+            var rootFilterQuery = query;
 
             if (categories.Any())
             {
@@ -75,12 +76,12 @@ namespace Foundation.Features.Blocks
 
             if (!pages.Any())
             {
-                if (ContentReference.IsNullOrEmpty(currentBlock.InspirationFolder))
+                if (ContentReference.IsNullOrEmpty(currentBlock.FilterRoot))
                 {
                     return PartialView("~/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
                 }
 
-                pages = _contentLoader.GetChildren<FoundationPageData>(currentBlock.InspirationFolder).ToList();
+                pages = _contentLoader.GetChildren<FoundationPageData>(currentBlock.FilterRoot).ToList();
             }
 
             var pageCount = pages.Count;

@@ -15,7 +15,7 @@ namespace Foundation.Cms.Blocks
         public virtual int NumberOfRecommendations { get; set; }
 
         [Display(Name = "Filter root")]
-        public virtual ContentReference InspirationFolder { get; set; }
+        public virtual ContentReference FilterRoot { get; set; }
 
         [Display(Name = "Filter types")]
         [SelectMany(SelectionFactoryType = typeof(AvailablePageTypesSelectionFactory))]
