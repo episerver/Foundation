@@ -253,13 +253,22 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCouponCode(string couponCode)
+        public ActionResult AddCouponCode(CheckoutPage currentPage, string couponCode)
         {
             if (_cartService.AddCouponCode(CartWithValidationIssues.Cart, couponCode))
             {
+                var model = CreateCheckoutViewModel(currentPage);
+                
+                foreach(var payment in model.Payments)
+                {
+                    var paymentViewmodel = new CheckoutViewModel();
+                    paymentViewmodel.Payment = payment;
+                    _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
+                }
                 _orderRepository.Save(CartWithValidationIssues.Cart);
-                var model = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-                return PartialView("_OrderSummary", model);
+                model = CreateCheckoutViewModel(currentPage);
+                model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+                return PartialView("_AddPayment", model);
             }
             else
             {
@@ -269,12 +278,21 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RemoveCouponCode(string couponCode)
+        public ActionResult RemoveCouponCode(CheckoutPage currentPage, string couponCode)
         {
             _cartService.RemoveCouponCode(CartWithValidationIssues.Cart, couponCode);
+            var model = CreateCheckoutViewModel(currentPage);
+
+            foreach (var payment in model.Payments)
+            {
+                var paymentViewmodel = new CheckoutViewModel();
+                paymentViewmodel.Payment = payment;
+                _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
+            }
             _orderRepository.Save(CartWithValidationIssues.Cart);
-            var model = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-            return PartialView("_OrderSummary", model);
+            model = CreateCheckoutViewModel(currentPage);
+            model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart); ;
+            return PartialView("_AddPayment", model);
         }
 
         [HttpPost]

@@ -7,6 +7,8 @@
 }
 @Html.Partial("_CheckoutStatusBar", 4)
 
+@Html.Partial("_Coupon", Model)
+
 <div class="row">
     <div class="col-12">
         <form class="jsCheckoutForm" action="@Url.Action("UpdatePaymentAddress", "Checkout")" method="post" novalidate data-updateurl="@Url.Action("UpdatePaymentOption", "Checkout", null)">
@@ -174,10 +176,10 @@
                         }
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6" id="paymentBlock">
+                <div class="col-xs-12 col-sm-6 jsCouponReplaceHtml" id="paymentBlock">
                     @Html.Partial("_AddPayment", Model)
                 </div>
-                
+
             </div>
 
             <div class="row checkout__block">
