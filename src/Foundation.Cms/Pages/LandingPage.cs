@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Standard Single Column Landing Page",
+    [ContentType(DisplayName = "Single Column Landing Page",
        GUID = "DBED4258-8213-48DB-A11F-99C034172A54",
        Description = "Default standard page that has top content area, main body, and main content area",
        GroupName = CmsGroupNames.Content)]
