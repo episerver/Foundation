@@ -144,6 +144,16 @@
             });
     }
 
+    convertToJsonObject(arrayData) {
+        var indexed_array = {};
+
+        $.map(arrayData, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+
     signup(e) {
         let form = $(e).closest("form");
         let bodyFormData = new FormData();
@@ -157,9 +167,15 @@
         bodyFormData.set('Address.Line2', $("#RegisterAccountViewModel_Address_Line2", form).val());
         bodyFormData.set('Address.City', $("#RegisterAccountViewModel_Address_City", form).val());
         bodyFormData.set('Address.PostalCode', $("#RegisterAccountViewModel_Address_PostalCode", form).val());
-        bodyFormData.set('Address.CountryCode', $("#RegisterAccountViewModel_Address_CountryCode", form).val());
-        bodyFormData.set('Address.CountryRegion.Region', $("#Region", form).val());
+        bodyFormData.set('Address.CountryCode', $('input[name="RegisterAccountViewModel.Address.CountryCode"]:checked', form).val());
+        if ($('input[name="RegisterAccountViewModel.Address.CountryRegion.Region"]:checked', form).length > 0) {
+            bodyFormData.set('Address.CountryRegion.Region', $('input[name="RegisterAccountViewModel.Address.CountryRegion.Region"]:checked', form).val());
+        } else {
+            bodyFormData.set('Address.CountryRegion.Region', $('input[name="RegisterAccountViewModel.Address.CountryRegion.Region"]', form).val());
+        }
+        
         bodyFormData.set('__RequestVerificationToken', $("input[name=__RequestVerificationToken]", form).val());
+
         $('.loading-box').show();
         axios({
             method: 'post',

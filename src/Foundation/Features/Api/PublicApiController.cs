@@ -94,14 +94,10 @@ namespace Foundation.Features.Api
 
             }
 
-            IdentityResult registration = null;
             viewModel.Address.BillingDefault = true;
             viewModel.Address.ShippingDefault = true;
             viewModel.Address.Email = viewModel.Email;
-
-            var customerAddress = CustomerAddress.CreateInstance();
-            _addressBookService.MapToAddress(viewModel.Address, customerAddress);
-
+            
             var user = new SiteUser
             {
                 UserName = viewModel.Email,
@@ -111,14 +107,15 @@ namespace Foundation.Features.Api
                 LastName = viewModel.Address.LastName,
                 RegistrationSource = "Registration page",
                 NewsLetter = viewModel.Newsletter,
-                //Addresses = new List<CustomerAddress>(new[] { customerAddress }),
                 IsApproved = true
             };
 
-            registration = await _customerService.CreateUser(user);
+            var registration = await _customerService.CreateUser(user);
 
-            if (registration.Succeeded)
+            if (registration.IdentityResult.Succeeded)
             {
+                if (registration.FoundationContact != null) _addressBookService.Save(viewModel.Address, registration.FoundationContact);
+
                 return new EmptyResult();
             }
             else
@@ -126,7 +123,7 @@ namespace Foundation.Features.Api
                 return Json(new
                 {
                     success = false,
-                    errors = registration.Errors
+                    errors = registration.IdentityResult.Errors
                 });
             }
         }
@@ -251,7 +248,7 @@ namespace Foundation.Features.Api
                 };
 
                 var result = await _customerService.CreateUser(user);
-                if (result.Succeeded)
+                if (result.IdentityResult.Succeeded)
                 {
                     var identityResult = await _customerService.UserManager().AddLoginAsync(user.Id, socialLoginDetails.Login);
                     if (identityResult.Succeeded)
@@ -261,7 +258,7 @@ namespace Foundation.Features.Api
                     }
                 }
 
-                AddErrors(result.Errors);
+                AddErrors(result.IdentityResult.Errors);
             }
 
             return View(viewModel);
