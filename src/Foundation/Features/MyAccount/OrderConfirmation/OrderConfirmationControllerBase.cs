@@ -1,4 +1,5 @@
-﻿using EPiServer.Commerce.Order;
+﻿using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Order;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
@@ -77,25 +78,26 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
 
             foreach (var lineItem in lineItems)
             {
-                var entry = lineItem.GetEntryContent<GenericVariant>();
-                if (entry == null || entry.VirtualProductMode == null || entry.VirtualProductMode.Equals("None"))
+                var entry = lineItem.GetEntryContent<EntryContentBase>();
+                var variant = entry as GenericVariant;
+                if (entry == null || variant == null || variant.VirtualProductMode == null || variant.VirtualProductMode.Equals("None"))
                 {
                     continue;
                 }
 
-                if (entry.VirtualProductMode.Equals("File"))
+                if (variant.VirtualProductMode.Equals("File"))
                 {
                     var url = "";// _urlResolver.GetUrl(((FileVariant)lineItem.GetEntryContentBase()).File);
                     viewModel.FileUrls.Add(new Dictionary<string, string>() { { lineItem.DisplayName, url } });
                 }
-                else if (entry.VirtualProductMode.Equals("Key"))
+                else if (variant.VirtualProductMode.Equals("Key"))
                 {
                     var key = Guid.NewGuid().ToString();
                     viewModel.Keys.Add(new Dictionary<string, string>() { { lineItem.DisplayName, key } });
                 }
-                else if (entry.VirtualProductMode.Equals("ElevatedRole"))
+                else if (variant.VirtualProductMode.Equals("ElevatedRole"))
                 {
-                    viewModel.ElevatedRole = entry.VirtualProductRole;
+                    viewModel.ElevatedRole = variant.VirtualProductRole;
                     var currentContact = _customerService.GetCurrentContact();
                     if (currentContact != null)
                     {
