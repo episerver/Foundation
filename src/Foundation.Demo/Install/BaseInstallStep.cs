@@ -1,8 +1,5 @@
 ﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Enterprise;
 using EPiServer.Logging;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Markets;
@@ -10,13 +7,10 @@ using Mediachase.Commerce.Shared;
 using Mediachase.Data.Provider;
 using Mediachase.MetaDataPlus.Configurator;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -27,7 +21,6 @@ namespace Foundation.Demo.Install
         protected IConnectionStringHandler ConnectionStringHandler { get; }
         protected IContentRepository ContentRepository { get; }
         protected CustomerContext CustomerContext { get; }
-        protected ServiceAccessor<IDataImporter> DataImporter { get; }
         protected ReferenceConverter ReferenceConverter { get; }
         protected IMarketService MarketService { get; }
         protected ILogger Logger { get; }
@@ -35,14 +28,12 @@ namespace Foundation.Demo.Install
 
 
         protected BaseInstallStep(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
             IMarketService marketService)
         {
             Logger = LogManager.GetLogger(GetType());
             CustomerContext = CustomerContext.Current;
             ContentRepository = contentRepository;
-            DataImporter = dataImporter;
             ReferenceConverter = referenceConverter;
             MarketService = marketService;
         }
@@ -99,29 +90,6 @@ namespace Foundation.Demo.Install
             }
         }
 
-        protected virtual void ImportEpiserverData(Stream stream)
-        {
-            var destinationRoot = ContentReference.GlobalBlockFolder;
-            var keys = new List<string>();
-            foreach (DictionaryEntry entry in HttpRuntime.Cache)
-            {
-                keys.Add((string)entry.Key);
-            }
-            foreach (var key in keys)
-            {
-                HttpRuntime.Cache.Remove(key);
-            }
-
-            var options = new ImportOptions { KeepIdentity = true };
-
-            var log = DataImporter().Import(stream, destinationRoot, options);
-
-            if (log.Errors.Any())
-            {
-                throw new Exception("Content could not be imported. " + GetStatus(log));
-            }
-        }
-
         protected virtual IEnumerable<XElement> GetXElements(Stream stream, XName elementName)
         {
             if (stream.Position != 0)
@@ -146,29 +114,6 @@ namespace Foundation.Demo.Install
                     }
                 }
             }
-        }
-
-        private string GetStatus(ITransferLog log)
-        {
-            var logMessage = new StringBuilder();
-            var lineBreak = "<br>";
-
-            if (log.Errors.Any())
-            {
-                foreach (var err in log.Errors)
-                {
-                    logMessage.Append(err).Append(lineBreak);
-                }
-            }
-
-            if (log.Warnings.Any())
-            {
-                foreach (var err in log.Warnings)
-                {
-                    logMessage.Append(err).Append(lineBreak);
-                }
-            }
-            return logMessage.ToString();
         }
     }
 }

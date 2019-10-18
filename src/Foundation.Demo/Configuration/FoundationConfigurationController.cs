@@ -274,7 +274,7 @@ namespace Foundation.Demo.Configuration
                 };
             }
 
-            CreateSite(siteStream, siteDefinition, siteDefinition.StartPage == ContentReference.EmptyReference ? ContentReference.RootPage : siteDefinition.StartPage);
+            CreateSite(siteStream, siteDefinition, ContentReference.IsNullOrEmpty(siteDefinition.StartPage) ? ContentReference.RootPage : siteDefinition.StartPage);
             return RedirectToAction("Index");
         }
 

@@ -48,7 +48,7 @@ namespace Foundation.Features.Setup
                 if (model.SiteName.IsNullOrEmpty() || model.SiteName.Equals("0"))
                 {
                     ModelState.AddModelError(nameof(model.SiteName), "Site is required.");
-                    Redirect("Index");
+                    return RedirectToAction("Index");
                 }
 
                 var file = StorageService.GetCloudBlockBlob(new Uri(model.SiteName));
@@ -64,7 +64,7 @@ namespace Foundation.Features.Setup
                 if (siteStream == null)
                 {
                     ModelState.AddModelError(nameof(model.SiteFile), "File is required for local import.");
-                    Redirect("Index");
+                    return RedirectToAction("Index");
                 }
             }
 

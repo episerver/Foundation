@@ -48,6 +48,7 @@ if "%FOUNDATIONDOMAIN%"=="" (set FOUNDATIONDOMAIN="%APPNAME%")
 if "%CMDOMAIN%"=="" (set CMDOMAIN="%APPNAME%-cm")
 if "%SQLSERVER%"=="" (set SQLSERVER=.)
 if "%ADDITIONAL_SQLCMD%"=="" (set ADDITIONAL_SQLCMD=-E)
+if "%LICENSEPATH%"=="" (set LICENSEPATH="")
 
 cls
 echo Your application name is: %APPNAME%

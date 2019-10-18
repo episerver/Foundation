@@ -1,6 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Enterprise;
-using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
@@ -19,9 +17,8 @@ namespace Foundation.Demo.Install.Steps
     public class AddShippingMethods : BaseInstallStep
     {
         public AddShippingMethods(IContentRepository contentRepository,
-            ServiceAccessor<IDataImporter> dataImporter,
             ReferenceConverter referenceConverter,
-            IMarketService marketService) : base(contentRepository, dataImporter, referenceConverter, marketService)
+            IMarketService marketService) : base(contentRepository, referenceConverter, marketService)
         {
 
         }
