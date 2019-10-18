@@ -1,7 +1,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using Foundation.Cms.Extensions;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Pages;
 using Foundation.Commerce.Models.Blocks;
 using System.ComponentModel.DataAnnotations;

@@ -1,9 +1,12 @@
 ﻿using EPiServer.Shell;
-using Foundation.Cms.Extensions;
 using System.Collections.Generic;
 
-namespace Foundation.Commerce.Extensions
+namespace Foundation.Cms.EditorDescriptors
 {
+    public interface IDisableOPE
+    {
+    }
+
     [UIDescriptorRegistration]
     public class DisableOpeUIDescriptor : UIDescriptor<IDisableOPE>
     {
@@ -19,4 +22,5 @@ namespace Foundation.Commerce.Extensions
             DisabledViews.Add(CmsViewNames.SideBySideCompareView);
         }
     }
+
 }

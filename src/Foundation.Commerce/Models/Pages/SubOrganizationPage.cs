@@ -1,5 +1,5 @@
 using EPiServer.DataAnnotations;
-using Foundation.Cms.Extensions;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Pages;
 
 namespace Foundation.Commerce.Models.Pages
