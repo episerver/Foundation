@@ -12,7 +12,7 @@ namespace Foundation.Commerce.Customer.Services
         AddressCollectionViewModel GetAddressBookViewModel(AddressBookPage addressBookPage);
         IList<AddressModel> List();
         bool CanSave(AddressModel addressModel);
-        void Save(AddressModel addressModel);
+        void Save(AddressModel addressModel, FoundationContact contact = null);
         void Delete(string addressId);
         void SetPreferredBillingAddress(string addressId);
         void SetPreferredShippingAddress(string addressId);

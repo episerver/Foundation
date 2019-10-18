@@ -4,8 +4,12 @@
     window.convertFormData = function (data) {
         var formData = new FormData();
         for (var key in data) {
+            if (key == "__RequestVerificationToken") {
+                continue;
+            }
             formData.append(key, data[key]);
         }
+
         if ($('input[name=__RequestVerificationToken]').length > 0) {
             formData.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
         }

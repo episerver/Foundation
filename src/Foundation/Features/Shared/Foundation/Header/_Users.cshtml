@@ -124,7 +124,6 @@
                             @Html.LabelFor(x => x.RegisterAccountViewModel.Address.CountryCode, new { @class = "label" })
                             @Html.DisplayFor(model => model.RegisterAccountViewModel.Address.CountryOptions, "CountryOptions",
                                                     new { SelectItem = Model.RegisterAccountViewModel.Address.CountryCode, Name = "RegisterAccountViewModel.Address.CountryCode" })
-                            @*@Html.DropDownListFor(x => x.RegisterAccountViewModel.Address.CountryCode, new SelectList(Model.RegisterAccountViewModel.Address.CountryOptions, "Code", "Name", Model.RegisterAccountViewModel.Address.CountryCode), new { @class = "select-menu-small jsChangeCountry" })*@
                             @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.CountryCode)
                             @Html.Hidden("address-htmlfieldprefix", "RegisterAccountViewModel.Address")
                         </div>
