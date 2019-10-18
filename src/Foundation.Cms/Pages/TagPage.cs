@@ -8,7 +8,7 @@ namespace Foundation.Cms.Pages
     [ContentType(DisplayName = "Tags Page",
         GUID = "fc83ded1-be4a-40fe-99b2-9ab739b018d5",
         Description = "Used to define a Tag",
-        GroupName = CmsTabNames.Content)]
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-27.png")]
     public class TagPage : FoundationPageData
     {
@@ -16,15 +16,15 @@ namespace Foundation.Cms.Pages
         [AllowedTypes(typeof(ImageData))]
         public virtual ContentArea Images { get; set; }
 
-        [Display(Name = "Top area", GroupName = SystemTabNames.Content, Order = 20)]
+        [StringLength(5000)]
+        [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual string MainIntro { get; set; }
+
+        [Display(Name = "Top area", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual ContentArea TopArea { get; set; }
 
-        [Display(Name = "Bottom area", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Bottom area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea BottomArea { get; set; }
-
-        [StringLength(5000)]
-        [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 40)]
-        public virtual string MainIntro { get; set; }
 
         [Ignore]
         public string SearchSection => "Tags";

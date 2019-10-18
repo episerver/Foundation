@@ -12,7 +12,7 @@ namespace Foundation.Commerce.Models.Blocks
     [ContentType(DisplayName = "Product Search Block",
         GUID = "8BD1CF05-4980-4BA2-9304-C0EAF946DAD5",
         Description = "Configurable search block for all products, allows generic filtering",
-        GroupName = CommerceTabNames.Commerce)]
+        GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/search.png")]
     public class ProductSearchBlock : FoundationBlockData
     {

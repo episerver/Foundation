@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(GUID = "C5B623C6-8930-4F97-98F2-0E0B6965DEDF", DisplayName = "Tag Cloud Block", GroupName = CmsTabNames.Blog, AvailableInEditMode = false)]
+    [ContentType(GUID = "C5B623C6-8930-4F97-98F2-0E0B6965DEDF", DisplayName = "Tag Cloud Block", GroupName = CmsGroupNames.Blog, AvailableInEditMode = false)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-18.png")]
     public class TagCloudBlock : BlockData
     {

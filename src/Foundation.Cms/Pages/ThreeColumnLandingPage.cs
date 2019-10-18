@@ -15,23 +15,23 @@ namespace Foundation.Cms.Pages
     public class ThreeColumnLandingPage : LandingPage
     {
         [CultureSpecific]
-        [Display(Name = "Left Hand Content Area", GroupName = SystemTabNames.Content, Order = 195)]
+        [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual ContentArea LeftHandContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Right Hand Content Area", GroupName = SystemTabNames.Content, Order = 205)]
+        [Display(Name = "Right content area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea RightHandContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Column Quantity of Main Content Area", GroupName = SystemTabNames.Content, Order = 210)]
+        [Display(Name = "Left column", GroupName = SystemTabNames.Content, Order = 220)]
         public virtual int MainContentAreaColumn { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Column Quantity of Right Hand Content Area", GroupName = SystemTabNames.Content, Order = 211)]
+        [Display(Name = "Center column", GroupName = SystemTabNames.Content, Order = 221)]
         public virtual int RightHandContentAreaColumn { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Column Quantity of Left Hand Content Area", GroupName = SystemTabNames.Content, Order = 212)]
+        [Display(Name = "Right column", GroupName = SystemTabNames.Content, Order = 222)]
         public virtual int LeftHandContentAreaColumn { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

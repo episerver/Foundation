@@ -11,7 +11,7 @@ namespace Foundation.Commerce.Models.Pages
         GUID = "9F846F7D-2DFA-4983-815D-C09B12CEF993",
         Description = "",
         AvailableInEditMode = false,
-        GroupName = CommerceTabNames.Commerce)]
+        GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-14.png")]
     public class QuickOrderPage : FoundationPageData
     {

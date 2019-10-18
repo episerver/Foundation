@@ -9,7 +9,7 @@ namespace Foundation.Cms.ViewModels.Blocks
         public PageListBlockViewModel(PageListBlock block)
         {
             Heading = block.Heading;
-            ShowIntroduction = block.IncludeIntroduction;
+            ShowIntroduction = block.IncludeTeaserText;
             ShowPublishDate = block.IncludePublishDate;
             PaddingStyles = block.PaddingStyles;
         }

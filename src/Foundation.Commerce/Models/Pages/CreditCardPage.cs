@@ -9,7 +9,7 @@ namespace Foundation.Commerce.Models.Pages
         GUID = "adad362c-4f73-4592-abb9-093f6e7bb7c6",
         Description = "Manage credit cards",
         AvailableInEditMode = false,
-        GroupName = CommerceTabNames.Commerce)]
+        GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-14.png")]
     public class CreditCardPage : FoundationPageData
     {
