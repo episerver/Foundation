@@ -1,4 +1,5 @@
 using EPiServer.DataAnnotations;
+using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 
 namespace Foundation.Commerce.Models.Pages
@@ -9,7 +10,7 @@ namespace Foundation.Commerce.Models.Pages
         GroupName = CommerceGroupNames.Commerce,
         AvailableInEditMode = false)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-15.png")]
-    public class OrderPadsPage : FoundationPageData
+    public class OrderPadsPage : FoundationPageData, IDisableOPE
     {
 
     }
