@@ -21,7 +21,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
     public class CheckoutViewModelFactory
     {
         private readonly LocalizationService _localizationService;
-        private readonly ServiceAccessor<PaymentMethodViewModelFactory> _paymentMethodViewModelFactory;
+        private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
         private readonly IAddressBookService _addressBookService;
         private readonly IContentLoader _contentLoader;
         private readonly UrlResolver _urlResolver;
@@ -34,7 +34,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
 
         public CheckoutViewModelFactory(
             LocalizationService localizationService,
-            ServiceAccessor<PaymentMethodViewModelFactory> paymentMethodViewModelFactory,
+            PaymentMethodViewModelFactory paymentMethodViewModelFactory,
             IAddressBookService addressBookService,
             IContentLoader contentLoader,
             UrlResolver urlResolver,
@@ -160,7 +160,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
 
         private void UpdatePayments(CheckoutViewModel viewModel, ICart cart)
         {
-            viewModel.PaymentMethodViewModels = _paymentMethodViewModelFactory().GetPaymentMethodViewModels();
+            viewModel.PaymentMethodViewModels = _paymentMethodViewModelFactory.GetPaymentMethodViewModels();
             var methodViewModels = viewModel.PaymentMethodViewModels.ToList();
             if (!methodViewModels.Any())
             {
