@@ -1,5 +1,6 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Pages;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,7 +12,7 @@ namespace Foundation.Commerce.Models.Pages
         AvailableInEditMode = false,
         GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-14.png")]
-    public class CreditCardPage : FoundationPageData
+    public class CreditCardPage : FoundationPageData, IDisableOPE
     {
         [Display(GroupName = SystemTabNames.Content, Order = 200)]
         [CultureSpecific]

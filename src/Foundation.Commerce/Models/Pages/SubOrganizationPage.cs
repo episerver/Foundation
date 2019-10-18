@@ -1,4 +1,5 @@
 using EPiServer.DataAnnotations;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Pages;
 
 namespace Foundation.Commerce.Models.Pages
@@ -9,7 +10,7 @@ namespace Foundation.Commerce.Models.Pages
         AvailableInEditMode = false,
         GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/elected.png")]
-    public class SubOrganizationPage : FoundationPageData
+    public class SubOrganizationPage : FoundationPageData, IDisableOPE
     {
 
     }

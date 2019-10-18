@@ -1,6 +1,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Pages;
 using Foundation.Commerce.Models.Blocks;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Foundation.Commerce.Models.Pages
         AvailableInEditMode = false,
         GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-14.png")]
-    public class QuickOrderPage : FoundationPageData
+    public class QuickOrderPage : FoundationPageData, IDisableOPE
     {
         [CultureSpecific]
         [Display(
