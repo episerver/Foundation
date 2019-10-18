@@ -8,7 +8,7 @@ namespace Foundation.Find.Cms
     {
         #region Groupnames for Content Types
 
-        [Display(Order = 560)]
+        [Display(Order = 100)]
         public const string Location = "Location";
 
         #endregion

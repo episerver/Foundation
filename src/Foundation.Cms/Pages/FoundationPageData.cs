@@ -73,7 +73,7 @@ namespace Foundation.Cms.Pages
         #region Settings
 
         [CultureSpecific]
-        [Display(Name = "Exclude from search",
+        [Display(Name = "Exclude from results",
             Description = "This will determine whether or not to show on search",
             GroupName = CmsTabNames.Settings,
             Order = 100)]
@@ -128,12 +128,12 @@ namespace Foundation.Cms.Pages
         public virtual string TeaserColorTheme { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Button text", GroupName = CmsTabNames.Teaser, Order = 600)]
+        [Display(Name = "Button label", GroupName = CmsTabNames.Teaser, Order = 600)]
         public virtual string TeaserButtonText { get; set; }
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(ButtonBlockStyleSelectionFactory))]
-        [Display(Name = "Button style", GroupName = CmsTabNames.Teaser, Order = 700)]
+        [Display(Name = "Button theme", GroupName = CmsTabNames.Teaser, Order = 700)]
         public virtual string TeaserButtonStyle { get; set; }
 
         [CultureSpecific]
@@ -197,7 +197,7 @@ namespace Foundation.Cms.Pages
         [Display(Name = "CSS files", GroupName = CmsTabNames.Styles, Order = 100)]
         public virtual LinkItemCollection CssFiles { get; set; }
 
-        [Display(GroupName = CmsTabNames.Styles, Order = 200)]
+        [Display(Name = "CSS", GroupName = CmsTabNames.Styles, Order = 200)]
         [UIHint(UIHint.Textarea)]
         public virtual string Css { get; set; }
 
