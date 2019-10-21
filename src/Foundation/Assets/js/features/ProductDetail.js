@@ -135,7 +135,7 @@
     }
 
     ChangeQuantityKeyup() {
-        $('#qty').keyup(function () {
+        $('#qty').change(function () {
             $('.addToCart').attr('qty', $(this).val());
             $('.jsBuyNow').attr('qty', $(this).val());
         });
