@@ -4,6 +4,7 @@ using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce.Catalog.ViewModels;
+using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Personalization;
@@ -29,7 +30,8 @@ namespace Foundation.Features.CatalogContent.Bundle
             ICommerceTrackingService recommendationService,
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
-            UrlResolver urlResolver) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService)
+            UrlResolver urlResolver,
+            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService, loyaltyService)
         {
             _isInEditMode = isInEditModeAccessor();
             _viewModelFactory = viewModelFactory;
