@@ -1,4 +1,5 @@
 ﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
+@using EPiServer.Find;
 
 @{
     Layout = null;
@@ -26,7 +27,13 @@
                                 </div>
                             }
                             <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">
-                                <b class="title">@Html.Raw(content.Title)</b>
+                                <b class="title">
+                                    @if (content.IsBestBet() && content.HasBestBetStyle())
+                                    {
+                                        <i data-feather="star" class="content__betbest"></i>
+                                    }
+                                    @Html.Raw(content.Title)
+                                </b>
                                 <div class="sub-title">
                                     <p>@Html.Raw(content.Excerpt)</p>
                                 </div>
