@@ -106,14 +106,14 @@
                 var storeCode = $(this).attr('data');
                 $(inst.DivContainerId).find('#selectedStore').val(storeCode);
                 $(inst.DivContainerId).find('.selectedStoreIcon').each(function (j, s) {
-                    $(s).addClass('hidden');
+                    $(s).hide();
                 });
                 $(inst.DivContainerId).find('.jsSelectStore').each(function (j, s) {
-                    $(s).removeClass('hidden');
+                    $(s).show();
                 });
 
-                $(this).addClass('hidden');
-                $(this).siblings('.selectedStoreIcon').removeClass('hidden');
+                $(this).hide();
+                $(this).siblings('.selectedStoreIcon').show();
 
                 $(inst.DivContainerId).find('.addToCart').attr('selectedStore', storeCode);
                 $(inst.DivContainerId).find('.jsBuyNow').attr('selectedStore', storeCode);
@@ -135,7 +135,7 @@
     }
 
     ChangeQuantityKeyup() {
-        $('#qty').keyup(function () {
+        $('#qty').change(function () {
             $('.addToCart').attr('qty', $(this).val());
             $('.jsBuyNow').attr('qty', $(this).val());
         });
