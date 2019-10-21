@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
 {
     [UIDescriptorRegistration]
-    public class CatalogContentUiDescriptor : UIDescriptor<FilterBaseBlock>
+    public class FilterUIDescriptor : UIDescriptor<FilterBaseBlock>
     {
-        public CatalogContentUiDescriptor()
+        public FilterUIDescriptor()
         {
             DefaultView = CmsViewNames.AllPropertiesView;
             if (DisabledViews == null)

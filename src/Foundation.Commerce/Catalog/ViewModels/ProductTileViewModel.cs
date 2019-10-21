@@ -21,6 +21,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         public StoreViewModel Stores { get; set; }
         public bool IsFeaturedProduct { get; set; }
         public bool IsBestBetProduct { get; set; }
+        public bool HasBestBetStyle { get; set; }
         public bool ShowRecommendations { get; set; }
         public string FirstVariationCode { get; set; }
         public Type EntryType { get; set; }

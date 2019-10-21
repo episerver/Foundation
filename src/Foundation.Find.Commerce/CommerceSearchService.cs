@@ -87,25 +87,33 @@ namespace Foundation.Find.Commerce
             IEnumerable<Filter> filters,
             int catalogId = 0) => filterOptions == null ? CreateEmptyResult() : GetSearchResults(currentContent, filterOptions, "", filters, catalogId);
 
-        public IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent)
+        public IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, int catalogId = 0)
         {
             var market = _currentMarket.GetCurrentMarket();
             var query = _findClient.Search<EntryContentBase>();
             query = query.FilterMarket(market);
             query = query.Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name));
             query = query.FilterForVisitor();
+            if (catalogId != 0)
+            {
+                query = query.Filter(x => x.CatalogId.Match(catalogId));
+            }
             query = query.Filter(x => (x as GenericProduct).OnSale.Match(true));
             var result = query.GetContentResult();
             return CreateProductViewModels(result, currentContent, "");
         }
 
-        public IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent)
+        public IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, int catalogId = 0)
         {
             var market = _currentMarket.GetCurrentMarket();
             var query = _findClient.Search<EntryContentBase>();
             query = query.FilterMarket(market);
             query = query.Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name));
             query = query.FilterForVisitor();
+            if (catalogId != 0)
+            {
+                query = query.Filter(x => x.CatalogId.Match(catalogId));
+            }
             query = query.OrderByDescending(x => x.Created);
             query = query.Skip(0)
                         .Take((currentContent as NewProductsPage).NumberOfProducts)
@@ -114,7 +122,7 @@ namespace Foundation.Find.Commerce
             return CreateProductViewModels(result, currentContent, "");
         }
 
-        public IEnumerable<ProductTileViewModel> QuickSearch(string query)
+        public IEnumerable<ProductTileViewModel> QuickSearch(string query, int catalogId = 0)
         {
             var filterOptions = new CommerceFilterOptionViewModel
             {
@@ -125,11 +133,11 @@ namespace Foundation.Find.Commerce
                 Page = 1,
                 TrackData = false
             };
-            return QuickSearch(filterOptions);
+            return QuickSearch(filterOptions, catalogId);
         }
 
 
-        public IEnumerable<ProductTileViewModel> QuickSearch(CommerceFilterOptionViewModel filterOptions) => string.IsNullOrEmpty(filterOptions.Q) ? Enumerable.Empty<ProductTileViewModel>() : GetSearchResults(null, filterOptions, "").ProductViewModels;
+        public IEnumerable<ProductTileViewModel> QuickSearch(CommerceFilterOptionViewModel filterOptions, int catalogId = 0) => string.IsNullOrEmpty(filterOptions.Q) ? Enumerable.Empty<ProductTileViewModel>() : GetSearchResults(null, filterOptions, "", null, catalogId).ProductViewModels;
 
         public IEnumerable<SortOrder> GetSortOrder()
         {
@@ -559,12 +567,17 @@ namespace Foundation.Find.Commerce
             var bestBetList = new BestBetRepository().List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
             //Filter for product best bet only.
             var productBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector);
+            var ownStyleBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
             productViewModels.ToList()
                              .ForEach(p =>
                              {
                                  if (productBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
                                  {
                                      p.IsBestBetProduct = true;
+                                 }
+                                 if (ownStyleBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
+                                 {
+                                     p.HasBestBetStyle = true;
                                  }
                              });
         }

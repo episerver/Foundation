@@ -30,26 +30,26 @@ namespace Foundation.Find.Commerce
         /// </summary>
         /// <param name="currentContent"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent);
+        IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, int catalogId = 0);
         /// <summary>
         /// Search top 10 products by sorted by the creation date
         /// </summary>
         /// <param name="currentContent"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent);
+        IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, int catalogId = 0);
 
         /// <summary>
         /// QuickSearch products
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> QuickSearch(string query);
+        IEnumerable<ProductTileViewModel> QuickSearch(string query, int catalogId = 0);
         /// <summary>
         /// Quicksearch products
         /// </summary>
         /// <param name="filterOptions"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> QuickSearch(CommerceFilterOptionViewModel filterOptions);
+        IEnumerable<ProductTileViewModel> QuickSearch(CommerceFilterOptionViewModel filterOptions, int catalogId = 0);
 
 
         IEnumerable<SortOrder> GetSortOrder();

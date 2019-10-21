@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-@if (Model != null && Model.ContentSearchResult != null)
+@if (Model != null && Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null && Model.ContentSearchResult.Hits.Any())
 {
     <ul class="style-list-none">
         <li class="searchbox__heading">
