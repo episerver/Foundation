@@ -44,7 +44,7 @@
                             @if (Model.ShowDelivery)
                             {
                                 <i data-feather="check" width="30" height="30" color="green" class="selectedStoreIcon @(store.Name == Model.SelectedStoreName ? "" : "hidden")"></i>
-                                <button class="button-transparent-black btn-lower jsSelectStore @(store.Name == Model.SelectedStoreName ? "hidden" : "")" data="@store.Code">
+                                <button class="button-transparent-black btn-lower jsSelectStore" style="display: @(store.Name == Model.SelectedStoreName ? "none" : "")" data="@store.Code">
                                     @Html.TranslateFallback("/Stores/Select", "Select")
                                 </button>
                             }
