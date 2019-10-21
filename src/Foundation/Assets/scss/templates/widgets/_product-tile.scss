@@ -192,6 +192,16 @@
             display: block;
         }
     }
+
+    &__bestbet {
+        position: absolute;
+        background: #808080;
+        color: #ffffff;
+        padding: 8px 8px;
+        border-radius: 50%;
+        top: 15px;
+        left: 30px;
+    }
 }
 
 .product-tile-list {
@@ -223,6 +233,16 @@
     }
 
     &__right-box {
+    }
+
+    &__bestbet {
+        position: absolute;
+        background: #808080;
+        color: #ffffff;
+        padding: 8px 8px;
+        border-radius: 50%;
+        top: 15px;
+        left: 15px;
     }
 }
 

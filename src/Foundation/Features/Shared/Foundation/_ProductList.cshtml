@@ -20,6 +20,10 @@
                 <div class="product-tile-list__image">
                     <img class="img-fluid" src="@product.ImageUrl" alt="">
                 </div>
+                @if (product.IsBestBetProduct && product.HasBestBetStyle)
+                {
+                    <div class="product-tile-list__bestbet" title="Best bet"><i data-feather="award"></i></div>
+                }
             </div>
             <div class="col-md-8 col-lg-9 col-sm-6 col-xs-6">
                 <div class="product-tile-list__right-box">

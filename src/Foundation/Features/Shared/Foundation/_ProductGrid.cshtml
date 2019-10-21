@@ -53,6 +53,10 @@
                         }
                     </div>
                 </div>
+                @if (product.IsBestBetProduct && product.HasBestBetStyle)
+                {
+                    <div class="product-tile-grid__bestbet" title="Best bet"><i data-feather="award"></i></div>
+                }
             </div>
         }
     </div>

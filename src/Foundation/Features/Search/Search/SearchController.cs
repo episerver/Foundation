@@ -141,7 +141,7 @@ namespace Foundation.Features.Search
 
             if (startPage.ShowProductSearchResults)
             {
-                var productResults = _commerceSearchService.QuickSearch(search);
+                var productResults = _commerceSearchService.QuickSearch(search, startPage.SearchCatalog);
                 model.ProductViewModels = productResults;
                 productCount = productResults?.Count() ?? 0;
 
