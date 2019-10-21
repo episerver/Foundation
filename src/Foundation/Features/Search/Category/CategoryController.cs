@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Web.Routing;
+using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Personalization;
 using Foundation.Demo.ViewModels;
@@ -24,7 +25,8 @@ namespace Foundation.Features.Search.Category
             IReviewActivityService reviewActivityService,
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
-            UrlResolver urlResolver) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService)
+            UrlResolver urlResolver,
+            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService, loyaltyService)
         {
             _viewModelFactory = viewModelFactory;
         }

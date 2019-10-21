@@ -4,6 +4,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
+using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Personalization;
 using Foundation.Demo.Interfaces;
 using Foundation.Social.Models.ActivityStreams;
@@ -27,13 +28,15 @@ namespace Foundation.Features.CatalogContent
         protected readonly IReviewService _reviewService;
         protected readonly IReviewActivityService _reviewActivityService;
         protected readonly ICommerceTrackingService _recommendationService;
+        protected readonly ILoyaltyService _loyaltyService;
 
         public CatalogContentControllerBase(ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             UrlResolver urlResolver,
             IReviewService reviewService,
             IReviewActivityService reviewActivityService,
-            ICommerceTrackingService recommendationService)
+            ICommerceTrackingService recommendationService,
+            ILoyaltyService loyaltyService)
         {
             _referenceConverter = referenceConverter;
             _contentLoader = contentLoader;
@@ -41,6 +44,7 @@ namespace Foundation.Features.CatalogContent
             _reviewService = reviewService;
             _reviewActivityService = reviewActivityService;
             _recommendationService = recommendationService;
+            _loyaltyService = loyaltyService;
         }
 
         protected List<KeyValuePair<string, string>> GetBreadCrumb(string catalogCode)
@@ -109,6 +113,8 @@ namespace Foundation.Features.CatalogContent
             try
             {
                 var model = _reviewService.Add(reviewForm);
+                //Loyalty Program: Add Points and Number Of Reviews
+                _loyaltyService.AddNumberOfReviews();
                 AddActivity(reviewForm.ProductCode, reviewForm.Rating, reviewForm.Nickname);
                 return PartialView("_ReviewItem", model);
             }
