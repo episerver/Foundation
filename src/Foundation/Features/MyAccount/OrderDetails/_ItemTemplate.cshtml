@@ -4,7 +4,7 @@
 @model OrderDetailsItemViewModel
 
 @{
-    var variant = Model.LineItem.GetEntryContent<GenericVariant>();
+    var variant = Model.LineItem.GetEntryContent<EntryContentBase>() as GenericVariant;
     var isQuoteRequestStatus = ((bool)(ViewData["isQuoteRequestStatus"] ?? false));
     var isQuote = ((bool)(ViewData["isQuote"] ?? false));
 }
@@ -46,14 +46,25 @@
 
             </div>
 
-            <div class="row">
-                <div class="col-md-1 col-xs-6 large-cart__label">
-                    <label class="title">Size: </label>
+            @if (variant != null)
+            {
+                <div class="row">
+                    <div class="col-md-1 col-xs-6 large-cart__label">
+                        <label class="title">Size: </label>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <input type="text" disabled class="textbox" value="@variant.Size" />
+                    </div>
                 </div>
-                <div class="col-md-3 col-xs-6">
-                    <input type="text" disabled class="textbox" value="@variant.Size" />
+                <div class="row">
+                    <div class="col-md-1 col-xs-6 large-cart__label">
+                        <label class="title">Color: </label>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <input type="text" disabled class="textbox" value="@variant.Color" />
+                    </div>
                 </div>
-            </div>
+            }
             <div class="row">
                 <div class="col-md-1 col-sm-6 large-cart__label">
                     <label class="title">Quantity: </label>
@@ -90,7 +101,7 @@
                 <div class="col-12 required" style="padding-bottom: 15px;">
                     @Model.ReturnFormStatus
                 </div>
-                
+
                 <div class="col-12">
                     @if (!isQuote)
                     {
