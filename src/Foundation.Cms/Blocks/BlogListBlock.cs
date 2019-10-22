@@ -6,6 +6,8 @@ using EPiServer.Filters;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Geta.EpiCategories.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms.EditorDescriptors;
 
 namespace Foundation.Cms.Blocks
 {
@@ -45,6 +47,16 @@ namespace Foundation.Cms.Blocks
             GroupName = SystemTabNames.Content,
             Order = 70)]
         public virtual IList<ContentReference> CategoryListFilter { get; set; }
+
+        [Display(Name = "Template of blogs listing", GroupName = SystemTabNames.Content, Order = 80)]
+        [DefaultValue(TemplateSelections.Grid)]
+        [SelectOne(SelectionFactoryType = typeof(TemplateBlogListSelectionFactory))]
+        public virtual string Template { get; set; }
+
+        [Display(Name = "Preview option (not available in the Grid template)", GroupName = SystemTabNames.Content, Order = 90)]
+        [DefaultValue(PreviewOptions.Full)]
+        [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
+        public virtual string PreviewOption { get; set; }
 
 
         public override void SetDefaultValues(ContentType contentType)
