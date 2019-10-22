@@ -8,16 +8,16 @@
 <div class="row">
     <div class="col-12">
         <strong>Start Date: </strong>
-        <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.StartDate)>
-            @Model.CurrentContent.StartDate.ToString("MMMM-dd-yyyy HH:mm tt")
+        <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EventStartDate)>
+            @Model.CurrentContent.EventStartDate.ToString("MMMM-dd-yyyy HH:mm tt")
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-12">
         <strong>End Date: </strong>
-        <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EndDate)>
-            @Model.CurrentContent.EndDate.ToString("MMMM-dd-yyyy HH:mm tt")
+        <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EventEndDate)>
+            @Model.CurrentContent.EventEndDate.ToString("MMMM-dd-yyyy HH:mm tt")
         </div>
     </div>
 </div>
