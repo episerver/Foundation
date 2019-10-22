@@ -1,7 +1,6 @@
 ﻿@model List<Foundation.Cms.ViewModels.Header.MenuItemViewModel>
 
 @{
-    string btnName;
     int column = 1;
     int totalChild;
 }
@@ -9,14 +8,6 @@
 <ul class="navigation__left--menu">
     @foreach (var menuItem in Model)
     {
-        if (string.IsNullOrEmpty(menuItem.ButtonText))
-        {
-            btnName = "explore";
-        }
-        else
-        {
-            btnName = menuItem.ButtonText;
-        }
         <li class="navigation__item">
             <a href="@menuItem.Uri" class="nav-category">
                 @menuItem.Name
@@ -56,17 +47,26 @@
                         </div>
                         <div class="row mega-menu--image-box__lg">
                             <div class="category__image col-lg-6">
-                                <picture class="img-fluid">
-                                    <source srcset="@menuItem.ImageUrl?width=510&format=webp" type="image/webp">
-                                    <img class="img-fluid" src="@menuItem.ImageUrl?width=510" loading="lazy" />
-                                </picture>
+                                @if (!string.IsNullOrEmpty(menuItem.ImageUrl))
+                                {
+                                    <picture class="img-fluid">
+                                        <source srcset="@menuItem.ImageUrl?width=510&format=webp" type="image/webp">
+                                        <img class="img-fluid" src="@menuItem.ImageUrl?width=510" loading="lazy"/>
+                                    </picture>
+                                }
                             </div>
                             <div class="col-lg-6 flex-center">
                                 <div>
-                                    <a href="@menuItem.ButtonLink" class="mega-menu__title">
-                                        @Html.Raw(menuItem.TeaserText)
-                                    </a>
-                                    <a href="@menuItem.ButtonLink" class="button-transparent-black">@btnName</a>
+                                    @if (!string.IsNullOrEmpty((menuItem.ButtonLink)))
+                                    {
+                                        <a href="@menuItem.ButtonLink" class="mega-menu__title">
+                                            @Html.Raw(menuItem.TeaserText)
+                                        </a>
+                                    }
+                                    @if (!string.IsNullOrEmpty(menuItem.ButtonText) && !string.IsNullOrEmpty(menuItem.ButtonLink))
+                                    {
+                                        <a href="@menuItem.ButtonLink" class="button-transparent-black">@menuItem.ButtonText</a>
+                                    }
                                 </div>
 
                             </div>
@@ -78,10 +78,16 @@
                                     <img class="img-fluid" src="@menuItem.ImageUrl?width=510" loading="lazy" />
                                 </picture>
                                 <div class="button-text">
-                                    <a href="@menuItem.ButtonLink" class="mega-menu__title--inverse">
-                                        @Html.Raw(menuItem.TeaserText)
-                                    </a>
-                                    <a href="@menuItem.ButtonLink" class="button-white">@btnName</a>
+                                    @if (!string.IsNullOrEmpty(menuItem.ButtonLink))
+                                    {
+                                        <a href="@menuItem.ButtonLink" class="mega-menu__title--inverse">
+                                            @Html.Raw(menuItem.TeaserText)
+                                        </a>
+                                    }
+                                    @if (!string.IsNullOrEmpty(menuItem.ButtonLink) && !string.IsNullOrEmpty(menuItem.ButtonText))
+                                    {
+                                        <a href="@menuItem.ButtonLink" class="button-white">@menuItem.ButtonText</a>
+                                    }
                                 </div>
                             </div>
                         </div>
