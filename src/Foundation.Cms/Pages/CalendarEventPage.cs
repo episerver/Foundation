@@ -11,11 +11,11 @@ namespace Foundation.Cms.Pages
     {
         [CultureSpecific]
         [Display(Name = "Start date", GroupName = SystemTabNames.Content, Order = 10)]
-        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime EventStartDate { get; set; }
 
         [CultureSpecific]
         [Display(Name = "End date", GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTime EventEndDate { get; set; }
 
         [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 30)]
