@@ -95,14 +95,8 @@ namespace Foundation.Demo.Configuration
                  .ToList();
         }
 
-        protected virtual void CreateSite(Stream stream, SiteDefinition siteDefinition, ContentReference startPage)
+        protected virtual void RunIndexJob()
         {
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
-            InstallService.ImportEpiserverContent(stream, startPage, siteDefinition);
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
-
             var job = ScheduledJobRepository.Get(new Guid("8EB257F9-FF22-40EC-9958-C1C5BA8C2A53"));
             if (job == null)
             {
@@ -110,6 +104,15 @@ namespace Foundation.Demo.Configuration
             }
 
             ScheduledJobExecutor.StartAsync(job, new JobExecutionOptions { Trigger = ScheduledJobTrigger.User });
+        }
+
+        protected virtual void CreateSite(Stream stream, SiteDefinition siteDefinition, ContentReference startPage)
+        {
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
+            InstallService.ImportEpiserverContent(stream, startPage, siteDefinition);
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
         }
 
         protected virtual void CreateVisitorGroup(Stream stream, ContentReference startPage) => InstallService.ImportEpiserverContent(stream, startPage);
@@ -151,10 +154,20 @@ namespace Foundation.Demo.Configuration
                 ContentRepository.Save(catalogFolder, EPiServer.DataAccess.SaveAction.Publish, EPiServer.Security.AccessLevel.NoAccess);
             }
 
-            InstallService.ImportEpiserverContent(assests.OpenRead(), catalogFolder.ContentLink);
-            InstallService.ImportCatalog(catalogXml.OpenRead());
-        }
+            using(var assetStream = assests.OpenRead())
+            {
+                EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
+                EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
+                InstallService.ImportEpiserverContent(assetStream, catalogFolder.ContentLink);
+                EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
+                EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
+            }
 
+            using (var catalogStream = catalogXml.OpenRead())
+            {
+                InstallService.ImportCatalog(catalogStream);
+            }
+        }
 
         protected virtual void CreateCatalog(HttpPostedFileBase file)
         {
@@ -212,8 +225,12 @@ namespace Foundation.Demo.Configuration
                 ContentRepository.Save(catalogFolder, EPiServer.DataAccess.SaveAction.Publish, EPiServer.Security.AccessLevel.NoAccess);
             }
 
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
             InstallService.ImportEpiserverContent(assests.OpenRead(), catalogFolder.ContentLink);
             InstallService.ImportCatalog(catalogXml.OpenRead());
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
+            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
         }
     }
 }

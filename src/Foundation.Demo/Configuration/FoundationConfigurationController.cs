@@ -279,6 +279,7 @@ namespace Foundation.Demo.Configuration
             }
 
             CreateSite(siteStream, siteDefinition, ContentReference.IsNullOrEmpty(siteDefinition.StartPage) ? ContentReference.RootPage : siteDefinition.StartPage);
+            RunIndexJob();
             return RedirectToAction("Index");
         }
 
@@ -308,7 +309,7 @@ namespace Foundation.Demo.Configuration
                 CreateCatalog(model.CatalogImportFile.FirstOrDefault());
             }
 
-
+            RunIndexJob();
             return RedirectToAction("Index");
         }
 

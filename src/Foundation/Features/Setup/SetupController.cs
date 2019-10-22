@@ -132,7 +132,7 @@ namespace Foundation.Features.Setup
 
             var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName);
             searchManager.BuildIndex(true);
-
+            RunIndexJob();
 
             return Redirect("/");
         }
