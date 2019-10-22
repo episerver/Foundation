@@ -1217,6 +1217,8 @@
     <Content Include="Features\Category\Index.cshtml" />
     <Content Include="Features\Category\_PageListing.cshtml" />
     <Content Include="Features\Category\_Preview.cshtml" />
+    <Content Include="Features\Blog\BlogListBlock\Preview.cshtml" />
+    <Content Include="Features\Blog\BlogListBlock\_GridTemplate.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
@@ -1540,7 +1542,6 @@
     <Content Include="Features\Recommendations\Index.cshtml" />
     <Content Include="Features\Blog\BlogListPage\Index.cshtml" />
     <Content Include="Features\Blog\BlogItem\Index.cshtml" />
-    <Content Include="Features\Blog\BlogItem\Preview.cshtml" />
     <Content Include="Features\MyAccount\AccountInformation\Index.cshtml" />
     <Content Include="Features\MyAccount\CreditCard\EditForm.cshtml" />
     <Content Include="Features\MyAccount\CreditCard\Index.cshtml" />

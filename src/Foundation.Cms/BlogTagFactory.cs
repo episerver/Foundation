@@ -27,20 +27,18 @@ namespace Foundation.Cms
         }
         public string GetTagUrl(PageData currentPage, ContentReference cat)
         {
-            var start = FindParentByPageType(currentPage, typeof(BlogListPage));
+            var start = FindRootParentByPageType(currentPage, typeof(BlogListPage));
             var pageUrl = _urlResolver.GetUrl(start.ContentLink);
             var url = $"{pageUrl}?category={cat.ID}";
             return url;
         }
 
-        protected PageData FindParentByPageType(PageData pd, Type pagetype)
+        protected PageData FindRootParentByPageType(PageData pageData, Type pageType)
         {
-            if (pd is BlogListPage)
-            {
-                return pd;
-            }
-            return FindParentByPageType(_contentRepository.Get<PageData>(pd.ParentLink), pagetype);
-
+            var ancestors = _contentRepository.GetAncestors(pageData.ContentLink);
+            var pageTypeId = pageType.GetPageType()?.ID;
+            var rootParent = ancestors.Reverse().FirstOrDefault(x => x.ContentTypeID == pageTypeId);
+            return rootParent != null ? rootParent as PageData : _contentRepository.Get<PageData>(ContentReference.StartPage);
         }
 
         public IEnumerable<BlogTagItem> CalculateTags(ContentReference startPoint)

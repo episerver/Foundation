@@ -15,6 +15,8 @@ namespace Foundation.Cms.ViewModels
         public XhtmlString MainBody { get; set; }
         public bool ShowPublishDate { get; set; }
         public bool ShowIntroduction { get; set; }
+        public string Template { get; set; }
+        public string PreviewOption { get; set; }
         public CategoryList Category { get; set; }
         public List<KeyValuePair<string, string>> BreadCrumbs { get; set; }
 
