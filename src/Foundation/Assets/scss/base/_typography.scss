@@ -5,6 +5,10 @@ body {
   line-height: $text-line-height;
 }
 
+.title {
+    color: $text-light-color;
+}
+
 .sub-title {
   color: $text-light-color;
   font-size: 80%;

@@ -71,7 +71,7 @@ namespace Foundation.Features.Blog.BlogListBlock
             {
                 if (int.TryParse(categoryQuery, out var categoryContentId))
                 {
-                    var content = _contentLoader.Get<StandardPage>(new ContentReference(categoryContentId));
+                    var content = _contentLoader.Get<StandardCategory>(new ContentReference(categoryContentId));
                     if (content != null)
                     {
                         category = content;
@@ -106,7 +106,6 @@ namespace Foundation.Features.Blog.BlogListBlock
             return PartialView("~/Features/Blog/BlogListBlock/Index.cshtml", model);
         }
 
-
         public ActionResult Preview(PageData currentPage, BlogListBlockViewModel blogModel)
         {
             var pd = (BlogItemPage)currentPage;
@@ -118,6 +117,8 @@ namespace Foundation.Features.Blog.BlogListBlock
                 PreviewText = GetPreviewText(pd),
                 ShowIntroduction = blogModel.ShowIntroduction,
                 ShowPublishDate = blogModel.ShowPublishDate,
+                Template = blogModel.CurrentBlock.Template,
+                PreviewOption = blogModel.CurrentBlock.PreviewOption,
                 StartPublish = currentPage.StartPublish ?? DateTime.UtcNow
             };
 
@@ -128,7 +129,7 @@ namespace Foundation.Features.Blog.BlogListBlock
         {
             if (currentPage.Categories != null)
             {
-                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentCulture);
+                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentUICulture);
                 return allCategories.
                     Select(cat => new BlogItemPageModel.TagItem()
                     {

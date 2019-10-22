@@ -1,15 +1,14 @@
 ﻿using EPiServer;
 using EPiServer.Cms.Shell;
-using EPiServer.Core;
 using EPiServer.Core.Html;
 using EPiServer.DataAbstraction;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
+using Foundation.Cms.Categories;
 using Foundation.Cms.Pages;
 using Foundation.Cms.Personalization;
 using Foundation.Cms.ViewModels;
-using Foundation.Cms.ViewModels.Blocks;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,7 +17,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Foundation.Cms.Categories;
 
 namespace Foundation.Features.Blog.BlogItem
 {
@@ -66,28 +64,11 @@ namespace Foundation.Features.Blog.BlogItem
             return View(model);
         }
 
-        public ActionResult Preview(PageData currentPage, BlogListBlockViewModel blogModel)
-        {
-            var pd = (BlogItemPage)currentPage;
-            PreviewTextLength = 200;
-
-            var model = new BlogItemPageModel(pd)
-            {
-                Tags = GetTags(pd),
-                PreviewText = GetPreviewText(pd),
-                ShowIntroduction = blogModel.ShowIntroduction,
-                ShowPublishDate = blogModel.ShowPublishDate,
-                StartPublish = currentPage.StartPublish ?? DateTime.UtcNow
-            };
-
-            return PartialView("Preview", model);
-        }
-
         public IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
         {
             if (currentPage.Categories != null)
             {
-                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentCulture);
+                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentUICulture);
                 return allCategories.
                     Select(cat => new BlogItemPageModel.TagItem()
                     {
