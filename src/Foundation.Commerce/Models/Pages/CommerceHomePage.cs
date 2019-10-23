@@ -55,8 +55,8 @@ namespace Foundation.Commerce.Models.Pages
         [Display(Name = "Search page", GroupName = CommerceTabNames.SiteStructure, Order = 10)]
         public virtual ContentReference SearchPage { get; set; }
 
-        [Display(Name = "Store locator", GroupName = CommerceTabNames.SiteStructure, Order = 20)]
-        public virtual ContentReference StoreLocator { get; set; }
+        [Display(Name = "Store locator page", GroupName = CommerceTabNames.SiteStructure, Order = 20)]
+        public virtual ContentReference StoreLocatorPage { get; set; }
 
         [AllowedTypes(typeof(AddressBookPage))]
         [Display(Name = "Address book page", GroupName = CommerceTabNames.SiteStructure, Order = 30)]
@@ -67,8 +67,8 @@ namespace Foundation.Commerce.Models.Pages
         public virtual ContentReference ResetPasswordPage { get; set; }
 
         [AllowedTypes(typeof(WishListPage))]
-        [Display(Name = "Wish list page", GroupName = CommerceTabNames.SiteStructure, Order = 50)]
-        public virtual ContentReference WishListPage { get; set; }
+        [Display(Name = "Wishlist page", GroupName = CommerceTabNames.SiteStructure, Order = 50)]
+        public virtual ContentReference WishlistPage { get; set; }
 
         [AllowedTypes(typeof(CartPage))]
         [Display(Name = "Shopping cart page", GroupName = CommerceTabNames.SiteStructure, Order = 60)]
@@ -91,15 +91,15 @@ namespace Foundation.Commerce.Models.Pages
         public virtual ContentReference OrganizationMainPage { get; set; }
 
         [AllowedTypes(typeof(SubOrganizationPage))]
-        [Display(Name = "Sub organization page", GroupName = CommerceTabNames.SiteStructure, Order = 110)]
+        [Display(Name = "Sub-organization page", GroupName = CommerceTabNames.SiteStructure, Order = 110)]
         public virtual ContentReference SubOrganizationPage { get; set; }
 
-        [Display(Name = "Organization pads page", GroupName = CommerceTabNames.SiteStructure, Order = 120)]
+        [Display(Name = "Organization order pads page", GroupName = CommerceTabNames.SiteStructure, Order = 120)]
         [AllowedTypes(typeof(OrderPadsPage))]
-        public virtual ContentReference OrderPadsPage { get; set; }
+        public virtual ContentReference OrganizationOrderPadsPage { get; set; }
 
         [AllowedTypes(typeof(QuickOrderPage))]
-        [Display(Name = "Quick orders page", GroupName = CommerceTabNames.SiteStructure, Order = 130)]
+        [Display(Name = "Quick order page", GroupName = CommerceTabNames.SiteStructure, Order = 130)]
         public virtual ContentReference QuickOrderPage { get; set; }
 
         [AllowedTypes(typeof(OrderDetailsPage))]
@@ -133,7 +133,7 @@ namespace Foundation.Commerce.Models.Pages
         public virtual ContentReference OrderConfirmationMail { get; set; }
 
         [AllowedTypes(typeof(MailBasePage))]
-        [Display(Name = "Reset password mail", GroupName = CommerceTabNames.MailTemplates, Order = 30)]
+        [Display(Name = "Reset password", GroupName = CommerceTabNames.MailTemplates, Order = 30)]
         public virtual ContentReference ResetPasswordMail { get; set; }
 
         #endregion

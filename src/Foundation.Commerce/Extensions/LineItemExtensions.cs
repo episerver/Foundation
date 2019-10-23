@@ -69,8 +69,7 @@ namespace Foundation.Commerce.Extensions
 
         public static ContentReference GetContentReference(this LinkItem linkItem)
         {
-            string extension;
-            var guid = PermanentLinkUtility.GetGuid(new UrlBuilder(linkItem.GetMappedHref()), out extension);
+            var guid = PermanentLinkUtility.GetGuid(new UrlBuilder(linkItem.GetMappedHref()), out var extension);
             return PermanentLinkUtility.FindContentReference(guid);
         }
     }

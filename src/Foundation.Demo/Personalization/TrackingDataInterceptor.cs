@@ -1,6 +1,5 @@
 ﻿using EPiServer;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.Tracking.Core;
 using Foundation.Demo.Models;
 

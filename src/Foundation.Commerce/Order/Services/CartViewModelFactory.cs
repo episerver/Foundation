@@ -198,7 +198,7 @@ namespace Foundation.Commerce.Order.Services
                 {
                     ItemCount = 0,
                     Items = new CartItemViewModel[0],
-                    WishlistPage = startPage.WishListPage,
+                    WishlistPage = startPage.WishlistPage,
                     HasOrganization = contact?.OwnerId != null,
                     Label = startPage.WishlistLabel,
                 };
@@ -208,7 +208,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),
                 Items = _shipmentViewModelFactory.CreateShipmentsViewModel(cart).SelectMany(x => x.CartItems),
-                WishlistPage = startPage.WishListPage,
+                WishlistPage = startPage.WishlistPage,
                 Total = _orderGroupCalculator.GetSubTotal(cart),
                 Label = startPage.WishlistLabel,
                 HasOrganization = contact?.OwnerId != null
@@ -217,7 +217,7 @@ namespace Foundation.Commerce.Order.Services
 
         public virtual WishListMiniCartViewModel CreateWishListMiniCartViewModel(ICart cart)
         {
-            var wishListLink = (_contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage)?.WishListPage;
+            var wishListLink = (_contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage)?.WishlistPage;
             var wishListPage = wishListLink != null ? _contentLoader.Get<WishListPage>(wishListLink) : null;
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             if (cart == null && wishListPage != null)

@@ -21,8 +21,8 @@ namespace Foundation.Cms.Pages
         public virtual ContentReference MainBackgroundVideo { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(FoundationStandardPageTopPaddingModeSelectionFactory))]
-        [Display(Name = "Top padding mode", 
-            Description = "Sets how much padding should be at the top of the standard content", 
+        [Display(Name = "Top padding mode",
+            Description = "Sets how much padding should be at the top of the standard content",
             GroupName = SystemTabNames.Content,
             Order = 220)]
         public virtual string TopPaddingMode { get; set; }

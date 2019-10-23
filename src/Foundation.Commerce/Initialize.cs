@@ -1,25 +1,25 @@
 ﻿using EPiServer;
+using EPiServer.Commerce.Order;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
-using Foundation.Cms.ViewModels.Header;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Markets;
-using Foundation.Commerce.Markets.ViewModels;
-using Foundation.Commerce.ViewModels.Header;
-using Mediachase.Commerce;
-using System;
-using System.Web.Mvc;
-using EPiServer.Commerce.Order;
 using EPiServer.Web.Mvc;
+using Foundation.Cms.ViewModels.Header;
 using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Catalog.ViewModels;
+using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Mail;
 using Foundation.Commerce.Marketing;
+using Foundation.Commerce.Markets;
+using Foundation.Commerce.Markets.ViewModels;
 using Foundation.Commerce.Order;
 using Foundation.Commerce.Order.Payments;
 using Foundation.Commerce.Order.Services;
 using Foundation.Commerce.Order.ViewModelFactories;
+using Foundation.Commerce.ViewModels.Header;
+using Mediachase.Commerce;
+using System;
+using System.Web.Mvc;
 
 namespace Foundation.Commerce
 {

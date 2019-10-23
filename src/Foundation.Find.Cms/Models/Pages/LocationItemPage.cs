@@ -35,10 +35,10 @@ namespace Foundation.Find.Cms.Models.Pages
         [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 220)]
         public virtual ContentArea LeftContentArea { get; set; }
 
-        [Display(Name = "Is new?", GroupName = SystemTabNames.Content, Order = 230)]
+        [Display(Name = "New location", GroupName = SystemTabNames.Content, Order = 230)]
         public virtual bool New { get; set; }
 
-        [Display(Name = "Promoted destination",
+        [Display(Name = "Promoted location",
             Description = "Check this, in order to boost this destination and promote it in suggestions",
             GroupName = SystemTabNames.Content,
             Order = 240)]

@@ -1,4 +1,3 @@
-using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Cms.Blocks;
@@ -7,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Blog List Page", 
+    [ContentType(DisplayName = "Blog List Page",
         GUID = "EAADAFF2-3E89-4117-ADEB-F8D43565D2F4",
         Description = "Blog List Page for dates such as year and month",
         GroupName = CmsGroupNames.Blog)]

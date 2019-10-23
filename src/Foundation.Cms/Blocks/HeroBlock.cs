@@ -11,7 +11,7 @@ namespace Foundation.Cms.Blocks
 {
     [ContentType(DisplayName = "Hero Block",
         GUID = "8bdfac81-3dbd-43b9-a092-522bd67ee8b3",
-        Description = "Image Block with Overlay for text", 
+        Description = "Image Block with Overlay for text",
         GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
     public class HeroBlock : FoundationBlockData

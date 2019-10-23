@@ -9,7 +9,10 @@ using EPiServer.ServiceLocation;
 using EPiServer.Tracking.Core;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
+using Foundation.Demo.Install;
+using Foundation.Demo.Install.Steps;
 using Foundation.Demo.Personalization;
+using Foundation.Demo.ProfileStore;
 using Foundation.Demo.ViewModels;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
@@ -21,9 +24,6 @@ using System.Configuration;
 using System.Linq;
 using System.Security.Authentication;
 using System.Web;
-using Foundation.Demo.Install;
-using Foundation.Demo.Install.Steps;
-using Foundation.Demo.ProfileStore;
 
 namespace Foundation.Demo
 {

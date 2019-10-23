@@ -12,7 +12,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Foundation.Demo.Install
 {

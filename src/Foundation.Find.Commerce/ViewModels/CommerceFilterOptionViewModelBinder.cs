@@ -56,7 +56,7 @@ namespace Foundation.Find.Commerce.ViewModels
             {
                 return model;
             }
-            
+
 
             var contentLink = controllerContext.RequestContext.GetContentLink();
             IContent content = null;

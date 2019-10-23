@@ -69,8 +69,7 @@ namespace Foundation.Find.Cms.Models.Blocks
             foreach (var distance in distances)
             {
                 var distanceSplit = distance.Split('-');
-                int from, to;
-                if (distanceSplit.Length == 2 && int.TryParse(distanceSplit[0], out from) && int.TryParse(distanceSplit[1], out to))
+                if (distanceSplit.Length == 2 && int.TryParse(distanceSplit[0], out var from) && int.TryParse(distanceSplit[1], out var to))
                 {
                     yield return new NumericRange { From = from, To = to };
                 }

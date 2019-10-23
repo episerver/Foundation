@@ -4,16 +4,16 @@ using EPiServer.Find.UnifiedSearch;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
+using EPiServer.Shell.ContentQuery;
 using EPiServer.Web.Routing;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Models.Pages;
+using Foundation.Find.Cms.PowerSlices;
 using Foundation.Find.Cms.ViewModels;
+using PowerSlice;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using EPiServer.Shell.ContentQuery;
-using Foundation.Find.Cms.PowerSlices;
-using PowerSlice;
 
 namespace Foundation.Find.Cms
 {

@@ -1,13 +1,13 @@
-using System.Collections.Generic;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Geta.EpiCategories.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.EditorDescriptors;
+using Geta.EpiCategories.DataAnnotations;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
@@ -36,7 +36,7 @@ namespace Foundation.Cms.Blocks
 
         [Display(Name = "Include teaser text", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual bool IncludeTeaserText { get; set; }
-        
+
         [Display(Name = "Page type filter", GroupName = SystemTabNames.Content, Order = 60)]
         public virtual PageType PageTypeFilter { get; set; }
 

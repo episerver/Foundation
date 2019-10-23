@@ -1,4 +1,3 @@
-using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System.ComponentModel.DataAnnotations;

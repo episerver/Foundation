@@ -191,9 +191,9 @@ namespace Foundation.Features.NamedCarts.Wishlist
             _trackingService.TrackWishlist(HttpContext);
             var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
             WishListPage wishlistPage = null;
-            if (startPage.WishListPage != null)
+            if (startPage.WishlistPage != null)
             {
-                wishlistPage = _contentLoader.Get<WishListPage>(startPage.WishListPage);
+                wishlistPage = _contentLoader.Get<WishListPage>(startPage.WishlistPage);
             }
 
             if (param.RequestFrom.Equals("axios", StringComparison.OrdinalIgnoreCase))
@@ -238,7 +238,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             }
             var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
 
-            return RedirectToAction("Index", new { Node = startPage.WishListPage });
+            return RedirectToAction("Index", new { Node = startPage.WishlistPage });
         }
 
         [HttpPost]
@@ -298,7 +298,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             }
 
             var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
-            var pageUrl = _urlResolver.GetUrl(startPage.OrderPadsPage);
+            var pageUrl = _urlResolver.GetUrl(startPage.OrganizationOrderPadsPage);
 
             return Redirect(pageUrl);
         }

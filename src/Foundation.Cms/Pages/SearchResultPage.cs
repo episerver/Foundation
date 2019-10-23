@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Search Result Page",
+    [ContentType(DisplayName = "Search Results Page",
         GUID = "6e0c84de-bd17-43ee-9019-04f08c7fcf8d",
         Description = "Page to allow customer to search the site",
         GroupName = CmsGroupNames.Content)]

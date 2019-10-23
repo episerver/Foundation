@@ -258,8 +258,8 @@ namespace Foundation.Features.Checkout
             if (_cartService.AddCouponCode(CartWithValidationIssues.Cart, couponCode))
             {
                 var model = CreateCheckoutViewModel(currentPage);
-                
-                foreach(var payment in model.Payments)
+
+                foreach (var payment in model.Payments)
                 {
                     var paymentViewmodel = new CheckoutViewModel();
                     paymentViewmodel.Payment = payment;
@@ -639,8 +639,7 @@ namespace Foundation.Features.Checkout
             bool success = false;
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderLink);
 
-            DateTime quoteExpireDate;
-            DateTime.TryParse(purchaseOrder.Properties[Constant.Quote.QuoteExpireDate].ToString(), out quoteExpireDate);
+            DateTime.TryParse(purchaseOrder.Properties[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
             if (DateTime.Compare(DateTime.Now, quoteExpireDate) > 0)
             {
                 return Json(new { success });

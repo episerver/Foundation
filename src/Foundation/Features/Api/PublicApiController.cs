@@ -9,8 +9,6 @@ using Foundation.Cms.Personalization;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Infrastructure.Services;
-using Mediachase.Commerce.Customers;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -97,7 +95,7 @@ namespace Foundation.Features.Api
             viewModel.Address.BillingDefault = true;
             viewModel.Address.ShippingDefault = true;
             viewModel.Address.Email = viewModel.Email;
-            
+
             var user = new SiteUser
             {
                 UserName = viewModel.Email,
@@ -311,9 +309,8 @@ namespace Foundation.Features.Api
             {
                 return "/";
             }
-            Uri uri;
 
-            if (Uri.TryCreate(returnUrl, UriKind.Absolute, out uri))
+            if (Uri.TryCreate(returnUrl, UriKind.Absolute, out var uri))
             {
                 return uri.PathAndQuery;
             }

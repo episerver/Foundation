@@ -8,7 +8,7 @@ namespace Foundation.Social.Models.Blocks
     /// <summary>
     /// The CommentBlock class defines the configuration used for rendering comments views.
     /// </summary>
-    [ContentType(DisplayName = "Comments Block", 
+    [ContentType(DisplayName = "Comments Block",
         GUID = "b8a110ff-a8e2-4c17-9706-ce777694ebd4",
         Description = "Configures the frontend view properties of a comment block",
         GroupName = "Social")]
@@ -31,7 +31,7 @@ namespace Foundation.Social.Models.Blocks
         /// <summary>
         /// Configures the number of rows the comment input box should have.
         /// </summary>
-        [Display(Name = "Comment box rows", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Size of comment box (rows)", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual int CommentBoxRows { get; set; }
 
         /// <summary>

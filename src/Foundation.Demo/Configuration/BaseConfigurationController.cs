@@ -154,7 +154,7 @@ namespace Foundation.Demo.Configuration
                 ContentRepository.Save(catalogFolder, EPiServer.DataAccess.SaveAction.Publish, EPiServer.Security.AccessLevel.NoAccess);
             }
 
-            using(var assetStream = assests.OpenRead())
+            using (var assetStream = assests.OpenRead())
             {
                 EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
                 EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
