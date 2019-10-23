@@ -23,6 +23,10 @@
         align-items: center;
         width: 20%;
         height: $navigation-height;
+
+        > img {
+            max-height: $navigation-height - 10px;
+        }
     }
 
     &__right {

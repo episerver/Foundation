@@ -4,11 +4,17 @@
     height: $navigation-height;
     align-items: center;
 
-    &--left {
+    &__left {
         flex: 1 1 auto;
         display: flex;
         align-items: center;
         position: relative;
+    }
+
+    &__logo {
+        > img {
+            max-height: $navigation-height - 10px;
+        }
     }
 
     &__search-box {
@@ -25,7 +31,7 @@
         padding-right: 15px;
     }
 
-    &--right__item {
+    &__right {
         display: flex;
     }
 
