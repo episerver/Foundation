@@ -83,26 +83,35 @@
 @if (Model.Template == TemplateSelections.ImageTop)
 {
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
-    <div class="col-@imageCol">
-        <picture>
+    <div class="col-@imageCol preview--image-top">
+        <picture style="height: 100%;">
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
-                <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
             }
         </picture>
-        <br />
-        <h4>
-            <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
-        </h4>
-        @if (Model.ShowPublishDate)
-        {
-            <p class="sub-title">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
-        }
+        <div>
+            <span>
+                @foreach (var tag in Model.Tags)
+                {
+                    <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+                }
 
-        @if (Model.ShowIntroduction && Model.CurrentContent.IsShowDescription)
-        {
-            <br />
-            <p class="light-text">@Html.Raw(@Model.PreviewText)</p>
-        }
+            </span>
+            @if (Model.ShowPublishDate)
+            {
+                <p class="sub-title">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
+            }
+            <h4>
+                <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
+            </h4>
+
+            @if (Model.ShowIntroduction && Model.CurrentContent.IsShowDescription)
+            {
+                <br />
+                <p class="light-text">@Html.Raw(@Model.PreviewText)</p>
+            }
+        </div>
+        
     </div>
 }
