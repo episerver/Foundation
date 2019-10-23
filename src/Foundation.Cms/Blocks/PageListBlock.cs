@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using Geta.EpiCategories.DataAnnotations;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {

@@ -28,7 +28,7 @@ namespace Foundation.Cms
                 HttpOnly = true,
                 Secure = HttpContext.Current?.Request?.IsSecureConnection ?? false
             };
-            
+
 
             if (!sessionCookie)
             {

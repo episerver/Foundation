@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using Foundation.Commerce.Catalog.ViewModels;
 using Mediachase.Commerce.InventoryService;
 using System.Linq;

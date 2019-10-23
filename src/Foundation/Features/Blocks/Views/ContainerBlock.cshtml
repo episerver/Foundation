@@ -1,5 +1,5 @@
 ﻿@model IBlockViewModel<ContainerBlock>
 
-<div style="@Model.CurrentBlock.PaddingStyles" class="@Model.CurrentBlock.WrappingClass">
+<div style="@Model.CurrentBlock.PaddingStyles" class="@Model.CurrentBlock.CssClass">
     @Html.PropertyFor(m => m.CurrentBlock.MainContentArea)
 </div>

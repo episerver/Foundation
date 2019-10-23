@@ -6,7 +6,6 @@ using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.ViewModels.Header;
 using Foundation.Demo.Models;
@@ -55,7 +54,7 @@ namespace Foundation.Features.MyAccount
 
             var model = new MyAccountNavigationViewModel
             {
-                Organization = canSeeOrganizationNav ? _organizationService.GetOrganizationModel(organization): null,
+                Organization = canSeeOrganizationNav ? _organizationService.GetOrganizationModel(organization) : null,
                 CurrentOrganization = canSeeOrganizationNav ? !string.IsNullOrEmpty(selectedSubNav) ?
                     _organizationService.GetOrganizationModel(_organizationService.GetSubFoundationOrganizationById(selectedSubNav)) :
                     _organizationService.GetOrganizationModel(organization) : null,
@@ -70,7 +69,7 @@ namespace Foundation.Features.MyAccount
             {
                 return PartialView("_ProfileSidebar", model);
             }
-            var wishlist = _contentLoader.Get<WishListPage>(startPage.WishListPage);
+            var wishlist = _contentLoader.Get<WishListPage>(startPage.WishlistPage);
             menuItems = menuItems.CreateWritableClone();
 
             if (model.Organization != null)

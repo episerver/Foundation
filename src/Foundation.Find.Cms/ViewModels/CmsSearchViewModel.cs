@@ -1,6 +1,5 @@
 ﻿using EPiServer.Core;
 using EPiServer.Find.Statistics.Api;
-using EPiServer.Find.UnifiedSearch;
 using Foundation.Cms.ViewModels;
 
 namespace Foundation.Find.Cms.ViewModels

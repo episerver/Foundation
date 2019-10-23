@@ -1065,6 +1065,16 @@
           </iconname>
         </properties>
       </featureboxblock>
+      <cookiedropblock>
+        <properties>
+          <cookiename>
+            <caption>Cookie name</caption>
+          </cookiename>
+          <cookievalue>
+            <caption>Cookie value</caption>
+          </cookievalue>
+        </properties>
+      </cookiedropblock>
     </contenttypes>
     <BulkUpdate>
       <ContentGroup>Content Group</ContentGroup>

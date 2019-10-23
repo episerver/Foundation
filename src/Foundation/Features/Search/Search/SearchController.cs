@@ -90,7 +90,7 @@ namespace Foundation.Features.Search
                         await _recommendationService.TrackSearch(HttpContext, filterOptions.Q, filterOptions.PageSize,
                             viewModel.ProductViewModels.Select(x => x.Code));
                     viewModel.Recommendations = trackingResult.GetSearchResultRecommendations(_referenceConverter);
-                }   
+                }
             }
 
             await _cmsTrackingService.SearchedKeyword(_httpContextBase, filterOptions.Q);

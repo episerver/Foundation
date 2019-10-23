@@ -2,11 +2,11 @@
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
-using Foundation.Find.Commerce.ViewModels;
-using System.Web.Mvc;
 using EPiServer.Shell.ContentQuery;
 using Foundation.Find.Commerce.PowerSlices;
+using Foundation.Find.Commerce.ViewModels;
 using PowerSlice;
+using System.Web.Mvc;
 
 namespace Foundation.Find.Commerce
 {

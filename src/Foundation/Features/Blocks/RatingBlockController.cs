@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
@@ -14,6 +11,9 @@ using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.ViewModels;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {

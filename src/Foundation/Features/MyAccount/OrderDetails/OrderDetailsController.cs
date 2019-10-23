@@ -175,8 +175,7 @@ namespace Foundation.Features.MyAccount.OrderDetails
             if (purchaseOrder[Constant.Quote.QuoteExpireDate] != null &&
                 !string.IsNullOrEmpty(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString()))
             {
-                DateTime quoteExpireDate;
-                DateTime.TryParse(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString(), out quoteExpireDate);
+                DateTime.TryParse(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
                 if (DateTime.Compare(DateTime.Now, quoteExpireDate) > 0)
                 {
                     orderViewModel.QuoteStatus = Constant.Quote.QuoteExpired;

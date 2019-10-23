@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Blog Item Page", 
+    [ContentType(DisplayName = "Blog Item Page",
         GUID = "EAACADF2-3E89-4117-ADEB-F8D43565D2F4",
         Description = "Blog Item Page created underneath the start page and moved to the right area",
         GroupName = CmsGroupNames.Blog)]

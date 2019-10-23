@@ -23,7 +23,8 @@ namespace Foundation.Cms.ViewModels
 
         public TContent CurrentContent { get; set; }
 
-        public virtual CmsHomePage StartPage {
+        public virtual CmsHomePage StartPage
+        {
             get
             {
                 if (PageEditing.PageIsInEditMode)

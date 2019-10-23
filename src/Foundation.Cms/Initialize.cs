@@ -5,6 +5,8 @@ using EPiServer.Editor;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
+using EPiServer.Web.Mvc;
+using EPiServer.Web.PageExtensions;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Display;
 using Foundation.Cms.Identity;
@@ -13,8 +15,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System.Web;
 using System.Web.Mvc;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.PageExtensions;
 
 namespace Foundation.Cms
 {

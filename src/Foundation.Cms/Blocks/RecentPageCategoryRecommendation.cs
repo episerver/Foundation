@@ -19,7 +19,7 @@ namespace Foundation.Cms.Blocks
 
         [Display(Name = "Filter types")]
         [SelectMany(SelectionFactoryType = typeof(AvailablePageTypesSelectionFactory))]
-        public virtual string FilterTypes {get;set;}
+        public virtual string FilterTypes { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {

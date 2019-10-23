@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Social.Groups.Core;
 using Foundation.Social;
 using Foundation.Social.Models.Blocks;
@@ -9,6 +6,9 @@ using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {

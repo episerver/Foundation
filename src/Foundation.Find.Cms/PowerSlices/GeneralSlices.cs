@@ -3,8 +3,6 @@ using EPiServer.Cms.Shell.UI.Rest.ContentQuery;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Find;
-using EPiServer.ServiceLocation;
-using EPiServer.Shell.ContentQuery;
 using EPiServer.Shell.Rest;
 using EPiServer.Shell.Services.Rest;
 using Foundation.Cms.Pages;
