@@ -338,7 +338,7 @@ namespace Foundation.Demo.Configuration
                 StorageService.Add($"VisitorGroups/{fileName}", stream, stream.Length);
                 return RedirectToAction("Index");
             }
-            
+
             return File(stream, "application/octet-stream", "visitorgroup.episerverdata");
         }
 

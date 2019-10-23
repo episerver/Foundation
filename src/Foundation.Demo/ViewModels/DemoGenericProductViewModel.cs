@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using EPiServer.Personalization.Commerce.Tracking;
+﻿using EPiServer.Personalization.Commerce.Tracking;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Demo.Interfaces;
 using Foundation.Social.ViewModels;
+using System.Collections.Generic;
 
 namespace Foundation.Demo.ViewModels
 {

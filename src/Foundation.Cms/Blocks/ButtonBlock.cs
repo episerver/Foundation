@@ -15,7 +15,7 @@ namespace Foundation.Cms.Blocks
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class ButtonBlock : FoundationBlockData
     {
-        [Display(Name = "Label", Order = 10,  GroupName = SystemTabNames.Content)]
+        [Display(Name = "Label", Order = 10, GroupName = SystemTabNames.Content)]
         public virtual string ButtonText { get; set; }
 
         [Display(Name = "Link", Order = 20, GroupName = SystemTabNames.Content)]

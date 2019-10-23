@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
-using System.ComponentModel.DataAnnotations;
 using Geta.EpiCategories;
 using Geta.EpiCategories.DataAnnotations;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
@@ -17,17 +17,17 @@ namespace Foundation.Cms.Blocks
             Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
-        [Display(Name = "Padding top", GroupName = CmsTabNames.BlockPadding, Order = 1)]
+        [Display(Name = "Top", GroupName = CmsTabNames.BlockPadding, Order = 1)]
 
         public virtual int PaddingTop { get; set; }
 
-        [Display(Name = "Padding right", GroupName = CmsTabNames.BlockPadding, Order = 2)]
+        [Display(Name = "Right", GroupName = CmsTabNames.BlockPadding, Order = 2)]
         public virtual int PaddingRight { get; set; }
 
-        [Display(Name = "Padding bottom", GroupName = CmsTabNames.BlockPadding, Order = 3)]
+        [Display(Name = "Bottom", GroupName = CmsTabNames.BlockPadding, Order = 3)]
         public virtual int PaddingBottom { get; set; }
 
-        [Display(Name = "Padding left", GroupName = CmsTabNames.BlockPadding, Order = 4)]
+        [Display(Name = "Left", GroupName = CmsTabNames.BlockPadding, Order = 4)]
         public virtual int PaddingLeft { get; set; }
 
         public string PaddingStyles

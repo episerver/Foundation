@@ -18,21 +18,21 @@ namespace Foundation.Cms.Blocks
         [Required]
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(CalendarViewModeSelectionFactory))]
-        [Display(Name = "View mode", GroupName = SystemTabNames.Content, Order = 10)]
+        [Display(Name = "View as", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string ViewMode { get; set; }
 
         [Required]
         [AllowedTypes(typeof(FolderPage))]
-        [Display(GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual PageReference Root { get; set; }
+        [Display(Name = "Events root", GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual PageReference EventsRoot { get; set; }
 
         [Display(Name = "Number of events", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual int Count { get; set; }
 
-        [Display(Name = "Category filter", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Filter by category", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual CategoryList CategoryFilter { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 50)]
+        [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual bool Recursive { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "RSS Reader Block", 
-        GUID = "8fc5a3bb-727c-4871-8b2e-5ff337e30e82", 
-        Description = "Display content from a RSS feed", 
+    [ContentType(DisplayName = "RSS Reader Block",
+        GUID = "8fc5a3bb-727c-4871-8b2e-5ff337e30e82",
+        Description = "Display content from a RSS feed",
         GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/gfx/block-type-thumbnail-rss.png")]
     public class RssReaderBlock : FoundationBlockData

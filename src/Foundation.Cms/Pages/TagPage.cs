@@ -16,12 +16,12 @@ namespace Foundation.Cms.Pages
         [AllowedTypes(typeof(ImageData))]
         public virtual ContentArea Images { get; set; }
 
-        [StringLength(5000)]
-        [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual string MainIntro { get; set; }
+        [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual ContentArea TopContentArea { get; set; }
 
-        [Display(Name = "Top area", GroupName = SystemTabNames.Content, Order = 190)]
-        public virtual ContentArea TopArea { get; set; }
+        [StringLength(5000)]
+        [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 95)]
+        public virtual string MainIntro { get; set; }
 
         [Display(Name = "Bottom area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea BottomArea { get; set; }

@@ -12,7 +12,7 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Main content area")]
         public virtual ContentArea MainContentArea { get; set; }
 
-        [Display(Name = "Wrapping class")]
-        public virtual string WrappingClass { get; set; }
+        [Display(Name = "CSS class")]
+        public virtual string CssClass { get; set; }
     }
 }

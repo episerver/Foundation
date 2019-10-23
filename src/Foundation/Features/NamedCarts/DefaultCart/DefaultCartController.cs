@@ -651,7 +651,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            
+
             var viewModel = _cartViewModelFactory.CreateSimpleLargeCartViewModel(CartWithValidationIssues.Cart);
             return PartialView("_CartSummary", viewModel);
         }

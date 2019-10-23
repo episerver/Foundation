@@ -73,8 +73,7 @@ namespace Foundation.Commerce.Order.Services
 
         private void SetDefaultBillingAddressName(CheckoutViewModel viewModel)
         {
-            Guid guid;
-            if (Guid.TryParse(viewModel.BillingAddress.Name, out guid))
+            if (Guid.TryParse(viewModel.BillingAddress.Name, out var guid))
             {
                 viewModel.BillingAddress.Name = "Billing address (" + viewModel.BillingAddress.Line1 + ")";
             }
@@ -84,8 +83,7 @@ namespace Foundation.Commerce.Order.Services
         {
             foreach (var address in viewModel.Shipments.Select(x => x.Address))
             {
-                Guid guid;
-                if (Guid.TryParse(address.Name, out guid))
+                if (Guid.TryParse(address.Name, out var guid))
                 {
                     address.Name = "Shipping address (" + address.Line1 + ")";
                 }

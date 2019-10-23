@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Web.Routing;
-using System;
 using System.Web.Mvc;
 
 namespace Foundation.Find.Cms.ViewModels

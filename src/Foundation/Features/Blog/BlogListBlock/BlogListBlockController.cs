@@ -6,10 +6,12 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
+using Foundation.Cms.Categories;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Cms.ViewModels;
 using Foundation.Cms.ViewModels.Blocks;
+using Geta.EpiCategories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,8 +19,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using Foundation.Cms.Categories;
-using Geta.EpiCategories;
 
 namespace Foundation.Features.Blog.BlogListBlock
 {

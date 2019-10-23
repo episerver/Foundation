@@ -6,7 +6,7 @@ namespace Foundation.Commerce.Customer
     {
         public IdentityResult IdentityResult { get; set; }
         public FoundationContact FoundationContact { get; set; }
-        public IdentityContactResult ()
+        public IdentityContactResult()
         {
             IdentityResult = new IdentityResult();
         }

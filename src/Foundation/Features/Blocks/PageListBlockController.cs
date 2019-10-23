@@ -6,10 +6,10 @@ using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Blocks;
 using Foundation.Cms.ViewModels.Blocks;
+using Geta.EpiCategories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Geta.EpiCategories;
 
 namespace Foundation.Features.Blocks
 {

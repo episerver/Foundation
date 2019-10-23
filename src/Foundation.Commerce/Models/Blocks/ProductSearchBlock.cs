@@ -30,11 +30,11 @@ namespace Foundation.Commerce.Models.Blocks
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(ProductSearchBlockItemsPerRowSelectionFactory))]
-        [Display(Name = "Items per row", Description = "The number of products to show in a row, default is 3", Order = 40)]
+        [Display(Name = "Results per row", Description = "The number of products to show in a row, default is 3", Order = 40)]
         public virtual int ItemsPerRow { get; set; }
 
         [AllowedTypes(typeof(NodeContent))]
-        [Display(Name = "Categories", Description = "Root categories to get products from, includes sub categories", GroupName = SystemTabNames.Content, Order = 50)]
+        [Display(Name = "Catalog categories", Description = "Root categories to get products from, includes sub categories", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual ContentArea Nodes { get; set; }
 
         [Display(Description = "Filters to apply to the search result", Order = 60)]
@@ -45,11 +45,11 @@ namespace Foundation.Commerce.Models.Blocks
         public virtual ContentArea PriorityProducts { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Min price", Description = "The minimum price in the current market currency", Order = 80)]
+        [Display(Name = "Minimum price", Description = "The minimum price in the current market currency", Order = 80)]
         public virtual int MinPrice { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Max price", Description = "The maximum price in the current market currency", Order = 90)]
+        [Display(Name = "Maximum price", Description = "The maximum price in the current market currency", Order = 90)]
         public virtual int MaxPrice { get; set; }
 
         private int _startingIndex = 0;

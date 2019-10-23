@@ -8,7 +8,7 @@ namespace Foundation.Social.Models.Blocks
     /// <summary>
     /// The GroupAdmissionBlock class defines the configuration used for rendering group admission views.
     /// </summary>
-    [ContentType(DisplayName = "Group Admission Block", 
+    [ContentType(DisplayName = "Group Admission Block",
         GUID = "611697e3-3638-445c-a45c-6454eaa5b7b1",
         Description = "Configures the properties of a group admission block view",
         GroupName = SocialTabNames.Social)]

@@ -15,7 +15,7 @@ namespace Foundation.Demo.Install.Steps
         public AddTaxes(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            TaxImportExport taxImportExport) : base(contentRepository,  referenceConverter, marketService) => _taxImportExport = taxImportExport;
+            TaxImportExport taxImportExport) : base(contentRepository, referenceConverter, marketService) => _taxImportExport = taxImportExport;
 
         public override int Order => 4;
 

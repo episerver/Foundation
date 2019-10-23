@@ -49,7 +49,7 @@ namespace Foundation.Features.Events.CalendarEventBlock
         private IEnumerable<CalendarEventPage> FindEvents(Cms.Blocks.CalendarEventBlock currentBlock)
         {
             IEnumerable<CalendarEventPage> events;
-            var root = currentBlock.Root;
+            var root = currentBlock.EventsRoot;
             if (currentBlock.Recursive)
             {
                 events = root.GetAllRecursively<CalendarEventPage>();

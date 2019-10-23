@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using EPiServer.Shell.ObjectEditing;
+﻿using EPiServer.Shell.ObjectEditing;
+using System.Collections.Generic;
 
 namespace Foundation.Cms.EditorDescriptors
 {

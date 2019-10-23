@@ -8,11 +8,11 @@ using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce.Extensions;
 using Foundation.Demo.Extensions;
+using Foundation.Infrastructure.Services;
 using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Owin;
-using Foundation.Infrastructure.Services;
 
 namespace Foundation.Infrastructure
 {

@@ -1,6 +1,5 @@
 ﻿using EPiServer.Core;
 using EPiServer.Find;
-using EPiServer.Find.UnifiedSearch;
 using Foundation.Find.Cms.ViewModels;
 using Geta.EpiCategories;
 using System.Collections.Generic;

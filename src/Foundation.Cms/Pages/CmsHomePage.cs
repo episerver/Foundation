@@ -63,7 +63,7 @@ namespace Foundation.Cms.Pages
         public virtual string LinksHeader { get; set; }
 
         [UIHint("FooterColumnNavigation")]
-        [Display(Name = "Footer links", GroupName = CmsTabNames.Footer, Order = 70)]
+        [Display(Name = "Links", GroupName = CmsTabNames.Footer, Order = 70)]
         public virtual LinkItemCollection Links { get; set; }
 
         [Display(Name = "Social header", GroupName = CmsTabNames.Footer, Order = 80)]
@@ -75,7 +75,7 @@ namespace Foundation.Cms.Pages
 
         [Display(Name = "Copyright", GroupName = CmsTabNames.Footer, Order = 130)]
         public virtual string FooterCopyrightText { get; set; }
-        
+
         #endregion
     }
 }

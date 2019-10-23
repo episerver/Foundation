@@ -93,7 +93,7 @@ namespace Foundation.Find.Cms
                 else
                     query = query.OrderByDescending(x => x.Name);
             }
-            
+
             query = query.Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize);
             var results = query.GetContentResult();
             var model = new CategorySearchResults();
