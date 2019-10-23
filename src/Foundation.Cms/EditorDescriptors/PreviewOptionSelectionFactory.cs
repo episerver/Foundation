@@ -10,8 +10,8 @@ namespace Foundation.Cms.EditorDescriptors
             return new ISelectItem[]
             {
                 new SelectItem { Value = PreviewOptions.OneThird, Text = "One third width" },
-                new SelectItem { Value = PreviewOptions.OneThird, Text = "Half width" },
-                new SelectItem { Value = PreviewOptions.OneThird, Text = "Full width" }
+                new SelectItem { Value = PreviewOptions.Half, Text = "Half width" },
+                new SelectItem { Value = PreviewOptions.Full, Text = "Full width" }
             };
         }
     }

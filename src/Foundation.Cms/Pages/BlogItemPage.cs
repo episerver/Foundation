@@ -32,7 +32,7 @@ namespace Foundation.Cms.Pages
         {
             base.SetDefaultValues(contentType);
 
-            IsShowDescription = false;
+            IsShowDescription = true;
         }
     }
 }
