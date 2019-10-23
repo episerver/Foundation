@@ -5,7 +5,7 @@
     <nav class="container navigation">
         @if (Model.DemoHomePage.HeaderMenuStyle == "LeftLogo")
         {
-            <a href="/" class="navigation_logo flex-center">@Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })</a>
+            <a href="/" class="navigation__logo flex-center">@Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })</a>
             <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
                 @Html.Partial("_Menu", Model.MenuItems)
             </div>
@@ -16,7 +16,7 @@
                 @Html.Partial("_Menu", Model.MenuItems)
             </div>
 
-            <a href="/" class="navigation_logo flex-center">@Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })</a>
+            <a href="/" class="navigation__logo flex-center">@Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })</a>
         }
 
         <ul class="navigation__right">

@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
+using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
@@ -20,6 +21,7 @@ using System.Web.Mvc;
 
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
 {
+    [TemplateDescriptor(Default = true)]
     public class QuickOrderBlockController : BlockController<Commerce.Models.Blocks.QuickOrderBlock>
     {
         private readonly IQuickOrderService _quickOrderService;
