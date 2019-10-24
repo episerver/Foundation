@@ -14,10 +14,10 @@
         {
             <div class="@(item.i == 0 ? "carousel-item active" : "carousel-item")">
                 <img class="img-fluid" src="@Url.ContentUrl(item.value.Image)" />
-                @if (!string.IsNullOrWhiteSpace(item.value.Title))
+                @if (!string.IsNullOrWhiteSpace(item.value.Heading))
                 {
                     <div class="carousel-caption animated fadeInUpBig">
-                        <h3>@item.value.Title</h3>
+                        <h3>@item.value.Heading</h3>
                     </div>
                 }
             </div>
