@@ -44,6 +44,7 @@ namespace Foundation.Features.MyAccount.OrderDetails
         public ActionResult Index(OrderDetailsPage currentPage, int orderGroupId = 0) => View(GetModel(orderGroupId, currentPage));
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ApproveOrder(int orderGroupId = 0)
         {
             if (orderGroupId == 0)
@@ -53,7 +54,7 @@ namespace Foundation.Features.MyAccount.OrderDetails
 
             var success = _ordersService.ApproveOrder(orderGroupId);
 
-            return success ? Json(new { result = true }) : Json(new { result = "Failed to process your payment." });
+            return success ? Json(new { Status = true, Message = "" }) : Json(new { Status = false, Message = "Failed to process your payment." });
         }
 
         [HttpPost]

@@ -18,8 +18,8 @@
             <div>
                 @Html.Translate("/B2B/Orders/FilterByStatus")
             </div>
-            <select class="select-menu">
-                <option value="All">@Html.TranslateFallback("/B2B/Orders/All", "All")</option>
+            <select class="select-menu jsFilterOrderByStatus">
+                <option value="">@Html.TranslateFallback("/B2B/Orders/All", "All")</option>
                 <option value="OnHold">@Html.TranslateFallback("/B2B/Orders/OnHold", "On Hold")</option>
                 <option value="InProgress">@Html.TranslateFallback("/B2B/Orders/InProgress", "In Progress")</option>
                 <option value="Completed">@Html.TranslateFallback("/B2B/Orders/Completed", "Completed")</option>
@@ -43,7 +43,7 @@
             <tbody>
                 @foreach (var order in Model.OrdersOrganization)
                 {
-                    <tr class="orderElement @order.Status">
+                    <tr class="orderElement jsOrderRow @order.Status">
                         <td><a href="@(Model.OrderDetailsPageUrl)?orderGroupId=@order.OrderGroupId">#@order.OrderNumber</a></td>
                         <td>@order.PlacedOrderDate</td>
                         <td>@order.Currency @order.Ammount</td>
