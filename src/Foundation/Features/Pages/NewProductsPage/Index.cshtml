@@ -1,64 +1,109 @@
 ﻿@model Foundation.Commerce.ViewModels.NewProductsPageViewModel
-
-<div class="row">
-    <div class="col-12 align-center">
-        <h1 @Html.EditAttributes(x => x.CurrentContent.Name)>@Model.CurrentContent.Name</h1>
-    </div>
-</div>
-<div class="row">
-    @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
-    {
-        <div class="col-12">
-            @Html.PropertyFor(m => m.CurrentContent.MainBody)
-        </div>
-    }
-    <div class="col-12">
-        @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
-    </div>
-</div>
-@if (Model.ProductViewModels != null && Model.ProductViewModels.Count() > 0)
-{
+<div id="new-products-page">
     <div class="row">
-        @foreach (var product in Model.ProductViewModels)
+        <div class="col-12 align-center">
+            <h1 @Html.EditAttributes(x => x.CurrentContent.Name)>@Model.CurrentContent.Name</h1>
+        </div>
+    </div>
+    <div class="row">
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
         {
-            var urlQuickView = "/product/quickview";
-            if (product.EntryType.Equals(typeof(GenericBundle)))
-            {
-                urlQuickView = "/bundle/quickView";
-            }
-            if (product.EntryType.Equals(typeof(GenericPackage)))
-            {
-                urlQuickView = "/package/quickView";
-            }
-
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="product-tile-grid__item">
-                    <div class="product-tile-grid__image-icon">
-                        <img class="img-fluid product-tile-grid__image" src="@product.ImageUrl" onclick="location.href='@product.Url'" />
-                        <div class="product-tile-grid__image-bottom">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <span class="wishlist-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
-                            }
-                            <span class="jsQuickView" data-toggle="modal" data-target="#quickView" data="@product.FirstVariationCode" productCode="@product.Code" urlQuickView="@urlQuickView"><i data-feather="eye"></i></span>
-                            <span class="addToCart" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
-                        </div>
-                    </div>
-                    <div class="product-tile-grid__title">
-                        <a href="@product.Url">@product.DisplayName</a>
-                        @if (product.DiscountedPrice != product.PlacedPrice)
-                        {
-                            <span class="price__old">@product.PlacedPrice</span>
-                            <span class="price__discount">@product.DiscountedPrice</span>
-                        }
-                        else
-                        {
-                            <span class="price__discount">@product.PlacedPrice</span>
-                        }
-                    </div>
-                </div>
-                <div class="product-label">New</div>
+            <div class="col-12">
+                @Html.PropertyFor(m => m.CurrentContent.MainBody)
             </div>
         }
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        </div>
     </div>
-}
+    @if (Model.ProductViewModels != null && Model.ProductViewModels.Count() > 0)
+    {
+        <div class="row">
+            @foreach (var product in Model.ProductViewModels)
+            {
+                var urlQuickView = "/product/quickview";
+                if (product.EntryType.Equals(typeof(GenericBundle)))
+                {
+                    urlQuickView = "/bundle/quickView";
+                }
+                if (product.EntryType.Equals(typeof(GenericPackage)))
+                {
+                    urlQuickView = "/package/quickView";
+                }
+
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="product-tile-grid">
+                        <a class="product-tile-grid__image-icon">
+                            <picture class="img-fluid product-tile-grid__image" onclick="location.href='@product.Url'">
+                                <source srcset="@product.ImageUrl?width=520&format=webp" type="image/webp">
+                                <img class="img-fluid product-tile-grid__image" src="@product.ImageUrl?width=520" onclick="location.href='@product.Url'" />
+                            </picture>
+                            <div class="product-tile-grid__image-bottom">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <span class="wishlist-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
+                                }
+                                <span class="jsQuickView"
+                                      data-toggle="modal"
+                                      data-target="#quickView"
+                                      data="@product.FirstVariationCode"
+                                      productCode="@product.Code"
+                                      urlQuickView="@urlQuickView">
+                                    <i data-feather="eye"></i>
+                                </span>
+                                <span class="addToCart" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+                            </div>
+                        </a>
+                        <div class="product-tile-grid__title">
+                            <a href="@product.Url">@product.DisplayName</a>
+                            @if (product.DiscountedPrice != product.PlacedPrice)
+                            {
+                                <span class="price__old">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">@product.DiscountedPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="product-label">New</div>
+                </div>
+            }
+        </div>
+    }
+    @if (Model.CurrentContent.AllowPaging)
+    {
+        <div class="col-12 toolbar">
+            <div class="toolbar__left">
+            </div>
+            <div class="toolbar__center">
+                @if (Model.Pages.Any())
+                {
+                    <ul class="pagination">
+                        <li class="jsPaginateNewProductsPage " page="1">
+                            <a href="javascript:void(0)">
+                                &laquo;
+                            </a>
+                        </li>
+                        @for (int page = 1; page <= Model.Pages.Last(); page++)
+                        {
+                            <li class="jsPaginateNewProductsPage @(Model.PageNumber == page ? "active" : "")" page="@page">
+                                <a href="javascript:void(0)">
+                                    @page.ToString()
+                                </a>
+                            </li>
+                        }
+                        <li class="jsPaginateNewProductsPage" page="@Model.Pages.Last()">
+                            <a href="javascript:void(0)">
+                                &raquo;
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+            <div class="toolbar__right">
+            </div>
+        </div>
+    }
+</div>

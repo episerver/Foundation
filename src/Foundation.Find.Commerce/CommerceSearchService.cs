@@ -8,6 +8,7 @@ using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
 using EPiServer.Find.Framework.Statistics;
+using EPiServer.Find.Helpers;
 using EPiServer.Find.Statistics;
 using EPiServer.Find.UI;
 using EPiServer.Globalization;
@@ -32,6 +33,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Helpers;
+using static Foundation.Commerce.Models.EditorDescriptors.InclusionOrderingSelectionFactory;
 
 namespace Foundation.Find.Commerce
 {
@@ -49,6 +51,8 @@ namespace Foundation.Find.Commerce
         private readonly IPriceService _priceService;
         private readonly IPromotionService _promotionService;
         private readonly ICurrencyService _currencyservice;
+        private readonly IContentLoader _contentLoader;
+        private static Random _random = new Random();
 
         public CommerceSearchService(ICurrentMarket currentMarket,
             ICurrencyService currencyService,
@@ -60,7 +64,8 @@ namespace Foundation.Find.Commerce
             IContentRepository contentRepository,
             IPriceService priceService,
             IPromotionService promotionService,
-            ICurrencyService currencyservice
+            ICurrencyService currencyservice,
+            IContentLoader contentLoader
             )
         {
             _currentMarket = currentMarket;
@@ -75,6 +80,7 @@ namespace Foundation.Find.Commerce
             _priceService = priceService;
             _promotionService = promotionService;
             _currencyservice = currencyservice;
+            _contentLoader = contentLoader;
         }
 
         public ProductSearchResults Search(IContent currentContent,
@@ -87,9 +93,12 @@ namespace Foundation.Find.Commerce
             IEnumerable<Filter> filters,
             int catalogId = 0) => filterOptions == null ? CreateEmptyResult() : GetSearchResults(currentContent, filterOptions, "", filters, catalogId);
 
-        public IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, int catalogId = 0)
+        public IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, out List<int> pages, int catalogId = 0, int page = 1)
         {
+            var products = new List<ProductTileViewModel>();
+            var currentPage = currentContent as SalesPage;
             var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
             var query = _findClient.Search<EntryContentBase>();
             query = query.FilterMarket(market);
             query = query.Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name));
@@ -98,14 +107,59 @@ namespace Foundation.Find.Commerce
             {
                 query = query.Filter(x => x.CatalogId.Match(catalogId));
             }
+
+            //Manual Exclusion
+            if (currentPage.ManualExclusion != null && currentPage.ManualExclusion.Any())
+            {
+                query = ApplyManualExclusion(query, currentPage.ManualExclusion);
+            }
+
             query = query.Filter(x => (x as GenericProduct).OnSale.Match(true));
             var result = query.GetContentResult();
-            return CreateProductViewModels(result, currentContent, "");
+            var searchProducts = CreateProductViewModels(result, currentContent, "");
+            products = searchProducts.ToList();
+
+            ////Manual Inclution
+            if (currentPage.ManualInclusion != null && currentPage.ManualInclusion.Any())
+            {
+                var inclusions = GetManualInclusion(currentPage.ManualInclusion).Select(x => x.GetProductTileViewModel(market, currency));
+                if (currentPage.ManualInclusionOrdering == InclusionOrdering.Beginning)
+                {
+                    products.InsertRange(0, inclusions);
+                }
+                else
+                {
+                    products.AddRange(inclusions);
+                    if (currentPage.ManualInclusionOrdering == InclusionOrdering.Random)
+                    {
+                        products = Shuffle(products);
+                    }
+                }
+            }
+
+            pages = new List<int>();
+
+            if (currentPage.AllowPaging)
+            {
+                var totalPages = (products.Count() + currentPage.PageSize - 1) / currentPage.PageSize;
+                pages = new List<int>();
+                var startPage = page > 2 ? page - 2 : 1;
+                for (var p = startPage; p < Math.Min((totalPages >= 5 ? startPage + 5 : startPage + totalPages), totalPages + 1); p++)
+                {
+                    pages.Add(p);
+                }
+                products = products.Skip((page - 1) * currentPage.PageSize).Take(currentPage.PageSize).ToList();
+            }
+
+            return products;
         }
 
-        public IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, int catalogId = 0)
+        public IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, out List<int> pages, int catalogId = 0, int page = 1)
         {
+            var products = new List<ProductTileViewModel>();
+            var currentPage = currentContent as NewProductsPage;
             var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
             var query = _findClient.Search<EntryContentBase>();
             query = query.FilterMarket(market);
             query = query.Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name));
@@ -114,12 +168,143 @@ namespace Foundation.Find.Commerce
             {
                 query = query.Filter(x => x.CatalogId.Match(catalogId));
             }
+
+            //Manual Exclusion
+            if (currentPage.ManualExclusion != null && currentPage.ManualExclusion.Any())
+            {
+                query = ApplyManualExclusion(query, currentPage.ManualExclusion);
+            }
+
             query = query.OrderByDescending(x => x.Created);
-            query = query.Skip(0)
-                        .Take((currentContent as NewProductsPage).NumberOfProducts)
+            query = query.Take(currentPage.NumberOfProducts == 0 ? 12 : currentPage.NumberOfProducts)
                         .StaticallyCacheFor(TimeSpan.FromMinutes(1));
             var result = query.GetContentResult();
-            return CreateProductViewModels(result, currentContent, "");
+            var searchProducts = CreateProductViewModels(result, currentContent, "");
+            products = searchProducts.ToList();
+
+            //Manual Inclution
+            if (currentPage.ManualInclusion != null && currentPage.ManualInclusion.Any())
+            {
+                var inclusions = GetManualInclusion(currentPage.ManualInclusion).Select(x => x.GetProductTileViewModel(market, currency));
+                if (currentPage.ManualInclusionOrdering == InclusionOrdering.Beginning)
+                {
+                    products.InsertRange(0, inclusions);
+                    products = products.Take(currentPage.NumberOfProducts).ToList();
+                }
+                else
+                {
+                    var total = searchProducts.Count() + inclusions.Count();
+                    if (total > currentPage.NumberOfProducts)
+                    {
+                        var num = currentPage.NumberOfProducts - inclusions.Count();
+                        products = products.Take(num < 0 ? 0 : num).ToList();
+                        products.AddRange(inclusions);
+                    }
+
+                    products = products.Take(currentPage.NumberOfProducts).ToList();
+
+                    if (currentPage.ManualInclusionOrdering == InclusionOrdering.Random)
+                    {
+                        products = Shuffle(products);
+                    }
+                }
+            }
+
+            pages = new List<int>();
+
+            if (currentPage.AllowPaging)
+            {
+                var totalPages = (products.Count() + currentPage.PageSize - 1) / currentPage.PageSize;
+                pages = new List<int>();
+                var startPage = page > 2 ? page - 2 : 1;
+                for (var p = startPage; p < Math.Min((totalPages >= 5 ? startPage + 5 : startPage + totalPages), totalPages + 1); p++)
+                {
+                    pages.Add(p);
+                }
+                products = products.Skip((page - 1) * currentPage.PageSize).Take(currentPage.PageSize).ToList();
+            }
+
+            return products;
+        }
+
+        private static List<T> Shuffle<T>(List<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = _random.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+            return list;
+        }
+
+        private ITypeSearch<EntryContentBase> ApplyManualExclusion(ITypeSearch<EntryContentBase> query, IList<ContentReference> manualExclusion)
+        {
+            foreach (var item in manualExclusion)
+            {
+                var exclusion = _contentLoader.Get<ContentData>(item);
+
+                if (exclusion.GetOriginalType().Equals(typeof(CatalogContent)))
+                {
+                    var catalog = _contentLoader.Get<CatalogContent>(item);
+                    query = query.Filter(x => !x.CatalogId.Match(catalog.CatalogId));
+                }
+                if (exclusion.GetOriginalType().Equals(typeof(GenericNode)))
+                {
+                    var descendents = _contentLoader.GetDescendents(item);
+                    foreach (var descendent in descendents)
+                    {
+                        var desc = _contentLoader.Get<ContentData>(descendent);
+                        if (desc.GetOriginalType().Equals(typeof(GenericProduct))
+                            || desc.GetOriginalType().Equals(typeof(GenericPackage)))
+                        {
+                            var entry = _contentLoader.Get<EntryContentBase>(descendent);
+                            query = query.Filter(x => !x.ContentGuid.Match(entry.ContentGuid));
+                        }
+                    }
+                }
+                if (exclusion.GetOriginalType().Equals(typeof(GenericProduct))
+                    || exclusion.GetOriginalType().Equals(typeof(GenericPackage)))
+                {
+                    var entry = _contentLoader.Get<GenericProduct>(item);
+                    query = query.Filter(x => !x.ContentGuid.Match(entry.ContentGuid));
+                }
+            }
+
+            return query;
+        }
+
+        private IEnumerable<EntryContentBase> GetManualInclusion(IList<ContentReference> manualInclusion)
+        {
+            var results = new List<EntryContentBase>();
+            foreach (var item in manualInclusion)
+            {
+                var exclusion = _contentLoader.Get<ContentData>(item);
+                if (exclusion.GetOriginalType().Equals(typeof(CatalogContent))
+                    || exclusion.GetOriginalType().Equals(typeof(GenericNode)))
+                {
+                    var descendents = _contentLoader.GetDescendents(item);
+                    foreach (var descendent in descendents)
+                    {
+                        var desc = _contentLoader.Get<ContentData>(descendent);
+                        if (desc.GetOriginalType().Equals(typeof(GenericProduct))
+                            || desc.GetOriginalType().Equals(typeof(GenericPackage)))
+                        {
+                            var entry = _contentLoader.Get<EntryContentBase>(descendent);
+                            results.Add(entry);
+                        }
+                    }
+                }
+                if (exclusion.GetOriginalType().Equals(typeof(GenericProduct))
+                    || exclusion.GetOriginalType().Equals(typeof(GenericPackage)))
+                {
+                    results.Add(_contentLoader.Get<EntryContentBase>(item));
+                }
+            }
+            return results.DistinctBy(e => e.ContentGuid);
         }
 
         public IEnumerable<ProductTileViewModel> QuickSearch(string query, int catalogId = 0)
@@ -135,7 +320,6 @@ namespace Foundation.Find.Commerce
             };
             return QuickSearch(filterOptions, catalogId);
         }
-
 
         public IEnumerable<ProductTileViewModel> QuickSearch(CommerceFilterOptionViewModel filterOptions, int catalogId = 0) => string.IsNullOrEmpty(filterOptions.Q) ? Enumerable.Empty<ProductTileViewModel>() : GetSearchResults(null, filterOptions, "", null, catalogId).ProductViewModels;
 
@@ -221,8 +405,6 @@ namespace Foundation.Find.Commerce
             };
 
         }
-
-
 
         public IEnumerable<ProductTileViewModel> CreateProductViewModels(IContentResult<EntryContentBase> searchResult, IContent content, string searchQuery)
         {

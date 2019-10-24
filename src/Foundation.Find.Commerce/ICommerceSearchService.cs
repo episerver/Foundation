@@ -30,13 +30,13 @@ namespace Foundation.Find.Commerce
         /// </summary>
         /// <param name="currentContent"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, int catalogId = 0);
+        IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, out List<int> pages, int catalogId = 0, int page = 1);
         /// <summary>
-        /// Search top 10 products by sorted by the creation date
+        /// Search top products by sorted by the creation date
         /// </summary>
         /// <param name="currentContent"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, int catalogId = 0);
+        IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, out List<int> pages, int catalogId = 0, int page = 1);
 
         /// <summary>
         /// QuickSearch products
