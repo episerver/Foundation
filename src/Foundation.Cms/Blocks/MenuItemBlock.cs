@@ -29,19 +29,19 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Menu item image", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual ContentReference MenuImage { get; set; }
 
-        [JsonIgnore]
-        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<GroupLinkCollection>))]
-        [Display(Name = "Child items", GroupName = SystemTabNames.Content, Order = 40)]
-        public virtual IList<GroupLinkCollection> ChildItems { get; set; }
-
         [Display(Name = "Teaser text", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual XhtmlString TeaserText { get; set; }
 
-        [Display(Name = "Button text", GroupName = SystemTabNames.Content, Order = 60)]
+        [Display(Name = "Label", GroupName = SystemTabNames.Content, Order = 60)]
         public virtual string ButtonText { get; set; }
 
         [Display(Name = "Button link", GroupName = SystemTabNames.Content, Order = 70)]
         public virtual Url ButtonLink { get; set; }
+
+        [JsonIgnore]
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<GroupLinkCollection>))]
+        [Display(Name = "Child items", GroupName = SystemTabNames.Content, Order = 80)]
+        public virtual IList<GroupLinkCollection> ChildItems { get; set; }
     }
 
     public class GroupLinkCollection

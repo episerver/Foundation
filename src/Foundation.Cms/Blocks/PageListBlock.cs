@@ -16,37 +16,36 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 20)]
+        [Display(Name = "Include publish date", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual bool IncludePublishDate { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Include teaser text", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual bool IncludeTeaserText { get; set; }
 
         [Required]
-        [Display(GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Number of resuts", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual int Count { get; set; }
 
         [UIHint("SortOrder")]
         [BackingType(typeof(PropertyNumber))]
-        [Display(GroupName = SystemTabNames.Content, Order = 50)]
+        [Display(Name = "Sort order", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual FilterSortOrder SortOrder { get; set; }
 
         [Required]
         [Display(GroupName = SystemTabNames.Content, Order = 60)]
         public virtual PageReference Root { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 70)]
+        [Display(Name = "Filter by page type", GroupName = SystemTabNames.Content, Order = 70)]
         public virtual PageType PageTypeFilter { get; set; }
 
         [Categories]
-        [Display(
-            Name = "Category filter (match all selected)",
+        [Display(Name = "Filter by category",
             Description = "Categories to filter the list on",
             GroupName = SystemTabNames.Content,
             Order = 80)]
         public virtual IList<ContentReference> CategoryListFilter { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 90)]
+        [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual bool Recursive { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

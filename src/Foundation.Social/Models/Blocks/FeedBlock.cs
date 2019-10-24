@@ -28,7 +28,7 @@ namespace Foundation.Social.Models.Blocks
         /// <summary>
         /// Configures the max number of feed items that should be displayed in the frontend view.
         /// </summary>
-        [Display(Name = "Feed display max", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Number of items to show", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual int FeedDisplayMax { get; set; }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace Foundation.Cms.Blocks
         [Required]
         [Searchable(false)]
         [RegularExpression(@"^https?:\/\/(?:www\.)?vimeo.com\/?(?=\w+)(?:\S+)?$", ErrorMessage = "The Url must be a valid Vimeo video link")]
-        [Display(Name = "Vimeo Link", Description = "URL link to Vimeo video", GroupName = SystemTabNames.Content, Order = 10)]
+        [Display(Name = "Vimeo link", Description = "URL link to Vimeo video", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string VimeoVideoLink { get; set; }
 
         [Searchable(false)]

@@ -13,8 +13,8 @@ namespace Foundation.Find.Cms.Models.Blocks.ProductFilters
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-14.png")]
     public class StringFilterBlock : FilterBaseBlock
     {
-        [Display(Name = "Filter Value", Description = "The value to filter search results on", GroupName = SystemTabNames.Content, Order = 20)]
         [CultureSpecific(true)]
+        [Display(Name = "Value", Description = "The value to filter search results on", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string FieldValue { get; set; }
 
         public override Filter GetFilter()

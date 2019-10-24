@@ -1,5 +1,6 @@
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
@@ -11,6 +12,7 @@ namespace Foundation.Cms.Blocks
     public class TextBlock : FoundationBlockData
     {
         [CultureSpecific]
-        public virtual XhtmlString Text { get; set; }
+        [Display(Name = "Main body")]
+        public virtual XhtmlString MainBody { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Foundation.Cms.Blocks
     /// <summary>
     /// FeatureBox Block model presents information at the footer of the page.
     /// </summary>
-    [ContentType(DisplayName = "FeatureBox Block", GUID = "aa3e5e42-6fbe-416f-8027-e77aa290d09a", Description = "Define a feature box at the footer of the page")]
+    [ContentType(DisplayName = "Feature Box Block", GUID = "aa3e5e42-6fbe-416f-8027-e77aa290d09a", Description = "Define a feature box at the footer of the page")]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-11.png")]
     public class FeatureBoxBlock : FoundationBlockData
     {
@@ -27,7 +27,7 @@ namespace Foundation.Cms.Blocks
         /// </summary>
         [CultureSpecific]
         [UIHint(UIHint.Textarea)]
-        [Display(GroupName = SystemTabNames.Content)]
+        [Display(Name = "Text", GroupName = SystemTabNames.Content)]
         public virtual string Content { get; set; }
     }
 }

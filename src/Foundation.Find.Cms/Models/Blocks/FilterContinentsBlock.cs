@@ -20,7 +20,7 @@ namespace Foundation.Find.Cms.Models.Blocks
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage) })]
     public class FilterContinentsBlock : FoundationBlockData, IFilterBlock
     {
-        [Display(Name = "Filter title")]
+        [Display(Name = "Name")]
         public virtual string FilterTitle { get; set; }
 
         public ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query)
