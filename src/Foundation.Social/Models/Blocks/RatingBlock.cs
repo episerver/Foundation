@@ -33,7 +33,7 @@ namespace Foundation.Social.Models.Blocks
         /// Configures whether an activity should be sent to the Episerver Social
         /// Activity Streams system when a rating a submitted using the rating block.
         /// </summary>
-        [Display(Name = "Send activity", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Notify on new comments", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual bool SendActivity { get; set; }
 
         /// <summary>

@@ -51,7 +51,7 @@ namespace Foundation.Features.Blocks
                     var memberFilter = new CommunityMemberFilter
                     {
                         UserId = _userRepository.CreateAuthenticatedUri(userId),
-                        PageSize = currentBlock.DisplayPageSize
+                        PageSize = currentBlock.NumberOfMembers
                     };
                     var listOfSocialMembers = this._memberRepository.Get(memberFilter);
                     GetAffiliatedGroups(membershipAffiliationBlockModel, listOfSocialMembers);

@@ -18,7 +18,7 @@ using System.Web.Mvc;
 namespace Foundation.Features.Blocks
 {
     [TemplateDescriptor(Default = true)]
-    public class RecentPageCategoryRecommendationController : BlockController<RecentPageCategoryRecommendation>
+    public class RecentPageCategoryRecommendationController : BlockController<RecentPageCategoryRecommendationBlock>
     {
         private readonly CategoryRepository _categoryRepository;
         private readonly IClient _findClient;
@@ -40,7 +40,7 @@ namespace Foundation.Features.Blocks
             _contentTypeRepository = contentTypeRepository;
         }
 
-        public override ActionResult Index(RecentPageCategoryRecommendation currentBlock)
+        public override ActionResult Index(RecentPageCategoryRecommendationBlock currentBlock)
         {
             var categories = Cms.Extensions.ContentExtensions.GetPageBrowseHistory()
                 .Reverse()
