@@ -136,12 +136,14 @@ namespace Foundation.Commerce.Order.Services
                 purchaseOrder.ProcessPayments();
                 budgetPayment.Status = PaymentStatus.Processed.ToString();
                 budgetPayment.AcceptChanges();
+                _orderRepository.Save(purchaseOrder);
             }
             catch (Exception ex)
             {
                 budgetPayment.TransactionType = TransactionType.Authorization.ToString();
                 budgetPayment.Status = PaymentStatus.Processed.ToString();
                 budgetPayment.AcceptChanges();
+                _orderRepository.Save(purchaseOrder);
                 LogManager.GetLogger(GetType()).Error("Failed processs on approve order.", ex);
                 return false;
             }

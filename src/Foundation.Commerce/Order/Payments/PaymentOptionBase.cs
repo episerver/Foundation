@@ -32,8 +32,8 @@ namespace Foundation.Commerce.Order.Payments
                 var currentMarketId = currentMarket.GetCurrentMarket().MarketId.Value;
                 var currentLanguage = languageService.GetCurrentLanguage().TwoLetterISOLanguageName;
                 var availablePaymentMethods = paymentService.GetPaymentMethodsByMarketIdAndLanguageCode(currentMarketId, currentLanguage);
-
                 var paymentMethod = availablePaymentMethods.FirstOrDefault(m => m.SystemKeyword.Equals(SystemKeyword));
+
                 if (paymentMethod != null)
                 {
                     PaymentMethodId = paymentMethod.PaymentMethodId;

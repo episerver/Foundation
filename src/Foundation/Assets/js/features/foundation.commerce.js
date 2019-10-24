@@ -85,5 +85,10 @@
         var address = new Address();
         address.Init();
         // --- End
+
+        // B2B Order
+        var b2bOrder = new B2BOrder();
+        b2bOrder.Init();
+        // --- End
     }
 }

@@ -113,6 +113,7 @@
                         {
                             using (Html.BeginForm("ApproveOrder", "OrderDetails", FormMethod.Post))
                             {
+                                @Html.AntiForgeryToken()
                                 <button type="button" data-order-link="@Model.OrderGroupId" class="button-black jsApproveOrder" aria-expanded="false">
                                     @Html.TranslateFallback("/OrderHistory/Detail/Approve", "Approve")
                                 </button>
