@@ -54,7 +54,7 @@ namespace Foundation.Features.Blocks
                     var memberFilter = new CommunityMemberFilter
                     {
                         CommunityId = groupId,
-                        PageSize = currentBlock.DisplayPageSize
+                        PageSize = currentBlock.NumberOfMembers
                     };
                     var socialMembers = _memberRepository.Get(memberFilter).ToList();
                     membershipDisplayBlockModel.Members = Adapt(socialMembers);

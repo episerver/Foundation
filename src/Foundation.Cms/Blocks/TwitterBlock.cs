@@ -10,7 +10,7 @@ namespace Foundation.Cms.Blocks
     [ImageUrl("~/assets/icons/cms/blocks/twitter.png")]
     public class TwitterBlock : FoundationBlockData
     {
-        [Display(Name = "Twitter account", GroupName = SystemTabNames.Content, Order = 10)]
+        [Display(Name = "Account name", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string AccountName { get; set; }
 
         [Range(3, 10)]

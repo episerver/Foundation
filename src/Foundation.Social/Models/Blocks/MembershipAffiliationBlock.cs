@@ -31,8 +31,8 @@ namespace Foundation.Social.Models.Blocks
         /// <summary>
         /// Configures the maximum number of members that should be displayed in the view.
         /// </summary>
-        [Display(Name = "Display page size", GroupName = SystemTabNames.Content, Order = 30)]
-        public virtual int DisplayPageSize { get; set; }
+        [Display(Name = "Number of members", GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual int NumberOfMembers { get; set; }
 
         /// <summary>
         /// Sets the default property values on the content data.
@@ -44,7 +44,7 @@ namespace Foundation.Social.Models.Blocks
 
             Heading = "Membership Affiliation";
             ShowHeading = false;
-            DisplayPageSize = 10;
+            NumberOfMembers = 10;
         }
     }
 }

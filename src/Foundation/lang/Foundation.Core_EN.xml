@@ -1065,6 +1065,13 @@
           </iconname>
         </properties>
       </featureboxblock>
+      <strategycontainerblock>
+        <properties>
+          <defaultstrategy>
+            <caption>Default strategy</caption>
+          </defaultstrategy>
+        </properties>
+      </strategycontainerblock>
       <cookiedropblock>
         <properties>
           <cookiename>
@@ -1075,6 +1082,30 @@
           </cookievalue>
         </properties>
       </cookiedropblock>
+      <customizedsearchblock>
+        <name>Customized Search Block</name>
+        <properties>  
+          <heading>
+            <caption>Heading</caption>
+          </heading>
+          <customizedsearchsettings>
+            <searchphrase>
+              <caption>Search term</caption>
+            </searchphrase>
+            <numberofhits>
+              <caption>Number of results</caption>
+            </numberofhits>
+          </customizedsearchsettings>
+          <customizedsearchadvancedsettings>
+            <includebestbets>
+              <caption>Include Best Bets in Find</caption>
+            </includebestbets>
+            <usesynonyms>
+              <caption>Include Synonyms in Find</caption>
+            </usesynonyms>
+          </customizedsearchadvancedsettings>
+        </properties>
+      </customizedsearchblock>
     </contenttypes>
     <BulkUpdate>
       <ContentGroup>Content Group</ContentGroup>

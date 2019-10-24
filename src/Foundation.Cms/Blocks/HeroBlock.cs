@@ -30,7 +30,7 @@ namespace Foundation.Cms.Blocks
         public virtual Url Link { get; set; }
 
         [UIHint("HeroBlockCallout")]
-        [Display(Name = "Hero block callout", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Callout", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual HeroBlockCallout Callout { get; set; }
     }
 
@@ -46,14 +46,14 @@ namespace Foundation.Cms.Blocks
         public virtual string CalloutContentAlignment { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(HeroBlockTextColorSelectionFactory))]
-        [Display(Name = "Callout text color", Description = "Sets text color of callout content", Order = 30)]
+        [Display(Name = "Text color", Description = "Sets text color of callout content", Order = 30)]
         public virtual string CalloutTextColor { get; set; }
 
         [Display(Name = "Background color", Order = 40)]
         public virtual string BackgroundColor { get; set; }
 
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Order = 50)]
+        [Display(Name = "Background opacity (0 to 1)", Order = 50)]
         public virtual double Opacity { get; set; }
 
         [Display(Name = "Padding top", Order = 51)]

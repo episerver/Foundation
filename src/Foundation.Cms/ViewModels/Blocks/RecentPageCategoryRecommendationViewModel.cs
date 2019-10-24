@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Foundation.Cms.ViewModels.Blocks
 {
-    public class RecentPageCategoryRecommendationViewModel : BlockViewModel<RecentPageCategoryRecommendation>
+    public class RecentPageCategoryRecommendationViewModel : BlockViewModel<RecentPageCategoryRecommendationBlock>
     {
 
-        public RecentPageCategoryRecommendationViewModel(RecentPageCategoryRecommendation currentBlock) : base(currentBlock)
+        public RecentPageCategoryRecommendationViewModel(RecentPageCategoryRecommendationBlock currentBlock) : base(currentBlock)
         {
         }
 
