@@ -1094,6 +1094,7 @@
     <Content Include="Assets\icons\mosey-logo.svg" />
     <Content Include="Assets\imgs\blog-img1.jpg" />
     <Content Include="Assets\js\features\Address.js" />
+    <Content Include="Assets\js\features\B2BOrder.js" />
     <Content Include="Assets\js\features\BlockTracking.js" />
     <Content Include="Assets\js\features\Blog.js" />
     <Content Include="Assets\js\features\Budget.js" />
