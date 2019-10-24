@@ -5,6 +5,12 @@
         // Search & Product List
         var search = new ProductSearch();
         search.Init();
+
+        var newProductsSearch = new NewProductsSearch();
+        newProductsSearch.Init();
+
+        var salesSearch = new SalesSearch();
+        salesSearch.Init();
         // --- End
 
         // Product

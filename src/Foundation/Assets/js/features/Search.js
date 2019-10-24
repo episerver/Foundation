@@ -237,3 +237,71 @@ class ContentSearch {
         });
     }
 }
+
+class NewProductsSearch {
+    changePageContent(page) {
+        var inst = this;
+        var url = window.location.href + "?page=" + page;
+        inst.updatePageContent(url);
+    }
+
+    updatePageContent(url) {
+        var inst = this;
+        axios.get(url || "")
+            .then(function (result) {
+                $('#new-products-page').replaceWith($(result.data).find('#new-products-page'));
+                inst.Init();
+            })
+            .catch(function (error) {
+                notification.Error(error);
+            })
+            .finally(function () {
+                $('.loading-box').hide();
+            });
+    }
+
+    Init() {
+        var inst = this;
+        $('.jsPaginateNewProductsPage').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var page = $(this).attr('page');
+                inst.changePageContent(page);
+            });
+        });
+    }
+}
+
+class SalesSearch {
+    changePageContent(page) {
+        var inst = this;
+        var url = window.location.href + "?page=" + page;
+        inst.updatePageContent(url);
+    }
+
+    updatePageContent(url) {
+        var inst = this;
+        axios.get(url || "")
+            .then(function (result) {
+                $('#sales-page').replaceWith($(result.data).find('#sales-page'));
+                inst.Init();
+            })
+            .catch(function (error) {
+                notification.Error(error);
+            })
+            .finally(function () {
+                $('.loading-box').hide();
+            });
+    }
+
+    Init() {
+        var inst = this;
+        $('.jsPaginateSalesPage').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var page = $(this).attr('page');
+                inst.changePageContent(page);
+            });
+        });
+    }
+}

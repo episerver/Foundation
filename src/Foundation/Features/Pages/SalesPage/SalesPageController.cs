@@ -25,12 +25,14 @@ namespace Foundation.Features.Pages.SalesPage
             _contentLoader = contentLoader;
         }
 
-        public async Task<ActionResult> Index(Commerce.Models.Pages.SalesPage currentPage)
+        public async Task<ActionResult> Index(Commerce.Models.Pages.SalesPage currentPage, int page = 1)
         {
             await _trackingService.PageViewed(HttpContext, currentPage);
             var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
             var model = new SalesPageViewModel(currentPage);
-            model.ProductViewModels = _searchService.SearchOnSale(currentPage, startPage.SearchCatalog);
+            model.ProductViewModels = _searchService.SearchOnSale(currentPage, out var pages, startPage.SearchCatalog, page);
+            model.PageNumber = page;
+            model.Pages = pages;
             return View(model);
         }
     }
