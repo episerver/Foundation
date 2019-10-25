@@ -26,7 +26,7 @@
             </div>
         </div>
         <div id="blog-list">
-            @Html.PropertyFor(x => x.CurrentContent.BlogList)
+            @Html.Partial("_BlogList", Model)
         </div>
     </div>
 </div>

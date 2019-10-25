@@ -56,7 +56,7 @@
         var form = $(document).find('#jsGetBlogItemListPage');
         var url = form.find('#RequestUrl').val();
         if (url == undefined || url == "") {
-            url = "/BlogListBlock/GetItemList";
+            url = "/BlogListPage/GetItemList";
         }
         axios({
             method: 'post',
