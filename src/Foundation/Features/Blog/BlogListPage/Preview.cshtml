@@ -9,7 +9,7 @@
 {
 
     <div class="blog__thumbnail">
-        <div>
+        <div style="width: 100%">
             <picture>
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
@@ -32,7 +32,7 @@
                 {
                     <p class="color-light">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
                 }
-                @if (Model.ShowIntroduction && Model.CurrentContent.IsShowDescription)
+                @if (Model.ShowIntroduction)
                 {
                     <p>@Html.Raw(@Model.PreviewText)</p>
                 }
@@ -47,10 +47,10 @@
     var textCol = imageCol == 12 ? 12 : 12 - imageCol;
     <div class="row">
         <div class="col-xs-12 col-@imageCol">
-            <picture>
+            <picture style="width: 100%">
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                    <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
                 }
             </picture>
         </div>
@@ -69,7 +69,7 @@
             {
                 <p class="sub-title">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
             }
-            @if (Model.ShowIntroduction && Model.CurrentContent.IsShowDescription)
+            @if (Model.ShowIntroduction)
             {
                 <br />
                 <p class="light-text">@Html.Raw(@Model.PreviewText)</p>
@@ -106,7 +106,7 @@
                 <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
             </h4>
 
-            @if (Model.ShowIntroduction && Model.CurrentContent.IsShowDescription)
+            @if (Model.ShowIntroduction)
             {
                 <br />
                 <p class="light-text">@Html.Raw(@Model.PreviewText)</p>

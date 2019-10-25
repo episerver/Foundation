@@ -16,9 +16,6 @@ namespace Foundation.Cms.Pages
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Author { get; set; }
 
-        [Display(Name = "Is show description", GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual bool IsShowDescription { get; set; }
-
         /// <summary>
         /// The comment section of the page. Local comment block will display comments only for this page
         /// </summary>
@@ -31,8 +28,6 @@ namespace Foundation.Cms.Pages
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-
-            IsShowDescription = true;
         }
     }
 }
