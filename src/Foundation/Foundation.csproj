@@ -291,6 +291,9 @@
     <Reference Include="EPiServer.Packaging.CmdAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Packaging.3.4.0\lib\net461\EPiServer.Packaging.CmdAPI.dll</HintPath>
     </Reference>
+    <Reference Include="EPiServer.Personalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Personalization.1.0.0\lib\EPiServer.Personalization.dll</HintPath>
+    </Reference>
     <Reference Include="EPiServer.Personalization.CMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Personalization.CMS.1.0.0\lib\net461\EPiServer.Personalization.CMS.dll</HintPath>
     </Reference>
@@ -1760,6 +1763,7 @@
     <Content Include="modules\_protected\EPiServer.Commerce.Shell\EPiServer.Commerce.Shell.zip" />
     <Content Include="modules\_protected\Commerce\Commerce.zip" />
     <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
+    <Content Include="modules\_protected\EPiServer.Personalization\EPiServer.Personalization.zip" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
