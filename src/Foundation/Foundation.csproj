@@ -1204,6 +1204,7 @@
     <Content Include="Assets\scss\vendors\reset.css" />
     <Content Include="Assets\scss\vendors\spur-admin\spur.min.css" />
     <Content Include="Assets\scss\vendors\tinymce-font-awesome\tinymce-font-awesome.css" />
+    <Content Include="ClientResources\Scripts\MenuChildItems.js" />
     <Content Include="ClientResources\Scripts\ContentEditing\CreateContent.js" />
     <Content Include="ClientResources\Scripts\Initialize.js" />
     <Content Include="ClientResources\Styles\Styles.css" />

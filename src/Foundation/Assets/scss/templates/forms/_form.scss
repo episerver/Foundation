@@ -24,5 +24,123 @@
             width: auto;
             border: 0;
         }
+
+        .Form__Element .Form__Element__Caption {
+            margin-top: .5rem;
+        }
+
+        .FormSelection .select {
+            width: 100%;
+            padding: 8px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+
+        .Form__CustomInput, .FormTextbox__Input, .FormRange__Input {
+            padding: 0 10px;
+            height: 40px;
+            font-size: 14px;
+            font-weight: 400;
+            border: 1px solid #ddd;
+            width: 100% !important;
+        }
+
+        .FormCaptcha__Image {
+            margin-top: .5rem;
+            width: 100%;
+        }
+
+        .FormCaptcha__Refresh, .FormResetButton {
+            display: inline-block;
+            border-radius: 0;
+            min-width: 100px;
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 20px;
+            border: 1px solid black;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            -webkit-transition: color 0.15s;
+            -o-transition: color 0.15s;
+            transition: color 0.15s;
+            text-decoration: none;
+            min-height: 40px;
+            min-width: 100px;
+        }
+
+        .Form__NavigationBar__Action {
+            width: auto !important;
+            height: auto !important;
+            display: inline-block !important;
+            border-radius: 0 !important;
+            min-width: 100px !important;
+            font-size: 14px !important;
+            line-height: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-align: center !important;
+            vertical-align: middle !important;
+            padding: 12px 20px !important;
+            border: 1px solid black !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            background-color: transparent !important;
+            -webkit-transition: color 0.15s !important;
+            -o-transition: color 0.15s !important;
+            transition: color 0.15s !important;
+            text-decoration: none !important;
+            min-height: 40px !important;
+            min-width: 100px !important;
+            background-image: none !important;
+        }
+
+        .FormFileUpload__Input {
+            display: inline-block;
+            border-radius: 0;
+            min-width: 100px;
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            -webkit-transition: color 0.15s;
+            -o-transition: color 0.15s;
+            transition: color 0.15s;
+            text-decoration: none;
+            min-height: 40px;
+            width: 100%;
+        }
+
+        .FormRange__Min, .FormRange__Max {
+            position: relative;
+            top: -15px;
+            font-size: 18px;
+        }
     }
 }
