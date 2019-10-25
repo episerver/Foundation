@@ -1,13 +1,13 @@
 ﻿@using System.Web.Mvc.Html
 @using Foundation.Cms.EditorDescriptors
-@model BlogListBlockViewModel
+@model BlogListPageViewModel
 
-@if (string.IsNullOrEmpty(Model.CurrentBlock.Template) || Model.CurrentBlock.Template == TemplateSelections.Grid)
+@if (string.IsNullOrEmpty(Model.CurrentContent.Template) || Model.CurrentContent.Template == TemplateSelections.Grid)
 {
     @Html.Partial("_GridTemplate", Model)
 }
 
-@if (Model.CurrentBlock.Template == TemplateSelections.ImageLeft)
+@if (Model.CurrentContent.Template == TemplateSelections.ImageLeft)
 {
     if (Model.Blogs != null && Model.Blogs.Any())
     {
@@ -18,7 +18,7 @@
     }
 }
 
-@if (Model.CurrentBlock.Template == TemplateSelections.ImageTop)
+@if (Model.CurrentContent.Template == TemplateSelections.ImageTop)
 {
     if (Model.Blogs != null && Model.Blogs.Any())
     {
@@ -36,7 +36,7 @@
 <br />
 @using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))
 {
-    <input hidden id="RequestUrl" type="text" value="/BlogListBlock/GetItemList" />
+    <input hidden id="RequestUrl" type="text" value="/BlogListPage/GetItemList" />
     <input hidden id="PageId" name="PageId" type="text" value="@Model.PagingInfo.PageId" />
     <input hidden id="PageNumber" name="PageNumber" type="text" value="@Model.PagingInfo.PageNumber" />
     <input hidden id="PageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />
@@ -45,12 +45,12 @@
 <div class="col-12 toolbar">
     <div class="toolbar__left">
         <strong>
-            @Model.PagingInfo.PageCount @Html.TranslateFallback("/Blog/Items", "Items")
+            @Model.PagingInfo.TotalRecord @Html.TranslateFallback("/Blog/Items", "Items")
         </strong>
     </div>
 
     <div class="toolbar__center">
-        @if (Model.PagingInfo.PageCount > 0)
+        @if (Model.PagingInfo.PageCount > 1)
         {
             <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
             <ul class="pagination">
