@@ -1,7 +1,7 @@
 @echo off
 openfiles > NUL 2>&1
 if %ERRORLEVEL% NEQ 0 (
-	set "errorMessage=Build.bat script must be run in an elevated (admin) command prompt"
+	set "errorMessage=Build.cmd script must be run in an elevated (admin) command prompt"
 	goto error
 )
 
@@ -286,10 +286,11 @@ echo ## Copying licence file ## >> Build\Logs\IIS.log
 if "%LICENSEPATH%"=="" ( echo License file not found! ) else ( xcopy "%LICENSEPATH%" "%SOURCEPATH%\Foundation" /Y >> Build\Logs\IIS.log)
 
 echo ## Updating commerce manager URL ##
+echo ## Updating commerce manager URL ## >> Build\Logs\IIS.log
 if "%CMDOMAIN%"=="" (
-    call %ROOTDIR%\build\jrepl "http://localhost:63149" "http://%APPNAME%-cm" /f "%SOURCEPATH\%Foundation\appSettings.config" /L /o -
+    call %ROOTDIR%\build\jrepl "http://localhost:63149" "http://%APPNAME%-cm" /f "%SOURCEPATH%\Foundation\appSettings.config" /L /o -
 ) else (
-    call %ROOTDIR%\build\jrepl "http://localhost:63149" "http://%CMDOMAIN%" /f "%SOURCEPATH\%Foundation\appSettings.config" /L /o -
+    call %ROOTDIR%\build\jrepl "http://localhost:63149" "http://%CMDOMAIN%" /f "%SOURCEPATH%\Foundation\appSettings.config" /L /o -
 )
 
 echo ## Creating conectionstrings.config ##
