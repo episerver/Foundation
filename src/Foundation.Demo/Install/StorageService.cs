@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace Foundation.Demo.Install
@@ -18,13 +20,14 @@ namespace Foundation.Demo.Install
 
         public StorageService()
         {
-            if (CloudStorageAccount.TryParse(ConfigurationManager.AppSettings["foundation:installBlobStorage"], out var account))
+            if (CloudStorageAccount.TryParse(Decrypt(ConfigurationManager.AppSettings["foundation:installBlobStorage"]), out var account))
             {
                 _storageCredentials = account.Credentials;
                 BlobRootUrl = VirtualPathUtility.AppendTrailingSlash(account.BlobStorageUri.PrimaryUri.ToString());
                 IsInitialized = true;
             }
         }
+
 
         public string BlobRootUrl { get; }
 
@@ -150,5 +153,38 @@ namespace Foundation.Demo.Install
             var children = blobDirectory.GetItems().Result;
             return children.OfType<CloudBlobDirectory>().ToList();
         }
+
+        private const string mysecurityKey = "FoundationBlobKey";
+
+        public static string Encrypt(string toEncrypt)
+        {
+            var toEncryptArray = Encoding.UTF8.GetBytes(toEncrypt);
+            var keyArray = Convert.FromBase64String("AAECAwQFBgcICQoLDA0ODw==");
+            var tdes = new TripleDESCryptoServiceProvider();
+            tdes.Key = keyArray;
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+
+            var cTransform = tdes.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+            tdes.Clear();
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+        }
+
+        public static string Decrypt(string cipherString)
+        {
+            var toEncryptArray = Convert.FromBase64String(cipherString);
+            var keyArray = Convert.FromBase64String("AAECAwQFBgcICQoLDA0ODw==");
+            var tdes = new TripleDESCryptoServiceProvider();
+            tdes.Key = keyArray;
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+
+            var cTransform = tdes.CreateDecryptor();
+            var resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+            tdes.Clear();
+            return Encoding.UTF8.GetString(resultArray);
+        }
+
     }
 }

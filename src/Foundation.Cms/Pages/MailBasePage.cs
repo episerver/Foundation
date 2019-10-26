@@ -1,9 +1,8 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using Foundation.Cms.Pages;
 using System.ComponentModel.DataAnnotations;
 
-namespace Foundation.Commerce.Models.Pages
+namespace Foundation.Cms.Pages
 {
     public abstract class MailBasePage : FoundationPageData
     {
