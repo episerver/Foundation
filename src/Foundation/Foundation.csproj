@@ -852,6 +852,7 @@
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
     <Compile Include="Features\Category\StandardCategoryController.cs" />
     <Compile Include="Features\Checkout\CheckoutController.cs" />
+    <Compile Include="Features\Checkout\ConfirmationMail\OrderConfirmationMailController.cs" />
     <Compile Include="Features\Events\CalendarEventBlock\CalendarEventBlockController.cs" />
     <Compile Include="Features\Events\CalendarEvent\CalendarEventController.cs" />
     <Compile Include="Features\Header\HeaderController.cs" />
@@ -1224,6 +1225,7 @@
     <Content Include="Features\Blog\BlogListPage\_BlogList.cshtml" />
     <Content Include="Features\Blog\BlogListPage\_GridTemplate.cshtml" />
     <Content Include="Features\Blog\BlogListPage\Preview.cshtml" />
+    <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />

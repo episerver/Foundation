@@ -7,6 +7,7 @@ using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Attributes;
 using Foundation.Cms.Identity;
+using Foundation.Cms.Pages;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;

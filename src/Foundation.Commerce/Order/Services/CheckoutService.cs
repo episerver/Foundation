@@ -223,7 +223,6 @@ namespace Foundation.Commerce.Order.Services
         public virtual bool SendConfirmation(CheckoutViewModel viewModel, IPurchaseOrder purchaseOrder)
         {
             var startpage = _contentRepository.Get<CommerceHomePage>(ContentReference.StartPage);
-            var confirmationPage = _contentRepository.GetChildren<OrderConfirmationPage>(viewModel.CurrentContent.ContentLink).FirstOrDefault();
             var sendOrderConfirmationMail = startpage.SendOrderConfirmationMail;
             if (sendOrderConfirmationMail)
             {
@@ -235,7 +234,7 @@ namespace Foundation.Commerce.Order.Services
 
                 try
                 {
-                    _mailService.Send(startpage.OrderConfirmationMail, queryCollection, purchaseOrder.GetFirstForm().Payments.FirstOrDefault().BillingAddress.Email, confirmationPage.Language.Name);
+                    _mailService.Send(startpage.OrderConfirmationMail, queryCollection, purchaseOrder.GetFirstForm().Payments.FirstOrDefault().BillingAddress.Email, startpage.Language.Name);
                 }
                 catch (Exception e)
                 {
