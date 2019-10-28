@@ -35,6 +35,14 @@ ul {
     margin: 0;
 }
 
+a {
+    color: black;
+
+    &:hover {
+        color: black;
+    }
+}
+
 .filters-tag {
     position: relative;
     border-radius: 3px;
