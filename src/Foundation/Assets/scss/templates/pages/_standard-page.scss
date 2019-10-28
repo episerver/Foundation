@@ -7,6 +7,8 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        margin-top: -25px;
+        margin-bottom: -50px;
     }
 
     &__banner {
@@ -65,5 +67,60 @@
         background-color: white;
         color: black;
         padding: 3.5em 4em;
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            margin-top: 50px;
+            color: #333;
+            font-size: 20px;
+        }
+
+        h3, h4 {
+            color: #333;
+            font-size: 16px;
+        }
+
+        table {
+            clear: left;
+            background: none repeat scroll 0 0 #fff;
+            font-size: 0.8em;
+            margin-top: 16px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+
+            thead {
+                tr {
+                    th {
+                        color: #fff;
+                        font-size: 1.1em;
+                        font-weight: bold;
+                        padding: 10px;
+                        text-align: left;
+                    }
+
+                    background: none repeat scroll 0 0 #575756;
+                    color: #fff;
+                    font-weight: bold;
+                    vertical-align: top;
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        padding: 5px 10px;
+                    }
+
+                    &:nth-child(2n) {
+                        background: none repeat scroll 0 0 #f1f3f4;
+                    }
+                }
+            }
+        }
     }
 }
