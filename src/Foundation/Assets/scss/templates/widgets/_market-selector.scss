@@ -1,6 +1,6 @@
 .market-selector {
     position: absolute;
-    z-index: 100;
+    z-index: 700;
     top: 0;
     right: 0;
     user-select: none;
@@ -37,7 +37,7 @@
 .market-list {
     width: 195px;
     box-shadow: $shadow-dropdown;
-    z-index: 1;
+    z-index: 700;
     padding: 0;
     border: 0;
     border-radius: 0;

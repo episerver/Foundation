@@ -1,4 +1,5 @@
-﻿@model CarouselViewModel
+﻿@using ImageProcessor.Web.Episerver
+@model TagsCarouselViewModel
 
 <div id="tag-carousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -13,11 +14,14 @@
         @foreach (var item in Model.Items.Select((value, i) => new { i, value }))
         {
             <div class="@(item.i == 0 ? "carousel-item active" : "carousel-item")">
-                <img class="img-fluid" src="@Url.ContentUrl(item.value.Image)" />
+                <a href="@Url.ContentUrl(item.value.ItemURL)">
+                    <img class="img-fluid" src="@Html.ProcessImage(@Url.ContentUrl(item.value.Image)).Resize(1440, 820)" />
+                </a>
                 @if (!string.IsNullOrWhiteSpace(item.value.Heading))
                 {
                     <div class="carousel-caption animated fadeInUpBig">
                         <h3>@item.value.Heading</h3>
+                        <p>@item.value.Description</p>
                     </div>
                 }
             </div>

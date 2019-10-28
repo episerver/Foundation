@@ -99,7 +99,7 @@
                                                 foreach (var tag in location.Tags.FilteredItems)
                                                 {
                                                     <span data-epi-block-id="@tag.ContentLink.ToString()">
-                                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-round">@tag.GetContent().Name</span></a>
+                                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-dark">@tag.GetContent().Name</span></a>
                                                     </span>
                                                 }
                                             }

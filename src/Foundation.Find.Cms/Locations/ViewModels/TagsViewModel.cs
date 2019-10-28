@@ -15,7 +15,7 @@ namespace Foundation.Find.Cms.Locations.ViewModels
 
         public string[] AdditionalCategories { get; set; }
 
-        public CarouselViewModel Carousel { get; set; }
+        public TagsCarouselViewModel Carousel { get; set; }
 
         public List<LocationItemPage> Locations { get; set; }
     }
