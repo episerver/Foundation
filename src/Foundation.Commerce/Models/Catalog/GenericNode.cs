@@ -11,19 +11,19 @@ namespace Foundation.Commerce.Models.Catalog
     public class GenericNode : NodeContent, IProductRecommendations
     {
         [CultureSpecific]
-        [Display(Name = "LongName", GroupName = SystemTabNames.Content)]
+        [Display(Name = "Long name", GroupName = SystemTabNames.Content, Order = 5)]
         [BackingType(typeof(PropertyString))]
         public virtual string LongName { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Teaser", GroupName = SystemTabNames.Content)]
+        [Display(Name = "Teaser", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Teaser { get; set; }
 
         [Searchable]
         [CultureSpecific]
         [Tokenize]
         [IncludeInDefaultSearch]
-        [Display(Name = "Description", GroupName = SystemTabNames.Content)]
+        [Display(Name = "Description", GroupName = SystemTabNames.Content, Order = 15)]
         public virtual XhtmlString Description { get; set; }
 
         [CultureSpecific]
@@ -31,15 +31,14 @@ namespace Foundation.Commerce.Models.Catalog
             Name = "Top content area",
             Description = "",
             GroupName = SystemTabNames.Content,
-            Order = 4)]
+            Order = 20)]
         public virtual ContentArea TopContentArea { get; set; }
 
-        [Display(Name = "Partial page size", Order = 1)]
+        [Display(Name = "Partial page size", Order = 25)]
         public virtual int PartialPageSize { get; set; }
 
-
         [CultureSpecific]
-        [Display(Name = "Show Recommendations", Order = 50, Description = "This will determine whether or not to show recommendations.")]
+        [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 30)]
         public virtual bool ShowRecommendations { get; set; }
 
         public override void SetDefaultValues(ContentType contentType) => ShowRecommendations = true;

@@ -33,6 +33,7 @@ namespace Foundation.Commerce.Catalog
         private readonly LanguageService _languageService;
         private readonly FilterPublished _filterPublished;
         private readonly IStoreService _storeService;
+        private readonly ICurrentMarket _currentMarket;
 
         public ProductService(IContentLoader contentLoader,
             IPromotionService promotionService,
@@ -44,7 +45,8 @@ namespace Foundation.Commerce.Catalog
             ReferenceConverter referenceConverter,
             LanguageService languageService,
             FilterPublished filterPublished,
-            IStoreService storeService)
+            IStoreService storeService,
+            ICurrentMarket currentMarket)
         {
             _contentLoader = contentLoader;
             _promotionService = promotionService;
@@ -58,6 +60,7 @@ namespace Foundation.Commerce.Catalog
             _languageService = languageService;
             _filterPublished = filterPublished;
             _storeService = storeService;
+            _currentMarket = currentMarket;
         }
 
         public IEnumerable<VariationContent> GetVariants(ProductContent currentContent) => GetAvailableVariants(currentContent.GetVariants(_relationRepository));
@@ -88,7 +91,7 @@ namespace Foundation.Commerce.Catalog
         {
             var language = _languageService.GetCurrentLanguage();
             var contentItems = _contentLoader.GetItems(entryLinks, language);
-            return contentItems.OfType<EntryContentBase>().Select(GetProductTileViewModel);
+            return contentItems.OfType<EntryContentBase>().Select(x => x.GetProductTileViewModel(_currentMarket.GetCurrentMarket(), _currencyService.GetCurrentCurrency()));
         }
 
         public virtual ProductTileViewModel GetProductTileViewModel(EntryContentBase entry)
