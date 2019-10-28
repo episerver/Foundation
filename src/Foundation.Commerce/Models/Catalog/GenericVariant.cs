@@ -14,39 +14,11 @@ namespace Foundation.Commerce.Models.Catalog
     public class GenericVariant : VariationContent, IProductRecommendations
     {
 
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 20)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string Mpn { get; set; }
-
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 21)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string PackageQuantity { get; set; }
-
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 22)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string PartNumber { get; set; }
-
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 24)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string RegionCode { get; set; }
-
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 26)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string Sku { get; set; }
-
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 27)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string SubscriptionLength { get; set; }
-
-        [Display(GroupName = CommerceTabNames.Manufacturer, Order = 29)]
-        [BackingType(typeof(PropertyString))]
-        public virtual string Upc { get; set; }
-
         [Searchable]
         [Tokenize]
         [IncludeInDefaultSearch]
         [BackingType(typeof(PropertyString))]
-        [Display(Name = "Size", Order = 4)]
+        [Display(Name = "Size", Order = 5)]
         public virtual string Size { get; set; }
 
         [Searchable]
@@ -54,39 +26,77 @@ namespace Foundation.Commerce.Models.Catalog
         [Tokenize]
         [IncludeInDefaultSearch]
         [BackingType(typeof(PropertyString))]
-        [Display(Name = "Color", Order = 5)]
+        [Display(Name = "Color", Order = 10)]
         public virtual string Color { get; set; }
 
         [Searchable]
         [CultureSpecific]
         [Tokenize]
         [IncludeInDefaultSearch]
-        [Display(Name = "Description", Order = 9)]
+        [Display(Name = "Description", Order = 15)]
         public virtual XhtmlString Description { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Content Area", Order = 44, Description = "This will display the content area.")]
+        [Display(Name = "Content area", Description = "This will display the content area.", Order = 20)]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Show Recommendations", Order = 50, Description = "This will determine whether or not to show recommendations.")]
+        [Display(Name = "Associations title", Description = "This is title of the Associations tab.", Order = 25)]
+        public virtual string AssociationsTitle { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 30)]
         public virtual bool ShowRecommendations { get; set; }
 
         [Required]
-        [Display(Name = "Virtual  Product Mode", Order = 1)]
+        [Display(Name = "Virtual product mode", Order = 35)]
         [SelectOne(SelectionFactoryType = typeof(VirtualVariantTypeSelectionFactory))]
         public virtual string VirtualProductMode { get; set; }
 
-        [Display(Name = "Virtual Product Role", Order = 1)]
+        [Display(Name = "Virtual product role", Order = 40)]
         [SelectOne(SelectionFactoryType = typeof(ElevatedRoleSelectionFactory))]
         [BackingType(typeof(PropertyString))]
         public virtual string VirtualProductRole { get; set; }
 
+        #region Manufacturer
+
+        [Display(Name = "Mpn", GroupName = CommerceTabNames.Manufacturer, Order = 5)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string Mpn { get; set; }
+
+        [Display(Name = "Package quantity", GroupName = CommerceTabNames.Manufacturer, Order = 10)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string PackageQuantity { get; set; }
+
+        [Display(Name = "Part number", GroupName = CommerceTabNames.Manufacturer, Order = 15)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string PartNumber { get; set; }
+
+        [Display(Name = "Region code", GroupName = CommerceTabNames.Manufacturer, Order = 20)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string RegionCode { get; set; }
+
+        [Display(Name = "Sku", GroupName = CommerceTabNames.Manufacturer, Order = 25)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string Sku { get; set; }
+
+        [Display(Name = "Subscription length", GroupName = CommerceTabNames.Manufacturer, Order = 30)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string SubscriptionLength { get; set; }
+
+        [Display(Name = "Upc", GroupName = CommerceTabNames.Manufacturer, Order = 35)]
+        [BackingType(typeof(PropertyString))]
+        public virtual string Upc { get; set; }
+
+        #endregion
+
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
+
             VirtualProductMode = "None";
             VirtualProductRole = "None";
+            AssociationsTitle = "You May Also Like";
         }
 
     }
