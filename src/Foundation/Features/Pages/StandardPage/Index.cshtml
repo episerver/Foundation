@@ -22,15 +22,18 @@
 <div class="row">
     <div class="col-12 standard-page__container">
         <div class="standard-page__hero @heroClass">
-            <picture class="standard-page__banner">
-                <source srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
-                <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
-            </picture>
             @if (Model.CurrentContent.MainBackgroundVideo != null)
             {
                 <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
                     <source src="@Url.ContentUrl(Model.CurrentContent.MainBackgroundVideo)" type="video/mp4" @Html.EditAttributes(x => x.CurrentContent.MainBackgroundVideo)>
                 </video>
+            }
+            else if (Model.CurrentContent.PageImage != null)
+            {
+                <picture class="standard-page__banner">
+                    <source srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
+                    <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
+                </picture>
             }
             <div class="hero__gradient">
             </div>
