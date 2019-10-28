@@ -30,6 +30,7 @@ namespace Foundation.Features.Locations.TagPage
         public async Task<ActionResult> Index(Cms.Pages.TagPage currentPage)
         {
             await _trackingService.PageViewed(HttpContext, currentPage);
+
             var model = new TagsViewModel(currentPage)
             {
                 Continent = ControllerContext.RequestContext.GetCustomRouteData<string>("Continent")
@@ -37,47 +38,45 @@ namespace Foundation.Features.Locations.TagPage
 
             var addcat = ControllerContext.RequestContext.GetCustomRouteData<string>("Category");
             if (addcat != null)
+            {
                 model.AdditionalCategories = addcat.Split(',');
-
-            var carousel = new CarouselViewModel
-            {
-                Items = new List<CarouselItemBlock>()
-            };
-
-
-            if (currentPage.Images != null)
-            {
-                foreach (var img in currentPage.Images.FilteredItems.Select(ci => ci.ContentLink))
-                {
-                    var t = _contentLoader.Get<ImageMediaData>(img).Title;
-                    carousel.Items.Add(new CarouselItemBlock { Image = img, Heading = t });
-                }
             }
-            var q = SearchClient.Instance.Search<Find.Cms.Models.Pages.LocationItemPage>()
-                .Filter(f => f.TagString().Match(currentPage.Name));
 
+            var query = SearchClient.Instance.Search<Find.Cms.Models.Pages.LocationItemPage>()
+                .Filter(f => f.TagString().Match(currentPage.Name));
             if (model.AdditionalCategories != null)
             {
-                q = model.AdditionalCategories.Aggregate(q, (current, c) => current.Filter(f => f.TagString().Match(c)));
+                query = model.AdditionalCategories.Aggregate(query, (current, c) => current.Filter(f => f.TagString().Match(c)));
             }
             if (model.Continent != null)
             {
-                q = q.Filter(dp => dp.Continent.MatchCaseInsensitive(model.Continent));
+                query = query.Filter(dp => dp.Continent.MatchCaseInsensitive(model.Continent));
             }
-            var res = q.StaticallyCacheFor(new System.TimeSpan(0, 1, 0)).GetContentResult();
-
-            model.Locations = res.ToList();
+            model.Locations = query.StaticallyCacheFor(new System.TimeSpan(0, 1, 0)).GetContentResult().ToList();
 
             //Add theme images from results
-            foreach (var d in model.Locations)
+            var carousel = new TagsCarouselViewModel
             {
-                carousel.Items.Add(new CarouselItemBlock
+                Items = new List<TagsCarouselItem>()
+            };
+            foreach (var location in model.Locations)
+            {
+                carousel.Items.Add(new TagsCarouselItem
                 {
-                    Image = d.Image,
-                    Heading = d.Name,
+                    Image = location.Image,
+                    Heading = location.Name,
+                    Description = location.MainIntro,
+                    ItemURL = location.ContentLink
                 });
             }
-
+            if (carousel.Items.All(item => item.Image == null) || currentPage.Images != null)
+            {
+                foreach (var image in currentPage.Images.FilteredItems.Select(ci => ci.ContentLink))
+                {
+                    var title = _contentLoader.Get<ImageMediaData>(image).Title;
+                    carousel.Items.Add(new TagsCarouselItem { Image = image, Heading = title });
+                }
+            }
             model.Carousel = carousel;
 
             return View(model);

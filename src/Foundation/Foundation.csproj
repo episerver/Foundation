@@ -1204,14 +1204,12 @@
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.svg" />
     <Content Include="Assets\scss\vendors\jquery\jquery-ui.css" />
     <Content Include="Assets\scss\vendors\mvc-grid\mvc-grid.css" />
-    <Content Include="Assets\scss\vendors\reset.css" />
     <Content Include="Assets\scss\vendors\spur-admin\spur.min.css" />
     <Content Include="Assets\scss\vendors\tinymce-font-awesome\tinymce-font-awesome.css" />
     <Content Include="ClientResources\Scripts\MenuChildItems.js" />
     <Content Include="ClientResources\Scripts\ContentEditing\CreateContent.js" />
     <Content Include="ClientResources\Scripts\Initialize.js" />
     <Content Include="ClientResources\Styles\Styles.css" />
-    <Content Include="Features\Blocks\Views\CarouselItemBlock.cshtml" />
     <Content Include="Features\Blocks\Views\LikeButtonBlock.cshtml" />
     <Content Include="Features\Blocks\Views\MembershipDisplayBlock.cshtml" />
     <Content Include="Features\Blocks\Views\RatingBlock.cshtml" />
