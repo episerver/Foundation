@@ -25,7 +25,7 @@ namespace Foundation.Cms.Pages
 
         #region Menu   
 
-        [AllowedTypes(new[] { typeof(MenuItemBlock) })]
+        [AllowedTypes(new[] { typeof(MenuItemBlock), typeof(PageData) })]
         [UIHint("HideContentAreaActionsContainer", PresentationLayer.Edit)]
         [Display(Name = "Main menu", GroupName = CmsTabNames.Menu, Order = 10)]
         public virtual ContentArea MainMenu { get; set; }

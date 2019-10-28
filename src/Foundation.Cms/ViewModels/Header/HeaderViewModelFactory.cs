@@ -38,17 +38,33 @@ namespace Foundation.Cms.ViewModels.Header
             }
             else
             {
-                var menuItemBlocks = homePage.MainMenu?.FilteredItems.GetContentItems<MenuItemBlock>();
+                var menuItemBlocks = homePage.MainMenu?.FilteredItems.GetContentItems<IContent>();
                 menuItems = menuItemBlocks?
-                   .Select(_ => new MenuItemViewModel
-                   {
-                       Name = _.Name,
-                       ButtonText = _.ButtonText,
-                       TeaserText = _.TeaserText,
-                       Uri = _.Link == null ? string.Empty : _urlResolver.GetUrl(new UrlBuilder(_.Link.ToString()), new UrlResolverArguments() { ContextMode = ContextMode.Default }),
-                       ImageUrl = !ContentReference.IsNullOrEmpty(_.MenuImage) ? _urlResolver.GetUrl(_.MenuImage) : "",
-                       ButtonLink = _.ButtonLink?.Host + _.ButtonLink?.PathAndQuery,
-                       ChildLinks = _.ChildItems?.ToList() ?? new List<GroupLinkCollection>()
+                   .Select(x => {
+                       MenuItemBlock _;
+                       if (x is MenuItemBlock)
+                       {
+                           _ = x as MenuItemBlock;
+                           return new MenuItemViewModel
+                           {
+                               Name = _.Name,
+                               ButtonText = _.ButtonText,
+                               TeaserText = _.TeaserText,
+                               Uri = _.Link == null ? string.Empty : _urlResolver.GetUrl(new UrlBuilder(_.Link.ToString()), new UrlResolverArguments() { ContextMode = ContextMode.Default }),
+                               ImageUrl = !ContentReference.IsNullOrEmpty(_.MenuImage) ? _urlResolver.GetUrl(_.MenuImage) : "",
+                               ButtonLink = _.ButtonLink?.Host + _.ButtonLink?.PathAndQuery,
+                               ChildLinks = _.ChildItems?.ToList() ?? new List<GroupLinkCollection>()
+                           };
+                       } else
+                       {
+                           return new MenuItemViewModel
+                           {
+                               Name = x.Name,
+                               Uri = _urlResolver.GetUrl(x.ContentLink),
+                               ChildLinks = new List<GroupLinkCollection>()
+                           };
+                       }
+                       
                    }).ToList() ?? new List<MenuItemViewModel>();
 
                 var keyDependency = new List<string>();
