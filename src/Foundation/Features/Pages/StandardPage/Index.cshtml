@@ -1,5 +1,4 @@
-﻿@using EPiServer.Core
-@using EPiServer.Web.Mvc.Html
+﻿@using EPiServer.Web.Mvc.Html
 @model Foundation.Cms.ViewModels.Pages.StandardPageViewModel
 
 @{
@@ -19,24 +18,27 @@
             break;
     }
 }
+
 <div class="row">
     <div class="col-12 standard-page__container">
         <div class="standard-page__hero @heroClass">
-            <picture class="standard-page__banner">
-                <source srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
-                <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
-            </picture>
             @if (Model.CurrentContent.MainBackgroundVideo != null)
             {
                 <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
                     <source src="@Url.ContentUrl(Model.CurrentContent.MainBackgroundVideo)" type="video/mp4" @Html.EditAttributes(x => x.CurrentContent.MainBackgroundVideo)>
                 </video>
             }
-            <div class="hero__gradient">
-            </div>
+            else if (Model.CurrentContent.PageImage != null)
+            {
+                <picture class="standard-page__banner">
+                    <source srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
+                    <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
+                </picture>
+                <div class="hero__gradient">
+                </div>
+            }
         </div>
         <div class="standard-page__box @boxClass">
-
             <div class="article__title">
                 @if (!Model.CategoryName.IsEmpty())
                 {

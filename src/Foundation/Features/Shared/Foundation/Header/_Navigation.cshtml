@@ -3,22 +3,12 @@
 <!-- Navigation bar for Desktop -->
 <div class="d-none d-lg-block">
     <nav class="container navigation">
-        @if (Model.DemoHomePage.HeaderMenuStyle == "LeftLogo")
-        {
-            <a href="/" class="navigation__logo flex-center">@Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })</a>
-            <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
-                @Html.Partial("_Menu", Model.MenuItems)
-            </div>
-        }
-        else
-        {
-            <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
-                @Html.Partial("_Menu", Model.MenuItems)
-            </div>
-
-            <a href="/" class="navigation__logo flex-center">@Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })</a>
-        }
-
+        <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
+            @Html.Partial("_Menu", Model.MenuItems)
+        </div>
+        <a href="/" class="navigation__logo flex-center" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
+            @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })
+        </a>
         <ul class="navigation__right">
             @if (Request.IsAuthenticated)
             {
@@ -43,7 +33,7 @@
             {
                 <li>
                     <div class="dropdown">
-                        <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
+                        <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
                             <i data-feather="heart"></i>
                             <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
                         </div>
@@ -52,7 +42,7 @@
                 </li>
                 <li>
                     <div class="dropdown">
-                        <div class="icon-menu icon-menu--has-badge jsCartBtn" data-toggle="dropdown" data-offset="-162" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
+                        <div class="icon-menu icon-menu--has-badge jsCartBtn" data-toggle="dropdown" data-offset="-162, -2" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
                             <i data-feather="shopping-cart"></i>
                             <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
                         </div>
@@ -63,7 +53,7 @@
                 {
                     <li>
                         <div class="dropdown">
-                            <div class="icon-menu icon-menu--has-badge jsSharedCartBtn" data-toggle="dropdown" data-offset="-162" data-flip="false" reload="0" data-cartcontainer="#jsSharedCartContainer" data-reloadurl="/sharedCart/LoadMiniSharedCart" title="Shared Cart">
+                            <div class="icon-menu icon-menu--has-badge jsSharedCartBtn" data-toggle="dropdown" data-offset="-162, -2" data-flip="false" reload="0" data-cartcontainer="#jsSharedCartContainer" data-reloadurl="/sharedCart/LoadMiniSharedCart" title="Shared Cart">
                                 <i data-feather="shopping-bag"></i>
                                 <span class="icon-menu__badge">@((int)Model.SharedMiniCart.ItemCount)</span>
                             </div>
@@ -101,7 +91,7 @@
             </li>
             <li>
                 <div class="dropdown">
-                    <div class="icon-menu" data-toggle="dropdown" data-offset="-323" data-flip="false" id="js-profile">
+                    <div class="icon-menu" data-toggle="dropdown" data-offset="-325, -2" data-flip="false" id="js-profile">
                         <i data-feather="user"></i>
                     </div>
                     @Html.Partial("_Users", Model)
