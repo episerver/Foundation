@@ -19,33 +19,42 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         [Tokenize]
         [IncludeInDefaultSearch]
-        [Display(Name = "Description", Order = 1)]
+        [Display(Name = "Description", Order = 5)]
         public virtual XhtmlString Description { get; set; }
 
         [Searchable]
         [CultureSpecific]
         [Tokenize]
         [IncludeInDefaultSearch]
-        [Display(Name = "Long Description", Order = 3)]
+        [Display(Name = "Long description", Order = 10)]
         public virtual XhtmlString LongDescription { get; set; }
 
-        [Display(Name = "On Sale", Order = 2, Description = "Is on sale?")]
+        [Display(Name = "On sale", Description = "Is on sale?", Order = 15)]
         public virtual bool OnSale { get; set; }
 
-        [Display(Name = "New Arrival", Order = 2, Description = "Is on a new arrival?")]
+        [Display(Name = "New arrival", Description = "Is on a new arrival?", Order = 20)]
         public virtual bool NewArrival { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Content Area", Order = 3, Description = "This will display the content area.")]
+        [Display(Name = "Content area", Description = "This will display the content area.", Order = 25)]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Show Recommendations", Order = 50, Description = "This will determine whether or not to show recommendations.")]
+        [Display(Name = "Associations title",
+            Description = "This is title of the Associations tab.",
+            Order = 30)]
+        public virtual string AssociationsTitle { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 35)]
         public virtual bool ShowRecommendations { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
+            base.SetDefaultValues(contentType);
+
             ShowRecommendations = true;
+            AssociationsTitle = "You May Also Like";
         }
     }
 }
