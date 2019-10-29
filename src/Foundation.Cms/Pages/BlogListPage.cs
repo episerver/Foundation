@@ -3,9 +3,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Cms.Blocks;
 using Foundation.Cms.EditorDescriptors;
-using Foundation.Cms.Extensions;
 using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +15,7 @@ namespace Foundation.Cms.Pages
         GUID = "EAADAFF2-3E89-4117-ADEB-F8D43565D2F4",
         Description = "Blog List Page for dates such as year and month",
         GroupName = CmsGroupNames.Blog)]
-    [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage)})]
+    [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage) })]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-20.png")]
     public class BlogListPage : FoundationPageData
     {
@@ -58,11 +56,10 @@ namespace Foundation.Cms.Pages
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
-
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-            
+
             Recursive = true;
             Template = TemplateSelections.Grid;
             PreviewOption = PreviewOptions.Full;
