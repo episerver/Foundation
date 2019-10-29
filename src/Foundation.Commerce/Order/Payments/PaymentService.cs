@@ -41,15 +41,15 @@ namespace Foundation.Commerce.Order.Payments
                     IsDefault = x.IsDefault
                 });
 
-            if (_httpContext == null || !_httpContext.Request.IsAuthenticated)
+            if (_httpContext == null || !EPiServer.Security.PrincipalInfo.CurrentPrincipal.Identity.IsAuthenticated)
             {
-                return methods;
+                return methods.Where(payment => !payment.SystemKeyword.Equals(Constant.Order.BudgetPayment));
             }
 
             var currentContact = _customerService.GetCurrentContact();
             if (string.IsNullOrEmpty(currentContact.UserRole))
             {
-                return methods;
+                return methods.Where(payment => !payment.SystemKeyword.Equals(Constant.Order.BudgetPayment));
             }
             var cart = _cartService.LoadCart(_cartService.DefaultCartName, true)?.Cart;
             if (cart != null && cart.IsQuoteCart() && currentContact.B2BUserRole == B2BUserRoles.Approver)
