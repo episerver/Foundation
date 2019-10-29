@@ -11,7 +11,6 @@ using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Cms.Personalization;
 using Foundation.Cms.ViewModels;
-using Foundation.Cms.ViewModels.Blocks;
 using Geta.EpiCategories;
 using System;
 using System.Collections.Generic;
@@ -213,7 +212,7 @@ namespace Foundation.Features.Blog.BlogListPage
             var blogListItemPageType = typeof(BlogItemPage).GetPageType();
             IEnumerable<PageData> pages;
 
-            pages = currentPage.Recursive ? pages = listRoot.FindPagesByPageType(true, blogListItemPageType.ID): pages = _contentLoader.GetChildren<PageData>(listRoot);
+            pages = currentPage.Recursive ? pages = listRoot.FindPagesByPageType(true, blogListItemPageType.ID) : pages = _contentLoader.GetChildren<PageData>(listRoot);
 
             if (category != null)
             {
@@ -233,7 +232,7 @@ namespace Foundation.Features.Blog.BlogListPage
                            contentReferences.Intersect(currentPage.CategoryListFilter).Any();
                 });
             }
-             
+
             return pages;
         }
 
