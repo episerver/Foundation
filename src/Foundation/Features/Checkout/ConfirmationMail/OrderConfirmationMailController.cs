@@ -51,7 +51,7 @@ namespace Foundation.Features.Checkout.ConfirmationMail
 
             var viewModel = CreateViewModel(currentPage, order);
 
-            return View(viewModel);
+            return View("~/Features/Checkout/ConfirmationMail/Index.cshtml", viewModel);
         }
 
         private OrderConfirmationViewModel<OrderConfirmationMailPage> CreateViewModel(OrderConfirmationMailPage currentPage, IPurchaseOrder order)
