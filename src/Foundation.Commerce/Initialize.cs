@@ -61,7 +61,7 @@ namespace Foundation.Commerce
             services.AddSingleton<IOrdersService, OrdersService>();
             services.AddSingleton<ShipmentViewModelFactory>();
             services.AddSingleton<IShippingService, ShippingService>();
-            services.AddSingleton<CheckoutViewModelFactory>();
+            services.AddTransient<CheckoutViewModelFactory>();
             services.AddSingleton<MultiShipmentViewModelFactory>();
             services.AddSingleton<OrderSummaryViewModelFactory>();
             services.AddTransient<PaymentMethodViewModelFactory>();
