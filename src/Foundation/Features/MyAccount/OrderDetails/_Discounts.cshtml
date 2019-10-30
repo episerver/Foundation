@@ -1,4 +1,5 @@
 ﻿@using EPiServer.Commerce.Order
+@using Mediachase.Commerce
 
 @model Foundation.Commerce.Order.ViewModels.OrderDetailsViewModel
 
@@ -35,6 +36,7 @@
                             <td>@promotion.DiscountType.ToString()</td>
                             <td>@promotion.Name</td>
                             <td>@promotion.Description</td>
+                            <td>@(new Money(@promotion.SavedAmount, @Model.PurchaseOrder.Currency))</td>
                         </tr>
                     }
                 </tbody>
