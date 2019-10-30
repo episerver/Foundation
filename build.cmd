@@ -1,4 +1,5 @@
 @echo off
+cd /d %~dp0
 openfiles > NUL 2>&1
 if %ERRORLEVEL% NEQ 0 (
 	set "errorMessage=Build.cmd script must be run in an elevated (admin) command prompt"
