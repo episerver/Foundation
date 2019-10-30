@@ -1,6 +1,7 @@
 ﻿.profile {
     &--group {
         width: 100%;
+        padding-left: 0;
     }
 
     &__item {
@@ -15,6 +16,10 @@
 
         .profile__component {
             margin-bottom: 10px;
+        }
+
+        .button-black--icon {
+            padding-top: 8px;
         }
     }
 }

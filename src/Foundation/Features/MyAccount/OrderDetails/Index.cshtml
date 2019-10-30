@@ -70,7 +70,7 @@
                             @Html.AntiForgeryToken()
                             @Html.Hidden("orderGroupId", Model.OrderGroupId)
                             <button type="submit" data-order-link="@Model.OrderGroupId" class="button-black jsReorder">
-                                @Html.TranslateFallback("/OrderHistory/Labels/ReOrder", "Re-Order")
+                                @Html.TranslateFallback("/OrderHistory/Labels/Reorder", "Reorder")
                             </button>
                         }
                     }

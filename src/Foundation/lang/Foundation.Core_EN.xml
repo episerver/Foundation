@@ -641,7 +641,7 @@
         <Payment>Payment</Payment>
         <Status>Status</Status>
         <TotalPrice>Price</TotalPrice>
-        <ReOrder>Re-Order</ReOrder>
+        <ReOrder>Reorder</ReOrder>
         <ReturnStatus>Return Status</ReturnStatus>
         <ReturnOrder>Return Order</ReturnOrder>
       </Labels>
@@ -830,7 +830,7 @@
       <Note>Note</Note>
       <AddNote>Add Note</AddNote>
       <Type>Type</Type>
-      <Description>Desription</Description>
+      <Description>Description</Description>
       <DiscountType>Discount Type</DiscountType>
       <SavedAmount>Saved Amount</SavedAmount>
       <Coupons>Coupons</Coupons>
