@@ -17,7 +17,7 @@
                 <div class="address-block recent-orders">
                     <div class="flex-between">
                         <h4>@Html.TranslateFallback("/Dashboard/Labels/RecentOrders", "Recent Orders")</h4>
-                        @Html.ActionLink("View All", "Index", "OrderHistory", new { @class = "account-link" })
+                        @Html.ActionLink("View All", "ViewAll", "OrderHistory", null, new { @class = "account-link" })
                     </div>
 
                     @if (Model.Orders != null && Model.Orders.Any())
@@ -25,7 +25,7 @@
                         <ul class="profile--group">
                             @foreach (var order in Model.Orders)
                             {
-                                <li class="profile__item">
+                                <li class="profile__item style-list-none">
                                     <div class="row">
                                         <div class="col-6 content">
                                             <div class="row profile__component">
@@ -55,10 +55,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <a href="#" class="button-black--icon">
-                                                <i data-feather="credit-card"></i>
-                                                <span>@Html.TranslateFallback("/Dashboard/Labels/Reorder", "Reorder")</span>
-                                            </a>
+                                            @using (Html.BeginForm("Reorder", "DefaultCart", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.Hidden("orderId", order.OrderGroupId)
+                                                <button type="submit" data-order-link="@order.OrderGroupId" class="button-black--icon jsReorder">
+                                                    <i data-feather="credit-card"></i>
+                                                    @Html.TranslateFallback("/Dashboard/Labels/Reorder", "Reorder")
+                                                </button>
+                                            }
                                         </div>
                                     </div>
                                 </li>
@@ -104,7 +109,7 @@
                                     Loyalty statistics
                                 </div>
                                 <div class="">
-                                    <ul class="list-group--info">
+                                    <ul class="list-group--info loyalty-statistics">
                                         <li>
                                             <span class="light-text">Points:</span> @Model.CustomerContact.Points
                                         </li>
@@ -126,26 +131,23 @@
                                         About loyalty program
                                     </a>
                                     <ul id="loyalty-program" class="loyal--group collapse">
-                                        <li>*All orders and reviews before Loyalty program started will not count and get points.</li>
-
-                                        <li>*A order - 10 points.</li>
-
-                                        <li>*A review - 1 point.</li>
-
-                                        <li>*Tiers and points:</li>
-                                        <li><img class="tier-icon" src="~/Assets/icons/tiers/classic.svg"> Classic: 0 - 100 points</li>
-                                        <li><img class="tier-icon" src="~/Assets/icons/tiers/bronze.svg"> Bronze: 101 - 200 points</li>
-                                        <li><img class="tier-icon" src="~/Assets/icons/tiers/silver.svg"> Silver: 201 - 500 points</li>
-                                        <li><img class="tier-icon" src="~/Assets/icons/tiers/gold.svg"> Gold: 501 - 1000 points</li>
-                                        <li><img class="tier-icon" src="~/Assets/icons/tiers/platium.svg"> Platium: 1001 - 2000 points</li>
-                                        <li><img class="tier-icon" src="~/Assets/icons/tiers/diamond.svg"> Diamond: Over 2000 points</li>
-
+                                        <li class="style-list-none">*All orders and reviews before Loyalty program started will not count and get points.</li>
+                                        <li class="style-list-none">*A order - 10 points.</li>
+                                        <li class="style-list-none">*A review - 1 point.</li>
+                                        <li class="style-list-none">*Tiers and points:</li>
+                                        <li class="style-list-none"><img class="tier-icon" src="~/Assets/icons/tiers/classic.svg"> Classic: 0 - 100 points</li>
+                                        <li class="style-list-none"><img class="tier-icon" src="~/Assets/icons/tiers/bronze.svg"> Bronze: 101 - 200 points</li>
+                                        <li class="style-list-none"><img class="tier-icon" src="~/Assets/icons/tiers/silver.svg"> Silver: 201 - 500 points</li>
+                                        <li class="style-list-none"><img class="tier-icon" src="~/Assets/icons/tiers/gold.svg"> Gold: 501 - 1000 points</li>
+                                        <li class="style-list-none"><img class="tier-icon" src="~/Assets/icons/tiers/platium.svg"> Platium: 1001 - 2000 points</li>
+                                        <li class="style-list-none"><img class="tier-icon" src="~/Assets/icons/tiers/diamond.svg"> Diamond: Over 2000 points</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12", @style = "display: none" })) {
+                        @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12", @style = "display: none" }))
+                        {
                             <div class="jsTokenProfileEdit">@Html.AntiForgeryToken()</div>
                             <div class="row col-12 input-block">
                                 <label>@Html.TranslateFallback("/Shared/Address/Form/Label/FirstName", "First Name")</label>
@@ -178,7 +180,7 @@
                         }
                         @*<div class="col-12 jsProfileContainerEdit" style="display: none">
 
-                        </div>*@
+                            </div>*@
                     </div>
                 </div>
 

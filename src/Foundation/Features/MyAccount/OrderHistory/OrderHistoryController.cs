@@ -95,6 +95,11 @@ namespace Foundation.Features.MyAccount.OrderHistory
             return View(viewModel);
         }
 
+        public ActionResult ViewAll()
+        {
+            return Redirect(UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderHistoryPage));
+        }
+
         [HttpPost]
         public ActionResult Detail(OrderHistoryPage currentPage, int orderid)
         {
