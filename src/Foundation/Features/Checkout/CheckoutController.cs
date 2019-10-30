@@ -419,8 +419,9 @@ namespace Foundation.Features.Checkout
             var viewModel = CreateCheckoutViewModel(content);
             if (checkoutViewModel.AddressType == 0)
             {
+                var addressName = viewModel.BillingAddress.FirstName + " " + viewModel.BillingAddress.LastName;
                 checkoutViewModel.Shipments[0].Address.AddressId = null;
-                checkoutViewModel.Shipments[0].Address.Name = DateTime.Now.ToString();
+                checkoutViewModel.Shipments[0].Address.Name = addressName + " " + DateTime.Now.ToString();
                 _addressBookService.Save(checkoutViewModel.Shipments[0].Address);
                 viewModel.Shipments[0].Address = checkoutViewModel.Shipments[0].Address;
             }
@@ -620,8 +621,9 @@ namespace Foundation.Features.Checkout
             }
             else
             {
+                var addressName = viewModel.BillingAddress.FirstName + " " + viewModel.BillingAddress.LastName;
                 viewModel.BillingAddress.AddressId = null;
-                viewModel.BillingAddress.Name = DateTime.Now.ToString();
+                viewModel.BillingAddress.Name = addressName + " " + DateTime.Now.ToString();
                 _addressBookService.Save(viewModel.BillingAddress);
             }
 

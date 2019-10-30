@@ -190,7 +190,12 @@
                 .then(function (r) {
                     if (r.status == 200) {
                         $('.jsCouponLabel').removeClass('hidden');
-                        $('.jsCouponListing').append(inst.couponTemplate(couponCode));
+                        if ($(e).hasClass('jsInCheckout')) {
+                            $('.jsCouponListing').append(inst.couponTemplate(couponCode, "jsInCheckout"));
+                        } else {
+                            $('.jsCouponListing').append(inst.couponTemplate(couponCode, ""));
+                        }
+
                         inst.RemoveCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
                         $('.jsCouponReplaceHtml').html(r.data); 
                         feather.replace();
@@ -248,8 +253,8 @@
         })
     }
 
-    couponTemplate(couponCode) {
-        return `<label class="filters-tag jsRemoveCoupon" data-couponcode="${couponCode}">
+    couponTemplate(couponCode, jsInCheckout) {
+        return `<label class="filters-tag jsRemoveCoupon ${jsInCheckout}" data-couponcode="${couponCode}">
                     <span>${couponCode}</span>
                     <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
                 </label>`;
