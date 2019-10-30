@@ -53,7 +53,11 @@
                                             values.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
                                         }
                                     }
-                                    @Helpers.RenderDropdown(values, Model.BillingAddress.AddressId, "", "BillingAddress.AddressId")
+                                    @{
+                                        var defaultBillingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.BillingDefault);
+                                        var defaultBillingAddressId = defaultBillingAddress != null ? defaultBillingAddress.AddressId : null;
+                                    }
+                                    @Helpers.RenderDropdown(values, Model.BillingAddress.AddressId ?? defaultBillingAddressId, "", "BillingAddress.AddressId")
                                 </div>
                             </li>
 

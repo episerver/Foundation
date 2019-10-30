@@ -11,8 +11,8 @@
                     <div class="col-12">
                         @if (Model.CurrentContent.MultiShipmentPage != null)
                             {
-                                <a class="button-transparent-black pull-right" 
-                                   href="@Url.Action("MutipleAddresses", new { node = Model.CurrentContent.ContentLink })" 
+                                <a class="button-transparent-black pull-right"
+                                   href="@Url.Action("MutipleAddresses", new { node = Model.CurrentContent.ContentLink })"
                                    title="@Html.TranslateFallback("/Checkout/MultiShipment/Heading", "SHIP TO MULTIPLE ADDRESSES")">
                                     <span>
                                         @Html.TranslateFallback("/Checkout/MultiShipment/Heading", "SHIP TO MULTIPLE ADDRESSES")
@@ -61,7 +61,11 @@
                                             values.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
                                         }
                                     }
-                                    @Helpers.RenderDropdown(values, Model.Shipments[0].Address.AddressId, "", "Shipments[0].Address.AddressId")
+                                    @{
+                                        var defaultShippingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.ShippingDefault);
+                                        var defaultShippingAddressId = defaultShippingAddress != null ? defaultShippingAddress.AddressId : null;
+                                    }
+                                    @Helpers.RenderDropdown(values, Model.Shipments[0].Address.AddressId ?? defaultShippingAddressId, "", "Shipments[0].Address.AddressId")
 
                                     @*@Html.DropDownListFor(model => model.Shipments[0].Address.AddressId,
                         new SelectList(Model.AvailableAddresses, "AddressId", "Name", !string.IsNullOrEmpty(Model.Shipments[0].Address.AddressId) ? Model.Shipments[0].Address.AddressId : string.Empty),
