@@ -1224,6 +1224,7 @@
     <Content Include="Features\Blog\BlogListPage\_GridTemplate.cshtml" />
     <Content Include="Features\Blog\BlogListPage\Preview.cshtml" />
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
+    <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
@@ -1555,7 +1556,6 @@
     <Content Include="Features\MyAccount\AddressBook\EditForm.cshtml" />
     <Content Include="Features\MyAccount\AddressBook\Index.cshtml" />
     <Content Include="Features\MyAccount\AddressBook\ModalAddressDialog.cshtml" />
-    <Content Include="Features\MyAccount\OrderHistory\Detail.cshtml" />
     <Content Include="Features\MyAccount\OrderHistory\Index.cshtml" />
     <Content Include="Features\MyAccount\OrdersBlock\Index.cshtml" />
     <Content Include="Features\Shared\Foundation\_WishListMiniCartDetails.cshtml" />

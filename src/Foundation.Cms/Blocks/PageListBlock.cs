@@ -2,6 +2,8 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms.EditorDescriptors;
 using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -48,6 +50,14 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual bool Recursive { get; set; }
 
+        [Display(Name = "Template of pages listing", GroupName = SystemTabNames.Content, Order = 100)]
+        [SelectOne(SelectionFactoryType = typeof(TemplateBlogListSelectionFactory))]
+        public virtual string Template { get; set; }
+
+        [Display(Name = "Preview option (not available in the Grid template)", GroupName = SystemTabNames.Content, Order = 110)]
+        [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
+        public virtual string PreviewOption { get; set; }
+
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
@@ -55,6 +65,8 @@ namespace Foundation.Cms.Blocks
             Count = 3;
             IncludeTeaserText = true;
             IncludePublishDate = false;
+            Template = TemplateSelections.Grid;
+            PreviewOption = PreviewOptions.Full;
             SortOrder = FilterSortOrder.PublishedDescending;
         }
     }
