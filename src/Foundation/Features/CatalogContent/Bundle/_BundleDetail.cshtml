@@ -26,37 +26,6 @@
             <hr />
             @Html.Partial("_Rating", Model)
             <hr />
-            <div class="row">
-                <div class="col-12">
-                    @if (Model.IsAvailable)
-                    {
-                        if (Model.DiscountedPrice < Model.ListingPrice)
-                        {
-                            <span class="price__old">@Model.ListingPrice.ToString()</span>
-                            <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
-                        }
-                        else
-                        {
-                            <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
-                        }
-
-                        if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
-                        {
-                            <span class="price__discount" style="padding-left: 10px;">
-                                @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
-                            </span>
-                        }
-                        <span class="pull-right in-stock">
-                            <i data-feather="check-circle"></i>
-                            In Stock
-                        </span>
-                    }
-                    else
-                    {
-                        @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
-                    }
-                </div>
-            </div>
 
             <br />
             @Html.PropertyFor(x => x.CurrentContent.Description)
