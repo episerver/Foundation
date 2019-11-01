@@ -11,6 +11,5 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-22.png")]
     public class StorePage : FoundationPageData
     {
-
     }
 }

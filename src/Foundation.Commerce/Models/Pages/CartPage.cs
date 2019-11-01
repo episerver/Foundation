@@ -13,7 +13,6 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-08.png")]
     public class CartPage : FoundationPageData
     {
-
         [CultureSpecific]
         [Display(Name = "Show Recommendations", Order = 50, Description = "This will determine whether or not to show recommendations.")]
         public virtual bool ShowRecommendations { get; set; }

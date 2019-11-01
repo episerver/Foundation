@@ -11,6 +11,5 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/elected.png")]
     public class SalesRepPage : FoundationPageData
     {
-
     }
 }
