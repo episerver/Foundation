@@ -71,7 +71,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
                 string.Format("{0}<a href=\"{1}\">{2}</a>", _localizationService.GetString("/ResetPassword/Mail/Text"), url, _localizationService.GetString("/ResetPassword/Mail/Link"))
             );
 
-            await UserManager.SendEmailAsync(user.Id, mailPage.MailTitle, body);
+            _mailService.Send(mailPage.MailTitle, body, user.Email);
 
             return RedirectToAction("ForgotPasswordConfirmation");
         }
@@ -85,9 +85,9 @@ namespace Foundation.Features.MyAccount.ResetPassword
         }
 
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword(ResetPasswordPage currentPage, string code)
         {
-            var viewModel = new ResetPasswordViewModel(null) { Code = code };
+            var viewModel = new ResetPasswordViewModel(currentPage) { Code = code };
             return code == null ? View("Error") : View("ResetPassword", viewModel);
         }
 

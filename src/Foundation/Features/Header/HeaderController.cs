@@ -1,5 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Core;
 using EPiServer.Web.Routing;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Models;
@@ -24,10 +23,9 @@ namespace Foundation.Features.Header
         }
 
         [ChildActionOnly]
-        public ActionResult GetHeader()
+        public ActionResult GetHeader(DemoHomePage homePage)
         {
             var content = _contentRouteHelper.Content;
-            var homePage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
             return PartialView("_Header", _headerViewModelFactory.CreateHeaderViewModel<DemoHeaderViewModel>(content, homePage));
         }
     }

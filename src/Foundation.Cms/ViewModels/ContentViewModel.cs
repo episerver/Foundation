@@ -11,6 +11,7 @@ namespace Foundation.Cms.ViewModels
     {
         private Injected<IContentLoader> _contentLoader;
         private Injected<IContentVersionRepository> _contentVersion;
+        private CmsHomePage _startPage;
 
         public ContentViewModel() : this(default)
         {
@@ -27,15 +28,20 @@ namespace Foundation.Cms.ViewModels
         {
             get
             {
-                if (PageEditing.PageIsInEditMode)
+                if (_startPage == null)
                 {
-                    var startPageRef = _contentVersion.Service.LoadCommonDraft(ContentReference.StartPage, ContentLanguage.PreferredCulture.Name);
-                    return _contentLoader.Service.Get<CmsHomePage>(startPageRef.ContentLink);
+                    if (PageEditing.PageIsInEditMode)
+                    {
+                        var startPageRef = _contentVersion.Service.LoadCommonDraft(ContentReference.StartPage, ContentLanguage.PreferredCulture.Name);
+                        _startPage = _contentLoader.Service.Get<CmsHomePage>(startPageRef.ContentLink);
+                    }
+                    else
+                    {
+                        _startPage = _contentLoader.Service.Get<CmsHomePage>(ContentReference.StartPage);
+                    }
                 }
-                else
-                {
-                    return _contentLoader.Service.Get<CmsHomePage>(ContentReference.StartPage);
-                }
+
+                return _startPage;
             }
         }
     }
