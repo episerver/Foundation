@@ -20,7 +20,7 @@
 @Html.RenderEPiServerQuickNavigator()
 @if (!Model.StartPage.HideSiteHeader)
 {
-    { Html.RenderAction("GetHeader", "Header"); }
+    { Html.RenderAction("GetHeader", "Header", new { homePage = Model.StartPage }); }
 }
 <div class="container">
     @RenderBody()
