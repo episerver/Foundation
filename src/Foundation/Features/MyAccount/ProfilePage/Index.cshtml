@@ -1,10 +1,9 @@
 ﻿@using Foundation.Commerce.ViewModels.Header
-@using Foundation.Commerce.Customer.ViewModels
 @using EPiServer.Commerce.Order
 @model Foundation.Features.MyAccount.ProfilePage.SocialCommerceProfilePageViewModel
-<div class="row container--gutter">
+<div class="row">
     @Html.Action("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link })
-    <div class="col-main col-sm-9">
+    <div class="col-md-12 col-lg-9">
         <div class="my-account">
             <div class="page-title">
                 <h2>@Html.TranslateFallback("/Dashboard/Labels/MyDashboard", "My Dashboard")</h2>
