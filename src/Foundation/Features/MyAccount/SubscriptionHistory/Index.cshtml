@@ -2,45 +2,43 @@
 @using Foundation.Commerce.ViewModels.Header
 @model SubscriptionHistoryViewModel
 
-<div class="container">
-    <div class="row">
-        @{
-            Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
-        }
-        <div class="col-md-12 col-lg-9">
-            <div class="subscription-section">
-                <div class="page-title">
-                    <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
-                </div>
-                @if (Model.PaymentPlans.Any())
-                {
-                    <table class="table table-sm table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanID", "ID")</th>
-                                <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanDate", "Date")</th>
-                                <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/TotalPrice", "Price")</th>
-                                <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/ActiveStatus", "Active Status")</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var order in Model.PaymentPlans)
-                            {
-                                <tr>
-                                    <td><a href="@(Model.PaymentPlanDetailsPageUrl)?paymentPlanId=@order.Id">#@order.Id</a></td>
-                                    <td>@order.Created.ToString()</td>
-                                    <td><span class="price">@order.GetTotal().ToString()</span></td>
-                                    <td><em>@order.IsActive</em></td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <p>No subscription</p>
-                }
+<div class="row">
+    @{
+        Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
+    }
+    <div class="col-md-12 col-lg-9">
+        <div class="subscription-section">
+            <div class="page-title">
+                <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
             </div>
+            @if (Model.PaymentPlans.Any())
+            {
+                <table class="table table-sm table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanID", "ID")</th>
+                            <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanDate", "Date")</th>
+                            <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/TotalPrice", "Price")</th>
+                            <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/ActiveStatus", "Active Status")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.PaymentPlans)
+                        {
+                            <tr>
+                                <td><a href="@(Model.PaymentPlanDetailsPageUrl)?paymentPlanId=@order.Id">#@order.Id</a></td>
+                                <td>@order.Created.ToString()</td>
+                                <td><span class="price">@order.GetTotal().ToString()</span></td>
+                                <td><em>@order.IsActive</em></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No subscription</p>
+            }
         </div>
     </div>
 </div>
