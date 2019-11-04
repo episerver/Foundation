@@ -14,9 +14,13 @@
         @* Header Image *@
         <div class="row">
             <div class="col-12">
-                @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+                @if (PageEditing.PageIsInEditMode)
                 {
                     <img class="blog-item__image img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" @Html.EditAttributes(x => x.CurrentContent.PageImage) />
+                }
+                else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+                {
+                    <img class="blog-item__image img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
                 }
             </div>
         </div>
