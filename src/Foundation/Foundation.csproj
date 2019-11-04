@@ -853,7 +853,7 @@
     <Compile Include="Features\Category\StandardCategoryController.cs" />
     <Compile Include="Features\Checkout\CheckoutController.cs" />
     <Compile Include="Features\Checkout\ConfirmationMail\OrderConfirmationMailController.cs" />
-    <Compile Include="Features\Events\CalendarEventBlock\CalendarEventBlockController.cs" />
+    <Compile Include="Features\Events\CalendarBlock\CalendarBlockController.cs" />
     <Compile Include="Features\Events\CalendarEvent\CalendarEventController.cs" />
     <Compile Include="Features\Header\HeaderController.cs" />
     <Compile Include="Features\Locations\LocationItemPage\LocationItemPageController.cs" />
@@ -1224,6 +1224,7 @@
     <Content Include="Features\Blog\BlogListPage\_GridTemplate.cshtml" />
     <Content Include="Features\Blog\BlogListPage\Preview.cshtml" />
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_calendar-block.scss" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
@@ -1538,8 +1539,8 @@
     <Content Include="Features\Shared\Foundation\Header\_MiniWishlist.cshtml" />
     <Content Include="Features\Shared\Foundation\_Footer.cshtml" />
     <Content Include="Features\Events\CalendarEvent\Index.cshtml" />
-    <Content Include="Features\Events\CalendarEventBlock\Index.cshtml" />
-    <Content Include="Features\Events\CalendarEventBlock\Agenda.cshtml" />
+    <Content Include="Features\Events\CalendarBlock\Index.cshtml" />
+    <Content Include="Features\Events\CalendarBlock\Agenda.cshtml" />
     <Content Include="Features\CatalogContent\Product\Index.cshtml" />
     <Content Include="Features\CatalogContent\Product\_QuickView.cshtml" />
     <Content Include="Features\Shared\Foundation\_Product.cshtml" />

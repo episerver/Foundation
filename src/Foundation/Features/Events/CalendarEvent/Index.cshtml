@@ -9,7 +9,7 @@
     <div class="col-12">
         <strong>Start Date: </strong>
         <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EventStartDate)>
-            @Model.CurrentContent.EventStartDate.ToString("MMMM-dd-yyyy HH:mm tt")
+            @Model.CurrentContent.EventStartDate
         </div>
     </div>
 </div>
@@ -17,7 +17,7 @@
     <div class="col-12">
         <strong>End Date: </strong>
         <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EventEndDate)>
-            @Model.CurrentContent.EventEndDate.ToString("MMMM-dd-yyyy HH:mm tt")
+            @Model.CurrentContent.EventEndDate
         </div>
     </div>
 </div>
