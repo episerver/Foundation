@@ -58,7 +58,7 @@ namespace Foundation.Cms.Blocks
         public bool HasVideo => !string.IsNullOrEmpty(VimeoVideoLink);
 
         [ScaffoldColumn(false)]
-        public bool HasCoverImage => CoverImage != null;
+        public bool HasCoverImage => !ContentReference.IsNullOrEmpty(CoverImage);
 
         [Editable(false)]
         public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;

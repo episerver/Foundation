@@ -12,7 +12,7 @@
                 @if (page is FoundationPageData)
                 {
                     var foundationPage = (FoundationPageData)page;
-                    if (foundationPage.PageImage != null)
+                    if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                     {
                         <img src="@Url.ContentUrl(foundationPage.PageImage)" class="img-fluid" />
                     }
