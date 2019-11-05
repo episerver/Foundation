@@ -25,7 +25,7 @@
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.Error(error.response.statusText);
             })
             .finally(function () {
                 $('body>.loading-box').hide();

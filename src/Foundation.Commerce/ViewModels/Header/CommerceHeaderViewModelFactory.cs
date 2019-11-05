@@ -205,7 +205,7 @@ namespace Foundation.Commerce.ViewModels.Header
                 };
                 viewModel.Markets = marketsViewModel;
 
-                CacheManager.Insert(Constant.CacheKeys.MarketViewModel, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromDays(7), CacheTimeoutType.Sliding));
+                CacheManager.Insert(Constant.CacheKeys.MarketViewModel, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
             }
         }
 

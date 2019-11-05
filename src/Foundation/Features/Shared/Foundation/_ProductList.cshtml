@@ -52,7 +52,9 @@
                             }
                             else
                             {
-                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">
+                                    @Html.Raw(product.PlacedPrice != 0 ? product.PlacedPrice.ToString() : "&nbsp;")
+                                </span>
                             }
                         </div>
                         <div class="action-icons">
