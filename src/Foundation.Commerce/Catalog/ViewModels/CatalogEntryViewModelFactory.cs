@@ -70,7 +70,9 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : ProductViewModelBase<TProduct, TVariant>, new()
         {
-            var variants = GetVariants<TVariant, TProduct>(currentContent).ToList();
+            var variants = GetVariants<TVariant, TProduct>(currentContent)
+                .Where(v => v.Prices().Any(x => x.MarketId == _currentMarket.GetCurrentMarket().MarketId))
+                .ToList();
 
             if (!TryGetVariant(variants, variationCode, out var variant))
             {
