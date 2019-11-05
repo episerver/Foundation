@@ -720,7 +720,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RequestQuote()
+        public ActionResult RequestQuote(CartPage currentPage)
         {
             bool succesRequest;
 
@@ -748,7 +748,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 };
             }
 
-            return Json(new { result = succesRequest });
+            return Redirect(currentPage.StaticLinkURL);
         }
 
         [HttpPost]
