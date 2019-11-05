@@ -6,6 +6,6 @@
     @Html.Translate("/Checkout/Payment/Methods/GiftCardPayment/Description")
 </div>
 <div class="avaiableGiftCard">
-    @Html.DropDownListFor(model => model.SelectedGiftCardId, Model.AvailableGiftCards, new { @class = "form-control" })
+    @Html.DropDownListFor(model => model.SelectedGiftCardId, Model.AvailableGiftCards, new { @class = "select-menu" })
     @Html.ValidationMessageFor(model => model.SelectedGiftCardId)
 </div>

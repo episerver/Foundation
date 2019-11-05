@@ -8,8 +8,15 @@ namespace Foundation.Commerce.Order.Payments
     {
         public PaymentProcessingResult ProcessPayment(IOrderGroup orderGroup, IPayment payment)
         {
-            //TODO
-            return PaymentProcessingResult.CreateSuccessfulResult("Gift card processed");
+            if (orderGroup == null)
+            {
+                return PaymentProcessingResult.CreateUnsuccessfulResult("Failed to process your payment.");
+            }
+            else
+            {
+                GiftCardManager.PurchaseByGiftCard(payment);
+                return PaymentProcessingResult.CreateSuccessfulResult("Gift card processed");
+            }
         }
 
         public override bool ProcessPayment(Payment payment, ref string message)
