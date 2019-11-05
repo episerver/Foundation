@@ -68,6 +68,7 @@
                 var form = $(this).closest('form');
                 var url = form[0].action;
                 var data = new FormData();
+                var itemId = $(this).data('lineitem-link');
                 data.append("orderGroupId", $(this).data('order-link'));
                 data.append("shipmentId", $(this).data('shipment-link'));
                 data.append("lineItemId", $(this).data('lineitem-link'));
@@ -86,6 +87,7 @@
                     .then(function (result) {
                         notification.Success('Success');
                         $('#returnSettingModal').modal('hide');
+                        $('#return-' + itemId).prop('disabled', true);
                     })
                     .catch(function (error) {
                         notification.Error(error);

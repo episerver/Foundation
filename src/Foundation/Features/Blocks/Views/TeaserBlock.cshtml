@@ -15,11 +15,25 @@
         {
             <h2 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
             <p @Html.EditAttributes(x => x.CurrentBlock.Text)>@Model.CurrentBlock.Text</p>
-            <div @Html.EditAttributes(x => x.CurrentBlock.Image)><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
+            if (PageEditing.PageIsInEditMode)
+            {
+                <div @Html.EditAttributes(x => x.CurrentBlock.Image)><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
+            }
+            else if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
+            {
+                <div><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
+            }
         }
         else
         {
-            <div @Html.EditAttributes(x => x.CurrentBlock.Image)><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
+            if (PageEditing.PageIsInEditMode)
+            {
+                <div @Html.EditAttributes(x => x.CurrentBlock.Image)><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
+            }
+            else if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
+            {
+                <div><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
+            }
             <h2 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
             <p @Html.EditAttributes(x => x.CurrentBlock.Text)>@Model.CurrentBlock.Text</p>
         }

@@ -59,28 +59,6 @@ namespace Foundation.Features.MyAccount.OrderDetails
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reorder(int orderGroupId = 0)
-        {
-            var purchaseOrder = OrderContext.Current.Get<PurchaseOrder>(orderGroupId);
-            var form = purchaseOrder.GetFirstForm();
-            var list = form.GetAllLineItems();
-
-            string warningMessage = string.Empty;
-
-            ICart Cart = _cartService.LoadOrCreateCart(_cartService.DefaultCartName);
-
-            foreach (var item in list)
-            {
-                Cart.AddLineItem(item);
-
-            }
-
-            var order = _orderRepository.Save(Cart);
-            return Redirect(Url.ContentUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).CheckoutPage));
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult CreateReturn(int orderGroupId, int shipmentId, int lineItemId, decimal returnQuantity, string reason)
         {
             ReturnFormStatus formStatus = _ordersService.CreateReturn(orderGroupId, shipmentId, lineItemId, returnQuantity, reason);
