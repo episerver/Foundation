@@ -95,11 +95,27 @@
 				width: 1.5em;
 				height: 1.5em;
 			}
+			
+		.container {
+            display: block;
+            padding-top: 50px;
+		}
+			
+		.mdc-top-app-bar__title
+		{
+		    font-size: inherit !important;
+		}
+			
+		.mdc-tab
+		{
+		    font-size: inherit !important;
+		}
+		
 	</style>
 </head>
 <body>
 @Html.Raw(Html.ShellInitializationScript())
-@Html.Raw(Html.GlobalMenu())
+@Html.Raw(EPiServer.Shell.Navigation.MenuHelper.CreatePlatformNavigationMenu())
 <main class="container">
 	<header>
 		@Html.Partial("Navigation")
@@ -141,7 +157,7 @@
 	function getSiteAudits() {
 		var index = 0;
 		$tabs = $('#site-audit-section [id^=tab-]');
-		if ($tabs.length >= 1) {
+		if ($tabs.length > 0) {
 			$tabs.each(function(tab) {
 				getSiteDataForTab(this, index++);
 			});
@@ -153,7 +169,7 @@
 			var siteGuid = $(tab).data('siteguid');
 			showProgressBarInside($tab);
 			$.ajax({
-				url: '/episerver/cmsaudit/cmsaudit/indexsiteaudit',
+				url: 'cmsaudit/indexsiteaudit',
 				data: {
 					siteGuid: siteGuid
 				}
@@ -191,8 +207,8 @@
 		var $contentTypeRow = $(contentTypeRow);
 		var contentTypeId = $contentTypeRow.data('contenttypeid');
 		var url = $('#cms-content-types').data('type') == 'page'
-			? '/episerver/cmsaudit/cmsaudit/pagetypeaudit'
-			: '/episerver/cmsaudit/cmsaudit/blocktypeaudit';
+			? 'pagetypeaudit'
+			: 'blocktypeaudit';
 		$.ajax({
 			url: url,
 			data: {
