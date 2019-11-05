@@ -132,7 +132,12 @@ namespace Foundation.Features.Setup
 
             var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName);
             searchManager.BuildIndex(true);
-            RunIndexJob();
+
+            var config = EPiServer.Find.Configuration.GetConfiguration();
+            if (!config.ServiceUrl.Equals("https://es-us-api01.episerver.com/9IKGqgMZaTD9KP4Op3ygsVB6JeJzR0N6") && !config.DefaultIndex.Equals("episerverab_index55794"))
+            {
+                RunIndexJob();
+            }
 
             return Redirect("/");
         }

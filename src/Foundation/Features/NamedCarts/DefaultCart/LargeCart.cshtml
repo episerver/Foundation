@@ -37,18 +37,8 @@
 
 
 
-@if (Model.ShowRecommendations)
-{
-    <div class="row">
-        <div class="col-12">
-            <div class="new_title center">
-                <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations For You")</h2>
-            </div>
-            @*@{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.Recommendations });}*@
-        </div>
 
-    </div>
-}
+@Html.PropertyFor(x => x.CurrentContent.BottomContentArea)
 
 @if (Model.Shipments.Count() > 0)
 {
