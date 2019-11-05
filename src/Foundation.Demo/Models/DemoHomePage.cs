@@ -40,9 +40,6 @@ namespace Foundation.Demo.Models
         [Display(Name = "Show commerce header components", GroupName = CmsTabNames.Header, Order = 40)]
         public virtual bool ShowCommerceHeaderComponents { get; set; }
 
-        [Display(Name = "Show product ratings on all product tiles", GroupName = CmsTabNames.Header, Order = 50)]
-        public virtual bool ShowProductRatingsOnListings { get; set; }
-
         #endregion
 
         #region Settings
