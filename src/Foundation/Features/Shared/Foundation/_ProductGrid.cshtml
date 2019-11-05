@@ -49,7 +49,10 @@
                         }
                         else
                         {
-                            <span class="price__discount">@product.PlacedPrice.ToString()</span>
+                            if (product.PlacedPrice != 0)
+                            {
+                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
+                            }
                         }
                     </div>
                 </div>

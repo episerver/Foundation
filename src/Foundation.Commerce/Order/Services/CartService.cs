@@ -222,7 +222,7 @@ namespace Foundation.Commerce.Order.Services
                 foreach (var relation in _relationRepository.GetChildren<BundleEntry>(entryContent.ContentLink))
                 {
                     var entry = _contentLoader.Get<EntryContentBase>(relation.Child);
-                    var recursiveResult = AddToCart(cart, entry, relation.Quantity ?? 1, deliveryMethod, warehouseCode);
+                    var recursiveResult = AddToCart(cart, entry, (relation.Quantity ?? 1) * quantity, deliveryMethod, warehouseCode);
                     if (recursiveResult.EntriesAddedToCart)
                     {
                         result.EntriesAddedToCart = true;

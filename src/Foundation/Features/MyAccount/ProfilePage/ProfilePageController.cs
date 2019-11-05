@@ -107,7 +107,8 @@ namespace Foundation.Features.MyAccount.ProfilePage
                         LineItem = lineItem,
                     }).GroupBy(x => x.LineItem.Code).Select(group => group.First()),
                     BillingAddress = billingAddress,
-                    ShippingAddresses = new List<AddressModel>()
+                    ShippingAddresses = new List<AddressModel>(),
+                    OrderGroupId = purchaseOrder.OrderLink.OrderGroupId
                 };
 
                 foreach (var orderAddress in purchaseOrder.Forms.SelectMany(x => x.Shipments).Select(s => s.ShippingAddress))

@@ -47,11 +47,16 @@ namespace Foundation.Features.MyAccount.OrderHistory
         }
 
         [HttpGet]
-        public ActionResult Index(OrderHistoryPage currentPage)
+        public ActionResult Index(OrderHistoryPage currentPage, int? page, int? size)
         {
-            var purchaseOrders = _orderRepository.Load<IPurchaseOrder>(PrincipalInfo.CurrentPrincipal.GetContactId(), _cartService.DefaultCartName)
-                                             .OrderByDescending(x => x.Created)
-                                             .ToList();
+            var pageNum = page ?? 1;
+            var pageSize = size ?? 10;
+            var orders = _orderRepository.Load<IPurchaseOrder>(PrincipalInfo.CurrentPrincipal.GetContactId(), _cartService.DefaultCartName);
+            var purchaseOrders = orders
+                                .OrderByDescending(x => x.Created)
+                                .Skip((pageNum - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
 
             var viewModel = new OrderHistoryViewModel(currentPage)
             {
@@ -61,7 +66,6 @@ namespace Foundation.Features.MyAccount.OrderHistory
 
             foreach (var purchaseOrder in purchaseOrders)
             {
-
                 // Assume there is only one form per purchase.
                 var form = purchaseOrder.GetFirstForm();
                 var billingAddress = new AddressModel();
@@ -92,23 +96,16 @@ namespace Foundation.Features.MyAccount.OrderHistory
             viewModel.OrderDetailsPageUrl =
              UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderDetailsPage);
 
+            viewModel.PagingInfo.PageNumber = pageNum;
+            viewModel.PagingInfo.TotalRecord = orders.Count();
+            viewModel.PagingInfo.PageSize = pageSize;
+            viewModel.OrderHistoryUrl = currentPage.StaticLinkURL;
             return View(viewModel);
         }
 
-        [HttpPost]
-        public ActionResult Detail(OrderHistoryPage currentPage, int orderid)
+        public ActionResult ViewAll()
         {
-
-            var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderid);
-            if (purchaseOrder == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-            var viewModel = CreateViewModel(currentPage, purchaseOrder);
-            //viewModel.OrderDetailsPageUrl =
-            //UrlResolver.Current.GetUrl(_contentLoader.Get<StartPage>(ContentReference.StartPage).OrderDetailsPage);
-
-            return View(viewModel);
+            return Redirect(UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderHistoryPage));
         }
 
         [HttpPost]

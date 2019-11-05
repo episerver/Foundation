@@ -122,7 +122,6 @@ ul.pagination {
     }
 }
 
-
 ul.list-group--info {
     width: 100%;
     margin-top: 15px;
@@ -136,6 +135,9 @@ ul.list-group--info {
     }
 }
 
+ul.loyalty-statistics li {
+    padding: 15px 0px;
+}
 
 ul.checkout__status-bar {
     margin-top: 30px;
@@ -187,6 +189,7 @@ ul.checkout__status-bar {
 ul.loyal--group {
     width: 100%;
     margin-top: 15px;
+    padding-left: 0px;
 
     & li {
         width: 100%;

@@ -10,15 +10,10 @@ namespace Foundation.Cms.Blocks
     public abstract class FoundationBlockData : BlockData, ICategorizableContent
     {
         [Categories]
-        [Display(
-            Name = "Categories",
-            Description = "Categories associated with this content",
-            GroupName = SystemTabNames.PageHeader,
-            Order = 0)]
+        [Display(Description = "Categories associated with this content", GroupName = SystemTabNames.PageHeader, Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
         [Display(Name = "Top", GroupName = CmsTabNames.BlockPadding, Order = 1)]
-
         public virtual int PaddingTop { get; set; }
 
         [Display(Name = "Right", GroupName = CmsTabNames.BlockPadding, Order = 2)]

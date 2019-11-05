@@ -22,9 +22,9 @@ namespace Foundation.Features.Checkout.ConfirmationMail
         private readonly CustomerService _customerService;
         private readonly IOrderGroupCalculator _orderGroupCalculator;
 
-        public OrderConfirmationMailController(ConfirmationService confirmationService, 
-            AddressBookService addressBookService, 
-            CustomerService customerService, 
+        public OrderConfirmationMailController(ConfirmationService confirmationService,
+            AddressBookService addressBookService,
+            CustomerService customerService,
             IOrderGroupCalculator orderGroupCalculator)
         {
             _confirmationService = confirmationService;
@@ -51,7 +51,7 @@ namespace Foundation.Features.Checkout.ConfirmationMail
 
             var viewModel = CreateViewModel(currentPage, order);
 
-            return View(viewModel);
+            return View("~/Features/Checkout/ConfirmationMail/Index.cshtml", viewModel);
         }
 
         private OrderConfirmationViewModel<OrderConfirmationMailPage> CreateViewModel(OrderConfirmationMailPage currentPage, IPurchaseOrder order)

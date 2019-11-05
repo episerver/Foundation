@@ -67,7 +67,7 @@
                                 <div class="location__body">
                                     <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>
                                     <div class="row">
-                                        @if (location.Image != null)
+                                        @if (!ContentReference.IsNullOrEmpty(location.Image))
                                         {
                                             <div class="col-lg-5">
                                                 <img src="@Url.ContentUrl(location.Image)" class="location__img img-responsive" alt="@location.Name">
@@ -99,7 +99,7 @@
                                                 foreach (var tag in location.Tags.FilteredItems)
                                                 {
                                                     <span data-epi-block-id="@tag.ContentLink.ToString()">
-                                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-round">@tag.GetContent().Name</span></a>
+                                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-dark">@tag.GetContent().Name</span></a>
                                                     </span>
                                                 }
                                             }

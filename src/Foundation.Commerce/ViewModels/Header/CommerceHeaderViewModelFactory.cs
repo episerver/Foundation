@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Editor;
 using EPiServer.Filters;
 using EPiServer.Framework.Cache;
 using EPiServer.Framework.Localization;
@@ -99,35 +100,55 @@ namespace Foundation.Commerce.ViewModels.Header
         {
             var menuItems = new List<MenuItemViewModel>();
             var menuCached = CacheManager.Get(homePage.ContentLink.ID + Constant.CacheKeys.MenuItems) as List<MenuItemViewModel>;
-            if (menuCached != null)
+            if (menuCached != null && !PageEditing.PageIsInEditMode)
             {
                 menuItems = menuCached;
             }
             else
             {
-                var menuItemBlocks = homePage.MainMenu?.FilteredItems.GetContentItems<MenuItemBlock>() ?? new List<MenuItemBlock>();
+                var menuItemBlocks = homePage.MainMenu?.FilteredItems.GetContentItems<IContent>() ?? new List<IContent>();
                 menuItems = menuItemBlocks?
-                   .Select(_ => new MenuItemViewModel
-                   {
-                       Name = _.Name,
-                       ButtonText = _.ButtonText,
-                       TeaserText = _.TeaserText,
-                       Uri = _.Link == null ? string.Empty : _urlResolver.GetUrl(new UrlBuilder(_.Link.ToString()), new UrlResolverArguments() { ContextMode = ContextMode.Default }),
-                       ImageUrl = !ContentReference.IsNullOrEmpty(_.MenuImage) ? _urlResolver.GetUrl(_.MenuImage) : "",
-                       ButtonLink = _.ButtonLink?.Host + _.ButtonLink?.PathAndQuery,
-                       ChildLinks = _.ChildItems?.ToList() ?? new List<GroupLinkCollection>()
+                   .Select(x => {
+                       MenuItemBlock _;
+                       if (x is MenuItemBlock)
+                       {
+                           _ = x as MenuItemBlock;
+                           return new MenuItemViewModel
+                           {
+                               Name = _.Name,
+                               ButtonText = _.ButtonText,
+                               TeaserText = _.TeaserText,
+                               Uri = _.Link == null ? string.Empty : _urlResolver.GetUrl(new UrlBuilder(_.Link.ToString()), new UrlResolverArguments() { ContextMode = ContextMode.Default }),
+                               ImageUrl = !ContentReference.IsNullOrEmpty(_.MenuImage) ? _urlResolver.GetUrl(_.MenuImage) : "",
+                               ButtonLink = _.ButtonLink?.Host + _.ButtonLink?.PathAndQuery,
+                               ChildLinks = _.ChildItems?.ToList() ?? new List<GroupLinkCollection>()
+                           };
+                       }
+                       else
+                       {
+                           return new MenuItemViewModel
+                           {
+                               Name = x.Name,
+                               Uri = _urlResolver.GetUrl(x.ContentLink),
+                               ChildLinks = new List<GroupLinkCollection>()
+                           };
+                       }
+
                    }).ToList() ?? new List<MenuItemViewModel>();
 
-                var keyDependency = new List<string>();
-                keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(homePage.ContentLink)); // If The HomePage updates menu (remove MenuItems)
-
-                foreach (var m in menuItemBlocks)
+                if (!PageEditing.PageIsInEditMode)
                 {
-                    keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey((m as IContent).ContentLink));
-                }
+                    var keyDependency = new List<string>();
+                    keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(homePage.ContentLink)); // If The HomePage updates menu (remove MenuItems)
 
-                var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
-                CacheManager.Insert(homePage.ContentLink.ID + Constant.CacheKeys.MenuItems, menuItems, eviction);
+                    foreach (var m in menuItemBlocks)
+                    {
+                        keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey((m as IContent).ContentLink));
+                    }
+
+                    var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
+                    CacheManager.Insert(homePage.ContentLink.ID + Constant.CacheKeys.MenuItems, menuItems, eviction);
+                }
             }
 
             return new T

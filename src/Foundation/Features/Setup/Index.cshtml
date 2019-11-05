@@ -34,13 +34,13 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input sites" type="radio" name="siteLocation" id="localSiteLocation" value="Local" checked="checked">
+                                    <input class="custom-control-input sites" type="radio" name="siteLocation" id="localSiteLocation" value="Local">
                                     <label class="custom-control-label" for="localSiteLocation">
                                         @Html.TranslateFallback("Local Site File", "Local Site File")
                                     </label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input sites" type="radio" name="siteLocation" id="remoteSiteLocation" value="Remote">
+                                    <input class="custom-control-input sites" type="radio" name="siteLocation" id="remoteSiteLocation" value="Remote" checked="checked">
                                     <label class="custom-control-label" for="remoteSiteLocation">
                                         @Html.TranslateFallback("Remote Site File", "Remote Site File")
                                     </label>
@@ -55,13 +55,13 @@
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input catalogs" type="radio" name="catalogLocation" id="localCatalogLocation" value="Local" checked="checked">
+                                    <input class="custom-control-input catalogs" type="radio" name="catalogLocation" id="localCatalogLocation" value="Local">
                                     <label class="custom-control-label" for="localCatalogLocation">
                                         @Html.TranslateFallback("Local Catalog File", "Local Catalog File")
                                     </label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input catalogs" type="radio" name="catalogLocation" id="remoteCatalogLocation" value="Remote">
+                                    <input class="custom-control-input catalogs" type="radio" name="catalogLocation" id="remoteCatalogLocation" value="Remote" checked="checked">
                                     <label class="custom-control-label" for="remoteCatalogLocation">
                                         @Html.TranslateFallback("Remote File Catalog", "Remote Catalog File")
                                     </label>
@@ -93,8 +93,8 @@
         $(document).ready(function () {
             $(document).on("change", ".sites", siteChanged);
             $(document).on("change", ".catalogs", catalogChanged);
-            document.getElementById("remoteSiteDiv").style.display = "none";
-            document.getElementById("remoteCatalogDiv").style.display = "none";
+            document.getElementById("localSiteDiv").style.display = "none";
+            document.getElementById("localCatalogDiv").style.display = "none";
         });
 
         function siteChanged() {

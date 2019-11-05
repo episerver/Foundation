@@ -14,7 +14,7 @@
 
     <div class="row">
         @Html.Action("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link })
-        <div class="col-sm-9">
+        <div class="col-md-12 col-lg-9">
             <div class="row">
                 <div class="col-12">
                     <h1 class="heading-title">
@@ -65,12 +65,12 @@
                 <div class="col-12">
                     @if (!isQuote)
                     {
-                        using (Html.BeginForm("Reorder", "OrderDetails", FormMethod.Post))
+                        using (Html.BeginForm("Reorder", "DefaultCart", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            @Html.Hidden("orderGroupId", Model.OrderGroupId)
+                            @Html.Hidden("orderId", Model.OrderGroupId)
                             <button type="submit" data-order-link="@Model.OrderGroupId" class="button-black jsReorder">
-                                @Html.TranslateFallback("/OrderHistory/Labels/ReOrder", "Re-Order")
+                                @Html.TranslateFallback("/OrderHistory/Labels/Reorder", "Reorder")
                             </button>
                         }
                     }

@@ -50,6 +50,10 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
+    &__contentarea {
+        margin-top: 20px;
+    }
 }
 
 .social-icon {
@@ -155,6 +159,10 @@
         &__right {
             margin-right: 30px;
         }
+    }
+
+    &__association {
+        padding: 15px 0px;
     }
 }
 

@@ -98,7 +98,7 @@
                             <td style="vertical-align:top; width:50%;">
                                 @foreach (var payment in Model.Payments)
                                 {
-                                    Html.RenderPartial("_" + payment.PaymentMethodName + "Confirmation", payment);
+                                    Html.RenderPartial("~/Features/MyAccount/OrderConfirmation/_" + payment.PaymentMethodName + "Confirmation.cshtml", payment);
                                 }
 
                             </td>

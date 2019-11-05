@@ -8,8 +8,9 @@
         <ul class="profile-sidebar__group">
             @foreach (var linkItem in Model.MenuItemCollection)
             {
-                <li class="@(!string.IsNullOrEmpty(Model.CurrentPageText) && Model.CurrentPageText.Equals(linkItem.Text) ? "current" : "") profile-sidebar__item">
-                    <a href="@Url.PageUrl(linkItem.Href)">@linkItem.Text</a>
+                var url = Url.PageUrl(linkItem.Href);
+                <li class="@(Request.Url.AbsolutePath.Trim('/') == url.ToString().Trim('/') ? "current" : "") profile-sidebar__item">
+                    <a href="@url">@linkItem.Text</a>
                 </li>
             }
         </ul>

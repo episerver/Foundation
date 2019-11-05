@@ -104,28 +104,6 @@ namespace Foundation.Features.MyAccount
 
             model.MenuItemCollection.AddRange(menuItems);
 
-            if (id == MyAccountPageType.Organization)
-            {
-                return PartialView("_ProfileSidebar", model);
-            }
-
-            var currentContent = _pageRouteHelper.Page;
-            foreach (var menuItem in menuItems)
-            {
-                if (menuItem.Href != null)
-                {
-                    var content = UrlResolver.Current.Route(new UrlBuilder(menuItem.Href));
-                    if (content == null)
-                    {
-                        continue;
-                    }
-                    if (currentContent.ContentLink == content.ContentLink)
-                    {
-                        model.CurrentPageText = menuItem.Text;
-                    }
-                }
-            }
-
             return PartialView("_ProfileSidebar", model);
         }
     }
