@@ -9,11 +9,11 @@ using System.ComponentModel.DataAnnotations;
 namespace Foundation.Cms.Blocks
 {
     [ContentType(GUID = "D5148C01-DFB0-4E57-8399-6CEEBF48F38E",
-        DisplayName = "Calendar Event Block",
-        Description = "Display list of events on calendar",
+        DisplayName = "Calendar Block",
+        Description = "A block that lists a bunch of calendar events",
         GroupName = CmsGroupNames.CalendarEvent)]
     [ImageUrl("~/assets/icons/cms/pages/calendar.png")]
-    public class CalendarEventBlock : FoundationBlockData
+    public class CalendarBlock : FoundationBlockData
     {
         [Required]
         [CultureSpecific]
@@ -38,6 +38,7 @@ namespace Foundation.Cms.Blocks
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
+            Count = 5;
             ViewMode = "month";
         }
     }
