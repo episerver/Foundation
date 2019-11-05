@@ -12,6 +12,5 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-08.png")]
     public class SharedCartPage : FoundationPageData, IDisableOPE
     {
-
     }
 }
