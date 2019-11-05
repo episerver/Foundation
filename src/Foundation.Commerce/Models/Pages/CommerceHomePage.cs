@@ -51,6 +51,9 @@ namespace Foundation.Commerce.Models.Pages
 
         #region Site Structure
 
+        [Display(Name = "Show product ratings on all product tiles", GroupName = CommerceTabNames.SiteStructure, Order = 5)]
+        public virtual bool ShowProductRatingsOnListings { get; set; }
+
         [AllowedTypes(typeof(SearchResultPage))]
         [Display(Name = "Search page", GroupName = CommerceTabNames.SiteStructure, Order = 10)]
         public virtual ContentReference SearchPage { get; set; }
