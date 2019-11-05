@@ -12,6 +12,5 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-15.png")]
     public class OrderHistoryPage : FoundationPageData
     {
-
     }
 }

@@ -16,27 +16,15 @@ namespace Foundation.Commerce.Models.Pages
     public class OrderConfirmationPage : FoundationPageData
     {
         [CultureSpecific]
-        [Display(
-            Name = "Title",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 10)]
+        [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Title { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "Body text",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 20)]
+        [Display(Name = "Body text", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual XhtmlString Body { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "Registration area",
-            Description = "",
-            GroupName = SystemTabNames.Content,
-            Order = 30)]
+        [Display(Name = "Registration area", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual ContentArea RegistrationArea { get; set; }
     }
 }

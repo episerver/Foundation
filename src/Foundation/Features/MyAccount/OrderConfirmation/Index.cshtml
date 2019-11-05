@@ -9,13 +9,13 @@
     string cellPadding = "padding: 5px;";
 }
 <div class="row">
-    <div class="col-md-12 flex-center">
+    <div class="col-12 flex-center">
         <h1>@Html.PropertyFor(x => x.CurrentContent.Title)</h1>
     </div>
-    <div class="col-md-12 flex-center">
+    <div class="col-12 flex-center">
         <h4>@Html.TranslateFallback("/OrderHistory/Labels/OrderID", "Order ID") @Model.OrderId</h4>
     </div>
-    <div class="col-md-12 flex-center">
+    <div class="col-12 flex-center">
         <p class="light-text">@Html.TranslateFallback("/OrderHistory/Labels/OrderDate", "Date") @Model.Created</p>
     </div>
     @if (Model.NotificationMessage != null)
@@ -32,7 +32,7 @@
 
 <div class="row">
 
-    <div class="col-md-12">
+    <div class="col-12">
         @Html.PropertyFor(x => x.CurrentContent.Body)
 
         @if (Model.HasOrder)

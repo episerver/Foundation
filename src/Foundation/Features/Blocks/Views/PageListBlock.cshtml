@@ -2,38 +2,91 @@
 
 @Html.FullRefreshPropertiesMetaData(new[] { "IncludePublishDate", "IncludeTeaserText", "Count", "SortOrder", "Root", "PageTypeFilter", "CategoryFilter", "Recursive" })
 
-<div style="@Model.PaddingStyles">
-    <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
-    <hr />
-    @foreach (var page in Model.Pages)
-    {
-        <div class="row @string.Join(" ", page.GetThemeCssClassNames())">
-            <div class="col-12">
-                @if (page is FoundationPageData)
+<div class="row" style="@Model.PaddingStyles">
+    <div class="col-12">
+        @if (!string.IsNullOrEmpty(Model.Heading))
+        {
+            <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+            <hr />
+        }
+
+        @if (string.IsNullOrEmpty(Model.CurrentBlock.Template) || Model.CurrentBlock.Template == TemplateSelections.Grid)
+        {
+
+            if (Model.Pages != null && Model.Pages.Any())
+            {
+                var grid = (Model.Pages.Count() - 1) / 4;
+                grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
+                var firstPage = Model.Pages.ElementAt(0);
+                var listGridPages = new List<List<PageData>>();
+                var listLargePages = new List<PageData>();
+
+                for (var g = 0; g < grid; g++)
                 {
-                    var foundationPage = (FoundationPageData)page;
-                    if (foundationPage.PageImage != null)
+                    var list = new List<PageData>();
+                    for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
                     {
-                        <img src="@Url.ContentUrl(foundationPage.PageImage)" class="img-fluid" />
+                        list.Add(Model.Pages.ElementAt(i));
                     }
+                    listGridPages.Add(list);
                 }
-                <h5>
-                    <a href="@Url.ContentUrl(page.ContentLink)" class="link">@page.Name</a>
-                </h5>
-                @if (Model.ShowPublishDate && page.StartPublish.HasValue)
+
+                for (var i = grid * 4 + 1; i < Model.Pages.Count(); i++)
                 {
-                    <p class="date">@Html.DisplayFor(x => page.StartPublish)</p>
+                    listLargePages.Add(Model.Pages.ElementAt(i));
                 }
-                @if (page is FoundationPageData)
+
+
+                <div class="blog__gallery">
+                    <div class="blog__row">
+
+                        <div class="blog__large-col">
+                            @Html.Partial("_PageListPreview", new PageListPreviewViewModel(firstPage, Model.CurrentBlock))
+                        </div>
+                        @foreach (var list in listGridPages)
+                        {
+                            <div class="blog__large-col">
+                                <div class="blog__grid">
+                                    @foreach (var page in list)
+                                    {
+                                        @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
+                                    }
+                                </div>
+                            </div>
+                        }
+                        @foreach (var page in listLargePages)
+                        {
+                            <div class="blog__large-col">
+                                @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+        @if (Model.CurrentBlock.Template == TemplateSelections.ImageLeft)
+        {
+            if (Model.Pages != null && Model.Pages.Any())
+            {
+                foreach (var page in Model.Pages)
                 {
-                    var foundationPage = (FoundationPageData)page;
-                    if (Model.ShowIntroduction)
+                    @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
+                }
+            }
+        }
+
+        @if (Model.CurrentBlock.Template == TemplateSelections.ImageTop)
+        {
+            if (Model.Pages != null && Model.Pages.Any())
+            {
+                <div class="row">
+                    @foreach (var page in Model.Pages)
                     {
-                        <p>@foundationPage.TeaserText</p>
+                        @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
                     }
-                }
-            </div>
-        </div>
-        <hr />
-    }
+                </div>
+            }
+        }
+    </div>
 </div>
