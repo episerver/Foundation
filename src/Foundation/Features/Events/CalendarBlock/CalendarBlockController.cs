@@ -1,5 +1,4 @@
 using EPiServer;
-using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Extensions;
@@ -10,35 +9,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Foundation.Features.Events.CalendarEventBlock
+namespace Foundation.Features.Events.CalendarBlock
 {
     [TemplateDescriptor(Default = true)]
-    public class CalendarEventBlockController : BlockController<Cms.Blocks.CalendarEventBlock>
+    public class CalendarBlockController : BlockController<Cms.Blocks.CalendarBlock>
     {
         private readonly IContentLoader _contentLoader;
 
-        public CalendarEventBlockController(IContentLoader contentLoader) => _contentLoader = contentLoader;
+        public CalendarBlockController(IContentLoader contentLoader) => _contentLoader = contentLoader;
 
-        public override ActionResult Index(Cms.Blocks.CalendarEventBlock currentBlock)
+        public override ActionResult Index(Cms.Blocks.CalendarBlock currentBlock)
         {
             var events = FindEvents(currentBlock);
 
             if (currentBlock.ViewMode.Equals("List"))
             {
-                events = events.Where(x => DateTime.Parse(x.GetPropertyValue("StartDate")) >= DateTime.Now).OrderBy(x => x.GetPropertyValue("StartDate")).Take(currentBlock.Count);
+                events = events.Where(x => x.EventStartDate >= DateTime.Now).OrderBy(x => x.EventStartDate).Take(currentBlock.Count == 0 ? 5 : currentBlock.Count);
             }
 
-            var model = new CalendarEventBlockViewModel(currentBlock)
+            var model = new CalendarBlockViewModel(currentBlock)
             {
                 Events = events
             };
 
-            ViewData.GetEditHints<CalendarEventBlockViewModel, Cms.Blocks.CalendarEventBlock>()
+            ViewData.GetEditHints<CalendarBlockViewModel, Cms.Blocks.CalendarBlock>()
                 .AddConnection(x => x.ViewMode, x => x.ViewMode);
 
             if (currentBlock.ViewMode.Equals("List"))
             {
-                return PartialView("~/Features/Events/CalendarEventBlock/Agenda.cshtml", model);
+                return PartialView("~/Features/Events/CalendarBlock/Agenda.cshtml", model);
             }
             else
             {
@@ -46,7 +45,7 @@ namespace Foundation.Features.Events.CalendarEventBlock
             }
         }
 
-        private IEnumerable<CalendarEventPage> FindEvents(Cms.Blocks.CalendarEventBlock currentBlock)
+        private IEnumerable<CalendarEventPage> FindEvents(Cms.Blocks.CalendarBlock currentBlock)
         {
             IEnumerable<CalendarEventPage> events;
             var root = currentBlock.EventsRoot;
