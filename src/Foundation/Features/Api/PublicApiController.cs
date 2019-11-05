@@ -112,7 +112,10 @@ namespace Foundation.Features.Api
 
             if (registration.IdentityResult.Succeeded)
             {
-                if (registration.FoundationContact != null) _addressBookService.Save(viewModel.Address, registration.FoundationContact);
+                if (registration.FoundationContact != null)
+                {
+                    _addressBookService.Save(viewModel.Address, registration.FoundationContact);
+                }
 
                 return new EmptyResult();
             }
@@ -142,29 +145,41 @@ namespace Foundation.Features.Api
                         .Select(m => m.ErrorMessage).ToArray()
                 });
             }
-
-            var result = await _customerService.SignInManager().PasswordSignInAsync(viewModel.Email, viewModel.Password, viewModel.RememberMe, shouldLockout: true);
-            switch (result)
+            var user = _customerService.GetSiteUser(viewModel.Email);
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    _campaignService.UpdateLastLoginDate(viewModel.Email);
-                    break;
+                var result = await _customerService.SignInManager().PasswordSignInAsync(user.UserName, viewModel.Password, viewModel.RememberMe, shouldLockout: true);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        _campaignService.UpdateLastLoginDate(viewModel.Email);
+                        break;
 
-                case SignInStatus.LockedOut:
-                    throw new Exception("Account is locked out.");
+                    case SignInStatus.LockedOut:
+                        throw new Exception("Account is locked out.");
 
-                default:
-                    ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));
-                    return Json(new
-                    {
-                        success = false,
-                        errors = ModelState.Keys
-                         .SelectMany(k => ModelState[k].Errors)
-                         .Select(m => m.ErrorMessage).ToArray()
-                    });
+                    default:
+                        ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));
+                        return Json(new
+                        {
+                            success = false,
+                            errors = ModelState.Keys
+                             .SelectMany(k => ModelState[k].Errors)
+                             .Select(m => m.ErrorMessage).ToArray()
+                        });
+                }
+
+                return new EmptyResult();
             }
 
-            return new EmptyResult();
+            ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));
+            return Json(new
+            {
+                success = false,
+                errors = ModelState.Keys
+                 .SelectMany(k => ModelState[k].Errors)
+                 .Select(m => m.ErrorMessage).ToArray()
+            });
         }
 
         [HttpPost]
