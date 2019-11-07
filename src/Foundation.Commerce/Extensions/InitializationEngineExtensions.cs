@@ -107,15 +107,21 @@ namespace Foundation.Commerce.Extensions
                 {
                     builder.CreateDateTime("StartDate", "{Customer:StartDate}", true, false);
                     builder.CreateDateTime("EndDate", "{Customer:EndDate}", true, false);
-                    builder.CreateDecimal("Amount", "{Customer:Amount}", true, 18, 4, 0);
+                    builder.CreateCurrency("Amount", "{Customer:Amount}", true, 0, true);
                     builder.CreateText("Currency", "{Customer:Currency}", true, 50, false);
                     builder.CreateText("Status", "{Customer:Status}", true, 50, false);
-                    builder.CreateDecimal("SpentBudget", "{Customer:SpentBudget}", true, 18, 4, 0);
+                    builder.CreateCurrency("SpentBudget", "{Customer:SpentBudget}", true, 0, true);
                     builder.CreateText("PurchaserName", "{Customer:PurchaserName}", true, 50, false);
-                    builder.CreateDecimal("LockOrganizationAmount", "{Customer:LockOrganizationAmount}", true, 18, 4, 0);
+                    builder.CreateCurrency("LockOrganizationAmount", "{Customer:LockOrganizationAmount}", true, 0, true);
                     budgetClass.Fields[MetaClassManager.GetPrimaryKeyName(budgetClass.Name)].FriendlyName = "{GlobalMetaInfo:PrimaryKeyId}";
-                    builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
-                    builder.CreateReference("Organization", "{Customer:CreditCard_mf_Organization}", true, "Organization", false);
+                    var contactReference = builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
+                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayBlock, "InfoBlock");
+                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayText, "{Customer:Budget}");
+                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayOrder, "10000");
+                    var orgReference = builder.CreateReference("Organization", "{Customer:CreditCard_mf_Organization}", true, "Organization", false);
+                    orgReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayBlock, "InfoBlock");
+                    orgReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayText, "{Customer:Budget}");
+                    orgReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayOrder, "10000");
                     builder.SaveChanges();
                 }
                 budgetClass.AddPermissions();
