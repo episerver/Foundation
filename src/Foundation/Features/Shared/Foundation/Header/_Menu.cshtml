@@ -9,7 +9,7 @@
     @foreach (var menuItem in Model)
     {
         <li class="navigation__item">
-            <a href="@menuItem.Uri" class="nav-category">
+            <a href="@(string.IsNullOrEmpty(menuItem.Uri) ? "javascript:void(0);" : menuItem.Uri)" class="nav-category">
                 @menuItem.Name
             </a>
             @if (menuItem.ChildLinks.Count > 0)
