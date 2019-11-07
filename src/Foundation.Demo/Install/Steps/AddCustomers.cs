@@ -84,14 +84,16 @@ namespace Foundation.Demo.Install.Steps
                 ModuleManager.Activate(giftCardClass, changeTrackingManifest);
                 using (var builder = new MetaFieldBuilder(giftCardClass))
                 {
-                    giftCardClass.TitleFieldName = "GiftCardName";
                     builder.CreateText("GiftCardName", "{Customer:GiftCardName}", false, 100, false);
-                    builder.CreateDecimal("InitialAmount", "{Customer:InitialAmount}", true, 18, 4, 0);
-                    builder.CreateDecimal("RemainBalance", "{Customer:RemainBalance}", true, 18, 4, 0);
+                    builder.CreateCurrency("InitialAmount", "{Customer:InitialAmount}", true, 0, true);
+                    builder.CreateCurrency("RemainBalance", "{Customer:RemainBalance}", true, 0, true);
                     builder.CreateText("RedemptionCode", "{Customer:RedemptionCode}", true, 100, false);
                     builder.CreateCheckBoxBoolean("IsActive", "{Customer:IsActive}", true, true, "{Customer:IsActive}");
                     giftCardClass.Fields[MetaClassManager.GetPrimaryKeyName(giftCardClass.Name)].FriendlyName = "{GlobalMetaInfo:PrimaryKeyId}";
-                    builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
+                    var contactReference = builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
+                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayBlock, "InfoBlock");
+                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayText, "{Customer:GiftCard}");
+                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayOrder, "10000");
                     builder.SaveChanges();
                 }
                 giftCardClass.AddPermissions();
@@ -106,7 +108,7 @@ namespace Foundation.Demo.Install.Steps
                 scope.SaveChanges();
             }
 
-            var contactProfile = @"<ListViewProfile xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+           var contactProfile = @"<ListViewProfile xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
                     <Id>{54a649a9-302f-48bd-b657-11ca3604fda9}</Id>
                     <Name>{Customer:AllContacts}</Name>
                     <IsSystem>true</IsSystem>
