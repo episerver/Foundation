@@ -21,67 +21,68 @@ namespace Foundation.Cms.ViewModels.Header
 
         private readonly IUrlResolver _urlResolver;
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
+        private readonly IContentLoader _contentLoader;
 
-        public HeaderViewModelFactory(IUrlResolver urlResolver, IContentCacheKeyCreator contentCacheKeyCreator)
+        public HeaderViewModelFactory(IUrlResolver urlResolver, IContentCacheKeyCreator contentCacheKeyCreator, IContentLoader contentLoader)
         {
             _urlResolver = urlResolver;
             _contentCacheKeyCreator = contentCacheKeyCreator;
+            _contentLoader = contentLoader;
         }
 
         public THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
             where THeaderViewModel : HeaderViewModel, new()
         {
             var menuItems = new List<MenuItemViewModel>();
-            var menuCached = CacheManager.Get(homePage.ContentLink.ID + MenuCacheKey) as List<MenuItemViewModel>;
-            if (menuCached != null && !PageEditing.PageIsInEditMode)
+            menuItems = homePage.MainMenu?.FilteredItems.Select(x =>
             {
-                menuItems = menuCached;
-            }
-            else
-            {
-                var menuItemBlocks = homePage.MainMenu?.FilteredItems.GetContentItems<IContent>();
-                menuItems = menuItemBlocks?
-                   .Select(x => {
-                       MenuItemBlock _;
-                       if (x is MenuItemBlock)
-                       {
-                           _ = x as MenuItemBlock;
-                           return new MenuItemViewModel
-                           {
-                               Name = _.Name,
-                               ButtonText = _.ButtonText,
-                               TeaserText = _.TeaserText,
-                               Uri = _.Link == null ? string.Empty : _urlResolver.GetUrl(new UrlBuilder(_.Link.ToString()), new UrlResolverArguments() { ContextMode = ContextMode.Default }),
-                               ImageUrl = !ContentReference.IsNullOrEmpty(_.MenuImage) ? _urlResolver.GetUrl(_.MenuImage) : "",
-                               ButtonLink = _.ButtonLink?.Host + _.ButtonLink?.PathAndQuery,
-                               ChildLinks = _.ChildItems?.ToList() ?? new List<GroupLinkCollection>()
-                           };
-                       } else
-                       {
-                           return new MenuItemViewModel
-                           {
-                               Name = x.Name,
-                               Uri = _urlResolver.GetUrl(x.ContentLink),
-                               ChildLinks = new List<GroupLinkCollection>()
-                           };
-                       }
-                       
-                   }).ToList() ?? new List<MenuItemViewModel>();
-
-                if (!PageEditing.PageIsInEditMode)
+                var itemCached = CacheManager.Get(x.ContentLink.ID + MenuCacheKey) as MenuItemViewModel;
+                if (itemCached != null && !PageEditing.PageIsInEditMode)
                 {
-                    var keyDependency = new List<string>();
-                    keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(homePage.ContentLink)); // If The HomePage updates menu (remove MenuItems)
-
-                    foreach (var m in menuItemBlocks)
+                    return itemCached;
+                }
+                else
+                {
+                    var content = _contentLoader.Get<IContent>(x.ContentLink);
+                    MenuItemBlock _;
+                    MenuItemViewModel menuItem;
+                    if (content is MenuItemBlock)
                     {
-                        keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey((m as IContent).ContentLink));
+                        _ = content as MenuItemBlock;
+                        menuItem = new MenuItemViewModel
+                        {
+                            Name = _.Name,
+                            ButtonText = _.ButtonText,
+                            TeaserText = _.TeaserText,
+                            Uri = _.Link == null ? string.Empty : _urlResolver.GetUrl(new UrlBuilder(_.Link.ToString()), new UrlResolverArguments() { ContextMode = ContextMode.Default }),
+                            ImageUrl = !ContentReference.IsNullOrEmpty(_.MenuImage) ? _urlResolver.GetUrl(_.MenuImage) : "",
+                            ButtonLink = _.ButtonLink?.Host + _.ButtonLink?.PathAndQuery,
+                            ChildLinks = _.ChildItems?.ToList() ?? new List<GroupLinkCollection>()
+                        };
+                    }
+                    else
+                    {
+                        menuItem = new MenuItemViewModel
+                        {
+                            Name = content.Name,
+                            Uri = _urlResolver.GetUrl(content.ContentLink),
+                            ChildLinks = new List<GroupLinkCollection>()
+                        };
                     }
 
-                    var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
-                    CacheManager.Insert(homePage.ContentLink.ID + MenuCacheKey, menuItems, eviction);
+                    if (!PageEditing.PageIsInEditMode)
+                    {
+                        var keyDependency = new List<string>();
+                        keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(homePage.ContentLink)); // If The HomePage updates menu (remove MenuItems)
+                        keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink));
+
+                        var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
+                        CacheManager.Insert(x.ContentLink.ID + MenuCacheKey, menuItem, eviction);
+                    }
+                    return menuItem;
                 }
-            }
+            }).ToList();
+
 
             return new THeaderViewModel
             {
