@@ -1,4 +1,5 @@
-﻿using EPiServer.Core;
+﻿using EPiServer;
+using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Routing;
@@ -32,8 +33,19 @@ namespace Foundation.Demo.ViewModels
             IBookmarksService bookmarksService,
             ICartService cartService,
             CustomerContext customerContext,
-            IContentCacheKeyCreator contentCacheKeyCreator) :
-            base(localizationService, addressBookService, customerService, cartViewModelFactory, urlResolver, marketService, currentMarket, bookmarksService, cartService, contentCacheKeyCreator)
+            IContentCacheKeyCreator contentCacheKeyCreator,
+            IContentLoader contentLoader) :
+            base(localizationService, 
+                addressBookService, 
+                customerService, 
+                cartViewModelFactory, 
+                urlResolver, 
+                marketService, 
+                currentMarket, 
+                bookmarksService, 
+                cartService, 
+                contentCacheKeyCreator, 
+                contentLoader)
         {
             _customerService = customerService;
             _customerContext = customerContext;

@@ -17,9 +17,10 @@ namespace Foundation.Cms.Extensions
 
         public static string MakeCompactString(this string str, int maxLength = 30, string subfix = "...")
         {
-            string newStr = str;
-            if (str.Length > maxLength)
-                newStr = str.Substring(0, maxLength);
+            var newStr = string.IsNullOrEmpty(str) ? string.Empty : str;
+            var strLength = string.IsNullOrEmpty(str) ? 0 : str.Length;
+            if (strLength > maxLength)
+                newStr = str?.Substring(0, maxLength);
 
             return newStr + subfix;
         }
