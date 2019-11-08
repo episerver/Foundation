@@ -1,12 +1,17 @@
 ﻿using Episerver.Marketing.Connector.Framework;
 using Episerver.Marketing.Connector.Framework.Data;
+using EPiServer;
 using EPiServer.ConnectForCampaign.Implementation.Services;
 using EPiServer.ConnectForCampaign.Services.Implementation;
+using EPiServer.Core;
 using EPiServer.Data.Dynamic;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Tracking.Core;
+using Foundation.Cms.Extensions;
+using Foundation.Cms.Media;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
 using Foundation.Demo.Install;
@@ -33,6 +38,8 @@ namespace Foundation.Demo
         private const string ConfigUsername = "campaign:Username";
         private const string ConfigPassword = "campaign:Password";
         private const string ConfigClientid = "campaign:Clientid";
+        private static readonly ILogger Logger = LogManager.GetLogger(typeof(Initialize));
+        private readonly ImageHelper _imageHelper = new ImageHelper();
 
         void IConfigurableModule.ConfigureContainer(ServiceConfigurationContext context)
         {
@@ -68,6 +75,8 @@ namespace Foundation.Demo
             var registry = context.Locate.Advanced.GetInstance<IFacetRegistry>();
             GetFacets(context.Locate.Advanced.GetInstance<ICurrentMarket>())
                 .ForEach(x => registry.AddFacetDefinitions(x));
+
+            context.Locate.Advanced.GetInstance<IContentEvents>().SavingContent += OnSavingContent;
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
@@ -180,6 +189,25 @@ namespace Foundation.Demo
                     LastUpdated = DateTime.UtcNow
                 });
             }
+        }
+
+        private void OnSavingContent(object sender, ContentEventArgs contentEventArgs)
+        {
+            var contentData = contentEventArgs?.Content as ImageMediaData;
+            if (contentData == null || ((SaveContentEventArgs)contentEventArgs).Action != EPiServer.DataAccess.SaveAction.Publish)
+            {
+                return;
+            }
+
+            try
+            {
+                AsyncHelpers.RunSync(() => _imageHelper.TagImagesAsync(contentData));
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.Message, e);
+            }
+
         }
     }
 }
