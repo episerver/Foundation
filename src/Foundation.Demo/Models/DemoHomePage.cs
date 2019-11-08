@@ -42,13 +42,6 @@ namespace Foundation.Demo.Models
 
         #endregion
 
-        #region Settings
-
-        [Display(Name = "Tracking scope", GroupName = CmsTabNames.Settings, Order = 400)]
-        public virtual string TrackingScope { get; set; }
-
-        #endregion
-
         #region Search Settings
 
         [SelectOne(SelectionFactoryType = typeof(SearchOptionSelectionFactory))]

@@ -2,6 +2,7 @@
 using EPiServer.Find.Api.Querying;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.ViewModels;
+using Foundation.Commerce.Models.Pages;
 using Foundation.Find.Commerce.ViewModels;
 using System.Collections.Generic;
 
@@ -30,13 +31,13 @@ namespace Foundation.Find.Commerce
         /// </summary>
         /// <param name="currentContent"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> SearchOnSale(IContent currentContent, out List<int> pages, int catalogId = 0, int page = 1);
+        IEnumerable<ProductTileViewModel> SearchOnSale(SalesPage currentContent, out List<int> pages, int catalogId = 0, int page = 1, int pageSize = 12);
         /// <summary>
         /// Search top products by sorted by the creation date
         /// </summary>
         /// <param name="currentContent"></param>
         /// <returns></returns>
-        IEnumerable<ProductTileViewModel> SearchNewProducts(IContent currentContent, out List<int> pages, int catalogId = 0, int page = 1);
+        IEnumerable<ProductTileViewModel> SearchNewProducts(NewProductsPage currentContent, out List<int> pages, int catalogId = 0, int page = 1, int pageSize = 12);
 
         /// <summary>
         /// QuickSearch products
