@@ -11,7 +11,7 @@ namespace Foundation.Cms.Blocks
     [ContentType(GUID = "D5148C01-DFB0-4E57-8399-6CEEBF48F38E",
         DisplayName = "Calendar Block",
         Description = "A block that lists a bunch of calendar events",
-        GroupName = CmsGroupNames.CalendarEvent)]
+        GroupName = CmsGroupNames.Calendar)]
     [ImageUrl("~/assets/icons/cms/pages/calendar.png")]
     public class CalendarBlock : FoundationBlockData
     {
