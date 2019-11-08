@@ -15,8 +15,8 @@ namespace Foundation.Cms
         [Display(Order = 540)]
         public const string Blog = "Blog";
 
-        [Display(Name = "Calendar event", Order = 550)]
-        public const string CalendarEvent = "CalendarEvent";
+        [Display(Name = "Calendar", Order = 550)]
+        public const string Calendar = "Calendar";
 
         [Display(Order = 570)]
         public const string Forms = "Forms";
