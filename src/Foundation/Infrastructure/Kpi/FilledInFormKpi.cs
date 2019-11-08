@@ -23,6 +23,15 @@ namespace Foundation.Infrastructure.Kpi
         private readonly LocalizationService _localization;
         private readonly FormsEvents _formsEvents;
 
+        //This is needed by the KPI engine
+        public FilledInFormKpi()
+        {
+            _formRepository = _servicelocator.GetInstance<IFormRepository>();
+            _contentRepository = _servicelocator.GetInstance<IContentRepository>();
+            _formsConfig = _servicelocator.GetInstance<IEPiServerFormsCoreConfig>();
+            _localization = _servicelocator.GetInstance<LocalizationService>();
+        }
+
         public FilledInFormKpi(
             IFormRepository formRepository,
             IContentRepository contentRepository,
