@@ -16,7 +16,6 @@ using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
 using Foundation.Demo.Install;
 using Foundation.Demo.Install.Steps;
-using Foundation.Demo.Personalization;
 using Foundation.Demo.ProfileStore;
 using Foundation.Demo.ViewModels;
 using Foundation.Find.Cms.Facets;
@@ -59,7 +58,6 @@ namespace Foundation.Demo
             services.AddSingleton<IInstallStep, AddWarehouses>();
             services.AddSingleton<IStorageService, StorageService>();
             services.AddSingleton<IProfileStoreService, ProfileStoreService>();
-            services.AddSingleton<ITrackingDataInterceptor, TrackingDataInterceptor>();
 
             context.ConfigurationComplete += (o, e) =>
             {

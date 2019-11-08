@@ -30,7 +30,7 @@ namespace Foundation.Features.Pages.SalesPage
             await _trackingService.PageViewed(HttpContext, currentPage);
             var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
             var model = new SalesPageViewModel(currentPage);
-            model.ProductViewModels = _searchService.SearchOnSale(currentPage, out var pages, startPage.SearchCatalog, page);
+            model.ProductViewModels = _searchService.SearchOnSale(currentPage, out var pages, startPage.SearchCatalog, page, 12);
             model.PageNumber = page;
             model.Pages = pages;
             return View(model);

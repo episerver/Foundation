@@ -1,12 +1,11 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
-using EPiServer.SpecializedProperties;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Pages;
+using Foundation.Cms.ViewModels.Header;
 using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.Order.Services;
 using Foundation.Commerce.ViewModels.Header;
 using Foundation.Demo.Models;
@@ -22,6 +21,7 @@ namespace Foundation.Demo.ViewModels
     {
         private readonly ICustomerService _customerService;
         private readonly CustomerContext _customerContext;
+        private readonly CmsHeaderViewModelFactory _cmsHeaderViewModelFactory;
 
         public DemoHeaderViewModelFactory(LocalizationService localizationService,
             IAddressBookService addressBookService,
@@ -34,7 +34,8 @@ namespace Foundation.Demo.ViewModels
             ICartService cartService,
             CustomerContext customerContext,
             IContentCacheKeyCreator contentCacheKeyCreator,
-            IContentLoader contentLoader) :
+            IContentLoader contentLoader, 
+            CmsHeaderViewModelFactory cmsHeaderViewModelFactory) :
             base(localizationService, 
                 addressBookService, 
                 customerService, 
@@ -49,6 +50,7 @@ namespace Foundation.Demo.ViewModels
         {
             _customerService = customerService;
             _customerContext = customerContext;
+            _cmsHeaderViewModelFactory = cmsHeaderViewModelFactory;
         }
 
         public override THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
@@ -70,7 +72,7 @@ namespace Foundation.Demo.ViewModels
             return viewModel as THeaderViewModel;
         }
 
-        protected override void AddMyAccountMenu(CommerceHomePage homePage, CommerceHeaderViewModel viewModel)
+        public override void AddMyAccountMenu<THomePage, THeaderViewModel>(THomePage homePage, THeaderViewModel viewModel)
         {
             var demoHomePage = homePage as DemoHomePage;
             if (demoHomePage == null)
@@ -84,7 +86,7 @@ namespace Foundation.Demo.ViewModels
                 return;
             }
 
-            viewModel.UserLinks = new LinkItemCollection();
+            _cmsHeaderViewModelFactory.AddMyAccountMenu(homePage, viewModel);
         }
 
         private List<DemoUserViewModel> GetDemoUsers(bool showCommerceUsers)

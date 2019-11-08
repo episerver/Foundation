@@ -1,7 +1,9 @@
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.Editor;
+using EPiServer.Filters;
 using EPiServer.Framework.Cache;
+using EPiServer.Framework.Localization;
 using EPiServer.Security;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -12,22 +14,27 @@ using Foundation.Cms.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Foundation.Cms.ViewModels.Header
 {
-    public class HeaderViewModelFactory : IHeaderViewModelFactory
+    public class CmsHeaderViewModelFactory : IHeaderViewModelFactory
     {
         private const string MenuCacheKey = "MenuItemsCacheKey";
-
         private readonly IUrlResolver _urlResolver;
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
         private readonly IContentLoader _contentLoader;
+        private readonly LocalizationService _localizationService;
 
-        public HeaderViewModelFactory(IUrlResolver urlResolver, IContentCacheKeyCreator contentCacheKeyCreator, IContentLoader contentLoader)
+        public CmsHeaderViewModelFactory(IUrlResolver urlResolver, 
+            IContentCacheKeyCreator contentCacheKeyCreator, 
+            IContentLoader contentLoader, 
+            LocalizationService localizationService)
         {
             _urlResolver = urlResolver;
             _contentCacheKeyCreator = contentCacheKeyCreator;
             _contentLoader = contentLoader;
+            _localizationService = localizationService;
         }
 
         public THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
@@ -94,6 +101,56 @@ namespace Foundation.Cms.ViewModels.Header
                 MenuItems = menuItems,
                 MobileNavigation = homePage.MobileNavigationPages,
             };
+        }
+
+        public virtual void AddMyAccountMenu<THomePage, THeaderViewModel>(THomePage homePage,
+            THeaderViewModel viewModel) 
+            where THeaderViewModel : HeaderViewModel, new()
+            where THomePage : CmsHomePage
+        {
+            if (HttpContext.Current != null && !HttpContext.Current.Request.IsAuthenticated)
+            {
+                viewModel.UserLinks = new LinkItemCollection();
+                return;
+            }
+
+            var menuItems = new LinkItemCollection();
+            var filter = new FilterContentForVisitor();
+            
+            foreach (var linkItem in homePage.MyAccountCmsMenu ?? new LinkItemCollection())
+            {
+                if (!UrlResolver.Current.TryToPermanent(linkItem.Href, out var linkUrl))
+                {
+                    continue;
+                }
+
+                if (linkUrl.IsNullOrEmpty())
+                {
+                    continue;
+                }
+
+                var urlBuilder = new UrlBuilder(linkUrl);
+                var content = _urlResolver.Route(urlBuilder);
+                if (content == null || filter.ShouldFilter(content))
+                {
+                    continue;
+                }
+
+                linkItem.Title = linkItem.Text;
+                menuItems.Add(linkItem);
+            }
+
+            var signoutText = _localizationService.GetString("/Header/Account/SignOut", "Sign Out");
+            var link = new LinkItem
+            {
+                Href = "/publicapi/signout",
+                Text = signoutText,
+                Title = signoutText
+            };
+            link.Attributes.Add("css", "fa-sign-out");
+            menuItems.Add(link);
+
+            viewModel.UserLinks.AddRange(menuItems);
         }
     }
 }
