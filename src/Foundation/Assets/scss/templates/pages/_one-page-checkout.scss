@@ -1,4 +1,10 @@
-﻿.items {
+﻿.checkout-title {
+    padding: 10px 0px 25px 0px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.items {
     & p,
     & h3,
     & h5 {
@@ -75,8 +81,4 @@
     &__bold {
         font-weight: 600;
     }
-}
-
-.card-body {
-    box-shadow: 0 0 20px grey;
 }

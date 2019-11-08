@@ -11,11 +11,14 @@ using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Models.Pages;
+using Foundation.Commerce.Order.Payments;
 using Foundation.Commerce.Order.Services;
 using Foundation.Commerce.Order.ViewModelFactories;
 using Foundation.Commerce.Order.ViewModels;
 using Foundation.Commerce.Personalization;
 using Foundation.Features.NamedCarts;
+using Mediachase.Commerce;
+using Mediachase.Commerce.Shared;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -46,6 +49,7 @@ namespace Foundation.Features.Checkout
         private readonly ICustomerService _customerContext;
         private readonly IOrganizationService _organizationService;
         private readonly ShipmentViewModelFactory _shipmentViewModelFactory;
+        private readonly IGiftCardService _giftCardService;
 
         public CheckoutController(
             IOrderRepository orderRepository,
@@ -64,7 +68,8 @@ namespace Foundation.Features.Checkout
             UrlResolver urlResolver,
             ICustomerService customerContext,
             IOrganizationService organizationService,
-            ShipmentViewModelFactory shipmentViewModelFactory)
+            ShipmentViewModelFactory shipmentViewModelFactory,
+            IGiftCardService giftCardService)
         {
             _orderRepository = orderRepository;
             _checkoutViewModelFactory = checkoutViewModelFactory;
@@ -83,6 +88,7 @@ namespace Foundation.Features.Checkout
             _customerContext = customerContext;
             _organizationService = organizationService;
             _shipmentViewModelFactory = shipmentViewModelFactory;
+            _giftCardService = giftCardService;
         }
 
         [HttpGet]
@@ -508,12 +514,23 @@ namespace Foundation.Features.Checkout
                 return View(viewModel);
             }
 
+            if (paymentOption is GiftCardPaymentOption)
+            {
+                var giftCard = _giftCardService.GetGiftCard(((GiftCardPaymentOption)paymentOption).SelectedGiftCardId);
+                var paymentTotal = CurrencyFormatter.ConvertCurrency(new Money(viewModel.OrderSummary.PaymentTotal, CartWithValidationIssues.Cart.Currency), Currency.USD);
+                if (paymentTotal > giftCard.RemainBalance)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Not enought money in Gift Card");
+                }
+            }
+
             viewModel.Payment = paymentOption;
             _checkoutService.CreateAndAddPaymentToCart(CartWithValidationIssues.Cart, viewModel);
             _orderRepository.Save(CartWithValidationIssues.Cart);
 
             var model = CreateCheckoutViewModel(currentPage);
             model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
+
             if (Request.IsAuthenticated)
             {
                 model.BillingAddressType = 1;

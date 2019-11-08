@@ -14,7 +14,7 @@ namespace Foundation.Commerce.Order.Payments
             }
             else
             {
-                GiftCardManager.PurchaseByGiftCard(payment);
+                GiftCardManager.PurchaseByGiftCard(payment, orderGroup.Currency);
                 return PaymentProcessingResult.CreateSuccessfulResult("Gift card processed");
             }
         }

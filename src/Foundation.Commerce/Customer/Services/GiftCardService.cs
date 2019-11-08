@@ -41,6 +41,20 @@ namespace Foundation.Commerce.Customer.Services
             }).ToList();
         }
 
+        public GiftCard GetGiftCard(string giftCardId)
+        {
+            var giftCardObject = GiftCardManager.GetGiftCardById(new PrimaryKeyId(new Guid(giftCardId)));
+            return new GiftCard()
+            {
+                GiftCardId = giftCardObject.PrimaryKeyId.ToString(),
+                GiftCardName = giftCardObject[GiftCardManager.GiftCardNameField].ToString(),
+                InitialAmount = (decimal)giftCardObject[GiftCardManager.InitialAmountField],
+                RemainBalance = (decimal)giftCardObject[GiftCardManager.RemainBalanceField],
+                IsActive = (bool)giftCardObject[GiftCardManager.IsActiveField],
+                RedemptionCode = giftCardObject[GiftCardManager.RedemptionCodeField]?.ToString() ?? "",
+            };
+        }
+
         public string CreateGiftCard(GiftCard giftCard)
         {
             try

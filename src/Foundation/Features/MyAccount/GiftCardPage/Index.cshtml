@@ -28,8 +28,8 @@
                         {
                             <tr>
                                 <td>@giftcard.GiftCardName</td>
-                                <td>@giftcard.InitialAmount</td>
-                                <td>@giftcard.RemainBalance</td>
+                                <td>@decimal.Round(giftcard.InitialAmount) USD</td>
+                                <td>@decimal.Round(giftcard.RemainBalance) USD</td>
                                 <td>@giftcard.RedemptionCode</td>
                             </tr>
                         }
