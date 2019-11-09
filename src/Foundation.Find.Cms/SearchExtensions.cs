@@ -273,7 +273,32 @@ namespace Foundation.Find.Cms
             };
         }
 
+        public static DelegateFilterBuilder Prefix<T>(this IEnumerable<T> value, 
+            Expression<Func<T, string>> fieldSelector, 
+            string prefix) => new DelegateFilterBuilder(field => new PrefixFilter(field, prefix))
+            {
+                FieldNameMethod = (expression, conventions) =>
+                {
+                    return string.Format("{0}.{1}",
+                                  conventions.FieldNameConvention.GetFieldName(expression),
+                                  conventions.FieldNameConvention.GetFieldName(fieldSelector));
+                }
+            };
 
+        public static DelegateFilterBuilder PrefixCaseInsensitive<T>(this IEnumerable<T> value, 
+            Expression<Func<T, string>> fieldSelector, 
+            string prefix)
+        {
+            return new DelegateFilterBuilder(field => new PrefixFilter(field, prefix.ToLowerInvariant()))
+            {
+                FieldNameMethod = (expression, conventions) =>
+                {
+                    return string.Format("{0}.{1}",
+                                  conventions.FieldNameConvention.GetFieldName(expression),
+                                  conventions.FieldNameConvention.GetFieldNameForLowercase(fieldSelector));
+                }
+            };
+        }
 
         public static ITypeSearch<TSource> TermsFacetFor<TSource>(this ITypeSearch<TSource> search,
            string name,
