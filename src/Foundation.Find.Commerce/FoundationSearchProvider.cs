@@ -17,6 +17,7 @@ using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Models.Catalog;
+using Foundation.Find.Cms;
 using Mediachase.Commerce.Core;
 using Mediachase.Search;
 using System;
@@ -142,12 +143,12 @@ namespace BurlingtonWeb.Business.Search
             return CreateSearchResults(_client.Search<EntryContentBase>()
                 .Take(pageSize)
                 .OrFilter(_ => _.Code.PrefixCaseInsensitive(keyword) | _.Name.PrefixCaseInsensitive(keyword))
-                .OrFilter(_ => _.MatchTypeHierarchy(typeof(GenericProduct)) & (((GenericProduct)_).VariationContents().MatchContainedCaseInsensitive(x => x.Code, keyword)))
-                .OrFilter(_ => _.MatchTypeHierarchy(typeof(GenericProduct)) & (((GenericProduct)_).VariationContents().MatchContainedCaseInsensitive(x => x.DisplayName, keyword)))
-                .GetContentResult());
+                .OrFilter(_ => _.MatchTypeHierarchy(typeof(GenericProduct)) & (((GenericProduct)_).VariationContents().PrefixCaseInsensitive(x => x.Code, keyword)))
+                .OrFilter(_ => _.MatchTypeHierarchy(typeof(GenericProduct)) & (((GenericProduct)_).VariationContents().PrefixCaseInsensitive(x => x.DisplayName, keyword)))
+                .GetContentResult(), keyword);
         }
 
-        private IEnumerable<SearchResult> CreateSearchResults(IEnumerable<EntryContentBase> documents)
+        private IEnumerable<SearchResult> CreateSearchResults(IEnumerable<EntryContentBase> documents, string keyword)
         {
             var culture = _languageResolver.GetPreferredCulture();
             var references = documents.Select(_ => _.ContentLink)
@@ -159,7 +160,9 @@ namespace BurlingtonWeb.Business.Search
                 .ToList();
 
             var entries = _contentLoader.GetItems(childReferences, culture)
-                .OfType<EntryContentBase>();
+                .OfType<EntryContentBase>()
+                .Where(x => x.Name.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    x.Code.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0);
 
             foreach (var entry in documents)
             {
