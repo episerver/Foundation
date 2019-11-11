@@ -45,14 +45,38 @@
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
-                        <span class="pull-right in-stock">
+
+                        <span class="pull-right in-stock text-success">
                             <i data-feather="check-circle"></i>
                             In Stock
                         </span>
                     }
                     else
                     {
-                        @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
+                        if (Model.DiscountedPrice > 0 || Model.ListingPrice > 0)
+                        {
+                            if (Model.DiscountedPrice < Model.ListingPrice)
+                            {
+                                <span class="price__old">@Model.ListingPrice.ToString()</span>
+                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                            }
+                        }
+
+                        if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
+                        {
+                            <span class="price__discount" style="padding-left: 10px;">
+                                @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
+                            </span>
+                        }
+
+                        <span class="pull-right in-stock">
+                            <i data-feather="x-circle"></i>
+                            @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
+                        </span>
                     }
                 </div>
             </div>
@@ -95,7 +119,7 @@
 
             @Html.Partial("_Store", Model.Stores)
 
-            @Html.Partial("_BuyNow", Model.Variant.Code)
+            @Html.Partial("_BuyNow", new KeyValuePair<string, int>(Model.Variant.Code, Model.MinQuantity))
             <hr />
             <div class="row">
                 <div class="col-12">

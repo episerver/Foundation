@@ -1,6 +1,7 @@
 using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
+using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Globalization;
@@ -13,6 +14,8 @@ using Foundation.Commerce.Markets;
 using Foundation.Commerce.Models.Catalog;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
+using Mediachase.Commerce.Inventory;
+using Mediachase.Commerce.InventoryService;
 using Mediachase.Commerce.Pricing;
 using Mediachase.Commerce.Security;
 using System;
@@ -36,6 +39,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
         private readonly IStoreService _storeService;
         private readonly IProductService _productService;
         private readonly IQuickOrderService _quickOrderService;
+        private readonly IInventoryService _inventoryService;
+        private readonly IWarehouseRepository _warehouseRepository;
 
         public CatalogEntryViewModelFactory(
             IPromotionService promotionService,
@@ -49,7 +54,9 @@ namespace Foundation.Commerce.Catalog.ViewModels
             LanguageResolver languageResolver,
             IStoreService storeService,
             IProductService productService,
-            IQuickOrderService quickOrderService)
+            IQuickOrderService quickOrderService,
+            IInventoryService inventoryService,
+            IWarehouseRepository warehouseRepository)
         {
             _promotionService = promotionService;
             _contentLoader = contentLoader;
@@ -63,6 +70,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
             _storeService = storeService;
             _productService = productService;
             _quickOrderService = quickOrderService;
+            _inventoryService = inventoryService;
+            _warehouseRepository = warehouseRepository;
         }
 
         public virtual TViewModel Create<TProduct, TVariant, TViewModel>(TProduct currentContent, string variationCode)
@@ -87,7 +96,10 @@ namespace Foundation.Commerce.Catalog.ViewModels
                     Variants = new List<VariantViewModel>()
                 };
             }
-
+            var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+            var inventoryRecord = _inventoryService.Get(variationCode, currentWarehouse.Code);
+            var inventory = new Inventory(inventoryRecord);
+            var isInstock = inventory.InStockQuantity > 0;
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, currency);
@@ -131,7 +143,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 Color = baseVariant?.Color,
                 Size = baseVariant?.Size,
                 Images = variant.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                IsAvailable = defaultPrice != null,
+                IsAvailable = defaultPrice != null && isInstock,
                 Stores = new StoreViewModel
                 {
                     Stores = _storeService.GetEntryStoresViewModels(variant.Code),
@@ -159,7 +171,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                     .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
                 Documents = currentContent.CommerceMediaCollection.Where(o => o.AssetType.Equals(typeof(PDFFile).FullName.ToLowerInvariant()))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList()
+                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList(),
+                MinQuantity = (int)defaultPrice.MinQuantity
             };
         }
 
@@ -178,6 +191,15 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
 
+            var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+             var isInstock = true;
+            foreach(var v in variants)
+            {
+                var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
+                var inventory = new Inventory(inventoryRecord);
+                isInstock = inventory.InStockQuantity > 0 ? isInstock : false;
+            }
+
             return new TViewModel
             {
                 CurrentContent = currentContent,
@@ -195,7 +217,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
                 IsSalesRep = isSalesRep,
                 SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>()
+                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
+                IsAvailable = isInstock,
             };
         }
 
@@ -218,6 +241,11 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
+            var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+            
+            var inventoryRecord = _inventoryService.Get(currentContent.Code, currentWarehouse.Code);
+            var inventory = new Inventory(inventoryRecord);
+            var isInstock = inventory.InStockQuantity > 0;
 
             return new TViewModel
             {
@@ -226,7 +254,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 DiscountedPrice = discountedPrice,
                 SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency),
                 Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                IsAvailable = defaultPrice != null,
+                IsAvailable = defaultPrice != null && isInstock,
                 Stores = new StoreViewModel
                 {
                     Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
@@ -238,7 +266,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
                 IsSalesRep = isSalesRep,
                 SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>()
+                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
+                MinQuantity = (int)defaultPrice.MinQuantity
             };
         }
 
@@ -261,6 +290,14 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
 
+            var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+            var isInstock = true;
+            foreach (var v in variants)
+            {
+                var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
+                var inventory = new Inventory(inventoryRecord);
+                isInstock = inventory.InStockQuantity > 0 ? isInstock : false;
+            }
             return new TViewModel
             {
                 CurrentContent = currentContent,
@@ -269,7 +306,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 DiscountedPrice = GetDiscountPrice(defaultPrice, market, currency),
                 SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency),
                 Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                IsAvailable = defaultPrice != null,
+                IsAvailable = defaultPrice != null && isInstock,
                 Entries = variants,
                 //Reviews = GetReviews(currentContent.Code),
                 Stores = new StoreViewModel
@@ -283,7 +320,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
                 IsSalesRep = isSalesRep,
                 SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>()
+                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
+                MinQuantity = (int)defaultPrice.MinQuantity
             };
         }
 
