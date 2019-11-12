@@ -38,15 +38,17 @@
         <div class="col-md-6 col-lg-2">
             <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.SocialHeader)>@Html.DisplayFor(x => x.StartPage.SocialHeader)</h3>
 
-            <a class="footer__link" href="https://www.facebook.com/Episerver" target="_blank">
-                Facebook
-            </a>
-            <a class="footer__link" href="https://twitter.com/episerver" target="_blank">
-                Twitter
-            </a>
-            <a class="footer__link" href="http://www.linkedin.com/company/episerver-ab" target="_blank">
-                Linkedin
-            </a>
+            @if (Model != null)
+            {
+                <div @Html.EditAttributes(x => x.StartPage.SocialLinks)>
+                    @foreach (var item in Model.StartPage.SocialLinks ?? new LinkItemCollection())
+                    {
+                        <a class="footer__link" href="@Url.PageUrl(item.Href)" target="_blank">
+                            @item.Text
+                        </a>
+                    }
+                </div>
+            }
         </div>
         <div class="col-md-6 col-lg-4">
             @Html.PropertyFor(x => x.StartPage.ContentArea)
