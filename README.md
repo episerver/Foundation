@@ -7,7 +7,7 @@ Including as of now projects for CMS, Commerce, Personalisation, Find and Social
 
 [![Build status](https://dev.azure.com/episerver-foundation/Foundation/_apis/build/status/Foundation-Release)](https://dev.azure.com/episerver-foundation/Foundation/_build/latest?definitionId=1)
 [![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
-
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](code-of-conduct.md)
 ---
 
 ## Table of Contents
