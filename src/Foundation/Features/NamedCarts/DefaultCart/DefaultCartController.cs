@@ -269,16 +269,16 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
         }
 
-        public JsonResult RedirectToCart()
+        public JsonResult RedirectToCart(string message)
         {
             var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
             if (homePage?.CartPage != null)
             {
                 var cartPage = _contentLoader.Get<CartPage>(homePage.CartPage);
-                return Json(new { Redirect = cartPage.StaticLinkURL });
+                return Json(new { Redirect = cartPage.StaticLinkURL, Message = message });
             }
 
-            return Json(new { Redirect = Request.UrlReferrer.PathAndQuery});
+            return Json(new { Redirect = Request.UrlReferrer.PathAndQuery, Message = message });
         }
 
         [HttpPost]
@@ -305,25 +305,25 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             if (contact == null)
             {
-                return RedirectToCart();
+                return RedirectToCart("The contact is invalid");
             }
 
             var creditCard = contact.ContactCreditCards.FirstOrDefault();
             if (creditCard == null)
             {
-                return RedirectToCart();
+                return RedirectToCart("There is not any credit card");
             }
 
             var shipment = CartWithValidationIssues.Cart.GetFirstShipment();
             if (shipment == null)
             {
-                return RedirectToCart();
+                return RedirectToCart("The shopping cart is not exist");
             }
 
             var shippingAddress = (contact.PreferredShippingAddress ?? contact.ContactAddresses.FirstOrDefault())?.ConvertToOrderAddress(CartWithValidationIssues.Cart);
             if (shippingAddress == null)
             {
-                return RedirectToCart();
+                return RedirectToCart("The shipping address is not exist");
             }
 
             shipment.ShippingAddress = shippingAddress;
@@ -341,7 +341,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             if (shippingMethodViewModel == null)
             {
-                return RedirectToCart();
+                return RedirectToCart("The shipping method is invalid");
             }
 
             shipment.ShippingMethodId = shippingMethodViewModel.Id;
@@ -349,7 +349,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var paymentAddress = (contact.PreferredBillingAddress ?? contact.ContactAddresses.FirstOrDefault())?.ConvertToOrderAddress(CartWithValidationIssues.Cart);
             if (paymentAddress == null)
             {
-                return RedirectToCart();
+                return RedirectToCart("The billing address is not exist");
             }
 
             var totals = _orderGroupCalculator.GetOrderGroupTotals(CartWithValidationIssues.Cart);
@@ -372,7 +372,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var issues = _cartService.ValidateCart(CartWithValidationIssues.Cart);
             if (issues.Keys.Any(x => issues.HasItemBeenRemoved(x)))
             {
-                return RedirectToCart();
+                return RedirectToCart("The product is invalid");
             }
             var order = _checkoutService.PlaceOrder(CartWithValidationIssues.Cart, new ModelStateDictionary(), new CheckoutViewModel());
 
@@ -393,7 +393,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 return Json(new { Redirect = urlRedirect.ToString() });
             }
 
-            return RedirectToCart();
+            return RedirectToCart("Something went wrong");
         }
 
 

@@ -179,7 +179,14 @@
                 
                 try {
                     const r = await axios.post(url, data);
-                    window.location.href = r.data.Redirect;
+                    if (r.data.Message) {
+                        notification.Error(r.data.Message);
+                        setTimeout(function () {
+                            window.location.href = r.data.Redirect;
+                        }, 1000);
+                    } else {
+                        window.location.href = r.data.Redirect;
+                    }
                 } catch (e) {
                     notification.Error(e);
                 } finally {
