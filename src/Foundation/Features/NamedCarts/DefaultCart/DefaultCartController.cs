@@ -22,6 +22,7 @@ using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -38,7 +39,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         private CartWithValidationIssues _sharedcart;
         private readonly IOrderRepository _orderRepository;
         private readonly ICommerceTrackingService _recommendationService;
-        readonly CartViewModelFactory _cartViewModelFactory;
+        private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly IContentLoader _contentLoader;
         private readonly IContentRouteHelper _contentRouteHelper;
         private readonly ReferenceConverter _referenceConverter;
@@ -163,7 +164,10 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                     var product = "";
                     var entryLink = _referenceConverter.GetContentLink(param.Code);
                     var entry = _contentLoader.Get<EntryContentBase>(entryLink);
-                    if (entry is BundleContent || entry is PackageContent) product = entry.DisplayName;
+                    if (entry is BundleContent || entry is PackageContent)
+                    {
+                        product = entry.DisplayName;
+                    }
                     else
                     {
                         var parentProduct = _contentLoader.Get<EntryContentBase>(entry.GetParentProducts().FirstOrDefault());
@@ -265,6 +269,18 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
         }
 
+        public JsonResult RedirectToCart()
+        {
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            if (homePage?.CartPage != null)
+            {
+                var cartPage = _contentLoader.Get<CartPage>(homePage.CartPage);
+                return Json(new { Redirect = cartPage.StaticLinkURL });
+            }
+
+            return Json(new { Redirect = Request.UrlReferrer.PathAndQuery});
+        }
+
         [HttpPost]
         public async Task<ActionResult> BuyNow(RequestParamsToCart param)
         {
@@ -289,25 +305,25 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             if (contact == null)
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
 
             var creditCard = contact.ContactCreditCards.FirstOrDefault();
             if (creditCard == null)
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
 
             var shipment = CartWithValidationIssues.Cart.GetFirstShipment();
             if (shipment == null)
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
 
             var shippingAddress = (contact.PreferredShippingAddress ?? contact.ContactAddresses.FirstOrDefault())?.ConvertToOrderAddress(CartWithValidationIssues.Cart);
             if (shippingAddress == null)
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
 
             shipment.ShippingAddress = shippingAddress;
@@ -325,7 +341,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             if (shippingMethodViewModel == null)
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
 
             shipment.ShippingMethodId = shippingMethodViewModel.Id;
@@ -333,7 +349,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var paymentAddress = (contact.PreferredBillingAddress ?? contact.ContactAddresses.FirstOrDefault())?.ConvertToOrderAddress(CartWithValidationIssues.Cart);
             if (paymentAddress == null)
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
 
             var totals = _orderGroupCalculator.GetOrderGroupTotals(CartWithValidationIssues.Cart);
@@ -356,14 +372,28 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var issues = _cartService.ValidateCart(CartWithValidationIssues.Cart);
             if (issues.Keys.Any(x => issues.HasItemBeenRemoved(x)))
             {
-                return MiniCartDetails();
+                return RedirectToCart();
             }
             var order = _checkoutService.PlaceOrder(CartWithValidationIssues.Cart, new ModelStateDictionary(), new CheckoutViewModel());
 
             //await _checkoutService.CreateOrUpdateBoughtProductsProfileStore(CartWithValidationIssues.Cart);
             //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
             await _recommendationService.TrackOrder(HttpContext, order);
-            return Json(new { contactId = contact.PrimaryKeyId?.ToString(), orderNumber = order.OrderLink.OrderGroupId }, JsonRequestBehavior.AllowGet);
+
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            if (homePage?.OrderConfirmationPage != null)
+            {
+                var orderConfirmationPage = _contentLoader.Get<OrderConfirmationPage>(homePage.OrderConfirmationPage);
+                var queryCollection = new NameValueCollection
+                {
+                    {"contactId", contact.PrimaryKeyId?.ToString()},
+                    {"orderNumber", order.OrderLink.OrderGroupId.ToString()}
+                };
+                var urlRedirect = new UrlBuilder(orderConfirmationPage.StaticLinkURL) { QueryCollection = queryCollection };
+                return Json(new { Redirect = urlRedirect.ToString() });
+            }
+
+            return RedirectToCart();
         }
 
 
@@ -756,7 +786,9 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         {
             var currentCustomer = _customerService.GetCurrentContact();
             if (currentCustomer.B2BUserRole != B2BUserRoles.Purchaser)
+            {
                 return Json(new { result = false });
+            }
 
             var placedOrderId = _cartService.PlaceCartForQuoteById(orderId, currentCustomer.ContactId);
 

@@ -165,7 +165,8 @@
 
     BuyNowClick() {
         $(this.DivContainerId).find('.jsBuyNow').each(function (i, e) {
-            $(e).click(function () {
+            $(e).click(async function () {
+                $('.loading-box').show();
                 var code = $(this).attr('data');
                 var data = {
                     Code: code
@@ -174,12 +175,16 @@
                 if ($(this).attr('qty')) data.Quantity = $(this).attr('qty');
                 if ($(this).attr('store')) data.Store = $(this).attr('store');
                 if ($(this).attr('selectedStore')) data.SelectedStore = $(this).attr('selectedStore');
-
-                var callback = () => {
-                    $('.jsCheckoutBtn').click();
-                };
-                var inst = new Product();
-                inst.addToCart(data, '/DefaultCart/AddToCart', callback);
+                var url = $(this).attr('url');
+                
+                try {
+                    const r = await axios.post(url, data);
+                    window.location.href = r.data.Redirect;
+                } catch (e) {
+                    notification.Error(e);
+                } finally {
+                    $('.loading-box').hide();
+                }
             })
         })
     }

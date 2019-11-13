@@ -9,9 +9,12 @@
             <i data-feather="shopping-cart"></i>
             Add to cart
         </button>
-        <button type="button" class="button-transparent-black btn-lower jsBuyNow" data="@Model" qty="1" store="delivery" selectedstore="">
-            <span>Buy Now</span>
-        </button>
+        @if (Request.IsAuthenticated)
+        {
+            <button type="button" class="button-transparent-black btn-lower jsBuyNow" url="@Url.Action("BuyNow", "DefaultCart")" data="@Model" qty="1" store="delivery" selectedstore="">
+                <span>Buy Now</span>
+            </button>
+        }
 
     </div>
 </div>
