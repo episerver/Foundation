@@ -72,7 +72,8 @@ namespace Foundation.Commerce.Order.ViewModels
         /// </summary>
         public string Message { get; set; }
 
-        public int AddressType { get; set; }
+        public int ShippingAddressType { get; set; }
+        public int BillingAddressType { get; set; }
 
         public Currency Currency { get; set; }
 

@@ -11,15 +11,14 @@
                 <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
                 @if (!((bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"])))
                 {
-                    <form action="@Url.Action("AddCouponCode", "Checkout")" method="post">
-                        @Html.AntiForgeryToken()
+                    <div class="jsAddCouponContainer" action="@Url.Action("AddCouponCode", "Checkout")">
                         <div class="full-width flex-between checkout--panel-block">
                             <input type="text" class="textbox jsCouponCode">
                             <button type="button" class="button-black jsAddCoupon jsInCheckout">
                                 @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
                             </button>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="alert alert-danger square-box jsCouponErrorMess" style="display: none">
                         <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>

@@ -60,6 +60,8 @@
         checkout.CheckoutAsGuestOrRegister();
         checkout.ApplyCouponCode();
         checkout.RemoveCouponCode();
+        checkout.ChangeShippingMethod();
+        checkout.ChangeCartItem();
         // --- End
 
         // Order Detail

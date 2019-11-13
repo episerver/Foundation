@@ -1,11 +1,11 @@
 ﻿@model CheckoutViewModel
-@{
+@*@{
     if (Request.IsAjaxRequest())
     {
         Layout = null;
     }
 }
-@Html.Partial("_CheckoutStatusBar", 6)
+@Html.Partial("_CheckoutStatusBar", 6)*@
 
 <div class="row">
 
@@ -75,25 +75,5 @@
 
             </div>
         }
-
-
-        <div class="row">
-            <div class="col-12">
-                <div>
-                    @Html.Partial("_OrderSummary", Model.OrderSummary)
-                </div>
-                <div>
-                    @using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="button-transparent-black pull-right">
-                            <span>
-                                @Html.TranslateFallback("/Checkout/PlaceOrder", "Place Order")
-                            </span>
-                        </button>
-                    }
-                </div>
-            </div>
-        </div>
     </div>
 </div>

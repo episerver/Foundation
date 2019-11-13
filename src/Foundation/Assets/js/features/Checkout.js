@@ -147,11 +147,11 @@
                 var value = $(e).val();
                 $('#AddressType').val(value);
                 if (value == 0) {
-                    $('#oldShippingAddressForm').hide();
-                    $('#newShippingAddressForm').show();
+                    $('#oldBillingAddressForm').hide();
+                    $('#newBillingAddressForm').show();
                 } else {
-                    $('#oldShippingAddressForm').show();
-                    $('#newShippingAddressForm').hide();
+                    $('#oldBillingAddressForm').show();
+                    $('#newBillingAddressForm').hide();
                 }
             });
         });
@@ -182,8 +182,8 @@
 
         $('.jsAddCoupon').click(function () {
             var e = this;
-            var form = $(this).parents('form').first();
-            var url = form[0].action;
+            var form = $(this).parents('.jsAddCouponContainer').first();
+            var url = form.attr('action');
             var couponCode = form.find('.jsCouponCode').val();
             var data = convertFormData({ couponCode: couponCode });
             axios.post(url, data)
@@ -198,6 +198,7 @@
 
                         inst.RemoveCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
                         $('.jsCouponReplaceHtml').html(r.data); 
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html()); 
                         feather.replace();
                         if ($(e).hasClass('jsInCheckout')) {
                             inst.InitPayment();
@@ -240,6 +241,7 @@
                         $('.jsCouponLabel').addClass('hidden');
                     }
                     $('.jsCouponReplaceHtml').html(r.data);
+                    $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html()); 
                     if ($(e).hasClass('jsInCheckout')) {
                         feather.replace();
                         inst.InitPayment();
@@ -258,6 +260,69 @@
                     <span>${couponCode}</span>
                     <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
                 </label>`;
+    }
+    //////////////////
+
+    // Change shipping method
+    ChangeShippingMethod() {
+        var inst = this;
+        $('.jsShippingMethodContainer').change(function () {
+            var url = $('.jsShippingMethodContainer').attr('url');
+            var data = $('.jsCheckoutForm').serialize();
+            $('.loading-box').show();
+            axios.post(url, data)
+                .then(function (r) {
+                    $('.jsCouponReplaceHtml').html(r.data);
+                    $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
+                    feather.replace();
+                    inst.InitPayment();
+                })
+                .catch(function (e) {
+                    notification.Error(e)
+                })
+                .finally(function () {
+                    $('.loading-box').hide();
+                })
+        })
+    }
+    //////////////////
+
+    // Change cart item
+    ChangeCartItem() {
+        var inst = this;
+        $('.jsChangeQuantityItemCheckout').each(function (i, e) {
+            $(e).change(function () {
+                $('.loading-box').show();
+                var quantity = $(e).val();
+                var code = $(e).attr('code');
+                var url = $(e).attr('url');
+                var data = {
+                    code: code,
+                    quantity: quantity
+                }
+                axios.post(url, data)
+                    .then(function (r) {
+                        if (quantity == 0) {
+                            $(e).parents('.jsCartItem').first().remove();
+
+                            if ($('.jsCartItem').length == 0) {
+                                window.location.href = window.location.href;
+                            }
+                        }
+
+                        $('.jsCouponReplaceHtml').html(r.data);
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
+                        feather.replace();
+                        inst.InitPayment();
+                    })
+                    .catch(function (e) {
+                        notification.error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    })
+            })
+        })
     }
     //////////////////
 }

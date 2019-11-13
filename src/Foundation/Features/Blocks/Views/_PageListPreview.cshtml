@@ -2,11 +2,14 @@
 @using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
 @using Foundation.Cms.EditorDescriptors
+@using EPiServer.Core.Html
 
 @model PageListPreviewViewModel
 
 @{
     FoundationPageData page = null;
+    var previewTextLength = 200;
+    var titleLength = 55;
     if (Model.Page is FoundationPageData)
     {
         page = Model.Page as FoundationPageData;
@@ -28,7 +31,7 @@
         <div class="blog__title-container">
             <div class="blog__title-wrapper">
                 <h2 class="blog__title">
-                    <a href="@Model.Page.ContentLink.GetPublicUrl()">@(page != null ? page.MetaTitle : Model.Page.Name)</a>
+                    <a href="@Model.Page.ContentLink.GetPublicUrl()">@(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")</a>
                 </h2>
                 @if (Model.ShowPublishDate)
                 {
@@ -36,7 +39,7 @@
                 }
                 @if (page != null && Model.ShowIntroduction)
                 {
-                    <p>@Html.Raw(page.TeaserText)</p>
+                    <p>@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p>
                 }
             </div>
         </div>
@@ -59,7 +62,7 @@
 
         <div class="col-xs-12 col-@textCol">
             <h4 class="title">
-                <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">@(page != null ? page.MetaTitle : Model.Page.Name)</a>
+                <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">@(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")</a>
             </h4>
             @if (Model.ShowPublishDate)
             {
@@ -68,7 +71,7 @@
             @if (page != null && Model.ShowIntroduction)
             {
                 <br />
-                <p class="light-text">@Html.Raw(page.TeaserText)</p>
+                <p class="light-text">@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p>
             }
 
         </div>
@@ -87,19 +90,20 @@
                 <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(page.PageImage)" />
             }
         </picture>
-        <div>
+        <div style="flex-basis: 116px; flex-shrink: 0">
             @if (Model.ShowPublishDate)
             {
                 <p class="sub-title">@Model.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
             }
             <h4>
-                <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">@(page != null ? page.MetaTitle : Model.Page.Name)</a>
+                <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">
+                    @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
+                </a>
             </h4>
 
             @if (page != null && Model.ShowIntroduction)
             {
-                <br />
-                <p class="light-text">@Html.Raw(page.TeaserText)</p>
+                <p class="light-text">@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p> 
             }
         </div>
 

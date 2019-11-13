@@ -1,0 +1,41 @@
+﻿@model CheckoutViewModel
+
+@using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "row jsCheckoutForm", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-8 col-xs-12">
+        <div class="card items">
+            <div class="card-body">
+                @Html.Partial("ShippingInformation", Model)
+                <br />
+                @Html.Partial("SingleAddress", Model)
+                <hr />
+                @Html.Partial("BillingInformation", Model)
+            </div>
+        </div>
+        <br />
+        <div class="card items">
+            <div class="card-body">
+                @Html.Partial("Subscription", Model)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+
+        <div class="card summary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 jsOrderSummary">
+                        @Html.Partial("_OrderSummary", Model.OrderSummary)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button formnovalidate="formnovalidate" type="submit" class="button-black full-width">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

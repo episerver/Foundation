@@ -22,7 +22,8 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44363</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1234,6 +1235,8 @@
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_calendar-block.scss" />
     <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
+    <Content Include="Features\Checkout\Checkout.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_one-page-checkout.scss" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />

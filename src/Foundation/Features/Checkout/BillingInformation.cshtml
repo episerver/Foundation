@@ -1,203 +1,183 @@
 ﻿@model CheckoutViewModel
-@{
-    if (Request.IsAjaxRequest())
-    {
-        Layout = null;
-    }
-}
-@Html.Partial("_CheckoutStatusBar", 4)
-
-@Html.Partial("_Coupon", Model)
 
 <div class="row">
     <div class="col-12">
-        <form class="jsCheckoutForm" action="@Url.Action("UpdatePaymentAddress", "Checkout")" method="post" novalidate data-updateurl="@Url.Action("UpdatePaymentOption", "Checkout", null)">
-            <div class="row section-box container--gutter-layout">
-                <div id="billingAddressContainer" class="col-xs-12 col-sm-6">
-                    <div id="checkout-step-shipping" class="step a-item">
-                        @Html.HiddenFor(model => model.AddressType)
-                        <ul class="style-list-none">
-                            <li>
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <div>
-                                        <label class="checkbox">
-                                            @Html.TranslateFallback("/Checkout/Billing/ExistingAddress", "Bill to existing address")
-                                            @Html.RadioButtonFor(x => x.AddressType, 1, new
-                                            {
-                                                @class = "radio jsBillingAddress"
-                                            })
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                }
-                                <div>
-                                    <label class="checkbox">
-                                        @Html.TranslateFallback("/Checkout/Billing/NewAddress", "Bill to new address")
-                                        @Html.RadioButtonFor(x => x.AddressType, 0, new
-                                        {
-                                            @class = "radio jsBillingAddress"
-                                        })
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <br />
-                            </li>
-
-                            <li class="@(Model.AddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden")" id="oldShippingAddressForm">
-                                <div class="form-group">
-                                    @{
-                                        var values = new List<KeyValuePair<string, string>>();
-                                        foreach (var a in Model.AvailableAddresses)
-                                        {
-                                            values.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
-                                        }
-                                    }
-                                    @{
-                                        var defaultBillingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.BillingDefault);
-                                        var defaultBillingAddressId = defaultBillingAddress != null ? defaultBillingAddress.AddressId : null;
-                                    }
-                                    @Helpers.RenderDropdown(values, Model.BillingAddress.AddressId ?? defaultBillingAddressId, "", "BillingAddress.AddressId")
-                                </div>
-                            </li>
-
-                            <li class="@(Model.AddressType == 1 && User.Identity.IsAuthenticated ? "hidden" : "")" id="newShippingAddressForm">
-
-                                <div>
-                                    @Html.HiddenFor(model => model.BillingAddress.Name)
-                                    @Html.HiddenFor(model => model.BillingAddress.DaytimePhoneNumber)
-                                    @Html.HiddenFor(model => model.BillingAddress.BillingDefault)
-                                    @Html.HiddenFor(model => model.BillingAddress.ShippingDefault)
-                                    <ul class="style-list-none">
-                                        <li>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.FirstName)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.FirstName, new
-                                                   {
-                                                       @class = "textbox"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.FirstName)
-                                                </div>
-
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.LastName)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.LastName, new
-                                                   {
-                                                       @class = "textbox"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.LastName)
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.Email)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.Email, new
-                                                   {
-                                                       @class = "textbox"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.Email)
-                                                </div>
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.Organization)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.Organization, new
-                                                   {
-                                                       @class = "textbox"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.Organization)
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.Line1)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.Line1, new
-                                                   {
-                                                       @class = "textbox"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.Line1)
-                                                </div>
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.Line2)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.Line2, new
-                                                   {
-                                                       @class = "textbox"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.Line2)
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.City)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.City, new
-                                                   {
-                                                       @class = "textbox jsChangeTaxAddress"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.City)
-                                                </div>
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.PostalCode)
-                                                    @Html.TextBoxFor(model => model.BillingAddress.PostalCode, new
-                                                   {
-                                                       @class = "textbox jsChangeTaxAddress"
-                                                   })
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.PostalCode)
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
-                                                    @Html.EditorFor(model => model.BillingAddress.CountryRegion, new { Name = "BillingAddress.CountryRegion.Region" })
-                                                </div>
-                                                <div class="form-group col-xs-12 col-md-6">
-                                                    @Html.LabelFor(model => model.BillingAddress.CountryCode)
-                                                    @Html.DisplayFor(model => model.Shipments[0].Address.CountryOptions, "CountryOptions",
-                                                    new { SelectItem = Model.BillingAddress.CountryCode, Name = "BillingAddress.CountryCode" })
-
-                                                    @Html.ValidationMessageFor(model => model.BillingAddress.CountryCode)
-                                                    @Html.Hidden("address-htmlfieldprefix", "BillingAddress.CountryRegion")
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                        </ul>
-
-                        @if (ViewData.ModelState["BillingAddress.AddressId"] != null && ViewData.ModelState["BillingAddress.AddressId"].Errors.Count > 0)
+        <div id="billingAddressContainer" >
+            <div id="checkout-step-shipping" class="step a-item">
+                <ul class="style-list-none">
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <div class="address-required-message alert alert-danger square-box">
-                                <h6>Billing address is required!</h6>
+                            <div>
+                                <label class="checkbox">
+                                    @Html.TranslateFallback("/Checkout/Billing/ExistingAddress", "Bill to existing address")
+                                    @Html.RadioButtonFor(x => x.BillingAddressType, 1, new
+                                    {
+                                        @class = "radio jsBillingAddress"
+                                    })
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                         }
+                        <div>
+                            <label class="checkbox">
+                                @Html.TranslateFallback("/Checkout/Billing/NewAddress", "Bill to new address")
+                                @Html.RadioButtonFor(x => x.BillingAddressType, 0, new
+                                {
+                                    @class = "radio jsBillingAddress"
+                                })
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <br />
+                    </li>
+
+                    <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden")" id="oldBillingAddressForm">
+                        <div class="form-group">
+                            @{
+                                var values = new List<KeyValuePair<string, string>>();
+                                foreach (var a in Model.AvailableAddresses)
+                                {
+                                    values.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
+                                }
+                            }
+                            @{
+                                var defaultBillingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.BillingDefault);
+                                var defaultBillingAddressId = defaultBillingAddress != null ? defaultBillingAddress.AddressId : null;
+                            }
+                            @Helpers.RenderDropdown(values, Model.BillingAddress.AddressId ?? defaultBillingAddressId, "", "BillingAddress.AddressId")
+                        </div>
+                    </li>
+
+                    <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "hidden" : "")" id="newBillingAddressForm">
+
+                        <div>
+                            @Html.HiddenFor(model => model.BillingAddress.Name)
+                            @Html.HiddenFor(model => model.BillingAddress.DaytimePhoneNumber)
+                            @Html.HiddenFor(model => model.BillingAddress.BillingDefault)
+                            @Html.HiddenFor(model => model.BillingAddress.ShippingDefault)
+                            <ul class="style-list-none">
+                                <li>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.FirstName)
+                                            @Html.TextBoxFor(model => model.BillingAddress.FirstName, new
+                                           {
+                                               @class = "textbox"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.FirstName)
+                                        </div>
+
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.LastName)
+                                            @Html.TextBoxFor(model => model.BillingAddress.LastName, new
+                                           {
+                                               @class = "textbox"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.LastName)
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.Email)
+                                            @Html.TextBoxFor(model => model.BillingAddress.Email, new
+                                           {
+                                               @class = "textbox"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.Email)
+                                        </div>
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.Organization)
+                                            @Html.TextBoxFor(model => model.BillingAddress.Organization, new
+                                           {
+                                               @class = "textbox"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.Organization)
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.Line1)
+                                            @Html.TextBoxFor(model => model.BillingAddress.Line1, new
+                                           {
+                                               @class = "textbox"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.Line1)
+                                        </div>
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.Line2)
+                                            @Html.TextBoxFor(model => model.BillingAddress.Line2, new
+                                           {
+                                               @class = "textbox"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.Line2)
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.City)
+                                            @Html.TextBoxFor(model => model.BillingAddress.City, new
+                                           {
+                                               @class = "textbox jsChangeTaxAddress"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.City)
+                                        </div>
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.PostalCode)
+                                            @Html.TextBoxFor(model => model.BillingAddress.PostalCode, new
+                                           {
+                                               @class = "textbox jsChangeTaxAddress"
+                                           })
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.PostalCode)
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
+                                            @Html.EditorFor(model => model.BillingAddress.CountryRegion, new { Name = "BillingAddress.CountryRegion.Region" })
+                                        </div>
+                                        <div class="form-group col-xs-12 col-md-6">
+                                            @Html.LabelFor(model => model.BillingAddress.CountryCode)
+                                            @Html.DisplayFor(model => model.Shipments[0].Address.CountryOptions, "CountryOptions",
+                                            new { SelectItem = Model.BillingAddress.CountryCode, Name = "BillingAddress.CountryCode" })
+
+                                            @Html.ValidationMessageFor(model => model.BillingAddress.CountryCode)
+                                            @Html.Hidden("address-htmlfieldprefix", "BillingAddress.CountryRegion")
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                </ul>
+
+                @if (ViewData.ModelState["BillingAddress.AddressId"] != null && ViewData.ModelState["BillingAddress.AddressId"].Errors.Count > 0)
+                {
+                    <div class="address-required-message alert alert-danger square-box">
+                        <h6>Billing address is required!</h6>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 jsCouponReplaceHtml" id="paymentBlock">
+                }
+            </div>
+        </div>
+        <div class="jsPaymentForm" action="@Url.Action("UpdatePaymentAddress", "Checkout")" novalidate>
+            <div class="row section-box container--gutter-layout">
+                <div class="col-12 jsCouponReplaceHtml" id="paymentBlock">
                     @Html.Partial("_AddPayment", Model)
                 </div>
 
             </div>
+        </div>
 
-            <div class="row checkout__block">
-                <div class="col-12 checkout__btn-group">
-                    <a class="account-link" href="@Url.Action("ShippingInformation", new { node = Model.CurrentContent.ContentLink })" title="@Html.TranslateFallback("/Shared/Back", "Back")">
-                        <span>
-                            @Html.TranslateFallback("/Shared/Back", "Back")
-                        </span>
-                    </a>
-                    <button class="button-black" type="submit">
-                        <span>@Html.TranslateFallback("/Shared/Continue", "Continue")</span>
-                    </button>
-                </div>
-            </div>
-        </form>
+        @Html.Partial("_Coupon", Model)
+
     </div>
 </div>

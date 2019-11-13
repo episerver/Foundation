@@ -200,12 +200,12 @@ namespace Foundation.Commerce.Order.Services
 
                 cart.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
 
-                if (checkoutViewModel.IsUsePaymentPlan)
-                {
-                    var _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-                    _paymentPlan.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
-                    _orderRepository.Save(_paymentPlan);
-                }
+                //if (checkoutViewModel.IsUsePaymentPlan) // never true in old checkout page
+                //{
+                //    var _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
+                //    _paymentPlan.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
+                //    _orderRepository.Save(_paymentPlan);
+                //}
 
                 //Loyalty Program: Add Points and Number of orders
                 _loyaltyService.AddNumberOfOrders();

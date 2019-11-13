@@ -1,98 +1,104 @@
 ﻿@model CheckoutViewModel
-@{
-    if (Request.IsAjaxRequest())
-    {
-        Layout = null;
-    }
-}
-@Html.Partial("_CheckoutStatusBar", 3)
 
 <div class="row">
-
-
     <div class="col-12">
-        @using (Html.BeginForm("UpdateShippingMethods", "Checkout", FormMethod.Post))
+
+        @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
         {
-            @Html.AntiForgeryToken()
-            for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
-            {
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.AddressId)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.Name)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.FirstName)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.LastName)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.PostalCode)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.City)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.CountryCode)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.CountryRegion.Region)
-                @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.Line1)
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="title">
-                                    @Html.TranslateFallback("/Checkout/Shipment/Labels/Shipment", "Shipment") @shipmentIndex @Html.TranslateFallback("/Checkout/Shipment/Labels/Of", "of") @Model.Shipments.Count()
-                                </h4>
-                                <div class="light-text">
-                                    <strong>
-                                        @Html.Translate("/Shipment/ShippingTo")
-                                    </strong>
-                                    @string.Format("{0}, {1}, {2}, {3}", Model.Shipments[shipmentIndex - 1].Address.Line1,
-                                        Model.Shipments[shipmentIndex - 1].Address.City,
-                                        Model.Shipments[shipmentIndex - 1].Address.CountryRegion.Region,
-                                        Model.Shipments[shipmentIndex - 1].Address.PostalCode)
-                                </div>
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.AddressId)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.Name)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.FirstName)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.LastName)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.PostalCode)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.City)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.CountryCode)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.CountryRegion.Region)
+            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.Line1)
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="title">
+                                @Html.TranslateFallback("/Checkout/Shipment/Labels/Shipment", "Shipment") @shipmentIndex @Html.TranslateFallback("/Checkout/Shipment/Labels/Of", "of") @Model.Shipments.Count()
+                            </h4>
+                            <div class="light-text">
+                                <strong>
+                                    @Html.Translate("/Shipment/ShippingTo")
+                                </strong>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-12">
-                                @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
-                                {
+                    <div class="row">
+                        <div class="col-12">
+                            @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
+                            {
+                                var variant = cartItem.Entry as GenericVariant;
+                                var viewData = new ViewDataDictionary();
+                                viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
+                                <div class="checkout__cart-item jsCartItem">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="items__img" src="@cartItem.ImageUrl" alt="@cartItem.DisplayName" title="@cartItem.DisplayName">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <h5 class="items__item">
+                                                <a href="@cartItem.Url">@cartItem.DisplayName</a>
+                                            </h5>
 
-                                    var viewData = new ViewDataDictionary();
-                                    viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
-                                    <div class="checkout__cart-item">
-                                        <div class="row">
-                                            @Html.Partial("~/Features/NamedCarts/DefaultCart/_ItemTemplate.cshtml", cartItem, viewData)
+                                            @if (variant != null)
+                                            {
+                                                <p class="items__item-meta">
+                                                    Size: @variant.Size, Color: @variant.Color
+                                                </p>
+                                            }
+                                            <p>
+                                                Price:
+                                                @if (cartItem.DiscountedUnitPrice.HasValue)
+                                                {
+                                                    <span class="price__old">@cartItem.PlacedPrice</span>
+                                                    <span class="price__discount">@cartItem.DiscountedUnitPrice</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="price__discount">@cartItem.PlacedPrice</span>
+                                                }
+                                            </p>
+                                            <div class="items__quantity-row">
+                                                <span class="items__quantity">
+                                                    Quantity
+                                                </span>
+                                                <input type="number" class="textbox jsChangeQuantityItemCheckout" style="width: auto" name="@cartItem.Entry.Code"
+                                                       value="@((int)cartItem.Quantity)" code="@cartItem.Entry.Code" url="@Url.Action("ChangeCartItem", "Checkout")">
+                                            </div>
                                         </div>
                                     </div>
-                                }
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-xs-12 col-sm-4">
-                        <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryOption", "Choose delivery option")</p><br />
-                        <ul class="checkout__delivery-block style-list-none">
-                            @foreach (var shippingMethodViewModel in Model.Shipments[shipmentIndex - 1].ShippingMethods)
-                            {
-                                <li>
-                                    <label class="checkbox">
-                                        @shippingMethodViewModel.DisplayName @shippingMethodViewModel.Price.ToString()
-                                        @Html.RadioButtonFor(model => Model.Shipments[shipmentIndex - 1].ShippingMethodId, shippingMethodViewModel.Id, new { @id = shippingMethodViewModel.Id, @class = "jsChangeShipment" })
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </li>
+                                </div>
                             }
-                        </ul>
+                        </div>
                     </div>
+
                 </div>
-            }
 
 
-            <div class="row checkout__block">
-                <div class="col-12 checkout__btn-group">
-                    <a class="account-link" href="@Url.Action("SingleShipment", new { node = Model.CurrentContent.ContentLink })" title=@Html.TranslateFallback("/Shared/Back", "Back")>
-                        <span>@Html.TranslateFallback("/Shared/Back", "Back")</span>
-                    </a>
-                    <button class="button-black" type="submit">
-                        <span>@Html.TranslateFallback("/Shared/Continue", "Continue")</span>
-                    </button>
+                <div class="col-xs-12 col-md-4">
+                    <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryOption", "Choose delivery option")</p><br />
+                    <ul class="checkout__delivery-block style-list-none jsShippingMethodContainer" url="@Url.Action("UpdateShippingMethods", "Checkout")">
+                        @foreach (var shippingMethodViewModel in Model.Shipments[shipmentIndex - 1].ShippingMethods)
+                        {
+                            <li>
+                                <label class="checkbox">
+                                    @shippingMethodViewModel.DisplayName @shippingMethodViewModel.Price.ToString()
+                                    @Html.RadioButtonFor(model => Model.Shipments[shipmentIndex - 1].ShippingMethodId, shippingMethodViewModel.Id, new { @id = shippingMethodViewModel.Id, @class = "jsChangeShipment" })
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         }
+
     </div>
 </div>
