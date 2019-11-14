@@ -23,7 +23,7 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 95)]
         public virtual string MainIntro { get; set; }
 
-        [Display(Name = "Bottom area", GroupName = SystemTabNames.Content, Order = 210)]
+        [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea BottomArea { get; set; }
 
         [Ignore]
