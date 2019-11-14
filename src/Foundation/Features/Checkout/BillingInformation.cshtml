@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div id="billingAddressContainer" >
+        <div id="billingAddressContainer">
             <div id="checkout-step-shipping" class="step a-item">
                 <ul class="style-list-none">
                     <li>
@@ -29,7 +29,6 @@
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <br />
                     </li>
 
                     <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden")" id="oldBillingAddressForm">

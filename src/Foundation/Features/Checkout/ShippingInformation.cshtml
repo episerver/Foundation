@@ -5,16 +5,6 @@
 
         @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
         {
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.AddressId)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.Name)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.FirstName)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.LastName)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.PostalCode)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.City)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.CountryCode)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.CountryRegion.Region)
-            @Html.HiddenFor(model => model.Shipments[shipmentIndex - 1].Address.Line1)
-
             <div class="row">
                 <div class="col-xs-12 col-md-8">
                     <div class="row">
@@ -70,7 +60,7 @@
                                                     Quantity
                                                 </span>
                                                 <input type="number" class="textbox jsChangeQuantityItemCheckout" style="width: auto" name="@cartItem.Entry.Code"
-                                                       value="@((int)cartItem.Quantity)" code="@cartItem.Entry.Code" url="@Url.Action("ChangeCartItem", "Checkout")">
+                                                       value="@((int)cartItem.Quantity)" data-code="@cartItem.Entry.Code" data-url="@Url.Action("ChangeCartItem", "Checkout")" />
                                             </div>
                                         </div>
                                     </div>

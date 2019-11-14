@@ -62,6 +62,7 @@
         checkout.RemoveCouponCode();
         checkout.ChangeShippingMethod();
         checkout.ChangeCartItem();
+        checkout.UseBillingAsShipping();
         // --- End
 
         // Order Detail

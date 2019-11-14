@@ -3,6 +3,9 @@
 @model CheckoutViewModel
 
 <div class="row">
+    <div class="col-12">
+        <h4 class="title">@Html.TranslateFallback("/Shared/Subscription", "Subscription")</h4>
+    </div>
     <div class="col-12 checkout--panel-block">
         <label class="checkbox">
             @Html.CheckBoxFor(x => x.IsUsePaymentPlan)

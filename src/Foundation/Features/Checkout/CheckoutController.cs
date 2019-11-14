@@ -469,8 +469,23 @@ namespace Foundation.Features.Checkout
             {
                 var viewModel = CreateCheckoutViewModel(currentPage);
                 viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-                return View("PlaceOrder", viewModel);
+                viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
+                viewModel.UseBillingAddressForShipment = checkoutViewModel.UseBillingAddressForShipment;
+                viewModel.ShippingAddressType = checkoutViewModel.ShippingAddressType;
+                viewModel.BillingAddressType = checkoutViewModel.BillingAddressType;
+                viewModel.Shipments[0].Address = checkoutViewModel.Shipments[0].Address;
+                viewModel.BillingAddress = checkoutViewModel.BillingAddress;
+                _addressBookService.LoadAddress(viewModel.BillingAddress);
+                _addressBookService.LoadAddress(checkoutViewModel.Shipments[0].Address);
+                return View("Checkout", viewModel);
             }
+
+            if (checkoutViewModel.ShippingAddressType == 0)
+                _addressBookService.Save(checkoutViewModel.BillingAddress);
+
+            if (checkoutViewModel.BillingAddressType == 0)
+                _addressBookService.Save(checkoutViewModel.Shipments[0].Address);
+
             if (Request.IsAuthenticated)
             {
                 var contact = _customerContext.GetCurrentContact().Contact;
@@ -592,7 +607,6 @@ namespace Foundation.Features.Checkout
                 var addressName = viewModel.BillingAddress.FirstName + " " + viewModel.BillingAddress.LastName;
                 viewModel.BillingAddress.AddressId = null;
                 viewModel.BillingAddress.Name = addressName + " " + DateTime.Now.ToString();
-                _addressBookService.Save(viewModel.BillingAddress);
             }
 
             foreach (var payment in CartWithValidationIssues.Cart.GetFirstForm().Payments)
@@ -611,25 +625,27 @@ namespace Foundation.Features.Checkout
             ModelState.Clear();
             var content = Request.RequestContext.GetRoutedData<CheckoutPage>();
             var viewModel = CreateCheckoutViewModel(content);
-            if (checkoutViewModel.ShippingAddressType == 0)
+            if (!checkoutViewModel.UseBillingAddressForShipment)
             {
-                var addressName = viewModel.BillingAddress.FirstName + " " + viewModel.BillingAddress.LastName;
-                checkoutViewModel.Shipments[0].Address.AddressId = null;
-                checkoutViewModel.Shipments[0].Address.Name = addressName + " " + DateTime.Now.ToString();
-                _addressBookService.Save(checkoutViewModel.Shipments[0].Address);
-                viewModel.Shipments[0].Address = checkoutViewModel.Shipments[0].Address;
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(checkoutViewModel.Shipments[0].Address.AddressId))
+                if (checkoutViewModel.ShippingAddressType == 0)
                 {
-                    viewModel.ShippingAddressType
-                        = 1;
-                    ModelState.AddModelError("Shipments[0].Address.AddressId", "Address is required.");
+                    var addressName = checkoutViewModel.Shipments[0].Address.FirstName + " " + checkoutViewModel.Shipments[0].Address.LastName;
+                    checkoutViewModel.Shipments[0].Address.AddressId = null;
+                    checkoutViewModel.Shipments[0].Address.Name = addressName + " " + DateTime.Now.ToString();
+                    viewModel.Shipments[0].Address = checkoutViewModel.Shipments[0].Address;
                 }
+                else
+                {
+                    if (string.IsNullOrEmpty(checkoutViewModel.Shipments[0].Address.AddressId))
+                    {
+                        viewModel.ShippingAddressType
+                            = 1;
+                        ModelState.AddModelError("Shipments[0].Address.AddressId", "Address is required.");
+                    }
 
-                _addressBookService.LoadAddress(checkoutViewModel.Shipments[0].Address);
-                viewModel.Shipments[0].Address = checkoutViewModel.Shipments[0].Address;
+                    _addressBookService.LoadAddress(checkoutViewModel.Shipments[0].Address);
+                    viewModel.Shipments[0].Address = checkoutViewModel.Shipments[0].Address;
+                }
             }
 
             _checkoutService.UpdateShippingAddresses(CartWithValidationIssues.Cart, viewModel);

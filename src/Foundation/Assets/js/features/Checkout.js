@@ -294,8 +294,8 @@
             $(e).change(function () {
                 $('.loading-box').show();
                 var quantity = $(e).val();
-                var code = $(e).attr('code');
-                var url = $(e).attr('url');
+                var code = $(e).data('code');
+                var url = $(e).data('url');
                 var data = {
                     code: code,
                     quantity: quantity
@@ -322,6 +322,78 @@
                         $('.loading-box').hide();
                     })
             })
+        })
+    }
+    //////////////////
+
+    // Use billing address as shipping address
+    UseBillingAsShipping() {
+        var defaultValue = $('#UseBillingAddressForShipment').is(':checked');
+        if (defaultValue == true) {
+            $('#shippingAddressSelection').find('input').each(function (i, e) {
+                $(e).attr('disabled', 'disabled');
+            })
+
+            $('#oldShippingAddressForm').find('input').each(function (i, e) {
+                $(e).attr('disabled', 'disabled');
+            })
+
+            $('#oldShippingAddressForm').find('.dropdown').each(function (i, e) {
+                $(e).css('pointer-events', 'none');
+            })
+
+            $('#newShippingAddressForm').find('input').each(function (i, e) {
+                $(e).attr('disabled', 'disabled');
+            })
+
+            $('#newShippingAddressForm').find('.dropdown').each(function (i, e) {
+                $(e).css('pointer-events', 'none');
+            })
+        }
+
+        $('#UseBillingAddressForShipment').change(function () {
+            var value = $(this).is(':checked');
+            if (value == true) {
+                $('#shippingAddressSelection').find('input').each(function (i, e) {
+                    $(e).attr('disabled', 'disabled');
+                })
+
+                $('#oldShippingAddressForm').find('input').each(function (i, e) {
+                    $(e).attr('disabled', 'disabled');
+                })
+
+                $('#oldShippingAddressForm').find('.dropdown').each(function (i, e) {
+                    $(e).css('pointer-events', 'none');
+                })
+
+                $('#newShippingAddressForm').find('input').each(function (i, e) {
+                    $(e).attr('disabled', 'disabled');
+                })
+
+                $('#newShippingAddressForm').find('.dropdown').each(function (i, e) {
+                    $(e).css('pointer-events', 'none');
+                })
+            } else {
+                $('#shippingAddressSelection').find('input').each(function (i, e) {
+                    $(e).removeAttr('disabled');
+                })
+
+                $('#oldShippingAddressForm').find('input').each(function (i, e) {
+                    $(e).removeAttr('disabled');
+                })
+
+                $('#oldShippingAddressForm').find('.dropdown').each(function (i, e) {
+                    $(e).css('pointer-events', 'auto');
+                })
+
+                $('#newShippingAddressForm').find('input').each(function (i, e) {
+                    $(e).removeAttr('disabled');
+                })
+
+                $('#newShippingAddressForm').find('.dropdown').each(function (i, e) {
+                    $(e).css('pointer-events', 'auto');
+                })
+            }
         })
     }
     //////////////////

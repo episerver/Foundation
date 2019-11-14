@@ -3,27 +3,42 @@
 <div class="row">
     <div class="col-12">
         <ul class="style-list-none">
-            <li>
-                @if (User.Identity.IsAuthenticated)
-                {
+            <li class="row">
+                <div class="col-md-6 col-xs-12" id="shippingAddressSelection">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <label class="checkbox">
+                                @Html.TranslateFallback("/Checkout/Shipment/ExistingAddress", "Ship to existing address")
+                                @Html.RadioButtonFor(x => x.ShippingAddressType, 1, new
+                                {
+                                    @class = "radio jsSingleAddress"
+                                })
+                                <span class="checkmark"></span>
+                            </label>
+                            <br />
+                        </div>
+
+                    }
+                    <div>
+                        <label class="checkbox">
+                            @Html.TranslateFallback("/Checkout/Shipment/NewAddress", "Ship to new address")
+                            @Html.RadioButtonFor(x => x.ShippingAddressType, 0, new
+                            {
+                                @class = "radio jsSingleAddress"
+                            })
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
                     <label class="checkbox">
-                        @Html.TranslateFallback("/Checkout/Shipment/ExistingAddress", "Ship to existing address")
-                        @Html.RadioButtonFor(x => x.ShippingAddressType, 1, new
-                        {
-                            @class = "radio jsSingleAddress"
-                        })
+                        @Html.Label("Use billing address as shipping address")
+                        <input type="checkbox" name="UseBillingAddressForShipment" id="UseBillingAddressForShipment" @(Model.UseBillingAddressForShipment ? "checked" : "") />
                         <span class="checkmark"></span>
                     </label>
-                    <br />
-                }
-                <label class="checkbox">
-                    @Html.TranslateFallback("/Checkout/Shipment/NewAddress", "Ship to new address")
-                    @Html.RadioButtonFor(x => x.ShippingAddressType, 0, new
-                    {
-                        @class = "radio jsSingleAddress"
-                    })
-                    <span class="checkmark"></span>
-                </label>
+                </div>
             </li>
 
             <li class="@(Model.ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden")" id="oldShippingAddressForm">
@@ -150,12 +165,14 @@
             </li>
 
         </ul>
-        @if (!ViewData.ModelState.IsValid)
+
+        @if (ViewData.ModelState["Shipments[0].Address.AddressId"] != null && ViewData.ModelState["Shipments[0].Address.AddressId"].Errors.Count > 0)
         {
-        <div class="address-required-message alert alert-danger square-box">
-            <h6>Shipping Addresses is required!</h6>
-        </div>
+            <div class="address-required-message alert alert-danger square-box">
+                <h6>Shipping Addresses is required!</h6>
+            </div>
         }
+
     </div>
 </div>
 

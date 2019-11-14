@@ -1,6 +1,6 @@
 ﻿@model CheckoutViewModel
 
-@using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "row jsCheckoutForm", novalidate = "novalidate" }))
+@using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "row jsCheckoutForm", id = "jsCheckoutForm", novalidate = "novalidate" }))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-8 col-xs-12">
@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <button formnovalidate="formnovalidate" type="submit" class="button-black full-width">Place Order</button>
+                        <button type="submit" class="button-black full-width">Place Order</button>
                     </div>
                 </div>
             </div>
