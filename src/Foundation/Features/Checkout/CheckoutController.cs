@@ -86,14 +86,14 @@ namespace Foundation.Features.Checkout
 
         [HttpGet]
         [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult Index(CheckoutPage currentPage, int? shippingAddressType, int? billingAddressType)
+        public ActionResult Index(CheckoutPage currentPage, int? shippingAddressType, int? billingAddressType, int? isGuest)
         {
             if (CartIsNullOrEmpty())
             {
                 return View("EmptyCart", new CheckoutMethodViewModel(currentPage));
             }
 
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated && (!isGuest.HasValue || isGuest.Value != 1))
             {
                 return RedirectToAction("CheckoutMethod", new { node = currentPage.ContentLink });
             }
@@ -408,7 +408,7 @@ namespace Foundation.Features.Checkout
                 return RedirectToAction("Index", "Login", new { returnUrl = content != null ? _urlHelper.ContentUrl(content.ContentLink) : "/" });
             }
 
-            return RedirectToAction("Index", new { node = content.ContentLink });
+            return RedirectToAction("Index", new { node = content.ContentLink, isGuest = 1 });
         }
 
         [HttpPost]

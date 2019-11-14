@@ -11,7 +11,7 @@
         {
             @Html.AntiForgeryToken()
             <div>
-                <ul>
+                <ul class="none-style-type">
                     <li class="control">
                         <label class="checkbox">
                             @Html.TranslateFallback("/Checkout/CheckoutMethod/Guest", "Checkout as Guest")
@@ -19,14 +19,14 @@
                             <span class="checkmark"></span>
                         </label>
                     </li>
-                    <li class="control">
+                    @*<li class="control">
 
                         <label class="checkbox">
                             @Html.TranslateFallback("/Checkout/CheckoutMethod/Register", "Register")
                             <input type="radio" value="register" name="checkoutMethod">
                             <span class="checkmark"></span>
                         </label>
-                    </li>
+                    </li>*@
                 </ul>
                 <br />
             </div>
@@ -56,7 +56,7 @@
             <div>
                 <p class="title">@Html.TranslateFallback("/Checkout/CheckoutMethod/AlreadyRegistered", "Already Registered?")</p>
                 <p class="light-text">@Html.TranslateFallback("/Checkout/CheckoutMethod/PleaseLogin", "Please log in below:")</p>
-                <ul class="checkout--form-group">
+                <ul class="checkout--form-group none-style-type">
                     <li class="checkout__form-item">
                         @Html.LabelFor(x => x.LoginViewModel.Email)<span class="required">*</span>
                         @Html.TextBoxFor(x => x.LoginViewModel.Email, new { @class = "textbox", required = "true" })

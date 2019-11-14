@@ -188,7 +188,7 @@
                         window.location.href = r.data.Redirect;
                     }
                 } catch (e) {
-                    notification.Error(e);
+                    notification.Error(e); 
                 } finally {
                     $('.loading-box').hide();
                 }
