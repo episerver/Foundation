@@ -25,7 +25,7 @@ namespace Foundation.Cms.Blocks
         public virtual bool IncludeTeaserText { get; set; }
 
         [Required]
-        [Display(Name = "Number of resuts", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Number of results", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual int Count { get; set; }
 
         [UIHint("SortOrder")]
