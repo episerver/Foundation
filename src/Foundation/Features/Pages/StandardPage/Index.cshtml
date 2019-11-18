@@ -22,10 +22,10 @@
 <div class="row">
     <div class="col-12 standard-page__container">
         <div class="standard-page__hero @heroClass">
-            @if (Model.CurrentContent.MainBackgroundVideo != null)
+            @if (Model.CurrentContent.BackgroundVideo != null)
             {
                 <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
-                    <source src="@Url.ContentUrl(Model.CurrentContent.MainBackgroundVideo)" type="video/mp4" @Html.EditAttributes(x => x.CurrentContent.MainBackgroundVideo)>
+                    <source src="@Url.ContentUrl(Model.CurrentContent.BackgroundVideo)" type="video/mp4" @Html.EditAttributes(x => x.CurrentContent.BackgroundVideo)>
                 </video>
             }
             else if (Model.CurrentContent.PageImage != null)

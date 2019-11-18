@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Cms.Blocks;
+﻿using Foundation.Cms.Blocks;
 using Foundation.Cms.Pages;
 using System.Collections.Generic;
 

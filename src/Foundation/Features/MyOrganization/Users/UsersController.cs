@@ -244,7 +244,7 @@ namespace Foundation.Features.MyOrganization.Users
                         url,
                         _localizationService.GetString("/ResetPassword/Mail/Link")));
 
-                _mailService.Send(mailPage.MailTitle, body, user.Email);
+                _mailService.Send(mailPage.Subject, body, user.Email);
             }
         }
 

@@ -25,8 +25,8 @@ namespace Foundation.Cms.Pages
         [Display(GroupName = CmsTabNames.BlogList, Order = 10)]
         public virtual PageReference Root { get; set; }
 
-        [Display(GroupName = CmsTabNames.BlogList, Order = 20)]
-        public virtual bool Recursive { get; set; }
+        [Display(Name = "Include all levels", GroupName = CmsTabNames.BlogList, Order = 20)]
+        public virtual bool IncludeAllLevels { get; set; }
 
         [UIHint("SortOrder")]
         [BackingType(typeof(PropertyNumber))]
@@ -60,7 +60,7 @@ namespace Foundation.Cms.Pages
         {
             base.SetDefaultValues(contentType);
 
-            Recursive = true;
+            IncludeAllLevels = true;
             Template = TemplateSelections.Grid;
             PreviewOption = PreviewOptions.Full;
             IncludeTeaserText = true;

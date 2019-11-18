@@ -9,7 +9,6 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using EPiServer.Tracking.Core;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Media;
 using Foundation.Cms.ViewModels.Header;

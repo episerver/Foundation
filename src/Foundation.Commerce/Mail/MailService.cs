@@ -35,7 +35,7 @@ namespace Foundation.Commerce.Mail
             var body = GetHtmlBodyForMail(mailReference, nameValueCollection, language);
             var mailPage = _contentLoader.Get<MailBasePage>(mailReference);
 
-            Send(mailPage.MailTitle, body, toEmail);
+            Send(mailPage.Subject, body, toEmail);
         }
 
         public string GetHtmlBodyForMail(ContentReference mailReference, NameValueCollection nameValueCollection,

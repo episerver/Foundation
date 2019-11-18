@@ -176,7 +176,8 @@ namespace Foundation.Commerce.ViewModels.Header
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
                 {
                     return itemCached;
-                } else
+                }
+                else
                 {
                     var content = _contentLoader.Get<IContent>(x.ContentLink);
                     MenuItemBlock _;
@@ -217,7 +218,7 @@ namespace Foundation.Commerce.ViewModels.Header
                     return menuItem;
                 }
             }).ToList();
-            
+
             return new T
             {
                 HomePage = homePage,

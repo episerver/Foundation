@@ -108,7 +108,7 @@ namespace Foundation.Demo.Install.Steps
                 scope.SaveChanges();
             }
 
-           var contactProfile = @"<ListViewProfile xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+            var contactProfile = @"<ListViewProfile xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
                     <Id>{54a649a9-302f-48bd-b657-11ca3604fda9}</Id>
                     <Name>{Customer:AllContacts}</Name>
                     <IsSystem>true</IsSystem>
