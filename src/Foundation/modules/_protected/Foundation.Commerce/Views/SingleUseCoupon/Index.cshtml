@@ -7,36 +7,31 @@
 <section class="main-container col2-right-layout">
     <div class="main container">
         <div class="row">
-            <div id="profile-store-list" class="col-main col-sm-9">
+            <div id="profile-store-list" class="col-12">
                 <div class="page-title">
                     <h2>Promotions</h2>
                 </div>
 
-                <div class="spacer-left-l">
-                    <section>
-                        <div class="table-responsive">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Active</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="js-users-table-body">
-                                    @foreach (var item in Model.Promotions)
-                                    {
-                                        <tr>
-                                            <td><a href="@Url.Action("EditPromotionCoupons", new { id = item.ContentLink.ID})">@item.Name</a></td>
-                                            <td>@item.DiscountType.ToString()</td>
-                                            <td>@item.IsActive.ToString()</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </section>
+                <div class="row">
+                    <table class="col-12 table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Active</th>
+                            </tr>
+                        </thead>
+                        <tbody class="js-users-table-body">
+                            @foreach (var item in Model.Promotions)
+                            {
+                                <tr>
+                                    <td><a class="account-link" href="@Url.Action("EditPromotionCoupons", new { id = item.ContentLink.ID})">@item.Name</a></td>
+                                    <td>@item.DiscountType.ToString()</td>
+                                    <td>@item.IsActive.ToString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
