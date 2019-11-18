@@ -18,7 +18,7 @@ namespace Foundation.Cms.Pages
         [CultureSpecific]
         [UIHint(UIHint.Video)]
         [Display(Name = "Background video", GroupName = SystemTabNames.Content, Order = 210)]
-        public virtual ContentReference MainBackgroundVideo { get; set; }
+        public virtual ContentReference BackgroundVideo { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(FoundationStandardPageTopPaddingModeSelectionFactory))]
         [Display(Name = "Top padding mode",

@@ -71,7 +71,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
                 string.Format("{0}<a href=\"{1}\">{2}</a>", _localizationService.GetString("/ResetPassword/Mail/Text"), url, _localizationService.GetString("/ResetPassword/Mail/Link"))
             );
 
-            _mailService.Send(mailPage.MailTitle, body, user.Email);
+            _mailService.Send(mailPage.Subject, body, user.Email);
 
             return RedirectToAction("ForgotPasswordConfirmation");
         }

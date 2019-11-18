@@ -26,9 +26,9 @@ namespace Foundation.Cms.ViewModels.Header
         private readonly IContentLoader _contentLoader;
         private readonly LocalizationService _localizationService;
 
-        public CmsHeaderViewModelFactory(IUrlResolver urlResolver, 
-            IContentCacheKeyCreator contentCacheKeyCreator, 
-            IContentLoader contentLoader, 
+        public CmsHeaderViewModelFactory(IUrlResolver urlResolver,
+            IContentCacheKeyCreator contentCacheKeyCreator,
+            IContentLoader contentLoader,
             LocalizationService localizationService)
         {
             _urlResolver = urlResolver;
@@ -104,7 +104,7 @@ namespace Foundation.Cms.ViewModels.Header
         }
 
         public virtual void AddMyAccountMenu<THomePage, THeaderViewModel>(THomePage homePage,
-            THeaderViewModel viewModel) 
+            THeaderViewModel viewModel)
             where THeaderViewModel : HeaderViewModel, new()
             where THomePage : CmsHomePage
         {
@@ -116,7 +116,7 @@ namespace Foundation.Cms.ViewModels.Header
 
             var menuItems = new LinkItemCollection();
             var filter = new FilterContentForVisitor();
-            
+
             foreach (var linkItem in homePage.MyAccountCmsMenu ?? new LinkItemCollection())
             {
                 if (!UrlResolver.Current.TryToPermanent(linkItem.Href, out var linkUrl))

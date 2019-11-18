@@ -232,9 +232,9 @@ namespace Foundation.Find.Commerce
             return list;
         }
 
-        private void GetManaualInclusion(List<ProductTileViewModel> results, 
-            BaseInclusionExclusionPage baseInclusionExclusionPage, 
-            IMarket market, 
+        private void GetManaualInclusion(List<ProductTileViewModel> results,
+            BaseInclusionExclusionPage baseInclusionExclusionPage,
+            IMarket market,
             Currency currency)
         {
             var currentCount = results.Count;
