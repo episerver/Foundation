@@ -16,21 +16,21 @@ namespace Foundation.Cms.Pages
     {
         [CultureSpecific]
         [Display(Name = "Right content area", GroupName = SystemTabNames.Content, Order = 210)]
-        public virtual ContentArea RightHandContentArea { get; set; }
+        public virtual ContentArea RightContentArea { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Left column", GroupName = SystemTabNames.Content, Order = 220)]
-        public virtual int MainContentAreaColumn { get; set; }
+        public virtual int LeftColumn { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Right column", GroupName = SystemTabNames.Content, Order = 221)]
-        public virtual int RightHandContentAreaColumn { get; set; }
+        public virtual int RightColumn { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
 
-            MainContentAreaColumn = RightHandContentAreaColumn = 6;
+            LeftColumn = RightColumn = 6;
         }
     }
 
@@ -39,33 +39,33 @@ namespace Foundation.Cms.Pages
         public IEnumerable<ValidationError> Validate(TwoColumnLandingPage instance)
         {
             var validations = new List<ValidationError>();
-            if (instance.MainContentAreaColumn + instance.RightHandContentAreaColumn != 12)
+            if (instance.LeftColumn + instance.RightColumn != 12)
             {
                 var error = new ValidationError();
-                error.PropertyName = nameof(instance.MainContentAreaColumn) + ", " + nameof(instance.RightHandContentAreaColumn);
+                error.PropertyName = nameof(instance.LeftColumn) + ", " + nameof(instance.RightColumn);
                 error.ErrorMessage = "Sum of columns must be 12. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
-                error.RelatedProperties = new List<string> { nameof(instance.MainContentAreaColumn), nameof(instance.RightHandContentAreaColumn) };
+                error.RelatedProperties = new List<string> { nameof(instance.LeftColumn), nameof(instance.RightColumn) };
                 validations.Add(error);
             }
 
-            if (instance.MainContentAreaColumn < 1)
+            if (instance.LeftColumn < 1)
             {
                 var error = new ValidationError();
-                error.PropertyName = nameof(instance.MainContentAreaColumn);
+                error.PropertyName = nameof(instance.LeftColumn);
                 error.ErrorMessage = "Value must be greater than 0. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
-                error.RelatedProperties = new List<string> { nameof(instance.MainContentAreaColumn) };
+                error.RelatedProperties = new List<string> { nameof(instance.LeftColumn) };
                 validations.Add(error);
             }
 
-            if (instance.RightHandContentAreaColumn < 1)
+            if (instance.RightColumn < 1)
             {
                 var error = new ValidationError();
-                error.PropertyName = nameof(instance.RightHandContentAreaColumn);
+                error.PropertyName = nameof(instance.RightColumn);
                 error.ErrorMessage = "Value must be greater than 0. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
-                error.RelatedProperties = new List<string> { nameof(instance.RightHandContentAreaColumn) };
+                error.RelatedProperties = new List<string> { nameof(instance.RightColumn) };
                 validations.Add(error);
             }
 

@@ -273,8 +273,8 @@ namespace Foundation.Find.Cms
             };
         }
 
-        public static DelegateFilterBuilder Prefix<T>(this IEnumerable<T> value, 
-            Expression<Func<T, string>> fieldSelector, 
+        public static DelegateFilterBuilder Prefix<T>(this IEnumerable<T> value,
+            Expression<Func<T, string>> fieldSelector,
             string prefix) => new DelegateFilterBuilder(field => new PrefixFilter(field, prefix))
             {
                 FieldNameMethod = (expression, conventions) =>
@@ -285,8 +285,8 @@ namespace Foundation.Find.Cms
                 }
             };
 
-        public static DelegateFilterBuilder PrefixCaseInsensitive<T>(this IEnumerable<T> value, 
-            Expression<Func<T, string>> fieldSelector, 
+        public static DelegateFilterBuilder PrefixCaseInsensitive<T>(this IEnumerable<T> value,
+            Expression<Func<T, string>> fieldSelector,
             string prefix)
         {
             return new DelegateFilterBuilder(field => new PrefixFilter(field, prefix.ToLowerInvariant()))

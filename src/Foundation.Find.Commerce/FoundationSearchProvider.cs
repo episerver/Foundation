@@ -59,7 +59,7 @@ namespace BurlingtonWeb.Business.Search
             ServiceAccessor<SearchManager> searchManagerAccessor,
             IContentLoader contentLoader,
             IModuleResourceResolver moduleResourceResolver,
-            ServiceAccessor<SiteContext> siteContextAccessor, 
+            ServiceAccessor<SiteContext> siteContextAccessor,
             IClient client) :
                 base(localizationService,
                     siteDefinitionResolver,

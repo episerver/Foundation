@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Calendar Event Page", 
-        GUID = "f086fd08-4e54-4eb9-8367-c45630415226", 
+    [ContentType(DisplayName = "Calendar Event Page",
+        GUID = "f086fd08-4e54-4eb9-8367-c45630415226",
         GroupName = CmsGroupNames.Calendar,
         Description = "Used to define an Event")]
     [ImageUrl("~/assets/icons/cms/pages/calendar.png")]

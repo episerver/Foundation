@@ -24,27 +24,27 @@ namespace Foundation.Commerce.Models.Pages
         [Display(Name = "Page size", Order = 230)]
         public virtual int PageSize { get; set; }
 
-        //
-        // Summary:
-        // Gets or sets the list of included catalog items (catalogs, categories or entries).
+        /// <summary>
+        /// Gets or sets the list of included catalog items (catalogs, categories or entries).
+        /// </summary>
+        [DistinctList]
         [AllowedTypes(typeof(CatalogContent), typeof(NodeContent), typeof(ProductContent), typeof(PackageContent))]
         [Display(Name = "Manual inclusion", Order = 240)]
-        [DistinctList]
         public virtual IList<ContentReference> ManualInclusion { get; set; }
 
-        //
-        // Summary:
-        //The manual inclusion products based on the Manual Inclusion Ordering.
+        /// <summary>
+        /// The manual inclusion products based on the Manual Inclusion Ordering.
+        /// </summary>
         [Display(Name = "Manual inclusion ordering", Order = 250)]
         [SelectOne(SelectionFactoryType = typeof(InclusionOrderingSelectionFactory))]
         public virtual string ManualInclusionOrdering { get; set; }
 
-        //
-        // Summary:
-        // Gets or sets the list of excluded catalog items (catalogs, categories or entries).
+        /// <summary>
+        /// Gets or sets the list of excluded catalog items (catalogs, categories or entries).
+        /// </summary>
+        [DistinctList]
         [AllowedTypes(typeof(CatalogContent), typeof(NodeContent), typeof(ProductContent), typeof(PackageContent))]
         [Display(Name = "Manual exclusion", Order = 260)]
-        [DistinctList]
         public virtual IList<ContentReference> ManualExclusion { get; set; }
     }
 }
