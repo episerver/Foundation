@@ -1,7 +1,5 @@
 ﻿@model CheckoutMethodViewModel
 
-@*@Html.Partial("_CheckoutStatusBar", 1)*@
-
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <h4>@Html.TranslateFallback("/Checkout/CheckoutMethod/CheckoutGuestOrRegister", "Checkout as a Guest or Register")</h4>
@@ -19,14 +17,6 @@
                             <span class="checkmark"></span>
                         </label>
                     </li>
-                    @*<li class="control">
-
-                        <label class="checkbox">
-                            @Html.TranslateFallback("/Checkout/CheckoutMethod/Register", "Register")
-                            <input type="radio" value="register" name="checkoutMethod">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>*@
                 </ul>
                 <br />
             </div>
