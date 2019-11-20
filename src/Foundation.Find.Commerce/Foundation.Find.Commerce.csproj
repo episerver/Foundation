@@ -13,8 +13,8 @@
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.13.2" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.13.2" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.22.1" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.7.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.11.0" />
     <PackageReference Include="EPiServer.Find" Version="13.2.5" />
     <PackageReference Include="EPiServer.Find.Cms" Version="13.2.5" />
     <PackageReference Include="EPiServer.Find.Commerce" Version="11.1.1" />
