@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.13.2" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.13.2" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.22.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.13.2" />
     <PackageReference Include="EPiServer.Social.ActivityStreams" Version="1.5.4" />
     <PackageReference Include="EPiServer.Social.Comments" Version="1.5.4" />
