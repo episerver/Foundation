@@ -63,6 +63,7 @@
         checkout.ChangeShippingMethod();
         checkout.ChangeCartItem();
         checkout.UseBillingAsShipping();
+        checkout.SeparateInit();
         // --- End
 
         // Order Detail

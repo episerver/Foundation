@@ -20,8 +20,6 @@ namespace Foundation.Commerce.Order.ViewModels
 
         public const string SingleShipmentCheckoutViewName = "SingleShipmentCheckout";
 
-        private Injected<LocalizationService> _localizationService;
-
         public CheckoutViewModel() => Payments = new List<PaymentOptionBase>();
 
         public CheckoutViewModel(CheckoutPage checkoutPage) : base(checkoutPage) => Payments = new List<PaymentOptionBase>();
@@ -72,7 +70,6 @@ namespace Foundation.Commerce.Order.ViewModels
         /// </summary>
         public string Message { get; set; }
 
-        public int ShippingAddressType { get; set; }
         public int BillingAddressType { get; set; }
 
         public Currency Currency { get; set; }
@@ -93,21 +90,6 @@ namespace Foundation.Commerce.Order.ViewModels
         public bool IsUsePaymentPlan { get; set; }
 
         public PaymentPlanSetting PaymentPlanSetting { get; set; }
-
-        public List<SelectListItem> SubscriptionOption => new List<SelectListItem>
-                {
-                    new SelectListItem {Text = "3 months", Value = "3"},
-                    new SelectListItem {Text = "6 months", Value = "6"},
-                    new SelectListItem {Text = "12 months", Value = "12"}
-                };
-        public List<SelectListItem> Modes => new List<SelectListItem>
-        {
-            new SelectListItem { Text = string.IsNullOrEmpty(_localizationService.Service.GetString("/Shared/None")) ? "None" : _localizationService.Service.GetString("/Shared/None"), Value="0"},
-            new SelectListItem { Text = string.IsNullOrEmpty(_localizationService.Service.GetString("/Shared/Days")) ? "Days" : _localizationService.Service.GetString("/Shared/Days"), Value="1"},
-            new SelectListItem { Text = string.IsNullOrEmpty(_localizationService.Service.GetString("/Shared/Weeks")) ? "Weeks" : _localizationService.Service.GetString("/Shared/Weeks"), Value="2"},
-            new SelectListItem { Text = string.IsNullOrEmpty(_localizationService.Service.GetString("/Shared/Months")) ? "Months" : _localizationService.Service.GetString("/Shared/Months"), Value="3"},
-            new SelectListItem { Text = string.IsNullOrEmpty(_localizationService.Service.GetString("/Shared/Years")) ? "Years" : _localizationService.Service.GetString("/Shared/Years"), Value="4"}
-        };
     }
 
 

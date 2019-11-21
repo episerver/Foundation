@@ -1,16 +1,19 @@
 ﻿@model CheckoutViewModel
-
-<div class="row">
+@{ 
+    var index = (int)ViewData["ShipmentIndex"];
+    var instorePickupMethod = Model.Shipments[index].ShippingMethods.FirstOrDefault(x => x.IsInstorePickup);
+}
+<div class="row jsShippingAddressRow @(instorePickupMethod != null && Model.Shipments[index].ShippingMethodId == instorePickupMethod.Id ? "hidden" : "")">
     <div class="col-12">
         <ul class="style-list-none">
             <li class="row">
-                <div class="col-md-6 col-xs-12" id="shippingAddressSelection">
+                <div class="col-md-6 col-xs-12 jsShippingAddressSelection">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <div>
                             <label class="checkbox">
                                 @Html.TranslateFallback("/Checkout/Shipment/ExistingAddress", "Ship to existing address")
-                                @Html.RadioButtonFor(x => x.ShippingAddressType, 1, new
+                                @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 1, new
                                 {
                                     @class = "radio jsSingleAddress"
                                 })
@@ -23,7 +26,7 @@
                     <div>
                         <label class="checkbox">
                             @Html.TranslateFallback("/Checkout/Shipment/NewAddress", "Ship to new address")
-                            @Html.RadioButtonFor(x => x.ShippingAddressType, 0, new
+                            @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 0, new
                             {
                                 @class = "radio jsSingleAddress"
                             })
@@ -32,16 +35,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xs-12">
-                    <label class="checkbox">
-                        @Html.Label("Use billing address as shipping address")
-                        <input type="checkbox" name="UseBillingAddressForShipment" id="UseBillingAddressForShipment" @(Model.UseBillingAddressForShipment ? "checked" : "") />
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
+                @if (Model.Shipments.Count == 1)
+                {
+
+                    <div class="col-md-6 col-xs-12">
+                        <label class="checkbox">
+                            @Html.Label("Use billing address as shipping address")
+                            <input type="checkbox" name="UseBillingAddressForShipment" id="UseBillingAddressForShipment" @(Model.UseBillingAddressForShipment ? "checked" : "") />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                } 
             </li>
 
-            <li class="@(Model.ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden")" id="oldShippingAddressForm">
+            <li class="@(Model.Shipments[index].ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden") jsOldShippingAddressForm">
                 <div class="form-group">
 
                     @{
@@ -55,109 +62,110 @@
                         var defaultShippingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.ShippingDefault);
                         var defaultShippingAddressId = defaultShippingAddress != null ? defaultShippingAddress.AddressId : null;
                     }
-                    @Helpers.RenderDropdown(values, Model.Shipments[0].Address.AddressId ?? defaultShippingAddressId, "", "Shipments[0].Address.AddressId")
+                    @Helpers.RenderDropdown(values, Model.Shipments[index].Address.AddressId ?? defaultShippingAddressId, "", "Shipments[" + index + "].Address.AddressId")
 
                 </div>
             </li>
 
-            <li class="@(Model.ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "hidden" : "")" id="newShippingAddressForm">
-                @Html.HiddenFor(model => model.Shipments[0].Address.Name)
-                @Html.HiddenFor(model => model.Shipments[0].Address.DaytimePhoneNumber)
-                @Html.HiddenFor(model => model.Shipments[0].Address.BillingDefault)
-                @Html.HiddenFor(model => model.Shipments[0].Address.ShippingDefault)
+            <li class="@(Model.Shipments[index].ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "hidden" : "") jsNewShippingAddressForm">
+                @Html.HiddenFor(model => model.Shipments[index].Address.Name)
+                @Html.HiddenFor(model => model.Shipments[index].Address.DaytimePhoneNumber)
+                @Html.HiddenFor(model => model.Shipments[index].Address.BillingDefault)
+                @Html.HiddenFor(model => model.Shipments[index].Address.ShippingDefault)
                 <ul class="style-list-none">
                     <li>
                         <div class="row">
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.FirstName)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.FirstName, new
+                                @Html.LabelFor(model => model.Shipments[index].Address.FirstName)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.FirstName, new
                            {
                                @class = "textbox"
                            })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.FirstName)
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.FirstName)
                             </div>
 
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.LastName)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.LastName, new
+                                @Html.LabelFor(model => model.Shipments[index].Address.LastName)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.LastName, new
                            {
                                @class = "textbox"
                            })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.LastName)
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.LastName)
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="row">
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.Email)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.Email, new
+                                @Html.LabelFor(model => model.Shipments[index].Address.Email)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.Email, new
                            {
                                @class = "textbox"
                            })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.Email)
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.Email)
                             </div>
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.Organization)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.Organization, new
+                                @Html.LabelFor(model => model.Shipments[index].Address.Organization)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.Organization, new
                            {
                                @class = "textbox"
                            })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.Organization)
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.Line1)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.Line1, new
-                           {
-                               @class = "textbox"
-                           })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.Line1)
-                            </div>
-                            <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.Line2)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.Line2, new
-                           {
-                               @class = "textbox"
-                           })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.Line2)
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.Organization)
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="row">
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.City)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.City, new
+                                @Html.LabelFor(model => model.Shipments[index].Address.Line1)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.Line1, new
+                           {
+                               @class = "textbox"
+                           })
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.Line1)
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                @Html.LabelFor(model => model.Shipments[index].Address.Line2)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.Line2, new
+                           {
+                               @class = "textbox"
+                           })
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.Line2)
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-md-6">
+                                @Html.LabelFor(model => model.Shipments[index].Address.City)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.City, new
                            {
                                @class = "textbox jsChangeTaxAddress"
                            })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.City)
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.City)
                             </div>
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.PostalCode)
-                                @Html.TextBoxFor(model => model.Shipments[0].Address.PostalCode, new
+                                @Html.LabelFor(model => model.Shipments[index].Address.PostalCode)
+                                @Html.TextBoxFor(model => model.Shipments[index].Address.PostalCode, new
                            {
                                @class = "textbox jsChangeTaxAddress"
                            })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.PostalCode)
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.PostalCode)
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="row">
                             <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
-                                @Html.EditorFor(model => model.Shipments[0].Address.CountryRegion, new { SelectItem = Model.Shipments[0].Address.CountryRegion.Region, Name = "Shipments[0].Address.CountryRegion.Region" })
+                                @Html.EditorFor(model => model.Shipments[index].Address.CountryRegion, 
+                               new { SelectItem = Model.Shipments[index].Address.CountryRegion.Region, Name = "Shipments[" + index + "].Address.CountryRegion.Region" })
                             </div>
                             <div class="form-group col-xs-12 col-md-6">
-                                @Html.LabelFor(model => model.Shipments[0].Address.CountryCode)
-                                @Html.DisplayFor(model => model.Shipments[0].Address.CountryOptions, "CountryOptions",
-                                    new { SelectItem = Model.Shipments[0].Address.CountryCode, Name = "Shipments[0].Address.CountryCode" })
-                                @Html.ValidationMessageFor(model => model.Shipments[0].Address.CountryCode)
-                                @Html.Hidden("address-htmlfieldprefix", "Shipments[0].Address.CountryRegion")
+                                @Html.LabelFor(model => model.Shipments[index].Address.CountryCode)
+                                @Html.DisplayFor(model => model.Shipments[index].Address.CountryOptions, "CountryOptions",
+                                    new { SelectItem = Model.Shipments[index].Address.CountryCode, Name = "Shipments[" + index + "].Address.CountryCode" })
+                                @Html.ValidationMessageFor(model => model.Shipments[index].Address.CountryCode)
+                                @Html.Hidden("address-htmlfieldprefix", "Shipments[" + index + "].Address.CountryRegion")
                             </div>
                         </div>
                     </li>
@@ -166,7 +174,7 @@
 
         </ul>
 
-        @if (ViewData.ModelState["Shipments[0].Address.AddressId"] != null && ViewData.ModelState["Shipments[0].Address.AddressId"].Errors.Count > 0)
+        @if (ViewData.ModelState["Shipments[" + index + "].Address.AddressId"] != null && ViewData.ModelState["Shipments[" + index + "].Address.AddressId"].Errors.Count > 0)
         {
             <div class="address-required-message alert alert-danger square-box">
                 <h6>Shipping Addresses is required!</h6>

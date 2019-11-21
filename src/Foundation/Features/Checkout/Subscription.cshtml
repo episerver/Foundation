@@ -13,20 +13,14 @@
             <span class="checkmark"></span>
         </label>
     </div>
-
-    <div class="col-12">
-        @Html.LabelFor(x => x.PaymentPlanSetting.CycleMode)
-        @{
-            var values = new List<KeyValuePair<string, string>>();
-            foreach (var v in Model.Modes)
-            {
-                values.Add(new KeyValuePair<string, string>(v.Text, v.Value));
-            }
-        }
-        @Helpers.RenderDropdown(values, Model.PaymentPlanSetting.CycleMode.ToString(), "", "PaymentPlanSetting.CycleMode")
+    <div class="col-6">
+        @Html.Label("Every ")
+        @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number", style = "width: 150px" })
+        <span> day(s)</span>
     </div>
-    <div class="col-12">
-        @Html.LabelFor(x => x.PaymentPlanSetting.CycleLength)
-        @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number" })
+
+    <div class="col-6">
+        <span>End date</span>
+        @Html.TextBoxFor(x => x.PaymentPlanSetting.EndDate, new { type = "date", style = "display: inline; width: auto; border-radius: 0; padding: 8px; border: 1px solid #ddd" })
     </div>
 </div>

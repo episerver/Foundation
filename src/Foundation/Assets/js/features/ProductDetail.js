@@ -82,7 +82,7 @@
                 $(inst.DivContainerId).find('.addToCart').attr('store', valueChecked);
                 $(inst.DivContainerId).find('.jsBuyNow').attr('store', valueChecked);
                 if (valueChecked === 'instore') {
-                    var selectedStore = $(inst.DivContainerId).find('.jsSelectStore.hidden').attr('data');
+                    var selectedStore = $(inst.DivContainerId).find('#selectedStore').val();
                     $(inst.DivContainerId).find('.addToCart').attr('selectedStore', selectedStore);
                     $(inst.DivContainerId).find('.jsBuyNow').attr('selectedStore', selectedStore);
                     if (!$(inst.DivContainerId).find('#pickupStoreBox').is(':visible')) {

@@ -200,13 +200,6 @@ namespace Foundation.Commerce.Order.Services
 
                 cart.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
 
-                //if (checkoutViewModel.IsUsePaymentPlan) // never true in old checkout page
-                //{
-                //    var _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-                //    _paymentPlan.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
-                //    _orderRepository.Save(_paymentPlan);
-                //}
-
                 //Loyalty Program: Add Points and Number of orders
                 _loyaltyService.AddNumberOfOrders();
 
@@ -289,9 +282,10 @@ namespace Foundation.Commerce.Order.Services
 
             IPaymentPlan _paymentPlan;
             _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-            _paymentPlan.CycleMode = paymentPlanSetting.CycleMode;
+            _paymentPlan.CycleMode = PaymentPlanCycle.Days;
             _paymentPlan.CycleLength = paymentPlanSetting.CycleLength;
-            _paymentPlan.StartDate = paymentPlanSetting.StartDate;
+            _paymentPlan.StartDate = DateTime.Now;
+            _paymentPlan.EndDate = paymentPlanSetting.EndDate;
             _paymentPlan.IsActive = paymentPlanSetting.IsActive;
 
             var principal = PrincipalInfo.CurrentPrincipal;

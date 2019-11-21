@@ -1,14 +1,4 @@
-﻿/*body {
-    background-color: #f7f7f7;
-    font-family: sans-serif;
-}
-
-.main {
-    width: 960px;
-    margin: 30px auto;
-}*/
-
-.items {
+﻿.items {
     & p,
     & h3,
     & h5 {
@@ -85,4 +75,8 @@
     &__bold {
         font-weight: 600;
     }
+}
+
+.card-body {
+    box-shadow: 0 0 20px grey;
 }

@@ -119,11 +119,17 @@ namespace Foundation.Commerce.Order.ViewModelFactories
 
         private void SetDefaultShipmentAddress(CheckoutViewModel viewModel, string shippingAddressId)
         {
-            if (viewModel.ShippingAddressType == 1 && viewModel.Shipments.Count == 1)
+            if (viewModel.Shipments.Count > 0)
             {
-                viewModel.Shipments[0].Address = viewModel.AvailableAddresses.SingleOrDefault(x => x.AddressId == shippingAddressId) ??
-                                                 viewModel.AvailableAddresses.SingleOrDefault(x => x.ShippingDefault) ??
-                                                 viewModel.BillingAddress;
+                foreach(var shipment in viewModel.Shipments)
+                {
+                    if (shipment.ShippingAddressType == 1)
+                    {
+                        viewModel.Shipments[0].Address = viewModel.AvailableAddresses.SingleOrDefault(x => x.AddressId == shippingAddressId) ??
+                                                viewModel.AvailableAddresses.SingleOrDefault(x => x.ShippingDefault) ??
+                                                viewModel.BillingAddress;
+                    }
+                }
             }
         }
 

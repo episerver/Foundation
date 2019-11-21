@@ -245,7 +245,7 @@ namespace Foundation.Commerce.Order.Services
                 cart.Forms.Add(form);
             }
 
-            var shipment = cart.GetFirstShipment();
+            var shipment = cart.GetFirstForm().Shipments.FirstOrDefault(x => string.IsNullOrEmpty(warehouseCode) || (x.WarehouseCode == warehouseCode && x.ShippingMethodId == InStorePickupInfoModel.MethodId));
             if (warehouse != null)
             {
                 if (shipment != null && !shipment.LineItems.Any())
@@ -259,11 +259,20 @@ namespace Foundation.Commerce.Order.Services
                     shipment = form.Shipments.FirstOrDefault(x => !string.IsNullOrEmpty(x.WarehouseCode) && x.WarehouseCode.Equals(warehouse.Code));
                     if (shipment == null)
                     {
-                        shipment = _orderGroupFactory.CreateShipment(cart);
+                        if (cart.GetFirstShipment().LineItems.Count > 0)
+                        {
+                            shipment = _orderGroupFactory.CreateShipment(cart);
+                        } else
+                        {
+                            shipment = cart.GetFirstShipment();
+                        }
+
                         shipment.WarehouseCode = warehouseCode;
                         shipment.ShippingMethodId = InStorePickupInfoModel.MethodId;
-                        cart.GetFirstForm().Shipments.Add(shipment);
                         shipment.ShippingAddress = GetOrderAddressFromWarehosue(cart, warehouse);
+
+                        if (cart.GetFirstShipment().LineItems.Count > 0)
+                            cart.GetFirstForm().Shipments.Add(shipment);
                     }
                 }
 
@@ -271,11 +280,18 @@ namespace Foundation.Commerce.Order.Services
 
             if (shipment == null)
             {
-                shipment = _orderGroupFactory.CreateShipment(cart);
-                cart.GetFirstForm().Shipments.Add(shipment);
+                if (cart.GetFirstShipment().LineItems.Count > 0)
+                {
+                    shipment = _orderGroupFactory.CreateShipment(cart);
+                    cart.GetFirstForm().Shipments.Add(shipment);
+                }
+                else
+                {
+                    shipment = cart.GetFirstShipment();
+                }
             }
 
-            var lineItem = cart.GetAllLineItems().FirstOrDefault(x => x.Code == entryContent.Code);
+            var lineItem = shipment.LineItems.FirstOrDefault(x => x.Code == entryContent.Code);
             if (lineItem == null)
             {
                 lineItem = cart.CreateLineItem(entryContent.Code, _orderGroupFactory);
@@ -421,7 +437,7 @@ namespace Foundation.Commerce.Order.Services
             }
             else
             {
-                var shipment = cart.GetFirstForm().Shipments.First(s => s.ShipmentId == shipmentId || shipmentId <= 0);
+                var shipment = cart.GetFirstForm().Shipments.First(s => s.ShipmentId == shipmentId || shipmentId == 0);
                 var lineItem = shipment.LineItems.FirstOrDefault(x => x.Code == code);
                 if (lineItem == null)
                 {
@@ -438,7 +454,7 @@ namespace Foundation.Commerce.Order.Services
             if (cart.GetFirstForm().Shipments.Any())
             {
                 //gets  the shipment for shipment id or for wish list shipment id as a parameter is always equal zero( wish list).
-                var shipment = cart.GetFirstForm().Shipments.FirstOrDefault(s => s.ShipmentId == shipmentId || shipmentId <= 0);
+                var shipment = cart.GetFirstForm().Shipments.FirstOrDefault(s => s.ShipmentId == shipmentId || shipmentId == 0);
                 if (shipment == null)
                 {
                     throw new InvalidOperationException($"No shipment with matching id {shipmentId}"); ;
@@ -487,7 +503,7 @@ namespace Foundation.Commerce.Order.Services
             var newLineItem = GetFirstLineItem(cart, newCode);
             if (newLineItem != null)
             {
-                var shipment = cart.GetFirstForm().Shipments.First(s => s.ShipmentId == shipmentId || shipmentId <= 0);
+                var shipment = cart.GetFirstForm().Shipments.First(s => s.ShipmentId == shipmentId || shipmentId == 0);
                 cart.UpdateLineItemQuantity(shipment, newLineItem, newLineItem.Quantity + quantity);
             }
             else
@@ -737,5 +753,83 @@ namespace Foundation.Commerce.Order.Services
             return returnCart;
         }
 
+
+        public AddToCartResult SeparateShipment(ICart cart, string code, int quantity, int fromShipmentId, int toShipmentId, string deliveryMethodId, string warehouseCode)
+        {
+            var contentLink = _referenceConverter.GetContentLink(code);
+            var entryContent = _contentLoader.Get<EntryContentBase>(contentLink);
+            
+            ChangeQuantity(cart, fromShipmentId, code, quantity - 1);
+            return AddItemToShipment(cart, entryContent, 1, toShipmentId, deliveryMethodId, warehouseCode);
+        }
+
+        private AddToCartResult AddItemToShipment(ICart cart, EntryContentBase entryContent, decimal quantity, int shipmentId, string deliveryMethodId, string warehouseCode)
+        {
+            var result = new AddToCartResult();
+
+            IWarehouse warehouse = null;
+
+            if (!string.IsNullOrEmpty(warehouseCode))
+            {
+                warehouse = _warehouseRepository.Get(warehouseCode);
+            }
+
+            if (entryContent is BundleContent)
+            {
+                foreach (var relation in _relationRepository.GetChildren<BundleEntry>(entryContent.ContentLink))
+                {
+                    var entry = _contentLoader.Get<EntryContentBase>(relation.Child);
+                    var recursiveResult = AddItemToShipment(cart, entry, (relation.Quantity ?? 1) * quantity, shipmentId, deliveryMethodId, warehouseCode);
+                    if (recursiveResult.EntriesAddedToCart)
+                    {
+                        result.EntriesAddedToCart = true;
+                    }
+
+                    foreach (var message in recursiveResult.ValidationMessages)
+                    {
+                        result.ValidationMessages.Add(message);
+                    }
+                }
+
+                return result;
+            }
+
+            var form = cart.GetFirstForm();
+            if (form == null)
+            {
+                form = _orderGroupFactory.CreateOrderForm(cart);
+                form.Name = cart.Name;
+                cart.Forms.Add(form);
+            }
+
+            var shipment = form.Shipments.FirstOrDefault(x => x.ShipmentId == shipmentId);
+            if (shipment == null)
+            {
+                shipment = _orderGroupFactory.CreateShipment(cart);
+                shipment.WarehouseCode = warehouseCode;
+                shipment.ShippingMethodId = new Guid(deliveryMethodId);
+                shipment.ShippingAddress = GetOrderAddressFromWarehosue(cart, warehouse);
+                cart.GetFirstForm().Shipments.Add(shipment);
+            }
+
+            var lineItem = shipment.LineItems.FirstOrDefault(x => x.Code == entryContent.Code);
+            if (lineItem == null)
+            {
+                lineItem = cart.CreateLineItem(entryContent.Code, _orderGroupFactory);
+                lineItem.DisplayName = entryContent.DisplayName;
+                lineItem.Quantity = quantity;
+                cart.AddLineItem(shipment, lineItem);
+            }
+            else
+            {
+                cart.UpdateLineItemQuantity(shipment, lineItem, lineItem.Quantity + quantity);
+            }
+
+            var validationIssues = ValidateCart(cart);
+
+            AddValidationMessagesToResult(result, lineItem, validationIssues);
+
+            return result;
+        }
     }
 }

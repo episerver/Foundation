@@ -4,12 +4,10 @@
 {
     @Html.AntiForgeryToken()
     <div class="col-md-8 col-xs-12">
+        @Html.Partial("ShippingInformation", Model)
+        <br />
         <div class="card items">
             <div class="card-body">
-                @Html.Partial("ShippingInformation", Model)
-                <br />
-                @Html.Partial("SingleAddress", Model)
-                <hr />
                 @Html.Partial("BillingInformation", Model)
             </div>
         </div>
@@ -21,9 +19,9 @@
         </div>
     </div>
     <div class="col-md-4 col-xs-12">
-
         <div class="card summary">
             <div class="card-body">
+                @Html.Partial("_Coupon", Model)
                 <div class="row">
                     <div class="col-12 jsOrderSummary">
                         @Html.Partial("_OrderSummary", Model.OrderSummary)
@@ -39,3 +37,38 @@
         </div>
     </div>
 }
+
+<div class="modal fade" id="shipmentListing" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content  square-box">
+            <div class="modal-header">
+                <h5 class="modal-title">Select shipment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body user-menu">
+                <input type="hidden" id="lineItemInfomation" data-url="@Url.Action("SeparateShipment")" data-code="" data-shipmentid="" data-qty="" data-store="delivery" data-selectedstore="" />
+                @for (var i = 0; i < Model.Shipments.Count; i++)
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="button-white full-width jsSelectShipment" data-shipmentid="@Model.Shipments[i].ShipmentId">Shipment @(i + 1)</a>
+                        </div>
+                    </div>
+                    <br />
+                }
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="button-white full-width jsSelectShipment" data-shipmentid="0">New Shipment</a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button-black full-width" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

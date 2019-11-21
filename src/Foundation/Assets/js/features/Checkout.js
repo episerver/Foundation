@@ -125,14 +125,15 @@
     FormShippingAddressChange() {
         $('.jsSingleAddress').each(function (i, e) {
             $(e).change(function () {
+                var shippingRow = $(e).parents('.jsShippingAddressRow').first();
                 var value = $(this).val();
                 $('#AddressType').val(value);
                 if (value == 0) {
-                    $('#oldShippingAddressForm').hide();
-                    $('#newShippingAddressForm').show();
+                    shippingRow.find('.jsOldShippingAddressForm').hide();
+                    shippingRow.find('.jsNewShippingAddressForm').show();
                 } else {
-                    $('#oldShippingAddressForm').show();
-                    $('#newShippingAddressForm').hide();
+                    shippingRow.find('.jsOldShippingAddressForm').show();
+                    shippingRow.find('.jsNewShippingAddressForm').hide();
                 }
             })
         })
@@ -266,24 +267,33 @@
     // Change shipping method
     ChangeShippingMethod() {
         var inst = this;
-        $('.jsShippingMethodContainer').change(function () {
-            var url = $('.jsShippingMethodContainer').attr('url');
-            var data = $('.jsCheckoutForm').serialize();
-            $('.loading-box').show();
-            axios.post(url, data)
-                .then(function (r) {
-                    $('.jsCouponReplaceHtml').html(r.data);
-                    $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
-                    feather.replace();
-                    inst.InitPayment();
-                })
-                .catch(function (e) {
-                    notification.Error(e)
-                })
-                .finally(function () {
-                    $('.loading-box').hide();
-                })
-        })
+        $('.jsShippingMethodContainer').each(function (i, e) {
+            $(e).change(function () {
+                var isInstorePickup = $(e).find('.jsChangeShipment:checked').attr('instorepickup');
+                if (isInstorePickup == "True") {
+                    $(e).parents('.jsShipmentRow').find('.jsShippingAddressRow').hide();
+                } else {
+                    $(e).parents('.jsShipmentRow').find('.jsShippingAddressRow').show();
+                }
+
+                var url = $(e).attr('url');
+                var data = $('.jsCheckoutForm').serialize();
+                $('.loading-box').show();
+                axios.post(url, data)
+                    .then(function (r) {
+                        $('.jsCouponReplaceHtml').html(r.data);
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
+                        feather.replace();
+                        inst.InitPayment();
+                    })
+                    .catch(function (e) {
+                        notification.Error(e)
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    })
+            })
+        });
     }
     //////////////////
 
@@ -296,18 +306,36 @@
                 var quantity = $(e).val();
                 var code = $(e).data('code');
                 var url = $(e).data('url');
+                var shipmentId = $(e).data('shipmentid');
                 var data = {
                     code: code,
-                    quantity: quantity
+                    quantity: quantity,
+                    shipmentId: shipmentId
                 }
                 axios.post(url, data)
                     .then(function (r) {
                         if (quantity == 0) {
+                            var parent = $(e).parents('.jsShipmentRow');
                             $(e).parents('.jsCartItem').first().remove();
+                            
+                            if (parent.find('.jsCartItem').length == 0) {
+                                parent.remove();
+                            }
 
-                            if ($('.jsCartItem').length == 0) {
+                            if ($('.jsShipmentRow').length == 0) {
                                 window.location.href = window.location.href;
                             }
+                        }
+
+                        if (quantity > 1) {
+                            var btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
+                            btn.parent('div').removeClass('hidden');
+                            btn.addClass('jsSelectShipment');
+                            inst.SeparateClick(btn);
+                        } else {
+                            var btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
+                            btn.parent('div').addClass('hidden');
+                            btn.removeClass('jsSelectShipment');
                         }
 
                         $('.jsCouponReplaceHtml').html(r.data);
@@ -316,7 +344,7 @@
                         inst.InitPayment();
                     })
                     .catch(function (e) {
-                        notification.error(e);
+                        notification.Error(e);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -330,23 +358,23 @@
     UseBillingAsShipping() {
         var defaultValue = $('#UseBillingAddressForShipment').is(':checked');
         if (defaultValue == true) {
-            $('#shippingAddressSelection').find('input').each(function (i, e) {
+            $('.jsShippingAddressSelection').find('input').each(function (i, e) {
                 $(e).attr('disabled', 'disabled');
             })
 
-            $('#oldShippingAddressForm').find('input').each(function (i, e) {
+            $('.jsOldShippingAddressForm').find('input').each(function (i, e) {
                 $(e).attr('disabled', 'disabled');
             })
 
-            $('#oldShippingAddressForm').find('.dropdown').each(function (i, e) {
+            $('.jsOldShippingAddressForm').find('.dropdown').each(function (i, e) {
                 $(e).css('pointer-events', 'none');
             })
 
-            $('#newShippingAddressForm').find('input').each(function (i, e) {
+            $('.jsNewShippingAddressForm').find('input').each(function (i, e) {
                 $(e).attr('disabled', 'disabled');
             })
 
-            $('#newShippingAddressForm').find('.dropdown').each(function (i, e) {
+            $('.jsNewShippingAddressForm').find('.dropdown').each(function (i, e) {
                 $(e).css('pointer-events', 'none');
             })
         }
@@ -354,47 +382,136 @@
         $('#UseBillingAddressForShipment').change(function () {
             var value = $(this).is(':checked');
             if (value == true) {
-                $('#shippingAddressSelection').find('input').each(function (i, e) {
+                $('.jsShippingAddressSelection').find('input').each(function (i, e) {
                     $(e).attr('disabled', 'disabled');
                 })
 
-                $('#oldShippingAddressForm').find('input').each(function (i, e) {
+                $('.jsOldShippingAddressForm').find('input').each(function (i, e) {
                     $(e).attr('disabled', 'disabled');
                 })
 
-                $('#oldShippingAddressForm').find('.dropdown').each(function (i, e) {
+                $('.jsOldShippingAddressForm').find('.dropdown').each(function (i, e) {
                     $(e).css('pointer-events', 'none');
                 })
 
-                $('#newShippingAddressForm').find('input').each(function (i, e) {
+                $('.jsNewShippingAddressForm').find('input').each(function (i, e) {
                     $(e).attr('disabled', 'disabled');
                 })
 
-                $('#newShippingAddressForm').find('.dropdown').each(function (i, e) {
+                $('.jsNewShippingAddressForm').find('.dropdown').each(function (i, e) {
                     $(e).css('pointer-events', 'none');
                 })
             } else {
-                $('#shippingAddressSelection').find('input').each(function (i, e) {
+                $('.jsShippingAddressSelection').find('input').each(function (i, e) {
                     $(e).removeAttr('disabled');
                 })
 
-                $('#oldShippingAddressForm').find('input').each(function (i, e) {
+                $('.jsOldShippingAddressForm').find('input').each(function (i, e) {
                     $(e).removeAttr('disabled');
                 })
 
-                $('#oldShippingAddressForm').find('.dropdown').each(function (i, e) {
+                $('.jsOldShippingAddressForm').find('.dropdown').each(function (i, e) {
                     $(e).css('pointer-events', 'auto');
                 })
 
-                $('#newShippingAddressForm').find('input').each(function (i, e) {
+                $('.jsNewShippingAddressForm').find('input').each(function (i, e) {
                     $(e).removeAttr('disabled');
                 })
 
-                $('#newShippingAddressForm').find('.dropdown').each(function (i, e) {
+                $('.jsNewShippingAddressForm').find('.dropdown').each(function (i, e) {
                     $(e).css('pointer-events', 'auto');
                 })
             }
         })
     }
     //////////////////
+
+
+    // Separate line item
+    SeparateClick(selector) {
+        if (selector) {
+            $(selector).click(function () {
+                $('.jsSelectShipment').each(function (j, s) {
+                    $(s).show();
+                })
+                var code = $(selector).data('code');
+                var shipmentid = $(selector).data('shipmentid');
+                var qty = $(selector).parents('.jsCartItem').find('.jsChangeQuantityItemCheckout').val();
+                var delivery = $(selector).data('delivery');
+                var selectedstore = $(selector).data('selectedstore');
+                $('#lineItemInfomation').data("code", code);
+                $('#lineItemInfomation').data("shipmentid", shipmentid);
+                $('#lineItemInfomation').data("qty", qty);
+                $('#lineItemInfomation').data("delivery", delivery);
+                $('#lineItemInfomation').data("selectedstore", selectedstore);
+
+                $('.jsSelectShipment[data-shipmentid=' + shipmentid + ']').hide();
+            })
+        } else {
+            $('.jsSeparateBtn').each(function (i, e) {
+                $(e).click(function () {
+                    $('.jsSelectShipment').each(function (j, s) {
+                        $(s).show();
+                    })
+
+                    var code = $(e).data('code');
+                    var shipmentid = $(e).data('shipmentid');
+                    var qty = $(e).parents('.jsCartItem').find('.jsChangeQuantityItemCheckout').val();
+                    var delivery = $(e).data('delivery');
+                    var selectedstore = $(e).data('selectedstore');
+                    $('#lineItemInfomation').data("code", code);
+                    $('#lineItemInfomation').data("shipmentid", shipmentid);
+                    $('#lineItemInfomation').data("qty", qty);
+                    $('#lineItemInfomation').data("delivery", delivery);
+                    $('#lineItemInfomation').data("selectedstore", selectedstore);
+
+                    $('.jsSelectShipment[data-shipmentid=' + shipmentid + ']').hide();
+                })
+            })
+        }
+    }
+
+    ConfirmSeparateItemClick() {
+        $('.jsSelectShipment').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var url = $('#lineItemInfomation').data('url');
+                var code = $('#lineItemInfomation').data('code');
+                var shipmentid = $('#lineItemInfomation').data('shipmentid');
+                var qty = $('#lineItemInfomation').data('qty');
+                var delivery = $('#lineItemInfomation').data('delivery');
+                var selectedstore = $('#lineItemInfomation').data('selectedstore');
+                var toShipmentId = $(e).data('shipmentid');
+                var data = {
+                    Code: code,
+                    Quantity: qty,
+                    ShipmentId: shipmentid,
+                    ToShipmentId: toShipmentId,
+                    DeliveryMethodId: delivery,
+                    SelectedStore: selectedstore
+                }
+
+                axios.post(url, data)
+                    .then(function (r) {
+                        if (r.data.Status == true) {
+                            window.location.href = r.data.RedirectUrl;
+                        } else {
+                            notification.Error(r.data.Message);
+                        }
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    })
+            })
+        })
+    }
+
+    SeparateInit() {
+        this.SeparateClick();
+        this.ConfirmSeparateItemClick();
+    }
+    /////////////////////
 }
