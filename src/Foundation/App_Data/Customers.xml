@@ -16,7 +16,7 @@
           <DemoUserTitle>Smith Construction Admin </DemoUserTitle>
           <DemoUserDescription>Has a customer catalog for subset of products</DemoUserDescription>
           <DemoSort>2</DemoSort>
-          <Adresses>
+          <Addresses>
             <Address>
               <Line1>4118 Blueberry Lane</Line1>
               <City>Sprinfield</City>
@@ -26,7 +26,7 @@
               <RegionName>Virginia</RegionName>
               <PostalCode>22153</PostalCode>
             </Address>
-          </Adresses>
+          </Addresses>
         </User>
       </Users>
       <CreditCards>
@@ -54,7 +54,7 @@
           <DemoUserTitle>Emerging Markets Admin </DemoUserTitle>
           <DemoUserDescription>Has admin rights for organization</DemoUserDescription>
           <DemoSort>3</DemoSort>
-          <Adresses>
+          <Addresses>
             <Address>
               <Line1>12345 Any street</Line1>
               <City>Anytown</City>
@@ -64,7 +64,7 @@
               <RegionName>California</RegionName>
               <PostalCode>92544</PostalCode>
             </Address>
-          </Adresses>
+          </Addresses>
         </User>
       </Users>
       <CreditCards>
@@ -92,7 +92,7 @@
               <DemoUserTitle>Emerging Markets Purchaser </DemoUserTitle>
               <DemoUserDescription>Has purchasing rights for organization</DemoUserDescription>
               <DemoSort>5</DemoSort>
-              <Adresses>
+              <Addresses>
                 <Address>
                   <Line1>12345 Any street</Line1>
                   <City>Anytown</City>
@@ -102,7 +102,7 @@
                   <RegionName>Florida</RegionName>
                   <PostalCode>32004</PostalCode>
                 </Address>
-              </Adresses>
+              </Addresses>
             </User>
             <User>
               <Email>b2bApprover@episerver.com</Email>
@@ -115,7 +115,7 @@
               <DemoUserTitle>Emerging Markets Approver </DemoUserTitle>
               <DemoUserDescription>Has approver rights for organization</DemoUserDescription>
               <DemoSort>6</DemoSort>
-              <Adresses>
+              <Addresses>
                 <Address>
                   <Line1>12345 Any street</Line1>
                   <City>Anytown</City>
@@ -125,7 +125,7 @@
                   <RegionName>Colorado</RegionName>
                   <PostalCode>80019</PostalCode>
                 </Address>
-              </Adresses>
+              </Addresses>
             </User>
           </Users>
           <CreditCards>
@@ -150,7 +150,7 @@
     <DemoUserTitle>Sales rep </DemoUserTitle>
     <DemoUserDescription>Has sales rep role</DemoUserDescription>
     <DemoSort>7</DemoSort>
-    <Adresses>
+    <Addresses>
       <Address>
         <Name>Work</Name>
         <Line1>4118 Blueberry Lane</Line1>
@@ -161,7 +161,7 @@
         <RegionName>Virginia</RegionName>
         <PostalCode>22153</PostalCode>
       </Address>
-    </Adresses>
+    </Addresses>
   </Customer>
   <Customer>
     <Email>admin@example.com</Email>
@@ -172,7 +172,7 @@
     <DemoUserTitle>Global Admin </DemoUserTitle>
     <DemoUserDescription>Has global admin rights</DemoUserDescription>
     <DemoSort>1</DemoSort>
-    <Adresses>
+    <Addresses>
       <Address>
         <Name>Home</Name>
         <Line1>4118 Blueberry Lane</Line1>
@@ -183,7 +183,7 @@
         <RegionName>Virginia</RegionName>
         <PostalCode>22153</PostalCode>
       </Address>
-    </Adresses>
+    </Addresses>
     <CreditCards>
       <CreditCard>
         <Number>454459555999589</Number>
