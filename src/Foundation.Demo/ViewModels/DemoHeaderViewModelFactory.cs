@@ -100,7 +100,8 @@ namespace Foundation.Demo.ViewModels
                     Title = _.DemoUserTitle,
                     Id = _.ContactId,
                     Email = _.Email,
-                    FullName = _.FullName
+                    FullName = _.FullName,
+                    SortOrder = _.DemoSortOrder
                 })
                 .OrderBy(_ => _.SortOrder)
                 .ToList();
