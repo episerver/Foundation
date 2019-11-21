@@ -277,10 +277,15 @@ echo ## Adding site to app pool ## >> Build\Logs\IIS.log
 
 echo ## Updating host file ##
 find /C /I "%APPNAME%" %WINDIR%\system32\drivers\etc\hosts
-if %ERRORLEVEL% NEQ 0 echo 127.0.0.1 %APPNAME% >> %WINDIR%\System32\drivers\etc\hosts
+if %ERRORLEVEL% NEQ 0 (
+	echo: >> %WINDIR%\System32\drivers\etc\hosts
+	echo 127.0.0.1 %APPNAME% >> %WINDIR%\System32\drivers\etc\hosts
+)
 
 find /C /I "%APPNAME%-cm" %WINDIR%\system32\drivers\etc\hosts
-if %ERRORLEVEL% NEQ 0 echo 127.0.0.1 %APPNAME%-cm >> %WINDIR%\System32\drivers\etc\hosts
+if %ERRORLEVEL% NEQ 0 (
+	echo|set /p=127.0.0.1 %APPNAME%-cm >> %WINDIR%\System32\drivers\etc\hosts
+)
 
 echo ## Copying licence file ##
 echo ## Copying licence file ## >> Build\Logs\IIS.log
