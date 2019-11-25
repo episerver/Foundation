@@ -39,10 +39,10 @@
         Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total</span>
     </p>
     <div class="cart__actions">
-        <button href="@Url.ContentUrl(Model.CheckoutPage)" class="button-transparent-black jsCheckoutBtn" onclick="window.location.href=$(this).attr('href')">
+        <button href="@Url.ContentUrl(Model.CheckoutPage)" id="checkoutBtnId" class="button-transparent-black jsCheckoutBtn" onclick="window.location.href=$(this).attr('href')">
             Checkout
         </button>
-        <button href="@Url.ContentUrl(Model.CartPage)" class="button-black" onclick="window.location.href=$(this).attr('href')">
+        <button href="@Url.ContentUrl(Model.CartPage)" id="cartBtnId" class="button-black" onclick="window.location.href=$(this).attr('href')">
             View details
         </button>
     </div>

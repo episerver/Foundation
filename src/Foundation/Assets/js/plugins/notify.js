@@ -201,7 +201,8 @@
 		showDuration: 400,
 		hideAnimation: "slideUp",
 		hideDuration: 200,
-		gap: 5
+        gap: 5,
+        encodeMess: true
 	};
 
 	var inherit = function(a, b) {
@@ -508,7 +509,7 @@
 			if (!type) {
 				continue;
 			}
-			if (type === "text") {
+            if (type === "text" && this.options.encodeMess) {
 				d = encode(d);
 				if (this.options.breakNewLines) {
 					d = d.replace(/\n/g, '<br/>');
