@@ -841,9 +841,11 @@
   <ItemGroup>
     <Compile Include="Features\Api\AuthorizedApiController.cs" />
     <Compile Include="Features\Api\PublicApiController.cs" />
+    <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
+    <Compile Include="Features\Blocks\NavigationBlockController.cs" />
     <Compile Include="Features\Blocks\RatingBlockController.cs" />
     <Compile Include="Features\Blocks\SocialBlockController.cs" />
     <Compile Include="Features\Blocks\SubscriptionBlockController.cs" />
@@ -950,6 +952,8 @@
     <Content Include="App_Data\promotions.xml" />
     <Content Include="App_Data\shippingMethods.xml" />
     <Content Include="App_Data\warehouses.xml" />
+    <Content Include="Assets\icons\cms\blocks\CMS-icon-block-30.png" />
+    <Content Include="Assets\icons\cms\blocks\CMS-icon-block-31.png" />
     <Content Include="Assets\icons\content\CarouselBlock.PNG" />
     <Content Include="Assets\icons\content\CategoryPage.PNG" />
     <Content Include="Assets\icons\content\ContinentsFilterBlock.PNG" />
@@ -1231,6 +1235,9 @@
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_calendar-block.scss" />
     <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
+    <Content Include="Features\Blocks\Views\NavigationBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\BreadcrumbBlock.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_breadcrumb-block.scss" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
