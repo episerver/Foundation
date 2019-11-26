@@ -329,20 +329,20 @@ start http://%FOUNDATIONDOMAIN%/setup
 :error
 if NOT "%errorMessage%"=="" echo %errorMessage%
 
-echo Run rebuild.cmd to rebuild solution
-echo @echo off > rebuild.cmd
-echo cls >> rebuild.cmd
-echo echo ###################################################################### >> rebuild.cmd
-echo echo #           Rebuid the current application from default              # >> rebuild.cmd
-echo echo ###################################################################### >> rebuild.cmd
-echo echo #                                                                    # >> rebuild.cmd
-echo echo #       NOTE: This will **DROP** the existing DB                     # >> rebuild.cmd
-echo echo #             and rebuild so use with caution!!                      # >> rebuild.cmd
-echo echo #                                                                    # >> rebuild.cmd
-echo echo #       Crtl+C NOW if you are unsure!                                # >> rebuild.cmd
-echo echo #                                                                    # >> rebuild.cmd
-echo echo ###################################################################### >> rebuild.cmd
-echo pause >> rebuild.cmd
-echo build %APPNAME% %FOUNDATIONDOMAIN% %CMDOMAIN% %LICENSEPATH% %SQLSERVER% %ADDITIONAL_SQLCMD% >> resetup.cmd
+echo Run resetup.cmd to resetup solution
+echo @echo off > resetup.cmd
+echo cls >> resetup.cmd
+echo echo ###################################################################### >> resetup.cmd
+echo echo #           Rebuid the current application from default              # >> resetup.cmd
+echo echo ###################################################################### >> resetup.cmd
+echo echo #                                                                    # >> resetup.cmd
+echo echo #       NOTE: This will **DROP** the existing DB                     # >> resetup.cmd
+echo echo #             and resetup so use with caution!!                      # >> resetup.cmd
+echo echo #                                                                    # >> resetup.cmd
+echo echo #       Crtl+C NOW if you are unsure!                                # >> resetup.cmd
+echo echo #                                                                    # >> resetup.cmd
+echo echo ###################################################################### >> resetup.cmd
+echo pause >> resetup.cmd
+echo setup %APPNAME% %FOUNDATIONDOMAIN% %CMDOMAIN% %LICENSEPATH% %SQLSERVER% %ADDITIONAL_SQLCMD% >> resetup.cmd
 
 pause
