@@ -479,6 +479,9 @@
     <Reference Include="EPiServer.Tracking.Core, Version=1.12.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Tracking.Core.1.12.0\lib\net461\EPiServer.Tracking.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EPiServer.Tracking.PageView, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Tracking.PageView.1.1.0\lib\EPiServer.Tracking.PageView.dll</HintPath>
+    </Reference>
     <Reference Include="EPiServer.Turnstile.Contracts.Hmac, Version=2.0.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Turnstile.Contracts.Hmac.2.0.1\lib\net461\EPiServer.Turnstile.Contracts.Hmac.dll</HintPath>
     </Reference>
@@ -854,6 +857,7 @@
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Blog\TagCloudBlock\TagCloudBlockController.cs" />
+    <Compile Include="Features\Campaign\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
     <Compile Include="Features\Category\StandardCategoryController.cs" />
