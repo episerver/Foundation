@@ -81,7 +81,6 @@
 
 @if (Model.Template == TemplateSelections.ImageTop)
 {
-
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
     <div class="col-@imageCol preview--image-top">
         <picture style="height: 100%;">
@@ -107,5 +106,24 @@
             }
         </div>
 
+    </div>
+}
+
+@if (Model.Template == TemplateSelections.NoImage)
+{
+    var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
+    <div class="col-@imageCol preview--image-top">
+        <h4>
+            <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">@(page != null ? page.MetaTitle : Model.Page.Name)</a>
+        </h4>
+        @if (Model.ShowPublishDate)
+        {
+            <p class="sub-title">@Model.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+        }
+        @if (page != null && Model.ShowIntroduction)
+        {
+            <br />
+            <p class="light-text">@Html.Raw(page.TeaserText)</p>
+        }
     </div>
 }
