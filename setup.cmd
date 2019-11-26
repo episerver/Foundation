@@ -104,11 +104,11 @@ echo msbuild.exe path: %InstallDir%%msBuildPath%
 
 echo ## Set folder permissions ##
 md "%ROOTPATH%\Build\Logs" 2>nul
-icacls %ROOTPATH%\ /grant Everyone:(OI)(CI)F /T > Build\Logs\Build.log
+icacls "%ROOTPATH%\\" /grant Everyone:(OI)(CI)F /T > Build\Logs\Build.log
 
 echo ## Restoring Nuget packages ##
 echo ## Restoring Nuget packages ## >> Build\Logs\Build.log
-.\build\nuget restore %ROOTPATH%\Foundation.sln >> Build\Logs\Build.log
+.\build\nuget restore "%ROOTPATH%\Foundation.sln" >> Build\Logs\Build.log
 
 echo ## NPM Install ##  
 echo ## NPM Install >> Build\Logs\Build.log
@@ -126,7 +126,7 @@ call gulp -b "%SOURCEPATH%\Foundation" --color --gulpfile "%SOURCEPATH%\Foundati
 
 echo ## Clean and build ##
 echo ## Clean and build ## >> Build\Logs\Build.log				 
-"%InstallDir%""%msBuildPath%" %ROOTPATH%\Foundation.sln /t:Clean,Build  >> Build\Logs\Build.log
+"%InstallDir%%msBuildPath%" "%ROOTPATH%\Foundation.sln" /t:Clean,Build  >> Build\Logs\Build.log
 
 :: Determine package folders
 for /f " tokens=*" %%i in ('dir "Packages\EPiServer.CMS.Core*" /b /o:d') do (set cms_core=%%i) 
@@ -223,12 +223,12 @@ echo ## Installing Service API Commerce ## >> Build\Logs\Database.log
 echo ## Cleaning packages folder ##
 echo ## Cleaning packages folder ## >> Build\Logs\Build.log
 echo %ROOTPATH%\packages\*.*
-RD %ROOTPATH%\packages\ /Q /S >> Build\Logs\Build.log
+RD "%ROOTPATH%\packages\" /Q /S >> Build\Logs\Build.log
 
 echo ## Set folder permissions ##
 echo ## Set folder permissions ## >> Build\Logs\Build.log
-icacls %ROOTPATH% /grant Everyone:(OI)(CI)F /T >> Build\Logs\Build.log
-attrib -r %ROOTPATH%\*.* /s >> Build\Logs\Build.log
+icacls "%ROOTPATH%" /grant Everyone:(OI)(CI)F /T >> Build\Logs\Build.log
+attrib -r "%ROOTPATH%\*.*" /s >> Build\Logs\Build.log
 
 echo ## Creating IIS application pools ##
 echo ## Creating IIS application pools ## > Build\Logs\IIS.log
@@ -294,9 +294,9 @@ if "%LICENSEPATH%"=="" ( echo License file not found! ) else ( xcopy "%LICENSEPA
 echo ## Updating commerce manager URL ##
 echo ## Updating commerce manager URL ## >> Build\Logs\IIS.log
 if "%CMDOMAIN%"=="" (
-    call %ROOTDIR%\build\jrepl "http://localhost:63149" "http://%APPNAME%-cm" /f "%SOURCEPATH%\Foundation\appSettings.config" /L /o -
+    call "%ROOTDIR%\build\jrepl" "http://localhost:63149" "http://%APPNAME%-cm" /f "%SOURCEPATH%\Foundation\appSettings.config" /L /o -
 ) else (
-    call %ROOTDIR%\build\jrepl "http://localhost:63149" "http://%CMDOMAIN%" /f "%SOURCEPATH%\Foundation\appSettings.config" /L /o -
+    call "%ROOTDIR%\build\jrepl" "http://localhost:63149" "http://%CMDOMAIN%" /f "%SOURCEPATH%\Foundation\appSettings.config" /L /o -
 )
 
 echo ## Creating conectionstrings.config ##
@@ -311,7 +311,7 @@ echo ^<add name="EPiServerAzureBlobs" connectionString="DefaultEndpointsProtocol
 echo ^<add name="EPiServerAzureEvents" connectionString="Endpoint=sb://ChangeThis.servicebus.windows.net/;SharedAccessKeyName=ChangeThis;SharedAccessKey=ChangeThis" /^>
 echo --^>
 echo ^</connectionStrings^>
-) > %SOURCEPATH%\Foundation\connectionStrings.config
+) > "%SOURCEPATH%\Foundation\connectionStrings.config"
 (
 echo ^<connectionStrings^>
 echo ^<clear /^>
@@ -322,7 +322,7 @@ echo ^<add name="EPiServerAzureBlobs" connectionString="DefaultEndpointsProtocol
 echo ^<add name="EPiServerAzureEvents" connectionString="Endpoint=sb://ChangeThis.servicebus.windows.net/;SharedAccessKeyName=ChangeThis;SharedAccessKey=ChangeThis" /^>
 echo --^>
 echo ^</connectionStrings^>
-) > %SOURCEPATH%\Foundation.CommerceManager\connectionStrings.config
+) > "%SOURCEPATH%\Foundation.CommerceManager\connectionStrings.config"
 
 
 start http://%FOUNDATIONDOMAIN%/setup
