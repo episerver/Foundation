@@ -98,12 +98,12 @@ namespace Foundation.Commerce.Catalog.ViewModels
             }
             variationCode = string.IsNullOrEmpty(variationCode) ? variants.FirstOrDefault()?.Code : variationCode;
             var isInstock = true;
-            if (!string.IsNullOrEmpty(variationCode))
+            if (!string.IsNullOrEmpty(variationCode) && variant.TrackInventory)
             {
                 var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
                 var inventoryRecord = _inventoryService.Get(variationCode, currentWarehouse.Code);
                 var inventory = new Inventory(inventoryRecord);
-                isInstock = inventory.InStockQuantity > 0;
+                isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
             }
 
             var market = _currentMarket.GetCurrentMarket();
@@ -203,9 +203,12 @@ namespace Foundation.Commerce.Catalog.ViewModels
             {
                 foreach (var v in variants)
                 {
-                    var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
-                    var inventory = new Inventory(inventoryRecord);
-                    isInstock = inventory.InStockQuantity > 0 ? isInstock : false;
+                    if (v.TrackInventory) 
+                    {
+                        var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
+                        var inventory = new Inventory(inventoryRecord);
+                        isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
+                    }
                 }
             } else
             {
@@ -254,10 +257,14 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
             var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
-            
-            var inventoryRecord = _inventoryService.Get(currentContent.Code, currentWarehouse.Code);
-            var inventory = new Inventory(inventoryRecord);
-            var isInstock = inventory?.InStockQuantity > 0;
+
+            var isInstock = true;
+            if (currentContent.TrackInventory)
+            {
+                var inventoryRecord = _inventoryService.Get(currentContent.Code, currentWarehouse.Code);
+                var inventory = new Inventory(inventoryRecord);
+                isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
+            }
 
             return new TViewModel
             {
@@ -308,9 +315,12 @@ namespace Foundation.Commerce.Catalog.ViewModels
             {
                 foreach (var v in variants)
                 {
-                    var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
-                    var inventory = new Inventory(inventoryRecord);
-                    isInstock = inventory.InStockQuantity > 0 ? isInstock : false;
+                    if (v.TrackInventory)
+                    {
+                        var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
+                        var inventory = new Inventory(inventoryRecord);
+                        isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
+                    }
                 }
             }
             else
