@@ -26,9 +26,18 @@ namespace Foundation.Cms.ViewModels.Blocks
 
         public NavigationItem(PageData page, UrlHelper urlHelper)
         {
-            Name = page.Name;
-            Url = urlHelper.ContentUrl(page.ContentLink);
-            PageData = page;
+            if (page != null)
+            {
+                Name = page.Name;
+                Url = urlHelper.ContentUrl(page.ContentLink);
+                PageData = page;
+            }
+            else
+            {
+                Name = string.Empty;
+                Url = string.Empty;
+                PageData = null;
+            }
         }
     }
 }

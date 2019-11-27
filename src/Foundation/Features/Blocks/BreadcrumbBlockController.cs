@@ -42,7 +42,7 @@ namespace Foundation.Features.Blocks
                     breadcrumb.Add(new NavigationItem(page, Url));
                 }
 
-                breadcrumb.Add(new NavigationItem(_contentLoader.Get<PageData>(destination), Url));
+                breadcrumb.Add(new NavigationItem(_contentLoader.Get<IContent>(destination) as PageData, Url));
                 model.Breadcrumb.AddRange(breadcrumb.Where(x => !string.IsNullOrEmpty(x.Url)));
             }
 
