@@ -1,3 +1,4 @@
+using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
@@ -8,6 +9,8 @@ using Foundation.Cms.EditorDescriptors;
 using Foundation.Commerce;
 using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Commerce.Models.Pages;
+using Foundation.Find.Cms.Config;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Demo.Models
@@ -58,6 +61,14 @@ namespace Foundation.Demo.Models
         [Display(Name = "Search catalog", GroupName = CommerceTabNames.SearchSettings, Order = 250,
             Description = "The catalogs that will be returned by search.")]
         public virtual int SearchCatalog { get; set; }
+
+        [Display(
+          Name = "Product Search Filters Configuration",
+          Description = "Manage filters to be displayed on Product Search",
+          GroupName = CommerceTabNames.SearchSettings,
+          Order = 300)]
+        [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterProductConfigurationItem>))]
+        public virtual IList<FacetFilterProductConfigurationItem> FacetProductFiltersConfiguration { get; set; }
 
         #endregion
     }
