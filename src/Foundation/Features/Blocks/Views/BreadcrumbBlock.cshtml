@@ -2,7 +2,7 @@
 @{ 
     var totalItem = Model.Breadcrumb.Count;
 }
-<div class="row">
+<div class="row" @Html.EditAttributes(x => x.CurrentBlock.DestinationPage)>
     <div class="col-12">
         <ul class="breadcrumb__group">
             @for (var i = 0; i < totalItem; i++)
@@ -12,7 +12,7 @@
                 </li>
                 if (i < totalItem - 1)
                 {
-                    <li class="breadcrumb__slash">/</li>
+                    <li class="breadcrumb__slash">@Model.CurrentBlock.Separator</li>
                 }
             }
         </ul>

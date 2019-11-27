@@ -8,9 +8,14 @@ namespace Foundation.Cms.ViewModels.Blocks
 {
     public class NavigationBlockViewModel : BlockViewModel<NavigationBlock>
     {
-        public NavigationBlockViewModel(NavigationBlock currentBlock) : base(currentBlock) => Items = new List<NavigationItem>();
+        public NavigationBlockViewModel(NavigationBlock currentBlock) : base(currentBlock)
+        {
+            Items = new List<NavigationItem>();
+            Heading = currentBlock.Heading;
+        }
 
         public List<NavigationItem> Items { get; set; }
+        public string Heading { get; set; }
     }
 
     public class NavigationItem

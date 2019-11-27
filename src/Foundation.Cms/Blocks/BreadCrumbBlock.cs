@@ -1,6 +1,8 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
@@ -14,5 +16,15 @@ namespace Foundation.Cms.Blocks
     {
         [Display(Name = "Destination page", Order = 10, GroupName = SystemTabNames.Content)]
         public virtual PageReference DestinationPage { get; set; }
+
+        [Display(Name = "Breadcrumb separator", Order = 20, GroupName = SystemTabNames.Content)]
+        [SelectOne(SelectionFactoryType = typeof(BreadcrumbSeparatorSelectionFactory))]
+        public virtual string Separator { get; set; }
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+            Separator = "/";
+        }
     }
 }

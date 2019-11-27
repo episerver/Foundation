@@ -25,7 +25,7 @@ namespace Foundation.Features.Blocks
         public override ActionResult Index(BreadcrumbBlock currentBlock)
         {
             var destination = currentBlock.DestinationPage as ContentReference;
-            if (currentBlock.DestinationPage == null)
+            if (ContentReference.IsNullOrEmpty(currentBlock.DestinationPage))
             {
                 destination = _pageRouteHelper.ContentLink;
             }
@@ -36,10 +36,12 @@ namespace Foundation.Features.Blocks
             if (ancestors != null && ancestors.Count() > 0)
             {
                 var breadcrumb = new List<NavigationItem>();
+
                 foreach (var page in ancestors)
                 {
                     breadcrumb.Add(new NavigationItem(page, Url));
                 }
+
                 breadcrumb.Add(new NavigationItem(_contentLoader.Get<PageData>(destination), Url));
                 model.Breadcrumb.AddRange(breadcrumb.Where(x => !string.IsNullOrEmpty(x.Url)));
             }

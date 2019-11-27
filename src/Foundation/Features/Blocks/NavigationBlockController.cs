@@ -5,6 +5,7 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Blocks;
 using Foundation.Cms.ViewModels.Blocks;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -25,7 +26,7 @@ namespace Foundation.Features.Blocks
         public override ActionResult Index(NavigationBlock currentBlock)
         {
             var rootNavigation = currentBlock.RootPage as ContentReference;
-            if (currentBlock.RootPage == null)
+            if (ContentReference.IsNullOrEmpty(currentBlock.RootPage))
             {
                 rootNavigation = _pageRouteHelper.ContentLink;
             }
@@ -34,10 +35,21 @@ namespace Foundation.Features.Blocks
             var model = new NavigationBlockViewModel(currentBlock);
             if (childPages != null && childPages.Count() > 0)
             {
+                var linkCollection = new List<NavigationItem>();
                 foreach (var page in childPages)
                 {
-                    model.Items.Add(new NavigationItem(page, Url));
+                    if (page.VisibleInMenu)
+                    {
+                        linkCollection.Add(new NavigationItem(page, Url));
+                    }
                 }
+
+                model.Items.AddRange(linkCollection.Where(x => !string.IsNullOrEmpty(x.Url)));
+            }
+
+            if (string.IsNullOrEmpty(currentBlock.Heading))
+            {
+                model.Heading = _pageRouteHelper.Page.Name;
             }
 
             return PartialView("~/Features/Blocks/Views/NavigationBlock.cshtml", model);
