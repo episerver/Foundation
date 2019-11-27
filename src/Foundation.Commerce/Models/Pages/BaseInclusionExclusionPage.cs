@@ -17,12 +17,12 @@ namespace Foundation.Commerce.Models.Pages
         [Display(Name = "Number of products", Order = 210)]
         public virtual int NumberOfProducts { get; set; }
 
-        [Display(Name = "Allow paging", Order = 220)]
-        public virtual bool AllowPaging { get; set; }
-
         [PositiveNumber]
-        [Display(Name = "Page size", Order = 230)]
+        [Display(Name = "Number of products per page", Order = 220)]
         public virtual int PageSize { get; set; }
+
+        [Display(Name = "Allow paging", Order = 230)]
+        public virtual bool AllowPaging { get; set; }
 
         /// <summary>
         /// Gets or sets the list of included catalog items (catalogs, categories or entries).

@@ -60,13 +60,16 @@ namespace Foundation.Features.Locations.TagPage
             };
             foreach (var location in model.Locations)
             {
-                carousel.Items.Add(new TagsCarouselItem
+                if (location.Image != null)
                 {
-                    Image = location.Image,
-                    Heading = location.Name,
-                    Description = location.MainIntro,
-                    ItemURL = location.ContentLink
-                });
+                    carousel.Items.Add(new TagsCarouselItem
+                    {
+                        Image = location.Image,
+                        Heading = location.Name,
+                        Description = location.MainIntro,
+                        ItemURL = location.ContentLink
+                    });
+                }
             }
             if (carousel.Items.All(item => item.Image == null) || currentPage.Images != null)
             {
