@@ -936,6 +936,12 @@
     <Compile Include="Infrastructure\Jobs\DemoIntegrationJob.cs" />
     <Compile Include="Infrastructure\Kpi\FilledInFormKpi.cs" />
     <Compile Include="Infrastructure\InitializeSite.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Idio\OpenGraphFoundationPageData.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Idio\OpenGraphGenericNode.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Idio\OpenGraphGenericProduct.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Idio\OpenGraphHomePage.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Idio\OpenGraphLocationItemPage.cs" />
     <Compile Include="Infrastructure\Plugins\GoogleAnalyticsUserIdPluginScript.cs" />
     <Compile Include="Infrastructure\Services\CampaignService.cs" />
     <Compile Include="Infrastructure\Services\ICampaignService.cs" />

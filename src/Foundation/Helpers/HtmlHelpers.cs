@@ -8,10 +8,16 @@ using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Pages;
+using Foundation.Cms.ViewModels;
+using Foundation.Commerce.Catalog.ViewModels;
+using Foundation.Commerce.Models.Catalog;
 using Foundation.Demo.Models;
 using Foundation.Find.Cms.Models.Pages;
+using Foundation.Infrastructure.OpenGraph.Idio;
+using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -25,152 +31,169 @@ namespace Foundation.Helpers
         private static readonly Lazy<IContentTypeRepository> _contentTypeRepository = new Lazy<IContentTypeRepository>(() => ServiceLocator.Current.GetInstance<IContentTypeRepository>());
         private const string MetaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
 
-        public static IHtmlString RenderOpenGraphMetaData(this HtmlHelper helper, IContent content)
+        public static IHtmlString RenderOpenGraphMetaData(this HtmlHelper helper, IContentViewModel<IContent> contentViewModel)
         {
-            string openGraphOutput = string.Empty;
-            string metaTitle = ((FoundationPageData)content).MetaTitle ?? content.Name;
-            string imageUrl;
-            
-            if (((FoundationPageData)content).PageImage != null)
+            var metaTitle = (contentViewModel.CurrentContent as FoundationPageData)?.MetaTitle ?? contentViewModel.CurrentContent.Name;
+            var defaultLocale = EPiServer.Globalization.GlobalizationSettings.CultureLanguageCode;
+            IEnumerable<string> alternateLocales = null;
+            string contentType = null;
+            string imageUrl = null;
+            IEnumerable<string> category = null;
+            string brand = null;
+            string priceAmount = null;
+            Currency priceCurrency = null;
+
+            if (contentViewModel.CurrentContent is FoundationPageData && ((FoundationPageData)contentViewModel.CurrentContent).PageImage != null)
             {
-                imageUrl = GetUrl(((FoundationPageData)content).PageImage);
+                imageUrl = GetUrl(((FoundationPageData)contentViewModel.CurrentContent).PageImage);
             }
             else
             {
                 imageUrl = GetDefaultImageUrl();
             }
 
-            switch (content)
+            if (contentViewModel.CurrentContent is FoundationPageData pageData)
             {
-                case DemoHomePage homePage:
-                    var openGraphWebsite = new OpenGraphWebsite(metaTitle, new OpenGraphImage(imageUrl), GetUrl(homePage.ContentLink))
-                    {
-                        Description = homePage.PageDescription
-                    };
-
-                    openGraphOutput = helper.OpenGraph(openGraphWebsite).ToString();
-                    break;
-
-                case BlogItemPage _:
-                case StandardPage _:
-                case LocationItemPage _:
-                case TagPage _:
-                    var openGraphArticle = new OpenGraphArticle(metaTitle, new OpenGraphImage(imageUrl), GetUrl(content.ContentLink))
-                    {
-                        Description = ((FoundationPageData)content).PageDescription,
-                    };
-
-                    if (content is LocationItemPage)
-                    {
-                        var tags = new List<string>();
-                        foreach (var item in ((LocationItemPage)content).Tags.Items)
-                        {
-                            tags.Add(item.GetContent().Name);
-                        }
-                        openGraphArticle.Tags = tags;
-                    }
-
-                    if (((FoundationPageData)content).AuthorMetaData != null)
-                    {
-                        openGraphArticle.AuthorUrls = new List<string> { ((FoundationPageData)content).AuthorMetaData };
-                    }
-
-                    if (((FoundationPageData)content).StartPublish.HasValue)
-                    {
-                        openGraphArticle.PublishedTime = ((FoundationPageData)content).StartPublish.Value;
-                    }
-
-                    openGraphArticle.ModifiedTime = ((FoundationPageData)content).Changed;
-
-                    if (((FoundationPageData)content).StopPublish.HasValue)
-                    {
-                        openGraphArticle.ExpirationTime = ((FoundationPageData)content).StopPublish.Value;
-                    }
-
-                    openGraphOutput = helper.OpenGraph(openGraphArticle).ToString();
-                    break;
-
-                case FoundationPageData foundationPageData:
-                    var openGraphPage = new OpenGraphArticle(metaTitle, new OpenGraphImage(imageUrl), GetUrl(foundationPageData.ContentLink))
-                    {
-                        Description = foundationPageData.PageDescription,
-                    };
-
-                    if (foundationPageData.AuthorMetaData != null)
-                    {
-                        openGraphPage.AuthorUrls = new List<string> { foundationPageData.AuthorMetaData };
-                    }
-
-                    if (foundationPageData.StartPublish.HasValue)
-                    {
-                        openGraphPage.PublishedTime = foundationPageData.StartPublish.Value;
-                    }
-
-                    openGraphPage.ModifiedTime = foundationPageData.Changed;
-
-                    if (foundationPageData.StopPublish.HasValue)
-                    {
-                        openGraphPage.ExpirationTime = foundationPageData.StopPublish.Value;
-                    }
-
-                    openGraphOutput = helper.OpenGraph(openGraphPage).ToString();
-                    break;
-
-                case EntryContentBase entryContentBase:
-                    var openGraphEntry = new OpenGraphProduct(entryContentBase.DisplayName, new OpenGraphImage(_assetUrlResolver.Value.GetAssetUrl(entryContentBase)), GetUrl(entryContentBase.ContentLink));
-                    
-                    openGraphOutput = helper.OpenGraph(openGraphEntry).ToString();
-                    break;
+                alternateLocales = pageData.ExistingLanguages.Where(culture => culture.TextInfo.CultureName != defaultLocale)
+                            .Select(culture => culture.TextInfo.CultureName.Replace('-', '_'));
+            }
+            else if (contentViewModel.CurrentContent is EntryContentBase entryContent)
+            {
+                alternateLocales = entryContent.ExistingLanguages.Where(culture => culture.TextInfo.CultureName != defaultLocale)
+                            .Select(culture => culture.TextInfo.CultureName.Replace('-', '_'));
             }
 
-            var output = new StringBuilder();
-            output.AppendLine(openGraphOutput);
-            output.AppendLine(AddAdditionalOpenGraphMetaData(content));
-
-            return new HtmlString(output.ToString());
-        }
-
-        public static string AddAdditionalOpenGraphMetaData(IContent content)
-        {
-            var output = new StringBuilder(string.Empty);
-
-            if (content is LocationItemPage && ((LocationItemPage)content).Continent != null)
+            if (contentViewModel.CurrentContent is FoundationPageData)
             {
-                output.AppendLine(string.Format(MetaFormat, "article:category", ((LocationItemPage)content).Continent));
-            }
-
-            if (content is FoundationPageData)
-            {
-                if (((FoundationPageData)content).ContentType != null)
+                if (((FoundationPageData)contentViewModel.CurrentContent).ContentType != null)
                 {
-                    output.AppendLine(string.Format(MetaFormat, "article:content_type", ((FoundationPageData)content).ContentType));
+                    contentType = ((FoundationPageData)contentViewModel.CurrentContent).ContentType;
                 }
                 else
                 {
-                    var pageType = _contentTypeRepository.Value.Load(content.GetOriginalType());
-                    output.AppendLine(string.Format(MetaFormat, "article:content_type", pageType.DisplayName));
-                }
-
-                if (((FoundationPageData)content).Industry != null)
-                {
-                    output.AppendLine(string.Format(MetaFormat, "article:industry", ((FoundationPageData)content).Industry));
-                }
-
-                if (((FoundationPageData)content).AuthorMetaData != null)
-                {
-                    output.AppendLine(string.Format(MetaFormat, "article:author", ((FoundationPageData)content).AuthorMetaData));
+                    var pageType = _contentTypeRepository.Value.Load(contentViewModel.CurrentContent.GetOriginalType());
+                    contentType = pageType.DisplayName;
                 }
             }
 
-            if (content is EntryContentBase)
+            if (contentViewModel is GenericProductViewModel model)
             {
-                if (((EntryContentBase)content).Categories != null)
-                {
-                    output.AppendLine(string.Format(MetaFormat, "article:category", ((EntryContentBase)content).Categories));
-                }
+                brand = model.CurrentContent.Brand;
+                priceAmount = model.ListingPrice.ToString().Remove(0, 1);
+                priceCurrency = model.ListingPrice.Currency;
+                category = GetNodes(model.CurrentContent);
             }
 
-            return output.ToString();
+            switch (contentViewModel.CurrentContent)
+            {
+                case DemoHomePage homePage:
+                    var openGraphHomePage = new OpenGraphHomePage(metaTitle, new OpenGraphImage(imageUrl), GetUrl(homePage.ContentLink))
+                    {
+                        Description = homePage.PageDescription,
+                        Locale = defaultLocale.Replace('-', '_'),
+                        AlternateLocales = alternateLocales,
+                        ContentType = contentType,
+                        Category = homePage.Categories?.Select(c => c.ToString()),
+                        ModifiedTime = homePage.Changed,
+                        PublishedTime = homePage.StartPublish ?? null,
+                        ExpirationTime = homePage.StopPublish ?? null
+                    };
+
+                    return helper.OpenGraph(openGraphHomePage);
+
+                case LocationItemPage locationItemPage:
+                    var openGraphLocationItemPage = new OpenGraphLocationItemPage(metaTitle, new OpenGraphImage(imageUrl), GetUrl(contentViewModel.CurrentContent.ContentLink))
+                    {
+                        Description = locationItemPage.PageDescription,
+                        Locale = defaultLocale.Replace('-', '_'),
+                        AlternateLocales = alternateLocales,
+                        ContentType = contentType,
+                        ModifiedTime = locationItemPage.Changed,
+                        PublishedTime = locationItemPage.StartPublish ?? null,
+                        ExpirationTime = locationItemPage.StopPublish ?? null
+                    };
+
+                    var categories = new List<string>();
+
+                    if (locationItemPage.Continent != null)
+                    {
+                        categories.Add(locationItemPage.Continent);
+                    }
+
+                    if (locationItemPage.Country != null)
+                    {
+                        categories.Add(locationItemPage.Country);
+                    }
+
+                    openGraphLocationItemPage.Category = categories;
+
+                    var tags = new List<string>();
+                    foreach (var item in ((LocationItemPage)contentViewModel.CurrentContent).Tags.Items)
+                    {
+                        tags.Add(item.GetContent().Name);
+                    }
+                    openGraphLocationItemPage.Tags = tags;
+
+                    return helper.OpenGraph(openGraphLocationItemPage);
+
+                case BlogItemPage _:
+                case StandardPage _:
+                case TagPage _:
+                    var openGraphArticle = new OpenGraphFoundationPageData(metaTitle, new OpenGraphImage(imageUrl), GetUrl(contentViewModel.CurrentContent.ContentLink))
+                    {
+                        Description = ((FoundationPageData)contentViewModel.CurrentContent).PageDescription,
+                        Locale = defaultLocale.Replace('-', '_'),
+                        AlternateLocales = alternateLocales,
+                        ContentType = contentType,
+                        ModifiedTime = ((FoundationPageData)contentViewModel.CurrentContent).Changed,
+                        PublishedTime = ((FoundationPageData)contentViewModel.CurrentContent).StartPublish ?? null,
+                        ExpirationTime = ((FoundationPageData)contentViewModel.CurrentContent).StopPublish ?? null
+                    };
+
+                    return helper.OpenGraph(openGraphArticle);
+
+                case FoundationPageData foundationPageData:
+                    var openGraphFoundationPage = new OpenGraphFoundationPageData(metaTitle, new OpenGraphImage(imageUrl), GetUrl(foundationPageData.ContentLink))
+                    {
+                        Description = foundationPageData.PageDescription,
+                        Locale = defaultLocale.Replace('-', '_'),
+                        AlternateLocales = alternateLocales,
+                        Author = foundationPageData.AuthorMetaData,
+                        ContentType = contentType,
+                        Category = foundationPageData.Categories?.Select(c => c.ToString()),
+                        ModifiedTime = foundationPageData.Changed,
+                        PublishedTime = foundationPageData.StartPublish ?? null,
+                        ExpirationTime = foundationPageData.StopPublish ?? null
+                    };
+
+                    return helper.OpenGraph(openGraphFoundationPage);
+
+                case NodeContentBase nodeContentBase:
+                    var openGraphCategory = new OpenGraphGenericNode(metaTitle, new OpenGraphImage(imageUrl), GetUrl(nodeContentBase.ContentLink))
+                    {
+                        Locale = defaultLocale.Replace('-', '_'),
+                        AlternateLocales = alternateLocales,
+                        PublishedTime = nodeContentBase.StartPublish ?? null,
+                        ExpirationTime = nodeContentBase.StopPublish ?? null
+                    };
+
+                    return helper.OpenGraph(openGraphCategory);
+
+                case EntryContentBase entryContentBase:
+                    var openGraphEntry = new OpenGraphGenericProduct(entryContentBase.DisplayName, new OpenGraphImage(_assetUrlResolver.Value.GetAssetUrl(entryContentBase)), GetUrl(entryContentBase.ContentLink))
+                    {
+                        Locale = defaultLocale.Replace('-', '_'),
+                        AlternateLocales = alternateLocales,
+                        Category = category,
+                        Brand = brand,
+                        PriceAmount = priceAmount,
+                        PriceCurrency = priceCurrency
+                    };
+
+                    return helper.OpenGraph(openGraphEntry);
+            }
+
+            return new HtmlString(string.Empty);
         }
 
         private static string GetDefaultImageUrl()
@@ -188,6 +211,43 @@ namespace Foundation.Helpers
             var url = new Uri(siteUrl, UrlResolver.Current.GetUrl(content));
 
             return url.ToString();
+        }
+
+        private static List<string> GetNodes(ProductContent currentContent)
+        {
+            List<string> nodeList = new List<string>();
+
+            foreach (var nodeRelation in currentContent.GetCategories())
+            {
+                var currentNode = _contentLoader.Value.Get<NodeContent>(nodeRelation);
+                if (currentNode != null)
+                {
+                    AddParentNodes(currentNode, nodeList);
+                }
+            }
+
+            return nodeList;
+        }
+
+        private static void AddParentNodes(NodeContent currentNode, List<string> nodeList)
+        {
+            if (currentNode == null)
+            {
+                return;
+            }
+
+            if (!nodeList.Contains(currentNode.DisplayName))
+            {
+                nodeList.Add(currentNode.DisplayName);
+            }
+            var nodeRelations = currentNode.GetCategories().ToList();
+            nodeRelations.Add(currentNode.ParentLink);
+
+            foreach (var nodeRef in nodeRelations)
+            {
+                var node = _contentLoader.Value.Get<CatalogContentBase>(nodeRef);
+                AddParentNodes(node as NodeContent, nodeList);
+            }
         }
     }
 }
