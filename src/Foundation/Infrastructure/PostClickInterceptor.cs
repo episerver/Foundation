@@ -10,7 +10,7 @@ using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Tracking.Core;
 using EPiServer.Tracking.PageView;
 
-namespace Foundation.Features.Campaign
+namespace Foundation.Infrastructure
 {
     [ServiceConfiguration(ServiceType = typeof(ITrackingDataInterceptor), Lifecycle = ServiceInstanceScope.Singleton)]
     public class PostClickInterceptor : ITrackingDataInterceptor
