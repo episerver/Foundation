@@ -67,34 +67,18 @@
 
 </div>
 
-
 @if (Model.ShowRecommendations)
 {
     <br />
     <section class="related-products">
-        <div class="container">
-            <div class="row">
-                <div class="new_title center">
-                    <h2>@Html.TranslateFallback("/Shared/RelatedProducts", "Related Products")</h2>
-                </div>
-                @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.AlternativeProducts });}
-            </div>
-        </div>
+        <h2>@Html.TranslateFallback("/Shared/RelatedProducts", "Related Products")</h2>
+        @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.AlternativeProducts });}
     </section>
-}
 
-@if (Model.ShowRecommendations)
-{
     <br />
     <section class="upsell-pro">
-        <div class="container">
-            <div class="row">
-                <div class="new_title center">
-                    <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
-                </div>
-                @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}
-            </div>
-        </div>
+        <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
+        @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}
     </section>
 }
 
