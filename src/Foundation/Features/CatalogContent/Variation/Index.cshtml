@@ -66,37 +66,6 @@
     </div>
 </div>
 
-@*<br />
-    @if (Model.ShowRecommendations)
-    {
-        <section class="related-products">
-            <div class="container">
-                <div class="row">
-                    <div class="new_title center">
-                        <h2>@Html.TranslateFallback("/Shared/RelatedProducts", "Related Products")</h2>
-                    </div>
-                    @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.AlternativeProducts });}
-                </div>
-            </div>
-        </section>
-    }
-
-    <br />
-    @if (Model.ShowRecommendations)
-    {
-        <section class="upsell-pro">
-            <div class="container">
-                <div class="row">
-                    <div class="new_title center">
-                        <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
-                    </div>
-                    @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}
-                </div>
-            </div>
-        </section>
-
-    }*@
-
 @section Meta {
     @{
         if (!String.IsNullOrEmpty(Model.CurrentContent.SeoInformation.Description))
