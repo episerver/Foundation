@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Boilerplate.Web.Mvc.OpenGraph;
+using Foundation.Infrastructure.OpenGraph.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Boilerplate.Web.Mvc.OpenGraph;
-using Foundation.Infrastructure.OpenGraph.Extensions;
 
-namespace Foundation.Infrastructure.OpenGraph.Idio
+namespace Foundation.Infrastructure.OpenGraph
 {
     public class OpenGraphGenericProduct : OpenGraphMetadata
     {

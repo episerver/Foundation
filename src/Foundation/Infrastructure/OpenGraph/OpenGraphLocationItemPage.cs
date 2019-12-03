@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Foundation.Infrastructure.OpenGraph.Idio
+namespace Foundation.Infrastructure.OpenGraph
 {
     public class OpenGraphLocationItemPage : OpenGraphFoundationPageData
     {

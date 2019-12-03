@@ -10,15 +10,13 @@ using EPiServer.Web.Routing;
 using Foundation.Cms.Pages;
 using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Catalog.ViewModels;
-using Foundation.Commerce.Models.Catalog;
 using Foundation.Demo.Models;
 using Foundation.Find.Cms.Models.Pages;
-using Foundation.Infrastructure.OpenGraph.Idio;
+using Foundation.Infrastructure.OpenGraph;
 using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,7 +27,6 @@ namespace Foundation.Helpers
         private static readonly Lazy<IContentLoader> _contentLoader = new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
         private static readonly Lazy<AssetUrlResolver> _assetUrlResolver = new Lazy<AssetUrlResolver>(() => ServiceLocator.Current.GetInstance<AssetUrlResolver>());
         private static readonly Lazy<IContentTypeRepository> _contentTypeRepository = new Lazy<IContentTypeRepository>(() => ServiceLocator.Current.GetInstance<IContentTypeRepository>());
-        private const string MetaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
 
         public static IHtmlString RenderOpenGraphMetaData(this HtmlHelper helper, IContentViewModel<IContent> contentViewModel)
         {

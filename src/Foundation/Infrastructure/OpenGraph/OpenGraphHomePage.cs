@@ -1,6 +1,6 @@
 ﻿using Boilerplate.Web.Mvc.OpenGraph;
 
-namespace Foundation.Infrastructure.OpenGraph.Idio
+namespace Foundation.Infrastructure.OpenGraph
 {
     public class OpenGraphHomePage : OpenGraphFoundationPageData
     {
