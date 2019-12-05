@@ -69,6 +69,9 @@
     <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AuthorizeNet.1.9.4\lib\AuthorizeNet.dll</HintPath>
     </Reference>
+    <Reference Include="Boilerplate.Web.Mvc5, Version=1.0.26.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Boilerplate.Web.Mvc5.1.0.26\lib\net452\Boilerplate.Web.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="BVNetwork.EPi404, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\BVN.404Handler.11.3.0\lib\net461\BVNetwork.EPi404.dll</HintPath>
     </Reference>
@@ -931,12 +934,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\ImageUrlHelpers.cs" />
     <Compile Include="Helpers\WebPHelper.cs" />
     <Compile Include="Infrastructure\Jobs\BlobJob.cs" />
     <Compile Include="Infrastructure\Jobs\DemoIntegrationJob.cs" />
     <Compile Include="Infrastructure\Kpi\FilledInFormKpi.cs" />
     <Compile Include="Infrastructure\InitializeSite.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphFoundationPageData.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphGenericNode.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphGenericProduct.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphHomePage.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphLocationItemPage.cs" />
     <Compile Include="Infrastructure\Plugins\GoogleAnalyticsUserIdPluginScript.cs" />
     <Compile Include="Infrastructure\Services\CampaignService.cs" />
     <Compile Include="Infrastructure\Services\ICampaignService.cs" />
