@@ -65,6 +65,18 @@ namespace Foundation.Cms.Pages
         public virtual string PageDescription { get; set; }
 
         [CultureSpecific]
+        [Display(Name = "Content type", GroupName = CmsTabNames.MetaData, Order = 310)]
+        public virtual string ContentType { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Industry", GroupName = CmsTabNames.MetaData, Order = 320)]
+        public virtual string Industry { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Author", GroupName = CmsTabNames.MetaData, Order = 320)]
+        public virtual string AuthorMetaData { get; set; }
+
+        [CultureSpecific]
         [Display(Name = "Disable indexing", GroupName = CmsTabNames.MetaData, Order = 400)]
         public virtual bool DisableIndexing { get; set; }
 
