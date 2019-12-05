@@ -87,9 +87,9 @@ namespace Foundation.Features.Checkout
 
         [HttpGet]
         [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult Index(CheckoutPage currentPage, int? billingAddressType, int? isGuest)
+        public ActionResult Index(CheckoutPage currentPage, int? isGuest)
         {
-            if (CartIsNullOrEmpty())
+            if (CartIsNullOrEmpty()) 
             {
                 return View("EmptyCart", new CheckoutMethodViewModel(currentPage));
             }
@@ -110,23 +110,25 @@ namespace Foundation.Features.Checkout
             viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
             _addressBookService.LoadAddress(viewModel.BillingAddress);
 
-            if (billingAddressType == null && Request.IsAuthenticated)
+            if (Request.IsAuthenticated)
             {
                 viewModel.BillingAddressType = 1;
             }
-            else if (billingAddressType == null)
+            else 
             {
                 viewModel.BillingAddressType = 0;
-            }
-            else
-            {
-                viewModel.BillingAddressType = billingAddressType.Value;
             }
 
             var shippingAddressType = Request.IsAuthenticated ? 1 : 0;
             for (var i = 0; i < viewModel.Shipments.Count; i++)
             {
-                viewModel.Shipments[i].ShippingAddressType = shippingAddressType;
+                if (string.IsNullOrEmpty(viewModel.Shipments[i].Address.AddressId))
+                {
+                    viewModel.Shipments[i].ShippingAddressType = shippingAddressType;
+                } else
+                {
+                    viewModel.Shipments[i].ShippingAddressType = 1;
+                }
             }
 
             return View("Checkout", viewModel);
@@ -184,19 +186,55 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult ChangeAddress(UpdateAddressViewModel addressViewModel)
+        public ActionResult ChangeAddress(CheckoutPage currentPage, UpdateAddressViewModel addressViewModel)
         {
             ModelState.Clear();
-            var viewModel = CreateCheckoutViewModel(addressViewModel.CurrentPage);
-            _checkoutService.CheckoutAddressHandling.ChangeAddress(viewModel, addressViewModel);
+            try
+            {
+                var viewModel = CreateCheckoutViewModel(currentPage);
+                viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
+                _addressBookService.LoadAddress(viewModel.BillingAddress);
+                _checkoutService.CheckoutAddressHandling.ChangeAddress(viewModel, addressViewModel);
+                _checkoutService.ChangeAddress(CartWithValidationIssues.Cart, viewModel, addressViewModel);
+                _orderRepository.Save(CartWithValidationIssues.Cart);
+                return Json(new { Status = true });
+            }
+            catch (Exception e)
+            {
+                return Json(new { Status = false, Message = e.Message });
+            }
+        }
 
-            _checkoutService.UpdateShippingAddresses(CartWithValidationIssues.Cart, viewModel);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAddress(CheckoutPage currentPage, AddressModel viewModel, string returnUrl)
+        {
+            if (string.IsNullOrEmpty(viewModel.Name))
+            {
+                ModelState.AddModelError("Address.Name", _localizationService.GetString("/Shared/Address/Form/Empty/Name", "Name is required"));
+            }
 
-            _orderRepository.Save(CartWithValidationIssues.Cart);
+            if (!_addressBookService.CanSave(viewModel))
+            {
+                ModelState.AddModelError("Address.Name", _localizationService.GetString("/AddressBook/Form/Error/ExistingAddress", "An address with the same name already exists"));
+            }
 
-            var addressViewName = addressViewModel.ShippingAddressIndex > -1 ? "SingleShippingAddress" : "BillingAddress";
+            if (!ModelState.IsValid)
+            {
+                var error = ModelState.Select(x =>
+                {
+                    if (x.Value.Errors.Count > 0)
+                    {
+                        return x.Key + ": " + string.Join(" ", x.Value.Errors.Select(y => y.ErrorMessage)) + "</br>";
+                    }
+                    return "";
+                });
 
-            return PartialView(addressViewName, viewModel);
+                return Json(new { Status = false, Message = error });
+            }
+
+            _addressBookService.Save(viewModel);
+            return Json(new { Status = true, RedirectUrl = returnUrl });
         }
 
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]

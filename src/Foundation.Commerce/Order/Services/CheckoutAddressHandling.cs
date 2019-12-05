@@ -34,40 +34,21 @@ namespace Foundation.Commerce.Order.Services
 
         public virtual void ChangeAddress(CheckoutViewModel viewModel, UpdateAddressViewModel updateViewModel)
         {
-            var isShippingAddressUpdated = updateViewModel.ShippingAddressIndex > -1;
-
-            var updatedAddress = isShippingAddressUpdated ?
-                updateViewModel.Shipments[updateViewModel.ShippingAddressIndex].Address :
-                updateViewModel.BillingAddress;
-
-            if (updatedAddress.AddressId != null)
-            {
-                _addressBookService.LoadAddress(updatedAddress);
-            }
-
-            _addressBookService.LoadCountriesAndRegionsForAddress(updatedAddress);
-
             viewModel.UseBillingAddressForShipment = updateViewModel.UseBillingAddressForShipment;
-            viewModel.BillingAddress = updateViewModel.BillingAddress;
+            if (!string.IsNullOrEmpty(updateViewModel.AddressId))
+            {
+                var isShippingAddressUpdated = updateViewModel.AddressType == AddressType.Shipping;
+                var updateAddress = _addressBookService.GetAddress(updateViewModel.AddressId);
+                _addressBookService.LoadAddress(updateAddress);
 
-            if (isShippingAddressUpdated)
-            {
-                _addressBookService.LoadAddress(viewModel.BillingAddress);
-                _addressBookService.LoadCountriesAndRegionsForAddress(viewModel.BillingAddress);
-                _addressBookService.LoadAddress(updatedAddress);
-                viewModel.Shipments[updateViewModel.ShippingAddressIndex].Address = updatedAddress;
-            }
-            else
-            {
-                for (var i = 0; i < viewModel.Shipments.Count; i++)
+                if (isShippingAddressUpdated)
                 {
-                    viewModel.Shipments[i].Address = updateViewModel.Shipments[i].Address;
+                    viewModel.Shipments[updateViewModel.ShippingAddressIndex].Address = updateAddress;
                 }
-            }
-
-            foreach (var shipment in viewModel.Shipments)
-            {
-                _addressBookService.LoadCountriesAndRegionsForAddress(shipment.Address);
+                else
+                {
+                    viewModel.BillingAddress = updateAddress;
+                }
             }
         }
 

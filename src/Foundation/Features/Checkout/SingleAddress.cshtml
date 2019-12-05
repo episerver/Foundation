@@ -1,10 +1,10 @@
 ﻿@model CheckoutViewModel
-@{ 
+@{
     var index = (int)ViewData["ShipmentIndex"];
     var instorePickupMethod = Model.Shipments[index].ShippingMethods.FirstOrDefault(x => x.IsInstorePickup);
 }
 <div class="row jsShippingAddressRow @(instorePickupMethod != null && Model.Shipments[index].ShippingMethodId == instorePickupMethod.Id ? "hidden" : "")">
-    <div class="col-12">
+    <div class="col-12 jsChangeAddressCard" data-urlChangeAddress="@Url.Action("ChangeAddress", "Checkout")">
         <ul class="style-list-none">
             <li class="row">
                 <div class="col-md-6 col-xs-12 jsShippingAddressSelection">
@@ -14,9 +14,9 @@
                             <label class="checkbox">
                                 @Html.TranslateFallback("/Checkout/Shipment/ExistingAddress", "Ship to existing address")
                                 @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 1, new
-                                {
-                                    @class = "radio jsSingleAddress"
-                                })
+                           {
+                               @class = "radio jsSingleAddress"
+                           })
                                 <span class="checkmark"></span>
                             </label>
                             <br />
@@ -27,9 +27,9 @@
                         <label class="checkbox">
                             @Html.TranslateFallback("/Checkout/Shipment/NewAddress", "Ship to new address")
                             @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 0, new
-                            {
-                                @class = "radio jsSingleAddress"
-                            })
+                       {
+                           @class = "radio jsSingleAddress"
+                       })
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -41,14 +41,15 @@
                     <div class="col-md-6 col-xs-12">
                         <label class="checkbox">
                             @Html.Label("Use billing address as shipping address")
-                            <input type="checkbox" name="UseBillingAddressForShipment" id="UseBillingAddressForShipment" @(Model.UseBillingAddressForShipment ? "checked" : "") />
+                            <input type="checkbox" name="UseBillingAddressForShipment" id="UseBillingAddressForShipment" @(Model.UseBillingAddressForShipment ? "checked" : "") class="jsChangeAddress" />
                             <span class="checkmark"></span>
                         </label>
                     </div>
-                } 
+                }
             </li>
 
-            <li class="@(Model.Shipments[index].ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden") jsOldShippingAddressForm">
+            <li class="@(Model.Shipments[index].ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden") jsOldShippingAddressForm jsChangeAddress"
+                data-shipmentindex="@index" data-addresstype="@Foundation.Commerce.Order.ViewModels.AddressType.Shipping">
                 <div class="form-group">
 
                     @{
@@ -157,7 +158,7 @@
                     <li>
                         <div class="row">
                             <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
-                                @Html.EditorFor(model => model.Shipments[index].Address.CountryRegion, 
+                                @Html.EditorFor(model => model.Shipments[index].Address.CountryRegion,
                                new { SelectItem = Model.Shipments[index].Address.CountryRegion.Region, Name = "Shipments[" + index + "].Address.CountryRegion.Region" })
                             </div>
                             <div class="form-group col-xs-12 col-md-6">

@@ -99,6 +99,30 @@ namespace Foundation.Commerce.Order.Services
             }
         }
 
+        public virtual void ChangeAddress(ICart cart, CheckoutViewModel viewModel, UpdateAddressViewModel updateAddressViewModel)
+        {
+            if (updateAddressViewModel.AddressType == AddressType.Billing)
+            {
+                foreach (var payment in cart.GetFirstForm().Payments)
+                {
+                    payment.BillingAddress = _addressBookService.ConvertToAddress(viewModel.BillingAddress, cart);
+                }
+            }
+            else
+            {
+                if (viewModel.UseBillingAddressForShipment)
+                {
+                    cart.GetFirstShipment().ShippingAddress = _addressBookService.ConvertToAddress(viewModel.BillingAddress, cart);
+                }
+                else
+                {
+                    var shipments = cart.GetFirstForm().Shipments;
+                    shipments.ElementAt(updateAddressViewModel.ShippingAddressIndex).ShippingAddress =
+                            _addressBookService.ConvertToAddress(viewModel.Shipments[updateAddressViewModel.ShippingAddressIndex].Address, cart);
+                }
+            }
+        }
+
         /// <summary>
         /// Update payment plan information
         /// </summary>
@@ -284,7 +308,7 @@ namespace Foundation.Commerce.Order.Services
             _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
             _paymentPlan.CycleMode = PaymentPlanCycle.Days;
             _paymentPlan.CycleLength = paymentPlanSetting.CycleLength;
-            _paymentPlan.StartDate = DateTime.Now;
+            _paymentPlan.StartDate = DateTime.Now.AddDays(paymentPlanSetting.CycleLength);
             _paymentPlan.EndDate = paymentPlanSetting.EndDate;
             _paymentPlan.IsActive = paymentPlanSetting.IsActive;
 

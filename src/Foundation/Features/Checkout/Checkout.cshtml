@@ -4,6 +4,16 @@
 {
     @Html.AntiForgeryToken()
     <div class="col-md-8 col-xs-12">
+        <div class="card items">
+            <div class="card-body flex-between">
+                @if (Request.UrlReferrer != null)
+                {
+                    <a class="button-white" href="@Request.UrlReferrer.PathAndQuery">Back</a>
+                }
+                <button class="button-black" type="button" data-toggle="modal" data-target="#newAddressModal">Add New Address</button>
+            </div>
+        </div>
+        <br />
         @Html.Partial("ShippingInformation", Model)
         <br />
         <div class="card items">
@@ -64,11 +74,126 @@
                         <a href="#" class="button-white full-width jsSelectShipment" data-shipmentid="0">New Shipment</a>
                     </div>
                 </div>
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="button-black full-width" data-dismiss="modal">Close</button>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="newAddressModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        @using (Html.BeginForm("AddAddress", "Checkout", FormMethod.Post, new { @class = "jsFormNewAddress" })) 
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("AddressReturnUrl", Url.Action("Index", "Checkout"), new { @class = "jsAddressReturnUrl" })
+            <div class="modal-content  square-box">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body user-menu">
+                    <ul class="style-list-none">
+                        <li>
+                            <div class="row">
+                                <div class="col-12 jsAddressError">
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    @Html.Label("Name")
+                                    @Html.TextBox("Name", "", new { @class = "textbox", autofocus = "autofocus" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("FirstName")
+                                    @Html.TextBox("FirstName", "", new { @class = "textbox" })
+                                </div>
+
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("LastName")
+                                    @Html.TextBox("LastName", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Email")
+                                    @Html.TextBox("Email", "", new { @class = "textbox" })
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Organization")
+                                    @Html.TextBox("Organization", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Line1")
+                                    @Html.TextBox("Line1", "", new { @class = "textbox" })
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Line2")
+                                    @Html.TextBox("Line2", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("City")
+                                    @Html.TextBox("City", "", new { @class = "textbox" })
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("PostalCode")
+                                    @Html.TextBox("PostalCode", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
+                                    @{
+                                        var regionValues = new List<KeyValuePair<string, string>>();
+                                        foreach (var a in Model.BillingAddress.CountryRegion.RegionOptions)
+                                        {
+                                            regionValues.Add(new KeyValuePair<string, string>(a, a));
+                                        }
+                                    }
+                                    @Helpers.RenderDropdown(regionValues, "", "", "CountryRegion.Region")
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @{
+                                        var countryValues = new List<KeyValuePair<string, string>>();
+                                        foreach (var a in Model.BillingAddress.CountryOptions)
+                                        {
+                                            countryValues.Add(new KeyValuePair<string, string>(a.Name, a.Code));
+                                        }
+                                    }
+                                    @Helpers.RenderDropdown(countryValues, "", "", "CountryCode")
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer flex-between">
+                    <button type="button" class="button-black jsSaveAddress">Save</button>
+                    <button type="button" class="button-white" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        }
     </div>
 </div>

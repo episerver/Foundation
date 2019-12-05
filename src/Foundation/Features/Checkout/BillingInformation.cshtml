@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-12">
         <div id="billingAddressContainer">
-            <div id="checkout-step-shipping" class="step a-item">
+            <div id="checkout-step-shipping" class="step a-item jsChangeAddressCard"  data-urlChangeAddress="@Url.Action("ChangeAddress", "Checkout")">
                 <ul class="style-list-none">
                     <li>
                         @if (User.Identity.IsAuthenticated)
@@ -12,9 +12,9 @@
                                 <label class="checkbox">
                                     @Html.TranslateFallback("/Checkout/Billing/ExistingAddress", "Bill to existing address")
                                     @Html.RadioButtonFor(x => x.BillingAddressType, 1, new
-                                    {
-                                        @class = "radio jsBillingAddress"
-                                    })
+                               {
+                                   @class = "radio jsBillingAddress"
+                               })
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -23,15 +23,16 @@
                             <label class="checkbox">
                                 @Html.TranslateFallback("/Checkout/Billing/NewAddress", "Bill to new address")
                                 @Html.RadioButtonFor(x => x.BillingAddressType, 0, new
-                                {
-                                    @class = "radio jsBillingAddress"
-                                })
+                           {
+                               @class = "radio jsBillingAddress"
+                           })
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                     </li>
 
-                    <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden")" id="oldBillingAddressForm">
+                    <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden") jsChangeAddress" id="oldBillingAddressForm"
+                        data-addresstype="@Foundation.Commerce.Order.ViewModels.AddressType.Billing">
                         <div class="form-group">
                             @{
                                 var values = new List<KeyValuePair<string, string>>();
@@ -172,7 +173,6 @@
                 <div class="col-12 jsCouponReplaceHtml" id="paymentBlock">
                     @Html.Partial("_AddPayment", Model)
                 </div>
-
             </div>
         </div>
     </div>

@@ -92,7 +92,7 @@
 
                         </div>
 
-
+                        <!--Shipping methods-->
                         <div class="col-xs-12 col-md-4">
                             <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryOption", "Choose delivery option")</p><br />
                             <ul class="checkout__delivery-block style-list-none jsShippingMethodContainer" url="@Url.Action("UpdateShippingMethods", "Checkout")">
@@ -110,6 +110,7 @@
                         </div>
                     </div>
 
+                    <!--Shipment Address-->
                     <br />
                     @{ 
                         var shipmentIndexViewData = new ViewDataDictionary();

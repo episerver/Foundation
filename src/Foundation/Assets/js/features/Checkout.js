@@ -198,8 +198,8 @@
                         }
 
                         inst.RemoveCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
-                        $('.jsCouponReplaceHtml').html(r.data); 
-                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html()); 
+                        $('.jsCouponReplaceHtml').html(r.data);
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
                         feather.replace();
                         if ($(e).hasClass('jsInCheckout')) {
                             inst.InitPayment();
@@ -242,7 +242,7 @@
                         $('.jsCouponLabel').addClass('hidden');
                     }
                     $('.jsCouponReplaceHtml').html(r.data);
-                    $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html()); 
+                    $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
                     if ($(e).hasClass('jsInCheckout')) {
                         feather.replace();
                         inst.InitPayment();
@@ -317,12 +317,9 @@
                         if (quantity == 0) {
                             var parent = $(e).parents('.jsShipmentRow');
                             $(e).parents('.jsCartItem').first().remove();
-                            
+
                             if (parent.find('.jsCartItem').length == 0) {
                                 parent.remove();
-                            }
-
-                            if ($('.jsShipmentRow').length == 0) {
                                 window.location.href = window.location.href;
                             }
                         }
@@ -330,12 +327,12 @@
                         if (quantity > 1) {
                             var btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
                             btn.parent('div').removeClass('hidden');
-                            btn.addClass('jsSelectShipment');
+                            btn.addClass('jsSeparateBtn');
                             inst.SeparateClick(btn);
                         } else {
                             var btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
                             btn.parent('div').addClass('hidden');
-                            btn.removeClass('jsSelectShipment');
+                            btn.removeClass('jsSeparateBtn');
                         }
 
                         $('.jsCouponReplaceHtml').html(r.data);
@@ -512,6 +509,94 @@
     SeparateInit() {
         this.SeparateClick();
         this.ConfirmSeparateItemClick();
+    }
+    /////////////////////
+
+
+    // Change Address (Shipping and Billing)
+
+    ChangeAddressClick() {
+        $('.jsChangeAddress').each(function (i, e) {
+            $(e).change(function () {
+                $('.loading-box').show();
+                var type = $(e).data('addresstype');
+                if (type == "Billing") {
+
+                } else {
+                    var shipmentIndex = $(e).data('shipmentindex');
+                }
+                var addressId = $(e).find('input[type=radio]:checked').val();
+                var useBillingAddressForShipmentInput = $('#UseBillingAddressForShipment');
+                var useBillingAddressForShipment = false;
+                if (useBillingAddressForShipmentInput.length > 0) {
+                    useBillingAddressForShipment = useBillingAddressForShipmentInput.is(':checked');
+                }
+                var data = {
+                    AddressId: addressId,
+                    UseBillingAddressForShipment: useBillingAddressForShipment,
+                    ShippingAddressIndex: shipmentIndex,
+                    AddressType: type,
+                }
+                var url = $(e).parents('.jsChangeAddressCard').data('urlchangeaddress');
+                axios.post(url, data)
+                    .then(function (r) {
+                        if (r.data.Status == true) {
+
+                        } else {
+                            notification.Error(r.data.Message);
+                        }
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    })
+            })
+        })
+    }
+
+    AddNewAddress() {
+        $('.jsSaveAddress').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var form = $(e).parents('.jsFormNewAddress').first();
+                var data = serializeObject(form);
+                var formData = convertFormData(data);
+                var url = form[0].action;
+                var returnUrl = form.find('.jsAddressReturnUrl').val();
+                formData.append("returnUrl", returnUrl);
+                axios.post(url, formData)
+                    .then(function (r) {
+                        if (r.data.Status == false) {
+                            form.find('.jsAddressError').html(r.data.Message);
+                            form.find('.jsAddressError').addClass('error');
+                        } else {
+                            window.location.href = r.data.RedirectUrl;
+                        }
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                        form.find('.jsAddressError').html(e);
+                        form.find('.jsAddressError').addClass('error');
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    })
+            })
+        })
+    }
+    ////////////////////
+
+    // show hide subscription
+    ShowHideSubscription() {
+        $('#IsUsePaymentPlan').change(function () {
+            if ($(this).is(':checked')) {
+                $('.jsSubscription').slideDown();
+            } else {
+                $('.jsSubscription').slideUp();
+            }
+        })
     }
     /////////////////////
 }

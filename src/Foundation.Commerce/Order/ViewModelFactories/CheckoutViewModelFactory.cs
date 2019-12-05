@@ -74,7 +74,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
             var viewModel = new CheckoutViewModel(currentPage)
             {
                 Shipments = shipments,
-                BillingAddress = CreateBillingAddressModel(),
+                BillingAddress = CreateBillingAddressModel(currentBillingAdressId),
                 UseBillingAddressForShipment = useBillingAddressForShipment,
                 AppliedCouponCodes = cart.GetFirstForm().CouponCodes.Distinct(),
                 AvailableAddresses = new List<AddressModel>(),
@@ -97,7 +97,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
 
             if (availableAddresses.Any())
             {
-                viewModel.AvailableAddresses.Add(new AddressModel { Name = _localizationService.GetString("/Checkout/MultiShipment/SelectAddress"), AddressId = "" });
+                //viewModel.AvailableAddresses.Add(new AddressModel { Name = _localizationService.GetString("/Checkout/MultiShipment/SelectAddress"), AddressId = "" });
 
                 foreach (var address in availableAddresses)
                 {
@@ -216,15 +216,26 @@ namespace Foundation.Commerce.Order.ViewModelFactories
             }
         }
 
-        private AddressModel CreateBillingAddressModel()
+        private AddressModel CreateBillingAddressModel(string currentBillingAdressId)
         {
-            var preferredBillingAddress = _addressBookService.GetPreferredBillingAddress();
-
-            return new AddressModel
+            if (string.IsNullOrEmpty(currentBillingAdressId))
             {
-                AddressId = preferredBillingAddress?.Name,
-                Name = preferredBillingAddress != null ? preferredBillingAddress.Name : Guid.NewGuid().ToString(),
-            };
+                var preferredBillingAddress = _addressBookService.GetPreferredBillingAddress();
+
+                return new AddressModel
+                {
+                    AddressId = preferredBillingAddress?.Name,
+                    Name = preferredBillingAddress != null ? preferredBillingAddress.Name : Guid.NewGuid().ToString(),
+                };
+            }
+            else
+            {
+                return new AddressModel
+                {
+                    AddressId = currentBillingAdressId,
+                    Name = currentBillingAdressId,
+                };
+            }
         }
 
         private string GetReferrerUrl()

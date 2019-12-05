@@ -64,6 +64,9 @@
         checkout.ChangeCartItem();
         checkout.UseBillingAsShipping();
         checkout.SeparateInit();
+        checkout.ChangeAddressClick();
+        checkout.AddNewAddress();
+        checkout.ShowHideSubscription();
         // --- End
 
         // Order Detail
