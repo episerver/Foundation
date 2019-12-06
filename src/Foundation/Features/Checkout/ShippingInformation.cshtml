@@ -71,7 +71,8 @@
                                                     <br />
 
                                                     <div class="@(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "" : "hidden" )">
-                                                        <button type="button" class="button-white jsSeparateHint @(cartItem.Quantity > 1 ? "jsSeparateBtn" : "")"
+                                                        <button type="button" class="button-white jsSeparateHint 
+                                                                @(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "jsSeparateBtn" : "")"
                                                                 data-toggle="modal" data-target="#shipmentListing"
                                                                 data-code="@cartItem.Entry.Code"
                                                                 data-shipmentid="@Model.Shipments[shipmentIndex - 1].ShipmentId"
