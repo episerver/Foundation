@@ -13,7 +13,7 @@
             <picture>
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                    <img class="img-fluid" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
                 }
             </picture>
         </div>
@@ -34,7 +34,7 @@
                 }
                 @if (Model.ShowIntroduction)
                 {
-                    <p>@Html.Raw(@Model.PreviewText)</p>
+                    <p>@Html.Raw(Model.PreviewText)</p>
                 }
             </div>
         </div>
@@ -50,7 +50,7 @@
             <picture style="width: 100%">
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                    <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
                 }
             </picture>
         </div>
@@ -72,7 +72,7 @@
             @if (Model.ShowIntroduction)
             {
                 <br />
-                <p class="light-text">@Html.Raw(@Model.PreviewText)</p>
+                <p class="light-text">@Html.Raw(Model.PreviewText)</p>
             }
 
         </div>
@@ -87,7 +87,7 @@
         <picture style="height: 100%;">
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
-                <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
             }
         </picture>
         <div>
@@ -109,7 +109,7 @@
             @if (Model.ShowIntroduction)
             {
                 <br />
-                <p class="light-text">@Html.Raw(@Model.PreviewText)</p>
+                <p class="light-text">@Html.Raw(Model.PreviewText)</p>
             }
         </div>
 
@@ -120,6 +120,12 @@
 {
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
     <div class="col-@imageCol preview--image-top">
+        <span>
+            @foreach (var tag in Model.Tags)
+            {
+                <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+            }
+        </span>
         <h4>
             <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
         </h4>
