@@ -1257,7 +1257,7 @@
     <Content Include="Features\Blocks\Views\NavigationBlock.cshtml" />
     <Content Include="Features\Blocks\Views\BreadcrumbBlock.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_breadcrumb-block.scss" />
-    <None Include="Features\Checkout\_OrderSummary.cshtml" />
+    <Content Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
     <Content Include="Features\NamedCarts\Wishlist\Index.cshtml" />
@@ -1526,7 +1526,7 @@
     <Content Include="Assets\scss\vendors\bootstrap-4.3.1\_type.scss" />
     <Content Include="Assets\scss\vendors\bootstrap-4.3.1\_utilities.scss" />
     <Content Include="Assets\scss\vendors\bootstrap-4.3.1\_variables.scss" />
-    <None Include="EPiServerLog.config" />
+    <Content Include="EPiServerLog.config" />
     <Content Include="modules\_protected\CookieDropBlock\Views\web.config" />
     <Content Include="modules\_protected\CookieDropBlock\Views\CookieDropBlock.cshtml" />
     <Content Include="modules\_protected\AddOn.Edit.ContextMenuOpenInNewTab\AddOn.Edit.ContextMenuOpenInNewTab.zip" />
