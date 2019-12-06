@@ -35,17 +35,7 @@
                     </div>
                 </div>
 
-                @if (Model.Shipments.Count == 1)
-                {
-
-                    <div class="col-md-6 col-xs-12">
-                        <label class="checkbox">
-                            @Html.Label("Use billing address as shipping address")
-                            <input type="checkbox" name="UseBillingAddressForShipment" id="UseBillingAddressForShipment" @(Model.UseBillingAddressForShipment ? "checked" : "") class="jsChangeAddress" />
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                }
+               
             </li>
 
             <li class="@(Model.Shipments[index].ShippingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden") jsOldShippingAddressForm jsChangeAddress"

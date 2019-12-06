@@ -10,7 +10,10 @@
                 {
                     <a class="button-white" href="@Request.UrlReferrer.PathAndQuery">Back</a>
                 }
-                <button class="button-black" type="button" data-toggle="modal" data-target="#newAddressModal">Add New Address</button>
+                @if (Request.IsAuthenticated)
+                {
+                    <button class="button-black" type="button" data-toggle="modal" data-target="#newAddressModal">Add New Address</button>
+                }
             </div>
         </div>
         <br />

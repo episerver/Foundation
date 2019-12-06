@@ -9,14 +9,14 @@
             <div class="col-6">
                 <label class="checkbox">
                     Available credit cards
-                    <input class="radio jsSelectCreditCard" id="CreditType" name="CreditType" type="radio" value="#avaiableCreditCard" @(Model.UseSelectedCreditCard ? "checked='checked'" : "")>
+                    <input class="radio jsSelectCreditCard" id="availableCreditType" name="CreditType" type="radio" value="#avaiableCreditCard" @(Model.UseSelectedCreditCard ? "checked='checked'" : "")>
                     <span class="checkmark"></span>
                 </label>
             </div>
             <div class="col-6">
                 <label class="checkbox">
                     New credit card
-                    <input class="radio jsSelectCreditCard" id="CreditType" name="CreditType" type="radio" value="#newCreditCard" @(!Model.UseSelectedCreditCard ? "checked='checked'" : "")>
+                    <input class="radio jsSelectCreditCard" id="newCreditType" name="CreditType" type="radio" value="#newCreditCard" @(!Model.UseSelectedCreditCard ? "checked='checked'" : "")>
                     <span class="checkmark"></span>
                 </label>
             </div>

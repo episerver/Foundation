@@ -70,7 +70,7 @@
                                                     </div>
                                                     <br />
 
-                                                    <div class="@(cartItem.Quantity > 1 ? "" : "hidden" )">
+                                                    <div class="@(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "" : "hidden" )">
                                                         <button type="button" class="button-white jsSeparateHint @(cartItem.Quantity > 1 ? "jsSeparateBtn" : "")"
                                                                 data-toggle="modal" data-target="#shipmentListing"
                                                                 data-code="@cartItem.Entry.Code"
@@ -79,10 +79,9 @@
                                                                 data-delivery="@Model.Shipments[shipmentIndex - 1].ShippingMethodId"
                                                                 data-selectedstore="@Model.Shipments[shipmentIndex - 1].WarehouseCode">
                                                             <i class="fas fa-cut"></i>
-                                                            <span> Separate to another</span>
+                                                            <span> @Html.TranslateFallback("Ship to different address", "Ship to different address")</span>
                                                         </button>
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +100,7 @@
                                     <li>
                                         <label class="checkbox">
                                             @shippingMethodViewModel.DisplayName @shippingMethodViewModel.Price.ToString()
-                                            @Html.RadioButtonFor(model => Model.Shipments[shipmentIndex - 1].ShippingMethodId, shippingMethodViewModel.Id, new { @id = shippingMethodViewModel.Id, @class = "jsChangeShipment", instorepickup = shippingMethodViewModel.IsInstorePickup })
+                                            @Html.RadioButtonFor(model => Model.Shipments[shipmentIndex - 1].ShippingMethodId, shippingMethodViewModel.Id, new { @value = shippingMethodViewModel.Id, @class = "jsChangeShipment", instorepickup = shippingMethodViewModel.IsInstorePickup })
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>

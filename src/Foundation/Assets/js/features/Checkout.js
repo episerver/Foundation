@@ -135,8 +135,9 @@
                     shippingRow.find('.jsOldShippingAddressForm').show();
                     shippingRow.find('.jsNewShippingAddressForm').hide();
                 }
-            })
-        })
+                
+            });
+        });
     }
     ///////////////////
 
@@ -150,8 +151,11 @@
                 if (value == 0) {
                     $('#oldBillingAddressForm').hide();
                     $('#newBillingAddressForm').show();
-                } else {
+                } else if (value == 1) {
                     $('#oldBillingAddressForm').show();
+                    $('#newBillingAddressForm').hide();
+                } else if (value == 2) {
+                    $('#oldBillingAddressForm').hide();
                     $('#newBillingAddressForm').hide();
                 }
             });
@@ -179,7 +183,7 @@
                 $('.jsAddCoupon').click();
                 return false;
             }
-        })
+        });
 
         $('.jsAddCoupon').click(function () {
             var e = this;
@@ -212,8 +216,8 @@
                 })
                 .catch(function (e) {
                     notification.Error(e);
-                })
-        })
+                });
+        });
     }
 
     RemoveCouponCode(selector) {
@@ -223,7 +227,7 @@
         } else {
             $('.jsRemoveCoupon').each(function (i, e) {
                 inst.removeCoupon(e);
-            })
+            });
         }
     }
 
@@ -252,8 +256,8 @@
                 })
                 .catch(function (e) {
                     notification.Error(e);
-                })
-        })
+                });
+        });
     }
 
     couponTemplate(couponCode, jsInCheckout) {
@@ -287,12 +291,12 @@
                         inst.InitPayment();
                     })
                     .catch(function (e) {
-                        notification.Error(e)
+                        notification.Error(e);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
-                    })
-            })
+                    });
+            });
         });
     }
     //////////////////
@@ -311,7 +315,7 @@
                     code: code,
                     quantity: quantity,
                     shipmentId: shipmentId
-                }
+                };
                 axios.post(url, data)
                     .then(function (r) {
                         if (quantity == 0) {
@@ -325,12 +329,12 @@
                         }
 
                         if (quantity > 1) {
-                            var btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
+                            let btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
                             btn.parent('div').removeClass('hidden');
                             btn.addClass('jsSeparateBtn');
                             inst.SeparateClick(btn);
                         } else {
-                            var btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
+                            let btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
                             btn.parent('div').addClass('hidden');
                             btn.removeClass('jsSeparateBtn');
                         }
@@ -345,92 +349,19 @@
                     })
                     .finally(function () {
                         $('.loading-box').hide();
-                    })
-            })
-        })
+                    });
+            });
+        });
     }
     //////////////////
-
-    // Use billing address as shipping address
-    UseBillingAsShipping() {
-        var defaultValue = $('#UseBillingAddressForShipment').is(':checked');
-        if (defaultValue == true) {
-            $('.jsShippingAddressSelection').find('input').each(function (i, e) {
-                $(e).attr('disabled', 'disabled');
-            })
-
-            $('.jsOldShippingAddressForm').find('input').each(function (i, e) {
-                $(e).attr('disabled', 'disabled');
-            })
-
-            $('.jsOldShippingAddressForm').find('.dropdown').each(function (i, e) {
-                $(e).css('pointer-events', 'none');
-            })
-
-            $('.jsNewShippingAddressForm').find('input').each(function (i, e) {
-                $(e).attr('disabled', 'disabled');
-            })
-
-            $('.jsNewShippingAddressForm').find('.dropdown').each(function (i, e) {
-                $(e).css('pointer-events', 'none');
-            })
-        }
-
-        $('#UseBillingAddressForShipment').change(function () {
-            var value = $(this).is(':checked');
-            if (value == true) {
-                $('.jsShippingAddressSelection').find('input').each(function (i, e) {
-                    $(e).attr('disabled', 'disabled');
-                })
-
-                $('.jsOldShippingAddressForm').find('input').each(function (i, e) {
-                    $(e).attr('disabled', 'disabled');
-                })
-
-                $('.jsOldShippingAddressForm').find('.dropdown').each(function (i, e) {
-                    $(e).css('pointer-events', 'none');
-                })
-
-                $('.jsNewShippingAddressForm').find('input').each(function (i, e) {
-                    $(e).attr('disabled', 'disabled');
-                })
-
-                $('.jsNewShippingAddressForm').find('.dropdown').each(function (i, e) {
-                    $(e).css('pointer-events', 'none');
-                })
-            } else {
-                $('.jsShippingAddressSelection').find('input').each(function (i, e) {
-                    $(e).removeAttr('disabled');
-                })
-
-                $('.jsOldShippingAddressForm').find('input').each(function (i, e) {
-                    $(e).removeAttr('disabled');
-                })
-
-                $('.jsOldShippingAddressForm').find('.dropdown').each(function (i, e) {
-                    $(e).css('pointer-events', 'auto');
-                })
-
-                $('.jsNewShippingAddressForm').find('input').each(function (i, e) {
-                    $(e).removeAttr('disabled');
-                })
-
-                $('.jsNewShippingAddressForm').find('.dropdown').each(function (i, e) {
-                    $(e).css('pointer-events', 'auto');
-                })
-            }
-        })
-    }
-    //////////////////
-
-
+    
     // Separate line item
     SeparateClick(selector) {
         if (selector) {
             $(selector).click(function () {
                 $('.jsSelectShipment').each(function (j, s) {
                     $(s).show();
-                })
+                });
                 var code = $(selector).data('code');
                 var shipmentid = $(selector).data('shipmentid');
                 var qty = $(selector).parents('.jsCartItem').find('.jsChangeQuantityItemCheckout').val();
@@ -443,13 +374,13 @@
                 $('#lineItemInfomation').data("selectedstore", selectedstore);
 
                 $('.jsSelectShipment[data-shipmentid=' + shipmentid + ']').hide();
-            })
+            });
         } else {
             $('.jsSeparateBtn').each(function (i, e) {
                 $(e).click(function () {
                     $('.jsSelectShipment').each(function (j, s) {
                         $(s).show();
-                    })
+                    });
 
                     var code = $(e).data('code');
                     var shipmentid = $(e).data('shipmentid');
@@ -463,8 +394,8 @@
                     $('#lineItemInfomation').data("selectedstore", selectedstore);
 
                     $('.jsSelectShipment[data-shipmentid=' + shipmentid + ']').hide();
-                })
-            })
+                });
+            });
         }
     }
 
@@ -486,7 +417,7 @@
                     ToShipmentId: toShipmentId,
                     DeliveryMethodId: delivery,
                     SelectedStore: selectedstore
-                }
+                };
 
                 axios.post(url, data)
                     .then(function (r) {
@@ -501,9 +432,9 @@
                     })
                     .finally(function () {
                         $('.loading-box').hide();
-                    })
-            })
-        })
+                    });
+            });
+        });
     }
 
     SeparateInit() {
@@ -535,8 +466,8 @@
                     AddressId: addressId,
                     UseBillingAddressForShipment: useBillingAddressForShipment,
                     ShippingAddressIndex: shipmentIndex,
-                    AddressType: type,
-                }
+                    AddressType: type
+                };
                 var url = $(e).parents('.jsChangeAddressCard').data('urlchangeaddress');
                 axios.post(url, data)
                     .then(function (r) {
@@ -551,9 +482,9 @@
                     })
                     .finally(function () {
                         $('.loading-box').hide();
-                    })
-            })
-        })
+                    });
+            });
+        });
     }
 
     AddNewAddress() {
@@ -582,9 +513,9 @@
                     })
                     .finally(function () {
                         $('.loading-box').hide();
-                    })
-            })
-        })
+                    });
+            });
+        });
     }
     ////////////////////
 
@@ -596,7 +527,7 @@
             } else {
                 $('.jsSubscription').slideUp();
             }
-        })
+        });
     }
     /////////////////////
 }

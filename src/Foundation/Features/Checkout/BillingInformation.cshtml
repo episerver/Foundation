@@ -6,6 +6,20 @@
             <div id="checkout-step-shipping" class="step a-item jsChangeAddressCard"  data-urlChangeAddress="@Url.Action("ChangeAddress", "Checkout")">
                 <ul class="style-list-none">
                     <li>
+                        @if (Model.Shipments.Count == 1)
+                        {
+
+                            <div>
+                                <label class="checkbox">
+                                    @Html.TranslateFallback("Use shipping address as billing address", "Use shipping address as billing address")
+                                    @Html.RadioButtonFor(x => x.BillingAddressType, 2, new
+                               {
+                                   @class = "radio jsBillingAddress"
+                               })
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div>
@@ -49,7 +63,7 @@
                         </div>
                     </li>
 
-                    <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "hidden" : "")" id="newBillingAddressForm">
+                    <li class="@(Model.BillingAddressType == 0 ? "" : "hidden")" id="newBillingAddressForm">
 
                         <div>
                             @Html.HiddenFor(model => model.BillingAddress.Name)

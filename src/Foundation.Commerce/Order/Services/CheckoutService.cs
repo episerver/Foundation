@@ -85,17 +85,10 @@ namespace Foundation.Commerce.Order.Services
 
         public virtual void UpdateShippingAddresses(ICart cart, CheckoutViewModel viewModel)
         {
-            if (viewModel.UseBillingAddressForShipment)
+            var shipments = cart.GetFirstForm().Shipments;
+            for (var index = 0; index < shipments.Count; index++)
             {
-                cart.GetFirstShipment().ShippingAddress = _addressBookService.ConvertToAddress(viewModel.BillingAddress, cart);
-            }
-            else
-            {
-                var shipments = cart.GetFirstForm().Shipments;
-                for (var index = 0; index < shipments.Count; index++)
-                {
-                    shipments.ElementAt(index).ShippingAddress = _addressBookService.ConvertToAddress(viewModel.Shipments[index].Address, cart);
-                }
+                shipments.ElementAt(index).ShippingAddress = _addressBookService.ConvertToAddress(viewModel.Shipments[index].Address, cart);
             }
         }
 
@@ -110,16 +103,10 @@ namespace Foundation.Commerce.Order.Services
             }
             else
             {
-                if (viewModel.UseBillingAddressForShipment)
-                {
-                    cart.GetFirstShipment().ShippingAddress = _addressBookService.ConvertToAddress(viewModel.BillingAddress, cart);
-                }
-                else
-                {
-                    var shipments = cart.GetFirstForm().Shipments;
-                    shipments.ElementAt(updateAddressViewModel.ShippingAddressIndex).ShippingAddress =
-                            _addressBookService.ConvertToAddress(viewModel.Shipments[updateAddressViewModel.ShippingAddressIndex].Address, cart);
-                }
+                var shipments = cart.GetFirstForm().Shipments;
+                shipments.ElementAt(updateAddressViewModel.ShippingAddressIndex).ShippingAddress =
+                        _addressBookService.ConvertToAddress(viewModel.Shipments[updateAddressViewModel.ShippingAddressIndex].Address, cart);
+                
             }
         }
 
