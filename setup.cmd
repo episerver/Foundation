@@ -104,7 +104,7 @@ echo msbuild.exe path: %InstallDir%%msBuildPath%
 
 echo ## Set folder permissions ##
 md "%ROOTPATH%\Build\Logs" 2>nul
-icacls "%ROOTPATH%\\" /grant Everyone:(OI)(CI)F /T > Build\Logs\Build.log
+icacls "%ROOTPATH%\\" /grant *S-1-1-0:(OI)(CI)F /T > Build\Logs\Build.log
 
 echo ## Restoring Nuget packages ##
 echo ## Restoring Nuget packages ## >> Build\Logs\Build.log

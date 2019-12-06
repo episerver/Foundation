@@ -70,6 +70,9 @@
     <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AuthorizeNet.1.9.4\lib\AuthorizeNet.dll</HintPath>
     </Reference>
+    <Reference Include="Boilerplate.Web.Mvc5, Version=1.0.26.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Boilerplate.Web.Mvc5.1.0.26\lib\net452\Boilerplate.Web.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="BVNetwork.EPi404, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\BVN.404Handler.11.3.0\lib\net461\BVNetwork.EPi404.dll</HintPath>
     </Reference>
@@ -480,6 +483,9 @@
     <Reference Include="EPiServer.Tracking.Core, Version=1.12.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Tracking.Core.1.12.0\lib\net461\EPiServer.Tracking.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EPiServer.Tracking.PageView, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Tracking.PageView.1.1.0\lib\EPiServer.Tracking.PageView.dll</HintPath>
+    </Reference>
     <Reference Include="EPiServer.Turnstile.Contracts.Hmac, Version=2.0.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Turnstile.Contracts.Hmac.2.0.1\lib\net461\EPiServer.Turnstile.Contracts.Hmac.dll</HintPath>
     </Reference>
@@ -845,9 +851,11 @@
   <ItemGroup>
     <Compile Include="Features\Api\AuthorizedApiController.cs" />
     <Compile Include="Features\Api\PublicApiController.cs" />
+    <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
+    <Compile Include="Features\Blocks\NavigationBlockController.cs" />
     <Compile Include="Features\Blocks\RatingBlockController.cs" />
     <Compile Include="Features\Blocks\SocialBlockController.cs" />
     <Compile Include="Features\Blocks\SubscriptionBlockController.cs" />
@@ -855,6 +863,7 @@
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Blog\TagCloudBlock\TagCloudBlockController.cs" />
+    <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
     <Compile Include="Features\Category\StandardCategoryController.cs" />
@@ -930,12 +939,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\ImageUrlHelpers.cs" />
     <Compile Include="Helpers\WebPHelper.cs" />
     <Compile Include="Infrastructure\Jobs\BlobJob.cs" />
     <Compile Include="Infrastructure\Jobs\DemoIntegrationJob.cs" />
     <Compile Include="Infrastructure\Kpi\FilledInFormKpi.cs" />
     <Compile Include="Infrastructure\InitializeSite.cs" />
+    <Compile Include="Infrastructure\OpenGraph\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphFoundationPageData.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphGenericNode.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphGenericProduct.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphHomePage.cs" />
+    <Compile Include="Infrastructure\OpenGraph\OpenGraphLocationItemPage.cs" />
     <Compile Include="Infrastructure\Plugins\GoogleAnalyticsUserIdPluginScript.cs" />
     <Compile Include="Infrastructure\Services\CampaignService.cs" />
     <Compile Include="Infrastructure\Services\ICampaignService.cs" />
@@ -954,6 +970,8 @@
     <Content Include="App_Data\promotions.xml" />
     <Content Include="App_Data\shippingMethods.xml" />
     <Content Include="App_Data\warehouses.xml" />
+    <Content Include="Assets\icons\cms\blocks\CMS-icon-block-30.png" />
+    <Content Include="Assets\icons\cms\blocks\CMS-icon-block-31.png" />
     <Content Include="Assets\icons\content\CarouselBlock.PNG" />
     <Content Include="Assets\icons\content\CategoryPage.PNG" />
     <Content Include="Assets\icons\content\ContinentsFilterBlock.PNG" />
@@ -1237,6 +1255,9 @@
     <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
     <Content Include="Features\Checkout\Checkout.cshtml" />
     <Content Include="Assets\scss\templates\pages\_one-page-checkout.scss" />
+    <Content Include="Features\Blocks\Views\NavigationBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\BreadcrumbBlock.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_breadcrumb-block.scss" />
     <None Include="Features\Checkout\_OrderSummary.cshtml" />
     <Content Include="Features\CatalogContent\_Rating.cshtml" />
     <Content Include="Features\MyOrganization\Orders\Index.cshtml" />
