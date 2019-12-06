@@ -1,56 +1,31 @@
 ﻿@using System.Collections.Generic
 
 @model CheckoutViewModel
-@{
-    if (Request.IsAjaxRequest())
-    {
-        Layout = null;
-    }
-}
-
-@Html.Partial("_CheckoutStatusBar", 5)
 
 <div class="row">
     <div class="col-12">
-        <form class="jsCheckoutForm" action="@Url.Action("AddSubscription", "Checkout")" method="post" novalidate>
-            <div class="row">
-                <div class="col-12 checkout--panel-block">
-                    <label class="checkbox">
-                        @Html.CheckBoxFor(x => x.IsUsePaymentPlan)
-                        <span class="title">@Html.TranslateFallback("/Shared/CreateSubscription", "Create subscription of cart")</span>
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                
-                <div class="col-12">
-                    @Html.LabelFor(x => x.PaymentPlanSetting.CycleMode)
-                    @{ 
-                        var values = new List<KeyValuePair<string, string>>();
-                        foreach(var v in Model.Modes)
-                        {
-                            values.Add(new KeyValuePair<string, string>(v.Text, v.Value));
-                        }
-                    }
-                    @Helpers.RenderDropdown(values, Model.PaymentPlanSetting.CycleMode.ToString(), "", "PaymentPlanSetting.CycleMode")
-                </div>
-                <div class="col-12">
-                    @Html.LabelFor(x => x.PaymentPlanSetting.CycleLength)
-                    @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number" })
-                </div>
+        <h4 class="title">@Html.TranslateFallback("/Shared/Subscription", "Subscription")</h4>
+    </div>
+    <div class="col-12 checkout--panel-block">
+        <label class="checkbox">
+            @Html.CheckBoxFor(x => x.IsUsePaymentPlan)
+            <span class="title">@Html.TranslateFallback("/Shared/CreateSubscription", "Create subscription of cart")</span>
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-12 jsSubscription" style="display: none">
+        <div class="row">
+            <div class="col-6 flex-start">
+                @Html.Label("Every", new { style = "margin-right: 15px;" })
+                @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number", style = "width: 250px; margin-right: 15px" })
+                <span> day(s)</span>
             </div>
 
-            <div class="row checkout__block">
-                <div class="col-12 checkout__btn-group">
-                    <a class="account-link" href="@Url.Action("BillingInformation", new { node = Model.CurrentContent.ContentLink })" title="@Html.TranslateFallback("/Shared/Back", "Back")">
-                        <span>
-                            @Html.TranslateFallback("/Shared/Back", "Back")
-                        </span>
-                    </a>
-                    <button class="button-black" type="submit">
-                        <span>@Html.TranslateFallback("/Shared/Continue", "Continue")</span>
-                    </button>
-                </div>
+            <div class="col-6 flex-end">
+                <span style="margin-right: 15px">End date </span>
+                @Html.TextBoxFor(x => x.PaymentPlanSetting.EndDate, new { type = "date", style = "display: inline; width: auto; border-radius: 0; padding: 8px; border: 1px solid #ddd" })
             </div>
-        </form>
+        </div>
     </div>
 </div>

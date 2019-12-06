@@ -35,5 +35,9 @@ namespace Foundation.Features.NamedCarts
 
         // for SharedCart 
         public string OrganizationId { get; set; }
+
+        // for Checkout Separate shipment
+        public int ToShipmentId { get; set; }
+        public string DeliveryMethodId { get; set; }
     }
 }

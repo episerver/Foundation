@@ -17,6 +17,16 @@
         return formData;
     };
 
+    window.serializeObject = function (form) {
+        var datas = form.serializeArray();
+        var jsonData = {};
+        for (var d in datas) {
+            jsonData[datas[d].name] = datas[d].value;
+        }
+
+        return jsonData;
+    }
+
     var cms = new FoundationCms();
     cms.init();
 

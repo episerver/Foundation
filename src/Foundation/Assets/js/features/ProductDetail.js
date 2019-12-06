@@ -82,7 +82,7 @@
                 $(inst.DivContainerId).find('.addToCart').attr('store', valueChecked);
                 $(inst.DivContainerId).find('.jsBuyNow').attr('store', valueChecked);
                 if (valueChecked === 'instore') {
-                    var selectedStore = $(inst.DivContainerId).find('.jsSelectStore.hidden').attr('data');
+                    var selectedStore = $(inst.DivContainerId).find('#selectedStore').val();
                     $(inst.DivContainerId).find('.addToCart').attr('selectedStore', selectedStore);
                     $(inst.DivContainerId).find('.jsBuyNow').attr('selectedStore', selectedStore);
                     if (!$(inst.DivContainerId).find('#pickupStoreBox').is(':visible')) {
@@ -165,7 +165,8 @@
 
     BuyNowClick() {
         $(this.DivContainerId).find('.jsBuyNow').each(function (i, e) {
-            $(e).click(function () {
+            $(e).click(async function () {
+                $('.loading-box').show();
                 var code = $(this).attr('data');
                 var data = {
                     Code: code
@@ -174,12 +175,23 @@
                 if ($(this).attr('qty')) data.Quantity = $(this).attr('qty');
                 if ($(this).attr('store')) data.Store = $(this).attr('store');
                 if ($(this).attr('selectedStore')) data.SelectedStore = $(this).attr('selectedStore');
-
-                var callback = () => {
-                    $('.jsCheckoutBtn').click();
-                };
-                var inst = new Product();
-                inst.addToCart(data, '/DefaultCart/AddToCart', callback);
+                var url = $(this).attr('url');
+                
+                try {
+                    const r = await axios.post(url, data);
+                    if (r.data.Message) {
+                        notification.Error(r.data.Message);
+                        setTimeout(function () {
+                            window.location.href = r.data.Redirect;
+                        }, 1000);
+                    } else {
+                        window.location.href = r.data.Redirect;
+                    }
+                } catch (e) {
+                    notification.Error(e); 
+                } finally {
+                    $('.loading-box').hide();
+                }
             })
         })
     }

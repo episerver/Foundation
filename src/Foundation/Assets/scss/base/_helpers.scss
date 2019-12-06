@@ -103,6 +103,12 @@ a {
     justify-content: flex-start;
 }
 
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .pull-right {
     float: right;
 }
@@ -149,4 +155,8 @@ a {
     padding: 15px;
     background-color: #F2DEDE;
     color: #B94A48;
+}
+
+ul.none-style-type {
+    list-style-type: none;
 }
