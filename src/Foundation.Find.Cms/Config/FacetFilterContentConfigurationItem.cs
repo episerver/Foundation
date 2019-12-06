@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Foundation.Find.Cms.Config
+namespace Foundation.Find.Cms.Facets.Config
 {
     public class FacetFilterContentConfigurationItem : FacetFilterConfigurationItem
     {

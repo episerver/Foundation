@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Find.Cms.Config
+namespace Foundation.Find.Cms.Facets.Config
 {
     public class EnumSelectionFactory<TEnum> : ISelectionFactory where TEnum : struct, IConvertible
     {

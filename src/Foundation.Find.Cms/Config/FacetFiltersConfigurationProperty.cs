@@ -1,14 +1,14 @@
 ﻿using EPiServer.PlugIn;
 
-namespace Foundation.Find.Cms.Config
+namespace Foundation.Find.Cms.Facets.Config
 {
     [PropertyDefinitionTypePlugIn]
-    public class FacetFiltersConfigurationProperty : PropertyListBase<FacetFilterProductConfigurationItem>
+    public class FacetFilterProductConfigurationProperty : PropertyListBase<FacetFilterProductConfigurationItem>
     {
     }
 
     [PropertyDefinitionTypePlugIn]
-    public class FacetContentFiltersConfigurationProperty : PropertyListBase<FacetFilterContentConfigurationItem>
+    public class FacetFilterContentConfigurationProperty : PropertyListBase<FacetFilterContentConfigurationItem>
     {
     }
 }

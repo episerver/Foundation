@@ -18,7 +18,7 @@ using Foundation.Demo.Install.Steps;
 using Foundation.Demo.Models;
 using Foundation.Demo.ProfileStore;
 using Foundation.Demo.ViewModels;
-using Foundation.Find.Cms.Config;
+using Foundation.Find.Cms.Facets.Config;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
 using Foundation.Find.Commerce;
@@ -71,7 +71,7 @@ namespace Foundation.Demo
         {
             UpdateCampaignSettings(context);
 
-            InitFacetRegistry();
+            InitFacetRegistry(context);
 
             context.Locate.Advanced.GetInstance<IContentEvents>().SavingContent += OnSavingContent;
             context.Locate.Advanced.GetInstance<IContentEvents>().PublishedContent += OnPublishedContent;
@@ -176,38 +176,42 @@ namespace Foundation.Demo
         {
             if (contentEventArgs.Content is DemoHomePage startPage)
             {
-                InitFacetRegistry();
+                var context = ServiceLocator.Current.GetInstance<IInitializationEngine>() as InitializationEngine;
+
+                InitFacetRegistry(context);
             }
         }
 
         #region Initialize Facets
 
-        private void InitFacetRegistry()
+        private void InitFacetRegistry(InitializationEngine context)
         {
-            var registry = ServiceLocator.Current.GetInstance<IFacetRegistry>();
+            var registry = context.Locate.Advanced.GetInstance<IFacetRegistry>();
 
             registry.Initialize();
 
-            GetFacets().ForEach(x => registry.AddFacetDefinitions(x));
+            GetFacets(context).ForEach(x => registry.AddFacetDefinitions(x));
         }
 
-        private List<FacetDefinition> GetFacets()
+        private List<FacetDefinition> GetFacets(InitializationEngine context)
         {
-            var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
-
-            var currentMarket = ServiceLocator.Current.GetInstance<ICurrentMarket>();
-
-            var startPage = contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
-
-            var facetsConfiguration = startPage?.FacetProductFiltersConfiguration;
+            var contentLoader = context.Locate.Advanced.GetInstance<IContentLoader>();
+            var currentMarket = context.Locate.Advanced.GetInstance<ICurrentMarket>();
 
             var result = new List<FacetDefinition>();
 
-            if (facetsConfiguration != null)
+            if (!ContentReference.IsNullOrEmpty(ContentReference.StartPage))
             {
-                facetsConfiguration
-                    .ToList()
-                    .ForEach(facetConfiguration => result.Add(GetProductFacetFilter(facetConfiguration, currentMarket)));
+                var startPage = contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
+
+                var facetsConfiguration = startPage?.ProductSearchFiltersConfiguration;
+
+                if (facetsConfiguration != null)
+                {
+                    facetsConfiguration
+                        .ToList()
+                        .ForEach(facetConfiguration => result.Add(GetProductFacetFilter(facetConfiguration, currentMarket)));
+                }
             }
 
             if (!result.Any())

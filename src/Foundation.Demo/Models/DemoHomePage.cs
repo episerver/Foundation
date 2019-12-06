@@ -9,7 +9,7 @@ using Foundation.Cms.EditorDescriptors;
 using Foundation.Commerce;
 using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Commerce.Models.Pages;
-using Foundation.Find.Cms.Config;
+using Foundation.Find.Cms.Facets.Config;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -68,7 +68,7 @@ namespace Foundation.Demo.Models
           GroupName = CommerceTabNames.SearchSettings,
           Order = 300)]
         [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterProductConfigurationItem>))]
-        public virtual IList<FacetFilterProductConfigurationItem> FacetProductFiltersConfiguration { get; set; }
+        public virtual IList<FacetFilterProductConfigurationItem> ProductSearchFiltersConfiguration { get; set; }
 
         #endregion
     }

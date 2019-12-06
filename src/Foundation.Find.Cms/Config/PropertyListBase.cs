@@ -4,7 +4,7 @@ using EPiServer.Framework.Serialization.Internal;
 using EPiServer.ServiceLocation;
 using Newtonsoft.Json;
 
-namespace Foundation.Find.Cms.Config
+namespace Foundation.Find.Cms.Facets.Config
 {
     public class PropertyListBase<T> : PropertyList<T>
     {
