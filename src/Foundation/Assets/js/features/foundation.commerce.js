@@ -60,6 +60,12 @@
         checkout.CheckoutAsGuestOrRegister();
         checkout.ApplyCouponCode();
         checkout.RemoveCouponCode();
+        checkout.ChangeShippingMethod();
+        checkout.ChangeCartItem();
+        checkout.SeparateInit();
+        checkout.ChangeAddressClick();
+        checkout.AddNewAddress();
+        checkout.ShowHideSubscription();
         // --- End
 
         // Order Detail

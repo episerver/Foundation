@@ -22,7 +22,8 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44363</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1252,6 +1253,8 @@
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_calendar-block.scss" />
     <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
+    <Content Include="Features\Checkout\Checkout.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_one-page-checkout.scss" />
     <Content Include="Features\Blocks\Views\NavigationBlock.cshtml" />
     <Content Include="Features\Blocks\Views\BreadcrumbBlock.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_breadcrumb-block.scss" />
@@ -1647,7 +1650,6 @@
     <Content Include="Features\Checkout\Index.cshtml" />
     <Content Include="Features\Checkout\SingleAddress.cshtml" />
     <Content Include="Features\Checkout\CheckoutMethod.cshtml" />
-    <Content Include="Features\Checkout\_CheckoutStatusBar.cshtml" />
     <Content Include="Features\Shared\Foundation\DisplayTemplates\CountryRegionViewModel.cshtml" />
     <Content Include="Features\Shared\Foundation\EditorTemplates\CountryRegionViewModel.cshtml" />
     <Content Include="Features\Shared\Foundation\DisplayTemplates\CountryOptions.cshtml" />
@@ -1728,7 +1730,6 @@
     <Content Include="Features\Shared\Foundation\_BreadCrumb.cshtml" />
     <Content Include="Features\CatalogContent\_Images.cshtml" />
     <Content Include="Features\Checkout\EmptyCart.cshtml" />
-    <Content Include="Features\Checkout\MultipleAddresses.cshtml" />
     <Content Include="modules\_protected\Foundation.Cms\module.config" />
     <Content Include="modules\_protected\Foundation.Cms\Views\BulkUpdate\Index.cshtml" />
     <Content Include="modules\_protected\Foundation.Cms\Views\Shared\_ShellLayout.cshtml" />

@@ -19,14 +19,6 @@
 
         @Helpers.RenderDropdown(values, Model.Region, "", (string)ViewData["Name"] ?? "Region", isShow: !isShowTextbox)
 
-        @*if (isShowTextbox)
-            {
-                @Html.TextBoxFor(formModel => formModel.Region, new { @class = Model.TextboxClass + " textbox jsChangeTaxAddress" })
-            }
-            else
-            {
-                @Html.TextBoxFor(formModel => formModel.Region, new { @class = Model.TextboxClass + " textbox jsChangeTaxAddress", disabled = "", style = "display: none" })
-            }*@
     }
     else
     {

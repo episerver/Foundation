@@ -23,5 +23,8 @@ namespace Foundation.Commerce.Order.ViewModels
         public Money CurrentShippingMethodPrice { get; set; }
 
         public Money GetShipmentItemsTotal(Currency currency) => CartItems.Aggregate(new Money(0, currency), (current, item) => current + item.DiscountedPrice.GetValueOrDefault());
+
+        public int ShippingAddressType { get; set; }
+        public string WarehouseCode { get; set; }
     }
 }
