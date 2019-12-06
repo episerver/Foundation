@@ -20,7 +20,7 @@ namespace Foundation.Commerce.Order.Services
 
         private bool ValidateBillingAddress(ModelStateDictionary modelState, CheckoutViewModel viewModel)
         {
-            if (viewModel.UseBillingAddressForShipment)
+            if (viewModel.UseShippingingAddressForBilling)
             {
                 foreach (var state in modelState.Where(x => x.Key.StartsWith("Shipments")).ToArray())
                 {

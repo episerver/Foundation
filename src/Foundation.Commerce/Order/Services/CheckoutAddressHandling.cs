@@ -15,26 +15,16 @@ namespace Foundation.Commerce.Order.Services
         {
             LoadBillingAddressFromAddressBook(viewModel);
             LoadShippingAddressesFromAddressBook(viewModel);
-            if (viewModel.UseBillingAddressForShipment)
-            {
-                viewModel.Shipments.Single().Address = viewModel.BillingAddress;
-            }
         }
 
         public virtual void UpdateAnonymousUserAddresses(CheckoutViewModel viewModel)
         {
             SetDefaultBillingAddressName(viewModel);
-
-            if (viewModel.UseBillingAddressForShipment)
-            {
-                SetDefaultShippingAddressesNames(viewModel);
-                viewModel.Shipments.Single().Address = viewModel.BillingAddress;
-            }
         }
 
         public virtual void ChangeAddress(CheckoutViewModel viewModel, UpdateAddressViewModel updateViewModel)
         {
-            viewModel.UseBillingAddressForShipment = updateViewModel.UseBillingAddressForShipment;
+            viewModel.UseShippingingAddressForBilling = updateViewModel.UseBillingAddressForShipment;
             if (!string.IsNullOrEmpty(updateViewModel.AddressId))
             {
                 var isShippingAddressUpdated = updateViewModel.AddressType == AddressType.Shipping;
@@ -57,17 +47,6 @@ namespace Foundation.Commerce.Order.Services
             if (Guid.TryParse(viewModel.BillingAddress.Name, out var guid))
             {
                 viewModel.BillingAddress.Name = "Billing address (" + viewModel.BillingAddress.Line1 + ")";
-            }
-        }
-
-        private void SetDefaultShippingAddressesNames(CheckoutViewModel viewModel)
-        {
-            foreach (var address in viewModel.Shipments.Select(x => x.Address))
-            {
-                if (Guid.TryParse(address.Name, out var guid))
-                {
-                    address.Name = "Shipping address (" + address.Line1 + ")";
-                }
             }
         }
 

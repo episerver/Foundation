@@ -62,7 +62,6 @@
         checkout.RemoveCouponCode();
         checkout.ChangeShippingMethod();
         checkout.ChangeCartItem();
-        checkout.UseBillingAsShipping();
         checkout.SeparateInit();
         checkout.ChangeAddressClick();
         checkout.AddNewAddress();

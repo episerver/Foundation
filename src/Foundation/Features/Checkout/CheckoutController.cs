@@ -110,7 +110,11 @@ namespace Foundation.Features.Checkout
             viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
             _addressBookService.LoadAddress(viewModel.BillingAddress);
 
-            if (Request.IsAuthenticated)
+            if (viewModel.Shipments.Count == 1)
+            {
+                viewModel.BillingAddressType = 2;
+            }
+            else if (Request.IsAuthenticated)
             {
                 viewModel.BillingAddressType = 1;
             }
@@ -440,7 +444,7 @@ namespace Foundation.Features.Checkout
                 var viewModel = CreateCheckoutViewModel(currentPage);
                 viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
                 viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
-                viewModel.UseBillingAddressForShipment = checkoutViewModel.UseBillingAddressForShipment;
+                viewModel.UseShippingingAddressForBilling = checkoutViewModel.UseShippingingAddressForBilling;
                 
                 for(var i = 0; i < checkoutViewModel.Shipments.Count; i++)
                 {
@@ -563,11 +567,13 @@ namespace Foundation.Features.Checkout
                 if (isMissingPayment)
                 {
                     ModelState.AddModelError("SelectedPayment", _localizationService.GetString("/Shared/PaymentRequired"));
+                    return;
                 }
 
                 if (orderSummary.PaymentTotal != 0)
                 {
                     ModelState.AddModelError("PaymentTotal", "PaymentTotal is invalid.");
+                    return;
                 }
             }
 
@@ -576,9 +582,19 @@ namespace Foundation.Features.Checkout
                 if (string.IsNullOrEmpty(viewModel.BillingAddress.AddressId))
                 {
                     ModelState.AddModelError("BillingAddress.AddressId", "Address is required.");
+                    return;
                 }
 
                 _addressBookService.LoadAddress(viewModel.BillingAddress);
+            }
+            else if (viewModel.BillingAddressType == 2)
+            {
+                viewModel.BillingAddress = viewModel.Shipments.FirstOrDefault()?.Address;
+                if (viewModel.BillingAddress == null)
+                {
+                    ModelState.AddModelError("BillingAddress.AddressId", "Shipping address is required.");
+                    return;
+                }
             }
             else
             {
@@ -603,7 +619,7 @@ namespace Foundation.Features.Checkout
             ModelState.Clear();
             var content = Request.RequestContext.GetRoutedData<CheckoutPage>();
             var viewModel = CreateCheckoutViewModel(content);
-            if (!checkoutViewModel.UseBillingAddressForShipment)
+            if (!checkoutViewModel.UseShippingingAddressForBilling)
             {
                 for(var i = 0; i < checkoutViewModel.Shipments.Count; i++)
                 {

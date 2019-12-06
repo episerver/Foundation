@@ -69,13 +69,13 @@ namespace Foundation.Commerce.Order.ViewModelFactories
             var currentBillingAdressId = cart.GetFirstForm().Payments.FirstOrDefault()?.BillingAddress?.Id;
 
             var shipments = _shipmentViewModelFactory.CreateShipmentsViewModel(cart).ToList();
-            var useBillingAddressForShipment = shipments.Count == 1 && currentBillingAdressId == currentShippingAddressId && _addressBookService.UseBillingAddressForShipment();
+            var useShippingAddressForBilling = shipments.Count == 1;
 
             var viewModel = new CheckoutViewModel(currentPage)
             {
                 Shipments = shipments,
                 BillingAddress = CreateBillingAddressModel(currentBillingAdressId),
-                UseBillingAddressForShipment = useBillingAddressForShipment,
+                UseShippingingAddressForBilling = useShippingAddressForBilling,
                 AppliedCouponCodes = cart.GetFirstForm().CouponCodes.Distinct(),
                 AvailableAddresses = new List<AddressModel>(),
                 ReferrerUrl = GetReferrerUrl(),
@@ -152,7 +152,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
                 AppliedCouponCodes = new List<string>(),
                 AvailableAddresses = new List<AddressModel>(),
                 PaymentMethodViewModels = Enumerable.Empty<PaymentMethodViewModel>(),
-                UseBillingAddressForShipment = true
+                UseShippingingAddressForBilling = true
             };
         }
 

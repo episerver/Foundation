@@ -61,9 +61,9 @@ namespace Foundation.Commerce.Order.ViewModels
         public IPaymentMethod Payment { get; set; }
 
         /// <summary>
-        /// Gets or sets whether the shipping address should be the same as the billing address.
+        /// Gets or sets whether the billing address should be the same as the shipping address.
         /// </summary>
-        public bool UseBillingAddressForShipment { get; set; }
+        public bool UseShippingingAddressForBilling { get; set; }
 
         /// <summary>
         /// Gets or sets the view message.
