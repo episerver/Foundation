@@ -12,6 +12,7 @@ namespace Foundation.Cms.EditorDescriptors
                 new SelectItem { Value = TemplateSelections.Grid, Text = "Grid"},
                 new SelectItem { Value = TemplateSelections.ImageLeft, Text = "Image on the left"},
                 new SelectItem { Value = TemplateSelections.ImageTop, Text = "Image on the top"},
+                new SelectItem { Value = TemplateSelections.NoImage, Text = "No image"},
             };
         }
     }
@@ -21,5 +22,6 @@ namespace Foundation.Cms.EditorDescriptors
         public const string Grid = "Grid";
         public const string ImageLeft = "Left";
         public const string ImageTop = "Top";
+        public const string NoImage = "NoImage";
     }
 }

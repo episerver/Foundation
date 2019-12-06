@@ -212,7 +212,7 @@ namespace Foundation.Features.Blog.BlogListPage
             var blogListItemPageType = typeof(BlogItemPage).GetPageType();
             IEnumerable<PageData> pages;
 
-            pages = currentPage.IncludeAllLevels ? pages = listRoot.FindPagesByPageType(true, blogListItemPageType.ID) : pages = _contentLoader.GetChildren<PageData>(listRoot);
+            pages = currentPage.IncludeAllLevels ? listRoot.FindPagesByPageType(true, blogListItemPageType.ID) : _contentLoader.GetChildren<BlogItemPage>(listRoot);
 
             if (category != null)
             {
