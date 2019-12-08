@@ -15,8 +15,10 @@ using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
 using Foundation.Demo.Install;
 using Foundation.Demo.Install.Steps;
+using Foundation.Demo.Models;
 using Foundation.Demo.ProfileStore;
 using Foundation.Demo.ViewModels;
+using Foundation.Find.Cms.Facets.Config;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
 using Foundation.Find.Commerce;
@@ -69,51 +71,14 @@ namespace Foundation.Demo
         {
             UpdateCampaignSettings(context);
 
-            var registry = context.Locate.Advanced.GetInstance<IFacetRegistry>();
-            GetFacets(context.Locate.Advanced.GetInstance<ICurrentMarket>())
-                .ForEach(x => registry.AddFacetDefinitions(x));
+            InitFacetRegistry(context);
 
             context.Locate.Advanced.GetInstance<IContentEvents>().SavingContent += OnSavingContent;
+            context.Locate.Advanced.GetInstance<IContentEvents>().PublishedContent += OnPublishedContent;
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
         {
-        }
-
-        private List<FacetDefinition> GetFacets(ICurrentMarket currentMarket)
-        {
-            var brand = new FacetStringDefinition
-            {
-                FieldName = "Brand",
-                DisplayName = "Brand"
-            };
-
-            var color = new FacetStringListDefinition
-            {
-                DisplayName = "Color",
-                FieldName = "AvailableColors"
-            };
-
-            var size = new FacetStringListDefinition
-            {
-                DisplayName = "Size",
-                FieldName = "AvailableSizes"
-            };
-
-            var priceRanges = new FacetNumericRangeDefinition(currentMarket)
-            {
-                DisplayName = "Price",
-                FieldName = "DefaultPrice",
-                BackingType = typeof(double)
-
-            };
-            priceRanges.Range.Add(new SelectableNumericRange() { To = 50 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 50, To = 100 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 100, To = 500 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 500, To = 1000 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 1000 });
-
-            return new List<FacetDefinition> { priceRanges, brand, size, color };
         }
 
         private static void UpdateCampaignSettings(InitializationEngine context)
@@ -206,5 +171,167 @@ namespace Foundation.Demo
             }
 
         }
+
+        private void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
+        {
+            if (contentEventArgs.Content is DemoHomePage startPage)
+            {
+                var context = ServiceLocator.Current.GetInstance<IInitializationEngine>() as InitializationEngine;
+
+                InitFacetRegistry(context);
+            }
+        }
+
+        #region Initialize Facets
+
+        private void InitFacetRegistry(InitializationEngine context)
+        {
+            var registry = context.Locate.Advanced.GetInstance<IFacetRegistry>();
+
+            registry.Initialize();
+
+            GetFacets(context).ForEach(x => registry.AddFacetDefinitions(x));
+        }
+
+        private List<FacetDefinition> GetFacets(InitializationEngine context)
+        {
+            var contentLoader = context.Locate.Advanced.GetInstance<IContentLoader>();
+            var currentMarket = context.Locate.Advanced.GetInstance<ICurrentMarket>();
+
+            var result = new List<FacetDefinition>();
+
+            if (!ContentReference.IsNullOrEmpty(ContentReference.StartPage))
+            {
+                var startPage = contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
+
+                var facetsConfiguration = startPage?.ProductSearchFiltersConfiguration;
+
+                if (facetsConfiguration != null)
+                {
+                    facetsConfiguration
+                        .ToList()
+                        .ForEach(facetConfiguration => result.Add(GetProductFacetFilter(facetConfiguration, currentMarket)));
+                }
+            }
+
+            if (!result.Any())
+            {
+                result.AddRange(GetDefaultFacets(currentMarket));
+            }
+
+            return result;
+        }
+
+        private static FacetDefinition GetProductFacetFilter(FacetFilterProductConfigurationItem facetConfiguration, ICurrentMarket currentMarket)
+        {
+            var fieldType = Enum.Parse(typeof(FacetFieldType), facetConfiguration.FieldType);
+
+            switch (fieldType)
+            {
+                case FacetFieldType.String:
+                    return new FacetStringDefinition
+                    {
+                        FieldName = facetConfiguration.FieldName,
+                        DisplayName = facetConfiguration.GetDisplayName()
+                    };
+
+                case FacetFieldType.ListOfString:
+                    return new FacetStringListDefinition
+                    {
+                        FieldName = facetConfiguration.FieldName,
+                        DisplayName = facetConfiguration.GetDisplayName()
+                    };
+
+                case FacetFieldType.Integer:
+                    return new FacetNumericRangeDefinition(currentMarket)
+                    {
+                        FieldName = facetConfiguration.FieldName,
+                        DisplayName = facetConfiguration.GetDisplayName(),
+                        BackingType = typeof(int)
+                    };
+
+                case FacetFieldType.Double:
+                    if (facetConfiguration.DisplayMode == FacetDisplayMode.Range.ToString() 
+                        || facetConfiguration.DisplayMode == FacetDisplayMode.PriceRange.ToString())
+                    {
+                        var rangeDefinition = new FacetNumericRangeDefinition(currentMarket)
+                        {
+                            FieldName = facetConfiguration.FieldName,
+                            DisplayName = facetConfiguration.GetDisplayName(),
+                            BackingType = typeof(double)
+                        };
+
+                        rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();
+
+                        return rangeDefinition;
+                    }
+                    else if (facetConfiguration.DisplayMode == FacetDisplayMode.Rating.ToString())
+                    {
+                        var rangeDefinition = new FacetAverageRatingDefinition(currentMarket)
+                        {
+                            FieldName = facetConfiguration.FieldName,
+                            DisplayName = facetConfiguration.GetDisplayName(),
+                            BackingType = typeof(double)
+                        };
+
+                        rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();
+
+                        return rangeDefinition;
+                    }
+                    break;
+
+                case FacetFieldType.Boolean:
+                case FacetFieldType.NullableBoolean:
+                    return new FacetStringListDefinition
+                    {
+                        FieldName = facetConfiguration.FieldName,
+                        DisplayName = facetConfiguration.GetDisplayName(),
+                    };                    
+            }
+
+            return new FacetStringDefinition
+            {
+                FieldName = facetConfiguration.FieldName,
+                DisplayName = facetConfiguration.GetDisplayName(),
+            };
+        }
+
+        private List<FacetDefinition> GetDefaultFacets(ICurrentMarket currentMarket)
+        {
+            var brand = new FacetStringDefinition
+            {
+                FieldName = "Brand",
+                DisplayName = "Brand"
+            };
+
+            var color = new FacetStringListDefinition
+            {
+                DisplayName = "Color",
+                FieldName = "AvailableColors"
+            };
+
+            var size = new FacetStringListDefinition
+            {
+                DisplayName = "Size",
+                FieldName = "AvailableSizes"
+            };
+
+            var priceRanges = new FacetNumericRangeDefinition(currentMarket)
+            {
+                DisplayName = "Price",
+                FieldName = "DefaultPrice",
+                BackingType = typeof(double)
+
+            };
+            priceRanges.Range.Add(new SelectableNumericRange() { To = 50 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 50, To = 100 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 100, To = 500 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 500, To = 1000 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 1000 });
+
+           return new List<FacetDefinition>() { priceRanges, brand, size, color };
+        }
+
+        #endregion
     }
 }
