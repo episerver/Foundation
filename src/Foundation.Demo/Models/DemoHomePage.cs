@@ -1,4 +1,3 @@
-using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
@@ -9,7 +8,9 @@ using Foundation.Cms.EditorDescriptors;
 using Foundation.Commerce;
 using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Commerce.Models.Pages;
+using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Facets.Config;
+using Foundation.Find.Commerce.Facets;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -21,7 +22,7 @@ namespace Foundation.Demo.Models
         AvailableInEditMode = true,
         GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-02.png")]
-    public class DemoHomePage : CommerceHomePage
+    public class DemoHomePage : CommerceHomePage, IFacetConfiguration
     {
         public override void SetDefaultValues(ContentType contentType)
         {
@@ -63,12 +64,12 @@ namespace Foundation.Demo.Models
         public virtual int SearchCatalog { get; set; }
 
         [Display(
-          Name = "Product Search Filters Configuration",
-          Description = "Manage filters to be displayed on Product Search",
+          Name = "Search Filters Configuration",
+          Description = "Manage filters to be displayed on Search",
           GroupName = CommerceTabNames.SearchSettings,
           Order = 300)]
-        [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterProductConfigurationItem>))]
-        public virtual IList<FacetFilterProductConfigurationItem> ProductSearchFiltersConfiguration { get; set; }
+        [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterConfigurationItem>))]
+        public virtual IList<FacetFilterConfigurationItem> SearchFiltersConfiguration { get; set; }
 
         #endregion
     }

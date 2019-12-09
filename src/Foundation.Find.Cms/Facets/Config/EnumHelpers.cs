@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Foundation.Find.Cms.Facets.Config
 {
-    public class EnumHelpers
+    public static class EnumHelpers
     {
         public static IList<SelectListItem> GetSelectListItems<TEnum>(IList<string> selectedValues = null) where TEnum : struct, IConvertible
         {
