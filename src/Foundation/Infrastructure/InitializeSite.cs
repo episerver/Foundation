@@ -8,6 +8,7 @@ using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce.Extensions;
 using Foundation.Demo.Extensions;
+using Foundation.Find.Cms;
 using Foundation.Infrastructure.Services;
 using System;
 using System.Linq;
@@ -50,6 +51,7 @@ namespace Foundation.Infrastructure
 
             context.InitializeFoundationCms();
             context.InitializeFoundationCommerce();
+            context.InitializeFoundationFindCms();
             context.InitializeFoundationDemo();
 
 

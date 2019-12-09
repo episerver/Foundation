@@ -19,33 +19,7 @@
         [EnumSelectionDescription(Text = "Price Range", Value = "PriceRange")]
         PriceRange,
     }
-
-    public enum FacetProductFieldName
-    {
-        [EnumSelectionDescription(Text = "Category", Value = "Category")]
-        Category = 1,
-        [EnumSelectionDescription(Text = "Price", Value = "DefaultPrice")]
-        DefaultPrice,
-        [EnumSelectionDescription(Text = "Brand", Value = "Brand")]
-        Brand,
-        [EnumSelectionDescription(Text = "Display Order", Value = "DisplayOrder")]
-        DisplayOrder,
-        [EnumSelectionDescription(Text = "Total Rating", Value = "TotalRating")]
-        TotalRating,
-        [EnumSelectionDescription(Text = "Flags", Value = "Flags")]
-        Flags,
-        [EnumSelectionDescription(Text = "New", Value = "IsNew")]
-        IsNew,
-        [EnumSelectionDescription(Text = "Featured", Value = "IsFeatured")]
-        IsFeatured,
-        [EnumSelectionDescription(Text = "On Sale", Value = "IsOnSale")]
-        IsOnSale,
-        [EnumSelectionDescription(Text = "Color", Value = "AvailableColors")]
-        Color,
-        [EnumSelectionDescription(Text = "Size", Value = "AvailableSizes")]
-        Size,
-    }
-
+    
     public enum FacetContentFieldName
     {
         [EnumSelectionDescription(Text = "Type of Content", Value = "PageTypes")]

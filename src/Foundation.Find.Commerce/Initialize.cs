@@ -3,6 +3,8 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.ContentQuery;
+using Foundation.Find.Cms.Facets.Config;
+using Foundation.Find.Commerce.Facets;
 using Foundation.Find.Commerce.PowerSlices;
 using Foundation.Find.Commerce.ViewModels;
 using PowerSlice;
@@ -34,6 +36,7 @@ namespace Foundation.Find.Commerce
             services.AddTransient<IContentSlice, ShippingPromotionsSlice>();
             services.AddTransient<IContentQuery, EntryPromotionsSlice>();
             services.AddTransient<IContentSlice, EntryPromotionsSlice>();
+            services.AddSingleton<IFacetConfigFactory, CommerceFacetConfigFactory>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

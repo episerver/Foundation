@@ -7,11 +7,15 @@ namespace Foundation.Find.Cms.Facets
     {
         private List<FacetDefinition> _facetDefinitions;
 
+        public FacetRegistry() : this(new List<FacetDefinition>())
+        {
+        }
+
         public FacetRegistry(IEnumerable<FacetDefinition> facetDefinitions) => _facetDefinitions = facetDefinitions.ToList();
 
-        public void Initialize()
+        public void Clear()
         {
-            _facetDefinitions = new List<FacetDefinition>();
+            _facetDefinitions.Clear();
         }
 
         public List<FacetDefinition> GetFacetDefinitions() => _facetDefinitions;

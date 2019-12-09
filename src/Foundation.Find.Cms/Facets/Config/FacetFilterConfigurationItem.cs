@@ -1,6 +1,5 @@
 ﻿using EPiServer.DataAnnotations;
 using EPiServer.Globalization;
-using Foundation.Find.Cms.Facets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +8,12 @@ using System.Linq;
 
 namespace Foundation.Find.Cms.Facets.Config
 {
-    public abstract class FacetFilterConfigurationItem
+    public class FacetFilterConfigurationItem
     {
         public FacetFilterConfigurationItem()
         {
             FieldType = FacetFieldType.String.ToString();
-            DisplayMode = FacetDisplayMode.Button.ToString();
+            DisplayMode = FacetDisplayMode.Checkbox.ToString();
             DisplayDirection = FacetDisplayDirection.Vertical.ToString();
         }
 
