@@ -1,9 +1,7 @@
 ﻿.breadcrumb {
     &__group {
+        padding: 0;
         list-style-type: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
         & li {
             border-bottom: 4px solid transparent;
@@ -18,6 +16,14 @@
         line-height: 1.5;
         letter-spacing: 0.1em;
         font-weight: 400;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
 
         &.is-active {
             border-bottom: 4px solid #a7c5c3;

@@ -21,10 +21,15 @@ namespace Foundation.Cms.Blocks
         [SelectOne(SelectionFactoryType = typeof(BreadcrumbSeparatorSelectionFactory))]
         public virtual string Separator { get; set; }
 
+        [Display(Name = "Alignment option", Order = 30, GroupName = SystemTabNames.Content)]
+        [SelectOne(SelectionFactoryType = typeof(BreadcrumbAlginmentOptionSelectionFactory))]
+        public virtual string Alignment { get; set; }
+
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
             Separator = "/";
+            Alignment = "flex-center";
         }
     }
 }
