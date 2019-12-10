@@ -10,8 +10,10 @@
         this.btn = document.getElementById("js-searchbutton");
         this.box = document.getElementById("js-searchbox");
         this.boxInput = document.getElementById("js-searchbox-input");
-        this.box.style.width = "80px";
-        this.box.style.visibility = "hidden";
+        if (this.box) {
+            this.box.style.width = "80px";
+            this.box.style.visibility = "hidden";
+        }
         var t;
 
         $("#js-searchbutton").click(function () {
@@ -49,12 +51,14 @@
         })
 
         document.addEventListener("click", function (e) {
-            if (inst.box.contains(e.target) || inst.btn.contains(e.target) || inst.boxContent.contains(e.target)) {
-                return;
-            }
+            if (inst.box && inst.boxContent && inst.btn) {
+                if (inst.box.contains(e.target) || inst.btn.contains(e.target) || inst.boxContent.contains(e.target)) {
+                    return;
+                }
 
-            inst.HidePopover();
-            inst.CollapseSearchBox();
+                inst.HidePopover();
+                inst.CollapseSearchBox();
+            }
         });
 
         inst.ProcessImage();
