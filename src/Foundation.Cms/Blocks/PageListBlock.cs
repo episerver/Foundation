@@ -4,6 +4,7 @@ using EPiServer.DataAnnotations;
 using EPiServer.Filters;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.EditorDescriptors;
+using Foundation.Cms.Pages;
 using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +47,10 @@ namespace Foundation.Cms.Blocks
             GroupName = SystemTabNames.Content,
             Order = 80)]
         public virtual IList<ContentReference> CategoryListFilter { get; set; }
+
+        [Display(Name = "Exclude pages", GroupName = SystemTabNames.Content, Order = 85)]
+        [AllowedTypes(new[] { typeof(FoundationPageData)})]
+        public virtual IList<ContentReference> ExcludePages { get; set; }
 
         [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual bool Recursive { get; set; }
