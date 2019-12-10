@@ -84,12 +84,7 @@ namespace Foundation.Features.Blocks
                 });
             }
 
-            if (currentBlock.ExcludePages != null && currentBlock.ExcludePages.Count > 0)
-            {
-                var excludePageIds = currentBlock.ExcludePages.Select(x => x.ID);
-                pages = pages.Where(x => !excludePageIds.Contains(x.ContentLink.ID));
-            }
-
+            pages = pages.Where(x => x.VisibleInMenu);
             return pages;
         }
 
