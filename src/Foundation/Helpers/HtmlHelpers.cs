@@ -10,6 +10,7 @@ using EPiServer.Web.Routing;
 using Foundation.Cms.Pages;
 using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Catalog.ViewModels;
+using Foundation.Commerce.Extensions;
 using Foundation.Demo.Models;
 using Foundation.Find.Cms.Models.Pages;
 using Foundation.Infrastructure.OpenGraph;
@@ -25,7 +26,7 @@ namespace Foundation.Helpers
     public static class HtmlHelpers
     {
         private static readonly Lazy<IContentLoader> _contentLoader = new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
-        private static readonly Lazy<AssetUrlResolver> _assetUrlResolver = new Lazy<AssetUrlResolver>(() => ServiceLocator.Current.GetInstance<AssetUrlResolver>());
+        private static readonly Lazy<UrlResolver> _urlResolver = new Lazy<UrlResolver>(() => ServiceLocator.Current.GetInstance<UrlResolver>());
         private static readonly Lazy<IContentTypeRepository> _contentTypeRepository = new Lazy<IContentTypeRepository>(() => ServiceLocator.Current.GetInstance<IContentTypeRepository>());
 
         public static IHtmlString RenderOpenGraphMetaData(this HtmlHelper helper, IContentViewModel<IContent> contentViewModel)
@@ -177,7 +178,7 @@ namespace Foundation.Helpers
                     return helper.OpenGraph(openGraphCategory);
 
                 case EntryContentBase entryContentBase:
-                    var openGraphEntry = new OpenGraphGenericProduct(entryContentBase.DisplayName, new OpenGraphImage(_assetUrlResolver.Value.GetAssetUrl(entryContentBase)), GetUrl(entryContentBase.ContentLink))
+                    var openGraphEntry = new OpenGraphGenericProduct(entryContentBase.DisplayName, new OpenGraphImage(entryContentBase.GetAssets<IContentImage>(_contentLoader.Value, _urlResolver.Value).FirstOrDefault()), GetUrl(entryContentBase.ContentLink))
                     {
                         Locale = defaultLocale.Replace('-', '_'),
                         AlternateLocales = alternateLocales,
