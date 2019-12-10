@@ -1,5 +1,5 @@
 ﻿@model Foundation.Demo.ViewModels.DemoHeaderViewModel
-
+@Html.FullRefreshPropertiesMetaData(new[] { "MainMenu" })
 <!-- Navigation bar for Desktop -->
 <div class="d-none d-lg-block">
     <nav class="container navigation">
@@ -95,7 +95,7 @@
             </li>
             <li>
                 <div class="dropdown">
-                    <div class="icon-menu" data-toggle="dropdown" data-offset="-325, -2" data-flip="false" id="js-profile">
+                    <div class="icon-menu" data-toggle="dropdown" data-offset="-324, -2" data-flip="false" id="js-profile">
                         <i data-feather="user"></i>
                     </div>
                     @Html.Partial("_Users", Model)

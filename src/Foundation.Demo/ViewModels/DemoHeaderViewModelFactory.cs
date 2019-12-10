@@ -34,18 +34,18 @@ namespace Foundation.Demo.ViewModels
             ICartService cartService,
             CustomerContext customerContext,
             IContentCacheKeyCreator contentCacheKeyCreator,
-            IContentLoader contentLoader, 
+            IContentLoader contentLoader,
             CmsHeaderViewModelFactory cmsHeaderViewModelFactory) :
-            base(localizationService, 
-                addressBookService, 
-                customerService, 
-                cartViewModelFactory, 
-                urlResolver, 
-                marketService, 
-                currentMarket, 
-                bookmarksService, 
-                cartService, 
-                contentCacheKeyCreator, 
+            base(localizationService,
+                addressBookService,
+                customerService,
+                cartViewModelFactory,
+                urlResolver,
+                marketService,
+                currentMarket,
+                bookmarksService,
+                cartService,
+                contentCacheKeyCreator,
                 contentLoader)
         {
             _customerService = customerService;
@@ -100,7 +100,8 @@ namespace Foundation.Demo.ViewModels
                     Title = _.DemoUserTitle,
                     Id = _.ContactId,
                     Email = _.Email,
-                    FullName = _.FullName
+                    FullName = _.FullName,
+                    SortOrder = _.DemoSortOrder
                 })
                 .OrderBy(_ => _.SortOrder)
                 .ToList();

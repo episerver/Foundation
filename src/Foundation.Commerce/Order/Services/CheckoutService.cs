@@ -85,17 +85,28 @@ namespace Foundation.Commerce.Order.Services
 
         public virtual void UpdateShippingAddresses(ICart cart, CheckoutViewModel viewModel)
         {
-            if (viewModel.UseBillingAddressForShipment)
+            var shipments = cart.GetFirstForm().Shipments;
+            for (var index = 0; index < shipments.Count; index++)
             {
-                cart.GetFirstShipment().ShippingAddress = _addressBookService.ConvertToAddress(viewModel.BillingAddress, cart);
+                shipments.ElementAt(index).ShippingAddress = _addressBookService.ConvertToAddress(viewModel.Shipments[index].Address, cart);
+            }
+        }
+
+        public virtual void ChangeAddress(ICart cart, CheckoutViewModel viewModel, UpdateAddressViewModel updateAddressViewModel)
+        {
+            if (updateAddressViewModel.AddressType == AddressType.Billing)
+            {
+                foreach (var payment in cart.GetFirstForm().Payments)
+                {
+                    payment.BillingAddress = _addressBookService.ConvertToAddress(viewModel.BillingAddress, cart);
+                }
             }
             else
             {
                 var shipments = cart.GetFirstForm().Shipments;
-                for (var index = 0; index < shipments.Count; index++)
-                {
-                    shipments.ElementAt(index).ShippingAddress = _addressBookService.ConvertToAddress(viewModel.Shipments[index].Address, cart);
-                }
+                shipments.ElementAt(updateAddressViewModel.ShippingAddressIndex).ShippingAddress =
+                        _addressBookService.ConvertToAddress(viewModel.Shipments[updateAddressViewModel.ShippingAddressIndex].Address, cart);
+                
             }
         }
 
@@ -200,13 +211,6 @@ namespace Foundation.Commerce.Order.Services
 
                 cart.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
 
-                if (checkoutViewModel.IsUsePaymentPlan)
-                {
-                    var _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-                    _paymentPlan.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
-                    _orderRepository.Save(_paymentPlan);
-                }
-
                 //Loyalty Program: Add Points and Number of orders
                 _loyaltyService.AddNumberOfOrders();
 
@@ -289,9 +293,10 @@ namespace Foundation.Commerce.Order.Services
 
             IPaymentPlan _paymentPlan;
             _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-            _paymentPlan.CycleMode = paymentPlanSetting.CycleMode;
+            _paymentPlan.CycleMode = PaymentPlanCycle.Days;
             _paymentPlan.CycleLength = paymentPlanSetting.CycleLength;
-            _paymentPlan.StartDate = paymentPlanSetting.StartDate;
+            _paymentPlan.StartDate = DateTime.Now.AddDays(paymentPlanSetting.CycleLength);
+            _paymentPlan.EndDate = paymentPlanSetting.EndDate;
             _paymentPlan.IsActive = paymentPlanSetting.IsActive;
 
             var principal = PrincipalInfo.CurrentPrincipal;

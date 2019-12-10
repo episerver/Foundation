@@ -10,13 +10,13 @@
             @Html.PropertyFor(m => m.CurrentContent.MainBody)
         </div>
     }
-    <div class="col-@Model.CurrentContent.LeftHandContentAreaColumn">
-        @Html.PropertyFor(x => x.CurrentContent.LeftHandContentArea)
+    <div class="col-@Model.CurrentContent.RightColumn">
+        @Html.PropertyFor(x => x.CurrentContent.LeftContentArea)
     </div>
-    <div class="col-@Model.CurrentContent.MainContentAreaColumn">
+    <div class="col-@Model.CurrentContent.LeftColumn">
         @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
     </div>
-    <div class="col-@Model.CurrentContent.RightHandContentAreaColumn">
-        @Html.PropertyFor(x => x.CurrentContent.RightHandContentArea)
+    <div class="col-@Model.CurrentContent.CenterColumn">
+        @Html.PropertyFor(x => x.CurrentContent.RightContentArea)
     </div>
 </div>

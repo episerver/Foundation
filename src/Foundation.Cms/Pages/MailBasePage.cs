@@ -8,6 +8,6 @@ namespace Foundation.Cms.Pages
     {
         [CultureSpecific]
         [Display(Name = "Subject", GroupName = SystemTabNames.Content, Order = 1)]
-        public virtual string MailTitle { get; set; }
+        public virtual string Subject { get; set; }
     }
 }

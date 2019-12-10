@@ -110,3 +110,19 @@ a[class^="button-"], a[class*="button-"] {
         opacity: 0.8;
     }
 }
+
+.btn-notification {
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+    border: 1px #468847 solid;
+    text-decoration: none;
+    color: #468847;
+    background-color: white;
+    font-weight: normal;
+
+    &:hover {
+        text-decoration: none;
+        background-color: whitesmoke;
+        color: #468847;
+    }
+}

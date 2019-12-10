@@ -7,6 +7,7 @@ using EPiServer.ServiceLocation;
 using EPiServer.Shell.ContentQuery;
 using EPiServer.Web.Routing;
 using Foundation.Find.Cms.Facets;
+using Foundation.Find.Cms.Facets.Config;
 using Foundation.Find.Cms.Models.Pages;
 using Foundation.Find.Cms.PowerSlices;
 using Foundation.Find.Cms.ViewModels;
@@ -48,6 +49,7 @@ namespace Foundation.Find.Cms
             services.AddTransient<IContentSlice, UnusedMediaSlice>();
             services.AddTransient<IContentQuery, UnusedBlocksSlice>();
             services.AddTransient<IContentSlice, UnusedBlocksSlice>();
+            services.AddSingleton<IFacetConfigFactory, FacetConfigFactory>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
@@ -59,11 +61,11 @@ namespace Foundation.Find.Cms
 
             SearchClient.Instance.Conventions.ForInstancesOf<LocationItemPage>().IncludeField(dp => dp.TagString());
 
-            //ModelBinderProviders.BinderProviders.Insert(0, new FindCmsModelBinderProvider());
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
         {
         }
+
     }
 }

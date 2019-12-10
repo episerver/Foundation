@@ -64,6 +64,9 @@
             border-top: 1px solid #eeeeee;
             padding-top: 15px;
             padding-bottom: 15px;
+            &:first-child {
+                border-top: 0;
+            }
         }
 
         &__sub-item {

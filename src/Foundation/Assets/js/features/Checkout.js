@@ -125,17 +125,19 @@
     FormShippingAddressChange() {
         $('.jsSingleAddress').each(function (i, e) {
             $(e).change(function () {
+                var shippingRow = $(e).parents('.jsShippingAddressRow').first();
                 var value = $(this).val();
                 $('#AddressType').val(value);
                 if (value == 0) {
-                    $('#oldShippingAddressForm').hide();
-                    $('#newShippingAddressForm').show();
+                    shippingRow.find('.jsOldShippingAddressForm').hide();
+                    shippingRow.find('.jsNewShippingAddressForm').show();
                 } else {
-                    $('#oldShippingAddressForm').show();
-                    $('#newShippingAddressForm').hide();
+                    shippingRow.find('.jsOldShippingAddressForm').show();
+                    shippingRow.find('.jsNewShippingAddressForm').hide();
                 }
-            })
-        })
+                
+            });
+        });
     }
     ///////////////////
 
@@ -147,11 +149,14 @@
                 var value = $(e).val();
                 $('#AddressType').val(value);
                 if (value == 0) {
-                    $('#oldShippingAddressForm').hide();
-                    $('#newShippingAddressForm').show();
-                } else {
-                    $('#oldShippingAddressForm').show();
-                    $('#newShippingAddressForm').hide();
+                    $('#oldBillingAddressForm').hide();
+                    $('#newBillingAddressForm').show();
+                } else if (value == 1) {
+                    $('#oldBillingAddressForm').show();
+                    $('#newBillingAddressForm').hide();
+                } else if (value == 2) {
+                    $('#oldBillingAddressForm').hide();
+                    $('#newBillingAddressForm').hide();
                 }
             });
         });
@@ -178,12 +183,12 @@
                 $('.jsAddCoupon').click();
                 return false;
             }
-        })
+        });
 
         $('.jsAddCoupon').click(function () {
             var e = this;
-            var form = $(this).parents('form').first();
-            var url = form[0].action;
+            var form = $(this).parents('.jsAddCouponContainer').first();
+            var url = form.attr('action');
             var couponCode = form.find('.jsCouponCode').val();
             var data = convertFormData({ couponCode: couponCode });
             axios.post(url, data)
@@ -197,7 +202,8 @@
                         }
 
                         inst.RemoveCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
-                        $('.jsCouponReplaceHtml').html(r.data); 
+                        $('.jsCouponReplaceHtml').html(r.data);
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
                         feather.replace();
                         if ($(e).hasClass('jsInCheckout')) {
                             inst.InitPayment();
@@ -210,8 +216,8 @@
                 })
                 .catch(function (e) {
                     notification.Error(e);
-                })
-        })
+                });
+        });
     }
 
     RemoveCouponCode(selector) {
@@ -221,7 +227,7 @@
         } else {
             $('.jsRemoveCoupon').each(function (i, e) {
                 inst.removeCoupon(e);
-            })
+            });
         }
     }
 
@@ -240,6 +246,7 @@
                         $('.jsCouponLabel').addClass('hidden');
                     }
                     $('.jsCouponReplaceHtml').html(r.data);
+                    $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
                     if ($(e).hasClass('jsInCheckout')) {
                         feather.replace();
                         inst.InitPayment();
@@ -249,8 +256,8 @@
                 })
                 .catch(function (e) {
                     notification.Error(e);
-                })
-        })
+                });
+        });
     }
 
     couponTemplate(couponCode, jsInCheckout) {
@@ -260,4 +267,267 @@
                 </label>`;
     }
     //////////////////
+
+    // Change shipping method
+    ChangeShippingMethod() {
+        var inst = this;
+        $('.jsShippingMethodContainer').each(function (i, e) {
+            $(e).change(function () {
+                var isInstorePickup = $(e).find('.jsChangeShipment:checked').attr('instorepickup');
+                if (isInstorePickup == "True") {
+                    $(e).parents('.jsShipmentRow').find('.jsShippingAddressRow').hide();
+                } else {
+                    $(e).parents('.jsShipmentRow').find('.jsShippingAddressRow').show();
+                }
+
+                var url = $(e).attr('url');
+                var data = $('.jsCheckoutForm').serialize();
+                $('.loading-box').show();
+                axios.post(url, data)
+                    .then(function (r) {
+                        $('.jsCouponReplaceHtml').html(r.data);
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
+                        feather.replace();
+                        inst.InitPayment();
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    });
+            });
+        });
+    }
+    //////////////////
+
+    // Change cart item
+    ChangeCartItem() {
+        var inst = this;
+        $('.jsChangeQuantityItemCheckout').each(function (i, e) {
+            $(e).change(function () {
+                $('.loading-box').show();
+                var quantity = $(e).val();
+                var code = $(e).data('code');
+                var url = $(e).data('url');
+                var shipmentId = $(e).data('shipmentid');
+                var data = {
+                    code: code,
+                    quantity: quantity,
+                    shipmentId: shipmentId
+                };
+                axios.post(url, data)
+                    .then(function (r) {
+                        if (quantity == 0) {
+                            var parent = $(e).parents('.jsShipmentRow');
+                            $(e).parents('.jsCartItem').first().remove();
+
+                            if (parent.find('.jsCartItem').length == 0) {
+                                parent.remove();
+                                window.location.href = window.location.href;
+                            }
+                        }
+
+                        if (quantity > 1) {
+                            let btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
+                            btn.parent('div').removeClass('hidden');
+                            btn.addClass('jsSeparateBtn');
+                            inst.SeparateClick(btn);
+                        } else {
+                            let btn = $(e).parents('.jsCartItem').find('.jsSeparateHint');
+                            btn.parent('div').addClass('hidden');
+                            btn.removeClass('jsSeparateBtn');
+                        }
+
+                        $('.jsCouponReplaceHtml').html(r.data);
+                        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
+                        feather.replace();
+                        inst.InitPayment();
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    });
+            });
+        });
+    }
+    //////////////////
+    
+    // Separate line item
+    SeparateClick(selector) {
+        if (selector) {
+            $(selector).click(function () {
+                $('.jsSelectShipment').each(function (j, s) {
+                    $(s).show();
+                });
+                var code = $(selector).data('code');
+                var shipmentid = $(selector).data('shipmentid');
+                var qty = $(selector).parents('.jsCartItem').find('.jsChangeQuantityItemCheckout').val();
+                var delivery = $(selector).data('delivery');
+                var selectedstore = $(selector).data('selectedstore');
+                $('#lineItemInfomation').data("code", code);
+                $('#lineItemInfomation').data("shipmentid", shipmentid);
+                $('#lineItemInfomation').data("qty", qty);
+                $('#lineItemInfomation').data("delivery", delivery);
+                $('#lineItemInfomation').data("selectedstore", selectedstore);
+
+                $('.jsSelectShipment[data-shipmentid=' + shipmentid + ']').hide();
+            });
+        } else {
+            $('.jsSeparateBtn').each(function (i, e) {
+                $(e).click(function () {
+                    $('.jsSelectShipment').each(function (j, s) {
+                        $(s).show();
+                    });
+
+                    var code = $(e).data('code');
+                    var shipmentid = $(e).data('shipmentid');
+                    var qty = $(e).parents('.jsCartItem').find('.jsChangeQuantityItemCheckout').val();
+                    var delivery = $(e).data('delivery');
+                    var selectedstore = $(e).data('selectedstore');
+                    $('#lineItemInfomation').data("code", code);
+                    $('#lineItemInfomation').data("shipmentid", shipmentid);
+                    $('#lineItemInfomation').data("qty", qty);
+                    $('#lineItemInfomation').data("delivery", delivery);
+                    $('#lineItemInfomation').data("selectedstore", selectedstore);
+
+                    $('.jsSelectShipment[data-shipmentid=' + shipmentid + ']').hide();
+                });
+            });
+        }
+    }
+
+    ConfirmSeparateItemClick() {
+        $('.jsSelectShipment').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var url = $('#lineItemInfomation').data('url');
+                var code = $('#lineItemInfomation').data('code');
+                var shipmentid = $('#lineItemInfomation').data('shipmentid');
+                var qty = $('#lineItemInfomation').data('qty');
+                var delivery = $('#lineItemInfomation').data('delivery');
+                var selectedstore = $('#lineItemInfomation').data('selectedstore');
+                var toShipmentId = $(e).data('shipmentid');
+                var data = {
+                    Code: code,
+                    Quantity: qty,
+                    ShipmentId: shipmentid,
+                    ToShipmentId: toShipmentId,
+                    DeliveryMethodId: delivery,
+                    SelectedStore: selectedstore
+                };
+
+                axios.post(url, data)
+                    .then(function (r) {
+                        if (r.data.Status == true) {
+                            window.location.href = r.data.RedirectUrl;
+                        } else {
+                            notification.Error(r.data.Message);
+                        }
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    });
+            });
+        });
+    }
+
+    SeparateInit() {
+        this.SeparateClick();
+        this.ConfirmSeparateItemClick();
+    }
+    /////////////////////
+
+
+    // Change Address (Shipping and Billing)
+
+    ChangeAddressClick() {
+        $('.jsChangeAddress').each(function (i, e) {
+            $(e).change(function () {
+                $('.loading-box').show();
+                var type = $(e).data('addresstype');
+                if (type == "Billing") {
+
+                } else {
+                    var shipmentIndex = $(e).data('shipmentindex');
+                }
+                var addressId = $(e).find('input[type=radio]:checked').val();
+                var useBillingAddressForShipmentInput = $('#UseBillingAddressForShipment');
+                var useBillingAddressForShipment = false;
+                if (useBillingAddressForShipmentInput.length > 0) {
+                    useBillingAddressForShipment = useBillingAddressForShipmentInput.is(':checked');
+                }
+                var data = {
+                    AddressId: addressId,
+                    UseBillingAddressForShipment: useBillingAddressForShipment,
+                    ShippingAddressIndex: shipmentIndex,
+                    AddressType: type
+                };
+                var url = $(e).parents('.jsChangeAddressCard').data('urlchangeaddress');
+                axios.post(url, data)
+                    .then(function (r) {
+                        if (r.data.Status == true) {
+
+                        } else {
+                            notification.Error(r.data.Message);
+                        }
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    });
+            });
+        });
+    }
+
+    AddNewAddress() {
+        $('.jsSaveAddress').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                var form = $(e).parents('.jsFormNewAddress').first();
+                var data = serializeObject(form);
+                var formData = convertFormData(data);
+                var url = form[0].action;
+                var returnUrl = form.find('.jsAddressReturnUrl').val();
+                formData.append("returnUrl", returnUrl);
+                axios.post(url, formData)
+                    .then(function (r) {
+                        if (r.data.Status == false) {
+                            form.find('.jsAddressError').html(r.data.Message);
+                            form.find('.jsAddressError').addClass('error');
+                        } else {
+                            window.location.href = r.data.RedirectUrl;
+                        }
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                        form.find('.jsAddressError').html(e);
+                        form.find('.jsAddressError').addClass('error');
+                    })
+                    .finally(function () {
+                        $('.loading-box').hide();
+                    });
+            });
+        });
+    }
+    ////////////////////
+
+    // show hide subscription
+    ShowHideSubscription() {
+        $('#IsUsePaymentPlan').change(function () {
+            if ($(this).is(':checked')) {
+                $('.jsSubscription').slideDown();
+            } else {
+                $('.jsSubscription').slideUp();
+            }
+        });
+    }
+    /////////////////////
 }

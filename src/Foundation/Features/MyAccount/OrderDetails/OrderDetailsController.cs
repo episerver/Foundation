@@ -1,9 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Order;
-using EPiServer.Core;
 using EPiServer.Logging;
 using EPiServer.Web.Mvc;
-using EPiServer.Web.Mvc.Html;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;

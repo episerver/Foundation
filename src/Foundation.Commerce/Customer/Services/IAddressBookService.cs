@@ -35,5 +35,6 @@ namespace Foundation.Commerce.Customer.Services
         IEnumerable<CountryViewModel> GetAllCountries();
         string GetCountryNameByCode(string code);
         void DeleteAddress(string organizationId, string addressId);
+        AddressModel GetAddress(string addressId);
     }
 }

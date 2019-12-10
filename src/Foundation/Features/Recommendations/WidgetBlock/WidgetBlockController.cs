@@ -26,7 +26,7 @@ namespace Foundation.Features.Recommendations.WidgetBlock
         public WidgetBlockController(ICommerceTrackingService commerceTrackingService,
             ReferenceConverter referenceConverter,
             IRequiredClientResourceList requiredClientResource,
-            ICartService cartService, 
+            ICartService cartService,
             ConfirmationService confirmationService)
         {
             _trackingService = commerceTrackingService;

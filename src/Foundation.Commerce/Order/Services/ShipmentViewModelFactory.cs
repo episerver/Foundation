@@ -77,6 +77,7 @@ namespace Foundation.Commerce.Order.Services
                 shipmentModel.ShippingMethodId = currentShippingMethod?.Id ?? shipment.ShippingMethodId;
                 shipmentModel.CurrentShippingMethodName = currentShippingMethod?.DisplayName ?? "In store pickup";
                 shipmentModel.CurrentShippingMethodPrice = currentShippingMethod?.Price ?? new Money(0, cart.Currency);
+                shipmentModel.WarehouseCode = shipment.WarehouseCode;
 
                 var entries = _contentLoader.GetItems(shipment.LineItems.Select(x => _referenceConverter.GetContentLink(x.Code)),
                     preferredCulture).OfType<EntryContentBase>();
@@ -119,7 +120,8 @@ namespace Foundation.Commerce.Order.Services
                 {
                     Id = InStorePickupInfoModel.MethodId,
                     DisplayName = $"In store pickup - ({shipment.ShippingAddress.Line1} , {shipment.ShippingAddress.City} , {shipment.ShippingAddress.RegionName})",
-                    Price = new Money(0m, currency)
+                    Price = new Money(0m, currency),
+                    IsInstorePickup = true
                 });
             }
             return models;

@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.Core" Version="11.13.2" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.22.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.13.2" />
     <PackageReference Include="EPiServer.Framework.AspNet" Version="11.13.2" />
     <PackageReference Include="EPiServer.Tracking.Cms" Version="1.12.0" />

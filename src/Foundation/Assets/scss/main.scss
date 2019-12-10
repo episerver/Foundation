@@ -59,7 +59,8 @@
     'templates/blocks/vimeo-block', 
     'templates/blocks/content-recommendation-block', 
     'templates/blocks/teaser-block',
-    'templates/blocks/video-block';
+    'templates/blocks/video-block',
+    'templates/blocks/breadcrumb-block';
 
 @import 
     'templates/forms/form';
@@ -85,6 +86,7 @@
     'templates/pages/blog-list',
     'templates/pages/blog-item',
     'templates/pages/login';
+    'templates/pages/one-page-checkout';
 
 // 7. Themes
 @import

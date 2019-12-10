@@ -14,6 +14,7 @@
             <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
         </div>
         @Html.PropertyFor(model => model.CurrentContent.MainBody)
+        @Html.PropertyFor(model => model.CurrentContent.MainContentArea)
         <div class="orders-page-filter">
             <div>
                 @Html.Translate("/B2B/Orders/FilterByStatus")

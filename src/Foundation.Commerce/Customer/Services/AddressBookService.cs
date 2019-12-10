@@ -459,6 +459,19 @@ namespace Foundation.Commerce.Customer.Services
             address?.Address?.Delete();
         }
 
+        public AddressModel GetAddress(string addressId)
+        {
+            var currentContact = _customerService.GetCurrentContact();
+            var model = new AddressModel();
+            if (currentContact != null)
+            {
+                var address = currentContact.Contact.ContactAddresses.FirstOrDefault(x => x.Name == addressId);
+                MapToModel(address, model);
+            }
+
+            return model;
+        }
+
         private FoundationAddress CreateAddress()
         {
             var address = new FoundationAddress(CustomerAddress.CreateInstance());

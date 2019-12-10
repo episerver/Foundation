@@ -14,11 +14,12 @@
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.13.2" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.13.2" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="2.9.0" />
-    <PackageReference Include="EPiServer.CMS.UI" Version="11.22.1" />
-    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.22.1" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.22.1" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="11.23.0" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.23.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.0" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.6.1" />
     <PackageReference Include="EPiServer.Framework" Version="11.13.2" />
+    <PackageReference Include="EPiServer.PdfPreview" Version="1.0.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.2" />
     <PackageReference Include="Geta.EpiCategories" Version="1.2.9" />
     <PackageReference Include="Geta.SEO.Sitemaps" Version="3.1.1" />

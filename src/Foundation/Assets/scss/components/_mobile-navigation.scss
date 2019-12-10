@@ -183,3 +183,11 @@
     left: -500px;
     transition: 0.5s;
 }
+
+.market-list__list {
+    & ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+}
