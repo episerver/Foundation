@@ -84,6 +84,7 @@ namespace Foundation.Features.Blocks
                 });
             }
 
+            pages = pages.Where(x => x.VisibleInMenu);
             return pages;
         }
 
