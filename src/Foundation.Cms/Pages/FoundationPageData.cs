@@ -66,7 +66,7 @@ namespace Foundation.Cms.Pages
 
         [CultureSpecific]
         [Display(Name = "Content type", GroupName = CmsTabNames.MetaData, Order = 310)]
-        public virtual string ContentType { get; set; }
+        public virtual string MetaContentType { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Industry", GroupName = CmsTabNames.MetaData, Order = 320)]

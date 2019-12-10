@@ -62,9 +62,9 @@ namespace Foundation.Helpers
 
             if (contentViewModel.CurrentContent is FoundationPageData)
             {
-                if (((FoundationPageData)contentViewModel.CurrentContent).ContentType != null)
+                if (((FoundationPageData)contentViewModel.CurrentContent).MetaContentType != null)
                 {
-                    contentType = ((FoundationPageData)contentViewModel.CurrentContent).ContentType;
+                    contentType = ((FoundationPageData)contentViewModel.CurrentContent).MetaContentType;
                 }
                 else
                 {
