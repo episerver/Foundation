@@ -848,6 +848,7 @@
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ItemGroup>
+    <Compile Include="Attributes\OnlyAnonymousAttribute.cs" />
     <Compile Include="Features\Api\AuthorizedApiController.cs" />
     <Compile Include="Features\Api\PublicApiController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
@@ -877,6 +878,8 @@
     <Compile Include="Features\Header\CurrencyController.cs" />
     <Compile Include="Features\Header\LanguageController.cs" />
     <Compile Include="Features\Header\MarketController.cs" />
+    <Compile Include="Features\Login\UserViewModel.cs" />
+    <Compile Include="Features\Login\UserController.cs" />
     <Compile Include="Features\Media\MediaController.cs" />
     <Compile Include="Features\MyAccount\AddressBook\AddressBookController.cs" />
     <Compile Include="Features\MyAccount\ResetPassword\ResetPasswordController.cs" />
@@ -960,6 +963,7 @@
   <ItemGroup>
     <Folder Include="Assets\scss\templates\catalog\" />
     <Folder Include="Assets\scss\templates\media\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\customers.xml" />
@@ -1252,6 +1256,7 @@
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_calendar-block.scss" />
     <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_login.scss" />
     <Content Include="Features\Checkout\Checkout.cshtml" />
     <Content Include="Assets\scss\templates\pages\_one-page-checkout.scss" />
     <Content Include="Features\Blocks\Views\NavigationBlock.cshtml" />
@@ -1790,6 +1795,9 @@
     <Content Include="modules\_protected\EPiServer.Commerce.Shell\EPiServer.Commerce.Shell.zip" />
     <Content Include="modules\_protected\Commerce\Commerce.zip" />
     <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
+    <Content Include="Features\Login\Index.cshtml" />
+    <Content Include="Features\Shared\Foundation\_LoginLayout.cshtml" />
+    <Content Include="Features\Login\Register.cshtml" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\Views\Web.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServerGoogleAnalytics.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServer.GoogleAnalytics.zip" />

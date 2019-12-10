@@ -31,15 +31,19 @@
             }
             @if (Model.ShowCommerceControls)
             {
-                <li>
-                    <div class="dropdown">
-                        <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
-                            <i data-feather="heart"></i>
-                            <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                if (Request.IsAuthenticated)
+                {
+                    <li>
+                        <div class="dropdown">
+                            <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
+                                <i data-feather="heart"></i>
+                                <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                            </div>
+                            @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
                         </div>
-                        @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
-                    </div>
-                </li>
+                    </li>
+                }
+
                 <li>
                     <div class="dropdown">
                         <div class="icon-menu icon-menu--has-badge jsCartBtn" data-toggle="dropdown" data-offset="-162, -2" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
