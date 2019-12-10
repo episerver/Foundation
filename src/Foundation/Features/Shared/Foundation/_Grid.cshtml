@@ -9,10 +9,10 @@
             <tr class="mvc-grid-headers@(Model.FilterMode == GridFilterMode.Header ? " mvc-grid-row-filters" : "")">
                 @foreach (IGridColumn column in Model.Columns)
                 {
-                    String hidden = column.IsHidden ? "mvc-grid-hidden" : null;
-                    String sortable = column.Sort.IsEnabled == true ? "sortable" : null;
+                    String hidden = column.IsHidden ? "mvc-grid-hidden" : "";
+                    String sortable = column.Sort.IsEnabled == true ? "sortable" : "";
                     Boolean filterApplied = (column.Filter.First ?? column.Filter.Second) != null;
-                    String filterable = column.Filter.IsEnabled == true && !String.IsNullOrEmpty(column.Filter.Name) ? "filterable" : null;
+                    String filterable = column.Filter.IsEnabled == true && !String.IsNullOrEmpty(column.Filter.Name) ? "filterable" : "";
 
                     <th class="@column.CssClasses @filterable @sortable @column.Sort.Order.ToString().ToLower() @hidden" data-name="@column.Name" data-filter="@column.Filter.IsEnabled" data-filter-applied="@filterApplied" data-filter-name="@column.Filter.Name" data-filter-type="@column.Filter.Type" data-filter-default-method="@column.Filter.DefaultMethod" data-sort="@column.Sort.IsEnabled" data-sort-order="@column.Sort.Order" data-sort-first="@column.Sort.FirstOrder">
                         @if (column.Filter.IsEnabled == true && !String.IsNullOrEmpty(column.Filter.Name) && Model.FilterMode != GridFilterMode.Row)
@@ -73,7 +73,7 @@
                 <tr class="mvc-grid-row-filters">
                     @foreach (IGridColumn column in Model.Columns)
                     {
-                        String hidden = column.IsHidden ? "mvc-grid-hidden" : null;
+                        String hidden = column.IsHidden ? "mvc-grid-hidden" : "";
 
                         if (column.Filter.IsEnabled == true && !String.IsNullOrEmpty(column.Filter.Name))
                         {
@@ -133,15 +133,15 @@
         <tbody>
             @foreach (IGridRow<Object> row in Model.Rows)
             {
-                <tr class="@row.CssClasses" @row.Attributes>
+                <tr@(row.Attributes)>
                     @foreach (IGridColumn column in Model.Columns)
                     {
                         String classes = column.IsHidden ? column.CssClasses + " mvc-grid-hidden" : column.CssClasses;
 
                         <td class="@classes">@column.ValueFor(row)</td>
                     }
-                </tr>
-            }
+                    </tr>
+                }
             @if (!Model.Rows.Any() && Model.EmptyText != null)
             {
                 <tr class="mvc-grid-empty-row">
@@ -150,16 +150,16 @@
                     </td>
                 </tr>
             }
-        </tbody>
-        @if (Model.FooterPartialViewName != null)
-        {
-            <tfoot>
-                @Html.Partial(Model.FooterPartialViewName, Model)
-            </tfoot>
-        }
-        </table>
-        @if (Model.Pager != null)
-        {
-            @Html.Partial(Model.Pager.PartialViewName, Model.Pager)
-        }
+    </tbody>
+    @if (!String.IsNullOrEmpty(Model.FooterPartialViewName))
+    {
+        <tfoot>
+            @Html.Partial(Model.FooterPartialViewName, Model)
+        </tfoot>
+    }
+    </table>
+    @if (Model.Pager != null)
+    {
+        @Html.Partial(Model.Pager.PartialViewName, Model.Pager)
+    }
 </div>
