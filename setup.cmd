@@ -164,8 +164,8 @@ echo ## Dropping user ## >> Build\Logs\Database.log
 echo ## Creating databases ##
 echo ## Creating databases ## >> Build\Logs\Database.log
 md "%SOURCEPATH%\appdata\db" 2>nul >> Build\Logs\Database.log
-%sql% -Q "CREATE DATABASE [%cms_db%] ON (NAME = N'%cms_db%', FILENAME = N'%SOURCEPATH%\appdata\db\%cms_db%.mdf') LOG ON (NAME = N'%cms_db%_log', FILENAME = N'%SOURCEPATH%\appdata\db\%cms_db%.ldf') COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
-%sql% -Q "CREATE DATABASE [%commerce_db%] ON (NAME = N'%commerce_db%', FILENAME = N'%SOURCEPATH%\appdata\db\%commerce_db%.mdf') LOG ON (NAME = N'%commerce_db%_log', FILENAME = N'%SOURCEPATH%\appdata\db\%commerce_db%.ldf') COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
+%sql% -Q "CREATE DATABASE [%cms_db%] COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
+%sql% -Q "CREATE DATABASE [%commerce_db%] COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
 
 echo ## Creating user ##
 echo ## Creating user ## >> Build\Logs\Database.log
