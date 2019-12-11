@@ -1,20 +1,26 @@
-﻿@model string
+﻿@model KeyValuePair<string, int>
 
 <div class="row product-detail__buy">
     <div class="col-3 col-md-5 col-lg-4">
-        <input type="number" value="1" min="1" id="qty" name="qty" class="textbox" onClick="this.select();">
+        <div class="row">
+            <div class="col-12">
+                <input type="number" value="@(Model.Value > 0 ? Model.Value : 1)" min="@Model.Value" id="qty" name="qty" class="textbox" onClick="this.select();">
+            </div>
+            <div class="col-12" style="padding-left: 15px; padding-right: 15px">
+                <small class="sub-title">Min quantity: @Model.Value</small>
+            </div>
+        </div>
     </div>
     <div class="col-9 col-md-7 col-lg-6">
-        <button class="button-black--icon addToCart" data="@Model" qty="1" store="delivery" selectedstore="" href="javascript:void(0);">
+        <button class="button-black--icon addToCart" data="@Model.Key" qty="1" store="delivery" selectedstore="" href="javascript:void(0);">
             <i data-feather="shopping-cart"></i>
             Add to cart
         </button>
         @if (Request.IsAuthenticated)
         {
-            <button type="button" class="button-transparent-black btn-lower jsBuyNow" url="@Url.Action("BuyNow", "DefaultCart")" data="@Model" qty="1" store="delivery" selectedstore="">
+            <button type="button" class="button-transparent-black btn-lower jsBuyNow" url="@Url.Action("BuyNow", "DefaultCart")" data="@Model.Key" qty="1" store="delivery" selectedstore="">
                 <span>Buy Now</span>
             </button>
         }
-
     </div>
 </div>
