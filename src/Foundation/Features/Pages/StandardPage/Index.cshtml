@@ -37,6 +37,15 @@
                 <div class="hero__gradient">
                 </div>
             }
+            else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+            {
+                <picture class="standard-page__banner">
+                    <source srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
+                    <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
+                </picture>
+                <div class="hero__gradient">
+                </div>
+            }
         </div>
         <div class="standard-page__box @boxClass">
             <div class="article__title">

@@ -26,6 +26,28 @@
             <hr />
             @Html.Partial("_Rating", Model)
             <hr />
+            @if (Model.IsAvailable)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <span class="pull-right in-stock text-success">
+                            <i data-feather="check-circle"></i>
+                            In Stock
+                        </span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <span class="pull-right in-stock">
+                            <i data-feather="x-circle"></i>
+                            @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
+                        </span>
+                    </div>
+                </div>
+            }
 
             <br />
             @Html.PropertyFor(x => x.CurrentContent.Description)
@@ -35,7 +57,7 @@
             @Html.Partial("_ListVariants", Model.Entries, viewData)
             @Html.Partial("_Store", Model.Stores)
 
-            @Html.Partial("_BuyNow", Model.CurrentContent.Code)
+            @Html.Partial("_BuyNow", new KeyValuePair<string, int>(Model.CurrentContent.Code, Model.MinQuantity))
             <hr />
             <div class="row">
                 <div class="col-12">

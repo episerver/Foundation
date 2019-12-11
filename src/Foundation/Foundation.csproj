@@ -1809,6 +1809,7 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="Features\Blocks\Views\AssetsDownloadLinksBlock.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_text-block.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
