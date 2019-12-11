@@ -42,7 +42,8 @@ namespace Foundation.Features.Blocks
 
                 if (rootContent is IAssetContainer assetContainer)
                 {
-                    assets = assetContainer.GetAssetsMediaData(_contentLoader).OrderByDescending(x => x.StartPublish).ToList();
+                    assets = assetContainer.GetAssetsMediaData(_contentLoader, currentBlock.GroupName)
+                        .OrderByDescending(x => x.StartPublish).ToList();
                 }
 
                 if (currentBlock.Count > 0)

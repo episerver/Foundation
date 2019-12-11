@@ -31,5 +31,12 @@ namespace Foundation.Commerce.Models.Blocks
             GroupName = SystemTabNames.Content,
             Order = 20)]
         public virtual int Count { get; set; }
+
+        [Display(
+            Name = "Group name of assets",
+            Description = "Available if root content is catalog content",
+            GroupName = SystemTabNames.Content,
+            Order = 20)]
+        public virtual string GroupName{ get; set; }
     }
 }
