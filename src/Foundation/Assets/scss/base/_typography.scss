@@ -61,3 +61,11 @@ li.current {
 .word-break {
     word-break: break-word;
 }
+
+.download-file {
+    color: steelblue;
+
+    &:hover {
+        color: steelblue;
+    }
+}
