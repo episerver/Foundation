@@ -6,7 +6,7 @@
         <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
             @Html.Partial("_Menu", Model.MenuItems)
         </div>
-        <a href="/" class="navigation__logo flex-center" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
+        <a href="/" class="navigation__logo @(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
             @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })
         </a>
         <ul class="navigation__right">
