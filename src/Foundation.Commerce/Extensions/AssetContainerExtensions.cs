@@ -64,5 +64,21 @@ namespace Foundation.Commerce.Extensions
             return contentLoader.TryGet(contentLink, out
             TContentMedia content);
         }
+
+        public static IList<MediaData> GetAssetsMediaData(this IAssetContainer assetContainer, IContentLoader contentLoader, string groupName = "")
+        {
+            if (assetContainer.CommerceMediaCollection != null)
+            {
+                var assets = assetContainer.CommerceMediaCollection
+                    .Where(x => string.IsNullOrEmpty(groupName) || x.GroupName == groupName)
+                    .Select(x => contentLoader.Get<IContent>(x.AssetLink) as MediaData)
+                    .Where(x => x != null)
+                    .ToList();
+
+                return assets;
+            }
+
+            return new List<MediaData>();
+        }
     }
 }
