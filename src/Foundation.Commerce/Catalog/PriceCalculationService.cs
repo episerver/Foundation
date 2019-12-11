@@ -31,7 +31,6 @@ namespace Foundation.Commerce.Catalog
             {
                 CustomerPricing = customerPricing,
                 Currencies = new List<Currency> { currency },
-                Quantity = 1m,
                 ReturnCustomerPricing = true
             };
 
@@ -57,7 +56,6 @@ namespace Foundation.Commerce.Catalog
                     new CustomerPricing((CustomerPricing.PriceType)5, string.Empty),
                 },
                 Currencies = new List<Currency> { currency },
-                Quantity = 1m,
                 ReturnCustomerPricing = true
             };
 
@@ -83,7 +81,6 @@ namespace Foundation.Commerce.Catalog
                     new CustomerPricing((CustomerPricing.PriceType)4, string.Empty),
                 },
                 Currencies = new List<Currency> { currency },
-                Quantity = 1m,
                 ReturnCustomerPricing = true
             };
 
@@ -109,7 +106,6 @@ namespace Foundation.Commerce.Catalog
                     new CustomerPricing((CustomerPricing.PriceType)3, string.Empty),
                 },
                 Currencies = new List<Currency> { currency },
-                Quantity = 1m,
                 ReturnCustomerPricing = true
             };
 
