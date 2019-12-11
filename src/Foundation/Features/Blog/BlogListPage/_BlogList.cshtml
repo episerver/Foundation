@@ -18,7 +18,7 @@
     }
 }
 
-@if (Model.CurrentContent.Template == TemplateSelections.ImageTop)
+@if (Model.CurrentContent.Template == TemplateSelections.ImageTop || Model.CurrentContent.Template == TemplateSelections.NoImage)
 {
     if (Model.Blogs != null && Model.Blogs.Any())
     {

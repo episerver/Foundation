@@ -16,9 +16,14 @@ namespace Foundation.Cms.Pages
     public class StandardPage : FoundationPageData
     {
         [CultureSpecific]
+        [UIHint(UIHint.Image)]
+        [Display(Name = "Background image", GroupName = SystemTabNames.Content, Order = 205)]
+        public virtual ContentReference BackgroundImage { get; set; }
+
+        [CultureSpecific]
         [UIHint(UIHint.Video)]
         [Display(Name = "Background video", GroupName = SystemTabNames.Content, Order = 210)]
-        public virtual ContentReference MainBackgroundVideo { get; set; }
+        public virtual ContentReference BackgroundVideo { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(FoundationStandardPageTopPaddingModeSelectionFactory))]
         [Display(Name = "Top padding mode",

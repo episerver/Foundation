@@ -62,13 +62,13 @@
                                     </div>
                                     <div class="location__footer">
                                         <div class="row">
-                                            <div class="col-lg-10 col-md-9 col-xs-8">
+                                            <div class="col-8">
                                                 <i class="fa fa-globe"></i> @location.Continent / @location.Country
                                             </div>
-                                            <div class="col-lg-2 col-md-3 col-xs-4">
+                                            <div class="col-4">
                                                 <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
                                             </div>
-                                            <div class="col-xs-12">
+                                            <div class="col-12">
                                                 @if (location.Tags != null)
                                                 {
                                                     <i class="fa fa-tags"></i>

@@ -5,6 +5,7 @@ using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Globalization;
+using EPiServer.PdfPreview.Models;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Media;
@@ -176,7 +177,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 IsSalesRep = isSalesRep,
                 SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                     .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
-                Documents = currentContent.CommerceMediaCollection.Where(o => o.AssetType.Equals(typeof(PDFFile).FullName.ToLowerInvariant()))
+                Documents = currentContent.CommerceMediaCollection
+                    .Where(o => o.AssetType.Equals(typeof(PdfFile).FullName.ToLowerInvariant()) || o.AssetType.Equals(typeof(StandardFile).FullName.ToLowerInvariant()))
                     .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList(),
                 MinQuantity = (int)defaultPrice.MinQuantity
             };

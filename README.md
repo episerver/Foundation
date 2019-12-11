@@ -16,6 +16,7 @@ Including as of now projects for CMS, Commerce, Personalisation, Find and Social
 - [Table of Contents](#table-of-contents)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Building](#building)
 - [Contributing](#contributing)
 
 ---
@@ -31,7 +32,7 @@ Including as of now projects for CMS, Commerce, Personalisation, Find and Social
 
 ## Installation
 
-Run Build.cmd and supply requested parameters. The build process will log to the console and the following files.
+Run setup.cmd and supply requested parameters. The build process will log to the console and the following files.
 Note that application name should contain only letters and numbers as it used as the prefix to create the website and database components.
 ```
 Build\Logs\Build.log
@@ -57,9 +58,14 @@ create connectionstrings files
 Start the site to finish setup in browser
 ```
 
-Login with admin@example.com/store account once it's finished.
+Login with admin@example.com/store account once it's finished.  
+Please note a resetup.cmd file will be created which you can run to easily re-install the database.
 
 ---
+
+## Building 
+
+Run build.cmd To build the solution and run the default gulp task to build the client resources.
 
 ## Contributing
 [Contribution guidelines for this project](docs/CONTRIBUTING.md)

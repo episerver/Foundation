@@ -69,6 +69,9 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Social header", GroupName = CmsTabNames.Footer, Order = 80)]
         public virtual string SocialHeader { get; set; }
 
+        [Display(Name = "Social links", GroupName = CmsTabNames.Footer, Order = 85)]
+        public virtual LinkItemCollection SocialLinks { get; set; }
+
         [CultureSpecific]
         [Display(Name = "Content area", GroupName = CmsTabNames.Footer, Order = 90)]
         public virtual ContentArea ContentArea { get; set; }

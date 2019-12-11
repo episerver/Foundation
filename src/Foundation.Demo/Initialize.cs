@@ -9,7 +9,6 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using EPiServer.Tracking.Core;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Media;
 using Foundation.Cms.ViewModels.Header;
@@ -18,10 +17,7 @@ using Foundation.Demo.Install;
 using Foundation.Demo.Install.Steps;
 using Foundation.Demo.ProfileStore;
 using Foundation.Demo.ViewModels;
-using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
-using Foundation.Find.Commerce;
-using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -69,52 +65,11 @@ namespace Foundation.Demo
         void IInitializableModule.Initialize(InitializationEngine context)
         {
             UpdateCampaignSettings(context);
-
-            var registry = context.Locate.Advanced.GetInstance<IFacetRegistry>();
-            GetFacets(context.Locate.Advanced.GetInstance<ICurrentMarket>())
-                .ForEach(x => registry.AddFacetDefinitions(x));
-
             context.Locate.Advanced.GetInstance<IContentEvents>().SavingContent += OnSavingContent;
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
         {
-        }
-
-        private List<FacetDefinition> GetFacets(ICurrentMarket currentMarket)
-        {
-            var brand = new FacetStringDefinition
-            {
-                FieldName = "Brand",
-                DisplayName = "Brand"
-            };
-
-            var color = new FacetStringListDefinition
-            {
-                DisplayName = "Color",
-                FieldName = "AvailableColors"
-            };
-
-            var size = new FacetStringListDefinition
-            {
-                DisplayName = "Size",
-                FieldName = "AvailableSizes"
-            };
-
-            var priceRanges = new FacetNumericRangeDefinition(currentMarket)
-            {
-                DisplayName = "Price",
-                FieldName = "DefaultPrice",
-                BackingType = typeof(double)
-
-            };
-            priceRanges.Range.Add(new SelectableNumericRange() { To = 50 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 50, To = 100 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 100, To = 500 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 500, To = 1000 });
-            priceRanges.Range.Add(new SelectableNumericRange() { From = 1000 });
-
-            return new List<FacetDefinition> { priceRanges, brand, size, color };
         }
 
         private static void UpdateCampaignSettings(InitializationEngine context)

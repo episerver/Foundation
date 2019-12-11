@@ -22,6 +22,7 @@ using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Find.Cms;
 using Foundation.Find.Cms.Facets;
+using Foundation.Find.Commerce.Facets;
 using Foundation.Find.Commerce.ViewModels;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
@@ -232,9 +233,9 @@ namespace Foundation.Find.Commerce
             return list;
         }
 
-        private void GetManaualInclusion(List<ProductTileViewModel> results, 
-            BaseInclusionExclusionPage baseInclusionExclusionPage, 
-            IMarket market, 
+        private void GetManaualInclusion(List<ProductTileViewModel> results,
+            BaseInclusionExclusionPage baseInclusionExclusionPage,
+            IMarket market,
             Currency currency)
         {
             var currentCount = results.Count;

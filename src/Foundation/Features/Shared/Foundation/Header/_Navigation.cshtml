@@ -1,5 +1,5 @@
 ﻿@model Foundation.Demo.ViewModels.DemoHeaderViewModel
-
+@Html.FullRefreshPropertiesMetaData(new[] { "MainMenu" })
 <!-- Navigation bar for Desktop -->
 <div class="d-none d-lg-block">
     <nav class="container navigation">
@@ -31,15 +31,19 @@
             }
             @if (Model.ShowCommerceControls)
             {
-                <li>
-                    <div class="dropdown">
-                        <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
-                            <i data-feather="heart"></i>
-                            <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                if (Request.IsAuthenticated)
+                {
+                    <li>
+                        <div class="dropdown">
+                            <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
+                                <i data-feather="heart"></i>
+                                <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                            </div>
+                            @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
                         </div>
-                        @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
-                    </div>
-                </li>
+                    </li>
+                }
+
                 <li>
                     <div class="dropdown">
                         <div class="icon-menu icon-menu--has-badge jsCartBtn" data-toggle="dropdown" data-offset="-162, -2" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
@@ -91,7 +95,7 @@
             </li>
             <li>
                 <div class="dropdown">
-                    <div class="icon-menu" data-toggle="dropdown" data-offset="-325, -2" data-flip="false" id="js-profile">
+                    <div class="icon-menu" data-toggle="dropdown" data-offset="-324, -2" data-flip="false" id="js-profile">
                         <i data-feather="user"></i>
                     </div>
                     @Html.Partial("_Users", Model)
