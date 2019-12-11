@@ -125,7 +125,7 @@
             font-size: 1.5em;
         }
 
-        p, a {
+        p {
             font-size: 13px;
         }
     }
@@ -135,7 +135,7 @@
             font-size: 1.5em;
         }
 
-        p, a {
+        p {
             font-size: 13px;
         }
     }
@@ -147,7 +147,7 @@
             font-size: 1em;
         }
 
-        p, a {
+        p {
             font-size: 12px;
         }
     }
@@ -157,7 +157,7 @@
             font-size: 1em;
         }
 
-        p, a {
+        p {
             font-size: 12px;
         }
     }
@@ -172,10 +172,6 @@
         p {
             display: none;
         }
-
-        a {
-            font-size: 10px;
-        }
     }
 
     &.teaser-theme--light {
@@ -186,24 +182,31 @@
         p {
             display: none;
         }
-
-        a {
-            font-size: 10px;
-        }
     }
 }
 
 @include media-breakpoint-down(lg) {
-    h2 {
-        font-size: 1em !important;
+    .teaser {
+        &.teaser-theme--dark {
+            h2 {
+                font-size: 1em !important;
+            }
+
+            p {
+                display: none;
+            }
+        }
     }
 
-    p {
-        display: none !important;
-    }
+    .teaser {
+        &.teaser-theme--light {
+            h2 {
+                font-size: 1em !important;
+            }
 
-    a {
-        font-size: 10px !important;
+            p {
+                display: none;
+            }
+        }
     }
 }
-
