@@ -1,9 +1,9 @@
-﻿<a href="https://github.com/episerver/Foundation"><img src="http://ux.episerver.com/images/logo.png" title="Foundation" alt="Foundation"></a>
+<a href="https://github.com/episerver/Foundation"><img src="http://ux.episerver.com/images/logo.png" title="Foundation" alt="Foundation"></a>
 
 ## Foundation
 
 Foundation offers a starting point that is intuitive, well-structured and modular allowing developers to select Episerver products as projects to include or exclude from their solution. 
-Including as of now projects for CMS, Commerce, Personalisation, Find and Social, with the rest to follow.
+Including as of now projects for CMS, Commerce, Personalization, Find and Social, with the rest to follow.
 
 [![Build status](https://dev.azure.com/episerver-foundation/Foundation/_apis/build/status/Foundation-Release)](https://dev.azure.com/episerver-foundation/Foundation/_build/latest?definitionId=1)
 [![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
@@ -12,62 +12,146 @@ Including as of now projects for CMS, Commerce, Personalisation, Find and Social
 
 ## Table of Contents
 
-- [Foundation](#foundation)
-- [Table of Contents](#table-of-contents)
-- [Prerequisites](#prerequisites)
+- [System requirements](#system-requirements)
+- [Pre-installation set-up](#pre-installation-set-up)
 - [Installation](#installation)
-- [Building](#building)
+- [Troubleshooting](#troubleshooting)
+- [Modular set-up](#modular-set-up)
 - [Contributing](#contributing)
 
 ---
 
-## Prerequisites
+## System requirements
 
-1. Visual Studio 2017 or higher - [VS Downloads](https://visualstudio.microsoft.com/downloads/)
-2. Sql Server Express or Developer or Sql Azure Server - [SQL Downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using Sql Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
+1. Visual Studio 2017 or higher - [Download](https://visualstudio.microsoft.com/downloads/)
+2. SQL Server Express or Developer or SQL Azure Server - [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using SQL Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
 3. Nodejs - [Download](https://nodejs.org/en/download/)
-4. IIS Role - [Instructions](https://help.k2.com/onlinehelp/k2blackpearl/icg/4.7/default.htm#Con_Role_Services_IIS.htm)
+4. Microsoft Internet Information Server (IIS) - [Download](https://www.iis.net/downloads)
+
+---
+
+## Pre-installation set-up
+
+### SQL server
+
+1. In Microsoft SQL Server Management Studio, connect to your SQL server:
+![SQL server login](https://i.ibb.co/dW5n5wQ/SQLServer-Log-In.png)
+2. Right-click on your server and select Properties.
+3. Under **Security**, make sure that **SQL Server and Windows Authentication mode** is selected:
+![SQL server authentication](https://i.ibb.co/2Sktyrb/SQLServer-Authentication.png")
+
+### IIS settings
+
+How to find the IIS settings depends on the system where you are running IIS.
+
+1.	Go to your IIS settings. If you are running IIS locally on your Windows machine, you find these under **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off**. 
+2.	Check that the following features have been enabled:
+  *	Under Application Development:
+    *	ASP .NET
+    * NET Extensibility
+    * ASP
+    * ISAPI Extensions
+    *	ISAPI Filters
+  *	Common HTTP Features (Installed) node (all are required):
+    *	Static Content (Installed)
+    *	Default Document (Installed)
+    *	Directory Browsing (Installed
+    *	HTTP Errors (Installed) (Installed)
+    *	HTTP Redirection
+  *	Under the Performance (Installed) node:
+    *	Static Content Compression (Installed)
+    *	Dynamic Content Compression (Installed)
+  *	Under the Security (Installed) node:
+    *	URL Authorization (Installed)
+
+![IIS settings](https://i.ibb.co/cNTmzc2/ISSSettings.png)
 
 ---
 
 ## Installation
 
-Run setup.cmd and supply requested parameters. The build process will log to the console and the following files.
-Note that application name should contain only letters and numbers as it used as the prefix to create the website and database components.
+The installation files on GitHub contain a batch file that will install the Foundation project with all products and set up an empty demo site. After the installation, you can fetch demo content from a remote repository to create a Mosey demo site, a fictitious fashion retail company.
+
+1.	Download the ZIP file from GitHub containing the project and extract the files, or clone the project from GitHub to a local folder using the command prompt and the git command ```git clone https://github.com/episerver/Foundation foundation  ``` (the _foundation_ part specifies the folder where to put the files):
+
+Download ZIP file
+![Download Zip file](https://i.ibb.co/PM3VNq6/Git-Hub-Zip.png)
+
+Or clone project using Git
+![Clone project](https://i.ibb.co/23tJmNm/Git-Cloning.png)
+
+> **_Note:_** It is recommended that you store the project in a folder directly under C: and in a folder where your user have full access rights:
+![Folder access rights](https://i.ibb.co/F7B7pC6/Folder-Access-Rights.png)
+
+2.	Right-click on the batch file called **setup.cmd** and select **Run as administrator**:
+![Run batch file](https://i.ibb.co/SBFfLzt/Run-Batch-File.png)
+
+3.	The installation starts and you are asked to provide the following parameters:
+
+| Parameter | Description |
+|-----------|-------------|
+|Application name: | The name of the application. Note: The application name should contain only letters and numbers as it used as the prefix to create the website and database components.|
+|Public domain name for foundation:| Domain name for the application, for example, foundation.com.|
+|Public domain name for Commerce Manager: | Domain name for the Commerce Manager application, for example, commerce.foundation.com.|
+|License path:| If you have a license file, add the path to it. Otherwise you can add that later.|
+|SQL server name:| SQL server instance name. Add the same server name as the one you connected to in the [Pre-installation set-up](#pre-installation-set-up) steps for the SQL server.
+|sqlcmd command: | SQL command to execute, by default ```-S . -E ```. This can generally be left as is.|
+
+![Build parameters](https://i.ibb.co/WcKGLVh/Build-Parameters.png)
+
+4.	The build process executes a number of steps and logs both to the console and to the log files. The automatic build steps are:
+
 ```
-Build\Logs\Build.log
-Build\Logs\Database.log
-Build\Logs\IIS.log
+•	Set permissions on the folder to everyone full control
+•	Restore NuGet packages
+•	npm install
+•	gulp Saas task
+•	Build solution
+•	Install Databases
+•	Create two application pools
+•	Create two websites
+•	Update host file
+•	Copy License file
+•	Update commerce manager url for access from cms
+•	create connectionstrings files
+•	Start the site to finish setup in browser
 ```
+![Build progress](https://i.ibb.co/GvZBcYY/Build-Progress.png)
 
-The build process will do the following for you
+5.	When the installation is finished, a setup page is opened in your browser.
+6.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
 
-```
-Set permissions on the folder to everyone full control
-Restore nuget packages
-npm install
-gulp Saas task
-Build solution
-Install Databases
-Create two application pools
-Create two websites
-Update host file
-Copy License file
-Update commerce manager url for access from cms
-create connectionstrings files
-Start the site to finish setup in browser
-```
+![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
 
-Login with admin@example.com/store account once it's finished.  
-Please note a resetup.cmd file will be created which you can run to easily re-install the database.
+7.	In the setup page under Import Content, select **Remote Site File: Mosey** and **Remote Catalog File: Foundation_Fashion** to import the Mosey demo site content.
 
----
+![Demo content import](https://i.ibb.co/s6KpckW/Demo-Content-Import.png)
 
-## Building 
+8.	Click **Submit** and the Mosey demo site is displayed.
 
-Run build.cmd To build the solution and run the default gulp task to build the client resources.
+![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
+
+9.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
+
+> **_Note:_** A **resetup.cmd** file has been created in your project which you can run to re-install the database.
+
+## Troubleshooting
+* Check that you have full access rights to the project folder.
+* Check that you meet [the system requirements](#system-requirements).
+* Check your SQL authentication settings as described in [SQL Server](#sql-server).
+* Check your IIS settings so that they match those specified in [IIS settings](#iis-settings).
+* Check the log files:
+  ```
+  Build\Logs\Build.log
+  Build\Logs\Database.log
+  Build\Logs\IIS.log
+  ```
+
+## Modular set-up
+
+The Foundation project is set up to include all Episerver’s main products. Each product is set up as a project of its own inside the main project, so if you don’t want all products, you can simply remove their projects.
 
 ## Contributing
-[Contribution guidelines for this project](docs/CONTRIBUTING.md)
+As this is an open-source project, we encourage you to contribute to the source code and the documentation. See the [Contribution guidelines for this project](docs/CONTRIBUTING.md).
 
 ---
