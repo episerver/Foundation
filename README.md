@@ -25,8 +25,9 @@ Including as of now projects for CMS, Commerce, Personalization, Find and Social
 
 1. Visual Studio 2017 or higher - [Download](https://visualstudio.microsoft.com/downloads/)
 2. SQL Server Express or Developer or SQL Azure Server - [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using SQL Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
-3. Nodejs - [Download](https://nodejs.org/en/download/)
-4. Microsoft Internet Information Server (IIS) - [Download](https://www.iis.net/downloads)
+3. Microsoft SQL Server Management Studio - [Download](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
+4. Nodejs - [Download](https://nodejs.org/en/download/)
+5. Microsoft Internet Information Server (IIS) - [Download](https://www.iis.net/downloads)
 
 ---
 
@@ -75,15 +76,19 @@ The installation files on GitHub contain a batch file that will install the Foun
 1.	Download the ZIP file from GitHub containing the project and extract the files, or clone the project from GitHub to a local folder using the command prompt and the git command ```git clone https://github.com/episerver/Foundation foundation  ``` (the _foundation_ part specifies the folder where to put the files):
 
 Download ZIP file
+
 ![Download Zip file](https://i.ibb.co/PM3VNq6/Git-Hub-Zip.png)
 
 Or clone project using Git
+
 ![Clone project](https://i.ibb.co/23tJmNm/Git-Cloning.png)
 
 > **_Note:_** It is recommended that you store the project in a folder directly under C: and in a folder where your user have full access rights:
-![Folder access rights](https://i.ibb.co/F7B7pC6/Folder-Access-Rights.png)
+
+![Folder access rights](https://i.ibb.co/Wkcbr9m/Folder-Access-Rights.png)
 
 2.	Right-click on the batch file called **setup.cmd** and select **Run as administrator**:
+
 ![Run batch file](https://i.ibb.co/SBFfLzt/Run-Batch-File.png)
 
 3.	The installation starts and you are asked to provide the following parameters:
@@ -100,7 +105,6 @@ Or clone project using Git
 ![Build parameters](https://i.ibb.co/WcKGLVh/Build-Parameters.png)
 
 4.	The build process executes a number of steps and logs both to the console and to the log files. The automatic build steps are:
-
 ```
 •	Set permissions on the folder to everyone full control
 •	Restore NuGet packages
@@ -120,15 +124,12 @@ Or clone project using Git
 
 5.	When the installation is finished, a setup page is opened in your browser.
 6.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
-
 ![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
 
 7.	In the setup page under Import Content, select **Remote Site File: Mosey** and **Remote Catalog File: Foundation_Fashion** to import the Mosey demo site content.
-
 ![Demo content import](https://i.ibb.co/s6KpckW/Demo-Content-Import.png)
 
 8.	Click **Submit** and the Mosey demo site is displayed.
-
 ![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
 
 9.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
