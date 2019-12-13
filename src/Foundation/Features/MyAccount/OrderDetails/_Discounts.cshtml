@@ -7,7 +7,7 @@
     var promotions = Model.PurchaseOrder.GetFirstForm().Promotions;
 }
 
-@if (promotions.Count > 0)
+@if (promotions != null && promotions.Count > 0)
 {
     <div class="row">
         <div class="col-12">
