@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                    <div class="mobile-navigation__item">
+                    <div class="mobile-navigation__item" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
                         <a href="/" class="mobile-navigation__logo">
                             @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @Class = "img-fluid" })
                         </a>
@@ -42,7 +42,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Right Menu -->
                 <div class="mobile-navigation__right">
