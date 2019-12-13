@@ -1,14 +1,18 @@
 ﻿@model Foundation.Demo.ViewModels.DemoHeaderViewModel
-@Html.FullRefreshPropertiesMetaData(new[] { "MainMenu" })
+@Html.FullRefreshPropertiesMetaData(new[] { "MainMenu", "SiteLogo" })
+
 <!-- Navigation bar for Desktop -->
 <div class="d-none d-lg-block">
     <nav class="container navigation">
         <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
             @Html.Partial("_Menu", Model.MenuItems)
         </div>
-        <a href="/" class="navigation__logo @(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
-            @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })
-        </a>
+        <div class="navigation__logo @(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
+             style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto" : "")">
+            <a href="/">
+                <img class="img-fluid" src="@Url.ContentUrl(Model.DemoHomePage.SiteLogo)" @Html.EditAttributes(x => x.DemoHomePage.SiteLogo) />
+            </a>
+        </div>
         <ul class="navigation__right">
             @if (Request.IsAuthenticated)
             {
