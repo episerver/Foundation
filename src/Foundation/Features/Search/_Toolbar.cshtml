@@ -13,7 +13,7 @@
     </div>
 
     <div class="toolbar__center">
-        @if (Model.Pages.Count > 0)
+        @if (Model.Pages != null && Model.Pages.Count > 0)
         {
             <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
             <ul class="pagination">

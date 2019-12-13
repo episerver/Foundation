@@ -6,7 +6,7 @@
             <div id="checkout-step-shipping" class="step a-item jsChangeAddressCard"  data-urlChangeAddress="@Url.Action("ChangeAddress", "Checkout")">
                 <ul class="style-list-none">
                     <li>
-                        @if (Model.Shipments.Count == 1)
+                        @if (Model.Shipments != null && Model.Shipments.Count == 1)
                         {
 
                             <div>

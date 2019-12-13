@@ -10,7 +10,7 @@
                 <span class="radio"></span>
             </label>
         </div>
-        @if (Model.Stores.Count > 0)
+        @if (Model.Stores != null && Model.Stores.Count > 0)
         {
             <div class="col-12">
                 <label class="checkbox jsSelectDelivery">
@@ -23,7 +23,7 @@
     </div>
 }
 
-@if (Model.Stores.Count > 0)
+@if (Model.Stores != null && Model.Stores.Count > 0)
 {
     <div class="row store-pickup" id="pickupStoreBox">
         <input type="hidden" name="selectedStore" id="selectedStore" value="@Model.SelectedStore" />
