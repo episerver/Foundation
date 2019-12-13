@@ -14,7 +14,7 @@
             <section>
                 <div class="section-title spacer-bottom-m">
                     <br />
-                    @if (Model.Organizations.Count == 0)
+                    @if (Model.Organizations != null && Model.Organizations.Count == 0)
                     {
                         <a href="@Url.Action("AddUser", "Users")" class="btn-primary btn-sm disabled">
                             @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
@@ -35,7 +35,7 @@
                     </form>
 
                 </div>
-                @if (Model.Organizations.Count == 0)
+                @if (Model.Organizations != null && Model.Organizations.Count == 0)
                 {
                     <p>@Html.TranslateFallback("/B2B/Users/NoOrgs", "At least one sub-organization needs to be configured before adding a user.")</p>
                 }

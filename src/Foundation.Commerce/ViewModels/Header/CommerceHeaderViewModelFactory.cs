@@ -227,7 +227,7 @@ namespace Foundation.Commerce.ViewModels.Header
                 UserLinks = new LinkItemCollection(),
                 Name = contact?.FirstName ?? "",
                 IsBookmarked = isBookmarked,
-                MenuItems = menuItems,
+                MenuItems = menuItems ?? new List<MenuItemViewModel>(),
                 LoginViewModel = new LoginViewModel
                 {
                     ResetPasswordPage = homePage.ResetPasswordPage
