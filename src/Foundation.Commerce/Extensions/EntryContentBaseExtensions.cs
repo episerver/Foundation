@@ -352,8 +352,8 @@ namespace Foundation.Commerce.Extensions
             var minDiscountPrice = GetMinDiscountPrice(discountPriceList);
 
             // if discount price is selected
-            var isDiscounted = minDiscountPrice.Value != null 
-                ? (minDiscountPrice.Value.Price < minPrice.UnitPrice ? true : false) 
+            var isDiscounted = minDiscountPrice.Value != null
+                ? (minDiscountPrice.Value.Price < minPrice.UnitPrice ? true : false)
                 : false;
 
             var entryRecommendations = entry as IProductRecommendations;

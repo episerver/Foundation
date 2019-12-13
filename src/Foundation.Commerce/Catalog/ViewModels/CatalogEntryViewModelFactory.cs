@@ -205,14 +205,15 @@ namespace Foundation.Commerce.Catalog.ViewModels
             {
                 foreach (var v in variants)
                 {
-                    if (v.TrackInventory) 
+                    if (v.TrackInventory)
                     {
                         var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
                         var inventory = new Inventory(inventoryRecord);
                         isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
                     }
                 }
-            } else
+            }
+            else
             {
                 isInstock = false;
             }
