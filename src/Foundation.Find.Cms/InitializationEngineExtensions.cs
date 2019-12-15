@@ -5,6 +5,7 @@ using EPiServer.ServiceLocation;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Facets.Config;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Foundation.Find.Cms
@@ -17,28 +18,33 @@ namespace Foundation.Find.Cms
 
         public static void InitializeFoundationFindCms(this InitializationEngine context)
         {
-            var configItems = _facetConfigFactory.Value.GetFacetFilterConfigurationItems();
-            if (configItems.Any())
-            {
-                configItems.ForEach(x => _facetRegistry.Value.AddFacetDefinitions(_facetConfigFactory.Value.GetFacetDefinition(x)));
-            }
-            else
-            {
-                _facetConfigFactory.Value.GetDefaultFacetDefinitions().ForEach(x => _facetRegistry.Value.AddFacetDefinitions(x));
-            }
+            InitializeFacets(_facetConfigFactory.Value.GetFacetFilterConfigurationItems());
 
             _contentEvents.Value.PublishedContent += OnPublishedContent;
-
         }
 
         static void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
         {
             if (contentEventArgs.Content is IFacetConfiguration facetConfiguration)
             {
-                _facetRegistry.Value.Clear();
-                facetConfiguration.SearchFiltersConfiguration
+                InitializeFacets(facetConfiguration.SearchFiltersConfiguration);
+            }
+        }
+
+        private static void InitializeFacets(IList<FacetFilterConfigurationItem> configItems)
+        {
+            _facetRegistry.Value.Clear();
+
+            if (configItems != null && configItems.Any())
+            {
+                configItems
                     .ToList()
                     .ForEach(x => _facetRegistry.Value.AddFacetDefinitions(_facetConfigFactory.Value.GetFacetDefinition(x)));
+            }
+            else
+            {
+                _facetConfigFactory.Value.GetDefaultFacetDefinitions()
+                    .ForEach(x => _facetRegistry.Value.AddFacetDefinitions(x));
             }
         }
     }
