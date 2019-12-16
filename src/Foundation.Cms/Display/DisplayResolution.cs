@@ -39,4 +39,24 @@
         {
         }
     }
+
+    /// <summary>
+    /// Defines resolution for a vertical iPhone 11
+    /// </summary>
+    public class Iphone11Resolution : DisplayResolutionBase
+    {
+        public Iphone11Resolution() : base("/resolutions/iphone11", 320, 692)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Defines resolution for a vertical iPad Air
+    /// </summary>
+    public class IpadAirResolution : DisplayResolutionBase
+    {
+        public IpadAirResolution() : base("/resolutions/ipadair", 519, 692)
+        {
+        }
+    }
 }
