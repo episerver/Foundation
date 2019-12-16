@@ -106,7 +106,7 @@ namespace Foundation.Commerce.Order.Services
                 var shipments = cart.GetFirstForm().Shipments;
                 shipments.ElementAt(updateAddressViewModel.ShippingAddressIndex).ShippingAddress =
                         _addressBookService.ConvertToAddress(viewModel.Shipments[updateAddressViewModel.ShippingAddressIndex].Address, cart);
-                
+
             }
         }
 

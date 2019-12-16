@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                    <div class="mobile-navigation__item">
+                    <div class="mobile-navigation__item" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
                         <a href="/" class="mobile-navigation__logo">
                             @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @Class = "img-fluid" })
                         </a>
@@ -42,7 +42,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Right Menu -->
                 <div class="mobile-navigation__right">
@@ -119,13 +118,13 @@
         <div class="tab-content offside-navbar__tab-content">
             <div id="mobile-menu" class="tab-pane fade show active">
                 <ul class="offside-navbar--menu">
-                    @if (Model.MenuItems.Count > 0)
+                    @if (Model.MenuItems != null && Model.MenuItems.Count > 0)
                     {
                         foreach (var item in Model.MenuItems)
                         {
                             <li class="offside-navbar--menu__item jsFirstLi">
                                 <a href="@item.Uri">@item.Name</a>
-                                @if (item.ChildLinks.Count > 0)
+                                @if (item.ChildLinks != null && item.ChildLinks.Count > 0)
                                 {
                                     <i data-feather="chevron-up" class="collapsed expand-collapse-child hidden jsExpandCollapse"></i>
                                     <i data-feather="chevron-down" class="expanded expand-collapse-child jsExpandCollapse"></i>
@@ -135,12 +134,14 @@
                                             <li class="offside-navbar--menu__item main-category">
                                                 @child.MainCategoryText
                                             </li>
-
-                                            foreach (var childLink in child.ListCategories)
+                                            if (child.ListCategories != null)
                                             {
-                                                <li class="offside-navbar--menu__item">
-                                                    <a href="@Url.GetFriendlyUrl(childLink.Href)">@childLink.Text</a>
-                                                </li>
+                                                foreach (var childLink in child.ListCategories)
+                                                {
+                                                    <li class="offside-navbar--menu__item">
+                                                        <a href="@Url.GetFriendlyUrl(childLink.Href)">@childLink.Text</a>
+                                                    </li>
+                                                }
                                             }
                                         }
                                     </ul>

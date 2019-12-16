@@ -855,6 +855,7 @@
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
     <Compile Include="Features\Blocks\CommentsBlockController.cs" />
+    <Compile Include="Features\Blocks\FeedBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
@@ -865,7 +866,6 @@
     <Compile Include="Features\Blog\BlogCommentBlock\BlogCommentBlockController.cs" />
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
-    <Compile Include="Features\Blog\TagCloudBlock\TagCloudBlockController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
@@ -1356,7 +1356,6 @@
     <Content Include="modules\_protected\VisualCompareMode\EpiServerOverridenLibs\CustomCompareCommandProvider.js" />
     <Content Include="modules\_protected\VisualCompareMode\EpiServerOverridenLibs\customWidgetSwitcher.js" />
     <Content Include="Features\Blog\BlogCommentBlock\Index.cshtml" />
-    <Content Include="Features\Blog\TagCloudBlock\Index.cshtml" />
     <Content Include="modules\_protected\EPiServer.Personalization.CMS.UI\EPiServer.Personalization.CMS.UI.zip" />
     <Content Include="Features\NamedCarts\SharedCart\Index.cshtml" />
     <Content Include="Features\NamedCarts\OrderPadsPage\Index.cshtml" />
@@ -1603,7 +1602,6 @@
     <Content Include="Features\Pages\LandingPage\Index.cshtml" />
     <Content Include="Features\Pages\ThreeColumnLandingPage\Index.cshtml" />
     <Content Include="Features\Pages\TwoColumnLandingPage\Index.cshtml" />
-    <Content Include="Features\Blocks\Views\BlogArchiveBlock.cshtml" />
     <Content Include="Features\Blocks\Views\ButtonBlock.cshtml" />
     <Content Include="Features\Blocks\Views\CallToActionBlock.cshtml" />
     <Content Include="Features\Blocks\Views\ContainerBlock.cshtml" />
@@ -1814,6 +1812,7 @@
     <Content Include="Assets\scss\templates\blocks\_text-block.scss" />
     <Content Include="Features\Pages\CommunityPage\Index.cshtml" />
     <Content Include="Features\Blocks\Views\CommentsBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\FeedBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

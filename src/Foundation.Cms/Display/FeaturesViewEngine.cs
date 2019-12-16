@@ -87,7 +87,7 @@ namespace Foundation.Cms.Display
                 }
 
                 return _cache.GetOrAdd(virtualPath,
-                    _ =>  base.FileExists(controllerContext, virtualPath.Replace("%1", GetFeatureName(controllerContext.Controller.GetType().GetTypeInfo()))));
+                    _ => base.FileExists(controllerContext, virtualPath.Replace("%1", GetFeatureName(controllerContext.Controller.GetType().GetTypeInfo()))));
             }
 
 

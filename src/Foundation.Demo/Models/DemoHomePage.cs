@@ -10,7 +10,6 @@ using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Facets.Config;
-using Foundation.Find.Commerce.Facets;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

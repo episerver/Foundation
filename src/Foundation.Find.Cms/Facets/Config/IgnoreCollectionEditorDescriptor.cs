@@ -16,7 +16,7 @@ namespace Foundation.Find.Cms.Facets.Config
             foreach (var property in modelProperties)
             {
                 var ignoreAttribute = property.GetCustomAttributes(true).FirstOrDefault(i => i is IgnoreAttribute);
-                               
+
                 if (ignoreAttribute != null)
                 {
                     GridDefinition.ExcludedColumns.Add(property.Name);
