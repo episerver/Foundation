@@ -19,21 +19,21 @@ namespace Foundation.Social
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
             var services = context.Services;
-            services.AddSingleton<IPageRepository, PageRepository>();
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IPageCommentRepository, PageCommentRepository>();
-            services.AddSingleton<IPageRatingRepository, PageRatingRepository>();
-            services.AddSingleton<IPageSubscriptionRepository, PageSubscriptionRepository>();
-            services.AddSingleton<ICommunityActivityAdapter, CommunityActivityAdapter>();
-            services.AddSingleton<ICommunityFeedRepository, CommunityFeedRepository>();
-            services.AddSingleton<ICommunityActivityRepository, CommunityActivityRepository>();
-            services.AddSingleton<ICommunityRepository, CommunityRepository>();
-            services.AddSingleton<ICommunityMemberRepository, CommunityMemberRepository>();
-            services.AddSingleton<ICommunityMembershipModerationRepository, CommunityMembershipModerationRepository>();
-            services.AddSingleton<IReviewActivityService, ReviewActivityService>();
-            services.AddSingleton<IBlogCommentRepository, BlogCommentRepository>();
-            services.AddSingleton<IReviewService, ReviewService>();
-            services.AddSingleton<ICommentManagerService, CommentManagerService>();
+            services.AddTransient<IPageRepository, PageRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPageCommentRepository, PageCommentRepository>();
+            services.AddTransient<IPageRatingRepository, PageRatingRepository>();
+            services.AddTransient<IPageSubscriptionRepository, PageSubscriptionRepository>();
+            services.AddTransient<ICommunityActivityAdapter, CommunityActivityAdapter>();
+            services.AddTransient<ICommunityFeedRepository, CommunityFeedRepository>();
+            services.AddTransient<ICommunityActivityRepository, CommunityActivityRepository>();
+            services.AddTransient<ICommunityRepository, CommunityRepository>();
+            services.AddTransient<ICommunityMemberRepository, CommunityMemberRepository>();
+            services.AddTransient<ICommunityMembershipModerationRepository, CommunityMembershipModerationRepository>();
+            services.AddTransient<IReviewActivityService, ReviewActivityService>();
+            services.AddTransient<IBlogCommentRepository, BlogCommentRepository>();
+            services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<ICommentManagerService, CommentManagerService>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

@@ -31,7 +31,10 @@ namespace Foundation.Features.Blocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public SubscriptionBlockController(IUserRepository userRepository, IPageSubscriptionRepository pageSubscriptionRepository, IPageRepository pageRepository)
+        public SubscriptionBlockController(IUserRepository userRepository, 
+            IPageSubscriptionRepository pageSubscriptionRepository, 
+            IPageRepository pageRepository,
+            IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
             _userRepository = userRepository;
             _subscriptionRepository = pageSubscriptionRepository;
@@ -46,7 +49,7 @@ namespace Foundation.Features.Blocks
         public override ActionResult Index(SubscriptionBlock currentBlock)
         {
             // Create a subscription block view model to fill the frontend block view
-            var blockViewModel = new SubscriptionBlockViewModel(currentBlock, PageRouteHelper.PageLink)
+            var blockViewModel = new SubscriptionBlockViewModel(currentBlock, _pageRouteHelper.PageLink)
             {
 
                 //get messages for view
