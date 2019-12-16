@@ -47,7 +47,8 @@ namespace Foundation.Features.Blocks
             IPageRepository pageRepository,
             ICommunityActivityRepository activityRepository,
             ICommunityRepository communityRepository,
-            ICommunityMemberRepository memberRepository)
+            ICommunityMemberRepository memberRepository,
+            IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
             _userRepository = userRepository;
             _ratingRepository = ratingRepository;
@@ -64,17 +65,17 @@ namespace Foundation.Features.Blocks
         /// <returns>The index action result.</returns>
         public override ActionResult Index(RatingBlock currentBlock)
         {
-            var target = PageRouteHelper.Page.ContentGuid.ToString();
+            var target = _pageRouteHelper.Page.ContentGuid.ToString();
 
-            var groupName = PageRouteHelper.Page is CommunityPage
-                            ? ((CommunityPage)PageRouteHelper.Page).Memberships.GroupName
+            var groupName = _pageRouteHelper.Page is CommunityPage
+                            ? ((CommunityPage)_pageRouteHelper.Page).Memberships.GroupName
                             : "";
 
             var group = string.IsNullOrEmpty(groupName)
                         ? null
                         : _communityRepository.Get(groupName);
 
-            var currentPageLink = PageRouteHelper.PageLink;
+            var currentPageLink = _pageRouteHelper.PageLink;
 
             // Create a rating block view model to fill the frontend block view
             var blockModel = new RatingBlockViewModel(currentBlock, currentPageLink)
