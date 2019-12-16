@@ -1,5 +1,6 @@
 ﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Social.Groups.Core;
+using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.Blocks;
 using Foundation.Social.Models.Groups;
@@ -26,7 +27,10 @@ namespace Foundation.Features.Blocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public MembershipDisplayBlockController(ICommunityRepository communityRepository, ICommunityMemberRepository memberRepository, IUserRepository userRepository)
+        public MembershipDisplayBlockController(ICommunityRepository communityRepository, 
+            ICommunityMemberRepository memberRepository, 
+            IUserRepository userRepository,
+            IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
             _communityRepository = communityRepository;
             _memberRepository = memberRepository;
