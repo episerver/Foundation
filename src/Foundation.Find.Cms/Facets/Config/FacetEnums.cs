@@ -19,7 +19,7 @@
         [EnumSelectionDescription(Text = "Price Range", Value = "PriceRange")]
         PriceRange,
     }
-    
+
     public enum FacetContentFieldName
     {
         [EnumSelectionDescription(Text = "Type of Content", Value = "PageTypes")]

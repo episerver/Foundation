@@ -1,18 +1,17 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Mvc;
-using System.Web.Mvc;
-using System.Linq;
-using EPiServer;
+﻿using EPiServer;
+using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
+using EPiServer.Framework.Blobs;
+using EPiServer.Framework.DataAnnotations;
+using EPiServer.Web.Mvc;
+using EPiServer.Web.Routing;
+using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Models.Blocks;
 using Foundation.Commerce.ViewModels;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Extensions;
-using EPiServer.Web.Routing;
 using System.Collections.Generic;
-using EPiServer.Framework.Blobs;
 using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {
@@ -56,7 +55,7 @@ namespace Foundation.Features.Blocks
 
             return PartialView("~/Features/Blocks/Views/AssetsDownloadLinksBlock.cshtml", model);
         }
-        
+
         public void Download(int contentLinkId)
         {
             var mediaData = _contentLoader.Get<IContent>(new ContentReference(contentLinkId)) as MediaData;
@@ -71,7 +70,7 @@ namespace Foundation.Features.Blocks
                         var routeSegment = downloadFile.RouteSegment;
                         var extension = Path.GetExtension(blob.FilePath) ?? "";
                         var downloadFileName = routeSegment.EndsWith(extension) ? routeSegment : routeSegment + extension;
-                        
+
                         HttpContext.Response.ContentType = "application/octet-stream";
                         HttpContext.Response.AddHeader("content-disposition", "attachment;filename=" + Path.GetFileName(downloadFileName));
                         HttpContext.Response.TransmitFile(blob.FilePath);

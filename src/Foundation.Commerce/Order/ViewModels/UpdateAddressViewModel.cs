@@ -1,6 +1,4 @@
-﻿using Foundation.Commerce.Customer.ViewModels;
-
-namespace Foundation.Commerce.Order.ViewModels
+﻿namespace Foundation.Commerce.Order.ViewModels
 {
     public class UpdateAddressViewModel
     {

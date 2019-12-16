@@ -1,7 +1,6 @@
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Order.ViewModels;
 using System;
-using System.Linq;
 
 namespace Foundation.Commerce.Order.Services
 {
