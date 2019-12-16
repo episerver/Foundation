@@ -262,7 +262,8 @@ namespace Foundation.Commerce.Order.Services
                         if (cart.GetFirstShipment().LineItems.Count > 0)
                         {
                             shipment = _orderGroupFactory.CreateShipment(cart);
-                        } else
+                        }
+                        else
                         {
                             shipment = cart.GetFirstShipment();
                         }
@@ -758,7 +759,7 @@ namespace Foundation.Commerce.Order.Services
         {
             var contentLink = _referenceConverter.GetContentLink(code);
             var entryContent = _contentLoader.Get<EntryContentBase>(contentLink);
-            
+
             ChangeQuantity(cart, fromShipmentId, code, quantity - 1);
             return AddItemToShipment(cart, entryContent, 1, toShipmentId, deliveryMethodId, warehouseCode);
         }

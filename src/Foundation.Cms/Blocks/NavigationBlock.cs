@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Navigation Block", 
-        GUID = "7C53F707-C932-4FDD-A654-37FF2A1258EB", 
+    [ContentType(DisplayName = "Navigation Block",
+        GUID = "7C53F707-C932-4FDD-A654-37FF2A1258EB",
         GroupName = CmsGroupNames.Content)]
     [SiteImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-30.png")]
     public class NavigationBlock : FoundationBlockData

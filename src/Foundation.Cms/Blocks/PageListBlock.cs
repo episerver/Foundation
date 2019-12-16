@@ -4,7 +4,6 @@ using EPiServer.DataAnnotations;
 using EPiServer.Filters;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.EditorDescriptors;
-using Foundation.Cms.Pages;
 using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

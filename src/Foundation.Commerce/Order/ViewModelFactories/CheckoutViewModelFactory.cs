@@ -121,7 +121,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
         {
             if (viewModel.Shipments.Count > 0)
             {
-                foreach(var shipment in viewModel.Shipments)
+                foreach (var shipment in viewModel.Shipments)
                 {
                     if (shipment.ShippingAddressType == 1)
                     {

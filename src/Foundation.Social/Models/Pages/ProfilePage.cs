@@ -13,13 +13,13 @@ namespace Foundation.Social.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/elected.png")]
     public class ProfilePage : Cms.Pages.ProfilePage
     {
-        [Display(Name = "Feed block",
+        [Display(Name = "Activity feed",
             Description = "The feed section of the profile page. Local feed block will display feed items for the pages a user has subscriped to.",
             GroupName = SystemTabNames.Content,
             Order = 10)]
-        public virtual FeedBlock Feed { get; set; }
+        public virtual FeedBlock ActivityFeed { get; set; }
 
-        [Display(Name = "Membership affiliation block",
+        [Display(Name = "Membership affiliation",
             Description = "The membership affiliation section of the profile page. Local membership affiliation block will display the groups that the currently logged in user is a member of.",
             GroupName = SystemTabNames.Content,
             Order = 20)]
