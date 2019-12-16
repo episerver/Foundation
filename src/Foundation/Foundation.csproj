@@ -854,6 +854,7 @@
     <Compile Include="Features\Api\PublicApiController.cs" />
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
+    <Compile Include="Features\Blocks\FeedBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
@@ -1807,6 +1808,7 @@
     <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="Features\Blocks\Views\AssetsDownloadLinksBlock.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_text-block.scss" />
+    <Content Include="Features\Blocks\Views\FeedBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
