@@ -1813,6 +1813,8 @@
     <Content Include="Features\Pages\CommunityPage\Index.cshtml" />
     <Content Include="Features\Blocks\Views\CommentsBlock.cshtml" />
     <Content Include="Features\Blocks\Views\FeedBlock.cshtml" />
+    <Content Include="Features\MyOrganization\_MyOrganizationLayout.cshtml" />
+    <Content Include="Features\MyAccount\_MyAccountLayout.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

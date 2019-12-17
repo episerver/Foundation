@@ -1,14 +1,9 @@
 ﻿@using System.Web.Mvc.Html
 @using Foundation.Commerce.ViewModels.Header
 @model QuickOrderPageViewModel
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
 
-<div class="row">
-    @if (!Request.Browser.IsMobileDevice)
-    {
-        Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
-    }
-    <div class="@(!Request.Browser.IsMobileDevice ? "col-main col-sm-9" : "col-12")">
-        <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
-        @Html.PropertyFor(m => m.CurrentContent.QuickOrderBlockContentArea)
-    </div>
-</div>
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+@Html.PropertyFor(m => m.CurrentContent.QuickOrderBlockContentArea)
