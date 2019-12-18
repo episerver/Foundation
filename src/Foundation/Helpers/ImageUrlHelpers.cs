@@ -15,10 +15,10 @@ namespace Foundation.Helpers
         /// <param name="contentLink"></param>
         /// <param name="width"></param>
         /// <returns></returns>
-        public static string WebPFallbackImageUrl(this UrlHelper urlHelper, ContentReference contentLink, int width)
+        public static string WebPFallbackImageUrl(this UrlHelper urlHelper, ContentReference contentLink, int? width, int? height)
         {
             var imageUrl = new UrlBuilder(urlHelper.ContentUrl(contentLink));
-            imageUrl = imageUrl.Resize(width, null, ImageProcessor.Imaging.ResizeMode.Pad, ImageProcessor.Imaging.AnchorPosition.Center, true);
+            imageUrl = imageUrl.Resize(width, height, ImageProcessor.Imaging.ResizeMode.Pad, ImageProcessor.Imaging.AnchorPosition.Center, true);
             if (WebPHelper.SupportsWebP(urlHelper.RequestContext.HttpContext.Request))
             {
                 imageUrl.QueryCollection.Add("format", "webp");
