@@ -860,6 +860,7 @@
     <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
     <Compile Include="Features\Blocks\NavigationBlockController.cs" />
+    <Compile Include="Features\Blocks\OrderSearchBlockController.cs" />
     <Compile Include="Features\Blocks\RatingBlockController.cs" />
     <Compile Include="Features\Blocks\SocialBlockController.cs" />
     <Compile Include="Features\Blocks\SubscriptionBlockController.cs" />
@@ -896,7 +897,7 @@
     <Compile Include="Features\MyAccount\OrderConfirmation\OrderConfirmationControllerBase.cs" />
     <Compile Include="Features\MyAccount\OrderDetails\OrderDetailsController.cs" />
     <Compile Include="Features\MyAccount\OrderHistory\OrderHistoryController.cs" />
-    <Compile Include="Features\MyAccount\OrdersBlock\OrdersBlockController.cs" />
+    <Compile Include="Features\MyAccount\OrderHistoryBlock\OrderHistoryBlockController.cs" />
     <Compile Include="Features\MyOrganization\Orders\OrdersController.cs" />
     <Compile Include="Features\MyOrganization\Organization\OrganizationController.cs" />
     <Compile Include="Features\MyAccount\ProfilePage\ProfilePageController.cs" />
@@ -1138,6 +1139,7 @@
     <Content Include="Assets\js\features\Cart.js" />
     <Content Include="Assets\js\features\Checkout.js" />
     <Content Include="Assets\js\features\Dropdown.js" />
+    <Content Include="Assets\js\features\OrderSearchBlock.js" />
     <Content Include="Assets\js\features\ProductRecs.js" />
     <Content Include="Assets\js\features\Header.js" />
     <Content Include="Assets\js\features\mobile-navigation.js" />
@@ -1582,7 +1584,7 @@
     <Content Include="Features\MyAccount\AddressBook\Index.cshtml" />
     <Content Include="Features\MyAccount\AddressBook\ModalAddressDialog.cshtml" />
     <Content Include="Features\MyAccount\OrderHistory\Index.cshtml" />
-    <Content Include="Features\MyAccount\OrdersBlock\Index.cshtml" />
+    <Content Include="Features\MyAccount\OrderHistoryBlock\Index.cshtml" />
     <Content Include="Features\Shared\Foundation\_WishListMiniCartDetails.cshtml" />
     <Content Include="Features\Shared\Foundation\_AddressRegion.cshtml" />
     <Content Include="Features\MyAccount\SubscriptionDetail\Index.cshtml" />
@@ -1813,6 +1815,9 @@
     <Content Include="Features\Pages\CommunityPage\Index.cshtml" />
     <Content Include="Features\Blocks\Views\CommentsBlock.cshtml" />
     <Content Include="Features\Blocks\Views\FeedBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\OrderSearchBlock.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_order-search-block.scss" />
+    <Content Include="Features\Blocks\Views\_OrderSearchListing.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
