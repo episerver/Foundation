@@ -35,7 +35,7 @@
     <div class="hero-block__teaser">
         @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty())
         {
-            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__link hero-block__image" style="background-image: url('@Url.ContentUrl(Model.CurrentBlock.BackgroundImage)'" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'">
+            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__link hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'">
             </div>
         }
         else if (Model.CurrentBlock.MainBackgroundVideo != null)
@@ -48,7 +48,7 @@
         }
         else
         {
-            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1250)'">
+            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
             </div>
         }
     </div>
