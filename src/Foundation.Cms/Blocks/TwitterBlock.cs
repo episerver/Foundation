@@ -6,6 +6,7 @@ namespace Foundation.Cms.Blocks
 {
     [ContentType(DisplayName = "Twitter Feed Block",
         GUID = "8ed98895-c4a5-4d4d-8abf-43853bd46bc8",
+        Description = "Display content from a Twitter feed",
         GroupName = CmsGroupNames.SocialMedia)]
     [ImageUrl("~/assets/icons/cms/blocks/twitter.png")]
     public class TwitterBlock : FoundationBlockData
