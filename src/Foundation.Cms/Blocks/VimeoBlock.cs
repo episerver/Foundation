@@ -7,7 +7,10 @@ using System.Text.RegularExpressions;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Vimeo Video", GUID = "a8172c33-e087-4e68-980e-a79b0e093675", Description = "Displays Vimeo Video", GroupName = CmsGroupNames.Content)]
+    [ContentType(DisplayName = "Vimeo Video",
+        GUID = "a8172c33-e087-4e68-980e-a79b0e093675",
+        Description = "Display Vimeo video",
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/gfx/Multimedia-thumbnail.png")]
     public class VimeoBlock : FoundationBlockData
     {

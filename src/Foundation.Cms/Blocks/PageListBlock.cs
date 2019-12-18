@@ -10,7 +10,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Page List Block", GUID = "30685434-33DE-42AF-88A7-3126B936AEAD", GroupName = SystemTabNames.Content)]
+    [ContentType(DisplayName = "Page List Block",
+        GUID = "30685434-33DE-42AF-88A7-3126B936AEAD",
+        Description = "A block that lists a bunch of pages",
+        GroupName = SystemTabNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class PageListBlock : FoundationBlockData
     {
