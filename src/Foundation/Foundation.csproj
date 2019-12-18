@@ -854,6 +854,7 @@
     <Compile Include="Features\Api\PublicApiController.cs" />
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
+    <Compile Include="Features\Blocks\CarouselBlockController.cs" />
     <Compile Include="Features\Blocks\CommentsBlockController.cs" />
     <Compile Include="Features\Blocks\FeedBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
@@ -1813,6 +1814,7 @@
     <Content Include="Features\Pages\CommunityPage\Index.cshtml" />
     <Content Include="Features\Blocks\Views\CommentsBlock.cshtml" />
     <Content Include="Features\Blocks\Views\FeedBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\CarouselBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
