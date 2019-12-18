@@ -19,3 +19,10 @@
     background: url('/Assets/imgs/ipadair.png') no-repeat center center;
     background-size: 775px 890px;
 }
+
+.epi-viewPort-480x800 .epi-editorViewport-previewBox,
+.epi-viewPort-1366x768 .epi-editorViewport-previewBox,
+.epi-viewPort-519x692 .epi-editorViewport-previewBox {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
