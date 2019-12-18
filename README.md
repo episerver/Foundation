@@ -99,8 +99,8 @@ Or clone project using Git
 |Public domain name for foundation:| Domain name for the application, for example, foundation.com.|
 |Public domain name for Commerce Manager: | Domain name for the Commerce Manager application, for example, commerce.foundation.com.|
 |License path:| If you have a license file, add the path to it. Otherwise you can add that later.|
-|SQL server name:| SQL server instance name. Add the same server name as the one you connected to in the [Pre-installation set-up](#pre-installation-set-up) steps for the SQL server.
-|sqlcmd command: | SQL command to execute, by default ```-S . -E ```. This can generally be left as is.|
+|SQL server name:| SQL server instance name. Add the same server name as the one you connected to in the [Pre-installation set-up](#pre-installation-set-up) steps for the SQL server. If using Azure SQL, provide the full dns name for your Azure SQL instance |
+|sqlcmd command: | SQL command to execute, by default ```-S . -E ```. This can generally be left as is. If using Azure SQL, pass username and password as ```-U <user> -P <password>```|
 
 ![Build parameters](https://i.ibb.co/WcKGLVh/Build-Parameters.png)
 
