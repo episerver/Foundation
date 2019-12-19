@@ -31,8 +31,8 @@ namespace Foundation.Features.Blocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public SubscriptionBlockController(IUserRepository userRepository, 
-            IPageSubscriptionRepository pageSubscriptionRepository, 
+        public SubscriptionBlockController(IUserRepository userRepository,
+            IPageSubscriptionRepository pageSubscriptionRepository,
             IPageRepository pageRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
