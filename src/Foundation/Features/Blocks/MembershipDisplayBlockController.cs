@@ -27,8 +27,8 @@ namespace Foundation.Features.Blocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public MembershipDisplayBlockController(ICommunityRepository communityRepository, 
-            ICommunityMemberRepository memberRepository, 
+        public MembershipDisplayBlockController(ICommunityRepository communityRepository,
+            ICommunityMemberRepository memberRepository,
             IUserRepository userRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {

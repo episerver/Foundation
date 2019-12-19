@@ -1,5 +1,4 @@
 ﻿using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Social.ViewModels;
