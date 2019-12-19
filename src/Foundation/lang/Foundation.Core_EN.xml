@@ -155,7 +155,7 @@
             <Description>You will be deducted from your credit account.</Description>
           </BudgetPayment>
           <GiftCardPayment>
-            <Description>1 point equals 1 currency unit.</Description>
+            <Description>You will be deducted from your gift card. The price will be converted to USD when you purchase.</Description>
           </GiftCardPayment>
           <CreditCard>
             <Labels>

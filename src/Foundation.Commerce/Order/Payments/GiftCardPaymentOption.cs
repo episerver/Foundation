@@ -41,7 +41,7 @@ namespace Foundation.Commerce.Order.Payments
             {
                 AvailableGiftCards.Add(new SelectListItem()
                 {
-                    Text = giftCard.GiftCardName + " - " + giftCard.RemainBalance + " point(s)",
+                    Text = giftCard.GiftCardName + " - " + decimal.Round(giftCard.RemainBalance) + " USD",
                     Value = giftCard.GiftCardId
                 });
             }

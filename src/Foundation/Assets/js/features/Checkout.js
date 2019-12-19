@@ -21,12 +21,22 @@
 
             axios.post(url, data)
                 .then(function (result) {
-                    $('#paymentBlock').html(result.data);
-                    feather.replace();
-                    inst.InitPayment();
+                    if (result.status != 200) {
+                        notification.Error(result);
+                    } else {
+                        $('#paymentBlock').html(result.data);
+                        feather.replace();
+                        inst.InitPayment();
+                    }
                 })
                 .catch(function (error) {
-                    notification.Error(error);
+                    if (error.response.status == 400) {
+                        $("#giftcard-alert").html(error.response.statusText);
+                        $("#giftcard-alert").removeClass("alert-info");
+                        $("#giftcard-alert").addClass("alert-danger");
+                    } else {
+                        notification.Error(error);
+                    }
                 })
                 .finally(function () {
                     $('.loading-box').hide();

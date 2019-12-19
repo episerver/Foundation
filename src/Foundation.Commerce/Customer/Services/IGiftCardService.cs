@@ -10,5 +10,6 @@ namespace Foundation.Commerce.Customer.Services
         string CreateGiftCard(GiftCard giftCard);
         string UpdateGiftCard(GiftCard giftCard);
         string DeleteGiftCard(string giftCardId);
+        GiftCard GetGiftCard(string giftCardId);
     }
 }

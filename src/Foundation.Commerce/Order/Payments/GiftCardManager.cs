@@ -1,6 +1,8 @@
 ﻿using EPiServer.Commerce.Order;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
+using Mediachase.Commerce;
+using Mediachase.Commerce.Shared;
 using System;
 
 namespace Foundation.Commerce.Order.Payments
@@ -24,6 +26,11 @@ namespace Foundation.Commerce.Order.Payments
             {
                 FilterElement.EqualElement(ContactIdField, contactId)
             });
+        }
+
+        public static EntityObject GetGiftCardById(PrimaryKeyId giftCardId)
+        {
+            return BusinessManager.Load(GiftCardMetaClass, giftCardId);
         }
 
         public static PrimaryKeyId CreateGiftCard(string giftCardName, PrimaryKeyId contactId, decimal initialAmount,
@@ -59,16 +66,17 @@ namespace Foundation.Commerce.Order.Payments
             BusinessManager.Delete(giftCard);
         }
 
-        public static bool PurchaseByGiftCard(IPayment payment)
+        public static bool PurchaseByGiftCard(IPayment payment, Currency currency)
         {
             var giftCard = BusinessManager.Load(GiftCardMetaClass, new PrimaryKeyId(new Guid(payment.Properties["GiftCardId"].ToString())));
-            if (payment.Amount > (decimal)giftCard[RemainBalanceField])
+            var priceInUSD = decimal.Round(CurrencyFormatter.ConvertCurrency(new Money(payment.Amount, currency), Currency.USD));
+            if (priceInUSD > (decimal)giftCard[RemainBalanceField])
             {
                 return false;
             }
             else
             {
-                giftCard[RemainBalanceField] = (decimal)giftCard[RemainBalanceField] - payment.Amount;
+                giftCard[RemainBalanceField] = (decimal)giftCard[RemainBalanceField] - priceInUSD;
                 if ((decimal)giftCard[RemainBalanceField] <= 0)
                 {
                     giftCard[IsActiveField] = false;
