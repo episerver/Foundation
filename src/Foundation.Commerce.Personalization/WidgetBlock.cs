@@ -8,7 +8,7 @@ namespace Foundation.Commerce.Personalization
 {
     [ContentType(DisplayName = "Recommendation Widget",
         GUID = "d5cc427b-afa4-4c4d-8986-eb5f73e0b9fe",
-        Description = "Block that adds recommendations based on selcted widget type.",
+        Description = "Block that adds recommendations based on selected widget type",
         GroupName = "Personalization")]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-07.png")]
     public class WidgetBlock : BlockData

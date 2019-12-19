@@ -123,4 +123,22 @@
             }
         }
     }
+
+    @media (min-width: 320px) and (max-width: 768px) {
+        &__box {
+            width: 95%;
+        }
+
+        &__container .article__title h1 {
+            font-size: 2rem;
+        }
+
+        &__content {
+            padding: 1rem 1.2rem;
+
+            h2 {
+                margin-top: 1rem;
+            }
+        }
+    }
 }
