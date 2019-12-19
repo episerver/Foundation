@@ -1819,6 +1819,8 @@
     <Content Include="Features\Blocks\Views\OrderSearchBlock.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_order-search-block.scss" />
     <Content Include="Features\Blocks\Views\_OrderSearchListing.cshtml" />
+    <Content Include="Features\MyOrganization\_MyOrganizationLayout.cshtml" />
+    <Content Include="Features\MyAccount\_MyAccountLayout.cshtml" />
     <Content Include="Features\Blocks\Views\CarouselBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

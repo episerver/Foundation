@@ -1,9 +1,10 @@
 ﻿@using Foundation.Commerce.ViewModels.Header
 @model Foundation.Commerce.Customer.ViewModels.AddressCollectionViewModel
-
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
 <div class="row">
-    @Html.Action("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link })
-    <div class="col-md-12 col-lg-9 jsAddressBook">
+    <div class="col-12 jsAddressBook">
         <div class="row mypages-header">
             <div class="col-xs-12 col-md-12">
                 <h3>@Html.TranslateFallback("/AddressBook/Available", "Available Address")</h3>
@@ -53,7 +54,7 @@
                                     using (Html.BeginForm("SetPreferredBillingAddress", "AddressBook", new { addressId = address.AddressId }, FormMethod.Post))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <button type="submit" class="button-black">@Html.TranslateFallback("/AddressBook/Form/Label/SetBillingAddress", "Set billing address")</button>
+                                        <button type="submit" class="button-black full-width">@Html.TranslateFallback("/AddressBook/Form/Label/SetBillingAddress", "Set billing address")</button>
                                         <br />
                                     }
                                 }

@@ -1,4 +1,5 @@
 ﻿using EPiServer.ServiceLocation;
+using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Blocks;
@@ -18,18 +19,18 @@ namespace Foundation.Features.Blocks
     /// </summary>
     public class FeedBlockController : SocialBlockController<FeedBlock>
     {
-        private readonly IUserRepository userRepository;
-        private readonly ICommunityFeedRepository feedRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ICommunityFeedRepository _feedRepository;
         private const string ErrorMessage = "Error";
         private const string ErrorGettingUserIdMessage = "There was an error identifying the logged in user. Please make sure you are logged in and try again.";
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public FeedBlockController()
+        public FeedBlockController(IUserRepository userRepository, ICommunityFeedRepository communityFeedRepository, IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
-            this.userRepository = ServiceLocator.Current.GetInstance<IUserRepository>();
-            this.feedRepository = ServiceLocator.Current.GetInstance<ICommunityFeedRepository>();
+            _userRepository = userRepository;
+            _feedRepository = communityFeedRepository;
         }
 
         /// <summary>
@@ -64,11 +65,11 @@ namespace Foundation.Features.Blocks
         {
             try
             {
-                var userId = userRepository.GetUserId(this.User);
+                var userId = _userRepository.GetUserId(this.User);
                 if (!String.IsNullOrWhiteSpace(userId))
                 {
                     blockViewModel.Feed =
-                        this.feedRepository.Get(new CommunityFeedFilter
+                        _feedRepository.Get(new CommunityFeedFilter
                         {
                             Subscriber = userId,
                             PageSize = currentBlock.FeedDisplayMax
