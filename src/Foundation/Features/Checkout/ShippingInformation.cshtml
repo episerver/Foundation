@@ -5,9 +5,8 @@
 
         @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
         {
-            <div class="card items jsShipmentRow">
+            <div class="card items border-radius-none jsShipmentRow">
                 <div class="card-body">
-
                     <div class="row">
                         <div class="col-xs-12 col-md-8">
                             <div class="row">
@@ -69,7 +68,6 @@
                                                                data-shipmentId="@Model.Shipments[shipmentIndex - 1].ShipmentId" />
                                                     </div>
                                                     <br />
-
                                                     <div class="@(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "" : "hidden" )">
                                                         <button type="button" class="button-white jsSeparateHint 
                                                                 @(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "jsSeparateBtn" : "")"
@@ -89,7 +87,6 @@
                                     }
                                 </div>
                             </div>
-
                         </div>
 
                         <!--Shipping methods-->

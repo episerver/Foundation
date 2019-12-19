@@ -1,10 +1,14 @@
 ﻿@model CheckoutViewModel
 
+<div class="col-12">
+    <h3 class="checkout-title">SECURE CHECKOUT</h3>
+</div>
+
 @using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "row jsCheckoutForm", id = "jsCheckoutForm", novalidate = "novalidate" }))
 {
     @Html.AntiForgeryToken()
     <div class="col-md-8 col-xs-12">
-        <div class="card items">
+        <div class="card items border-radius-none">
             <div class="card-body flex-between">
                 @if (Request.UrlReferrer != null)
                 {
@@ -18,21 +22,20 @@
         </div>
         <br />
         @Html.Partial("ShippingInformation", Model)
-        <br />
-        <div class="card items">
+        <div class="card items border-radius-none">
             <div class="card-body">
                 @Html.Partial("BillingInformation", Model)
             </div>
         </div>
         <br />
-        <div class="card items">
+        <div class="card items border-radius-none">
             <div class="card-body">
                 @Html.Partial("Subscription", Model)
             </div>
         </div>
     </div>
     <div class="col-md-4 col-xs-12">
-        <div class="card summary">
+        <div class="card summary border-radius-none">
             <div class="card-body">
                 @Html.Partial("_Coupon", Model)
                 <div class="row">
