@@ -1,5 +1,7 @@
 using EPiServer.Commerce.Order;
 using Foundation.Commerce.Customer.ViewModels;
+using Mediachase.Commerce;
+using Mediachase.Commerce.Website;
 using System.Collections.Generic;
 
 namespace Foundation.Commerce.Order.ViewModels
@@ -12,5 +14,7 @@ namespace Foundation.Commerce.Order.ViewModels
         public IList<AddressModel> ShippingAddresses { get; set; }
         public string QuoteStatus { get; set; }
         public int OrderGroupId { get; set; }
+        public Money OrderTotal { get; set; }
+        public IList<IPayment> OrderPayments { get; set; }
     }
 }

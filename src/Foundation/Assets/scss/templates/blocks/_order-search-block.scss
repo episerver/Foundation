@@ -1,0 +1,16 @@
+﻿.th {
+    &-filter {
+        outline: 0;
+    }
+
+    &-title {
+        color: white;
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+.advanced-filter--box {
+    padding: 15px;
+}

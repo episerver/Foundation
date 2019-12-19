@@ -23,14 +23,14 @@ namespace Foundation.Features.MyAccount.OrdersBlock
 {
     [Authorize]
     [TemplateDescriptor(Default = true)]
-    public class OrdersBlockController : BlockController<OrderHistoryBlock>
+    public class OrderHistoryBlockController : BlockController<OrderHistoryBlock>
     {
         private readonly IAddressBookService _addressBookService;
         private readonly IOrderRepository _orderRepository;
         private readonly IContentLoader _contentLoader;
         private readonly ICustomerService _customerService;
 
-        public OrdersBlockController(IAddressBookService addressBookService, IOrderRepository orderRepository, IContentLoader contentLoader, ICustomerService customerService)
+        public OrderHistoryBlockController(IAddressBookService addressBookService, IOrderRepository orderRepository, IContentLoader contentLoader, ICustomerService customerService)
         {
             _addressBookService = addressBookService;
             _orderRepository = orderRepository;
