@@ -15,7 +15,8 @@ namespace Foundation.Cms.Blocks
 {
     [ContentType(DisplayName = "Menu Item Block",
         GUID = "a6d0242a-3946-4a80-9eec-4d9b2e5fc2d0",
-        Description = "Used to create a menu item")]
+        Description = "Used to create a menu item",
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
     public class MenuItemBlock : BlockData
     {
