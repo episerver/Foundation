@@ -8,6 +8,9 @@ using Foundation.Cms.EditorDescriptors;
 using Foundation.Commerce;
 using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Commerce.Models.Pages;
+using Foundation.Find.Cms.Facets;
+using Foundation.Find.Cms.Facets.Config;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Demo.Models
@@ -18,7 +21,7 @@ namespace Foundation.Demo.Models
         AvailableInEditMode = true,
         GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-02.png")]
-    public class DemoHomePage : CommerceHomePage
+    public class DemoHomePage : CommerceHomePage, IFacetConfiguration
     {
         public override void SetDefaultValues(ContentType contentType)
         {
@@ -58,6 +61,14 @@ namespace Foundation.Demo.Models
         [Display(Name = "Search catalog", GroupName = CommerceTabNames.SearchSettings, Order = 250,
             Description = "The catalogs that will be returned by search.")]
         public virtual int SearchCatalog { get; set; }
+
+        [Display(
+          Name = "Search Filters Configuration",
+          Description = "Manage filters to be displayed on Search",
+          GroupName = CommerceTabNames.SearchSettings,
+          Order = 300)]
+        [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterConfigurationItem>))]
+        public virtual IList<FacetFilterConfigurationItem> SearchFiltersConfiguration { get; set; }
 
         #endregion
     }

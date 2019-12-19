@@ -4,7 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Linkedin Feed Block", GUID = "419db9dd-44bc-4540-b446-fcb5f6d588fa", GroupName = CmsGroupNames.SocialMedia)]
+    [ContentType(DisplayName = "Linkedin Feed Block",
+        GUID = "419db9dd-44bc-4540-b446-fcb5f6d588fa",
+        Description = "Display content from a Linkedin feed",
+        GroupName = CmsGroupNames.SocialMedia)]
     [ImageUrl("~/assets/icons/cms/blocks/rss.png")]
     public class LinkedInCompanyBlock : FoundationBlockData
     {

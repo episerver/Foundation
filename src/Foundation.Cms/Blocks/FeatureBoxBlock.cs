@@ -10,7 +10,10 @@ namespace Foundation.Cms.Blocks
     /// <summary>
     /// FeatureBox Block model presents information at the footer of the page.
     /// </summary>
-    [ContentType(DisplayName = "Feature Box Block", GUID = "aa3e5e42-6fbe-416f-8027-e77aa290d09a", Description = "Define a feature box at the footer of the page")]
+    [ContentType(DisplayName = "Feature Box Block",
+        GUID = "aa3e5e42-6fbe-416f-8027-e77aa290d09a",
+        Description = "Define a feature box at the footer of the page",
+        GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-11.png")]
     public class FeatureBoxBlock : FoundationBlockData
     {

@@ -153,17 +153,34 @@
     &__review {
         display: flex;
         width: 100%;
-        padding: 15px;
+        padding: 15px 0px;
         border-bottom: 1px solid #eeeeee;
 
         &__right {
             margin-right: 30px;
+        }
+
+        h5 {
+            margin-bottom: 0px;
+        }
+
+        p {
+            margin-bottom: 0px;
         }
     }
 
     &__association {
         padding: 15px 0px;
     }
+}
+
+.review__rating {
+    padding-right: 15px;
+}
+
+.review__detail {
+    padding-left: 15px;
+    border-left: 1px solid #eeeeee;
 }
 
 #reviewsListing {

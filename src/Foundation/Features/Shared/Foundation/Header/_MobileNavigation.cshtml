@@ -1,73 +1,69 @@
 ﻿@model Foundation.Demo.ViewModels.DemoHeaderViewModel
 
 <!-- Navigation bar for Mobile -->
-<div class="container mobile-navigation-container" style="max-width: 100%;">
-    <div class="row">
-        <div class="d-sm-block d-lg-none" style="width: 100%;">
-            <!-- Navigation -->
-            <div class="mobile-navigation">
-
-                <!-- Left Menu -->
-                <div class="mobile-navigation__left">
-                    <div class="mobile-navigation__item" id="open-offside-menu">
-                        <div class="hamburger-menu">
-                            <span class="hamburger-menu__line"></span>
-                            <span class="hamburger-menu__line"></span>
-                            <span class="hamburger-menu__line"></span>
-                        </div>
+<div class="mobile-navigation-wrapper">
+    <div class="d-sm-block d-lg-none">
+        <!-- Navigation -->
+        <div class="mobile-navigation">
+            <!-- Left Menu -->
+            <div class="mobile-navigation__left">
+                <div class="mobile-navigation__item" id="open-offside-menu">
+                    <div class="hamburger-menu">
+                        <span class="hamburger-menu__line"></span>
+                        <span class="hamburger-menu__line"></span>
+                        <span class="hamburger-menu__line"></span>
                     </div>
+                </div>
 
-                    <div class="mobile-navigation__item">
-                        <a href="/" class="mobile-navigation__logo">
-                            @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @Class = "img-fluid" })
-                        </a>
+                <div class="mobile-navigation__item" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
+                    <a href="/" class="mobile-navigation__logo">
+                        @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @Class = "img-fluid" })
+                    </a>
+                </div>
+
+                <!-- Search box -->
+                <div class="mobile-navigation__search-box" style="display: none" id="mobile-searchbox">
+                    <div class="icon-menu">
+                        <i data-feather="search"></i>
                     </div>
-
-                    <!-- Search box -->
-                    <div class="mobile-navigation__search-box" style="display: none" id="mobile-searchbox">
-                        <div class="icon-menu">
-                            <i data-feather="search"></i>
-                        </div>
-                        <input class="mobile-navigation__search-text jsSearchText" type="text" placeholder="Search" 
-                               data-search="@Url.ContentUrl(Model.DemoHomePage.SearchPage)"
-                               data-result-container="#jsResultSearchMobile"/>
-                        <div class="searchbox-popover" id="jsResultSearchMobile" style="display: none">
-                            <div style="position: relative; min-height: 80px;">
-                                <div class="loading-cart" style="display: none">
-                                    <div class="loader"></div>
-                                </div>
-                                <div class="js-searchbox-content">
-                                </div>
+                    <input class="mobile-navigation__search-text jsSearchText" type="text" placeholder="Search"
+                           data-search="@Url.ContentUrl(Model.DemoHomePage.SearchPage)"
+                           data-result-container="#jsResultSearchMobile" />
+                    <div class="searchbox-popover" id="jsResultSearchMobile" style="display: none">
+                        <div style="position: relative; min-height: 80px;">
+                            <div class="loading-cart" style="display: none">
+                                <div class="loader"></div>
+                            </div>
+                            <div class="js-searchbox-content">
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-
-                <!-- Right Menu -->
-                <div class="mobile-navigation__right">
-                    <div class="icon-menu" id="open-searh-box">
-                        <i data-feather="search"></i>
-                    </div>
-
-                    <!-- Close Search box -->
-                    <div class="icon-menu border-right" style="display: none" id="close-search-box">
-                        <i data-feather="x"></i>
-                    </div>
-
-                    <div class="d-none d-sm-block">
-                        <div class="icon-menu jsCartBtn jsOpenCartMobile" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0">
-                            <span class="none-border icon-menu--has-badge">
-                                <i data-feather="shopping-cart"></i>
-                                <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
-                            </span>
-                        </div>
-                    </div>
+            <!-- Right Menu -->
+            <div class="mobile-navigation__right">
+                <div class="icon-menu" id="open-searh-box">
+                    <i data-feather="search"></i>
                 </div>
 
+                <!-- Close Search box -->
+                <div class="icon-menu border-right" style="display: none" id="close-search-box">
+                    <i data-feather="x"></i>
+                </div>
+
+                <div class="d-none d-sm-block">
+                    <div class="icon-menu jsCartBtn jsOpenCartMobile" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0">
+                        <span class="none-border icon-menu--has-badge">
+                            <i data-feather="shopping-cart"></i>
+                            <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
+                        </span>
+                    </div>
+                </div>
             </div>
 
         </div>
+
     </div>
 
     <!-- Side menu of Navigation bar for Mobile -->
@@ -113,19 +109,18 @@
                     </a>
                 }
             }
-
         </div>
 
         <div class="tab-content offside-navbar__tab-content">
             <div id="mobile-menu" class="tab-pane fade show active">
                 <ul class="offside-navbar--menu">
-                    @if (Model.MenuItems.Count > 0)
+                    @if (Model.MenuItems != null && Model.MenuItems.Count > 0)
                     {
                         foreach (var item in Model.MenuItems)
                         {
                             <li class="offside-navbar--menu__item jsFirstLi">
                                 <a href="@item.Uri">@item.Name</a>
-                                @if (item.ChildLinks.Count > 0)
+                                @if (item.ChildLinks != null && item.ChildLinks.Count > 0)
                                 {
                                     <i data-feather="chevron-up" class="collapsed expand-collapse-child hidden jsExpandCollapse"></i>
                                     <i data-feather="chevron-down" class="expanded expand-collapse-child jsExpandCollapse"></i>
@@ -135,12 +130,14 @@
                                             <li class="offside-navbar--menu__item main-category">
                                                 @child.MainCategoryText
                                             </li>
-
-                                            foreach (var childLink in child.ListCategories)
+                                            if (child.ListCategories != null)
                                             {
-                                                <li class="offside-navbar--menu__item">
-                                                    <a href="@Url.GetFriendlyUrl(childLink.Href)">@childLink.Text</a>
-                                                </li>
+                                                foreach (var childLink in child.ListCategories)
+                                                {
+                                                    <li class="offside-navbar--menu__item">
+                                                        <a href="@Url.GetFriendlyUrl(childLink.Href)">@childLink.Text</a>
+                                                    </li>
+                                                }
                                             }
                                         }
                                     </ul>
@@ -350,7 +347,6 @@
                 </div>
             </div>
         </div>
-
     }
 </div>
 <!-- END - Navigation bar for Mobile -->

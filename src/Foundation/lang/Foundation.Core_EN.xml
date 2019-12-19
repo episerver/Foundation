@@ -1058,6 +1058,9 @@
       </defaultprice>
     </facetregistry>
     <contenttypes>
+      <SiteURLPredefinedHiddenElementBlock>
+        <name>Site URL</name>
+      </SiteURLPredefinedHiddenElementBlock>
       <featureboxblock>
         <properties>
           <iconname>
@@ -1084,7 +1087,7 @@
       </cookiedropblock>
       <customizedsearchblock>
         <name>Customized Search Block</name>
-        <properties>  
+        <properties>
           <heading>
             <caption>Heading</caption>
           </heading>

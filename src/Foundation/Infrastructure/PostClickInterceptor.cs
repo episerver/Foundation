@@ -1,14 +1,14 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Hosting;
-using Episerver.Marketing.Common.Helpers;
+﻿using Episerver.Marketing.Common.Helpers;
 using EPiServer;
 using EPiServer.ServiceLocation;
 using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Tracking.Core;
 using EPiServer.Tracking.PageView;
+using System.Configuration;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Hosting;
 
 namespace Foundation.Infrastructure
 {

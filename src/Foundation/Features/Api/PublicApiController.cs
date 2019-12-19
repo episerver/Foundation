@@ -169,7 +169,11 @@ namespace Foundation.Features.Api
                         });
                 }
 
-                return new EmptyResult();
+                return Json(new
+                {
+                    success = true,
+                    returnUrl = viewModel.ReturnUrl
+                });
             }
 
             ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));

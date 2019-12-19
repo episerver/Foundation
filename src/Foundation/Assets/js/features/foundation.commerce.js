@@ -102,5 +102,10 @@
         var b2bOrder = new B2BOrder();
         b2bOrder.Init();
         // --- End
+
+        // Order Search Block
+        var orderSearchBlock = new OrderSearchBlock();
+        orderSearchBlock.Init();
+        // --- End
     }
 }

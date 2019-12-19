@@ -1,5 +1,4 @@
 ﻿using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Social.ViewModels;
@@ -10,9 +9,9 @@ namespace Foundation.Features.Blocks
 {
     public abstract class SocialBlockController<T> : BlockController<T> where T : BlockData
     {
-        protected readonly IPageRouteHelper PageRouteHelper;
+        protected readonly IPageRouteHelper _pageRouteHelper;
 
-        protected SocialBlockController() => PageRouteHelper = ServiceLocator.Current.GetInstance<IPageRouteHelper>();
+        protected SocialBlockController(IPageRouteHelper pageRouteHelper) => _pageRouteHelper = pageRouteHelper;
 
         public List<MessageViewModel> RetrieveMessages(string key)
         {

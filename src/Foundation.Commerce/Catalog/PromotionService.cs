@@ -45,7 +45,6 @@ namespace Foundation.Commerce.Catalog
 
         public IPriceValue GetDiscountPrice(CatalogKey catalogKey, MarketId marketId, Currency currency) => GetDiscountPriceList(new[] { catalogKey }, marketId, currency).FirstOrDefault();
 
-
         public IPriceValue GetDiscountPrice(IPriceValue price, ContentReference contentLink, Currency currency, IMarket market)
         {
             var discountedPrice = _promotionEngine.GetDiscountPrices(new[] { contentLink }, market, currency, _referenceConverter, _lineItemCalculator);
@@ -57,7 +56,7 @@ namespace Foundation.Commerce.Catalog
                     CatalogKey = price.CatalogKey,
                     CustomerPricing = CustomerPricing.AllCustomers,
                     MarketId = price.MarketId,
-                    MinQuantity = 1,
+                    MinQuantity = price.MinQuantity,
                     UnitPrice = highestDiscount,
                     ValidFrom = DateTime.UtcNow,
                     ValidUntil = null
@@ -77,7 +76,7 @@ namespace Foundation.Commerce.Catalog
                     CatalogKey = new CatalogKey(_referenceConverter.GetCode(contentLink)),
                     CustomerPricing = CustomerPricing.AllCustomers,
                     MarketId = price.MarketId,
-                    MinQuantity = 1,
+                    MinQuantity = price.MinQuantity,
                     UnitPrice = highestDiscount,
                     ValidFrom = DateTime.UtcNow,
                     ValidUntil = null
@@ -88,7 +87,7 @@ namespace Foundation.Commerce.Catalog
                 CatalogKey = new CatalogKey(_referenceConverter.GetCode(contentLink)),
                 CustomerPricing = CustomerPricing.AllCustomers,
                 MarketId = price.MarketId,
-                MinQuantity = 1,
+                MinQuantity = price.MinQuantity,
                 UnitPrice = price.UnitPrice,
                 ValidFrom = DateTime.UtcNow,
                 ValidUntil = null

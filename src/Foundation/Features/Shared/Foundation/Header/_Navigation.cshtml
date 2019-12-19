@@ -1,4 +1,5 @@
 ﻿@model Foundation.Demo.ViewModels.DemoHeaderViewModel
+@Html.FullRefreshPropertiesMetaData(new[] { "MainMenu", "SiteLogo" })
 
 <!-- Navigation bar for Desktop -->
 <div class="d-none d-lg-block">
@@ -6,9 +7,12 @@
         <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
             @Html.Partial("_Menu", Model.MenuItems)
         </div>
-        <a href="/" class="navigation__logo flex-center" style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
-            @Html.PropertyFor(model => model.DemoHomePage.SiteLogo, new { @class = "img-fluid" })
-        </a>
+        <div class="navigation__logo @(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
+             style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto" : "")">
+            <a href="/">
+                <img class="img-fluid" src="@Url.ContentUrl(Model.DemoHomePage.SiteLogo)" @Html.EditAttributes(x => x.DemoHomePage.SiteLogo) />
+            </a>
+        </div>
         <ul class="navigation__right">
             @if (Request.IsAuthenticated)
             {
@@ -31,15 +35,19 @@
             }
             @if (Model.ShowCommerceControls)
             {
-                <li>
-                    <div class="dropdown">
-                        <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
-                            <i data-feather="heart"></i>
-                            <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                if (Request.IsAuthenticated)
+                {
+                    <li>
+                        <div class="dropdown">
+                            <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -2" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
+                                <i data-feather="heart"></i>
+                                <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                            </div>
+                            @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
                         </div>
-                        @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
-                    </div>
-                </li>
+                    </li>
+                }
+
                 <li>
                     <div class="dropdown">
                         <div class="icon-menu icon-menu--has-badge jsCartBtn" data-toggle="dropdown" data-offset="-162, -2" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">

@@ -19,19 +19,19 @@
 @if (string.IsNullOrEmpty(Model.Template) || Model.Template == TemplateSelections.Grid)
 {
 
-    <div class="blog__thumbnail">
+    <a class="blog__thumbnail" href="@Model.Page.ContentLink.GetPublicUrl()">
         <div style="width: 100%">
             <picture>
                 @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
                 {
-                    <img class="img-fluid" src="@Url.ContentUrl(page.PageImage)" />
+                    <img class="img-fluid" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
                 }
             </picture>
         </div>
         <div class="blog__title-container">
             <div class="blog__title-wrapper">
                 <h2 class="blog__title">
-                    <a href="@Model.Page.ContentLink.GetPublicUrl()">@(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")</a>
+                    @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
                 </h2>
                 @if (Model.ShowPublishDate)
                 {
@@ -43,26 +43,26 @@
                 }
             </div>
         </div>
-    </div>
+    </a>
 }
 
 @if (Model.Template == TemplateSelections.ImageLeft)
 {
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
     var textCol = imageCol == 12 ? 12 : 12 - imageCol;
-    <div class="row">
+    <a class="row" href="@Model.Page.ContentLink.GetPublicUrl()">
         <div class="col-xs-12 col-@imageCol">
             <picture style="width: 100%">
                 @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
                 {
-                    <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(page.PageImage)" />
+                    <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
                 }
             </picture>
         </div>
 
         <div class="col-xs-12 col-@textCol">
             <h4 class="title">
-                <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">@(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")</a>
+                @Html.Raw(page != null ? page.MetaTitle : Model.Page.Name)
             </h4>
             @if (Model.ShowPublishDate)
             {
@@ -75,19 +75,18 @@
             }
 
         </div>
-    </div>
+    </a>
     <hr />
 }
 
 @if (Model.Template == TemplateSelections.ImageTop)
 {
-
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
-    <div class="col-@imageCol preview--image-top">
+    <a class="col-@imageCol preview--image-top" href="@Model.Page.ContentLink.GetPublicUrl()">
         <picture style="height: 100%;">
             @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
             {
-                <img class="img-fluid preview--image-top__image" src="@Url.ContentUrl(page.PageImage)" />
+                <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
             }
         </picture>
         <div style="flex-basis: 116px; flex-shrink: 0">
@@ -96,16 +95,33 @@
                 <p class="sub-title">@Model.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
             }
             <h4>
-                <a class="link" href="@Model.Page.ContentLink.GetPublicUrl()">
-                    @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
-                </a>
+                @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
             </h4>
 
             @if (page != null && Model.ShowIntroduction)
             {
-                <p class="light-text">@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p> 
+                <p class="light-text">@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p>
             }
         </div>
 
-    </div>
+    </a>
+}
+
+@if (Model.Template == TemplateSelections.NoImage)
+{
+    var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
+    <a class="col-@imageCol preview--image-top" href="@Model.Page.ContentLink.GetPublicUrl()">
+        <h4>
+            @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
+        </h4>
+        @if (Model.ShowPublishDate)
+        {
+            <p class="sub-title">@Model.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+        }
+        @if (page != null && Model.ShowIntroduction)
+        {
+            <br />
+            <p class="light-text">@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p>
+        }
+    </a>
 }

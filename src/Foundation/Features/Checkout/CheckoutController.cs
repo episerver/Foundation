@@ -95,7 +95,7 @@ namespace Foundation.Features.Checkout
         [OutputCache(Duration = 0, NoStore = true)]
         public ActionResult Index(CheckoutPage currentPage, int? isGuest)
         {
-            if (CartIsNullOrEmpty()) 
+            if (CartIsNullOrEmpty())
             {
                 return View("EmptyCart", new CheckoutMethodViewModel(currentPage));
             }
@@ -124,7 +124,7 @@ namespace Foundation.Features.Checkout
             {
                 viewModel.BillingAddressType = 1;
             }
-            else 
+            else
             {
                 viewModel.BillingAddressType = 0;
             }
@@ -135,7 +135,8 @@ namespace Foundation.Features.Checkout
                 if (string.IsNullOrEmpty(viewModel.Shipments[i].Address.AddressId))
                 {
                     viewModel.Shipments[i].ShippingAddressType = shippingAddressType;
-                } else
+                }
+                else
                 {
                     viewModel.Shipments[i].ShippingAddressType = 1;
                 }
@@ -451,8 +452,8 @@ namespace Foundation.Features.Checkout
                 viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
                 viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
                 viewModel.UseShippingingAddressForBilling = checkoutViewModel.UseShippingingAddressForBilling;
-                
-                for(var i = 0; i < checkoutViewModel.Shipments.Count; i++)
+
+                for (var i = 0; i < checkoutViewModel.Shipments.Count; i++)
                 {
                     viewModel.Shipments[i].Address = checkoutViewModel.Shipments[i].Address;
                     viewModel.Shipments[i].ShippingAddressType = checkoutViewModel.Shipments[i].ShippingAddressType;
@@ -468,12 +469,12 @@ namespace Foundation.Features.Checkout
             if (checkoutViewModel.BillingAddressType == 0)
                 _addressBookService.Save(checkoutViewModel.BillingAddress);
 
-            foreach(var shipment in checkoutViewModel.Shipments)
+            foreach (var shipment in checkoutViewModel.Shipments)
             {
                 if (shipment.ShippingAddressType == 0 && shipment.ShippingMethodId != _cartService.InStorePickupInfoModel.MethodId)
                     _addressBookService.Save(shipment.Address);
             }
-            
+
             if (Request.IsAuthenticated)
             {
                 var contact = _customerContext.GetCurrentContact().Contact;
@@ -638,7 +639,7 @@ namespace Foundation.Features.Checkout
             var viewModel = CreateCheckoutViewModel(content);
             if (!checkoutViewModel.UseShippingingAddressForBilling)
             {
-                for(var i = 0; i < checkoutViewModel.Shipments.Count; i++)
+                for (var i = 0; i < checkoutViewModel.Shipments.Count; i++)
                 {
                     if (checkoutViewModel.Shipments[i].ShippingAddressType == 0)
                     {
@@ -660,7 +661,7 @@ namespace Foundation.Features.Checkout
                         viewModel.Shipments[i].Address = checkoutViewModel.Shipments[i].Address;
                     }
                 }
-                
+
             }
 
             _checkoutService.UpdateShippingAddresses(CartWithValidationIssues.Cart, viewModel);

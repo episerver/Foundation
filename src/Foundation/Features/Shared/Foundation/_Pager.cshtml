@@ -42,7 +42,7 @@
         if (Model.ShowPageSizes)
         {
             <div class="mvc-grid-page-sizes">
-                @if (Model.PageSizes.Count > 0)
+                @if (Model.PageSizes != null && Model.PageSizes.Count > 0)
                 {
                     <select class="mvc-grid-pager-rows">
                         @foreach (KeyValuePair<Int32, String> size in Model.PageSizes)

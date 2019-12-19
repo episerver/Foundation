@@ -5,7 +5,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {
-    [ContentType(DisplayName = "Blog Comment Block", GUID = "656ff547-1c31-4fc1-99b9-93573d24de07", GroupName = CmsGroupNames.Blog, Order = 10)]
+    [ContentType(DisplayName = "Blog Comment Block",
+        GUID = "656ff547-1c31-4fc1-99b9-93573d24de07",
+        Description = "Configures the frontend view properties of a blog comment block",
+        GroupName = CmsGroupNames.Blog, Order = 10)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
     public class BlogCommentBlock : BlockData
     {

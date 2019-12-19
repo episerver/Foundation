@@ -76,7 +76,7 @@
             }
         }
 
-        @if (Model.CurrentBlock.Template == TemplateSelections.ImageTop)
+        @if (Model.CurrentBlock.Template == TemplateSelections.ImageTop || Model.CurrentBlock.Template == TemplateSelections.NoImage)
         {
             if (Model.Pages != null && Model.Pages.Any())
             {

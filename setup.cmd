@@ -11,14 +11,17 @@ set ROOTPATH=%cd%
 set ROOTDIR=%cd%
 set SOURCEPATH=%ROOTPATH%\src
 set APPCMD=%windir%\system32\inetsrv\appcmd.exe
+
 if "%~1" == "" goto loop
 
-set APPNAME=%1
-set FOUNDATIONDOMAIN=%2
-set CMDOMAIN=%3
-set LICENSEPATH=%4
-set SQLSERVER=%5
-set ADDITIONAL_SQLCMD=%6
+for /f "tokens=1-5*" %%a in ("%*") do (
+	set APPNAME=%%a
+	set FOUNDATIONDOMAIN=%%b
+	set CMDOMAIN=%%c
+	set LICENSEPATH=%%d
+	set SQLSERVER=%%e
+	set ADDITIONAL_SQLCMD=%%f
+)
 goto main
 
 :loop
@@ -164,16 +167,28 @@ echo ## Dropping user ## >> Build\Logs\Database.log
 echo ## Creating databases ##
 echo ## Creating databases ## >> Build\Logs\Database.log
 md "%SOURCEPATH%\appdata\db" 2>nul >> Build\Logs\Database.log
-%sql% -Q "CREATE DATABASE [%cms_db%] ON (NAME = N'%cms_db%', FILENAME = N'%SOURCEPATH%\appdata\db\%cms_db%.mdf') LOG ON (NAME = N'%cms_db%_log', FILENAME = N'%SOURCEPATH%\appdata\db\%cms_db%.ldf') COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
-%sql% -Q "CREATE DATABASE [%commerce_db%] ON (NAME = N'%commerce_db%', FILENAME = N'%SOURCEPATH%\appdata\db\%commerce_db%.mdf') LOG ON (NAME = N'%commerce_db%_log', FILENAME = N'%SOURCEPATH%\appdata\db\%commerce_db%.ldf') COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
+%sql% -Q "CREATE DATABASE [%cms_db%] COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
+%sql% -Q "CREATE DATABASE [%commerce_db%] COLLATE SQL_Latin1_General_CP1_CI_AS" >> Build\Logs\Database.log
 
-echo ## Creating user ##
-echo ## Creating user ## >> Build\Logs\Database.log
-%sql% -Q "EXEC sp_addlogin @loginame='%user%', @passwd='%password%', @defdb='%cms_db%'" >> Build\Logs\Database.log
-%sql% -d %cms_db% -Q "EXEC sp_adduser @loginame='%user%'" >> Build\Logs\Database.log
-%sql% -d %cms_db% -Q "EXEC sp_addrolemember N'db_owner', N'%user%'" >> Build\Logs\Database.log
-%sql% -d %commerce_db% -Q "EXEC sp_adduser @loginame='%user%'" >> Build\Logs\Database.log
-%sql% -d %commerce_db% -Q "EXEC sp_addrolemember N'db_owner', N'%user%'" >> Build\Logs\Database.log
+%sql% -Q "SET NOCOUNT ON; SELECT ServerProperty('Edition')" -h -1 | findstr /c:"SQL Azure" 1>nul
+
+IF %ERRORLEVEL% EQU 0 (
+	echo ## Creating user in azure sql##
+	echo ## Creating user in azure sql## >> Build\Logs\Database.log
+	%sql% -d %cms_db% -Q "CREATE USER %user% WITH PASSWORD='%password%'" >> Build\Logs\Database.log
+	%sql% -d %cms_db% -Q "ALTER ROLE db_owner ADD MEMBER %user%" >> Build\Logs\Database.log
+	%sql% -d %commerce_db% -Q "CREATE USER %user% WITH PASSWORD='%password%'" >> Build\Logs\Database.log
+	%sql% -d %commerce_db% -Q "ALTER ROLE db_owner ADD MEMBER %user%" >> Build\Logs\Database.log
+) else (
+	echo ## Creating user##
+	echo ## Creating user## >> Build\Logs\Database.log
+	%sql% -Q "EXEC sp_addlogin @loginame='%user%', @passwd='%password%', @defdb='%cms_db%'" >> Build\Logs\Database.log
+	%sql% -d %cms_db% -Q "EXEC sp_adduser @loginame='%user%'" >> Build\Logs\Database.log
+	%sql% -d %cms_db% -Q "EXEC sp_addrolemember N'db_owner', N'%user%'" >> Build\Logs\Database.log
+	%sql% -d %commerce_db% -Q "EXEC sp_adduser @loginame='%user%'" >> Build\Logs\Database.log
+	%sql% -d %commerce_db% -Q "EXEC sp_addrolemember N'db_owner', N'%user%'" >> Build\Logs\Database.log 
+)
+
 
 echo ## Installing CMS database ##
 echo ## Installing CMS database ## >> Build\Logs\Database.log

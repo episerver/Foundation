@@ -5,9 +5,18 @@ namespace Foundation.Find.Cms.Facets
 {
     public class FacetRegistry : IFacetRegistry
     {
-        private readonly List<FacetDefinition> _facetDefinitions;
+        private List<FacetDefinition> _facetDefinitions;
+
+        public FacetRegistry() : this(new List<FacetDefinition>())
+        {
+        }
 
         public FacetRegistry(IEnumerable<FacetDefinition> facetDefinitions) => _facetDefinitions = facetDefinitions.ToList();
+
+        public void Clear()
+        {
+            _facetDefinitions.Clear();
+        }
 
         public List<FacetDefinition> GetFacetDefinitions() => _facetDefinitions;
 

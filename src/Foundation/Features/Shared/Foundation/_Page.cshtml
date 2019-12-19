@@ -27,11 +27,11 @@
                 }
                 @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
                 {
-                    <p><a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)">@Model.TeaserButtonText</a></p>
+                    <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)">@Model.TeaserButtonText</a>
                 }
             </div>
     </div>
-    <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1250)'">
+    <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
         @if (Model.TeaserVideo != null)
         {
             <video class="teaser-video" autoplay loop playsinline muted>

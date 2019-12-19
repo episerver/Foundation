@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Find.Commerce
+namespace Foundation.Find.Commerce.Facets
 {
     public class FacetAverageRatingDefinition : FacetDefinition
     {

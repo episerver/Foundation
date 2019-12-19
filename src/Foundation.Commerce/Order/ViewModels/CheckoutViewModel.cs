@@ -1,6 +1,4 @@
 using EPiServer.Commerce.Order;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
 using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Models.Pages;
