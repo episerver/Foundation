@@ -46,8 +46,9 @@
                         .finally(function () {
                             $('.loading-box').hide();
                         })
+                } else {
+                    $('.loading-box').hide();
                 }
-                $('.loading-box').hide();
             })
         })
     }

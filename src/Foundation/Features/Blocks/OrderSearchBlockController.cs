@@ -5,6 +5,7 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
+using Foundation.Cms;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Models.Blocks;
@@ -29,6 +30,7 @@ namespace Foundation.Features.Blocks
         private readonly IOrderGroupCalculator _orderGroupCalculator;
         private readonly IContentLoader _contentLoader;
         private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
+        private readonly CookieService _cookieService;
 
         private const string _KEYWORD = "OrderSearchBlock:Keyword";
         private const string _DATEFROM = "OrderSearchBlock:DateFrom";
@@ -42,13 +44,15 @@ namespace Foundation.Features.Blocks
             ICustomerService customerService,
             IOrderGroupCalculator orderGroupCalculator,
             IContentLoader contentLoader,
-            PaymentMethodViewModelFactory paymentMethodViewModelFactory)
+            PaymentMethodViewModelFactory paymentMethodViewModelFactory,
+            CookieService cookieService)
         {
             _addressBookService = addressBookService;
             _customerService = customerService;
             _orderGroupCalculator = orderGroupCalculator;
             _contentLoader = contentLoader;
             _paymentMethodViewModelFactory = paymentMethodViewModelFactory;
+            _cookieService = cookieService;
         }
         public override ActionResult Index(OrderSearchBlock currentBlock)
         {
@@ -128,12 +132,12 @@ namespace Foundation.Features.Blocks
 
             if (result && filter.DateFrom.HasValue)
             {
-                result = order.PurchaseOrder.Created >= filter.DateFrom.Value;
+                result = order.PurchaseOrder.Created.Date >= filter.DateFrom.Value.Date;
             }
 
             if (result && filter.DateTo.HasValue)
             {
-                result = order.PurchaseOrder.Created <= filter.DateTo.Value;
+                result = order.PurchaseOrder.Created.Date <= filter.DateTo.Value.Date;
             }
 
             if (result && !string.IsNullOrEmpty(filter.PaymentMethodId))
@@ -162,11 +166,12 @@ namespace Foundation.Features.Blocks
         private OrderFilter CreateFilter()
         {
             var filter = new OrderFilter();
-            filter.Keyword = HttpContext.Request.Cookies[_KEYWORD] != null ? HttpContext.Request.Cookies[_KEYWORD].Value : string.Empty;
+            filter.Keyword = _cookieService.Get(_KEYWORD);
 
-            if (HttpContext.Request.Cookies[_DATEFROM] != null)
+            var dateFromStr = _cookieService.Get(_DATEFROM);
+            if (!string.IsNullOrEmpty(dateFromStr))
             {
-                if (DateTime.TryParse(HttpContext.Request.Cookies[_DATEFROM].Value, out DateTime dateFrom))
+                if (DateTime.TryParse(dateFromStr, out var dateFrom))
                 {
                     filter.DateFrom = dateFrom;
                 }
@@ -176,9 +181,10 @@ namespace Foundation.Features.Blocks
                 }
             }
 
-            if (HttpContext.Request.Cookies[_DATETO] != null)
+            var dateToStr = _cookieService.Get(_DATETO);
+            if (!string.IsNullOrEmpty(dateToStr))
             {
-                if (DateTime.TryParse(HttpContext.Request.Cookies[_DATETO].Value, out DateTime dateTo))
+                if (DateTime.TryParse(dateToStr, out var dateTo))
                 {
                     filter.DateTo = dateTo;
                 }
@@ -188,9 +194,10 @@ namespace Foundation.Features.Blocks
                 }
             }
 
-            if (HttpContext.Request.Cookies[_PRICEFROM] != null)
+            var priceFromStr = _cookieService.Get(_PRICEFROM);
+            if (!string.IsNullOrEmpty(priceFromStr))
             {
-                if (decimal.TryParse(HttpContext.Request.Cookies[_PRICEFROM].Value, out decimal priceFrom))
+                if (decimal.TryParse(priceFromStr, out var priceFrom))
                 {
                     filter.PriceFrom = priceFrom;
                 }
@@ -200,9 +207,10 @@ namespace Foundation.Features.Blocks
                 }
             }
 
-            if (HttpContext.Request.Cookies[_PRICETO] != null)
+            var priceToStr = _cookieService.Get(_PRICETO);
+            if (!string.IsNullOrEmpty(priceToStr))
             {
-                if (decimal.TryParse(HttpContext.Request.Cookies[_PRICETO].Value, out decimal priceTo))
+                if (decimal.TryParse(priceToStr, out var priceTo))
                 {
                     filter.PriceTo = priceTo;
                 }
@@ -212,9 +220,10 @@ namespace Foundation.Features.Blocks
                 }
             }
 
-            if (HttpContext.Request.Cookies[_ORDERSTATUS] != null)
+            var orderStatusStr = _cookieService.Get(_ORDERSTATUS);
+            if (!string.IsNullOrEmpty(orderStatusStr))
             {
-                if (int.TryParse(HttpContext.Request.Cookies[_ORDERSTATUS].Value, out int status))
+                if (int.TryParse(orderStatusStr, out var status))
                 {
                     filter.OrderStatusId = status;
                 }
@@ -223,35 +232,21 @@ namespace Foundation.Features.Blocks
                     filter.OrderStatusId = 0;
                 }
             }
-            filter.PaymentMethodId = HttpContext.Request.Cookies[_PAYMENTMETHOD] != null ? HttpContext.Request.Cookies[_PAYMENTMETHOD].Value : string.Empty;
-
-            if (filter.DateFrom == DateTime.MinValue) filter.DateFrom = null;
-            if (filter.DateTo == DateTime.MaxValue) filter.DateTo= null;
-
+            
+            filter.PaymentMethodId = _cookieService.Get(_PAYMENTMETHOD);
+            
             return filter;
         }
 
         private void SetCookieFilter(OrderFilter filter)
         {
-            SetCookie(_KEYWORD, filter.Keyword);
-            SetCookie(_DATEFROM, filter.DateFrom.ToString());
-            SetCookie(_DATETO, filter.DateTo.ToString());
-            SetCookie(_ORDERSTATUS, filter.OrderStatusId.ToString());
-            SetCookie(_PAYMENTMETHOD, filter.PaymentMethodId);
-            SetCookie(_PRICEFROM, filter.PriceFrom.ToString());
-            SetCookie(_PRICETO, filter.PriceTo.ToString());
-        }
-
-        private void SetCookie(string key, string value)
-        {
-            if (HttpContext.Request.Cookies[key] == null)
-            {
-                HttpContext.Response.Cookies.Add(new System.Web.HttpCookie(key, value) { Expires = DateTime.Now.AddDays(365) });
-            }
-            else
-            {
-                HttpContext.Response.Cookies.Set(new System.Web.HttpCookie(key, value) { Expires = DateTime.Now.AddDays(365) });
-            }
+            _cookieService.Set(_KEYWORD, filter.Keyword);
+            _cookieService.Set(_DATEFROM, filter.DateFrom.ToString());
+            _cookieService.Set(_DATETO, filter.DateTo.ToString());
+            _cookieService.Set(_ORDERSTATUS, filter.OrderStatusId.ToString());
+            _cookieService.Set(_PAYMENTMETHOD, filter.PaymentMethodId);
+            _cookieService.Set(_PRICEFROM, filter.PriceFrom.ToString());
+            _cookieService.Set(_PRICETO, filter.PriceTo.ToString());
         }
     }
 }

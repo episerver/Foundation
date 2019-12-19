@@ -30,18 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EPiServer">
-      <HintPath>EPiServer</HintPath>
-    </Reference>
-    <Reference Include="EPiServer.Data">
-      <HintPath>EPiServer.Data</HintPath>
-    </Reference>
-    <Reference Include="EPiServer.Framework">
-      <HintPath>EPiServer.Framework</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
 
