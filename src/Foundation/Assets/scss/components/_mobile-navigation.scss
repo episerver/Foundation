@@ -1,5 +1,4 @@
 .mobile-navigation {
-    width: 100%;
     display: flex;
     height: $navigation-height;
     align-items: center;
@@ -44,6 +43,23 @@
 
         &:focus {
             outline: 0;
+        }
+    }
+
+    @media (max-width: 375px) {
+        height: 60px;
+
+        .mobile-navigation__item {
+            padding-right: 0;
+        }
+
+        .icon-menu {
+            width: 40px;
+            height: 60px;
+        }
+
+        .searchbox-popover {
+            width: calc(100% + 40px);
         }
     }
 }

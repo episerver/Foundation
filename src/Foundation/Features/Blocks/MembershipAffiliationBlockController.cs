@@ -27,8 +27,8 @@ namespace Foundation.Features.Blocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public MembershipAffiliationBlockController(IUserRepository userRepository, 
-            ICommunityRepository communityRepository, 
+        public MembershipAffiliationBlockController(IUserRepository userRepository,
+            ICommunityRepository communityRepository,
             ICommunityMemberRepository communityMemberRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
