@@ -14,7 +14,22 @@
         padding: 20px 40px 20px 40px;
         background-color: white;
         box-shadow: 0 0 15px grey;
-        width: 30%;
+
+        @media screen and (min-width: 1492px) {
+            width: 30%;
+        }
+
+        @media screen and (max-width: 1491px) {
+            width: 35%;
+        }
+
+        @media screen and (max-width: 1200px) {
+            width: 50%;
+        }
+
+        @media screen and (max-width: 767px) {
+            width: 80%;
+        }
     }
 
     &__row {

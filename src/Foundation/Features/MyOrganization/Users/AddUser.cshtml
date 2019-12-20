@@ -1,17 +1,19 @@
 ﻿@using System.Web.Mvc.Html
 @using Foundation.Commerce.ViewModels.Header
 @model UsersPageViewModel
-
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div>
     <section class="spacer-bottom-l">
         <div class="section-title spacer-bottom-l">
             <h2 class="h3">@Html.TranslateFallback("/B2B/Users/Lookup", "Look up user or fill in their details")</h2>
         </div>
-        <div class="custom-search">
+        <div class="custom-search search-box">
             <input type="text" id="addUsersAutocomplete" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
             <i id="js-reset-icon" class="close-icon" data-feather="x" style="display: none;"></i>
-            <i id="js-search-icon" class="icon-search" data-feather="search" aria-hidden="true"></i>
+            <a href="javascript:void(0);"><i id="js-search-icon" class="icon-search" data-feather="search" aria-hidden="true"></i></a>
         </div>
         <button class="btn js-autocomplete-result" type="button" style="display:none">
             <span class="js-user-name v-align-middle"></span><span class="js-close-icon close-icon v-align-middle"></span>
@@ -21,7 +23,7 @@
         <div class="section-title spacer-bottom-l">
             <h2 class="h3">@Html.TranslateFallback("/B2B/Users/UserDetails", "User Details")</h2>
         </div>
-        @using (Html.BeginForm("AddUser", "UsersPage", FormMethod.Post, new { @id = "addUserForm" }))
+        @using (Html.BeginForm("AddUser", "Users", FormMethod.Post, new { @id = "addUserForm" }))
         {
             <div class="form-group">
                 @Html.LabelFor(x => x.Contact.FirstName)
