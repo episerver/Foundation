@@ -21,39 +21,50 @@
         {
             <div class="profile-sidebar">
                 <div class="profile-sidebar__title">@Html.TranslateFallback("/Dashboard/Labels/Organization", "Organization")</div>
-                <ul class="profile-sidebar__group">
+                <ul class="selection--cm">
                     @if (Model.Organization.ParentOrganizationId != Guid.Empty)
                     {
-                        <li class="@(Model.CurrentPageType == MyAccountPageType.Organization ? "current" : "") profile-sidebar__item">
-                            <a href="@(Url.ContentUrl(Model.OrganizationPage))" class="@(Model.CurrentOrganization.Name == Model.Organization.ParentOrganization.Name ? "current" : "")">
+                        <li class=" jsFirstLi">
+                            <a href="@(Url.ContentUrl(Model.OrganizationPage))" class="@(Model.CurrentOrganization.Name == Model.Organization.ParentOrganization.Name ? "active" : "")">
                                 @Model.Organization.ParentOrganization.Name
                             </a>
-                        </li>
-                        <li class="profile-sidebar__item">
-                            <a href="@(Url.ContentUrl(Model.SubOrganizationPage))?suborg=@(Model.Organization.OrganizationId)" class="@(Model.CurrentOrganization.Name == Model.Organization.Name ? "current" : "")">
-                                @Model.Organization.Name
-                            </a>
+                            <i data-feather="plus" class="selection--cm__expand jsExpandCollapse pull-right hidden"></i>
+                            <i data-feather="minus" class="selection--cm__collapse jsExpandCollapse pull-right"></i>
+                            <ul class="selection--cm__dropdown">
+                                <li class="">
+                                    <a href="@(Url.ContentUrl(Model.SubOrganizationPage))?suborg=@(Model.Organization.OrganizationId)" 
+                                       class="@(Model.CurrentOrganization.Name == Model.Organization.Name ? "active" : "")">
+                                        @Model.Organization.Name
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     }
                     else
                     {
-                        <li class="@(Model.CurrentPageType == MyAccountPageType.Organization && Model.CurrentOrganization.Name == Model.Organization.Name ? "current" : "") profile-sidebar__item">
-                            <a href="@(Url.ContentUrl(Model.OrganizationPage))">
+                        <li class=" jsFirstLi">
+                            <a href="@(Url.ContentUrl(Model.OrganizationPage))"
+                               class="@(Model.CurrentPageType == MyAccountPageType.Organization && Model.CurrentOrganization.Name == Model.Organization.Name ? "active" : "")">
                                 @Model.Organization.Name
                             </a>
-                        </li>
 
-                        if (Model.Organization.SubOrganizations != null)
-                        {
-                            foreach (var subOrganization in Model.Organization.SubOrganizations)
+                            @if (Model.Organization.SubOrganizations != null)
                             {
-                                <li class="@(Model.CurrentPageType == MyAccountPageType.Organization && Model.CurrentOrganization.Name == @subOrganization.Name ? "current" : "") profile-sidebar__suborganization">
-                                    <a href="@(Url.ContentUrl(Model.SubOrganizationPage))?suborg=@(subOrganization.OrganizationId)">
-                                        @subOrganization.Name
-                                    </a>
-                                </li>
+                                <i data-feather="plus" class="selection--cm__expand jsExpandCollapse pull-right hidden"></i>
+                                <i data-feather="minus" class="selection--cm__collapse jsExpandCollapse pull-right"></i>
+                                <ul class="selection--cm__dropdown">
+                                    @foreach (var subOrganization in Model.Organization.SubOrganizations)
+                                    {
+                                        <li class="">
+                                            <a href="@(Url.ContentUrl(Model.SubOrganizationPage))?suborg=@(subOrganization.OrganizationId)"
+                                               class="@(Model.CurrentPageType == MyAccountPageType.Organization && Model.CurrentOrganization.Name == @subOrganization.Name ? "active" : "")">
+                                                @subOrganization.Name
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
                             }
-                        }
+                        </li>
                     }
                 </ul>
             </div>
