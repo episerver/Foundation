@@ -20,6 +20,8 @@
     background-size: 775px 890px;
 }
 
+.epi-viewPort-320x568 .epi-editorViewport-previewBox,
+.epi-viewPort-320x692 .epi-editorViewport-previewBox,
 .epi-viewPort-480x800 .epi-editorViewport-previewBox,
 .epi-viewPort-1366x768 .epi-editorViewport-previewBox,
 .epi-viewPort-519x692 .epi-editorViewport-previewBox {
