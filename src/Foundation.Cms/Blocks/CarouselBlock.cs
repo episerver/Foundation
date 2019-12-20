@@ -2,7 +2,6 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Cms.Media;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
@@ -15,8 +14,8 @@ namespace Foundation.Cms.Blocks
     public class CarouselBlock : FoundationBlockData
     {
         [CultureSpecific]
-        [AllowedTypes(typeof(HeroBlock), typeof(ImageMediaData))]
+        [AllowedTypes(new[] { typeof(HeroBlock), typeof(ImageMediaData) })]
         [Display(Name = "Carousel items", Description = "List of carousel items")]
-        public virtual IList<ContentReference> CarouselItems { get; set; }
+        public virtual ContentArea CarouselItems { get; set; }
     }
 }
