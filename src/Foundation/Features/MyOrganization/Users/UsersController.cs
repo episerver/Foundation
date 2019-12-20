@@ -64,16 +64,23 @@ namespace Foundation.Features.MyOrganization.Users
         public ActionResult Index(UsersPage currentPage)
         {
             var organization = _organizationService.GetCurrentFoundationOrganization();
+            var currentOrganization = organization;
+            var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+            if (currentOrganizationContext != null)
+            {
+                currentOrganization = _organizationService.GetFoundationOrganizationById(currentOrganizationContext);
+            }
+
             var viewModel = new UsersPageViewModel
             {
                 CurrentContent = currentPage,
-                Users = _customerService.GetContactsForOrganization(),
+                Users = _customerService.GetContactsForOrganization(currentOrganization),
                 Organizations = organization?.SubOrganizations ?? new List<FoundationOrganization>()
             };
 
-            if (viewModel.Organizations.Any())
+            if (currentOrganization.SubOrganizations.Any())
             {
-                foreach (var subOrg in viewModel.Organizations)
+                foreach (var subOrg in currentOrganization.SubOrganizations)
                 {
                     var contacts = _customerService.GetContactsForOrganization(subOrg);
                     viewModel.Users.AddRange(contacts);
@@ -151,16 +158,24 @@ namespace Foundation.Features.MyOrganization.Users
             var user = _userManager.FindByEmail(viewModel.Contact.Email);
             if (user != null)
             {
-                if (_customerService.HasOrganization(user.Id))
+                var contact = _customerService.GetContactByEmail(user.Email);
+                var organization = _organizationService.GetCurrentFoundationOrganization();
+                if (_customerService.HasOrganization(contact.ContactId.ToString()))
                 {
                     viewModel.Contact.ShowOrganizationError = true;
-                    var organization = _organizationService.GetCurrentFoundationOrganization();
                     viewModel.Organizations = organization.SubOrganizations ?? new List<FoundationOrganization>();
                     return View(viewModel);
                 }
 
-                _customerService.AddContactToOrganization(viewModel.Contact);
-                _customerService.UpdateContact(user.Id, viewModel.Contact.UserRole, viewModel.Contact.UserLocationId);
+                var organizationId = organization.OrganizationId.ToString();
+                var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+                if (currentOrganizationContext != null)
+                {
+                    organizationId = currentOrganizationContext;
+                }
+
+                _customerService.AddContactToOrganization(contact, organizationId);
+                _customerService.UpdateContact(contact.ContactId.ToString(), viewModel.Contact.UserRole, viewModel.Contact.UserLocationId);
             }
             else
             {
