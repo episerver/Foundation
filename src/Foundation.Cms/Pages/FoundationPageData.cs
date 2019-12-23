@@ -226,6 +226,13 @@ namespace Foundation.Cms.Pages
 
         #endregion
 
+        #region Hidden properties
+        [ScaffoldColumn(false)]
+        [Editable(false)]
+        [AllowedTypes(typeof(CmsHomePage))]
+        public virtual PageReference StartPageLink { get; set; }
+        #endregion
+
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
