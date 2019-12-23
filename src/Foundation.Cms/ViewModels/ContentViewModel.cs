@@ -30,14 +30,29 @@ namespace Foundation.Cms.ViewModels
             {
                 if (_startPage == null)
                 {
+                    var currentPage = CurrentContent as FoundationPageData;
+                    var currentStartPageLink = ContentReference.StartPage;
+                    if (currentPage != null)
+                    {
+                        if (!ContentReference.IsNullOrEmpty(currentPage.StartPageLink))
+                        {
+                            currentStartPageLink = currentPage.StartPageLink;
+                        }
+
+                        if (currentPage is CmsHomePage)
+                        {
+                            currentStartPageLink = currentPage.PageLink;
+                        }
+                    }
+
                     if (PageEditing.PageIsInEditMode)
                     {
-                        var startPageRef = _contentVersion.Service.LoadCommonDraft(ContentReference.StartPage, ContentLanguage.PreferredCulture.Name);
+                        var startPageRef = _contentVersion.Service.LoadCommonDraft(currentStartPageLink, ContentLanguage.PreferredCulture.Name);
                         _startPage = _contentLoader.Service.Get<CmsHomePage>(startPageRef.ContentLink);
                     }
                     else
                     {
-                        _startPage = _contentLoader.Service.Get<CmsHomePage>(ContentReference.StartPage);
+                        _startPage = _contentLoader.Service.Get<CmsHomePage>(currentStartPageLink);
                     }
                 }
 
