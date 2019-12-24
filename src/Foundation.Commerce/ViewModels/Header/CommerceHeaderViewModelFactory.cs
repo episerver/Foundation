@@ -316,7 +316,7 @@ namespace Foundation.Commerce.ViewModels.Header
                     }
                 };
 
-                _addressBookService.LoadAddress(viewModel.RegisterAccountViewModel.Address);
+                //_addressBookService.LoadAddress(viewModel.RegisterAccountViewModel.Address);
                 viewModel.RegisterAccountViewModel.Address.Name = _localizationService.GetString("/Shared/Address/DefaultAddressName", "Default Address");
             }
         }
