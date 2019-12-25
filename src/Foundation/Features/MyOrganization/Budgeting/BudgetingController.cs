@@ -35,56 +35,58 @@ namespace Foundation.Features.MyOrganization.Budgeting
         [NavigationAuthorize("Admin,Approver,Purchaser")]
         public ActionResult Index(BudgetingPage currentPage)
         {
-            var organizationBudgets = new List<BudgetViewModel>();
-            var suborganizationsBudgets = new List<BudgetViewModel>();
-
-            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-                ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+            var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+            var isSubOrgSelected = !string.IsNullOrEmpty(selectedOrgId);
+            var selectedOrg = isSubOrgSelected
+                ? _organizationService.GetFoundationOrganizationById(selectedOrgId)
                 : _organizationService.GetCurrentFoundationOrganization();
 
             var viewModel = new BudgetingPageViewModel
             {
                 CurrentContent = currentPage,
-                OrganizationBudgets = organizationBudgets,
-                IsSubOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+                IsSubOrganization = isSubOrgSelected,
+                OrganizationBudgets = new List<BudgetViewModel>(),
+                SubOrganizationsBudgets = new List<BudgetViewModel>(),
+                PurchasersSpendingLimits = new List<BudgetViewModel>()
             };
 
-            if (currentOrganization != null)
+            if (selectedOrg != null)
             {
-                var currentBudget = _budgetService.GetCurrentOrganizationBudget(currentOrganization.OrganizationId);
+                var currentBudget = _budgetService.GetCurrentOrganizationBudget(selectedOrg.OrganizationId);
                 if (currentBudget != null)
                 {
                     viewModel.CurrentBudgetViewModel = new BudgetViewModel(currentBudget);
                 }
 
-                var budgets = _budgetService.GetOrganizationBudgets(currentOrganization.OrganizationId);
+                var budgets = _budgetService.GetOrganizationBudgets(selectedOrg.OrganizationId);
                 if (budgets != null)
                 {
-                    organizationBudgets.AddRange(budgets.Select(budget => new BudgetViewModel(budget) { OrganizationName = currentOrganization.Name, IsCurrentBudget = (currentBudget?.BudgetId == budget.BudgetId) }));
-                    viewModel.OrganizationBudgets = organizationBudgets;
+                    viewModel.OrganizationBudgets.AddRange(
+                        budgets.Select(budget => new BudgetViewModel(budget)
+                        {
+                            OrganizationName = selectedOrg.Name,
+                            IsCurrentBudget = currentBudget?.BudgetId == budget.BudgetId
+                        })
+					);
                 }
 
-                var suborganizations = currentOrganization.SubOrganizations;
-                if (suborganizations != null)
+                if (selectedOrg.SubOrganizations != null)
                 {
-                    foreach (var suborganization in suborganizations)
+                    foreach (var subOrg in selectedOrg.SubOrganizations)
                     {
-                        var suborgBudgets = _budgetService.GetCurrentOrganizationBudget(suborganization.OrganizationId);
-                        if (suborgBudgets != null)
+                        var budget = _budgetService.GetCurrentOrganizationBudget(subOrg.OrganizationId);
+                        if (budget != null)
                         {
-                            suborganizationsBudgets.Add(new BudgetViewModel(suborgBudgets) { OrganizationName = suborganization.Name });
+                            viewModel.SubOrganizationsBudgets.Add(new BudgetViewModel(budget) { OrganizationName = subOrg.Name });
                         }
-                        viewModel.SubOrganizationsBudgets = suborganizationsBudgets;
                     }
                 }
 
-                var purchasersBudgetsViewModel = new List<BudgetViewModel>();
-                var purchasersBudgets = _budgetService.GetOrganizationPurchasersBudgets(currentOrganization.OrganizationId);
+                var purchasersBudgets = _budgetService.GetOrganizationPurchasersBudgets(selectedOrg.OrganizationId);
                 if (purchasersBudgets != null)
                 {
-                    purchasersBudgetsViewModel.AddRange(purchasersBudgets.Select(purchaserBudget => new BudgetViewModel(purchaserBudget)));
+                    viewModel.PurchasersSpendingLimits.AddRange(purchasersBudgets.Select(purchaserBudget => new BudgetViewModel(purchaserBudget)));
                 }
-                viewModel.PurchasersSpendingLimits = purchasersBudgetsViewModel;
             }
             viewModel.IsAdmin = CustomerContext.Current.CurrentContact.Properties[Constant.Fields.UserRole].Value.ToString() == Constant.UserRoles.Admin;
 
@@ -97,25 +99,28 @@ namespace Foundation.Features.MyOrganization.Budgeting
             var viewModel = new BudgetingPageViewModel { CurrentContent = currentPage };
             try
             {
-                if (!string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization)))
+                var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+                var org = !string.IsNullOrEmpty(selectedOrgId)
+                    ? _organizationService.GetFoundationOrganizationById(selectedOrgId)
+                    : _organizationService.GetCurrentFoundationOrganization();
+                _cookieService.Set(Constant.Fields.SelectedSuborganization, org.OrganizationId.ToString());
+                _cookieService.Set(Constant.Fields.SelectedNavSuborganization, org.OrganizationId.ToString());
+                if (!org.OrganizationEntity.IsParentOrganizationValid())
                 {
-                    var suborganization = _organizationService.GetSubOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization));
-                    var organizationCurrentBudget = _budgetService.GetCurrentOrganizationBudget(suborganization.ParentOrganization.OrganizationId);
-                    viewModel.AvailableCurrencies = new List<string> { organizationCurrentBudget.Currency };
-                    viewModel.IsSubOrganization = true;
-                    viewModel.NewBudgetOption = new BudgetViewModel(organizationCurrentBudget);
-                }
-                else
-                {
-                    var availableCurrencies = _currentMarket.GetCurrentMarket().Currencies as List<Currency>;
-                    if (availableCurrencies != null)
+                    if (_currentMarket.GetCurrentMarket().Currencies is List<Currency> availableCurrencies)
                     {
                         var currencies = new List<string>();
                         currencies.AddRange(availableCurrencies.Select(currency => currency.CurrencyCode));
                         viewModel.AvailableCurrencies = currencies;
                     }
                 }
-
+                else
+                {
+                    var currentBudget = _budgetService.GetCurrentOrganizationBudget(org.OrganizationEntity.ParentId ?? Guid.Empty);
+                    viewModel.AvailableCurrencies = new List<string> { currentBudget.Currency };
+                    viewModel.IsSubOrganization = true;
+                    viewModel.NewBudgetOption = new BudgetViewModel(currentBudget);
+                }
             }
             catch (Exception ex)
             {
@@ -154,7 +159,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
                     {
                         return Json(new { result = "Do not overlap the orgnization budget time line." });
                     }
-                    // Validate for existing current budget. Avoid duplicate current budget since the budgets of suborg. must fit org. date times. 
+                    // Validate for existing current budget. Avoid duplicate current budget since the budgets of suborg. must fit org. date times.
                     if (_budgetService.GetBudgetByTimeLine(organizationId, startDateTime, finishDateTime) != null)
                     {
                         return Json(new { result = "Duplicate budget on selected time line." });

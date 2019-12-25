@@ -34,15 +34,15 @@ namespace Foundation.Features.MyOrganization.Organization
 
         public ActionResult Index(OrganizationPage currentPage)
         {
-            //Clear selected suborganization
-            _cookieService.Remove(Constant.Fields.SelectedSuborganization);
-            _cookieService.Remove(Constant.Fields.SelectedNavSuborganization);
-
             if (Request.QueryString["showForm"] != null && bool.Parse(Request.QueryString["showForm"]))
             {
                 return RedirectToAction("Create");
             }
+
             var currentOrganization = _organizationService.GetCurrentFoundationOrganization();
+            _cookieService.Set(Constant.Fields.SelectedSuborganization, currentOrganization.OrganizationId.ToString());
+            _cookieService.Set(Constant.Fields.SelectedNavSuborganization, currentOrganization.OrganizationId.ToString());
+
             var viewModel = new OrganizationPageViewModel
             {
                 CurrentContent = currentPage,
