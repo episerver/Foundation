@@ -12,16 +12,20 @@ namespace Foundation.Cms.EditorDescriptors
             public const string TransparentWhite = "button-transparent-white";
             public const string Dark = "button-black";
             public const string White = "button-white";
+            public const string YellowBlack = "button-yellow-black";
+            public const string YellowWhite = "button-yellow-white";
         }
 
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
             var dic = new Dictionary<string, string>
             {
-                {"Transparent Black", ButtonBlockStyles.TransparentBlack},
-                {"Transparent White", ButtonBlockStyles.TransparentWhite},
-                {"Dark", ButtonBlockStyles.Dark},
-                {"White", ButtonBlockStyles.White},
+                { "Transparent Black", ButtonBlockStyles.TransparentBlack },
+                { "Transparent White", ButtonBlockStyles.TransparentWhite },
+                { "Dark", ButtonBlockStyles.Dark },
+                { "White", ButtonBlockStyles.White },
+                { "Yellow Black", ButtonBlockStyles.YellowBlack },
+                { "Yellow White", ButtonBlockStyles.YellowWhite },
             };
 
             return dic.Select(x => new SelectItem { Text = x.Key, Value = x.Value });
