@@ -90,6 +90,32 @@
     }
 }
 
+.button-yellow-black {
+    @extend %button-base;
+    background: $color-yellow;
+    border: 1px solid $color-yellow;
+    color: $color-white;
+
+    &:hover {
+        background: $color-black;
+        border: 1px solid $color-black;
+        color: $color-white;
+    }
+}
+
+.button-yellow-white {
+    @extend %button-base;
+    background: $color-yellow;
+    border: 1px solid $color-yellow;
+    color: $color-white;
+
+    &:hover {
+        background: $color-white;
+        border: 1px solid $color-white;
+        color: $color-black;
+    }
+}
+
 a[class^="button-"], a[class*="button-"] {
     padding-top: 12px;
 }
