@@ -37,10 +37,18 @@ namespace Foundation.Commerce.Order.ViewModels
         public List<KeyValuePair<string, string>> PaymentMethods { get; set; }
         public List<KeyValuePair<string, int>> OrderStatuses { get; set; }
 
+        // OrderHistoryPage
+
+        public string PurchaseOrderNumber { get; set; }
+        public string OrderGroupId { get; set; }
+        public string AddressId { get; set; }
+        public List<KeyValuePair<string, string>> Addresses { get; set; }
+
         public OrderFilter()
         {
             PaymentMethods = new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("All", "") };
             OrderStatuses = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("All", 0) };
+            Addresses = new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("All", "") };
         }
 
         public static void LoadDefault(OrderFilter filter, PaymentMethodViewModelFactory paymentMethodViewModelFactory)

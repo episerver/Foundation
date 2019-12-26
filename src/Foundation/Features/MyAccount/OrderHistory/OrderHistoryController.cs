@@ -4,10 +4,13 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
+using Foundation.Cms;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
+using Foundation.Commerce.Markets;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.Order.Services;
+using Foundation.Commerce.Order.ViewModelFactories;
 using Foundation.Commerce.Order.ViewModels;
 using Foundation.Features.MyAccount.OrderConfirmation;
 using Mediachase.Commerce.Orders;
@@ -29,6 +32,18 @@ namespace Foundation.Features.MyAccount.OrderHistory
         private readonly IContentLoader _contentLoader;
         private readonly ICartService _cartService;
         private readonly IOrderGroupFactory _orderGroupFactory;
+        private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
+        private readonly CookieService _cookieService;
+
+        private const string _KEYWORD = "OrderHistoryPage:Keyword";
+        private const string _DATEFROM = "OrderHistoryPage:DateFrom";
+        private const string _DATETO = "OrderHistoryPage:DateTo";
+        private const string _ORDERSTATUS = "OrderHistoryPage:OrderStatus";
+        private const string _SHIPPINGADDRESS = "OrderHistoryPage:ShippingAddress";
+        private const string _PRICEFROM = "OrderHistoryPage:PriceFrom";
+        private const string _PRICETO = "OrderHistoryPage:PriceTo";
+        private const string _PURCHASENUMBER = "OrderHistoryPage:PurchaseNumber";
+        private const string _ORDERGROUPID = "OrderHistoryPage:OrderGroupId";
 
         public OrderHistoryController(IAddressBookService addressBookService,
             IOrderRepository orderRepository,
@@ -36,7 +51,9 @@ namespace Foundation.Features.MyAccount.OrderHistory
             ICartService cartService,
             IOrderGroupCalculator orderGroupCalculator,
             IContentLoader contentLoader,
-            UrlResolver urlResolver, IOrderGroupFactory orderGroupFactory, ICustomerService customerService) :
+            UrlResolver urlResolver, IOrderGroupFactory orderGroupFactory, ICustomerService customerService,
+            PaymentMethodViewModelFactory paymentMethodViewModelFactory,
+            CookieService cookieService) :
             base(confirmationService, addressBookService, orderGroupCalculator, urlResolver, customerService)
         {
             _addressBookService = addressBookService;
@@ -44,15 +61,25 @@ namespace Foundation.Features.MyAccount.OrderHistory
             _contentLoader = contentLoader;
             _cartService = cartService;
             _orderGroupFactory = orderGroupFactory;
+            _paymentMethodViewModelFactory = paymentMethodViewModelFactory;
+            _cookieService = cookieService;
         }
 
-        [HttpGet]
-        public ActionResult Index(OrderHistoryPage currentPage, int? page, int? size)
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        public ActionResult Index(OrderHistoryPage currentPage, OrderFilter filter, int? page, int? size, int? isPaging)
         {
+            if (isPaging.HasValue)
+            {
+                filter = GetFilter();
+            }
+            else
+            {
+                SetCookieFilter(filter);
+            }
             var pageNum = page ?? 1;
             var pageSize = size ?? 10;
             var orders = _orderRepository.Load<IPurchaseOrder>(PrincipalInfo.CurrentPrincipal.GetContactId(), _cartService.DefaultCartName);
-            var purchaseOrders = orders
+            var purchaseOrders = FilterOrders(orders, filter)
                                 .OrderByDescending(x => x.Created)
                                 .Skip((pageNum - 1) * pageSize)
                                 .Take(pageSize)
@@ -61,8 +88,11 @@ namespace Foundation.Features.MyAccount.OrderHistory
             var viewModel = new OrderHistoryViewModel(currentPage)
             {
                 CurrentContent = currentPage,
-                Orders = new List<OrderViewModel>()
+                Orders = new List<OrderViewModel>(),
             };
+
+            OrderFilter.LoadDefault(filter, _paymentMethodViewModelFactory);
+            LoadAvailableAddresses(filter);
 
             foreach (var purchaseOrder in purchaseOrders)
             {
@@ -97,9 +127,10 @@ namespace Foundation.Features.MyAccount.OrderHistory
              UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderDetailsPage);
 
             viewModel.PagingInfo.PageNumber = pageNum;
-            viewModel.PagingInfo.TotalRecord = orders.Count();
+            viewModel.PagingInfo.TotalRecord = purchaseOrders.Count();
             viewModel.PagingInfo.PageSize = pageSize;
-            viewModel.OrderHistoryUrl = currentPage.StaticLinkURL;
+            viewModel.OrderHistoryUrl = Request.Url.PathAndQuery;
+            viewModel.Filter = filter;
             return View(viewModel);
         }
 
@@ -175,6 +206,163 @@ namespace Foundation.Features.MyAccount.OrderHistory
             orderNote.Title = noteDetails.Substring(0, Math.Min(noteDetails.Length, 24)) + "...";
             orderNote.Detail = noteDetails;
             orderNote.Created = DateTime.UtcNow;
+        }
+
+        private void LoadAvailableAddresses(OrderFilter filter)
+        {
+            var addresses = _addressBookService.List();
+            filter.Addresses.AddRange(addresses.Select(x => new KeyValuePair<string, string>(x.Name, x.AddressId)));
+        }
+
+        private IEnumerable<IPurchaseOrder> FilterOrders(IEnumerable<IPurchaseOrder> orders, OrderFilter filter)
+        {
+            return orders.Where(x => Filter(filter, x));
+        }
+
+        private bool Filter(OrderFilter filter, IPurchaseOrder order)
+        {
+            var result = true;
+            if (result && !string.IsNullOrEmpty(filter.OrderGroupId))
+            {
+                result = order.OrderLink.OrderGroupId.ToString().Contains(filter.OrderGroupId);
+            }
+
+            if (result && !string.IsNullOrEmpty(filter.PurchaseOrderNumber))
+            {
+                result = order.OrderNumber.Contains(filter.PurchaseOrderNumber);
+            }
+
+            if (result && filter.DateFrom.HasValue)
+            {
+                result = order.Created.Date >= filter.DateFrom.Value.Date;
+            }
+
+            if (result && filter.DateTo.HasValue)
+            {
+                result = order.Created.Date <= filter.DateTo.Value.Date;
+            }
+
+            if (result && !(filter.OrderStatusId == 0))
+            {
+                result = order.OrderStatus.Id == filter.OrderStatusId;
+            }
+
+            if (result && filter.PriceFrom > 0)
+            {
+                result = order.GetTotal() >= filter.PriceFrom;
+            }
+
+            if (result && filter.PriceTo > 0)
+            {
+                result = order.GetTotal() <= filter.PriceTo;
+            }
+
+            if (result && !string.IsNullOrEmpty(filter.AddressId))
+            {
+                result = order.GetFirstForm().Shipments.Where(x => x.ShippingAddress.Id == filter.AddressId).Count() > 0;
+            }
+
+            if (result && !string.IsNullOrEmpty(filter.PaymentMethodId))
+            {
+                result = order.GetFirstForm().Payments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Count() > 0;
+            }
+
+            if (result && !string.IsNullOrEmpty(filter.Keyword))
+            {
+                result = order.GetAllLineItems().Where(x => x.DisplayName.Contains(filter.Keyword) || x.Code.Contains(filter.Keyword)).Count() > 0;
+            }
+
+            return result;
+        }
+
+        private void SetCookieFilter(OrderFilter filter)
+        {
+            _cookieService.Set(_KEYWORD, filter.Keyword);
+            _cookieService.Set(_DATEFROM, filter.DateFrom.ToString());
+            _cookieService.Set(_DATETO, filter.DateTo.ToString());
+            _cookieService.Set(_ORDERSTATUS, filter.OrderStatusId.ToString());
+            _cookieService.Set(_PRICEFROM, filter.PriceFrom.ToString());
+            _cookieService.Set(_PRICETO, filter.PriceTo.ToString());
+            _cookieService.Set(_PURCHASENUMBER, filter.PurchaseOrderNumber);
+            _cookieService.Set(_ORDERGROUPID, filter.OrderGroupId);
+            _cookieService.Set(_SHIPPINGADDRESS, filter.AddressId);
+        }
+
+        private OrderFilter GetFilter()
+        {
+            var filter = new OrderFilter();
+            filter.Keyword = _cookieService.Get(_KEYWORD);
+
+            var dateFromStr = _cookieService.Get(_DATEFROM);
+            if (!string.IsNullOrEmpty(dateFromStr))
+            {
+                if (DateTime.TryParse(dateFromStr, out var dateFrom))
+                {
+                    filter.DateFrom = dateFrom;
+                }
+                else
+                {
+                    filter.DateFrom = null;
+                }
+            }
+
+            var dateToStr = _cookieService.Get(_DATETO);
+            if (!string.IsNullOrEmpty(dateToStr))
+            {
+                if (DateTime.TryParse(dateToStr, out var dateTo))
+                {
+                    filter.DateTo = dateTo;
+                }
+                else
+                {
+                    filter.DateTo = null;
+                }
+            }
+
+            var priceFromStr = _cookieService.Get(_PRICEFROM);
+            if (!string.IsNullOrEmpty(priceFromStr))
+            {
+                if (decimal.TryParse(priceFromStr, out var priceFrom))
+                {
+                    filter.PriceFrom = priceFrom;
+                }
+                else
+                {
+                    filter.PriceFrom = 0;
+                }
+            }
+
+            var priceToStr = _cookieService.Get(_PRICETO);
+            if (!string.IsNullOrEmpty(priceToStr))
+            {
+                if (decimal.TryParse(priceToStr, out var priceTo))
+                {
+                    filter.PriceTo = priceTo;
+                }
+                else
+                {
+                    filter.PriceTo = 0;
+                }
+            }
+
+            var orderStatusStr = _cookieService.Get(_ORDERSTATUS);
+            if (!string.IsNullOrEmpty(orderStatusStr))
+            {
+                if (int.TryParse(orderStatusStr, out var status))
+                {
+                    filter.OrderStatusId = status;
+                }
+                else
+                {
+                    filter.OrderStatusId = 0;
+                }
+            }
+
+            filter.PurchaseOrderNumber = _cookieService.Get(_PURCHASENUMBER);
+            filter.OrderGroupId = _cookieService.Get(_ORDERGROUPID);
+            filter.AddressId = _cookieService.Get(_SHIPPINGADDRESS);
+
+            return filter;
         }
     }
 }
