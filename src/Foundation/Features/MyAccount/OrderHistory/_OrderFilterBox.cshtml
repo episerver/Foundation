@@ -1,0 +1,75 @@
+﻿@model OrderFilter
+
+<form action="@Url.Action("Index", "OrderHistory")" method="post" class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <label>Ship To Address</label>
+                @Helpers.RenderDropdown(Model.Addresses, Model.AddressId, "", "AddressId")
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <label>Status</label>
+                @Helpers.RenderDropdown(Model.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())),
+                        Model.OrderStatusId.ToString(), "", "OrderStatusId")
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <label>PO #</label>
+                <input type="text" name="PurchaseOrderNumber" value="@Model.PurchaseOrderNumber" class="form-control square-box" />
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <label>Order #</label>
+                <input type="text" name="OrderGroupId" value="@Model.OrderGroupId" class="form-control square-box" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Order Total</label>
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label style="margin-right: 5px;"><i>From </i></label>
+                        <input type="number" name="PriceFrom" value="@Model.PriceFrom" class="square-box form-control" />
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label style="margin-right: 5px;"><i>To </i></label>
+                        <input type="number" name="PriceTo" value="@Model.PriceTo" class="square-box form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Date Range</label>
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label style="margin-right: 5px;"><i>From </i></label>
+                        <input type="date" name="DateFrom" class="square-box form-control" value="@(Model.DateFrom.HasValue ? Model.DateFrom.Value.ToString("yyyy-MM-dd"): "")" />
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label style="margin-right: 5px;"><i>To </i></label>
+                        <input type="date" name="DateTo" class="square-box form-control" value="@(Model.DateTo.HasValue ? Model.DateTo.Value.ToString("yyyy-MM-dd"): "")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Product #</label>
+                <input type="text" name="Keyword" class="form-control square-box" value="@Model.Keyword" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12 flex-end">
+                <a class="button-white" style="margin-right: 15px" href="@Request.Url.AbsolutePath">Clear</a>
+                <button type="submit" class="button-black">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
