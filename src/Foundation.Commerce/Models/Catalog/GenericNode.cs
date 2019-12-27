@@ -3,6 +3,8 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Catalog
@@ -41,6 +43,15 @@ namespace Foundation.Commerce.Models.Catalog
         [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 30)]
         public virtual bool ShowRecommendations { get; set; }
 
-        public override void SetDefaultValues(ContentType contentType) => ShowRecommendations = true;
+        [Display(Name = "Default template", Order = 40)]
+        [SelectOne(SelectionFactoryType = typeof(GenericNodeSelectionFactory))]
+        public virtual string DefaultTemplate { get; set; }
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+            ShowRecommendations = true;
+            DefaultTemplate = "List";
+        }
     }
 }

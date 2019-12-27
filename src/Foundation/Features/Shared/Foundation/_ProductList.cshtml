@@ -60,15 +60,15 @@
                         <div class="action-icons">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <span class="wishlist-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
+                                <span class="hover-feather-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
                             }
-                            <span class="jsQuickView" 
+                            <span class="jsQuickView hover-feather-icon" 
                                   data-toggle="modal" 
                                   data-target="#quickView" 
                                   data="@product.FirstVariationCode" 
                                   productCode="@product.Code"
                                   urlQuickView="@urlQuickView"><i data-feather="eye"></i></span>
-                            <span class="addToCart" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+                            <span class="addToCart hover-feather-icon" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
                         </div>
                     </div>
                 </div>
