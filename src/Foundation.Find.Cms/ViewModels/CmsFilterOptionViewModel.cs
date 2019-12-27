@@ -14,7 +14,7 @@ namespace Foundation.Find.Cms.ViewModels
         public string Q { get; set; }
         public int TotalCount { get; set; }
         public int PageSize { get; set; } = 15;
-        public string ViewSwitcher { get; set; } = "Grid";
+        public string ViewSwitcher { get; set; }
         public decimal Confidence { get; set; }
         public bool HighlightTitle { get; set; }
         public bool HighlightExcerpt { get; set; }

@@ -25,7 +25,7 @@
                 <div class="action-icons pull-right">
                     @if (Request.IsAuthenticated)
                     {
-                        <a class="btn-link large-cart__margin-btn jsMoveToWishlist wishlist-icon" title="Move to wishlist" code="@Model.Code" url="@Url.Action("MoveToWishlist", "DefaultCart", null)" href="javascript:void(0);">
+                        <a class="btn-link large-cart__margin-btn jsMoveToWishlist hover-feather-icon" title="Move to wishlist" code="@Model.Code" url="@Url.Action("MoveToWishlist", "DefaultCart", null)" href="javascript:void(0);">
                             <span><i data-feather="heart"></i></span>
                         </a>
                     }

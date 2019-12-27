@@ -324,12 +324,15 @@
 }
 
 
-.wishlist-icon {
+.hover-feather-icon {
     color: $text-color;
     fill: white;
 
     &:hover svg {
-        fill: black;
+        fill: $text-color;
+        & circle {
+            color: white;
+        }
     }
 }
 
