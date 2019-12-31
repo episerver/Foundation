@@ -1,0 +1,21 @@
+﻿.product-hero-block {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__callout {
+        flex: 0 0 50%;
+
+        @include media-breakpoint-down(md) {
+            flex: 0 0 100%;
+        }
+    }
+
+    &__image {
+        display: flex;
+        flex: 0 0 50%;
+
+        @include media-breakpoint-down(md) {
+            flex: 0 0 100%;
+        }
+    }
+}
