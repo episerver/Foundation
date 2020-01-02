@@ -51,34 +51,35 @@
     'templates/widgets/b2b-navigation',
     'templates/widgets/breadcrumb';
 
-@import 
+@import
     'templates/blocks/hero-block',
     'templates/blocks/button-block',
     'templates/blocks/calendar-block',
-    'templates/blocks/featurebox-block', 
-    'templates/blocks/vimeo-block', 
-    'templates/blocks/content-recommendation-block', 
+    'templates/blocks/featurebox-block',
+    'templates/blocks/vimeo-block',
+    'templates/blocks/content-recommendation-block',
     'templates/blocks/teaser-block',
     'templates/blocks/video-block',
     'templates/blocks/breadcrumb-block',
     'templates/blocks/text-block',
-    'templates/blocks/order-search-block';
+    'templates/blocks/order-search-block',
+    'templates/blocks/_category-block';
 
-@import 
+@import
     'templates/forms/form';
 
-@import 
+@import
     'templates/pages/home',
-    'templates/pages/standard-page', 
+    'templates/pages/standard-page',
     'templates/pages/order-history',
     'templates/pages/store-locator',
     'templates/pages/product-detail',
-    'templates/pages/my-account-pages', 
-    'templates/pages/credit-card', 
-    'templates/pages/checkout-page', 
-    'templates/pages/cart-page', 
+    'templates/pages/my-account-pages',
+    'templates/pages/credit-card',
+    'templates/pages/checkout-page',
+    'templates/pages/cart-page',
     'templates/pages/order-confirmation-page',
-    'templates/pages/location', 
+    'templates/pages/location',
     'templates/pages/order-detail-page',
     'templates/pages/category-page',
     'templates/pages/search-page',

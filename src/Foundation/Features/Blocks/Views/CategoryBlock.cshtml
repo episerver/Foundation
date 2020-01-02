@@ -1,0 +1,37 @@
+﻿@model CategoryBlockViewModel
+
+<h2 class="category-heading">@Model.Heading</h2>
+
+<div class="row">
+
+    @foreach (var cat in Model.CategoryItems)
+    {
+        <div class="category col-4">
+            <div class="category__figure">
+                <a href="@cat.Uri">
+
+                    @if (!string.IsNullOrEmpty(cat.ImageUrl))
+                    {
+                        <img class="category__img" src="@cat.ImageUrl" />
+                    }
+                </a>
+            </div>
+
+            <ul class="category__children">
+                <li class="category__name">
+                    <a href="@cat.Uri">
+                        @cat.Name
+                    </a>
+                </li>
+                @foreach (var child in cat.ChildLinks)
+                {
+                    <li>
+                        <a href="@child.Uri">
+                            @child.Text
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
