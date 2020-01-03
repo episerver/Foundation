@@ -3,6 +3,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Core;
 using EPiServer.Find;
+using EPiServer.Find.Commerce;
 using EPiServer.ServiceLocation;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Models.Catalog;
@@ -68,9 +69,9 @@ namespace Foundation.Find.Commerce
                 .Select(x => new VariationModel
                 {
                     Code = x.Code,
-                    ContentReference = ReferenceConverter.Value.GetContentLink(x.Code).ToString(),
                     LanguageId = productContent.Language.Name,
-                    Name = x.DisplayName
+                    Name = x.DisplayName,
+                    DefaultAssetUrl = (x as IAssetContainer).DefaultImageUrl()
                 });
         }
     }
