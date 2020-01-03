@@ -2,27 +2,30 @@
     constructor(containerId) {
         this.Container = containerId != undefined ? containerId : document;
         this.RowTemplate = (index, data) => `<div class="row js-product-row" data-order="${index}">
-                <div class="form-group col-xs-12 col-md-3">
-                    <input class="form-control square-box" readonly="readonly" id='ProductsList_${index}__ProductName' name='ProductsList[${index}].ProductName' type="text" value='${data.ProductName}' style="position: relative">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                    <input class="form-control square-box" readonly="readonly" id='ProductsList_${index}__ProductName' name='ProductsList[${index}].ProductName' type="text" value='${data.ProductName}' style="position: relative" placeholder="Product name">
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-2">
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
                     <input class="form-control square-box" id="ProductsList_${index}__Sku" name="ProductsList[${index}].Sku" placeholder="Sku code" required="required" type="text" value="${data.Sku}">
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-2">
-                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__UnitPrice" name="ProductsList[${index}].UnitPrice" type="text" value="${data.UnitPrice}">
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__UnitPrice" name="ProductsList[${index}].UnitPrice" type="text" 
+                      value="${data.UnitPrice}" placeholder="Unit price">
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-2">
-                    <input class="form-control square-box" id="ProductsList_${index}__Quantity" name="ProductsList[${index}].Quantity" required="required" type="text" value="${data.Quantity}">
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    <input class="form-control square-box" id="ProductsList_${index}__Quantity" name="ProductsList[${index}].Quantity" required="required" type="text" 
+                      value="${data.Quantity}" placeholder="Quantity">
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-2">
-                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__TotalPrice" name="ProductsList[${index}].TotalPrice" type="text" value="${data.TotalPrice}">
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__TotalPrice" name="ProductsList[${index}].TotalPrice" type="text" value="${data.TotalPrice}" placeholder="Total price">
                 </div>
-                <div class="form-group col-xs-12 col-sm-6 col-md-1">
-                    <a href="#" class="btn btn-danger jsDeleteRow">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-1">
+                    <a href="javascript:void(0);" class="btn btn-danger jsDeleteRow">
                         <i data-feather="trash-2"></i>
                     </a>
                 </div>
-            </div>`;
+            </div>
+            <hr/>`;
 
         this.ProductListing = [];
     }
@@ -49,11 +52,21 @@
                 return "/QuickOrderBlock/GetSku?query=" + phrase;
             },
             getValue: "Sku",
+            requestDelay: 500,
             list: {
                 match: {
-                    enabled: true
+                    enabled: false
                 },
                 onChooseEvent: () => this.onChooseEvent($autocompleteInput)
+            },
+            template: {
+                type: "custom",
+                method: function (value, item) {
+                    if (item.UrlImage == "" || item.UrlImage == undefined) {
+                        return value;
+                    }
+                    return "<img class='eac-icon' src='" + item.UrlImage + "' /> " + value;
+                }
             }
         };
         $autocompleteInput.easyAutocomplete(options);

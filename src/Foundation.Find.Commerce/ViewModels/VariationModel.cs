@@ -4,8 +4,7 @@
     {
         public string Code { get; set; }
         public string LanguageId { get; set; }
-        public string ContentReference { get; set; }
-        public string ParentType { get; set; }
         public string Name { get; set; }
+        public string DefaultAssetUrl { get; set; }
     }
 }
