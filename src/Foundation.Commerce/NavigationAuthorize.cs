@@ -17,7 +17,7 @@ namespace Foundation.Commerce
             if (ValidateUserRole()) return;
 
             var url = new UrlHelper(filterContext.RequestContext);
-            var redirectUrl = url.Action("Index", "Start");
+            var redirectUrl = url.Action("Index", "User");
             filterContext.Result = new RedirectResult(redirectUrl);
         }
 
