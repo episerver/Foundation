@@ -3,7 +3,16 @@
 @model UsersPageViewModel
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+    var impersonate = ViewBag.Impersonate != null ? (bool)ViewBag.Impersonate : true;
 }
+
+@if (!impersonate)
+{
+    <div class="error">
+        <p>Impersonate fail.</p>
+    </div>
+}
+
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div class="spacer-left-l">
     <section>
@@ -53,13 +62,13 @@
                         <td>@user.UserRole</td>
                         <td>@user.FoundationOrganization.Name</td>
                         <td class="text-right">
-                            <a href="@Url.Action("EditUser","Users", new {id=@user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(user.IsAdmin ? "disabled" : "")>
+                            <a href="@Url.Action("EditUser","Users", new {id = user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(user.IsAdmin ? "disabled" : "")>
                                 <i data-feather="edit"></i>
                             </a>
-                            <a href="@Url.Action("RemoveUser","Users", new {id=@user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(user.IsAdmin ? "disabled" : "")>
+                            <a href="@Url.Action("RemoveUser","Users", new {id = user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(user.IsAdmin ? "disabled" : "")>
                                 <i data-feather="trash"></i>
                             </a>
-                            <a href="@Url.Action("ImpersonateUser","Users", new {id=@user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Impersonate", "Impersonate")" @(user.IsAdmin ? "disabled" : "")>
+                            <a href="@Url.Action("ImpersonateUser","Users", new {email = user.Email})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Impersonate", "Impersonate")" @(user.IsAdmin ? "disabled" : "")>
                                 <i data-feather="eye"></i>
                             </a>
                         </td>
