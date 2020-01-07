@@ -63,6 +63,11 @@ namespace Foundation.Features.MyOrganization.Users
         [NavigationAuthorize("Admin")]
         public ActionResult Index(UsersPage currentPage)
         {
+            if (TempData["ImpersonateFail"] != null)
+            {
+                ViewBag.Impersonate = (bool)TempData["ImpersonateFail"];
+            }
+
             var organization = _organizationService.GetCurrentFoundationOrganization();
             var currentOrganization = organization;
             var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedSuborganization);
@@ -201,17 +206,25 @@ namespace Foundation.Features.MyOrganization.Users
         }
 
         [NavigationAuthorize("Admin")]
-        public JsonResult ImpersonateUser(string id)
+        public ActionResult ImpersonateUser(string email)
         {
             var success = false;
-            var user = _userManager.FindById(id);
+            var user = _userManager.FindByEmail(email);
             if (user != null)
             {
                 _cookieService.Set(Constant.Cookies.B2BImpersonatingAdmin, User.Identity.GetUserName(), true);
                 _signInManager.SignIn(user, false, false);
                 success = true;
             }
-            return Json(new { success });
+            
+            if (success)
+            {
+                return Redirect("/");
+            } else
+            {
+                TempData["ImpersonateFail"] = false;
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult BackAsAdmin()
