@@ -100,7 +100,7 @@ namespace Foundation.Commerce.Customer.Services
             if (budgets == null || !budgets.Any()) return null;
 
             var returnedBudgets = budgets.Where(budget =>
-                budget.OrganizationId == organizationId && budget.ContactId == purchaserGuid &&
+                budget.OrganizationId == organizationId &&
                 DateTime.Compare(budget.StartDate, DateTime.Now) <= 0 &&
                 DateTime.Compare(DateTime.Now, budget.DueDate) <= 0);
             return returnedBudgets.Any() ? returnedBudgets.First() : null;
