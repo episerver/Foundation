@@ -142,6 +142,11 @@ namespace Foundation.Features.Checkout
                 }
             }
 
+            if (TempData["ErrorMessages"] != null)
+            {
+                ViewBag.ErrorMessages = (string)TempData["ErrorMessages"];
+            }
+
             return View("Checkout", viewModel);
         }
 
@@ -445,55 +450,49 @@ namespace Foundation.Features.Checkout
             UpdatePaymentAddress(checkoutViewModel);
             _orderRepository.Save(CartWithValidationIssues.Cart);
 
-            var purchaseOrder = _checkoutService.PlaceOrder(CartWithValidationIssues.Cart, ModelState, checkoutViewModel);
-            if (purchaseOrder == null)
+            try
             {
-                var viewModel = CreateCheckoutViewModel(currentPage);
-                viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-                viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
-                viewModel.UseShippingingAddressForBilling = checkoutViewModel.UseShippingingAddressForBilling;
-
-                for (var i = 0; i < checkoutViewModel.Shipments.Count; i++)
+                var purchaseOrder = _checkoutService.PlaceOrder(CartWithValidationIssues.Cart, ModelState, checkoutViewModel);
+                if (purchaseOrder == null)
                 {
-                    viewModel.Shipments[i].Address = checkoutViewModel.Shipments[i].Address;
-                    viewModel.Shipments[i].ShippingAddressType = checkoutViewModel.Shipments[i].ShippingAddressType;
+                    TempData["ErrorMessages"] = "There is no payment was processed";
+                    return RedirectToAction("Index");
                 }
 
-                viewModel.BillingAddressType = checkoutViewModel.BillingAddressType;
-                viewModel.BillingAddress = checkoutViewModel.BillingAddress;
-                _addressBookService.LoadAddress(viewModel.BillingAddress);
-                _addressBookService.LoadAddress(checkoutViewModel.Shipments[0].Address);
-                return View("Checkout", viewModel);
-            }
+                if (checkoutViewModel.BillingAddressType == 0)
+                    _addressBookService.Save(checkoutViewModel.BillingAddress);
 
-            if (checkoutViewModel.BillingAddressType == 0)
-                _addressBookService.Save(checkoutViewModel.BillingAddress);
-
-            foreach (var shipment in checkoutViewModel.Shipments)
-            {
-                if (shipment.ShippingAddressType == 0 && shipment.ShippingMethodId != _cartService.InStorePickupInfoModel.MethodId)
-                    _addressBookService.Save(shipment.Address);
-            }
-
-            if (Request.IsAuthenticated)
-            {
-                var contact = _customerContext.GetCurrentContact().Contact;
-                var organization = contact.ContactOrganization;
-                if (organization != null)
+                foreach (var shipment in checkoutViewModel.Shipments)
                 {
-                    purchaseOrder.Properties[Constant.Customer.CustomerFullName] = contact.FullName;
-                    purchaseOrder.Properties[Constant.Customer.CustomerEmailAddress] = contact.Email;
-                    purchaseOrder.Properties[Constant.Customer.CurrentCustomerOrganization] = organization.Name;
-                    _orderRepository.Save(purchaseOrder);
+                    if (shipment.ShippingAddressType == 0 && shipment.ShippingMethodId != _cartService.InStorePickupInfoModel.MethodId)
+                        _addressBookService.Save(shipment.Address);
                 }
-            }
-            checkoutViewModel.CurrentContent = currentPage;
-            var confirmationSentSuccessfully = _checkoutService.SendConfirmation(checkoutViewModel, purchaseOrder);
-            //await _checkoutService.CreateOrUpdateBoughtProductsProfileStore(CartWithValidationIssues.Cart);
-            //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
-            await _recommendationService.TrackOrder(HttpContext, purchaseOrder);
 
-            return Redirect(_checkoutService.BuildRedirectionUrl(checkoutViewModel, purchaseOrder, confirmationSentSuccessfully));
+                if (Request.IsAuthenticated)
+                {
+                    var contact = _customerContext.GetCurrentContact().Contact;
+                    var organization = contact.ContactOrganization;
+                    if (organization != null)
+                    {
+                        purchaseOrder.Properties[Constant.Customer.CustomerFullName] = contact.FullName;
+                        purchaseOrder.Properties[Constant.Customer.CustomerEmailAddress] = contact.Email;
+                        purchaseOrder.Properties[Constant.Customer.CurrentCustomerOrganization] = organization.Name;
+                        _orderRepository.Save(purchaseOrder);
+                    }
+                }
+                checkoutViewModel.CurrentContent = currentPage;
+                var confirmationSentSuccessfully = _checkoutService.SendConfirmation(checkoutViewModel, purchaseOrder);
+                //await _checkoutService.CreateOrUpdateBoughtProductsProfileStore(CartWithValidationIssues.Cart);
+                //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
+                await _recommendationService.TrackOrder(HttpContext, purchaseOrder);
+
+                return Redirect(_checkoutService.BuildRedirectionUrl(checkoutViewModel, purchaseOrder, confirmationSentSuccessfully));
+            } 
+            catch(Exception e)
+            {
+                TempData["ErrorMessages"] = e.Message;
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
