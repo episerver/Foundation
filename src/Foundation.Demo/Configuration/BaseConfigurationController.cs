@@ -2,6 +2,7 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
+using EPiServer.Personalization.VisitorGroups;
 using EPiServer.Scheduler;
 using EPiServer.Web;
 using Foundation.Demo.Extensions;
@@ -28,7 +29,8 @@ namespace Foundation.Demo.Configuration
             ReferenceConverter referenceConverter,
             ISiteDefinitionRepository siteDefinitionRepository,
             IScheduledJobExecutor scheduledJobExecutor,
-            IScheduledJobRepository scheduledJobRepository)
+            IScheduledJobRepository scheduledJobRepository,
+            IVisitorGroupRepository visitorGroupRepository)
         {
             InstallService = installService;
             StorageService = storageService;
@@ -37,6 +39,7 @@ namespace Foundation.Demo.Configuration
             SiteDefinitionRepository = siteDefinitionRepository;
             ScheduledJobExecutor = scheduledJobExecutor;
             ScheduledJobRepository = scheduledJobRepository;
+            VisitorGroupRepository = visitorGroupRepository;
         }
 
         protected virtual IInstallService InstallService { get; }
@@ -46,6 +49,7 @@ namespace Foundation.Demo.Configuration
         protected virtual ISiteDefinitionRepository SiteDefinitionRepository { get; }
         protected IScheduledJobExecutor ScheduledJobExecutor { get; }
         protected IScheduledJobRepository ScheduledJobRepository { get; }
+        protected IVisitorGroupRepository VisitorGroupRepository { get; }
 
         protected virtual List<SelectListItem> GetRemoteCatalogs()
         {
@@ -75,6 +79,20 @@ namespace Foundation.Demo.Configuration
             return sites;
         }
 
+        protected virtual List<SelectListItem> GetRemoteVisitorGroups()
+        {
+            var visitorGroups = StorageService.GetBlobItems("VisitorGroups/", 0, 1000)
+                .Select(_ => _.GetAzureBlob())
+                .Where(_ => _.IsBlob)
+                .Select(_ => new SelectListItem
+                {
+                    Text = _.Name,
+                    Value = _.Url
+                }).ToList();
+            visitorGroups.Insert(0, new SelectListItem { Text = "Choose visitor group", Value = "0" });
+            return visitorGroups;
+        }
+
         protected virtual List<CatalogContent> GetLocalCatalogs()
         {
             return ContentRepository.GetChildren<CatalogContent>(ReferenceConverter.GetRootLink())
@@ -85,6 +103,11 @@ namespace Foundation.Demo.Configuration
         {
             return SiteDefinitionRepository.List()
                  .ToList();
+        }
+
+        protected virtual List<VisitorGroup> GetVisitorGroups()
+        {
+            return VisitorGroupRepository.List().ToList();
         }
 
         protected virtual List<AzureBlob> GetBlobs(string path)
