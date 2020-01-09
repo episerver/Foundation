@@ -22,7 +22,6 @@ namespace Foundation.Commerce.ViewModels.Header
         public MarketViewModel Markets { get; set; }
         public bool IsBookmarked { get; set; }
 
-
         public CommerceHomePage CommerceHomePage => HomePage as CommerceHomePage;
     }
 }
