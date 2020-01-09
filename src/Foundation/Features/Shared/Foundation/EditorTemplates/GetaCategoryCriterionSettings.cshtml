@@ -1,0 +1,13 @@
+﻿@using EPiServer.Personalization.VisitorGroups
+@model Foundation.Cms.VisitorCriterions.GetaCategoryCriterion.GetaCategoryCriterionSettings
+
+<div class="epi-criteria-grouping">
+    <span class="epi-criteria-inlineblock">
+        @Html.LabelFor(x => x.CategoryId)
+        @Html.DojoEditorFor(x => x.CategoryId)
+    </span>
+    <span class="epi-criteria-inlineblock">
+        @Html.LabelFor(x => x.ViewedTimes)
+        @Html.DojoEditorFor(x => x.ViewedTimes)
+    </span>
+</div>

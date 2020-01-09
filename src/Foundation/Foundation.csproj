@@ -1824,6 +1824,7 @@
     <Content Include="Features\MyAccount\_MyAccountLayout.cshtml" />
     <Content Include="Features\Blocks\Views\CarouselBlock.cshtml" />
     <Content Include="Features\MyAccount\OrderHistory\_OrderFilterBox.cshtml" />
+    <Content Include="Features\Shared\Foundation\EditorTemplates\GetaCategoryCriterionSettings.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
