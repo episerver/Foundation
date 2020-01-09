@@ -22,7 +22,6 @@ namespace Foundation.Demo.Configuration
 {
     public class FoundationConfigurationController : BaseConfigurationController
     {
-        private readonly IVisitorGroupRepository _visitorGroupRepository;
         private readonly ContentExportProcessor _contentExportProcessor;
         private readonly CatalogImportExport _catalogImportExport = new CatalogImportExport
         {
@@ -38,9 +37,8 @@ namespace Foundation.Demo.Configuration
             ContentExportProcessor contentExportProcessor,
             IScheduledJobExecutor scheduledJobExecutor,
             IScheduledJobRepository scheduledJobRepository) :
-            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository, scheduledJobExecutor, scheduledJobRepository)
+            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository, scheduledJobExecutor, scheduledJobRepository, visitorGroupRepository)
         {
-            _visitorGroupRepository = visitorGroupRepository;
             _contentExportProcessor = contentExportProcessor;
         }
 
@@ -70,11 +68,6 @@ namespace Foundation.Demo.Configuration
                 .ToList();
 
             return Json(nodes, JsonRequestBehavior.AllowGet);
-        }
-
-        public List<VisitorGroup> GetAllVisitorGroups()
-        {
-            return _visitorGroupRepository.List().ToList();
         }
 
         [HttpPost]
@@ -324,7 +317,7 @@ namespace Foundation.Demo.Configuration
                 return View("Index", model);
             }
 
-            var visitorGroupData = _visitorGroupRepository.List().Where(x => model.SelectedVisitorGroupItems.Contains(x.Id.ToString())).ToList();
+            var visitorGroupData = VisitorGroupRepository.List().Where(x => model.SelectedVisitorGroupItems.Contains(x.Id.ToString())).ToList();
             var stream = _contentExportProcessor.ExportEpiserverVisitorGroup(visitorGroupData);
 
             if (model.VisitorGroupExportLocation.Equals("Remote", StringComparison.InvariantCultureIgnoreCase))
@@ -428,7 +421,7 @@ namespace Foundation.Demo.Configuration
                 Catalogs = GetBlobs("Catalogs"),
                 LocalCatalogs = GetLocalCatalogs(),
                 VisitorGroups = GetBlobs("VisitorGroups"),
-                LocalVisitorGroups = GetAllVisitorGroups(),
+                LocalVisitorGroups = GetVisitorGroups(),
                 SelectedVisitorGroupItems = new List<string>()
             };
         }
