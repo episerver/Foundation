@@ -1,5 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @using EPiServer.Shell.Web.Mvc.Html
+@using System
+
 @model VirtualTemplates.UI.Models.VirtualTemplatesListViewModel
 
 @{
@@ -15,7 +17,7 @@
 
             @if (!string.IsNullOrEmpty(Model.LastActionPath))
             {
-                @Html.ActionLink(Html.TranslateFallback("/virtualtemplatesystem/buttons/editnow", "Edit Now"), "Edit", new { VirtualPath = @Model.LastActionPath }, new { @class = "button-transparent-black" })
+                @Html.ActionLink(Html.TranslateFallback("/virtualtemplatesystem/buttons/editnow", "Edit Now"), "Edit", new { VirtualPath = @Model.LastActionPath }, new { @class = "btn btn-light" })
             }
 
         </div>
@@ -39,12 +41,16 @@
                 @Html.TranslateFallback("/virtualtemplatesystem/filters/showalltemplates", "Show all available templates")
             </a>
         </span>
+        <span class="checkbox inline">
+            @Html.CheckBoxFor(x => x.SearchFileNamesOnly)
+            @Html.LabelFor(x => x.SearchFileNamesOnly, Html.TranslateFallback("/virtualtemplatesystem/filters/searchfilenamesonly", "Search in file names only"))
+        </span>
     </div>
 
     <form id="resourceFilterForm">
         <div class="form-group">
             <input id="searchBox" type="search" value="@Model.LastSearch" class="form-control search-input searchBox fileSearch" 
-                   placeholder="Search file name or contents" />
+                   placeholder="@Html.TranslateFallback("/virtualtemplatesystem/filters/searchboxplaceholder", "Search")" />
         </div>
     </form>
 
@@ -66,12 +72,21 @@
             @foreach (var item in Model.TemplateList)
             {
                 <tr class="resource" data-virtualpath='@item.FilePath'>
-                    <td class="align-middle">@item.FilePath</td>
+                    <td class="align-middle">
+                        @if (item.IsVirtual)
+                        {
+                            @Html.ActionLink(item.FilePath, "Edit", new { VirtualPath = @item.FilePath }, new { @class = "templateLink" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(item.FilePath, "Display", new { VirtualPath = @item.FilePath }, new { @class = "templateLink" })
+                        }
+                    </td>
                     <td class="align-middle">
                         @if (item.IsVirtual)
                         {
                             <button type="button"
-                                    class="button-transparent-black button-history"
+                                    class="btn btn-light btn-history"
                                     data-placement="bottom"
                                     data-container="body"
                                     data-html="true"
@@ -96,7 +111,35 @@
                             @Html.Raw("&nbsp;")
                             @Html.ActionLink(Html.TranslateFallback("/virtualtemplatesystem/buttons/compare", " "), "Compare", new { VirtualPath = @item.FilePath }, new { @class = "btn btn-primary fas fa-exchange-alt", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Compare with default", @data_delay = "500" })
                             @Html.Raw("&nbsp;")
-                            @Html.ActionLink(Html.TranslateFallback("/virtualtemplatesystem/buttons/delete", " "), "Revert", new { VirtualPath = @item.FilePath }, new { @class = "btn btn-danger fas fa-undo", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Revert to default", @data_delay = "500", @onclick = "return confirm('" + @Html.TranslateFallback("/virtualtemplatesystem/messages/deleteconfirmprompt", "Are you sure you want to revert to the default implementation? This will move the virtual template to the recycle bin.") + "');" })
+                            if (item.TemplateIsChanged)
+                            {
+                                @Html.ActionLink(
+                                    Html.TranslateFallback("/virtualtemplatesystem/buttons/delete", " "), 
+                                    "Revert", 
+                                    new { VirtualPath = @item.FilePath }, 
+                                    new
+                                    {
+                                        @class = "btn btn-danger fas fa-undo", 
+                                        @data_toggle = "tooltip", @data_placement = "bottom", 
+                                        @title = "Revert to default", @data_delay = "500", 
+                                        @onclick = "return confirm('" + @Html.TranslateFallback("/virtualtemplatesystem/messages/deleteconfirmprompt", "Are you sure you want to revert to the default implementation? This will move the virtual template to the recycle bin.") + "');"
+                                    })
+                            }
+                            else
+                            {
+                                @Html.ActionLink(
+                                    Html.TranslateFallback("/virtualtemplatesystem/buttons/delete", " "), 
+                                    "Revert", 
+                                    new { VirtualPath = @item.FilePath }, 
+                                    new
+                                    {
+                                        @class = "btn btn-success fas fa-undo", 
+                                        @data_toggle = "tooltip", 
+                                        @data_placement = "bottom", 
+                                        @title = "Revert to default (safe, template not changed)", 
+                                        @data_delay = "500" 
+                                    })
+                            }
                         }
                     </td>
                 </tr>
@@ -127,13 +170,13 @@
         $('[data-toggle="popover"]').popover();
 
         // Hide history button if another popover is pressed
-        $('.button-history').on('click',
+        $('.btn-history').on('click',
             function(e) {
-                $('.button-history').not(this).popover('hide');
+                $('.btn-history').not(this).popover('hide');
             });
 
         // Link for compare view when viewing history
-        $('.button-history').on('shown.bs.popover',
+        $('.btn-history').on('shown.bs.popover',
             function() {
                 $('.history-row').on('click',
                     function (e) {
@@ -162,10 +205,11 @@
 
         var $filterForm = $('#resourceFilterForm'),
             $filterInput = $filterForm.find('.form-control:first-child'),
+            $searchFileNamesOnly = $('#SearchFileNamesOnly'),
             $resourceList = $('#resourceList'),
             $resourceItems = $resourceList.find('.resource');
 
-        function runServerFilter(query) {
+        function runServerFilter(query, searchFileNamesOnly) {
             if (query.length === 0) {
                 $filterInput.removeClass('fileSearch');
                 $filterInput.addClass('fileSearching');
@@ -183,7 +227,7 @@
             $filterInput.addClass('fileSearching');
             // run search
             var action = "@Url.Action("SearchFiles", "VirtualTemplates")";
-            $.get(action, { searchString: query })
+            $.get(action, { searchString: query, searchFileNamesOnly: searchFileNamesOnly })
                 .done(function( data ) {
                     var searchResults = data;
                     searchResults.data.forEach(function(path) {
@@ -200,18 +244,23 @@
         var t;
         $filterInput.on('input', function () {
             clearTimeout(t);
-            t = setTimeout(function () { runServerFilter($filterInput.val()); }, 750);
+            t = setTimeout(function () { runServerFilter($filterInput.val(), $searchFileNamesOnly.is(":checked")); }, 750);
         });
 
         $filterForm.on('submit', function (e) {
             e.preventDefault();
             clearTimeout(t);
-            runServerFilter($filterInput.val());
+            runServerFilter($filterInput.val(), $searchFileNamesOnly.is(":checked"));
+        });
+
+        $searchFileNamesOnly.on('change', function (e) {
+            clearTimeout(t);
+            runServerFilter($filterInput.val(), $searchFileNamesOnly.is(":checked"));
         });
 
         // Re-run the filter if there is a search value to use
         if ($filterInput.val() !== "") {
-            runServerFilter($filterInput.val());
+            runServerFilter($filterInput.val(), $searchFileNamesOnly.is(":checked"));
         }
 
     });

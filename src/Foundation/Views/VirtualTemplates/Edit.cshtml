@@ -33,6 +33,11 @@
 <script>
     $(function() {
 
+        var $saveButton = $('#saveButton');
+        var $confirmMessage = $('#confirmMessage');
+        var $revertbutton = $('#revertButton');
+        var toggledRevertButton = false;
+
         function getModeByFileExtension(path) {
             var modelist = ace.require("ace/ext/modelist");
             return modelist.getModeForPath(path).mode;
@@ -49,10 +54,14 @@
             editor.getSession().on('change',
                 function(e) {
                     document.getElementById("TemplateContents").value = editor.getValue();
+                    $confirmMessage.html('');
+                    if (toggledRevertButton === false) {
+                        $revertbutton.addClass('btn-danger');
+                        $revertbutton.removeClass('btn-success');
+                        $revertbutton[0].innerHTML = '<i class="fas fa-undo"></i> Revert to default';
+                        toggledRevertButton = true;
+                    }
                 });
-
-        var $saveButton = $('#saveButton');
-        var $confirmMessage = $('#confirmMessage');
 
         function saveTemplate(templateContents) {
 
