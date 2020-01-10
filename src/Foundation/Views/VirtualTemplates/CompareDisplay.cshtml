@@ -27,6 +27,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ext-modelist.js" integrity="sha256-fHHnTJkNE5lFkfAHCy3jXQMweBuoT9x8vuWiqWKSrUE=" crossorigin="anonymous"></script>
 
 <script>
+
+    var revertbutton = window.parent.document.getElementById('revertButton');
+    var toggledRevertButton = false;
+    var confirmMessage = window.parent.document.getElementById('confirmMessage');
+
     function getMode(path){
         var modelist = ace.require("ace/ext/modelist");
         return modelist.getModeForPath(path).mode;
@@ -51,7 +56,14 @@
     leftEditor.session.setMode(mode);
     leftEditor.getSession().on('change', function (e) {
         var contents = leftEditor.getValue();
+        confirmMessage.innerHTML = '';
         window.top.document.getElementById("LeftContents").value = contents;
+        if (toggledRevertButton === false) {
+            revertbutton.classList.add('btn-danger');
+            revertbutton.classList.remove('btn-success');
+            revertbutton.innerHTML = '<i class="fas fa-undo"></i> Revert to default';
+            toggledRevertButton = true;
+        }
     });
 
     var rightEditor = aceDiffer.getEditors().right;
