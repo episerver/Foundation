@@ -10,6 +10,9 @@
     <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
 </div>
 <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+
+@Html.Partial("_OrderFilterBox", Model.Filter)
+
 <div class="recent-orders">
     @if (Model.Orders != null && Model.Orders.Count > 0)
     {
@@ -99,20 +102,20 @@
             <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
             <ul class="pagination">
                 <li>
-                    <a href="@Model.OrderHistoryUrl?page=1&size=@Model.PagingInfo.PageSize">
+                    <a href="@Model.OrderHistoryUrl?page=1&size=@Model.PagingInfo.PageSize&isPaging=1">
                         &laquo;
                     </a>
                 </li>
                 @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
                 {
                     <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "")">
-                        <a href="@Model.OrderHistoryUrl?page=@page&size=@Model.PagingInfo.PageSize">
+                        <a href="@Model.OrderHistoryUrl?page=@page&size=@Model.PagingInfo.PageSize&isPaging=1">
                             @page.ToString()
                         </a>
                     </li>
                 }
                 <li>
-                    <a href="@Model.OrderHistoryUrl?page=@Model.PagingInfo.PageCount&size=@Model.PagingInfo.PageSize">
+                    <a href="@Model.OrderHistoryUrl?page=@Model.PagingInfo.PageCount&size=@Model.PagingInfo.PageSize&isPaging=1">
                         &raquo;
                     </a>
                 </li>
@@ -130,16 +133,16 @@
                     </a>
                     <ul class="selection__dropdown">
                         <li>
-                            <a href="@Model.OrderHistoryUrl?size=10">10</a>
+                            <a href="@Model.OrderHistoryUrl?size=10&isPaging=1">10</a>
                         </li>
                         <li>
-                            <a href="@Model.OrderHistoryUrl?size=20">20</a>
+                            <a href="@Model.OrderHistoryUrl?size=20&isPaging=1">20</a>
                         </li>
                         <li>
-                            <a href="@Model.OrderHistoryUrl?size=30">30</a>
+                            <a href="@Model.OrderHistoryUrl?size=30&isPaging=1">30</a>
                         </li>
                         <li>
-                            <a href="@Model.OrderHistoryUrl?size=-1">All</a>
+                            <a href="@Model.OrderHistoryUrl?size=-1&isPaging=1">All</a>
                         </li>
                     </ul>
                 </li>

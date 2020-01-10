@@ -236,7 +236,6 @@ namespace Foundation.Commerce.ViewModels.Header
                 {
                     Address = new AddressModel()
                 },
-                MobileNavigation = homePage.MobileNavigationPages,
             };
         }
 

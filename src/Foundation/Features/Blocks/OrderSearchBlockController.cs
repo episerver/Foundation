@@ -127,7 +127,7 @@ namespace Foundation.Features.Blocks
             if (result && !string.IsNullOrEmpty(filter.Keyword))
             {
                 result = result ? order.OrderGroupId.ToString().Contains(filter.Keyword) : result;
-                result = result ? order.Items.Where(x => x.LineItem.Code.Contains(filter.Keyword)).Count() > 0 : result;
+                result = !result ? order.Items.Where(x => x.LineItem.Code.Contains(filter.Keyword)).Count() > 0 : true;
             }
 
             if (result && filter.DateFrom.HasValue)

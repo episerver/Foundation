@@ -1,17 +1,24 @@
-﻿.easy-autocomplete-container {
+﻿.easy-autocomplete {
+    max-width: 100%;
+    position: relative;
+}
+
+.easy-autocomplete-container {
     position: absolute;
-    width: 145px;
+    min-width: 100%;
+    width: auto;
     z-index: 1;
     background-color: white;
+
     & ul {
-        width: 100%;
+        width: auto;
         border: 1px solid #eeeeee;
         list-style-type: none;
         padding: 0;
 
         & li {
-            width: 100%;
-            padding: 15px;
+            width: auto;
+            padding: 5px;
             border-bottom: 1px solid #eeeeee;
             cursor: pointer;
 
@@ -23,5 +30,24 @@
                 background-color: #e5e5e5;
             }
         }
+
+        @media screen and (min-width: 767px) {
+            & li {
+                min-width: 200px;
+            }
+        }
+    }
+
+    .eac-item {
+        width: auto;
+
+        & img:first-child {
+            margin-right: 5px;
+        }
+    }
+
+    .eac-icon {
+        max-width: 30%;
+        max-height: 60px;
     }
 }

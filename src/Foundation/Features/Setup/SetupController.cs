@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
+using EPiServer.Personalization.VisitorGroups;
 using EPiServer.Scheduler;
 using EPiServer.Web;
 using Foundation.Cms.Extensions;
@@ -23,9 +24,10 @@ namespace Foundation.Features.Setup
             IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             ISiteDefinitionRepository siteDefinitionRepository,
+            IVisitorGroupRepository visitorGroupRepository,
             IScheduledJobExecutor scheduledJobExecutor,
             IScheduledJobRepository scheduledJobRepository) :
-            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository, scheduledJobExecutor, scheduledJobRepository)
+            base(installService, storageService, contentRepository, referenceConverter, siteDefinitionRepository, scheduledJobExecutor, scheduledJobRepository, visitorGroupRepository)
         {
         }
 
@@ -35,7 +37,8 @@ namespace Foundation.Features.Setup
             var model = new SetupViewModel
             {
                 Catalogs = GetRemoteCatalogs(),
-                Sites = GetRemoteSites()
+                Sites = GetRemoteSites(),
+                VisitorGroups = GetRemoteVisitorGroups()
             };
 
             return View(model);
@@ -46,6 +49,7 @@ namespace Foundation.Features.Setup
         public ActionResult Create(SetupViewModel model)
         {
             Stream siteStream = null;
+            Stream visitorGroupStream = null;
 
             if (model.SiteLocation.Equals("Remote", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -107,27 +111,44 @@ namespace Foundation.Features.Setup
 
             if (model.CatalogLocation.Equals("Remote", StringComparison.InvariantCultureIgnoreCase))
             {
-                if (model.CatalogName.IsNullOrEmpty() || model.CatalogName.Equals("0"))
+                if ((model.CatalogName.IsNullOrEmpty() || model.CatalogName.Equals("0")) == false)
                 {
-                    return Redirect("/");
+                    var file = StorageService.GetCloudBlockBlob(new Uri(model.CatalogName));
+                    if (!file.Exists())
+                    {
+                        throw new Exception("Catalog blob does not exist");
+                    }
+                    CreateCatalog(file);
                 }
-
-                var file = StorageService.GetCloudBlockBlob(new Uri(model.CatalogName));
-                if (!file.Exists())
-                {
-                    throw new Exception("Catalog blob does not exist");
-                }
-
-                CreateCatalog(file);
-
             }
             else
             {
-                if (model.CatalogFile.FirstOrDefault() == null)
+                if (model.CatalogFile.FirstOrDefault() != null)
                 {
-                    return Redirect("/");
+                    CreateCatalog(model.CatalogFile.FirstOrDefault());
                 }
-                CreateCatalog(model.CatalogFile.FirstOrDefault());
+            }
+
+            if (model.VisitorGroupLocation.Equals("Remote", StringComparison.InvariantCultureIgnoreCase))
+            {
+                if ((model.VisitorGroupName.IsNullOrEmpty() || model.VisitorGroupName.Equals("0")) == false)
+                {
+                    var file = StorageService.GetCloudBlockBlob(new Uri(model.VisitorGroupName));
+                    if (!file.Exists())
+                    {
+                        throw new Exception("Visitor group blob does not exist");
+                    }
+                    visitorGroupStream = file.OpenRead();
+                    CreateVisitorGroup(visitorGroupStream, ContentReference.RootPage);
+                }
+            }
+            else
+            {
+                visitorGroupStream = model.VisitorGroupFile?.FirstOrDefault()?.InputStream;
+                if (visitorGroupStream != null)
+                {
+                    CreateVisitorGroup(visitorGroupStream, ContentReference.RootPage);
+                }
             }
 
             var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName);

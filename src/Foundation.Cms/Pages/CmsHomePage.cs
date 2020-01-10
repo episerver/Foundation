@@ -30,9 +30,6 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Main menu", GroupName = CmsTabNames.Menu, Order = 10)]
         public virtual ContentArea MainMenu { get; set; }
 
-        [Display(Name = "Mobile menu", GroupName = CmsTabNames.Menu, Order = 20)]
-        public virtual LinkItemCollection MobileNavigationPages { get; set; }
-
         [CultureSpecific]
         [Display(Name = "My account menu (CMS)",
             Description = "This menu will show if show commerce components in header is false",

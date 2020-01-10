@@ -26,12 +26,14 @@ namespace Foundation.Commerce.Order.ViewModels
         };
 
         public PagingInfo PagingInfo { get; set; }
+        public OrderFilter Filter { get; set; }
         public string OrderHistoryUrl { get; set; }
 
         public OrderHistoryViewModel() : base() { }
         public OrderHistoryViewModel(OrderHistoryPage currentContent) : base(currentContent)
         {
             PagingInfo = new PagingInfo();
+            Filter = new OrderFilter();
         } // currentContent must be OrderHistoryPage or OrderHistoryBlock
     }
 }

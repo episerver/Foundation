@@ -134,7 +134,10 @@ namespace Foundation.Find.Commerce
             }
             var results = searchQuery.Skip((page - 1) * pageSize).Take(pageSize).GetResult();
             if (results != null && results.Any())
+            {
                 return results.Hits.AsEnumerable().Select(x => x.Document);
+            }
+
             return Enumerable.Empty<UserSearchResultModel>();
         }
 
@@ -165,8 +168,9 @@ namespace Foundation.Find.Commerce
                     return new SkuSearchResultModel
                     {
                         Sku = variation.Code,
-                        ProductName = variation.Name,
-                        UnitPrice = discountedPrice?.UnitPrice.Amount ?? 0
+                        ProductName = string.IsNullOrEmpty(variation.Name) ? "" : variation.Name,
+                        UnitPrice = discountedPrice?.UnitPrice.Amount ?? 0,
+                        UrlImage = variation.DefaultAssetUrl
                     };
                 });
             }

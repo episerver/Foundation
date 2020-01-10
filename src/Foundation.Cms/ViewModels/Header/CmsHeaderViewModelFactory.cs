@@ -90,7 +90,6 @@ namespace Foundation.Cms.ViewModels.Header
                 }
             }).ToList();
 
-
             return new THeaderViewModel
             {
                 HomePage = homePage,
@@ -99,7 +98,6 @@ namespace Foundation.Cms.ViewModels.Header
                 UserLinks = new LinkItemCollection(),
                 Name = PrincipalInfo.Current.Name,
                 MenuItems = menuItems,
-                MobileNavigation = homePage.MobileNavigationPages,
             };
         }
 

@@ -1824,6 +1824,7 @@
     <Content Include="Features\MyOrganization\_MyOrganizationLayout.cshtml" />
     <Content Include="Features\MyAccount\_MyAccountLayout.cshtml" />
     <Content Include="Features\Blocks\Views\CarouselBlock.cshtml" />
+    <Content Include="Features\MyAccount\OrderHistory\_OrderFilterBox.cshtml" />
     <Content Include="Features\Blocks\Views\CategoryBlock.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_category-block.scss" />
     <None Include="packages.config">

@@ -61,6 +61,11 @@ namespace Foundation.Features.Search
                 return Redirect(Url.ContentUrl(ContentReference.StartPage));
             }
 
+            if (string.IsNullOrEmpty(filterOptions.ViewSwitcher))
+            {
+                filterOptions.ViewSwitcher = "List";
+            }
+
             var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
             var viewModel = _viewModelFactory.Create<DemoSearchViewModel<SearchResultPage>, SearchResultPage>(currentPage, new CommerceArgs
             {

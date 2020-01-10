@@ -34,6 +34,11 @@ namespace Foundation.Features.Search.Category
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public async Task<ViewResult> Index(GenericNode currentContent, CommerceFilterOptionViewModel viewModel)
         {
+            if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
+            {
+                viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "List" : currentContent.DefaultTemplate;
+            }
+
             var model = _viewModelFactory.Create<DemoSearchViewModel<GenericNode>, GenericNode>(currentContent, new CommerceArgs
             {
                 FilterOption = viewModel,
@@ -51,6 +56,14 @@ namespace Foundation.Features.Search.Category
         }
 
         [ChildActionOnly]
-        public ActionResult Facet(GenericNode currentContent, CommerceFilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
+        public ActionResult Facet(GenericNode currentContent, CommerceFilterOptionViewModel viewModel)
+        {
+            if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
+            {
+                viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "List" : currentContent.DefaultTemplate;
+            }
+
+            return PartialView("_Facet", viewModel);
+        }
     }
 }
