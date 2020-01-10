@@ -1,6 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Web;
 using Foundation.Cms.Blocks;
 using Foundation.Cms.Pages;
 using Foundation.Commerce.Models.Blocks;
@@ -15,15 +16,25 @@ namespace Foundation.Commerce.Models.Pages
     public class CollectionPage : FoundationPageData
     {
         [AllowedTypes(typeof(BreadcrumbBlock))]
-        [Display(Name = "Breadcrumb block", GroupName = SystemTabNames.Content, Order = 10)]
+        [Display(Name = "Navigation", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual ContentArea Navigation { get; set; }
 
-        [AllowedTypes(typeof(MediaBlock))]
-        [Display(Name = "Media", GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual ContentArea Media { get; set; }
+        [Display(Name = "Name", GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual string CollectionName { get; set; }
+
+        [UIHint(UIHint.Image)]
+        [Display(Name = "Image", GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual ContentReference Image { get; set; }
+
+        [UIHint(UIHint.Video)]
+        [Display(Name = "Video", GroupName = SystemTabNames.Content, Order = 40)]
+        public virtual ContentReference Video { get; set; }
+
+        [Display(Name = "Description", GroupName = SystemTabNames.Content, Order = 50)]
+        public virtual XhtmlString Description { get; set; }
 
         [AllowedTypes(new[] { typeof(CategoryBlock), typeof(ProductSearchBlock) })]
-        [Display(Name = "Products", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Products", GroupName = SystemTabNames.Content, Order = 60)]
         public virtual ContentArea Products { get; set; }
     }
 }

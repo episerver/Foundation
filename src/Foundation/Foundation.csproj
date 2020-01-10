@@ -1829,8 +1829,7 @@
     <Content Include="Features\Blocks\Views\CategoryBlock.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_category-block.scss" />
     <Content Include="Features\Collection\Index.cshtml" />
-    <Content Include="Features\Blocks\Views\MediaBlock.cshtml" />
-    <Content Include="Assets\scss\templates\blocks\_media-block.scss" />
+    <Content Include="Assets\scss\templates\pages\_collection.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

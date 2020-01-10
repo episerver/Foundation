@@ -2,6 +2,33 @@
 
 @Html.PropertyFor(x => x.CurrentContent.Navigation)
 <br />
-@Html.PropertyFor(x => x.CurrentContent.Media)
+
+<div class="row">
+    <div class="col-12 mediablock-container">
+        <div class="row">
+            <div class="col-5">
+                @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Image))
+                {
+                    <img class="mediablock__img" src="@Url.ContentUrl(Model.CurrentContent.Image)" />
+                }
+                else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Video))
+                {
+                    <video class="teaser__video" autoplay loop playsinline muted>
+                        <source src="@Url.ContentUrl(Model.CurrentContent.Video)" type="video/mp4">
+                    </video>
+                }
+            </div>
+            <div class="col-7 mediablock__content">
+                <div>
+                    <div class="mediablock__title">
+                        <h2>@Model.CurrentContent.CollectionName</h2>
+                    </div>
+                    <p class="mediablock__description">@Html.PropertyFor(x => x.CurrentContent.Description)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <br />
 @Html.PropertyFor(x => x.CurrentContent.Products)

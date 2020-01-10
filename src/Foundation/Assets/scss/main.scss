@@ -63,8 +63,7 @@
     'templates/blocks/breadcrumb-block',
     'templates/blocks/text-block',
     'templates/blocks/order-search-block',
-    'templates/blocks/_category-block',
-    'templates/blocks/_media-block';
+    'templates/blocks/_category-block';
 
 @import
     'templates/forms/form';
@@ -90,7 +89,8 @@
     'templates/pages/blog-list',
     'templates/pages/blog-item',
     'templates/pages/login',
-    'templates/pages/one-page-checkout';
+    'templates/pages/one-page-checkout',
+    'templates/pages/_collection';
 
 // 7. Themes
 @import
