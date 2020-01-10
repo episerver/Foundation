@@ -32,8 +32,15 @@ namespace Foundation.Cms.ViewModels
                 {
                     if (PageEditing.PageIsInEditMode)
                     {
-                        var startPageRef = _contentVersion.Service.LoadCommonDraft(ContentReference.StartPage, ContentLanguage.PreferredCulture.Name);
-                        _startPage = _contentLoader.Service.Get<CmsHomePage>(startPageRef.ContentLink);
+                        var startPageDraft = _contentVersion.Service.LoadCommonDraft(ContentReference.StartPage, ContentLanguage.PreferredCulture.Name);
+                        if (startPageDraft != null)
+                        {
+                            _startPage = _contentLoader.Service.Get<CmsHomePage>(startPageDraft.ContentLink);
+                        }
+                        else
+                        {
+                            _startPage = _contentLoader.Service.Get<CmsHomePage>(ContentReference.StartPage);
+                        }
                     }
                     else
                     {
