@@ -13,8 +13,9 @@
     }
 }
 
-<div class="row jsCountrySelectionContainer">
-    <div class="col-12">
+<div class="row jsCountrySelectionContainer @((string)ViewData["DivSelection"] ?? "")">
+    <input type="hidden" class="jsCountryOptionName" value="@((string)ViewData["Name"] ?? "CountryCode")" />
+    <div class="col-12 jsCountryOptionListing">
         @Helpers.RenderDropdown(values, (string)ViewData["SelectItem"], "", (string)ViewData["Name"] ?? "CountryCode")
     </div>
 </div>

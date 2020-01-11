@@ -113,7 +113,7 @@ namespace Foundation.Commerce.ViewModels.Header
                     Text = _localizationService.GetString("My Organization", "My Organization"),
                     Title = _localizationService.GetString("My Organization", "My Organization")
                 };
-                //orgLink.Attributes.Add("css", "fa-sign-out");
+                
                 menuItems.Add(orgLink);
             }
 
@@ -315,7 +315,6 @@ namespace Foundation.Commerce.ViewModels.Header
                     }
                 };
 
-                _addressBookService.LoadAddress(viewModel.RegisterAccountViewModel.Address);
                 viewModel.RegisterAccountViewModel.Address.Name = _localizationService.GetString("/Shared/Address/DefaultAddressName", "Default Address");
             }
         }
