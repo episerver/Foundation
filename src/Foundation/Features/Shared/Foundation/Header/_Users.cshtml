@@ -123,7 +123,9 @@
                         <div class="form-group">
                             @Html.LabelFor(x => x.RegisterAccountViewModel.Address.CountryCode, new { @class = "label" })
                             @Html.DisplayFor(model => model.RegisterAccountViewModel.Address.CountryOptions, "CountryOptions",
-                                                    new { SelectItem = Model.RegisterAccountViewModel.Address.CountryCode, Name = "RegisterAccountViewModel.Address.CountryCode" })
+                                                    new { SelectItem = Model.RegisterAccountViewModel.Address.CountryCode,
+                                                        Name = "RegisterAccountViewModel.Address.CountryCode",
+                                                        DivSelection = "jsCountrySelectionRegisterUser"})
                             @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.CountryCode)
                             @Html.Hidden("address-htmlfieldprefix", "RegisterAccountViewModel.Address")
                         </div>

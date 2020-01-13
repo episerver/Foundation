@@ -17,7 +17,7 @@
         </p>
 
         @Html.HiddenFor(m => Model.VirtualPath)
-                <div class="card card-default code-wrapper">
+                <div class="card card-default code-wrapper nopadding">
 
                     <div class="card-header align-middle">
                         <span class="float-left">@Model.VirtualPath</span>
@@ -29,12 +29,12 @@
                     <div>
                         <div class="row">
                             <div class="w-50 text-center align-middle">
-                                <span class="button-transparent-black" id="leftText">@Model.LeftVersionText</span>
+                                <span class="btn btn-light" id="leftText">@Model.LeftVersionText</span>
                             </div>
 
                             <div class="w-50 text-center">
                                 <button type="button"
-                                        class="btn btn-secondary button-history"
+                                        class="btn btn-secondary btn-history"
                                         data-placement="bottom"
                                         data-container="body"
                                         data-html="true"
@@ -48,7 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body nopadding" id="codepanel">
+                    <div class="compare-card-body nopadding" id="codepanel">
                         <iframe id="compareDisplay" class="card-body nopadding" style="min-height: 100%; min-width: 100%; height: 100%; width: 100%" frameborder="0" src="CompareDisplay?@Request.QueryString.ToString()"></iframe>
                     </div>
 
@@ -70,7 +70,7 @@
         $('[data-toggle="popover"]').popover();
 
         // Link for compare view when viewing history
-        $('.button-history').on('shown.bs.popover',
+        $('.btn-history').on('shown.bs.popover',
             function() {
                 $('.history-row').on('click',
                     function(e) {
@@ -115,6 +115,7 @@
 
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
+            url = url.toLowerCase();
             name = name.replace(/[\[\]]/g, '\\$&');
             var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
                 results = regex.exec(url);
@@ -125,12 +126,14 @@
 
         function loadCompare() {
             var iframe = $('#compareDisplay');
-            var targetUrl = 'CompareDisplay';
+            //var targetUrl = 'CompareDisplay';
+            var targetUrl = "@Url.Action("CompareDisplay", "VirtualTemplates")";
             targetUrl += '?virtualpath=' + getParameterByName('virtualpath');
             targetUrl += '&leftversion=' + getParameterByName('leftversion', window.location.hash);
             targetUrl += '&rightversion=' + getParameterByName('rightversion', window.location.hash);
+            targetUrl = `https://${window.location.hostname}${targetUrl}`;
             iframe.attr('src', targetUrl);
-            $('.button-history').popover('hide');
+            $('.btn-history').popover('hide');
         }
 
         $(window).on('hashchange',
