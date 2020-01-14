@@ -1,42 +1,80 @@
 @model IBlockViewModel<TeaserBlock>
 
-<div class="border">
-    @*Link the teaser block only if a link has been set and not displayed in preview*@
-    @using (Html.BeginConditionalLink(
-        //!(ViewContext.Controller is PreviewController) &&
-        !ContentReference.IsNullOrEmpty(Model.CurrentBlock.Link),
-        Url.PageLinkUrl(Model.CurrentBlock.Link),
-        Model.CurrentBlock.Heading))
+@Html.FullRefreshPropertiesMetaData(new[] { "Image" })
+
+@{
+    string imagePosition, headingPosition, textPosition, fullWidthImage, headingSize, elementAlignment;
+
+    switch (Model.CurrentBlock.ElementsOrder)
     {
-    <div style="@Model.CurrentBlock.PaddingStyles">
-
-
-        @if (Model.CurrentBlock.TextPlacement == null || Model.CurrentBlock.TextPlacement.Equals("AboveImage"))
-        {
-            <h2 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
-            <p @Html.EditAttributes(x => x.CurrentBlock.Text)>@Model.CurrentBlock.Text</p>
-            if (PageEditing.PageIsInEditMode)
-            {
-                <div @Html.EditAttributes(x => x.CurrentBlock.Image)><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
-            }
-            else if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
-            {
-                <div><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
-            }
-        }
-        else
-        {
-            if (PageEditing.PageIsInEditMode)
-            {
-                <div @Html.EditAttributes(x => x.CurrentBlock.Image)><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
-            }
-            else if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
-            {
-                <div><img src="@Url.ContentUrl(Model.CurrentBlock.Image)" class="img-responsive" /></div>
-            }
-            <h2 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
-            <p @Html.EditAttributes(x => x.CurrentBlock.Text)>@Model.CurrentBlock.Text</p>
-        }
-    </div>
+        case "ImageHeadingText":
+            imagePosition = "order: 0";
+            headingPosition = "order: 1";
+            textPosition = "order: 2";
+            break;
+        case "ImageTextHeading":
+            imagePosition = "order: 0";
+            textPosition = "order: 1";
+            headingPosition = "order: 2";
+            break;
+        case "HeadingImageText":
+            headingPosition = "order: 0";
+            imagePosition = "order: 1";
+            textPosition = "order: 2";
+            break;
+        case "HeadingTextImage":
+            headingPosition = "order: 0";
+            textPosition = "order: 1";
+            imagePosition = "order: 2";
+            break;
+        case "TextImageHeading":
+            textPosition = "order: 0";
+            imagePosition = "order: 1";
+            headingPosition = "order: 2";
+            break;
+        case "TextHeadingImage":
+            textPosition = "order: 0";
+            headingPosition = "order: 1";
+            imagePosition = "order: 2";
+            break;
+        default:
+            imagePosition = string.Empty;
+            headingPosition = string.Empty;
+            textPosition = string.Empty;
+            break;
     }
-</div>
+
+    switch (Model.CurrentBlock.ElementsAlignment)
+    {
+        case "ElementLeft":
+            elementAlignment = "text-align: left;";
+            break;
+        case "ElementRight":
+            elementAlignment = "text-align: right;";
+            break;
+        case "ElementCenter":
+        default:
+            elementAlignment = "text-align: center;";
+            break;
+    }
+
+    headingSize = "font-size: " + Model.CurrentBlock.HeadingSize + "px";
+    fullWidthImage = Model.CurrentBlock.FullWidthImage ? "width: 100%" : "";
+}
+
+@using (Html.BeginConditionalLink(!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Link),
+    Url.PageLinkUrl(Model.CurrentBlock.Link),
+    Model.CurrentBlock.Heading))
+{
+    <div class="teaser-block" style="@Model.CurrentBlock.PaddingStyles; @elementAlignment">
+
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
+        {
+            <div @Html.EditAttributes(x => x.CurrentBlock.Image) class="teaser-block__image" style="@imagePosition">
+                <img class="img-fluid" style="@fullWidthImage" src="@Url.ContentUrl(Model.CurrentBlock.Image)" />
+            </div>
+        }
+        <h2 class="teaser-block__heading" style="@headingPosition; @headingSize;" @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
+        <p class="teaser-block__text" style="@textPosition" @Html.EditAttributes(x => x.CurrentBlock.Text)>@Model.CurrentBlock.Text</p>
+    </div>
+}

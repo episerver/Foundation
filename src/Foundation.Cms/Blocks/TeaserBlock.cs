@@ -21,14 +21,14 @@ namespace Foundation.Cms.Blocks
         public virtual string Heading { get; set; }
 
         [CultureSpecific]
+        [Display(Name = "Heading size", GroupName = SystemTabNames.Content, Order = 11)]
+        public virtual int HeadingSize { get; set; }
+
+        [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         [Required(AllowEmptyStrings = false)]
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string Text { get; set; }
-
-        [SelectOne(SelectionFactoryType = typeof(TeaserBlockTextPlacementSelectionFactory))]
-        [Display(Name = "Text placement", GroupName = SystemTabNames.Content, Order = 30)]
-        public virtual string TextPlacement { get; set; }
 
         [CultureSpecific]
         [UIHint(UIHint.Image)]
@@ -36,14 +36,28 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual ContentReference Image { get; set; }
 
+        [CultureSpecific]
+        [Display(Name = "Full width image", GroupName = SystemTabNames.Content, Order = 41)]
+        public virtual bool FullWidthImage { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementOrderSelectionFactory))]
+        [Display(Name = "Elements order", GroupName = SystemTabNames.Content, Order = 45)]
+        public virtual string ElementsOrder { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementAlignmentSelectionFactory))]
+        [Display(Name = "Elements alignment", GroupName = SystemTabNames.Content, Order = 46)]
+        public virtual string ElementsAlignment { get; set; }
+
         [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual PageReference Link { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-
-            TextPlacement = "AboveImage";
+            
+            HeadingSize = 32;
+            ElementsOrder = "ImageHeadingText";
+            ElementsAlignment = "ElementCenter";
         }
     }
 }
