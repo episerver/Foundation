@@ -1732,7 +1732,7 @@
     <Content Include="Features\CatalogContent\Variation\_VariantDetail.cshtml" />
     <Content Include="Features\CatalogContent\Product\ProductWithourEntries.cshtml" />
     <Content Include="Features\CatalogContent\_ListVariants.cshtml" />
-    <Content Include="Features\Media\Index.cshtml" />
+    <Content Include="Features\Media\ImageMedia.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ForgotPassword.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ResetPassword.cshtml" />
@@ -1826,6 +1826,8 @@
     <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
+    <Content Include="Features\Media\VideoFile.cshtml" />
+    <Content Include="Features\Media\Index.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

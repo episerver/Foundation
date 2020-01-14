@@ -16,68 +16,76 @@ namespace Foundation.Cms.Media
     {
         [Editable(false)]
         [ImageDescriptor(Width = 256, Height = 256)]
+        [Display(Name = "Large thumbnail", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual Blob LargeThumbnail { get; set; }
 
+        [Editable(false)]
+        [Display(Name = "File size", GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual string FileSize { get; set; }
+
+        [Display(Name = "Accent color", GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual string AccentColor { get; set; }
+
+        [Display(GroupName = SystemTabNames.Content, Order = 40)]
+        public virtual string Caption { get; set; }
+
+        [Display(Name = "Clip art type", GroupName = SystemTabNames.Content, Order = 50)]
+        public virtual string ClipArtType { get; set; }
+
+        [Display(Name = "Dominant color background", GroupName = SystemTabNames.Content, Order = 60)]
+        public virtual string DominantColorBackground { get; set; }
+
+        [Display(Name = "Dominant color foreground", GroupName = SystemTabNames.Content, Order = 70)]
+        public virtual string DominantColorForeground { get; set; }
+
+        [Display(Name = "Dominant colors", GroupName = SystemTabNames.Content, Order = 80)]
+        public virtual IList<string> DominantColors { get; set; }
+
+        [Display(Name = "Image categories", GroupName = SystemTabNames.Content, Order = 90)]
+        public virtual IList<string> ImageCategories { get; set; }
+
+        [Display(Name = "Is adult content", GroupName = SystemTabNames.Content, Order = 100)]
+        public virtual bool IsAdultContent { get; set; }
+
+        [Display(Name = "Is black & white image", GroupName = SystemTabNames.Content, Order = 110)]
+        public virtual bool IsBwImg { get; set; }
+
+        [Display(Name = "Is racy content", GroupName = SystemTabNames.Content, Order = 120)]
+        public virtual bool IsRacyContent { get; set; }
+
+        [Display(Name = "Line drawing type", GroupName = SystemTabNames.Content, Order = 130)]
+        public virtual string LineDrawingType { get; set; }
+
+        [Display(GroupName = SystemTabNames.Content, Order = 140)]
+        public virtual IList<string> Tags { get; set; }
+
         [CultureSpecific]
-        [Display(
-            Name = "Alternate text",
-            Description = "Description of the image",
-            GroupName = SystemTabNames.Content,
-            Order = 50)]
+        [Display(GroupName = SystemTabNames.Content, Order = 150)]
+        public virtual string Title { get; set; }
+
+        [CultureSpecific]
+        [Display(Description = "Description of the image", GroupName = SystemTabNames.Content, Order = 160)]
         public virtual string Description { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "Link",
-            Description = "Link to content",
-            GroupName = SystemTabNames.Content,
-            Order = 60)]
-        [UIHint("allcontent")]
-        public virtual ContentReference Link { get; set; }
-
-        [Display(
-            Order = 10)]
-        public virtual string Title { get; set; }
-
-        [Display(
-            Order = 20)]
+        [Display(Name = "Alternate text", GroupName = SystemTabNames.Content, Order = 170)]
         public virtual string AltText { get; set; }
 
-        public virtual string Copyright { get; set; }
-
-        [Editable(false)]
-        public virtual string FileSize { get; set; }
-
-        [Display(
-            Order = 30)]
+        [CultureSpecific]
+        [Display(Name = "Credits text", GroupName = SystemTabNames.Content, Order = 180)]
         public virtual string CreditsText { get; set; }
 
-        [Display(
-            Order = 40)]
+        [CultureSpecific]
+        [Display(Name = "Credits link", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual Url CreditsLink { get; set; }
 
-        public virtual string AccentColor { get; set; }
+        [CultureSpecific]
+        [UIHint("allcontent")]
+        [Display(Description = "Link to content", GroupName = SystemTabNames.Content, Order = 200)]
+        public virtual ContentReference Link { get; set; }
 
-        public virtual string Caption { get; set; }
-
-        public virtual string ClipArtType { get; set; }
-
-        public virtual string DominantColorBackground { get; set; }
-
-        public virtual string DominantColorForeground { get; set; }
-
-        public virtual IList<string> DominantColors { get; set; }
-
-        public virtual IList<string> ImageCategories { get; set; }
-
-        public virtual bool IsAdultContent { get; set; }
-
-        public virtual bool IsBwImg { get; set; }
-
-        public virtual bool IsRacyContent { get; set; }
-
-        public virtual string LineDrawingType { get; set; }
-
-        public virtual IList<string> Tags { get; set; }
+        [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 210)]
+        public virtual string Copyright { get; set; }
     }
 }
