@@ -1,42 +1,14 @@
-﻿.teaserblock {
-    text-align: center;
+﻿.teaser-block {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 
-    .border {
-        border: 0 !important;
-    }
-
-    .img-responsive {
+    &__image {
         width: 100%;
+        text-align: center;
     }
-}
 
-.teaserblock.col-lg-12 h2,
-.teaserblock.col-lg-12 p {
-    text-align: left;
-    margin: 0 10px 10px 0;
-}
-
-.teaserblock.col-lg-12 p {
-    font-size: 1.3em;
-}
-
-.teaserblock.col-lg-12 h2 {
-    margin: 10px 10px 10px 0;
-    font-size: 3em;
-}
-
-.teaserblock p {
-    width: 96%;
-    margin-left: 2%;
-}
-
-.teaserblock h2, .teaserblock p {
-    color: #333 !important;
-}
-
-.teaserblock h2,
-.teaserblock p {
-    text-align: center;
-    margin-left: 1%;
-    width: 98%;
+    &__heading {
+        margin-top: 10px;
+    }
 }
