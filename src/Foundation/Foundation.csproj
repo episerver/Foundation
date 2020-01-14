@@ -1622,7 +1622,6 @@
     <Content Include="Features\Blocks\Views\RecentPageCategoryRecommendation.cshtml" />
     <Content Include="Features\Blocks\Views\RssReaderBlock.cshtml" />
     <Content Include="Features\Blocks\Views\TeaserBlock.cshtml" />
-    <Content Include="Features\Blocks\Views\TeaserBlockWide.cshtml" />
     <Content Include="Features\Blocks\Views\TextBlock.cshtml" />
     <Content Include="Features\Blocks\Views\TwitterBlock.cshtml" />
     <Content Include="Features\Blocks\Views\VideoBlock.cshtml" />
