@@ -1,7 +1,6 @@
 ﻿@model Foundation.Commerce.Models.Blocks.QuickOrderBlock
 
-
-<h2 class="h3">@Html.TranslateFallback("/B2B/QuickOrder/Interface", "Interface")</h2>
+<h3>@Html.PropertyFor(m => m.Title)</h3>
 <div class="row">
     <div class="col-12">
         @Html.PropertyFor(m => m.MainBody)
@@ -39,7 +38,6 @@
                             <i data-feather="trash-2"></i>
                         </a>
                     </div>
-
                 </div>
             }
         }
@@ -69,14 +67,11 @@
             </div>
         }
     </div>
-
     <div class="row">
         <div class="col-12">
             <a class="button-transparent-black jsAddNewRow" href="javascript:void(0);"><i data-feather="plus"></i></a>
         </div>
     </div>
-
-
     <br />
     <div class="row">
         <div class="col-12 jsShowMessage">
@@ -100,10 +95,6 @@
             }
         </div>
     </div>
-
-
-
-    <br />
     <div class="row">
         <div class="col-12">
             <input type="file" class="hidden" data-interface="lattice" data-label="Upload CSV" id="fileUploaded">

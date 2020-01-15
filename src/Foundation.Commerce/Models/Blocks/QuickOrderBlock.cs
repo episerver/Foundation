@@ -18,6 +18,10 @@ namespace Foundation.Commerce.Models.Blocks
     public class QuickOrderBlock : FoundationBlockData
     {
         [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 5)]
+        public virtual string Title { get; set; }
+
+        [CultureSpecific]
         [Display(Name = "Main body", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual XhtmlString MainBody { get; set; }
 
