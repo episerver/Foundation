@@ -89,8 +89,12 @@
         // --- End
 
         // Quick Order Block
-        var quickOrderBlock = new QuickOrderBlock();
-        quickOrderBlock.Init();
+        $('.jsQuickOrderBlockForm').each(function (i, e) {
+            let newBlockId = 'jsQuickOrderBlockForm' + i;
+            $(e).attr('id', newBlockId);
+            let quickOrderBlock = new QuickOrderBlock('#' + newBlockId);
+            quickOrderBlock.Init();
+        })
         // --- End
 
         // Address
