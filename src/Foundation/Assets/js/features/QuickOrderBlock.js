@@ -24,8 +24,7 @@
                         <i data-feather="trash-2"></i>
                     </a>
                 </div>
-            </div>
-            <hr/>`;
+            </div>`;
 
         this.ProductListing = [];
     }
@@ -67,7 +66,8 @@
                     }
                     return "<img class='eac-icon' src='" + item.UrlImage + "' /> " + value;
                 }
-            }
+            },
+            adjustWidth: false
         };
         $autocompleteInput.easyAutocomplete(options);
     }
