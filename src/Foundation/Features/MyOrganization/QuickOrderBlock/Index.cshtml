@@ -8,7 +8,7 @@
     </div>
 </div>
 
-@using (Html.BeginForm("Import", "QuickOrderBlock", FormMethod.Post, new { @id = "quickOrderForm", @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Import", "QuickOrderBlock", FormMethod.Post, new { @class = "jsQuickOrderBlockForm", @enctype = "multipart/form-data" }))
 {
     var countRow = Model.ProductsList == null ? 0 : Model.ProductsList.Count;
     @Html.AntiForgeryToken()

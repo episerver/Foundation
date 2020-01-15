@@ -85,7 +85,7 @@
 
     initRenderList(inst) {
         const template = inst.renderList(inst.ProductListing);
-        $('.jsProductListing').html(template);
+        $(this.Container).find('.jsProductListing').html(template);
         feather.replace();
         inst.DeleteRowClick();
         inst.AutoComplete();
