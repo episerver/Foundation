@@ -1,127 +1,123 @@
 ﻿@using Foundation.Commerce.ViewModels.Header
 @model SharedCartViewModel
-@{ ViewBag.IsWishList = true;
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+    ViewBag.IsWishList = true;
     string displayNoItemMsg = Model.CartItems.Any() ? "none" : string.Empty;
 }
 
+<div class="row">
+    <div class="col-12">
+        <h1 class="title">
+            @(Model.HasOrganization ? Html.Raw("Shared Cart") : Html.PropertyFor(x => x.CurrentContent.Name))
+        </h1>
+        <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+    </div>
+</div>
 
 <div class="row">
-    @{
-        Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
-    }
-    <div class="col-md-12 col-lg-9">
-        <div>
-            <h1 class="title">
-                @(Model.HasOrganization ? Html.Raw("Shared Cart") : Html.PropertyFor(x => x.CurrentContent.Name))
-            </h1>
-        </div>
-        <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
-        <div class="row">
-            <div class="col-12">
-                <table id="wishlist-table" class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>@Html.TranslateFallback("/Shared/Image", "Image")</th>
-                            <th>@Html.TranslateFallback("/WishList/Info", "Information")</th>
-                            <th>@Html.TranslateFallback("/Shared/Price", "Price")</th>
-                            <th>@Html.TranslateFallback("/Shared/Quantity", "Quantity")</th>
-                            <th>@Html.TranslateFallback("/Product/Button/AddToCart", "Add To Cart")</th>
-                            <th>@Html.TranslateFallback("/Shared/Remove", "Remove")</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var product in Model.CartItems)
-                        {
-                            <tr>
-                                <td>
-                                    <img alt="@product.DisplayName" src="@product.ImageUrl" class="img-fluid" width="75">
-                                </td>
-                                <td>
-                                    <p class="title">
-                                        <a title="@product.DisplayName" class="link" href="@product.Url">@product.DisplayName</a>
-                                    </p>
-                                    <div>@Html.Raw(product.Description)</div>
-                                </td>
-                                <td>
-                                    <div class="cart-cell">
-                                        <div class="price-box">
-                                            <span class="regular-price">
-                                                <span class="price">
-                                                    @if (product.DiscountedUnitPrice.HasValue)
-                                                    {
-                                                        <span class="price__old">@Helpers.RenderMoney(product.PlacedPrice)</span>
-                                                        <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price__discount">@Helpers.RenderMoney(product.PlacedPrice)</span>
-                                                    }
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    @product.Quantity
-                                </td>
-                                <td>
-                                    <div>
-                                        @using (@Html.BeginForm("AddToCart", "DefaultCart", FormMethod.Post, new { @class = "form-inline", data_container = "MiniCart" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            <button class="button-black addToCart" data="@product.Code"  title="Add to Cart" type="button" role="button">
-                                                <i data-feather="shopping-cart"></i>
-                                                @Html.TranslateFallback("/Product/Button/AddToCart", "Add To Cart")
-                                            </button>
-                                        }
-
-                                    </div>
-                                </td>
-                                <td>
-                                    @using (@Html.BeginForm("ChangeCartItem", "SharedCart", FormMethod.Post, new { @class = "form-inline", data_container = "SharedMiniCart" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <a href="javascript:void(0);" class="link jsRemoveCartItem" type="shared-cart-large" code="@product.Code"><i data-feather="x"></i></a>
-                                    }
-                                </td>
-                            </tr>
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                @if (Model.HasOrganization)
+    <div class="col-12">
+        <table id="wishlist-table" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.TranslateFallback("/Shared/Image", "Image")</th>
+                    <th>@Html.TranslateFallback("/WishList/Info", "Information")</th>
+                    <th>@Html.TranslateFallback("/Shared/Price", "Price")</th>
+                    <th>@Html.TranslateFallback("/Shared/Quantity", "Quantity")</th>
+                    <th>@Html.TranslateFallback("/Product/Button/AddToCart", "Add To Cart")</th>
+                    <th>@Html.TranslateFallback("/Shared/Remove", "Remove")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.CartItems)
                 {
-                    using (@Html.BeginForm("RequestSharedCartQuote", "SharedCart", FormMethod.Post, new { @style = "display: inline-block; margin-right: 15px" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="button-transparent-black">
-                            <span>@Html.TranslateFallback("/Shared/RequestQuote", "Request Quote")</span>
-                        </button>
-                    }
-                }
-                @using (@Html.BeginForm("AddAllToCart", "DefaultCart", FormMethod.Post, new { @style = "display: inline-block;" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <button type="button" class="button-transparent-black--icon jsAddAllToCart" url="@Url.Action("AddAllToCart", "DefaultCart")" title="Add All to Cart">
-                        <span>
-                            <i data-feather="plus"></i>
-                            @Html.TranslateFallback("/WishList/AddAll", "Add All")
-                        </span>
-                    </button>
-                }
-            </div>
+                    <tr>
+                        <td>
+                            <img alt="@product.DisplayName" src="@product.ImageUrl" class="img-fluid" width="75">
+                        </td>
+                        <td>
+                            <p class="title">
+                                <a title="@product.DisplayName" class="link" href="@product.Url">@product.DisplayName</a>
+                            </p>
+                            <div>@Html.Raw(product.Description)</div>
+                        </td>
+                        <td>
+                            <div class="cart-cell">
+                                <div class="price-box">
+                                    <span class="regular-price">
+                                        <span class="price">
+                                            @if (product.DiscountedUnitPrice.HasValue)
+                                            {
+                                                <span class="price__old">@Helpers.RenderMoney(product.PlacedPrice)</span>
+                                                <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price__discount">@Helpers.RenderMoney(product.PlacedPrice)</span>
+                                            }
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            @product.Quantity
+                        </td>
+                        <td>
+                            <div>
+                                @using (@Html.BeginForm("AddToCart", "DefaultCart", FormMethod.Post, new { @class = "form-inline", data_container = "MiniCart" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button class="button-black addToCart" data="@product.Code" title="Add to Cart" type="button" role="button">
+                                        <i data-feather="shopping-cart"></i>
+                                        @Html.TranslateFallback("/Product/Button/AddToCart", "Add To Cart")
+                                    </button>
+                                }
 
-        </div>
+                            </div>
+                        </td>
+                        <td>
+                            @using (@Html.BeginForm("ChangeCartItem", "SharedCart", FormMethod.Post, new { @class = "form-inline", data_container = "SharedMiniCart" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:void(0);" class="link jsRemoveCartItem" type="shared-cart-large" code="@product.Code"><i data-feather="x"></i></a>
+                            }
+                        </td>
+                    </tr>
+                }
 
-        @*<div class="row">
-                <div class="col-12">
-                    <a href="#" class="link"><small>« </small>@Html.TranslateFallback("/Shared/Back", "Back")</a>
-                </div>
-            </div>*@
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @if (Model.HasOrganization)
+        {
+            using (@Html.BeginForm("RequestSharedCartQuote", "SharedCart", FormMethod.Post, new { @style = "display: inline-block; margin-right: 15px" }))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="button-transparent-black">
+                    <span>@Html.TranslateFallback("/Shared/RequestQuote", "Request Quote")</span>
+                </button>
+            }
+        }
+        @using (@Html.BeginForm("AddAllToCart", "DefaultCart", FormMethod.Post, new { @style = "display: inline-block;" }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="button" class="button-transparent-black--icon jsAddAllToCart" url="@Url.Action("AddAllToCart", "DefaultCart")" title="Add All to Cart">
+                <span>
+                    <i data-feather="plus"></i>
+                    @Html.TranslateFallback("/WishList/AddAll", "Add All")
+                </span>
+            </button>
+        }
     </div>
 
 </div>
+
+@*<div class="row">
+        <div class="col-12">
+            <a href="#" class="link"><small>« </small>@Html.TranslateFallback("/Shared/Back", "Back")</a>
+        </div>
+    </div>*@
