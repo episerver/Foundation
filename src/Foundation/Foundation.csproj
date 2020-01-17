@@ -1163,6 +1163,7 @@
     <Content Include="Assets\js\features\Selection.js" />
     <Content Include="Assets\js\features\selective\Locations.js" />
     <Content Include="Assets\js\features\selective\Stores.js" />
+    <Content Include="Assets\js\features\UsersOrganization.js" />
     <Content Include="Assets\js\main.min.js" />
     <Content Include="Assets\js\plugins\fontawesomeicons.js" />
     <Content Include="Assets\js\features\notifyHelper.js" />

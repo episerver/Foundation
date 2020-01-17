@@ -30,20 +30,19 @@
                     @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
                 </a>
             }
-            <form class="pull-right" action="" method="get" role="search">
+            <div class="pull-right" id="searchUsersOrganiztion">
                 <div class="custom-search search-box">
-                    <input type="text" id="viewUsersAutocomplete" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
-                    <i id="js-reset-icon" class="close-icon" data-feather="x" style="display: none;"></i>
-                    <a href="javascript:void(0);"><i id="js-search-icon" class="icon-search" data-feather="search" aria-hidden="true"></i></a>
+                    <input type="text" id="jsSearchUsersOrganizationTxt" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
+                    <a href="javascript:void(0);"><i id="jsSearchUsersOrganizationBtn" class="icon-search" data-feather="search" aria-hidden="true"></i></a>
                 </div>
-            </form>
+            </div>
 
         </div>
         @if (Model.Organizations != null && Model.Organizations.Count == 0)
         {
             <p>@Html.TranslateFallback("/B2B/Users/NoOrgs", "At least one sub-organization needs to be configured before adding a user.")</p>
         }
-        <table class="table">
+        <table class="table jsUsersOrganiztionListing">
             <thead class="thead-dark">
                 <tr>
                     <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
@@ -56,7 +55,7 @@
             <tbody class="js-users-table-body">
                 @foreach (var user in Model.Users)
                 {
-                    <tr>
+                    <tr class="jsRowUser" data-name="@user.FullName" data-email="@user.Email">
                         <td><a href="#" data-user="@user.FullName">@user.FullName</a></td>
                         <td class="user-email">@user.Email</td>
                         <td>@user.UserRole</td>
