@@ -25,10 +25,15 @@ namespace Foundation.Cms.Blocks
         public virtual int HeadingSize { get; set; }
 
         [CultureSpecific]
+        [SelectOne(SelectionFactoryType = typeof(TeaserBlockHeadingStyleSelectionFactory))]
+        [Display(Name = "Heading style", GroupName = SystemTabNames.Content, Order = 12)]
+        public virtual string HeadingStyle { get; set; }
+
+        [CultureSpecific]
         [UIHint(UIHint.Textarea)]
         [Required(AllowEmptyStrings = false)]
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual string Text { get; set; }
+        public virtual string Description { get; set; }
 
         [CultureSpecific]
         [UIHint(UIHint.Image)]
@@ -37,27 +42,45 @@ namespace Foundation.Cms.Blocks
         public virtual ContentReference Image { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Full width image", GroupName = SystemTabNames.Content, Order = 41)]
-        public virtual bool FullWidthImage { get; set; }
+        [Range(1, 100, ErrorMessage = "Set image width from 1 to 100")]
+        [Display(Name = "Image size (%)", GroupName = SystemTabNames.Content, Order = 41)]
+        public virtual int ImageSize { get; set; }
 
+        [CultureSpecific]
+        [SelectOne(SelectionFactoryType = typeof(TeaserBlockBackgroundColorSelectionFactory))]
+        [Display(Name = "Background color", GroupName = SystemTabNames.Content, Order = 50)]
+        public virtual string BackgroundColor { get; set; }
+
+        [CultureSpecific]
+        [SelectOne(SelectionFactoryType = typeof(TeaserBlockTextColorSelectionFactory))]
+        [Display(Name = "Text color", GroupName = SystemTabNames.Content, Order = 51)]
+        public virtual string TextColor { get; set; }
+
+        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementOrderSelectionFactory))]
-        [Display(Name = "Elements order", GroupName = SystemTabNames.Content, Order = 45)]
+        [Display(Name = "Elements order", GroupName = SystemTabNames.Content, Order = 80)]
         public virtual string ElementsOrder { get; set; }
 
+        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementAlignmentSelectionFactory))]
-        [Display(Name = "Elements alignment", GroupName = SystemTabNames.Content, Order = 46)]
+        [Display(Name = "Elements alignment", GroupName = SystemTabNames.Content, Order = 81)]
         public virtual string ElementsAlignment { get; set; }
 
-        [Display(GroupName = SystemTabNames.Content, Order = 50)]
+        [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 90)]
         public virtual PageReference Link { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
             
-            HeadingSize = 32;
-            ElementsOrder = "ImageHeadingText";
-            ElementsAlignment = "ElementCenter";
+            HeadingSize = 28;
+            HeadingStyle = "text-decoration: none";
+            ImageSize = 100;
+            ElementsOrder = "ImageHeadingDescription";
+            ElementsAlignment = "text-align: center";
+            BackgroundColor = "background-color: transparent";
+            TextColor = "color: black";
         }
     }
 }
