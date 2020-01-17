@@ -483,7 +483,7 @@ namespace Foundation.Find.Commerce
                 return query;
             }
 
-            query = query.For(searchTerm);
+            query = query.For(searchTerm).UsingSynonyms();
             if (trackData)
             {
                 query = query.Track();
