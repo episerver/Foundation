@@ -76,7 +76,7 @@ namespace Foundation.Helpers
             if (contentViewModel is GenericProductViewModel model)
             {
                 brand = model.CurrentContent.Brand;
-                priceAmount = model.ListingPrice.ToString().Remove(0, 1);
+                priceAmount = model.ListingPrice == null || model.ListingPrice.Amount == 0 ? null : model.ListingPrice.ToString().Remove(0, 1);
                 priceCurrency = model.ListingPrice.Currency;
                 category = GetNodes(model.CurrentContent);
             }
@@ -177,7 +177,16 @@ namespace Foundation.Helpers
                     return helper.OpenGraph(openGraphCategory);
 
                 case EntryContentBase entryContentBase:
-                    var openGraphEntry = new OpenGraphGenericProduct(entryContentBase.DisplayName, new OpenGraphImage(entryContentBase.GetAssets<IContentImage>(_contentLoader.Value, _urlResolver.Value).FirstOrDefault()), GetUrl(entryContentBase.ContentLink))
+                    var entryImageUrl = entryContentBase.GetAssets<IContentImage>(_contentLoader.Value, _urlResolver.Value).FirstOrDefault();
+                    if (string.IsNullOrEmpty(entryImageUrl))
+                    {
+                        entryImageUrl = GetDefaultImageUrl();
+                    }
+
+                    var openGraphEntry = new OpenGraphGenericProduct(
+                        entryContentBase.DisplayName, 
+                        new OpenGraphImage(entryImageUrl), 
+                        GetUrl(entryContentBase.ContentLink))
                     {
                         Locale = defaultLocale.Replace('-', '_'),
                         AlternateLocales = alternateLocales,
