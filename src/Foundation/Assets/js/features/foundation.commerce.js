@@ -107,5 +107,11 @@
         var orderSearchBlock = new OrderSearchBlock();
         orderSearchBlock.Init();
         // --- End
+
+
+        // B2B Users
+        var b2bUsers = new UsersOrganization();
+        b2bUsers.Init();
+        // --- End
     }
 }
