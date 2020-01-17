@@ -1717,7 +1717,6 @@
     <Content Include="Features\CatalogContent\Bundle\Index.cshtml" />
     <Content Include="Features\CatalogContent\Package\Index.cshtml" />
     <Content Include="Features\CatalogContent\Package\_PackageDetail.cshtml" />
-    <Content Include="Features\CatalogContent\Bundle\BundleWithoutEntries.cshtml" />
     <Content Include="Features\CatalogContent\Bundle\_BundleDetail.cshtml" />
     <Content Include="Features\Shared\Foundation\_QuickViewModal.cshtml" />
     <Content Include="Features\Locations\LocationListPage\FilterActivitiesBlock.cshtml" />
@@ -1727,11 +1726,9 @@
     <Content Include="Features\Shared\Foundation\_MasterLayout.cshtml" />
     <Content Include="Features\Shared\Foundation\_ReviewForm.cshtml" />
     <Content Include="Features\Shared\Foundation\_Reviews.cshtml" />
-    <Content Include="Features\CatalogContent\Package\PackageWithoutEntries.cshtml" />
     <Content Include="Features\CatalogContent\Package\_Quickview.cshtml" />
     <Content Include="Features\CatalogContent\Variation\Index.cshtml" />
     <Content Include="Features\CatalogContent\Variation\_VariantDetail.cshtml" />
-    <Content Include="Features\CatalogContent\Product\ProductWithourEntries.cshtml" />
     <Content Include="Features\CatalogContent\_ListVariants.cshtml" />
     <Content Include="Features\Media\ImageMedia.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ForgotPassword.cshtml" />

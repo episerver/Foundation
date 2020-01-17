@@ -43,8 +43,12 @@ namespace Foundation.Features.CatalogContent.Package
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
             if (_isInEditMode && !viewModel.Entries.Any())
             {
-                var emptyViewName = "PackageWithoutEntries";
-                return View(emptyViewName, viewModel);
+                return View(viewModel);
+            }
+
+            if (viewModel.Entries == null || viewModel.Entries.Count() == 0)
+            {
+                return HttpNotFound();
             }
 
             await AddInfomationViewModel(viewModel, currentContent.Code, skipTracking);

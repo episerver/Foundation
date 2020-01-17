@@ -122,66 +122,68 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
 
-            return new TViewModel
+            var viewModel = new TViewModel();
+
+            viewModel.CurrentContent = currentContent;
+            viewModel.Product = currentContent;
+            viewModel.Variant = variant;
+            viewModel.ListingPrice = defaultPrice?.UnitPrice ?? new Money(0, currency);
+            viewModel.DiscountedPrice = discountedPrice;
+            viewModel.SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency);
+            viewModel.Colors = variants.OfType<GenericVariant>()
+                .Where(x => x.Color != null)
+                .GroupBy(x => x.Color)
+                .Select(g => new SelectListItem
+                {
+                    Selected = false,
+                    Text = g.Key,
+                    Value = g.Key
+                }).ToList();
+            viewModel.Sizes = variants.OfType<GenericVariant>()
+                .Where(x => (x.Color == null || x.Color.Equals(baseVariant?.Color, StringComparison.OrdinalIgnoreCase)) && x.Size != null)
+                .Select(x => new SelectListItem
+                {
+                    Selected = false,
+                    Text = x.Size,
+                    Value = x.Size
+                }).ToList();
+            viewModel.Color = baseVariant?.Color;
+            viewModel.Size = baseVariant?.Size;
+            viewModel.Images = variant.GetAssets<IContentImage>(_contentLoader, _urlResolver);
+            viewModel.IsAvailable = defaultPrice != null && isInstock;
+            viewModel.Stores = new StoreViewModel
             {
-                CurrentContent = currentContent,
-                Product = currentContent,
-                Variant = variant,
-                ListingPrice = defaultPrice?.UnitPrice ?? new Money(0, currency),
-                DiscountedPrice = discountedPrice,
-                SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency),
-                Colors = variants.OfType<GenericVariant>()
-                    .Where(x => x.Color != null)
-                    .GroupBy(x => x.Color)
-                    .Select(g => new SelectListItem
-                    {
-                        Selected = false,
-                        Text = g.Key,
-                        Value = g.Key
-                    }).ToList(),
-                Sizes = variants.OfType<GenericVariant>()
-                    .Where(x => (x.Color == null || x.Color.Equals(baseVariant?.Color, StringComparison.OrdinalIgnoreCase)) && x.Size != null)
-                    .Select(x => new SelectListItem
-                    {
-                        Selected = false,
-                        Text = x.Size,
-                        Value = x.Size
-                    }).ToList(),
-                Color = baseVariant?.Color,
-                Size = baseVariant?.Size,
-                Images = variant.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                IsAvailable = defaultPrice != null && isInstock,
-                Stores = new StoreViewModel
-                {
-                    Stores = _storeService.GetEntryStoresViewModels(variant.Code),
-                    SelectedStore = currentStore != null ? currentStore.Code : "",
-                    SelectedStoreName = currentStore != null ? currentStore.Name : ""
-                },
-                StaticAssociations = associations,
-                Variants = variants.Select(x =>
-                {
-                    var variantImage = x.GetAssets<IContentImage>(_contentLoader, _urlResolver).FirstOrDefault();
-                    var variantDefaultPrice = GetDefaultPrice(x.Code, market, currency);
-                    return new VariantViewModel
-                    {
-                        Sku = x.Code,
-                        Size = x is GenericVariant ? $"{(x as GenericVariant).Color} {(x as GenericVariant).Size}" : "",
-                        ImageUrl = string.IsNullOrEmpty(variantImage) ? "http://placehold.it/54x54/" : variantImage,
-                        DiscountedPrice = GetDiscountPrice(variantDefaultPrice, market, currency),
-                        ListingPrice = variantDefaultPrice?.UnitPrice ?? new Money(0, currency),
-                        StockQuantity = _quickOrderService.GetTotalInventoryByEntry(x.Code)
-                    };
-                }).ToList(),
-                HasOrganization = contact?.OwnerId != null,
-                ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
-                IsSalesRep = isSalesRep,
-                SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
-                Documents = currentContent.CommerceMediaCollection
-                    .Where(o => o.AssetType.Equals(typeof(PdfFile).FullName.ToLowerInvariant()) || o.AssetType.Equals(typeof(StandardFile).FullName.ToLowerInvariant()))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList(),
-                MinQuantity = (int)defaultPrice.MinQuantity
+                Stores = _storeService.GetEntryStoresViewModels(variant.Code),
+                SelectedStore = currentStore != null ? currentStore.Code : "",
+                SelectedStoreName = currentStore != null ? currentStore.Name : ""
             };
+            viewModel.StaticAssociations = associations;
+            viewModel.Variants = variants.Select(x =>
+            {
+                var variantImage = x.GetAssets<IContentImage>(_contentLoader, _urlResolver).FirstOrDefault();
+                var variantDefaultPrice = GetDefaultPrice(x.Code, market, currency);
+                return new VariantViewModel
+                {
+                    Sku = x.Code,
+                    Size = x is GenericVariant ? $"{(x as GenericVariant).Color} {(x as GenericVariant).Size}" : "",
+                    ImageUrl = string.IsNullOrEmpty(variantImage) ? "http://placehold.it/54x54/" : variantImage,
+                    DiscountedPrice = GetDiscountPrice(variantDefaultPrice, market, currency),
+                    ListingPrice = variantDefaultPrice?.UnitPrice ?? new Money(0, currency),
+                    StockQuantity = _quickOrderService.GetTotalInventoryByEntry(x.Code)
+                };
+            }).ToList();
+            viewModel.HasOrganization = contact?.OwnerId != null;
+            viewModel.ShowRecommendations = productRecommendations?.ShowRecommendations ?? true;
+            viewModel.IsSalesRep = isSalesRep;
+            viewModel.SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
+                .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
+            viewModel.Documents = currentContent.CommerceMediaCollection
+                .Where(o => o.AssetType.Equals(typeof(PdfFile).FullName.ToLowerInvariant()) || o.AssetType.Equals(typeof(StandardFile).FullName.ToLowerInvariant()))
+                .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList();
+            viewModel.MinQuantity = (int)defaultPrice.MinQuantity;
+
+
+            return viewModel;
         }
 
         public virtual TViewModel CreateBundle<TBundle, TVariant, TViewModel>(TBundle currentContent)
@@ -193,7 +195,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var associations = relatedProducts.Any() ?
                 _productService.GetProductTileViewModels(relatedProducts) :
                 new List<ProductTileViewModel>();
-            var variants = GetVariants<TVariant, TBundle>(currentContent).ToList();
+            var variants = GetVariants<TVariant, TBundle>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Count() > 0).ToList();
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var productRecommendations = currentContent as IProductRecommendations;
@@ -218,26 +220,28 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 isInstock = false;
             }
 
-            return new TViewModel
+            var viewModel = new TViewModel();
+
+            viewModel.CurrentContent = currentContent;
+            viewModel.Bundle = currentContent;
+            viewModel.Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver);
+            viewModel.Entries = variants;
+            viewModel.Stores = new StoreViewModel
             {
-                CurrentContent = currentContent,
-                Bundle = currentContent,
-                Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                Entries = variants,
-                Stores = new StoreViewModel
-                {
-                    Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
-                    SelectedStore = currentStore != null ? currentStore.Code : "",
-                    SelectedStoreName = currentStore != null ? currentStore.Name : ""
-                },
-                StaticAssociations = associations,
-                HasOrganization = contact?.OwnerId != null,
-                ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
-                IsSalesRep = isSalesRep,
-                SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
-                IsAvailable = isInstock,
+                Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
+                SelectedStore = currentStore != null ? currentStore.Code : "",
+                SelectedStoreName = currentStore != null ? currentStore.Name : ""
             };
+            viewModel.StaticAssociations = associations;
+            viewModel.HasOrganization = contact?.OwnerId != null;
+            viewModel.ShowRecommendations = productRecommendations?.ShowRecommendations ?? true;
+            viewModel.IsSalesRep = isSalesRep;
+            viewModel.SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
+                .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
+            viewModel.IsAvailable = isInstock;
+
+
+            return viewModel;
         }
 
 
@@ -298,7 +302,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : PackageViewModelBase<TPackage>, new()
         {
-            var variants = GetVariants<TVariant, TPackage>(currentContent).ToList();
+            var variants = GetVariants<TVariant, TPackage>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Count() > 0).ToList();
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(currentContent.Code, market.MarketId, currency);
@@ -331,31 +335,34 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 isInstock = false;
             }
 
-            return new TViewModel
+            var viewModel = new TViewModel();
+
+
+            viewModel.CurrentContent = currentContent;
+            viewModel.Package = currentContent;
+            viewModel.ListingPrice = defaultPrice?.UnitPrice ?? new Money(0, currency);
+            viewModel.DiscountedPrice = GetDiscountPrice(defaultPrice, market, currency);
+            viewModel.SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency);
+            viewModel.Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver);
+            viewModel.IsAvailable = defaultPrice != null && isInstock;
+            viewModel.Entries = variants;
+            //Reviews = GetReviews(currentContent.Code);
+            viewModel.Stores = new StoreViewModel
             {
-                CurrentContent = currentContent,
-                Package = currentContent,
-                ListingPrice = defaultPrice?.UnitPrice ?? new Money(0, currency),
-                DiscountedPrice = GetDiscountPrice(defaultPrice, market, currency),
-                SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency),
-                Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                IsAvailable = defaultPrice != null && isInstock,
-                Entries = variants,
-                //Reviews = GetReviews(currentContent.Code),
-                Stores = new StoreViewModel
-                {
-                    Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
-                    SelectedStore = currentStore != null ? currentStore.Code : "",
-                    SelectedStoreName = currentStore != null ? currentStore.Name : ""
-                },
-                StaticAssociations = associations,
-                HasOrganization = contact?.OwnerId != null,
-                ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
-                IsSalesRep = isSalesRep,
-                SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
-                    .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
-                MinQuantity = (int)defaultPrice.MinQuantity
+                Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
+                SelectedStore = currentStore != null ? currentStore.Code : "",
+                SelectedStoreName = currentStore != null ? currentStore.Name : ""
             };
+            viewModel.StaticAssociations = associations;
+            viewModel.HasOrganization = contact?.OwnerId != null;
+            viewModel.ShowRecommendations = productRecommendations?.ShowRecommendations ?? true;
+            viewModel.IsSalesRep = isSalesRep;
+            viewModel.SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
+                .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
+            viewModel.MinQuantity = defaultPrice != null ? (int)defaultPrice.MinQuantity : 0;
+
+
+            return viewModel;
         }
 
         public virtual GenericVariant SelectVariant(GenericProduct currentContent, string color, string size)
