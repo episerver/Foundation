@@ -26,12 +26,24 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Video", Order = 20)]
         public virtual ContentReference MainBackgroundVideo { get; set; }
 
+        [CultureSpecific]
+        [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
+        [Display(Name = "Block opacity (0 to 1)", Order = 25)]
+        public virtual double BlockOpacity { get; set; }
+
         [Display(Order = 30)]
         public virtual Url Link { get; set; }
 
         [UIHint("HeroBlockCallout")]
         [Display(Name = "Callout", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual HeroBlockCallout Callout { get; set; }
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            BlockOpacity = 0;
+        }
     }
 
     [ContentType(DisplayName = "Hero Block Callout", GUID = "7A3C9E9E-8612-4722-B795-2A93CB54A476", AvailableInEditMode = false)]
