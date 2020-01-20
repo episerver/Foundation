@@ -857,6 +857,7 @@
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
     <Compile Include="Features\Blocks\CarouselBlockController.cs" />
+    <Compile Include="Features\Blocks\CategoryBlockController.cs" />
     <Compile Include="Features\Blocks\CommentsBlockController.cs" />
     <Compile Include="Features\Blocks\FeedBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
@@ -870,6 +871,7 @@
     <Compile Include="Features\Blog\BlogCommentBlock\BlogCommentBlockController.cs" />
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
+    <Compile Include="Features\Collection\CollectionPageController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
@@ -1814,6 +1816,10 @@
     <Content Include="Features\MyAccount\_MyAccountLayout.cshtml" />
     <Content Include="Features\Blocks\Views\CarouselBlock.cshtml" />
     <Content Include="Features\MyAccount\OrderHistory\_OrderFilterBox.cshtml" />
+    <Content Include="Features\Blocks\Views\CategoryBlock.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_category-block.scss" />
+    <Content Include="Features\Collection\Index.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_collection.scss" />
     <Content Include="modules\_protected\Shell\web.config" />
     <Content Include="modules\_protected\Shell\Shell.zip" />
     <Content Include="modules\_protected\CMS\web.config" />
