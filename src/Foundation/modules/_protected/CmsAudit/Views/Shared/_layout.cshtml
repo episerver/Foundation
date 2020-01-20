@@ -1,0 +1,231 @@
+@using EPiServer.Framework.Web.Resources
+@using EPiServer.Shell.Navigation
+@using EPiServer.Shell.Web.Mvc.Html
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width"/>
+	<title>CMS Site Audit</title>
+	<!-- Shell -->
+	@Html.Raw(ClientResources.RenderResources("ShellCore"))
+	@Html.Raw(ClientResources.RenderResources("ShellWidgets"))
+
+	<!-- LightTheme -->
+	@Html.Raw(ClientResources.RenderResources("ShellCoreLightTheme"))
+
+	<!-- Navigation -->
+	@Html.Raw(ClientResources.RenderResources("Navigation"))
+
+	<!-- Dojo Dashboard -->
+	@Html.Raw(ClientResources.RenderResources("DojoDashboardCompatibility", new[] {ClientResourceType.Style}))
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		body { background-color: #efefef; }
+		main { background-color: #fff; }
+		.tab-content {
+			border: 1px solid #ddd;
+			border-radius: 7px;
+		}
+		section { padding: 20px; }
+		.site-list .tab-content .tab-pane { padding: 20px; }
+		tr.hidden { display: none; }
+		.loader,
+		.loader:before,
+		.loader:after {
+			border-radius: 50%;
+			width: 2.5em;
+			height: 2.5em;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+			-webkit-animation: load7 1.8s infinite ease-in-out;
+			animation: load7 1.8s infinite ease-in-out;
+		}
+		.loader {
+			color: #5bc0de;
+			font-size: 10px;
+			margin: 80px auto;
+			position: relative;
+			text-indent: -9999em;
+			-webkit-transform: translateZ(0);
+			-ms-transform: translateZ(0);
+			transform: translateZ(0);
+			-webkit-animation-delay: -0.16s;
+			animation-delay: -0.16s;
+		}
+		.loader:before,
+		.loader:after {
+			content: '';
+			position: absolute;
+			top: 0;
+		}
+		.loader:before {
+			left: -3.5em;
+			-webkit-animation-delay: -0.32s;
+			animation-delay: -0.32s;
+		}
+		.loader:after {
+			left: 3.5em;
+		}
+		@@-webkit-keyframes load7 {
+		0%,
+		80%,
+		100% {
+			box-shadow: 0 2.5em 0 -1.3em;
+		}
+		40% {
+			box-shadow: 0 2.5em 0 0;
+		}
+		}
+		@@keyframes load7 {
+		0%,
+		80%,
+		100% {
+			box-shadow: 0 2.5em 0 -1.3em;
+		}
+		40% {
+			box-shadow: 0 2.5em 0 0;
+		}
+		}
+		.loader.small {
+			margin: 0px;
+			top: -21px;
+		}
+			.loader.small, .loader.small:before, .loader.small:after {
+				width: 1.5em;
+				height: 1.5em;
+			}
+			
+		.container {
+            display: block;
+            padding-top: 70px;
+		}
+			
+		.mdc-top-app-bar__title
+		{
+		    font-size: inherit !important;
+		}
+			
+		.mdc-tab
+		{
+		    font-size: inherit !important;
+		}
+		
+	</style>
+</head>
+<body>
+@Html.Raw(Html.ShellInitializationScript())
+@Html.Raw(EPiServer.Shell.Navigation.MenuHelper.CreatePlatformNavigationMenu())
+<main class="container">
+    
+    @RenderBody()
+
+</main>
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        initTabs();
+        getSiteAudits();
+        getContentTypeAudits();
+    });
+
+    function toggleNextHiddenTr(btn) {
+        var $parentTr = $(btn).parents('tr');
+        var $nextTr = $parentTr.next();
+        if ($nextTr.hasClass('hidden')) {
+            $nextTr.removeClass('hidden');
+            $(btn).find('i').removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
+        } else {
+            $nextTr.addClass('hidden');
+            $(btn).find('i').removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
+        }
+    }
+    function initTabs() {
+        $('#site-tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        $('#site-tabs li:last').find('a').trigger('click');
+        $('#site-tabs li:first').find('a').trigger('click');
+    }
+    function getSiteAudits() {
+        var index = 0;
+        $tabs = $('#site-audit-section [id^=tab-]');
+        if ($tabs.length > 0) {
+            $tabs.each(function (tab) {
+                getSiteDataForTab(this, index++);
+            });
+        }
+    }
+    function getSiteDataForTab(tab) {
+        var $tab = $(tab);
+        if ($tab.length >= 0) {
+            var siteGuid = $(tab).data('siteguid');
+            showProgressBarInside($tab);
+            $.ajax({
+                url: 'cmsaudit/indexsiteaudit',
+                data: {
+                    siteGuid: siteGuid
+                }
+            }).done(function (response) {
+                $tab.html(response);
+                var progressPercentage = 100 - ($tabs.find('.loader').length * 100 / $tabs.length);
+                updateProgressBar('#site-audit-section .progress', progressPercentage);
+            }).fail(function (response) {
+
+            });
+        }
+
+    }
+    function showProgressBarInside(container) {
+        $(container).html('<div class="loader">Working on it...</div>');
+    }
+    function updateProgressBar(container, percentage) {
+        if (percentage === 100) {
+            $(container).slideUp();
+        } else {
+            $(container).find('.progress-bar-info').css('width', percentage + '%');
+        }
+
+    }
+    function getContentTypeAudits() {
+        var index = 0;
+        $contentTypes = $('#tbl-content-types tr');
+        if ($contentTypes.length > 0) {
+            $contentTypes.each(function (tab) {
+                getContentTypeAudit(this, index++);
+            });
+        }
+    }
+    function getContentTypeAudit(contentTypeRow) {
+        var $contentTypeRow = $(contentTypeRow);
+        var contentTypeId = $contentTypeRow.data('contenttypeid');
+        var url = $('#cms-content-types').data('type') == 'page'
+            ? 'pagetypes/pagetypeaudit'
+            : ($('#cms-content-types').data('type') == 'block' ? 'blocktypes/blocktypeaudit' : '');
+        if (url !== '') {
+            $.ajax({
+                url: url,
+                data: {
+                    contentTypeId: contentTypeId
+                },
+                error: function (xhr, status, error) {
+                    $contentTypeRow.find('td.usages').text("Unknown. Error encountered.");
+                }
+            }).done(function (response) {
+                var rowNumber = $contentTypeRow.find('.number').text();
+                var $response = $(response);
+                $response.find('.number').text(rowNumber);
+                $contentTypeRow.replaceWith($response);
+                var progressPercentage = 100 - ($('#cms-content-types tr .loader').length * 100 / $contentTypes.length);
+                updateProgressBar('#cms-content-types .progress', progressPercentage);
+            });
+        }
+    }
+</script>
+</body>
+</html>
