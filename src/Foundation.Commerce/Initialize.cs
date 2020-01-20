@@ -1,4 +1,5 @@
 ﻿using EPiServer;
+using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Order;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
@@ -70,6 +71,8 @@ namespace Foundation.Commerce
             services.AddTransient<IPaymentMethod, CashOnDeliveryPaymentOption>();
             services.AddTransient<IPaymentMethod, GenericCreditCardPaymentOption>();
             services.AddTransient<IPaymentMethod, GiftCardPaymentOption>();
+            services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
+            services.AddSingleton<ICouponUsage, FoundationCouponUsage>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
