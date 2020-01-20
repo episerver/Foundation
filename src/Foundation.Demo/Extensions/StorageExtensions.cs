@@ -10,7 +10,7 @@ namespace Foundation.Demo.Extensions
 {
     public static class StorageExtensions
     {
-        public static async Task<List<IListBlobItem>> GetItems(this CloudBlobDirectory directory, int maxResults = 100)
+        public static async Task<List<IListBlobItem>> GetItemsAsync(this CloudBlobDirectory directory, int maxResults = 100)
         {
             var blobContinuationToken = new BlobContinuationToken();
             var blobRequestOptions = new BlobRequestOptions();
@@ -26,7 +26,7 @@ namespace Foundation.Demo.Extensions
             return results;
         }
 
-        public static async Task<List<IListBlobItem>> GetItems(this CloudBlobContainer container, string prefix, int maxResults = 100)
+        public static async Task<List<IListBlobItem>> GetItemsAsync(this CloudBlobContainer container, string prefix, int maxResults = 100)
         {
             var blobContinuationToken = new BlobContinuationToken();
             var blobRequestOptions = new BlobRequestOptions();
@@ -35,6 +35,38 @@ namespace Foundation.Demo.Extensions
             do
             {
                 var result = await container.ListBlobsSegmentedAsync(prefix, false, BlobListingDetails.Metadata, maxResults, blobContinuationToken, blobRequestOptions, operationContext);
+                blobContinuationToken = result.ContinuationToken;
+                results.AddRange(result.Results);
+            }
+            while (blobContinuationToken != null);
+            return results;
+        }
+
+        public static List<IListBlobItem> GetItems(this CloudBlobDirectory directory, int maxResults = 100)
+        {
+            var blobContinuationToken = new BlobContinuationToken();
+            var blobRequestOptions = new BlobRequestOptions();
+            var operationContext = new OperationContext();
+            var results = new List<IListBlobItem>();
+            do
+            {
+                var result = directory.ListBlobsSegmented(false, BlobListingDetails.Metadata, maxResults, blobContinuationToken, blobRequestOptions, operationContext);
+                blobContinuationToken = result.ContinuationToken;
+                results.AddRange(result.Results);
+            }
+            while (blobContinuationToken != null);
+            return results;
+        }
+
+        public static List<IListBlobItem> GetItems(this CloudBlobContainer container, string prefix, int maxResults = 100)
+        {
+            var blobContinuationToken = new BlobContinuationToken();
+            var blobRequestOptions = new BlobRequestOptions();
+            var operationContext = new OperationContext();
+            var results = new List<IListBlobItem>();
+            do
+            {
+                var result = container.ListBlobsSegmented(prefix, false, BlobListingDetails.Metadata, maxResults, blobContinuationToken, blobRequestOptions, operationContext);
                 blobContinuationToken = result.ContinuationToken;
                 results.AddRange(result.Results);
             }

@@ -1,7 +1,9 @@
-﻿namespace Foundation.Commerce.Mail
+﻿using System.Threading.Tasks;
+
+namespace Foundation.Commerce.Mail
 {
     public interface IHtmlDownloader
     {
-        string Download(string baseUrl, string relativeUrl);
+        Task<string> Download(string baseUrl, string relativeUrl);
     }
 }
