@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Foundation.Commerce.Mail
 {
     public class HtmlDownloader : IHtmlDownloader
     {
-        public string Download(string baseUrl, string relativeUrl)
+        public async Task<string> Download(string baseUrl, string relativeUrl)
         {
             var client = new HttpClient { BaseAddress = new Uri(baseUrl) };
             var fullUrl = client.BaseAddress + relativeUrl;
 
-            var response = client.GetAsync(fullUrl).Result;
+            var response = await client.GetAsync(fullUrl);
             if (response.StatusCode == HttpStatusCode.NotFound)
             {
                 return null;
@@ -24,7 +25,7 @@ namespace Foundation.Commerce.Mail
                         fullUrl, response.Content.ReadAsStringAsync().Result));
             }
 
-            return response.Content.ReadAsStringAsync().Result;
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }

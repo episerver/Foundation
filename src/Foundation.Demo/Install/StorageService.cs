@@ -147,10 +147,10 @@ namespace Foundation.Demo.Install
             if (blobDirectory == null)
             {
                 var container = GetContainer(ContainerName);
-                var items = container.GetItems(string.Empty).Result;
+                var items = container.GetItems(string.Empty);
                 return items.OfType<CloudBlobDirectory>().ToList();
             }
-            var children = blobDirectory.GetItems().Result;
+            var children = blobDirectory.GetItems();
             return children.OfType<CloudBlobDirectory>().ToList();
         }
 

@@ -20,6 +20,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -158,7 +159,7 @@ namespace Foundation.Features.MyOrganization.Users
         [HttpPost]
         [AllowDBWrite]
         [NavigationAuthorize("Admin")]
-        public ActionResult AddUser(UsersPageViewModel viewModel)
+        public async Task<ActionResult> AddUser(UsersPageViewModel viewModel)
         {
             var user = _userManager.FindByEmail(viewModel.Contact.Email);
             if (user != null)
@@ -184,7 +185,7 @@ namespace Foundation.Features.MyOrganization.Users
             }
             else
             {
-                SaveUser(viewModel);
+                await SaveUser(viewModel);
             }
 
             return RedirectToAction("Index");
@@ -241,7 +242,7 @@ namespace Foundation.Features.MyOrganization.Users
             return Redirect(Request.UrlReferrer?.AbsoluteUri ?? "/");
         }
 
-        private void SaveUser(UsersPageViewModel viewModel)
+        private async Task SaveUser(UsersPageViewModel viewModel)
         {
             var contactUser = new SiteUser
             {
@@ -261,7 +262,7 @@ namespace Foundation.Features.MyOrganization.Users
             if (user != null)
             {
                 var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
-                var body = _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), ContentLanguage.PreferredCulture.TwoLetterISOLanguageName);
+                var body = await _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), ContentLanguage.PreferredCulture.TwoLetterISOLanguageName);
                 var mailPage = _contentLoader.Get<MailBasePage>(startPage.ResetPasswordMail);
                 var code = _userManager.GeneratePasswordResetToken(user.Id);
                 var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language = ContentLanguage.PreferredCulture.TwoLetterISOLanguageName }, Request.Url.Scheme);
