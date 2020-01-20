@@ -15,13 +15,13 @@
     <PackageReference Include="EPiServer.Azure" Version="9.4.5" />
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.0" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.14.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.1" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.12.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.3" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.14.1" />
     <PackageReference Include="EPiServer.ConnectForCampaign" Version="2.1.0" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.6.1" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.9.0" />
     <PackageReference Include="EPiServer.Forms.UI" Version="4.27.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.14.0" />
-    <PackageReference Include="EPiServer.Insight.Cms" Version="1.12.0" />
+    <PackageReference Include="EPiServer.Insight.Cms" Version="1.13.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
