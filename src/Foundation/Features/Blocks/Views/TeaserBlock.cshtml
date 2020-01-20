@@ -1,6 +1,48 @@
 @model IBlockViewModel<TeaserBlock>
 
 @Html.FullRefreshPropertiesMetaData(new[] { "Image" })
+@{
+    string imagePosition, headingPosition, descriptionPosition;
+
+    switch (Model.CurrentBlock.ElementsOrder)
+    {
+        case "ImageHeadingDescription":
+            imagePosition = "order: 0";
+            headingPosition = "order: 1";
+            descriptionPosition = "order: 2";
+            break;
+        case "ImageDescriptionHeading":
+            imagePosition = "order: 0";
+            descriptionPosition = "order: 1";
+            headingPosition = "order: 2";
+            break;
+        case "HeadingImageDescription":
+            headingPosition = "order: 0";
+            imagePosition = "order: 1";
+            descriptionPosition = "order: 2";
+            break;
+        case "HeadingDescriptionImage":
+            headingPosition = "order: 0";
+            descriptionPosition = "order: 1";
+            imagePosition = "order: 2";
+            break;
+        case "DescriptionImageHeading":
+            descriptionPosition = "order: 0";
+            imagePosition = "order: 1";
+            headingPosition = "order: 2";
+            break;
+        case "DescriptionHeadingImage":
+            descriptionPosition = "order: 0";
+            headingPosition = "order: 1";
+            imagePosition = "order: 2";
+            break;
+        default:
+            imagePosition = string.Empty;
+            headingPosition = string.Empty;
+            descriptionPosition = string.Empty;
+            break;
+    }
+}
 
 @{
     string imagePosition, headingPosition, textPosition, fullWidthImage, headingSize, elementAlignment;
@@ -66,15 +108,14 @@
     Url.PageLinkUrl(Model.CurrentBlock.Link),
     Model.CurrentBlock.Heading))
 {
-    <div class="teaser-block" style="@Model.CurrentBlock.PaddingStyles; @elementAlignment">
-
+    <div class="teaser-block" style="@Model.CurrentBlock.PaddingStyles; @Model.CurrentBlock.ElementsAlignment; @Model.CurrentBlock.BackgroundColor; @Model.CurrentBlock.TextColor;">
         @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
         {
-            <div @Html.EditAttributes(x => x.CurrentBlock.Image) class="teaser-block__image" style="@imagePosition">
-                <img class="img-fluid" style="@fullWidthImage" src="@Url.ContentUrl(Model.CurrentBlock.Image)" />
+            <div @Html.EditAttributes(x => x.CurrentBlock.Image) class="teaser-block__image" style="@imagePosition; @Model.CurrentBlock.ElementsAlignment">
+                <img class="img-fluid" style="width: @(Model.CurrentBlock.ImageSize)%" src="@Url.ContentUrl(Model.CurrentBlock.Image)" />
             </div>
         }
-        <h2 class="teaser-block__heading" style="@headingPosition; @headingSize;" @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
-        <p class="teaser-block__text" style="@textPosition" @Html.EditAttributes(x => x.CurrentBlock.Text)>@Model.CurrentBlock.Text</p>
+        <h2 class="teaser-block__heading" style="@headingPosition; font-size: @(Model.CurrentBlock.HeadingSize)px; @Model.CurrentBlock.HeadingStyle" @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
+        <p class="teaser-block__text" style="@descriptionPosition" @Html.EditAttributes(x => x.CurrentBlock.Description)>@Model.CurrentBlock.Description</p>
     </div>
 }
