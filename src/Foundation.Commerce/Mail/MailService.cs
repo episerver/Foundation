@@ -29,16 +29,21 @@ namespace Foundation.Commerce.Mail
             _htmlDownloader = htmlDownloader;
         }
 
-        public void Send(ContentReference mailReference, NameValueCollection nameValueCollection, string toEmail,
+        public async Task SendAsync(ContentReference mailReference, NameValueCollection nameValueCollection, string toEmail,
             string language)
         {
-            var body = GetHtmlBodyForMail(mailReference, nameValueCollection, language);
+            var body = await GetHtmlBodyForMail(mailReference, nameValueCollection, language);
             var mailPage = _contentLoader.Get<MailBasePage>(mailReference);
 
-            Send(mailPage.Subject, body, toEmail);
+            await SendAsync(new MailMessage
+            {
+                Subject = mailPage.Subject,
+                Body = body,
+                IsBodyHtml = true
+            });
         }
 
-        public string GetHtmlBodyForMail(ContentReference mailReference, NameValueCollection nameValueCollection,
+        public async Task<string> GetHtmlBodyForMail(ContentReference mailReference, NameValueCollection nameValueCollection,
             string language)
         {
             var urlBuilder = new UrlBuilder(_urlResolver.GetUrl(mailReference, language))
@@ -54,7 +59,7 @@ namespace Foundation.Commerce.Mail
                 relativePath = relativePath.Substring(basePath.Length);
             }
 
-            return _htmlDownloader.Download(basePath, relativePath);
+            return await _htmlDownloader.Download(basePath, relativePath);
         }
 
         public void Send(string subject, string body, string recipientMailAddress)
@@ -81,10 +86,26 @@ namespace Foundation.Commerce.Mail
             }
         }
 
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(MailMessage message)
         {
-            Send(message.Subject, message.Body, message.Destination);
-            return Task.FromResult(0);
+            using (var client = new SmtpClient())
+            {
+                await client.SendMailAsync(message);
+            }
         }
+
+        public async Task SendAsync(IdentityMessage message)
+        {
+            var msg = new MailMessage
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true
+            };
+
+            msg.To.Add(message.Destination);
+            await SendAsync(msg);
+        }
+
     }
 }

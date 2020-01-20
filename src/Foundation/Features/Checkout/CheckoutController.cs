@@ -371,7 +371,7 @@ namespace Foundation.Features.Checkout
                 }
             }
 
-            var confirmationSentSuccessfully = _checkoutService.SendConfirmation(viewModel, purchaseOrder);
+            var confirmationSentSuccessfully = await _checkoutService.SendConfirmation(viewModel, purchaseOrder);
             //await _checkoutService.CreateOrUpdateBoughtProductsProfileStore(CartWithValidationIssues.Cart);
             //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
             await _recommendationService.TrackOrder(HttpContext, purchaseOrder);
@@ -399,9 +399,9 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(CheckoutMethodViewModel viewModel)
+        public async Task<ActionResult> Login(CheckoutMethodViewModel viewModel)
         {
-            var result = _applicationSignInManager.PasswordSignInAsync(viewModel.LoginViewModel.Email, viewModel.LoginViewModel.Password, true, true).Result;
+            var result = await _applicationSignInManager.PasswordSignInAsync(viewModel.LoginViewModel.Email, viewModel.LoginViewModel.Password, true, true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -481,7 +481,7 @@ namespace Foundation.Features.Checkout
                     }
                 }
                 checkoutViewModel.CurrentContent = currentPage;
-                var confirmationSentSuccessfully = _checkoutService.SendConfirmation(checkoutViewModel, purchaseOrder);
+                var confirmationSentSuccessfully = await _checkoutService.SendConfirmation(checkoutViewModel, purchaseOrder);
                 //await _checkoutService.CreateOrUpdateBoughtProductsProfileStore(CartWithValidationIssues.Cart);
                 //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
                 await _recommendationService.TrackOrder(HttpContext, purchaseOrder);
