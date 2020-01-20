@@ -857,6 +857,7 @@
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
     <Compile Include="Features\Blocks\CarouselBlockController.cs" />
+    <Compile Include="Features\Blocks\CategoryBlockController.cs" />
     <Compile Include="Features\Blocks\CommentsBlockController.cs" />
     <Compile Include="Features\Blocks\FeedBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
@@ -870,6 +871,7 @@
     <Compile Include="Features\Blog\BlogCommentBlock\BlogCommentBlockController.cs" />
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
+    <Compile Include="Features\Collection\CollectionPageController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
@@ -1161,6 +1163,7 @@
     <Content Include="Assets\js\features\Selection.js" />
     <Content Include="Assets\js\features\selective\Locations.js" />
     <Content Include="Assets\js\features\selective\Stores.js" />
+    <Content Include="Assets\js\features\UsersOrganization.js" />
     <Content Include="Assets\js\main.min.js" />
     <Content Include="Assets\js\plugins\fontawesomeicons.js" />
     <Content Include="Assets\js\features\notifyHelper.js" />
@@ -1715,7 +1718,6 @@
     <Content Include="Features\CatalogContent\Bundle\Index.cshtml" />
     <Content Include="Features\CatalogContent\Package\Index.cshtml" />
     <Content Include="Features\CatalogContent\Package\_PackageDetail.cshtml" />
-    <Content Include="Features\CatalogContent\Bundle\BundleWithoutEntries.cshtml" />
     <Content Include="Features\CatalogContent\Bundle\_BundleDetail.cshtml" />
     <Content Include="Features\Shared\Foundation\_QuickViewModal.cshtml" />
     <Content Include="Features\Locations\LocationListPage\FilterActivitiesBlock.cshtml" />
@@ -1725,13 +1727,11 @@
     <Content Include="Features\Shared\Foundation\_MasterLayout.cshtml" />
     <Content Include="Features\Shared\Foundation\_ReviewForm.cshtml" />
     <Content Include="Features\Shared\Foundation\_Reviews.cshtml" />
-    <Content Include="Features\CatalogContent\Package\PackageWithoutEntries.cshtml" />
     <Content Include="Features\CatalogContent\Package\_Quickview.cshtml" />
     <Content Include="Features\CatalogContent\Variation\Index.cshtml" />
     <Content Include="Features\CatalogContent\Variation\_VariantDetail.cshtml" />
-    <Content Include="Features\CatalogContent\Product\ProductWithourEntries.cshtml" />
     <Content Include="Features\CatalogContent\_ListVariants.cshtml" />
-    <Content Include="Features\Media\Index.cshtml" />
+    <Content Include="Features\Media\ImageMedia.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ForgotPassword.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Features\MyAccount\ResetPassword\ResetPassword.cshtml" />
@@ -1813,6 +1813,10 @@
     <Content Include="Features\MyAccount\_MyAccountLayout.cshtml" />
     <Content Include="Features\Blocks\Views\CarouselBlock.cshtml" />
     <Content Include="Features\MyAccount\OrderHistory\_OrderFilterBox.cshtml" />
+    <Content Include="Features\Blocks\Views\CategoryBlock.cshtml" />
+    <Content Include="Assets\scss\templates\blocks\_category-block.scss" />
+    <Content Include="Features\Collection\Index.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_collection.scss" />
     <Content Include="modules\_protected\Shell\web.config" />
     <Content Include="modules\_protected\Shell\Shell.zip" />
     <Content Include="modules\_protected\CMS\web.config" />
@@ -1825,6 +1829,8 @@
     <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
+    <Content Include="Features\Media\VideoFile.cshtml" />
+    <Content Include="Features\Media\Index.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

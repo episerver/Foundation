@@ -5,6 +5,7 @@
     Layout = null;
 }
 
+
 <div class="bblock block-layered-nav jsSearchFacets">
     <div class="selection--cm__label">
         @Html.TranslateFallback("/Category/ContentFilters", "Content Filters")
@@ -27,18 +28,23 @@
                 }
             }
         </li>
-        <li class="">
-            <span class="selection--cm__sub-label">
-                <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
-            </span>
-        </li>
-        @foreach (var sectionGroup in Model.ContentSearchResult.Hits.TermsFacetFor(x => x.SearchSection))
+        @if (Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null)
         {
             <li class="">
                 <span class="selection--cm__sub-label">
-                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl(sectionGroup.Term)">@sectionGroup.Term (@sectionGroup.Count)</a>
+                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
                 </span>
             </li>
+
+            foreach (var sectionGroup in Model.ContentSearchResult.Hits.TermsFacetFor(x => x.SearchSection))
+            {
+                <li class="">
+                    <span class="selection--cm__sub-label">
+                        <a href="@Model.ContentSearchResult.GetSectionGroupUrl(sectionGroup.Term)">@sectionGroup.Term (@sectionGroup.Count)</a>
+                    </span>
+                </li>
+            }
         }
+
     </ul>
 </div>

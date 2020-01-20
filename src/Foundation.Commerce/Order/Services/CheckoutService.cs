@@ -190,9 +190,15 @@ namespace Foundation.Commerce.Order.Services
                         }
                     }
                 }
-                cart.ProcessPayments(_paymentProcessor, _orderGroupCalculator);
+                var processPayments = cart.ProcessPayments(_paymentProcessor, _orderGroupCalculator);
+                var unsuccessPayments = processPayments.Where(x => !x.IsSuccessful);
+                if (unsuccessPayments != null && unsuccessPayments.Count() > 0)
+                {
+                    throw new InvalidOperationException(string.Join("\n", unsuccessPayments.Select(x => x.Message)));
+                }
 
                 var processedPayments = cart.GetFirstForm().Payments.Where(x => x.Status.Equals(PaymentStatus.Processed.ToString()));
+
                 if (!processedPayments.Any())
                 {
                     // Return null in case there is no payment was processed.

@@ -45,8 +45,12 @@ namespace Foundation.Features.CatalogContent.Bundle
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
             if (_isInEditMode && !viewModel.Entries.Any())
             {
-                var emptyViewName = "BundleWithoutEntries";
-                return View(emptyViewName, viewModel);
+                return View(viewModel);
+            }
+
+            if (viewModel.Entries == null || viewModel.Entries.Count() == 0)
+            {
+                return HttpNotFound();
             }
 
             await AddInfomationViewModel(viewModel, currentContent.Code, skipTracking);

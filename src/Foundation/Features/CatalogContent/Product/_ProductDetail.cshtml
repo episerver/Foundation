@@ -17,9 +17,15 @@
         <div class="col-md-8 col-sm-12">
             <div class="product-detail__title">
                 @Html.Partial("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
-                <h5>@Html.PropertyFor(x => x.Variant.DisplayName)</h5>
+                @if (Model.Variant != null)
+                {
+                    <h5>@Html.PropertyFor(x => x.Variant.DisplayName)</h5>
+                }
                 <h6 class="light-text">@Html.PropertyFor(x => x.Product.Brand)</h6>
-                <p class="sub-title">@Model.Variant.Code</p>
+                @if (Model.Variant != null)
+                {
+                    <p class="sub-title">@Model.Variant.Code</p>
+                }
             </div>
 
             <hr />
@@ -87,39 +93,44 @@
             <br />
             <hr />
             <div class="row product-detail__selection">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Color", "Colors")</label>
-                    @{
-                        var colors = new List<KeyValuePair<string, string>>();
-                        if (Model != null && Model.Colors.Any())
-                        {
+                @if (Model != null && Model.Colors.Any())
+                {
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Color", "Colors")</label>
+                        @{
+                            var colors = new List<KeyValuePair<string, string>>();
                             foreach (var c in Model.Colors)
                             {
                                 colors.Add(new KeyValuePair<string, string>(c.Text, c.Value));
                             }
                         }
-                    }
-                    @Helpers.RenderDropdown(colors, Model.Color, "jsSelectColorSize", "color")
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Size", "Sizes")</label>
-                    @{
-                        var sizes = new List<KeyValuePair<string, string>>();
-                        if (Model != null && Model.Sizes.Any())
-                        {
+                        @Helpers.RenderDropdown(colors, Model.Color, "jsSelectColorSize", "color")
+                    </div>
+                }
+
+                @if (Model != null && Model.Sizes.Any())
+                {
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Size", "Sizes")</label>
+                        @{
+                            var sizes = new List<KeyValuePair<string, string>>();
                             foreach (var c in Model.Sizes)
                             {
                                 sizes.Add(new KeyValuePair<string, string>(c.Text, c.Value));
                             }
                         }
-                    }
-                    @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
-                </div>
+                        @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
+                    </div>
+                }
+
             </div>
 
-            @Html.Partial("_Store", Model.Stores)
+            @if (Model.Variant != null)
+            {
+                @Html.Partial("_Store", Model.Stores)
 
-            @Html.Partial("_BuyNow", new KeyValuePair<string, int>(Model.Variant.Code, Model.MinQuantity))
+                @Html.Partial("_BuyNow", new KeyValuePair<string, int>(Model.Variant.Code, Model.MinQuantity))
+            }
             <hr />
             <div class="row">
                 <div class="col-12">
@@ -129,7 +140,7 @@
                             Email to a friend
                         </a>
                     </span>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && Model.Variant != null)
                     {
                         <span class="light-text cursor-pointer link addToWishlist" data="@Model.Variant.Code">
                             <i class="light-svg" data-feather="heart"></i>

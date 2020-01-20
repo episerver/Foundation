@@ -35,6 +35,11 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string Description { get; set; }
 
+        [UIHint(UIHint.Textarea)]
+        [Required(AllowEmptyStrings = false)]
+        [Display(GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual string Text { get; set; }
+
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Required(AllowEmptyStrings = false)]
@@ -73,7 +78,6 @@ namespace Foundation.Cms.Blocks
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-            
             HeadingSize = 28;
             HeadingStyle = "text-decoration: none";
             ImageSize = 100;

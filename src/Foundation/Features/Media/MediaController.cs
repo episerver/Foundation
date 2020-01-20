@@ -1,4 +1,5 @@
-﻿using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Core;
+using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Media;
@@ -6,12 +7,22 @@ using System.Web.Mvc;
 
 namespace Foundation.Features.Media
 {
-    [TemplateDescriptor(TemplateTypeCategory = TemplateTypeCategories.MvcPartialController, Inherited = true)]
-    public class MediaController : PartialContentController<ImageMediaData>
+    public class MediaController : PartialContentController<MediaData>
     {
-        public override ActionResult Index(ImageMediaData currentContent)
+        public override ActionResult Index(MediaData currentContent)
         {
-            return PartialView(currentContent);
+            if (currentContent is VideoFile)
+            {
+                return PartialView("~/Features/Media/VideoFile.cshtml", currentContent);
+            }
+            else if (currentContent is ImageMediaData)
+            {
+                return PartialView("~/Features/Media/ImageMedia.cshtml", currentContent);
+            }
+            else
+            {
+                return PartialView("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name);
+            }
         }
     }
 }

@@ -994,11 +994,6 @@
         <Locations>Locations</Locations>
         <Organization>Organization</Organization>
       </Organization>
-      <QuickOrder>
-        <Interface>Quick Order Interface</Interface>
-        <ProductName>Product Name</ProductName>
-        <AddRow>Add Row</AddRow>
-      </QuickOrder>
       <Users>
         <Lookup>Look up user or fill in their details</Lookup>
         <SearchUsers>search for users</SearchUsers>
