@@ -35,7 +35,9 @@
     <div class="hero-block__teaser">
         @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty())
         {
-            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__link hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'">
+            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__link hero-block__image"
+                 style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'"
+                 onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'">
             </div>
         }
         else if (Model.CurrentBlock.MainBackgroundVideo != null)
@@ -56,6 +58,17 @@
         @Html.PropertyFor(m => m.CurrentBlock.Callout)
     </div>
     <style>
+            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image:after {
+                background: black;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: @Model.CurrentBlock.BlockOpacity;
+            }
+
             #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
                 background: @(string.IsNullOrEmpty(Model.CurrentBlock.Callout.BackgroundColor) ? "none" : Model.CurrentBlock.Callout.BackgroundColor);
                 content: '';
@@ -66,5 +79,5 @@
                 height: 100%;
                 opacity: @Model.CurrentBlock.Callout.Opacity;
             }
-    </style>    
+    </style>
 </div>
