@@ -252,7 +252,7 @@ namespace Foundation.Commerce.Customer.Services
 
                 if (result.IdentityResult.Succeeded)
                 {
-                    var identity = UserManager().GenerateUserIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie).Result;
+                    var identity = await UserManager().GenerateUserIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                     AuthenticationManager().SignIn(identity);
                     result.FoundationContact = CreateFoundationContact(user);
                 }
