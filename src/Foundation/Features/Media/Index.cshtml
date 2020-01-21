@@ -1,9 +1,3 @@
-﻿@using Foundation.Cms.Media
-@model ImageMediaData
+﻿@model string
 
-<a @(!ContentReference.IsNullOrEmpty(Model.Link) ? String.Format("href={0}", Url.ContentUrl(Model.Link)) : String.Empty)>
-    @if (!ContentReference.IsNullOrEmpty(Model.ContentLink))
-    {
-        <img src="@Url.ContentUrl(Model.ContentLink)" alt="@Model.Description" title="@(Model.Description ?? Model.Name)" class="img-fluid" />
-    }
-</a>
+<p>There is no view for '@Model'.</p>

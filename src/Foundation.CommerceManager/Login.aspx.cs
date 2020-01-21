@@ -44,7 +44,7 @@ namespace Foundation.CommerceManager
             var password = ((TextBox)LoginCtrl.FindControl("Password")).Text;
             var remember = ((CheckBox)LoginCtrl.FindControl("RememberMe")).Checked;
 
-            var validated = SignInManager.PasswordSignInAsync(userName, password, remember, false).Result == SignInStatus.Success;
+            var validated = SignInManager.PasswordSignIn(userName, password, remember, false) == SignInStatus.Success;
             if (validated)
             {
                 HandleLoginSuccess(userName, remember);

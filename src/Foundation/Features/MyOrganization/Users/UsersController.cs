@@ -20,6 +20,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -63,6 +64,11 @@ namespace Foundation.Features.MyOrganization.Users
         [NavigationAuthorize("Admin")]
         public ActionResult Index(UsersPage currentPage)
         {
+            if (TempData["ImpersonateFail"] != null)
+            {
+                ViewBag.Impersonate = (bool)TempData["ImpersonateFail"];
+            }
+
             var organization = _organizationService.GetCurrentFoundationOrganization();
             var currentOrganization = organization;
             var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedSuborganization);
@@ -153,7 +159,7 @@ namespace Foundation.Features.MyOrganization.Users
         [HttpPost]
         [AllowDBWrite]
         [NavigationAuthorize("Admin")]
-        public ActionResult AddUser(UsersPageViewModel viewModel)
+        public async Task<ActionResult> AddUser(UsersPageViewModel viewModel)
         {
             var user = _userManager.FindByEmail(viewModel.Contact.Email);
             if (user != null)
@@ -179,7 +185,7 @@ namespace Foundation.Features.MyOrganization.Users
             }
             else
             {
-                SaveUser(viewModel);
+                await SaveUser(viewModel);
             }
 
             return RedirectToAction("Index");
@@ -201,17 +207,25 @@ namespace Foundation.Features.MyOrganization.Users
         }
 
         [NavigationAuthorize("Admin")]
-        public JsonResult ImpersonateUser(string id)
+        public ActionResult ImpersonateUser(string email)
         {
             var success = false;
-            var user = _userManager.FindById(id);
+            var user = _userManager.FindByEmail(email);
             if (user != null)
             {
                 _cookieService.Set(Constant.Cookies.B2BImpersonatingAdmin, User.Identity.GetUserName(), true);
                 _signInManager.SignIn(user, false, false);
                 success = true;
             }
-            return Json(new { success });
+            
+            if (success)
+            {
+                return Redirect("/");
+            } else
+            {
+                TempData["ImpersonateFail"] = false;
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult BackAsAdmin()
@@ -228,7 +242,7 @@ namespace Foundation.Features.MyOrganization.Users
             return Redirect(Request.UrlReferrer?.AbsoluteUri ?? "/");
         }
 
-        private void SaveUser(UsersPageViewModel viewModel)
+        private async Task SaveUser(UsersPageViewModel viewModel)
         {
             var contactUser = new SiteUser
             {
@@ -248,7 +262,7 @@ namespace Foundation.Features.MyOrganization.Users
             if (user != null)
             {
                 var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
-                var body = _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), ContentLanguage.PreferredCulture.TwoLetterISOLanguageName);
+                var body = await _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), ContentLanguage.PreferredCulture.TwoLetterISOLanguageName);
                 var mailPage = _contentLoader.Get<MailBasePage>(startPage.ResetPasswordMail);
                 var code = _userManager.GeneratePasswordResetToken(user.Id);
                 var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language = ContentLanguage.PreferredCulture.TwoLetterISOLanguageName }, Request.Url.Scheme);

@@ -49,7 +49,10 @@
             <div class="tab-pane product-tab__content fade" id="product_tabs_reviews">
                 @Html.Partial("_ReviewForm", new ReviewSubmissionViewModel(Model.Bundle.Code))
                 <div>
-                    @Html.Partial("_Reviews", Model.Reviews)
+                    @if (Model.Reviews != null)
+                    {
+                        @Html.Partial("_Reviews", Model.Reviews)
+                    }
                 </div>
             </div>
             <div class="tab-pane product-tab__content product-tab__association fade" id="product_tabs_associations">

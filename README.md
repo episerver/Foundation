@@ -23,11 +23,13 @@ Including as of now projects for CMS, Commerce, Personalization, Find and Social
 
 ## System requirements
 
-1. Visual Studio 2017 or higher - [Download](https://visualstudio.microsoft.com/downloads/)
-2. SQL Server Express or Developer or SQL Azure Server - [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using SQL Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
-3. Microsoft SQL Server Management Studio - [Download](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
-4. Nodejs - [Download](https://nodejs.org/en/download/)
-5. Microsoft Internet Information Server (IIS) - [Download](https://www.iis.net/downloads)
+* Visual Studio 2017 or higher - [Download](https://visualstudio.microsoft.com/downloads/)
+* SQL Server Express or Developer or SQL Azure Server - [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using SQL Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
+* Microsoft SQL Server Management Studio - [Download](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
+* Nodejs - [Download](https://nodejs.org/en/download/)
+* Microsoft Internet Information Server (IIS) - [Download](https://www.iis.net/downloads)
+
+See also the general [Episerver system requirements](https://world.episerver.com/documentation/system-requirements/) on Episerver World.
 
 ---
 

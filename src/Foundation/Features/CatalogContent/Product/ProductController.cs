@@ -44,8 +44,7 @@ namespace Foundation.Features.CatalogContent.Product
 
             if (_isInEditMode && viewModel.Variant == null)
             {
-                var emptyViewName = "ProductWithoutEntries";
-                return Request.IsAjaxRequest() ? (ViewResultBase)PartialView(emptyViewName, viewModel) : View(emptyViewName, viewModel);
+                return View(viewModel);
             }
 
             if (viewModel.Variant == null)

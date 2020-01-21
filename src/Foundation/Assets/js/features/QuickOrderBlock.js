@@ -24,8 +24,7 @@
                         <i data-feather="trash-2"></i>
                     </a>
                 </div>
-            </div>
-            <hr/>`;
+            </div>`;
 
         this.ProductListing = [];
     }
@@ -67,7 +66,8 @@
                     }
                     return "<img class='eac-icon' src='" + item.UrlImage + "' /> " + value;
                 }
-            }
+            },
+            adjustWidth: false
         };
         $autocompleteInput.easyAutocomplete(options);
     }
@@ -85,7 +85,7 @@
 
     initRenderList(inst) {
         const template = inst.renderList(inst.ProductListing);
-        $('.jsProductListing').html(template);
+        $(this.Container).find('.jsProductListing').html(template);
         feather.replace();
         inst.DeleteRowClick();
         inst.AutoComplete();

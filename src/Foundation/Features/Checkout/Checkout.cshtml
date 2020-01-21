@@ -1,8 +1,18 @@
 ﻿@model CheckoutViewModel
+@{ 
+    var errorMessages = ViewBag.ErrorMessages != null ? (string)ViewBag.ErrorMessages : string.Empty;
+}
 
 <div class="col-12">
     <h3 class="checkout-title">SECURE CHECKOUT</h3>
 </div>
+
+@if (!string.IsNullOrEmpty(errorMessages))
+{
+    <div class="col-12 error">
+        <p>@errorMessages</p>
+    </div>
+}
 
 @using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "row jsCheckoutForm", id = "jsCheckoutForm", novalidate = "novalidate" }))
 {

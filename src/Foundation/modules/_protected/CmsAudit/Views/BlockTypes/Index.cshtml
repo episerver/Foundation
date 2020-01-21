@@ -1,7 +1,7 @@
 @using N1990.Episerver.Cms.Audit.Models
 @model CmsAuditPage
 @{
-    Layout = "_layout.cshtml";
+    Layout = "../Shared/_layout.cshtml";
     var pageTypeCtr = 1;
 }
 
@@ -26,7 +26,7 @@
 				<tr data-contenttypeid="@blockType.ContentTypeId" class="ctid-@blockType.ContentTypeId">
 					<td class="number">@(pageTypeCtr++)</td>
 					<td>@blockType.Name</td>
-					<td>
+					<td class="usages">
 						<div class="loader small">Loading...</div>
 					</td>
 					<td>@Html.Raw(blockType.UsagesExpandButton)</td>

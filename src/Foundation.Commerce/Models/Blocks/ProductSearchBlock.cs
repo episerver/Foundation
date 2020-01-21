@@ -5,6 +5,7 @@ using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.Blocks;
 using Foundation.Cms.EditorDescriptors;
+using Foundation.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Blocks
@@ -51,6 +52,10 @@ namespace Foundation.Commerce.Models.Blocks
         [CultureSpecific]
         [Display(Name = "Maximum price", Description = "The maximum price in the current market currency", Order = 90)]
         public virtual int MaxPrice { get; set; }
+
+        [SelectMany(SelectionFactoryType = typeof(BrandSelectionFactory))]
+        [Display(Name = "Brand filter", Description = "Filter based on all available brands", Order = 100)]
+        public virtual string BrandFilter { get; set; }
 
         private int _startingIndex = 0;
         public void SetIndex(int index) => _startingIndex = index;

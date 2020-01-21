@@ -155,6 +155,20 @@ namespace Foundation.Features.Search.ProductSearchBlock
                 filters.Add(rangeFilter);
             }
 
+            if (productSearchBlock.BrandFilter != null)
+            {
+                var brands = productSearchBlock.BrandFilter.Split(',');
+                var brandFilters = brands.Select(s => new PrefixFilter("Brand$$string.lowercase", s.ToLowerInvariant())).ToList();
+                if (brandFilters.Count == 1)
+                {
+                    filters.Add(brandFilters.First());
+                }
+                else
+                {
+                    filters.Add(new OrFilter(brandFilters.ToArray()));
+                }
+            }
+
             if (productSearchBlock.Filters == null)
             {
                 return filters;

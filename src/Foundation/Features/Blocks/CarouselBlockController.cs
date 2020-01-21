@@ -26,7 +26,7 @@ namespace Foundation.Features.Blocks
         {
             var model = new CarouselBlockViewModel(currentBlock);
 
-            if (currentBlock.CarouselItems.Items.Any())
+            if (currentBlock.CarouselItems != null)
             {
                 foreach (var contentAreaItem in currentBlock.CarouselItems.FilteredItems)
                 {

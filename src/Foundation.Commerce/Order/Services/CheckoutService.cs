@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Commerce.Order.Services
@@ -190,9 +191,15 @@ namespace Foundation.Commerce.Order.Services
                         }
                     }
                 }
-                cart.ProcessPayments(_paymentProcessor, _orderGroupCalculator);
+                var processPayments = cart.ProcessPayments(_paymentProcessor, _orderGroupCalculator);
+                var unsuccessPayments = processPayments.Where(x => !x.IsSuccessful);
+                if (unsuccessPayments != null && unsuccessPayments.Count() > 0)
+                {
+                    throw new InvalidOperationException(string.Join("\n", unsuccessPayments.Select(x => x.Message)));
+                }
 
                 var processedPayments = cart.GetFirstForm().Payments.Where(x => x.Status.Equals(PaymentStatus.Processed.ToString()));
+
                 if (!processedPayments.Any())
                 {
                     // Return null in case there is no payment was processed.
@@ -224,7 +231,7 @@ namespace Foundation.Commerce.Order.Services
             return null;
         }
 
-        public virtual bool SendConfirmation(CheckoutViewModel viewModel, IPurchaseOrder purchaseOrder)
+        public virtual async Task<bool> SendConfirmation(CheckoutViewModel viewModel, IPurchaseOrder purchaseOrder)
         {
             var startpage = _contentRepository.Get<CommerceHomePage>(ContentReference.StartPage);
             var sendOrderConfirmationMail = startpage.SendOrderConfirmationMail;
@@ -238,7 +245,7 @@ namespace Foundation.Commerce.Order.Services
 
                 try
                 {
-                    _mailService.Send(startpage.OrderConfirmationMail, queryCollection, purchaseOrder.GetFirstForm().Payments.FirstOrDefault().BillingAddress.Email, startpage.Language.Name);
+                    await _mailService.SendAsync(startpage.OrderConfirmationMail, queryCollection, purchaseOrder.GetFirstForm().Payments.FirstOrDefault().BillingAddress.Email, startpage.Language.Name);
                 }
                 catch (Exception e)
                 {
