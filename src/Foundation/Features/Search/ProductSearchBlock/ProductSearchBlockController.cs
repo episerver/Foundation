@@ -1,4 +1,5 @@
 ﻿using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying.Filters;
@@ -14,9 +15,12 @@ using Foundation.Find.Commerce;
 using Foundation.Find.Commerce.ViewModels;
 using Foundation.Social.Services;
 using Mediachase.Commerce;
+using Mediachase.Commerce.Orders;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using static Foundation.Commerce.Models.EditorDescriptors.DiscontinuedProductModeSelectionFactory;
+using static Foundation.Commerce.Models.EditorDescriptors.SortOrderSelectionFactory;
 
 namespace Foundation.Features.Search.ProductSearchBlock
 {
@@ -42,7 +46,6 @@ namespace Foundation.Features.Search.ProductSearchBlock
             _searchService = searchService;
         }
 
-        // GET: RelatedProductsBlock
         public override ActionResult Index(Commerce.Models.Blocks.ProductSearchBlock currentBlock)
         {
             var currentLang = _languageService.GetCurrentLanguage();
@@ -66,7 +69,11 @@ namespace Foundation.Features.Search.ProductSearchBlock
                 };
             }
 
+            SortProducts(currentBlock, result);
+
             MergePriorityProducts(currentBlock, result);
+
+            HandleDiscontinuedProducts(currentBlock, result);
 
             if (!result.ProductViewModels.Any())
             {
@@ -82,6 +89,29 @@ namespace Foundation.Features.Search.ProductSearchBlock
             };
 
             return PartialView("~/Features/Search/ProductSearchBlock/Index.cshtml", productSearchResult);
+        }
+
+        private void SortProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        {
+            var newList = new List<ProductTileViewModel>();
+
+            switch (currentContent.SortOrder)
+            {
+                case ProductSearchSortOrder.BestSellerByQuantity:
+                    var byQuantitys = GetBestSellerByQuantity();
+                    newList = result.ProductViewModels.Where(x => !byQuantitys.Any(y => y.Code.Equals(x.Code))).ToList();
+                    newList.InsertRange(0, byQuantitys);
+                    break;
+                case ProductSearchSortOrder.BestSellerByRevenue:
+                    var byRevenues = GetBestSellerByRevenue();
+                    newList = result.ProductViewModels.Where(x => !byRevenues.Any(y => y.Code.Equals(x.Code))).ToList();
+                    newList.InsertRange(0, byRevenues);
+                    break;
+                default:
+                    break;
+            }
+
+            result.ProductViewModels = newList;
         }
 
         private void MergePriorityProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
@@ -107,6 +137,75 @@ namespace Foundation.Features.Search.ProductSearchBlock
             var newList = result.ProductViewModels.ToList();
             newList.InsertRange(0, products.Select(document => document.GetProductTileViewModel(market, currency)));
             result.ProductViewModels = newList;
+        }
+
+        private void HandleDiscontinuedProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        {
+            var newList = new List<ProductTileViewModel>();
+            switch (currentContent.DiscontinuedProductsMode)
+            {
+                case DiscontinuedProductMode.Hide:
+                    newList = result.ProductViewModels.Where(x => !x.ProductStatus.Equals("Discontinued")).ToList();
+                    break;
+                case DiscontinuedProductMode.DemoteToBottom:
+                    var discontinueds = result.ProductViewModels.Where(x => x.ProductStatus.Equals("Discontinued")).ToList();
+                    var products = result.ProductViewModels.Where(x => !x.ProductStatus.Equals("Discontinued")).ToList();
+                    discontinueds.InsertRange(0, products);
+                    newList = discontinueds;
+                    break;
+                default:
+                    break;
+            }
+
+            result.ProductViewModels = newList;
+        }
+
+        private IEnumerable<ProductTileViewModel> GetBestSellerByQuantity()
+        {
+            var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
+            var orders = OrderContext.Current.FindPurchaseOrdersByStatus(OrderStatus.Completed);
+            var topSeller = new Dictionary<ILineItem, decimal>();
+            foreach (var order in orders)
+            {
+                var products = order.GetAllLineItems();
+                foreach (var product in products)
+                {
+                    if (topSeller.ContainsKey(product))
+                    {
+                        topSeller[product] += product.Quantity;
+                    }
+                    else
+                    {
+                        topSeller.Add(product, product.Quantity);
+                    }
+                }
+            }
+            return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
+        }
+
+        private IEnumerable<ProductTileViewModel> GetBestSellerByRevenue()
+        {
+            var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
+            var orders = OrderContext.Current.FindPurchaseOrdersByStatus(OrderStatus.Completed);
+            var topSeller = new Dictionary<ILineItem, decimal>();
+            foreach (var order in orders)
+            {
+                var products = order.GetAllLineItems();
+                foreach (var product in products)
+                {
+                    if (topSeller.ContainsKey(product))
+                    {
+                        topSeller[product] += (product.GetDiscountedPrice(currency) <= product.PlacedPrice ? product.GetDiscountedPrice(currency).Amount : product.PlacedPrice) * product.Quantity;
+                    }
+                    else
+                    {
+                        topSeller.Add(product, (product.GetDiscountedPrice(currency) <= product.PlacedPrice ? product.GetDiscountedPrice(currency).Amount : product.PlacedPrice) * product.Quantity);
+                    }
+                }
+            }
+            return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
         }
 
         private ProductSearchResults GetSearchResults(string language, Commerce.Models.Blocks.ProductSearchBlock productSearchBlock)

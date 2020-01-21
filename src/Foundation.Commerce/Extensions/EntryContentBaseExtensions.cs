@@ -410,7 +410,8 @@ namespace Foundation.Commerce.Extensions
                 OnSale = entry.Property.Keys.Contains("OnSale") && ((bool?)entry.Property["OnSale"]?.Value ?? false),
                 NewArrival = entry.Property.Keys.Contains("NewArrival") && ((bool?)entry.Property["NewArrival"]?.Value ?? false),
                 ShowRecommendations = entryRecommendations != null ? entryRecommendations.ShowRecommendations : true,
-                EntryType = type
+                EntryType = type,
+                ProductStatus = entry.Property.Keys.Contains("ProductStatus") ? entry.Property["ProductStatus"]?.Value?.ToString() ?? "Active" : "Active"
             };
         }
 
