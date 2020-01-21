@@ -5,8 +5,7 @@ using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.Attributes;
 using Foundation.Cms.Blocks;
-using Foundation.Cms.EditorDescriptors;
-using Foundation.Commerce.Models.Catalog;
+using Foundation.Commerce.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Blocks
@@ -18,7 +17,7 @@ namespace Foundation.Commerce.Blocks
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
     {
-        [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockLayoutSeletionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockLayoutSelectionFactory))]
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Layout { get; set; }
 
@@ -83,7 +82,7 @@ namespace Foundation.Commerce.Blocks
         [Display(Name = "Image height", GroupName = SystemTabNames.Content, Order = 21)]
         public virtual int ImageHeight { get; set; }
 
-        [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockImagePositionSeletionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockImagePositionSelectionFactory))]
         [Display(Name = "Image position", GroupName = SystemTabNames.Content, Order = 30,
             Description = "Set image position in the image section to the left, center, right or set a certain position using paddings")]
         public virtual string ImagePosition { get; set; }

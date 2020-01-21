@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Cms.EditorDescriptors
+namespace Foundation.Commerce.EditorDescriptors
 {
-    public class ProductHeroBlockLayoutSeletionFactory : ISelectionFactory
+    public class ProductHeroBlockLayoutSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
@@ -18,7 +18,7 @@ namespace Foundation.Cms.EditorDescriptors
         }
     }
 
-    public class ProductHeroBlockImagePositionSeletionFactory : ISelectionFactory
+    public class ProductHeroBlockImagePositionSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
