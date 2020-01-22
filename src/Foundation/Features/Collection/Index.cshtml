@@ -1,4 +1,4 @@
-﻿@model ContentViewModel<CollectionPage>
+@model ContentViewModel<CollectionPage>
 
 @Html.PropertyFor(x => x.CurrentContent.Navigation)
 <br />
@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-12 mediablock-container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Image))
                 {
-                    <img class="mediablock__img" src="@Url.ContentUrl(Model.CurrentContent.Image)" />
+                    <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.Image)" />
                 }
                 else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Video))
                 {
@@ -18,7 +18,7 @@
                     </video>
                 }
             </div>
-            <div class="col-7 mediablock__content">
+            <div class="col-8 mediablock__content">
                 <div>
                     <div class="mediablock__title">
                         <h2>@Model.CurrentContent.CollectionName</h2>
