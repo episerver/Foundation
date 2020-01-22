@@ -40,7 +40,7 @@
             <div class="form-group">
                 @Html.LabelFor(x => x.Contact.Email)
                 <br />
-                @Html.TextBoxFor(x => x.Contact.Email, new { @class = "textbox" })
+                @Html.TextBoxFor(x => x.Contact.Email, new { @class = "textbox", required = "required" })
                 @Html.ValidationMessageFor(x => x.Contact.Email)
             </div>
             <div class="form-group" id="organization-div" style="display: none">
