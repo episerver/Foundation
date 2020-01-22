@@ -13,7 +13,7 @@ namespace Foundation.Cms.Blocks
         GUID = "8bdfac81-3dbd-43b9-a092-522bd67ee8b3",
         Description = "Image block with overlay for text",
         GroupName = CmsGroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
+    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-22.png")]
     public class HeroBlock : FoundationBlockData
     {
         [CultureSpecific]
