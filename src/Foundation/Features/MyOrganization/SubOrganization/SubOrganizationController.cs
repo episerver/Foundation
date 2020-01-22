@@ -64,7 +64,10 @@ namespace Foundation.Features.MyOrganization.SubOrganization
                 var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
                 return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
             }
-
+            if (viewModel.SubOrganizationModel.Locations.Count == 0)
+            {
+                viewModel.SubOrganizationModel.Locations.Add(new B2BAddressViewModel());
+            }
             viewModel.SubOrganizationModel.CountryOptions = _addressService.GetAllCountries();
             return View(viewModel);
         }
