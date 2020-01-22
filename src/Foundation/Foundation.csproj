@@ -22,8 +22,7 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort></IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -58,11 +57,17 @@
     <Reference Include="AddOn.Edit.ContextMenuOpenInNewTab, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AddOn.Edit.ContextMenuOpenInNewTab.1.2.1\lib\net461\AddOn.Edit.ContextMenuOpenInNewTab.dll</HintPath>
     </Reference>
+    <Reference Include="Advanced.CMS.Forms, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Advanced.CMS.Forms.0.1.0\lib\net45\Advanced.CMS.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="AdvancedApprovalReviews, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Advanced.CMS.AdvancedReviews.0.5.1\lib\net45\AdvancedApprovalReviews.dll</HintPath>
     </Reference>
     <Reference Include="AdvancedExternalReviews, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Advanced.CMS.AdvancedReviews.0.5.1\lib\net45\AdvancedExternalReviews.dll</HintPath>
+    </Reference>
+    <Reference Include="AdvancedTask, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdvancedTaskManager.1.0.0\lib\net461\AdvancedTask.dll</HintPath>
     </Reference>
     <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Commerce.Core.13.15.0\lib\net461\AjaxControlToolkit.dll</HintPath>
@@ -1390,6 +1395,9 @@
     <Content Include="NotFound.aspx" />
     <Content Include="Scripts\EPiServer.ContentApi.Forms\FormRenderingService.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\AdvancedTask\Index.ascx" />
+    <Content Include="Views\AdvancedTask\Pager.ascx" />
+    <Content Include="Views\AdvancedTask\Tasks.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1850,6 +1858,9 @@
     <Content Include="modules\_protected\CmsAudit\Views\BlockTypes\Index.cshtml" />
     <Content Include="modules\_protected\CmsAudit\Views\BlockTypes\BlockTypeAudit.cshtml" />
     <Content Include="modules\_protected\CmsAudit\module.config" />
+    <Content Include="modules\_protected\AdvancedTask\AdvancedTask.zip" />
+    <Content Include="modules\_protected\advanced-cms-forms\web.config" />
+    <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
