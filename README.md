@@ -139,6 +139,7 @@ Or clone project using Git
 > **_Note:_** A **resetup.cmd** file has been created in your project which you can run to re-install the database.
 
 ## Troubleshooting
+### The installation fails
 * Check that you have full access rights to the project folder.
 * Check that you meet [the system requirements](#system-requirements).
 * Check your SQL authentication settings as described in [SQL Server](#sql-server).
@@ -149,6 +150,9 @@ Or clone project using Git
   Build\Logs\Database.log
   Build\Logs\IIS.log
   ```
+### The site does not start
+* Foundation does not include any website, pages or catalogs in its initial state, so it is not possible to start a site until you have imported or created content. Go to URL http://_yourdomainname_/setup to import content.
+* Check that the site is actually running by navigating to http://_yourdomainname_/episerver/cms.
 
 ## Modular set-up
 
