@@ -105,7 +105,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
                     : _organizationService.GetCurrentFoundationOrganization();
                 _cookieService.Set(Constant.Fields.SelectedSuborganization, org.OrganizationId.ToString());
                 _cookieService.Set(Constant.Fields.SelectedNavSuborganization, org.OrganizationId.ToString());
-                if (!org.OrganizationEntity.IsParentOrganizationValid())
+                if (!org.OrganizationEntity.ParentId.HasValue)
                 {
                     if (_currentMarket.GetCurrentMarket().Currencies is List<Currency> availableCurrencies)
                     {
