@@ -1,0 +1,19 @@
+﻿@using ImageProcessor.Web.Episerver
+
+@model Foundation.Commerce.ViewModels.ProductHeroBlockViewModel
+
+@{
+    var imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
+        : Html.ProcessImage(Model.ImageUrl).Resize(Model.CurrentBlock.Image.ImageWidth, Model.CurrentBlock.Image.ImageHeight).ToString();
+
+    var blockLayout = Model.CurrentBlock.Layout.Equals("CalloutRight", StringComparison.OrdinalIgnoreCase) ? "order: 1" : "";
+}
+
+<div class="product-hero-block" style="@Model.BlockPaddings">
+    <div class="product-hero-block__callout" style="@Model.CalloutPaddings @blockLayout">
+        @Html.PropertyFor(x => x.CurrentBlock.Callout.Text)
+    </div>
+    <div class="product-hero-block__image" style="@Model.ImagePosition">
+        <img class="img-fluid" src="@imageUrl" />
+    </div>
+</div>
