@@ -124,7 +124,7 @@ Or clone project using Git
 ```
 ![Build progress](https://i.ibb.co/GvZBcYY/Build-Progress.png)
 
-5.	When the installation is finished, a setup page is opened in your browser.
+5.	When the installation is finished, a setup page is opened in your browser. If not, enter the URL http://_yourdomainname_/setup manually.
 6.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
 ![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
 
