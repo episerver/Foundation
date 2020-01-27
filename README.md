@@ -5,6 +5,8 @@
 Foundation offers a starting point that is intuitive, well-structured and modular allowing developers to select Episerver products as projects to include or exclude from their solution. 
 Including as of now projects for CMS, Commerce, Personalization, Find and Social, with the rest to follow.
 
+You can request a demo of the project by one of our Episerver experts on [Get a demo](https://www.episerver.com/get-a-demo/).
+
 [![Build status](https://dev.azure.com/episerver-foundation/Foundation/_apis/build/status/Foundation-Release)](https://dev.azure.com/episerver-foundation/Foundation/_build/latest?definitionId=1)
 [![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -75,11 +77,11 @@ How to find the IIS settings depends on the system where you are running IIS.
 
 The installation files on GitHub contain a batch file that will install the Foundation project with all products and set up an empty demo site. After the installation, you can fetch demo content from a remote repository to create a Mosey demo site, a fictitious fashion retail company.
 
-1.	Download the ZIP file from GitHub containing the project and extract the files, or clone the project from GitHub to a local folder using the command prompt and the git command ```git clone https://github.com/episerver/Foundation foundation  ``` (the _foundation_ part specifies the folder where to put the files):
+1.	Download the ZIP file from the Foundation project's **master** branch on GitHub and extract the files, or clone the project from GitHub to a local folder using the command prompt and the git command ```git clone https://github.com/episerver/Foundation foundation  ``` (the _foundation_ part specifies the folder where to put the files):
 
 Download ZIP file
 
-![Download Zip file](https://i.ibb.co/PM3VNq6/Git-Hub-Zip.png)
+![Download Zip file](https://i.ibb.co/SB38p3z/Git-Hub-Zip.png)
 
 Or clone project using Git
 
@@ -129,7 +131,7 @@ Or clone project using Git
 ![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
 
 7.	In the setup page under Import Content, select **Remote Site File: Mosey** and **Remote Catalog File: Foundation_Fashion** to import the Mosey demo site content.
-![Demo content import](https://i.ibb.co/s6KpckW/Demo-Content-Import.png)
+![Demo content import](https://i.ibb.co/WG6bVcx/Demo-Content-Import.png)
 
 8.	Click **Submit** and the Mosey demo site is displayed.
 ![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
@@ -137,6 +139,8 @@ Or clone project using Git
 9.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
 
 > **_Note:_** A **resetup.cmd** file has been created in your project which you can run to re-install the database.
+
+10. Developer licenses for evaluation purposes can be obtained from the [Episerver License Center](https://license.episerver.com/). Place the **License.config** file in your webroot. 
 
 ## Troubleshooting
 * Check that you have full access rights to the project folder.
