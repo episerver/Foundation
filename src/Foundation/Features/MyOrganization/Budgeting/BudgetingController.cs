@@ -35,7 +35,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         [NavigationAuthorize("Admin,Approver,Purchaser")]
         public ActionResult Index(BudgetingPage currentPage)
         {
-            var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+            var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedOrganization);
             var isSubOrgSelected = !string.IsNullOrEmpty(selectedOrgId);
             var selectedOrg = isSubOrgSelected
                 ? _organizationService.GetFoundationOrganizationById(selectedOrgId)
@@ -67,7 +67,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
                             OrganizationName = selectedOrg.Name,
                             IsCurrentBudget = currentBudget?.BudgetId == budget.BudgetId
                         })
-					);
+                    );
                 }
 
                 if (selectedOrg.SubOrganizations != null)
@@ -99,12 +99,12 @@ namespace Foundation.Features.MyOrganization.Budgeting
             var viewModel = new BudgetingPageViewModel { CurrentContent = currentPage };
             try
             {
-                var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+                var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedOrganization);
                 var org = !string.IsNullOrEmpty(selectedOrgId)
                     ? _organizationService.GetFoundationOrganizationById(selectedOrgId)
                     : _organizationService.GetCurrentFoundationOrganization();
-                _cookieService.Set(Constant.Fields.SelectedSuborganization, org.OrganizationId.ToString());
-                _cookieService.Set(Constant.Fields.SelectedNavSuborganization, org.OrganizationId.ToString());
+                _cookieService.Set(Constant.Fields.SelectedOrganization, org.OrganizationId.ToString());
+                _cookieService.Set(Constant.Fields.SelectedNavOrganization, org.OrganizationId.ToString());
                 if (!org.OrganizationEntity.ParentId.HasValue)
                 {
                     if (_currentMarket.GetCurrentMarket().Currencies is List<Currency> availableCurrencies)
@@ -139,16 +139,22 @@ namespace Foundation.Features.MyOrganization.Budgeting
             try
             {
                 var currentOrganization = _organizationService.GetCurrentFoundationOrganization();
-                var organizationId = currentOrganization.OrganizationId;
+                var selectedOrganization = currentOrganization;
+                var selectedOrganizationId = currentOrganization.OrganizationId;
+
+                if (!string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization)))
+                {
+                    selectedOrganizationId = Guid.Parse(_cookieService.Get(Constant.Fields.SelectedOrganization));
+                    selectedOrganization = _organizationService.GetFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization));
+                }
 
                 // Set finish date to the end of the day.
                 finishDateTime = finishDateTime.AddHours(23);
                 finishDateTime = finishDateTime.AddMinutes(59);
                 finishDateTime = finishDateTime.AddSeconds(59);
 
-                if (!string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization)))
+                if (selectedOrganization.ParentOrganizationId != Guid.Empty)
                 {
-                    organizationId = Guid.Parse(_cookieService.Get(Constant.Fields.SelectedSuborganization));
                     // Validate Ammount of available budget.
                     if (!_budgetService.CheckAmountByTimeLine(currentOrganization.OrganizationId, amount, startDateTime, finishDateTime))
                     {
@@ -160,7 +166,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
                         return Json(new { result = "Do not overlap the orgnization budget time line." });
                     }
                     // Validate for existing current budget. Avoid duplicate current budget since the budgets of suborg. must fit org. date times.
-                    if (_budgetService.GetBudgetByTimeLine(organizationId, startDateTime, finishDateTime) != null)
+                    if (_budgetService.GetBudgetByTimeLine(selectedOrganizationId, startDateTime, finishDateTime) != null)
                     {
                         return Json(new { result = "Duplicate budget on selected time line." });
                     }
@@ -173,7 +179,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
                 else
                 {
                     // Invalid date selection. Overlaps with another budget.
-                    if (!_budgetService.IsTimeOverlapped(startDateTime, finishDateTime, organizationId))
+                    if (!_budgetService.IsTimeOverlapped(startDateTime, finishDateTime, selectedOrganizationId))
                     {
                         return Json(new { result = "Invalid Date. Overlaps another budget." });
                     }
@@ -186,7 +192,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
                     Currency = currency,
                     StartDate = startDateTime,
                     DueDate = finishDateTime,
-                    OrganizationId = organizationId,
+                    OrganizationId = selectedOrganizationId,
                     IsActive = true,
                     Status = status,
                     LockAmount = 0
@@ -204,8 +210,8 @@ namespace Foundation.Features.MyOrganization.Budgeting
         [NavigationAuthorize("Admin")]
         public ActionResult EditBudget(BudgetingPage currentPage, int budgetId)
         {
-            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-                ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
+                ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
                 : _organizationService.GetCurrentFoundationOrganization();
 
             var currentBudget = _budgetService.GetCurrentOrganizationBudget(currentOrganization.OrganizationId);
@@ -227,8 +233,8 @@ namespace Foundation.Features.MyOrganization.Budgeting
         {
             var result = "true";
 
-            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-                ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
+                ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
                 : _organizationService.GetCurrentFoundationOrganization();
             var budget = _budgetService.GetBudgetById(budgetId);
 
@@ -247,8 +253,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
             {
                 var isSuborganizationBudget = _organizationService.GetSubOrganizationById(budget.OrganizationId.ToString()).ParentOrganization != null;
 
-                if (!string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization)) ||
-                    isSuborganizationBudget)
+                if (isSuborganizationBudget)
                 {
                     // Foe editing from organization timeline
                     currentOrganization = _organizationService.GetSubFoundationOrganizationById(budget.OrganizationId.ToString());
@@ -307,8 +312,8 @@ namespace Foundation.Features.MyOrganization.Budgeting
         public ActionResult AddBudgetToUser(BudgetingPage currentPage)
         {
             var viewModel = new BudgetingPageViewModel { CurrentContent = currentPage };
-            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
+               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
                : _organizationService.GetCurrentFoundationOrganization();
             var budget = _budgetService.GetCurrentOrganizationBudget(currentOrganization.OrganizationId);
             if (budget == null)
@@ -326,8 +331,8 @@ namespace Foundation.Features.MyOrganization.Budgeting
             var result = "true";
             try
             {
-                var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+                var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
+               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
                : _organizationService.GetCurrentFoundationOrganization();
 
                 var organizationId = currentOrganization.OrganizationId;
@@ -413,8 +418,8 @@ namespace Foundation.Features.MyOrganization.Budgeting
         [NavigationAuthorize("Admin")]
         public ActionResult UpdateUserBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, int budgetId)
         {
-            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-              ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
+              ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
               : _organizationService.GetCurrentFoundationOrganization();
             var budget = _budgetService.GetBudgetById(budgetId);
 

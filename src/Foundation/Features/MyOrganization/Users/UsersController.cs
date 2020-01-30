@@ -71,7 +71,7 @@ namespace Foundation.Features.MyOrganization.Users
 
             var organization = _organizationService.GetCurrentFoundationOrganization();
             var currentOrganization = organization;
-            var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+            var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedOrganization);
             if (currentOrganizationContext != null)
             {
                 currentOrganization = _organizationService.GetFoundationOrganizationById(currentOrganizationContext);
@@ -174,7 +174,7 @@ namespace Foundation.Features.MyOrganization.Users
                 }
 
                 var organizationId = organization.OrganizationId.ToString();
-                var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedSuborganization);
+                var currentOrganizationContext = _cookieService.Get(Constant.Fields.SelectedOrganization);
                 if (currentOrganizationContext != null)
                 {
                     organizationId = currentOrganizationContext;

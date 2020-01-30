@@ -28,8 +28,8 @@ namespace Foundation.Features.NamedCarts.OrderPadsPage
         [NavigationAuthorize("Admin,Approver")]
         public ActionResult Index(Commerce.Models.Pages.OrderPadsPage currentPage)
         {
-            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization))
-               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedSuborganization))
+            var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
+               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
                : _organizationService.GetCurrentFoundationOrganization();
 
             var viewModel = new OrderPadsPageViewModel
@@ -42,7 +42,7 @@ namespace Foundation.Features.NamedCarts.OrderPadsPage
 
             if (currentOrganization != null)
             {
-                if (string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedSuborganization)))
+                if (string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization)))
                 {
                     // Has suborganizatons. (is Organization)
                     foreach (var suborganization in currentOrganization.SubOrganizations)

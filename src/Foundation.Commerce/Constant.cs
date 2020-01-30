@@ -40,8 +40,8 @@ namespace Foundation.Commerce
             public const string UserRoleFriendly = "User Role";
             public const string UserLocation = "UserLocation";
             public const string UserLocationFriendly = "User Location";
-            public const string SelectedSuborganization = "SelectedSuborganization";
-            public const string SelectedNavSuborganization = "SelectedNavSuborganization";
+            public const string SelectedOrganization = "SelectedSuborganization";
+            public const string SelectedNavOrganization = "SelectedNavSuborganization";
             public const string LockAmount = "LockOrganizationAmount";
             public const string OverwritedMarket = "OverwritedMarket";
         }
