@@ -8,6 +8,10 @@
 @model Foundation.Commerce.Order.ViewModels.OrderDetailsViewModel
 @{
     Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+    if (Model.IsOrganizationOrder)
+    {
+        Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+    }
 }
 
 @if (Model.PurchaseOrder != null)
