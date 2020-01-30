@@ -1,3 +1,23 @@
+.productsearchblock {
+    .col:nth-child(2n+1) {
+        padding-right: 7.5px;
+    }
+
+    .col:nth-child(2n) {
+        padding-left: 7.5px;
+    }
+
+    @media (min-width: 576px) {
+        .col:nth-child(2n+1) {
+            padding-right: 15px;
+        }
+
+        .col:nth-child(2n) {
+            padding-left: 15px;
+        }
+    }
+}
+
 .product-tile {
     &__image-icon {
         position: relative;
@@ -81,7 +101,12 @@
     }
 
     &__title {
-        margin-top: 10px;
+        @include media-breakpoint-down(sm) {
+            font-size: 10px;
+        }
+
+        margin-top: 8px;
+        margin-bottom: 8px;
         font-size: 14px;
         font-weight: 300;
         text-align: center;

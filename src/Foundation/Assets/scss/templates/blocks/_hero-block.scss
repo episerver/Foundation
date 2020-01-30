@@ -66,19 +66,60 @@
             }
         }
 
-        @include media-breakpoint-down(sm) {
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        h3 {
+            font-size: 0.8rem;
+        }
+
+        .button-transparent-black {
+            padding: 8px 12px;
+            font-size: 10px;
+            line-height: 10px;
+            min-height: 0;
+        }
+
+        @include media-breakpoint-up(sm) {
             h1 {
-                font-size: 3vw;
+                font-size: 1.4rem;
             }
 
             h2 {
-                font-size: 2.7vw;
+                font-size: 1.2rem;
             }
 
             h3 {
-                font-size: 2.5vw;
+                font-size: 1rem;
+            }
+
+            .button-transparent-black {
+                padding: 12px 20px;
+                font-size: 14px;
+                line-height: 14px;
+                min-height: 0;
             }
         }
+
+        @include media-breakpoint-up(md) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.9rem;
+            }
+
+            h3 {
+                font-size: 1.7rem;
+            }
+        }
+
 
         &.transparent-callout {
             .callout {
