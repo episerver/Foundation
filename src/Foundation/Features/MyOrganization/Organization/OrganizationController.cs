@@ -40,8 +40,8 @@ namespace Foundation.Features.MyOrganization.Organization
             }
 
             var currentOrganization = _organizationService.GetCurrentFoundationOrganization();
-            _cookieService.Set(Constant.Fields.SelectedSuborganization, currentOrganization.OrganizationId.ToString());
-            _cookieService.Set(Constant.Fields.SelectedNavSuborganization, currentOrganization.OrganizationId.ToString());
+            _cookieService.Set(Constant.Fields.SelectedOrganization, currentOrganization.OrganizationId.ToString());
+            _cookieService.Set(Constant.Fields.SelectedNavOrganization, currentOrganization.OrganizationId.ToString());
 
             var viewModel = new OrganizationPageViewModel
             {

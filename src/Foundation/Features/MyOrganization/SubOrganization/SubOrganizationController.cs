@@ -39,8 +39,8 @@ namespace Foundation.Features.MyOrganization.SubOrganization
                 SubOrganizationModel = _organizationService.GetSubOrganizationById(Request["suborg"])
             };
             //Set selected suborganization
-            _cookieService.Set(Constant.Fields.SelectedSuborganization, Request["suborg"]);
-            _cookieService.Set(Constant.Fields.SelectedNavSuborganization, Request["suborg"]);
+            _cookieService.Set(Constant.Fields.SelectedOrganization, Request["suborg"]);
+            _cookieService.Set(Constant.Fields.SelectedNavOrganization, Request["suborg"]);
 
             if (viewModel.SubOrganizationModel == null)
             {
