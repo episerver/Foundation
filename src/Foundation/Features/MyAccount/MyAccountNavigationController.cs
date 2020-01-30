@@ -48,7 +48,7 @@ namespace Foundation.Features.MyAccount
                 return new EmptyResult();
             }
 
-            var selectedSubNav = _cookieService.Get(Constant.Fields.SelectedNavSuborganization);
+            var selectedSubNav = _cookieService.Get(Constant.Fields.SelectedNavOrganization);
             var organization = _organizationService.GetCurrentFoundationOrganization();
             var canSeeOrganizationNav = _customerService.CanSeeOrganizationNav();
 
