@@ -11,6 +11,12 @@
     > div {
         position: relative;
     }
+
+    .banner-text {
+        > p {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .editMode {

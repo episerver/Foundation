@@ -3,7 +3,9 @@
 <div class="top-header">
     <div class="container">
         <div class="col-12">
-            @Html.PropertyFor(x => x.CommerceHomePage.BannerText)
+            <div class="banner-text">
+                @Html.PropertyFor(x => x.CommerceHomePage.BannerText)
+            </div>
             @if (Model.ShowCommerceControls)
             {
                 <div class="market-selector d-none d-lg-block dropdown">

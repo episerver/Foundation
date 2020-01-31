@@ -1,6 +1,7 @@
 ﻿.credit-card-section {
     margin-top: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
+
     &:not(:last-child) {
         border-bottom: 1px solid #eeeeee;
     }
