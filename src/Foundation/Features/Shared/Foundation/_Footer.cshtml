@@ -10,15 +10,9 @@
     <div class="row">
         <div class="col-md-6 col-lg-4">
             <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.CompanyHeader)> @Html.DisplayFor(x => x.StartPage.CompanyHeader)</h3>
-            <p>
-                Phone: <a href="tel:@Html.DisplayFor(x => x.StartPage.CompanyPhone)" @Html.EditAttributes(x => x.StartPage.CompanyPhone)>@Html.DisplayFor(x => x.StartPage.CompanyPhone)</a>
-            </p>
-            <p>
-                Email: <a href="mailto:@Html.DisplayFor(x => x.StartPage.CompanyEmail)" @Html.EditAttributes(x => x.StartPage.CompanyEmail)>@Html.DisplayFor(x => x.StartPage.CompanyEmail)</a>
-            </p>
-            <p @Html.EditAttributes(x => x.StartPage.CompanyAddress)>
-                @Html.DisplayFor(x => x.StartPage.CompanyAddress)
-            </p>
+            <div>Phone:&nbsp<a href="tel:@Html.DisplayFor(x => x.StartPage.CompanyPhone)" @Html.EditAttributes(x => x.StartPage.CompanyPhone)>@Html.DisplayFor(x => x.StartPage.CompanyPhone)</a></div>
+            <div>Email:&nbsp<a href="mailto:@Html.DisplayFor(x => x.StartPage.CompanyEmail)" @Html.EditAttributes(x => x.StartPage.CompanyEmail)>@Html.DisplayFor(x => x.StartPage.CompanyEmail)</a></div>
+            <a @Html.EditAttributes(x => x.StartPage.CompanyAddress)>@Html.DisplayFor(x => x.StartPage.CompanyAddress)</a>
         </div>
         <div class="col-md-6 col-lg-2">
             <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.LinksHeader)> @Html.DisplayFor(x => x.StartPage.LinksHeader)</h3>

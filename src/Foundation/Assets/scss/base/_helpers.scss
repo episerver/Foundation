@@ -7,7 +7,7 @@
     display: table;
 }
 
-/* Override bootstrap container for 1200px and up) */
+/* Override bootstrap container for 1200px and up */
 .container {
     @include media-breakpoint-up(xl) {
         max-width: 1440px;
@@ -22,25 +22,8 @@ div.block {
     padding-right: 0;
 }
 
-/* Clear bootstrap margin-bottom for p tab */
-p {
-    margin-bottom: 0;
-}
-
 hr {
     color: #C4C4C4;
-}
-
-ul {
-    margin: 0;
-}
-
-a {
-    color: black;
-
-    &:hover {
-        color: black;
-    }
 }
 
 .filters-tag {
