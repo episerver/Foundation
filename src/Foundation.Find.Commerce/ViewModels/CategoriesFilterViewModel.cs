@@ -16,6 +16,7 @@ namespace Foundation.Find.Commerce.ViewModels
         public string Url { get; set; }
         public string DisplayName { get; set; }
         public bool IsActive { get; set; }
+        public bool IsBestBet { get; set; }
         public IList<CategoryFilter> Children { get; set; }
     }
 }
