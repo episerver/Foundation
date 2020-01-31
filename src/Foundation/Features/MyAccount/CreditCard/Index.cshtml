@@ -30,9 +30,9 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
-                        <p>Type: @credit.CreditCardType</p>
-                        <p>Expiration: @credit.ExpirationMonth/@credit.ExpirationYear</p>
-                        <p>Organization: @(credit.Organization != null ? (credit.Organization.Name ?? "None") : "None")</p>
+                        <div>Type: @credit.CreditCardType</div>
+                        <div>Expiration: @credit.ExpirationMonth/@credit.ExpirationYear</div>
+                        <div>Organization: @(credit.Organization != null ? (credit.Organization.Name ?? "None") : "None")</div>
                     </div>
                 </div>
                 <div class="row">

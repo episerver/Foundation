@@ -1275,6 +1275,7 @@
     <Content Include="ClientResources\Scripts\ContentEditing\CreateContent.js" />
     <Content Include="ClientResources\Scripts\Initialize.js" />
     <Content Include="ClientResources\Styles\Styles.css" />
+    <Content Include="ClientResources\Styles\TinyMCE.css" />
     <Content Include="Features\Blocks\Views\LikeButtonBlock.cshtml" />
     <Content Include="Features\Blocks\Views\MembershipDisplayBlock.cshtml" />
     <Content Include="Features\Blocks\Views\RatingBlock.cshtml" />

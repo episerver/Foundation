@@ -34,13 +34,6 @@
             left: 0;
             background: linear-gradient(to bottom, rgba(30, 87, 153, 0) 0%, #d0d1d6 100%);
         }
-
-        &.hero__half {
-        }
-
-        &.hero__full {
-            /*height: 800px;*/
-        }
     }
 
     &__box {
@@ -67,10 +60,6 @@
         background-color: white;
         color: black;
         padding: 3.5em 4em;
-
-        p {
-            margin-bottom: 1em;
-        }
 
         h2 {
             margin-top: 50px;
