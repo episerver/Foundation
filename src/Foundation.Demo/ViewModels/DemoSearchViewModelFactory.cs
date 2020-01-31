@@ -1,6 +1,8 @@
 using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
+using EPiServer.Find.Commerce;
+using EPiServer.Find.Framework.BestBets;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
@@ -82,7 +84,7 @@ namespace Foundation.Demo.ViewModels
             model.CurrentContent = currentContent;
             model.ProductViewModels = results?.ProductViewModels ?? new List<ProductTileViewModel>();
             model.FilterOption = commerceFilterOption;
-            model.CategoriesFilter = GetCategoriesFilter(currentContent);
+            model.CategoriesFilter = GetCategoriesFilter(currentContent, commerceFilterOption.Q);
             model.DidYouMeans = results.DidYouMeans;
             model.Query = commerceFilterOption.Q;
             model.IsMobile = _httpContextBase.GetOverriddenBrowser().IsMobileDevice;
@@ -90,8 +92,10 @@ namespace Foundation.Demo.ViewModels
             return baseModel;
         }
 
-        private CategoriesFilterViewModel GetCategoriesFilter(IContent currentContent)
+        private CategoriesFilterViewModel GetCategoriesFilter(IContent currentContent, string query)
         {
+            var bestBets = new BestBetRepository().List().Where(i => i.PhraseCriterion.Phrase.CompareTo(query) == 0);
+            var ownStyleBestBets = bestBets.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
             var catalogId = 0;
             var node = currentContent as NodeContent;
             if (node != null)
@@ -113,7 +117,8 @@ namespace Foundation.Demo.ViewModels
                 {
                     DisplayName = nodeContent.DisplayName,
                     Url = _urlResolver.GetUrl(nodeContent.ContentLink),
-                    IsActive = currentContent != null && currentContent.ContentLink == nodeContent.ContentLink
+                    IsActive = currentContent != null && currentContent.ContentLink == nodeContent.ContentLink,
+                    IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeContent.ContentLink.ID)
                 };
                 viewModel.Categories.Add(nodeFilter);
 
@@ -124,7 +129,8 @@ namespace Foundation.Demo.ViewModels
                     {
                         DisplayName = nodeChild.DisplayName,
                         Url = _urlResolver.GetUrl(nodeChild.ContentLink),
-                        IsActive = currentContent != null && currentContent.ContentLink == nodeChild.ContentLink
+                        IsActive = currentContent != null && currentContent.ContentLink == nodeChild.ContentLink,
+                        IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeChild.ContentLink.ID)
                     };
 
                     nodeFilter.Children.Add(nodeChildFilter);
@@ -140,7 +146,8 @@ namespace Foundation.Demo.ViewModels
                         {
                             DisplayName = nodeChildOfChild.DisplayName,
                             Url = _urlResolver.GetUrl(nodeChildOfChild.ContentLink),
-                            IsActive = currentContent != null && currentContent.ContentLink == nodeChildOfChild.ContentLink
+                            IsActive = currentContent != null && currentContent.ContentLink == nodeChildOfChild.ContentLink,
+                            IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeChildOfChild.ContentLink.ID)
                         };
 
                         nodeChildFilter.Children.Add(nodeChildOfChildFilter);

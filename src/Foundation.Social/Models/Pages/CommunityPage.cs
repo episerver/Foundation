@@ -9,7 +9,7 @@ namespace Foundation.Social.Models.Pages
     /// <summary>
     /// Used for the pages that wish to contain Social community features
     /// </summary>
-    [ContentType(DisplayName = "Community", GUID = "56ba715e-3fb9-4050-a5e3-ab7fe1690742", Description = "A reseller's community page using Episerver Social.", GroupName = "Social")]
+    [ContentType(DisplayName = "Community Page", GUID = "56ba715e-3fb9-4050-a5e3-ab7fe1690742", Description = "A reseller's community page using Episerver Social.", GroupName = "Social")]
     [ImageUrl("~/assets/icons/cms/pages/elected.png")]
     public class CommunityPage : FoundationPageData
     {

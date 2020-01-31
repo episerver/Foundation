@@ -41,7 +41,7 @@ namespace Foundation.Find.Cms
                     .ApplyBestBets();
 
                 //Exclude content from search
-                query = query.Filter(x => (x as FoundationPageData).ExcludeFromSearch.Match(false));
+                query = query.Filter(x => !(x as FoundationPageData).ExcludeFromSearch.Exists() | (x as FoundationPageData).ExcludeFromSearch.Match(false));
 
                 // obey DNT
                 var doNotTrackHeader = System.Web.HttpContext.Current.Request.Headers.Get("DNT");
