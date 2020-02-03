@@ -17,14 +17,14 @@ namespace Foundation.Cms.ModelBinders
 
             // Depending on CultureInfo, the NumberDecimalSeparator can be "," or "."
             // Both "." and "," should be accepted, but aren't.
-            string wantedSeperator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
-            string alternateSeperator = (wantedSeperator == "," ? "." : ",");
+            string wantedSeparator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+            string alternateSeparator = (wantedSeparator == "," ? "." : ",");
 
-            if (attemptedValue.IndexOf(wantedSeperator) == -1
-                && attemptedValue.IndexOf(alternateSeperator) != -1)
+            if (attemptedValue.IndexOf(wantedSeparator) == -1
+                && attemptedValue.IndexOf(alternateSeparator) != -1)
             {
                 attemptedValue =
-                    attemptedValue.Replace(alternateSeperator, wantedSeperator);
+                    attemptedValue.Replace(alternateSeparator, wantedSeparator);
             }
 
             if (bindingContext.ModelMetadata.IsNullableValueType
@@ -35,8 +35,6 @@ namespace Foundation.Cms.ModelBinders
 
             try
             {
-
-
                 result = decimal.Parse(attemptedValue, NumberStyles.Any);
             }
             catch (FormatException e)
