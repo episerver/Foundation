@@ -9,9 +9,9 @@ namespace Foundation.Cms.EditorDescriptors
         {
             var separators = new List<SelectItem>
             {
-                new SelectItem() {Text = "Left", Value = "flex-start"},
-                new SelectItem() {Text = "Right", Value = "flex-end"},
-                new SelectItem() {Text = "Center", Value = "flex-center"},
+                new SelectItem {Text = "Left", Value = "flex-start"},
+                new SelectItem {Text = "Right", Value = "flex-end"},
+                new SelectItem {Text = "Center", Value = "flex-center"}
             };
 
             return separators;
