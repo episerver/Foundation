@@ -9,12 +9,12 @@ namespace Foundation.Cms.EditorDescriptors
         {
             var separators = new List<SelectItem>
             {
-                new SelectItem() {Text = "> Single arrow", Value = ">"},
-                new SelectItem() {Text = "/ Forward slash", Value = "/"},
-                new SelectItem() {Text = @"\ Backward slash", Value = @"\"},
-                new SelectItem() {Text = "» Double arrow", Value = "»"},
-                new SelectItem() {Text = "| Pipe", Value = "|"},
-                new SelectItem() {Text = ": Pipe", Value = ":"}
+                new SelectItem {Text = "> Single arrow", Value = ">"},
+                new SelectItem {Text = "/ Forward slash", Value = "/"},
+                new SelectItem {Text = @"\ Backward slash", Value = @"\"},
+                new SelectItem {Text = "» Double arrow", Value = "»"},
+                new SelectItem {Text = "| Pipe", Value = "|"},
+                new SelectItem {Text = ": Pipe", Value = ":"}
             };
 
             return separators;
