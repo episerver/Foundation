@@ -3,7 +3,6 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
 using Foundation.Cms.Blocks;
 using System.ComponentModel.DataAnnotations;
 

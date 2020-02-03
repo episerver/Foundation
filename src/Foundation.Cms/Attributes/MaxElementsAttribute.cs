@@ -2,7 +2,6 @@
 using EPiServer.SpecializedProperties;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web.ModelBinding;
 
 namespace Foundation.Cms.Attributes
 {

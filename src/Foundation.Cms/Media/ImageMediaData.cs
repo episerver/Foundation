@@ -4,7 +4,6 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.Blobs;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
