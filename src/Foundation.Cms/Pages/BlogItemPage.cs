@@ -24,10 +24,5 @@ namespace Foundation.Cms.Pages
             GroupName = SystemTabNames.Content,
             Order = 210)]
         public virtual BlogCommentBlock Comments { get; set; }
-
-        public override void SetDefaultValues(ContentType contentType)
-        {
-            base.SetDefaultValues(contentType);
-        }
     }
 }
