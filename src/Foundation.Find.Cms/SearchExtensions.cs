@@ -1,5 +1,4 @@
 using EPiServer;
-using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Facets;
 using EPiServer.Find.Api.Querying;

@@ -11,7 +11,6 @@ using Foundation.Find.Cms.ViewModels;
 using Geta.EpiCategories;
 using Geta.EpiCategories.Find.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Find.Cms
 {

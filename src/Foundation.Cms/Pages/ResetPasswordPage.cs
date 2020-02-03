@@ -1,4 +1,3 @@
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 
 namespace Foundation.Cms.Pages
