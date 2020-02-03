@@ -1,5 +1,4 @@
 ﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Cms.Media;
 using System.ComponentModel.DataAnnotations;
