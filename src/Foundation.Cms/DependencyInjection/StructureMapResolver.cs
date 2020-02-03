@@ -14,7 +14,7 @@ namespace Foundation.Cms.DependencyInjection
         public StructureMapResolver(IContainer container)
             : base(container)
         {
-            _container = container ?? throw new ArgumentNullException("container");
+            _container = container ?? throw new ArgumentNullException(nameof(container));
 
             _container.Inject(typeof(IHttpControllerActivator), this);
         }
