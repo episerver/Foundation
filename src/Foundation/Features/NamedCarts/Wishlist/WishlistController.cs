@@ -23,6 +23,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Foundation.Commerce;
 
 namespace Foundation.Features.NamedCarts.Wishlist
 {
@@ -277,7 +278,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                     returnedMessages.Add(responseMessage);
                 }
             }
-            Session["ErrorMesages"] = returnedMessages;
+            Session[Constant.ErrorMessages] = returnedMessages;
 
             return Json(returnedMessages, JsonRequestBehavior.AllowGet);
         }
