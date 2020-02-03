@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Cms.EditorDescriptors
 {
-    public class BreadcrumbAlginmentOptionSelectionFactory : ISelectionFactory
+    public class BreadcrumbAlignmentOptionSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
