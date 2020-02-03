@@ -7,10 +7,10 @@ namespace Foundation.Commerce.Models.EditorDescriptors
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
-            return new List<ISelectItem>()
+            return new List<ISelectItem>
             {
-                new SelectItem() { Text = "List", Value = "List" },
-                new SelectItem() { Text = "Grid", Value = "Grid" }
+                new SelectItem { Text = "List", Value = "List" },
+                new SelectItem { Text = "Grid", Value = "Grid" }
             };
         }
     }
