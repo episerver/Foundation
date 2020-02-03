@@ -22,7 +22,7 @@ namespace Foundation.Cms.Blocks
         public virtual string Separator { get; set; }
 
         [Display(Name = "Alignment option", Order = 30, GroupName = SystemTabNames.Content)]
-        [SelectOne(SelectionFactoryType = typeof(BreadcrumbAlginmentOptionSelectionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(BreadcrumbAlignmentOptionSelectionFactory))]
         public virtual string Alignment { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
