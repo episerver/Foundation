@@ -50,7 +50,7 @@ namespace Foundation.Commerce.Models.Blocks
         public virtual ContentArea PriorityProducts { get; set; }
 
         [Display(Name = "Discontinued products mode", Description = "Handle discontinued products to show in the list", Order = 75)]
-        [SelectOne(SelectionFactoryType = typeof(SortOrderSelectionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(DiscontinuedProductModeSelectionFactory))]
         public virtual string DiscontinuedProductsMode { get; set; }
 
         [CultureSpecific]

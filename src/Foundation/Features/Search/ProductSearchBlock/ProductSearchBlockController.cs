@@ -1,5 +1,6 @@
 ﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Order;
+using EPiServer.Commerce.Reporting.Order;
+using EPiServer.Commerce.Reporting.Order.StoreModels;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying.Filters;
@@ -15,8 +16,9 @@ using Foundation.Find.Commerce;
 using Foundation.Find.Commerce.ViewModels;
 using Foundation.Social.Services;
 using Mediachase.Commerce;
-using Mediachase.Commerce.Orders;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using static Foundation.Commerce.Models.EditorDescriptors.DiscontinuedProductModeSelectionFactory;
@@ -32,18 +34,21 @@ namespace Foundation.Features.Search.ProductSearchBlock
         private readonly ICurrentMarket _currentMarket;
         private readonly ICurrencyService _currencyService;
         private readonly ICommerceSearchService _searchService;
+        private readonly IReportingDataGenerator _reportingDataGenerator;
 
         public ProductSearchBlockController(LanguageService languageService,
             IReviewService reviewService,
             ICurrentMarket currentMarket,
             ICurrencyService currencyService,
-            ICommerceSearchService searchService)
+            ICommerceSearchService searchService,
+            IReportingDataGenerator reportingDataGenerator)
         {
             _languageService = languageService;
             _reviewService = reviewService;
             _currentMarket = currentMarket;
             _currencyService = currencyService;
             _searchService = searchService;
+            _reportingDataGenerator = reportingDataGenerator;
         }
 
         public override ActionResult Index(Commerce.Models.Blocks.ProductSearchBlock currentBlock)
@@ -162,13 +167,18 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByQuantity()
         {
+            double days;
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            {
+                days = 365;
+            }
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyService.GetCurrentCurrency();
-            var orders = OrderContext.Current.FindPurchaseOrdersByStatus(OrderStatus.Completed);
-            var topSeller = new Dictionary<ILineItem, decimal>();
+            var orders = _reportingDataGenerator.GenerateOrderReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
+            var topSeller = new Dictionary<LineItemStoreModel, decimal>();
             foreach (var order in orders)
             {
-                var products = order.GetAllLineItems();
+                var products = order.LineItems;
                 foreach (var product in products)
                 {
                     if (topSeller.ContainsKey(product))
@@ -186,22 +196,27 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByRevenue()
         {
+            double days;
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            {
+                days = 365;
+            }
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyService.GetCurrentCurrency();
-            var orders = OrderContext.Current.FindPurchaseOrdersByStatus(OrderStatus.Completed);
-            var topSeller = new Dictionary<ILineItem, decimal>();
+            var orders = _reportingDataGenerator.GenerateOrderReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
+            var topSeller = new Dictionary<LineItemStoreModel, decimal>();
             foreach (var order in orders)
             {
-                var products = order.GetAllLineItems();
+                var products = order.LineItems;
                 foreach (var product in products)
                 {
                     if (topSeller.ContainsKey(product))
                     {
-                        topSeller[product] += (product.GetDiscountedPrice(currency) <= product.PlacedPrice ? product.GetDiscountedPrice(currency).Amount : product.PlacedPrice) * product.Quantity;
+                        topSeller[product] += product.ExtendedPrice * product.Quantity;
                     }
                     else
                     {
-                        topSeller.Add(product, (product.GetDiscountedPrice(currency) <= product.PlacedPrice ? product.GetDiscountedPrice(currency).Amount : product.PlacedPrice) * product.Quantity);
+                        topSeller.Add(product, product.ExtendedPrice * product.Quantity);
                     }
                 }
             }
