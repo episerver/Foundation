@@ -849,7 +849,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                     returnedMessages.Add(responseMessage);
                 }
             }
-            Session[Constant.ErrorMesages] = returnedMessages;
+            Session[Constant.ErrorMessages] = returnedMessages;
 
             return Json(returnedMessages, JsonRequestBehavior.AllowGet);
         }

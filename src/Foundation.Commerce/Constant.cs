@@ -5,7 +5,7 @@ namespace Foundation.Commerce
     public static class Constant
     {
         public const string SectionName = "InfoBlock";
-        public const string ErrorMesages = "ErrorMesages";
+        public const string ErrorMessages = "ErrorMessages";
         public const string DefaultDisplayOrder = "10000";
 
         public static class GroupNames
