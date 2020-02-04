@@ -1,3 +1,4 @@
+using EPiBootstrapArea;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
@@ -12,6 +13,7 @@ namespace Foundation.Cms.Blocks
         GUID = "EB67A99A-E239-41B8-9C59-20EAA5936047",
         Description = "Image block with overlay for text",
         GroupName = CmsGroupNames.Content)]
+    [DefaultDisplayOption(ContentAreaTags.OneThirdWidth)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class TeaserBlock : FoundationBlockData
     {
