@@ -87,7 +87,7 @@ Or clone project using Git
 
 ![Clone project](https://i.ibb.co/23tJmNm/Git-Cloning.png)
 
-> **_Note:_** It is recommended that you store the project in a folder directly under C: and in a folder where your user have full access rights:
+> **_Note:_** It is recommended that you store the project in a folder directly under C:, in a folder where your user has full access rights:
 
 ![Folder access rights](https://i.ibb.co/Wkcbr9m/Folder-Access-Rights.png)
 
