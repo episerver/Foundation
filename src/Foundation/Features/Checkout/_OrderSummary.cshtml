@@ -7,21 +7,26 @@
             <p class="title">@Model.SubTotal.ToString()</p>
         </div>
     </div>
-    <div class="checkout--bill__item">
-        <div class="flex-between">
-            <p class="title"> @Html.TranslateFallback("/Checkout/OrderLevelDiscounts", "Additional Order Level Discounts")</p>
-            <p class="title">- @Model.OrderDiscountTotal.ToString()</p>
-        </div>
 
-        @foreach (var discount in Model.OrderDiscounts)
-        {
+    @if (Model.OrderDiscounts != null && Model.OrderDiscounts.Count() > 0)
+    {
+        <div class="checkout--bill__item">
             <div class="flex-between">
-                <span>@discount.DisplayName</span>
-                <span>- @discount.Discount.ToString()</span>
+                <p class="title"> @Html.TranslateFallback("/Checkout/OrderLevelDiscounts", "Additional Order Level Discounts")</p>
+                <p class="title">- @Model.OrderDiscountTotal.ToString()</p>
             </div>
-        }
 
-    </div>
+            @foreach (var discount in Model.OrderDiscounts)
+            {
+                <div class="flex-between">
+                    <span>@discount.DisplayName</span>
+                    <span>- @discount.Discount.ToString()</span>
+                </div>
+            }
+
+        </div>
+    }
+
     <div class="checkout--bill__item">
         <div class="flex-between">
             <p class="title">@Html.Translate("/Checkout/ShippingAndTax")</p>
