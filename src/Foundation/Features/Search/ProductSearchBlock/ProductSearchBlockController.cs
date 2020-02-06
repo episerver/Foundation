@@ -1,4 +1,6 @@
 ﻿using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Reporting.Order.Internal.DataAccess;
+using EPiServer.Commerce.Reporting.Order.ReportingModels;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying.Filters;
@@ -14,9 +16,13 @@ using Foundation.Find.Commerce;
 using Foundation.Find.Commerce.ViewModels;
 using Foundation.Social.Services;
 using Mediachase.Commerce;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using static Foundation.Commerce.Models.EditorDescriptors.DiscontinuedProductModeSelectionFactory;
+using static Foundation.Commerce.Models.EditorDescriptors.SortOrderSelectionFactory;
 
 namespace Foundation.Features.Search.ProductSearchBlock
 {
@@ -28,21 +34,23 @@ namespace Foundation.Features.Search.ProductSearchBlock
         private readonly ICurrentMarket _currentMarket;
         private readonly ICurrencyService _currencyService;
         private readonly ICommerceSearchService _searchService;
+        private readonly ReportingDataLoader _reportingDataLoader;
 
         public ProductSearchBlockController(LanguageService languageService,
             IReviewService reviewService,
             ICurrentMarket currentMarket,
             ICurrencyService currencyService,
-            ICommerceSearchService searchService)
+            ICommerceSearchService searchService,
+            ReportingDataLoader reportingDataLoader)
         {
             _languageService = languageService;
             _reviewService = reviewService;
             _currentMarket = currentMarket;
             _currencyService = currencyService;
             _searchService = searchService;
+            _reportingDataLoader = reportingDataLoader;
         }
 
-        // GET: RelatedProductsBlock
         public override ActionResult Index(Commerce.Models.Blocks.ProductSearchBlock currentBlock)
         {
             var currentLang = _languageService.GetCurrentLanguage();
@@ -66,7 +74,11 @@ namespace Foundation.Features.Search.ProductSearchBlock
                 };
             }
 
+            SortProducts(currentBlock, result);
+
             MergePriorityProducts(currentBlock, result);
+
+            HandleDiscontinuedProducts(currentBlock, result);
 
             if (!result.ProductViewModels.Any())
             {
@@ -82,6 +94,29 @@ namespace Foundation.Features.Search.ProductSearchBlock
             };
 
             return PartialView("~/Features/Search/ProductSearchBlock/Index.cshtml", productSearchResult);
+        }
+
+        private void SortProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        {
+            var newList = new List<ProductTileViewModel>();
+
+            switch (currentContent.SortOrder)
+            {
+                case ProductSearchSortOrder.BestSellerByQuantity:
+                    var byQuantitys = GetBestSellerByQuantity();
+                    newList = result.ProductViewModels.Where(x => !byQuantitys.Any(y => y.Code.Equals(x.Code))).ToList();
+                    newList.InsertRange(0, byQuantitys);
+                    break;
+                case ProductSearchSortOrder.BestSellerByRevenue:
+                    var byRevenues = GetBestSellerByRevenue();
+                    newList = result.ProductViewModels.Where(x => !byRevenues.Any(y => y.Code.Equals(x.Code))).ToList();
+                    newList.InsertRange(0, byRevenues);
+                    break;
+                default:
+                    break;
+            }
+
+            result.ProductViewModels = newList;
         }
 
         private void MergePriorityProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
@@ -107,6 +142,77 @@ namespace Foundation.Features.Search.ProductSearchBlock
             var newList = result.ProductViewModels.ToList();
             newList.InsertRange(0, products.Select(document => document.GetProductTileViewModel(market, currency)));
             result.ProductViewModels = newList;
+        }
+
+        private void HandleDiscontinuedProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        {
+            var newList = new List<ProductTileViewModel>();
+            switch (currentContent.DiscontinuedProductsMode)
+            {
+                case DiscontinuedProductMode.Hide:
+                    newList = result.ProductViewModels.Where(x => !x.ProductStatus.Equals("Discontinued")).ToList();
+                    break;
+                case DiscontinuedProductMode.DemoteToBottom:
+                    var discontinueds = result.ProductViewModels.Where(x => x.ProductStatus.Equals("Discontinued")).ToList();
+                    var products = result.ProductViewModels.Where(x => !x.ProductStatus.Equals("Discontinued")).ToList();
+                    discontinueds.InsertRange(0, products);
+                    newList = discontinueds;
+                    break;
+                default:
+                    break;
+            }
+
+            result.ProductViewModels = newList;
+        }
+
+        private IEnumerable<ProductTileViewModel> GetBestSellerByQuantity()
+        {
+            double days;
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            {
+                days = 365;
+            }
+            var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
+            var lineItems = _reportingDataLoader.GetReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
+            var topSeller = new Dictionary<LineItemReportingModel, decimal>();
+            foreach (var lineItem in lineItems)
+            {
+                if (topSeller.ContainsKey(lineItem))
+                {
+                    topSeller[lineItem] += lineItem.Quantity;
+                }
+                else
+                {
+                    topSeller.Add(lineItem, lineItem.Quantity);
+                }
+            }
+            return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
+        }
+
+        private IEnumerable<ProductTileViewModel> GetBestSellerByRevenue()
+        {
+            double days;
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            {
+                days = 365;
+            }
+            var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
+            var lineItems = _reportingDataLoader.GetReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
+            var topSeller = new Dictionary<LineItemReportingModel, decimal>();
+            foreach (var lineItem in lineItems)
+            {
+                if (topSeller.ContainsKey(lineItem))
+                {
+                    topSeller[lineItem] += lineItem.ExtendedPrice * lineItem.Quantity;
+                }
+                else
+                {
+                    topSeller.Add(lineItem, lineItem.ExtendedPrice * lineItem.Quantity);
+                }
+            }
+            return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
         }
 
         private ProductSearchResults GetSearchResults(string language, Commerce.Models.Blocks.ProductSearchBlock productSearchBlock)
