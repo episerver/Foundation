@@ -2,6 +2,7 @@
 using EPiServer.Commerce.Catalog;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
+using EPiServer.Commerce.Reporting.Order.ReportingModels;
 using EPiServer.Core;
 using EPiServer.ServiceLocation;
 using EPiServer.SpecializedProperties;
@@ -58,6 +59,8 @@ namespace Foundation.Commerce.Extensions
         }
 
         public static EntryContentBase GetEntryContentBase(this ILineItem lineItem) => GetEntryContent<EntryContentBase>(lineItem.Code);
+
+        public static EntryContentBase GetEntryContentBase(this LineItemReportingModel lineItem) => GetEntryContent<EntryContentBase>(lineItem.LineItemCode);
 
         public static T GetEntryContent<T>(this ILineItem lineItem) where T : EntryContentBase => GetEntryContent<T>(lineItem.Code);
 

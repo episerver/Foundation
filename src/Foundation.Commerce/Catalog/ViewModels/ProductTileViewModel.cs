@@ -25,5 +25,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
         public bool ShowRecommendations { get; set; }
         public string FirstVariationCode { get; set; }
         public Type EntryType { get; set; }
+        public string ProductStatus { get; set; }
     }
 }

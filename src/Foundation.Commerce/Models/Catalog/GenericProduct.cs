@@ -3,6 +3,8 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Catalog
@@ -108,6 +110,13 @@ namespace Foundation.Commerce.Models.Catalog
             Order = 75)]
         public virtual bool ShowRecommendations { get; set; }
 
+        [CultureSpecific]
+        [Display(Name = "Product Status",
+            GroupName = SystemTabNames.Content,
+            Order = 80)]
+        [SelectOne(SelectionFactoryType = typeof(ProductStatusSelectionFactory))]
+        public virtual string ProductStatus { get; set; }
+
         #endregion
 
         #region Manufacturer
@@ -139,6 +148,7 @@ namespace Foundation.Commerce.Models.Catalog
             base.SetDefaultValues(contentType);
 
             AssociationsTitle = "You May Also Like";
+            ProductStatus = "Active";
         }
     }
 }
