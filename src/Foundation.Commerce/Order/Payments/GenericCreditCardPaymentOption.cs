@@ -101,7 +101,7 @@ namespace Foundation.Commerce.Order.Payments
             payment.PaymentMethodId = PaymentMethodId;
             payment.PaymentMethodName = SystemKeyword;
             payment.Amount = amount;
-            if (UseSelectedCreditCard)
+            if (UseSelectedCreditCard && !string.IsNullOrEmpty(SelectedCreditCardId))
             {
                 CreditCard creditCard = _creditCardService.GetCreditCard(SelectedCreditCardId);
                 payment.CreditCardNumber = creditCard.CreditCardNumber;
