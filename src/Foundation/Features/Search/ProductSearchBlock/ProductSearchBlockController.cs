@@ -1,6 +1,6 @@
 ﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Reporting.Order;
-using EPiServer.Commerce.Reporting.Order.StoreModels;
+using EPiServer.Commerce.Reporting.Order.Internal.DataAccess;
+using EPiServer.Commerce.Reporting.Order.ReportingModels;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying.Filters;
@@ -34,21 +34,21 @@ namespace Foundation.Features.Search.ProductSearchBlock
         private readonly ICurrentMarket _currentMarket;
         private readonly ICurrencyService _currencyService;
         private readonly ICommerceSearchService _searchService;
-        private readonly IReportingDataGenerator _reportingDataGenerator;
+        private readonly ReportingDataLoader _reportingDataLoader;
 
         public ProductSearchBlockController(LanguageService languageService,
             IReviewService reviewService,
             ICurrentMarket currentMarket,
             ICurrencyService currencyService,
             ICommerceSearchService searchService,
-            IReportingDataGenerator reportingDataGenerator)
+            ReportingDataLoader reportingDataLoader)
         {
             _languageService = languageService;
             _reviewService = reviewService;
             _currentMarket = currentMarket;
             _currencyService = currencyService;
             _searchService = searchService;
-            _reportingDataGenerator = reportingDataGenerator;
+            _reportingDataLoader = reportingDataLoader;
         }
 
         public override ActionResult Index(Commerce.Models.Blocks.ProductSearchBlock currentBlock)
@@ -174,21 +174,17 @@ namespace Foundation.Features.Search.ProductSearchBlock
             }
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyService.GetCurrentCurrency();
-            var orders = _reportingDataGenerator.GenerateOrderReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
-            var topSeller = new Dictionary<LineItemStoreModel, decimal>();
-            foreach (var order in orders)
+            var lineItems = _reportingDataLoader.GetReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
+            var topSeller = new Dictionary<LineItemReportingModel, decimal>();
+            foreach (var lineItem in lineItems)
             {
-                var products = order.LineItems;
-                foreach (var product in products)
+                if (topSeller.ContainsKey(lineItem))
                 {
-                    if (topSeller.ContainsKey(product))
-                    {
-                        topSeller[product] += product.Quantity;
-                    }
-                    else
-                    {
-                        topSeller.Add(product, product.Quantity);
-                    }
+                    topSeller[lineItem] += lineItem.Quantity;
+                }
+                else
+                {
+                    topSeller.Add(lineItem, lineItem.Quantity);
                 }
             }
             return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
@@ -203,21 +199,17 @@ namespace Foundation.Features.Search.ProductSearchBlock
             }
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyService.GetCurrentCurrency();
-            var orders = _reportingDataGenerator.GenerateOrderReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
-            var topSeller = new Dictionary<LineItemStoreModel, decimal>();
-            foreach (var order in orders)
+            var lineItems = _reportingDataLoader.GetReportingData(DateTime.Now.AddDays(-days), DateTime.Now);
+            var topSeller = new Dictionary<LineItemReportingModel, decimal>();
+            foreach (var lineItem in lineItems)
             {
-                var products = order.LineItems;
-                foreach (var product in products)
+                if (topSeller.ContainsKey(lineItem))
                 {
-                    if (topSeller.ContainsKey(product))
-                    {
-                        topSeller[product] += product.ExtendedPrice * product.Quantity;
-                    }
-                    else
-                    {
-                        topSeller.Add(product, product.ExtendedPrice * product.Quantity);
-                    }
+                    topSeller[lineItem] += lineItem.ExtendedPrice * lineItem.Quantity;
+                }
+                else
+                {
+                    topSeller.Add(lineItem, lineItem.ExtendedPrice * lineItem.Quantity);
                 }
             }
             return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
