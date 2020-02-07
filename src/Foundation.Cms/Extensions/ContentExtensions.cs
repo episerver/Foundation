@@ -3,6 +3,7 @@ using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Framework.Web;
 using EPiServer.ServiceLocation;
+using Foundation.Cms.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace Foundation.Cms.Extensions
     public static class ContentExtensions
     {
         private static readonly CookieService _cookieService = new CookieService();
-        private static readonly Injected<IContentLoader> _contentLoader = default(Injected<IContentLoader>);
+        private static readonly Lazy<IContentLoader> _contentLoader = new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
         private const string Delimiter = "^!!^";
 
-        public static IEnumerable<PageData> GetSiblings(this PageData pageData) => GetSiblings(pageData, _contentLoader.Service);
+        public static IEnumerable<PageData> GetSiblings(this PageData pageData) => GetSiblings(pageData, _contentLoader.Value);
 
         public static IEnumerable<PageData> GetSiblings(this PageData pageData, IContentLoader contentLoader)
         {
@@ -88,9 +89,21 @@ namespace Foundation.Cms.Extensions
             {
                 Delimiter
             }, StringSplitOptions.RemoveEmptyEntries).Select(x => new ContentReference(x));
-            return _contentLoader.Service.GetItems(contentLinks, new LoaderOptions())
+            return _contentLoader.Value.GetItems(contentLinks, new LoaderOptions())
                 .OfType<PageData>()
                 .ToList();
+        }
+
+        public static ContentReference GetRelativeStartPage(this IContent content)
+        {
+            if (content is CmsHomePage)
+            {
+                return ContentReference.StartPage;
+            }
+            
+            var ancestors = _contentLoader.Value.GetAncestors(content.ContentLink);
+            var startPage = ancestors.FirstOrDefault(x => x is CmsHomePage) as CmsHomePage;
+            return startPage == null ? ContentReference.StartPage : startPage.ContentLink;
         }
     }
 }
