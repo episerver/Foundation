@@ -293,6 +293,8 @@ namespace Foundation.Commerce.Order.Services
             }
 
             var lineItem = shipment.LineItems.FirstOrDefault(x => x.Code == entryContent.Code);
+            decimal originalLineItemQuantity = 0;
+
             if (lineItem == null)
             {
                 lineItem = cart.CreateLineItem(entryContent.Code, _orderGroupFactory);
@@ -302,12 +304,15 @@ namespace Foundation.Commerce.Order.Services
             }
             else
             {
+                originalLineItemQuantity = lineItem.Quantity;
                 cart.UpdateLineItemQuantity(shipment, lineItem, lineItem.Quantity + quantity);
             }
 
             var validationIssues = ValidateCart(cart);
+            var newLineItem = shipment.LineItems.FirstOrDefault(x => x.Code == entryContent.Code);
+            var isAdded = (newLineItem != null ? newLineItem.Quantity : 0) - originalLineItemQuantity > 0;
 
-            AddValidationMessagesToResult(result, lineItem, validationIssues);
+            AddValidationMessagesToResult(result, lineItem, validationIssues, isAdded);
 
             return result;
         }
@@ -479,7 +484,7 @@ namespace Foundation.Commerce.Order.Services
             return ValidateCart(cart);
         }
 
-        private static void AddValidationMessagesToResult(AddToCartResult result, ILineItem lineItem, Dictionary<ILineItem, List<ValidationIssue>> validationIssues)
+        private static void AddValidationMessagesToResult(AddToCartResult result, ILineItem lineItem, Dictionary<ILineItem, List<ValidationIssue>> validationIssues, bool isHasAddedItem)
         {
             foreach (var validationIssue in validationIssues)
             {
@@ -490,7 +495,7 @@ namespace Foundation.Commerce.Order.Services
                 result.ValidationMessages.Add(warning.ToString().TrimEnd(',', ' '));
             }
 
-            if (!validationIssues.HasItemBeenRemoved(lineItem))
+            if (!validationIssues.HasItemBeenRemoved(lineItem) && isHasAddedItem)
             {
                 result.EntriesAddedToCart = true;
             }
@@ -814,6 +819,7 @@ namespace Foundation.Commerce.Order.Services
             }
 
             var lineItem = shipment.LineItems.FirstOrDefault(x => x.Code == entryContent.Code);
+            decimal originalLineItemQuantity = 0;
             if (lineItem == null)
             {
                 lineItem = cart.CreateLineItem(entryContent.Code, _orderGroupFactory);
@@ -823,12 +829,15 @@ namespace Foundation.Commerce.Order.Services
             }
             else
             {
+                originalLineItemQuantity = lineItem.Quantity;
                 cart.UpdateLineItemQuantity(shipment, lineItem, lineItem.Quantity + quantity);
             }
 
             var validationIssues = ValidateCart(cart);
+            var newLineItem = shipment.LineItems.FirstOrDefault(x => x.Code == entryContent.Code);
+            var isAdded = (newLineItem != null ? newLineItem.Quantity : 0) - originalLineItemQuantity > 0;
 
-            AddValidationMessagesToResult(result, lineItem, validationIssues);
+            AddValidationMessagesToResult(result, lineItem, validationIssues, isAdded);
 
             return result;
         }
