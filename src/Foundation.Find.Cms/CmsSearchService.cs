@@ -6,6 +6,7 @@ using EPiServer.Find.UnifiedSearch;
 using EPiServer.Globalization;
 using EPiServer.Web;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Media;
 using Foundation.Cms.Pages;
 using Foundation.Find.Cms.ViewModels;
 using Geta.EpiCategories;
@@ -35,6 +36,7 @@ namespace Foundation.Find.Cms
                     .TermsFacetFor(x => x.SearchSection)
                     .FilterFacet("AllSections", x => x.SearchSection.Exists())
                     .Filter(x => (x.MatchTypeHierarchy(typeof(FoundationPageData)) & (((FoundationPageData)x).SiteId().Match(siteId.ToString()))) | !x.MatchTypeHierarchy(typeof(FoundationPageData)))
+                    .Filter(x => !x.MatchType(typeof(ImageMediaData)))
                     .Skip((filterOptions.Page - 1) * filterOptions.PageSize)
                     .Take(filterOptions.PageSize)
                     .ApplyBestBets();
