@@ -191,7 +191,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                     {
                         return Json(new ChangeCartJsonResult
                         {
-                            StatusCode = 1,
+                            StatusCode = result.EntriesAddedToCart ? 1 : 0,
                             CountItems = (int)CartWithValidationIssues.Cart.GetAllLineItems().Sum(x => x.Quantity),
                             Message = product + " is added to the cart successfully.\n" + result.GetComposedValidationMessage(),
                             SubTotal = CartWithValidationIssues.Cart.GetSubTotal()
@@ -200,7 +200,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
                     return Json(new ChangeCartJsonResult
                     {
-                        StatusCode = 1,
+                        StatusCode = result.EntriesAddedToCart ? 1 : 0,
                         CountItems = (int)CartWithValidationIssues.Cart.GetAllLineItems().Sum(x => x.Quantity),
                         Message = product + " is added to the cart successfully.",
                         SubTotal = CartWithValidationIssues.Cart.GetSubTotal()
