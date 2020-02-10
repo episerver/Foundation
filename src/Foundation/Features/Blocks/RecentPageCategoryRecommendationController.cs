@@ -6,6 +6,7 @@ using EPiServer.Find.Cms;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Globalization;
 using EPiServer.Web.Mvc;
+using EPiServer.Web.Routing;
 using Foundation.Cms.Blocks;
 using Foundation.Cms.Pages;
 using Foundation.Cms.ViewModels.Blocks;
@@ -26,18 +27,21 @@ namespace Foundation.Features.Blocks
         private readonly IContentLoader _contentLoader;
         private readonly ICmsSearchService _cmsSearchService;
         private readonly IContentTypeRepository<PageType> _contentTypeRepository;
+        private readonly IPageRouteHelper _pageRouteHelper;
 
         public RecentPageCategoryRecommendationController(CategoryRepository categoryRepository,
             IClient findClient,
             IContentLoader contentLoader,
             ICmsSearchService cmsSearchService,
-            IContentTypeRepository<PageType> contentTypeRepository)
+            IContentTypeRepository<PageType> contentTypeRepository,
+            IPageRouteHelper pageRouteHelper)
         {
             _categoryRepository = categoryRepository;
             _findClient = findClient;
             _contentLoader = contentLoader;
             _cmsSearchService = cmsSearchService;
             _contentTypeRepository = contentTypeRepository;
+            _pageRouteHelper = pageRouteHelper;
         }
 
         public override ActionResult Index(RecentPageCategoryRecommendationBlock currentBlock)
@@ -54,8 +58,8 @@ namespace Foundation.Features.Blocks
             var pageTypesFilterId = currentBlock.FilterTypes?.Split(',').ToList().Select(x => int.Parse(x));
             var query = _findClient.Search<FoundationPageData>()
                     .Filter(x => x.Language.Name.Match(ContentLanguage.PreferredCulture.Name))
-                    .Filter(x => x.Ancestors().Match(rootFilterId.ToString()));
-            var rootFilterQuery = query;
+                    .Filter(x => x.Ancestors().Match(rootFilterId.ToString()))
+                    .Filter(x => !x.ContentLink.ID.Match(_pageRouteHelper.Page.ContentLink.ID));
 
             if (categories.Any())
             {
@@ -81,7 +85,7 @@ namespace Foundation.Features.Blocks
                     return PartialView("~/Features/Blocks/Views/RecentPageCategoryRecommendation.cshtml", model);
                 }
 
-                pages = _contentLoader.GetChildren<FoundationPageData>(currentBlock.FilterRoot).ToList();
+                pages = _contentLoader.GetChildren<FoundationPageData>(currentBlock.FilterRoot).Where(x => x.ContentLink.ID != _pageRouteHelper.Page.ContentLink.ID).ToList();
             }
 
             var pageCount = pages.Count;

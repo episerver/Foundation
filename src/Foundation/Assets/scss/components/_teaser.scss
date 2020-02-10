@@ -1,12 +1,6 @@
 ﻿@mixin content-align($left, $text-align) {
     left: $left;
     text-align: $text-align;
-    position: absolute;
-    right: 0;
-    z-index: 1;
-    transform: translateY(-50%);
-    padding: 1em 4em;
-    top: 50% !important;
 }
 
 @mixin details-visibility($visibility, $max-height, $opacity, $transition) {
@@ -77,6 +71,15 @@
             @include details-visibility(visible, 300px, 1, none);
         }
     }
+}
+
+.teaser-text {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+    padding: 1em 4em;
+    top: 50% !important;
 }
 
 .teaser-image {
