@@ -1862,6 +1862,7 @@
     <Content Include="modules\_protected\AdvancedTask\AdvancedTask.zip" />
     <Content Include="modules\_protected\advanced-cms-forms\web.config" />
     <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
+    <Content Include="Assets\scss\templates\pages\_search-page.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
