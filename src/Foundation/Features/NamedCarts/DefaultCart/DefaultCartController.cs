@@ -122,6 +122,11 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         public async Task<ActionResult> Index(CartPage currentPage)
         {
             var messages = string.Empty;
+            if (TempData[Constant.Quote.QuoteMessage] != null)
+            {
+                ViewBag.QuoteMessage = TempData[Constant.Quote.QuoteMessage].ToString();
+            }
+
             if (CartWithValidationIssues.Cart != null && CartWithValidationIssues.ValidationIssues.Any())
             {
                 foreach (var item in CartWithValidationIssues.Cart.GetAllLineItems())
@@ -776,6 +781,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                     Cart = _cartService.CreateNewCart(),
                     ValidationIssues = new Dictionary<ILineItem, List<ValidationIssue>>()
                 };
+
+                TempData[Constant.Quote.QuoteMessage] = "Request quote successfully";
             }
 
             return Redirect(currentPage.StaticLinkURL);

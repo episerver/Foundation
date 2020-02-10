@@ -70,6 +70,7 @@ namespace Foundation.Commerce
             public const string PreQuoteTotal = "PreQuoteTotal";
             public const string PreQuotePrice = "PreQuotePrice";
             public const string QuoteExpired = "QuoteExpired";
+            public const string QuoteMessage = "QuoteMessage";
         }
 
         public static class Customer
