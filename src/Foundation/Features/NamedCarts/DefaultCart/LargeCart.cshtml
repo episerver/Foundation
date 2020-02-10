@@ -17,6 +17,14 @@
                 @ViewBag.QuoteMessage
             </div>
         }
+
+        @if (ViewBag.ErrorMessage != null && !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
         @if (!string.IsNullOrEmpty(Model.Message))
         {
             <div class="alert alert-warning">
