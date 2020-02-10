@@ -1,18 +1,18 @@
-﻿@using EPiServer.Core
-@using EPiServer.Web.Mvc.Html
+﻿@using EPiServer.Web.Mvc.Html
 @model RecentPageCategoryRecommendationViewModel
+
 @if (Model.CategoryPages.Any())
 {
     var totalPages = Model.CategoryPages.Count;
     var isOdd = totalPages % 2 != 0;
 
-    <div class="row recent-recommendation--block">
+    <div class="row no-gutters">
         @for (var i = 0; i < totalPages; i++)
         {
             var categoryPage = Model.CategoryPages[i];
             var page = categoryPage.Page;
 
-            <div class="recent-recommendation--item @((isOdd && (i + 1 == totalPages)) ? "col-12" : "col-xs-12 col-6")">
+            <div class="@((isOdd && (i + 1 == totalPages)) ? "col-12" : "col-sm-12 col-md-6")">
                 <div class="teaser @page.ThemeCssClass @page.AlignmentCssClass @(page.ApplyHoverEffect ? "show-details" : String.Empty)">
                     <div class="teaser-text-container">
                         <div class="teaser-text">
@@ -43,5 +43,3 @@
         }
     </div>
 }
-
-
