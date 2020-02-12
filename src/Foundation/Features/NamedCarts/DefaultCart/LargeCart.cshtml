@@ -11,6 +11,20 @@
         <div class="page-title">
             <h1 class="heading-title">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
         </div>
+        @if (ViewBag.QuoteMessage != null && !string.IsNullOrEmpty(ViewBag.QuoteMessage))
+        {
+            <div class="alert alert-success">
+                @ViewBag.QuoteMessage
+            </div>
+        }
+
+        @if (ViewBag.ErrorMessage != null && !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
         @if (!string.IsNullOrEmpty(Model.Message))
         {
             <div class="alert alert-warning">

@@ -40,7 +40,14 @@ namespace Foundation.Cms.ViewModels
                     if (PageEditing.PageIsInEditMode)
                     {
                         var startPageRef = _contentVersion.Service.LoadCommonDraft(currentStartPageLink, ContentLanguage.PreferredCulture.Name);
-                        _startPage = _contentLoader.Service.Get<CmsHomePage>(startPageRef.ContentLink);
+                        if (startPageRef == null)
+                        {
+                            _startPage = _contentLoader.Service.Get<CmsHomePage>(currentStartPageLink);
+                        }
+                        else
+                        {
+                            _startPage = _contentLoader.Service.Get<CmsHomePage>(startPageRef.ContentLink);
+                        }
                     }
                     else
                     {
