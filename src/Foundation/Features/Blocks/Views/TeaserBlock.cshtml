@@ -6,32 +6,32 @@
 
     switch (Model.CurrentBlock.ElementsOrder)
     {
-        case "ImageHeadingDescription":
+        case "ImageHeadingDescriptionText":
             imagePosition = "order: 0";
             headingPosition = "order: 1";
             descriptionPosition = "order: 2";
             break;
-        case "ImageDescriptionHeading":
+        case "ImageDescriptionHeadingText":
             imagePosition = "order: 0";
             descriptionPosition = "order: 1";
             headingPosition = "order: 2";
             break;
-        case "HeadingImageDescription":
+        case "HeadingImageDescriptionText":
             headingPosition = "order: 0";
             imagePosition = "order: 1";
             descriptionPosition = "order: 2";
             break;
-        case "HeadingDescriptionImage":
+        case "HeadingDescriptionImageText":
             headingPosition = "order: 0";
             descriptionPosition = "order: 1";
             imagePosition = "order: 2";
             break;
-        case "DescriptionImageHeading":
+        case "DescriptionImageHeadingText":
             descriptionPosition = "order: 0";
             imagePosition = "order: 1";
             headingPosition = "order: 2";
             break;
-        case "DescriptionHeadingImage":
+        case "DescriptionHeadingImageText":
             descriptionPosition = "order: 0";
             headingPosition = "order: 1";
             imagePosition = "order: 2";
@@ -56,6 +56,13 @@
             </div>
         }
         <h2 class="teaser-block__heading" style="@headingPosition; font-size: @(Model.CurrentBlock.HeadingSize)px; @Model.CurrentBlock.HeadingStyle" @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h2>
-        <p class="teaser-block__text" style="@descriptionPosition" @Html.EditAttributes(x => x.CurrentBlock.Description)>@Model.CurrentBlock.Description</p>
+        @if (!Model.CurrentBlock.Description.IsNullOrEmpty())
+        {
+            <div class="teaser-block__description" style="@descriptionPosition" @Html.EditAttributes(x => x.CurrentBlock.Description)>@Model.CurrentBlock.Description</div>
+        }
+        @if (Model.CurrentBlock.Text != null)
+        {
+            <div class="teaser-block__text" style="order: 4" @Html.EditAttributes(x => x.CurrentBlock.Text)>@Html.Raw(Model.CurrentBlock.Text)</div>
+        }
     </div>
 }

@@ -9,12 +9,12 @@ namespace Foundation.Cms.EditorDescriptors
         {
             return new ISelectItem[]
             {
-                new SelectItem { Text = "Image - Heading - Description", Value = "ImageHeadingDescription" },
-                new SelectItem { Text = "Image - Description - Heading", Value = "ImageDescriptionHeading" },
-                new SelectItem { Text = "Heading - Image - Description", Value = "HeadingImageDescription" },
-                new SelectItem { Text = "Heading - Description - Image", Value = "HeadingDescriptionImage" },
-                new SelectItem { Text = "Description - Image - Heading", Value = "DescriptionImageHeading" },
-                new SelectItem { Text = "Description - Heading - Image", Value = "DescriptionHeadingImage" }
+                new SelectItem { Text = "Image - Heading - Description - Text", Value = "ImageHeadingDescriptionText" },
+                new SelectItem { Text = "Image - Description - Heading - Text", Value = "ImageDescriptionHeadingText" },
+                new SelectItem { Text = "Heading - Image - Description - Text", Value = "HeadingImageDescriptionText" },
+                new SelectItem { Text = "Heading - Description - Image - Text", Value = "HeadingDescriptionImageText" },
+                new SelectItem { Text = "Description - Image - Heading - Text", Value = "DescriptionImageHeadingText" },
+                new SelectItem { Text = "Description - Heading - Image - Text", Value = "DescriptionHeadingImageText" }
             };
         }
     }
@@ -38,10 +38,10 @@ namespace Foundation.Cms.EditorDescriptors
         {
             return new ISelectItem[]
             {
-                new SelectItem { Text = "None", Value = "text-decoration: none"},
-                new SelectItem { Text = "Underline", Value = "text-decoration: underline"},
-                new SelectItem { Text = "Overline", Value = "text-decoration: overline"},
-                new SelectItem { Text = "Line through", Value = "text-decoration: line-through"},
+                new SelectItem { Text = "None", Value = "text-decoration: none" },
+                new SelectItem { Text = "Underline", Value = "text-decoration: underline" },
+                new SelectItem { Text = "Overline", Value = "text-decoration: overline" },
+                new SelectItem { Text = "Line through", Value = "text-decoration: line-through" },
             };
         }
     }

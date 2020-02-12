@@ -7,14 +7,12 @@ namespace Foundation.Cms.EditorDescriptors
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
-            var separators = new List<SelectItem>
+            return new List<SelectItem>
             {
-                new SelectItem {Text = "Left", Value = "flex-start"},
-                new SelectItem {Text = "Right", Value = "flex-end"},
-                new SelectItem {Text = "Center", Value = "flex-center"}
+                new SelectItem { Text = "Left", Value = "flex-start" },
+                new SelectItem { Text = "Right", Value = "flex-end" },
+                new SelectItem { Text = "Center", Value = "flex-center" }
             };
-
-            return separators;
         }
     }
 }
