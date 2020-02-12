@@ -1,7 +1,9 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
+using Foundation.Cms.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
@@ -24,9 +26,13 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Text color", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string TextColor { get; set; }
 
-        [Display(Name = "Background image", GroupName = SystemTabNames.Content, Order = 40)]
         [UIHint(UIHint.Image)]
+        [Display(Name = "Background image", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual ContentReference BackgroundImage { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(BackgroundImageSelectionFactory))]
+        [Display(Name = "Choose image style to fit the block", Order = 41, GroupName = SystemTabNames.Content)]
+        public virtual string BackgroundImageSetting { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual ButtonBlock Button { get; set; }
@@ -35,7 +41,8 @@ namespace Foundation.Cms.Blocks
         {
             base.SetDefaultValues(contentType);
 
-            TextColor = "#000";
+            TextColor = "black";
+            BackgroundImageSetting = "image-default";
         }
     }
 }
