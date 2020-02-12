@@ -6,9 +6,20 @@
     &__image {
         width: 100%;
         text-align: center;
+        padding: 5px 0 5px 0;
     }
 
     &__heading {
-        margin-top: 10px;
+        padding: 5px 0 5px 0;
+    }
+
+    &__description {
+        padding: 5px 0 5px 0;
+    }
+
+    &__text {
+        padding: 5px 0 5px 0;
+        text-align: initial;
+        color: initial;
     }
 }

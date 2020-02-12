@@ -32,19 +32,15 @@ namespace Foundation.Cms.Blocks
         public virtual string HeadingStyle { get; set; }
 
         [CultureSpecific]
-        [UIHint(UIHint.Textarea)]
-        [Required(AllowEmptyStrings = false)]
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string Description { get; set; }
 
-        [UIHint(UIHint.Textarea)]
-        [Required(AllowEmptyStrings = false)]
-        [Display(GroupName = SystemTabNames.Content, Order = 20)]
-        public virtual string Text { get; set; }
+        [Display(GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual XhtmlString Text { get; set; }
 
+        [Required]
         [CultureSpecific]
         [UIHint(UIHint.Image)]
-        [Required(AllowEmptyStrings = false)]
         [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual ContentReference Image { get; set; }
 
@@ -70,7 +66,7 @@ namespace Foundation.Cms.Blocks
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementAlignmentSelectionFactory))]
-        [Display(Name = "Elements alignment", GroupName = SystemTabNames.Content, Order = 81)]
+        [Display(Name = "Elements alignment (except Text)", GroupName = SystemTabNames.Content, Order = 81)]
         public virtual string ElementsAlignment { get; set; }
 
         [CultureSpecific]

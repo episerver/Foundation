@@ -51,9 +51,9 @@
             <div class="article__title">
                 @if (!Model.CategoryName.IsEmpty())
                 {
-                    <h4 class="color-light">@Model.CategoryName</h4>
+                    <h4 style="color: @Model.CurrentContent.PageTitleColor;">@Model.CategoryName</h4>
                 }
-                <h1 class="color-light margin-bottom-z">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
+                <h1 style="color: @Model.CurrentContent.PageTitleColor;">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
             </div>
             <div class="standard-page__content">
                 @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
