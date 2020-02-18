@@ -36,10 +36,15 @@ namespace Foundation.Find.Cms
                     .TermsFacetFor(x => x.SearchSection)
                     .FilterFacet("AllSections", x => x.SearchSection.Exists())
                     .Filter(x => (x.MatchTypeHierarchy(typeof(FoundationPageData)) & (((FoundationPageData)x).SiteId().Match(siteId.ToString()))) | !x.MatchTypeHierarchy(typeof(FoundationPageData)))
-                    .Filter(x => !x.MatchType(typeof(ImageMediaData)))
                     .Skip((filterOptions.Page - 1) * filterOptions.PageSize)
                     .Take(filterOptions.PageSize)
                     .ApplyBestBets();
+
+                //Include images in search results
+                if (!filterOptions.IncludeImagesContent)
+                {
+                    query = query.Filter(x => !x.MatchType(typeof(ImageMediaData)));
+                }
 
                 //Exclude content from search
                 query = query.Filter(x => !(x as FoundationPageData).ExcludeFromSearch.Exists() | (x as FoundationPageData).ExcludeFromSearch.Match(false));
