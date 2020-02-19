@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Cms.ViewModels;
+﻿using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Blocks;
 
 namespace Foundation.Commerce.ViewModels

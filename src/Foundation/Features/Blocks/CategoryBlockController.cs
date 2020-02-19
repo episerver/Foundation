@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using EPiServer;
+﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Find.Commerce;
@@ -10,6 +8,8 @@ using EPiServer.Web.Routing;
 using Foundation.Commerce.Models.Blocks;
 using Foundation.Commerce.ViewModels;
 using Mediachase.Commerce.Catalog;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {

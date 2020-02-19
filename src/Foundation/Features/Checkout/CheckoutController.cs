@@ -487,8 +487,8 @@ namespace Foundation.Features.Checkout
                 await _recommendationService.TrackOrder(HttpContext, purchaseOrder);
 
                 return Redirect(_checkoutService.BuildRedirectionUrl(checkoutViewModel, purchaseOrder, confirmationSentSuccessfully));
-            } 
-            catch(Exception e)
+            }
+            catch (Exception e)
             {
                 TempData[Constant.ErrorMessages] = e.Message;
                 return RedirectToAction("Index");

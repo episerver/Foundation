@@ -17,7 +17,7 @@ namespace Foundation.Cms.Attributes
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if(value == null)
+            if (value == null)
             {
                 return null;
             }

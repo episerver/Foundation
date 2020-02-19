@@ -1,5 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Blocks;

@@ -59,7 +59,7 @@ namespace Foundation.Find.Commerce
                 {
                     if (contactsToIndex.Count > 0)
                     {
-                        Find.Service.Delete<UserSearchResultModel>(x => x.ContactId.Exists()); 
+                        Find.Service.Delete<UserSearchResultModel>(x => x.ContactId.Exists());
                         Find.Service.Index(contactsToIndex);
                     }
                 }
