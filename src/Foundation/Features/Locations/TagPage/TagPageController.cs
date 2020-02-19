@@ -5,11 +5,9 @@ using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Media;
-using Foundation.Cms.Personalization;
 using Foundation.Find.Cms.Locations.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Locations.TagPage
@@ -17,19 +15,14 @@ namespace Foundation.Features.Locations.TagPage
     public class TagPageController : PageController<Cms.Pages.TagPage>
     {
         private readonly IContentLoader _contentLoader;
-        private readonly ICmsTrackingService _trackingService;
 
-        public TagPageController(IContentLoader contentLoader,
-            ICmsTrackingService trackingService)
+        public TagPageController(IContentLoader contentLoader)
         {
             _contentLoader = contentLoader;
-            _trackingService = trackingService;
         }
 
-        public async Task<ActionResult> Index(Cms.Pages.TagPage currentPage)
+        public ActionResult Index(Cms.Pages.TagPage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
-
             var model = new TagsViewModel(currentPage)
             {
                 Continent = ControllerContext.RequestContext.GetCustomRouteData<string>("Continent")

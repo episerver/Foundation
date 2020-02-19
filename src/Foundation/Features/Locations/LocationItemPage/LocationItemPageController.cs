@@ -4,11 +4,9 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.Personalization;
 using Foundation.Find.Cms.Locations.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Locations.LocationItemPage
@@ -16,18 +14,14 @@ namespace Foundation.Features.Locations.LocationItemPage
     public class LocationItemPageController : PageController<Find.Cms.Models.Pages.LocationItemPage>
     {
         private readonly IContentRepository _contentRepository;
-        private readonly ICmsTrackingService _trackingService;
 
-        public LocationItemPageController(IContentRepository contentRepository,
-            ICmsTrackingService trackingService)
+        public LocationItemPageController(IContentRepository contentRepository)
         {
             _contentRepository = contentRepository;
-            _trackingService = trackingService;
         }
 
-        public async Task<ActionResult> Index(Find.Cms.Models.Pages.LocationItemPage currentPage)
+        public ActionResult Index(Find.Cms.Models.Pages.LocationItemPage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
             var model = new LocationViewModel(currentPage);
             if (!ContentReference.IsNullOrEmpty(currentPage.Image))
             {

@@ -9,7 +9,6 @@ using Foundation.Cms;
 using Foundation.Cms.Categories;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
-using Foundation.Cms.Personalization;
 using Foundation.Cms.ViewModels;
 using Geta.EpiCategories;
 using System;
@@ -18,7 +17,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Blog.BlogListPage
@@ -27,28 +25,23 @@ namespace Foundation.Features.Blog.BlogListPage
     {
         private readonly IContentLoader _contentLoader;
         private readonly UrlResolver _urlResolver;
-        private readonly ICmsTrackingService _trackingService;
-        private readonly IPageRouteHelper _pageRouteHelper;
         private readonly BlogTagFactory _blogTagFactory;
 
         public BlogListPageController(IContentLoader contentLoader,
             UrlResolver urlResolver,
-            ICmsTrackingService trackingService,
-            BlogTagFactory blogTagFactory,
-            IPageRouteHelper pageRouteHelper)
+            BlogTagFactory blogTagFactory)
         {
             _contentLoader = contentLoader;
             _urlResolver = urlResolver;
-            _trackingService = trackingService;
             _blogTagFactory = blogTagFactory;
-            _pageRouteHelper = pageRouteHelper;
         }
 
-        public async Task<ActionResult> Index(Cms.Pages.BlogListPage currentPage)
+        public ActionResult Index(Cms.Pages.BlogListPage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
-            var model = new BlogListPageViewModel(currentPage);
-            model.SubNavigation = GetSubNavigation(currentPage);
+            var model = new BlogListPageViewModel(currentPage)
+            {
+                SubNavigation = GetSubNavigation(currentPage)
+            };
 
             var pageId = currentPage.ContentLink.ID;
             var pagingInfo = new PagingInfo
@@ -59,6 +52,7 @@ namespace Foundation.Features.Blog.BlogListPage
             var viewModel = GetViewModel(currentPage, pagingInfo);
             model.Blogs = viewModel.Blogs;
             model.PagingInfo = pagingInfo;
+
             return View(model);
         }
 
@@ -81,7 +75,6 @@ namespace Foundation.Features.Blog.BlogListPage
 
             return subNavigation;
         }
-
 
         #region BlogListBlock
         public int PreviewTextLength { get; set; }
