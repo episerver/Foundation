@@ -15,7 +15,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Blog.BlogItem
@@ -23,28 +22,22 @@ namespace Foundation.Features.Blog.BlogItem
     public class BlogItemController : PageController<BlogItemPage>
     {
         private readonly BlogTagFactory _blogTagFactory;
-        private readonly CategoryRepository _categoryRepository;
         private readonly IContentLoader _contentLoader;
         private readonly UrlResolver _urlResolver;
-        private readonly ICmsTrackingService _trackingService;
 
         public int PreviewTextLength { get; set; }
 
         public BlogItemController(BlogTagFactory blogTagFactory,
-            CategoryRepository categoryRepository,
             IContentLoader contentLoader,
-            UrlResolver urlResolver, ICmsTrackingService trackingService)
+            UrlResolver urlResolver)
         {
             _blogTagFactory = blogTagFactory;
-            _categoryRepository = categoryRepository;
             _contentLoader = contentLoader;
             _urlResolver = urlResolver;
-            _trackingService = trackingService;
         }
 
-        public async Task<ActionResult> Index(BlogItemPage currentPage)
+        public ActionResult Index(BlogItemPage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
             PreviewTextLength = 200;
 
             var model = new BlogItemPageModel(currentPage)
@@ -56,10 +49,10 @@ namespace Foundation.Features.Blog.BlogItem
                 StartPublish = currentPage.StartPublish ?? DateTime.UtcNow,
                 BreadCrumbs = GetBreadCrumb(currentPage)
             };
+
             var editHints = ViewData.GetEditHints<ContentViewModel<BlogItemPage>, BlogItemPage>();
             editHints.AddConnection(m => m.CurrentContent.Category, p => p.Category);
             editHints.AddConnection(m => m.CurrentContent.StartPublish, p => p.StartPublish);
-
 
             return View(model);
         }

@@ -321,9 +321,6 @@
     <Reference Include="EPiServer.Personalization.CMS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Personalization.CMS.Core.1.0.0\lib\net461\EPiServer.Personalization.CMS.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Personalization.CMS.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Personalization.CMS.UI.1.0.0\lib\net461\EPiServer.Personalization.CMS.UI.dll</HintPath>
-    </Reference>
     <Reference Include="EPiServer.Personalization.Commerce, Version=3.2.8.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Personalization.Commerce.3.2.8\lib\net461\EPiServer.Personalization.Commerce.dll</HintPath>
     </Reference>
@@ -1387,7 +1384,6 @@
     <Content Include="modules\_protected\VisualCompareMode\EpiServerOverridenLibs\CustomCompareCommandProvider.js" />
     <Content Include="modules\_protected\VisualCompareMode\EpiServerOverridenLibs\customWidgetSwitcher.js" />
     <Content Include="Features\Blog\BlogCommentBlock\Index.cshtml" />
-    <Content Include="modules\_protected\EPiServer.Personalization.CMS.UI\EPiServer.Personalization.CMS.UI.zip" />
     <Content Include="Features\NamedCarts\SharedCart\Index.cshtml" />
     <Content Include="Features\NamedCarts\OrderPadsPage\Index.cshtml" />
     <Content Include="Features\NamedCarts\DefaultCart\LargeCart.cshtml" />

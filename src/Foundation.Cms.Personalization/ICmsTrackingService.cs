@@ -8,7 +8,6 @@ namespace Foundation.Cms.Personalization
 {
     public interface ICmsTrackingService
     {
-        Task PageViewed(HttpContextBase context, PageData currentContent);
         Task HeroBlockClicked(HttpContextBase context, string blockId, string blockName, string pageName);
         Task VideoBlockViewed(HttpContextBase context, string blockId, string blockName, string pageName);
         Task SearchedKeyword(HttpContextBase httpContextBase, string keyword);
