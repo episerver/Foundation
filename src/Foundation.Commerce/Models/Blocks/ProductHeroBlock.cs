@@ -10,9 +10,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Blocks
 {
-    [ContentType(DisplayName = "Product Hero Block", 
+    [ContentType(DisplayName = "Product Hero Block",
         GUID = "6b43692b-6abd-49b1-b5f2-48ffbb8e626a",
-        Description = "Product here block", 
+        Description = "Product here block",
         GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
