@@ -142,7 +142,7 @@ namespace Foundation.Features.Blocks
 
             if (result && !string.IsNullOrEmpty(filter.PaymentMethodId))
             {
-                result =  order.OrderPayments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Count() > 0;
+                result = order.OrderPayments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Count() > 0;
             }
 
             if (result && !(filter.OrderStatusId == 0))
@@ -232,9 +232,9 @@ namespace Foundation.Features.Blocks
                     filter.OrderStatusId = 0;
                 }
             }
-            
+
             filter.PaymentMethodId = _cookieService.Get(_PAYMENTMETHOD);
-            
+
             return filter;
         }
 

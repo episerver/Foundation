@@ -58,7 +58,7 @@ namespace Foundation.Features.Blocks
             {
                 imagePosition = "justify-content: flex-end;";
             }
-            else if(currentBlock.Image.ImagePosition.Equals("ImagePaddings", StringComparison.OrdinalIgnoreCase))
+            else if (currentBlock.Image.ImagePosition.Equals("ImagePaddings", StringComparison.OrdinalIgnoreCase))
             {
                 imagePosition = "padding: "
                     + currentBlock.Image.PaddingTop + "px "

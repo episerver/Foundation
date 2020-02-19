@@ -113,7 +113,7 @@ namespace Foundation.Commerce.ViewModels.Header
                     Text = _localizationService.GetString("My Organization", "My Organization"),
                     Title = _localizationService.GetString("My Organization", "My Organization")
                 };
-                
+
                 menuItems.Add(orgLink);
             }
 

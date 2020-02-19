@@ -184,8 +184,8 @@ namespace Foundation.Helpers
                     }
 
                     var openGraphEntry = new OpenGraphGenericProduct(
-                        entryContentBase.DisplayName, 
-                        new OpenGraphImage(entryImageUrl), 
+                        entryContentBase.DisplayName,
+                        new OpenGraphImage(entryImageUrl),
                         GetUrl(entryContentBase.ContentLink))
                     {
                         Locale = defaultLocale.Replace('-', '_'),

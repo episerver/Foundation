@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-using EPiServer.Web.Mvc;
+﻿using EPiServer.Web.Mvc;
 using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Models.Pages;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Collection
 {

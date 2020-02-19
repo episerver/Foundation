@@ -100,7 +100,7 @@ namespace Foundation.Cms.Extensions
             {
                 return ContentReference.StartPage;
             }
-            
+
             var ancestors = _contentLoader.Value.GetAncestors(content.ContentLink);
             var startPage = ancestors.FirstOrDefault(x => x is CmsHomePage) as CmsHomePage;
             return startPage == null ? ContentReference.StartPage : startPage.ContentLink;

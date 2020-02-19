@@ -167,8 +167,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByQuantity()
         {
-            double days;
-            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out double days))
             {
                 days = 365;
             }
@@ -192,8 +191,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByRevenue()
         {
-            double days;
-            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out double days))
             {
                 days = 365;
             }
