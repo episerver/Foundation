@@ -256,6 +256,14 @@ namespace Foundation.Commerce.Extensions
                 }
 
                 priceCollection = PriceService.Value.GetPrices(marketId, DateTime.UtcNow, catalogKeys, priceFilter);
+
+                // if the entry has no price without sale code
+                if (!priceCollection.Any())
+                {
+                    priceCollection = PriceService.Value.GetCatalogEntryPrices(catalogKeys)
+                       .Where(x => x.ValidFrom <= DateTime.Now && (!x.ValidUntil.HasValue || x.ValidUntil.Value >= DateTime.Now))
+                       .Where(x => x.MarketId == marketId);
+                }
             }
 
             var result = new ItemCollection<Price>();
