@@ -57,6 +57,9 @@ namespace Foundation.Demo.Models
         [Display(Name = "Show contents in search results", GroupName = CommerceTabNames.SearchSettings, Order = 150)]
         public virtual bool ShowContentSearchResults { get; set; }
 
+        [Display(Name = "Include images in contents search results", GroupName = CommerceTabNames.SearchSettings, Order = 200)]
+        public virtual bool IncludeImagesInContentsSearchResults { get; set; }
+
         [SelectOne(SelectionFactoryType = typeof(CatalogSelectionFactory))]
         [Display(Name = "Search catalog", GroupName = CommerceTabNames.SearchSettings, Order = 250,
             Description = "The catalogs that will be returned by search.")]
