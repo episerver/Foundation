@@ -1847,7 +1847,6 @@
     <Content Include="modules\_protected\EPiServer.Commerce.Shell\EPiServer.Commerce.Shell.zip" />
     <Content Include="modules\_protected\Commerce\Commerce.zip" />
     <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
-    <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="modules\_protected\CmsAudit\Views\web.config" />
     <Content Include="modules\_protected\CmsAudit\Views\VisitorGroups\Index.cshtml" />
     <Content Include="modules\_protected\CmsAudit\Views\Shared\_layout.cshtml" />
