@@ -43,7 +43,19 @@ namespace Foundation.Commerce.Catalog
             }
             else
             {
-                return null;
+                // if the entry has no price without sale code
+                prices = _priceService.Service.GetCatalogEntryPrices(new CatalogKey(entryCode))
+                    .Where(x => x.ValidFrom <= DateTime.Now && (!x.ValidUntil.HasValue || x.ValidUntil.Value >= DateTime.Now))
+                    .Where(x => x.UnitPrice.Currency == currency && x.MarketId == marketId);
+
+                if (prices.Any())
+                {
+                    return prices.OrderBy(x => x.UnitPrice.Amount).First();
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 

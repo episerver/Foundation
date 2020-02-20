@@ -1863,6 +1863,7 @@
     <Content Include="modules\_protected\advanced-cms-forms\web.config" />
     <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
     <Content Include="Assets\scss\templates\pages\_search-page.scss" />
+    <Content Include="Features\CatalogContent\_WarningHasSaleCode.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
