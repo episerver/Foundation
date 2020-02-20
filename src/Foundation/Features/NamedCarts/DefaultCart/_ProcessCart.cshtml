@@ -50,7 +50,7 @@
         <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
         @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
         {
-            <form action="@Url.Action("AddCouponCode", "DefaultCart")" method="post">
+            <form class="jsAddCouponContainer" action="@Url.Action("AddCouponCode", "DefaultCart")" method="post">
                 @Html.AntiForgeryToken()
                 <div>
                     <input type="text" name="couponCode" class="textbox jsCouponCode">
