@@ -1,9 +1,6 @@
 ﻿using EPiServer.Core;
 using EPiServer.Editor;
-using EPiServer.Personalization.CMS.Model;
-using EPiServer.Personalization.CMS.Recommendation;
 using EPiServer.Tracking.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -12,13 +9,10 @@ namespace Foundation.Cms.Personalization
     public class CmsTrackingService : ICmsTrackingService
     {
         private readonly ITrackingService _trackingService;
-        private readonly IRecommendationService _personalizationRecommendationService;
 
-        public CmsTrackingService(ITrackingService trackingService,
-            IRecommendationService personalizationRecommendationService)
+        public CmsTrackingService(ITrackingService trackingService)
         {
             _trackingService = trackingService;
-            _personalizationRecommendationService = personalizationRecommendationService;
         }
 
         public virtual async Task VideoBlockViewed(HttpContextBase context, string blockId, string blockName, string pageName)
@@ -128,18 +122,6 @@ namespace Foundation.Cms.Personalization
                 Value = $"Searched {keyword}",
             }, httpContextBase);
         }
-
-        public virtual async Task<IEnumerable<RecommendationResult>> GetRecommendationContent(HttpContextBase httpContext,
-           ContentRecommendationViewModel requestModel)
-        {
-            var recommendationRequest = new RecommendationRequest
-            {
-                siteId = requestModel.SiteId,
-                context = new Context { contentId = requestModel.ContentId, languageId = requestModel.LanguageId },
-                numberOfRecommendations = requestModel.NumberOfRecommendations == 0 ? 3 : requestModel.NumberOfRecommendations
-            };
-
-            return await _personalizationRecommendationService.Get(httpContext, recommendationRequest);
-        }
+       
     }
 }
