@@ -19,14 +19,14 @@
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.1" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.14.1" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.3" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.5" />
     <PackageReference Include="EPiServer.Find" Version="13.2.5" />
     <PackageReference Include="EPiServer.Find.Cms" Version="13.2.5" />
     <PackageReference Include="EPiServer.Find.Framework" Version="13.2.5" />
     <PackageReference Include="EPiServer.Framework" Version="11.14.1" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
-    <PackageReference Include="Geta.EpiCategories" Version="1.2.9" />
-    <PackageReference Include="Geta.EpiCategories.Find" Version="1.2.8" />
+    <PackageReference Include="Geta.EpiCategories" Version="1.2.10" />
+    <PackageReference Include="Geta.EpiCategories.Find" Version="1.2.10" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.Owin.Security" Version="4.1.0" />
     <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.1.0" />
