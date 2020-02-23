@@ -10,6 +10,10 @@
     .user-menu {
         &__title {
             padding: 12px;
+
+            > p {
+                margin-bottom: 0;
+            }
         }
 
         &__list {
