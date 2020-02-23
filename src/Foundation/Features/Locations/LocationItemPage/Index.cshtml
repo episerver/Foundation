@@ -13,7 +13,7 @@
                 <section>
                     <h2 class="section-title no-margin-top">@Html.PropertyFor(x => x.CurrentContent.PageName)</h2>
                     @Html.PropertyFor(x => x.Image, new { CssClass = "img-responsive imageborder" })
-                    <div class="well well-sm margin-small post-info-b location-info">
+                    <div class="location-info">
                         <i class="fa fa-globe"></i> @Model.CurrentContent.Continent / @Model.CurrentContent.Country
                         <div class="clearfix"></div>
                         <div @Html.EditAttributes(x => x.CurrentContent.Tags)>

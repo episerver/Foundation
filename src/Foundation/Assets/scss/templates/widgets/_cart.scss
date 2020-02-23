@@ -3,8 +3,8 @@
     width: 405px;
     z-index: 700;
     background: #fff;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 0.875rem;
+    line-height: 1rem;
     border: 0;
     border-radius: 0;
     padding: 0;
@@ -26,6 +26,7 @@
 
     &__heading {
         text-transform: uppercase;
+        margin-bottom: 0;
     }
 
     &__product-img {
@@ -34,15 +35,17 @@
     }
 
     &__product {
+        position: relative;
         margin-left: 10px;
         flex: 1;
 
-        &-price,
-        &-remove {
+        &-price {
             margin-top: 12px;
         }
 
         &-remove {
+            position: absolute;
+            bottom: 0;
             color: #666;
             cursor: pointer;
             display: inline-block;
