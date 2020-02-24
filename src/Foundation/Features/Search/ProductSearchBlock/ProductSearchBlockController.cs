@@ -113,6 +113,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
                     newList.InsertRange(0, byRevenues);
                     break;
                 default:
+                    newList = result.ProductViewModels.ToList();
                     break;
             }
 
@@ -159,6 +160,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
                     newList = discontinueds;
                     break;
                 default:
+                    newList = result.ProductViewModels.ToList();
                     break;
             }
 
