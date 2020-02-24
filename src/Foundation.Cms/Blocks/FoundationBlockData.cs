@@ -1,5 +1,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms.EditorDescriptors;
 using Geta.EpiCategories;
 using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
@@ -13,16 +15,20 @@ namespace Foundation.Cms.Blocks
         [Display(Description = "Categories associated with this content", GroupName = SystemTabNames.PageHeader, Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
-        [Display(Name = "Top", GroupName = CmsTabNames.BlockPadding, Order = 1)]
+        [SelectOne(SelectionFactoryType = typeof(FoundationBlockDataPaddingUnitSelectionFactory))]
+        [Display(Name = "Padding unit", GroupName = CmsTabNames.BlockPadding, Order = 1)]
+        public virtual string PaddingUnit { get; set; }
+
+        [Display(Name = "Top", GroupName = CmsTabNames.BlockPadding, Order = 2)]
         public virtual int PaddingTop { get; set; }
 
-        [Display(Name = "Right", GroupName = CmsTabNames.BlockPadding, Order = 2)]
+        [Display(Name = "Right", GroupName = CmsTabNames.BlockPadding, Order = 3)]
         public virtual int PaddingRight { get; set; }
 
-        [Display(Name = "Bottom", GroupName = CmsTabNames.BlockPadding, Order = 3)]
+        [Display(Name = "Bottom", GroupName = CmsTabNames.BlockPadding, Order = 4)]
         public virtual int PaddingBottom { get; set; }
 
-        [Display(Name = "Left", GroupName = CmsTabNames.BlockPadding, Order = 4)]
+        [Display(Name = "Left", GroupName = CmsTabNames.BlockPadding, Order = 5)]
         public virtual int PaddingLeft { get; set; }
 
         public string PaddingStyles
@@ -31,10 +37,10 @@ namespace Foundation.Cms.Blocks
             {
                 var paddingStyles = "";
 
-                paddingStyles += PaddingTop > 0 ? "padding-top: " + PaddingTop + "px;" : "";
-                paddingStyles += PaddingRight > 0 ? "padding-right: " + PaddingRight + "px;" : "";
-                paddingStyles += PaddingBottom > 0 ? "padding-bottom: " + PaddingBottom + "px;" : "";
-                paddingStyles += PaddingLeft > 0 ? "padding-left: " + PaddingLeft + "px;" : "";
+                paddingStyles += PaddingTop > 0 ? "padding-top: " + PaddingTop + $"{PaddingUnit};" : "";
+                paddingStyles += PaddingRight > 0 ? "padding-right: " + PaddingRight + $"{PaddingUnit};" : "";
+                paddingStyles += PaddingBottom > 0 ? "padding-bottom: " + PaddingBottom + $"{PaddingUnit};" : "";
+                paddingStyles += PaddingLeft > 0 ? "padding-left: " + PaddingLeft + $"{PaddingUnit};" : "";
 
                 return paddingStyles;
             }
@@ -44,6 +50,7 @@ namespace Foundation.Cms.Blocks
         {
             base.SetDefaultValues(contentType);
 
+            PaddingUnit = "%";
             PaddingTop = 0;
             PaddingRight = 0;
             PaddingBottom = 0;
