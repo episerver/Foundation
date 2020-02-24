@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
@@ -17,8 +16,6 @@ namespace Foundation.Cms.Display
             "~/Features/Shared/Foundation/{1}/{0}.cshtml",
             "~/Features/Shared/Foundation/Header/{0}.cshtml"
         };
-
-        private readonly ConcurrentDictionary<string, bool> _cache = new ConcurrentDictionary<string, bool>();
 
         public FeaturesViewEngine()
         {
@@ -79,18 +76,6 @@ namespace Foundation.Cms.Display
 
         protected override bool FileExists(ControllerContext controllerContext, string virtualPath)
         {
-            if (controllerContext.HttpContext != null && !controllerContext.HttpContext.IsDebuggingEnabled)
-            {
-                if (controllerContext.Controller == null)
-                {
-                    return _cache.GetOrAdd(virtualPath, _ => base.FileExists(controllerContext, virtualPath));
-                }
-
-                return _cache.GetOrAdd(virtualPath,
-                    _ => base.FileExists(controllerContext, virtualPath.Replace("%1", GetFeatureName(controllerContext.Controller.GetType().GetTypeInfo()))));
-            }
-
-
             if (controllerContext.Controller == null)
             {
                 return base.FileExists(controllerContext, virtualPath);
