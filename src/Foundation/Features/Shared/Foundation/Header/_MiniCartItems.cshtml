@@ -15,12 +15,12 @@
                     <p class="cart__product-price">
                         @if (item.DiscountedUnitPrice.HasValue)
                         {
-                            <span class="price__old">@item.PlacedPrice</span>
-                            <span class="price__discount">@item.DiscountedUnitPrice</span>
+                            <span class="price__old">@item.PlacedPrice.ToString()</span>
+                            <span class="price__discount">@item.DiscountedUnitPrice.ToString()</span>
                         }
                         else
                         {
-                            <span class="price__discount">@item.PlacedPrice</span>
+                            <span class="price__discount">@item.PlacedPrice.ToString()</span>
                         }
                     </p>
                     <span class="cart__product-remove jsRemoveCartItem" type="cart" shipmentId="@shipment.ShipmentId" code="@item.Code">
@@ -36,7 +36,7 @@
 </div>
 <div class="cart__footer">
     <p class="cart__subtotal">
-        Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total</span>
+        Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total.ToString()</span>
     </p>
     <div class="cart__actions">
         <button href="@Url.ContentUrl(Model.CheckoutPage)" id="checkoutBtnId" class="button-transparent-black jsCheckoutBtn" onclick="window.location.href=$(this).attr('href')">
