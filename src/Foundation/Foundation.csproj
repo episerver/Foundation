@@ -893,6 +893,8 @@
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Collection\CollectionPageController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
+    <Compile Include="Features\Pages\ComparisonPage\ComparisonPageController.cs" />
+    <Compile Include="Features\Pages\ComparisonPage\ComparisonPageViewModel.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
@@ -1005,6 +1007,7 @@
     <Content Include="Assets\icons\cms\blocks\CMS-icon-block-30.png" />
     <Content Include="Assets\icons\cms\blocks\CMS-icon-block-31.png" />
     <Content Include="Assets\icons\cms\blocks\CMS-icon-block-32.png" />
+    <Content Include="Assets\icons\cms\pages\CMS-icon-page-29.png" />
     <Content Include="Assets\icons\content\CarouselBlock.PNG" />
     <Content Include="Assets\icons\content\CategoryPage.PNG" />
     <Content Include="Assets\icons\content\ContinentsFilterBlock.PNG" />
@@ -1858,6 +1861,10 @@
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\EPiServer.ConnectForCampaign.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\Campaign.config" />
+    <Content Include="Features\Pages\ComparisonPage\Index.cshtml" />
+    <Content Include="Features\Pages\ComparisonPage\CompareList.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_comparison-page.scss" />
+    <Content Include="Features\Pages\ComparisonPage\Empty.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

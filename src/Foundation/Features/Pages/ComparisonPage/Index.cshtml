@@ -1,0 +1,57 @@
+﻿@model Foundation.Features.Pages.ComparisonPage.ComparisonPageViewModel
+
+<div class="row">
+    <div class="col-12">
+        <h4>@Html.PropertyFor(x => x.CurrentContent.Name)</h4>
+    </div>
+</div>
+<div class="row" style="justify-content: center">
+    <div class="col-xs-6 col-sm-4 col-md-3 div__center">
+        <img src="@Model.Variant1.ImageUrl" alt="@Model.Variant1.Variant.DisplayName" class="img-fluid" />
+        <a href="@Model.Variant1.Variant.GetUrl()" class="link" title="@Model.Variant1.Variant.DisplayName">
+            @Model.Variant1.Variant.DisplayName.MakeCompactString()
+        </a>
+        <p class="price__discount">@Model.Variant1.Price.ToString()</p>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3 div__center">
+        <img src="@Model.Variant2.ImageUrl" alt="@Model.Variant2.Variant.DisplayName" class="img-fluid" />
+        <a href="@Model.Variant2.Variant.GetUrl()" class="link" title="@Model.Variant2.Variant.DisplayName">
+            @Model.Variant2.Variant.DisplayName.MakeCompactString()
+        </a>
+        <p class="price__discount">@Model.Variant2.Price.ToString()</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Sku</th>
+                    <td>@Model.Variant1.Variant.Code</td>
+                    <td>@Model.Variant2.Variant.Code</td>
+                </tr>
+                <tr>
+                    <th scope="row">Size</th>
+                    <td>@Model.Variant1.Variant.Size</td>
+                    <td>@Model.Variant2.Variant.Size</td>
+                </tr>
+                <tr>
+                    <th scope="row">Color</th>
+                    <td>@Model.Variant1.Variant.Color</td>
+                    <td>@Model.Variant2.Variant.Color</td>
+                </tr>
+                <tr>
+                    <th scope="row">Price</th>
+                    <td>@Model.Variant1.Price.ToString()</td>
+                    <td>@Model.Variant2.Price.ToString()</td>
+                </tr>
+                <tr>
+                    <th scope="row">Weight</th>
+                    <td>@Model.Variant1.Variant.Weight</td>
+                    <td>@Model.Variant2.Variant.Weight</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

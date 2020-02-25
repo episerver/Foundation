@@ -124,6 +124,10 @@ namespace Foundation.Commerce.Models.Pages
         [Display(Name = "Resource not found page", GroupName = CommerceTabNames.SiteStructure, Order = 180)]
         public virtual ContentReference PageNotFound { get; set; }
 
+        [AllowedTypes(typeof(ComparisonPage))]
+        [Display(Name = "Comparison page", GroupName = CommerceTabNames.SiteStructure, Order = 190)]
+        public virtual ContentReference ComparisonPage { get; set; }
+
         #endregion
 
         #region Mail templates

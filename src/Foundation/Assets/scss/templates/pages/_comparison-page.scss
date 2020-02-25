@@ -1,0 +1,56 @@
+﻿.div__center {
+    & * {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.comparison--item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
+
+    & > a {
+        transition: 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        visibility: hidden;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    &:hover {
+        & > a {
+            text-decoration: none;
+            visibility: visible;
+            opacity: 1;
+            transition: 0.5s;
+        }
+
+        & > img {
+            opacity: 0.8;
+            filter: blur(1px);
+            transition: 0.5s;
+        }
+    }
+
+    & .compare-btn > p {
+        width: 100%;
+        background-color: lightgrey;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        margin: 0;
+    }
+}

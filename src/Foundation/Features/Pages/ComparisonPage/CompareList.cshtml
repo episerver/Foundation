@@ -1,0 +1,39 @@
+﻿@model Foundation.Features.Pages.ComparisonPage.ComparisonPageViewModel
+@{ 
+    var currency = (Mediachase.Commerce.Currency)ViewBag.Currency;
+}
+<div class="row" style="justify-content: center">
+    <div class="col-12">
+        <h4>@Html.PropertyFor(x => x.CurrentContent.Name)</h4>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3 div__center">
+        <img src="@Model.Variant1.ImageUrl" alt="@Model.Variant1.Variant.DisplayName" class="img-fluid" />
+        <a href="@Model.Variant1.Variant.GetUrl()" class="link" title="@Model.Variant1.Variant.DisplayName">
+            @Model.Variant1.Variant.DisplayName.MakeCompactString()
+        </a>
+        <p class="price__discount">@Model.Variant1.Price.ToString()</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h4>Compare with:</h4>
+    </div>
+    @foreach (var v in Model.Variants)
+    {
+        <div class="col-xs-12 col-sm-4 col-md-3" style="margin-bottom: 15px;">
+            <div class="comparison--item">
+                <img src="@v.DefaultAssetUrl" alt="@v.Name" class="img-fluid" title="@v.Name" />
+                <a href="@Model.CurrentContent.LinkURL?skuCode1=@Model.Variant1.Variant.Code&skuCode2=@v.Code" class="compare-btn">
+                    <p>
+                        <i class="fas fa-binoculars"></i>&nbsp;Compare
+                    </p>
+                </a>
+            </div>
+            <div class="div__center">
+                <a href="@v.ProductUrl" class="link" title="@v.Name">@v.Name.MakeCompactString()</a>
+                <p class="price__discount">@v.Prices.FirstOrDefault(x => x.Currency == currency).ToString()</p>
+            </div>
+        </div>
+    }
+</div>

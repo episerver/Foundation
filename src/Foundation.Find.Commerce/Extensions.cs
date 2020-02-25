@@ -71,7 +71,9 @@ namespace Foundation.Find.Commerce
                     Code = x.Code,
                     LanguageId = productContent.Language.Name,
                     Name = x.DisplayName,
-                    DefaultAssetUrl = (x as IAssetContainer).DefaultImageUrl()
+                    DefaultAssetUrl = (x as IAssetContainer).DefaultImageUrl(),
+                    Prices = IPricingExtensions.Prices(x).Select(p => p.UnitPrice),
+                    ProductUrl = x.GetUrl()
                 });
         }
     }

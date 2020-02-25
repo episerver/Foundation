@@ -777,5 +777,47 @@ namespace Foundation.Find.Commerce
         }
 
 
+        /// <summary>
+        /// Get the same variants by variant code
+        /// </summary>
+        /// <param name="skuCode">The variant code</param>
+        /// <returns>List of the same variants</returns>
+        public IEnumerable<VariationModel> GetTheSameVariants(string skuCode)
+        {
+            GenericVariant variant = null;
+            GenericProduct product = null;
+            var variantLink = _referenceConverter.GetContentLink(skuCode);
+
+            if (!ContentReference.IsNullOrEmpty(variantLink))
+            {
+                variant = _contentLoader.Get<IContent>(variantLink) as GenericVariant;
+            }
+
+            if (variant != null)
+            {
+                var productLink = variant.GetParentProducts().FirstOrDefault();
+                if (!ContentReference.IsNullOrEmpty(productLink))
+                {
+                    product = _contentLoader.Get<IContent>(productLink) as GenericProduct;
+                }
+            }
+
+            if (product != null)
+            {
+                var nodeLink = product.GetCategories().FirstOrDefault();
+                var nodeContent = _contentLoader.Get<GenericNode>(nodeLink);
+                var outline = GetOutline(nodeContent.Code);
+                var results = _findClient.Search<GenericProduct>()
+                    .FilterOutline(new[] { outline })
+                    .FilterForVisitor()
+                    .Select(x => x.VariationModels())
+                    .GetResult().SelectMany(x => x)
+                    .Where(x => x.LanguageId == _languageResolver.GetPreferredCulture().Name
+                    && x.Prices.FirstOrDefault(p => p.Currency == _currencyService.GetCurrentCurrency()) != null);
+                return results;
+            }
+
+            return new List<VariationModel>();
+        }
     }
 }

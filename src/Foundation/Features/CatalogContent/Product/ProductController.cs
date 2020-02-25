@@ -57,6 +57,13 @@ namespace Foundation.Features.CatalogContent.Product
             var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
             currentContent.AddBrowseHistory();
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
+
+            if (!ContentReference.IsNullOrEmpty(startPage.ComparisonPage))
+            {
+                var comparisonPage = _contentLoader.Get<ComparisonPage>(startPage.ComparisonPage);
+                ViewBag.ComparisonPageUrl = comparisonPage.LinkURL;
+            }
+
             return View(viewModel);
         }
 

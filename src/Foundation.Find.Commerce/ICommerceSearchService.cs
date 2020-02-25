@@ -2,6 +2,7 @@
 using EPiServer.Find.Api.Querying;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.ViewModels;
+using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Find.Commerce.ViewModels;
 using System.Collections.Generic;
@@ -58,5 +59,6 @@ namespace Foundation.Find.Commerce
 
         IEnumerable<UserSearchResultModel> SearchUsers(string query, int page = 1, int pageSize = 50);
         IEnumerable<SkuSearchResultModel> SearchSkus(string query);
+        IEnumerable<VariationModel> GetTheSameVariants(string skuCode);
     }
 }

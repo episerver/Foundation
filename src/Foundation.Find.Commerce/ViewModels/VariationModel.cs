@@ -1,4 +1,7 @@
-﻿namespace Foundation.Find.Commerce.ViewModels
+﻿using Mediachase.Commerce;
+using System.Collections.Generic;
+
+namespace Foundation.Find.Commerce.ViewModels
 {
     public class VariationModel
     {
@@ -6,5 +9,7 @@
         public string LanguageId { get; set; }
         public string Name { get; set; }
         public string DefaultAssetUrl { get; set; }
+        public string ProductUrl { get; set; }
+        public IEnumerable<Money> Prices { get; set; }
     }
 }

@@ -6,6 +6,11 @@
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
     var shareUrl = Url.Encode(Request.Url.ToString());
+    var comparisonPageUrl = "";
+    if (ViewBag.ComparisonPageUrl != null)
+    {
+        comparisonPageUrl = (string)ViewBag.ComparisonPageUrl;
+    }
 }
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.Product.Code" />
@@ -154,6 +159,17 @@
                             Email to a friend
                         </a>
                     </span>
+
+                    @if (!string.IsNullOrEmpty(comparisonPageUrl))
+                    {
+                        <span class="light-text cursor-pointer link mailTo">
+                            <a href="@comparisonPageUrl?skuCode1=@Model.Variant.Code" title="Compare">
+                                <i class="fas fa-binoculars"></i>
+                                Compare
+                            </a>
+                        </span>
+                    }
+
                     @if (User.Identity.IsAuthenticated && Model.Variant != null)
                     {
                         <span class="light-text cursor-pointer link addToWishlist" data="@Model.Variant.Code">

@@ -1,10 +1,12 @@
 ﻿using EPiServer;
+using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Models.Catalog;
+using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.Personalization;
 using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
@@ -38,6 +40,15 @@ namespace Foundation.Features.CatalogContent.Variation
         {
             var viewModel = _viewModelFactory.CreateVariant<GenericVariant, GenericVariantViewModel>(currentContent);
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
+
+            var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+
+            if (!ContentReference.IsNullOrEmpty(startPage.ComparisonPage))
+            {
+                var comparisonPage = _contentLoader.Get<ComparisonPage>(startPage.ComparisonPage);
+                ViewBag.ComparisonPageUrl = comparisonPage.LinkURL;
+            }
+
             return Request.IsAjaxRequest() ? PartialView(viewModel) : (ActionResult)View(viewModel);
         }
     }
