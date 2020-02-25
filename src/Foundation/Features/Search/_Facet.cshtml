@@ -25,7 +25,7 @@
                         <li class="selection--cm__inline-item">
                             <label class="filters-tag">
                                 @Html.CheckBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Selected", i, j),
-                                    new { @class = "jsSearchFacet", @style = "position: absolute;z-index: -100;", data_facetkey = facet.Key, @checked = "checked" })
+                                    new { @class = "jsSearchFacetSelected", @style = "position: absolute;z-index: -100;", data_facetkey = facet.Key, @checked = "checked" })
                                 @facet.Name
                                 <span class="filters-tag__remove jsRemoveTag"><i data-feather="x" width="12px"></i></span>
                             </label>
@@ -49,7 +49,7 @@
     {
         var facetGroup = Model.FacetGroups[i];
 
-        <ul class="selection--cm">
+        <ul class="selection--cm" data-facetkey="@facetGroup.GroupFieldName">
             <li class="jsFirstLi">
                 <span class="jsFirstSpan selection--cm__sub-label">@facetGroup.GroupName</span>
                 @Html.TextBox(string.Format("FilterOption.FacetGroups[{0}].GroupFieldName", i), facetGroup.GroupFieldName, new { @hidden = "true" })
@@ -59,16 +59,15 @@
                     @for (var j = 0; j < facetGroup.Facets.Count; j++)
                     {
                         var facet = facetGroup.Facets[j];
-                        if (facet.Selected)
-                        {
-                            continue;
-                        }
                         <li>
-                            <label class="selection--cm__link jsFacet jsUpdatePage">
+
+                            <label class="checkbox selection--cm__link jsFacet jsUpdatePage">
                                 @Html.CheckBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Selected", i, j),
                                     facet.Selected,
                                     new { @class = "jsSearchFacet hidden", @style = "position: absolute;z-index: -100;", data_facetkey = @facet.Key })
+
                                 @facet.Name (@facet.Count)
+                                <span class="checkmark"></span>
                             </label>
 
                             @Html.TextBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Key", i, j), facet.Key, new
