@@ -26,5 +26,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
         public string FirstVariationCode { get; set; }
         public Type EntryType { get; set; }
         public string ProductStatus { get; set; }
+        public DateTime Created { get; set; }
     }
 }
