@@ -10,9 +10,18 @@
         selections.each(function (i, e) {
             $(e).find('.selection--cm__expand').each(function (j, s) {
                 $(s).click(function () {
+                    var self = this
                     $(this).addClass('hidden');
                     $(this).siblings('.selection--cm__collapse').removeClass('hidden');
                     $(this).siblings('.selection--cm__dropdown').slideToggle('hidden');
+
+                    selections.each(function () {
+                        if (!this.contains(self)) {
+                            $(this).find('.selection--cm__dropdown').first().slideUp();
+                            $(this).find('.selection--cm__collapse').first().addClass('hidden');
+                            $(this).find('.selection--cm__expand').first().removeClass('hidden');
+                        }
+                    })
                 });
             });
         });
