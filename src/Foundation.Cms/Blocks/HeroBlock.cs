@@ -65,33 +65,43 @@ namespace Foundation.Cms.Blocks
         public virtual string BackgroundColor { get; set; }
 
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Name = "Background opacity (0 to 1)", Order = 50)]
-        public virtual double Opacity { get; set; }
+        [Display(Name = "Callout opacity (0 to 1)", Order = 50)]
+        public virtual double CalloutOpacity { get; set; }
 
-        [Display(Name = "Padding top", Order = 51)]
+        [SelectOne(SelectionFactoryType = typeof(CalloutPositionSelectionFactory))]
+        [Display(Name = "Callout position", Order = 55)]
+        public virtual string CalloutPosition { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(FoundationBlockDataPaddingUnitSelectionFactory))]
+        [Display(Name = "Padding unit", Order = 60)]
+        public virtual string PaddingUnit { get; set; }
+
+        [Display(Name = "Padding top", Order = 61)]
         public virtual int PaddingTop { get; set; }
 
-        [Display(Name = "Padding right", Order = 52)]
+        [Display(Name = "Padding right", Order = 62)]
         public virtual int PaddingRight { get; set; }
 
-        [Display(Name = "Padding bottom", Order = 53)]
+        [Display(Name = "Padding bottom", Order = 63)]
         public virtual int PaddingBottom { get; set; }
 
-        [Display(Name = "Padding left", Order = 54)]
+        [Display(Name = "Padding left", Order = 64)]
         public virtual int PaddingLeft { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
 
-            Opacity = 0.5;
+            PaddingUnit = "%";
+            PaddingTop = 2;
+            PaddingRight = 2;
+            PaddingBottom = 2;
+            PaddingLeft = 2;
+            CalloutOpacity = 0.5;
             BackgroundColor = "white";
-            PaddingTop = 15;
-            PaddingRight = 60;
-            PaddingBottom = 15;
-            PaddingLeft = 60;
+            CalloutPosition = "flex-middle";
+            CalloutContentAlignment = "left";
             CalloutTextColor = ColorThemes.None;
-            CalloutContentAlignment = "Left";
         }
     }
 }
