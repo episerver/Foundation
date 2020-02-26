@@ -130,7 +130,7 @@ namespace Foundation.Cms.Pages
         }
 
         [CultureSpecific]
-        [SelectOne(SelectionFactoryType = typeof(CalloutContentAlignmentSelectionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(TeaserTextAlignmentSelectionFactory))]
         [Display(Name = "Text alignment", GroupName = CmsTabNames.Teaser, Order = 400)]
         public virtual string TeaserTextAlignment { get; set; }
 
@@ -161,13 +161,13 @@ namespace Foundation.Cms.Pages
                 string alignmentClass;
                 switch (TeaserTextAlignment)
                 {
-                    case CalloutContentAlignments.Left:
+                    case "Left":
                         alignmentClass = "teaser-content-align--left";
                         break;
-                    case CalloutContentAlignments.Right:
+                    case "Right":
                         alignmentClass = "teaser-content-align--right";
                         break;
-                    case CalloutContentAlignments.Center:
+                    case "Center":
                         alignmentClass = "teaser-content-align--center";
                         break;
                     default:
