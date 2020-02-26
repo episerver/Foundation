@@ -112,6 +112,9 @@ namespace Foundation.Features.Search.ProductSearchBlock
                     newList = result.ProductViewModels.Where(x => !byRevenues.Any(y => y.Code.Equals(x.Code))).ToList();
                     newList.InsertRange(0, byRevenues);
                     break;
+                case ProductSearchSortOrder.NewestProducts:
+                    newList = result.ProductViewModels.OrderByDescending(x => x.Created).ToList();
+                    break;
                 default:
                     newList = result.ProductViewModels.ToList();
                     break;
