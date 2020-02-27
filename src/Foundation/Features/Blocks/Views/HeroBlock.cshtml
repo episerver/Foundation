@@ -3,16 +3,8 @@
 @model IBlockViewModel<HeroBlock>
 
 @{
-    var blockPaddings = Model.CurrentBlock.PaddingStyles;
-
-    var calloutPaddingUnit = Model.CurrentBlock.Callout.PaddingUnit;
-
-    var calloutPaddings = "padding: "
-        + Model.CurrentBlock.Callout.PaddingTop + calloutPaddingUnit + " "
-        + Model.CurrentBlock.Callout.PaddingRight + calloutPaddingUnit + " "
-        + Model.CurrentBlock.Callout.PaddingBottom + calloutPaddingUnit + " "
-        + Model.CurrentBlock.Callout.PaddingLeft + calloutPaddingUnit + ";";
-
+    
+   
     var calloutTextColor = string.Empty;
     if (Model.CurrentBlock.Callout.CalloutTextColor.Equals("Light"))
     {
@@ -24,7 +16,7 @@
     }
 }
 
-<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" style="@blockPaddings">
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity">
     <div class="hero-block">
         <div class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
         </div>
@@ -39,7 +31,7 @@
             {
                 <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
             }
-            <div class="callout" style="@calloutPaddings; @calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;
+            <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;
                 background-color: @Model.CurrentBlock.Callout.BackgroundColor; opacity: @Model.CurrentBlock.Callout.CalloutOpacity;">
                 @Html.PropertyFor(m => m.CurrentBlock.Callout)
             </div>

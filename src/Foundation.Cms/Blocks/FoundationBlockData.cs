@@ -15,46 +15,30 @@ namespace Foundation.Cms.Blocks
         [Display(Description = "Categories associated with this content", GroupName = SystemTabNames.PageHeader, Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
-        [SelectOne(SelectionFactoryType = typeof(FoundationBlockDataPaddingUnitSelectionFactory))]
-        [Display(Name = "Padding unit", GroupName = CmsTabNames.BlockPadding, Order = 1)]
-        public virtual string PaddingUnit { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
+        [Display(Name = "Padding", GroupName = CmsTabNames.BlockStyling, Order = 1)]
+        public virtual string Padding { get; set; }
 
-        [Display(Name = "Top", GroupName = CmsTabNames.BlockPadding, Order = 2)]
-        public virtual int PaddingTop { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
+        [Display(Name = "Margin", GroupName = CmsTabNames.BlockStyling, Order = 2)]
+        public virtual string Margin { get; set; }
 
-        [Display(Name = "Right", GroupName = CmsTabNames.BlockPadding, Order = 3)]
-        public virtual int PaddingRight { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
+        [Display(Name = "Background color", GroupName = CmsTabNames.BlockStyling, Order = 3)]
+        public virtual string BackgroundColor { get; set; }
 
-        [Display(Name = "Bottom", GroupName = CmsTabNames.BlockPadding, Order = 4)]
-        public virtual int PaddingBottom { get; set; }
-
-        [Display(Name = "Left", GroupName = CmsTabNames.BlockPadding, Order = 5)]
-        public virtual int PaddingLeft { get; set; }
-
-        public string PaddingStyles
-        {
-            get
-            {
-                var paddingStyles = "";
-
-                paddingStyles += PaddingTop > 0 ? "padding-top: " + PaddingTop + $"{PaddingUnit};" : "";
-                paddingStyles += PaddingRight > 0 ? "padding-right: " + PaddingRight + $"{PaddingUnit};" : "";
-                paddingStyles += PaddingBottom > 0 ? "padding-bottom: " + PaddingBottom + $"{PaddingUnit};" : "";
-                paddingStyles += PaddingLeft > 0 ? "padding-left: " + PaddingLeft + $"{PaddingUnit};" : "";
-
-                return paddingStyles;
-            }
-        }
+        [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
+        [Display(Name = "Block opacity (0 to 1)", GroupName = CmsTabNames.BlockStyling, Order = 4)]
+        public virtual double BlockOpacity { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
 
-            PaddingUnit = "%";
-            PaddingTop = 0;
-            PaddingRight = 0;
-            PaddingBottom = 0;
-            PaddingLeft = 0;
+            Padding = "p-1";
+            Margin = "m-0";
+            BackgroundColor = "background-color: transparent;";
+            BlockOpacity = 1;
         }
     }
 }

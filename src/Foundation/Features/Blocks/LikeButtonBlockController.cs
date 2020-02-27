@@ -53,7 +53,7 @@ namespace Foundation.Features.Blocks
             var anonymousUser = User.Identity.GetUserId() == null ? true : false;
 
             // Create a rating block view model to fill the frontend block view
-            var blockModel = new LikeButtonBlockViewModel
+            var blockModel = new LikeButtonBlockViewModel(currentBlock)
             {
                 Link = pageLink
             };

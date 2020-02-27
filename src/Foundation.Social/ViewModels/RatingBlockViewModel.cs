@@ -14,6 +14,7 @@ namespace Foundation.Social.ViewModels
             SendActivity = block.SendActivity;
             CurrentLink = currentLink;
             LoadRatingSettings(block);
+            CurrentBlock = block;
         }
 
         public PageReference CurrentLink { get; set; }
@@ -39,6 +40,8 @@ namespace Foundation.Social.ViewModels
         public bool SendActivity { get; }
 
         public bool IsMemberOfGroup { get; set; }
+
+        public RatingBlock CurrentBlock { get; set; }
 
         private void LoadRatingSettings(RatingBlock block)
         {

@@ -48,7 +48,7 @@
     Url.PageLinkUrl(Model.CurrentBlock.Link),
     Model.CurrentBlock.Heading))
 {
-    <div class="teaser-block" style="@Model.CurrentBlock.PaddingStyles; @Model.CurrentBlock.ElementsAlignment; @Model.CurrentBlock.BackgroundColor; @Model.CurrentBlock.TextColor;">
+    <div class="teaser-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)"style="@Model.CurrentBlock.ElementsAlignment; @Model.CurrentBlock.BackgroundColor; @Model.CurrentBlock.TextColor; opacity:@Model.CurrentBlock.BlockOpacity;">
         @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Image))
         {
             <div @Html.EditAttributes(x => x.CurrentBlock.Image) class="teaser-block__image" style="@imagePosition; @Model.CurrentBlock.ElementsAlignment">

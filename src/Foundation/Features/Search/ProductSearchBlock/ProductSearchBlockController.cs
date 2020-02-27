@@ -89,7 +89,6 @@ namespace Foundation.Features.Search.ProductSearchBlock
             {
                 Heading = currentBlock.Heading,
                 ItemsPerRow = currentBlock.ItemsPerRow,
-                PaddingStyles = currentBlock.PaddingStyles,
                 Products = result.ProductViewModels.ToList()
             };
 

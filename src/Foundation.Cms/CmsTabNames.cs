@@ -52,8 +52,8 @@ namespace Foundation.Cms
         [RequiredAccess(AccessLevel.Edit)]
         public const string Scripts = "Scripts";
 
-        [Display(Name = "Block padding", Order = 285)]
-        public const string BlockPadding = "BlockPadding";
+        [Display(Name = "Block styling", Order = 285)]
+        public const string BlockStyling = "BlockStyling";
 
         [Display(Name = "Settings", Order = 290)]
         public const string Settings = SystemTabNames.Settings;
