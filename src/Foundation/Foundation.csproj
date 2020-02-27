@@ -1637,7 +1637,6 @@
     <Content Include="Features\Blocks\Views\ContainerBlock.cshtml" />
     <Content Include="Features\Blocks\Views\ElevatedRoleBlock.cshtml" />
     <Content Include="Features\Blocks\Views\FacebookBlock.cshtml" />
-    <Content Include="Features\Blocks\Views\FeatureBoxBlock.cshtml" />
     <Content Include="Features\Blocks\Views\HeroBlock.cshtml" />
     <Content Include="Features\Blocks\Views\LinkedInCompanyBlock.cshtml" />
     <Content Include="Features\Blocks\Views\PageListBlock.cshtml" />

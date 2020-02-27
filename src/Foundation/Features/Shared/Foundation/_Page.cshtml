@@ -16,27 +16,29 @@
         }
     }
 }
-
-<div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect ? "teaser--hover-effect" : "teaser--show-details")">
-        <div class="teaser-text @textStyle">
-            <h2>@Model.PageName</h2>
-            <div class="teaser-text__details">
-                @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
+    <div class="p-1">
+        <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect ? "teaser--hover-effect" : "teaser--show-details")">
+            <div class="teaser-text @textStyle">
+                <h2>@Model.PageName</h2>
+                <div class="teaser-text__details">
+                    @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
+                    {
+                        <p>@Model.TeaserText</p>
+                    }
+                    @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
+                    {
+                        <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)">@Model.TeaserButtonText</a>
+                    }
+                </div>
+            </div>
+            <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
+                @if (Model.TeaserVideo != null)
                 {
-                    <p>@Model.TeaserText</p>
-                }
-                @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
-                {
-                    <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)">@Model.TeaserButtonText</a>
+                    <video class="teaser-video" autoplay loop playsinline muted>
+                        <source src="@Url.ContentUrl(Model.TeaserVideo)" type="video/mp4">
+                    </video>
                 }
             </div>
+        </div>
+
     </div>
-    <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
-        @if (Model.TeaserVideo != null)
-        {
-            <video class="teaser-video" autoplay loop playsinline muted>
-                <source src="@Url.ContentUrl(Model.TeaserVideo)" type="video/mp4">
-            </video>
-        }
-    </div>
-</div>

@@ -17,6 +17,15 @@
         default:
             break;
     }
+    var textColor = string.Empty;
+    if (Model.CurrentContent.PageTitleColor.Equals("Light"))
+    {
+        textColor = "color: white";
+    }
+    else if (Model.CurrentContent.PageTitleColor.Equals("Dark"))
+    {
+        textColor = "color: black";
+    }
 }
 
 <div class="row">
@@ -51,9 +60,9 @@
             <div class="article__title">
                 @if (!Model.CategoryName.IsEmpty())
                 {
-                    <h4 style="color: @Model.CurrentContent.PageTitleColor;">@Model.CategoryName</h4>
+                    <h4 style="@textColor;">@Model.CategoryName</h4>
                 }
-                <h1 style="color: @Model.CurrentContent.PageTitleColor;">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
+                <h1 style="@Model.CurrentContent.PageTitleColor;">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
             </div>
             <div class="standard-page__content">
                 @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)

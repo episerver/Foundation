@@ -23,5 +23,7 @@ namespace Foundation.Social.ViewModels
         public List<CommunityMemberViewModel> Members { get; set; }
 
         public List<MessageViewModel> Messages { get; set; }
+
+        public MembershipDisplayBlock CurrentBlock { get; set; }
     }
 }

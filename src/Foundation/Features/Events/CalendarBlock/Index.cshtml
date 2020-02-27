@@ -7,9 +7,9 @@
     ClientResources.RequireScript("/Assets/js/vendors/moments/moment.min.js");
     ClientResources.RequireScript("/Assets/js/vendors/fullcalendar/fullcalendar.min.js");
 }
-<div class='calendar-block'></div>
+    <div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="calendar-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
 
-<script type="text/javascript">
+        <script type="text/javascript">
     var events = [
         @foreach (var item in Model.Events)
         {
@@ -20,6 +20,6 @@
         defaultView: '@Model.ViewMode',
         events: events
     });
-</script>
+        </script>
 
 
