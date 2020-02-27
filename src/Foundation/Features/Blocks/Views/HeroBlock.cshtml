@@ -16,7 +16,7 @@
     }
 }
 
-<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" style="@Model.CurrentBlock.BackgroundColor">
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="hero-block">
         <div class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
         </div>
@@ -25,7 +25,7 @@
                 <source src="@Url.ContentUrl(Model.CurrentBlock.MainBackgroundVideo)" type="video/mp4">
             </video>
         </div>
-        <div class="hero-block__overlay" style="opacity: @Model.CurrentBlock.BlockOpacity"></div>
+        <div class="hero-block__overlay" style="@Model.CurrentBlock.BackgroundColor; opacity: @Model.CurrentBlock.BlockOpacity"></div>
         <div class="hero-block__callout" style="justify-content: @Model.CurrentBlock.Callout.CalloutPosition;">
             @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty() && Model.CurrentBlock.MainBackgroundVideo == null)
             {
