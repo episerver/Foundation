@@ -32,7 +32,7 @@
                 <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
             }
             <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;
-                @Model.CurrentBlock.Callout.BackgroundColor; opacity: @Model.CurrentBlock.Callout.CalloutOpacity;">">
+                @Model.CurrentBlock.Callout.BackgroundColor; opacity: @Model.CurrentBlock.Callout.CalloutOpacity;">
                 @Html.PropertyFor(m => m.CurrentBlock.Callout)
             </div>
         </div>
