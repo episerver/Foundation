@@ -27,10 +27,6 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Background color", GroupName = CmsTabNames.BlockStyling, Order = 3)]
         public virtual string BackgroundColor { get; set; }
 
-        [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Name = "Block opacity (0 to 1)", GroupName = CmsTabNames.BlockStyling, Order = 4)]
-        public virtual double BlockOpacity { get; set; }
-
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
@@ -38,7 +34,6 @@ namespace Foundation.Cms.Blocks
             Padding = "p-1";
             Margin = "m-0";
             BackgroundColor = "background-color: transparent;";
-            BlockOpacity = 1;
         }
     }
 }

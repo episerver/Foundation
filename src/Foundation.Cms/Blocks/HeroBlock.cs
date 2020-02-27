@@ -29,15 +29,19 @@ namespace Foundation.Cms.Blocks
         [Display(Order = 30)]
         public virtual Url Link { get; set; }
 
+        [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
+        [Display(Name = "Block opacity (0 to 1)", GroupName = CmsTabNames.BlockStyling, Order = 40)]
+        public virtual double BlockOpacity { get; set; }
+
         [UIHint("HeroBlockCallout")]
-        [Display(Name = "Callout", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Callout", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual HeroBlockCallout Callout { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
 
-            BlockOpacity = 1;
+            BlockOpacity = 0;
         }
     }
 
