@@ -16,7 +16,7 @@
     }
 }
 
-<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity">
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" style="@Model.CurrentBlock.BackgroundColor">
     <div class="hero-block">
         <div class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
         </div>
@@ -32,7 +32,7 @@
                 <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
             }
             <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;
-                background-color: @Model.CurrentBlock.Callout.BackgroundColor; opacity: @Model.CurrentBlock.Callout.CalloutOpacity;">
+                @Model.CurrentBlock.Callout.BackgroundColor; opacity: @Model.CurrentBlock.Callout.CalloutOpacity;">">
                 @Html.PropertyFor(m => m.CurrentBlock.Callout)
             </div>
         </div>

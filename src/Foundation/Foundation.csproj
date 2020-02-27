@@ -1438,7 +1438,6 @@
     <Content Include="Assets\scss\components\_checkbox.scss" />
     <Content Include="Assets\scss\components\_hamburger-menu.scss" />
     <Content Include="Assets\scss\components\_icon-menu.scss" />
-    <Content Include="Assets\scss\components\_listgroup.scss" />
     <Content Include="Assets\scss\templates\widgets\_market-selector.scss" />
     <Content Include="Assets\scss\components\_mobile-navigation.scss" />
     <Content Include="Assets\scss\components\_navigation.scss" />
@@ -1858,6 +1857,7 @@
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\EPiServer.ConnectForCampaign.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\Campaign.config" />
+    <Content Include="Assets\scss\components\_list-group.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
