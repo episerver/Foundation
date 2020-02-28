@@ -5,13 +5,14 @@ namespace Foundation.Social.ViewModels
 {
     public class MembershipDisplayBlockViewModel
     {
-        public MembershipDisplayBlockViewModel(MembershipDisplayBlock currentBlock)
+        public MembershipDisplayBlockViewModel(MembershipDisplayBlock currentBlock) 
         {
             Heading = currentBlock.Heading;
             ShowHeading = currentBlock.ShowHeading;
             GroupName = currentBlock.GroupName;
             Messages = new List<MessageViewModel>();
             Members = new List<CommunityMemberViewModel>();
+            CurrentBlock = currentBlock;
         }
 
         public string Heading { get; set; }

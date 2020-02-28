@@ -12,7 +12,7 @@
         {
             var viewData = new ViewDataDictionary();
             viewData.Add(new KeyValuePair<string, object>("ShipmentId", shipment.ShipmentId));
-            <div class="row product-tile-list__item">
+            <div class="row product-tile-list__item jsCartItem">
                 @Html.Partial("_ItemTemplate", cartItem, viewData)
             </div>
 

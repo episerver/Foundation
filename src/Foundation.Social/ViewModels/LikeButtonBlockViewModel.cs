@@ -11,7 +11,7 @@ namespace Foundation.Social.ViewModels
         }
         public LikeButtonBlockViewModel(LikeButtonBlock block)
         {
-
+            CurrentBlock = block;
         }
 
         public ContentReference Link { get; set; }

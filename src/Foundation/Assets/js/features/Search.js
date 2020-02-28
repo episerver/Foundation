@@ -76,7 +76,7 @@
         $('body>.loading-box').show();
 
         var expanding = document.querySelector('.selection--cm__collapse:not(.hidden)')
-        var expandingFacetEl = expanding.closest('.selection--cm')
+        var expandingFacetEl = expanding && expanding.closest('.selection--cm')
         var expandingFacet = expandingFacetEl && expandingFacetEl.dataset.facetkey
 
         axios({ url: inst.RootUrl + inst.Params, params: { ...data }, method: 'get' })

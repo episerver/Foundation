@@ -17,9 +17,15 @@
 
                     selections.each(function () {
                         if (!this.contains(self)) {
-                            $(this).find('.selection--cm__dropdown').first().slideUp();
-                            $(this).find('.selection--cm__collapse').first().addClass('hidden');
-                            $(this).find('.selection--cm__expand').first().removeClass('hidden');
+                            $(this).find('.selection--cm__dropdown').each(function () {
+                                $(this).slideUp();
+                            });
+                            $(this).find('.selection--cm__collapse').each(function () {
+                                $(this).addClass('hidden');
+                            });
+                            $(this).find('.selection--cm__expand').each(function () {
+                                $(this).removeClass('hidden');
+                            });
                         }
                     })
                 });
