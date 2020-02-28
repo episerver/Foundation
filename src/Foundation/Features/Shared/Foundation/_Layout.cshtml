@@ -18,7 +18,10 @@
     <div class="loader"></div>
 </div>
 @Html.RenderEPiServerQuickNavigator()
-@if (!Model.StartPage.HideSiteHeader)
+@{ 
+    var foundationPageData = Model.CurrentContent as FoundationPageData;
+}}
+@if (!foundationPageData?.HideSiteHeader ?? false)
 {
     { Html.RenderAction("GetHeader", "Header", new { homePage = Model.StartPage }); }
 }
@@ -26,7 +29,7 @@
     @RenderBody()
 </div>
 
-@if (!Model.StartPage.HideSiteFooter)
+@if (!foundationPageData?.HideSiteFooter ?? false)
 {
     @Html.Partial("_Footer", Model)
 }
