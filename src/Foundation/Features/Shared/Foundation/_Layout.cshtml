@@ -1,4 +1,6 @@
-﻿@model IContentViewModel<IContent>
+﻿@using Foundation.Cms.SchemaMarkup;
+
+@model IContentViewModel<IContent>
 @{
     Layout = "~/Features/Shared/Foundation/_MasterLayout.cshtml";
 }
@@ -46,3 +48,4 @@
 <script src="~/Assets/js/main.min.js"></script>
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")
+@Model.SchemaMarkup
