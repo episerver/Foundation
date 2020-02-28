@@ -16,7 +16,7 @@ namespace Foundation.Cms.Pages
     public class StandardPage : FoundationPageData
     {
         [CultureSpecific]
-        [UIHint(UIHint.Image)]
+        [SelectOne(SelectionFactoryType = typeof(HeroBlockTextColorSelectionFactory))]
         [Display(Name = "Page title color", GroupName = SystemTabNames.Content, Order = 203)]
         public virtual string PageTitleColor { get; set; }
 
@@ -41,7 +41,7 @@ namespace Foundation.Cms.Pages
         {
             base.SetDefaultValues(contentType);
 
-            PageTitleColor = "white";
+            PageTitleColor = ColorThemes.None;
             TopPaddingMode = FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.None;
         }
     }

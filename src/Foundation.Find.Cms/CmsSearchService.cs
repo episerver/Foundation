@@ -35,7 +35,7 @@ namespace Foundation.Find.Cms
                     .UsingSynonyms()
                     .TermsFacetFor(x => x.SearchSection)
                     .FilterFacet("AllSections", x => x.SearchSection.Exists())
-                    .Filter(x => (x.MatchTypeHierarchy(typeof(FoundationPageData)) & (((FoundationPageData)x).SiteId().Match(siteId.ToString()))) | !x.MatchTypeHierarchy(typeof(FoundationPageData)))
+                    .Filter(x => (x.MatchTypeHierarchy(typeof(FoundationPageData)) & (((FoundationPageData)x).SiteId().Match(siteId.ToString())) | (x.MatchTypeHierarchy(typeof(PageData)) & x.MatchTypeHierarchy(typeof(MediaData)))))
                     .Skip((filterOptions.Page - 1) * filterOptions.PageSize)
                     .Take(filterOptions.PageSize)
                     .ApplyBestBets();

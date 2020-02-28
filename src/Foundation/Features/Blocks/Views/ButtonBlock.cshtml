@@ -1,6 +1,6 @@
 @model IBlockViewModel<ButtonBlock>
 
-<div style="@Model.CurrentBlock.PaddingStyles">
+<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <a class="@Model.CurrentBlock.ButtonStyle" title="@Model.CurrentBlock.ButtonText" href="@Url.ContentUrl(Model.CurrentBlock.ButtonLink)" @Html.EditAttributes(m => m.CurrentBlock.ButtonText)>
         @{
             var buttonText = string.IsNullOrWhiteSpace(Model.CurrentBlock.ButtonText)

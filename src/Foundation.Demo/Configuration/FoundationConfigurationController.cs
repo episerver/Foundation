@@ -194,14 +194,14 @@ namespace Foundation.Demo.Configuration
 
             if (model.SiteExportLocation.Equals("Remote", StringComparison.InvariantCultureIgnoreCase))
             {
-                using (var exportStream = InstallService.ExportEpiserverContent(site.StartPage, ContentExport.ExportPages))
+                using (var exportStream = InstallService.ExportEpiserverContent(site.StartPage, ContentExport.ExportPages | ContentExport.ExportVisitorGroups))
                 {
                     StorageService.Add($"Sites/{fileName}", exportStream, exportStream.Length);
                     return RedirectToAction("Index");
                 }
             }
 
-            var stream = InstallService.ExportEpiserverContent(site.StartPage, ContentExport.ExportPages);
+            var stream = InstallService.ExportEpiserverContent(site.StartPage, ContentExport.ExportPages | ContentExport.ExportVisitorGroups);
             return File(stream, "application/octet-stream", fileName);
         }
 

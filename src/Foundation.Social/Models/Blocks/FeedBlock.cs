@@ -1,6 +1,6 @@
-using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms.Blocks;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Social.Models.Blocks
@@ -10,7 +10,7 @@ namespace Foundation.Social.Models.Blocks
         Description = "Configures the properties of a feed block frontend view",
         GroupName = SocialTabNames.Social)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
-    public class FeedBlock : BlockData
+    public class FeedBlock : FoundationBlockData
     {
         /// <summary>
         /// Configures the heading that should be used when displaying the block view in the frontend.

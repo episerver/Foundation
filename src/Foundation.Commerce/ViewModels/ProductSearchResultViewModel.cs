@@ -9,12 +9,11 @@ namespace Foundation.Commerce.ViewModels
     {
         public ProductSearchResultViewModel(ProductSearchBlock currentBlock) : base(currentBlock)
         {
-            PaddingStyles = currentBlock.PaddingStyles;
+            
         }
 
         public string Heading { get; set; }
         public int ItemsPerRow { get; set; }
-        public string PaddingStyles { get; set; }
         public List<ProductTileViewModel> Products { get; set; }
     }
 }

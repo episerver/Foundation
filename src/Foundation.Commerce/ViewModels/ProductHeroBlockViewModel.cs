@@ -11,7 +11,6 @@ namespace Foundation.Commerce.ViewModels
 
         public string ImageUrl { get; set; }
         public string ImagePosition { get; set; }
-        public string BlockPaddings { get; set; }
-        public string CalloutPaddings { get; set; }
+        
     }
 }

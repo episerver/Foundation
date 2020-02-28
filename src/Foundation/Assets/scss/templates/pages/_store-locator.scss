@@ -35,7 +35,7 @@
 
     &__info {
         > h4 {
-            font-size: 14px !important;
+            font-size: $text-font-size;
             font-weight: 700;
             line-height: 1.14;
             letter-spacing: 0.5px;
@@ -45,7 +45,6 @@
         > span {
             display: block;
             font-family: Roboto, Helvetica, Arial, sans-serif;
-            font-size: 14px;
             line-height: 1.43;
             letter-spacing: 0.5px;
             color: #7f7f7f;

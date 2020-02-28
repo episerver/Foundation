@@ -21,5 +21,7 @@ namespace Foundation.Social.ViewModels
         public List<Community> Groups { get; set; }
 
         public List<MessageViewModel> Messages { get; set; }
+
+        public MembershipAffiliationBlock CurrentBlock { get; set; }
     }
 }

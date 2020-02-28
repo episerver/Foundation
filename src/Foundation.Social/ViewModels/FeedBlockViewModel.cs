@@ -12,6 +12,7 @@ namespace Foundation.Social.ViewModels
             FeedDisplayMax = block.FeedDisplayMax;
             FeedTitle = block.FeedTitle;
             Feed = new List<CommunityFeedItemViewModel>();
+            CurrentBlock = block;
         }
 
         public string Heading { get; set; }
@@ -25,5 +26,7 @@ namespace Foundation.Social.ViewModels
         public IEnumerable<CommunityFeedItemViewModel> Feed { get; set; }
 
         public List<MessageViewModel> Messages { get; set; }
+
+        public FeedBlock CurrentBlock { get; set; }
     }
 }

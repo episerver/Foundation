@@ -1441,7 +1441,6 @@
     <Content Include="Assets\scss\components\_checkbox.scss" />
     <Content Include="Assets\scss\components\_hamburger-menu.scss" />
     <Content Include="Assets\scss\components\_icon-menu.scss" />
-    <Content Include="Assets\scss\components\_listgroup.scss" />
     <Content Include="Assets\scss\templates\widgets\_market-selector.scss" />
     <Content Include="Assets\scss\components\_mobile-navigation.scss" />
     <Content Include="Assets\scss\components\_navigation.scss" />
@@ -1640,7 +1639,6 @@
     <Content Include="Features\Blocks\Views\ContainerBlock.cshtml" />
     <Content Include="Features\Blocks\Views\ElevatedRoleBlock.cshtml" />
     <Content Include="Features\Blocks\Views\FacebookBlock.cshtml" />
-    <Content Include="Features\Blocks\Views\FeatureBoxBlock.cshtml" />
     <Content Include="Features\Blocks\Views\HeroBlock.cshtml" />
     <Content Include="Features\Blocks\Views\LinkedInCompanyBlock.cshtml" />
     <Content Include="Features\Blocks\Views\PageListBlock.cshtml" />
@@ -1846,6 +1844,7 @@
     <Content Include="modules\_protected\advanced-cms-forms\web.config" />
     <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
     <Content Include="Assets\scss\templates\pages\_search-page.scss" />
+    <Content Include="Assets\scss\templates\widgets\_searchbox.scss" />
     <Content Include="Features\CatalogContent\_WarningHasSaleCode.cshtml" />
     <Content Include="modules\_protected\Shell\web.config" />
     <Content Include="modules\_protected\Shell\Shell.zip" />
@@ -1865,6 +1864,7 @@
     <Content Include="Features\Pages\ComparisonPage\CompareList.cshtml" />
     <Content Include="Assets\scss\templates\pages\_comparison-page.scss" />
     <Content Include="Features\Pages\ComparisonPage\Empty.cshtml" />
+    <Content Include="Assets\scss\components\_list-group.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

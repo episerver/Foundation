@@ -107,7 +107,7 @@
 
         margin-top: 8px;
         margin-bottom: 8px;
-        font-size: 14px;
+        font-size: $text-font-size;
         font-weight: 300;
         text-align: center;
 
@@ -215,7 +215,7 @@
 
     &__title {
         margin-top: 10px;
-        font-size: 14px;
+        font-size: $text-font-size;
         font-weight: 300;
         text-align: center;
 
@@ -332,13 +332,13 @@
 
 .price {
     &__old {
-        font-size: 1.0em;
+        font-size: $text-font-size-small;
         text-decoration: line-through;
         color: $text-color;
     }
 
     &__discount {
-        font-size: 1.1em;
+        font-size: $text-font-size;
         font-weight: bold;
         color: $text-color;
     }

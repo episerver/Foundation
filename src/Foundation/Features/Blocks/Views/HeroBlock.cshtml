@@ -3,81 +3,38 @@
 @model IBlockViewModel<HeroBlock>
 
 @{
-    var blockPaddings = "padding: "
-        + Model.CurrentBlock.PaddingTop + "px "
-        + Model.CurrentBlock.PaddingRight + "px "
-        + Model.CurrentBlock.PaddingBottom + "px "
-        + Model.CurrentBlock.PaddingLeft + "px;";
-
-    var calloutPaddings = "padding: "
-        + Model.CurrentBlock.Callout.PaddingTop + "px "
-        + Model.CurrentBlock.Callout.PaddingRight + "px "
-        + Model.CurrentBlock.Callout.PaddingBottom + "px "
-        + Model.CurrentBlock.Callout.PaddingLeft + "px;";
-
-    var colorStyle = "";
-    var calloutTextColor = Model.CurrentBlock.Callout.CalloutTextColor;
-
-    if (!string.IsNullOrEmpty(calloutTextColor))
+    
+   
+    var calloutTextColor = string.Empty;
+    if (Model.CurrentBlock.Callout.CalloutTextColor.Equals("Light"))
     {
-        if (calloutTextColor.Equals("Light"))
-        {
-            colorStyle = "color: white;";
-        }
-        else
-        {
-            colorStyle = "color: black;";
-        }
+        calloutTextColor = "color: white";
+    }
+    else if (Model.CurrentBlock.Callout.CalloutTextColor.Equals("Dark"))
+    {
+        calloutTextColor = "color: black";
     }
 }
 
-<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="hero-block" style="@blockPaddings">
-    <div class="hero-block__teaser">
-        @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty())
-        {
-            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__link hero-block__image"
-                 style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'"
-                 onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'">
-            </div>
-        }
-        else if (Model.CurrentBlock.MainBackgroundVideo != null)
-        {
-            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__image" style="background-image: url('@Url.ContentUrl(Model.CurrentBlock.BackgroundImage)'">
-                <video class="hero-block__video" autoplay loop playsinline muted>
-                    <source src="@Url.ContentUrl(Model.CurrentBlock.MainBackgroundVideo)" type="video/mp4">
-                </video>
-            </div>
-        }
-        else
-        {
-            <div @Html.EditAttributes(x => x.CurrentBlock.BackgroundImage) class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
-            </div>
-        }
-    </div>
-    <div class="hero-block__callout @(string.IsNullOrEmpty(Model.CurrentBlock.Callout.BackgroundColor)? "" : "transparent-callout")" id="blockCallout" style="@calloutPaddings @colorStyle">
-        @Html.PropertyFor(m => m.CurrentBlock.Callout)
-    </div>
-    <style>
-            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image:after {
-                background: black;
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: @Model.CurrentBlock.BlockOpacity;
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="hero-block">
+        <div class="hero-block__image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
+        </div>
+        <div class="hero-block__video">
+            <video autoplay loop playsinline muted>
+                <source src="@Url.ContentUrl(Model.CurrentBlock.MainBackgroundVideo)" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-block__overlay" style="@Model.CurrentBlock.BackgroundColor; opacity: @Model.CurrentBlock.BlockOpacity"></div>
+        <div class="hero-block__callout" style="justify-content: @Model.CurrentBlock.Callout.CalloutPosition;">
+            @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty() && Model.CurrentBlock.MainBackgroundVideo == null)
+            {
+                <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
             }
-
-            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
-                background: @(string.IsNullOrEmpty(Model.CurrentBlock.Callout.BackgroundColor) ? "none" : Model.CurrentBlock.Callout.BackgroundColor);
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: @Model.CurrentBlock.Callout.Opacity;
-            }
-    </style>
+            <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;
+                @Model.CurrentBlock.Callout.BackgroundColor; opacity: @Model.CurrentBlock.Callout.CalloutOpacity;">
+                @Html.PropertyFor(m => m.CurrentBlock.Callout)
+            </div>
+        </div>
+    </div>
 </div>

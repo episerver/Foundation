@@ -1,8 +1,11 @@
 ﻿@model MiniWishlistViewModel
+
 @foreach (var item in Model.Items)
 {
     <div class="cart__row">
-        <img class="cart__product-img" src="@item.ImageUrl?width=60" loading="lazy" />
+        <div>
+            <img class="cart__product-img" src="@item.ImageUrl?width=60" loading="lazy" />
+        </div>
         <div class="cart__product">
             <a class="account-link" href="@item.Url">@item.DisplayName.MakeCompactString(20)</a>
             <p class="cart__product-price">

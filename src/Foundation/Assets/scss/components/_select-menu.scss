@@ -92,6 +92,7 @@
     border-bottom: 1px solid $color-grey;
     list-style: none;
     padding: 0;
+    margin: 1rem 0 0 0;
 
     &__label {
         font-size: 1.2em;
@@ -107,6 +108,9 @@
 
     &__link {
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        line-height: 26px;
     }
 
     & .pull-right {

@@ -3,7 +3,7 @@
     var iframeUrl = @Model.CurrentBlock.VimeoVideo.GetIframeUrl(Model.CurrentBlock.HasCoverImage);
 }
 
-<div style="@Model.CurrentBlock.PaddingStyles">
+<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     @if (Model.CurrentBlock.HasHeadingText)
     {
         <div class="media">

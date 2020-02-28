@@ -75,7 +75,7 @@ namespace Foundation.Commerce.Models.Blocks
             ResultsPerPage = 6;
             ItemsPerRow = 3;
             SortOrder = "None";
-            DiscontinuedProductsMode = "None";
+            DiscontinuedProductsMode = "Hide";
         }
     }
 }

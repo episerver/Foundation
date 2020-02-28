@@ -21,12 +21,21 @@
 
     <a class="blog__thumbnail" href="@Model.Page.ContentLink.GetPublicUrl()">
         <div style="width: 100%">
-            <picture>
-                @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
-                {
-                    <img class="img-fluid" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
-                }
-            </picture>
+            @if (page != null && !ContentReference.IsNullOrEmpty(page.TeaserVideo))
+            {
+                <video class="video-fluid" autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(page.TeaserVideo)" type="video/mp4">
+                </video>
+            }
+            else
+            {
+                <picture>
+                    @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
+                    {
+                        <img class="img-fluid" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                    }
+                </picture>
+            }
         </div>
         <div class="blog__title-container">
             <div class="blog__title-wrapper">
@@ -52,12 +61,21 @@
     var textCol = imageCol == 12 ? 12 : 12 - imageCol;
     <a class="row" href="@Model.Page.ContentLink.GetPublicUrl()">
         <div class="col-xs-12 col-@imageCol">
-            <picture style="width: 100%">
-                @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
-                {
-                    <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
-                }
-            </picture>
+            @if (page != null && !ContentReference.IsNullOrEmpty(page.TeaserVideo))
+            {
+                <video class="video-fluid" autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(page.TeaserVideo)" type="video/mp4">
+                </video>
+            }
+            else
+            {
+                <picture style="width: 100%">
+                    @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
+                    {
+                        <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                    }
+                </picture>
+            }
         </div>
 
         <div class="col-xs-12 col-@textCol">
@@ -83,12 +101,22 @@
 {
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
     <a class="col-@imageCol preview--image-top" href="@Model.Page.ContentLink.GetPublicUrl()">
-        <picture style="height: 100%;">
-            @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
-            {
-                <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
-            }
-        </picture>
+        @if (page != null && !ContentReference.IsNullOrEmpty(page.TeaserVideo))
+        {
+            <video class="video-fluid" autoplay loop playsinline muted>
+                <source src="@Url.ContentUrl(page.TeaserVideo)" type="video/mp4">
+            </video>
+        }
+        else
+        {
+            <picture style="height: 100%">
+                @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
+                {
+                    <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                }
+            </picture>
+        }
+
         <div style="flex-basis: 116px; flex-shrink: 0">
             @if (Model.ShowPublishDate)
             {

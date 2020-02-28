@@ -45,23 +45,7 @@ namespace Foundation.Cms.EditorDescriptors
             };
         }
     }
-
-    class TeaserBlockBackgroundColorSelectionFactory : ISelectionFactory
-    {
-        public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
-        {
-            return new ISelectItem[]
-            {
-                new SelectItem { Text = "None", Value = "background-color: transparent" },
-                new SelectItem { Text = "Black", Value = "background-color: black" },
-                new SelectItem { Text = "Grey", Value = "background-color: grey" },
-                new SelectItem { Text = "Beige", Value = "background-color: beige" },
-                new SelectItem { Text = "Light Blue", Value = "background-color: #0081b2" },
-                new SelectItem { Text = "Yellow", Value = "background-color: #fec84d" }
-            };
-        }
-    }
-
+        
     class TeaserBlockTextColorSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
