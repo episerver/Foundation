@@ -16,7 +16,12 @@ namespace Foundation.Features.Pages.ComparisonPage
         public IEnumerable<VariationModel> Variants { get; set; }
         public VariationCompareModel Variant1 { get; set; }
         public VariationCompareModel Variant2 { get; set; }
-        public ComparisonPageViewModel(Commerce.Models.Pages.ComparisonPage currentPage) : base(currentPage) => Variants = new List<VariationModel>();
+        public List<ComparisonItem> ComparisonCollection { get; set; }
+        public ComparisonPageViewModel(Commerce.Models.Pages.ComparisonPage currentPage) : base(currentPage)
+        {
+            Variants = new List<VariationModel>();
+            ComparisonCollection = new List<ComparisonItem>();
+        }
         public ComparisonPageViewModel(Commerce.Models.Pages.ComparisonPage currentPage, GenericVariant variant1, GenericVariant variant2, IMarket market) : this(currentPage)
         {
             Variant1 = new VariationCompareModel(variant1, market);
@@ -27,7 +32,6 @@ namespace Foundation.Features.Pages.ComparisonPage
     public class VariationCompareModel
     {
         public GenericVariant Variant { get; set; }
-        public ReviewsViewModel Review { get; set; }
         public Money Price { get; set; }
         public string ImageUrl { get; set; }
 
@@ -37,5 +41,12 @@ namespace Foundation.Features.Pages.ComparisonPage
             ImageUrl = (variant as IAssetContainer).GetDefaultAsset<MediaData>();
             Price = PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, market.DefaultCurrency).UnitPrice;
         }
+    }
+
+    public class ComparisonItem
+    {
+        public string PropertyDisplayName { get; set; }
+        public dynamic ValueVariant1 { get; set; }
+        public dynamic ValueVariant2 { get; set; }
     }
 }

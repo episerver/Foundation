@@ -26,31 +26,17 @@
     <div class="col-12">
         <table class="table">
             <tbody>
-                <tr>
-                    <th scope="row">Sku</th>
-                    <td>@Model.Variant1.Variant.Code</td>
-                    <td>@Model.Variant2.Variant.Code</td>
-                </tr>
-                <tr>
-                    <th scope="row">Size</th>
-                    <td>@Model.Variant1.Variant.Size</td>
-                    <td>@Model.Variant2.Variant.Size</td>
-                </tr>
-                <tr>
-                    <th scope="row">Color</th>
-                    <td>@Model.Variant1.Variant.Color</td>
-                    <td>@Model.Variant2.Variant.Color</td>
-                </tr>
-                <tr>
-                    <th scope="row">Price</th>
-                    <td>@Model.Variant1.Price.ToString()</td>
-                    <td>@Model.Variant2.Price.ToString()</td>
-                </tr>
-                <tr>
-                    <th scope="row">Weight</th>
-                    <td>@Model.Variant1.Variant.Weight</td>
-                    <td>@Model.Variant2.Variant.Weight</td>
-                </tr>
+                @if (Model.ComparisonCollection.Count > 0)
+                {
+                    foreach (var p in Model.ComparisonCollection)
+                    {
+                        <tr>
+                            <th scope="row">@p.PropertyDisplayName</th>
+                            <td>@Html.Raw(p.ValueVariant1)</td>
+                            <td>@Html.Raw(p.ValueVariant2)</td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>

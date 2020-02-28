@@ -5,6 +5,7 @@ using Foundation.Commerce.Models.Catalog;
 using Foundation.Find.Commerce;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Pages.ComparisonPage
@@ -51,6 +52,19 @@ namespace Foundation.Features.Pages.ComparisonPage
                 var variantLink2 = _referenceConverter.GetContentLink(skuCode2);
                 var variant2 = _contentLoader.Get<EntryContentBase>(variantLink2) as GenericVariant;
                 var model = new ComparisonPageViewModel(currentPage, variant, variant2, market);
+                if (model.CurrentContent.ComparisonProperties != null && model.CurrentContent.ComparisonProperties.Count > 0)
+                {
+                    var comparisonCollection = new List<ComparisonItem>();
+                    foreach(var p in model.CurrentContent.ComparisonProperties)
+                    {
+                        var item = new ComparisonItem();
+                        item.PropertyDisplayName = p.DisplayName;
+                        item.ValueVariant1 = variant.Property[p.PropertyName];
+                        item.ValueVariant2 = variant2.Property[p.PropertyName];
+                        comparisonCollection.Add(item);
+                    }
+                    model.ComparisonCollection = comparisonCollection;
+                }
 
                 return View("~/Features/Pages/ComparisonPage/Index.cshtml", model);
             }
