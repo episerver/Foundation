@@ -1,14 +1,19 @@
 ﻿@using EPiServer.AddOns.Helpers
 @using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
+@using Foundation.Find.Cms.Models.Pages
 @model Foundation.Cms.ViewModels.Categories.CategoryFoundationPageViewModel
 
 <div class="blog__thumbnail">
-    <div>
+    <div style="width:100%;">
         <picture>
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
                 <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+            }
+            else if (!ContentReference.IsNullOrEmpty(((LocationItemPage)Model.CurrentContent).Image))
+            {
+                <img class="img-fluid" src="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)" />
             }
             else
             {

@@ -1,12 +1,15 @@
 ﻿@using EPiServer
 @using EPiServer.Framework.Web.Resources
 @using EPiServer.Web.Mvc.Html
+@using EPiServer.ServiceLocation
+@using Foundation.Cms.Categories
 @using Foundation.Find.Cms.Locations
 
 @model LocationListViewModel
 
 @{
     ClientResources.RequireStyle(Href("/Assets/scss/vendors/bootstrap-slider/bootstrap-slider.css")).AtHeader();
+    var _contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
 }
 
 @section AdditionalScripts
@@ -93,13 +96,14 @@
                                             <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
                                         </div>
                                         <div class="col-xs-12">
-                                            @if (location.Tags != null)
+                                            @if (location.Categories != null)
                                             {
                                                 <i class="fa fa-tags"></i>
-                                                foreach (var tag in location.Tags.FilteredItems)
+                                                foreach (var tag in location.Categories)
                                                 {
-                                                    <span data-epi-block-id="@tag.ContentLink.ToString()">
-                                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-dark">@tag.GetContent().Name</span></a>
+                                                    var tagContent = _contentRepository.Get<StandardCategory>(tag);
+                                                    <span data-epi-block-id="@tag.ToString()">
+                                                        <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@tagContent.Name</span></a>
                                                     </span>
                                                 }
                                             }

@@ -4,6 +4,7 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
+using Foundation.Cms.Categories;
 using Foundation.Find.Cms.Locations.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,9 +51,14 @@ namespace Foundation.Features.Locations.LocationItemPage
                 .StaticallyCacheFor(new System.TimeSpan(0, 10, 0))
                 .GetContentResult();
 
+            if (currentPage.Categories != null)
+            {
+                model.Tags = currentPage.Categories.Select(x => _contentRepository.Get<StandardCategory>(x));
+            }
+
             var editingHints = ViewData.GetEditHints<LocationViewModel, Find.Cms.Models.Pages.LocationItemPage>();
             editingHints.AddFullRefreshFor(p => p.Image);
-            editingHints.AddFullRefreshFor(p => p.Tags);
+            editingHints.AddFullRefreshFor(p => p.Categories);
 
             return View(model);
         }
