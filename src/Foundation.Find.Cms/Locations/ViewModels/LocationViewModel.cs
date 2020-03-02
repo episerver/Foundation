@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using Foundation.Cms.Categories;
 using Foundation.Cms.ViewModels;
 using Foundation.Find.Cms.Models.Pages;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace Foundation.Find.Cms.Locations.ViewModels
         public LocationNavigationModel LocationNavigation { get; set; }
 
         public IEnumerable<LocationItemPage> SimilarLocations { get; set; }
+
+        public IEnumerable<StandardCategory> Tags { get; set; }
     }
 
     public class LocationNavigationModel
