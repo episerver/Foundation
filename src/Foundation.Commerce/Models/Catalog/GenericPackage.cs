@@ -3,12 +3,13 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Catalog
 {
     [CatalogContentType(DisplayName = "Generic Package", GUID = "7b18ab7a-6344-4879-928e-e1b129d7379c", Description = "")]
-    public class GenericPackage : PackageContent, IProductRecommendations
+    public class GenericPackage : PackageContent, IProductRecommendations, IFoundationContent
     {
         [Searchable]
         [CultureSpecific]
@@ -46,6 +47,18 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 35)]
         public virtual bool ShowRecommendations { get; set; }
+
+        #region Implement IFoundationContent
+
+        [CultureSpecific]
+        [Display(Name = "Hide site header", GroupName = CmsTabNames.Settings, Order = 100)]
+        public virtual bool HideSiteHeader { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 200)]
+        public virtual bool HideSiteFooter { get; set; }
+
+        #endregion
 
         public override void SetDefaultValues(ContentType contentType)
         {
