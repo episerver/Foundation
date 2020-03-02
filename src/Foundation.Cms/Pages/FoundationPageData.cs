@@ -12,7 +12,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    public abstract class FoundationPageData : PageData, ICategorizableContent
+    public abstract class FoundationPageData : PageData, ICategorizableContent, IFoundationContent
     {
         #region Page Header
 
@@ -151,7 +151,6 @@ namespace Foundation.Cms.Pages
         [CultureSpecific]
         [Display(Name = "Display hover effect", GroupName = CmsTabNames.Teaser, Order = 800)]
         public virtual bool ApplyHoverEffect { get; set; }
-
 
         [Ignore]
         public string AlignmentCssClass
