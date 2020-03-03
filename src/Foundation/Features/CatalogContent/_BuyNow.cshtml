@@ -1,26 +1,53 @@
-﻿@model KeyValuePair<string, int>
+﻿@model Tuple<string, int, bool>
 
 <div class="row product-detail__buy">
     <div class="col-3 col-md-5 col-lg-4">
         <div class="row">
             <div class="col-12">
-                <input type="number" value="@(Model.Value > 0 ? Model.Value : 1)" min="@Model.Value" id="qty" name="qty" class="textbox" onClick="this.select();">
+                <input type="number" value="@(Model.Item2 > 0 ? Model.Item2 : 1)" min="@Model.Item2" id="qty" name="qty" class="textbox" onClick="this.select();">
             </div>
             <div class="col-12" style="padding-left: 15px; padding-right: 15px">
-                <small class="sub-title">Min quantity: @Model.Value</small>
+                <small class="sub-title">Min quantity: @Model.Item2</small>
             </div>
         </div>
     </div>
     <div class="col-9 col-md-7 col-lg-6">
-        <button class="button-black--icon addToCart" data="@Model.Key" qty="1" store="delivery" selectedstore="" href="javascript:void(0);">
-            <i data-feather="shopping-cart"></i>
-            Add to cart
-        </button>
-        @if (Request.IsAuthenticated)
+        @if (Model.Item3)
         {
-            <button type="button" class="button-transparent-black btn-lower jsBuyNow" url="@Url.Action("BuyNow", "DefaultCart")" data="@Model.Key" qty="1" store="delivery" selectedstore="">
-                <span>Buy Now</span>
+            <button class="button-black--icon addToCart"
+                    data="@Model.Item1"
+                    qty="1"
+                    store="delivery"
+                    selectedstore=""
+                    href="javascript:void(0);">
+                <i data-feather="shopping-cart"></i>
+                Add to cart
             </button>
+            if (Request.IsAuthenticated)
+            {
+                <button type="button" class="button-transparent-black btn-lower jsBuyNow"
+                        url="@Url.Action("BuyNow", "DefaultCart")"
+                        data="@Model.Item1"
+                        qty="1"
+                        store="delivery"
+                        selectedstore="">
+                    <span>Buy Now</span>
+                </button>
+            }
         }
+        else
+        {
+            <button class="button-black--icon" href="javascript:void(0);" disabled>
+                <i data-feather="shopping-cart"></i>
+                Add to cart
+            </button>
+            if (Request.IsAuthenticated)
+            {
+                <button type="button" class="button-transparent-black btn-lower" disabled>
+                    <span>Buy Now</span>
+                </button>
+            }
+        }
+
     </div>
 </div>
