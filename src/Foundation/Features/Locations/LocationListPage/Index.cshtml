@@ -1,7 +1,6 @@
 ﻿@using EPiServer
 @using EPiServer.Framework.Web.Resources
 @using EPiServer.Web.Mvc.Html
-@using EPiServer.ServiceLocation
 @using Foundation.Cms.Categories
 @using Foundation.Find.Cms.Locations
 
@@ -9,7 +8,6 @@
 
 @{
     ClientResources.RequireStyle(Href("/Assets/scss/vendors/bootstrap-slider/bootstrap-slider.css")).AtHeader();
-    var _contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
 }
 
 @section AdditionalScripts
@@ -101,9 +99,9 @@
                                                 <i class="fa fa-tags"></i>
                                                 foreach (var tag in location.Categories)
                                                 {
-                                                    var tagContent = _contentRepository.Get<StandardCategory>(tag);
+                                                    var t = DataFactory.Instance.Get<StandardCategory>(tag);
                                                     <span data-epi-block-id="@tag.ToString()">
-                                                        <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@tagContent.Name</span></a>
+                                                        <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@t.Name</span></a>
                                                     </span>
                                                 }
                                             }
