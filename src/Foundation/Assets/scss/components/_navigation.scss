@@ -101,6 +101,7 @@
     position: absolute;
     background-color: white;
     z-index: 9;
+    transition: 0.2s 0.2s;
 
     .mega-menu {
         &--header__item {
