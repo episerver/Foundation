@@ -48,7 +48,7 @@
         .Form__CustomInput, .FormTextbox__Input, .FormRange__Input {
             padding: 0 10px;
             height: 40px;
-            font-size: 14px;
+            font-size: $text-font-size;
             font-weight: 400;
             border: 1px solid #ddd;
             width: 100% !important;
@@ -63,8 +63,8 @@
             display: inline-block;
             border-radius: 0;
             min-width: 100px;
-            font-size: 14px;
-            line-height: 14px;
+            font-size: $text-font-size;
+            line-height: $text-font-size;
             font-weight: 400;
             text-transform: uppercase;
             text-align: center;
@@ -90,8 +90,8 @@
             display: inline-block !important;
             border-radius: 0 !important;
             min-width: 100px !important;
-            font-size: 14px !important;
-            line-height: 14px;
+            font-size: $text-font-size !important;
+            line-height: $text-font-size;
             font-weight: 400;
             text-transform: uppercase;
             text-align: center !important;
@@ -116,8 +116,8 @@
             display: inline-block;
             border-radius: 0;
             min-width: 100px;
-            font-size: 14px;
-            line-height: 14px;
+            font-size: $text-font-size;
+            line-height: $text-font-size;
             font-weight: 400;
             text-transform: uppercase;
             text-align: center;

@@ -7,7 +7,6 @@ using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Markets;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.Order.Services;
 using Foundation.Commerce.Order.ViewModelFactories;

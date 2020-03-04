@@ -26,11 +26,6 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Video", Order = 20)]
         public virtual ContentReference MainBackgroundVideo { get; set; }
 
-        [CultureSpecific]
-        [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Name = "Block opacity (0 to 1)", Order = 25)]
-        public virtual double BlockOpacity { get; set; }
-
         [Display(Order = 30)]
         public virtual Url Link { get; set; }
 
@@ -42,7 +37,7 @@ namespace Foundation.Cms.Blocks
         {
             base.SetDefaultValues(contentType);
 
-            BlockOpacity = 0;
+            BlockOpacity = 1;
         }
     }
 
@@ -61,37 +56,37 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Text color", Description = "Sets text color of callout content", Order = 30)]
         public virtual string CalloutTextColor { get; set; }
 
+        [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
         [Display(Name = "Background color", Order = 40)]
         public virtual string BackgroundColor { get; set; }
 
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Name = "Background opacity (0 to 1)", Order = 50)]
-        public virtual double Opacity { get; set; }
+        [Display(Name = "Callout opacity (0 to 1)", Order = 50)]
+        public virtual double CalloutOpacity { get; set; }
 
-        [Display(Name = "Padding top", Order = 51)]
-        public virtual int PaddingTop { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(CalloutPositionSelectionFactory))]
+        [Display(Name = "Callout position", Order = 55)]
+        public virtual string CalloutPosition { get; set; }
 
-        [Display(Name = "Padding right", Order = 52)]
-        public virtual int PaddingRight { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
+        [Display(Name = "Padding", Order = 60)]
+        public virtual string Padding { get; set; }
 
-        [Display(Name = "Padding bottom", Order = 53)]
-        public virtual int PaddingBottom { get; set; }
-
-        [Display(Name = "Padding left", Order = 54)]
-        public virtual int PaddingLeft { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
+        [Display(Name = "Margin", Order = 65)]
+        public virtual string Margin { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
 
-            Opacity = 0.5;
-            BackgroundColor = "white";
-            PaddingTop = 15;
-            PaddingRight = 60;
-            PaddingBottom = 15;
-            PaddingLeft = 60;
+            Padding = "p-1";
+            Margin = "m-0";
+            BackgroundColor = "background-color: transparent;";
+            CalloutOpacity = 1;
+            CalloutPosition = "flex-middle";
+            CalloutContentAlignment = "left";
             CalloutTextColor = ColorThemes.None;
-            CalloutContentAlignment = "Left";
         }
     }
 }

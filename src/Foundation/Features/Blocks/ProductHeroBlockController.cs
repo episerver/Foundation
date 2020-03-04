@@ -29,16 +29,7 @@ namespace Foundation.Features.Blocks
         {
             var imageUrl = string.Empty;
             var imagePosition = string.Empty;
-            var blockPaddings = "padding: "
-                        + currentBlock.PaddingTop + "px "
-                        + currentBlock.PaddingRight + "px "
-                        + currentBlock.PaddingBottom + "px "
-                        + currentBlock.PaddingLeft + "px;"; ;
-            var callouPaddings = "padding: "
-                        + currentBlock.Callout.PaddingTop + "px "
-                        + currentBlock.Callout.PaddingRight + "px "
-                        + currentBlock.Callout.PaddingBottom + "px "
-                        + currentBlock.Callout.PaddingLeft + "px;";
+            
 
             if (currentBlock.Image.Product != null)
             {
@@ -58,7 +49,7 @@ namespace Foundation.Features.Blocks
             {
                 imagePosition = "justify-content: flex-end;";
             }
-            else if(currentBlock.Image.ImagePosition.Equals("ImagePaddings", StringComparison.OrdinalIgnoreCase))
+            else if (currentBlock.Image.ImagePosition.Equals("ImagePaddings", StringComparison.OrdinalIgnoreCase))
             {
                 imagePosition = "padding: "
                     + currentBlock.Image.PaddingTop + "px "
@@ -69,8 +60,6 @@ namespace Foundation.Features.Blocks
 
             var model = new ProductHeroBlockViewModel(currentBlock)
             {
-                BlockPaddings = blockPaddings,
-                CalloutPaddings = callouPaddings,
                 ImageUrl = imageUrl,
                 ImagePosition = imagePosition
             };

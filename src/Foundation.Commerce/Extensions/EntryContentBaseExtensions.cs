@@ -256,6 +256,14 @@ namespace Foundation.Commerce.Extensions
                 }
 
                 priceCollection = PriceService.Value.GetPrices(marketId, DateTime.UtcNow, catalogKeys, priceFilter);
+
+                // if the entry has no price without sale code
+                if (!priceCollection.Any())
+                {
+                    priceCollection = PriceService.Value.GetCatalogEntryPrices(catalogKeys)
+                       .Where(x => x.ValidFrom <= DateTime.Now && (!x.ValidUntil.HasValue || x.ValidUntil.Value >= DateTime.Now))
+                       .Where(x => x.MarketId == marketId);
+                }
             }
 
             var result = new ItemCollection<Price>();
@@ -411,7 +419,8 @@ namespace Foundation.Commerce.Extensions
                 NewArrival = entry.Property.Keys.Contains("NewArrival") && ((bool?)entry.Property["NewArrival"]?.Value ?? false),
                 ShowRecommendations = entryRecommendations != null ? entryRecommendations.ShowRecommendations : true,
                 EntryType = type,
-                ProductStatus = entry.Property.Keys.Contains("ProductStatus") ? entry.Property["ProductStatus"]?.Value?.ToString() ?? "Active" : "Active"
+                ProductStatus = entry.Property.Keys.Contains("ProductStatus") ? entry.Property["ProductStatus"]?.Value?.ToString() ?? "Active" : "Active",
+                Created = entry.Created
             };
         }
 

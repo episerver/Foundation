@@ -5,11 +5,9 @@ using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Personalization;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.Personalization;
 using Foundation.Find.Cms;
 using Foundation.Find.Cms.Locations;
 using Foundation.Find.Cms.Locations.ViewModels;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Locations.LocationListPage
@@ -17,18 +15,14 @@ namespace Foundation.Features.Locations.LocationListPage
     public class LocationListPageController : PageController<Find.Cms.Models.Pages.LocationListPage>
     {
         private readonly IContentLoader _contentLoader;
-        private readonly ICmsTrackingService _trackingService;
 
-        public LocationListPageController(IContentLoader contentLoader,
-            ICmsTrackingService trackingService)
+        public LocationListPageController(IContentLoader contentLoader)
         {
             _contentLoader = contentLoader;
-            _trackingService = trackingService;
         }
 
-        public async Task<ActionResult> Index(Find.Cms.Models.Pages.LocationListPage currentPage)
+        public ActionResult Index(Find.Cms.Models.Pages.LocationListPage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
             var query = SearchClient.Instance.Search<Find.Cms.Models.Pages.LocationItemPage>()
                 .PublishedInCurrentLanguage()
                 .FilterOnReadAccess();

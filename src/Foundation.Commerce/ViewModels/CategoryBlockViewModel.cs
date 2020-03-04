@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Foundation.Cms.Blocks;
-using Foundation.Cms.ViewModels;
+﻿using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Models.Blocks;
+using System.Collections.Generic;
 
 namespace Foundation.Commerce.ViewModels
 {

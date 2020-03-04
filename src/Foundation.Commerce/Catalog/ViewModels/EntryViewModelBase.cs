@@ -38,5 +38,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
         public List<MediaData> Documents { get; set; }
         public List<KeyValuePair<string, string>> BreadCrumb { get; set; }
         public int MinQuantity { get; set; }
+        public bool HasSaleCode { get; set; }
     }
 }

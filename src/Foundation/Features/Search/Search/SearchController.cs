@@ -106,7 +106,8 @@ namespace Foundation.Features.Search
                     Q = filterOptions.Q,
                     PageSize = 5,
                     Page = filterOptions.SearchContent ? filterOptions.Page : 1,
-                    SectionFilter = filterOptions.SectionFilter
+                    SectionFilter = filterOptions.SectionFilter,
+                    IncludeImagesContent = startPage.IncludeImagesInContentsSearchResults
                 });
             }
 
@@ -171,6 +172,7 @@ namespace Foundation.Features.Search
                     Q = search,
                     PageSize = 5,
                     Page = 1,
+                    IncludeImagesContent = startPage.IncludeImagesInContentsSearchResults
                 });
                 model.ContentSearchResult = contentResult;
                 contentCount = contentResult?.Hits.Count() ?? 0;

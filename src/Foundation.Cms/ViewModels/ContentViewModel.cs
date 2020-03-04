@@ -38,7 +38,7 @@ namespace Foundation.Cms.ViewModels
                     {
                         currentStartPageLink = CurrentContent.GetRelativeStartPage();
                     }
-                    
+
                     if (PageEditing.PageIsInEditMode)
                     {
                         var startPageRef = _contentVersion.Service.LoadCommonDraft(currentStartPageLink, ContentLanguage.PreferredCulture.Name);

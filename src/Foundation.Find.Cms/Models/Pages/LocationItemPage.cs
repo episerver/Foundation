@@ -4,6 +4,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Find;
 using EPiServer.Web;
+using Foundation.Cms.Categories;
 using Foundation.Cms.Pages;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,10 +28,6 @@ namespace Foundation.Find.Cms.Models.Pages
         [UIHint(UIHint.Image)]
         [Display(GroupName = SystemTabNames.Content, Order = 110)]
         public virtual ContentReference Image { get; set; }
-
-        [AllowedTypes(typeof(TagPage))]
-        [Display(GroupName = SystemTabNames.Content, Order = 120)]
-        public virtual ContentArea Tags { get; set; }
 
         [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 220)]
         public virtual ContentArea LeftContentArea { get; set; }
@@ -84,7 +81,7 @@ namespace Foundation.Find.Cms.Models.Pages
         public List<string> TagString()
         {
             var repo = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<IContentRepository>();
-            return Tags?.FilteredItems.Select(cai => repo.Get<TagPage>(cai.ContentLink).Name).ToList();
+            return Categories?.Select(category => repo.Get<StandardCategory>(category).Name).ToList();
         }
     }
 }

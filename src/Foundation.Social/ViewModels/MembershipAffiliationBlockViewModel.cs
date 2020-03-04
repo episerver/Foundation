@@ -12,6 +12,7 @@ namespace Foundation.Social.ViewModels
             ShowHeading = currentBlock.ShowHeading;
             Messages = new List<MessageViewModel>();
             Groups = new List<Community>();
+            CurrentBlock = currentBlock;
         }
 
         public string Heading { get; set; }
@@ -21,5 +22,7 @@ namespace Foundation.Social.ViewModels
         public List<Community> Groups { get; set; }
 
         public List<MessageViewModel> Messages { get; set; }
+
+        public MembershipAffiliationBlock CurrentBlock { get; set; }
     }
 }

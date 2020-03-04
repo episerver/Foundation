@@ -13,15 +13,15 @@
     <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.1" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.14.1" />
-    <PackageReference Include="EPiServer.CMS.TinyMce" Version="2.10.0" />
-    <PackageReference Include="EPiServer.CMS.UI" Version="11.23.3" />
-    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.23.3" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.3" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.9.0" />
+    <PackageReference Include="EPiServer.CMS.TinyMce" Version="2.10.1" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="11.23.5" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.23.5" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.5" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.10.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.14.1" />
     <PackageReference Include="EPiServer.PdfPreview" Version="1.0.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
-    <PackageReference Include="Geta.EpiCategories" Version="1.2.9" />
+    <PackageReference Include="Geta.EpiCategories" Version="1.2.10" />
     <PackageReference Include="Geta.SEO.Sitemaps" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.6" />

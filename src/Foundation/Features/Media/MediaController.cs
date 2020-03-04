@@ -1,6 +1,4 @@
 ﻿using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
-using EPiServer.Framework.Web;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Media;
 using System.Web.Mvc;

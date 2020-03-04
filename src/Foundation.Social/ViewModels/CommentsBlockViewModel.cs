@@ -17,6 +17,7 @@ namespace Foundation.Social.ViewModels
             Comments = new List<PageComment>();
             SendActivity = block.SendActivity;
             CurrentPageLink = pageReference;
+            CurrentBlock = block;
         }
 
         public PageReference CurrentPageLink { get; set; }
@@ -36,5 +37,7 @@ namespace Foundation.Social.ViewModels
         public List<MessageViewModel> Messages { get; set; }
 
         public bool SendActivity { get; }
+
+        public CommentsBlock CurrentBlock { get; set; }
     }
 }

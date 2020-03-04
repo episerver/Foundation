@@ -1,13 +1,11 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.Globalization;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Blocks;
 using Foundation.Cms.Media;
 using Foundation.Cms.ViewModels;
 using Foundation.Cms.ViewModels.Blocks;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks

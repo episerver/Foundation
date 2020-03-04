@@ -19,6 +19,10 @@
                 {
                     <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
                 }
+                @if (Model.HasSaleCode)
+                {
+                    @Html.Partial("_WarningHasSaleCode", null)
+                }
 
             </div>
         </div>

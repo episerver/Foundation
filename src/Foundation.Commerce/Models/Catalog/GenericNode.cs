@@ -4,13 +4,14 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms;
 using Foundation.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Catalog
 {
     [CatalogContentType(DisplayName = "Generic Node", GUID = "4ac27ad4-bf60-4ea0-9a77-28a89d38d3fd", Description = "")]
-    public class GenericNode : NodeContent, IProductRecommendations
+    public class GenericNode : NodeContent, IProductRecommendations, IFoundationContent
     {
         [CultureSpecific]
         [Display(Name = "Long name", GroupName = SystemTabNames.Content, Order = 5)]
@@ -46,6 +47,18 @@ namespace Foundation.Commerce.Models.Catalog
         [Display(Name = "Default template", Order = 40)]
         [SelectOne(SelectionFactoryType = typeof(GenericNodeSelectionFactory))]
         public virtual string DefaultTemplate { get; set; }
+
+        #region Implement IFoundationContent
+
+        [CultureSpecific]
+        [Display(Name = "Hide site header", GroupName = CmsTabNames.Settings, Order = 100)]
+        public virtual bool HideSiteHeader { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 200)]
+        public virtual bool HideSiteFooter { get; set; }
+
+        #endregion
 
         public override void SetDefaultValues(ContentType contentType)
         {

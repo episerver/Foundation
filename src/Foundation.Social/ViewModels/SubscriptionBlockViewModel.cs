@@ -13,6 +13,7 @@ namespace Foundation.Social.ViewModels
             ShowSubscriptionForm = false;
             UserSubscribedToPage = false;
             CurrentLink = currentLink;
+            CurrentBlock = block;
         }
 
         public bool ShowSubscriptionForm { get; set; }
@@ -26,5 +27,7 @@ namespace Foundation.Social.ViewModels
         public PageReference CurrentLink { get; set; }
 
         public List<MessageViewModel> Messages { get; set; }
+
+        public SubscriptionBlock CurrentBlock { get; set; }
     }
 }

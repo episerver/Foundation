@@ -1,6 +1,7 @@
-﻿@using Foundation.Cms.SchemaMarkup;
-
+@using Foundation.Cms.SchemaMarkup;
+@using Foundation.Cms
 @model IContentViewModel<IContent>
+
 @{
     Layout = "~/Features/Shared/Foundation/_MasterLayout.cshtml";
 }
@@ -19,16 +20,23 @@
 <div class="loading-box" style="display: none">
     <div class="loader"></div>
 </div>
+
 @Html.RenderEPiServerQuickNavigator()
-@if (!Model.StartPage.HideSiteHeader)
+
+@{
+    var foundationPageData = Model.CurrentContent as IFoundationContent;
+}
+
+@if (!foundationPageData?.HideSiteHeader ?? false)
 {
     { Html.RenderAction("GetHeader", "Header", new { homePage = Model.StartPage }); }
 }
+
 <div class="container">
     @RenderBody()
 </div>
 
-@if (!Model.StartPage.HideSiteFooter)
+@if (!foundationPageData?.HideSiteFooter ?? false)
 {
     @Html.Partial("_Footer", Model)
 }
@@ -46,6 +54,7 @@
 <script src="~/Assets/js/vendors/feather-icons/feather.min.js" type="text/javascript"></script>
 <script src="~/Assets/js/vendors/axios/axios.min.js" type="text/javascript"></script>
 <script src="~/Assets/js/main.min.js"></script>
+
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")
 @Model.SchemaMarkup

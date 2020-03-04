@@ -217,11 +217,12 @@ namespace Foundation.Features.MyOrganization.Users
                 _signInManager.SignIn(user, false, false);
                 success = true;
             }
-            
+
             if (success)
             {
                 return Redirect("/");
-            } else
+            }
+            else
             {
                 TempData["ImpersonateFail"] = false;
                 return RedirectToAction("Index");

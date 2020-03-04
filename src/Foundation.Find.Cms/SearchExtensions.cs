@@ -5,6 +5,7 @@ using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Helpers;
 using EPiServer.ServiceLocation;
+using Foundation.Cms.Categories;
 using Foundation.Cms.Pages;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Models.Pages;
@@ -349,7 +350,7 @@ namespace Foundation.Find.Cms
 
         public static List<string> TagString(this LocationItemPage locationList)
         {
-            return locationList.Tags?.FilteredItems.Select(cai => _contentRepository.Value.Get<TagPage>(cai.ContentLink).Name).ToList();
+            return locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
         }
 
         private static Action<RangeFacetFilterRequest> NumericRangeFacetRequestAction(IClient searchClient,

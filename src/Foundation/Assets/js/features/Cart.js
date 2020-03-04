@@ -39,16 +39,13 @@
                         else if (typeCart == "shared-cart") cartHelper.SetSharedCartReload(result.data.CountItems);
                         else cartHelper.SetWishlistReload(result.data.CountItems);
 
-                    } else { // if large cart, large shared cart
-
-                        if (typeCart == "large-cart") {
-                            elementClick.parents('.product-tile-list__item').first().remove();
-                            inst.changeInfoCart(result);
-                        }
-
+                    } else { // if large cart, large shared 
                         if (typeCart == "shared-cart-large") {
                             elementClick.parents('tr').first().remove();
                             cartHelper.SetSharedCartReload(result.data.CountItems);
+                        } else {
+                            elementClick.parents('.product-tile-list__item').first().remove();
+                            inst.changeInfoCart(result);
                         }
                     }
                 }
@@ -262,7 +259,7 @@
                     else {
                         if (confirm("Are you sure delete this item?")) {
                             var elementDelete = $(e).parents('.product-tile-list__item').first().find('.jsRemoveCartItem').first();
-                            inst.removeItem('/defaultcart/RemoveCartItem', elementDelete, "#cartItemsId");
+                            inst.removeItem('/defaultcart/RemoveCartItem', elementDelete, "large-cart");
                         }
                     }
                 }
