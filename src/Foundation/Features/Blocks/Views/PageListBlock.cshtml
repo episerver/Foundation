@@ -2,7 +2,7 @@
 
 @Html.FullRefreshPropertiesMetaData(new[] { "IncludePublishDate", "IncludeTeaserText", "Count", "SortOrder", "Root", "PageTypeFilter", "CategoryFilter", "Recursive" })
 
-<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="col-12">
         @if (!string.IsNullOrEmpty(Model.Heading))
         {

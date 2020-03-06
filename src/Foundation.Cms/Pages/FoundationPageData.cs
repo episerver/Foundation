@@ -103,6 +103,10 @@ namespace Foundation.Cms.Pages
 
         #region Teaser
 
+        [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
+        [Display(Name = "Teaser ratio (width-height)", GroupName = CmsTabNames.Teaser, Order = 50)]
+        public virtual string TeaserRatio { get; set; }
+
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", GroupName = CmsTabNames.Teaser, Order = 100)]
         public virtual ContentReference PageImage { get; set; }
@@ -231,6 +235,7 @@ namespace Foundation.Cms.Pages
 
             TeaserTextAlignment = "Left";
             TeaserColorTheme = "Dark";
+            TeaserRatio = "10-5";
         }
     }
 }

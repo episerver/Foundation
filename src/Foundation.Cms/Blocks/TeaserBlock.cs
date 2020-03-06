@@ -77,7 +77,7 @@ namespace Foundation.Cms.Blocks
             ImageSize = 100;
             ElementsOrder = "ImageHeadingDescription";
             ElementsAlignment = "text-align: center";
-            BackgroundColor = "background-color: transparent";
+            BackgroundColor = "transparent";
             TextColor = "color: black";
         }
     }

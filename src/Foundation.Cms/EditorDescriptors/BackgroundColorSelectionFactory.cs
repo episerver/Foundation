@@ -24,12 +24,12 @@ namespace Foundation.Cms.EditorDescriptors
         {
             return new ISelectItem[]
             {
-                new SelectItem { Text =  _localizationService.GetString("None", "None"), Value = "background-color: transparent;" },
-                new SelectItem { Text =  _localizationService.GetString("Black", "Black"), Value = "background-color: black;" },
-                new SelectItem { Text =  _localizationService.GetString("Grey", "Grey"), Value = "background-color: grey;" },
-                new SelectItem { Text =  _localizationService.GetString("Beige", "Beige"), Value = "background-color: beige;" },
-                new SelectItem { Text =  _localizationService.GetString("Light Blue", "Light Blue"), Value = "background-color: #0081b2;" },
-                new SelectItem { Text =  _localizationService.GetString("Yellow", "Yellow"), Value = "background-color: #fec84d;" }
+                new SelectItem { Text =  _localizationService.GetString("None", "None"), Value = "transparent" },
+                new SelectItem { Text =  _localizationService.GetString("Black", "Black"), Value = "black" },
+                new SelectItem { Text =  _localizationService.GetString("Grey", "Grey"), Value = "grey" },
+                new SelectItem { Text =  _localizationService.GetString("Beige", "Beige"), Value = "beige" },
+                new SelectItem { Text =  _localizationService.GetString("Light Blue", "Light Blue"), Value = "#0081b2" },
+                new SelectItem { Text =  _localizationService.GetString("Yellow", "Yellow"), Value = "#fec84d" }
             };
         }
     }
