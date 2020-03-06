@@ -130,7 +130,7 @@
                             var sizes = new List<KeyValuePair<string, string>>();
                             foreach (var c in Model.Sizes)
                             {
-                                sizes.Add(new KeyValuePair<string, string>(c.Text, c.Value));
+                                sizes.Add(new KeyValuePair<string, string>(c.Text + (Model.IsAvailable ? "" : " (out of stock)"), c.Value));
                             }
                         }
                         @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
