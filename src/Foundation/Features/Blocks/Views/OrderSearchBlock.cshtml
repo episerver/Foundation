@@ -1,5 +1,5 @@
 ﻿@model Foundation.Commerce.Order.ViewModels.OrderSearchBlockViewModel
-<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="row">
         <div class="col-12">
             <h4 @Html.EditAttributes(x => ((IContent)x.CurrentBlock).Name)>@(((IContent)Model.CurrentBlock).Name)</h4>

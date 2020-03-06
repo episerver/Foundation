@@ -1,6 +1,6 @@
 ﻿@model NavigationBlockViewModel
 
-    <div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
         <div class="col-12">
             <div class="profile-sidebar">
                 <div class="profile-sidebar__title" @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.Heading</div>

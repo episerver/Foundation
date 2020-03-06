@@ -30,7 +30,7 @@
     }
 }
 
-    <div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
         <div style="@backgroundImage; @backgroundSetting; color: @Model.CurrentBlock.TextColor;">
             <h2>@Html.PropertyFor(m => m.CurrentBlock.Title)</h2>
             <p>@Html.PropertyFor(m => m.CurrentBlock.Subtext)</p>
