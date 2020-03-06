@@ -16,6 +16,10 @@ namespace Foundation.Cms.Blocks
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-22.png")]
     public class HeroBlock : FoundationBlockData
     {
+        [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
+        [Display(Name = "Block ratio (width-height)", Order = 5)]
+        public virtual string BlockRatio { get; set; }
+
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", Order = 10)]
@@ -38,6 +42,7 @@ namespace Foundation.Cms.Blocks
             base.SetDefaultValues(contentType);
 
             BlockOpacity = 1;
+            BlockRatio = "10-5";
         }
     }
 
@@ -82,7 +87,7 @@ namespace Foundation.Cms.Blocks
 
             Padding = "p-1";
             Margin = "m-0";
-            BackgroundColor = "background-color: transparent;";
+            BackgroundColor = "transparent";
             CalloutOpacity = 1;
             CalloutPosition = "flex-middle";
             CalloutContentAlignment = "left";

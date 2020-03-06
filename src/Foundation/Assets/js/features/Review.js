@@ -3,11 +3,11 @@
         $('.rating.voting').each(function (i, e) {
             $(e).find('svg').each(function (j, s) {
                 $(s).hover(function () {
-                    for (var index = 0; index <= j; index++) {
+                    for (let index = 0; index <= j; index++) {
                         $($(e).find('svg')[index]).css('fill', 'black');
                     }
 
-                    for (var index = $(e).find('svg').length - 1; index > j; index--) {
+                    for (let index = $(e).find('svg').length - 1; index > j; index--) {
                         $($(e).find('svg')[index]).css('fill', 'none');
                     }
                 });

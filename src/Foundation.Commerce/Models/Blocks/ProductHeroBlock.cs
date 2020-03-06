@@ -63,7 +63,7 @@ namespace Foundation.Commerce.Blocks
 
             Padding = "p-1";
             Margin = "m-1";
-            BackgroundColor = "background-color: transparent;";
+            BackgroundColor = "transparent";
         }
     }
 

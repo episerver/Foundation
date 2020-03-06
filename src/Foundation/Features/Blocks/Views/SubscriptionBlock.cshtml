@@ -5,7 +5,7 @@
 @using EPiServer.Web.Mvc.Html
 @model SubscriptionBlockViewModel
 
-<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="row no-gutters @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row no-gutters @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     @if (Model.ShowSubscriptionForm)
     {
         <div>
