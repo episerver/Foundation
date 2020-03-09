@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Data;
 using EPiServer.Editor;
 using EPiServer.Filters;
 using EPiServer.Framework.Cache;
@@ -16,6 +17,7 @@ using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Markets.ViewModels;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.Order.Services;
+using Foundation.Commerce.Order.ViewModels;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Markets;
 using System;
@@ -30,7 +32,6 @@ namespace Foundation.Commerce.ViewModels.Header
         private const string FlagLocation = "/Assets/icons/flags/";
 
         private readonly LocalizationService _localizationService;
-        private readonly IAddressBookService _addressBookService;
         private readonly ICustomerService _customerService;
         private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly IUrlResolver _urlResolver;
@@ -40,9 +41,9 @@ namespace Foundation.Commerce.ViewModels.Header
         private readonly ICartService _cartService;
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
         private readonly IContentLoader _contentLoader;
+        private readonly IDatabaseMode _databaseMode;
 
         public CommerceHeaderViewModelFactory(LocalizationService localizationService,
-            IAddressBookService addressBookService,
             ICustomerService customerService,
             CartViewModelFactory cartViewModelFactory,
             IUrlResolver urlResolver,
@@ -51,10 +52,10 @@ namespace Foundation.Commerce.ViewModels.Header
             IBookmarksService bookmarksService,
             ICartService cartService,
             IContentCacheKeyCreator contentCacheKeyCreator,
-            IContentLoader contentLoader)
+            IContentLoader contentLoader, 
+            IDatabaseMode databaseMode)
         {
             _localizationService = localizationService;
-            _addressBookService = addressBookService;
             _customerService = customerService;
             _cartViewModelFactory = cartViewModelFactory;
             _urlResolver = urlResolver;
@@ -64,6 +65,7 @@ namespace Foundation.Commerce.ViewModels.Header
             _cartService = cartService;
             _contentCacheKeyCreator = contentCacheKeyCreator;
             _contentLoader = contentLoader;
+            _databaseMode = databaseMode;
         }
 
         public virtual THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent content, CmsHomePage home)
@@ -279,6 +281,14 @@ namespace Foundation.Commerce.ViewModels.Header
 
         protected virtual void AddCommerceComponents(Customer.FoundationContact contact, CommerceHeaderViewModel viewModel)
         {
+            if (_databaseMode.DatabaseMode == DatabaseMode.ReadOnly)
+            {
+                viewModel.MiniCart = new MiniCartViewModel();
+                viewModel.WishListMiniCart = new MiniWishlistViewModel();
+                viewModel.SharedMiniCart = new MiniCartViewModel();
+                return;
+            }
+
             viewModel.MiniCart = _cartViewModelFactory.CreateMiniCartViewModel(
                 _cartService.LoadCart(_cartService.DefaultCartName, true)?.Cart);
 

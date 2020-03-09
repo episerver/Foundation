@@ -46,14 +46,17 @@
                 }
             </div>
             <div class="col-md-6 col-lg-4">
-                @Html.PropertyFor(x => x.StartPage.ContentArea)
+                @if (!Html.IsReadOnlyMode())
+                {
+                    @Html.PropertyFor(x => x.StartPage.ContentArea)
+                }
             </div>
         </div>
-
         <div class="row">
             <p class="footer__subtext col-12" @Html.EditAttributes(x => x.StartPage.FooterCopyrightText)>
                 © @DateTime.Now.Year.ToString() @Html.DisplayFor(x => x.StartPage.FooterCopyrightText)
             </p>
         </div>
+
     </div>
 </footer>

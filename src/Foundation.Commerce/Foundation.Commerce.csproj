@@ -11,20 +11,20 @@
 		<WarningsAsErrors />
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.1" />
-		<PackageReference Include="EPiServer.CMS.Core" Version="11.14.1" />
-		<PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.5" />
-		<PackageReference Include="EPiServer.Commerce.Core" Version="13.15.0" />
-		<PackageReference Include="EPiServer.Framework" Version="11.14.1" />
-		<PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
-		<PackageReference Include="FileHelpers" Version="3.4.1" />
-		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-		<PackageReference Include="Microsoft.Owin.Security" Version="4.1.0" />
-		<PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.1.0" />
-		<PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.1.0" />
-		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.2" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.14.2" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.6" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.16.0" />
+    <PackageReference Include="EPiServer.Framework" Version="11.14.2" />
+    <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
+    <PackageReference Include="FileHelpers" Version="3.4.1" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.1.0" />
+    <PackageReference Include="Powell.CouponCode" Version="1.0.3" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" />
