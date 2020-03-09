@@ -61,7 +61,7 @@
                         {
                             <li class="dropdown__item">
                                 <label class="checkbox  jsSelectColorSize" type="size">
-                                    @size.Value
+                                    @size.Value @(size.Disabled ? " (out of stock)" : "")
                                     <input type="radio" name="size" value="@size.Value" @(Model.Size == size.Value ? "checked=checked" : "") />
                                     <span class="radio"></span>
                                 </label>
@@ -77,10 +77,19 @@
         {
             <div class="row">
                 <div class="col">
-                    <button class="button-black--icon addToCart" data="@Model.Variant.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Variant.Code" qty="1" store="delivery" selectedStore=""
+                                style="margin-right: 10px;"><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" style="margin-right: 10px;" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <button class="button-transparent-black--icon addToWishlist" style="margin-left: 10px;" data="@Model.Variant.Code"><i data-feather="heart"></i> Add to Wishlist</button>
+                        <button class="button-transparent-black--icon addToWishlist" data="@Model.Variant.Code"><i data-feather="heart"></i> Add to Wishlist</button>
                     }
                 </div>
             </div>
@@ -89,7 +98,15 @@
         {
             <div class="row">
                 <div class="col-12">
-                    <button class="button-black--icon addToCart" data="@Model.Variant.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Variant.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <button class="button-transparent-black--icon addToWishlist" data="@Model.Variant.Code"><i data-feather="heart"></i> Add to Wishlist</button>

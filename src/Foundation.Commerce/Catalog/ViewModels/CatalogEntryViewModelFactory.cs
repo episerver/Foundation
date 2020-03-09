@@ -80,10 +80,12 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : ProductViewModelBase<TProduct, TVariant>, new()
         {
+            var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyservice.GetCurrentCurrency();
             var variants = GetVariants<TVariant, TProduct>(currentContent)
                 .Where(v => v.Prices().Any(x => x.MarketId == _currentMarket.GetCurrentMarket().MarketId))
                 .ToList();
-
+            var variantsState = GetVarantsState(variants, market);
             if (!TryGetVariant(variants, variationCode, out var variant))
             {
                 return new TViewModel
@@ -107,8 +109,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
             }
 
-            var market = _currentMarket.GetCurrentMarket();
-            var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, currency);
             var subscriptionPrice = PriceCalculationService.GetSubscriptionPrice(variant.Code, market.MarketId, currency);
             var discountedPrice = GetDiscountPrice(defaultPrice, market, currency);
@@ -145,7 +145,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 {
                     Selected = false,
                     Text = x.Size,
-                    Value = x.Size
+                    Value = x.Size,
+                    Disabled = !variantsState.FirstOrDefault(v => v.Key == x.Code).Value
                 }).ToList();
             viewModel.Color = baseVariant?.Color;
             viewModel.Size = baseVariant?.Size;
@@ -448,6 +449,40 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 (string.IsNullOrEmpty(size) || x.Size.Equals(size, StringComparison.OrdinalIgnoreCase)));
 
             return variant != null;
+        }
+
+        /// <summary>
+        /// Get variants state of the product (is available or not)
+        /// </summary>
+        /// <typeparam name="TVariant">inherited VariationContent</typeparam>
+        /// <param name="variants">List variants of the product</param>
+        /// <param name="market"></param>
+        /// <returns>Dictionary with Key is the Variant Code and Value is IsAvailable or not</returns>
+        private Dictionary<string, bool> GetVarantsState<TVariant>(List<TVariant> variants, IMarket market) where TVariant : VariationContent
+        {
+            var results = new Dictionary<string, bool>();
+            foreach(var v in variants)
+            {
+                var isInstock = true;
+                var price = PriceCalculationService.GetSalePrice(v.Code, market.MarketId, market.DefaultCurrency);
+                if (price != null)
+                {
+                    if (v.TrackInventory)
+                    {
+                        var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+                        var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
+                        var inventory = new Inventory(inventoryRecord);
+                        isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : true;
+                    }
+                } else
+                {
+                    isInstock = false;
+                }
+
+                results.Add(v.Code, isInstock);
+            }
+            
+            return results;
         }
     }
 }

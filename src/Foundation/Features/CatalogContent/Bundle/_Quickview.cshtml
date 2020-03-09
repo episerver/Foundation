@@ -32,7 +32,15 @@
         {
             <div class="row">
                 <div class="col-6">
-                    <button class="button-black--icon addToCart" data="@Model.Bundle.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Bundle.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    
                 </div>
 
                 @if (User.Identity.IsAuthenticated)
@@ -47,7 +55,15 @@
         {
             <div class="row">
                 <div class="col-12">
-                    <button class="button-black--icon addToCart" data="@Model.Bundle.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Bundle.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <button class="button-transparent-black--icon addToWishlist" data="@Model.Bundle.Code"><i data-feather="heart"></i> Add to Wishlist</button>
