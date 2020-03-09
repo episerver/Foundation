@@ -3,11 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
+	  <CodeAnalysisRuleSet>..\..\default.ruleset</CodeAnalysisRuleSet>
+	  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +22,10 @@
     <PackageReference Include="Powell.CouponCode" Version="1.0.3" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" PrivateAssets="all" />
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\Foundation.Cms\Foundation.Cms.csproj" />
   </ItemGroup>
