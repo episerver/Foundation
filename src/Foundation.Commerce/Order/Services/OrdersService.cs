@@ -123,10 +123,16 @@ namespace Foundation.Commerce.Order.Services
         public bool ApproveOrder(int orderGroupId)
         {
             var purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderGroupId);
-            if (purchaseOrder == null) return false;
+            if (purchaseOrder == null)
+            {
+                return false;
+            }
 
             var budgetPayment = GetOrderBudgetPayment(purchaseOrder) as Payment;
-            if (budgetPayment == null) return false;
+            if (budgetPayment == null)
+            {
+                return false;
+            }
 
             try
             {

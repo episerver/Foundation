@@ -70,7 +70,6 @@ namespace Foundation.Commerce.Order.Payments
 
         public GenericCreditCardPaymentOption()
             : this(LocalizationService.Current, ServiceLocator.Current.GetInstance<IOrderGroupFactory>(), ServiceLocator.Current.GetInstance<ICurrentMarket>(), ServiceLocator.Current.GetInstance<LanguageService>(), ServiceLocator.Current.GetInstance<IPaymentService>(), ServiceLocator.Current.GetInstance<ICreditCardService>())
-
         {
         }
 

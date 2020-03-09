@@ -382,6 +382,5 @@ namespace Foundation.Commerce.ViewModels.Header
             return marketId == new MarketId("US") ? $"{FlagLocation}us.svg" : "";
         }
 
-
     }
 }

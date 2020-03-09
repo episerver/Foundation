@@ -20,7 +20,6 @@ namespace Foundation.Commerce.Customer.Services
         private readonly IContentRepository _contentRepository;
         private readonly IPermanentLinkMapper _permanentLinkMapper;
 
-
         public BookmarksService(IContentLoader contentLoader,
             IUrlResolver urlResolver,
             ReferenceConverter referenceConverter,

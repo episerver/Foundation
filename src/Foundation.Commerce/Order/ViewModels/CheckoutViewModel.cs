@@ -90,7 +90,6 @@ namespace Foundation.Commerce.Order.ViewModels
         public PaymentPlanSetting PaymentPlanSetting { get; set; }
     }
 
-
     public class PaymentPlanSetting
     {
         public PaymentPlanCycle CycleMode

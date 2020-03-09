@@ -105,7 +105,11 @@ namespace Foundation.Commerce.Customer.Services
         public virtual bool CanSeeOrganizationNav()
         {
             var contact = GetCurrentContact();
-            if (contact == null) return false;
+            if (contact == null)
+            {
+                return false;
+            }
+
             var currentRole = contact.B2BUserRole;
             return currentRole == B2BUserRoles.Admin || currentRole == B2BUserRoles.Approver;
         }

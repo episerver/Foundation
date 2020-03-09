@@ -303,8 +303,6 @@ namespace Foundation.Commerce.Order.Services
 
         }
 
-
-
         private decimal GetLineItemsTotalQuantity(ICart cart)
         {
             if (cart != null)
@@ -315,7 +313,9 @@ namespace Foundation.Commerce.Order.Services
                 return cartItems.Sum(x => x.Quantity);
             }
             else
+            {
                 return 0;
+            }
         }
 
         private string GetReferrerUrl()

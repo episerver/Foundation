@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Foundation.Commerce.Customer.Services
 {
     /// <summary>
@@ -44,7 +43,9 @@ namespace Foundation.Commerce.Customer.Services
 
             //AddNew
             if (string.IsNullOrEmpty(creditCardId))
+            {
                 return true;
+            }
 
             //Delete, Edit
             var currentCreditCard = GetCreditCard(creditCardId);
@@ -102,7 +103,6 @@ namespace Foundation.Commerce.Customer.Services
 
         }
 
-
         /// <summary>
         /// Check credit card is valid to use
         /// </summary>
@@ -111,7 +111,9 @@ namespace Foundation.Commerce.Customer.Services
         public bool IsReadyToUse(string creditCardId)
         {
             if (string.IsNullOrEmpty(creditCardId))
+            {
                 return false;
+            }
 
             var curCreditCard = GetCreditCard(creditCardId);
             if (curCreditCard == null)
@@ -221,12 +223,10 @@ namespace Foundation.Commerce.Customer.Services
             return creditCards;
         }
 
-
         /// <summary>
         /// Get all credit card of current organization and its sub organization
         /// </summary>
         /// <param name="organization">Organization that need to get credit card from</param>
-        /// <returns></returns>
         private void GetCreditCardOrganization(FoundationOrganization organization, bool recursive, List<CreditCardModel> list)
         {
             if (organization != null)
@@ -317,7 +317,10 @@ namespace Foundation.Commerce.Customer.Services
         /// <returns></returns>
         public CreditCard GetCreditCard(string creditCardId)
         {
-            if (string.IsNullOrEmpty(creditCardId)) return null;
+            if (string.IsNullOrEmpty(creditCardId))
+            {
+                return null;
+            }
 
             return Enumerable.OfType<CreditCard>(BusinessManager.List(
                 CreditCardEntity.ClassName, new FilterElement[1]

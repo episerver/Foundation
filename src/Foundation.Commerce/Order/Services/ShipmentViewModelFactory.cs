@@ -63,7 +63,6 @@ namespace Foundation.Commerce.Order.Services
                     ShippingMethods = CreateShippingMethodViewModels(cart.MarketId, cart.Currency, shipment)
                 };
 
-
                 var currentShippingMethod = shipmentModel.ShippingMethods.FirstOrDefault();
                 if (shipment.ShippingMethodId != Guid.Empty)
                 {

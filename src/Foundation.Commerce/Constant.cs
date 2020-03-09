@@ -15,7 +15,6 @@ namespace Foundation.Commerce
             public const string Locations = "Locations";
         }
 
-
         public static class Classes
         {
             public const string Budget = "Budget";

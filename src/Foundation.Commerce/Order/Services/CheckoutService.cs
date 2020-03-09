@@ -41,7 +41,6 @@ namespace Foundation.Commerce.Order.Services
         private readonly ILogger _log = LogManager.GetLogger(typeof(CheckoutService));
         private readonly ILoyaltyService _loyaltyService;
 
-
         public AuthenticatedPurchaseValidation AuthenticatedPurchaseValidation { get; private set; }
         public AnonymousPurchaseValidation AnonymousPurchaseValidation { get; private set; }
         public CheckoutAddressHandling CheckoutAddressHandling { get; private set; }
@@ -384,7 +383,6 @@ namespace Foundation.Commerce.Order.Services
             cart.Notes.Add(note);
         }
         #endregion
-
 
     }
 }

@@ -396,7 +396,6 @@ namespace Foundation.Commerce.Extensions
                 entryUrl = UrlResolver.Value.GetUrl(product.ContentLink) + "?variationCode=" + variantEntry.Code;
             }
 
-
             return new ProductTileViewModel
             {
                 ProductId = product.ContentLink.ID,

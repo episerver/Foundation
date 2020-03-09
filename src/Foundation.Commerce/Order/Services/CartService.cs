@@ -274,7 +274,9 @@ namespace Foundation.Commerce.Order.Services
                         shipment.ShippingAddress = GetOrderAddressFromWarehosue(cart, warehouse);
 
                         if (cart.GetFirstShipment().LineItems.Count > 0)
+                        {
                             cart.GetFirstForm().Shipments.Add(shipment);
+                        }
                     }
                 }
 
@@ -464,7 +466,7 @@ namespace Foundation.Commerce.Order.Services
                 var shipment = cart.GetFirstForm().Shipments.FirstOrDefault(s => s.ShipmentId == shipmentId || shipmentId == 0);
                 if (shipment == null)
                 {
-                    throw new InvalidOperationException($"No shipment with matching id {shipmentId}"); ;
+                    throw new InvalidOperationException($"No shipment with matching id {shipmentId}");
                 }
                 var lineItem = shipment.LineItems.FirstOrDefault(l => l.Code == code);
                 if (lineItem != null)
@@ -632,8 +634,15 @@ namespace Foundation.Commerce.Order.Services
 
         public void RemoveQuoteNumber(ICart cart)
         {
-            if (cart == null || cart.GetAllLineItems().Any()) return;
-            if (cart.Properties["ParentOrderGroupId"] == null) return;
+            if (cart == null || cart.GetAllLineItems().Any())
+            {
+                return;
+            }
+
+            if (cart.Properties["ParentOrderGroupId"] == null)
+            {
+                return;
+            }
 
             cart.Properties["ParentOrderGroupId"] = 0;
             _orderRepository.Save(cart);
@@ -746,7 +755,6 @@ namespace Foundation.Commerce.Order.Services
             return purchaseOrder?.Id ?? 0;
         }
 
-
         public ICart PlaceOrderToCart(IPurchaseOrder purchaseOrder, ICart cart)
         {
             var returnCart = cart;
@@ -759,7 +767,6 @@ namespace Foundation.Commerce.Order.Services
 
             return returnCart;
         }
-
 
         public AddToCartResult SeparateShipment(ICart cart, string code, int quantity, int fromShipmentId, int toShipmentId, string deliveryMethodId, string warehouseCode)
         {

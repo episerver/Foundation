@@ -15,6 +15,5 @@ namespace Foundation.Commerce.Extensions
 
         public static ContentReference GetSearchPage(this HtmlHelper helper) => ContentLoader.Value.Get<CommerceHomePage>(ContentReference.StartPage).SearchPage;
 
-
     }
 }

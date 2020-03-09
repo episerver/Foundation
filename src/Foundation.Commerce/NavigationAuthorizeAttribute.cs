@@ -14,7 +14,10 @@ namespace Foundation.Commerce
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (ValidateUserRole()) return;
+            if (ValidateUserRole())
+            {
+                return;
+            }
 
             var url = new UrlHelper(filterContext.RequestContext);
             var redirectUrl = url.Action("Index", "User");

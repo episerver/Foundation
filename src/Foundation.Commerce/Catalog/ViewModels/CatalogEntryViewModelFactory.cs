@@ -244,7 +244,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
             return viewModel;
         }
 
-
         public virtual TViewModel CreateVariant<TVariant, TViewModel>(TVariant currentContent)
             where TVariant : VariationContent
             where TViewModel : EntryViewModelBase<TVariant>, new()
@@ -337,7 +336,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
             }
 
             var viewModel = new TViewModel();
-
 
             viewModel.CurrentContent = currentContent;
             viewModel.Package = currentContent;
@@ -456,7 +454,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         /// </summary>
         /// <typeparam name="TVariant">inherited VariationContent</typeparam>
         /// <param name="variants">List variants of the product</param>
-        /// <param name="market"></param>
+        /// <param name="market">the market.</param>
         /// <returns>Dictionary with Key is the Variant Code and Value is IsAvailable or not</returns>
         private Dictionary<string, bool> GetVarantsState<TVariant>(List<TVariant> variants, IMarket market) where TVariant : VariationContent
         {

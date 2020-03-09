@@ -220,7 +220,7 @@ namespace Foundation.Commerce.Marketing
                 row[CodeColumn] = coupon.Code;
                 row[ValidColumn] = coupon.Valid;
                 row[ExpirationColumn] = coupon.Expiration ?? (object)DBNull.Value;
-                row[CustomerIdColumn] = coupon.CustomerId ?? (object)DBNull.Value; ;
+                row[CustomerIdColumn] = coupon.CustomerId ?? (object)DBNull.Value;
                 row[CreatedColumn] = coupon.Created;
                 row[MaxRedemptionsColumn] = coupon.MaxRedemptions;
                 row[UsedRedemptionsColumn] = coupon.UsedRedemptions;
