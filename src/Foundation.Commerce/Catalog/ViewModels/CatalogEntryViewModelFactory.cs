@@ -3,6 +3,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
+using EPiServer.Data;
 using EPiServer.Filters;
 using EPiServer.Globalization;
 using EPiServer.PdfPreview.Models;
@@ -42,6 +43,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         private readonly IQuickOrderService _quickOrderService;
         private readonly IInventoryService _inventoryService;
         private readonly IWarehouseRepository _warehouseRepository;
+        private readonly IDatabaseMode _databaseMode;
 
         public CatalogEntryViewModelFactory(
             IPromotionService promotionService,
@@ -57,7 +59,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
             IProductService productService,
             IQuickOrderService quickOrderService,
             IInventoryService inventoryService,
-            IWarehouseRepository warehouseRepository)
+            IWarehouseRepository warehouseRepository, 
+            IDatabaseMode databaseMode)
         {
             _promotionService = promotionService;
             _contentLoader = contentLoader;
@@ -73,6 +76,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             _quickOrderService = quickOrderService;
             _inventoryService = inventoryService;
             _warehouseRepository = warehouseRepository;
+            _databaseMode = databaseMode;
         }
 
         public virtual TViewModel Create<TProduct, TVariant, TViewModel>(TProduct currentContent, string variationCode)
@@ -151,7 +155,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.Color = baseVariant?.Color;
             viewModel.Size = baseVariant?.Size;
             viewModel.Images = variant.GetAssets<IContentImage>(_contentLoader, _urlResolver);
-            viewModel.IsAvailable = defaultPrice != null && isInstock;
+            viewModel.IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock;
             viewModel.Stores = new StoreViewModel
             {
                 Stores = _storeService.GetEntryStoresViewModels(variant.Code),
@@ -239,7 +243,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.IsSalesRep = isSalesRep;
             viewModel.SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                 .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
-            viewModel.IsAvailable = isInstock;
+            viewModel.IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && isInstock;
 
             return viewModel;
         }
@@ -279,7 +283,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 DiscountedPrice = discountedPrice,
                 SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency),
                 Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
-                IsAvailable = defaultPrice != null && isInstock,
+                IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock,
                 Stores = new StoreViewModel
                 {
                     Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
@@ -343,7 +347,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.DiscountedPrice = GetDiscountPrice(defaultPrice, market, currency);
             viewModel.SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency);
             viewModel.Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver);
-            viewModel.IsAvailable = defaultPrice != null && isInstock;
+            viewModel.IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock;
             viewModel.Entries = variants;
             //Reviews = GetReviews(currentContent.Code);
             viewModel.Stores = new StoreViewModel
@@ -461,23 +465,31 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var results = new Dictionary<string, bool>();
             foreach(var v in variants)
             {
-                var isInstock = true;
-                var price = PriceCalculationService.GetSalePrice(v.Code, market.MarketId, market.DefaultCurrency);
-                if (price != null)
+                var available = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly;
+                if (!available)
                 {
-                    if (v.TrackInventory)
-                    {
-                        var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
-                        var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
-                        var inventory = new Inventory(inventoryRecord);
-                        isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : true;
-                    }
-                } else
-                {
-                    isInstock = false;
+                    results.Add(v.Code, available);
+                    continue;
                 }
 
-                results.Add(v.Code, isInstock);
+                var price = PriceCalculationService.GetSalePrice(v.Code, market.MarketId, market.DefaultCurrency);
+                if (price == null)
+                {
+                    results.Add(v.Code, false);
+                    continue;
+                }
+
+                if (!v.TrackInventory)
+                {
+                    results.Add(v.Code, true);
+                    continue;
+                }
+
+                var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+                var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
+                var inventory = new Inventory(inventoryRecord);
+                available = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : true;
+                results.Add(v.Code, available);
             }
             
             return results;

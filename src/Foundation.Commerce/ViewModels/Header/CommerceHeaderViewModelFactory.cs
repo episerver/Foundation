@@ -230,6 +230,7 @@ namespace Foundation.Commerce.ViewModels.Header
                 UserLinks = new LinkItemCollection(),
                 Name = contact?.FirstName ?? "",
                 IsBookmarked = isBookmarked,
+                IsReadonlyMode = _databaseMode.DatabaseMode == DatabaseMode.ReadOnly,
                 MenuItems = menuItems ?? new List<MenuItemViewModel>(),
                 LoginViewModel = new LoginViewModel
                 {
