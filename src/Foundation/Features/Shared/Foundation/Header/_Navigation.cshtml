@@ -33,7 +33,7 @@
                     </li>
                 }
             }
-            @if (Model.ShowCommerceControls)
+            @if (!Model.IsReadonlyMode && Model.ShowCommerceControls)
             {
                 if (Request.IsAuthenticated)
                 {
@@ -57,7 +57,7 @@
                         @Html.Partial("_HeaderCart", Model.MiniCart)
                     </div>
                 </li>
-                if (Model.ShowSharedCart)
+                if (!Model.IsReadonlyMode && Model.ShowSharedCart)
                 {
                     <li>
                         <div class="dropdown">
@@ -97,14 +97,18 @@
                     </div>
                 </div>
             </li>
-            <li>
-                <div class="dropdown">
-                    <div class="icon-menu" data-toggle="dropdown" data-offset="-324, -2" data-flip="false" id="js-profile">
-                        <i data-feather="user"></i>
+            @if (!Model.IsReadonlyMode)
+            {
+                <li>
+                    <div class="dropdown">
+                        <div class="icon-menu" data-toggle="dropdown" data-offset="-324, -2" data-flip="false" id="js-profile">
+                            <i data-feather="user"></i>
+                        </div>
+                        @Html.Partial("_Users", Model)
                     </div>
-                    @Html.Partial("_Users", Model)
-                </div>
-            </li>
+                </li>
+            }
+
 
         </ul>
     </nav>

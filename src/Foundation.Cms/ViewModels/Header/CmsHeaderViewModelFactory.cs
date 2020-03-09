@@ -1,5 +1,6 @@
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Data;
 using EPiServer.Editor;
 using EPiServer.Filters;
 using EPiServer.Framework.Cache;
@@ -25,16 +26,19 @@ namespace Foundation.Cms.ViewModels.Header
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
         private readonly IContentLoader _contentLoader;
         private readonly LocalizationService _localizationService;
+        private readonly IDatabaseMode _databaseMode;
 
         public CmsHeaderViewModelFactory(IUrlResolver urlResolver,
             IContentCacheKeyCreator contentCacheKeyCreator,
             IContentLoader contentLoader,
-            LocalizationService localizationService)
+            LocalizationService localizationService,
+            IDatabaseMode databaseMode)
         {
             _urlResolver = urlResolver;
             _contentCacheKeyCreator = contentCacheKeyCreator;
             _contentLoader = contentLoader;
             _localizationService = localizationService;
+            _databaseMode = databaseMode;
         }
 
         public THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
@@ -99,6 +103,7 @@ namespace Foundation.Cms.ViewModels.Header
                 UserLinks = new LinkItemCollection(),
                 Name = PrincipalInfo.Current.Name,
                 MenuItems = menuItems,
+                IsReadonlyMode = _databaseMode.DatabaseMode == DatabaseMode.ReadOnly
             };
         }
 

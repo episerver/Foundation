@@ -8,6 +8,12 @@ namespace Foundation.Commerce.Order.ViewModels
 {
     public class ShipmentViewModel
     {
+        public ShipmentViewModel()
+        {
+            CartItems = new List<CartItemViewModel>();
+            ShippingMethods = new List<ShippingMethodViewModel>();
+        }
+
         public int ShipmentId { get; set; }
 
         public IList<CartItemViewModel> CartItems { get; set; }

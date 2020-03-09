@@ -18,10 +18,10 @@ namespace Foundation.Commerce.Models.Catalog
         [Display(Name = "Description", Order = 5)]
         public virtual XhtmlString Description { get; set; }
 
-        [Display(Name = "On sale", Description = "Is on sale?", Order = 10)]
+        [Display(Name = "On sale", Order = 10)]
         public virtual bool OnSale { get; set; }
 
-        [Display(Name = "New arrival", Description = "Is on a new arroval?", Order = 15)]
+        [Display(Name = "New arrival", Order = 15)]
         public virtual bool NewArrival { get; set; }
 
         [Searchable]
@@ -45,7 +45,7 @@ namespace Foundation.Commerce.Models.Catalog
         public virtual string AssociationsTitle { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 35)]
+        [Display(Name = "Show recommendations", Order = 35)]
         public virtual bool ShowRecommendations { get; set; }
 
         #region Implement IFoundationContent

@@ -13,29 +13,32 @@
             <source srcset="@Model.ImageUrl?width=520&format=webp" type="image/webp">
             <img class="img-fluid product-tile__image" src="@Model.ImageUrl?width=520" onclick="location.href='@Model.Url'" />
         </picture>
-        <div class="product-tile__image-bottom">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <span class="hover-feather-icon addToWishlist" data="@Model.FirstVariationCode"><i data-feather="heart"></i></span>
-            }
-
-            @{
-                var urlQuickView = "/product/quickview";
-                if (Model.EntryType.Equals(typeof(GenericBundle)))
+        @if (!Html.IsReadOnlyMode())
+        {
+            <div class="product-tile__image-bottom">
+                @if (User.Identity.IsAuthenticated)
                 {
-                    urlQuickView = "/Bundle/QuickView";
+                    <span class="hover-feather-icon addToWishlist" data="@Model.FirstVariationCode"><i data-feather="heart"></i></span>
                 }
-                if (Model.EntryType.Equals(typeof(GenericPackage)))
-                {
-                    urlQuickView = "/Package/QuickView";
-                }
-                <span class="jsQuickView hover-feather-icon" data-toggle="modal" data-target="#quickView" data="@Model.FirstVariationCode" productCode="@Model.Code" urlQuickView="@urlQuickView">
-                    <i data-feather="eye"></i>
-                </span>
-            }
 
-            <span class="addToCart hover-feather-icon" data="@Model.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
-        </div>
+                @{
+                    var urlQuickView = "/product/quickview";
+                    if (Model.EntryType.Equals(typeof(GenericBundle)))
+                    {
+                        urlQuickView = "/Bundle/QuickView";
+                    }
+                    if (Model.EntryType.Equals(typeof(GenericPackage)))
+                    {
+                        urlQuickView = "/Package/QuickView";
+                    }
+                    <span class="jsQuickView hover-feather-icon" data-toggle="modal" data-target="#quickView" data="@Model.FirstVariationCode" productCode="@Model.Code" urlQuickView="@urlQuickView">
+                        <i data-feather="eye"></i>
+                    </span>
+                }
+
+                <span class="addToCart hover-feather-icon" data="@Model.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+            </div>
+        }
     </a>
     <div class="product-tile__title">
         <a href="@Model.Url">@Model.DisplayName</a>
