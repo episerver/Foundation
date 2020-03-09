@@ -11,9 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.1" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.14.1" />
-    <PackageReference Include="EPiServer.Framework" Version="11.14.1" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.2" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.14.2" />
+    <PackageReference Include="EPiServer.Framework" Version="11.14.2" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
