@@ -179,7 +179,7 @@ namespace Foundation.Commerce.Order.Services
                             checkoutViewModel.QuoteStatus = quoteOrder.Properties[Constant.Quote.QuoteStatus].ToString();
                             if (quoteOrder.Properties[Constant.Quote.QuoteStatus].ToString().Equals(Constant.Quote.RequestQuotationFinished))
                             {
-                                DateTime.TryParse(quoteOrder.Properties[Constant.Quote.QuoteExpireDate].ToString(),
+                                _ = DateTime.TryParse(quoteOrder.Properties[Constant.Quote.QuoteExpireDate].ToString(),
                                     out var quoteExpireDate);
                                 if (DateTime.Compare(DateTime.Now, quoteExpireDate) > 0)
                                 {
@@ -193,7 +193,7 @@ namespace Foundation.Commerce.Order.Services
                 }
                 var processPayments = cart.ProcessPayments(_paymentProcessor, _orderGroupCalculator);
                 var unsuccessPayments = processPayments.Where(x => !x.IsSuccessful);
-                if (unsuccessPayments != null && unsuccessPayments.Count() > 0)
+                if (unsuccessPayments != null && unsuccessPayments.Any())
                 {
                     throw new InvalidOperationException(string.Join("\n", unsuccessPayments.Select(x => x.Message)));
                 }
@@ -341,7 +341,7 @@ namespace Foundation.Commerce.Order.Services
         {
             if (purchaseOrder == null)
             {
-                throw new ArgumentNullException("purchaseOrder");
+                throw new ArgumentNullException(nameof(purchaseOrder));
             }
             var orderNote = purchaseOrder.CreateOrderNote();
 

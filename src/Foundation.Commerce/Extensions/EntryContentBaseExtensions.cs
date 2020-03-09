@@ -59,9 +59,6 @@ namespace Foundation.Commerce.Extensions
         private static readonly Lazy<IContentLoader> ContentLoader =
             new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
 
-        private static readonly Lazy<PromotionService> PromotionService =
-            new Lazy<PromotionService>(() => ServiceLocator.Current.GetInstance<PromotionService>());
-
         private static readonly Lazy<IPromotionEngine> PromotionEngine =
             new Lazy<IPromotionEngine>(() => ServiceLocator.Current.GetInstance<IPromotionEngine>());
 
@@ -442,7 +439,7 @@ namespace Foundation.Commerce.Extensions
 
         private static KeyValuePair<ContentReference, DiscountPrice> GetMinDiscountPrice(IEnumerable<DiscountedEntry> discountedEntries)
         {
-            if (discountedEntries != null && discountedEntries.Count() > 0)
+            if (discountedEntries != null && discountedEntries.Any())
             {
                 DiscountPrice minPrice = null;
                 ContentReference contentLink = null;

@@ -86,7 +86,7 @@ namespace Foundation.Commerce
             ///     List page's name that admin can view on B2BNavigation.
             ///     These name are hard code so need to create a page with the exactly name as below setting
             /// </summary>
-            public static List<string> Admin = new List<string>
+            public static readonly List<string> Admin = new List<string>
             {
                 "Overview",
                 "Users",
@@ -96,7 +96,7 @@ namespace Foundation.Commerce
                 "B2B Credit Card"
             };
 
-            public static List<string> Approver = new List<string> { "Overview", "Orders", "Order Pad", "Budgeting" };
+            public static readonly List<string> Approver = new List<string> { "Overview", "Orders", "Order Pad", "Budgeting" };
         }
 
         public static class Order

@@ -196,7 +196,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var associations = relatedProducts.Any() ?
                 _productService.GetProductTileViewModels(relatedProducts) :
                 new List<ProductTileViewModel>();
-            var variants = GetVariants<TVariant, TBundle>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Count() > 0).ToList();
+            var variants = GetVariants<TVariant, TBundle>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Any()).ToList();
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var productRecommendations = currentContent as IProductRecommendations;
@@ -303,7 +303,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : PackageViewModelBase<TPackage>, new()
         {
-            var variants = GetVariants<TVariant, TPackage>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Count() > 0).ToList();
+            var variants = GetVariants<TVariant, TPackage>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Any()).ToList();
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(currentContent.Code, market.MarketId, currency);

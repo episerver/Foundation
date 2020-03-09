@@ -93,7 +93,8 @@ namespace Foundation.Commerce.Order.Services
 
         public Dictionary<ILineItem, List<ValidationIssue>> ChangeCartItem(ICart cart, int shipmentId, string code, decimal quantity, string size, string newSize)
         {
-            var validationIssues = new Dictionary<ILineItem, List<ValidationIssue>>();
+            _ = new Dictionary<ILineItem, List<ValidationIssue>>();
+            Dictionary<ILineItem, List<ValidationIssue>> validationIssues;
             if (quantity > 0)
             {
                 if (size == newSize)
@@ -652,7 +653,7 @@ namespace Foundation.Commerce.Order.Services
                 var purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderReference.OrderGroupId);
                 if (purchaseOrder != null)
                 {
-                    int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
+                    _ = int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
                     purchaseOrder[Constant.Quote.QuoteExpireDate] =
                         string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate])
                             ? DateTime.Now.AddDays(30)
@@ -709,7 +710,7 @@ namespace Foundation.Commerce.Order.Services
                 purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderReference.OrderGroupId);
                 if (purchaseOrder != null)
                 {
-                    int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
+                    _ = int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
                     purchaseOrder[Constant.Quote.QuoteExpireDate] =
                         string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate])
                             ? DateTime.Now.AddDays(30)

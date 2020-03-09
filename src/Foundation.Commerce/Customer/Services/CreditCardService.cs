@@ -144,7 +144,7 @@ namespace Foundation.Commerce.Customer.Services
         /// <param name="creditCardId">Credit card id</param>
         public void Delete(string creditCardId)
         {
-            if (IsValid(creditCardId, out var errorMessage))
+            if (IsValid(creditCardId, out _))
             {
                 try
                 {
@@ -163,7 +163,7 @@ namespace Foundation.Commerce.Customer.Services
         /// <param name="creditCardModel">Model of credit card</param>
         public void Save(CreditCardModel creditCardModel)
         {
-            if (IsValid(creditCardModel.CreditCardId, out var errorMessage))
+            if (IsValid(creditCardModel.CreditCardId, out _))
             {
                 var creditCard = GetCreditCard(creditCardModel.CreditCardId);
                 var isNew = creditCard == null;

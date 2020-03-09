@@ -102,7 +102,7 @@ namespace Foundation.Commerce.Order.Services
         {
             var shippingRates = GetShippingRates(marketId, currency, shipment);
 
-            if (shipment.LineItems.Count(o => o.IsVirtualVariant()) == shipment.LineItems.Count())
+            if (shipment.LineItems.Count(o => o.IsVirtualVariant()) == shipment.LineItems.Count)
             {
                 shippingRates = shippingRates.Where(o => o.Money == 0);
             }
