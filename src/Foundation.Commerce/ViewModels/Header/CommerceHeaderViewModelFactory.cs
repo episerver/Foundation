@@ -170,9 +170,10 @@ namespace Foundation.Commerce.ViewModels.Header
             where T : CommerceHeaderViewModel, new()
         {
             var menuItems = new List<MenuItemViewModel>();
+            var homeLanguage = homePage.Language.DisplayName;
             menuItems = homePage.MainMenu?.FilteredItems.Select(x =>
             {
-                var itemCached = CacheManager.Get(x.ContentLink.ID + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
+                var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
                 {
                     return itemCached;
@@ -213,7 +214,7 @@ namespace Foundation.Commerce.ViewModels.Header
                         keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink));
 
                         var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
-                        CacheManager.Insert(x.ContentLink.ID + Constant.CacheKeys.MenuItems, menuItem, eviction);
+                        CacheManager.Insert(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems, menuItem, eviction);
                     }
                     return menuItem;
                 }
