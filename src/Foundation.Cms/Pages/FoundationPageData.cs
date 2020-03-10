@@ -156,6 +156,22 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Display hover effect", GroupName = CmsTabNames.Teaser, Order = 800)]
         public virtual bool ApplyHoverEffect { get; set; }
 
+        [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
+        [Display(Name = "Padding", GroupName = CmsTabNames.Teaser, Order = 900)]
+        public virtual string Padding
+        {
+            get { return this.GetPropertyValue(teaser => teaser.Padding) ?? "p-0"; }
+            set { this.SetPropertyValue(teaser => teaser.Padding, value); }
+        }
+
+        [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
+        [Display(Name = "Margin", GroupName = CmsTabNames.Teaser, Order = 910)]
+        public virtual string Margin
+        {
+            get { return this.GetPropertyValue(teaser => teaser.Margin) ?? "m-0"; }
+            set { this.SetPropertyValue(teaser => teaser.Margin, value); }
+        }
+
         [Ignore]
         public string AlignmentCssClass
         {
