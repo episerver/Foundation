@@ -196,7 +196,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var associations = relatedProducts.Any() ?
                 _productService.GetProductTileViewModels(relatedProducts) :
                 new List<ProductTileViewModel>();
-            var variants = GetVariants<TVariant, TBundle>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Count() > 0).ToList();
+            var variants = GetVariants<TVariant, TBundle>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Any()).ToList();
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var productRecommendations = currentContent as IProductRecommendations;
@@ -243,7 +243,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
 
             return viewModel;
         }
-
 
         public virtual TViewModel CreateVariant<TVariant, TViewModel>(TVariant currentContent)
             where TVariant : VariationContent
@@ -303,7 +302,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : PackageViewModelBase<TPackage>, new()
         {
-            var variants = GetVariants<TVariant, TPackage>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Count() > 0).ToList();
+            var variants = GetVariants<TVariant, TPackage>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Any()).ToList();
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(currentContent.Code, market.MarketId, currency);
@@ -337,7 +336,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
             }
 
             var viewModel = new TViewModel();
-
 
             viewModel.CurrentContent = currentContent;
             viewModel.Package = currentContent;
@@ -456,7 +454,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         /// </summary>
         /// <typeparam name="TVariant">inherited VariationContent</typeparam>
         /// <param name="variants">List variants of the product</param>
-        /// <param name="market"></param>
+        /// <param name="market">the market.</param>
         /// <returns>Dictionary with Key is the Variant Code and Value is IsAvailable or not</returns>
         private Dictionary<string, bool> GetVarantsState<TVariant>(List<TVariant> variants, IMarket market) where TVariant : VariationContent
         {

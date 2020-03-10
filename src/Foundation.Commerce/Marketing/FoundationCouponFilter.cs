@@ -19,7 +19,7 @@ namespace Foundation.Commerce.Marketing
         public PromotionFilterContext Filter(PromotionFilterContext filterContext, IEnumerable<string> couponCodes)
         {
             var codes = couponCodes.ToList();
-            var userEmail = PrincipalInfo.CurrentPrincipal?.GetCustomerContact()?.Email;
+            _ = PrincipalInfo.CurrentPrincipal?.GetCustomerContact()?.Email;
 
             foreach (var includedPromotion in filterContext.IncludedPromotions)
             {

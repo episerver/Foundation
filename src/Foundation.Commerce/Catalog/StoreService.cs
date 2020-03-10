@@ -107,8 +107,7 @@ namespace Foundation.Commerce.Catalog
 
         public bool SetCurrentStore(string storeCode)
         {
-
-            if (!TryGetStoreViewModel(storeCode, out var storeViewModel))
+            if (!TryGetStoreViewModel(storeCode, out _))
             {
                 return false;
             }

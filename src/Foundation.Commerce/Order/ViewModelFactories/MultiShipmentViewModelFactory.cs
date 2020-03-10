@@ -64,7 +64,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
             var viewModel = new MultiAddressViewModel(checkoutPage)
             {
                 AvailableAddresses = GetAvailableShippingAddresses(cart),
-                CartItems = cart != null ? FlattenCartItems(_shipmentViewModelFactory.CreateShipmentsViewModel(cart).SelectMany(x => x.CartItems)) : new CartItemViewModel[0],
+                CartItems = cart != null ? FlattenCartItems(_shipmentViewModelFactory.CreateShipmentsViewModel(cart).SelectMany(x => x.CartItems)) : Array.Empty<CartItemViewModel>(),
                 ReferrerUrl = GetReferrerUrl(),
             };
 

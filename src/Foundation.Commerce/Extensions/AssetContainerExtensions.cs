@@ -62,7 +62,7 @@ namespace Foundation.Commerce.Extensions
             }
 
             return contentLoader.TryGet(contentLink, out
-            TContentMedia content);
+            TContentMedia _);
         }
 
         public static IList<MediaData> GetAssetsMediaData(this IAssetContainer assetContainer, IContentLoader contentLoader, string groupName = "")

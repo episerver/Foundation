@@ -113,7 +113,7 @@ namespace Foundation.Commerce.Order.Services
         public virtual LargeCartViewModel CreateLargeCartViewModel(ICart cart, CartPage cartPage)
         {
             var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
-            var checkoutPage = _contentLoader.Get<CheckoutPage>(startPage.CheckoutPage);
+            _ = _contentLoader.Get<CheckoutPage>(startPage.CheckoutPage);
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             AddressModel addressModel = null;
             if (cart == null)
@@ -174,7 +174,7 @@ namespace Foundation.Commerce.Order.Services
                 return new WishListViewModel(wishListPage)
                 {
                     ItemCount = 0,
-                    CartItems = new CartItemViewModel[0],
+                    CartItems = Array.Empty<CartItemViewModel>(),
                     Total = new Money(0, _currencyService.GetCurrentCurrency())
                 };
             }
@@ -197,7 +197,7 @@ namespace Foundation.Commerce.Order.Services
                 return new MiniWishlistViewModel
                 {
                     ItemCount = 0,
-                    Items = new CartItemViewModel[0],
+                    Items = Array.Empty<CartItemViewModel>(),
                     WishlistPage = startPage.WishlistPage,
                     HasOrganization = contact?.OwnerId != null,
                     Label = startPage.WishlistLabel,
@@ -226,7 +226,7 @@ namespace Foundation.Commerce.Order.Services
                 {
                     ItemCount = 0,
                     WishListPage = wishListLink,
-                    CartItems = new CartItemViewModel[0],
+                    CartItems = Array.Empty<CartItemViewModel>(),
                     Total = new Money(0, _currencyService.GetCurrentCurrency()),
                     HasOrganization = contact?.OwnerId != null
                 };
@@ -257,7 +257,7 @@ namespace Foundation.Commerce.Order.Services
                 return new SharedCartViewModel(sharedCartPage)
                 {
                     ItemCount = 0,
-                    CartItems = new CartItemViewModel[0],
+                    CartItems = Array.Empty<CartItemViewModel>(),
                     Total = new Money(0, _currencyService.GetCurrentCurrency())
                 };
             }
@@ -281,7 +281,7 @@ namespace Foundation.Commerce.Order.Services
                 {
                     ItemCount = 0,
                     SharedCartPage = sharedCartLink,
-                    CartItems = new CartItemViewModel[0],
+                    CartItems = Array.Empty<CartItemViewModel>(),
                     Total = new Money(0, _currencyService.GetCurrentCurrency())
                 };
             }
@@ -303,8 +303,6 @@ namespace Foundation.Commerce.Order.Services
 
         }
 
-
-
         private decimal GetLineItemsTotalQuantity(ICart cart)
         {
             if (cart != null)
@@ -315,7 +313,9 @@ namespace Foundation.Commerce.Order.Services
                 return cartItems.Sum(x => x.Quantity);
             }
             else
+            {
                 return 0;
+            }
         }
 
         private string GetReferrerUrl()

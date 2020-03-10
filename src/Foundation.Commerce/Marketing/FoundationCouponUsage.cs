@@ -27,7 +27,6 @@ namespace Foundation.Commerce.Marketing
             }
         }
 
-
         private void CheckMultiple(PromotionData promotion, PromotionInformation promotionInformation)
         {
             var uniqueCodes = _uniqueCouponService.GetByPromotionId(promotion.ContentLink.ID);

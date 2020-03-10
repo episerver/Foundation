@@ -6,15 +6,18 @@ using System.Web.Mvc;
 
 namespace Foundation.Commerce
 {
-    public class NavigationAuthorize : ActionFilterAttribute
+    public sealed class NavigationAuthorizeAttribute : ActionFilterAttribute
     {
         private List<B2BUserRoles> _authorizedRoles;
 
-        public NavigationAuthorize(string authorizedRoles) => ToB2BRoles(authorizedRoles);
+        public NavigationAuthorizeAttribute(string authorizedRoles) => ToB2BRoles(authorizedRoles);
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (ValidateUserRole()) return;
+            if (ValidateUserRole())
+            {
+                return;
+            }
 
             var url = new UrlHelper(filterContext.RequestContext);
             var redirectUrl = url.Action("Index", "User");
