@@ -15,6 +15,7 @@ namespace Foundation.Cms.Blocks
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class ButtonBlock : FoundationBlockData
     {
+        [CultureSpecific]
         [Display(Name = "Label", Order = 10, GroupName = SystemTabNames.Content)]
         public virtual string ButtonText { get; set; }
 
@@ -25,6 +26,7 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Style", Order = 30, GroupName = SystemTabNames.Content)]
         public virtual string ButtonStyle { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Reassuring caption", Order = 40, GroupName = SystemTabNames.Content, Prompt = "Cancel anytime...")]
         public virtual string ButtonCaption { get; set; }
 
