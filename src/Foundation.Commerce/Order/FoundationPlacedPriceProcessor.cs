@@ -49,7 +49,10 @@ namespace Foundation.Commerce.Order
             if (placedPrice.HasValue)
             {
                 if (new Money(currency.Round(lineItem.PlacedPrice), currency) == placedPrice.Value)
+                {
                     return true;
+                }
+
                 onValidationError(lineItem, ValidationIssue.PlacedPricedChanged);
                 lineItem.PlacedPrice = placedPrice.Value.Amount;
                 return true;

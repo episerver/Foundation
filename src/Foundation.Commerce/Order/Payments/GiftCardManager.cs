@@ -18,7 +18,7 @@ namespace Foundation.Commerce.Order.Payments
         public const string IsActiveField = "IsActive";
         public const string RedemptionCodeField = "RedemptionCode";
 
-        public static EntityObject[] GetAllGiftCards() => BusinessManager.List(GiftCardMetaClass, new FilterElement[0]);
+        public static EntityObject[] GetAllGiftCards() => BusinessManager.List(GiftCardMetaClass, Array.Empty<FilterElement>());
 
         public static EntityObject[] GetCustomerGiftCards(PrimaryKeyId contactId)
         {

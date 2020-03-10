@@ -66,20 +66,20 @@ namespace Foundation.Commerce.ViewModels.Header
             _contentLoader = contentLoader;
         }
 
-        public virtual THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
+        public virtual THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent content, CmsHomePage home)
             where THeaderViewModel : HeaderViewModel, new()
         {
-            var commerceHomePage = homePage as CommerceHomePage;
+            var commerceHomePage = home as CommerceHomePage;
             if (commerceHomePage == null)
             {
                 return null;
             }
             var contact = _customerService.GetCurrentContact();
-            var isBookmarked = IsBookmarked(currentContent);
-            var viewModel = CreateViewModel<CommerceHeaderViewModel>(currentContent, commerceHomePage, contact, isBookmarked);
+            var isBookmarked = IsBookmarked(content);
+            var viewModel = CreateViewModel<CommerceHeaderViewModel>(content, commerceHomePage, contact, isBookmarked);
             AddCommerceComponents(contact, viewModel);
             AddAnonymousComponents(commerceHomePage, viewModel);
-            AddMarketViewModel(currentContent, viewModel);
+            AddMarketViewModel(content, viewModel);
             AddMyAccountMenu(commerceHomePage, viewModel);
             return viewModel as THeaderViewModel;
         }
@@ -382,7 +382,6 @@ namespace Foundation.Commerce.ViewModels.Header
             }
             return marketId == new MarketId("US") ? $"{FlagLocation}us.svg" : "";
         }
-
 
     }
 }

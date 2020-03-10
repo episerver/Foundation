@@ -80,7 +80,7 @@ namespace Foundation.Commerce.Order.Services
                      purchaseOrder.Status == OrderStatus.OnHold.ToString()))
                 {
                     orderViewModel.Status = purchaseOrder[Constant.Quote.QuoteStatus].ToString();
-                    DateTime.TryParse(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
+                    _ = DateTime.TryParse(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
                     if (DateTime.Compare(DateTime.Now, quoteExpireDate) > 0)
                     {
                         orderViewModel.Status = Constant.Quote.QuoteExpired;
@@ -123,10 +123,16 @@ namespace Foundation.Commerce.Order.Services
         public bool ApproveOrder(int orderGroupId)
         {
             var purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderGroupId);
-            if (purchaseOrder == null) return false;
+            if (purchaseOrder == null)
+            {
+                return false;
+            }
 
             var budgetPayment = GetOrderBudgetPayment(purchaseOrder) as Payment;
-            if (budgetPayment == null) return false;
+            if (budgetPayment == null)
+            {
+                return false;
+            }
 
             try
             {

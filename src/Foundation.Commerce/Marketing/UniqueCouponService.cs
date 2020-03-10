@@ -14,7 +14,6 @@ namespace Foundation.Commerce.Marketing
         private readonly ILogger _logger = LogManager.GetLogger(typeof(UniqueCouponService));
         private readonly CouponCodeBuilder _couponCodeBuilder = new CouponCodeBuilder();
 
-        private const string UniqueCouponTable = "UniqueCoupon";
         private const string IdColumn = "Id";
         private const string PromotionIdColumn = "PromotionId";
         private const string CodeColumn = "Code";
@@ -24,7 +23,6 @@ namespace Foundation.Commerce.Marketing
         private const string CreatedColumn = "Created";
         private const string MaxRedemptionsColumn = "MaxRedemptions";
         private const string UsedRedemptionsColumn = "UsedRedemptions";
-        private const string CacheKeyPrefix = "EP:ECF:Redemption:";
 
         public UniqueCouponService(IConnectionStringHandler connectionHandler) => _connectionHandler = connectionHandler;
 
@@ -222,7 +220,7 @@ namespace Foundation.Commerce.Marketing
                 row[CodeColumn] = coupon.Code;
                 row[ValidColumn] = coupon.Valid;
                 row[ExpirationColumn] = coupon.Expiration ?? (object)DBNull.Value;
-                row[CustomerIdColumn] = coupon.CustomerId ?? (object)DBNull.Value; ;
+                row[CustomerIdColumn] = coupon.CustomerId ?? (object)DBNull.Value;
                 row[CreatedColumn] = coupon.Created;
                 row[MaxRedemptionsColumn] = coupon.MaxRedemptions;
                 row[UsedRedemptionsColumn] = coupon.UsedRedemptions;

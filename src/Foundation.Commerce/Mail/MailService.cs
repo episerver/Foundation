@@ -62,7 +62,7 @@ namespace Foundation.Commerce.Mail
             return await _htmlDownloader.Download(basePath, relativePath);
         }
 
-        public void Send(string subject, string body, string recipientMailAddress)
+        public void Send(string subject, string body, string toEmail)
         {
             var message = new MailMessage
             {
@@ -71,7 +71,7 @@ namespace Foundation.Commerce.Mail
                 IsBodyHtml = true
             };
 
-            message.To.Add(recipientMailAddress);
+            message.To.Add(toEmail);
 
             Send(message);
         }

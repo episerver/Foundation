@@ -9,7 +9,7 @@ namespace Foundation.Commerce.Order.Services
     public class ConfirmationService
     {
         private readonly IOrderRepository _orderRepository;
-        readonly ICurrentMarket _currentMarket;
+        private readonly ICurrentMarket _currentMarket;
 
         public ConfirmationService(
             IOrderRepository orderRepository,

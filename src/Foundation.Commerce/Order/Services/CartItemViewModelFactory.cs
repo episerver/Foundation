@@ -27,7 +27,7 @@ namespace Foundation.Commerce.Order.Services
         private readonly ILineItemCalculator _lineItemCalculator;
         private readonly IProductService _productService;
         private readonly IRelationRepository _relationRepository;
-        readonly ICartService _cartService;
+        private readonly ICartService _cartService;
 
         public CartItemViewModelFactory(
             IContentLoader contentLoader,

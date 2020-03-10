@@ -27,7 +27,7 @@ namespace Foundation.Commerce.Catalog
         {
             if (string.IsNullOrEmpty(code))
             {
-                throw new ArgumentNullException("code");
+                throw new ArgumentNullException(nameof(code));
             }
 
             var catalogKey = new CatalogKey(code);
@@ -41,7 +41,7 @@ namespace Foundation.Commerce.Catalog
         {
             if (catalogKeys == null)
             {
-                throw new ArgumentNullException("catalogKeys");
+                throw new ArgumentNullException(nameof(catalogKeys));
             }
 
             if (!catalogKeys.Any())

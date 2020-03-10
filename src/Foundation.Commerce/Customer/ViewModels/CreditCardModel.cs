@@ -17,8 +17,7 @@ namespace Foundation.Commerce.Customer.ViewModels
     public class CreditCardModel : IDataErrorInfo
     {
         protected readonly LocalizationService LocalizationService;
-
-        static readonly string[] ValidatedProperties =
+        private static readonly string[] ValidatedProperties =
         {
             "CreditCardNumber",
             "CreditCardSecurityCode",
@@ -210,7 +209,6 @@ namespace Foundation.Commerce.Customer.ViewModels
                 });
 
             }
-
 
         }
     }
