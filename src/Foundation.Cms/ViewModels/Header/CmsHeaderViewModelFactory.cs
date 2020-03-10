@@ -41,9 +41,10 @@ namespace Foundation.Cms.ViewModels.Header
             where THeaderViewModel : HeaderViewModel, new()
         {
             var menuItems = new List<MenuItemViewModel>();
+            var homeLanguage = homePage.Language.DisplayName;
             menuItems = homePage.MainMenu?.FilteredItems.Select(x =>
             {
-                var itemCached = CacheManager.Get(x.ContentLink.ID + MenuCacheKey) as MenuItemViewModel;
+                var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + MenuCacheKey) as MenuItemViewModel;
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
                 {
                     return itemCached;
@@ -84,7 +85,7 @@ namespace Foundation.Cms.ViewModels.Header
                         keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink));
 
                         var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
-                        CacheManager.Insert(x.ContentLink.ID + MenuCacheKey, menuItem, eviction);
+                        CacheManager.Insert(x.ContentLink.ID + homeLanguage + ":" + MenuCacheKey, menuItem, eviction);
                     }
                     return menuItem;
                 }
