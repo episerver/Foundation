@@ -728,6 +728,13 @@
         <FindError>EPiServer Find is not configured or available.</FindError>
       </SearchBlock>
       <Recommended>Recommended</Recommended>
+      <Content>
+        <FilteredBy>Filtered by:</FilteredBy>
+        <All>All</All>
+        <Sections>Sections</Sections>
+        <Categories>Categories</Categories>
+        <ContentTypes>Content Types</ContentTypes>
+      </Content>
     </Search>
     <Shared>
       <Common>

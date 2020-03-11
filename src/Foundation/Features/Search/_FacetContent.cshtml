@@ -16,7 +16,7 @@
     </div>
     <ul class="selection--cm">
         <li class="selection--cm__inline-item">
-            Filtered by:
+            @Html.TranslateFallback("/Search/Content/FilteredBy", "Filtered by:")
             @{
                 if (!string.IsNullOrEmpty(Model.ContentSearchResult.SectionFilter))
                 {
@@ -46,7 +46,7 @@
                 else
                 {
                     <label class="content-filters-tag">
-                        All
+                        @Html.TranslateFallback("/Search/Content/All", "All")
                     </label>
                 }
             }
@@ -54,11 +54,11 @@
         @if (Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null)
         {
             <li class="selection--cm__group">
-                <h5>Sections</h5>
+                <h5>@Html.TranslateFallback("/Search/Content/Sections", "Sections")</h5>
             </li>
             <li class="">
                 <span class="selection--cm__sub-label">
-                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
+                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> @Html.TranslateFallback("/Search/Content/All", "All") (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
                 </span>
             </li>
 
@@ -77,7 +77,7 @@
                 if (facetGroup.GroupFieldName == "Categories")
                 {
                     <li class="selection--cm__group">
-                        <h5>Categories</h5>
+                        <h5>@Html.TranslateFallback("/Search/Content/Categories", "Categories")</h5>
                     </li>
                     for (var j = 0; j < facetGroup.Facets.Count; j++)
                     {
@@ -95,7 +95,7 @@
                 else
                 {
                     <li class="selection--cm__group">
-                        <h5>Content Types</h5>
+                        <h5>@Html.TranslateFallback("/Search/Content/ContentTypes", "Content Types")</h5>
                     </li>
                     for (var j = 0; j < facetGroup.Facets.Count; j++)
                     {
