@@ -166,9 +166,9 @@
 
                     //Set event
                     $('input[class*="prop"]')
-                        .on('change', inst.updateContentInfo);
+                        .on('change', { inst: inst }, inst.updateContentInfo);
                     $('input[class*="button-save-content"]')
-                        .on('click', inst.saveAll);
+                        .on('click', { inst: inst }, inst.saveAll);
 
                     $('.grid-icon__loading').hide();
                 } else {
@@ -212,7 +212,7 @@
     }
 
     updateContentInfo(e) {
-        let inst = this;
+        var inst = e.data.inst;
         if (e.currentTarget.attributes["index"].value == -1) {
             if (e.currentTarget.type == "checkbox") {
                 $('input[class*="prop"][name="' + e.currentTarget.attributes["name"].value + '"]').prop("checked", e.currentTarget.checked);
@@ -247,7 +247,8 @@
         }
     }
 
-    saveAll() {
+    saveAll(e) {
+        var inst = e.data.inst;
         var c = confirm("Are you sure you want to update all contents?");
         if (c === true) {
             $('.loading-box').show();
@@ -257,7 +258,7 @@
             });
 
             var data = {
-                Contents: this.contents,
+                Contents: inst.contents,
                 Properties: properties.join()
             };
             axios.post("/episerver/foundation.cms/bulkupdate/updateContent", data)
