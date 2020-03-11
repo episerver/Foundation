@@ -1,8 +1,12 @@
-﻿@using EPiServer.Find
+﻿@using EPiServer
+@using EPiServer.Find
+@using EPiServer.ServiceLocation
 @using EPiServer.Shell.Web.Mvc.Html
+@using Foundation.Cms.Categories
 @model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
 @{
     Layout = null;
+    var _contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
 }
 
 
@@ -14,22 +18,44 @@
         <li class="selection--cm__inline-item">
             Filtered by:
             @{
-                if (string.IsNullOrEmpty(Model.ContentSearchResult.SectionFilter))
+                if (!string.IsNullOrEmpty(Model.ContentSearchResult.SectionFilter))
                 {
                     <label class="content-filters-tag">
-                        All
+                        @Model.ContentSearchResult.SectionFilter
                     </label>
+                }
+                else if (!string.IsNullOrEmpty(Model.ContentSearchResult.ContentFacet))
+                {
+
+                    bool isNumeric = int.TryParse(Model.ContentSearchResult.ContentFacet, out int n);
+                    if (isNumeric)
+                    {
+                        var reference = new ContentReference(Model.ContentSearchResult.ContentFacet);
+                        var c = _contentRepository.Get<StandardCategory>(reference);
+                        <label class="content-filters-tag">
+                            @c.Name
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="content-filters-tag">
+                            @Model.ContentSearchResult.ContentFacet
+                        </label>
+                    }
                 }
                 else
                 {
                     <label class="content-filters-tag">
-                        @Model.ContentSearchResult.SectionFilter
+                        All
                     </label>
                 }
             }
         </li>
         @if (Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null)
         {
+            <li class="selection--cm__group">
+                <h5>Sections</h5>
+            </li>
             <li class="">
                 <span class="selection--cm__sub-label">
                     <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
@@ -44,7 +70,45 @@
                     </span>
                 </li>
             }
-        }
 
+            for (var i = 0; i < Model.ContentSearchResult.FacetGroups.Count; i++)
+            {
+                var facetGroup = Model.ContentSearchResult.FacetGroups[i];
+                if (facetGroup.GroupFieldName == "Categories")
+                {
+                    <li class="selection--cm__group">
+                        <h5>Categories</h5>
+                    </li>
+                    for (var j = 0; j < facetGroup.Facets.Count; j++)
+                    {
+                        var facet = facetGroup.Facets[j];
+                        var reference = new ContentReference(facet.Name);
+                        var c = _contentRepository.Get<StandardCategory>(reference);
+                        <li class="">
+                            <span class="selection--cm__sub-label">
+
+                                <a href="@Model.ContentSearchResult.GetContentFacetUrl(@facet.Name)">@c.Name (@facet.Count)</a>
+                            </span>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="selection--cm__group">
+                        <h5>Content Types</h5>
+                    </li>
+                    for (var j = 0; j < facetGroup.Facets.Count; j++)
+                    {
+                        var facet = facetGroup.Facets[j];
+                        <li class="">
+                            <span class="selection--cm__sub-label">
+                                <a href="@Model.ContentSearchResult.GetContentFacetUrl(@facet.Name)">@facet.Name (@facet.Count)</a>
+                            </span>
+                        </li>
+                    }
+                }
+
+            }
+        }
     </ul>
 </div>

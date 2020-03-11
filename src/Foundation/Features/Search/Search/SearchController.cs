@@ -9,6 +9,7 @@ using Foundation.Commerce.Personalization;
 using Foundation.Demo.Models;
 using Foundation.Demo.ViewModels;
 using Foundation.Find.Cms;
+using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
 using Foundation.Find.Commerce;
 using Foundation.Find.Commerce.ViewModels;
@@ -107,7 +108,8 @@ namespace Foundation.Features.Search
                     PageSize = 5,
                     Page = filterOptions.SearchContent ? filterOptions.Page : 1,
                     SectionFilter = filterOptions.SectionFilter,
-                    IncludeImagesContent = startPage.IncludeImagesInContentsSearchResults
+                    IncludeImagesContent = startPage.IncludeImagesInContentsSearchResults,
+                    ContentFacet = HttpContext.Request.QueryString["c"]
                 });
             }
 

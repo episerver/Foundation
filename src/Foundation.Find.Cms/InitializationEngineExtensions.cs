@@ -35,6 +35,21 @@ namespace Foundation.Find.Cms
         {
             _facetRegistry.Value.Clear();
 
+            _facetRegistry.Value.AddFacetDefinitions(_facetConfigFactory.Value.GetFacetDefinition(new FacetFilterConfigurationItem
+            {
+                FieldName = "Categories",
+                FieldType = FacetFieldType.String.ToString(),
+                DisplayNameEN = "Categories"
+
+            }));
+
+            _facetRegistry.Value.AddFacetDefinitions(_facetConfigFactory.Value.GetFacetDefinition(new FacetFilterConfigurationItem
+            {
+                FieldName = "ContentTypeName",
+                FieldType = FacetFieldType.String.ToString(),
+                DisplayNameEN = "Content Type"
+            }));
+
             if (configItems != null && configItems.Any())
             {
                 configItems

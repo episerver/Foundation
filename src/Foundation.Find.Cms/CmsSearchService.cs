@@ -1,5 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.Find;
+using EPiServer.Find.Api.Querying;
+using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework.Statistics;
 using EPiServer.Find.UnifiedSearch;
@@ -8,18 +10,25 @@ using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Media;
 using Foundation.Cms.Pages;
+using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.ViewModels;
 using Geta.EpiCategories;
 using Geta.EpiCategories.Find.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Foundation.Find.Cms
 {
     public class CmsSearchService : ICmsSearchService
     {
         private readonly IClient _findClient;
+        private readonly IFacetRegistry _facetRegistry;
 
-        public CmsSearchService(IClient findClient) => _findClient = findClient;
+        public CmsSearchService(IClient findClient, IFacetRegistry facetRegistry)
+        {
+            _findClient = findClient;
+            _facetRegistry = facetRegistry;
+        }
 
         public ContentSearchViewModel SearchContent(CmsFilterOptionViewModel filterOptions)
         {
@@ -56,9 +65,23 @@ namespace Foundation.Find.Cms
                     query = query.Track();
                 }
 
+                var facetQuery = query;
+
                 if (!string.IsNullOrWhiteSpace(filterOptions.SectionFilter))
                 {
                     query = query.FilterHits(x => x.SearchSection.Match(filterOptions.SectionFilter));
+                }
+                
+                if (!string.IsNullOrWhiteSpace(filterOptions.ContentFacet))
+                {
+                    if (!int.TryParse(filterOptions.ContentFacet, out var categoryId))
+                    {
+                        query = query.FilterHits(x => (x as FoundationPageData).ContentTypeName().Match(filterOptions.ContentFacet));
+                    }
+                    else
+                    {
+                        query = query.FilterHits(x => (x as FoundationPageData).Categories.MatchContained(y => y.ID, categoryId));
+                    }
                 }
 
                 var hitSpec = new HitSpecification
@@ -69,6 +92,7 @@ namespace Foundation.Find.Cms
 
                 model.Hits = query.GetResult(hitSpec);
                 filterOptions.TotalCount = model.Hits.TotalMatching;
+                model.FacetGroups = GetFacetResults(facetQuery, filterOptions.ContentFacet);
             }
 
             return model;
@@ -114,6 +138,103 @@ namespace Foundation.Find.Cms
         public ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent
         {
             return query.FilterByCategories(categories);
+        }
+
+        private List<FacetGroupOption> GetFacetResults(ITypeSearch<ISearchContent> query,
+                string selectedfacets)
+        {
+            var options = new List<FacetGroupOption>();
+            var facets = _facetRegistry.GetFacetDefinitions();
+            var facetGroups = facets
+                .Where(x => x.FieldName == "Categories" || x.FieldName == "ContentTypeName")
+                .Select(x => new FacetGroupOption
+                {
+                    GroupFieldName = x.FieldName,
+                    GroupName = x.DisplayName,
+
+                }).ToList();
+
+            query = facets.Aggregate(query, (current, facet) => facet.Facet(current, GetSelectedFilter(options, facet.FieldName)));
+
+            var contentFacetsResult = query.Take(0).GetResult();
+            if (contentFacetsResult.Facets == null)
+            {
+                return facetGroups;
+            }
+
+            foreach (var facetGroup in facetGroups)
+            {
+                var filter = facets.FirstOrDefault(x => x.FieldName.Equals(facetGroup.GroupFieldName));
+                if (filter == null)
+                {
+                    continue;
+                }
+
+                var facet = contentFacetsResult.Facets.FirstOrDefault(x => x.Name.Equals(facetGroup.GroupFieldName));
+                if (facet == null)
+                {
+                    continue;
+                }
+
+                filter.PopulateFacet(facetGroup, facet, selectedfacets);
+            }
+            return facetGroups;
+        }
+
+        private Filter GetSelectedFilter(List<FacetGroupOption> options, string currentField)
+        {
+            var filters = new List<Filter>();
+            var facets = _facetRegistry.GetFacetDefinitions();
+            foreach (var facetGroupOption in options)
+            {
+                if (facetGroupOption.GroupFieldName.Equals(currentField))
+                {
+                    continue;
+                }
+
+                var filter = facets.FirstOrDefault(x => x.FieldName.Equals(facetGroupOption.GroupFieldName));
+                if (filter == null)
+                {
+                    continue;
+                }
+
+                if (!facetGroupOption.Facets.Any(x => x.Selected))
+                {
+                    continue;
+                }
+
+                if (filter is FacetStringDefinition)
+                {
+                    filters.Add(new TermsFilter(_findClient.GetFullFieldName(facetGroupOption.GroupFieldName, typeof(string)),
+                        facetGroupOption.Facets.Where(x => x.Selected).Select(x => FieldFilterValue.Create(x.Name))));
+                }
+                else if (filter is FacetStringListDefinition)
+                {
+                    var termFilters = facetGroupOption.Facets.Where(x => x.Selected)
+                        .Select(s => new TermFilter(facetGroupOption.GroupFieldName, FieldFilterValue.Create(s.Name)))
+                        .Cast<Filter>()
+                        .ToList();
+
+                    filters.AddRange(termFilters);
+                }
+            }
+
+            if (!filters.Any())
+            {
+                return null;
+            }
+
+            if (filters.Count == 1)
+            {
+                return filters.FirstOrDefault();
+            }
+
+            var boolFilter = new BoolFilter();
+            foreach (var filter in filters)
+            {
+                boolFilter.Should.Add(filter);
+            }
+            return boolFilter;
         }
     }
 }

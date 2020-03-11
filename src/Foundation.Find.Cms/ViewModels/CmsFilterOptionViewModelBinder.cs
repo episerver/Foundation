@@ -39,18 +39,20 @@ namespace Foundation.Find.Cms.ViewModels
             var query = controllerContext.HttpContext.Request.QueryString["search"];
             var sort = controllerContext.HttpContext.Request.QueryString["sort"];
             var section = controllerContext.HttpContext.Request.QueryString["t"];
+            var contentFacet = controllerContext.HttpContext.Request.QueryString["c"];
             var page = controllerContext.HttpContext.Request.QueryString["p"];
             var confidence = controllerContext.HttpContext.Request.QueryString["confidence"];
-            SetupModel(model, query, sort, section, page, content, confidence);
+            SetupModel(model, query, sort, section, contentFacet, page, content, confidence);
             return model;
         }
 
-        protected virtual void SetupModel(CmsFilterOptionViewModel model, string q, string sort, string section, string page, IContent content, string confidence)
+        protected virtual void SetupModel(CmsFilterOptionViewModel model, string q, string sort, string section,string contentFacet, string page, IContent content, string confidence)
         {
             EnsurePage(model, page);
             EnsureQ(model, q);
             EnsureSort(model, sort);
             EnsureSection(model, section);
+            EnsureContentFacet(model, section);
             model.Confidence = decimal.TryParse(confidence, out var confidencePercentage) ? confidencePercentage : 0;
         }
 
@@ -82,6 +84,14 @@ namespace Foundation.Find.Cms.ViewModels
             if (string.IsNullOrEmpty(model.SectionFilter))
             {
                 model.SectionFilter = section;
+            }
+        }
+
+        protected virtual void EnsureContentFacet(CmsFilterOptionViewModel model, string contentFacet)
+        {
+            if (string.IsNullOrEmpty(model.ContentFacet))
+            {
+                model.ContentFacet = contentFacet;
             }
         }
 

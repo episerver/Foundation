@@ -69,9 +69,10 @@ namespace Foundation.Find.Commerce.ViewModels
             var sort = controllerContext.HttpContext.Request.QueryString["sort"];
             var facets = controllerContext.HttpContext.Request.QueryString["facets"];
             var section = controllerContext.HttpContext.Request.QueryString["t"];
+            var contentFacet = controllerContext.HttpContext.Request.QueryString["c"];
             var page = controllerContext.HttpContext.Request.QueryString["p"];
             var confidence = controllerContext.HttpContext.Request.QueryString["confidence"];
-            SetupModel(model, query, sort, section, page, content, confidence);
+            SetupModel(model, query, sort, section, contentFacet, page, content, confidence);
             EnsureFacets(model, facets, content);
             return model;
         }

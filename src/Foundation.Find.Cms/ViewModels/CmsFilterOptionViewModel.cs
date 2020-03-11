@@ -19,6 +19,7 @@ namespace Foundation.Find.Cms.ViewModels
         public bool HighlightTitle { get; set; }
         public bool HighlightExcerpt { get; set; }
         public string SectionFilter { get; set; }
+        public string ContentFacet { get; set; }
         public bool SearchContent { get; set; }
         public bool IncludeImagesContent { get; set; }
         public bool TrackData { get; set; } = true;

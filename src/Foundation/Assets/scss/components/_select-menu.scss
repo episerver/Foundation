@@ -94,6 +94,14 @@
     padding: 0;
     margin: 1rem 0 0 0;
 
+    &__group {
+        background: #eee;
+
+        h5 {
+            margin-bottom: 0;
+        }
+    }
+    
     &__label {
         font-size: 1.2em;
         font-weight: bold;
