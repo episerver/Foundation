@@ -35,8 +35,7 @@ namespace Foundation.Commerce.Order
                 ReturnCustomerPricing = true
             };
 
-            var prices = _priceService.Service.GetPrices(marketId, DateTime.Now,
-                new CatalogKey(entryCode), filter);
+            var prices = _priceService.Service.GetPrices(marketId, DateTime.Now, new CatalogKey(entryCode), filter);
 
             if (prices.Any())
             {

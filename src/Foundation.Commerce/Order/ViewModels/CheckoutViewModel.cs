@@ -96,6 +96,7 @@ namespace Foundation.Commerce.Order.ViewModels
         {
             get; set;
         }
+
         public int CycleLength { get; set; }
         public int MaxCyclesCount { get; set; }
         public int CompletedCyclesCount { get; set; }
@@ -104,5 +105,4 @@ namespace Foundation.Commerce.Order.ViewModels
         public DateTime? LastTransactionDate { get; set; }
         public bool IsActive { get; set; }
     }
-
 }

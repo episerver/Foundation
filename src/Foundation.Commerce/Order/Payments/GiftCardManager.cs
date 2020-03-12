@@ -33,8 +33,13 @@ namespace Foundation.Commerce.Order.Payments
             return BusinessManager.Load(GiftCardMetaClass, giftCardId);
         }
 
-        public static PrimaryKeyId CreateGiftCard(string giftCardName, PrimaryKeyId contactId, decimal initialAmount,
-            decimal remainBalance, string redemptionCode, bool isActive)
+        public static PrimaryKeyId CreateGiftCard(
+            string giftCardName, 
+            PrimaryKeyId contactId, 
+            decimal initialAmount,
+            decimal remainBalance, 
+            string redemptionCode, 
+            bool isActive)
         {
             var giftCard = BusinessManager.InitializeEntity(GiftCardMetaClass);
             giftCard[GiftCardNameField] = giftCardName;
@@ -81,6 +86,7 @@ namespace Foundation.Commerce.Order.Payments
                 {
                     giftCard[IsActiveField] = false;
                 }
+
                 BusinessManager.Update(giftCard);
                 return true;
             }

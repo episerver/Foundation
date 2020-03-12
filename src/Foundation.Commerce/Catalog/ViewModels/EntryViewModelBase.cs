@@ -12,12 +12,10 @@ namespace Foundation.Commerce.Catalog.ViewModels
     {
         protected EntryViewModelBase()
         {
-
         }
 
         protected EntryViewModelBase(T currentContent) : base(currentContent)
         {
-
         }
 
         public Injected<UrlResolver> UrlResolver { get; set; }

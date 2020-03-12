@@ -22,6 +22,5 @@ namespace Foundation.Commerce.ViewModels.Header
         public LinkItemCollection RestrictedMenu { get; set; }
         public bool HasOrganization { get; set; }
         public bool IsBookmarked { get; set; }
-
     }
 }

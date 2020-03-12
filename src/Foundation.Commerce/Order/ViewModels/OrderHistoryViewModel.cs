@@ -19,10 +19,10 @@ namespace Foundation.Commerce.Order.ViewModels
 
         public List<SelectListItem> Modes => new List<SelectListItem>
         {
-            new SelectListItem { Text = "Every x Days", Value="1"},
-            new SelectListItem { Text = "Every x Weeks", Value="2"},
-            new SelectListItem { Text = "Every x Months", Value="3"},
-            new SelectListItem { Text = "Every x Years", Value="4"}
+            new SelectListItem { Text = "Every x Days", Value = "1"},
+            new SelectListItem { Text = "Every x Weeks", Value = "2"},
+            new SelectListItem { Text = "Every x Months", Value = "3"},
+            new SelectListItem { Text = "Every x Years", Value = "4"}
         };
 
         public PagingInfo PagingInfo { get; set; }

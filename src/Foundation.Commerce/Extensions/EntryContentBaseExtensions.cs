@@ -213,8 +213,7 @@ namespace Foundation.Commerce.Extensions
                       }));
         }
 
-        public static Price GetDefaultPrice(this ContentReference contentLink, MarketId marketId, Currency currency,
-            DateTime validOn)
+        public static Price GetDefaultPrice(this ContentReference contentLink, MarketId marketId, Currency currency, DateTime validOn)
         {
             var entry = ContentLoader.Value.Get<EntryContentBase>(contentLink.ToReferenceWithoutVersion());
             var catalogKey = GetCatalogKey(entry);
@@ -227,8 +226,7 @@ namespace Foundation.Commerce.Extensions
         public static ItemCollection<Price> GetPrices(this ContentReference entryContents,
             MarketId marketId, PriceFilter priceFilter) => new[] { entryContents }.GetPrices(marketId, priceFilter);
 
-        public static ItemCollection<Price> GetPrices(this IEnumerable<ContentReference> entryContents,
-            MarketId marketId, PriceFilter priceFilter)
+        public static ItemCollection<Price> GetPrices(this IEnumerable<ContentReference> entryContents, MarketId marketId, PriceFilter priceFilter)
         {
             var customerPricingList = priceFilter.CustomerPricing != null
                 ? priceFilter.CustomerPricing.Where(x => x != null).ToList()
@@ -317,6 +315,7 @@ namespace Foundation.Commerce.Extensions
                     {
                         return new List<T> { entryContent as T };
                     }
+
                     break;
             }
 
@@ -329,6 +328,7 @@ namespace Foundation.Commerce.Extensions
             {
                 return "";
             }
+
             var outline = nodeCode;
             var currentNode = ContentLoader.Value.Get<NodeContent>(ReferenceConverter.Value.GetContentLink(nodeCode));
             var parent = ContentLoader.Value.Get<CatalogContentBase>(currentNode.ParentLink);
@@ -346,6 +346,7 @@ namespace Foundation.Commerce.Extensions
 
                 parent = ContentLoader.Value.Get<CatalogContentBase>(parent.ParentLink);
             }
+
             return outline;
         }
 
@@ -459,6 +460,7 @@ namespace Foundation.Commerce.Extensions
                         }
                     }
                 }
+
                 return new KeyValuePair<ContentReference, DiscountPrice>(contentLink, minPrice);
             }
 
@@ -467,8 +469,7 @@ namespace Foundation.Commerce.Extensions
 
         public static string GetUrl(this EntryContentBase entry) => GetUrl(entry, RelationRepository.Value, UrlResolver.Value);
 
-        public static string GetUrl(this EntryContentBase entry, IRelationRepository linksRepository,
-            UrlResolver urlResolver)
+        public static string GetUrl(this EntryContentBase entry, IRelationRepository linksRepository, UrlResolver urlResolver)
         {
             var productLink = entry is VariationContent
                 ? entry.GetParentProducts(linksRepository).FirstOrDefault()
@@ -491,7 +492,6 @@ namespace Foundation.Commerce.Extensions
 
         public static void AddBrowseHistory(this EntryContentBase entry)
         {
-
             var history = CookieService.Value.Get("BrowseHistory");
             var values = string.IsNullOrEmpty(history) ? new List<string>() :
                 history.Split(new[] { Delimiter }, StringSplitOptions.RemoveEmptyEntries).ToList();

@@ -172,8 +172,7 @@ namespace Foundation.Commerce.Customer.Services
             return true;
         }
 
-        public bool LockUserAmount(DateTime startDate, DateTime endDate, Guid organizationGuid, Guid userGuid,
-            decimal amount)
+        public bool LockUserAmount(DateTime startDate, DateTime endDate, Guid organizationGuid, Guid userGuid, decimal amount)
         {
             try
             {
@@ -271,8 +270,7 @@ namespace Foundation.Commerce.Customer.Services
             return false;
         }
 
-        public bool HasEnoughAmount(Guid organizationGuid, decimal amount, DateTime startDateTime,
-            DateTime finishDateTime)
+        public bool HasEnoughAmount(Guid organizationGuid, decimal amount, DateTime startDateTime, DateTime finishDateTime)
         {
             var currentBudget = GetBudgetByTimeLine(organizationGuid, startDateTime, finishDateTime);
             if (currentBudget == null)
@@ -306,8 +304,7 @@ namespace Foundation.Commerce.Customer.Services
                    newLockAmount >= 0;
         }
 
-        public bool ValidateSuborganizationNewAmount(Guid organizationGuid, Guid parentOrganizationId,
-            decimal newLockAmount)
+        public bool ValidateSuborganizationNewAmount(Guid organizationGuid, Guid parentOrganizationId, decimal newLockAmount)
         {
             var currentBudget = GetCurrentOrganizationBudget(organizationGuid);
             if (currentBudget == null)
@@ -325,8 +322,7 @@ namespace Foundation.Commerce.Customer.Services
                    newLockAmount >= currentBudget.LockAmount;
         }
 
-        public bool CheckAmountByTimeLine(Guid organizationGuid, decimal newLockAmount, DateTime startDateTime,
-            DateTime finishDateTime)
+        public bool CheckAmountByTimeLine(Guid organizationGuid, decimal newLockAmount, DateTime startDateTime, DateTime finishDateTime)
         {
             var currentBudget = GetBudgetByTimeLine(organizationGuid, startDateTime, finishDateTime);
             if (currentBudget == null)

@@ -10,16 +10,13 @@ namespace Foundation.Commerce.Order.ViewModelFactories
     public class OrderSummaryViewModelFactory
     {
         private readonly IOrderGroupCalculator _orderGroupCalculator;
-        private readonly IShippingCalculator _shippingCalculator;
         private readonly ICurrencyService _currencyService;
 
         public OrderSummaryViewModelFactory(
             IOrderGroupCalculator orderGroupCalculator,
-            IShippingCalculator shippingCalculator,
             ICurrencyService currencyService)
         {
             _orderGroupCalculator = orderGroupCalculator;
-            _shippingCalculator = shippingCalculator;
             _currencyService = currencyService;
         }
 

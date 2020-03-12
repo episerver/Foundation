@@ -27,7 +27,6 @@ namespace Foundation.Commerce.Marketing
         [HttpGet]
         public ActionResult Index()
         {
-
             var promotions = GetPromotions(_contentLoader.GetDescendents(GetCampaignRoot()))
                 .ToList();
 
@@ -127,7 +126,6 @@ namespace Foundation.Commerce.Marketing
         {
             return _contentLoader.GetChildren<SalesCampaignFolder>(ContentReference.RootPage)
                 .FirstOrDefault()?.ContentLink ?? ContentReference.EmptyReference;
-
         }
 
         private List<PromotionData> GetPromotions(IEnumerable<ContentReference> references)

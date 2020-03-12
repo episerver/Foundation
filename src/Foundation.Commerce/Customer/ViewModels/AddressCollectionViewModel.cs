@@ -8,7 +8,6 @@ namespace Foundation.Commerce.Customer.ViewModels
     {
         public AddressCollectionViewModel()
         {
-
         }
 
         public AddressCollectionViewModel(AddressBookPage currentPage) : base(currentPage) { }

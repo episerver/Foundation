@@ -25,6 +25,5 @@ namespace Foundation.Commerce.Order.ViewModels
         public string Description { get; set; }
         public bool IsDefault { get; set; }
         public IPaymentMethod PaymentOption { get; set; }
-
     }
 }

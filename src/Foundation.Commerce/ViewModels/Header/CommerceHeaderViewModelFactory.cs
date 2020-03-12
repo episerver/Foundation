@@ -76,6 +76,7 @@ namespace Foundation.Commerce.ViewModels.Header
             {
                 return null;
             }
+
             var contact = _customerService.GetCurrentContact();
             var isBookmarked = IsBookmarked(content);
             var viewModel = CreateViewModel<CommerceHeaderViewModel>(content, commerceHomePage, contact, isBookmarked);
@@ -218,6 +219,7 @@ namespace Foundation.Commerce.ViewModels.Header
                         var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
                         CacheManager.Insert(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems, menuItem, eviction);
                     }
+
                     return menuItem;
                 }
             }).ToList();
@@ -337,18 +339,22 @@ namespace Foundation.Commerce.ViewModels.Header
             {
                 return $"{FlagLocation}fr.svg";
             }
+
             if (marketId == new MarketId("AUS"))
             {
                 return $"{FlagLocation}au.svg";
             }
+
             if (marketId == new MarketId("BRA"))
             {
                 return $"{FlagLocation}br.svg";
             }
+
             if (marketId == new MarketId("CAN"))
             {
                 return $"{FlagLocation}ca.svg";
             }
+
             if (marketId == new MarketId("CHL"))
             {
                 return $"{FlagLocation}cl.svg";
@@ -363,36 +369,43 @@ namespace Foundation.Commerce.ViewModels.Header
             {
                 return $"{FlagLocation}de.svg";
             }
+
             if (marketId == new MarketId("ESP"))
             {
                 return $"{FlagLocation}es.svg";
             }
+
             if (marketId == new MarketId("JPN"))
             {
                 return $"{FlagLocation}jp.svg";
             }
+
             if (marketId == new MarketId("NLD"))
             {
                 return $"{FlagLocation}nl.svg";
             }
+
             if (marketId == new MarketId("NOR"))
             {
                 return $"{FlagLocation}no.svg";
             }
+
             if (marketId == new MarketId("SAU"))
             {
                 return $"{FlagLocation}sa.svg";
             }
+
             if (marketId == new MarketId("SWE"))
             {
                 return $"{FlagLocation}se.svg";
             }
+
             if (marketId == new MarketId("UK"))
             {
                 return $"{FlagLocation}gb.svg";
             }
+
             return marketId == new MarketId("US") ? $"{FlagLocation}us.svg" : "";
         }
-
     }
 }

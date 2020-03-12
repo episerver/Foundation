@@ -11,6 +11,5 @@ namespace Foundation.Commerce.ViewModels
 
         public string ImageUrl { get; set; }
         public string ImagePosition { get; set; }
-        
     }
 }
