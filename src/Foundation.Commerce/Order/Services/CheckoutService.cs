@@ -106,7 +106,6 @@ namespace Foundation.Commerce.Order.Services
                 var shipments = cart.GetFirstForm().Shipments;
                 shipments.ElementAt(updateAddressViewModel.ShippingAddressIndex).ShippingAddress =
                         _addressBookService.ConvertToAddress(viewModel.Shipments[updateAddressViewModel.ShippingAddressIndex].Address, cart);
-
             }
         }
 
@@ -158,6 +157,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return;
             }
+
             var payment = cart.GetFirstForm().Payments.FirstOrDefault(x => x.PaymentMethodId == paymentMethod.PaymentMethodId);
             cart.GetFirstForm().Payments.Remove(payment);
         }
@@ -166,7 +166,6 @@ namespace Foundation.Commerce.Order.Services
         {
             try
             {
-
                 if (cart.Properties[Constant.Quote.ParentOrderGroupId] != null)
                 {
                     var orderLink = int.Parse(cart.Properties[Constant.Quote.ParentOrderGroupId].ToString());
@@ -190,6 +189,7 @@ namespace Foundation.Commerce.Order.Services
                         }
                     }
                 }
+
                 var processPayments = cart.ProcessPayments(_paymentProcessor, _orderGroupCalculator);
                 var unsuccessPayments = processPayments.Where(x => !x.IsSuccessful);
                 if (unsuccessPayments != null && unsuccessPayments.Any())
@@ -252,6 +252,7 @@ namespace Foundation.Commerce.Order.Services
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -273,6 +274,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return null;
             }
+
             return new UrlBuilder(UrlResolver.Current.GetUrl(confirmationPage)) { QueryCollection = queryCollection }.ToString();
         }
 
@@ -291,40 +293,39 @@ namespace Foundation.Commerce.Order.Services
         /// Save cart as payment plan
         /// </summary>
         /// <param name="cart"></param>
-        /// <returns></returns>
         private OrderReference SaveAsPaymentPlan(ICart cart)
         {
             var orderReference = _orderRepository.SaveAsPaymentPlan(cart);
             var paymentPlanSetting = cart.Properties["PaymentPlanSetting"] as PaymentPlanSetting;
 
-            IPaymentPlan _paymentPlan;
-            _paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-            _paymentPlan.CycleMode = PaymentPlanCycle.Days;
-            _paymentPlan.CycleLength = paymentPlanSetting.CycleLength;
-            _paymentPlan.StartDate = DateTime.Now.AddDays(paymentPlanSetting.CycleLength);
-            _paymentPlan.EndDate = paymentPlanSetting.EndDate;
-            _paymentPlan.IsActive = paymentPlanSetting.IsActive;
+            IPaymentPlan paymentPlan;
+            paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
+            paymentPlan.CycleMode = PaymentPlanCycle.Days;
+            paymentPlan.CycleLength = paymentPlanSetting.CycleLength;
+            paymentPlan.StartDate = DateTime.Now.AddDays(paymentPlanSetting.CycleLength);
+            paymentPlan.EndDate = paymentPlanSetting.EndDate;
+            paymentPlan.IsActive = paymentPlanSetting.IsActive;
 
             var principal = PrincipalInfo.CurrentPrincipal;
-            AddNoteToCart(_paymentPlan, $"Note: New payment plan placed by {principal.Identity.Name} in 'vnext site'.", OrderNoteTypes.System.ToString(), principal.GetContactId());
+            AddNoteToCart(paymentPlan, $"Note: New payment plan placed by {principal.Identity.Name} in 'vnext site'.", OrderNoteTypes.System.ToString(), principal.GetContactId());
 
-            _orderRepository.Save(_paymentPlan);
+            _orderRepository.Save(paymentPlan);
 
-            _paymentPlan.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
-            _orderRepository.Save(_paymentPlan);
+            paymentPlan.AdjustInventoryOrRemoveLineItems((item, validationIssue) => { });
+            _orderRepository.Save(paymentPlan);
 
             //create first order
-            orderReference = _orderRepository.SaveAsPurchaseOrder(_paymentPlan);
+            orderReference = _orderRepository.SaveAsPurchaseOrder(paymentPlan);
             var purchaseOrder = _orderRepository.Load(orderReference);
             OrderGroupWorkflowManager.RunWorkflow((OrderGroup)purchaseOrder, OrderGroupWorkflowManager.CartCheckOutWorkflowName);
             var noteDetailPattern = "New purchase order placed by {0} in {1} from payment plan {2}";
-            var noteDetail = string.Format(noteDetailPattern, ManagementHelper.GetUserName(PrincipalInfo.CurrentPrincipal.GetContactId()), "VNext site", (_paymentPlan as PaymentPlan).Id);
+            var noteDetail = string.Format(noteDetailPattern, ManagementHelper.GetUserName(PrincipalInfo.CurrentPrincipal.GetContactId()), "VNext site", (paymentPlan as PaymentPlan).Id);
             AddNoteToPurchaseOrder(purchaseOrder as IPurchaseOrder, noteDetail, OrderNoteTypes.System, PrincipalInfo.CurrentPrincipal.GetContactId());
             _orderRepository.Save(purchaseOrder);
 
-            _paymentPlan.LastTransactionDate = DateTime.UtcNow;
-            _paymentPlan.CompletedCyclesCount++;
-            _orderRepository.Save(_paymentPlan);
+            paymentPlan.LastTransactionDate = DateTime.UtcNow;
+            paymentPlan.CompletedCyclesCount++;
+            _orderRepository.Save(paymentPlan);
 
             return orderReference;
         }
@@ -342,6 +343,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 throw new ArgumentNullException(nameof(purchaseOrder));
             }
+
             var orderNote = purchaseOrder.CreateOrderNote();
 
             if (!orderNote.OrderNoteId.HasValue)

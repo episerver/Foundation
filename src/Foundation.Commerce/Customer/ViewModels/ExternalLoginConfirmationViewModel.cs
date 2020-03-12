@@ -4,7 +4,6 @@ namespace Foundation.Commerce.Customer.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
-
         [LocalizedRequired("/Registration/Form/Empty/Address")]
         [LocalizedDisplay("/Registration/Form/Label/Address")]
         public string Address { get; set; }
@@ -24,6 +23,5 @@ namespace Foundation.Commerce.Customer.ViewModels
         public bool Newsletter { get; set; }
 
         public string ReturnUrl { get; set; }
-
     }
 }

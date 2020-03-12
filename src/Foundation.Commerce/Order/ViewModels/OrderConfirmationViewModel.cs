@@ -12,8 +12,8 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         public OrderConfirmationViewModel(T orderConfirmationPage) : base(orderConfirmationPage)
         {
-
         }
+
         public bool HasOrder { get; set; }
         public string OrderId { get; set; }
         public IEnumerable<ILineItem> Items { get; set; }

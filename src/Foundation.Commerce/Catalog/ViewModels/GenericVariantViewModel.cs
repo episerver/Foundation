@@ -6,12 +6,10 @@ namespace Foundation.Commerce.Catalog.ViewModels
     {
         public GenericVariantViewModel()
         {
-
         }
 
         public GenericVariantViewModel(GenericVariant variantBase) : base(variantBase)
         {
-
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Foundation.Commerce.Extensions
                         x == ValidationIssue.RemovedDueToUnavailableCatalog ||
                         x == ValidationIssue.RemovedDueToUnavailableItem);
             }
+
             return false;
         }
     }

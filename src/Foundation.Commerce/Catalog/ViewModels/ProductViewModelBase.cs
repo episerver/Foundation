@@ -10,7 +10,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
     {
         protected ProductViewModelBase()
         {
-
         }
 
         protected ProductViewModelBase(TProduct product) : base(product) => Product = product;

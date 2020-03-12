@@ -110,6 +110,5 @@ namespace Foundation.Commerce.Models.Catalog
             VirtualProductRole = "None";
             AssociationsTitle = "You May Also Like";
         }
-
     }
 }

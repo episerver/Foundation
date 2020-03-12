@@ -8,7 +8,6 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         public SubscriptionDetailViewModel(SubscriptionDetailPage currentPage) : base(currentPage)
         {
-
         }
 
         public OrderHistoryViewModel Orders { get; set; }

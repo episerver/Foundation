@@ -11,6 +11,5 @@ namespace Foundation.Commerce.Models.Blocks
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-33.png")]
     public class OrderSearchBlock : FoundationBlockData
     {
-
     }
 }

@@ -7,8 +7,8 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         public SharedMiniCartViewModel(SharedCartPage sharedCartPage) : base(sharedCartPage)
         {
-
         }
+
         public ContentReference SharedCartPage { get; set; }
     }
 }

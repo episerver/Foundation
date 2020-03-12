@@ -11,7 +11,6 @@ namespace Foundation.Commerce
 
         public void Register(TemplateModelCollection viewTemplateModelRegistrator)
         {
-
             viewTemplateModelRegistrator.Add(typeof(PromotionData), new TemplateModel
             {
                 Name = "PartialPromotion",
@@ -21,6 +20,5 @@ namespace Foundation.Commerce
                 Path = $"{FoundationFolder}_Promotion.cshtml"
             });
         }
-
     }
 }

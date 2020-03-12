@@ -171,6 +171,7 @@ namespace Foundation.Commerce.Customer.ViewModels
             {
                 return LocalizationService.GetString("/CreditCard/Empty/CreditCardNumber", "Credit card number is required");
             }
+
             return null;
         }
 
@@ -207,9 +208,7 @@ namespace Foundation.Commerce.Customer.ViewModels
                     Text = ct.ToString(),
                     Value = ((int)ct).ToString()
                 });
-
             }
-
         }
     }
 }

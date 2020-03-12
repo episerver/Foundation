@@ -8,7 +8,6 @@ namespace Foundation.Commerce.Customer.ViewModels
     {
         public GiftCardViewModel(GiftCardPage currentPage) : base(currentPage)
         {
-
         }
 
         public List<GiftCard> GiftCardList { get; set; }

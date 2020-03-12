@@ -29,8 +29,7 @@ namespace Foundation.Commerce.Mail
             _htmlDownloader = htmlDownloader;
         }
 
-        public async Task SendAsync(ContentReference mailReference, NameValueCollection nameValueCollection, string toEmail,
-            string language)
+        public async Task SendAsync(ContentReference mailReference, NameValueCollection nameValueCollection, string toEmail, string language)
         {
             var body = await GetHtmlBodyForMail(mailReference, nameValueCollection, language);
             var mailPage = _contentLoader.Get<MailBasePage>(mailReference);
@@ -106,6 +105,5 @@ namespace Foundation.Commerce.Mail
             msg.To.Add(message.Destination);
             await SendAsync(msg);
         }
-
     }
 }

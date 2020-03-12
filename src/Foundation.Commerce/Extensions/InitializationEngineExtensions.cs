@@ -21,15 +21,17 @@ namespace Foundation.Commerce.Extensions
 {
     public static class InitializationEngineExtensions
     {
-        private static readonly XmlSerializer _listViewProfileXmlSerializer = new XmlSerializer(typeof(ListViewProfile), new Type[]{
-            typeof(int[]),
-            typeof(double[]),
-            typeof(decimal[]),
-            typeof(PrimaryKeyId[]),
-            typeof(string[]),
-            typeof(DateTime[]),
-            typeof(object[])
-        });
+        private static readonly XmlSerializer _listViewProfileXmlSerializer = new XmlSerializer(typeof(ListViewProfile),
+            new Type[]
+            {
+                typeof(int[]),
+                typeof(double[]),
+                typeof(decimal[]),
+                typeof(PrimaryKeyId[]),
+                typeof(string[]),
+                typeof(DateTime[]),
+                typeof(object[])
+            });
 
         public static void InitializeFoundationCommerce(this InitializationEngine context)
         {
@@ -124,6 +126,7 @@ namespace Foundation.Commerce.Extensions
                     orgReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayOrder, "10000");
                     builder.SaveChanges();
                 }
+
                 budgetClass.AddPermissions();
 
                 UpdateMetaForm(GetBudgetBaseForm());

@@ -29,13 +29,11 @@ namespace Foundation.Commerce.Order.ViewModels
         /// <summary>
         /// Check this line item can returned
         /// </summary>
-        /// <returns></returns>
         public bool CanReturnOrder() => TotalCanReturn() > 0;
 
         /// <summary>
         /// Get total returned line items
         /// </summary>
-        /// <returns></returns>
         public decimal GetTotalReturnedQuantity()
         {
             decimal total = 0;
@@ -56,7 +54,6 @@ namespace Foundation.Commerce.Order.ViewModels
         /// <summary>
         /// Total line item can return
         /// </summary>
-        /// <returns></returns>
         public decimal TotalCanReturn() => LineItem.Quantity - GetTotalReturnedQuantity();
     }
 }

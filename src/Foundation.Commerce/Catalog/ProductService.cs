@@ -23,7 +23,6 @@ namespace Foundation.Commerce.Catalog
     {
         private readonly IContentLoader _contentLoader;
         private readonly IPromotionService _promotionService;
-        private readonly IPricingService _pricingService;
         private readonly UrlResolver _urlResolver;
         private readonly IRelationRepository _relationRepository;
         private readonly CultureInfo _preferredCulture;
@@ -37,7 +36,6 @@ namespace Foundation.Commerce.Catalog
 
         public ProductService(IContentLoader contentLoader,
             IPromotionService promotionService,
-            IPricingService pricingService,
             UrlResolver urlResolver,
             IRelationRepository relationRepository,
             ICurrentMarket currentMarketService,
@@ -50,7 +48,6 @@ namespace Foundation.Commerce.Catalog
         {
             _contentLoader = contentLoader;
             _promotionService = promotionService;
-            _pricingService = pricingService;
             _urlResolver = urlResolver;
             _relationRepository = relationRepository;
             _preferredCulture = ContentLanguage.PreferredCulture;
@@ -152,6 +149,7 @@ namespace Foundation.Commerce.Catalog
             {
                 discountedPrice = GetDiscountPrice(entry, market, currency, originalPrice.UnitPrice);
             }
+
             var image = entry.GetAssets<IContentImage>(_contentLoader, _urlResolver).FirstOrDefault() ?? "";
             var currentStore = _storeService.GetCurrentStoreViewModel();
             return new ProductTileViewModel
@@ -162,7 +160,7 @@ namespace Foundation.Commerce.Catalog
                 DiscountedPrice = discountedPrice,
                 ImageUrl = image,
                 Url = entry.GetUrl(),
-                IsAvailable = (originalPrice.UnitPrice != null && originalPrice.UnitPrice.Amount > 0),
+                IsAvailable = originalPrice.UnitPrice != null && originalPrice.UnitPrice.Amount > 0,
                 Stores = new StoreViewModel
                 {
                     Stores = _storeService.GetEntryStoresViewModels(entry.Code),
@@ -195,6 +193,5 @@ namespace Foundation.Commerce.Catalog
             var discountedPrice = _promotionService.GetDiscountPrice(new CatalogKey(entry.Code), market.MarketId, currency);
             return discountedPrice?.UnitPrice ?? originalPrice;
         }
-
     }
 }

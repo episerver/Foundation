@@ -103,6 +103,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                     Variants = new List<VariantViewModel>()
                 };
             }
+
             variationCode = string.IsNullOrEmpty(variationCode) ? variants.FirstOrDefault()?.Code : variationCode;
             var isInstock = true;
             if (!string.IsNullOrEmpty(variationCode) && variant.TrackInventory)
@@ -252,7 +253,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : EntryViewModelBase<TVariant>, new()
         {
-
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(currentContent.Code, market.MarketId, currency);
@@ -463,7 +463,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         private Dictionary<string, bool> GetVarantsState<TVariant>(List<TVariant> variants, IMarket market) where TVariant : VariationContent
         {
             var results = new Dictionary<string, bool>();
-            foreach(var v in variants)
+            foreach (var v in variants)
             {
                 var available = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly;
                 if (!available)

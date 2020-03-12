@@ -9,8 +9,8 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         protected CartViewModelBase(T content) : base(content)
         {
-
         }
+
         public decimal ItemCount { get; set; }
 
         public IEnumerable<CartItemViewModel> CartItems { get; set; }

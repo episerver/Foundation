@@ -16,20 +16,14 @@ namespace Foundation.Commerce.Customer.Services
     {
         private readonly IContentLoader _contentLoader;
         private readonly IUrlResolver _urlResolver;
-        private readonly ReferenceConverter _referenceConverter;
-        private readonly IContentRepository _contentRepository;
         private readonly IPermanentLinkMapper _permanentLinkMapper;
 
         public BookmarksService(IContentLoader contentLoader,
             IUrlResolver urlResolver,
-            ReferenceConverter referenceConverter,
-            IContentRepository contentRepository,
             IPermanentLinkMapper permanentLinkMapper)
         {
             _contentLoader = contentLoader;
             _urlResolver = urlResolver;
-            _referenceConverter = referenceConverter;
-            _contentRepository = contentRepository;
             _permanentLinkMapper = permanentLinkMapper;
         }
 
@@ -48,11 +42,13 @@ namespace Foundation.Commerce.Customer.Services
                     bookmarkModel.Name = content.Name;
                     bookmarkModel.Url = _urlResolver.GetUrl(content);
                 }
+
                 var contactBookmarks = contact.ContactBookmarks;
                 if (contactBookmarks.FirstOrDefault(x => x.ContentGuid == bookmarkModel.ContentGuid) == null)
                 {
                     contactBookmarks.Add(bookmarkModel);
                 }
+
                 contact.Bookmarks = JsonConvert.SerializeObject(contactBookmarks);
                 contact.SaveChanges();
             }
@@ -66,6 +62,7 @@ namespace Foundation.Commerce.Customer.Services
                 var contact = new FoundationContact(currentContact);
                 return contact.ContactBookmarks;
             }
+
             return new List<BookmarkModel>();
         }
 
