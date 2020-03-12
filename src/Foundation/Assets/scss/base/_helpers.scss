@@ -128,6 +128,15 @@ hr {
     width: 100%;
 }
 
+.full-width--inside-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    right: 50%;
+    margin-right: -50vw;
+}
+
 .align-center {
     text-align: center;
 }

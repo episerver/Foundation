@@ -170,6 +170,18 @@
     background: transparent;
     overflow: hidden;
 
+    & picture img {
+        opacity: 1;
+        transition: 0.2s ease;
+    }
+
+    &:hover {
+        & picture img {
+            transition: 0.2s;
+            opacity: 0.9;
+        }
+    }
+
     &:before {
         padding-top: 100%;
         content: "";
