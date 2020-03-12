@@ -98,7 +98,7 @@ namespace Foundation.Cms.Extensions
         {
             if (content is CmsHomePage)
             {
-                return ContentReference.StartPage;
+                return content.ContentLink;
             }
 
             var ancestors = _contentLoader.Value.GetAncestors(content.ContentLink);
