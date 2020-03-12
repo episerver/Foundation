@@ -137,7 +137,7 @@ namespace Foundation.Features.Blog.BlogListPage
             return model;
         }
 
-        public ActionResult Preview(PageData currentPage, BlogListPageViewModel blogModel)
+        public ActionResult Preview(PageData currentPage, BlogListPageViewModel blogModel, bool? flip)
         {
             var pd = (BlogItemPage)currentPage;
             PreviewTextLength = 200;
@@ -150,7 +150,8 @@ namespace Foundation.Features.Blog.BlogListPage
                 ShowPublishDate = blogModel.ShowPublishDate,
                 Template = blogModel.CurrentContent.Template,
                 PreviewOption = blogModel.CurrentContent.PreviewOption,
-                StartPublish = currentPage.StartPublish ?? DateTime.UtcNow
+                StartPublish = currentPage.StartPublish ?? DateTime.UtcNow,
+                Flip = flip ?? false
             };
 
             return PartialView("Preview", model);

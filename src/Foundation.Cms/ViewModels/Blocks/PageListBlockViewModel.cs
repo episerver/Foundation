@@ -28,6 +28,8 @@ namespace Foundation.Cms.ViewModels.Blocks
         public string PreviewOption { get; set; }
         public bool ShowIntroduction { get; set; }
         public bool ShowPublishDate { get; set; }
+        public bool Flip { get; set; }
+        public bool Highlight { get; set; }
 
         public PageListPreviewViewModel(PageData page, PageListBlock block)
         {

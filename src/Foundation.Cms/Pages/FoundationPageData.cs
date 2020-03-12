@@ -99,6 +99,10 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 300)]
         public virtual bool HideSiteFooter { get; set; }
 
+        [CultureSpecific]
+        [Display(Name = "Highlight in page list", GroupName = CmsTabNames.Settings, Order = 400)]
+        public virtual bool Highlight { get; set; }
+
         #endregion
 
         #region Teaser
