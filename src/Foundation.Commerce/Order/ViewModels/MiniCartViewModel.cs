@@ -45,5 +45,4 @@ namespace Foundation.Commerce.Order.ViewModels
 
         public bool HasOrganization { get; set; }
     }
-
 }

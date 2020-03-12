@@ -6,12 +6,10 @@ namespace Foundation.Commerce.Catalog.ViewModels
     {
         public GenericPackageViewModel()
         {
-
         }
 
         public GenericPackageViewModel(GenericPackage fashionPackage) : base(fashionPackage)
         {
         }
-
     }
 }

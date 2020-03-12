@@ -11,12 +11,10 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         public LargeCartViewModel()
         {
-
         }
 
         public LargeCartViewModel(CartPage cartPage) : base(cartPage)
         {
-
         }
 
         public string ReferrerUrl { get; set; }

@@ -186,9 +186,7 @@ namespace Foundation.Commerce.Order.Services
         /// <param name="lineItemId"></param>
         /// <param name="returnQuantity"></param>
         /// <param name="reason"></param>
-        /// <returns></returns>
-        public ReturnFormStatus CreateReturn(int orderGroupId, int shipmentId, int lineItemId, decimal returnQuantity,
-            string reason)
+        public ReturnFormStatus CreateReturn(int orderGroupId, int shipmentId, int lineItemId, decimal returnQuantity, string reason)
         {
             //Get originial information about lineitem and shipment
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderGroupId);
@@ -219,8 +217,7 @@ namespace Foundation.Commerce.Order.Services
             return ReturnFormStatusManager.GetReturnFormStatus(returnForm as OrderForm);
         }
 
-        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemQuantity(int orderGroupId, int shipmentId,
-            int lineItemId, decimal quantity)
+        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemQuantity(int orderGroupId, int shipmentId, int lineItemId, decimal quantity)
         {
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderGroupId);
             var form = purchaseOrder.GetFirstForm();
@@ -248,8 +245,7 @@ namespace Foundation.Commerce.Order.Services
             return issues;
         }
 
-        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemPrice(int orderGroupId, int shipmentId,
-            int lineItemId, decimal price)
+        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemPrice(int orderGroupId, int shipmentId, int lineItemId, decimal price)
         {
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderGroupId);
             var form = purchaseOrder.GetFirstForm();

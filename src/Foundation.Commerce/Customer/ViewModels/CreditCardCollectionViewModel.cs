@@ -11,7 +11,6 @@ namespace Foundation.Commerce.Customer.ViewModels
     {
         public CreditCardCollectionViewModel(CreditCardPage currentPage) : base(currentPage)
         {
-
         }
 
         public IEnumerable<CreditCardModel> CreditCards { get; set; }

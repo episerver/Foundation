@@ -48,6 +48,7 @@ namespace Foundation.Commerce.Marketing
                         transaction.Commit();
                     }
                 }
+
                 return true;
             }
             catch (Exception exn)
@@ -80,6 +81,7 @@ namespace Foundation.Commerce.Marketing
                         transaction.Commit();
                     }
                 }
+
                 return true;
             }
             catch (Exception exn)
@@ -112,6 +114,7 @@ namespace Foundation.Commerce.Marketing
                         transaction.Commit();
                     }
                 }
+
                 return true;
             }
             catch (Exception exn)
@@ -146,6 +149,7 @@ namespace Foundation.Commerce.Marketing
                         }
                     }
                 }
+
                 return coupons;
             }
             catch (Exception exn)

@@ -37,7 +37,6 @@ namespace Foundation.Commerce.Marketing
                 else
                 {
                     CheckMultipleCoupons(filterContext, codes, includedPromotion, uniqueCodes);
-
                 }
             }
 
@@ -75,6 +74,7 @@ namespace Foundation.Commerce.Marketing
                     return;
                 }
             }
+
             filterContext.ExcludePromotion(includedPromotion, FulfillmentStatus.CouponCodeRequired,
                 filterContext.RequestedStatuses.HasFlag(RequestFulfillmentStatus.NotFulfilled));
         }

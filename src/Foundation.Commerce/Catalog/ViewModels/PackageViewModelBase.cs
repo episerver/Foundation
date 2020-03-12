@@ -7,7 +7,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
     {
         protected PackageViewModelBase()
         {
-
         }
 
         protected PackageViewModelBase(TPackage package) : base(package)

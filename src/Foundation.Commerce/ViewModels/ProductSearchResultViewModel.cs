@@ -9,7 +9,6 @@ namespace Foundation.Commerce.ViewModels
     {
         public ProductSearchResultViewModel(ProductSearchBlock currentBlock) : base(currentBlock)
         {
-            
         }
 
         public string Heading { get; set; }

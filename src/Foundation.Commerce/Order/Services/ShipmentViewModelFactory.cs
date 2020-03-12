@@ -123,6 +123,7 @@ namespace Foundation.Commerce.Order.Services
                     IsInstorePickup = true
                 });
             }
+
             return models;
         }
 

@@ -21,7 +21,6 @@ namespace Foundation.Commerce.Order.ViewModelFactories
     {
         private readonly LocalizationService _localizationService;
         private readonly IAddressBookService _addressBookService;
-        private readonly IContentLoader _contentLoader;
         private readonly UrlResolver _urlResolver;
         private readonly ServiceAccessor<HttpContextBase> _httpContextAccessor;
         private readonly ShipmentViewModelFactory _shipmentViewModelFactory;
@@ -29,14 +28,12 @@ namespace Foundation.Commerce.Order.ViewModelFactories
         public MultiShipmentViewModelFactory(
             LocalizationService localizationService,
             IAddressBookService addressBookService,
-            IContentLoader contentLoader,
             UrlResolver urlResolver,
             ServiceAccessor<HttpContextBase> httpContextAccessor,
             ShipmentViewModelFactory shipmentViewModelFactory)
         {
             _localizationService = localizationService;
             _addressBookService = addressBookService;
-            _contentLoader = contentLoader;
             _urlResolver = urlResolver;
             _httpContextAccessor = httpContextAccessor;
             _shipmentViewModelFactory = shipmentViewModelFactory;
@@ -83,6 +80,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
             {
                 address.Name = _localizationService.GetString("/Shared/Address/DefaultAddressName");
             }
+
             if (cart != null)
             {
                 foreach (var shipment in cart.GetFirstForm().Shipments)
@@ -91,19 +89,23 @@ namespace Foundation.Commerce.Order.ViewModelFactories
                     {
                         continue;
                     }
+
                     var shipmentAddress = _addressBookService.ConvertToModel(shipment.ShippingAddress);
                     var savedAddress = addresses.FirstOrDefault(x => x.IsEqual(shipmentAddress));
                     if (savedAddress != null)
                     {
                         continue;
                     }
+
                     if (addresses.Any(x => x.AddressId.Equals(shipmentAddress.AddressId)))
                     {
                         shipmentAddress.AddressId = shipmentAddress.Name = Guid.NewGuid().ToString();
                     }
+
                     addresses.Add(shipmentAddress);
                 }
             }
+
             return addresses;
         }
 
@@ -149,6 +151,7 @@ namespace Foundation.Commerce.Order.ViewModelFactories
             {
                 return httpContext.Request.UrlReferrer.ToString();
             }
+
             return _urlResolver.GetUrl(ContentReference.StartPage);
         }
 

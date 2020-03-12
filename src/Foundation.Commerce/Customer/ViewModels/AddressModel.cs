@@ -45,7 +45,8 @@ namespace Foundation.Commerce.Customer.ViewModels
         [LocalizedDisplay("/Shared/Address/Form/Label/Line2")]
         public string Line2 { get; set; }
 
-        [UIHint("AddressRegion")] public CountryRegionViewModel CountryRegion { get; set; }
+        [UIHint("AddressRegion")]
+        public CountryRegionViewModel CountryRegion { get; set; }
 
         [LocalizedDisplay("/Shared/Address/Form/Label/Email")]
         [LocalizedEmail("/Shared/Address/Form/Error/InvalidEmail")]

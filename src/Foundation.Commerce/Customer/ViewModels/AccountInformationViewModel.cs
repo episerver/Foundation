@@ -6,7 +6,6 @@ namespace Foundation.Commerce.Customer.ViewModels
 {
     public class AccountInformationViewModel
     {
-
         [LocalizedDisplay("/Shared/Address/Form/Label/FirstName")]
         [LocalizedRequired("/Shared/Address/Form/Empty/FirstName")]
         public string FirstName { get; set; }

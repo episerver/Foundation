@@ -65,6 +65,7 @@ namespace Foundation.Commerce.Order.Services
                     IsSharedCart = isSharedCart
                 };
             }
+
             return new MiniCartViewModel
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),
@@ -178,6 +179,7 @@ namespace Foundation.Commerce.Order.Services
                     Total = new Money(0, _currencyService.GetCurrentCurrency())
                 };
             }
+
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             return new WishListViewModel(wishListPage)
             {
@@ -247,7 +249,6 @@ namespace Foundation.Commerce.Order.Services
             {
                 return null;
             }
-
         }
 
         public virtual SharedCartViewModel CreateSharedCartViewModel(ICart cart, SharedCartPage sharedCartPage)
@@ -261,6 +262,7 @@ namespace Foundation.Commerce.Order.Services
                     Total = new Money(0, _currencyService.GetCurrentCurrency())
                 };
             }
+
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             return new SharedCartViewModel(sharedCartPage)
             {
@@ -300,7 +302,6 @@ namespace Foundation.Commerce.Order.Services
             {
                 return null;
             }
-
         }
 
         private decimal GetLineItemsTotalQuantity(ICart cart)
@@ -326,6 +327,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return httpContext.Request.UrlReferrer.ToString();
             }
+
             return _urlResolver.GetUrl(ContentReference.StartPage);
         }
     }

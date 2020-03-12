@@ -20,6 +20,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 {
                     return DiscountedPrice.Value;
                 }
+
                 return ListingPrice;
             }
         }
@@ -32,6 +33,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 {
                     return ListingPrice - DiscountedPrice.Value;
                 }
+
                 return new Money(0, ListingPrice.Currency);
             }
         }

@@ -17,6 +17,7 @@ namespace Foundation.Commerce.Order.ViewModels
                 Address = new AddressModel()
             };
         }
+
         public CheckoutMethodViewModel(CheckoutPage currentPage, string returnUrl = "/") : base(currentPage)
         {
             LoginViewModel = new LoginViewModel();

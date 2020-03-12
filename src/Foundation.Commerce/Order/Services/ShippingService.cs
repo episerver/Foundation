@@ -75,11 +75,13 @@ namespace Foundation.Commerce.Order.Services
             {
                 return shippingPlugin.GetRate(currentMarket, shippingMethodInfoModel.MethodId, shipment, ref message);
             }
+
             var shippingGateway = _shippingGatewaysAccessor().FirstOrDefault(s => s.GetType() == type);
             if (shippingGateway != null)
             {
                 return shippingGateway.GetRate(currentMarket, shippingMethodInfoModel.MethodId, (Shipment)shipment, ref message);
             }
+
             throw new InvalidOperationException($"There is no registered {nameof(IShippingPlugin)} or {nameof(IShippingGateway)} instance.");
         }
     }

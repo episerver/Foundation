@@ -10,7 +10,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
 
         public GenericBundleViewModel(GenericBundle fashionBundle) : base(fashionBundle)
         {
-
         }
     }
 }

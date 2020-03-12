@@ -11,6 +11,5 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-14.png")]
     public class SubscriptionDetailPage : FoundationPageData
     {
-
     }
 }
