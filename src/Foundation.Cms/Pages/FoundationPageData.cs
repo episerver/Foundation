@@ -247,11 +247,15 @@ namespace Foundation.Cms.Pages
 
         public override void SetDefaultValues(ContentType contentType)
         {
-            base.SetDefaultValues(contentType);
-
             TeaserTextAlignment = "Left";
-            TeaserColorTheme = "Dark";
+            TeaserColorTheme = ColorThemes.Light;
             TeaserRatio = "10-5";
+            TeaserButtonStyle = ButtonBlockStyleSelectionFactory.ButtonBlockStyles.TransparentWhite;
+            TeaserButtonText = "Read more";
+            ApplyHoverEffect = true;
+            Padding = "p-1";
+            Margin = "m-1";
+            base.SetDefaultValues(contentType);
         }
     }
 }
