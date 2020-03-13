@@ -41,8 +41,8 @@ namespace Foundation.Cms.Pages
         {
             base.SetDefaultValues(contentType);
 
-            PageTitleColor = ColorThemes.None;
-            TopPaddingMode = FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.None;
+            PageTitleColor = ColorThemes.Light;
+            TopPaddingMode = FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.Half;
         }
     }
 }
