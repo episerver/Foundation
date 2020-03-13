@@ -26,7 +26,6 @@
                 }
                 else if (!string.IsNullOrEmpty(Model.ContentSearchResult.ContentFacet))
                 {
-
                     bool isNumeric = int.TryParse(Model.ContentSearchResult.ContentFacet, out int n);
                     if (isNumeric)
                     {
@@ -86,7 +85,6 @@
                         var c = _contentRepository.Get<StandardCategory>(reference);
                         <li class="">
                             <span class="selection--cm__sub-label">
-
                                 <a href="@Model.ContentSearchResult.GetContentFacetUrl(@facet.Name)">@c.Name (@facet.Count)</a>
                             </span>
                         </li>
@@ -107,7 +105,6 @@
                         </li>
                     }
                 }
-
             }
         }
     </ul>

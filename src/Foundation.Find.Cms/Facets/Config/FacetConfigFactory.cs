@@ -28,14 +28,16 @@ namespace Foundation.Find.Cms.Facets.Config
                     return new FacetStringDefinition
                     {
                         FieldName = facetConfiguration.FieldName,
-                        DisplayName = facetConfiguration.GetDisplayName()
+                        DisplayName = facetConfiguration.GetDisplayName(),
+                        IsCommerceEnabled = true
                     };
 
                 case FacetFieldType.ListOfString:
                     return new FacetStringListDefinition
                     {
                         FieldName = facetConfiguration.FieldName,
-                        DisplayName = facetConfiguration.GetDisplayName()
+                        DisplayName = facetConfiguration.GetDisplayName(),
+                        IsCommerceEnabled = true
                     };
 
                 case FacetFieldType.Boolean:
@@ -44,6 +46,7 @@ namespace Foundation.Find.Cms.Facets.Config
                     {
                         FieldName = facetConfiguration.FieldName,
                         DisplayName = facetConfiguration.GetDisplayName(),
+                        IsCommerceEnabled = true
                     };
             }
 
@@ -51,6 +54,7 @@ namespace Foundation.Find.Cms.Facets.Config
             {
                 FieldName = facetConfiguration.FieldName,
                 DisplayName = facetConfiguration.GetDisplayName(),
+                IsCommerceEnabled = true
             };
         }
 

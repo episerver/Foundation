@@ -547,7 +547,7 @@ namespace Foundation.Find.Commerce
 
             var facets = _facetRegistry.GetFacetDefinitions();
             var facetGroups = facets
-                .Where(x => x.FieldName != "Categories" && x.FieldName != "ContentTypeName")
+                .Where(x => x.IsCommerceEnabled)
                 .Select(x => new FacetGroupOption
                 {
                     GroupFieldName = x.FieldName,

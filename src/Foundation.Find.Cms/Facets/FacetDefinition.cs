@@ -23,6 +23,7 @@ namespace Foundation.Find.Cms.Facets
 
         public string FieldName { get; set; }
         public string RenderType { get; set; }
+        public bool IsCommerceEnabled { get; set; }
 
         public abstract ITypeSearch<T> Facet<T>(ITypeSearch<T> query, Filter filter);
         public abstract void PopulateFacet(FacetGroupOption facetGroupOption, Facet facet, string selectedFacets);

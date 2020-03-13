@@ -146,12 +146,11 @@ namespace Foundation.Find.Cms
             var options = new List<FacetGroupOption>();
             var facets = _facetRegistry.GetFacetDefinitions();
             var facetGroups = facets
-                .Where(x => x.FieldName == "Categories" || x.FieldName == "ContentTypeName")
+                .Where(x => !x.IsCommerceEnabled)
                 .Select(x => new FacetGroupOption
                 {
                     GroupFieldName = x.FieldName,
                     GroupName = x.DisplayName,
-
                 }).ToList();
 
             query = facets.Aggregate(query, (current, facet) => facet.Facet(current, GetSelectedFilter(options, facet.FieldName)));

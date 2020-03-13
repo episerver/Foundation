@@ -26,7 +26,8 @@ namespace Foundation.Find.Commerce.Facets
                     {
                         FieldName = facetConfiguration.FieldName,
                         DisplayName = facetConfiguration.GetDisplayName(),
-                        BackingType = typeof(int)
+                        BackingType = typeof(int),
+                        IsCommerceEnabled = true
                     };
 
                 case FacetFieldType.Double:
@@ -37,7 +38,8 @@ namespace Foundation.Find.Commerce.Facets
                         {
                             FieldName = facetConfiguration.FieldName,
                             DisplayName = facetConfiguration.GetDisplayName(),
-                            BackingType = typeof(double)
+                            BackingType = typeof(double),
+                            IsCommerceEnabled = true
                         };
 
                         rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();
@@ -50,7 +52,8 @@ namespace Foundation.Find.Commerce.Facets
                         {
                             FieldName = facetConfiguration.FieldName,
                             DisplayName = facetConfiguration.GetDisplayName(),
-                            BackingType = typeof(double)
+                            BackingType = typeof(double),
+                            IsCommerceEnabled = true
                         };
 
                         rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();
@@ -69,27 +72,30 @@ namespace Foundation.Find.Commerce.Facets
             var brand = new FacetStringDefinition
             {
                 FieldName = "Brand",
-                DisplayName = "Brand"
+                DisplayName = "Brand",
+                IsCommerceEnabled = true
             };
 
             var color = new FacetStringListDefinition
             {
                 DisplayName = "Color",
-                FieldName = "AvailableColors"
+                FieldName = "AvailableColors",
+                IsCommerceEnabled = true
             };
 
             var size = new FacetStringListDefinition
             {
                 DisplayName = "Size",
-                FieldName = "AvailableSizes"
+                FieldName = "AvailableSizes",
+                IsCommerceEnabled = true
             };
 
             var priceRanges = new FacetNumericRangeDefinition(_currentMarket)
             {
                 DisplayName = "Price",
                 FieldName = "DefaultPrice",
-                BackingType = typeof(double)
-
+                BackingType = typeof(double),
+                IsCommerceEnabled = true
             };
             priceRanges.Range.Add(new SelectableNumericRange() { To = 50 });
             priceRanges.Range.Add(new SelectableNumericRange() { From = 50, To = 100 });
@@ -97,7 +103,21 @@ namespace Foundation.Find.Commerce.Facets
             priceRanges.Range.Add(new SelectableNumericRange() { From = 500, To = 1000 });
             priceRanges.Range.Add(new SelectableNumericRange() { From = 1000 });
 
-            return new List<FacetDefinition>() { priceRanges, brand, size, color };
+            var categories = new FacetStringDefinition
+            {
+                FieldName = "Categories",
+                DisplayName = "Categories",
+                IsCommerceEnabled = false
+            };
+
+            var contentType = new FacetStringDefinition
+            {
+                FieldName = "ContentTypeName",
+                DisplayName = "Content Type",
+                IsCommerceEnabled = false
+            };
+
+            return new List<FacetDefinition>() { priceRanges, brand, size, color, categories, contentType };
         }
     }
 }
