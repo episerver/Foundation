@@ -1,4 +1,5 @@
 ﻿@model Foundation.Demo.ViewModels.DemoHeaderViewModel
+
 @if (Model.IsReadonlyMode)
 {
     @Html.RenderReadonlyMessage()
@@ -6,30 +7,30 @@
 else
 {
     <div class="top-header">
-        <div class="container">
-            <div class="col-12">
-                <div class="banner-text">
-                    @Html.PropertyFor(x => x.CommerceHomePage.BannerText)
-                </div>
-
-                @if (Model.ShowCommerceControls)
-                {
-                    <div class="market-selector d-none d-lg-block dropdown">
-                        <div class="market-selector__wrapper" data-toggle="dropdown" data-offset="0,2" data-flip="false">
-                            <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
-                            <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>
-                            <div class="market-selector__dropdown-icon">
-                                <i data-feather="chevron-down"></i>
-                            </div>
-                        </div>
-                        @Html.Partial("_MarketList", Model.Markets)
+        <div class="container" style="@(Model.LargeHeaderMenu ? "max-width: 1750px;" : "")">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header__banner-text">
+                        @Html.PropertyFor(x => x.CommerceHomePage.BannerText)
                     </div>
-                }
+                    @if (Model.ShowCommerceControls)
+                    {
+                        <div class="market-selector d-none d-lg-block dropdown">
+                            <div class="market-selector__wrapper" data-toggle="dropdown" data-offset="1,2" data-flip="false">
+                                <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
+                                <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>
+                                <div class="market-selector__dropdown-icon">
+                                    <i data-feather="chevron-down"></i>
+                                </div>
+                            </div>
+                            @Html.Partial("_MarketList", Model.Markets)
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
 }
-
 
 <header class="header">
     <div class="header__wrapper">

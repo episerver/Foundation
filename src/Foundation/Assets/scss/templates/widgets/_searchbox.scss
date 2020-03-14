@@ -1,4 +1,5 @@
-﻿.searchbox {
+﻿/* Searchbox in Header */
+.searchbox {
     position: absolute;
     right: 82px;
     top: 0;
@@ -104,4 +105,37 @@
     background: #fff;
     font-size: $text-font-size;
     line-height: 16px;
+}
+
+/* Searchbox widget */
+.search-box {
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > input[type=text] {
+        font-size: 16px;
+        padding: 12px 20px;
+        border: 0;
+        flex-grow: 1;
+
+        &:focus {
+            border: 0;
+            outline: 0;
+        }
+    }
+
+    & > a {
+        height: 100%;
+        padding: 15px 30px;
+        flex-grow: 0;
+        border-left: 1px solid #ddd;
+
+        &:hover {
+            background-color: lightgrey;
+            color: white;
+        }
+    }
 }

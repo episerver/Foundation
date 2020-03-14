@@ -1,18 +1,14 @@
 .top-header {
-    width: 100%;
-    min-height: 35px;
-    height: auto;
+    display: flex;
+    align-items: center;
+    height: 35px;
     background: #000;
     color: #fff;
-    text-align: center;
-    padding: 8px;
-    margin: auto;
 
-    > div {
-        position: relative;
-    }
+    &__banner-text {
+        flex-grow: 1;
+        text-align: center;
 
-    .banner-text {
         > p {
             margin-bottom: 0;
         }
@@ -58,4 +54,8 @@
             border-right: 1px solid #eee;
         }
     }
+}
+
+.container.large-header-menu {
+    max-width: 1750px;
 }
