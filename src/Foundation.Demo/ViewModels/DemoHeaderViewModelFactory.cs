@@ -68,6 +68,7 @@ namespace Foundation.Demo.ViewModels
             AddAnonymousComponents(demoHomePage, viewModel);
             AddMarketViewModel(currentContent, viewModel);
             AddMyAccountMenu(demoHomePage, viewModel);
+            viewModel.LargeHeaderMenu = demoHomePage.LargeHeaderMenu;
             viewModel.ShowCommerceControls = demoHomePage.ShowCommerceHeaderComponents;
             viewModel.DemoUsers = GetDemoUsers(demoHomePage.ShowCommerceHeaderComponents);
             return viewModel as THeaderViewModel;

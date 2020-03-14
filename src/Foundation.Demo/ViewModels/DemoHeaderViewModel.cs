@@ -6,6 +6,7 @@ namespace Foundation.Demo.ViewModels
 {
     public class DemoHeaderViewModel : CommerceHeaderViewModel
     {
+        public bool LargeHeaderMenu { get; set; }
         public bool ShowCommerceControls { get; set; }
         public DemoHomePage DemoHomePage => HomePage as DemoHomePage;
         public List<DemoUserViewModel> DemoUsers { get; set; }
