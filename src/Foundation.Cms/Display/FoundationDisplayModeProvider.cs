@@ -12,6 +12,15 @@ namespace Foundation.Cms.Display
             {
                 new DisplayModeFallback
                 {
+                    Name = "Screen width",
+                    Tag = "displaymode-screen",
+                    LargeScreenWidth = 12,
+                    MediumScreenWidth = 12,
+                    SmallScreenWidth = 12,
+                    ExtraSmallScreenWidth = 12,
+                },
+                new DisplayModeFallback
+                {
                     Name = "Full width (1/1)",
                     Tag = "displaymode-full",
                     LargeScreenWidth = 12,

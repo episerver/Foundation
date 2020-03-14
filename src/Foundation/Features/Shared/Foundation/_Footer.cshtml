@@ -1,4 +1,4 @@
-﻿@using EPiServer.SpecializedProperties;
+﻿﻿@using EPiServer.SpecializedProperties;
 
 @model IContentViewModel<IContent>
 
@@ -52,11 +52,12 @@
                 }
             </div>
         </div>
-        <div class="row">
-            <p class="footer__subtext col-12" @Html.EditAttributes(x => x.StartPage.FooterCopyrightText)>
-                © @DateTime.Now.Year.ToString() @Html.DisplayFor(x => x.StartPage.FooterCopyrightText)
-            </p>
-        </div>
 
+        <div class="footer__subtext row no-gutters">
+            <div class="col-auto">© @DateTime.Now.Year.ToString()<span>&nbsp;</span></div>
+            <div class="col">
+                @Html.PropertyFor(x => x.StartPage.FooterCopyrightText)
+            </div>
+        </div>
     </div>
 </footer>

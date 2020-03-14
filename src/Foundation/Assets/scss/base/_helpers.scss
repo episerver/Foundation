@@ -1,10 +1,12 @@
-/**
- * Clear inner floats
- */
+/* Clear inner floats */
 .clearfix::after {
     clear: both;
     content: "";
     display: table;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 /* Override bootstrap container for 1200px and up */
@@ -148,34 +150,11 @@ ul.none-style-type {
     list-style-type: none;
 }
 
-.search-box {
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    & > input[type=text] {
-        font-size: 16px;
-        padding: 12px 20px;
-        border: 0;
-        flex-grow: 1;
-
-        &:focus {
-            border: 0;
-            outline: 0;
-        }
-    }
-
-    & > a {
-        height: 100%;
-        padding: 15px 30px;
-        flex-grow: 0;
-        border-left: 1px solid #ddd;
-
-        &:hover {
-            background-color: lightgrey;
-            color: white;
-        }
-    }
+.screen-width-block {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
