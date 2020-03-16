@@ -30,7 +30,7 @@
                     if (isNumeric)
                     {
                         var reference = new ContentReference(Model.ContentSearchResult.ContentFacet);
-                        var c = _contentRepository.Get<StandardCategory>(reference);
+                        var c = _contentRepository.Get<IContent>(reference);
                         <label class="content-filters-tag">
                             @c.Name
                         </label>
@@ -76,7 +76,7 @@
                 if (facetGroup.GroupFieldName == "Categories")
                 {
                     <li class="selection--cm__group">
-                        <h5>@Html.TranslateFallback("/Search/Content/Categories", "Categories")</h5>
+                        <h5>@facetGroup.GroupName</h5>
                     </li>
                     for (var j = 0; j < facetGroup.Facets.Count; j++)
                     {
@@ -93,7 +93,7 @@
                 else
                 {
                     <li class="selection--cm__group">
-                        <h5>@Html.TranslateFallback("/Search/Content/ContentTypes", "Content Types")</h5>
+                        <h5>@facetGroup.GroupName</h5>
                     </li>
                     for (var j = 0; j < facetGroup.Facets.Count; j++)
                     {

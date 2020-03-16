@@ -27,7 +27,7 @@ namespace Foundation.Find.Commerce.Facets
                         FieldName = facetConfiguration.FieldName,
                         DisplayName = facetConfiguration.GetDisplayName(),
                         BackingType = typeof(int),
-                        IsCommerceEnabled = true
+                        IsCommerceEnabled = facetConfiguration.IsCommerceEnabled
                     };
 
                 case FacetFieldType.Double:
@@ -39,7 +39,7 @@ namespace Foundation.Find.Commerce.Facets
                             FieldName = facetConfiguration.FieldName,
                             DisplayName = facetConfiguration.GetDisplayName(),
                             BackingType = typeof(double),
-                            IsCommerceEnabled = true
+                            IsCommerceEnabled = facetConfiguration.IsCommerceEnabled
                         };
 
                         rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();
@@ -53,7 +53,7 @@ namespace Foundation.Find.Commerce.Facets
                             FieldName = facetConfiguration.FieldName,
                             DisplayName = facetConfiguration.GetDisplayName(),
                             BackingType = typeof(double),
-                            IsCommerceEnabled = true
+                            IsCommerceEnabled = facetConfiguration.IsCommerceEnabled
                         };
 
                         rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();

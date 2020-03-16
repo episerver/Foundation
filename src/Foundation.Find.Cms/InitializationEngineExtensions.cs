@@ -40,9 +40,6 @@ namespace Foundation.Find.Cms
                 configItems
                     .ToList()
                     .ForEach(x => _facetRegistry.Value.AddFacetDefinitions(_facetConfigFactory.Value.GetFacetDefinition(x)));
-
-                _facetConfigFactory.Value.GetDefaultFacetDefinitions().Where(x => !x.IsCommerceEnabled).ToList()
-                    .ForEach(x => _facetRegistry.Value.AddFacetDefinitions(x));
             }
             else
             {

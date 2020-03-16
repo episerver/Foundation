@@ -158,5 +158,10 @@ namespace Foundation.Find.Cms.Facets.Config
             Name = "Display Specific Values",
             Description = "Used to display specific values of an Attribute as Filter: e.g. Brand. Must be exact match to value of attribute.")]
         public virtual IList<string> DisplaySpecificValues { get; set; }
+
+        [Display(
+            Name = "Is Commerce Enabled",
+            Description = "This will determine filter for Commerce items or not")]
+        public virtual bool IsCommerceEnabled { get; set; }
     }
 }
