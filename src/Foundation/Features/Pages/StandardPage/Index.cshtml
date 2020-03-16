@@ -18,11 +18,11 @@
             break;
     }
     var textColor = string.Empty;
-    if (Model.CurrentContent.PageTitleColor.Equals("Light"))
+    if (Model.CurrentContent.TitleColor.Equals("Light"))
     {
         textColor = "color: white";
     }
-    else if (Model.CurrentContent.PageTitleColor.Equals("Dark"))
+    else if (Model.CurrentContent.TitleColor.Equals("Dark"))
     {
         textColor = "color: black";
     }
@@ -57,12 +57,12 @@
             }
         </div>
         <div class="standard-page__box @boxClass">
-            <div class="article__title">
+            <div class="article__title" style="opacity:@(Model.CurrentContent.TitleOpacity?.ToString("N") ?? "1")">
                 @if (!Model.CategoryName.IsEmpty())
                 {
                     <h4 style="@textColor">@Model.CategoryName</h4>
                 }
-                <h1 style="@textColor">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
+                <h1 style="@textColor"><span style="background-color:@Model.CurrentContent.TitleBackgroundColor">@Html.PropertyFor(x => x.CurrentContent.Name)</span></h1>
             </div>
             <div class="standard-page__content">
                 @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
