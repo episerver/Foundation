@@ -1168,6 +1168,7 @@
     <Content Include="Assets\js\features\Checkout.js" />
     <Content Include="Assets\js\features\Dropdown.js" />
     <Content Include="Assets\js\features\OrderSearchBlock.js" />
+    <Content Include="Assets\js\features\PdfPreview.js" />
     <Content Include="Assets\js\features\ProductRecs.js" />
     <Content Include="Assets\js\features\Header.js" />
     <Content Include="Assets\js\features\mobile-navigation.js" />
@@ -1228,6 +1229,7 @@
     <Content Include="Assets\js\vendors\gijgo\messages\messages.zh-tw.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery-3.4.0.min.js" />
     <Content Include="Assets\js\vendors\mvc-grid\mvc-grid.js" />
+    <Content Include="Assets\js\vendors\pdfobject\PdfObject.js" />
     <Content Include="Assets\js\vendors\popper\popper.min.js" />
     <Content Include="Assets\js\vendors\spur-admin\spur.js" />
     <Content Include="Assets\scss\templates\blocks\_hero-block.scss" />
@@ -1863,6 +1865,7 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="App_Data\GeoLiteCity.dat" />
+    <Content Include="Features\Media\PdfFile.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

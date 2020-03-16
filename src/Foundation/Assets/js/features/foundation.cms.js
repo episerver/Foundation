@@ -37,5 +37,10 @@
         var contentSearch = new ContentSearch();
         contentSearch.Init();
         // --- End
+
+        // Pdf preview
+        var pdfPreview = new PdfPreview();
+        pdfPreview.Render();
+        // --- End
     }
 }
