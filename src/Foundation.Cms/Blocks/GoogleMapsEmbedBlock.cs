@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using EPiServer.Core;
+﻿using System.ComponentModel.DataAnnotations;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 
@@ -12,13 +10,12 @@ namespace Foundation.Cms.Blocks
         GroupName = CmsGroupNames.SocialMedia)]
     public class GoogleMapsEmbedBlock : FoundationBlockData
     {
+        [Required]
         [Display(Name = "API Key")]
         public virtual string ApiKey { get; set; }
 
         [Display(Name = "Search term")]
         public virtual string SearchTerm { get; set; }
-
-        public virtual double Width { get; set; }
 
         public virtual double Height { get; set; }
     }
