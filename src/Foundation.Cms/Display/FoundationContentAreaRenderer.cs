@@ -39,7 +39,7 @@ namespace Foundation.Cms.Display
         {
             var baseClass = base.GetContentAreaItemCssClass(html, contentAreaItem);
 
-            if (string.IsNullOrEmpty(baseClass) == false)
+            if (!string.IsNullOrEmpty(baseClass))
             {
                 return baseClass;
             }
