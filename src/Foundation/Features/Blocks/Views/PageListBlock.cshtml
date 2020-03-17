@@ -88,5 +88,25 @@
                 </div>
             }
         }
+
+        @if (Model.CurrentBlock.Template == TemplateSelections.Highlight)
+        {
+            if (Model.Pages != null && Model.Pages.Any())
+            {
+                var flip = false;
+                foreach (var page in Model.Pages)
+                {
+                    var modelPage = new PageListPreviewViewModel(page, Model.CurrentBlock);
+                    modelPage.Flip = flip;
+                    modelPage.Highlight = (page as FoundationPageData).Highlight;
+
+                    @Html.Partial("_PageListPreview", modelPage)
+                    if (!(page as FoundationPageData).Highlight)
+                    {
+                        flip = !flip;
+                    }
+                }
+            }
+        }
     </div>
 </div>
