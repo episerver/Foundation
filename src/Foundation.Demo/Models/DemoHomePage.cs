@@ -66,7 +66,7 @@ namespace Foundation.Demo.Models
         public virtual int SearchCatalog { get; set; }
 
         [Display(
-          Name = "Search Filters Configuration",
+          Name = "Search filters configuration",
           Description = "Manage filters to be displayed on Search",
           GroupName = CommerceTabNames.SearchSettings,
           Order = 300)]

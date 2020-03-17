@@ -18,19 +18,19 @@ namespace Foundation.Find.Cms.Facets.Config
         }
 
         [Display(
-           Name = "Attribute as Filter (required)",
+           Name = "Attribute as filter (required)",
            Description = "Attribute to be used as a filter",
            Order = 1)]
         [Required]
         public virtual string FieldName { get; set; }
 
         [Display(
-           Name = "Display Name",
+           Name = "Display name",
            Description = "Display name for filter in English")]
         public virtual string DisplayNameEN { get; set; }
 
         [Display(
-          Name = "Display Name (FR)",
+          Name = "Display name (FR)",
           Description = "Display name for filter in French")]
         [Ignore]
         [ScaffoldColumn(false)]
@@ -44,7 +44,7 @@ namespace Foundation.Find.Cms.Facets.Config
         }
 
         [Display(
-            Name = "Filter Type (required)",
+            Name = "Filter type (required)",
             Description = "Data type of attribute")]
         [SelectOneEnum(typeof(FacetFieldType))]
         [DefaultValue(FacetFieldType.String)]
@@ -76,7 +76,7 @@ namespace Foundation.Find.Cms.Facets.Config
         }
 
         [Display(
-            Name = "Display Mode (required)",
+            Name = "Display mode (required)",
             Description = "How the values of the filter are displayed")]
         [SelectOneEnum(typeof(FacetDisplayMode))]
         [DefaultValue(FacetDisplayMode.Button)]
@@ -111,7 +111,7 @@ namespace Foundation.Find.Cms.Facets.Config
         }
 
         [Display(
-            Name = "Numeric Ranges (From-To)",
+            Name = "Numeric ranges (From-To)",
             Description = "Set ranges based on field type in format: from-to, from- and -to. E.g. range 1:0-10/range 2:11-20; range 1: 1.00-5.50/ range 2:5.51-10.25; 20.12-/-500.24")]
         [ItemRegularExpression("[0-9]*\\.?[0-9]*-[0-9]*\\.?[0-9]*")]
         public virtual IList<string> NumericRanges { get; set; }
@@ -150,17 +150,17 @@ namespace Foundation.Find.Cms.Facets.Config
         }
 
         [Display(
-            Name = "Exclude Flag Attributes or Specific Values",
+            Name = "Exclude flag attributes or specific Values",
             Description = "Used to exclude specific attributes from Flags or specific values of an attribute")]
         public virtual IList<string> ExcludeFlagFields { get; set; }
 
         [Display(
-            Name = "Display Specific Values",
+            Name = "Display specific values",
             Description = "Used to display specific values of an Attribute as Filter: e.g. Brand. Must be exact match to value of attribute.")]
         public virtual IList<string> DisplaySpecificValues { get; set; }
 
         [Display(
-            Name = "Is Commerce Enabled",
+            Name = "Is commerce enabled",
             Description = "This will determine filter for Commerce items or not")]
         public virtual bool IsCommerceEnabled { get; set; }
     }
