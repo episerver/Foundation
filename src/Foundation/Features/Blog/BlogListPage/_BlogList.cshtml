@@ -31,7 +31,21 @@
     }
 }
 
-
+@if (Model.CurrentContent.Template == TemplateSelections.Highlight)
+{
+    if (Model.Blogs != null && Model.Blogs.Any())
+    {
+        var flip = false;
+        foreach (var blog in Model.Blogs)
+        {
+            @Html.Action("Preview", new { currentPage = blog, blogModel = Model, flip = flip })
+            if (!(blog as FoundationPageData).Highlight)
+            {
+                flip = !flip;
+            }
+        }
+    }
+}
 
 <br />
 @using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))

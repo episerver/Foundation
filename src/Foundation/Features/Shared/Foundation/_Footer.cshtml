@@ -46,10 +46,7 @@
                 }
             </div>
             <div class="col-md-6 col-lg-4">
-                @if (!Html.IsReadOnlyMode())
-                {
-                    @Html.PropertyFor(x => x.StartPage.ContentArea)
-                }
+                @Html.PropertyFor(x => x.StartPage.ContentArea)
             </div>
         </div>
 
