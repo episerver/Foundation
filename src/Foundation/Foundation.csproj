@@ -1838,7 +1838,6 @@
     <Content Include="modules\_protected\EPiServer.Forms.UI\EPiServer.Forms.UI.zip" />
     <Content Include="modules\_protected\EPiServer.Forms\Views\ElementBlocks\Web.config" />
     <Content Include="modules\_protected\EPiServer.Forms\EPiServer.Forms.zip" />
-    <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="Features\Media\PdfFile.cshtml" />
     <Content Include="modules\_protected\Episerver.Marketing.Connector\module.config" />
     <Content Include="modules\_protected\Shell\web.config" />
