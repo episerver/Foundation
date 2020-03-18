@@ -151,7 +151,7 @@
             var currentOrder = $(this).parents('.js-product-row').first().data('order');
             var quantity = $(this).val();
             var unitPrice = $(this).parents('.js-product-row').find('input[name*=UnitPrice]').val();
-            var totalPrice = parseFloat(unitPrice) * parseInt(quantity);
+            var totalPrice = parseFloat(parseFloat(unitPrice) * parseInt(quantity)).toFixed(2);
             inst.ProductListing[currentOrder].Quantity = quantity;
             inst.ProductListing[currentOrder].TotalPrice = totalPrice;
 
