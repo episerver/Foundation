@@ -42,25 +42,26 @@ namespace Foundation.Cms.Pages
         public virtual string TopPaddingMode { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
-        [Display(Name = "Title background color", GroupName = SystemTabNames.Content, Order = 204)]
-        public virtual string TitleBackgroundColor
+        [Display(Name = "Background color", GroupName = SystemTabNames.Content, Order = 204)]
+        public virtual string BackgroundColor
         {
-            get { return this.GetPropertyValue(page => page.TitleBackgroundColor) ?? "transparent"; }
-            set { this.SetPropertyValue(page => page.TitleBackgroundColor, value); }
+            get { return this.GetPropertyValue(page => page.BackgroundColor) ?? "transparent"; }
+            set { this.SetPropertyValue(page => page.BackgroundColor, value); }
         }
 
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
         [Display(Name = "Title opacity (0 to 1)", GroupName = SystemTabNames.Content, Order = 205)]
-        public virtual double? TitleOpacity
+        public virtual double? BackgroundOpacity
         {
-            get { return this.GetPropertyValue(page => page.TitleOpacity) ?? 1; }
-            set { this.SetPropertyValue(page => page.TitleOpacity, value); }
+            get { return this.GetPropertyValue(page => page.BackgroundOpacity) ?? 1; }
+            set { this.SetPropertyValue(page => page.BackgroundOpacity, value); }
         }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-
+            BackgroundColor = "transparent";
+            BackgroundOpacity = 1;
             TitleColor = ColorThemes.Light;
             TopPaddingMode = FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.Half;
         }
