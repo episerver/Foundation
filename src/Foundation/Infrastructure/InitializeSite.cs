@@ -16,18 +16,26 @@ using System.Web.Http.Owin;
 
 namespace Foundation.Infrastructure
 {
-    [ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule), typeof(Cms.Initialize), typeof(EPiServer.ServiceApi.IntegrationInitialization))]
+    [ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule))]
+    [ModuleDependency(typeof(Cms.Initialize))]
+    [ModuleDependency(typeof(EPiServer.ServiceApi.IntegrationInitialization))]
+    [ModuleDependency(typeof(EPiServer.ContentApi.Core.Internal.ContentApiCoreInitialization))]
+    [ModuleDependency(typeof(ServiceContainerInitialization))]
     public class InitializeSite : IConfigurableModule
     {
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
 
             context.ConfigureFoundationCms();
-
-            context.Services.Configure<ContentApiConfiguration>(config =>
+            context.Services.Configure<ContentApiConfiguration>(c =>
             {
-                config.Default()
-                    .SetMinimumRoles(string.Empty);
+                c.EnablePreviewFeatures = true;
+                c.Default(RestVersion.Version_3_0)
+                    .SetMinimumRoles(string.Empty)
+                    .SetRequiredRole(string.Empty);
+                c.Default(RestVersion.Version_2_0)
+                    .SetMinimumRoles(string.Empty)
+                    .SetRequiredRole(string.Empty);
             });
 
             context.Services.Configure<ContentApiSearchConfiguration>(config =>
@@ -61,6 +69,8 @@ namespace Foundation.Infrastructure
             {
                 GlobalConfiguration.Configuration.MessageHandlers.Remove(handler);
             }
+
+            //GlobalConfiguration.Configuration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
         }
 
         public void Uninitialize(InitializationEngine context)
