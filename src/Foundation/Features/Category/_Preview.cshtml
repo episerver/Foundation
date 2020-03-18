@@ -11,7 +11,7 @@
             {
                 <img class="img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
             }
-            else if (!ContentReference.IsNullOrEmpty(((LocationItemPage)Model.CurrentContent).Image))
+            else if (Model.CurrentContent as LocationItemPage != null && !ContentReference.IsNullOrEmpty(((LocationItemPage)Model.CurrentContent).Image))
             {
                 <img class="img-fluid" src="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)" />
             }
