@@ -1866,6 +1866,7 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="Features\Media\PdfFile.cshtml" />
+    <Content Include="Features\Blocks\Views\GoogleMapsEmbedBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
