@@ -99,9 +99,17 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 300)]
         public virtual bool HideSiteFooter { get; set; }
 
+        [CultureSpecific]
+        [Display(Name = "Highlight in page list", GroupName = CmsTabNames.Settings, Order = 400)]
+        public virtual bool Highlight { get; set; }
+
         #endregion
 
         #region Teaser
+
+        [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
+        [Display(Name = "Teaser ratio (width-height)", GroupName = CmsTabNames.Teaser, Order = 50)]
+        public virtual string TeaserRatio { get; set; }
 
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", GroupName = CmsTabNames.Teaser, Order = 100)]
@@ -151,6 +159,22 @@ namespace Foundation.Cms.Pages
         [CultureSpecific]
         [Display(Name = "Display hover effect", GroupName = CmsTabNames.Teaser, Order = 800)]
         public virtual bool ApplyHoverEffect { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
+        [Display(Name = "Padding", GroupName = CmsTabNames.Teaser, Order = 900)]
+        public virtual string Padding
+        {
+            get { return this.GetPropertyValue(teaser => teaser.Padding) ?? "p-0"; }
+            set { this.SetPropertyValue(teaser => teaser.Padding, value); }
+        }
+
+        [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
+        [Display(Name = "Margin", GroupName = CmsTabNames.Teaser, Order = 910)]
+        public virtual string Margin
+        {
+            get { return this.GetPropertyValue(teaser => teaser.Margin) ?? "m-0"; }
+            set { this.SetPropertyValue(teaser => teaser.Margin, value); }
+        }
 
         [Ignore]
         public string AlignmentCssClass
@@ -227,10 +251,15 @@ namespace Foundation.Cms.Pages
 
         public override void SetDefaultValues(ContentType contentType)
         {
-            base.SetDefaultValues(contentType);
-
             TeaserTextAlignment = "Left";
-            TeaserColorTheme = "Dark";
+            TeaserColorTheme = ColorThemes.Light;
+            TeaserRatio = "10-5";
+            TeaserButtonStyle = ButtonBlockStyleSelectionFactory.ButtonBlockStyles.TransparentWhite;
+            TeaserButtonText = "Read more";
+            ApplyHoverEffect = true;
+            Padding = "p-1";
+            Margin = "m-1";
+            base.SetDefaultValues(contentType);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Foundation.Commerce.ViewModels
             CurrentBlock = block;
             IsAccess = false;
         }
+
         public ElevatedRoleBlock CurrentBlock { get; }
         public bool IsAccess { get; set; }
     }

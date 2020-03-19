@@ -27,7 +27,6 @@ namespace Foundation.Commerce.Marketing
         [HttpGet]
         public ActionResult Index()
         {
-
             var promotions = GetPromotions(_contentLoader.GetDescendents(GetCampaignRoot()))
                 .ToList();
 
@@ -38,6 +37,7 @@ namespace Foundation.Commerce.Marketing
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(PagingInfo pagingInfo)
         {
             var promotions = GetPromotions(_contentLoader.GetDescendents(GetCampaignRoot()))
@@ -68,6 +68,7 @@ namespace Foundation.Commerce.Marketing
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpdateCoupon(UniqueCoupon model)
         {
             var coupon = _couponService.GetById(model.Id);
@@ -88,6 +89,7 @@ namespace Foundation.Commerce.Marketing
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteCoupon(long id, int promotionId)
         {
             _couponService.DeleteById(id);
@@ -124,7 +126,6 @@ namespace Foundation.Commerce.Marketing
         {
             return _contentLoader.GetChildren<SalesCampaignFolder>(ContentReference.RootPage)
                 .FirstOrDefault()?.ContentLink ?? ContentReference.EmptyReference;
-
         }
 
         private List<PromotionData> GetPromotions(IEnumerable<ContentReference> references)

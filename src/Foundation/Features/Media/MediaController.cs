@@ -17,6 +17,10 @@ namespace Foundation.Features.Media
             {
                 return PartialView("~/Features/Media/ImageMedia.cshtml", currentContent);
             }
+            else if (currentContent is FoundationPdfFile)
+            {
+                return PartialView("~/Features/Media/PdfFile.cshtml", currentContent as FoundationPdfFile);
+            }
             else
             {
                 return PartialView("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name);

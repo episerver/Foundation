@@ -13,7 +13,10 @@ namespace Foundation.Commerce.Customer.Services
         public List<FoundationBudget> GetActiveUserBudgets(Guid contactId)
         {
             var budgets = GetUserBudgets(contactId);
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             return budgets.Where(budget => budget.IsActive).ToList();
         }
@@ -21,7 +24,10 @@ namespace Foundation.Commerce.Customer.Services
         public List<FoundationBudget> GetActiveOrganizationBudgets(Guid organizationId)
         {
             var budgets = GetOrganizationBudgets(organizationId);
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             return budgets.Where(budget => budget.IsActive).ToList();
         }
@@ -29,7 +35,10 @@ namespace Foundation.Commerce.Customer.Services
         public List<FoundationBudget> GetUserBudgets(Guid contactId)
         {
             var budgets = GetAllBudgets();
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             return budgets.Where(budget => budget.ContactId == contactId).ToList();
         }
@@ -37,7 +46,10 @@ namespace Foundation.Commerce.Customer.Services
         public List<FoundationBudget> GetOrganizationBudgets(Guid organizationId)
         {
             var budgets = GetAllBudgets();
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             return budgets.Where(budget =>
                 budget.OrganizationId == organizationId && budget.PurchaserName == string.Empty).ToList();
@@ -46,7 +58,10 @@ namespace Foundation.Commerce.Customer.Services
         public List<FoundationBudget> GetOrganizationBudgetsWithoutPurchasers(Guid organizationId)
         {
             var budgets = GetAllBudgets();
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             return budgets.Where(budget =>
                 budget.OrganizationId == organizationId && budget.PurchaserName == string.Empty).ToList();
@@ -76,7 +91,10 @@ namespace Foundation.Commerce.Customer.Services
         public FoundationBudget GetCurrentOrganizationBudget(Guid organizationId)
         {
             var budgets = GetAllBudgets();
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             var returnedBudgets = budgets.Where(budget =>
                 budget.OrganizationId == organizationId && budget.PurchaserName == string.Empty &&
@@ -88,7 +106,10 @@ namespace Foundation.Commerce.Customer.Services
         public List<FoundationBudget> GetOrganizationPurchasersBudgets(Guid organizationId)
         {
             var budgets = GetAllBudgets();
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             return budgets.Where(budget =>
                 budget.OrganizationId == organizationId && budget.PurchaserName != string.Empty).ToList();
@@ -97,7 +118,10 @@ namespace Foundation.Commerce.Customer.Services
         public FoundationBudget GetCustomerCurrentBudget(Guid organizationId, Guid purchaserGuid)
         {
             var budgets = GetAllBudgets();
-            if (budgets == null || !budgets.Any()) return null;
+            if (budgets == null || !budgets.Any())
+            {
+                return null;
+            }
 
             var returnedBudgets = budgets.Where(budget =>
                 budget.OrganizationId == organizationId &&
@@ -105,7 +129,6 @@ namespace Foundation.Commerce.Customer.Services
                 DateTime.Compare(DateTime.Now, budget.DueDate) <= 0);
             return returnedBudgets.Any() ? returnedBudgets.First() : null;
         }
-
 
         public void CreateNewBudget(BudgetViewModel budgetModel)
         {
@@ -149,9 +172,7 @@ namespace Foundation.Commerce.Customer.Services
             return true;
         }
 
-
-        public bool LockUserAmount(DateTime startDate, DateTime endDate, Guid organizationGuid, Guid userGuid,
-            decimal amount)
+        public bool LockUserAmount(DateTime startDate, DateTime endDate, Guid organizationGuid, Guid userGuid, decimal amount)
         {
             try
             {
@@ -180,7 +201,6 @@ namespace Foundation.Commerce.Customer.Services
 
             return true;
         }
-
 
         public bool UnLockOrganizationAmount(DateTime startDate, DateTime endDate, Guid guid, decimal amount)
         {
@@ -215,7 +235,11 @@ namespace Foundation.Commerce.Customer.Services
         public bool IsTimeOverlapped(DateTime startDate, DateTime dueDateTime, Guid organizationGuid)
         {
             var budgets = GetOrganizationBudgets(organizationGuid);
-            if (budgets == null || budgets.Count == 0) return true;
+            if (budgets == null || budgets.Count == 0)
+            {
+                return true;
+            }
+
             if (budgets.Any(budget => DateTime.Compare(budget.StartDate, dueDateTime) <= 0 &&
                                       DateTime.Compare(startDate, budget.DueDate) <= 0))
             {
@@ -229,7 +253,11 @@ namespace Foundation.Commerce.Customer.Services
             Guid organizationGuid)
         {
             var budgets = GetOrganizationBudgets(organizationGuid);
-            if (budgets == null || budgets.Count == 0) return false;
+            if (budgets == null || budgets.Count == 0)
+            {
+                return false;
+            }
+
             if (budgets.Any(budget => DateTime.Compare(budget.StartDate, startDateTime) <= 0 &&
                                       DateTime.Compare(finishDateTime, budget.DueDate) <= 0 &&
                                       DateTime.Compare(budget.StartDate, finishDateTime) <= 0 &&
@@ -242,11 +270,13 @@ namespace Foundation.Commerce.Customer.Services
             return false;
         }
 
-        public bool HasEnoughAmount(Guid organizationGuid, decimal amount, DateTime startDateTime,
-            DateTime finishDateTime)
+        public bool HasEnoughAmount(Guid organizationGuid, decimal amount, DateTime startDateTime, DateTime finishDateTime)
         {
             var currentBudget = GetBudgetByTimeLine(organizationGuid, startDateTime, finishDateTime);
-            if (currentBudget == null) return false;
+            if (currentBudget == null)
+            {
+                return false;
+            }
 
             return currentBudget.Amount - currentBudget.SpentBudget - currentBudget.LockAmount - amount >= 0;
         }
@@ -254,7 +284,10 @@ namespace Foundation.Commerce.Customer.Services
         public bool HasEnoughAmountOnCurrentBudget(Guid organizationGuid, decimal amount)
         {
             var currentBudget = GetCurrentOrganizationBudget(organizationGuid);
-            if (currentBudget == null) return false;
+            if (currentBudget == null)
+            {
+                return false;
+            }
 
             return currentBudget.Amount - currentBudget.SpentBudget - currentBudget.LockAmount - amount >= 0;
         }
@@ -262,29 +295,40 @@ namespace Foundation.Commerce.Customer.Services
         public bool CheckAmount(Guid organizationGuid, decimal newLockAmount, decimal unlockAmount)
         {
             var currentBudget = GetCurrentOrganizationBudget(organizationGuid);
-            if (currentBudget == null) return false;
+            if (currentBudget == null)
+            {
+                return false;
+            }
 
             return currentBudget.Amount + unlockAmount - currentBudget.SpentBudget - currentBudget.LockAmount -
                    newLockAmount >= 0;
         }
 
-        public bool ValidateSuborganizationNewAmount(Guid organizationGuid, Guid parentOrganizationId,
-            decimal newLockAmount)
+        public bool ValidateSuborganizationNewAmount(Guid organizationGuid, Guid parentOrganizationId, decimal newLockAmount)
         {
             var currentBudget = GetCurrentOrganizationBudget(organizationGuid);
-            if (currentBudget == null) return false;
+            if (currentBudget == null)
+            {
+                return false;
+            }
+
             var parentCurrentBudget = GetCurrentOrganizationBudget(parentOrganizationId);
-            if (parentCurrentBudget == null) return false;
+            if (parentCurrentBudget == null)
+            {
+                return false;
+            }
 
             return newLockAmount <= parentCurrentBudget.UnallocatedBudget + currentBudget.Amount &&
                    newLockAmount >= currentBudget.LockAmount;
         }
 
-        public bool CheckAmountByTimeLine(Guid organizationGuid, decimal newLockAmount, DateTime startDateTime,
-            DateTime finishDateTime)
+        public bool CheckAmountByTimeLine(Guid organizationGuid, decimal newLockAmount, DateTime startDateTime, DateTime finishDateTime)
         {
             var currentBudget = GetBudgetByTimeLine(organizationGuid, startDateTime, finishDateTime);
-            if (currentBudget == null) return false;
+            if (currentBudget == null)
+            {
+                return false;
+            }
 
             return currentBudget.Amount - currentBudget.LockAmount - newLockAmount >= 0;
         }
@@ -292,10 +336,18 @@ namespace Foundation.Commerce.Customer.Services
         public FoundationBudget GetBudgetByTimeLine(Guid organizationId, DateTime startDate, DateTime endDate)
         {
             var organizationBudgets = GetOrganizationBudgets(organizationId);
-            if (!organizationBudgets.Any()) return null;
+            if (!organizationBudgets.Any())
+            {
+                return null;
+            }
+
             var returnBudget = organizationBudgets.Where(budget => DateTime.Compare(budget.StartDate, endDate) <= 0 &&
                                                                    DateTime.Compare(startDate, budget.DueDate) <= 0);
-            if (!returnBudget.Any()) return null;
+            if (!returnBudget.Any())
+            {
+                return null;
+            }
+
             return returnBudget.FirstOrDefault();
         }
 

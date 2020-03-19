@@ -42,7 +42,6 @@ namespace Foundation.Commerce.Order.Payments
                 return PaymentProcessingResult.CreateUnsuccessfulResult("Failed to process your payment.");
             }
 
-
             var purchaserCustomer = !isQuoteOrder ? customer : _ordersService.Service.GetPurchaserCustomer(currentOrder);
             if (AreBudgetsOnHold(purchaserCustomer))
             {
@@ -59,7 +58,6 @@ namespace Foundation.Commerce.Order.Payments
                     return PaymentProcessingResult.CreateUnsuccessfulResult("Insufficient budget.");
                 }
             }
-
 
             if (payment.TransactionType == TransactionType.Capture.ToString())
             {
@@ -88,7 +86,10 @@ namespace Foundation.Commerce.Order.Payments
                     customer.ContactId)
             }.Where(x => x != null).ToList();
 
-            if (budgetsToUpdate.All(budget => budget == null)) return;
+            if (budgetsToUpdate.All(budget => budget == null))
+            {
+                return;
+            }
 
             foreach (var budget in budgetsToUpdate)
             {
@@ -99,7 +100,10 @@ namespace Foundation.Commerce.Order.Payments
 
         private bool AreBudgetsOnHold(ContactViewModel customer)
         {
-            if (customer?.Organization == null) return true;
+            if (customer?.Organization == null)
+            {
+                return true;
+            }
 
             var budgetsToCheck = new List<FoundationBudget>
             {

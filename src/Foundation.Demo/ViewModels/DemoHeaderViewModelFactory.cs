@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Data;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Pages;
@@ -24,7 +25,6 @@ namespace Foundation.Demo.ViewModels
         private readonly CmsHeaderViewModelFactory _cmsHeaderViewModelFactory;
 
         public DemoHeaderViewModelFactory(LocalizationService localizationService,
-            IAddressBookService addressBookService,
             ICustomerService customerService,
             CartViewModelFactory cartViewModelFactory,
             IUrlResolver urlResolver,
@@ -35,9 +35,9 @@ namespace Foundation.Demo.ViewModels
             CustomerContext customerContext,
             IContentCacheKeyCreator contentCacheKeyCreator,
             IContentLoader contentLoader,
-            CmsHeaderViewModelFactory cmsHeaderViewModelFactory) :
+            CmsHeaderViewModelFactory cmsHeaderViewModelFactory,
+            IDatabaseMode databaseMode) :
             base(localizationService,
-                addressBookService,
                 customerService,
                 cartViewModelFactory,
                 urlResolver,
@@ -46,7 +46,8 @@ namespace Foundation.Demo.ViewModels
                 bookmarksService,
                 cartService,
                 contentCacheKeyCreator,
-                contentLoader)
+                contentLoader,
+                databaseMode)
         {
             _customerService = customerService;
             _customerContext = customerContext;
@@ -67,6 +68,7 @@ namespace Foundation.Demo.ViewModels
             AddAnonymousComponents(demoHomePage, viewModel);
             AddMarketViewModel(currentContent, viewModel);
             AddMyAccountMenu(demoHomePage, viewModel);
+            viewModel.LargeHeaderMenu = demoHomePage.LargeHeaderMenu;
             viewModel.ShowCommerceControls = demoHomePage.ShowCommerceHeaderComponents;
             viewModel.DemoUsers = GetDemoUsers(demoHomePage.ShowCommerceHeaderComponents);
             return viewModel as THeaderViewModel;

@@ -15,7 +15,9 @@ namespace Foundation.Commerce.Markets
         private readonly ICurrentMarket _currentMarket;
         private readonly IUpdateCurrentLanguage _defaultUpdateCurrentLanguage;
 
-        public LanguageService(ICurrentMarket currentMarket, CookieService cookieService,
+        public LanguageService(
+            ICurrentMarket currentMarket, 
+            CookieService cookieService,
             IUpdateCurrentLanguage defaultUpdateCurrentLanguage)
         {
             _currentMarket = currentMarket;

@@ -27,7 +27,7 @@ namespace Foundation.Commerce.Order.Services
         private readonly ILineItemCalculator _lineItemCalculator;
         private readonly IProductService _productService;
         private readonly IRelationRepository _relationRepository;
-        readonly ICartService _cartService;
+        private readonly ICartService _cartService;
 
         public CartItemViewModelFactory(
             IContentLoader contentLoader,
@@ -75,8 +75,7 @@ namespace Foundation.Commerce.Order.Services
                 entry.GetParentProducts(_relationRepository).FirstOrDefault() :
                 entry.ContentLink;
 
-            if (_contentLoader.TryGet(productLink, out
-            GenericProduct product))
+            if (_contentLoader.TryGet(productLink, out GenericProduct product))
             {
                 viewModel.Brand = GetBrand(product);
             }
@@ -86,6 +85,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 viewModel.AvailableSizes = GetAvailableSizes(product, variant);
             }
+
             viewModel.Description = string.IsNullOrEmpty(viewModel.Description) ? viewModel.Description : product.Description.ToHtmlString();
             return viewModel;
         }
@@ -115,6 +115,7 @@ namespace Foundation.Commerce.Order.Services
                 var discountedPrice = _promotionService.GetDiscountPrice(new CatalogKey(lineItem.Code), marketId, currency);
                 return discountedPrice?.UnitPrice;
             }
+
             return lineItem.GetDiscountedPrice(cart.Currency, _lineItemCalculator);
         }
     }

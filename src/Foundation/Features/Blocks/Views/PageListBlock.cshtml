@@ -2,91 +2,113 @@
 
 @Html.FullRefreshPropertiesMetaData(new[] { "IncludePublishDate", "IncludeTeaserText", "Count", "SortOrder", "Root", "PageTypeFilter", "CategoryFilter", "Recursive" })
 
-<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
-    <div class="col-12">
-        @if (!string.IsNullOrEmpty(Model.Heading))
-        {
-            <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
-            <hr />
-        }
-
-        @if (string.IsNullOrEmpty(Model.CurrentBlock.Template) || Model.CurrentBlock.Template == TemplateSelections.Grid)
-        {
-
-            if (Model.Pages != null && Model.Pages.Any())
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="row">
+        <div class="col-12">
+            @if (!string.IsNullOrEmpty(Model.Heading))
             {
-                var grid = (Model.Pages.Count() - 1) / 4;
-                grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
-                var firstPage = Model.Pages.ElementAt(0);
-                var listGridPages = new List<List<PageData>>();
-                var listLargePages = new List<PageData>();
+                <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+                <hr />
+            }
 
-                for (var g = 0; g < grid; g++)
+            @if (string.IsNullOrEmpty(Model.CurrentBlock.Template) || Model.CurrentBlock.Template == TemplateSelections.Grid)
+            {
+
+                if (Model.Pages != null && Model.Pages.Any())
                 {
-                    var list = new List<PageData>();
-                    for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
+                    var grid = (Model.Pages.Count() - 1) / 4;
+                    grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
+                    var firstPage = Model.Pages.ElementAt(0);
+                    var listGridPages = new List<List<PageData>>();
+                    var listLargePages = new List<PageData>();
+
+                    for (var g = 0; g < grid; g++)
                     {
-                        list.Add(Model.Pages.ElementAt(i));
+                        var list = new List<PageData>();
+                        for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
+                        {
+                            list.Add(Model.Pages.ElementAt(i));
+                        }
+                        listGridPages.Add(list);
                     }
-                    listGridPages.Add(list);
-                }
 
-                for (var i = grid * 4 + 1; i < Model.Pages.Count(); i++)
-                {
-                    listLargePages.Add(Model.Pages.ElementAt(i));
-                }
+                    for (var i = grid * 4 + 1; i < Model.Pages.Count(); i++)
+                    {
+                        listLargePages.Add(Model.Pages.ElementAt(i));
+                    }
 
 
-                <div class="blog__gallery">
-                    <div class="blog__row">
+                    <div class="blog__gallery">
+                        <div class="blog__row">
 
-                        <div class="blog__large-col">
-                            @Html.Partial("_PageListPreview", new PageListPreviewViewModel(firstPage, Model.CurrentBlock))
-                        </div>
-                        @foreach (var list in listGridPages)
-                        {
                             <div class="blog__large-col">
-                                <div class="blog__grid">
-                                    @foreach (var page in list)
-                                    {
-                                        @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
-                                    }
+                                @Html.Partial("_PageListPreview", new PageListPreviewViewModel(firstPage, Model.CurrentBlock))
+                            </div>
+                            @foreach (var list in listGridPages)
+                            {
+                                <div class="blog__large-col">
+                                    <div class="blog__grid">
+                                        @foreach (var page in list)
+                                        {
+                                            @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        }
-                        @foreach (var page in listLargePages)
-                        {
-                            <div class="blog__large-col">
-                                @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
-                            </div>
-                        }
+                            }
+                            @foreach (var page in listLargePages)
+                            {
+                                <div class="blog__large-col">
+                                    @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
-            }
-        }
-
-        @if (Model.CurrentBlock.Template == TemplateSelections.ImageLeft)
-        {
-            if (Model.Pages != null && Model.Pages.Any())
-            {
-                foreach (var page in Model.Pages)
-                {
-                    @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
                 }
             }
-        }
 
-        @if (Model.CurrentBlock.Template == TemplateSelections.ImageTop || Model.CurrentBlock.Template == TemplateSelections.NoImage)
-        {
-            if (Model.Pages != null && Model.Pages.Any())
+            @if (Model.CurrentBlock.Template == TemplateSelections.ImageLeft)
             {
-                <div class="row">
-                    @foreach (var page in Model.Pages)
+                if (Model.Pages != null && Model.Pages.Any())
+                {
+                    foreach (var page in Model.Pages)
                     {
                         @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
                     }
-                </div>
+                }
             }
-        }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.ImageTop || Model.CurrentBlock.Template == TemplateSelections.NoImage)
+            {
+                if (Model.Pages != null && Model.Pages.Any())
+                {
+                    <div class="row">
+                        @foreach (var page in Model.Pages)
+                        {
+                            @Html.Partial("_PageListPreview", new PageListPreviewViewModel(page, Model.CurrentBlock))
+                        }
+                    </div>
+                }
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.Highlight)
+            {
+                if (Model.Pages != null && Model.Pages.Any())
+                {
+                    var flip = false;
+                    foreach (var page in Model.Pages)
+                    {
+                        var modelPage = new PageListPreviewViewModel(page, Model.CurrentBlock);
+                        modelPage.Flip = flip;
+                        modelPage.Highlight = (page as FoundationPageData).Highlight;
+
+                        @Html.Partial("_PageListPreview", modelPage)
+                        if (!(page as FoundationPageData).Highlight)
+                        {
+                            flip = !flip;
+                        }
+                    }
+                }
+            }
+        </div>
     </div>
 </div>

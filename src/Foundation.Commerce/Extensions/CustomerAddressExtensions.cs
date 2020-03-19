@@ -6,7 +6,7 @@ namespace Foundation.Commerce.Extensions
 {
     public static class CustomerAddressExtensions
     {
-        private static readonly Injected<IOrderGroupFactory> Factory = default(Injected<IOrderGroupFactory>);
+        private static readonly Injected<IOrderGroupFactory> Factory = default;
 
         public static IOrderAddress ConvertToOrderAddress(this CustomerAddress address, IOrderGroup order)
         {

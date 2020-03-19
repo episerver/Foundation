@@ -63,7 +63,6 @@ namespace Foundation.Commerce.Order.Services
                     ShippingMethods = CreateShippingMethodViewModels(cart.MarketId, cart.Currency, shipment)
                 };
 
-
                 var currentShippingMethod = shipmentModel.ShippingMethods.FirstOrDefault();
                 if (shipment.ShippingMethodId != Guid.Empty)
                 {
@@ -102,7 +101,7 @@ namespace Foundation.Commerce.Order.Services
         {
             var shippingRates = GetShippingRates(marketId, currency, shipment);
 
-            if (shipment.LineItems.Count(o => o.IsVirtualVariant()) == shipment.LineItems.Count())
+            if (shipment.LineItems.Count(o => o.IsVirtualVariant()) == shipment.LineItems.Count)
             {
                 shippingRates = shippingRates.Where(o => o.Money == 0);
             }
@@ -124,6 +123,7 @@ namespace Foundation.Commerce.Order.Services
                     IsInstorePickup = true
                 });
             }
+
             return models;
         }
 

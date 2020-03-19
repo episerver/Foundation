@@ -22,11 +22,9 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Heading { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Heading size", GroupName = SystemTabNames.Content, Order = 11)]
         public virtual int HeadingSize { get; set; }
 
-        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockHeadingStyleSelectionFactory))]
         [Display(Name = "Heading style", GroupName = SystemTabNames.Content, Order = 12)]
         public virtual string HeadingStyle { get; set; }
@@ -35,6 +33,7 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string Description { get; set; }
 
+        [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 30)]
         public virtual XhtmlString Text { get; set; }
 
@@ -44,28 +43,22 @@ namespace Foundation.Cms.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual ContentReference Image { get; set; }
 
-        [CultureSpecific]
         [Range(1, 100, ErrorMessage = "Set image width from 1 to 100")]
         [Display(Name = "Image size (%)", GroupName = SystemTabNames.Content, Order = 41)]
         public virtual int ImageSize { get; set; }
 
-
-        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockTextColorSelectionFactory))]
         [Display(Name = "Text color", GroupName = SystemTabNames.Content, Order = 51)]
         public virtual string TextColor { get; set; }
 
-        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementOrderSelectionFactory))]
         [Display(Name = "Elements order", GroupName = SystemTabNames.Content, Order = 80)]
         public virtual string ElementsOrder { get; set; }
 
-        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockElementAlignmentSelectionFactory))]
         [Display(Name = "Elements alignment (except Text)", GroupName = SystemTabNames.Content, Order = 81)]
         public virtual string ElementsAlignment { get; set; }
 
-        [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 90)]
         public virtual PageReference Link { get; set; }
 
@@ -77,7 +70,7 @@ namespace Foundation.Cms.Blocks
             ImageSize = 100;
             ElementsOrder = "ImageHeadingDescription";
             ElementsAlignment = "text-align: center";
-            BackgroundColor = "background-color: transparent";
+            BackgroundColor = "transparent";
             TextColor = "color: black";
         }
     }

@@ -12,6 +12,5 @@ namespace Foundation.Commerce.Order.ViewModels
         public FoundationContact CurrentCustomer { get; set; }
         public List<ICart> OrderPardCartsList { get; set; }
         public List<OrganizationOrderPadViewModel> OrganizationOrderPadList { get; set; }
-
     }
 }

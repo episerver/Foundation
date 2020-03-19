@@ -12,7 +12,6 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         public SubscriptionHistoryViewModel(SubscriptionHistoryPage currentPage) : base(currentPage)
         {
-
         }
 
         public List<PaymentPlan> PaymentPlans { get; set; }

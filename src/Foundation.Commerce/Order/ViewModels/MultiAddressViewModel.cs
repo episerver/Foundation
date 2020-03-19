@@ -9,8 +9,8 @@ namespace Foundation.Commerce.Order.ViewModels
     {
         public MultiAddressViewModel()
         {
-
         }
+
         public MultiAddressViewModel(CheckoutPage multiShipmentPage) : base(multiShipmentPage)
         {
         }
@@ -21,5 +21,4 @@ namespace Foundation.Commerce.Order.ViewModels
 
         public string ReferrerUrl { get; set; }
     }
-
 }

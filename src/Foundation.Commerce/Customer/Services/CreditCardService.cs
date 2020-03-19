@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Foundation.Commerce.Customer.Services
 {
     /// <summary>
@@ -15,7 +14,6 @@ namespace Foundation.Commerce.Customer.Services
     /// </summary>
     public class CreditCardService : ICreditCardService
     {
-
         private readonly CustomerContext _customerContext;
         private readonly IOrganizationService _organizationService;
         private readonly CustomerService _customerService;
@@ -37,14 +35,15 @@ namespace Foundation.Commerce.Customer.Services
         /// </summary>
         /// <param name="creditCardId">Credit card id</param>
         /// <param name="errorMessage">Error message when credit card id is not valid</param>
-        /// <returns></returns>
         public bool IsValid(string creditCardId, out string errorMessage)
         {
             errorMessage = null;
 
             //AddNew
             if (string.IsNullOrEmpty(creditCardId))
+            {
                 return true;
+            }
 
             //Delete, Edit
             var currentCreditCard = GetCreditCard(creditCardId);
@@ -77,7 +76,6 @@ namespace Foundation.Commerce.Customer.Services
         /// Check credit card of organization is valid for edit/delete
         /// </summary>
         /// <param name="creditCard"></param>
-        /// <returns></returns>
         private bool IsValidOrganizationCard(CreditCard creditCard, OrganizationModel organization)
         {
             if (creditCard.OrganizationId == organization.OrganizationId)
@@ -99,19 +97,18 @@ namespace Foundation.Commerce.Customer.Services
 
                 return isValid;
             }
-
         }
-
 
         /// <summary>
         /// Check credit card is valid to use
         /// </summary>
         /// <param name="creditCardId">Credit card id</param>
-        /// <returns></returns>
         public bool IsReadyToUse(string creditCardId)
         {
             if (string.IsNullOrEmpty(creditCardId))
+            {
                 return false;
+            }
 
             var curCreditCard = GetCreditCard(creditCardId);
             if (curCreditCard == null)
@@ -144,7 +141,7 @@ namespace Foundation.Commerce.Customer.Services
         /// <param name="creditCardId">Credit card id</param>
         public void Delete(string creditCardId)
         {
-            if (IsValid(creditCardId, out var errorMessage))
+            if (IsValid(creditCardId, out _))
             {
                 try
                 {
@@ -163,7 +160,7 @@ namespace Foundation.Commerce.Customer.Services
         /// <param name="creditCardModel">Model of credit card</param>
         public void Save(CreditCardModel creditCardModel)
         {
-            if (IsValid(creditCardModel.CreditCardId, out var errorMessage))
+            if (IsValid(creditCardModel.CreditCardId, out _))
             {
                 var creditCard = GetCreditCard(creditCardModel.CreditCardId);
                 var isNew = creditCard == null;
@@ -182,6 +179,7 @@ namespace Foundation.Commerce.Customer.Services
                     {
                         creditCard.ContactId = PrimaryKeyId.Parse(_customerService.GetCurrentContactViewModel().ContactId.ToString());
                     }
+
                     BusinessManager.Create(creditCard);
                 }
                 else
@@ -199,7 +197,6 @@ namespace Foundation.Commerce.Customer.Services
         /// In case manager: user only see own credit card or organization's card depend on setting isOrganization
         /// In case purchase: user can use own credit card and card of organization that user is belong
         /// </param>
-        /// <returns></returns>
         public IList<CreditCardModel> List(bool isOrganization = false, bool isUsingToPurchase = false)
         {
             var currentContact = _customerContext.CurrentContact;
@@ -221,12 +218,10 @@ namespace Foundation.Commerce.Customer.Services
             return creditCards;
         }
 
-
         /// <summary>
         /// Get all credit card of current organization and its sub organization
         /// </summary>
         /// <param name="organization">Organization that need to get credit card from</param>
-        /// <returns></returns>
         private void GetCreditCardOrganization(FoundationOrganization organization, bool recursive, List<CreditCardModel> list)
         {
             if (organization != null)
@@ -280,6 +275,7 @@ namespace Foundation.Commerce.Customer.Services
                 creditCard.OrganizationId =
                     PrimaryKeyId.Parse(creditCardModel.OrganizationId);
             }
+
             if (!string.IsNullOrEmpty(creditCardModel.CreditCardId))
             {
                 creditCard.PrimaryKeyId = PrimaryKeyId.Parse(creditCardModel.CreditCardId);
@@ -314,16 +310,17 @@ namespace Foundation.Commerce.Customer.Services
         /// Get credit card by id
         /// </summary>
         /// <param name="creditCardId">Credit card id</param>
-        /// <returns></returns>
         public CreditCard GetCreditCard(string creditCardId)
         {
-            if (string.IsNullOrEmpty(creditCardId)) return null;
+            if (string.IsNullOrEmpty(creditCardId))
+            {
+                return null;
+            }
 
             return Enumerable.OfType<CreditCard>(BusinessManager.List(
-                CreditCardEntity.ClassName, new FilterElement[1]
-                {
-                    new FilterElement("CreditCardId", FilterElementType.Equal, new Guid(creditCardId))
-                })).FirstOrDefault();
+                CreditCardEntity.ClassName, 
+                new FilterElement[1] { new FilterElement("CreditCardId", FilterElementType.Equal, new Guid(creditCardId)) }))
+                .FirstOrDefault();
         }
 
         /// <summary>
@@ -347,6 +344,5 @@ namespace Foundation.Commerce.Customer.Services
                 Organization = organization
             }));
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿@using EPiServer.Web.Mvc.Html
 @model FeedBlockViewModel
-    <div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
         @if (Model.ShowHeading)
         {
             <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>

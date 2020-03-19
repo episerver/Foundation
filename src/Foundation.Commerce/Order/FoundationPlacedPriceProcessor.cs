@@ -18,13 +18,17 @@ namespace Foundation.Commerce.Order
         private readonly IPriceService _priceService;
         private readonly ReferenceConverter _referenceConverter;
 
-        public FoundationPlacedPriceProcessor(IPriceService priceService, IContentLoader contentLoader,
-            ReferenceConverter referenceConverter, MapUserKey mapUserKey, IPriceService priceService1,
-            IContentLoader contentLoader1, ReferenceConverter referenceConverter1, MapUserKey mapUserKey1)
+        public FoundationPlacedPriceProcessor(
+            IPriceService priceService, 
+            IContentLoader contentLoader,
+            ReferenceConverter referenceConverter, 
+            MapUserKey mapUserKey, 
+            ReferenceConverter referenceConverter1, 
+            MapUserKey mapUserKey1)
             : base(priceService, contentLoader, referenceConverter, mapUserKey)
         {
-            _priceService = priceService1;
-            _contentLoader = contentLoader1;
+            _priceService = priceService;
+            _contentLoader = contentLoader;
             _referenceConverter = referenceConverter1;
             _mapUserKey = mapUserKey1;
         }
@@ -49,7 +53,10 @@ namespace Foundation.Commerce.Order
             if (placedPrice.HasValue)
             {
                 if (new Money(currency.Round(lineItem.PlacedPrice), currency) == placedPrice.Value)
+                {
                     return true;
+                }
+
                 onValidationError(lineItem, ValidationIssue.PlacedPricedChanged);
                 lineItem.PlacedPrice = placedPrice.Value.Amount;
                 return true;
@@ -59,7 +66,10 @@ namespace Foundation.Commerce.Order
             return false;
         }
 
-        public override Money? GetPlacedPrice(EntryContentBase entry, decimal quantity, CustomerContact customerContact,
+        public override Money? GetPlacedPrice(
+            EntryContentBase entry, 
+            decimal quantity, 
+            CustomerContact customerContact,
             MarketId marketId,
             Currency currency)
         {

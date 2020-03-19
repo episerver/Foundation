@@ -59,7 +59,7 @@
             {
                 @Html.Partial("_ListVariants", Model.Entries, viewData)
                 @Html.Partial("_Store", Model.Stores)
-                @Html.Partial("_BuyNow", new KeyValuePair<string, int>(Model.CurrentContent.Code, Model.MinQuantity))
+                @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
             }
 
             <hr />

@@ -41,8 +41,8 @@ namespace Foundation.Commerce.Customer.ViewModels
         [Required(ErrorMessage = "Organization is required")]
         public string OrganizationId { get; set; }
 
-
-        [Display(Name = "Location")] public string Location { get; set; }
+        [Display(Name = "Location")]
+        public string Location { get; set; }
 
         public B2BUserRoles Role => Enum.TryParse(UserRole, out B2BUserRoles role) ? role : B2BUserRoles.None;
 

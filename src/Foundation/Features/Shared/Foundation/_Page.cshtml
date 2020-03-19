@@ -3,7 +3,6 @@
 
 @{
     var textStyle = "";
-
     if (!string.IsNullOrEmpty(Model.TeaserColorTheme))
     {
         if (Model.TeaserColorTheme.Equals("Light"))
@@ -15,30 +14,55 @@
             textStyle = "teaser-text--black";
         }
     }
+
+    var teaserRatio = string.Empty;
+    switch (Model.TeaserRatio)
+    {
+        case "10-2":
+            teaserRatio = "padding-bottom: 20%";
+            break;
+        case "10-3":
+            teaserRatio = "padding-bottom: 30%";
+            break;
+        case "10-10":
+            teaserRatio = "padding-bottom: 100%";
+            break;
+        case "10-12.5":
+            teaserRatio = "padding-bottom: 125%";
+            break;
+        case "10-15":
+            teaserRatio = "padding-bottom: 150%";
+            break;
+        case "10-17.5":
+            teaserRatio = "padding-bottom: 175%";
+            break;
+        default:
+            teaserRatio = "padding-bottom: 50%";
+            break;
+    }
 }
-    <div class="p-1">
-        <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect ? "teaser--hover-effect" : "teaser--show-details")">
-            <div class="teaser-text @textStyle">
-                <h2>@Model.PageName</h2>
-                <div class="teaser-text__details">
-                    @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
-                    {
-                        <p>@Model.TeaserText</p>
-                    }
-                    @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
-                    {
-                        <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)">@Model.TeaserButtonText</a>
-                    }
-                </div>
-            </div>
-            <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
-                @if (Model.TeaserVideo != null)
+<div class="@Model.Padding @Model.Margin">
+    <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
+        <div class="teaser-text @textStyle">
+            <h2>@Model.PageName</h2>
+            <div class="teaser-text__details">
+                @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
                 {
-                    <video class="teaser-video" autoplay loop playsinline muted>
-                        <source src="@Url.ContentUrl(Model.TeaserVideo)" type="video/mp4">
-                    </video>
+                    <p>@Model.TeaserText</p>
+                }
+                @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
+                {
+                    <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)">@Model.TeaserButtonText</a>
                 }
             </div>
         </div>
-
+        <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
+            @if (Model.TeaserVideo != null)
+            {
+                <video class="teaser-video" autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(Model.TeaserVideo)" type="video/mp4">
+                </video>
+            }
+        </div>
     </div>
+</div>

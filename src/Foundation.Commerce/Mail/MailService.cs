@@ -29,8 +29,7 @@ namespace Foundation.Commerce.Mail
             _htmlDownloader = htmlDownloader;
         }
 
-        public async Task SendAsync(ContentReference mailReference, NameValueCollection nameValueCollection, string toEmail,
-            string language)
+        public async Task SendAsync(ContentReference mailReference, NameValueCollection nameValueCollection, string toEmail, string language)
         {
             var body = await GetHtmlBodyForMail(mailReference, nameValueCollection, language);
             var mailPage = _contentLoader.Get<MailBasePage>(mailReference);
@@ -62,7 +61,7 @@ namespace Foundation.Commerce.Mail
             return await _htmlDownloader.Download(basePath, relativePath);
         }
 
-        public void Send(string subject, string body, string recipientMailAddress)
+        public void Send(string subject, string body, string toEmail)
         {
             var message = new MailMessage
             {
@@ -71,7 +70,7 @@ namespace Foundation.Commerce.Mail
                 IsBodyHtml = true
             };
 
-            message.To.Add(recipientMailAddress);
+            message.To.Add(toEmail);
 
             Send(message);
         }
@@ -106,6 +105,5 @@ namespace Foundation.Commerce.Mail
             msg.To.Add(message.Destination);
             await SendAsync(msg);
         }
-
     }
 }

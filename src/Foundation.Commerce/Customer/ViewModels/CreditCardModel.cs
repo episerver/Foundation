@@ -17,8 +17,7 @@ namespace Foundation.Commerce.Customer.ViewModels
     public class CreditCardModel : IDataErrorInfo
     {
         protected readonly LocalizationService LocalizationService;
-
-        static readonly string[] ValidatedProperties =
+        private static readonly string[] ValidatedProperties =
         {
             "CreditCardNumber",
             "CreditCardSecurityCode",
@@ -172,6 +171,7 @@ namespace Foundation.Commerce.Customer.ViewModels
             {
                 return LocalizationService.GetString("/CreditCard/Empty/CreditCardNumber", "Credit card number is required");
             }
+
             return null;
         }
 
@@ -208,10 +208,7 @@ namespace Foundation.Commerce.Customer.ViewModels
                     Text = ct.ToString(),
                     Value = ((int)ct).ToString()
                 });
-
             }
-
-
         }
     }
 }

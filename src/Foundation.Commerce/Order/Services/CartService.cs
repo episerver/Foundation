@@ -93,7 +93,8 @@ namespace Foundation.Commerce.Order.Services
 
         public Dictionary<ILineItem, List<ValidationIssue>> ChangeCartItem(ICart cart, int shipmentId, string code, decimal quantity, string size, string newSize)
         {
-            var validationIssues = new Dictionary<ILineItem, List<ValidationIssue>>();
+            _ = new Dictionary<ILineItem, List<ValidationIssue>>();
+            Dictionary<ILineItem, List<ValidationIssue>> validationIssues;
             if (quantity > 0)
             {
                 if (size == newSize)
@@ -110,6 +111,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 validationIssues = RemoveLineItem(cart, shipmentId, code);
             }
+
             return validationIssues;
         }
 
@@ -210,6 +212,7 @@ namespace Foundation.Commerce.Order.Services
                     cart.Properties["OwnerOrg"] = contact.OwnerId.Value.ToString().ToLower();
                 }
             }
+
             IWarehouse warehouse = null;
 
             if (deliveryMethod.Equals("instore") && !string.IsNullOrEmpty(warehouseCode))
@@ -273,10 +276,11 @@ namespace Foundation.Commerce.Order.Services
                         shipment.ShippingAddress = GetOrderAddressFromWarehosue(cart, warehouse);
 
                         if (cart.GetFirstShipment().LineItems.Count > 0)
+                        {
                             cart.GetFirstForm().Shipments.Add(shipment);
+                        }
                     }
                 }
-
             }
 
             if (shipment == null)
@@ -414,6 +418,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return false;
             }
+
             couponCodes.Add(couponCode);
             var rewardDescriptions = cart.ApplyDiscounts(_promotionEngine, new PromotionEngineSettings());
             var appliedCoupons = rewardDescriptions
@@ -425,6 +430,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 couponCodes.Remove(couponCode);
             }
+
             return couponApplied;
         }
 
@@ -432,7 +438,6 @@ namespace Foundation.Commerce.Order.Services
         {
             cart.GetFirstForm().CouponCodes.Remove(couponCode);
             cart.ApplyDiscounts(_promotionEngine, new PromotionEngineSettings());
-
         }
 
         public Dictionary<ILineItem, List<ValidationIssue>> ChangeQuantity(ICart cart, int shipmentId, string code, decimal quantity)
@@ -449,6 +454,7 @@ namespace Foundation.Commerce.Order.Services
                 {
                     throw new InvalidOperationException($"No lineitem with matching code '{code}' for shipment id {shipmentId}");
                 }
+
                 cart.UpdateLineItemQuantity(shipment, lineItem, quantity);
             }
 
@@ -463,8 +469,9 @@ namespace Foundation.Commerce.Order.Services
                 var shipment = cart.GetFirstForm().Shipments.FirstOrDefault(s => s.ShipmentId == shipmentId || shipmentId == 0);
                 if (shipment == null)
                 {
-                    throw new InvalidOperationException($"No shipment with matching id {shipmentId}"); ;
+                    throw new InvalidOperationException($"No shipment with matching id {shipmentId}");
                 }
+
                 var lineItem = shipment.LineItems.FirstOrDefault(l => l.Code == code);
                 if (lineItem != null)
                 {
@@ -481,6 +488,7 @@ namespace Foundation.Commerce.Order.Services
                     _orderRepository.Delete(cart.OrderLink);
                 }
             }
+
             return ValidateCart(cart);
         }
 
@@ -537,6 +545,7 @@ namespace Foundation.Commerce.Order.Services
                 var discountedPrice = _promotionService.GetDiscountPrice(new CatalogKey(lineItem.Code), marketId, currency);
                 return discountedPrice?.UnitPrice;
             }
+
             return lineItem.GetDiscountedPrice(cart.Currency, _lineItemCalculator);
         }
 
@@ -547,6 +556,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return cart;
             }
+
             SetCartCurrency(cart, _currencyService.GetCurrentCurrency());
 
             var validationIssues = ValidateCart(cart);
@@ -566,6 +576,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return cart;
             }
+
             SetCartCurrency(cart, _currencyService.GetCurrentCurrency());
 
             var validationIssues = ValidateCart(cart);
@@ -609,6 +620,7 @@ namespace Foundation.Commerce.Order.Services
             {
                 return cart;
             }
+
             SetCartCurrency(cart, _currencyService.GetCurrentCurrency());
 
             var validationIssues = ValidateCart(cart);
@@ -631,8 +643,15 @@ namespace Foundation.Commerce.Order.Services
 
         public void RemoveQuoteNumber(ICart cart)
         {
-            if (cart == null || cart.GetAllLineItems().Any()) return;
-            if (cart.Properties["ParentOrderGroupId"] == null) return;
+            if (cart == null || cart.GetAllLineItems().Any())
+            {
+                return;
+            }
+
+            if (cart.Properties["ParentOrderGroupId"] == null)
+            {
+                return;
+            }
 
             cart.Properties["ParentOrderGroupId"] = 0;
             _orderRepository.Save(cart);
@@ -652,7 +671,7 @@ namespace Foundation.Commerce.Order.Services
                 var purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderReference.OrderGroupId);
                 if (purchaseOrder != null)
                 {
-                    int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
+                    _ = int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
                     purchaseOrder[Constant.Quote.QuoteExpireDate] =
                         string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate])
                             ? DateTime.Now.AddDays(30)
@@ -709,7 +728,7 @@ namespace Foundation.Commerce.Order.Services
                 purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderReference.OrderGroupId);
                 if (purchaseOrder != null)
                 {
-                    int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
+                    _ = int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
                     purchaseOrder[Constant.Quote.QuoteExpireDate] =
                         string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate])
                             ? DateTime.Now.AddDays(30)
@@ -745,7 +764,6 @@ namespace Foundation.Commerce.Order.Services
             return purchaseOrder?.Id ?? 0;
         }
 
-
         public ICart PlaceOrderToCart(IPurchaseOrder purchaseOrder, ICart cart)
         {
             var returnCart = cart;
@@ -758,7 +776,6 @@ namespace Foundation.Commerce.Order.Services
 
             return returnCart;
         }
-
 
         public AddToCartResult SeparateShipment(ICart cart, string code, int quantity, int fromShipmentId, int toShipmentId, string deliveryMethodId, string warehouseCode)
         {

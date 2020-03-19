@@ -94,6 +94,7 @@ namespace Foundation.Commerce.Customer
                 return parsed ? retVal : CustomerTiers.Classic;
             }
         }
+
         public B2BUserRoles B2BUserRole
         {
             get

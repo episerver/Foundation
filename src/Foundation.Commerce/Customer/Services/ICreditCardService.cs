@@ -26,6 +26,5 @@ namespace Foundation.Commerce.Customer.Services
         void MapToCreditCard(CreditCardModel creditCardModel, ref CreditCard creditCard);
 
         void MapToModel(CreditCard creditCard, ref CreditCardModel creditCardModel);
-
     }
 }

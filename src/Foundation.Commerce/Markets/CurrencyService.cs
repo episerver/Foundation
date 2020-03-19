@@ -30,7 +30,7 @@ namespace Foundation.Commerce.Markets
 
         public bool SetCurrentCurrency(string currencyCode)
         {
-            if (!TryGetCurrency(currencyCode, out var currency))
+            if (!TryGetCurrency(currencyCode, out _))
             {
                 return false;
             }

@@ -100,10 +100,12 @@
 
     megaMenu() {
         $('.navigation__left .navigation__item').each(function (i, e) {
-            var dropdown = $(e).find('.mega-container').first();
-            var top = $(e)[0].getBoundingClientRect();
-            $(dropdown).css('top', top.bottom + 1 + 'px');
-            $(dropdown).css('left', '0px');
+            $(e).mouseenter(function () {
+                var dropdown = $(e).find('.mega-container').first();
+                var top = $(e)[0].getBoundingClientRect();
+                $(dropdown).css('top', top.bottom + 1 + 'px');
+                $(dropdown).css('left', '0px');
+            })
         });
     }
 

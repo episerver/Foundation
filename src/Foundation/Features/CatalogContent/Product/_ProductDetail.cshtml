@@ -130,7 +130,7 @@
                             var sizes = new List<KeyValuePair<string, string>>();
                             foreach (var c in Model.Sizes)
                             {
-                                sizes.Add(new KeyValuePair<string, string>(c.Text, c.Value));
+                                sizes.Add(new KeyValuePair<string, string>(c.Text + (c.Disabled ? " (out of stock)" : ""), c.Value));
                             }
                         }
                         @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
@@ -142,8 +142,7 @@
             @if (Model.Variant != null)
             {
                 @Html.Partial("_Store", Model.Stores)
-
-                @Html.Partial("_BuyNow", new KeyValuePair<string, int>(Model.Variant.Code, Model.MinQuantity))
+                @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.Variant.Code, Model.MinQuantity, Model.IsAvailable))
             }
             <hr />
             <div class="row">

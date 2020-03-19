@@ -19,6 +19,7 @@ namespace Foundation.Commerce
             {
                 return DependencyResolver.Current.GetService(ModelBinderTypeMappings[modelType]) as IModelBinder;
             }
+
             return null;
         }
     }

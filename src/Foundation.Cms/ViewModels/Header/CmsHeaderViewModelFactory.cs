@@ -1,5 +1,6 @@
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Data;
 using EPiServer.Editor;
 using EPiServer.Filters;
 using EPiServer.Framework.Cache;
@@ -25,25 +26,29 @@ namespace Foundation.Cms.ViewModels.Header
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
         private readonly IContentLoader _contentLoader;
         private readonly LocalizationService _localizationService;
+        private readonly IDatabaseMode _databaseMode;
 
         public CmsHeaderViewModelFactory(IUrlResolver urlResolver,
             IContentCacheKeyCreator contentCacheKeyCreator,
             IContentLoader contentLoader,
-            LocalizationService localizationService)
+            LocalizationService localizationService,
+            IDatabaseMode databaseMode)
         {
             _urlResolver = urlResolver;
             _contentCacheKeyCreator = contentCacheKeyCreator;
             _contentLoader = contentLoader;
             _localizationService = localizationService;
+            _databaseMode = databaseMode;
         }
 
         public THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
             where THeaderViewModel : HeaderViewModel, new()
         {
             var menuItems = new List<MenuItemViewModel>();
+            var homeLanguage = homePage.Language.DisplayName;
             menuItems = homePage.MainMenu?.FilteredItems.Select(x =>
             {
-                var itemCached = CacheManager.Get(x.ContentLink.ID + MenuCacheKey) as MenuItemViewModel;
+                var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + MenuCacheKey) as MenuItemViewModel;
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
                 {
                     return itemCached;
@@ -84,7 +89,7 @@ namespace Foundation.Cms.ViewModels.Header
                         keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink));
 
                         var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
-                        CacheManager.Insert(x.ContentLink.ID + MenuCacheKey, menuItem, eviction);
+                        CacheManager.Insert(x.ContentLink.ID + homeLanguage + ":" + MenuCacheKey, menuItem, eviction);
                     }
                     return menuItem;
                 }
@@ -98,6 +103,7 @@ namespace Foundation.Cms.ViewModels.Header
                 UserLinks = new LinkItemCollection(),
                 Name = PrincipalInfo.Current.Name,
                 MenuItems = menuItems,
+                IsReadonlyMode = _databaseMode.DatabaseMode == DatabaseMode.ReadOnly
             };
         }
 

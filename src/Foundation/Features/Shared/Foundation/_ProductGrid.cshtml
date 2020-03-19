@@ -24,21 +24,25 @@
                         </picture>
                         @*<span class="hover-feather-icon added-wishlist"><i data-feather="heart"></i></span>*@
 
-                        <div class="product-tile-grid__image-bottom">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <span class="hover-feather-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
-                            }
-                            <span class="jsQuickView hover-feather-icon"
-                                  data-toggle="modal"
-                                  data-target="#quickView"
-                                  data="@product.FirstVariationCode"
-                                  productCode="@product.Code"
-                                  urlQuickView="@urlQuickView">
-                                <i data-feather="eye"></i>
-                            </span>
-                            <span class="addToCart hover-feather-icon" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
-                        </div>
+                        @if (!Html.IsReadOnlyMode())
+                        {
+                            <div class="product-tile-grid__image-bottom">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <span class="hover-feather-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
+                                }
+                                <span class="jsQuickView hover-feather-icon"
+                                      data-toggle="modal"
+                                      data-target="#quickView"
+                                      data="@product.FirstVariationCode"
+                                      productCode="@product.Code"
+                                      urlQuickView="@urlQuickView">
+                                    <i data-feather="eye"></i>
+                                </span>
+                                <span class="addToCart hover-feather-icon" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+                            </div>
+                        }
+
                     </a>
                     <div class="product-tile-grid__title">
                         <a href="@product.Url">@product.DisplayName</a>

@@ -43,7 +43,7 @@ namespace Foundation.Commerce.Order.Services
 
         private void SetDefaultBillingAddressName(CheckoutViewModel viewModel)
         {
-            if (Guid.TryParse(viewModel.BillingAddress.Name, out var guid))
+            if (Guid.TryParse(viewModel.BillingAddress.Name, out _))
             {
                 viewModel.BillingAddress.Name = "Billing address (" + viewModel.BillingAddress.Line1 + ")";
             }

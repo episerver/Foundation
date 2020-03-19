@@ -6,6 +6,11 @@ namespace Foundation.Commerce.Order.ViewModels
 {
     public class MiniCartViewModel
     {
+        public MiniCartViewModel()
+        {
+            Shipments = new List<ShipmentViewModel>();
+        }
+
         public ContentReference CheckoutPage { get; set; }
 
         public ContentReference CartPage { get; set; }
@@ -23,6 +28,11 @@ namespace Foundation.Commerce.Order.ViewModels
 
     public class MiniWishlistViewModel
     {
+        public MiniWishlistViewModel()
+        {
+            Items = new List<CartItemViewModel>();
+        }
+
         public ContentReference WishlistPage { get; set; }
 
         public decimal ItemCount { get; set; }
@@ -35,5 +45,4 @@ namespace Foundation.Commerce.Order.ViewModels
 
         public bool HasOrganization { get; set; }
     }
-
 }

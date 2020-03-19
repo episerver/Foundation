@@ -25,6 +25,7 @@ namespace Foundation.Commerce.Models.Pages
 
         #region Header
 
+        [CultureSpecific]
         [Display(Name = "Banner text", GroupName = CmsTabNames.Header, Order = 20)]
         public virtual XhtmlString BannerText { get; set; }
 

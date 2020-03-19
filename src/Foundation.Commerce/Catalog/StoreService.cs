@@ -21,7 +21,6 @@ namespace Foundation.Commerce.Catalog
         private readonly ReferenceConverter _referenceConverter;
         private readonly ICurrentMarket _currentMarket;
         private readonly IRelationRepository _relationRepository;
-        private readonly EntryIdentityResolver _entryIdentityResolver;
         private readonly CookieService _cookieService;
 
         public StoreService(IInventoryService inventoryService,
@@ -30,7 +29,6 @@ namespace Foundation.Commerce.Catalog
             ReferenceConverter referenceConverter,
             ICurrentMarket currentMarket,
             IRelationRepository relationRepository,
-            EntryIdentityResolver entryIdentityResolver,
             CookieService cookieService)
         {
             _inventoryService = inventoryService;
@@ -39,7 +37,6 @@ namespace Foundation.Commerce.Catalog
             _referenceConverter = referenceConverter;
             _currentMarket = currentMarket;
             _relationRepository = relationRepository;
-            _entryIdentityResolver = entryIdentityResolver;
             _cookieService = cookieService;
         }
 
@@ -64,7 +61,6 @@ namespace Foundation.Commerce.Catalog
                 {
                     codes.AddRange(product.GetVariants(_relationRepository).Select(x => _referenceConverter.GetCode(x)));
                 }
-
             }
 
             if (!codes.Any())
@@ -107,8 +103,7 @@ namespace Foundation.Commerce.Catalog
 
         public bool SetCurrentStore(string storeCode)
         {
-
-            if (!TryGetStoreViewModel(storeCode, out var storeViewModel))
+            if (!TryGetStoreViewModel(storeCode, out _))
             {
                 return false;
             }

@@ -1,6 +1,6 @@
 ﻿@model Foundation.Commerce.ViewModels.AssetsDownloadLinksBlockViewModel
 
-<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" @Html.EditAttributes(x => x.CurrentBlock.RootContent)>
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" @Html.EditAttributes(x => x.CurrentBlock.RootContent)>
     <div class="col-12">
         @if (Model.Assets != null)
         {

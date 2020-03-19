@@ -18,8 +18,7 @@ namespace Foundation.Commerce.Customer.Services
         bool CheckAmount(Guid organizationGuid, decimal newLockAmount, decimal unlockAmount);
         bool LockUserAmount(DateTime startDate, DateTime endDate, Guid organizationGuid, Guid userGuid, decimal amount);
 
-        bool CheckAmountByTimeLine(Guid organizationGuid, decimal newLockAmount, DateTime startDateTime,
-            DateTime finishDateTime);
+        bool CheckAmountByTimeLine(Guid organizationGuid, decimal newLockAmount, DateTime startDateTime, DateTime finishDateTime);
 
         bool ValidateSuborganizationNewAmount(Guid organizationGuid, Guid parentOrganizationId, decimal newLockAmount);
 

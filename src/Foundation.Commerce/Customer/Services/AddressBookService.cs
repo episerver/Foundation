@@ -385,7 +385,10 @@ namespace Foundation.Commerce.Customer.Services
         public bool UseBillingAddressForShipment()
         {
             var customer = _customerService.GetCurrentContact();
-            if (customer == null) return false;
+            if (customer == null)
+            {
+                return false;
+            }
 
             return customer.Contact.PreferredShippingAddressId.HasValue &&
                    customer.Contact.PreferredShippingAddressId == customer.Contact.PreferredBillingAddressId;

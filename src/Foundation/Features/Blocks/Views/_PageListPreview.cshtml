@@ -153,3 +153,86 @@
         }
     </a>
 }
+
+@if (Model.Template == TemplateSelections.Highlight)
+{
+    var imageCol = Model.PreviewOption == PreviewOptions.Half ? 6 : 4;
+    var textCol = imageCol == 12 ? 12 : 12 - imageCol;
+    var foundationPage = Model.Page as FoundationPageData;
+
+    if (!foundationPage.Highlight)
+    {
+        <div class="row">
+            @if (!Model.Flip)
+            {
+                <div class="col-xs-12 col-@imageCol">
+                    <picture style="width: 100%">
+                        @if (!ContentReference.IsNullOrEmpty(page.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                        }
+                    </picture>
+                </div>
+            }
+
+            <div class="col-xs-12 col-@textCol">
+                <h4 class="title">
+                    <a class="link" href="@page.ContentLink.GetPublicUrl()">@page.MetaTitle</a>
+                </h4>
+                @if (Model.ShowPublishDate)
+                {
+                    <p class="sub-title">@page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                }
+                @if (Model.ShowIntroduction)
+                {
+                    <br />
+                    <p class="light-text">@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength) + "...")</p>
+                }
+            </div>
+
+            @if (Model.Flip)
+            {
+                <div class="col-xs-12 col-@imageCol">
+                    <picture style="width: 100%">
+                        @if (!ContentReference.IsNullOrEmpty(page.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                        }
+                    </picture>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="screen-width-block">
+            <div class="row">
+                <div class="col-xs-12 col-@imageCol">
+                    <picture style="width: 100%">
+                        @if (!ContentReference.IsNullOrEmpty(page.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                        }
+                    </picture>
+                </div>
+
+                <div class="col-xs-12 col-@textCol">
+                    <h4 class="title">
+                        <a class="link" href="@page.ContentLink.GetPublicUrl()">@page.MetaTitle</a>
+                    </h4>
+                    @if (Model.ShowPublishDate)
+                    {
+                        <p class="sub-title">@page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                    }
+                    @if (Model.ShowIntroduction)
+                    {
+                        <br />
+                        <p class="light-text">@(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")</p>
+                    }
+                </div>
+
+            </div>
+        </div>
+    }
+    <hr />
+}

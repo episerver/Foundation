@@ -64,7 +64,6 @@ namespace Foundation.Commerce.Customer.Services
             };
         }
 
-
         public SubFoundationOrganizationModel GetSubFoundationOrganizationById(string subOrganizationId)
         {
             var subOrganization = GetFoundationOrganizationById(subOrganizationId);

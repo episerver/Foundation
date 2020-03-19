@@ -12,6 +12,5 @@ namespace Foundation.Commerce.Models.Pages
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-26.png")]
     public class OrderConfirmationMailPage : MailBasePage
     {
-
     }
 }

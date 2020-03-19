@@ -23,22 +23,19 @@ namespace Foundation.Demo.Models
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-02.png")]
     public class DemoHomePage : CommerceHomePage, IFacetConfiguration
     {
-        public override void SetDefaultValues(ContentType contentType)
-        {
-            base.SetDefaultValues(contentType);
-            SearchCatalog = 0;
-        }
-
         #region Header
 
-        [Display(Name = "Site logo", GroupName = CmsTabNames.Header, Order = 10)]
-        [UIHint(UIHint.Image)]
         [CultureSpecific]
+        [UIHint(UIHint.Image)]
+        [Display(Name = "Site logo", GroupName = CmsTabNames.Header, Order = 10)]
         public virtual ContentReference SiteLogo { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(HeaderMenuSelectionFactory))]
         [Display(Name = "Menu style", GroupName = CmsTabNames.Header, Order = 30)]
         public virtual string HeaderMenuStyle { get; set; }
+
+        [Display(Name = "Large header menu", GroupName = CmsTabNames.Header, Order = 35)]
+        public virtual bool LargeHeaderMenu { get; set; }
 
         [Display(Name = "Show commerce header components", GroupName = CmsTabNames.Header, Order = 40)]
         public virtual bool ShowCommerceHeaderComponents { get; set; }
@@ -74,5 +71,13 @@ namespace Foundation.Demo.Models
         public virtual IList<FacetFilterConfigurationItem> SearchFiltersConfiguration { get; set; }
 
         #endregion
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            LargeHeaderMenu = false;
+            SearchCatalog = 0;
+        }
     }
 }

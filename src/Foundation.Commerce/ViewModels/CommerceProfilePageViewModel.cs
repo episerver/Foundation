@@ -15,7 +15,6 @@ namespace Foundation.Commerce.ViewModels
     {
         public CommerceProfilePageViewModel()
         {
-
         }
 
         public CommerceProfilePageViewModel(TContent profilePage) : base(profilePage)

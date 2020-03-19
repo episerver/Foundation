@@ -15,7 +15,6 @@ namespace Foundation.Commerce.Customer.ViewModels
 
         public CreditCardViewModel(CreditCardPage currentPage) : base(currentPage)
         {
-
         }
 
         public CreditCardModel CreditCard { get; set; }
@@ -29,8 +28,10 @@ namespace Foundation.Commerce.Customer.ViewModels
             {
                 GetAllOganizationAndSub(organizationInfo, result, 0);
             }
+
             return result;
         }
+
         private void GetAllOganizationAndSub(FoundationOrganization organization, List<FoundationOrganization> list, int level)
         {
             if (organization != null)
@@ -40,6 +41,7 @@ namespace Foundation.Commerce.Customer.ViewModels
                     organization.Name = ".." + organization.Name;
                     level--;
                 }
+
                 list.Add(organization);
                 if (organization.SubOrganizations.Count > 0)
                 {
@@ -50,6 +52,5 @@ namespace Foundation.Commerce.Customer.ViewModels
                 }
             }
         }
-
     }
 }

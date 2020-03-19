@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Data;
 using EPiServer.Editor;
 using EPiServer.Filters;
 using EPiServer.Framework.Cache;
@@ -16,6 +17,7 @@ using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Markets.ViewModels;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.Order.Services;
+using Foundation.Commerce.Order.ViewModels;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Markets;
 using System;
@@ -30,7 +32,6 @@ namespace Foundation.Commerce.ViewModels.Header
         private const string FlagLocation = "/Assets/icons/flags/";
 
         private readonly LocalizationService _localizationService;
-        private readonly IAddressBookService _addressBookService;
         private readonly ICustomerService _customerService;
         private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly IUrlResolver _urlResolver;
@@ -40,9 +41,9 @@ namespace Foundation.Commerce.ViewModels.Header
         private readonly ICartService _cartService;
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
         private readonly IContentLoader _contentLoader;
+        private readonly IDatabaseMode _databaseMode;
 
         public CommerceHeaderViewModelFactory(LocalizationService localizationService,
-            IAddressBookService addressBookService,
             ICustomerService customerService,
             CartViewModelFactory cartViewModelFactory,
             IUrlResolver urlResolver,
@@ -51,10 +52,10 @@ namespace Foundation.Commerce.ViewModels.Header
             IBookmarksService bookmarksService,
             ICartService cartService,
             IContentCacheKeyCreator contentCacheKeyCreator,
-            IContentLoader contentLoader)
+            IContentLoader contentLoader, 
+            IDatabaseMode databaseMode)
         {
             _localizationService = localizationService;
-            _addressBookService = addressBookService;
             _customerService = customerService;
             _cartViewModelFactory = cartViewModelFactory;
             _urlResolver = urlResolver;
@@ -64,22 +65,24 @@ namespace Foundation.Commerce.ViewModels.Header
             _cartService = cartService;
             _contentCacheKeyCreator = contentCacheKeyCreator;
             _contentLoader = contentLoader;
+            _databaseMode = databaseMode;
         }
 
-        public virtual THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent currentContent, CmsHomePage homePage)
+        public virtual THeaderViewModel CreateHeaderViewModel<THeaderViewModel>(IContent content, CmsHomePage home)
             where THeaderViewModel : HeaderViewModel, new()
         {
-            var commerceHomePage = homePage as CommerceHomePage;
+            var commerceHomePage = home as CommerceHomePage;
             if (commerceHomePage == null)
             {
                 return null;
             }
+
             var contact = _customerService.GetCurrentContact();
-            var isBookmarked = IsBookmarked(currentContent);
-            var viewModel = CreateViewModel<CommerceHeaderViewModel>(currentContent, commerceHomePage, contact, isBookmarked);
+            var isBookmarked = IsBookmarked(content);
+            var viewModel = CreateViewModel<CommerceHeaderViewModel>(content, commerceHomePage, contact, isBookmarked);
             AddCommerceComponents(contact, viewModel);
             AddAnonymousComponents(commerceHomePage, viewModel);
-            AddMarketViewModel(currentContent, viewModel);
+            AddMarketViewModel(content, viewModel);
             AddMyAccountMenu(commerceHomePage, viewModel);
             return viewModel as THeaderViewModel;
         }
@@ -170,9 +173,10 @@ namespace Foundation.Commerce.ViewModels.Header
             where T : CommerceHeaderViewModel, new()
         {
             var menuItems = new List<MenuItemViewModel>();
+            var homeLanguage = homePage.Language.DisplayName;
             menuItems = homePage.MainMenu?.FilteredItems.Select(x =>
             {
-                var itemCached = CacheManager.Get(x.ContentLink.ID + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
+                var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
                 {
                     return itemCached;
@@ -213,8 +217,9 @@ namespace Foundation.Commerce.ViewModels.Header
                         keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink));
 
                         var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
-                        CacheManager.Insert(x.ContentLink.ID + Constant.CacheKeys.MenuItems, menuItem, eviction);
+                        CacheManager.Insert(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems, menuItem, eviction);
                     }
+
                     return menuItem;
                 }
             }).ToList();
@@ -227,6 +232,7 @@ namespace Foundation.Commerce.ViewModels.Header
                 UserLinks = new LinkItemCollection(),
                 Name = contact?.FirstName ?? "",
                 IsBookmarked = isBookmarked,
+                IsReadonlyMode = _databaseMode.DatabaseMode == DatabaseMode.ReadOnly,
                 MenuItems = menuItems ?? new List<MenuItemViewModel>(),
                 LoginViewModel = new LoginViewModel
                 {
@@ -278,6 +284,14 @@ namespace Foundation.Commerce.ViewModels.Header
 
         protected virtual void AddCommerceComponents(Customer.FoundationContact contact, CommerceHeaderViewModel viewModel)
         {
+            if (_databaseMode.DatabaseMode == DatabaseMode.ReadOnly)
+            {
+                viewModel.MiniCart = new MiniCartViewModel();
+                viewModel.WishListMiniCart = new MiniWishlistViewModel();
+                viewModel.SharedMiniCart = new MiniCartViewModel();
+                return;
+            }
+
             viewModel.MiniCart = _cartViewModelFactory.CreateMiniCartViewModel(
                 _cartService.LoadCart(_cartService.DefaultCartName, true)?.Cart);
 
@@ -325,18 +339,22 @@ namespace Foundation.Commerce.ViewModels.Header
             {
                 return $"{FlagLocation}fr.svg";
             }
+
             if (marketId == new MarketId("AUS"))
             {
                 return $"{FlagLocation}au.svg";
             }
+
             if (marketId == new MarketId("BRA"))
             {
                 return $"{FlagLocation}br.svg";
             }
+
             if (marketId == new MarketId("CAN"))
             {
                 return $"{FlagLocation}ca.svg";
             }
+
             if (marketId == new MarketId("CHL"))
             {
                 return $"{FlagLocation}cl.svg";
@@ -351,37 +369,43 @@ namespace Foundation.Commerce.ViewModels.Header
             {
                 return $"{FlagLocation}de.svg";
             }
+
             if (marketId == new MarketId("ESP"))
             {
                 return $"{FlagLocation}es.svg";
             }
+
             if (marketId == new MarketId("JPN"))
             {
                 return $"{FlagLocation}jp.svg";
             }
+
             if (marketId == new MarketId("NLD"))
             {
                 return $"{FlagLocation}nl.svg";
             }
+
             if (marketId == new MarketId("NOR"))
             {
                 return $"{FlagLocation}no.svg";
             }
+
             if (marketId == new MarketId("SAU"))
             {
                 return $"{FlagLocation}sa.svg";
             }
+
             if (marketId == new MarketId("SWE"))
             {
                 return $"{FlagLocation}se.svg";
             }
+
             if (marketId == new MarketId("UK"))
             {
                 return $"{FlagLocation}gb.svg";
             }
+
             return marketId == new MarketId("US") ? $"{FlagLocation}us.svg" : "";
         }
-
-
     }
 }

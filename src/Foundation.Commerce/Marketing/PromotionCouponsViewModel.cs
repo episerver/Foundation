@@ -31,6 +31,5 @@ namespace Foundation.Commerce.Marketing
         [Display(Name = "Max Redemptions")]
         public int MaxRedemptions { get; set; }
         public int PromotionId { get; set; }
-
     }
 }

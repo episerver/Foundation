@@ -90,13 +90,13 @@ namespace Foundation.Commerce.Order.ViewModels
         public PaymentPlanSetting PaymentPlanSetting { get; set; }
     }
 
-
     public class PaymentPlanSetting
     {
         public PaymentPlanCycle CycleMode
         {
             get; set;
         }
+
         public int CycleLength { get; set; }
         public int MaxCyclesCount { get; set; }
         public int CompletedCyclesCount { get; set; }
@@ -105,5 +105,4 @@ namespace Foundation.Commerce.Order.ViewModels
         public DateTime? LastTransactionDate { get; set; }
         public bool IsActive { get; set; }
     }
-
 }

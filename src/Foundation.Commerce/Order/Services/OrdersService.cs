@@ -80,7 +80,7 @@ namespace Foundation.Commerce.Order.Services
                      purchaseOrder.Status == OrderStatus.OnHold.ToString()))
                 {
                     orderViewModel.Status = purchaseOrder[Constant.Quote.QuoteStatus].ToString();
-                    DateTime.TryParse(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
+                    _ = DateTime.TryParse(purchaseOrder[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
                     if (DateTime.Compare(DateTime.Now, quoteExpireDate) > 0)
                     {
                         orderViewModel.Status = Constant.Quote.QuoteExpired;
@@ -123,10 +123,16 @@ namespace Foundation.Commerce.Order.Services
         public bool ApproveOrder(int orderGroupId)
         {
             var purchaseOrder = _orderRepository.Load<PurchaseOrder>(orderGroupId);
-            if (purchaseOrder == null) return false;
+            if (purchaseOrder == null)
+            {
+                return false;
+            }
 
             var budgetPayment = GetOrderBudgetPayment(purchaseOrder) as Payment;
-            if (budgetPayment == null) return false;
+            if (budgetPayment == null)
+            {
+                return false;
+            }
 
             try
             {
@@ -180,9 +186,7 @@ namespace Foundation.Commerce.Order.Services
         /// <param name="lineItemId"></param>
         /// <param name="returnQuantity"></param>
         /// <param name="reason"></param>
-        /// <returns></returns>
-        public ReturnFormStatus CreateReturn(int orderGroupId, int shipmentId, int lineItemId, decimal returnQuantity,
-            string reason)
+        public ReturnFormStatus CreateReturn(int orderGroupId, int shipmentId, int lineItemId, decimal returnQuantity, string reason)
         {
             //Get originial information about lineitem and shipment
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderGroupId);
@@ -213,8 +217,7 @@ namespace Foundation.Commerce.Order.Services
             return ReturnFormStatusManager.GetReturnFormStatus(returnForm as OrderForm);
         }
 
-        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemQuantity(int orderGroupId, int shipmentId,
-            int lineItemId, decimal quantity)
+        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemQuantity(int orderGroupId, int shipmentId, int lineItemId, decimal quantity)
         {
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderGroupId);
             var form = purchaseOrder.GetFirstForm();
@@ -242,8 +245,7 @@ namespace Foundation.Commerce.Order.Services
             return issues;
         }
 
-        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemPrice(int orderGroupId, int shipmentId,
-            int lineItemId, decimal price)
+        public Dictionary<ILineItem, List<ValidationIssue>> ChangeLineItemPrice(int orderGroupId, int shipmentId, int lineItemId, decimal price)
         {
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderGroupId);
             var form = purchaseOrder.GetFirstForm();

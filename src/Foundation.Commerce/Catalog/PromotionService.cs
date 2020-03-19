@@ -62,6 +62,7 @@ namespace Foundation.Commerce.Catalog
                     ValidUntil = null
                 };
             }
+
             return price;
         }
 
@@ -82,6 +83,7 @@ namespace Foundation.Commerce.Catalog
                     ValidUntil = null
                 };
             }
+
             return new PriceValue
             {
                 CatalogKey = new CatalogKey(_referenceConverter.GetCode(contentLink)),
@@ -112,8 +114,8 @@ namespace Foundation.Commerce.Catalog
 
                 priceValues.Add(GetDiscountPrice(
                     price, entry.Value, currency, market));
-
             }
+
             return priceValues;
         }
 

@@ -1,57 +1,60 @@
-﻿@using EPiServer.SpecializedProperties;
+﻿﻿@using EPiServer.SpecializedProperties;
 
 @model IContentViewModel<IContent>
 
 <hr class="bottom-line">
-<footer class="footer container">
-    <h5 class="footer__introduction">
-        @Html.PropertyFor(x => x.StartPage.Introduction)
-    </h5>
-    <div class="row">
-        <div class="col-md-6 col-lg-4">
-            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.CompanyHeader)> @Html.DisplayFor(x => x.StartPage.CompanyHeader)</h3>
-            <div>Phone:&nbsp<a href="tel:@Html.DisplayFor(x => x.StartPage.CompanyPhone)" @Html.EditAttributes(x => x.StartPage.CompanyPhone)>@Html.DisplayFor(x => x.StartPage.CompanyPhone)</a></div>
-            <div>Email:&nbsp<a href="mailto:@Html.DisplayFor(x => x.StartPage.CompanyEmail)" @Html.EditAttributes(x => x.StartPage.CompanyEmail)>@Html.DisplayFor(x => x.StartPage.CompanyEmail)</a></div>
-            <a @Html.EditAttributes(x => x.StartPage.CompanyAddress)>@Html.DisplayFor(x => x.StartPage.CompanyAddress)</a>
-        </div>
-        <div class="col-md-6 col-lg-2">
-            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.LinksHeader)> @Html.DisplayFor(x => x.StartPage.LinksHeader)</h3>
+<footer class="footer">
+    <div class="container">
+        <h5 class="footer__introduction">
+            @Html.PropertyFor(x => x.StartPage.Introduction)
+        </h5>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.CompanyHeader)> @Html.DisplayFor(x => x.StartPage.CompanyHeader)</h3>
+                <div>Phone:&nbsp<a href="tel:@Html.DisplayFor(x => x.StartPage.CompanyPhone)" @Html.EditAttributes(x => x.StartPage.CompanyPhone)>@Html.DisplayFor(x => x.StartPage.CompanyPhone)</a></div>
+                <div>Email:&nbsp<a href="mailto:@Html.DisplayFor(x => x.StartPage.CompanyEmail)" @Html.EditAttributes(x => x.StartPage.CompanyEmail)>@Html.DisplayFor(x => x.StartPage.CompanyEmail)</a></div>
+                <a @Html.EditAttributes(x => x.StartPage.CompanyAddress)>@Html.DisplayFor(x => x.StartPage.CompanyAddress)</a>
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.LinksHeader)> @Html.DisplayFor(x => x.StartPage.LinksHeader)</h3>
 
-            @if (Model != null)
-            {
-                <div @Html.EditAttributes(x => x.StartPage.Links)>
-                    @foreach (var item in Model.StartPage.Links ?? new LinkItemCollection())
-                    {
-                        <a class="footer__link" href="@Url.PageUrl(item.Href)">
-                            @item.Text
-                        </a>
-                    }
-                </div>
-            }
-        </div>
-        <div class="col-md-6 col-lg-2">
-            <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.SocialHeader)>@Html.DisplayFor(x => x.StartPage.SocialHeader)</h3>
+                @if (Model != null)
+                {
+                    <div @Html.EditAttributes(x => x.StartPage.Links)>
+                        @foreach (var item in Model.StartPage.Links ?? new LinkItemCollection())
+                        {
+                            <a class="footer__link" href="@Url.PageUrl(item.Href)">
+                                @item.Text
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <h3 class="footer__heading" @Html.EditAttributes(x => x.StartPage.SocialHeader)>@Html.DisplayFor(x => x.StartPage.SocialHeader)</h3>
 
-            @if (Model != null)
-            {
-                <div @Html.EditAttributes(x => x.StartPage.SocialLinks)>
-                    @foreach (var item in Model.StartPage.SocialLinks ?? new LinkItemCollection())
-                    {
-                        <a class="footer__link" href="@Url.PageUrl(item.Href)" target="_blank">
-                            @item.Text
-                        </a>
-                    }
-                </div>
-            }
+                @if (Model != null)
+                {
+                    <div @Html.EditAttributes(x => x.StartPage.SocialLinks)>
+                        @foreach (var item in Model.StartPage.SocialLinks ?? new LinkItemCollection())
+                        {
+                            <a class="footer__link" href="@Url.PageUrl(item.Href)" target="_blank">
+                                @item.Text
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 col-lg-4">
+                @Html.PropertyFor(x => x.StartPage.ContentArea)
+            </div>
         </div>
-        <div class="col-md-6 col-lg-4">
-            @Html.PropertyFor(x => x.StartPage.ContentArea)
-        </div>
-    </div>
 
-    <div class="row">
-        <p class="footer__subtext col-12" @Html.EditAttributes(x => x.StartPage.FooterCopyrightText)>
-            © @DateTime.Now.Year.ToString() @Html.DisplayFor(x => x.StartPage.FooterCopyrightText)
-        </p>
+        <div class="footer__subtext row no-gutters">
+            <div class="col-auto">© @DateTime.Now.Year.ToString()<span>&nbsp;</span></div>
+            <div class="col">
+                @Html.PropertyFor(x => x.StartPage.FooterCopyrightText)
+            </div>
+        </div>
     </div>
 </footer>

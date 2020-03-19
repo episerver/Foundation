@@ -63,7 +63,7 @@ namespace Foundation.Commerce.Customer.Services
             }
         }
 
-        public virtual void EditContact(FoundationContact contact) => UpdateContact(contact.ContactId.ToString(), contact.UserRole, contact.UserLocationId);
+        public virtual void EditContact(FoundationContact model) => UpdateContact(model.ContactId.ToString(), model.UserRole, model.UserLocationId);
 
         public virtual void RemoveContactFromOrganization(string id)
         {
@@ -105,7 +105,11 @@ namespace Foundation.Commerce.Customer.Services
         public virtual bool CanSeeOrganizationNav()
         {
             var contact = GetCurrentContact();
-            if (contact == null) return false;
+            if (contact == null)
+            {
+                return false;
+            }
+
             var currentRole = contact.B2BUserRole;
             return currentRole == B2BUserRoles.Admin || currentRole == B2BUserRoles.Approver;
         }
@@ -206,7 +210,7 @@ namespace Foundation.Commerce.Customer.Services
         {
             if (email == null)
             {
-                throw new ArgumentNullException("email");
+                throw new ArgumentNullException(nameof(email));
             }
 
             return UserManager().FindByEmail(email);
@@ -216,7 +220,7 @@ namespace Foundation.Commerce.Customer.Services
         {
             if (email == null)
             {
-                throw new ArgumentNullException("email");
+                throw new ArgumentNullException(nameof(email));
             }
 
             return await UserManager().FindByNameAsync(email);
@@ -228,7 +232,7 @@ namespace Foundation.Commerce.Customer.Services
         {
             if (user == null)
             {
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             }
 
             if (user.Password.IsNullOrEmpty())
@@ -314,7 +318,7 @@ namespace Foundation.Commerce.Customer.Services
         {
             if (user == null)
             {
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException(nameof(user));
             }
 
             var contact = FoundationContact.New();

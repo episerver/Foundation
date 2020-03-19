@@ -20,6 +20,7 @@ namespace Foundation.Commerce.Order
             {
                 return base.BindModel(controllerContext, bindingContext);
             }
+
             var paymentMethodViewModels = _paymentMethodViewModelFactory.GetPaymentMethodViewModels();
             var selectedPaymentMethod = paymentMethodViewModels.FirstOrDefault(p => p.SystemKeyword == systemKeyword);
 

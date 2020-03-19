@@ -70,11 +70,10 @@ namespace Foundation.Commerce.Order.Payments
 
         public GenericCreditCardPaymentOption()
             : this(LocalizationService.Current, ServiceLocator.Current.GetInstance<IOrderGroupFactory>(), ServiceLocator.Current.GetInstance<ICurrentMarket>(), ServiceLocator.Current.GetInstance<LanguageService>(), ServiceLocator.Current.GetInstance<IPaymentService>(), ServiceLocator.Current.GetInstance<ICreditCardService>())
-
         {
         }
 
-        private ICreditCardService _creditCardService;
+        private readonly ICreditCardService _creditCardService;
 
         public GenericCreditCardPaymentOption(LocalizationService localizationService,
             IOrderGroupFactory orderGroupFactory,
@@ -116,6 +115,7 @@ namespace Foundation.Commerce.Order.Payments
                 payment.ExpirationMonth = ExpirationMonth;
                 payment.ExpirationYear = ExpirationYear;
             }
+
             payment.Status = PaymentStatus.Pending.ToString();
             payment.CustomerName = CreditCardName;
             payment.TransactionType = TransactionType.Authorization.ToString();
@@ -227,6 +227,7 @@ namespace Foundation.Commerce.Order.Payments
             {
                 return LocalizationService.GetString("/Checkout/Payment/Methods/CreditCard/ValidationErrors/InvalidCreditCard");
             }
+
             return null;
         }
 

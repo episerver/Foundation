@@ -72,13 +72,11 @@ namespace Foundation.Commerce.Models.Catalog
 
         [Display(Name = "On sale",
             GroupName = SystemTabNames.Content,
-            Description = "Is on sale?",
             Order = 50)]
         public virtual bool OnSale { get; set; }
 
         [Display(Name = "New arrival",
             GroupName = SystemTabNames.Content,
-            Description = "Is on a new arrival?",
             Order = 55)]
         public virtual bool NewArrival { get; set; }
 
@@ -92,14 +90,12 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         [Display(Name = "Content area",
             GroupName = SystemTabNames.Content,
-            Description = "This will display the content area.",
             Order = 65)]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Associations title",
             GroupName = SystemTabNames.Content,
-            Description = "This is title of the Associations tab.",
             Order = 70)]
         public virtual string AssociationsTitle { get; set; }
 
