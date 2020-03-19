@@ -146,14 +146,17 @@
                             </li>
                         }
                     }
+                    @if (Model.ShowCommerceControls)
+                    {
+                        <li class="offside-navbar--menu__item">
+                            <a class="flex-start" href="#" data-toggle="modal" data-target="#selectMarket">
+                                Market:&nbsp;
+                                <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
+                                <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>
+                            </a>
+                        </li>
+                    }
 
-                    <li class="offside-navbar--menu__item">
-                        <a class="flex-start" href="#" data-toggle="modal" data-target="#selectMarket">
-                            Market:&nbsp;
-                            <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
-                            <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
 
@@ -180,41 +183,45 @@
         </div>
     </div>
     <!-- END - Side menu of Navigation bar for Mobile -->
-    <!-- Modal Select Market -->
-    <div class="modal fade" id="selectMarket" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content square-box">
-                <div class="modal-header">
-                    <h5 class="modal-title">Market</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="market-list__list">
-                    <ul>
-                        @foreach (var market in Model.Markets.Markets)
-                        {
-                            <li>
-                                @using (Html.BeginForm("Set", "Market", new { marketId = market.Value }, FormMethod.Post, null))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <button class="btn btn-none market-list__item jsSelectMarket">
-                                        <img src="@market.FlagUrl" class="market-selector__market-icon">
-                                        <p class="market-selector__market-text">@market.Text</p>
-                                    </button>
-                                }
-                            </li>
-                        }
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="button-transparent-black" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="button-black">OK</button>
+
+    @if (Model.ShowCommerceControls)
+    {
+        <!-- Modal Select Market -->
+        <div class="modal fade" id="selectMarket" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content square-box">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Market</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="market-list__list">
+                        <ul>
+                            @foreach (var market in Model.Markets.Markets)
+                            {
+                                <li>
+                                    @using (Html.BeginForm("Set", "Market", new { marketId = market.Value }, FormMethod.Post, null))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-none market-list__item jsSelectMarket">
+                                            <img src="@market.FlagUrl" class="market-selector__market-icon">
+                                            <p class="market-selector__market-text">@market.Text</p>
+                                        </button>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="button-transparent-black" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="button-black">OK</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    }
 
     <!-- Modal Register In Mobile-->
     @if (!Request.IsAuthenticated)

@@ -1,6 +1,9 @@
 ﻿@model CheckoutViewModel
-
+@{ 
+    var totalItem = Model.Shipments.SelectMany(x => x.CartItems).Sum(x => x.Quantity);
+}
 <h4>@Html.TranslateFallback("/Shared/Payments", "Payments")</h4>
+<input type="hidden" class="jsTotalQuantityCheckout" value="@((int)totalItem)" />
 @if (Model.Payments.Any())
 {
     <div class="row">
