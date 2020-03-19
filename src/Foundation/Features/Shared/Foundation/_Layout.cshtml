@@ -1,5 +1,5 @@
-﻿@using Foundation.Cms
-
+@using Foundation.Cms.SchemaMarkup;
+@using Foundation.Cms
 @model IContentViewModel<IContent>
 
 @{
@@ -58,3 +58,4 @@
 
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")
+@Model.SchemaMarkup

@@ -12,6 +12,8 @@ using EPiServer.Web.Routing;
 using Foundation.Cms.Display;
 using Foundation.Cms.Identity;
 using Foundation.Cms.ModelBinders;
+using Foundation.Cms.Pages;
+using Foundation.Cms.SchemaMarkup;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
@@ -40,6 +42,8 @@ namespace Foundation.Cms
             _services.AddSingleton<BlogTagFactory>();
             _services.AddTransient<IQuickNavigatorItemProvider, FoundationQuickNavigatorItemProvider>();
             _services.AddTransient<IViewTemplateModelRegistrator, ViewTemplateModelRegistrator>();
+            _services.AddSingleton<ISchemaDataMapper<BlogItemPage>, BlogItemPageSchemaMapper>();
+            _services.AddSingleton<ISchemaDataMapper<CmsHomePage>, CmsHomePageSchemaMapper>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
