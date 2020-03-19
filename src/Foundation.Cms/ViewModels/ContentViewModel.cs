@@ -5,6 +5,8 @@ using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
+using Foundation.Cms.SchemaMarkup;
+using System.Web;
 
 namespace Foundation.Cms.ViewModels
 {
@@ -58,6 +60,20 @@ namespace Foundation.Cms.ViewModels
                 return _startPage;
             }
         }
+
+        public HtmlString SchemaMarkup
+        {
+            get
+            {
+                //See if there's a schema data mapper for this content type and, if so, generate some schema markup
+                if (ServiceLocator.Current.TryGetExistingInstance(out ISchemaDataMapper<TContent> mapper))
+                {
+                    return new HtmlString($"<script type=\"application/ld+json\">{mapper.Map(CurrentContent).ToHtmlEscapedString()}</script>");
+                }
+                return new HtmlString(string.Empty);
+            }
+        }
+
     }
 
     public static class ContentViewModel

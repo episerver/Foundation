@@ -1,5 +1,6 @@
 using EPiServer.Core;
 using Foundation.Cms.Pages;
+using System.Web;
 
 namespace Foundation.Cms.ViewModels
 {
@@ -7,5 +8,6 @@ namespace Foundation.Cms.ViewModels
     {
         TContent CurrentContent { get; }
         CmsHomePage StartPage { get; }
+        HtmlString SchemaMarkup { get; }
     }
 }
