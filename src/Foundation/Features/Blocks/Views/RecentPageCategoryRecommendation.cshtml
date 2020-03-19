@@ -6,7 +6,7 @@
     var totalPages = Model.CategoryPages.Count;
     var isOdd = totalPages % 2 != 0;
 
-    <div class="row no-gutters">
+    <div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="row no-gutters @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
         @for (var i = 0; i < totalPages; i++)
         {
             var categoryPage = Model.CategoryPages[i];

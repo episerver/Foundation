@@ -6,6 +6,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
+using Foundation.Cms.Categories;
 using Foundation.Cms.Pages;
 using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Catalog.ViewModels;
@@ -125,9 +126,13 @@ namespace Foundation.Helpers
                     openGraphLocationItemPage.Category = categories;
 
                     var tags = new List<string>();
-                    foreach (var item in ((LocationItemPage)contentViewModel.CurrentContent).Tags.Items)
+                    var items = ((LocationItemPage)contentViewModel.CurrentContent).Categories;
+                    if (items != null)
                     {
-                        tags.Add(item.GetContent().Name);
+                        foreach (var item in items)
+                        {
+                            tags.Add(_contentLoader.Value.Get<StandardCategory>(item).Name);
+                        }
                     }
                     openGraphLocationItemPage.Tags = tags;
 
@@ -184,8 +189,8 @@ namespace Foundation.Helpers
                     }
 
                     var openGraphEntry = new OpenGraphGenericProduct(
-                        entryContentBase.DisplayName, 
-                        new OpenGraphImage(entryImageUrl), 
+                        entryContentBase.DisplayName,
+                        new OpenGraphImage(entryImageUrl),
                         GetUrl(entryContentBase.ContentLink))
                     {
                         Locale = defaultLocale.Replace('-', '_'),

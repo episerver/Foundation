@@ -89,7 +89,6 @@ namespace Foundation.Features.Search.ProductSearchBlock
             {
                 Heading = currentBlock.Heading,
                 ItemsPerRow = currentBlock.ItemsPerRow,
-                PaddingStyles = currentBlock.PaddingStyles,
                 Products = result.ProductViewModels.ToList()
             };
 
@@ -112,7 +111,11 @@ namespace Foundation.Features.Search.ProductSearchBlock
                     newList = result.ProductViewModels.Where(x => !byRevenues.Any(y => y.Code.Equals(x.Code))).ToList();
                     newList.InsertRange(0, byRevenues);
                     break;
+                case ProductSearchSortOrder.NewestProducts:
+                    newList = result.ProductViewModels.OrderByDescending(x => x.Created).ToList();
+                    break;
                 default:
+                    newList = result.ProductViewModels.ToList();
                     break;
             }
 
@@ -159,6 +162,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
                     newList = discontinueds;
                     break;
                 default:
+                    newList = result.ProductViewModels.ToList();
                     break;
             }
 
@@ -167,8 +171,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByQuantity()
         {
-            double days;
-            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out double days))
             {
                 days = 365;
             }
@@ -192,8 +195,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByRevenue()
         {
-            double days;
-            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out days))
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out double days))
             {
                 days = 365;
             }

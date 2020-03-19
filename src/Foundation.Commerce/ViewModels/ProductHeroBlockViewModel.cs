@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Cms.ViewModels;
+﻿using Foundation.Cms.ViewModels;
 using Foundation.Commerce.Blocks;
 
 namespace Foundation.Commerce.ViewModels
@@ -12,7 +11,6 @@ namespace Foundation.Commerce.ViewModels
 
         public string ImageUrl { get; set; }
         public string ImagePosition { get; set; }
-        public string BlockPaddings { get; set; }
-        public string CalloutPaddings { get; set; }
+        
     }
 }

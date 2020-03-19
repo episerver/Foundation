@@ -23,30 +23,37 @@
 
             @*<hr />*@
             @*<div class="product-detail__rating">
-           <div class="rating rate-@((int)Model.Reviews.Statistics.OverallRating)">
-                <i data-feather="star"></i>
-                <i data-feather="star"></i>
-                <i data-feather="star"></i>
-                <i data-feather="star"></i>
-                <i data-feather="star"></i>
-            </div>
-            <span>@Model.Reviews.Statistics.TotalRatings Review(s)</span>
-        </div>*@
+                   <div class="rating rate-@((int)Model.Reviews.Statistics.OverallRating)">
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                        <i data-feather="star"></i>
+                    </div>
+                    <span>@Model.Reviews.Statistics.TotalRatings Review(s)</span>
+                </div>*@
 
             <hr />
             <div class="row">
                 <div class="col-12">
                     @if (Model.IsAvailable)
                     {
-                        if (Model.DiscountedPrice < Model.ListingPrice)
-                        {
-                            <span class="price__old">@Model.ListingPrice.ToString()</span>
-                            <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
-                        }
-                        else
-                        {
-                            <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
-                        }
+                        <div style="display: inline-block">
+                            @if (Model.DiscountedPrice < Model.ListingPrice)
+                            {
+                                <span class="price__old">@Model.ListingPrice.ToString()</span>
+                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                            }
+
+                            @if (Model.HasSaleCode)
+                            {
+                                @Html.Partial("_WarningHasSaleCode", null)
+                            }
+                        </div>
 
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
@@ -63,15 +70,22 @@
                     {
                         if (Model.DiscountedPrice > 0 || Model.ListingPrice > 0)
                         {
-                            if (Model.DiscountedPrice < Model.ListingPrice)
-                            {
-                                <span class="price__old">@Model.ListingPrice.ToString()</span>
-                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
-                            }
-                            else
-                            {
-                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
-                            }
+                            <div style="display: inline-block">
+                                @if (Model.DiscountedPrice < Model.ListingPrice)
+                                {
+                                    <span class="price__old">@Model.ListingPrice.ToString()</span>
+                                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                                }
+                                else
+                                {
+                                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                                }
+
+                                @if (Model.HasSaleCode)
+                                {
+                                    @Html.Partial("_WarningHasSaleCode", null)
+                                }
+                            </div>
                         }
 
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)

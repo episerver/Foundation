@@ -24,13 +24,14 @@
         this.search();
     }
 
-    removeTag(inputId) {
-        $('#' + inputId).prop('checked', false);
+    removeTag(inputName) {
+        $(`input[name='${inputName}']`).prop('checked', false);
         this.search();
     }
 
     removeAllTag() {
         $('.jsSearchFacet:input:checked').each(function (i, e) {
+            //$('.jsSearchFacet:input:checked')
             $(e).removeAttr('checked');
         });
         this.search();
@@ -74,6 +75,10 @@
         var data = this.getFilter();
         $('body>.loading-box').show();
 
+        var expanding = document.querySelector('.selection--cm__collapse:not(.hidden)')
+        var expandingFacetEl = expanding && expanding.closest('.selection--cm')
+        var expandingFacet = expandingFacetEl && expandingFacetEl.dataset.facetkey
+
         axios({ url: inst.RootUrl + inst.Params, params: { ...data }, method: 'get' })
             .then(function (result) {
                 window.history.replaceState(null, null, inst.Params == "" ? "?" : inst.Params);
@@ -81,10 +86,16 @@
                 $('.jsFacets').replaceWith($(result.data).find('.jsFacets'));
                 $('.jsProducts').replaceWith($(result.data).find('.jsProducts'));
                 feather.replace();
-                //$('.selection--cm').find('.selection--cm__expand').off();
-                //$('.selection--cm').find('.selection--cm__collapse').off();
-                let selection = new Selection();
-                selection.Init();
+                new Selection().Init();
+                if (expandingFacet) {
+                    var ul = document.querySelector(`.selection--cm[data-facetkey=${expandingFacet}]`)
+                    var dropdown = ul.querySelector('.selection--cm__dropdown')
+                    var collapse = ul.querySelector('.selection--cm__collapse')
+                    var expand = ul.querySelector('.selection--cm__expand')
+                    dropdown.style.display = 'block'
+                    collapse.classList.remove('hidden')
+                    expand.classList.add('hidden')
+                }
                 var quickView = new ProductDetail('#quickView');
                 quickView.InitQuickView();
                 var product = new Product(".jsProducts");
@@ -169,7 +180,7 @@
             });
         });
 
-        $('.jsSearchFacet:checkbox:not(:checked)').each(function (i, e) {
+        $('.jsSearchFacet:checkbox').each(function (i, e) {
             $(e).change(function () {
                 inst.search();
             });
@@ -181,8 +192,8 @@
 
         $('.jsRemoveTag').each(function (i, e) {
             $(e).click(function () {
-                var id = $(this).siblings('.jsSearchFacet').attr('id');
-                inst.removeTag(id);
+                var name = $(this).siblings('.jsSearchFacetSelected').attr('name');
+                inst.removeTag(name);
             });
         });
         //-- end

@@ -5,14 +5,15 @@ using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.Attributes;
 using Foundation.Cms.Blocks;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Commerce.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Blocks
 {
-    [ContentType(DisplayName = "Product Hero Block", 
+    [ContentType(DisplayName = "Product Hero Block",
         GUID = "6b43692b-6abd-49b1-b5f2-48ffbb8e626a",
-        Description = "Product here block", 
+        Description = "Product here block",
         GroupName = CommerceGroupNames.Commerce)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
@@ -44,26 +45,25 @@ namespace Foundation.Commerce.Blocks
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual XhtmlString Text { get; set; }
 
-        [Display(Name = "Padding top", Order = 20)]
-        public virtual int PaddingTop { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
+        [Display(Name = "Padding", Order = 1)]
+        public virtual string Padding { get; set; }
 
-        [Display(Name = "Padding right", Order = 21)]
-        public virtual int PaddingRight { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
+        [Display(Name = "Margin", Order = 2)]
+        public virtual string Margin { get; set; }
 
-        [Display(Name = "Padding bottom", Order = 22)]
-        public virtual int PaddingBottom { get; set; }
-
-        [Display(Name = "Padding left", Order = 23)]
-        public virtual int PaddingLeft { get; set; }
+        [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
+        [Display(Name = "Background Color", Order = 3)]
+        public virtual string BackgroundColor { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
 
-            PaddingTop = 0;
-            PaddingRight = 0;
-            PaddingBottom = 0;
-            PaddingLeft = 0;
+            Padding = "p-1";
+            Margin = "m-1";
+            BackgroundColor = "background-color: transparent;";
         }
     }
 

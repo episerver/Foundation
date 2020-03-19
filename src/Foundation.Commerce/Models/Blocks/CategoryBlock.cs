@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EPiServer.Commerce;
+﻿using EPiServer.Commerce;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using Foundation.Cms.Blocks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Blocks
 {

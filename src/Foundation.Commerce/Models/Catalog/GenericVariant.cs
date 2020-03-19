@@ -4,6 +4,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms;
 using Foundation.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,9 +12,8 @@ namespace Foundation.Commerce.Models.Catalog
 {
     [CatalogContentType(DisplayName = "Generic Variant", GUID = "1aaa2c58-c424-4c37-81b0-77e76d254eb0", Description = "Generic variant supports multiple variation types")]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-23.png")]
-    public class GenericVariant : VariationContent, IProductRecommendations
+    public class GenericVariant : VariationContent, IProductRecommendations, IFoundationContent
     {
-
         [Searchable]
         [Tokenize]
         [IncludeInDefaultSearch]
@@ -87,6 +87,18 @@ namespace Foundation.Commerce.Models.Catalog
         [Display(Name = "Upc", GroupName = CommerceTabNames.Manufacturer, Order = 35)]
         [BackingType(typeof(PropertyString))]
         public virtual string Upc { get; set; }
+
+        #endregion
+
+        #region Implement IFoundationContent
+
+        [CultureSpecific]
+        [Display(Name = "Hide site header", GroupName = CmsTabNames.Settings, Order = 100)]
+        public virtual bool HideSiteHeader { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 200)]
+        public virtual bool HideSiteFooter { get; set; }
 
         #endregion
 

@@ -181,7 +181,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 .Where(o => o.AssetType.Equals(typeof(PdfFile).FullName.ToLowerInvariant()) || o.AssetType.Equals(typeof(StandardFile).FullName.ToLowerInvariant()))
                 .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList();
             viewModel.MinQuantity = (int)defaultPrice.MinQuantity;
-
+            viewModel.HasSaleCode = defaultPrice != null ? !string.IsNullOrEmpty(defaultPrice.CustomerPricing.PriceCode) : false;
 
             return viewModel;
         }
@@ -240,7 +240,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
             viewModel.IsAvailable = isInstock;
 
-
             return viewModel;
         }
 
@@ -293,7 +292,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 IsSalesRep = isSalesRep,
                 SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                     .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
-                MinQuantity = (int)defaultPrice.MinQuantity
+                MinQuantity = (int)defaultPrice.MinQuantity,
+                HasSaleCode = defaultPrice != null ? !string.IsNullOrEmpty(defaultPrice.CustomerPricing.PriceCode) : false
             };
         }
 
@@ -360,7 +360,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                 .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
             viewModel.MinQuantity = defaultPrice != null ? (int)defaultPrice.MinQuantity : 0;
-
+            viewModel.HasSaleCode = defaultPrice != null ? !string.IsNullOrEmpty(defaultPrice.CustomerPricing.PriceCode) : false;
 
             return viewModel;
         }

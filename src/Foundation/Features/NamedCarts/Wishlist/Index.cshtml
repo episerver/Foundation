@@ -1,15 +1,14 @@
 ﻿@using Foundation.Commerce.ViewModels.Header
 
 @model Foundation.Commerce.Order.ViewModels.WishListViewModel
-
 @{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
     ViewBag.IsWishList = true;
     string displayNoItemMsg = Model.CartItems.Any() ? "none" : string.Empty;
 }
 
 <div class="row">
-    @Html.Action("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link })
-    <div class="col-sm-9">
+    <div class="col-12">
         <div class="my-account">
             <div class="page-title">
                 <h2>@(Model.HasOrganization ? Html.Raw("Order Pad") : Html.PropertyFor(x => x.CurrentContent.Name))</h2>

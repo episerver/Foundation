@@ -44,7 +44,7 @@ namespace Foundation.Cms
 
         void IInitializableModule.Initialize(InitializationEngine context)
         {
-            
+
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)

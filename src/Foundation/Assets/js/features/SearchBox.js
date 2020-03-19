@@ -248,10 +248,10 @@
         }
         var base64parts = dataURL.split(BASE64_MARKER);
         var base64contentType = base64parts[0].split(':')[1];
-        var base64raw = window.atob(parts[1]);
+        var base64raw = window.atob(base64parts[1]);
         var base64rawLength = base64raw.length;
 
-        var uInt8Array = new Uint8Array(rawLength);
+        var uInt8Array = new Uint8Array(base64rawLength);
 
         for (var i = 0; i < base64rawLength; ++i) {
             uInt8Array[i] = base64raw.charCodeAt(i);

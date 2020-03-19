@@ -49,10 +49,6 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Image size (%)", GroupName = SystemTabNames.Content, Order = 41)]
         public virtual int ImageSize { get; set; }
 
-        [CultureSpecific]
-        [SelectOne(SelectionFactoryType = typeof(TeaserBlockBackgroundColorSelectionFactory))]
-        [Display(Name = "Background color", GroupName = SystemTabNames.Content, Order = 50)]
-        public virtual string BackgroundColor { get; set; }
 
         [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockTextColorSelectionFactory))]

@@ -1,10 +1,8 @@
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Pages;
-using Foundation.Cms.Personalization;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Customer.ViewModels;
 using System;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.MyAccount.Bookmarks
@@ -15,18 +13,14 @@ namespace Foundation.Features.MyAccount.Bookmarks
     public class BookmarksController : PageController<BookmarksPage>
     {
         private readonly IBookmarksService _bookmarksService;
-        private readonly ICmsTrackingService _trackingService;
 
-        public BookmarksController(IBookmarksService bookmarksService,
-            ICmsTrackingService trackingService)
+        public BookmarksController(IBookmarksService bookmarksService)
         {
             _bookmarksService = bookmarksService;
-            _trackingService = trackingService;
         }
 
-        public async Task<ActionResult> Index(BookmarksPage currentPage)
+        public ActionResult Index(BookmarksPage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
             var model = new BookmarksViewModel(currentPage)
             {
                 Bookmarks = _bookmarksService.Get(),

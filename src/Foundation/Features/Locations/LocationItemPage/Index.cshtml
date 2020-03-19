@@ -1,5 +1,4 @@
-﻿@using EPiServer.Core
-@using EPiServer.Editor
+﻿@using EPiServer.Editor
 @model LocationViewModel
 
 <section class="main-container col2-right-layout">
@@ -13,22 +12,23 @@
                 <section>
                     <h2 class="section-title no-margin-top">@Html.PropertyFor(x => x.CurrentContent.PageName)</h2>
                     @Html.PropertyFor(x => x.Image, new { CssClass = "img-responsive imageborder" })
-                    <div class="well well-sm margin-small post-info-b location-info">
+                    <div class="location-info">
                         <i class="fa fa-globe"></i> @Model.CurrentContent.Continent / @Model.CurrentContent.Country
                         <div class="clearfix"></div>
-                        <div @Html.EditAttributes(x => x.CurrentContent.Tags)>
-                            @if (Model.CurrentContent.Tags != null)
-                            {<i class="fa fa-tags"></i>
-                                foreach (var tag in Model.CurrentContent.Tags.FilteredItems)
+                        <div @Html.EditAttributes(x => x.CurrentContent.Categories)>
+                            @if (Model.Tags != null)
+                            {
+                                <i class="fa fa-tags"></i>
+                                foreach (var tag in Model.Tags)
                                 {
                                     <span data-epi-block-id="@tag.ContentLink.ToString()">
-                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-round">@tag.GetContent().Name</span></a>
+                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-round">@tag.Name</span></a>
                                     </span>
                                 }
                             }
                         </div>
                     </div>
-                    @Html.FullRefreshPropertiesMetaData(new[] { "Tags" })
+                    @Html.FullRefreshPropertiesMetaData(new[] { "Categories" })
                     @if (!string.IsNullOrWhiteSpace(Model.CurrentContent.MainIntro) || PageEditing.PageIsInEditMode)
                     {
                         <p class="lead location-main-intro" @Html.EditAttributes(x => x.CurrentContent.MainIntro)>@Model.CurrentContent.MainIntro</p>

@@ -3,7 +3,7 @@
 
     .list-group--header__item {
         margin: 0;
-        border-top: 1px solid $color-darkgrey;
+        border-bottom: 1px solid $color-darkgrey;
         padding: 15px;
         display: block;
         color: black;
@@ -12,6 +12,10 @@
         &:hover {
             background-color: #eee;
             transition: 0.2s;
+        }
+
+        p {
+            margin-bottom: 0;
         }
     }
 }

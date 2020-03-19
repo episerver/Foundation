@@ -1,10 +1,8 @@
 ﻿using EPiServer.Web.Mvc;
-using Foundation.Cms.Personalization;
 using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Commerce.ViewModels;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Stores
@@ -12,18 +10,14 @@ namespace Foundation.Features.Stores
     public class StorePageController : PageController<StorePage>
     {
         private readonly IStoreService _storeService;
-        private readonly ICmsTrackingService _trackingService;
 
-        public StorePageController(IStoreService storeService,
-            ICmsTrackingService trackingService)
+        public StorePageController(IStoreService storeService)
         {
             _storeService = storeService;
-            _trackingService = trackingService;
         }
 
-        public async Task<ActionResult> Index(StorePage currentPage)
+        public ActionResult Index(StorePage currentPage)
         {
-            await _trackingService.PageViewed(HttpContext, currentPage);
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var storesViewModel = new StoreViewModel
             {

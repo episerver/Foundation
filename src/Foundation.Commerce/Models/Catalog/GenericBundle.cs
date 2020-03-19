@@ -3,6 +3,7 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Commerce.Models.Catalog
@@ -13,7 +14,7 @@ namespace Foundation.Commerce.Models.Catalog
         MetaClassName = "FashionBundle",
         Description = "Displays a bundle, which is collection of individual fashion variants.")]
     [ImageUrl("~/content/icons/pages/cms-icon-page-21.png")]
-    public class GenericBundle : BundleContent, IProductRecommendations
+    public class GenericBundle : BundleContent, IProductRecommendations, IFoundationContent
     {
         [Searchable]
         [CultureSpecific]
@@ -48,6 +49,18 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations.", Order = 35)]
         public virtual bool ShowRecommendations { get; set; }
+
+        #region Implement IFoundationContent
+
+        [CultureSpecific]
+        [Display(Name = "Hide site header", GroupName = CmsTabNames.Settings, Order = 100)]
+        public virtual bool HideSiteHeader { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 200)]
+        public virtual bool HideSiteFooter { get; set; }
+
+        #endregion
 
         public override void SetDefaultValues(ContentType contentType)
         {

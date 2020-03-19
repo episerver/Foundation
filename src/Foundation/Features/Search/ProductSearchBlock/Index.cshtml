@@ -1,6 +1,6 @@
 ﻿@model Foundation.Commerce.ViewModels.ProductSearchResultViewModel
 
-<div style="@Model.PaddingStyles">
+<div style="@Model.CurrentBlock.BackgroundColor opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="row">
         <div class="col-12">
             <h2>@Html.PropertyFor(p => p.Heading)</h2>

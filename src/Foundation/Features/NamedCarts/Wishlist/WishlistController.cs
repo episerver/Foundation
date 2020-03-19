@@ -8,6 +8,7 @@ using EPiServer.Globalization;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
+using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Models.Pages;
@@ -23,7 +24,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Foundation.Commerce;
 
 namespace Foundation.Features.NamedCarts.Wishlist
 {
