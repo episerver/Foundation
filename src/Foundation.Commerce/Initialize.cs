@@ -5,6 +5,7 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
+using Foundation.Cms.SchemaMarkup;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Catalog.ViewModels;
@@ -13,10 +14,12 @@ using Foundation.Commerce.Mail;
 using Foundation.Commerce.Marketing;
 using Foundation.Commerce.Markets;
 using Foundation.Commerce.Markets.ViewModels;
+using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Order;
 using Foundation.Commerce.Order.Payments;
 using Foundation.Commerce.Order.Services;
 using Foundation.Commerce.Order.ViewModelFactories;
+using Foundation.Commerce.SchemaDataMappers;
 using Foundation.Commerce.ViewModels.Header;
 using Mediachase.Commerce;
 using System;
@@ -73,6 +76,7 @@ namespace Foundation.Commerce
             services.AddTransient<IPaymentMethod, GiftCardPaymentOption>();
             services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
             services.AddSingleton<ICouponUsage, FoundationCouponUsage>();
+            services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

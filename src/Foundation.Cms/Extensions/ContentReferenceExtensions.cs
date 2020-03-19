@@ -23,6 +23,12 @@ namespace Foundation.Cms.Extensions
         private static readonly Lazy<IPageCriteriaQueryService> PageCriteriaQueryService =
             new Lazy<IPageCriteriaQueryService>(() => ServiceLocator.Current.GetInstance<IPageCriteriaQueryService>());
 
+        private static readonly Lazy<IUrlResolver> UrlResolver =
+            new Lazy<IUrlResolver>(() => ServiceLocator.Current.GetInstance<IUrlResolver>());
+
+        private static readonly Lazy<ISiteDefinitionResolver> SiteDefinitionResolver =
+            new Lazy<ISiteDefinitionResolver>(() => ServiceLocator.Current.GetInstance<ISiteDefinitionResolver>());
+
         public static IContent Get<TContent>(this ContentReference contentLink) where TContent : IContent => ContentLoader.Value.Get<TContent>(contentLink);
 
         public static IEnumerable<T> GetAllRecursively<T>(this ContentReference rootLink) where T : PageData
@@ -99,8 +105,7 @@ namespace Foundation.Cms.Extensions
         /// <param name="isAbsolute">Whether the full URL including protocol and host should be returned.</param>
         public static Uri GetUri(this ContentReference contentRef, string lang, bool isAbsolute = false)
         {
-            var urlResolver = ServiceLocator.Current.GetInstance<IUrlResolver>();
-            var urlString = UrlResolver.Current.GetUrl(contentRef, lang, new VirtualPathArguments { ForceCanonical = true });
+            var urlString = UrlResolver.Value.GetUrl(contentRef, lang, new UrlResolverArguments { ForceCanonical = true });
             if (string.IsNullOrEmpty(urlString))
             {
                 return new Uri(string.Empty);
@@ -114,8 +119,7 @@ namespace Foundation.Cms.Extensions
             }
 
             //Work out the correct domain to use from the hosts defined in the site definition
-            var siteDefinitionResolover = ServiceLocator.Current.GetInstance<ISiteDefinitionResolver>();
-            var siteDefinition = siteDefinitionResolover.GetByContent(contentRef, true, true);
+            var siteDefinition = SiteDefinitionResolver.Value.GetByContent(contentRef, true, true);
             var host = siteDefinition.Hosts.FirstOrDefault(h => h.Type == HostDefinitionType.Primary) ?? siteDefinition.Hosts.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined);
             var baseUrl = (host?.Name ?? "*").Equals("*") ? siteDefinition.SiteUrl : new Uri($"http{((host.UseSecureConnection ?? false) ? "s" : string.Empty)}://{host.Name}");
             return new Uri(baseUrl, urlString);

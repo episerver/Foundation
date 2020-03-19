@@ -9,6 +9,9 @@
     <WarningsAsErrors />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="SchemaMarkup\RegisterSchemaMappers.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="BVN.404Handler" Version="11.3.0" />
     <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.1" />
