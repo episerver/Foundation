@@ -67,12 +67,12 @@
                             <a href="javascript:void(0);" title="Select language" class="link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-globe"></i>
                                 @(Model.CurrentPageLanguages()
-                                   .FirstOrDefault(x => x.Key == (Model.CurrentContent as PageData).Language.DisplayName).Key)
+                                   .FirstOrDefault(x => x.Key == (Model.CurrentContent as PageData).Language).Key.DisplayName)
                             </a>
                             <div class="dropdown-menu dropdown-menu-right square-box">
                                 @foreach (var l in Model.CurrentPageLanguages())
                                 {
-                                    <a class="dropdown-item" href="@l.Value">@l.Key</a>
+                                    <a class="dropdown-item" href="@l.Value">@l.Key.DisplayName</a>
                                 }
                             </div>
                         </div>

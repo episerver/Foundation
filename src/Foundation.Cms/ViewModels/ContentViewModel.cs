@@ -9,6 +9,7 @@ using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Cms.SchemaMarkup;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -86,7 +87,7 @@ namespace Foundation.Cms.ViewModels
             return siteDefinitions;
         }
 
-        public IEnumerable<KeyValuePair<string, string>> CurrentPageLanguages()
+        public IEnumerable<KeyValuePair<CultureInfo, string>> CurrentPageLanguages()
         {
             var page = CurrentContent as PageData;
             if (page != null)
@@ -94,7 +95,7 @@ namespace Foundation.Cms.ViewModels
                 var existLanguages = page.ExistingLanguages;
                 foreach(var language in existLanguages)
                 {
-                    yield return new KeyValuePair<string, string>(language.DisplayName, _urlResolver.Service.GetUrl(CurrentContent.ContentLink, language.Name));
+                    yield return new KeyValuePair<CultureInfo, string>(language, _urlResolver.Service.GetUrl(CurrentContent.ContentLink, language.Name));
                 }
             }
         }

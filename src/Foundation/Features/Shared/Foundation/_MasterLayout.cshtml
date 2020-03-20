@@ -26,6 +26,14 @@
         @Html.RenderMetaData(Model.CurrentContent)
         <title> @Model.CurrentContent.Name</title>
     }
+
+    @foreach (var l in Model.CurrentPageLanguages())
+    {
+        <link rel="alternate" 
+              hreflang="@l.Key.TextInfo.CultureName" 
+              href="@(Request.Url.Scheme + "://" + Request.Url.Host + l.Value)">
+    }
+
     @Html.RenderOpenGraphMetaData(Model)
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
