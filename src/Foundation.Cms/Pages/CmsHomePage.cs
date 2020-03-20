@@ -78,6 +78,11 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Copyright", GroupName = CmsTabNames.Footer, Order = 130)]
         public virtual string FooterCopyrightText { get; set; }
 
+        [Display(Name = "Show multi-site switcher", GroupName = CmsTabNames.Footer, Order = 150)]
+        public virtual bool ShowMultiSiteSwitcher { get; set; }
+        [Display(Name = "Show multi-language switcher", GroupName = CmsTabNames.Footer, Order = 200)]
+        public virtual bool ShowMultiLanguageSwitcher { get; set; }
+
         #endregion
     }
 }

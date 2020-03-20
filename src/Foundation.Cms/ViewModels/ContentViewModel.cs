@@ -3,9 +3,13 @@ using EPiServer.Core;
 using EPiServer.Editor;
 using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
+using EPiServer.Web;
+using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Cms.SchemaMarkup;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 namespace Foundation.Cms.ViewModels
@@ -14,6 +18,8 @@ namespace Foundation.Cms.ViewModels
     {
         private Injected<IContentLoader> _contentLoader;
         private Injected<IContentVersionRepository> _contentVersion;
+        private Injected<ISiteDefinitionRepository> _siteDefinitionRepository;
+        private Injected<UrlResolver> _urlResolver;
         private CmsHomePage _startPage;
 
         public ContentViewModel() : this(default)
@@ -74,6 +80,24 @@ namespace Foundation.Cms.ViewModels
             }
         }
 
+        public List<SiteDefinition> SiteDefinitions()
+        {
+            var siteDefinitions = _siteDefinitionRepository.Service.List().ToList();
+            return siteDefinitions;
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> CurrentPageLanguages()
+        {
+            var page = CurrentContent as PageData;
+            if (page != null)
+            {
+                var existLanguages = page.ExistingLanguages;
+                foreach(var language in existLanguages)
+                {
+                    yield return new KeyValuePair<string, string>(language.DisplayName, _urlResolver.Service.GetUrl(CurrentContent.ContentLink, language.Name));
+                }
+            }
+        }
     }
 
     public static class ContentViewModel

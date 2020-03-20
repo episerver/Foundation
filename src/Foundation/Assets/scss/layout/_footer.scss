@@ -28,7 +28,9 @@
     &__subtext {
         font-size: 12px;
         color: #666666;
-        padding-top: 40px
+        padding-top: 40px;
+        display: flex;
+        align-items: center;
     }
 
     &__form {
