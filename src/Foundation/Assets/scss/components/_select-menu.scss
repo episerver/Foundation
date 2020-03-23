@@ -12,6 +12,11 @@
 .select-menu {
     @extend %select-menu-style;
     height: 40px;
+
+    & option {
+        @extend %select-menu-style;
+        height: 40px;
+    }
 }
 
 .select-menu-small {

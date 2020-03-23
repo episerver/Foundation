@@ -33,8 +33,8 @@
                 var model = new FormData();
                 var data = new BudgetModel();
                 data.amount = $(form).find('#amount').val();
-                data.status = $(form).find('input[name="statusBudget"]:checked').val();
-                data.currency = $(form).find('input[name="currencyBudget"]:checked').val();
+                data.status = $(form).find('select[name="statusBudget"]').val();
+                data.currency = $(form).find('select[name="currencyBudget"]').val();
                 data.startDateTime = $(form).find('#startDate').val();
                 data.finishDateTime = $(form).find('#endDate').val();
                 data.userEmail = $(form).find('#userEmail').val();
