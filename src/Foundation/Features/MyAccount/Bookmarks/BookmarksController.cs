@@ -1,3 +1,4 @@
+using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Pages;
 using Foundation.Commerce.Customer.Services;
@@ -19,6 +20,7 @@ namespace Foundation.Features.MyAccount.Bookmarks
             _bookmarksService = bookmarksService;
         }
 
+        [PageViewTracking]
         public ActionResult Index(BookmarksPage currentPage)
         {
             var model = new BookmarksViewModel(currentPage)
