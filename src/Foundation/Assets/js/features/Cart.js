@@ -96,6 +96,7 @@
                 feather.replace();
                 var dropdown = new Dropdown(container);
                 dropdown.Init();
+                notification.Success("Success");
             })
             .catch(function (error) {
                 notification.Error(error);
@@ -214,14 +215,14 @@
         }
 
         $(selector).find('.jsChangeSizeVariantLargeCart').each(function (i, e) {
-            $(e).find('input').first().change(function () {
+            $(e).change(function () {
                 var parent = $(e).parents('.product-tile-list__item').first();
                 var variantInfo = $(parent).find('.currentVariantInfo').first();
                 var data = {
                     Code: variantInfo.val(),
                     Size: variantInfo.attr('size'),
                     Quantity: variantInfo.attr('quantity'),
-                    NewSize: $(e).find('input:checked').val(),
+                    NewSize: $(e).val(),
                     ShipmentId: variantInfo.attr('shipmentId'),
                     RequestFrom: "changeSizeItem"
                 };

@@ -76,6 +76,7 @@
 @helper RenderDropdown(IEnumerable<KeyValuePair<string, string>> list, string selectedValue = "", string selectorClassItem = "", string name = "", bool isDisabled = false, bool isShow = true)
 {
     var isExistValue = false;
+    var i = 1;
     foreach (var item in list)
     {
         if (item.Value == selectedValue)
@@ -84,27 +85,18 @@
             break;
         }
     }
-
-
-    <div class="dropdown" style="@(isShow ? "" : "display: none")">
-        <div class="dropdown__selected" @(isDisabled ? "disabled" : "")>
-            <span class="current">@selectedValue</span>
-            <span><i data-feather="chevron-down"></i></span>
-        </div>
-        <ul class="dropdown__group">
-            @{ var i = 1; }
-            @foreach (var item in list)
-            {
-                <li class="dropdown__item dropdown__item--none-padding">
-                    <label class="checkbox @selectorClassItem dropdown__item-label" type="@name">
-                        @item.Key
-                        <input type="radio" name="@name" value="@item.Value" @(string.IsNullOrEmpty(selectedValue) && i == 1 || !isExistValue && i == 1 ? "checked=checked" : "") @(selectedValue == item.Value ? "checked=checked" : "") @(isShow ? "" : "disabled=disabled") />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                i++;
+    
+    <select name="@name" 
+            class="select-menu @selectorClassItem" @(isDisabled ? "disabled" : "") 
+            style="@(isShow ? "" : "display: none")">
+        @foreach (var item in list)
+        {
+            <option value="@item.Value"
+                    @(string.IsNullOrEmpty(selectedValue) && i == 1 || !isExistValue && i == 1 ? "checked=checked" : "") 
+                    @(selectedValue == item.Value ? "selected=selected" : "") 
+                    @(isShow ? "" : "disabled=disabled")>
+                @item.Key
+                </option>
             }
-
-        </ul>
-    </div>
+    </select>
 }

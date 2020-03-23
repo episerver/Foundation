@@ -5,8 +5,8 @@
         }
 
         $(selector).change(function () {
-            var countryCode = $(this).find('input[type=radio]:checked').val();
-            var region = $(this).find('input[type=radio]:checked').val();
+            var countryCode = $(this).find('option:selected').val();
+            var region = $(this).find('option:selected').val();
             var inputName = $(this).closest('form').find('.jsRegionName').val();
             var element = $(this);
             axios.get("/addressbook/GetRegions?countryCode=" + countryCode + "&region=" + region + "&inputName=" + inputName)
@@ -34,7 +34,7 @@
         $('.jsCountrySelectionRegisterUser').click(function () {
             var element = this;
             var data = $(this).find('.jsCountryOptionName').val();
-            if ($(this).find('li').length == 0) {
+            if ($(this).find('option').length == 0) {
                 axios.get('/header/getcountryoptions?inputName=' + data)
                     .then(function (r) {
                         var html = $(r.data).html();

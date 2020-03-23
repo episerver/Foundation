@@ -125,8 +125,8 @@
         var inst = this;
         $(this.DivContainerId).find(".jsSelectColorSize").each(function (i, e) {
             $(e).change(function () {
-                var color = $(inst.DivContainerId).find("input[name='color']:checked").val();
-                var size = $(inst.DivContainerId).find("input[name='size']:checked").val();
+                var color = $(inst.DivContainerId).find("select[name='color']").val();
+                var size = $(inst.DivContainerId).find("select[name='size']").val();
                 var productCode = $(inst.DivContainerId).find("#productCode").val();
                 var data = { productCode: productCode, color: color, size: size, isQuickView: isQuickView };
                 inst.changeVariant(data, callback);

@@ -29,46 +29,26 @@
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Color", "Colors")</label>
-                <div class="dropdown">
-                    <div class="dropdown__selected">
-                        <span class="current">@Model.Color</span>
-                        <span><i data-feather="chevron-down"></i></span>
-                    </div>
-                    <ul class="dropdown__group">
-                        @foreach (var color in Model.Colors)
-                        {
-                            <li class="dropdown__item">
-                                <label class="checkbox jsSelectColorSize" type="color">
-                                    @color.Value
-                                    <input type="radio" name="color" value="@color.Value" @(Model.Color == color.Value ? "checked=checked" : "") />
-                                    <span class="radio"></span>
-                                </label>
-                            </li>
-                        }
-
-                    </ul>
-                </div>
+                @{
+                    var colors = new List<KeyValuePair<string, string>>();
+                    foreach (var c in Model.Colors)
+                    {
+                        colors.Add(new KeyValuePair<string, string>(c.Text, c.Value));
+                    }
+                }
+                @Helpers.RenderDropdown(colors, Model.Color, "jsSelectColorSize", "color")
             </div>
+
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Size", "Sizes")</label>
-                <div class="dropdown">
-                    <div class="dropdown__selected">
-                        <span class="current">@Model.Size</span>
-                        <span><i data-feather="chevron-down"></i></span>
-                    </div>
-                    <ul class="dropdown__group">
-                        @foreach (var size in Model.Sizes)
-                        {
-                            <li class="dropdown__item">
-                                <label class="checkbox  jsSelectColorSize" type="size">
-                                    @size.Value @(size.Disabled ? " (out of stock)" : "")
-                                    <input type="radio" name="size" value="@size.Value" @(Model.Size == size.Value ? "checked=checked" : "") />
-                                    <span class="radio"></span>
-                                </label>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                @{
+                    var sizes = new List<KeyValuePair<string, string>>();
+                    foreach (var c in Model.Sizes)
+                    {
+                        sizes.Add(new KeyValuePair<string, string>(c.Text + (c.Disabled ? " (out of stock)" : ""), c.Value));
+                    }
+                }
+                @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
             </div>
         </div>
 
