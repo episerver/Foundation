@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using Foundation.Cms.Pages;
@@ -54,6 +55,7 @@ namespace Foundation.Features.Search
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [PageViewTracking]
         public async Task<ActionResult> Index(SearchResultPage currentPage, CommerceFilterOptionViewModel filterOptions)
         {
             if (filterOptions == null)

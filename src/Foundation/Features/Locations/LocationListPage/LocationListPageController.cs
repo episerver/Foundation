@@ -4,6 +4,7 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Personalization;
+using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using Foundation.Find.Cms;
 using Foundation.Find.Cms.Locations;
@@ -21,6 +22,7 @@ namespace Foundation.Features.Locations.LocationListPage
             _contentLoader = contentLoader;
         }
 
+        [PageViewTracking]
         public ActionResult Index(Find.Cms.Models.Pages.LocationListPage currentPage)
         {
             var query = SearchClient.Instance.Search<Find.Cms.Models.Pages.LocationItemPage>()

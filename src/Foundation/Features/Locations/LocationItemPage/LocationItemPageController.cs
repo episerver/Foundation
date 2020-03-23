@@ -3,6 +3,7 @@ using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
+using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Categories;
 using Foundation.Find.Cms.Locations.ViewModels;
@@ -21,6 +22,7 @@ namespace Foundation.Features.Locations.LocationItemPage
             _contentRepository = contentRepository;
         }
 
+        [PageViewTracking]
         public ActionResult Index(Find.Cms.Models.Pages.LocationItemPage currentPage)
         {
             var model = new LocationViewModel(currentPage);
