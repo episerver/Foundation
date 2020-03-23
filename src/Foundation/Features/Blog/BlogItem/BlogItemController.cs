@@ -2,6 +2,7 @@
 using EPiServer.Cms.Shell;
 using EPiServer.Core.Html;
 using EPiServer.DataAbstraction;
+using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
@@ -36,6 +37,7 @@ namespace Foundation.Features.Blog.BlogItem
             _urlResolver = urlResolver;
         }
 
+        [PageViewTracking]
         public ActionResult Index(BlogItemPage currentPage)
         {
             PreviewTextLength = 200;

@@ -3,6 +3,7 @@ using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.Core.Html;
 using EPiServer.Filters;
+using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
@@ -36,6 +37,7 @@ namespace Foundation.Features.Blog.BlogListPage
             _blogTagFactory = blogTagFactory;
         }
 
+        [PageViewTracking]
         public ActionResult Index(Cms.Pages.BlogListPage currentPage)
         {
             var model = new BlogListPageViewModel(currentPage)
