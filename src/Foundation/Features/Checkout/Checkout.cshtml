@@ -182,6 +182,8 @@
                         <li>
                             <div class="row">
                                 <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
+                                    <label>Country/Region</label>
+                                    <input type="hidden" class="jsRegionName" value="CountryRegion.Region")" />
                                     @{
                                         var regionValues = new List<KeyValuePair<string, string>>();
                                         foreach (var a in Model.BillingAddress.CountryRegion.RegionOptions)
@@ -189,9 +191,10 @@
                                             regionValues.Add(new KeyValuePair<string, string>(a, a));
                                         }
                                     }
-                                    @Helpers.RenderDropdown(regionValues, "", "", "CountryRegion.Region")
+                                    @Helpers.RenderDropdown(regionValues, "", "jsRegionSelectionContainer", "CountryRegion.Region")
                                 </div>
-                                <div class="form-group col-xs-12 col-md-6">
+                                <div class="form-group col-xs-12 col-md-6 jsCountrySelectionContainer">
+                                    <label>Country</label>
                                     @{
                                         var countryValues = new List<KeyValuePair<string, string>>();
                                         foreach (var a in Model.BillingAddress.CountryOptions)

@@ -57,7 +57,7 @@
                         statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/Planned", "Planned"), "Planned"));
                         statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/OnHold", "OnHold"), "OnHold"));
                     }
-                    @Helpers.RenderDropdown(statuses, "", "statusBudget", "statusBudget")
+                    @Helpers.RenderDropdown(statuses, Model.NewBudgetOption.Status, "statusBudget", "statusBudget")
                 </div>
             </div>
             <div class="form-group col-6">
@@ -68,7 +68,7 @@
                         currencies.Add(new KeyValuePair<string, string>(Model.NewBudgetOption.Currency, Model.NewBudgetOption.Currency));
                     }
 
-                    @Helpers.RenderDropdown(currencies, "", "currencyBudget", "currencyBudget")
+                    @Helpers.RenderDropdown(currencies, Model.NewBudgetOption.Currency, "currencyBudget", "currencyBudget")
                 </div>
             </div>
         </div>
