@@ -26,7 +26,8 @@ namespace Foundation.Features.Login
         public ActionResult Index(string returnUrl)
         {
             var model = new UserViewModel();
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as DemoHomePage;
+            _contentLoader.TryGet(ContentReference.StartPage, out DemoHomePage homePage);
+
             model.Logo = Url.ContentUrl(homePage?.SiteLogo);
             model.ResetPasswordUrl = Url.ContentUrl(homePage?.ResetPasswordPage);
             model.Title = "Login";
