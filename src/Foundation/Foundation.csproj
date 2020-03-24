@@ -899,6 +899,7 @@
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Collection\CollectionPageController.cs" />
+    <Compile Include="Features\MultiLanguages\MultiLanguagesController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
@@ -1869,6 +1870,8 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="Features\Blocks\Views\GoogleMapsEmbedBlock.cshtml" />
+    <Content Include="Features\MultiLanguages\FooterMultiLanguage.cshtml" />
+    <Content Include="Features\MultiLanguages\AlternateTags.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

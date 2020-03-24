@@ -1,0 +1,9 @@
+﻿@using System.Globalization
+@model IEnumerable<KeyValuePair<CultureInfo, string>>
+
+@foreach (var l in Model)
+{
+    <link rel="alternate"
+          hreflang="@l.Key.TextInfo.CultureName"
+          href="@(Request.Url.Scheme + "://" + Request.Url.Host + l.Value)">
+}

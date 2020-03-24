@@ -16,6 +16,7 @@ using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
 using Foundation.Demo.Install;
 using Foundation.Demo.Install.Steps;
+using Foundation.Demo.Interfaces;
 using Foundation.Demo.Models;
 using Foundation.Demo.ProfileStore;
 using Foundation.Demo.ViewModels;
@@ -57,6 +58,7 @@ namespace Foundation.Demo
             services.AddSingleton<IStorageService, StorageService>();
             services.AddSingleton<IProfileStoreService, ProfileStoreService>();
             services.AddSingleton<ISchemaDataMapper<DemoHomePage>, DemoHomePageSchemaMapper>();
+            services.AddSingleton<IDemoFooterViewModelFactory, DemoFooterViewModelFactory>();
 
             context.ConfigurationComplete += (o, e) =>
             {
