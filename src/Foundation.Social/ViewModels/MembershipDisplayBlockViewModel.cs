@@ -5,7 +5,7 @@ namespace Foundation.Social.ViewModels
 {
     public class MembershipDisplayBlockViewModel
     {
-        public MembershipDisplayBlockViewModel(MembershipDisplayBlock currentBlock) 
+        public MembershipDisplayBlockViewModel(MembershipDisplayBlock currentBlock)
         {
             Heading = currentBlock.Heading;
             ShowHeading = currentBlock.ShowHeading;

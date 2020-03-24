@@ -6,7 +6,6 @@ using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Helpers;
 using EPiServer.ServiceLocation;
 using Foundation.Cms.Categories;
-using Foundation.Cms.Pages;
 using Foundation.Find.Cms.Facets;
 using Foundation.Find.Cms.Models.Pages;
 using System;

@@ -34,11 +34,11 @@ namespace Foundation.Commerce.Order.Payments
         }
 
         public static PrimaryKeyId CreateGiftCard(
-            string giftCardName, 
-            PrimaryKeyId contactId, 
+            string giftCardName,
+            PrimaryKeyId contactId,
             decimal initialAmount,
-            decimal remainBalance, 
-            string redemptionCode, 
+            decimal remainBalance,
+            string redemptionCode,
             bool isActive)
         {
             var giftCard = BusinessManager.InitializeEntity(GiftCardMetaClass);

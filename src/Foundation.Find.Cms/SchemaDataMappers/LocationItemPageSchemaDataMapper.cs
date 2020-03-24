@@ -1,11 +1,6 @@
 ﻿using Foundation.Cms.SchemaMarkup;
 using Foundation.Find.Cms.Models.Pages;
 using Schema.NET;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Foundation.Find.Cms.SchemaDataMappers
 {

@@ -19,11 +19,11 @@ namespace Foundation.Commerce.Order
         private readonly ReferenceConverter _referenceConverter;
 
         public FoundationPlacedPriceProcessor(
-            IPriceService priceService, 
+            IPriceService priceService,
             IContentLoader contentLoader,
-            ReferenceConverter referenceConverter, 
-            MapUserKey mapUserKey, 
-            ReferenceConverter referenceConverter1, 
+            ReferenceConverter referenceConverter,
+            MapUserKey mapUserKey,
+            ReferenceConverter referenceConverter1,
             MapUserKey mapUserKey1)
             : base(priceService, contentLoader, referenceConverter, mapUserKey)
         {
@@ -67,8 +67,8 @@ namespace Foundation.Commerce.Order
         }
 
         public override Money? GetPlacedPrice(
-            EntryContentBase entry, 
-            decimal quantity, 
+            EntryContentBase entry,
+            decimal quantity,
             CustomerContact customerContact,
             MarketId marketId,
             Currency currency)

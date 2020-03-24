@@ -17,7 +17,7 @@ namespace Foundation.Cms.Media
             GroupName = SystemTabNames.Content,
             Order = 100)]
         [BackingType(typeof(PropertyFloatNumber))]
-        public virtual double  Height { get; set; }
+        public virtual double Height { get; set; }
 
     }
 }

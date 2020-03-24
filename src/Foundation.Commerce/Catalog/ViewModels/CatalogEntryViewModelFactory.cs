@@ -59,7 +59,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             IProductService productService,
             IQuickOrderService quickOrderService,
             IInventoryService inventoryService,
-            IWarehouseRepository warehouseRepository, 
+            IWarehouseRepository warehouseRepository,
             IDatabaseMode databaseMode)
         {
             _promotionService = promotionService;
@@ -491,7 +491,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 available = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : true;
                 results.Add(v.Code, available);
             }
-            
+
             return results;
         }
     }

@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EPiServer.DataAbstraction;
+﻿using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Blocks
 {

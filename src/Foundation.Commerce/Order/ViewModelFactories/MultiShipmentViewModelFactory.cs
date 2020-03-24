@@ -1,4 +1,3 @@
-using EPiServer;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;

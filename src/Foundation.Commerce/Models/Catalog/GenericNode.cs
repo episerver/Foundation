@@ -41,7 +41,7 @@ namespace Foundation.Commerce.Models.Catalog
         public virtual int PartialPageSize { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Show recommendations",  Order = 30)]
+        [Display(Name = "Show recommendations", Order = 30)]
         public virtual bool ShowRecommendations { get; set; }
 
         [Display(Name = "Default template", Order = 40)]

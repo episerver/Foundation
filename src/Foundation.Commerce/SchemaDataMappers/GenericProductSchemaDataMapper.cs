@@ -1,12 +1,12 @@
 ﻿using Foundation.Cms.Extensions;
 using Foundation.Cms.SchemaMarkup;
+using Foundation.Commerce.Extensions;
+using Foundation.Commerce.Markets;
 using Foundation.Commerce.Models.Catalog;
+using Mediachase.Commerce;
 using Schema.NET;
 using System;
 using System.Linq;
-using Mediachase.Commerce;
-using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Markets;
 
 namespace Foundation.Commerce.SchemaDataMappers
 {
