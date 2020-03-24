@@ -52,7 +52,7 @@ namespace Foundation.Commerce.ViewModels.Header
             IBookmarksService bookmarksService,
             ICartService cartService,
             IContentCacheKeyCreator contentCacheKeyCreator,
-            IContentLoader contentLoader, 
+            IContentLoader contentLoader,
             IDatabaseMode databaseMode)
         {
             _localizationService = localizationService;

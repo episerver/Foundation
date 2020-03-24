@@ -318,7 +318,7 @@ namespace Foundation.Commerce.Customer.Services
             }
 
             return Enumerable.OfType<CreditCard>(BusinessManager.List(
-                CreditCardEntity.ClassName, 
+                CreditCardEntity.ClassName,
                 new FilterElement[1] { new FilterElement("CreditCardId", FilterElementType.Equal, new Guid(creditCardId)) }))
                 .FirstOrDefault();
         }

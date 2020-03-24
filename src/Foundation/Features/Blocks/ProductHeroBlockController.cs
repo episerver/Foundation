@@ -29,7 +29,7 @@ namespace Foundation.Features.Blocks
         {
             var imageUrl = string.Empty;
             var imagePosition = string.Empty;
-            
+
 
             if (currentBlock.Image.Product != null)
             {

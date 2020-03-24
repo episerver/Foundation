@@ -1,13 +1,9 @@
 ﻿using EPiServer.Web;
-using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Schema.NET;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Foundation.Cms.SchemaMarkup
 {

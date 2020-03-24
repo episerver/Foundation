@@ -3,7 +3,6 @@ using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Framework.Web;
 using EPiServer.ServiceLocation;
-using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Pages;
 using System;

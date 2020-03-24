@@ -122,6 +122,6 @@ namespace Foundation.Cms.Personalization
                 Value = $"Searched {keyword}",
             }, httpContextBase);
         }
-       
+
     }
 }

@@ -8,7 +8,6 @@ using EPiServer.Core;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
-using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Models.Catalog;
 using Mediachase.Commerce;

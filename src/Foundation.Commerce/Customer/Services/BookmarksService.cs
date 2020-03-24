@@ -3,7 +3,6 @@ using EPiServer.Core;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Customer.ViewModels;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
 using Newtonsoft.Json;
 using System;
