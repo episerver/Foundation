@@ -45,7 +45,7 @@ namespace Foundation.Cms.EditorDescriptors
             };
         }
     }
-        
+
     class TeaserBlockTextColorSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)

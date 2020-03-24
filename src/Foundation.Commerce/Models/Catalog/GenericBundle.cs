@@ -46,7 +46,7 @@ namespace Foundation.Commerce.Models.Catalog
         public virtual string AssociationsTitle { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Show recommendations",  Order = 35)]
+        [Display(Name = "Show recommendations", Order = 35)]
         public virtual bool ShowRecommendations { get; set; }
 
         #region Implement IFoundationContent

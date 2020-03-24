@@ -1,14 +1,12 @@
 ﻿using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Core.Html;
-using EPiServer.DataAbstraction;
 using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Categories;
 using Foundation.Cms.Pages;
-using Foundation.Cms.Personalization;
 using Foundation.Cms.ViewModels;
 using System;
 using System.Collections.Generic;
