@@ -11,6 +11,7 @@ namespace Foundation.Cms.Display
         {
             "~/Features/Blocks/{0}.cshtml",
             "~/Features/Blocks/Views/{0}.cshtml",
+            "~/Features/Blocks/Views/{1}/{0}.cshtml",
             "~/Features/Shared/{0}.cshtml",
             "~/Features/Shared/Foundation/{0}.cshtml",
             "~/Features/Shared/Foundation/{1}/{0}.cshtml",

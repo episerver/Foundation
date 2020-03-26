@@ -16,6 +16,8 @@
                 inst.changeBlogListPageSize(data);
             })
         })
+
+        inst.loadMore();
     }
 
     getBlogComment(e) {
@@ -51,25 +53,51 @@
         this.getBlogList();
     }
 
-    getBlogList() {
+    loadMore() {
+        var inst = this;
+        $('.jsLoadMoreBlogs').click(function () {
+            var pageNumber = $(this).attr('pageNumber');
+            var pageCount = $(this).attr('pageCount');
+            var newPageNumber = parseInt(pageNumber) + 1;
+            var pageCountNum = parseInt(pageCount);
+            if (newPageNumber > pageCountNum) {
+                $(this).html('No more');
+                $(this).attr("disabled", "disabled");
+            } else {
+                $('#PageNumber').val(newPageNumber);
+                $(this).attr('pageNumber', newPageNumber);
+
+                inst.getBlogList(function (response) {
+                    $('.jsBlogListLoadMore').append($(response.data + " .jsBlogListLoadMore").html());
+                });
+            }
+        })
+    }
+
+    getBlogList(callback) {
         var inst = this;
         var form = $(document).find('#jsGetBlogItemListPage');
         var url = form.find('#RequestUrl').val();
         if (url == undefined || url == "") {
             url = "/BlogListPage/GetItemList";
         }
+        if (!callback) {
+            callback = function (response) {
+                $('#blog-list').html($(response.data));
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                feather.replace();
+                inst.init();
+            }
+        }
         axios({
             method: 'post',
             url: url,
             data: form.serialize()
-        }).then(function (response) {
-            $('#blog-list').html($(response.data));
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-            feather.replace();
-            inst.init();
-        }).catch(function (response) {
-            console.log(response);
-        });
+        })
+            .then(callback)
+            .catch(function (response) {
+                console.log(response);
+            });
     }
 
     toJson(form) {

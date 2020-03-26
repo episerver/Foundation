@@ -1,5 +1,6 @@
 ﻿using EPiServer.Core;
 using Foundation.Cms.Blocks;
+using Foundation.Cms.Pages;
 using System.Collections.Generic;
 
 namespace Foundation.Cms.ViewModels.Blocks
@@ -15,7 +16,7 @@ namespace Foundation.Cms.ViewModels.Blocks
         }
 
         public string Heading { get; set; }
-        public IEnumerable<PageData> Pages { get; set; }
+        public IEnumerable<PageListPreviewViewModel> Pages { get; set; }
         public bool ShowIntroduction { get; set; }
         public bool ShowPublishDate { get; set; }
         public string Padding { get; set; }

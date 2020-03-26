@@ -1,0 +1,50 @@
+﻿@using EPiServer.AddOns.Helpers
+@using EPiServer.Core.Html
+
+@model PageListBlockViewModel
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    foreach (var page in Model.Pages)
+    {
+        var foundationPage = page.Page as FoundationPageData;
+        var imageCol = page.PreviewOption == PreviewOptions.Full ? 12 : (page.PreviewOption == PreviewOptions.Half ? 6 : 4);
+        var textCol = imageCol == 12 ? 12 : 12 - imageCol;
+        <a class="row" href="@page.Page.ContentLink.GetPublicUrl()">
+            <div class="col-xs-12 col-@imageCol">
+                @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                {
+                    <video class="video-fluid" autoplay loop playsinline muted>
+                        <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                    </video>
+                }
+                else
+                {
+                    <picture style="width: 100%">
+                        @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
+                        }
+                    </picture>
+                }
+            </div>
+
+            <div class="col-xs-12 col-@textCol">
+                <h4 class="title">
+                    @Html.Raw(page != null ? foundationPage.MetaTitle : page.Page.Name)
+                </h4>
+                @if (page.ShowPublishDate)
+                {
+                    <p class="sub-title">@page.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                }
+                @if (page != null && page.ShowIntroduction)
+                {
+                    <br />
+                    <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
+                }
+
+            </div>
+        </a>
+        <hr />
+
+    }
+}

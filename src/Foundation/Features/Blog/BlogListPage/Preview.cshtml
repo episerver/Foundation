@@ -83,6 +83,7 @@
 @if (Model.Template == TemplateSelections.ImageTop)
 {
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
+
     <div class="col-@imageCol preview--image-top">
         <picture style="height: 100%;">
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
@@ -145,11 +146,11 @@
 {
     var imageCol = Model.PreviewOption == PreviewOptions.Half ? 6 : 4;
     var textCol = imageCol == 12 ? 12 : 12 - imageCol;
-
+    var flip = ViewData["Flip"] != null ? ((bool)ViewData["Flip"]) : false;
     if (!Model.CurrentContent.Highlight)
     {
         <div class="row">
-            @if (!Model.Flip)
+            @if (!flip)
             {
                 <div class="col-xs-12 col-@imageCol">
                     <picture style="width: 100%">
@@ -182,7 +183,7 @@
                 }
             </div>
 
-            @if (Model.Flip)
+            @if (flip)
             {
                 <div class="col-xs-12 col-@imageCol">
                     <picture style="width: 100%">
@@ -197,7 +198,7 @@
     }
     else
     {
-        <div class="full-width--inside-container">
+        <div class="screen-width-block">
             <div class="row">
 
                 <div class="col-xs-12 col-@imageCol">

@@ -8,6 +8,7 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Categories;
+using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
 using Foundation.Cms.ViewModels;
@@ -50,6 +51,11 @@ namespace Foundation.Features.Blog.BlogListPage
             {
                 PageId = pageId
             };
+
+            if (currentPage.Template == TemplateSelections.Card || currentPage.Template == TemplateSelections.Insight)
+            {
+                pagingInfo.PageSize = 6;
+            }
 
             var viewModel = GetViewModel(currentPage, pagingInfo);
             model.Blogs = viewModel.Blogs;
@@ -97,7 +103,6 @@ namespace Foundation.Features.Blog.BlogListPage
 
         public BlogListPageViewModel GetViewModel(Cms.Pages.BlogListPage currentPage, PagingInfo pagingInfo)
         {
-
             var categoryQuery = Request.QueryString["category"] ?? string.Empty;
             IContent category = null;
             if (categoryQuery != string.Empty)
@@ -131,15 +136,14 @@ namespace Foundation.Features.Blog.BlogListPage
 
             var model = new BlogListPageViewModel(currentPage)
             {
-                Blogs = blogs,
                 Heading = category != null ? "Blog tags for post: " + category.Name : string.Empty,
                 PagingInfo = pagingInfo
             };
-
+            model.Blogs = blogs.Select(x => GetBlogItemPageModel(x, model));
             return model;
         }
 
-        public ActionResult Preview(PageData currentPage, BlogListPageViewModel blogModel, bool? flip)
+        private BlogItemPageModel GetBlogItemPageModel(PageData currentPage, BlogListPageViewModel blogModel)
         {
             var pd = (BlogItemPage)currentPage;
             PreviewTextLength = 200;
@@ -152,14 +156,13 @@ namespace Foundation.Features.Blog.BlogListPage
                 ShowPublishDate = blogModel.ShowPublishDate,
                 Template = blogModel.CurrentContent.Template,
                 PreviewOption = blogModel.CurrentContent.PreviewOption,
-                StartPublish = currentPage.StartPublish ?? DateTime.UtcNow,
-                Flip = flip ?? false
+                StartPublish = currentPage.StartPublish ?? DateTime.UtcNow
             };
 
-            return PartialView("Preview", model);
+            return model;
         }
 
-        public IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
+        private IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
         {
             if (currentPage.Categories != null)
             {
@@ -175,7 +178,7 @@ namespace Foundation.Features.Blog.BlogListPage
             return new List<BlogItemPageModel.TagItem>();
         }
 
-        protected string GetPreviewText(BlogItemPage page)
+        private string GetPreviewText(BlogItemPage page)
         {
             if (PreviewTextLength <= 0)
             {
