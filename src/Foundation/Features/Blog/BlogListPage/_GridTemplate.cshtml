@@ -8,12 +8,12 @@
     var grid = (Model.Blogs.Count() - 1) / 4;
     grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
     var firstBlog = Model.Blogs.ElementAt(0);
-    var listGridBlogs = new List<List<PageData>>();
-    var listLargeBlogs = new List<PageData>();
+    var listGridBlogs = new List<List<BlogItemPageModel>>();
+    var listLargeBlogs = new List<BlogItemPageModel>();
 
     for (var g = 0; g < grid; g++)
     {
-        var list = new List<PageData>();
+        var list = new List<BlogItemPageModel>();
         for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
         {
             list.Add(Model.Blogs.ElementAt(i));
@@ -31,23 +31,23 @@
         <div class="blog__row">
 
             <div class="blog__large-col">
-                @Html.Action("Preview", new { currentPage = firstBlog, blogModel = Model })
+                @Html.Partial("Preview", firstBlog)
             </div>
             @foreach (var list in listGridBlogs)
             {
                 <div class="blog__large-col">
                     <div class="blog__grid">
-                        @foreach (var page in list)
+                        @foreach (var blog in list)
                         {
-                            @Html.Action("Preview", new { currentPage = page, blogModel = Model })
+                            @Html.Partial("Preview", blog)
                         }
                     </div>
                 </div>
             }
-            @foreach (var page in listLargeBlogs)
+            @foreach (var blog in listLargeBlogs)
             {
                 <div class="blog__large-col">
-                    @Html.Action("Preview", new { currentPage = page, blogModel = Model })
+                    @Html.Partial("Preview", blog)
                 </div>
             }
         </div>
