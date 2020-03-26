@@ -65,7 +65,7 @@ namespace Foundation.Features.Locations.LocationItemPage
             return View(model);
         }
 
-        private IEnumerable<Find.Cms.Models.Pages.LocationItemPage> GetRelatedDestinations(Find.Cms.Models.Pages.LocationItemPage currentPage)
+        private IEnumerable<Find.Cms.Models.Pages.LocationItemPage> GetRelatedLocations(Find.Cms.Models.Pages.LocationItemPage currentPage)
         {
             IQueriedSearch<Find.Cms.Models.Pages.LocationItemPage> query = SearchClient.Instance
                 .Search<Find.Cms.Models.Pages.LocationItemPage>()

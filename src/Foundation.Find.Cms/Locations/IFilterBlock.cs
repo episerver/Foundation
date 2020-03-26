@@ -8,6 +8,8 @@ namespace Foundation.Find.Cms.Locations
     {
         string FilterTitle { get; set; }
 
+        string AllConditionText { get; set; }
+
         ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query);
 
         ITypeSearch<LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage> query, NameValueCollection filters);
