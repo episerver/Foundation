@@ -1,0 +1,52 @@
+﻿@using EPiServer.AddOns.Helpers
+@using EPiServer.Core.Html
+@model PageListPreviewViewModel
+
+@{
+    FoundationPageData page = null;
+    var previewTextLength = 200;
+    var titleLength = 55;
+    if (Model.Page is FoundationPageData)
+    {
+        page = Model.Page as FoundationPageData;
+    }
+}
+
+@if (string.IsNullOrEmpty(Model.Template) || Model.Template == TemplateSelections.Grid)
+{
+
+    <a class="blog__thumbnail" href="@Model.Page.ContentLink.GetPublicUrl()">
+        <div style="width: 100%">
+            @if (page != null && !ContentReference.IsNullOrEmpty(page.TeaserVideo))
+            {
+                <video class="video-fluid" autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(page.TeaserVideo)" type="video/mp4">
+                </video>
+            }
+            else
+            {
+                <picture>
+                    @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
+                    {
+                        <img class="img-fluid" src="@Url.WebPFallbackImageUrl(page.PageImage, 1200)" />
+                    }
+                </picture>
+            }
+        </div>
+        <div class="blog__title-container">
+            <div class="blog__title-wrapper">
+                <h2 class="blog__title">
+                    @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
+                </h2>
+                @if (Model.ShowPublishDate)
+                {
+                    <p class="color-light">@Model.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                }
+                @if (page != null && Model.ShowIntroduction)
+                {
+                    <p>@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p>
+                }
+            </div>
+        </div>
+    </a>
+}

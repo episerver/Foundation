@@ -1297,7 +1297,7 @@
     <Content Include="Features\Blog\BlogListPage\Preview.cshtml" />
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Assets\scss\templates\blocks\_calendar-block.scss" />
-    <Content Include="Features\Blocks\Views\_PageListPreview.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_PageListPreview.cshtml" />
     <Content Include="Assets\scss\templates\pages\_login.scss" />
     <Content Include="Features\Checkout\Checkout.cshtml" />
     <Content Include="Assets\scss\templates\pages\_one-page-checkout.scss" />
@@ -1644,7 +1644,7 @@
     <Content Include="Features\Blocks\Views\FacebookBlock.cshtml" />
     <Content Include="Features\Blocks\Views\HeroBlock.cshtml" />
     <Content Include="Features\Blocks\Views\LinkedInCompanyBlock.cshtml" />
-    <Content Include="Features\Blocks\Views\PageListBlock.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\PageListBlock.cshtml" />
     <Content Include="Features\Blocks\Views\RecentPageCategoryRecommendation.cshtml" />
     <Content Include="Features\Blocks\Views\RssReaderBlock.cshtml" />
     <Content Include="Features\Blocks\Views\TeaserBlock.cshtml" />
@@ -1869,6 +1869,16 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="Features\Blocks\Views\GoogleMapsEmbedBlock.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_CardTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_InsightTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_Paging.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_GridTemplate.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_NoImageTemplate.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_InsightTemplate.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_CardTemplate.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_HighlightPanelTemplate.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_TopImage.cshtml" />
+    <Content Include="Features\Blocks\Views\PageListBlock\_LeftImageTemplate.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

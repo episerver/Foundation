@@ -3,10 +3,12 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
 using EPiServer.Shell.ObjectEditing;
+using EPiServer.Validation;
 using Foundation.Cms.EditorDescriptors;
 using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Foundation.Cms.Blocks
 {
@@ -61,6 +63,12 @@ namespace Foundation.Cms.Blocks
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
+        [Display(Name = "Overlay color (hex or rgba)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 120)]
+        public virtual string OverlayColor { get; set; }
+
+        [Display(Name = "Overlay text color (hex or rgba)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 130)]
+        public virtual string OverlayTextColor { get; set; }
+
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
@@ -71,6 +79,34 @@ namespace Foundation.Cms.Blocks
             Template = TemplateSelections.Grid;
             PreviewOption = PreviewOptions.Full;
             SortOrder = FilterSortOrder.PublishedDescending;
+            OverlayColor = "rgba(34,61,107,.95)";
+            OverlayTextColor = "#ffffff";
+        }
+    }
+
+    public class PageListBlockValidator : IValidate<PageListBlock>
+    {
+        public IEnumerable<ValidationError> Validate(PageListBlock block)
+        {
+            if (block.Template == TemplateSelections.Card || block.Template == TemplateSelections.Insight)
+            {
+                if (block.Count % 6 != 0)
+                {
+                    return new ValidationError[]
+                    {
+                        new ValidationError()
+                        {
+                             ErrorMessage = "The property Count must be divisible by 6 (with Template is Card or Insight)",
+                             PropertyName = block.GetPropertyName<PageListBlock>(p => p.Count),
+                             Severity = ValidationErrorSeverity.Error,
+                             ValidationType = ValidationErrorType.StorageValidation
+                        }
+                    };
+                }
+
+            }
+
+            return Enumerable.Empty<ValidationError>();
         }
     }
 }
