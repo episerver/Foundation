@@ -228,6 +228,28 @@
         }
     }
 
+    AddToCartQuickOrderClick(container) {
+        var inst = this;
+        if (container == undefined) {
+            container = this.Container;
+        }
+        $(container).find('.jsAddToCartQuickOrderBtn').click(function () {
+            var formData = new FormData();
+            var url = "/QuickOrderBlock/Import"
+            var form = $(this).parents('.jsQuickOrderBlockForm').first();
+            var data = serializeObject(form);
+            formData = convertToFormData(data);
+            url = form[0].action;
+
+            axios(url, formData)
+                .then(function (r) {
+                    notification.Success(r.data.Message);
+                })
+                .catch(function (e) {
+                    notification.Error(e);
+                })
+        });
+    }
 
     UploadCSVClick() {
         var inst = this;
@@ -296,6 +318,7 @@
         this.AutoComplete();
         this.OnQuantityChange();
         this.UploadCSVClick();
+        this.AddToCartQuickOrderClick();
     }
 }
 
