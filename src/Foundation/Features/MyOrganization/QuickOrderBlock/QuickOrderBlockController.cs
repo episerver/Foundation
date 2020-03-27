@@ -64,7 +64,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Import(ProductViewModel[] ProductsList)
         {
             var returnedMessages = new List<string>();
@@ -106,7 +106,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             }
             TempData["messages"] = returnedMessages;
 
-            return Json(new { Message = returnedMessages });
+            return Json(new { Message = returnedMessages, TotalItem = Cart.GetAllLineItems().Sum(x => x.Quantity) });
         }
 
         private decimal GetCurrentItemQuantity(string variantCode)

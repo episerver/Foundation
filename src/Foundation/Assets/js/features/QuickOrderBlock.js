@@ -238,11 +238,12 @@
             var url = "/QuickOrderBlock/Import"
             var form = $(this).parents('.jsQuickOrderBlockForm').first();
             var data = serializeObject(form);
-            formData = convertToFormData(data);
+            formData = convertFormData(data);
             url = form[0].action;
 
-            axios(url, formData)
+            axios.post(url, formData)
                 .then(function (r) {
+                    cartHelper.SetCartReload(r.data.TotalItem);
                     notification.Success(r.data.Message);
                 })
                 .catch(function (e) {
