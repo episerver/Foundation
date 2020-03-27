@@ -10,7 +10,8 @@
 
     loadMapScenario() {
         this.locationMap = new Microsoft.Maps.Map('#locationMap', {
-            credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I"
+            credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I",
+            disableScrollWheelZoom: true
         });
         this.locationInfobox = new Microsoft.Maps.Infobox(this.locationMap.getCenter(), { visible: false });
         this.locationInfobox.setMap(this.locationMap);
