@@ -9,11 +9,11 @@
                     <input class="form-control square-box" id="ProductsList_${index}__Sku" name="ProductsList[${index}].Sku" placeholder="Sku code" required="required" type="text" value="${data.Sku}">
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__UnitPrice" name="ProductsList[${index}].UnitPrice" type="text" 
+                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__UnitPrice" name="ProductsList[${index}].UnitPrice" type="text"
                       value="${data.UnitPrice}" placeholder="Unit price">
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                    <input class="form-control square-box" id="ProductsList_${index}__Quantity" name="ProductsList[${index}].Quantity" required="required" type="text" 
+                    <input class="form-control square-box" id="ProductsList_${index}__Quantity" name="ProductsList[${index}].Quantity" required="required" type="text"
                       value="${data.Quantity}" placeholder="Quantity">
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
@@ -27,6 +27,23 @@
             </div>`;
 
         this.ProductListing = [];
+
+        document.querySelectorAll('.jsQuickOrderBlockForm').forEach(form => {
+            form.addEventListener('submit', event => {
+                event.preventDefault()
+                var data = serializeObject(form);
+                var formData = convertFormData(data);
+
+                axios.post(form.action, formData)
+                    .then(function (r) {
+                        cartHelper.SetCartReload(r.data.TotalItem);
+                        notification.Success(r.data.Message);
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
+                    })
+            })
+        })
     }
 
     renderRow(num, element) {
@@ -134,7 +151,7 @@
 
     AutoComplete(container) {
         var inst = this;
-        
+
         if (container != undefined) {
             $(container).find('.js-product-row').each(function (i, e) {
                 inst.setupAutoComplete($(e));
@@ -173,7 +190,6 @@
         }
     }
 
-
     UploadCSVClick() {
         var inst = this;
         $('.jsUploadCSVBtn').click(function () {
@@ -194,7 +210,7 @@
                     } else {
                         $('.jsShowMessage').html(`<div class="success">` + res.data.Message + `</div>`);
                         if (res.data.Products.length > 0) {
-                            // remove empty product 
+                            // remove empty product
                             if (inst.ProductListing.length > 0) {
                                 for (var i = inst.ProductListing.length - 1; i >= 0; i--) {
                                     if (inst.ProductListing[i].Sku == "") {
@@ -241,6 +257,7 @@
         this.AutoComplete();
         this.OnQuantityChange();
         this.UploadCSVClick();
+        this.AddToCartQuickOrderClick();
     }
 }
 
@@ -248,7 +265,7 @@ class ProductViewModel {
     constructor() {
         this.ProductName = "";
         this.Sku = "";
-        this.UnitPrice = 0.0; 
+        this.UnitPrice = 0.0;
         this.Quantity = 0;
         this.TotalPrice = 0.0;
     }
