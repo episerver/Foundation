@@ -74,28 +74,6 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-12 jsShowMessage">
-            @if (Model.ReturnedMessages != null && Model.ReturnedMessages.Count > 0)
-            {
-                if (Model.ReturnedMessages.Count == 1 && Model.ReturnedMessages.ElementAt(0).Equals("All items were added to cart."))
-                {
-                    <div class="success">
-                        <p>@Model.ReturnedMessages.ElementAt(0)</p>
-                    </div>
-                }
-                else
-                {
-                    <div class="error">
-                        @foreach (var message in Model.ReturnedMessages)
-                        {
-                            <p>* @message</p>
-                        }
-                    </div>
-                }
-            }
-        </div>
-    </div>
-    <div class="row">
         <div class="col-12">
             <input type="file" class="hidden" data-interface="lattice" data-label="Upload CSV" id="fileUploaded">
             <button type="button" class="button-black jsUploadCSVBtn">

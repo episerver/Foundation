@@ -31,54 +31,16 @@
         document.querySelectorAll('.jsQuickOrderBlockForm').forEach(form => {
             form.addEventListener('submit', event => {
                 event.preventDefault()
-                const rows = Array.from(form.querySelectorAll('.js-product-row'))
-                const lines = rows.reduce(
-                    (acc, elem) => {
-                        const product = {}
-                        const inputs = Array.from(elem.querySelectorAll('input'))
-                        inputs.forEach(input => {
-                            if (input.name.match(/ProductsList\[\d\]\.ProductName/i)) {
-                                product.ProductName = input.value
-                            }
-                            else if (input.name.match(/ProductsList\[\d\]\.Sku/i)) {
-                                product.Sku = input.value
-                            }
-                            else if (input.name.match(/ProductsList\[\d\]\.UnitPrice/i)) {
-                                product.UnitPrice = input.value
-                            }
-                            else if (input.name.match(/ProductsList\[\d\]\.Quantity/i)) {
-                                product.Quantity = parseInt(input.value, 10)
-                            }
-                            else if (input.name.match(/ProductsList\[\d\]\.TotalPrice/i)) {
-                                product.TotalPrice = input.value
-                            }
-                        })
-                        acc.push(product)
-                        return acc
-                    },
-                    []
-                )
+                var data = serializeObject(form);
+                var formData = convertFormData(data);
 
-                axios.post('/QuickOrderBlock/Import', lines)
-                    .then(({ data }) => {
-                        if (data.Message.length === 1) {
-                            document.querySelector('.jsShowMessage').innerHTML = `
-                                <div class="success">
-                                    <p>${data.Message[0]}</p>
-                                </div>
-                            `
-                        }
-                        else {
-                            document.querySelector('.jsShowMessage').innerHTML = `
-                                <div class="error">
-                                    ${data.Message.map(msg => `<p>* ${msg}</p>`).join('')}
-                                </div>
-                            `
-                        }
-
-                        const oldTotal = parseInt(document.querySelector('.icon-menu__badge').innerHTML, 10)
-                        const diff = lines.reduce((acc, elem) => acc + elem.Quantity, 0)
-                        cartHelper.SetCartReload(oldTotal + diff)
+                axios.post(form.action, formData)
+                    .then(function (r) {
+                        cartHelper.SetCartReload(r.data.TotalItem);
+                        notification.Success(r.data.Message);
+                    })
+                    .catch(function (e) {
+                        notification.Error(e);
                     })
             })
         })
@@ -226,30 +188,6 @@
                 inst.quantityChange($(e), inst);
             });
         }
-    }
-
-    AddToCartQuickOrderClick(container) {
-        var inst = this;
-        if (container == undefined) {
-            container = this.Container;
-        }
-        $(container).find('.jsAddToCartQuickOrderBtn').click(function () {
-            var formData = new FormData();
-            var url = "/QuickOrderBlock/Import"
-            var form = $(this).parents('.jsQuickOrderBlockForm').first();
-            var data = serializeObject(form);
-            formData = convertFormData(data);
-            url = form[0].action;
-
-            axios.post(url, formData)
-                .then(function (r) {
-                    cartHelper.SetCartReload(r.data.TotalItem);
-                    notification.Success(r.data.Message);
-                })
-                .catch(function (e) {
-                    notification.Error(e);
-                })
-        });
     }
 
     UploadCSVClick() {
