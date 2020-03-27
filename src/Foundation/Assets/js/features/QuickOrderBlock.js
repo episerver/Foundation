@@ -9,11 +9,11 @@
                     <input class="form-control square-box" id="ProductsList_${index}__Sku" name="ProductsList[${index}].Sku" placeholder="Sku code" required="required" type="text" value="${data.Sku}">
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__UnitPrice" name="ProductsList[${index}].UnitPrice" type="text" 
+                    <input class="form-control square-box" readonly="readonly" id="ProductsList_${index}__UnitPrice" name="ProductsList[${index}].UnitPrice" type="text"
                       value="${data.UnitPrice}" placeholder="Unit price">
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
-                    <input class="form-control square-box" id="ProductsList_${index}__Quantity" name="ProductsList[${index}].Quantity" required="required" type="text" 
+                    <input class="form-control square-box" id="ProductsList_${index}__Quantity" name="ProductsList[${index}].Quantity" required="required" type="text"
                       value="${data.Quantity}" placeholder="Quantity">
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
@@ -27,6 +27,61 @@
             </div>`;
 
         this.ProductListing = [];
+
+        document.querySelectorAll('.jsQuickOrderBlockForm').forEach(form => {
+            form.addEventListener('submit', event => {
+                event.preventDefault()
+                const rows = Array.from(form.querySelectorAll('.js-product-row'))
+                const lines = rows.reduce(
+                    (acc, elem) => {
+                        const product = {}
+                        const inputs = Array.from(elem.querySelectorAll('input'))
+                        inputs.forEach(input => {
+                            if (input.name.match(/ProductsList\[\d\]\.ProductName/i)) {
+                                product.ProductName = input.value
+                            }
+                            else if (input.name.match(/ProductsList\[\d\]\.Sku/i)) {
+                                product.Sku = input.value
+                            }
+                            else if (input.name.match(/ProductsList\[\d\]\.UnitPrice/i)) {
+                                product.UnitPrice = input.value
+                            }
+                            else if (input.name.match(/ProductsList\[\d\]\.Quantity/i)) {
+                                product.Quantity = parseInt(input.value, 10)
+                            }
+                            else if (input.name.match(/ProductsList\[\d\]\.TotalPrice/i)) {
+                                product.TotalPrice = input.value
+                            }
+                        })
+                        acc.push(product)
+                        return acc
+                    },
+                    []
+                )
+
+                axios.post('/QuickOrderBlock/Import', lines)
+                    .then(({ data }) => {
+                        if (data.Message.length === 1) {
+                            document.querySelector('.jsShowMessage').innerHTML = `
+                                <div class="success">
+                                    <p>${data.Message[0]}</p>
+                                </div>
+                            `
+                        }
+                        else {
+                            document.querySelector('.jsShowMessage').innerHTML = `
+                                <div class="error">
+                                    ${data.Message.map(msg => `<p>* ${msg}</p>`).join('')}
+                                </div>
+                            `
+                        }
+
+                        const oldTotal = parseInt(document.querySelector('.icon-menu__badge').innerHTML, 10)
+                        const diff = lines.reduce((acc, elem) => acc + elem.Quantity, 0)
+                        cartHelper.SetCartReload(oldTotal + diff)
+                    })
+            })
+        })
     }
 
     renderRow(num, element) {
@@ -134,7 +189,7 @@
 
     AutoComplete(container) {
         var inst = this;
-        
+
         if (container != undefined) {
             $(container).find('.js-product-row').each(function (i, e) {
                 inst.setupAutoComplete($(e));
@@ -194,7 +249,7 @@
                     } else {
                         $('.jsShowMessage').html(`<div class="success">` + res.data.Message + `</div>`);
                         if (res.data.Products.length > 0) {
-                            // remove empty product 
+                            // remove empty product
                             if (inst.ProductListing.length > 0) {
                                 for (var i = inst.ProductListing.length - 1; i >= 0; i--) {
                                     if (inst.ProductListing[i].Sku == "") {
@@ -248,7 +303,7 @@ class ProductViewModel {
     constructor() {
         this.ProductName = "";
         this.Sku = "";
-        this.UnitPrice = 0.0; 
+        this.UnitPrice = 0.0;
         this.Quantity = 0;
         this.TotalPrice = 0.0;
     }
