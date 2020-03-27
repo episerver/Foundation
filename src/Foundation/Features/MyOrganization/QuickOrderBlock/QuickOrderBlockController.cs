@@ -106,8 +106,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             }
             TempData["messages"] = returnedMessages;
 
-            var quickOrderPage = GetQuickOrderPage();
-            return Redirect(quickOrderPage?.LinkURL ?? Request.UrlReferrer.AbsoluteUri);
+            return Json(new { Message = returnedMessages, TotalItem = Cart.GetAllLineItems().Sum(x => x.Quantity) });
         }
 
         private decimal GetCurrentItemQuantity(string variantCode)
@@ -130,8 +129,6 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         [ValidateAntiForgeryToken]
         public ActionResult AddFromFile()
         {
-            var quickOrderPage = GetQuickOrderPage();
-
             HttpPostedFileBase fileContent = Request.Files[0];
             if (fileContent != null && fileContent.ContentLength > 0)
             {

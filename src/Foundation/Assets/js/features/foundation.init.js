@@ -1,17 +1,22 @@
 ﻿$(document).ready(function () {
 
     // convert json to formdata and append __RequestVerificationToken key for CORS
-    window.convertFormData = function (data) {
+    window.convertFormData = function (data, containerToken) {
         var formData = new FormData();
+        var isAddedToken = false;
         for (var key in data) {
             if (key == "__RequestVerificationToken") {
-                continue;
+                isAddedToken = true;
             }
             formData.append(key, data[key]);
         }
 
-        if ($('input[name=__RequestVerificationToken]').length > 0) {
-            formData.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
+        if (!isAddedToken) {
+            if (containerToken) {
+                formData.append("__RequestVerificationToken", $(containerToken + ' input[name=__RequestVerificationToken]').val());
+            } else {
+                formData.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
+            }
         }
 
         return formData;
