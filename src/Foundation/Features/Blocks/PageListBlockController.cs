@@ -37,13 +37,13 @@ namespace Foundation.Features.Blocks
 
             var model = new PageListBlockViewModel(currentBlock)
             {
-                Pages = pages
+                Pages = pages.Select(x => new PageListPreviewViewModel(x, currentBlock))
             };
 
             ViewData.GetEditHints<PageListBlockViewModel, PageListBlock>()
                 .AddConnection(x => x.Heading, x => x.Heading);
 
-            return PartialView("~/Features/Blocks/Views/PageListBlock.cshtml", model);
+            return PartialView("~/Features/Blocks/Views/PageListBlock/PageListBlock.cshtml", model);
         }
 
         private IEnumerable<PageData> FindPages(PageListBlock currentBlock)

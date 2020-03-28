@@ -13,13 +13,13 @@
                 if (area.Supported)
                 {
                     <div class="clearfix" style="margin-bottom: 25px">
-                        @Html.Partial("TemplateHint", string.Format(Html.TranslateFallback("/preview/heading", "The block '{0}' when displayed as '{1}'"), Model.PreviewContent.Name, Html.Translate(area.AreaName)))
+                        @Html.Partial("TemplateHint", string.Format(Html.TranslateFallback("/preview/heading", "The content '{0}' when displayed as '{1}'"), Model.PreviewContent.Name, Html.Translate(area.AreaName)))
                         @Html.DisplayFor(x => area.ContentArea, new { Tag = area.AreaTag })
                     </div>
                 }
                 else
                 {
-                    @Html.Partial("TemplateHint", string.Format(Html.TranslateFallback("/preview/norenderer", "The block '{0}' cannot be displayed as {1}"), Model.PreviewContent.Name, area.AreaName))
+                    @Html.Partial("TemplateHint", string.Format(Html.TranslateFallback("/preview/norenderer", "The content '{0}' cannot be displayed as {1}"), Model.PreviewContent.Name, area.AreaName))
                 }
             }
 

@@ -14,6 +14,8 @@ namespace Foundation.Cms.EditorDescriptors
                 new SelectItem { Value = TemplateSelections.ImageTop, Text = "Image on the top"},
                 new SelectItem { Value = TemplateSelections.NoImage, Text = "No image"},
                 new SelectItem { Value = TemplateSelections.Highlight, Text = "Highlight panel"},
+                new SelectItem { Value = TemplateSelections.Card, Text = "Card"},
+                new SelectItem { Value = TemplateSelections.Insight, Text = "Insight"},
             };
         }
     }
@@ -25,5 +27,7 @@ namespace Foundation.Cms.EditorDescriptors
         public const string ImageTop = "Top";
         public const string NoImage = "NoImage";
         public const string Highlight = "Highlight";
+        public const string Card = "Card";
+        public const string Insight = "Insight";
     }
 }

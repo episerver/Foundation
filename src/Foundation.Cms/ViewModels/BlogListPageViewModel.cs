@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Cms.Pages;
+﻿using Foundation.Cms.Pages;
 using System.Collections.Generic;
 
 namespace Foundation.Cms.ViewModels
@@ -15,7 +14,7 @@ namespace Foundation.Cms.ViewModels
 
         public List<KeyValuePair<string, string>> SubNavigation { get; set; }
         public string Heading { get; set; }
-        public IEnumerable<PageData> Blogs { get; set; }
+        public IEnumerable<BlogItemPageModel> Blogs { get; set; }
         public bool ShowIntroduction { get; set; }
         public bool ShowPublishDate { get; set; }
         public PagingInfo PagingInfo { get; set; }

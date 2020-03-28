@@ -41,7 +41,7 @@
         }
     </a>
     <div class="product-tile__title">
-        <a href="@Model.Url">@Model.DisplayName</a>
+        <a href="@Model.Url" @Html.EditAttributes(x => x.DisplayName)>@Model.DisplayName</a>
         @if (Model.DiscountedPrice != Model.PlacedPrice)
         {
             <span class="price__old">@Model.PlacedPrice.ToString()</span>

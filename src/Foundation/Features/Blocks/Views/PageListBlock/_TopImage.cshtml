@@ -1,0 +1,49 @@
+﻿@using EPiServer.AddOns.Helpers
+@using EPiServer.Core.Html
+
+@model PageListBlockViewModel
+
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    <div class="row">
+        @foreach (var page in Model.Pages)
+        {
+
+            var foundationPage = page.Page as FoundationPageData;
+            var imageCol = page.PreviewOption == PreviewOptions.Full ? 12 : (page.PreviewOption == PreviewOptions.Half ? 6 : 4);
+            <a class="col-@imageCol preview--image-top" href="@page.Page.ContentLink.GetPublicUrl()">
+                @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                {
+                    <video class="video-fluid" autoplay loop playsinline muted>
+                        <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                    </video>
+                }
+                else
+                {
+                    <picture style="height: 100%">
+                        @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
+                        }
+                    </picture>
+                }
+
+                <div style="flex-basis: 116px; flex-shrink: 0">
+                    @if (page.ShowPublishDate)
+                    {
+                        <p class="sub-title">@page.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                    }
+                    <h4>
+                        @(@Html.Raw(TextIndexer.StripHtml(page != null ? foundationPage.MetaTitle : page.Page.Name, 55)) + "...")
+                    </h4>
+
+                    @if (page != null && page.ShowIntroduction)
+                    {
+                        <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
+                    }
+                </div>
+
+            </a>
+        }
+    </div>
+}
