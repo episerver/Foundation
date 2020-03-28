@@ -891,8 +891,8 @@
       </Label>
     </ProductRecommendations>
     <preview>
-      <heading>The block '{0}' when displayed as '{1}'</heading>
-      <norenderer>The block '{0}' cannot be displayed as {1}</norenderer>
+      <heading>The content '{0}' when displayed as '{1}'</heading>
+      <norenderer>The content '{0}' cannot be displayed as {1}</norenderer>
       <norendereratall>No renderer found for '{0}'</norendereratall>
     </preview>
     <Blog>
