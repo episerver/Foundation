@@ -157,4 +157,26 @@ ul.none-style-type {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+
+    .screen-width-wrapper {
+        @include media-breakpoint-up(xl) {
+            max-width: 1440px;
+        }
+
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .screen-width-container {
+        @include media-breakpoint-up(xl) {
+            max-width: 1440px;
+        }
+
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }

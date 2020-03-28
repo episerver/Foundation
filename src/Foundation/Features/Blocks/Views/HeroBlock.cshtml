@@ -54,13 +54,15 @@
         }
 
         <div class="hero-block__overlay" style="background-color: @Model.CurrentBlock.BackgroundColor; opacity: @Model.CurrentBlock.BlockOpacity"></div>
-        <div class="hero-block__callout" style="justify-content: @Model.CurrentBlock.Callout.CalloutPosition;">
-            @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty() && ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo))
-            {
-                <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
-            }
-            <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;">
-                @Html.PropertyFor(m => m.CurrentBlock.Callout)
+        <div class="screen-width-wrapper">
+            <div class="hero-block__callout screen-width-container" style="justify-content: @Model.CurrentBlock.Callout.CalloutPosition;">
+                @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty() && ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo))
+                {
+                    <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
+                }
+                <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;">
+                    @Html.PropertyFor(m => m.CurrentBlock.Callout)
+                </div>
             </div>
         </div>
     </div>
