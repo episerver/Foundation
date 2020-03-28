@@ -899,7 +899,11 @@
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Collection\CollectionPageController.cs" />
+    <Compile Include="Features\Preview\PartialViewDisplayChannel.cs" />
+    <Compile Include="Features\Preview\PagePartialPreviewController.cs" />
+    <Compile Include="Features\Preview\CatalogPartialPreviewController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
+    <Compile Include="Features\Preview\PreviewControllerHelper.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
