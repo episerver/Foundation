@@ -22,8 +22,13 @@ namespace Foundation.Find.Cms.Models.Blocks
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage) })]
     public class FilterDistancesBlock : FoundationBlockData, IFilterBlock
     {
-        [Display(Name = "Name")]
+        [CultureSpecific]
+        [Display(Name = "Filter title")]
         public virtual string FilterTitle { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "All condition text")]
+        public virtual string AllConditionText { get; set; }
 
         public ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query)
         {

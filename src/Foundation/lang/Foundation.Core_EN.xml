@@ -916,15 +916,15 @@
     <BoughtFrequenty>
       <Message>Get {0} % off the following products on a recurring order.</Message>
     </BoughtFrequenty>
-    <Destinations>
+    <Locations>
       <Activities>Activities</Activities>
-      <AllCategories>All categories</AllCategories>
+      <AllActivities>All activities</AllActivities>
       <Continents>Continents</Continents>
       <AllContinents>All continents</AllContinents>
       <Distance>Distance</Distance>
       <AllDistances>All distances</AllDistances>
       <Temperature>Temperature</Temperature>
-    </Destinations>
+    </Locations>
     <B2B>
       <SubOrganization>Suborganization</SubOrganization>
       <Admin>Admin</Admin>

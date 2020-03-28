@@ -14,14 +14,19 @@ namespace Foundation.Find.Cms.Models.Blocks
 {
     [ContentType(DisplayName = "Filter Continents Block",
         GUID = "9103a763-4c9c-431e-bc11-f2794c3b4b80",
-        Description = "Continent facets for destinations",
+        Description = "Continent facets for locations",
         GroupName = FindTabNames.Location)]
     [ImageUrl("~/assets/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage) })]
     public class FilterContinentsBlock : FoundationBlockData, IFilterBlock
     {
-        [Display(Name = "Name")]
+        [CultureSpecific]
+        [Display(Name = "Filter title")]
         public virtual string FilterTitle { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "All condition text")]
+        public virtual string AllConditionText { get; set; }
 
         public ITypeSearch<LocationItemPage> AddFilter(ITypeSearch<LocationItemPage> query)
         {

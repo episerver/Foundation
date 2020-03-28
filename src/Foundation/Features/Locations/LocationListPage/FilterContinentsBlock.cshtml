@@ -13,14 +13,16 @@
 <div class="filterblock" data-filtertype="c" id="continent-filter">
     <h4>
         <i class="fa fa-globe"></i>
-        @Html.Translate("/Destinations/Continents")
+        @(string.IsNullOrEmpty(ViewData["FilterTitle"].ToString()) ? Html.TranslateFallback("/Locations/Continents", "Continents") : ViewData["FilterTitle"].ToString())
     </h4>
     <ul class="portfolio-cats">
         <li>
             <span>
                 <label>
                     <input class="select-all" type="checkbox" @(!filterContinents.Any() ? "checked=checked" : "")>
-                    <strong>@Html.Translate("/Destinations/AllContinents")</strong>
+                    <strong>
+                        @(string.IsNullOrEmpty(ViewData["AllConditionText"].ToString()) ? Html.TranslateFallback("/Locations/AllContinents", "All continents") : ViewData["AllConditionText"].ToString())
+                    </strong>
                 </label>
             </span>
         </li>
