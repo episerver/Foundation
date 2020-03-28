@@ -52,7 +52,7 @@
                                 var b = _contentRepository.Get<BlockData>(item.ContentLink) as IFilterBlock;
                                 if (b != null)
                                 {
-                                    @Html.Partial(b.GetOriginalType().Name, Model)
+                                    @Html.Partial(b.GetOriginalType().Name, Model, new ViewDataDictionary { { "FilterTitle", b.FilterTitle ?? "" }, { "AllConditionText", b.AllConditionText ?? "" } })
                                 }
                             }
                         }

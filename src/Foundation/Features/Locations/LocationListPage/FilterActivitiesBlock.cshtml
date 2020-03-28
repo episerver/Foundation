@@ -13,14 +13,16 @@
 <div class="filterblock" data-filtertype="a" id="activity-filter">
     <h4>
         <i class="fa fa-tags"></i>
-        @Html.Translate("/Destinations/Activities")
+        @(string.IsNullOrEmpty(ViewData["FilterTitle"].ToString()) ? Html.TranslateFallback("/Locations/Activities", "Activities") : ViewData["FilterTitle"].ToString())
     </h4>
     <ul class="portfolio-cats">
         <li>
             <span>
                 <label>
                     <input class="select-all" type="checkbox" @(!filterActivities.Any() ? "checked=checked" : "")>
-                    <strong>@Html.Translate("/Destinations/AllCategories")</strong>
+                    <strong>
+                        @(string.IsNullOrEmpty(ViewData["AllConditionText"].ToString()) ? Html.TranslateFallback("/Locations/AllActivities", "All activities") : ViewData["AllConditionText"].ToString())
+                    </strong>
                 </label>
             </span>
         </li>
@@ -29,8 +31,8 @@
             <li>
                 <span>
                     <label for="a-@category.Term">
-                        <input class="select-some" type="checkbox" id="a-@category.Term" value="@HttpUtility.UrlEncode(category.Term)" 
-                            @(filterActivities.Contains(category.Term) ? "checked=checked" : "")>
+                        <input class="select-some" type="checkbox" id="a-@category.Term" value="@HttpUtility.UrlEncode(category.Term)"
+                               @(filterActivities.Contains(category.Term) ? "checked=checked" : "")>
                         @category.Term (@category.Count)
                     </label>
                 </span>

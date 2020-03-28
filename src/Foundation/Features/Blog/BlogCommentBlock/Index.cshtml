@@ -5,172 +5,179 @@
 @using System.Web.Mvc
 @using System.Web.Mvc.Html
 @model Foundation.Social.ViewModels.BlogCommentsBlockViewModel
+@{
+    var padding = "padding: "
+                    + Model.CurrentBlock.PaddingTop + "px "
+                    + Model.CurrentBlock.PaddingRight + "px "
+                    + Model.CurrentBlock.PaddingBottom + "px "
+                    + Model.CurrentBlock.PaddingLeft + "px;";
+}
+<div style="@padding">
+    @if (Model.Comments.Any())
+    {
+        <hr />
+        <div class="row">
+            <div class="col-12">
+                <h3 class="title">Comments</h3>
+                <ul class="row">
+                    @foreach (var comment in Model.Comments)
+                    {
 
-@if (Model.Comments.Any())
-{
-    <hr />
-    <div class="row">
-        <div class="col-12">
-            <h3 class="title">Comments</h3>
-            <ul class="row">
-                @foreach (var comment in Model.Comments)
-                {
-
-                    <li class="col-12">
-                        <div class="product-tab__review">
-                            <div class="review__right" style="padding-right: 15px;">
-                                <p>
-                                    <small>Reply by</small>
-                                    <a href="#" class="title account-link">@comment.Name</a>
-                                </p>
-                                <small>
-                                    @comment.Created.ToLocalTime().ToString("ddd, MMM dd, yyyy hh:mm:ss tt")
-                                </small>
-                            </div>
-                            <div class="review__left">
-                                <div class="review-txt">
-                                    @comment.Body
+                        <li class="col-12">
+                            <div class="product-tab__review">
+                                <div class="review__right" style="padding-right: 15px;">
+                                    <p>
+                                        <small>Reply by</small>
+                                        <a href="#" class="title account-link">@comment.Name</a>
+                                    </p>
+                                    <small>
+                                        @comment.Created.ToLocalTime().ToString("ddd, MMM dd, yyyy hh:mm:ss tt")
+                                    </small>
+                                </div>
+                                <div class="review__left">
+                                    <div class="review-txt">
+                                        @comment.Body
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
-}
-@using (Html.BeginForm("GetComment", "BlogCommentBlock", FormMethod.Get, new { @class = "jsBlogPagingForm" }))
-{
-    <input hidden id="pageId" name="PageId" type="text" value="@Model.CurrentPageLink.ID" />
-    <input hidden id="pageIndex" name="PageIndex" type="text" />
-    <input hidden id="pageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />
-    <div class="row product-tile-list__item">
-        <div class="col-12 toolbar">
-            <div class="toolbar__left">
-            </div>
-            <div class="toolbar__center">
-                @if (Model.PagingInfo.PageCount > 0)
-                {
-                    double totalPages = Model.PagingInfo.PageCount;
-                    int currentPage = Model.PagingInfo.PageNumber;
-                    <ul class="pagination">
-                        @if (totalPages <= 4)
-                        {
-                            // Display current pages with active page
-                            for (int i = 1; i <= totalPages; i++)
-                            {
-                                if (i == currentPage)
-                                {
-                                    <li class="active"><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
-                                }
-                            }
-                        }
-                        else
-                        {
-                            // Set the Start Point and End Point for Pagination.
-                            double start = currentPage / Model.PagingInfo.PageSize * Model.PagingInfo.PageSize;
-                            var start2 = start > 0 ? Convert.ToInt32(Math.Floor(start)) : 1;
-                            var end = start + Model.PagingInfo.PageSize - 1;
-                            var end2 = end > totalPages ? totalPages : end;
-
-                            // Display previous button is current page is not first page
-                            if (currentPage != 1)
-                            {
-                                <li><a href="#" class="get-blog-comment" pageIndex=1>&laquo;</a></li>
-                                <li><a href="#" class="get-blog-comment" pageIndex="@(currentPage - 1)">&lsaquo;</a></li>
-                            }
-
-                            // Display previous 10 pages button
-                            if (currentPage >= Model.PagingInfo.PageSize)
-                            {
-                                <li><a href="#" class="get-blog-comment" pageIndex="@(start2 - Model.PagingInfo.PageSize > 0 ? start2 - Model.PagingInfo.PageSize : 1)">...</a></li>
-                            }
-
-                            // Display current pages with active page
-                            for (int i = start2; i <= end2; i++)
-                            {
-                                if (i == currentPage)
-                                {
-                                    <li class="active"><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
-                                }
-                            }
-
-                            // Display next 10 pages button
-                            if (end2 < totalPages - 1)
-                            {
-                                <li><a href="#" class="get-blog-comment" pageIndex="@(end2 + 1)">...</a></li>
-                            }
-
-                            // Display Next page and Last Page
-                            if (Model.PagingInfo.PageNumber <= totalPages - 1)
-                            {
-                                <li><a href="#" class="get-blog-comment" pageIndex="@(currentPage + 1)">&rsaquo;</a></li>
-                                <li><a href="#" class="get-blog-comment" pageIndex="@Model.PagingInfo.PageCount">&raquo;</a></li>
-                            }
-
-                        }
-                    </ul>
-                }
-            </div>
-            <div class="toolbar__right">
-            </div>
-        </div>
-    </div>
-}
-<div class="row">
-    <div class="col-12">
-        <h3>@Html.TranslateFallback("/Blog/Comments/Reply", "Reply")</h3>
-        @using (Html.BeginForm("Submit", "BlogCommentBlock", FormMethod.Post, new { @class = "comment-form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(m => m.CurrentPageLink)
-            <ul class="style-list-none">
-                <li>
-                    <label for="Name">Name<span class="required">*</span></label>
-                    <div>
-                        <input type="text" class="input-text textbox" title="Name" id="user" name="Name" required>
-                    </div>
-                    <br />
-                </li>
-                <li>
-                    <label for="Email">Email<span class="required">*</span></label>
-                    <div>
-                        <input type="email" class="input-text textbox" title="Email" id="email" name="Email" required>
-                    </div>
-                    <br />
-                </li>
-                <li>
-                    <label for="Body">Comment<span class="required">*</span></label>
-                    <div>
-                        <textarea type="text" class="form-control square-box" title="Name" id="comment" name="Body" required></textarea>
-                    </div>
-
-                    @if ((TempData["BlogCommentBlock"] as List<string>) != null)
-                    {
-                        <br />
-                        <div class="required error" for="Body">
-                            @foreach (var error in TempData["BlogCommentBlock"] as List<string>)
-                            {
-                                <p>@error</p>
-                            }
-                        </div>
+                        </li>
                     }
-                    <br />
-                </li>
-                <li>
-                    <button type="submit" class="button-transparent-black btn-lower" title="Add Comment" id="AddComment"><i data-feather="play" style="fill: black"></i>Add Comment</button>
-                </li>
-            </ul>
-        }
+                </ul>
+            </div>
+        </div>
+    }
+    @using (Html.BeginForm("GetComment", "BlogCommentBlock", FormMethod.Get, new { @class = "jsBlogPagingForm" }))
+    {
+        <input hidden id="pageId" name="PageId" type="text" value="@Model.CurrentPageLink.ID" />
+        <input hidden id="pageIndex" name="PageIndex" type="text" />
+        <input hidden id="pageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />
+        <div class="row product-tile-list__item">
+            <div class="col-12 toolbar">
+                <div class="toolbar__left">
+                </div>
+                <div class="toolbar__center">
+                    @if (Model.PagingInfo.PageCount > 0)
+                    {
+                        double totalPages = Model.PagingInfo.PageCount;
+                        int currentPage = Model.PagingInfo.PageNumber;
+                        <ul class="pagination">
+                            @if (totalPages <= 4)
+                            {
+                                // Display current pages with active page
+                                for (int i = 1; i <= totalPages; i++)
+                                {
+                                    if (i == currentPage)
+                                    {
+                                        <li class="active"><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // Set the Start Point and End Point for Pagination.
+                                double start = currentPage / Model.PagingInfo.PageSize * Model.PagingInfo.PageSize;
+                                var start2 = start > 0 ? Convert.ToInt32(Math.Floor(start)) : 1;
+                                var end = start + Model.PagingInfo.PageSize - 1;
+                                var end2 = end > totalPages ? totalPages : end;
+
+                                // Display previous button is current page is not first page
+                                if (currentPage != 1)
+                                {
+                                    <li><a href="#" class="get-blog-comment" pageIndex=1>&laquo;</a></li>
+                                    <li><a href="#" class="get-blog-comment" pageIndex="@(currentPage - 1)">&lsaquo;</a></li>
+                                }
+
+                                // Display previous 10 pages button
+                                if (currentPage >= Model.PagingInfo.PageSize)
+                                {
+                                    <li><a href="#" class="get-blog-comment" pageIndex="@(start2 - Model.PagingInfo.PageSize > 0 ? start2 - Model.PagingInfo.PageSize : 1)">...</a></li>
+                                }
+
+                                // Display current pages with active page
+                                for (int i = start2; i <= end2; i++)
+                                {
+                                    if (i == currentPage)
+                                    {
+                                        <li class="active"><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="#" class="get-blog-comment" pageIndex=@i>@i</a></li>
+                                    }
+                                }
+
+                                // Display next 10 pages button
+                                if (end2 < totalPages - 1)
+                                {
+                                    <li><a href="#" class="get-blog-comment" pageIndex="@(end2 + 1)">...</a></li>
+                                }
+
+                                // Display Next page and Last Page
+                                if (Model.PagingInfo.PageNumber <= totalPages - 1)
+                                {
+                                    <li><a href="#" class="get-blog-comment" pageIndex="@(currentPage + 1)">&rsaquo;</a></li>
+                                    <li><a href="#" class="get-blog-comment" pageIndex="@Model.PagingInfo.PageCount">&raquo;</a></li>
+                                }
+
+                            }
+                        </ul>
+                    }
+                </div>
+                <div class="toolbar__right">
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-12">
+            <h3>@Html.TranslateFallback("/Blog/Comments/Reply", "Reply")</h3>
+            @using (Html.BeginForm("Submit", "BlogCommentBlock", FormMethod.Post, new { @class = "comment-form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.CurrentPageLink)
+                <ul class="style-list-none">
+                    <li>
+                        <label for="Name">Name<span class="required">*</span></label>
+                        <div>
+                            <input type="text" class="input-text textbox" title="Name" id="user" name="Name" required>
+                        </div>
+                        <br />
+                    </li>
+                    <li>
+                        <label for="Email">Email<span class="required">*</span></label>
+                        <div>
+                            <input type="email" class="input-text textbox" title="Email" id="email" name="Email" required>
+                        </div>
+                        <br />
+                    </li>
+                    <li>
+                        <label for="Body">Comment<span class="required">*</span></label>
+                        <div>
+                            <textarea type="text" class="form-control square-box" title="Name" id="comment" name="Body" required></textarea>
+                        </div>
+
+                        @if ((TempData["BlogCommentBlock"] as List<string>) != null)
+                        {
+                            <br />
+                            <div class="required error" for="Body">
+                                @foreach (var error in TempData["BlogCommentBlock"] as List<string>)
+                                {
+                                    <p>@error</p>
+                                }
+                            </div>
+                        }
+                        <br />
+                    </li>
+                    <li>
+                        <button type="submit" class="button-transparent-black btn-lower" title="Add Comment" id="AddComment"><i data-feather="play" style="fill: black"></i>Add Comment</button>
+                    </li>
+                </ul>
+            }
+        </div>
     </div>
 </div>
-
 

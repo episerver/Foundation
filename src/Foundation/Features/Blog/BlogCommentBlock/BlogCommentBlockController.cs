@@ -52,7 +52,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         {
 
             var pagingInfo = new PagingInfo(_pageRouteHelper.PageLink.ID, currentBlock.CommentsPerPage == 0 ? RecordPerPage : currentBlock.CommentsPerPage, 1);
-            return GetComment(pagingInfo);
+            return GetComment(pagingInfo, currentBlock);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         /// <param name="pageIndex">Current page index of comments</param>
         /// <param name="recordPerPage">Records of comments per page</param>
         /// <returns>The action's result.</returns>
-        public ActionResult GetComment(PagingInfo pagingInfo)
+        public ActionResult GetComment(PagingInfo pagingInfo, Cms.Blocks.BlogCommentBlock currentBlock)
         {
             var pageId = pagingInfo.PageId;
             var pageIndex = pagingInfo.PageNumber;
@@ -72,7 +72,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
             var pageContentGuid = _pageRepository.GetPageId(pageReference);
 
             // Create a comments block view model to fill the frontend block view
-            var blockViewModel = new BlogCommentsBlockViewModel(pageReference);
+            var blockViewModel = new BlogCommentsBlockViewModel(pageReference, currentBlock);
 
             // Try to get recent comments
             try

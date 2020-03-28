@@ -1,4 +1,5 @@
 ﻿using EPiServer.Core;
+using Foundation.Cms.Blocks;
 using Foundation.Social.Models.Comments;
 using System.Collections.Generic;
 
@@ -14,10 +15,11 @@ namespace Foundation.Social.ViewModels
         /// Constructor
         /// </summary>
         /// <param name="form">A comment form view model to get current form values for the block view model</param>
-        public BlogCommentsBlockViewModel(PageReference pageReference)
+        public BlogCommentsBlockViewModel(PageReference pageReference, BlogCommentBlock block)
         {
             CurrentPageLink = pageReference;
             Comments = new List<BlogComment>();
+            CurrentBlock = block;
         }
         /// <summary>
         /// Gets or sets the reference link of the page containing the comment form.
@@ -38,6 +40,11 @@ namespace Foundation.Social.ViewModels
         /// Gets and sets paging information
         /// </summary>
         public PagingInfo PagingInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current block.
+        /// </summary>
+        public BlogCommentBlock  CurrentBlock { get; set; }
 
     }
 }
