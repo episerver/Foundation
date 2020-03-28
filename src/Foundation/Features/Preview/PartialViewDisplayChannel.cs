@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using EPiServer.Web;
 
-namespace Foundation.Features.PartialViewPreview
+namespace Foundation.Features.Preview
 {
     public class PartialViewDisplayChannel : DisplayChannel
     {

@@ -1,37 +1,35 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using EPiServer;
 using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
-using EPiServer.Framework.Web.Mvc;
 using EPiServer.Web;
-using EPiServer.Web.Mvc;
 using Foundation.Cms.Pages;
-using Foundation.Features.Preview;
 
-namespace Foundation.Features.PartialViewPreview
+namespace Foundation.Features.Preview
 {
-    [TemplateDescriptor(
-        Inherited = true,
-        Tags = new[] { PartialViewDisplayChannel.PartialViewDisplayChannelName },
-        AvailableWithoutTag = false)]
-    [VisitorGroupImpersonation]
-    [RequireClientResources]
-    public class PagePartialPreviewController : PageController<PageData>
+    /// <summary>
+    /// Used to keep common code for the preview controllers
+    /// </summary>
+    public class PreviewControllerHelper
     {
         private readonly IContentLoader _contentLoader;
         private readonly TemplateResolver _templateResolver;
         private readonly DisplayOptions _displayOptions;
+        private readonly HttpContextBase _httpContext;
 
-        public PagePartialPreviewController(IContentLoader contentLoader, TemplateResolver templateResolver, DisplayOptions displayOptions)
+        public PreviewControllerHelper(IContentLoader contentLoader, TemplateResolver templateResolver, DisplayOptions displayOptions, HttpContextBase httpContext)
         {
             _contentLoader = contentLoader;
             _templateResolver = templateResolver;
             _displayOptions = displayOptions;
+            _httpContext = httpContext;
         }
 
-        public ActionResult Index(IContent currentContent)
+        public ActionResult RenderResult(IContent currentContent)
         {
             //As the layout requires a page for title etc we "borrow" the start page
             var startPage = _contentLoader.Get<CmsHomePage>(ContentReference.StartPage);
@@ -48,7 +46,11 @@ namespace Foundation.Features.PartialViewPreview
 
             if (!supportedDisplayOptions.Any(x => x.Supported))
             {
-                return View(model);
+                return new ViewResult
+                {
+                    ViewName = "~/Features/Preview/Index.cshtml",
+                    ViewData = { Model = model }
+                };
             }
             foreach (var displayOption in supportedDisplayOptions)
             {
@@ -68,12 +70,16 @@ namespace Foundation.Features.PartialViewPreview
                 model.Areas.Add(areaModel);
             }
 
-            return View("~/Features/Preview/Index.cshtml", model);
+            return new ViewResult
+            {
+                ViewName = "~/Features/Preview/Index.cshtml",
+                ViewData = {Model = model}
+            };
         }
 
         private bool SupportsTag(IContent content, string tag)
         {
-            var templateModel = _templateResolver.Resolve(HttpContext,
+            var templateModel = _templateResolver.Resolve(_httpContext,
                 content.GetOriginalType(),
                 content,
                 TemplateTypeCategories.MvcPartial,
@@ -81,5 +87,6 @@ namespace Foundation.Features.PartialViewPreview
 
             return templateModel != null;
         }
+
     }
 }
