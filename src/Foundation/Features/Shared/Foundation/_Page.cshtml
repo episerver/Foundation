@@ -45,17 +45,19 @@
 }
 <div class="@Model.Padding @Model.Margin">
     <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect && RequestSegmentContext.CurrentContextMode != ContextMode.Edit ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
-        <div class="teaser-text @textStyle">
-            <h2 @Html.EditAttributes(x => x.PageName)>@Model.PageName</h2>
-            <div class="teaser-text__details">
-                @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
-                {
-                    <p @Html.EditAttributes(x => x.TeaserText)>@Model.TeaserText</p>
-                }
-                @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
-                {
-                    <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)" @Html.EditAttributes(x => x.TeaserButtonText)>@Model.TeaserButtonText</a>
-                }
+        <div class="screen-width-wrapper">
+            <div class="teaser-text @textStyle screen-width-container">
+                <h2 @Html.EditAttributes(x => x.PageName)>@Model.PageName</h2>
+                <div class="teaser-text__details">
+                    @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
+                    {
+                         <p @Html.EditAttributes(x => x.TeaserText)>@Model.TeaserText</p>
+                    }
+                    @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
+                    {
+                        <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)" @Html.EditAttributes(x => x.TeaserButtonText)>@Model.TeaserButtonText</a>
+                    }
+                </div>
             </div>
         </div>
         <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
