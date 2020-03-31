@@ -1021,6 +1021,7 @@
     <Content Include="Assets\icons\cms\blocks\CMS-icon-block-30.png" />
     <Content Include="Assets\icons\cms\blocks\CMS-icon-block-31.png" />
     <Content Include="Assets\icons\cms\blocks\CMS-icon-block-32.png" />
+    <Content Include="Assets\icons\cms\pages\CMS-icon-page-29.png" />
     <Content Include="Assets\icons\content\CarouselBlock.PNG" />
     <Content Include="Assets\icons\content\CategoryPage.PNG" />
     <Content Include="Assets\icons\content\ContinentsFilterBlock.PNG" />

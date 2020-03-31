@@ -1,9 +1,10 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Framework.DataAnnotations;
+using EPiServer.ServiceLocation;
 using EPiServer.SpecializedProperties;
-using Foundation.Cms.Blocks;
+using Foundation.Cms.SiteSettings;
+using Foundation.Cms.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
@@ -22,62 +23,35 @@ namespace Foundation.Cms.Pages
 
         #endregion
 
-        #region Menu   
-
-        [AllowedTypes(new[] { typeof(MenuItemBlock), typeof(PageData) })]
-        [UIHint("HideContentAreaActionsContainer", PresentationLayer.Edit)]
-        [Display(Name = "Main menu", GroupName = CmsTabNames.Menu, Order = 10)]
-        public virtual ContentArea MainMenu { get; set; }
-
         [CultureSpecific]
-        [Display(Name = "My account menu (CMS)",
-            Description = "This menu will show if show commerce components in header is false",
-            GroupName = CmsTabNames.Menu,
-            Order = 40)]
-        public virtual LinkItemCollection MyAccountCmsMenu { get; set; }
+        [Display(Name = "Settings page", GroupName = SystemTabNames.Settings, Order = 200)]
+        [AllowedTypes(new[] { typeof(CmsSettingsPage) })]
+        [Required]
+        public virtual ContentReference SettingsPage { get; set; }
 
-        #endregion
 
-        #region Footer
+        // Get settings
+        public virtual CmsSiteSettings SiteSettings {
+            get
+            {
+                var _siteSettingsProvider = ServiceLocator.Current.GetInstance<ISiteSettingsProvider>();
+                return _siteSettingsProvider.GetSiteSettings<CmsSiteSettings>(this);
+            }
+        }
 
-        [Display(Name = "Introduction", GroupName = CmsTabNames.Footer, Order = 10)]
-        public virtual string Introduction { get; set; }
-
-        [Display(Name = "Company header", GroupName = CmsTabNames.Footer, Order = 20)]
-        public virtual string CompanyHeader { get; set; }
-
-        [Display(Name = "Company name", GroupName = CmsTabNames.Footer, Order = 25)]
-        public virtual string CompanyName { get; set; }
-
-        [Display(Name = "Company address", GroupName = CmsTabNames.Footer, Order = 30)]
-        public virtual string CompanyAddress { get; set; }
-
-        [Display(Name = "Company phone", GroupName = CmsTabNames.Footer, Order = 40)]
-        public virtual string CompanyPhone { get; set; }
-
-        [Display(Name = "Company email", GroupName = CmsTabNames.Footer, Order = 50)]
-        public virtual string CompanyEmail { get; set; }
-
-        [Display(Name = "Links header", GroupName = CmsTabNames.Footer, Order = 60)]
-        public virtual string LinksHeader { get; set; }
-
-        [UIHint("FooterColumnNavigation")]
-        [Display(Name = "Links", GroupName = CmsTabNames.Footer, Order = 70)]
-        public virtual LinkItemCollection Links { get; set; }
-
-        [Display(Name = "Social header", GroupName = CmsTabNames.Footer, Order = 80)]
-        public virtual string SocialHeader { get; set; }
-
-        [Display(Name = "Social links", GroupName = CmsTabNames.Footer, Order = 85)]
-        public virtual LinkItemCollection SocialLinks { get; set; }
-
-        [CultureSpecific]
-        [Display(Name = "Content area", GroupName = CmsTabNames.Footer, Order = 90)]
-        public virtual ContentArea ContentArea { get; set; }
-
-        [Display(Name = "Copyright", GroupName = CmsTabNames.Footer, Order = 130)]
-        public virtual string FooterCopyrightText { get; set; }
-
-        #endregion
+        public virtual ContentArea MainMenu => SiteSettings.MainMenu;
+        public virtual LinkItemCollection MyAccountCmsMenu => SiteSettings.MyAccountCmsMenu;
+        public virtual string Introduction  => SiteSettings.Introduction;
+        public virtual string CompanyHeader  => SiteSettings.CompanyHeader;
+        public virtual string CompanyName  => SiteSettings.CompanyName;
+        public virtual string CompanyAddress  => SiteSettings.CompanyAddress;
+        public virtual string CompanyPhone  => SiteSettings.CompanyPhone;
+        public virtual string CompanyEmail  => SiteSettings.CompanyEmail;
+        public virtual string LinksHeader  => SiteSettings.LinksHeader;
+        public virtual LinkItemCollection Links  => SiteSettings.Links;
+        public virtual string SocialHeader  => SiteSettings.SocialHeader;
+        public virtual LinkItemCollection SocialLinks  => SiteSettings.SocialLinks;
+        public virtual ContentArea ContentArea  => SiteSettings.ContentArea;
+        public virtual string FooterCopyrightText  => SiteSettings.FooterCopyrightText;
     }
 }

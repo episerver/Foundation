@@ -14,6 +14,7 @@ using Foundation.Cms.Identity;
 using Foundation.Cms.ModelBinders;
 using Foundation.Cms.Pages;
 using Foundation.Cms.SchemaMarkup;
+using Foundation.Cms.SiteSettings;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
@@ -44,6 +45,7 @@ namespace Foundation.Cms
             _services.AddTransient<IViewTemplateModelRegistrator, ViewTemplateModelRegistrator>();
             _services.AddSingleton<ISchemaDataMapper<BlogItemPage>, BlogItemPageSchemaMapper>();
             _services.AddSingleton<ISchemaDataMapper<CmsHomePage>, CmsHomePageSchemaMapper>();
+            _services.AddTransient<ISiteSettingsProvider, SiteSettingsProvider>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
