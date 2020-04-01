@@ -11,5 +11,6 @@ namespace Foundation.Cms.Personalization
         Task SearchedKeyword(HttpContextBase httpContextBase, string keyword);
         Task BlockViewed(BlockData block, IContent page, HttpContextBase httpContext);
         Task ImageViewed(ImageData image, IContent page, HttpContextBase httpContext);
+        Task CustomViewed(IContent page, TrackingBlock block, HttpContextBase context);
     }
 }

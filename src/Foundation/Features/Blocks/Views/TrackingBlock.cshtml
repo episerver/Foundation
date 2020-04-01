@@ -1,0 +1,10 @@
+﻿@using EPiServer.Web.Mvc.Html
+@model TrackingBlock
+
+@if (EPiServer.Editor.PageEditing.PageIsInEditMode)
+{
+    <div class="alert alert-info" style="background-color: lightyellow">
+        <strong>Note:</strong> This message is never visible to end users<br />
+        Set a tracking event '<strong>@Html.PropertyFor(x => x.TrackingEventName, new { CustomTag = "span" })</strong>' called with description: '<strong>@Html.PropertyFor(x => x.Description, new { CustomTag = "span" })</strong>'
+    </div>
+}

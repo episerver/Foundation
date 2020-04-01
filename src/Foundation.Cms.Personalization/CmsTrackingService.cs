@@ -123,5 +123,30 @@ namespace Foundation.Cms.Personalization
             }, httpContextBase);
         }
 
+        public virtual async Task CustomViewed(IContent page, TrackingBlock block, HttpContextBase context)
+        {
+            try
+            {
+                var trackingData = new TrackingData<dynamic>
+                {
+                    EventType = block.TrackingEventName,
+                    Value = block.Description,
+                    PageUri = context.Request.Url?.AbsoluteUri,
+                    PageTitle = page.Name,
+                    Payload = new BlockView
+                    {
+                        PageName = page.Name,
+                        PageId = page.ContentLink.ID,
+                        BlockId = (block as IContent).ContentLink.ID,
+                        BlockName = (block as IContent).Name
+                    }
+                };
+
+                await _trackingService.Track(trackingData, context);
+            }
+            catch
+            {
+            }
+        }
     }
 }
