@@ -16,22 +16,25 @@
     var blockRatio = string.Empty;
     switch (Model.CurrentBlock.BlockRatio)
     {
-        case "10-2":
+        case "5:1":
             blockRatio = "padding-bottom: 20%";
             break;
-        case "10-3":
-            blockRatio = "padding-bottom: 30%";
+        case "16:9":
+            blockRatio = "padding-bottom: 55%";
             break;
-        case "10-10":
+        case "3:2":
+            blockRatio = "padding-bottom: 65%";
+            break;
+        case "4:3":
+            blockRatio = "padding-bottom: 75%";
+            break;
+        case "1:1":
             blockRatio = "padding-bottom: 100%";
             break;
-        case "10-12.5":
-            blockRatio = "padding-bottom: 125%";
-            break;
-        case "10-15":
+        case "2:3":
             blockRatio = "padding-bottom: 150%";
             break;
-        case "10-17.5":
+        case "9:16":
             blockRatio = "padding-bottom: 175%";
             break;
         default:

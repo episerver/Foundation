@@ -8,6 +8,7 @@ namespace Foundation.Cms.Blocks
         GUID = "8fc31051-6d22-4445-b92d-7c394267fa49",
         Description = "Display Google Maps Embed",
         GroupName = CmsGroupNames.SocialMedia)]
+    [ImageUrl("~/assets/icons/cms/blocks/map.png")]
     public class GoogleMapsEmbedBlock : FoundationBlockData
     {
         [Required]
