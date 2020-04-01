@@ -17,7 +17,7 @@ namespace Foundation.Cms.Blocks
     public class HeroBlock : FoundationBlockData
     {
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
-        [Display(Name = "Block ratio (width-height)", Order = 5)]
+        [Display(Name = "Block ratio (width:height)", Order = 5)]
         public virtual string BlockRatio { get; set; }
 
         [CultureSpecific]
@@ -42,7 +42,7 @@ namespace Foundation.Cms.Blocks
             base.SetDefaultValues(contentType);
 
             BlockOpacity = 1;
-            BlockRatio = "10-5";
+            BlockRatio = "2:1";
         }
     }
 
