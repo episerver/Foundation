@@ -5,6 +5,8 @@
 Foundation offers a starting point that is intuitive, well-structured and modular allowing developers to select Episerver products as projects to include or exclude from their solution. 
 Including as of now projects for CMS, Commerce, Personalization, Find and Social, with the rest to follow.
 
+For documentation on Episerver Foundation, see [the documentation repository](https://github.com/episerver/Foundation-docs). Note that this is till work-in-progress.
+
 You can request a demo of the project by one of our Episerver experts on [Get a demo](https://www.episerver.com/get-a-demo/).
 
 [![Build status](https://dev.azure.com/episerver-foundation/Foundation/_apis/build/status/Foundation-Release)](https://dev.azure.com/episerver-foundation/Foundation/_build/latest?definitionId=1)
