@@ -160,7 +160,7 @@ ul.none-style-type {
 
     .screen-width-wrapper {
         @include media-breakpoint-up(xl) {
-            max-width: 1440px;
+            max-width: $container-max-width;
         }
 
         width: 100%;
@@ -172,7 +172,7 @@ ul.none-style-type {
 
     .screen-width-container {
         @include media-breakpoint-up(xl) {
-            max-width: 1440px;
+            max-width: $container-max-width;
         }
 
         width: 100%;
