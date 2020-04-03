@@ -18,7 +18,7 @@
         <div style="color:@messageStyle">@message.Body</div>
     }
 
-    <div style="margin-top:0.5em">
+    <div class="col-12" style="margin-top:0.5em">
         @if (this.User.Identity.IsAuthenticated && Model.IsMemberOfGroup)
         {
             if (Model.CurrentRating.HasValue)
