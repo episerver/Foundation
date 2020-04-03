@@ -4,6 +4,8 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.Blobs;
 using EPiServer.Framework.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms.EditorDescriptors;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -86,5 +88,46 @@ namespace Foundation.Cms.Media
         [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 210)]
         public virtual string Copyright { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(ImageMediaDataAlignmentSelectionFactory))]
+        [Display(Name = "Image alignment", GroupName = CmsTabNames.BlockStyling, Order = 10)]
+        public virtual string ImageAlignment { get; set; }
+
+        [Display(Name = "Padding top", GroupName = CmsTabNames.BlockStyling, Order = 20)]
+        public virtual int PaddingTop { get; set; }
+
+        [Display(Name = "Padding right", GroupName = CmsTabNames.BlockStyling, Order = 21)]
+        public virtual int PaddingRight { get; set; }
+
+        [Display(Name = "Padding bottom", GroupName = CmsTabNames.BlockStyling, Order = 22)]
+        public virtual int PaddingBottom { get; set; }
+
+        [Display(Name = "Padding left", GroupName = CmsTabNames.BlockStyling, Order = 23)]
+        public virtual int PaddingLeft { get; set; }
+
+        public string PaddingStyles
+        {
+            get
+            {
+                var paddingStyles = "";
+
+                paddingStyles += PaddingTop > 0 ? "padding-top: " + PaddingTop + "px;" : "";
+                paddingStyles += PaddingRight > 0 ? "padding-right: " + PaddingRight + "px;" : "";
+                paddingStyles += PaddingBottom > 0 ? "padding-bottom: " + PaddingBottom + "px;" : "";
+                paddingStyles += PaddingLeft > 0 ? "padding-left: " + PaddingLeft + "px" : "";
+
+                return paddingStyles;
+            }
+        }
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            PaddingTop = 0;
+            PaddingRight = 0;
+            PaddingBottom = 0;
+            PaddingLeft = 0;
+        }
     }
 }
