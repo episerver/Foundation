@@ -57,7 +57,7 @@ namespace Foundation.Cms.Blocks
         [Display(Name = "Text placement", Order = 20)]
         public virtual string CalloutContentAlignment { get; set; }
 
-        [SelectOne(SelectionFactoryType = typeof(HeroBlockTextColorSelectionFactory))]
+        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
         [Display(Name = "Text color", Description = "Sets text color of callout content", Order = 30)]
         public virtual string CalloutTextColor { get; set; }
 
@@ -91,7 +91,7 @@ namespace Foundation.Cms.Blocks
             CalloutOpacity = 1;
             CalloutPosition = "flex-middle";
             CalloutContentAlignment = "left";
-            CalloutTextColor = ColorThemes.None;
+            CalloutTextColor = "black";
         }
     }
 }

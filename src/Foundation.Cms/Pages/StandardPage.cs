@@ -16,11 +16,11 @@ namespace Foundation.Cms.Pages
     public class StandardPage : FoundationPageData
     {
         [CultureSpecific]
-        [SelectOne(SelectionFactoryType = typeof(HeroBlockTextColorSelectionFactory))]
+        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
         [Display(Name = "Title color", GroupName = SystemTabNames.Content, Order = 203)]
         public virtual string TitleColor
         {
-            get { return this.GetPropertyValue(page => page.TitleColor) ?? ColorThemes.Light; }
+            get { return this.GetPropertyValue(page => page.TitleColor) ?? "white"; }
             set { this.SetPropertyValue(page => page.TitleColor, value); }
         }
 
@@ -50,7 +50,7 @@ namespace Foundation.Cms.Pages
         }
 
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Name = "Title opacity (0 to 1)", GroupName = SystemTabNames.Content, Order = 205)]
+        [Display(Name = "Background opacity (0 to 1)", GroupName = SystemTabNames.Content, Order = 205)]
         public virtual double? BackgroundOpacity
         {
             get { return this.GetPropertyValue(page => page.BackgroundOpacity) ?? 1; }
@@ -62,7 +62,7 @@ namespace Foundation.Cms.Pages
             base.SetDefaultValues(contentType);
             BackgroundColor = "transparent";
             BackgroundOpacity = 1;
-            TitleColor = ColorThemes.Light;
+            TitleColor = "white";
             TopPaddingMode = FoundationStandardPageTopPaddingModeSelectionFactory.FoundationStandardPageTopPaddingModes.Half;
         }
     }
