@@ -3,16 +3,6 @@
 @model IBlockViewModel<HeroBlock>
 
 @{
-    var calloutTextColor = string.Empty;
-    if (Model.CurrentBlock.Callout.CalloutTextColor.Equals("Light"))
-    {
-        calloutTextColor = "color: white";
-    }
-    else if (Model.CurrentBlock.Callout.CalloutTextColor.Equals("Dark"))
-    {
-        calloutTextColor = "color: black";
-    }
-
     var blockRatio = string.Empty;
     switch (Model.CurrentBlock.BlockRatio)
     {
@@ -63,7 +53,7 @@
                 {
                     <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
                 }
-                <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@calloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;">
+                <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="color: @Model.CurrentBlock.Callout.CalloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;">
                     @Html.PropertyFor(m => m.CurrentBlock.Callout)
                 </div>
             </div>

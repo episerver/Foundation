@@ -49,7 +49,7 @@ namespace Foundation.Cms.Pages
         [Display(Name = "Company name", GroupName = CmsTabNames.Footer, Order = 25)]
         public virtual string CompanyName { get; set; }
 
-        [Display(Name = "Comapny address", GroupName = CmsTabNames.Footer, Order = 30)]
+        [Display(Name = "Company address", GroupName = CmsTabNames.Footer, Order = 30)]
         public virtual string CompanyAddress { get; set; }
 
         [Display(Name = "Company phone", GroupName = CmsTabNames.Footer, Order = 40)]

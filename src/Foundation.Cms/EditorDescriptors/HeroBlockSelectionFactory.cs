@@ -3,19 +3,6 @@ using System.Collections.Generic;
 
 namespace Foundation.Cms.EditorDescriptors
 {
-    public class HeroBlockTextColorSelectionFactory : ISelectionFactory
-    {
-        public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
-        {
-            return new ISelectItem[]
-            {
-                new SelectItem { Text = "None", Value = ColorThemes.None },
-                new SelectItem { Text = "Light", Value = ColorThemes.Light },
-                new SelectItem { Text = "Dark", Value = ColorThemes.Dark }
-            };
-        }
-    }
-
     public class CalloutContentAlignmentSelectionFactory : ISelectionFactory
     {
         public virtual IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
