@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using EPiServer;
+﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Framework.Web;
 using EPiServer.Web;
 using Foundation.Cms.Pages;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Preview
 {
@@ -73,7 +71,7 @@ namespace Foundation.Features.Preview
             return new ViewResult
             {
                 ViewName = "~/Features/Preview/Index.cshtml",
-                ViewData = {Model = model}
+                ViewData = { Model = model }
             };
         }
 

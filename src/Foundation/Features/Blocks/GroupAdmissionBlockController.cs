@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using EPiServer.ServiceLocation;
-using EPiServer.Social.Groups.Core;
+﻿using EPiServer.Social.Groups.Core;
 using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.Blocks;
@@ -10,6 +7,8 @@ using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
 using Foundation.Social.ViewModels;
+using System;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {
@@ -191,7 +190,7 @@ namespace Foundation.Features.Blocks
             var userId = _userRepository.GetUserId(this.User);
             var loggedIn = !String.IsNullOrWhiteSpace(userId);
             blockModel.UserIsLoggedIn = loggedIn;
-            blockModel.MemberName = loggedIn ? _userRepository.CreateAuthenticatedUri(userId): "";
+            blockModel.MemberName = loggedIn ? _userRepository.CreateAuthenticatedUri(userId) : "";
             blockModel.ModeratedUserAdmissionState = loggedIn ? _moderationRepository.GetMembershipRequestState(blockModel.MemberName, blockModel.GroupId) : "";
         }
     }
