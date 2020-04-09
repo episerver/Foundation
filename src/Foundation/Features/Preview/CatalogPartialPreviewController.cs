@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
-using EPiServer.Commerce.Catalog.ContentTypes;
+﻿using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web.Mvc;
 using EPiServer.Web.Mvc;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Preview
 {
