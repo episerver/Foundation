@@ -44,7 +44,7 @@ namespace Foundation.Social.ViewModels
         /// <summary>
         /// Gets or sets the current block.
         /// </summary>
-        public BlogCommentBlock  CurrentBlock { get; set; }
+        public BlogCommentBlock CurrentBlock { get; set; }
 
     }
 }

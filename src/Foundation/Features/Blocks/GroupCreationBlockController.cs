@@ -1,12 +1,11 @@
-﻿using System.Web.Mvc;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.Blocks;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
 using Foundation.Social.ViewModels;
+using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks
 {
