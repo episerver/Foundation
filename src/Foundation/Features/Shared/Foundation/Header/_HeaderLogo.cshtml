@@ -1,0 +1,12 @@
+﻿@model Foundation.Demo.Models.DemoHomePage
+
+<div class="header">
+    <div class="container @(Model.LargeHeaderMenu ? "large-header-menu" : "")">
+        <div class="header__logo @(Model.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
+             style="@(Model.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
+            <a href="/">
+                <img class="img-fluid" src="@Url.ContentUrl(Model.SiteLogo)" @Html.EditAttributes(x => x.SiteLogo) />
+            </a>
+        </div>
+    </div>
+</div>

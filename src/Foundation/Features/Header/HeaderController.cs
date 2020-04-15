@@ -35,6 +35,12 @@ namespace Foundation.Features.Header
             return PartialView("_Header", _headerViewModelFactory.CreateHeaderViewModel<DemoHeaderViewModel>(content, homePage));
         }
 
+        [ChildActionOnly]
+        public ActionResult GetHeaderLogoOnly(DemoHomePage homePage)
+        {
+            return PartialView("_HeaderLogo", homePage);
+        }
+
         public ActionResult GetCountryOptions(string inputName)
         {
             var model = new List<CountryViewModel>() { new CountryViewModel() { Name = "Select", Code = "undefined" } };
