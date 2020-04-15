@@ -1890,6 +1890,7 @@
     <Content Include="Features\Blocks\Views\PageListBlock\_LeftImageTemplate.cshtml" />
     <Content Include="Features\Blocks\Views\GroupAdmissionBlock.cshtml" />
     <Content Include="Features\Blocks\Views\GroupCreationBlock.cshtml" />
+    <Content Include="Features\Shared\Foundation\Header\_HeaderLogo.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

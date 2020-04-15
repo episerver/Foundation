@@ -29,7 +29,11 @@
 
 @if (!foundationPageData?.HideSiteHeader ?? false)
 {
-    { Html.RenderAction("GetHeader", "Header", new { homePage = Model.StartPage }); }
+    Html.RenderAction("GetHeader", "Header", new { homePage = Model.StartPage });
+}
+else
+{
+    Html.RenderAction("GetHeaderLogoOnly", "Header", new { homePage = Model.StartPage });
 }
 
 <div class="container">

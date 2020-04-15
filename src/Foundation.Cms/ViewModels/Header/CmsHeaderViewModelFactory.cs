@@ -84,9 +84,11 @@ namespace Foundation.Cms.ViewModels.Header
 
                     if (!PageEditing.PageIsInEditMode)
                     {
-                        var keyDependency = new List<string>();
-                        keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(homePage.ContentLink)); // If The HomePage updates menu (remove MenuItems)
-                        keyDependency.Add(_contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink));
+                        var keyDependency = new List<string>
+                        {
+                            _contentCacheKeyCreator.CreateCommonCacheKey(homePage.ContentLink), // If The HomePage updates menu (remove MenuItems)
+                            _contentCacheKeyCreator.CreateCommonCacheKey(x.ContentLink)
+                        };
 
                         var eviction = new CacheEvictionPolicy(TimeSpan.FromDays(1), CacheTimeoutType.Sliding, keyDependency);
                         CacheManager.Insert(x.ContentLink.ID + homeLanguage + ":" + MenuCacheKey, menuItem, eviction);
