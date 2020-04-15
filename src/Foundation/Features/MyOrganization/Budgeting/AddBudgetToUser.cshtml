@@ -33,14 +33,14 @@
             <div class="form-group col-6">
                 <label>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</label>
                 <div class="custom-date-input">
-                    <input type="date" id="startDate" class="form-control square-box" disabled value="@Model.NewBudgetOption.StartDate.ToShortDateString()" />
+                    <input type="date" id="startDate" class="form-control square-box" disabled value="@Model.NewBudgetOption.StartDate.ToString("yyyy-MM-dd")" />
                 </div>
 
             </div>
             <div class="form-group col-6">
                 <label>@Html.TranslateFallback("/B2B/Budgeting/DueDate", "Due Date")</label>
                 <div class="custom-date-input">
-                    <input type="date" id="endDate" class="form-control square-box" disabled value="@Model.NewBudgetOption.DueDate.ToShortDateString()" />
+                    <input type="date" id="endDate" class="form-control square-box" disabled value="@Model.NewBudgetOption.DueDate.ToString("yyyy-MM-dd")" />
                 </div>
             </div>
         </div>
