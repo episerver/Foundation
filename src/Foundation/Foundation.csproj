@@ -1908,6 +1908,7 @@
     <Content Include="Views\VirtualTemplates\Buttons\MakeVirtual.cshtml" />
     <Content Include="Views\VirtualTemplates\Buttons\Edit.cshtml" />
     <Content Include="Views\VirtualTemplates\Buttons\Compare.cshtml" />
+    <Content Include="Views\GooglePageSpeedComponent\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

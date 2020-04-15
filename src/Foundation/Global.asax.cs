@@ -29,6 +29,11 @@ namespace Foundation
               url: "{controller}/{action}/{id}",
               defaults: new { action = "Index", id = UrlParameter.Optional });
 
+            routes.MapRoute(
+              "GooglePageSpeedComponent",
+              "GooglePageSpeedComponent/{action}",
+              new { controller = "GooglePageSpeedComponent", action = "Index", id = UrlParameter.Optional });
+
             try
             {
                 //Workaroud / hack to make Siteattention work
