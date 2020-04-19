@@ -351,6 +351,7 @@
 
                         $('.jsCouponReplaceHtml').html(r.data);
                         $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
+                        cartHelper.SetCartReload($('.jsTotalQuantityCheckout').val());
                         feather.replace();
                         inst.InitPayment();
                     })
