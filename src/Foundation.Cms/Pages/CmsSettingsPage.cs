@@ -1,20 +1,24 @@
-﻿using EPiServer.Core;
+﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
+using EPiServer.PlugIn;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using Foundation.Cms.Blocks;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    [ContentType(DisplayName = "Cms Settings Page", 
-        GUID = "183e3bec-dba2-4751-872c-5a6e3bf147d4", 
+    [ContentType(DisplayName = "Cms Settings Page",
+        GUID = "183e3bec-dba2-4751-872c-5a6e3bf147d4",
         Description = "The page that store cms site settings",
         AvailableInEditMode = false)]
-    [AvailableContentTypes(Availability.Specific, 
-        Include = new Type[] { typeof(CmsSettingsPage) }, 
+    [AvailableContentTypes(Availability.Specific,
+        Include = new Type[] { typeof(CmsSettingsPage) },
         ExcludeOn = new Type[] { typeof(FoundationPageData) })]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-29.png")]
     public class CmsSettingsPage : PageData
@@ -76,5 +80,23 @@ namespace Foundation.Cms.Pages
         public virtual string FooterCopyrightText { get; set; }
 
         #endregion
+
+
+        #region Styling
+        [Display(Name = "Styling", GroupName = CmsTabNames.Styles, Order = 130)]
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<StylingModel>))]
+        public virtual IList<StylingModel> Styling { get; set; }
+        #endregion
+    }
+
+    public class StylingModel
+    {
+        public string Property { get; set; }
+        public string Value { get; set; }
+    }
+
+    [PropertyDefinitionTypePlugIn]
+    public class CustomDataPropertyList : PropertyList<StylingModel>
+    {
     }
 }
