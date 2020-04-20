@@ -42,8 +42,7 @@
                     <div class="triangle-center"></div>
                     <div class="triangle-side"></div>
                 </div>
-                <div class="preview__card--overlay">
-                    <div class="preview__card--background" style="background-color: @Model.CurrentBlock.OverlayColor; opacity: @Model.CurrentBlock.OverlayOpacity;"></div>
+                <div class="preview__card--overlay" style="background-color: @Model.CurrentBlock.OverlayColor;">
                     <div class="preview__card--description" style=" color: @Model.CurrentBlock.OverlayTextColor">
                         <p>@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
                         <a href="@foundationPage.ContentLink.GetPublicUrl()">

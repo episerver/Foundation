@@ -8,6 +8,7 @@ define([
     "dijit/_TemplatedMixin",
     "dijit/_WidgetsInTemplateMixin",
     "epi/shell/widget/_ValueRequiredMixin",
+    "/ClientResources/Scripts/Modules/rgbaColorPicker.js",
 ],
 
     function (
@@ -20,16 +21,16 @@ define([
         _WidgetsInTemplateMixin,
         _ValueRequiredMixin,
     ) {
-
+        console.log("This has color picker")
         return declare("foundation/editors/ColorPicker", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin, _CssStateMixin, _ValueRequiredMixin],
             {
                 templateString: 
-                    `<div style="position: absolute; min-width: 250px" 
+                    `<div style="min-width: 250px" 
                         data-dojo-attach-point=\"pickerElement\" class=\"dijitInline\" tabindex=\"-1\" role=\"presentation\">
-                            <div data-dojo-attach-point=\"stateNode, tooltipNode\">
-                                <input data-dojo-attach-point=\"colorPicker\" data-dojo-props="class: 'color'" data-dojo-type=\"dijit.form.TextBox\"></input>
-                            </div>\
-                        </div>`,
+                        <div data-dojo-attach-point=\"stateNode, tooltipNode\" class="hidden">
+                            <input style="display: none"  data-dojo-attach-point=\"colorPicker\" data-dojo-type=\"dijit.form.TextBox\"></input>
+                        </div>\
+                    </div>`,
                 
                 intermediateChanges: false,
 
@@ -39,35 +40,29 @@ define([
                     this.picker.openHandler();
                 },
                 onChange: function (value) {
-                    // summary:
-
-                    //    Called when the value in the widget changes.
-
-                    // tags:
-
-                    //    public callback
-
+                    this._set("value", value);
                     this.colorPicker.set("value", value);
                 },
 
-                startup: function () {
-                    var parentBasic = this.pickerElement;
-                    var inst = this;
-                    this.picker = new Picker({ parent: parentBasic, color: this.value });
-                    this.picker.onDone = function (color) {
-                        inst._onColorPickerChanged(color);
-                    };
-                },
+                
 
                 postCreate: function () {
-                    
+                    this.inherited(arguments);
+                    var parentBasic = this.pickerElement;
+                    var inst = this;
+                    this.picker = new Picker({
+                        parent: parentBasic, color: this.value,
+                        popup: false });
+                    this.picker.onChange = function (color) {
+                        inst._onColorPickerChanged(color);
+                    };
                     if (this.value != null) {
                         this.set("value", this.value);
                     } else {
                         this._set("value", "");
                         this.onChange(this.value);
                     }
-                    this.inherited(arguments);
+
                     this.colorPicker.set("intermediateChanges", this.intermediateChanges);
                     this.connect(this.pickerElement, "onChange", this._onColorPickerChanged);
                     this.connect(this.pickerElement, "onClick", this.onClick);
@@ -89,9 +84,7 @@ define([
                 },
 
                 _setValueAttr: function (value) {
-                    if (value != null) {
-                        this._set("value", value);
-                        this.colorPicker.set("value", value);
+                    if (value != null && this.picker) {
                         this.picker.setColor(value, true);
                     }
                 },
@@ -108,8 +101,7 @@ define([
 
                 _onColorPickerChanged: function (value) {
                     if (value && value.hex != this.colorPicker.value) {
-                        this._set("value", value.hex);
-                        this.onChange(this.value);
+                        this.onChange(value.hex);
                     }
                 },
             }

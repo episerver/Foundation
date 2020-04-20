@@ -5,7 +5,6 @@
     "epi/_Module",
     "epi/routes",
     "epi/dependency",
-    "/ClientResources/Scripts/Modules/rgbaColorPicker.js",
 ], function (
     declare,
     aspect,
