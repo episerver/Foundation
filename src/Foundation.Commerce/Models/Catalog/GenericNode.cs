@@ -1,3 +1,4 @@
+using EPiBootstrapArea;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
@@ -28,6 +29,14 @@ namespace Foundation.Commerce.Models.Catalog
         [IncludeInDefaultSearch]
         [Display(Name = "Description", GroupName = SystemTabNames.Content, Order = 15)]
         public virtual XhtmlString Description { get; set; }
+
+        [CultureSpecific]
+        [Display(
+           Name = "Featured products",
+           GroupName = SystemTabNames.Content,
+           Order = 4)]
+        [AllowedTypes(AllowedTypes = new [] {typeof(ProductContent), typeof(NodeContent), typeof(PackageContent), typeof(BundleContent)})]
+        public virtual ContentArea FeaturedProducts { get; set; }
 
         [CultureSpecific]
         [Display(

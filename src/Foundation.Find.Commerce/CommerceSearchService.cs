@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying;
@@ -749,13 +750,7 @@ namespace Foundation.Find.Commerce
 
             if (node != null)
             {
-                //products = node.FeaturedProducts?.FilteredItems?.Select(x => x.GetContent() as EntryContentBase).ToList() ?? new List<EntryContentBase>();
-
-                var featuredProductList = productViewModels.Where(v => products.Any(p => p.ContentLink.ID == v.ProductId)).ToList();
-                featuredProductList.ForEach(x => { x.IsFeaturedProduct = true; });
-
-                productViewModels.RemoveAll(v => products.Any(p => p.ContentLink.ID == v.ProductId));
-                productViewModels.InsertRange(0, featuredProductList);
+                UpdateListWithFeatured(ref productViewModels, node);
             }
 
             var bestBetList = new BestBetRepository().List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
@@ -776,6 +771,51 @@ namespace Foundation.Find.Commerce
                              });
         }
 
-
+        private void UpdateListWithFeatured(ref List<ProductTileViewModel> productViewModels, GenericNode node)
+        {
+            if (!node.FeaturedProducts?.FilteredItems?.Any() ?? true)
+            {
+                return;
+            }
+            var market = _currentMarket.GetCurrentMarket();
+            var currency = _currencyService.GetCurrentCurrency();
+            var index = 0;
+            foreach (var item in node.FeaturedProducts.FilteredItems)
+            {
+                var content = item.GetContent();
+                if (content is EntryContentBase featuredEntry)
+                {
+                    if (productViewModels.Any(x => x.Code.Equals(featuredEntry.Code)))
+                    {
+                        productViewModels.RemoveAt(productViewModels.IndexOf(productViewModels.First(x => x.Code.Equals(featuredEntry.Code))));
+                    }
+                    else
+                    {
+                        productViewModels.RemoveAt(productViewModels.IndexOf(productViewModels.Last()));
+                    }
+                    
+                    productViewModels.Insert(index, featuredEntry.GetProductTileViewModel(market, currency, true));
+                    index++;
+                }
+                else if (content is GenericNode featuredNode)
+                {
+                    foreach(var nodeEntry in _contentLoader.GetChildren<EntryContentBase>(content.ContentLink)
+                        .Where(x => !(x is VariationContent))
+                        .Take(featuredNode.PartialPageSize))
+                    {
+                        if (productViewModels.Any(x => x.Code.Equals(nodeEntry.Code)))
+                        {
+                            productViewModels.RemoveAt(productViewModels.IndexOf(productViewModels.First(x => x.Code.Equals(nodeEntry.Code))));
+                        }
+                        else
+                        {
+                            productViewModels.RemoveAt(productViewModels.IndexOf(productViewModels.Last()));
+                        }
+                        productViewModels.Insert(index, nodeEntry.GetProductTileViewModel(market, currency, true));
+                        index++;
+                    }
+                }
+            }
+        }
     }
 }

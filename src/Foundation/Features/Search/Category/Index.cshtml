@@ -6,11 +6,12 @@
         Layout = null;
     }
 }
-
+@Html.FullRefreshPropertiesMetaData(new[] { "FeaturedProducts" })
 <div class="category-page">
     <div class="row">
         <div class="col-12">
             @Html.PropertyFor(x => x.CurrentContent.TopContentArea, new { CssClass = "row" })
+
         </div>
     </div>
     <div class="row">
@@ -23,38 +24,58 @@
             <input class="jsViewModeInfo" hidden id="FilterOption_ViewSwitcher" name="FilterOption.ViewSwitcher" type="text" value="@Model.FilterOption.ViewSwitcher" />
 
             <div class="row">
-                <div class="category-page__facets col-lg-3 jsFacets">
-                    @Html.Partial("_CategoriesFilter", Model.CategoriesFilter)
-                    @Html.Action("Facet", new { Model.CurrentContent, Model.FilterOption })
-                    @* @Html.Action("RecentlyBrowsed")*@
-                </div>
-                <div class="col-lg-9">
-                    @Html.Partial("_BreadCrumb", Model.BreadCrumb)
-                    <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
-                    <div class="row">
-                        @Html.Partial("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                @if (!PageEditing.PageIsInEditMode)
+                {
+                    <div class="category-page__facets col-lg-3 jsFacets">
+                        @Html.Partial("_CategoriesFilter", Model.CategoriesFilter)
+                        @Html.Action("Facet", new { Model.CurrentContent, Model.FilterOption })
                     </div>
-                    <div class="category-page__products jsProducts">
-                        @if (Model.FilterOption.ViewSwitcher == "Grid")
-                        {
-                            @Html.Partial("_ProductGrid", Model.ProductViewModels)
-                        }
-                        else
-                        {
-                            @Html.Partial("_ProductList", Model.ProductViewModels)
-                        }
-                    </div>
-                    <div class="row">
-                        @*@if (Model.ShowRecommendations)
+
+                    <div class="col-lg-9">
+                        @Html.Partial("_BreadCrumb", Model.BreadCrumb)
+                        <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
+                        <div class="row">
+                            @Html.Partial("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                        </div>
+                        <div class="category-page__products jsProducts">
+                            @if (Model.FilterOption.ViewSwitcher == "Grid")
                             {
-                                <div class="col-12">
-                                    <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
-                                  </div>
-                                  @{ Html.RenderAction("Index", "Recommendations", new {recommendations = Model.Recommendations});}
-                                </div>
-                            }*@
+                                @Html.Partial("_ProductGrid", Model.ProductViewModels)
+                            }
+                            else
+                            {
+                                @Html.Partial("_ProductList", Model.ProductViewModels)
+                            }
+                        </div>
+                        <div class="row">
+
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+            <div class="col-lg-3">
+                @Html.PropertyFor(x => x.CurrentContent.FeaturedProducts);
+            </div>
+                    <div class="col-lg-9">
+                       
+                        @Html.Partial("_BreadCrumb", Model.BreadCrumb)
+                        <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
+                        <div class="row">
+                            @Html.Partial("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                        </div>
+                        <div class="category-page__products jsProducts">
+                            @if (Model.FilterOption.ViewSwitcher == "Grid")
+                            {
+                                @Html.Partial("_ProductGrid", Model.ProductViewModels)
+                            }
+                            else
+                            {
+                                @Html.Partial("_ProductList", Model.ProductViewModels)
+                            }
+                        </div>
+                    </div>
+                }
             </div>
         }
     </div>
