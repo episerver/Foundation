@@ -54,6 +54,7 @@ a:hover {
 }
 
 pre {
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     display: block;
     font-size: 87.5%;
     color: #212529;
