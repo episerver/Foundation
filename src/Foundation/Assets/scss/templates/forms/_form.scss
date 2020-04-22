@@ -142,5 +142,18 @@
             top: -15px;
             font-size: 18px;
         }
+
+        .Form__Element .checkbox input[type="checkbox"] {
+            display: block;
+            float: left;
+            margin-right: 9px;
+            margin-top: 4px;
+        }
+
+        .FormChoice > div.checkbox {
+            text-align: left;
+            padding-left: 0px;
+            margin-top: 8px;
+        }
     }
 }
