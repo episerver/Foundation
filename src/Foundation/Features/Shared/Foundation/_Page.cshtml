@@ -1,7 +1,10 @@
 @using EPiServer.Web
 @using EPiServer.Web.Routing.Segments.Internal
 @using Foundation.Helpers
+
 @model FoundationPageData
+
+@Html.FullRefreshPropertiesMetaData(new[] { "PageImage" })
 
 @{
     var textStyle = "";
@@ -63,7 +66,8 @@
                 </div>
             </div>
         </div>
-        <div class="teaser-image" style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
+        <div class="teaser-image" @Html.EditAttributes(m => m.PageImage)
+             style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
             @if (Model.TeaserVideo != null)
             {
                 <video class="teaser-video" autoplay loop playsinline muted @Html.EditAttributes(x => x.TeaserVideo)>
