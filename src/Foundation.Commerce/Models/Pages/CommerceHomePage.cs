@@ -14,9 +14,8 @@ namespace Foundation.Commerce.Models.Pages
     public abstract class CommerceHomePage : CmsHomePage
     {
         [CultureSpecific]
-        [Display(Name = "Settings page", GroupName = SystemTabNames.Settings, Order = 200)]
+        [Display(Name = "Settings page", GroupName = CommerceTabNames.SiteStructure, Order = 100)]
         [AllowedTypes(new[] { typeof(CommerceSettingsPage) })]
-        [Required]
         public override ContentReference SettingsPage { get; set; }
 
         // Get settings

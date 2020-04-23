@@ -5,6 +5,7 @@ using EPiServer.ServiceLocation;
 using Foundation.Cms;
 using Foundation.Cms.SiteSettings;
 using Foundation.Cms.ViewModels;
+using Foundation.Commerce;
 using Foundation.Commerce.Models.Pages;
 using Foundation.Demo.ViewModels;
 using Foundation.Find.Cms.Facets.Config;
@@ -22,9 +23,8 @@ namespace Foundation.Demo.Models
     public class DemoHomePage : CommerceHomePage
     {
         [CultureSpecific]
-        [Display(Name = "Settings page", GroupName = SystemTabNames.Settings, Order = 200)]
+        [Display(Name = "Settings page", GroupName = CommerceTabNames.SiteStructure, Order = 100)]
         [AllowedTypes(new[] { typeof(DemoSettingsPage) })]
-        [Required]
         public override ContentReference SettingsPage { get; set; }
         
         // Get settings

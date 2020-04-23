@@ -83,20 +83,24 @@ namespace Foundation.Cms.Pages
 
 
         #region Styling
-        [Display(Name = "Styling", GroupName = CmsTabNames.Styles, Order = 130)]
-        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<StylingModel>))]
-        public virtual IList<StylingModel> Styling { get; set; }
+        [Display(Name = "Color options", GroupName = CmsTabNames.Styles, Order = 130)]
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<ColorModel>))]
+        public virtual IList<ColorModel> ColorOptions { get; set; }
         #endregion
     }
 
-    public class StylingModel
+    public class ColorModel
     {
-        public string Property { get; set; }
-        public string Value { get; set; }
+        [Display(Name = "Color name")]
+        public string ColorName { get; set; }
+
+        [Display(Name = "Color code")]
+        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
+        public string ColorCode { get; set; }
     }
 
     [PropertyDefinitionTypePlugIn]
-    public class CustomDataPropertyList : PropertyList<StylingModel>
+    public class ColorPropertyList : PropertyList<ColorModel>
     {
     }
 }

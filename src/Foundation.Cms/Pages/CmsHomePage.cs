@@ -24,9 +24,8 @@ namespace Foundation.Cms.Pages
         #endregion
 
         [CultureSpecific]
-        [Display(Name = "Settings page", GroupName = SystemTabNames.Settings, Order = 200)]
+        [Display(Name = "Settings page", GroupName = "Site structure", Order = 100)]
         [AllowedTypes(new[] { typeof(CmsSettingsPage) })]
-        [Required]
         public virtual ContentReference SettingsPage { get; set; }
 
 

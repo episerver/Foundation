@@ -21,6 +21,16 @@ namespace Foundation.Cms.SiteSettings
         }
 
         public T GetSettingProperty<T>(string propertyName, CmsSettingsPage settingsPage) => (T)_GetProperty(propertyName, settingsPage);
+        public T GetSettingProperty<T>(string propertyName, CmsHomePage homePage)
+        {
+            if (ContentReference.IsNullOrEmpty(homePage.SettingsPage))
+            {
+                return default(T);
+            }
+
+            var settingsPage = _contentLoader.Get<CmsSettingsPage>(homePage.SettingsPage);
+            return (T)_GetProperty(propertyName, settingsPage);
+        }
 
         public T GetSiteSettings<T>(CmsHomePage homePage) where T : CmsSiteSettings, new()
         {
