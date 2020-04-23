@@ -4,7 +4,7 @@
 
     "epi/_Module",
     "epi/routes",
-    "epi/dependency"
+    "epi/dependency",
 ], function (
     declare,
     aspect,
