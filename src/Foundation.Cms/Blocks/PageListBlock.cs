@@ -63,16 +63,12 @@ namespace Foundation.Cms.Blocks
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
-        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
-        [Display(Name = "Overlay color", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 120)]
+        [Display(Name = "Overlay color (hex or rgba)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 120)]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string OverlayColor { get; set; }
 
-        [Range(0, 1, ErrorMessage = "Opacity only allows value between 0 and 1")]
-        [Display(Name = "Overlay opacity", Description = "Opacity of the overlay color", GroupName = SystemTabNames.Content, Order = 121)]
-        public virtual double OverlayOpacity { get; set; }
-
-        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
-        [Display(Name = "Overlay text color", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 130)]
+        [Display(Name = "Overlay text color (hex or rgba)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 130)]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string OverlayTextColor { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
@@ -86,7 +82,6 @@ namespace Foundation.Cms.Blocks
             PreviewOption = PreviewOptions.Full;
             SortOrder = FilterSortOrder.PublishedDescending;
             OverlayColor = "black";
-            OverlayOpacity = 0.5;
             OverlayTextColor = "white";
         }
     }
