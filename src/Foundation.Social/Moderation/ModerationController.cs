@@ -18,7 +18,7 @@ namespace Foundation.Social.Moderation
         {
             var model = new ModerationViewModel
             {
-                Comments = _commentManagerService.Get(1, 10000, out var total).ToList(),
+                Comments = _commentManagerService.Get(1, 100, out var total).ToList(),
             };
 
             return View(model);
