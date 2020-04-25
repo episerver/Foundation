@@ -17,7 +17,9 @@
 @import
     'layout/header',
     'layout/footer',
-    'layout/navigation-bar';
+    'layout/navigation-bar',
+    'layout/navigation',
+    'layout/mobile-navigation';
 
 // 5. Components
 @import
@@ -27,15 +29,12 @@
     'components/select-menu',
     'components/icon-menu',
     'components/hamburger-menu',
-    'components/navigation',
-    'components/mobile-navigation',
     'components/loading-box',
     'components/list-group',
     'components/dropdown',
     'components/table',
     'components/icon-buttons',
-    'components/easy-autocomplete',
-    'components/teaser';
+    'components/easy-autocomplete';
 
 // 6. Template specific styles
 @import
@@ -50,7 +49,8 @@
     'templates/widgets/toolbar',
     'templates/widgets/b2b-navigation',
     'templates/widgets/breadcrumb',
-    'templates/widgets/searchbox';
+    'templates/widgets/searchbox',
+    'templates/widgets/teaser';
 
 @import
     'templates/blocks/hero-block',
