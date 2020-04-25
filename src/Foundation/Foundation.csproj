@@ -1468,8 +1468,8 @@
     <Content Include="Assets\scss\components\_hamburger-menu.scss" />
     <Content Include="Assets\scss\components\_icon-menu.scss" />
     <Content Include="Assets\scss\templates\widgets\_market-selector.scss" />
-    <Content Include="Assets\scss\components\_mobile-navigation.scss" />
-    <Content Include="Assets\scss\components\_navigation.scss" />
+    <Content Include="Assets\scss\layout\_mobile-navigation.scss" />
+    <Content Include="Assets\scss\layout\_navigation.scss" />
     <Content Include="Assets\scss\templates\widgets\_product-tile.scss" />
     <Content Include="Assets\scss\components\_select-menu.scss" />
     <Content Include="Assets\scss\components\_textbox.scss" />
@@ -1495,7 +1495,7 @@
     <Content Include="Assets\scss\templates\widgets\_logged-in-user.scss" />
     <Content Include="Assets\scss\templates\pages\_order-pads.scss" />
     <Content Include="Assets\scss\templates\widgets\_b2b-navigation.scss" />
-    <Content Include="Assets\scss\components\_teaser.scss" />
+    <Content Include="Assets\scss\templates\widgets\_teaser.scss" />
     <Content Include="Assets\scss\templates\pages\_orders-page.scss" />
     <Content Include="Assets\scss\components\_easy-autocomplete.scss" />
     <Content Include="Assets\scss\templates\pages\_users-page.scss" />
