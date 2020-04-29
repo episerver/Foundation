@@ -36,7 +36,7 @@ namespace Foundation.Features.Search.Category
         {
             if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
             {
-                viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "List" : currentContent.DefaultTemplate;
+                viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "Grid" : currentContent.DefaultTemplate;
             }
 
             var model = _viewModelFactory.Create<DemoSearchViewModel<GenericNode>, GenericNode>(currentContent, new CommerceArgs
@@ -60,7 +60,7 @@ namespace Foundation.Features.Search.Category
         {
             if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
             {
-                viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "List" : currentContent.DefaultTemplate;
+                viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "Grid" : currentContent.DefaultTemplate;
             }
 
             return PartialView("_Facet", viewModel);

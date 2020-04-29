@@ -65,7 +65,7 @@ namespace Foundation.Features.Search
 
             if (string.IsNullOrEmpty(filterOptions.ViewSwitcher))
             {
-                filterOptions.ViewSwitcher = "List";
+                filterOptions.ViewSwitcher = "Grid";
             }
 
             var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
