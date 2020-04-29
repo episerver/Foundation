@@ -73,7 +73,7 @@ namespace Foundation.Commerce.Models.Catalog
         {
             base.SetDefaultValues(contentType);
             ShowRecommendations = true;
-            DefaultTemplate = "List";
+            DefaultTemplate = "Grid";
         }
     }
 }
