@@ -19,6 +19,7 @@ namespace Foundation.Demo.ViewModels
 
         public bool ShowProductSearchResults { get; set; }
         public bool ShowContentSearchResults { get; set; }
+        public bool ShowPdfSearchResults { get; set; }
         public IEnumerable<Recommendation> Recommendations { get; set; }
 
     }

@@ -50,6 +50,7 @@ namespace Foundation.Find.Cms.ViewModels
             }
 
             model.ContentSearchResult = _searchService.SearchContent(cmsArgs.FilterOption);
+            model.PdfSearchResult = _searchService.SearchPdf(cmsArgs.FilterOption);
             model.CurrentContent = currentContent;
             model.FilterOption = cmsArgs.FilterOption;
             model.Query = cmsArgs.FilterOption.Q;

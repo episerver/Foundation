@@ -113,25 +113,43 @@ namespace Foundation.Features.Search
                 });
             }
 
-            var productCount = viewModel.ProductViewModels?.Count() ?? 0;
-            var contentCount = viewModel.ContentSearchResult.Hits?.Count() ?? 0;
+            if (startPage.ShowPdfSearchResults)
+            {
+                viewModel.PdfSearchResult = _cmsSearchService.SearchPdf(new CmsFilterOptionViewModel()
+                {
+                    Q = filterOptions.Q,
+                    PageSize = 5,
+                    Page = filterOptions.SearchPdf ? filterOptions.Page : 1,
+                    SectionFilter = filterOptions.SectionFilter
+                });
+            }
 
-            if (productCount + contentCount == 1)
+            var productCount = viewModel.ProductViewModels?.Count() ?? 0;
+            var contentCount = viewModel.ContentSearchResult?.Hits?.Count() ?? 0;
+            var pdfCount = viewModel.PdfSearchResult?.Hits?.Count() ?? 0;
+
+            if (productCount + contentCount + pdfCount == 1)
             {
                 if (productCount == 1)
                 {
                     var product = viewModel.ProductViewModels.FirstOrDefault();
                     return Redirect(product.Url);
                 }
-                else
+                if (contentCount == 1)
                 {
                     var content = viewModel.ContentSearchResult.Hits.FirstOrDefault();
                     return Redirect(content.Url);
                 }
+                if (pdfCount == 1)
+                {
+                    var content = viewModel.PdfSearchResult.Hits.FirstOrDefault();
+                    return Redirect(content.Url);
+                }
             }
 
-            viewModel.ShowContentSearchResults = startPage.ShowContentSearchResults;
             viewModel.ShowProductSearchResults = startPage.ShowProductSearchResults;
+            viewModel.ShowContentSearchResults = startPage.ShowContentSearchResults;
+            viewModel.ShowPdfSearchResults = startPage.ShowPdfSearchResults;
 
             return View(viewModel);
         }
@@ -144,6 +162,7 @@ namespace Foundation.Features.Search
             var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
             var productCount = 0;
             var contentCount = 0;
+            var pdfCount = 0;
 
             var model = new DemoSearchViewModel<SearchResultPage>();
 
@@ -180,20 +199,41 @@ namespace Foundation.Features.Search
                 contentCount = contentResult?.Hits.Count() ?? 0;
             }
 
-            if (productCount + contentCount == 1)
+            if (startPage.ShowPdfSearchResults)
+            {
+                var pdfResult = _cmsSearchService.SearchPdf(new CmsFilterOptionViewModel()
+                {
+                    Q = search,
+                    PageSize = 5,
+                    Page = 1
+                });
+                model.PdfSearchResult = pdfResult;
+                pdfCount = pdfResult?.Hits.Count() ?? 0;
+            }
+
+            if (productCount + contentCount + pdfCount == 1)
             {
                 if (productCount == 1)
                 {
-                    model.RedirectUrl = redirectUrl;
+                    var product = model.ProductViewModels.FirstOrDefault();
+                    redirectUrl = product.Url;
                 }
-                else
+                if (contentCount == 1)
                 {
-                    model.RedirectUrl = redirectUrl;
+                    var content = model.ContentSearchResult.Hits.FirstOrDefault();
+                    redirectUrl = content.Url;
+                }
+                if (pdfCount == 1)
+                {
+                    var pdf = model.PdfSearchResult.Hits.FirstOrDefault();
+                    redirectUrl = pdf.Url;
                 }
             }
+            model.RedirectUrl = redirectUrl;
 
-            model.ShowContentSearchResults = startPage.ShowContentSearchResults;
             model.ShowProductSearchResults = startPage.ShowProductSearchResults;
+            model.ShowContentSearchResults = startPage.ShowContentSearchResults;
+            model.ShowPdfSearchResults = startPage.ShowPdfSearchResults;
 
             return View("_QuickSearchAll", model);
         }
