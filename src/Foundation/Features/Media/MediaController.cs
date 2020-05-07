@@ -24,12 +24,6 @@ namespace Foundation.Features.Media
             {
                 case VideoFile videoFile:
                     var videoViewModel = new VideoFileViewModel
-                    {
-                        DisplayControls = videoFile.DisplayControls,
-                        Autoplay = videoFile.Autoplay,
-                        Copyright = videoFile.Copyright
-                    };
-
                     if (PageEditing.PageIsInEditMode)
                     {
                         videoViewModel.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });

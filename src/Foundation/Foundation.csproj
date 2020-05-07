@@ -965,6 +965,7 @@
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Features\Preview\PreviewControllerHelper.cs" />
     <Compile Include="Features\Preview\MediaDataPreviewController.cs" />
+    <Compile Include="Features\Preview\VideoFilePreviewController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
@@ -1951,6 +1952,16 @@
     <Content Include="modules\_protected\Shell\Shell.zip" />
     <Content Include="modules\_protected\CMS\web.config" />
     <Content Include="modules\_protected\CMS\CMS.zip" />
+    <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
+    <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
+    <Content Include="modules\_protected\episerver-labs-content-manager\web.config" />
+    <Content Include="modules\_protected\episerver-labs-content-manager\episerver-labs-content-manager.zip" />
+    <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
+    <Content Include="modules\_protected\episerver-labs-grid-view\episerver-labs-grid-view.zip" />
+    <Content Include="Assets\scss\templates\media\_video-file.scss" />
+    <Content Include="Features\Preview\VideoFilePreview.cshtml" />
+    <Content Include="Features\Search\_SearchPdf.cshtml" />
+    <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
     <Content Include="modules\_protected\advanced-cms.Reviews\web.config" />
     <Content Include="modules\_protected\advanced-cms.Reviews\advanced-cms.Reviews.zip" />
     <Content Include="modules\_protected\advanced-cms.ExternalReviews\web.config" />
