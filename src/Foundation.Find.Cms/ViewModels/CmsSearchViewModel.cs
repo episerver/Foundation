@@ -14,6 +14,7 @@ namespace Foundation.Find.Cms.ViewModels
         public bool IsMobile { get; set; }
         public string RedirectUrl { get; set; }
         public ContentSearchViewModel ContentSearchResult { get; set; }
+        public ContentSearchViewModel PdfSearchResult { get; set; }
 
         public CmsSearchViewModel()
         {
