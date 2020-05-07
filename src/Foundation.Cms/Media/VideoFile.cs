@@ -1,4 +1,5 @@
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web;
@@ -6,22 +7,33 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Media
 {
-    [ContentType(DisplayName = "Video File", GUID = "8a9d9d4b-cd4b-40e8-a777-414cfbda7770", Description = "")]
     [MediaDescriptor(ExtensionString = "mp4,flv,webm")]
+    [ContentType(DisplayName = "Video File", GUID = "8a9d9d4b-cd4b-40e8-a777-414cfbda7770", Description = "")]
     public class VideoFile : VideoData
     {
-        /// <summary>
-        /// Gets or sets the copyright.
-        /// </summary>
-        public virtual string Copyright { get; set; }
-
-        /// <summary>
-        /// Gets or sets the URL to the preview image.
-        /// </summary>
         [UIHint(UIHint.Image)]
+        [Display(Name = "Preview image", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual ContentReference PreviewImage { get; set; }
 
+        [Display(GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual string Copyright { get; set; }
+
+        [Display(Name = "Display controls", GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual bool DisplayControls { get; set; }
+
+        [Display(GroupName = SystemTabNames.Content, Order = 40)]
+        public virtual bool Autoplay { get; set; }
+
         [Editable(false)]
+        [Display(Name = "File size", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual string FileSize { get; set; }
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            Autoplay = false;
+            DisplayControls = true;
+        }
     }
 }
