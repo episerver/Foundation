@@ -1,7 +1,4 @@
-﻿@using EPiServer.Find.Api
-@using EPiServer.Find.UnifiedSearch
-
-@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
+﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
 @{
     Layout = null;
 }
@@ -14,5 +11,9 @@
     if (Model.ShowContentSearchResults)
     {
         Html.RenderPartial("_QuickSearchContent", Model);
+    }
+    if (Model.ShowPdfSearchResults)
+    {
+        Html.RenderPartial("_QuickSearchPdf", Model);
     }
 }
