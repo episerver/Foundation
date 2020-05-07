@@ -74,6 +74,50 @@ namespace Foundation.Find.Cms
             return model;
         }
 
+        public ContentSearchViewModel SearchPdf(CmsFilterOptionViewModel filterOptions)
+        {
+            var model = new ContentSearchViewModel
+            {
+                FilterOption = filterOptions
+            };
+
+            if (!filterOptions.Q.IsNullOrEmpty())
+            {
+                var siteId = SiteDefinition.Current.Id;
+                var query = _findClient.UnifiedSearchFor(filterOptions.Q, _findClient.Settings.Languages.GetSupportedLanguage(ContentLanguage.PreferredCulture) ?? Language.None)
+                    .UsingSynonyms()
+                    .TermsFacetFor(x => x.SearchSection)
+                    .FilterFacet("AllSections", x => x.SearchSection.Exists())
+                    .Filter(x => x.MatchType(typeof(FoundationPdfFile)))
+                    .Skip((filterOptions.Page - 1) * filterOptions.PageSize)
+                    .Take(filterOptions.PageSize)
+                    .ApplyBestBets();
+
+                // obey DNT
+                var doNotTrackHeader = System.Web.HttpContext.Current.Request.Headers.Get("DNT");
+                if ((doNotTrackHeader == null || doNotTrackHeader.Equals("0")) && filterOptions.TrackData)
+                {
+                    query = query.Track();
+                }
+
+                if (!string.IsNullOrWhiteSpace(filterOptions.SectionFilter))
+                {
+                    query = query.FilterHits(x => x.SearchSection.Match(filterOptions.SectionFilter));
+                }
+
+                var hitSpec = new HitSpecification
+                {
+                    HighlightTitle = true,
+                    HighlightExcerpt = true
+                };
+
+                model.Hits = query.GetResult(hitSpec);
+                filterOptions.TotalCount = model.Hits.TotalMatching;
+            }
+
+            return model;
+        }
+
         public CategorySearchResults SearchByCategory(Pagination pagination)
         {
             if (pagination == null)

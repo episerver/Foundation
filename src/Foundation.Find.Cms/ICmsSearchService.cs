@@ -9,6 +9,7 @@ namespace Foundation.Find.Cms
     public interface ICmsSearchService
     {
         ContentSearchViewModel SearchContent(CmsFilterOptionViewModel filterOptions);
+        ContentSearchViewModel SearchPdf(CmsFilterOptionViewModel filterOptions);
         CategorySearchResults SearchByCategory(Pagination pagination);
         ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent;
     }
