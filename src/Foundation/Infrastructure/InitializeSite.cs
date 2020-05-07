@@ -25,7 +25,6 @@ namespace Foundation.Infrastructure
     {
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
-
             context.ConfigureFoundationCms();
             context.Services.Configure<ContentApiConfiguration>(c =>
             {

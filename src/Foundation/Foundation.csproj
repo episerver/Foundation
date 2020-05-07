@@ -964,6 +964,7 @@
     <Compile Include="Features\Preview\CatalogPartialPreviewController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Features\Preview\PreviewControllerHelper.cs" />
+    <Compile Include="Features\Preview\VideoFilePreviewController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
@@ -1062,7 +1063,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\scss\templates\catalog\" />
-    <Folder Include="Assets\scss\templates\media\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
@@ -1938,6 +1938,8 @@
     <Content Include="modules\_protected\episerver-labs-content-manager\episerver-labs-content-manager.zip" />
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
     <Content Include="modules\_protected\episerver-labs-grid-view\episerver-labs-grid-view.zip" />
+    <Content Include="Assets\scss\templates\media\_video-file.scss" />
+    <Content Include="Features\Preview\VideoFilePreview.cshtml" />
     <Content Include="Features\Search\_SearchPdf.cshtml" />
     <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
     <Content Include="modules\_protected\advanced-cms.Reviews\web.config" />
