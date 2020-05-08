@@ -57,7 +57,7 @@ namespace Foundation.Demo.Models
         [Display(Name = "Show contents in search results", GroupName = CommerceTabNames.SearchSettings, Order = 150)]
         public virtual bool ShowContentSearchResults { get; set; }
 
-        [Display(Name = "Show pdfs in search results", GroupName = CommerceTabNames.SearchSettings, Order = 175)]
+        [Display(Name = "Show PDFs in search results", GroupName = CommerceTabNames.SearchSettings, Order = 175)]
         public virtual bool ShowPdfSearchResults { get; set; }
 
         [Display(Name = "Include images in contents search results", GroupName = CommerceTabNames.SearchSettings, Order = 200)]
