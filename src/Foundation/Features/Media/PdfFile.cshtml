@@ -1,7 +1,11 @@
-﻿@model FoundationPdfFile
+﻿@using Foundation.Cms.ViewModels.Media
+
+@model FoundationPdfFileViewModel
 
 <div class="row">
     <div class="col-12">
-        <div class="jsPdfPreview" height="@Model.Height" mediaId="@Model.ContentLink.ID" mediaUrl="@Url.ContentUrl(Model.ContentLink)"></div>
+        <div class="jsPdfPreview" height="@Model.Height" mediaId="@Model.Id" mediaUrl="@Model.PdfLink"></div>
     </div>
 </div>
+
+<script></script>

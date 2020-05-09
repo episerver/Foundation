@@ -23,7 +23,7 @@ namespace Foundation.Features.Media
             switch (currentContent)
             {
                 case VideoFile videoFile:
-                    var model = new VideoFileViewModel
+                    var videoViewModel = new VideoFileViewModel
                     {
                         DisplayControls = videoFile.DisplayControls,
                         Autoplay = videoFile.Autoplay,
@@ -32,21 +32,54 @@ namespace Foundation.Features.Media
 
                     if (PageEditing.PageIsInEditMode)
                     {
-                        model.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
-                        model.PreviewImage = ContentReference.IsNullOrEmpty(videoFile.PreviewImage) ? string.Empty :
+                        videoViewModel.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                        videoViewModel.PreviewImage = ContentReference.IsNullOrEmpty(videoFile.PreviewImage) ? string.Empty :
                            _urlResolver.GetUrl(videoFile.PreviewImage, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
                     }
                     else
                     {
-                        model.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink);
-                        model.PreviewImage = ContentReference.IsNullOrEmpty(videoFile.PreviewImage) ? string.Empty : _urlResolver.GetUrl(videoFile.PreviewImage);
+                        videoViewModel.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink);
+                        videoViewModel.PreviewImage = ContentReference.IsNullOrEmpty(videoFile.PreviewImage) ? string.Empty : _urlResolver.GetUrl(videoFile.PreviewImage);
                     }
-                   
-                    return PartialView("~/Features/Media/VideoFile.cshtml", model);
-                case ImageMediaData _:
-                    return PartialView("~/Features/Media/ImageMedia.cshtml", currentContent);
-                case FoundationPdfFile _:
-                    return PartialView("~/Features/Media/PdfFile.cshtml", currentContent as FoundationPdfFile);
+                    return PartialView("~/Features/Media/VideoFile.cshtml", videoViewModel);
+                case ImageMediaData image:
+                    var imageViewModel = new ImageMediaDataViewModel
+                    {
+                        Name = image.Name,
+                        Description = image.Description,
+                        ImageAlignment = image.ImageAlignment,
+                        PaddingStyles = image.PaddingStyles
+                    };
+
+                    if (PageEditing.PageIsInEditMode)
+                    {
+                        imageViewModel.ImageLink = _urlResolver.GetUrl(image.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                        imageViewModel.LinkToContent = ContentReference.IsNullOrEmpty(image.Link) ? string.Empty :
+                           _urlResolver.GetUrl(image.Link, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                    }
+                    else
+                    {
+                        imageViewModel.ImageLink = _urlResolver.GetUrl(image.ContentLink);
+                        imageViewModel.LinkToContent = ContentReference.IsNullOrEmpty(image.Link) ? string.Empty : _urlResolver.GetUrl(image.Link);
+                    }
+
+                    return PartialView("~/Features/Media/ImageMedia.cshtml", imageViewModel);
+                case FoundationPdfFile pdfFile:
+                    var pdfViewModel = new FoundationPdfFileViewModel
+                    {
+                        Height = pdfFile.Height
+                    };
+
+                    if (PageEditing.PageIsInEditMode)
+                    {
+                        pdfViewModel.PdfLink = _urlResolver.GetUrl(pdfFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                    }
+                    else
+                    {
+                        pdfViewModel.PdfLink = _urlResolver.GetUrl(pdfFile.ContentLink);
+                    }
+
+                    return PartialView("~/Features/Media/PdfFile.cshtml", pdfViewModel);
                 default:
                     return PartialView("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name);
             }

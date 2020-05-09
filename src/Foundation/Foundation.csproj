@@ -964,7 +964,7 @@
     <Compile Include="Features\Preview\CatalogPartialPreviewController.cs" />
     <Compile Include="Features\Pages\CommunityPage\CommunittyPageController.cs" />
     <Compile Include="Features\Preview\PreviewControllerHelper.cs" />
-    <Compile Include="Features\Preview\VideoFilePreviewController.cs" />
+    <Compile Include="Features\Preview\MediaDataPreviewController.cs" />
     <Compile Include="Infrastructure\PostClickInterceptor.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
     <Compile Include="Features\CatalogContent\Variation\VariationController.cs" />
@@ -1942,6 +1942,9 @@
     <Content Include="Features\Preview\VideoFilePreview.cshtml" />
     <Content Include="Features\Search\_SearchPdf.cshtml" />
     <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
+    <Content Include="Features\Preview\PdfFilePreview.cshtml" />
+    <Content Include="Features\Preview\ImageMediaPreview.cshtml" />
+    <Content Include="Features\Preview\NoPreview.cshtml" />
     <Content Include="modules\_protected\advanced-cms.Reviews\web.config" />
     <Content Include="modules\_protected\advanced-cms.Reviews\advanced-cms.Reviews.zip" />
     <Content Include="modules\_protected\advanced-cms.ExternalReviews\web.config" />
