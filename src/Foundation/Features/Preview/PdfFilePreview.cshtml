@@ -1,0 +1,17 @@
+﻿@using Foundation.Cms.ViewModels.Media
+
+@model FoundationPdfFileViewModel
+
+<div class="row">
+    <div class="col-12">
+        <div class="jsPdfPreview--edit-mode" height="@Model.Height" mediaId="@Model.Id" mediaUrl="@Model.PdfLink"></div>
+    </div>
+</div>
+
+<script src="~/Assets/js/vendors/pdfobject/PdfObject.js"></script>
+<script>
+    var elementPreview = document.getElementsByClassName('jsPdfPreview--edit-mode')[0];
+    var mediaUrlPreview = elementPreview.getAttribute('mediaUrl');
+    var heightPreview = elementPreview.getAttribute('height');
+    PDFObject.embed(mediaUrlPreview, elementPreview, { height: heightPreview + "px" });
+</script>
