@@ -1,10 +1,10 @@
-﻿@model Foundation.Cms.Media.ImageMediaData
+﻿@model Foundation.Cms.ViewModels.Media.ImageMediaDataViewModel
 
-@if (!ContentReference.IsNullOrEmpty(Model.ContentLink))
+@if (!string.IsNullOrEmpty(Model.ImageLink))
 {
-    <a @String.Format("href={0}", Url.ContentUrl(Model.Link))>
+    <a href="@(string.IsNullOrEmpty(Model.LinkToContent) ? "#" : Url.ContentUrl(Model.LinkToContent))">
         <div style="display: flex; @Model.ImageAlignment; @Model.PaddingStyles">
-            <img src="@Url.ContentUrl(Model.ContentLink)" alt="@Model.Description" title="@(Model.Description ?? Model.Name)" class="img-fluid" />
+            <img src="@Url.ContentUrl(Model.ImageLink)" alt="@Model.Description" title="@(Model.Description ?? Model.Name)" class="img-fluid" />
         </div>
     </a>
 }

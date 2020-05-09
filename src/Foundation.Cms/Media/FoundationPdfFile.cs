@@ -7,17 +7,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Media
 {
-    [ContentType(DisplayName = "Pdf File", GUID = "ee7e1eb6-2b6d-4cc9-8ed1-56ec0cbaa40b", Description = "")]
     [MediaDescriptor(ExtensionString = "pdf")]
-    public class FoundationPdfFile : PdfFile
+    [ContentType(DisplayName = "Pdf File", GUID = "ee7e1eb6-2b6d-4cc9-8ed1-56ec0cbaa40b", Description = "")]
+    public class FoundationPdfFile : PdfFile, IPdfFile
     {
         [Display(
             Name = "Height",
             Description = "The height of PDF preview embed (px)",
             GroupName = SystemTabNames.Content,
             Order = 100)]
-        [BackingType(typeof(PropertyFloatNumber))]
-        public virtual double Height { get; set; }
+        public virtual int Height { get; set; }
 
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            Height = 500;
+        }
     }
 }
