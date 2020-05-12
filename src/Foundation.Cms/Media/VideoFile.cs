@@ -24,10 +24,6 @@ namespace Foundation.Cms.Media
         [Display(GroupName = SystemTabNames.Content, Order = 40)]
         public virtual bool Autoplay { get; set; }
 
-        [Editable(false)]
-        [Display(Name = "File size", GroupName = SystemTabNames.Content, Order = 50)]
-        public virtual string FileSize { get; set; }
-
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);

@@ -53,33 +53,16 @@ namespace Foundation.Cms
         void IInitializableModule.Initialize(InitializationEngine context)
         {
             context.InitComplete += ContextOnInitComplete;
-
-            var eventRegistry = ServiceLocator.Current.GetInstance<IContentEvents>();
-            eventRegistry.CreatingContent += CalculateFileSize;
-            eventRegistry.SavingContent += CalculateFileSize;
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
         {
             context.InitComplete -= ContextOnInitComplete;
-
-            var eventRegistry = ServiceLocator.Current.GetInstance<IContentEvents>();
-            eventRegistry.CreatingContent -= CalculateFileSize;
-            eventRegistry.SavingContent -= CalculateFileSize;
         }
 
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {
             _services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
-        }
-
-        private void CalculateFileSize(object sender, ContentEventArgs e)
-        {
-            var content = e.Content as VideoFile;
-            if (content == null)
-                return;
-            var fileSize = ContentHelpers.GetFileSize(content);
-            content.FileSize = fileSize;
         }
     }
 }
