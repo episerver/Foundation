@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+
+  <language name="English" id="en">
+    <contenttypes>
+      <datetimerangeelementblock>
+        <start>Start</start>
+        <end>End</end>
+      </datetimerangeelementblock>
+    </contenttypes>
+  </language>
+</languages>

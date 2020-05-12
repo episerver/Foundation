@@ -4,7 +4,7 @@
   <language name="Nederlands" id="nl">
 
     <groups>
-      <basicelements>Basic Elements</basicelements>
+      <basicelements>Basiselementen</basicelements>
     </groups>
 
     <enums>
@@ -13,15 +13,15 @@
           <samples>
             <criteria>
               <submissionstatus>
-                <hassubmitted>Has submitted</hassubmitted>
-                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+                <hassubmitted>Is ingestuurd</hassubmitted>
+                <hasnotsubmitted>Is niet ingestuurd</hasnotsubmitted>
               </submissionstatus>
 
               <fieldvaluecomparecondition>
-                <equals>equals</equals>
-                <notequals>not equal to</notequals>
-                <contains>contains</contains>
-                <notcontains>does not contain</notcontains>
+                <equals>is gelijk aan</equals>
+                <notequals>is niet gelijk aan</notequals>
+                <contains>bevat</contains>
+                <notcontains>bevat niet</notcontains>
               </fieldvaluecomparecondition>
             </criteria>
           </samples>
@@ -34,44 +34,44 @@
         <samples>
           <criteria>
             <formcriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form</displayname>
-              <description>Checks for form submission by the visitor.</description>
-              <submissionstatus>Submission status</submissionstatus>
-              <selectedform>Selected form</selectedform>
+              <category>Episerver-formulieren</category>
+              <displayname>Ingestuurd formulier</displayname>
+              <description>Controles op het indienen van formulieren door de bezoeker.</description>
+              <submissionstatus>Status van indienen</submissionstatus>
+              <selectedform>Geselecteerd formulier</selectedform>
             </formcriterion>
 
             <submittedvaluecriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form Value</displayname>
-              <description>Checks for form submission value by the visitor.</description>
-              <selectedform>Selected form</selectedform>
-              <selectedfield>Selected field</selectedfield>
-              <condition>Condition</condition>
-              <value>Value</value>
+              <category>Episerver-formulieren</category>
+              <displayname>Ingezonden formulierwaarde</displayname>
+              <description>Controles op de indienwaarde van formulier door de bezoeker.</description>
+              <selectedform>Geselecteerd formulier</selectedform>
+              <selectedfield>Geselecteerd veld</selectedfield>
+              <condition>Voorwaarde</condition>
+              <value>Waarde</value>
             </submittedvaluecriterion>
           </criteria>
 
           <datetimepickertype>
-            <datepicker>Date picker</datepicker>
-            <timepicker>Time picker</timepicker>
-            <datetimepicker>Date time picker</datetimepicker>
+            <datepicker>Datumkiezer</datepicker>
+            <timepicker>Tijdkiezer</timepicker>
+            <datetimepicker>Datumtijdkiezer</datetimepicker>
           </datetimepickertype>
 
           <confirmationdialog>
-            <title>Summary</title>
+            <title>Samenvatting</title>
             <buttons>
               <ok>OK</ok>
-              <cancel>Cancel</cancel>
+              <cancel>Annuleren</cancel>
             </buttons>
           </confirmationdialog>
 
           <editview>
-            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+            <requirejs>JavaScript is vereist om reCAPTCHA te tonen.</requirejs>
           </editview>
           <messages>
             <imagesubmitbutton>
-              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+              <initializationmessage>Dit is een knop voor het indienen van afbeeldingen. Kies er een afbeelding voor.</initializationmessage>
             </imagesubmitbutton>
           </messages>
         </samples>
@@ -83,24 +83,24 @@
             <statelabel>Provincie</statelabel>
             <postallabel>Postcode</postallabel>
             <countrylabel>Land</countrylabel>
-          </addresselement>          
+          </addresselement>
         </viewmode>
         <validators>
           <episerver.forms.samples.implementation.validation.datetimevalidator>
-            <displayname>Datetime validator</displayname>
-            <message>Enter a valid date time in {0} hh:mm format.</message>
+            <displayname>Datumtijdvalidator</displayname>
+            <message>Voer een geldige datumtijd in, in de indeling {0} uu:mm.</message>
           </episerver.forms.samples.implementation.validation.datetimevalidator>
           <episerver.forms.samples.implementation.validation.datevalidator>
-            <displayname>Date validator</displayname>
-            <message>Enter a valid date in {0} format.</message>
+            <displayname>Datumvalidator</displayname>
+            <message>Voer een geldige datum in, in de indeling {0}.</message>
           </episerver.forms.samples.implementation.validation.datevalidator>
           <episerver.forms.samples.implementation.validation.timevalidator>
-            <displayname>Time validator</displayname>
-            <message>Enter a valid time, e.g. 10:20 AM.</message>
+            <displayname>Tijdvalidator</displayname>
+            <message>Voer een geldige tijd in, bijv. 10:20 uur.</message>
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
-            <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <displayname>reCaptcha-validator</displayname>
+            <message>Ongeldige captcha-waarde.</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>Datum-/tijdsperiode</displayname>
@@ -115,40 +115,40 @@
     </episerver>
     <contenttypes>
       <datetimeelementblock>
-        <name>Date time</name>
+        <name>Datum tijd</name>
         <description></description>
-        <newitemdefaultname>New date time</newitemdefaultname>
+        <newitemdefaultname>Nieuwe datum tijd</newitemdefaultname>
         <properties>
 
           <description>
-            <caption>Tooltip</caption>
-            <help>Displays as a tooltip or help text of an element.</help>
+            <caption>Knopinfo</caption>
+            <help>Wordt weergegeven als knopinfo of helptekst van een element.</help>
           </description>
 
           <pickertype>
-            <caption>Picker type</caption>
-            <help>Select picker type for the property.</help>
+            <caption>Type kiezer</caption>
+            <help>Selecteer het type kiezer voor de eigenschap.</help>
           </pickertype>
         </properties>
       </datetimeelementblock>
       <recaptchaelementblock>
         <name>reCAPTCHA</name>
         <description></description>
-        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <newitemdefaultname>Nieuwe reCAPTCHA</newitemdefaultname>
         <properties>
           <sitekey>
-            <caption>Site key</caption>
-            <help>Enter site key for reCAPTCHA.</help>
+            <caption>Locatiesleutel</caption>
+            <help>Voer locatiesleutel in voor reCAPTCHA.</help>
           </sitekey>
           <secretkey>
-            <caption>Secret key</caption>
-            <help>The shared key between your site and reCAPTCHA.</help>
+            <caption>Geheime sleutel</caption>
+            <help>De gedeelde sleutel tussen uw locatie en reCAPTCHA.</help>
           </secretkey>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>Datum-/tijdsperiode</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Nieuwe datum-/tijdsperiode</newitemdefaultname>
         <properties>
 
@@ -165,7 +165,7 @@
       </datetimerangeelementblock>
       <addresseselementblock>
         <name>Adres</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Nieuw adres</newitemdefaultname>
         <properties>
 
@@ -184,27 +184,27 @@
           </mapheight>
           <addresslabel>
             <caption>Detail adres</caption>
-            <help/>
+            <help></help>
           </addresslabel>
           <streetlabel>
             <caption>Label straat</caption>
-            <help/>
+            <help></help>
           </streetlabel>
           <citylabel>
             <caption>Label stad</caption>
-            <help/>
+            <help></help>
           </citylabel>
           <statelabel>
             <caption>Label provincie</caption>
-            <help/>
+            <help></help>
           </statelabel>
           <postalLabel>
             <caption>Postlabel</caption>
-            <help/>
+            <help></help>
           </postalLabel>
           <countrylabel>
             <caption>Landelabel</caption>
-            <help/>
+            <help></help>
           </countrylabel>
         </properties>
       </addresseselementblock>

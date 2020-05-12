@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="OrderAddressEdit.ascx.cs"
 	Inherits="Mediachase.Commerce.Manager.Apps.Order.Modules.OrderAddressEdit" %>
 <%@ Register TagPrefix="mc2" Assembly="Mediachase.BusinessFoundation" Namespace="Mediachase.BusinessFoundation" %>
-<%@ Register TagPrefix="asp2" Assembly="Validators" Namespace="Sample.Web.UI.Compatibility" %>
 <%@ Register Src="~/Apps/Core/MetaData/EditTab.ascx" TagName="MetaData" TagPrefix="ecf" %>
 <div class="popup-outer" style="height: 475px;">
 	<asp:Label runat="server" ID="lblErrorInfo" Style="color: Red"></asp:Label>
@@ -42,7 +41,7 @@
 					        </td>
 					        <td class="FormFieldCell">
 						        <asp:TextBox runat="server" ID="FirstName" MaxLength="64" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator0" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator0" ValidationGroup="AddressMetaData"
 							        ControlToValidate="FirstName" Display="Dynamic" ErrorMessage="*" />
 					        </td>
 				        </tr>
@@ -52,7 +51,7 @@
 					        </td>
 					        <td class="FormFieldCell">
 						        <asp:TextBox runat="server" ID="LastName" MaxLength="64" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ValidationGroup="AddressMetaData"
 							        ControlToValidate="LastName" Display="Dynamic" ErrorMessage="*" />
 					        </td>
 				        </tr>
@@ -70,7 +69,7 @@
 					        </td>
 					        <td class="FormFieldCell">
 						        <asp:TextBox runat="server" ID="Line1" MaxLength="64" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ValidationGroup="AddressMetaData"
 							        ControlToValidate="Line1" Display="Dynamic" ErrorMessage="*" />
 					        </td>
 				        </tr>
@@ -88,7 +87,7 @@
 					        </td>
 					        <td class="FormFieldCell">
 						        <asp:TextBox runat="server" ID="City" MaxLength="64" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ValidationGroup="AddressMetaData"
 							        ControlToValidate="City" Display="Dynamic" ErrorMessage="*" />
 					        </td>
 				        </tr>
@@ -101,7 +100,7 @@
                                     DataMember="Country" DataValueField="Code" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged">
                                 </asp:DropDownList>
 						        <asp:TextBox runat="server" ID="tbCountryCode" MaxLength="50" ValidationGroup="AddressMetaData" Width="230" Visible="false"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ValidationGroup="AddressMetaData"
 							        ControlToValidate="ddlCountry" Display="Dynamic" ErrorMessage="*" />
 					        </td>
 				        </tr>
@@ -112,7 +111,7 @@
 					        <td class="FormFieldCell">
 					            <asp:DropDownList ID="ddlState" runat="server" DataTextField="Name" DataValueField="Name" ></asp:DropDownList>
 						        <asp:TextBox runat="server" ID="tbState" MaxLength="50" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="StateRequiredValidator" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="StateRequiredValidator" ValidationGroup="AddressMetaData"
 							        ControlToValidate="tbState" Display="Dynamic" ErrorMessage="*" Enabled="false"/>
 					        </td>
 				        </tr>
@@ -122,7 +121,7 @@
 					        </td>
 					        <td class="FormFieldCell">
 						        <asp:TextBox runat="server" ID="PostalCode" MaxLength="20" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ValidationGroup="AddressMetaData"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ValidationGroup="AddressMetaData"
 							        ControlToValidate="PostalCode" Display="Dynamic" ErrorMessage="*" />
 					        </td>
 				        </tr>
@@ -148,10 +147,10 @@
 					        </td>
 					        <td class="FormFieldCell">
 						        <asp:TextBox runat="server" ID="Email" MaxLength="64" ValidationGroup="AddressMetaData" Width="230"></asp:TextBox>
-						        <asp2:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ValidationGroup="AddressMetaData" Enabled="false"
+						        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ValidationGroup="AddressMetaData" Enabled="false"
 							        ControlToValidate="Email" Display="Dynamic" ErrorMessage="*" />
-						        <asp2:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="AddressMetaData"
-							        ControlToValidate="Email" Display="Dynamic" ErrorMessage="*" ValidationExpression="[\w\.-]+(\+[\w-]*)?@([\w-]+\.)+[\w-]+"></asp2:RegularExpressionValidator>
+						        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="AddressMetaData"
+							        ControlToValidate="Email" Display="Dynamic" ErrorMessage="*" ValidationExpression="[\w\.-]+(\+[\w-]*)?@([\w-]+\.)+[\w-]+"></asp:RegularExpressionValidator>
 					        </td>
 				        </tr>
 				    <ecf:metadata validationgroup="AddressMetaData" runat="server" id="MetaDataTab" />

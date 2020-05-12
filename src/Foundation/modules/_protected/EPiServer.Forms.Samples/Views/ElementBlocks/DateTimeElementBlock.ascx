@@ -13,14 +13,21 @@
     var formElement = Model.FormElement;
     var labelText = Model.Label; 
     var errorMessage = Model.GetErrorMessage();
+    var cssClasses = Model.GetValidationCssClasses();
 %>
 
-<div class="Form__Element Form__CustomElement FormDateTime <%: Model.GetValidationCssClasses() %>" data-epiforms-element-name="<%: formElement.ElementName %>">
+<div class="Form__Element Form__CustomElement FormDateTime <%: cssClasses %>" data-epiforms-element-name="<%: formElement.ElementName %>">
     <label for="<%: formElement.Guid %>" class="Form__Element__Caption"><%: labelText %></label>
     <input name="<%: formElement.ElementName %>" id="<%: formElement.Guid %>" type="text" class="Form__CustomInput FormDateTime__Input"
-        placeholder="<%: Model.PlaceHolder %>" value="<%: Model.GetDefaultValue() %>" <%= Model.AttributesString %> />
+	<% if (!string.IsNullOrWhiteSpace(Model.PlaceHolder)) { %>
+            placeholder="<%: Model.PlaceHolder %>"
+	<% } %> data-f-datainput
+		value="<%: Model.GetDefaultValue() %>" <%= Model.AttributesString %> 
+		aria-invalid="<%: Util.GetAriaInvalidByValidationCssClasses(cssClasses) %>" 
+		aria-describedby="<%: Util.GetAriaDescribedByElementName(formElement.ElementName) %>" />
 
-    <span data-epiforms-linked-name="<%: formElement.ElementName %>" class="Form__Element__ValidationError" style="<%: string.IsNullOrEmpty(errorMessage) ? "display:none" : "" %>;"><%: errorMessage %></span>
+    <span data-epiforms-linked-name="<%: formElement.ElementName %>" class="Form__Element__ValidationError" id="<%: Util.GetAriaDescribedByElementName(formElement.ElementName) %>"
+		style="<%: string.IsNullOrEmpty(errorMessage) ? "display:none" : "" %>;"><%: errorMessage %></span>
 
     <% if (!EPiServer.Editor.PageEditing.PageIsInEditMode) 
        {
@@ -30,8 +37,8 @@
         var __SamplesDateTimeElements = __SamplesDateTimeElements || [];
         __SamplesDateTimeElements.push({
             guid: "<%: formElement.Guid %>",
-                pickerType: "<%: pickerType %>"
-            });
+            pickerType: "<%: pickerType %>"
+        });
     </script>
     <% } %>
 </div>

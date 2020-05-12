@@ -4,22 +4,6 @@
         resetRecaptchaElements(event.target);
     });
 
-    $(".EPiServerForms").on("formsStepValidating", function (event) {
-        if (event.isValid == true) {
-            return;
-        }
-        // reset reCAPTCHA element if validation failed
-        resetRecaptchaElements(event.target);
-    });
-
-    $(".EPiServerForms").on("formsSubmitted", function (event) {
-        if (!event.returnedResult || !event.returnedResult.IsSuccess) {
-            // reset reCAPTCHA element if submit failed
-            resetRecaptchaElements(event.target);
-        }
-    });
-
-
     // reset reCAPTCH elements in target form
     function resetRecaptchaElements(target) {
 
