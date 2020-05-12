@@ -4,7 +4,7 @@
   <language name="Deutsch" id="de">
 
     <groups>
-      <basicelements>Basic Elements</basicelements>
+      <basicelements>Grundlegende Elemente</basicelements>
     </groups>
 
     <enums>
@@ -13,15 +13,15 @@
           <samples>
             <criteria>
               <submissionstatus>
-                <hassubmitted>Has submitted</hassubmitted>
-                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+                <hassubmitted>Hat übermittelt</hassubmitted>
+                <hasnotsubmitted>Hat nicht übermittelt</hasnotsubmitted>
               </submissionstatus>
 
               <fieldvaluecomparecondition>
-                <equals>equals</equals>
-                <notequals>not equal to</notequals>
-                <contains>contains</contains>
-                <notcontains>does not contain</notcontains>
+                <equals>gleich</equals>
+                <notequals>ungleich</notequals>
+                <contains>enthält</contains>
+                <notcontains>enthält nicht</notcontains>
               </fieldvaluecomparecondition>
             </criteria>
           </samples>
@@ -35,43 +35,43 @@
           <criteria>
             <formcriterion>
               <category>Episerver Forms</category>
-              <displayname>Submitted Form</displayname>
-              <description>Checks for form submission by the visitor.</description>
-              <submissionstatus>Submission status</submissionstatus>
-              <selectedform>Selected form</selectedform>
+              <displayname>Übermitteltes Formular</displayname>
+              <description>Prüft, ob der Besucher ein Formular übermittelt hat.</description>
+              <submissionstatus>Übermittlungsstatus</submissionstatus>
+              <selectedform>Ausgewähltes Formular</selectedform>
             </formcriterion>
 
             <submittedvaluecriterion>
               <category>Episerver Forms</category>
-              <displayname>Submitted Form Value</displayname>
-              <description>Checks for form submission value by the visitor.</description>
-              <selectedform>Selected form</selectedform>
-              <selectedfield>Selected field</selectedfield>
-              <condition>Condition</condition>
-              <value>Value</value>
+              <displayname>Übermittelter Formularwert</displayname>
+              <description>Prüft, ob der Besucher einen bestimmten Wert übermittelt hat.</description>
+              <selectedform>Ausgewähltes Formular</selectedform>
+              <selectedfield>Ausgewähltes Feld</selectedfield>
+              <condition>Bedingung</condition>
+              <value>Wert</value>
             </submittedvaluecriterion>
           </criteria>
 
           <datetimepickertype>
-            <datepicker>Date picker</datepicker>
-            <timepicker>Time picker</timepicker>
-            <datetimepicker>Date time picker</datetimepicker>
+            <datepicker>Datumsauswahl</datepicker>
+            <timepicker>Zeitauswahl</timepicker>
+            <datetimepicker>Auswahl von Datum und Uhrzeit</datetimepicker>
           </datetimepickertype>
 
           <confirmationdialog>
-            <title>Summary</title>
+            <title>Zusammenfassung</title>
             <buttons>
               <ok>OK</ok>
-              <cancel>Cancel</cancel>
+              <cancel>Abbrechen</cancel>
             </buttons>
           </confirmationdialog>
 
           <editview>
-            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+            <requirejs>Zur Anzeige von reCAPTCHA wird JavaScript benötigt.</requirejs>
           </editview>
           <messages>
             <imagesubmitbutton>
-              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+              <initializationmessage>Dies ist eine Schaltfläche zum Senden von Bildern. Bitte wählen Sie ein Bild aus.</initializationmessage>
             </imagesubmitbutton>
           </messages>
         </samples>
@@ -83,24 +83,24 @@
             <statelabel>Zustand</statelabel>
             <postallabel>Postleitzahl</postallabel>
             <countrylabel>Land</countrylabel>
-          </addresselement>          
+          </addresselement>
         </viewmode>
         <validators>
           <episerver.forms.samples.implementation.validation.datetimevalidator>
-            <displayname>Datetime validator</displayname>
-            <message>Enter a valid date time in {0} hh:mm format.</message>
+            <displayname>Datum- und Uhrzeitprüfer</displayname>
+            <message>Geben Sie einen gültigen Zeitpunkt im Format {0} hh:mm an.</message>
           </episerver.forms.samples.implementation.validation.datetimevalidator>
           <episerver.forms.samples.implementation.validation.datevalidator>
-            <displayname>Date validator</displayname>
-            <message>Enter a valid date in {0} format.</message>
+            <displayname>Datumsprüfer</displayname>
+            <message>Geben Sie ein gültiges Datum im Format {0} an.</message>
           </episerver.forms.samples.implementation.validation.datevalidator>
           <episerver.forms.samples.implementation.validation.timevalidator>
-            <displayname>Time validator</displayname>
-            <message>Enter a valid time, e.g. 10:20 AM.</message>
+            <displayname>Zeitprüfer</displayname>
+            <message>Geben Sie eine gültige Uhrzeit an, z. B. 10:20 Uhr.</message>
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
-            <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <displayname>Recaptcha-Prüfer</displayname>
+            <message>Ungültiger Captcha-Wert.</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>Zeitraum</displayname>
@@ -115,40 +115,40 @@
     </episerver>
     <contenttypes>
       <datetimeelementblock>
-        <name>Date time</name>
+        <name>Datum und Uhrzeit</name>
         <description></description>
-        <newitemdefaultname>New date time</newitemdefaultname>
+        <newitemdefaultname>Neues Datum und Uhrzeit</newitemdefaultname>
         <properties>
 
           <description>
-            <caption>Tooltip</caption>
-            <help>Displays as a tooltip or help text of an element.</help>
+            <caption>Textfenster</caption>
+            <help>Anzeige als Textfenster oder Hilfetext eines Elements</help>
           </description>
 
           <pickertype>
-            <caption>Picker type</caption>
-            <help>Select picker type for the property.</help>
+            <caption>Art der Auswahl</caption>
+            <help>Den Auswahltyp für die Immobilie auswählen.</help>
           </pickertype>
         </properties>
       </datetimeelementblock>
       <recaptchaelementblock>
         <name>reCAPTCHA</name>
         <description></description>
-        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <newitemdefaultname>Neues reCAPTCHA</newitemdefaultname>
         <properties>
           <sitekey>
-            <caption>Site key</caption>
-            <help>Enter site key for reCAPTCHA.</help>
+            <caption>Seitencode</caption>
+            <help>Geben Sie den Seitencode für reCAPTCHA ein.</help>
           </sitekey>
           <secretkey>
-            <caption>Secret key</caption>
-            <help>The shared key between your site and reCAPTCHA.</help>
+            <caption>Geheimer Code</caption>
+            <help>Der gemeinsame Code zwischen Ihrer Website und reCAPTCHA.</help>
           </secretkey>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>Zeitraum</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Neuer Zeitraum</newitemdefaultname>
         <properties>
 
@@ -165,7 +165,7 @@
       </datetimerangeelementblock>
       <addresseselementblock>
         <name>Adresse</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Neue Adresse</newitemdefaultname>
         <properties>
 
@@ -184,27 +184,27 @@
           </mapheight>
           <addresslabel>
             <caption>Adressenzusatz</caption>
-            <help/>
+            <help></help>
           </addresslabel>
           <streetlabel>
             <caption>Straßen-Code</caption>
-            <help/>
+            <help></help>
           </streetlabel>
           <citylabel>
             <caption>Stadt-Code</caption>
-            <help/>
+            <help></help>
           </citylabel>
           <statelabel>
             <caption>Bundesland-Code</caption>
-            <help/>
+            <help></help>
           </statelabel>
           <postalLabel>
             <caption>Postleitzahl</caption>
-            <help/>
+            <help></help>
           </postalLabel>
           <countrylabel>
             <caption>Landes-Code</caption>
-            <help/>
+            <help></help>
           </countrylabel>
         </properties>
       </addresseselementblock>

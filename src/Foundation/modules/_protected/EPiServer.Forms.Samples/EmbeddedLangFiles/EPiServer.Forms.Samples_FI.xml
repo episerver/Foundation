@@ -4,7 +4,7 @@
   <language name="suomi" id="fi">
 
     <groups>
-      <basicelements>Basic Elements</basicelements>
+      <basicelements>Peruselementit</basicelements>
     </groups>
 
     <enums>
@@ -13,15 +13,15 @@
           <samples>
             <criteria>
               <submissionstatus>
-                <hassubmitted>Has submitted</hassubmitted>
-                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+                <hassubmitted>On lähettänyt</hassubmitted>
+                <hasnotsubmitted>Ei ole lähettänyt</hasnotsubmitted>
               </submissionstatus>
 
               <fieldvaluecomparecondition>
-                <equals>equals</equals>
-                <notequals>not equal to</notequals>
-                <contains>contains</contains>
-                <notcontains>does not contain</notcontains>
+                <equals>on yhtä kuin</equals>
+                <notequals>ei ole yhtä kuin</notequals>
+                <contains>sisältää</contains>
+                <notcontains>ei sisällä</notcontains>
               </fieldvaluecomparecondition>
             </criteria>
           </samples>
@@ -34,44 +34,44 @@
         <samples>
           <criteria>
             <formcriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form</displayname>
-              <description>Checks for form submission by the visitor.</description>
-              <submissionstatus>Submission status</submissionstatus>
-              <selectedform>Selected form</selectedform>
+              <category>Episerver-lomakkeet</category>
+              <displayname>Lähetetty lomake</displayname>
+              <description>Tarkistaa vierailijan lomakkeen lähetyksen.</description>
+              <submissionstatus>Lähetyksen tila</submissionstatus>
+              <selectedform>Valittu lomake</selectedform>
             </formcriterion>
 
             <submittedvaluecriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form Value</displayname>
-              <description>Checks for form submission value by the visitor.</description>
-              <selectedform>Selected form</selectedform>
-              <selectedfield>Selected field</selectedfield>
-              <condition>Condition</condition>
-              <value>Value</value>
+              <category>Episerver-lomakkeet</category>
+              <displayname>Lähetetyn lomakkeen arvo</displayname>
+              <description>Tarkistaa vierailijan lomakkeen lähetyksen arvon.</description>
+              <selectedform>Valittu lomake</selectedform>
+              <selectedfield>Valittu kenttä</selectedfield>
+              <condition>Ehto</condition>
+              <value>Arvo</value>
             </submittedvaluecriterion>
           </criteria>
 
           <datetimepickertype>
-            <datepicker>Date picker</datepicker>
-            <timepicker>Time picker</timepicker>
-            <datetimepicker>Date time picker</datetimepicker>
+            <datepicker>Päivämäärän valitsin</datepicker>
+            <timepicker>Ajan valitsin</timepicker>
+            <datetimepicker>Päivämäärän ja ajan valitsin</datetimepicker>
           </datetimepickertype>
 
           <confirmationdialog>
-            <title>Summary</title>
+            <title>Yhteenveto</title>
             <buttons>
               <ok>OK</ok>
-              <cancel>Cancel</cancel>
+              <cancel>Peruuta</cancel>
             </buttons>
           </confirmationdialog>
 
           <editview>
-            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+            <requirejs>JavaScript tarvitaan, jotta reCAPTCHA voidaan näyttää.</requirejs>
           </editview>
           <messages>
             <imagesubmitbutton>
-              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+              <initializationmessage>Tämän on kuvan lähetyksen painike. Valitse kuva sille.</initializationmessage>
             </imagesubmitbutton>
           </messages>
         </samples>
@@ -83,24 +83,24 @@
             <statelabel>Osavaltio</statelabel>
             <postallabel>Postinumero</postallabel>
             <countrylabel>Maa</countrylabel>
-          </addresselement>          
+          </addresselement>
         </viewmode>
         <validators>
           <episerver.forms.samples.implementation.validation.datetimevalidator>
-            <displayname>Datetime validator</displayname>
-            <message>Enter a valid date time in {0} hh:mm format.</message>
+            <displayname>Päivämäärän ja ajan tarkistaja</displayname>
+            <message>Anna kelvollinen päivämäärä ja aika muodossa {0} hh:mm.</message>
           </episerver.forms.samples.implementation.validation.datetimevalidator>
           <episerver.forms.samples.implementation.validation.datevalidator>
-            <displayname>Date validator</displayname>
-            <message>Enter a valid date in {0} format.</message>
+            <displayname>Päivämäärän tarkistaja</displayname>
+            <message>Anna kelvollinen päivämäärä muodossa {0}.</message>
           </episerver.forms.samples.implementation.validation.datevalidator>
           <episerver.forms.samples.implementation.validation.timevalidator>
-            <displayname>Time validator</displayname>
-            <message>Enter a valid time, e.g. 10:20 AM.</message>
+            <displayname>Ajan tarkistaja</displayname>
+            <message>Anna kelvollinen aika, esim. 10:20.</message>
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
-            <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <displayname>Recaptcha-tarkistaja</displayname>
+            <message>Virheellinen captcha-arvo.</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>Päivämääräalue</displayname>
@@ -115,40 +115,40 @@
     </episerver>
     <contenttypes>
       <datetimeelementblock>
-        <name>Date time</name>
+        <name>Päivämäärä ja aika</name>
         <description></description>
-        <newitemdefaultname>New date time</newitemdefaultname>
+        <newitemdefaultname>Uusi päivämäärä ja aika</newitemdefaultname>
         <properties>
 
           <description>
-            <caption>Tooltip</caption>
-            <help>Displays as a tooltip or help text of an element.</help>
+            <caption>Työkaluvihje</caption>
+            <help>Näytetään elementin työkaluvihjeenä tai ohjetekstinä.</help>
           </description>
 
           <pickertype>
-            <caption>Picker type</caption>
-            <help>Select picker type for the property.</help>
+            <caption>Valitsimen tyyppi</caption>
+            <help>Valitse ominaisuuden valitsintyyppi.</help>
           </pickertype>
         </properties>
       </datetimeelementblock>
       <recaptchaelementblock>
         <name>reCAPTCHA</name>
         <description></description>
-        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <newitemdefaultname>Uusi reCAPTCHA</newitemdefaultname>
         <properties>
           <sitekey>
-            <caption>Site key</caption>
-            <help>Enter site key for reCAPTCHA.</help>
+            <caption>Sivuston avain</caption>
+            <help>Anna sivuston avain reCAPTCHA-toimintoa varten.</help>
           </sitekey>
           <secretkey>
-            <caption>Secret key</caption>
-            <help>The shared key between your site and reCAPTCHA.</help>
+            <caption>Salainen avain</caption>
+            <help>Jaettu avain sivustosi ja reCAPTCHA-toiminnon välillä.</help>
           </secretkey>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>Päivämääräalue</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Uusi päivämääräalue</newitemdefaultname>
         <properties>
 
@@ -165,7 +165,7 @@
       </datetimerangeelementblock>
       <addresseselementblock>
         <name>Osoite</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Uusi osoite</newitemdefaultname>
         <properties>
 
@@ -184,27 +184,27 @@
           </mapheight>
           <addresslabel>
             <caption>Yksityiskohtainen osoite</caption>
-            <help/>
+            <help></help>
           </addresslabel>
           <streetlabel>
             <caption>Kadun nimiö</caption>
-            <help/>
+            <help></help>
           </streetlabel>
           <citylabel>
             <caption>Paikkakunnan nimiö</caption>
-            <help/>
+            <help></help>
           </citylabel>
           <statelabel>
             <caption>Osavaltion nimiö</caption>
-            <help/>
+            <help></help>
           </statelabel>
           <postalLabel>
             <caption>Postinumeron nimiö</caption>
-            <help/>
+            <help></help>
           </postalLabel>
           <countrylabel>
             <caption>Maan nimiö</caption>
-            <help/>
+            <help></help>
           </countrylabel>
         </properties>
       </addresseselementblock>

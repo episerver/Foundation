@@ -22,8 +22,10 @@
     var country = addressInfo.country; 
 %>
 
+    <fieldset  class="Form__Element Form__CustomElement FormAddressElement <%: Model.GetValidationCssClasses() %>" data-epiforms-element-name="<%: formElement.ElementName %>">
 
-<div class="Form__Element Form__CustomElement FormAddressElement <%: Model.GetValidationCssClasses() %>" data-epiforms-element-name="<%: formElement.ElementName %>">
+        <legend class="Form__Element__Caption visually-hidden"><%: Model.Label %></legend>
+    
     <!-- Address detail-->
     <label for="<%: formElement.Guid + "_address" %>" class="Form__Element__Caption"><%: Model.AddressLabel %></label>
     <input name="<%: formElement.ElementName %>" id="<%: formElement.Guid + "_address" %>" type="text" class="Form__CustomInput FormAddressElement__Address" value="<%: addressDetail %>" <%: Html.Raw(Model.AttributesString) %> />
@@ -46,7 +48,7 @@
      <label for="<%: formElement.Guid + "_map" %>" class="Form__Element__Caption"></label>
      <div style="width: <%: Model.MapWidth + "px" %>; height: <%: Model.MapHeight + "px" %>; display: none;" id="<%: formElement.Guid + "_map" %>" class="Form__CustomInput FormAddressElement__Map"></div>
     
-     <span data-epiforms-linked-name="<%: formElement.ElementName %>" class="Form__Element__ValidationError" style="<%: string.IsNullOrEmpty(errorMessage) ? "display:none" : "" %>;"><%: errorMessage %></span>
+     <span role="alert" aria-live="polite" data-epiforms-linked-name="<%: formElement.ElementName %>" class="Form__Element__ValidationError" style="<%: string.IsNullOrEmpty(errorMessage) ? "display:none" : "" %>;"><%: errorMessage %></span>
     
     <% if (!EPiServer.Editor.PageEditing.PageIsInEditMode) 
        {
@@ -59,4 +61,5 @@
             });
         </script>
     <% } %>
-</div>
+
+        </fieldset>

@@ -4,7 +4,7 @@
   <language name="norsk" id="no">
 
     <groups>
-      <basicelements>Basic Elements</basicelements>
+      <basicelements>Grunnleggende elementer</basicelements>
     </groups>
 
     <enums>
@@ -13,15 +13,15 @@
           <samples>
             <criteria>
               <submissionstatus>
-                <hassubmitted>Has submitted</hassubmitted>
-                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+                <hassubmitted>Har sendt inn</hassubmitted>
+                <hasnotsubmitted>Har ikke sendt inn</hasnotsubmitted>
               </submissionstatus>
 
               <fieldvaluecomparecondition>
-                <equals>equals</equals>
-                <notequals>not equal to</notequals>
-                <contains>contains</contains>
-                <notcontains>does not contain</notcontains>
+                <equals>er lik</equals>
+                <notequals>er ikke lik</notequals>
+                <contains>inneholder</contains>
+                <notcontains>inneholder ikke</notcontains>
               </fieldvaluecomparecondition>
             </criteria>
           </samples>
@@ -34,44 +34,44 @@
         <samples>
           <criteria>
             <formcriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form</displayname>
-              <description>Checks for form submission by the visitor.</description>
-              <submissionstatus>Submission status</submissionstatus>
-              <selectedform>Selected form</selectedform>
+              <category>Episerver-skjemaer</category>
+              <displayname>Innsendt skjema</displayname>
+              <description>Undersøker om den besøkende har sendt inn skjema.</description>
+              <submissionstatus>Status for innsendelse</submissionstatus>
+              <selectedform>Valgt skjema</selectedform>
             </formcriterion>
 
             <submittedvaluecriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form Value</displayname>
-              <description>Checks for form submission value by the visitor.</description>
-              <selectedform>Selected form</selectedform>
-              <selectedfield>Selected field</selectedfield>
-              <condition>Condition</condition>
-              <value>Value</value>
+              <category>Episerver-skjemaer</category>
+              <displayname>Verdi for innsendt skjema</displayname>
+              <description>Kontrollerer verdi for innsendt skjema fra den besøkende.</description>
+              <selectedform>Valgt skjema</selectedform>
+              <selectedfield>Valgt felt</selectedfield>
+              <condition>Betingelse</condition>
+              <value>Verdi</value>
             </submittedvaluecriterion>
           </criteria>
 
           <datetimepickertype>
-            <datepicker>Date picker</datepicker>
-            <timepicker>Time picker</timepicker>
-            <datetimepicker>Date time picker</datetimepicker>
+            <datepicker>Datovelger</datepicker>
+            <timepicker>Klokkeslettvelger</timepicker>
+            <datetimepicker>Dato- og klokkeslettvelger</datetimepicker>
           </datetimepickertype>
 
           <confirmationdialog>
-            <title>Summary</title>
+            <title>Sammendrag</title>
             <buttons>
               <ok>OK</ok>
-              <cancel>Cancel</cancel>
+              <cancel>Avbryt</cancel>
             </buttons>
           </confirmationdialog>
 
           <editview>
-            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+            <requirejs>JavaScript kreves for å vise reCAPTCHA.</requirejs>
           </editview>
           <messages>
             <imagesubmitbutton>
-              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+              <initializationmessage>Dette er en knapp med bilde. Velg et bilde til den.</initializationmessage>
             </imagesubmitbutton>
           </messages>
         </samples>
@@ -83,24 +83,24 @@
             <statelabel>Stat</statelabel>
             <postallabel>Postnummer</postallabel>
             <countrylabel>Land</countrylabel>
-          </addresselement>          
+          </addresselement>
         </viewmode>
         <validators>
           <episerver.forms.samples.implementation.validation.datetimevalidator>
-            <displayname>Datetime validator</displayname>
-            <message>Enter a valid date time in {0} hh:mm format.</message>
+            <displayname>Validering av dato og klokkeslett</displayname>
+            <message>Oppgi gyldig dato og klokkeslett i formatet {0} tt:mm.</message>
           </episerver.forms.samples.implementation.validation.datetimevalidator>
           <episerver.forms.samples.implementation.validation.datevalidator>
-            <displayname>Date validator</displayname>
-            <message>Enter a valid date in {0} format.</message>
+            <displayname>Validering av dato</displayname>
+            <message>Oppgi gyldig dato i formatet {0}.</message>
           </episerver.forms.samples.implementation.validation.datevalidator>
           <episerver.forms.samples.implementation.validation.timevalidator>
-            <displayname>Time validator</displayname>
-            <message>Enter a valid time, e.g. 10:20 AM.</message>
+            <displayname>Validering av klokkeslett</displayname>
+            <message>Oppgi et gyldig klokkeslett, for eksempel 10:20 AM.</message>
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
-            <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <displayname>Validering av recaptcha</displayname>
+            <message>Ugyldig captcha-verdi.</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>Dato- og tidsperiode</displayname>
@@ -115,40 +115,40 @@
     </episerver>
     <contenttypes>
       <datetimeelementblock>
-        <name>Date time</name>
+        <name>Dato og klokkeslett</name>
         <description></description>
-        <newitemdefaultname>New date time</newitemdefaultname>
+        <newitemdefaultname>Ny dato og nytt klokkeslett</newitemdefaultname>
         <properties>
 
           <description>
-            <caption>Tooltip</caption>
-            <help>Displays as a tooltip or help text of an element.</help>
+            <caption>Verktøytips</caption>
+            <help>Viser et verktøytips eller en hjelpetekst for et element.</help>
           </description>
 
           <pickertype>
-            <caption>Picker type</caption>
-            <help>Select picker type for the property.</help>
+            <caption>Velgertype</caption>
+            <help>Velg velgertype for egenskapen.</help>
           </pickertype>
         </properties>
       </datetimeelementblock>
       <recaptchaelementblock>
         <name>reCAPTCHA</name>
         <description></description>
-        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <newitemdefaultname>Ny reCAPTCHA</newitemdefaultname>
         <properties>
           <sitekey>
-            <caption>Site key</caption>
-            <help>Enter site key for reCAPTCHA.</help>
+            <caption>Nettstednøkkel</caption>
+            <help>Angi nettstednøkkel for reCAPTCHA.</help>
           </sitekey>
           <secretkey>
-            <caption>Secret key</caption>
-            <help>The shared key between your site and reCAPTCHA.</help>
+            <caption>Hemmelig nøkkel</caption>
+            <help>Nøkkelen som deles mellom nettstedet og reCAPTCHA.</help>
           </secretkey>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>Dato- og tidsperiode</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Ny dato- og tidsperiode</newitemdefaultname>
         <properties>
 
@@ -165,7 +165,7 @@
       </datetimerangeelementblock>
       <addresseselementblock>
         <name>Adresse</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Ny adresse</newitemdefaultname>
         <properties>
 
@@ -184,27 +184,27 @@
           </mapheight>
           <addresslabel>
             <caption>Detaljadresse</caption>
-            <help/>
+            <help></help>
           </addresslabel>
           <streetlabel>
             <caption>Gateadresseetikett</caption>
-            <help/>
+            <help></help>
           </streetlabel>
           <citylabel>
             <caption>Byetikett</caption>
-            <help/>
+            <help></help>
           </citylabel>
           <statelabel>
             <caption>Statetikett</caption>
-            <help/>
+            <help></help>
           </statelabel>
           <postalLabel>
             <caption>Postnummeretikett</caption>
-            <help/>
+            <help></help>
           </postalLabel>
           <countrylabel>
             <caption>Landetikett</caption>
-            <help/>
+            <help></help>
           </countrylabel>
         </properties>
       </addresseselementblock>

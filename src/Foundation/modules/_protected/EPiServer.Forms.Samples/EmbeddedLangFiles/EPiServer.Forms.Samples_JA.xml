@@ -4,7 +4,7 @@
   <language name="日本語 (Japanese)" id="ja">
 
     <groups>
-      <basicelements>Basic Elements</basicelements>
+      <basicelements>基本要素</basicelements>
     </groups>
 
     <enums>
@@ -13,15 +13,15 @@
           <samples>
             <criteria>
               <submissionstatus>
-                <hassubmitted>Has submitted</hassubmitted>
-                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+                <hassubmitted>送信済み</hassubmitted>
+                <hasnotsubmitted>未送信</hasnotsubmitted>
               </submissionstatus>
 
               <fieldvaluecomparecondition>
-                <equals>equals</equals>
-                <notequals>not equal to</notequals>
-                <contains>contains</contains>
-                <notcontains>does not contain</notcontains>
+                <equals>次と等しい</equals>
+                <notequals>次と等しくない</notequals>
+                <contains>次を含む</contains>
+                <notcontains>次を含まない</notcontains>
               </fieldvaluecomparecondition>
             </criteria>
           </samples>
@@ -34,44 +34,44 @@
         <samples>
           <criteria>
             <formcriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form</displayname>
-              <description>Checks for form submission by the visitor.</description>
-              <submissionstatus>Submission status</submissionstatus>
-              <selectedform>Selected form</selectedform>
+              <category>Episerverフォーム</category>
+              <displayname>送信済みフォーム</displayname>
+              <description>訪問者によるフォームの送信状態を確認します。</description>
+              <submissionstatus>送信ステータス</submissionstatus>
+              <selectedform>選択されたフォーム</selectedform>
             </formcriterion>
 
             <submittedvaluecriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form Value</displayname>
-              <description>Checks for form submission value by the visitor.</description>
-              <selectedform>Selected form</selectedform>
-              <selectedfield>Selected field</selectedfield>
-              <condition>Condition</condition>
-              <value>Value</value>
+              <category>Episerverフォーム</category>
+              <displayname>送信済みフォーム値</displayname>
+              <description>訪問者によるフォーム送信値を確認します。</description>
+              <selectedform>選択されたフォーム</selectedform>
+              <selectedfield>選択されたフィールド</selectedfield>
+              <condition>条件</condition>
+              <value>値</value>
             </submittedvaluecriterion>
           </criteria>
 
           <datetimepickertype>
-            <datepicker>Date picker</datepicker>
-            <timepicker>Time picker</timepicker>
-            <datetimepicker>Date time picker</datetimepicker>
+            <datepicker>日付ピッカー</datepicker>
+            <timepicker>時刻ピッカー</timepicker>
+            <datetimepicker>日時ピッカー</datetimepicker>
           </datetimepickertype>
 
           <confirmationdialog>
-            <title>Summary</title>
+            <title>サマリー</title>
             <buttons>
               <ok>OK</ok>
-              <cancel>Cancel</cancel>
+              <cancel>キャンセル</cancel>
             </buttons>
           </confirmationdialog>
 
           <editview>
-            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+            <requirejs>reCAPTCHAを表示するには、JavaScriptが必要です。</requirejs>
           </editview>
           <messages>
             <imagesubmitbutton>
-              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+              <initializationmessage>これは画像送信ボタンです。画像を選択してください。</initializationmessage>
             </imagesubmitbutton>
           </messages>
         </samples>
@@ -83,24 +83,24 @@
             <statelabel>都道府県</statelabel>
             <postallabel>郵便番号</postallabel>
             <countrylabel>国</countrylabel>
-          </addresselement>          
+          </addresselement>
         </viewmode>
         <validators>
           <episerver.forms.samples.implementation.validation.datetimevalidator>
-            <displayname>Datetime validator</displayname>
-            <message>Enter a valid date time in {0} hh:mm format.</message>
+            <displayname>日時検証ツール</displayname>
+            <message>有効な日付と時刻を{0} hh:mmフォーマットで入力してください。</message>
           </episerver.forms.samples.implementation.validation.datetimevalidator>
           <episerver.forms.samples.implementation.validation.datevalidator>
-            <displayname>Date validator</displayname>
-            <message>Enter a valid date in {0} format.</message>
+            <displayname>日付検証ツール</displayname>
+            <message>有効な日付を{0}フォーマットで入力してください。</message>
           </episerver.forms.samples.implementation.validation.datevalidator>
           <episerver.forms.samples.implementation.validation.timevalidator>
-            <displayname>Time validator</displayname>
-            <message>Enter a valid time, e.g. 10:20 AM.</message>
+            <displayname>時刻検証ツール</displayname>
+            <message>午前10:20など、有効な時刻を入力してください。</message>
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
-            <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <displayname>再キャプチャ検証ツール</displayname>
+            <message>無効なキャプチャ値。</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>日付と時刻の範囲</displayname>
@@ -115,40 +115,40 @@
     </episerver>
     <contenttypes>
       <datetimeelementblock>
-        <name>Date time</name>
+        <name>日時</name>
         <description></description>
-        <newitemdefaultname>New date time</newitemdefaultname>
+        <newitemdefaultname>新しい日時</newitemdefaultname>
         <properties>
 
           <description>
-            <caption>Tooltip</caption>
-            <help>Displays as a tooltip or help text of an element.</help>
+            <caption>ツールチップ</caption>
+            <help>要素のツールチップまたはヘルプテキストとして表示。</help>
           </description>
 
           <pickertype>
-            <caption>Picker type</caption>
-            <help>Select picker type for the property.</help>
+            <caption>ピッカーのタイプ</caption>
+            <help>プロパティのピッカーのタイプを選択してください。</help>
           </pickertype>
         </properties>
       </datetimeelementblock>
       <recaptchaelementblock>
         <name>reCAPTCHA</name>
         <description></description>
-        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <newitemdefaultname>新しいreCAPTCHA</newitemdefaultname>
         <properties>
           <sitekey>
-            <caption>Site key</caption>
-            <help>Enter site key for reCAPTCHA.</help>
+            <caption>サイトキー</caption>
+            <help>reCAPTCHAのサイトキーを入力してください。</help>
           </sitekey>
           <secretkey>
-            <caption>Secret key</caption>
-            <help>The shared key between your site and reCAPTCHA.</help>
+            <caption>シークレットキー</caption>
+            <help>あなたのサイトとreCAPTCHAとの共有キー。</help>
           </secretkey>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>日付と時刻の範囲</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>新しい日付と時刻の範囲</newitemdefaultname>
         <properties>
 
@@ -165,7 +165,7 @@
       </datetimerangeelementblock>
       <addresseselementblock>
         <name>住所</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>新しい住所</newitemdefaultname>
         <properties>
 
@@ -184,27 +184,27 @@
           </mapheight>
           <addresslabel>
             <caption>詳細住所</caption>
-            <help/>
+            <help></help>
           </addresslabel>
           <streetlabel>
             <caption>番地ラベル</caption>
-            <help/>
+            <help></help>
           </streetlabel>
           <citylabel>
             <caption>市町村ラベル</caption>
-            <help/>
+            <help></help>
           </citylabel>
           <statelabel>
             <caption>都道府県ラベル</caption>
-            <help/>
+            <help></help>
           </statelabel>
           <postalLabel>
             <caption>郵便番号ラベル</caption>
-            <help/>
+            <help></help>
           </postalLabel>
           <countrylabel>
             <caption>国ラベル</caption>
-            <help/>
+            <help></help>
           </countrylabel>
         </properties>
       </addresseselementblock>

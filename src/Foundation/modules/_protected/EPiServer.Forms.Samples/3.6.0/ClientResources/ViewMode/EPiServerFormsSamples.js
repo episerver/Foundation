@@ -417,7 +417,11 @@
                     dif = timeZoneOffset >= 0 ? "+" : "-";
 
                 timeZoneOffset = Math.abs(timeZoneOffset);
-                return dif + this.addLeadingZero(timeZoneOffset / 60) + ":" + this.addLeadingZero(timeZoneOffset % 60);
+
+                var offsetMinutes = timeZoneOffset % 60;
+                var offsetHours = (timeZoneOffset - offsetMinutes) / 60;
+
+                return dif + this.addLeadingZero(offsetHours) + ":" + this.addLeadingZero(offsetMinutes);
             },
 
             // add leading zero to number < 10 (Ex: 9 -> 09, 7-> 07)
