@@ -183,3 +183,10 @@ ul.none-style-type {
     position: sticky;
     top: 0;
 }
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: lightgray;
+    border: 0;
+}
