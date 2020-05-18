@@ -37,13 +37,10 @@
 
 <div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="hero-block" style="@blockRatio">
-        @if (ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo))
-        {
-            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage)
-                 style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
-            </div>
-        }
-        else
+        <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage)
+             style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
+        </div>
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo) && ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
         {
             <div class="hero-block__video">
                 <video autoplay loop playsinline muted>
