@@ -6,7 +6,6 @@
     height: 80px;
     transition-duration: 0.4s;
     transition-property: width;
-    overflow: hidden;
     width: 80px;
 
     &__product-list {
@@ -80,6 +79,7 @@
         position: absolute;
         left: 8px;
         top: 27px;
+        z-index: 1000;
     }
 
     .icon-right {
