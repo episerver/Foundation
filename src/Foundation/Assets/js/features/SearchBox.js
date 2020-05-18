@@ -15,7 +15,6 @@
             this.box.style.visibility = "hidden";
         }
         var typingTimer;
-        var isAutoSearchSubmit = false;
 
         $("#js-searchbutton").click(function () {
             inst.ExpandSearchBox();
@@ -28,14 +27,11 @@
             if ($("#searchOption").val() != "QuickSearch") {
                 inst.AutoSearch();
                 $(e).on("keyup", function () {
-                    isAutoSearchSubmit = true;
                     clearTimeout(typingTimer);
                     const val = $(this).val();
                     typingTimer = setTimeout(function () {
-                        if (isAutoSearchSubmit) {
-                            var e = $.Event("keypress", { which: 13 });
-                            $('#js-searchbox-input').trigger(e);
-                        }
+                        var e = $.Event("keypress", { which: 13 });
+                        $('#js-searchbox-input').trigger(e);
                     }, 3000);
                 });
             } else {
@@ -176,7 +172,6 @@
                     enabled: false
                 },
                 onChooseEvent: function () {
-                    isAutoSearchSubmit = false;
                     var keyword = $('#js-searchbox-input').getSelectedItemData().query;
                     $("#js-searchbox-input").val(keyword);
                     var e = $.Event("keypress", { which: 13 });
@@ -206,7 +201,7 @@
 
 
     // Search Image
-    
+
     ProcessImage() {
         var inst = this;
         $('.jsSearchImage').each(function (i, e) {
