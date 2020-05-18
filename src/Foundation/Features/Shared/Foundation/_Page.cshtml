@@ -51,13 +51,10 @@
 }
 <div class="@Model.Padding @Model.Margin">
     <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect && RequestSegmentContext.CurrentContextMode != ContextMode.Edit ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
-        @if (ContentReference.IsNullOrEmpty(Model.TeaserVideo))
-        {
-            <div class="teaser__image" @Html.EditAttributes(m => m.PageImage)
-                 style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
-            </div>
-        }
-        else
+        <div class="teaser__image" @Html.EditAttributes(m => m.PageImage)
+             style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
+        </div>
+        @if (!ContentReference.IsNullOrEmpty(Model.TeaserVideo) && ContentReference.IsNullOrEmpty(Model.PageImage))
         {
             <div class="teaser__video">
                 <video autoplay loop playsinline muted>
