@@ -1256,6 +1256,8 @@
     <Content Include="Assets\js\main.min.js" />
     <Content Include="Assets\js\plugins\fontawesomeicons.js" />
     <Content Include="Assets\js\features\notifyHelper.js" />
+    <Content Include="Assets\js\plugins\lazysizes.min.js" />
+    <Content Include="Assets\js\plugins\ls.bgset.min.js" />
     <Content Include="Assets\js\vendors\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.easy-autocomplete.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.zoom.js" />
