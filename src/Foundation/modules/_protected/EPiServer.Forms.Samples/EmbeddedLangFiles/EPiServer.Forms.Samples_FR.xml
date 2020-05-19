@@ -4,7 +4,7 @@
   <language name="français" id="fr">
 
     <groups>
-      <basicelements>Basic Elements</basicelements>
+      <basicelements>Éléments principaux</basicelements>
     </groups>
 
     <enums>
@@ -13,15 +13,15 @@
           <samples>
             <criteria>
               <submissionstatus>
-                <hassubmitted>Has submitted</hassubmitted>
-                <hasnotsubmitted>Has not submitted</hasnotsubmitted>
+                <hassubmitted>A soumis</hassubmitted>
+                <hasnotsubmitted>N’a pas soumis</hasnotsubmitted>
               </submissionstatus>
 
               <fieldvaluecomparecondition>
-                <equals>equals</equals>
-                <notequals>not equal to</notequals>
-                <contains>contains</contains>
-                <notcontains>does not contain</notcontains>
+                <equals>Est égal à</equals>
+                <notequals>N'est pas égal à</notequals>
+                <contains>Contient</contains>
+                <notcontains>Ne contient pas</notcontains>
               </fieldvaluecomparecondition>
             </criteria>
           </samples>
@@ -34,44 +34,44 @@
         <samples>
           <criteria>
             <formcriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form</displayname>
-              <description>Checks for form submission by the visitor.</description>
-              <submissionstatus>Submission status</submissionstatus>
-              <selectedform>Selected form</selectedform>
+              <category>Formulaires Episerver</category>
+              <displayname>Formulaire soumis</displayname>
+              <description>Vérification de la soumission du formulaire par le visiteur.</description>
+              <submissionstatus>Statut de soumission</submissionstatus>
+              <selectedform>Formulaire sélectionné</selectedform>
             </formcriterion>
 
             <submittedvaluecriterion>
-              <category>Episerver Forms</category>
-              <displayname>Submitted Form Value</displayname>
-              <description>Checks for form submission value by the visitor.</description>
-              <selectedform>Selected form</selectedform>
-              <selectedfield>Selected field</selectedfield>
+              <category>Formulaires Episerver</category>
+              <displayname>Valeur du formulaire soumis</displayname>
+              <description>Vérification de la valeur de soumission du formulaire par le visiteur.</description>
+              <selectedform>Formulaire sélectionné</selectedform>
+              <selectedfield>Champ sélectionné</selectedfield>
               <condition>Condition</condition>
-              <value>Value</value>
+              <value>Valeur</value>
             </submittedvaluecriterion>
           </criteria>
 
           <datetimepickertype>
-            <datepicker>Date picker</datepicker>
-            <timepicker>Time picker</timepicker>
-            <datetimepicker>Date time picker</datetimepicker>
+            <datepicker>Sélecteur de date</datepicker>
+            <timepicker>Sélectionneur d’heure</timepicker>
+            <datetimepicker>Sélecteur d’heure de date</datetimepicker>
           </datetimepickertype>
 
           <confirmationdialog>
-            <title>Summary</title>
+            <title>Résumé</title>
             <buttons>
               <ok>OK</ok>
-              <cancel>Cancel</cancel>
+              <cancel>Annuler</cancel>
             </buttons>
           </confirmationdialog>
 
           <editview>
-            <requirejs>JavaScript is required to display reCAPTCHA.</requirejs>
+            <requirejs>JavaScript est nécessaire pour afficher reCAPTCHA.</requirejs>
           </editview>
           <messages>
             <imagesubmitbutton>
-              <initializationmessage>This is an image submit button. Please, choose an image for it.</initializationmessage>
+              <initializationmessage>Il s’agit d’un bouton de soumission d’image. Veuillez choisir une image pour elle.</initializationmessage>
             </imagesubmitbutton>
           </messages>
         </samples>
@@ -83,24 +83,24 @@
             <statelabel>État</statelabel>
             <postallabel>Code postal</postallabel>
             <countrylabel>Pays</countrylabel>
-          </addresselement>          
+          </addresselement>
         </viewmode>
         <validators>
           <episerver.forms.samples.implementation.validation.datetimevalidator>
-            <displayname>Datetime validator</displayname>
-            <message>Enter a valid date time in {0} hh:mm format.</message>
+            <displayname>Validateur d’heure de date</displayname>
+            <message>Saisir une plage de dates valable au format {0} hh:mm.</message>
           </episerver.forms.samples.implementation.validation.datetimevalidator>
           <episerver.forms.samples.implementation.validation.datevalidator>
-            <displayname>Date validator</displayname>
-            <message>Enter a valid date in {0} format.</message>
+            <displayname>Validateur de date</displayname>
+            <message>Saisir une date valable au format {0}.</message>
           </episerver.forms.samples.implementation.validation.datevalidator>
           <episerver.forms.samples.implementation.validation.timevalidator>
-            <displayname>Time validator</displayname>
-            <message>Enter a valid time, e.g. 10:20 AM.</message>
+            <displayname>Validateur d’heure</displayname>
+            <message>Entrez une heure valable, par exemple 10h20 du matin</message>
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
-            <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <displayname>Validateur de Recaptcha</displayname>
+            <message>Valeur de captcha non valable..</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>Page de dates</displayname>
@@ -115,40 +115,40 @@
     </episerver>
     <contenttypes>
       <datetimeelementblock>
-        <name>Date time</name>
+        <name>Heure de date</name>
         <description></description>
-        <newitemdefaultname>New date time</newitemdefaultname>
+        <newitemdefaultname>Nouvelle heure de date</newitemdefaultname>
         <properties>
 
           <description>
-            <caption>Tooltip</caption>
-            <help>Displays as a tooltip or help text of an element.</help>
+            <caption>Info-bulle</caption>
+            <help>S'affiche comme une info-bulle ou texte d'aide d'un élément.</help>
           </description>
 
           <pickertype>
-            <caption>Picker type</caption>
-            <help>Select picker type for the property.</help>
+            <caption>Type de sélecteur</caption>
+            <help>Sélectionnez le type de sélecteur pour la propriété.</help>
           </pickertype>
         </properties>
       </datetimeelementblock>
       <recaptchaelementblock>
         <name>reCAPTCHA</name>
         <description></description>
-        <newitemdefaultname>New reCAPTCHA</newitemdefaultname>
+        <newitemdefaultname>Nouveau reCAPTCHA</newitemdefaultname>
         <properties>
           <sitekey>
-            <caption>Site key</caption>
-            <help>Enter site key for reCAPTCHA.</help>
+            <caption>Clé du site</caption>
+            <help>Saisissez la clé du site pour reCAPTCHA.</help>
           </sitekey>
           <secretkey>
-            <caption>Secret key</caption>
-            <help>The shared key between your site and reCAPTCHA.</help>
+            <caption>Clé secrète</caption>
+            <help>La clé partagée entre votre site et reCAPTCHA.</help>
           </secretkey>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>Page de dates</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Nouvelle plage de dates</newitemdefaultname>
         <properties>
 
@@ -165,7 +165,7 @@
       </datetimerangeelementblock>
       <addresseselementblock>
         <name>Adresse</name>
-        <description/>
+        <description></description>
         <newitemdefaultname>Nouvelle adresse</newitemdefaultname>
         <properties>
 
@@ -184,27 +184,27 @@
           </mapheight>
           <addresslabel>
             <caption>Adresse de détail</caption>
-            <help/>
+            <help></help>
           </addresslabel>
           <streetlabel>
             <caption>Étiquette de rue</caption>
-            <help/>
+            <help></help>
           </streetlabel>
           <citylabel>
             <caption>Étiquette de ville</caption>
-            <help/>
+            <help></help>
           </citylabel>
           <statelabel>
             <caption>Étiquette d’état</caption>
-            <help/>
+            <help></help>
           </statelabel>
           <postalLabel>
             <caption>Étiquette de code postal</caption>
-            <help/>
+            <help></help>
           </postalLabel>
           <countrylabel>
             <caption>Étiquette de pays</caption>
-            <help/>
+            <help></help>
           </countrylabel>
         </properties>
       </addresseselementblock>

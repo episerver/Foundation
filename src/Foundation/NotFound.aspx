@@ -37,7 +37,7 @@
     If you are using a master page, you should add this:
         <meta content="noindex, nofollow" name="ROBOTS">
     to your head tag for this page (NOT all pages)
- --%>
+--%>
 
 <script runat="server" type="text/C#">
     protected override void OnLoad(EventArgs e)
@@ -55,97 +55,220 @@
     <title><%= Content.Title %></title>
     <meta content="noindex, nofollow" name="ROBOTS" />
     <style type="text/css">
-        body
-        {
-            font-family: Verdana, Arial, Helvetica, Tahoma;
-            font-size: 0.65em;
-            color: #333;
-            background-color: #ffffff;
+        @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+        /*Variables */
+        .left-section .inner-content {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        a
-        {
-            color: 0000cc;
+        * {
+            box-sizing: border-box;
         }
-        a:hover
-        {
-            color: #000;
-            text-decoration: none;
+
+        html, body {
+            margin: 0;
+            padding: 0;
         }
-        h1
-        {
-            font-weight: bold;
-            font-size: 1.8em;
-            color: #606060;
-            margin-bottom: 0.5em;
-            margin-top: 0.5em;
+
+        body {
+            font-family: "Fira Sans", sans-serif;
+            color: #f5f6fa;
         }
-        div.lookingfor
-        {
-            border: #660033 1px solid;
-            padding: 10px;
-            background-color: #ffdab5;
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(#0C0E10, #446182);
         }
-        .notfoundbox
-        {
-            border-bottom: solid 1px #cccccc;
-            border-right: solid 1px #cccccc;
-            border-left: solid 1px #f8f8f8;
-            border-top: solid 1px #f8f8f8;
-            padding: 10px 10px 10px 10px;
-            width: 100%;
-            background-color: #f8f8f8;
-            font-weight: bold;
-            width: 100%;
+
+            .background .ground {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 25vh;
+                background: #0C0E10;
+            }
+
+        @media (max-width: 770px) {
+            .background .ground {
+                height: 0vh;
+            }
         }
-        .logo
-        {
-            font-family: Verdana;
-            font-size: 5em;
-            color: #a0a0a0;
-            padding-bottom: 0.5em;
-            letter-spacing: -0.08em;
+
+        .container {
+            position: relative;
+            margin: 0 auto;
+            width: 85%;
+            height: 100vh;
+            padding-bottom: 25vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
         }
-        div.floater
-        {
+
+        @media (max-width: 770px) {
+            .container {
+                flex-direction: column;
+                padding-bottom: 0vh;
+            }
+        }
+
+        .left-section, .right-section {
+            position: relative;
+        }
+
+        .left-section {
+            width: 40%;
+        }
+
+        @media (max-width: 770px) {
+            .left-section {
+                width: 100%;
+                height: 40%;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 770px) {
+            .left-section .inner-content {
+                position: relative;
+                padding: 1rem 0;
+            }
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 9em;
+            line-height: 1.3em;
+            margin: 2rem 0 0.5rem 0;
+            padding: 0;
+            text-shadow: 0 0 1rem #fefefe;
+        }
+
+        @media (max-width: 770px) {
+            .heading {
+                font-size: 7em;
+                line-height: 1.15;
+                margin: 0;
+            }
+        }
+
+        .subheading {
+            text-align: center;
+            max-width: 480px;
+            font-size: 1.5em;
+            line-height: 1.15em;
+            padding: 0 1rem;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 770px) {
+            .subheading {
+                font-size: 1.3em;
+                line-height: 1.15;
+                max-width: 100%;
+            }
+        }
+
+        .right-section {
+            width: 50%;
+        }
+
+        @media (max-width: 770px) {
+            .right-section {
+                width: 100%;
+                height: 60%;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+
+        .svgimg {
             position: absolute;
             bottom: 0;
-            right: 0;
-            font-family: Times New Roman;
-            font-size: 10em;
-            font-style: italic;
-            color: #f0f0f0;
-            margin: 0 20px 10px 0;
-            letter-spacing: -0.08em;
+            padding-top: 10vh;
+            padding-left: 1vh;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        @media (max-width: 770px) {
+            .svgimg {
+                padding: 0;
+            }
+        }
+
+        .svgimg .bench-legs {
+            fill: #0C0E10;
+        }
+
+        .svgimg .top-bench, .svgimg .bottom-bench {
+            stroke: #0C0E10;
+            stroke-width: 1px;
+            fill: #5B3E2B;
+        }
+
+            .svgimg .bottom-bench path:nth-child(1) {
+                fill: #432d20;
+            }
+
+        .svgimg .lamp-details {
+            fill: #202425;
+        }
+
+        .svgimg .lamp-accent {
+            fill: #2c3133;
+        }
+
+        .svgimg .lamp-bottom {
+            fill: linear-gradient(#202425, #0C0E10);
+        }
+
+        .svgimg .lamp-light {
+            fill: #EFEFEF;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 1rem #fefefe;
+            }
+
+            50% {
+                text-shadow: 0 0 1.85rem #ededed;
+            }
+
+            100% {
+                text-shadow: 0 0 1rem #fefefe;
+            }
         }
     </style>
 </head>
 <body>
     <form id="FileNotFoundForm" method="post" runat="server">
-    <div class="logo">
-        Company Logo Here
-    </div>
-    <h1>
-        <%= Content.Title %></h1>
-    <div style="width: 760px">
-        <div style="padding-left: 10px; float: left; width: 550px">
-            <%= Content.TopText %>
-            <%= Content.LookingFor %>
-            <div class="notfoundbox">
-                <%= HttpUtility.HtmlEncode(UrlNotFound.ToString()) %>
-                <%= Referer.Length > 0 ? Content.CameFrom : "" %>
-                <%= Referer.Length > 0 ? HttpUtility.HtmlEncode(Referer) : "" %>
+        <div class="logo">
+            Company Logo Here
+        </div>
+        <h1>
+            <%= Content.Title %></h1>
+        <div style="width: 760px">
+            <div style="padding-left: 10px; float: left; width: 550px">
+                <%= Content.TopText %>
+
+                <%= Content.BottomText %>
             </div>
-            <%= Content.BottomText %>
+            <div style="padding-right: 10px; padding-left: 10px; float: right; width: 200px">
+                &nbsp;
+            </div>
         </div>
-        <div style="padding-right: 10px; padding-left: 10px; float: right; width: 200px">
-            &nbsp;
+        <div class="floater">
+            404
         </div>
-    </div>
-    <div class="floater">
-        404
-    </div>
     </form>
 </body>
 </html>

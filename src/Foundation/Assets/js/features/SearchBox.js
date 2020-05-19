@@ -160,7 +160,7 @@
             this.HidePopover();
         }
     }
-
+   
     AutoSearch(e) {
         var options = {
             url: function (phrase) {
@@ -199,9 +199,7 @@
         $('.searchbox-popover').hide();
     }
 
-
     // Search Image
-
     ProcessImage() {
         var inst = this;
         $('.jsSearchImage').each(function (i, e) {

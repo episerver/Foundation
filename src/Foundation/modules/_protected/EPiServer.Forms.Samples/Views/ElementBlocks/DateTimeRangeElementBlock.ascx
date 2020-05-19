@@ -22,14 +22,23 @@
     var errorMessage = Model.GetErrorMessage();
 %>
 
-<div class="Form__Element Form__CustomElement FormDateTimeRange <%: Model.GetValidationCssClasses() %>" data-epiforms-element-name="<%: formElement.ElementName %>">
-    <label for="<%: formElement.Guid + "_start" %>" class="Form__Element__Caption"><%: Model.Label %></label>
+<fieldset class="Form__Element Form__CustomElement FormDateTimeRange <%: Model.GetValidationCssClasses() %>" data-epiforms-element-name="<%: formElement.ElementName %>">
+    <legend class="Form__Element__Caption"><%: Model.Label %></legend>
+
+    <label for="<%: formElement.Guid + "_start" %>" class="Form__Element__Caption visually-hidden"><%: Html.Translate("/contenttypes/datetimerangeelementblock/start") %></label>
     <input name="<%: formElement.ElementName %>" id="<%: formElement.Guid + "_start" %>" type="text" class="Form__CustomInput FormDateTimeRange__Start"
-           placeholder="<%: startPlaceHolder %>" value="<%: startValue %>" <%: Html.Raw(Model.AttributesString) %> />
+           <% if (!string.IsNullOrWhiteSpace(startPlaceHolder)) { %>
+				placeholder="<%: startPlaceHolder %>"
+			<% } %>
+		   value="<%: startValue %>" <%: Html.Raw(Model.AttributesString) %> />
     <span class="FormDateTimeRange_Seperator">:</span>
+    <label for="<%: formElement.Guid + "_end" %>" class="Form__Element__Caption visually-hidden"><%: Html.Translate("/contenttypes/datetimerangeelementblock/end") %></label>
     <input name="<%: formElement.ElementName %>" id="<%: formElement.Guid + "_end" %>" type="text" class="Form__CustomInput FormDateTimeRange__End"
-           placeholder="<%: endPlaceHolder %>" value="<%: endValue %>" <%: Html.Raw(Model.AttributesString) %> />
-    <span data-epiforms-linked-name="<%: formElement.ElementName %>" class="Form__Element__ValidationError" style="<%: string.IsNullOrEmpty(errorMessage) ? "display:none" : "" %>;"><%: errorMessage %></span>
+           <% if (!string.IsNullOrWhiteSpace(endPlaceHolder)) { %>
+				placeholder="<%: endPlaceHolder %>"
+			<% } %>
+		   value="<%: endValue %>" <%: Html.Raw(Model.AttributesString) %> />
+    <span role="alert" aria-live="polite" data-epiforms-linked-name="<%: formElement.ElementName %>" class="Form__Element__ValidationError" style="<%: string.IsNullOrEmpty(errorMessage) ? "display:none" : "" %>;"><%: errorMessage %></span>
     
     <% if (!EPiServer.Editor.PageEditing.PageIsInEditMode) 
        {
@@ -41,10 +50,10 @@
                 guid: "<%: formElement.Guid + "_start" %>",
                 pickerType: "<%: pickerType %>"
             },
-            {
-                guid: "<%: formElement.Guid + "_end" %>",
-                pickerType: "<%: pickerType %>"
-            });
+                {
+                    guid: "<%: formElement.Guid + "_end" %>",
+                    pickerType: "<%: pickerType %>"
+                });
         </script>
     <% } %>
-</div>
+</fieldset>

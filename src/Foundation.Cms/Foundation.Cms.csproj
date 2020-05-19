@@ -12,16 +12,16 @@
     <Compile Remove="SchemaMarkup\RegisterSchemaMappers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BVN.404Handler" Version="11.3.0" />
+    <PackageReference Include="BVN.404Handler" Version="11.4.0" />
     <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.14.2" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.14.2" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.15.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.15.0" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="2.10.1" />
-    <PackageReference Include="EPiServer.CMS.UI" Version="11.23.8" />
-    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.23.8" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.8" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="11.24.1" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.24.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.24.1" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.10.0" />
-    <PackageReference Include="EPiServer.Framework" Version="11.14.2" />
+    <PackageReference Include="EPiServer.Framework" Version="11.15.0" />
     <PackageReference Include="EPiServer.PdfPreview" Version="1.0.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="Geta.EpiCategories" Version="1.2.10" />

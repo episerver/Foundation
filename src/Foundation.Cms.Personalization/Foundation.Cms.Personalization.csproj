@@ -11,12 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.14.2" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.23.8" />
-    <PackageReference Include="EPiServer.Framework" Version="11.14.2" />
-    <PackageReference Include="EPiServer.Framework.AspNet" Version="11.14.2" />
-    <PackageReference Include="EPiServer.Tracking.Cms" Version="1.14.0" />
-    <PackageReference Include="EPiServer.Tracking.Core" Version="1.14.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.15.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.24.1" />
+    <PackageReference Include="EPiServer.Framework" Version="11.15.0" />
+    <PackageReference Include="EPiServer.Framework.AspNet" Version="11.15.0" />
+    <PackageReference Include="EPiServer.Tracking.Cms" Version="1.16.0" />
+    <PackageReference Include="EPiServer.Tracking.Core" Version="1.16.0" />
     <PackageReference Include="EPiServer.Tracking.PageView" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
   </ItemGroup>

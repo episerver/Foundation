@@ -349,7 +349,7 @@ namespace Foundation.Commerce.Extensions
             return outline;
         }
 
-        public static ProductTileViewModel GetProductTileViewModel(this EntryContentBase entry, IMarket market, Currency currency)
+        public static ProductTileViewModel GetProductTileViewModel(this EntryContentBase entry, IMarket market, Currency currency, bool isFeaturedProduct = false)
         {
             var prices = entry.Prices();
             var minPrice = prices.OrderBy(x => x.UnitPrice).ThenBy(x => x.MinQuantity).FirstOrDefault();
@@ -416,7 +416,8 @@ namespace Foundation.Commerce.Extensions
                 ShowRecommendations = entryRecommendations != null ? entryRecommendations.ShowRecommendations : true,
                 EntryType = type,
                 ProductStatus = entry.Property.Keys.Contains("ProductStatus") ? entry.Property["ProductStatus"]?.Value?.ToString() ?? "Active" : "Active",
-                Created = entry.Created
+                Created = entry.Created,
+                IsFeaturedProduct = isFeaturedProduct
             };
         }
 
