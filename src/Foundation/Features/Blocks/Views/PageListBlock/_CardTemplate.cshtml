@@ -19,7 +19,13 @@
             <div class="preview__card">
                 <div class="preview__card--show">
                     <div class="card--top">
-                        <img src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
+                        @if (blog != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <picture>
+                                <source data-srcset="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" type="image/webp">
+                                <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200" loading="lazy" />
+                            </picture>
+                        }
                     </div>
 
                     <div class="card--bottom">

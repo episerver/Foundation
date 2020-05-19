@@ -33,7 +33,10 @@
                 {
                     <tr>
                         <td>
-                            <img alt="@product.DisplayName" src="@product.ImageUrl" class="img-fluid" width="75">
+                            <picture class="img-fluid">
+                                <source data-srcset="@product.ImageUrl?format=webp&width=75" type="image/webp">
+                                <img data-src="@product.ImageUrl?width=75" class="img-fluid lazyload" alt="@product.DisplayName" width="75" />
+                            </picture>
                         </td>
                         <td>
                             <p class="title">

@@ -21,7 +21,10 @@
                         @if (content.ImageUri != null)
                         {
                             <div class="col-2 content__item">
-                                <img src="@content.ImageUri" alt="@content.Title" class="img-fluid" />
+                                <picture class="img-fluid">
+                                    <source data-srcset="@content.ImageUri?width=1440&format=webp" type="image/webp" alt="@content.Title">
+                                    <img class="img-fluid lazyload" data-src="@content.ImageUri?width=1440" loading="lazy" alt="@content.Title" />
+                                </picture>
                             </div>
                         }
                         <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">
