@@ -1,0 +1,63 @@
+﻿@using System.Web.Mvc.Html
+@using Foundation.Commerce.ViewModels.Header
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+@model Foundation.Features.MyOrganization.Roles.RolesPageViewModel
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="spacer-left-l">
+    <section>
+        <div class="flex-between">
+            <a href="@Url.Action("EditRole")" class="button-black btn-sm">
+                @Html.TranslateFallback("/B2B/Roles/AddRole", "Add Role")
+            </a>
+
+            <div>
+                <div class="custom-search search-box">
+                    <input type="text" class="textbox jsSearchRoleKeyword" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
+                    <a href="javascript:void(0);" class="jsSearchRoleBtn"><i class="icon-search" data-feather="search" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                    <th class="static-width">@Html.TranslateFallback("/B2B/Roles/Permissions", "Permissions")</th>
+                    <th class="text-right">@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+                </tr>
+            </thead>
+            <tbody class="js-users-table-body">
+                @foreach (var role in Model.Roles)
+                {
+                <tr class="jsRoleTr" data-name="@role.Name" data-pers="@String.Join(",", role.Permissions.Select(x => x.Description))">
+                    <td>@role.Name</td>
+                    <td>@String.Join(", ", role.Permissions.Select(x => x.Description))</td>
+
+                    @if (role.Id != null)
+                    {
+                        <td class="text-right">
+                            <a href="@Url.Action("EditRole", new { roleId = role.Id })" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")">
+                                <i data-feather="edit"></i>
+                            </a>
+                            <a href="javascript:void(0);"
+                               class="btn-xs link jsDeleteRole"
+                               data-roleId="@role.Id.ToString()"
+                               data-url="@Url.Action("DeleteRole")"
+                               title="@Html.TranslateFallback("/Shared/Remove", "Remove")">
+                                <i data-feather="trash"></i>
+                            </a>
+                        </td>
+                    } else
+                    {
+                        <td></td>
+                    }
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

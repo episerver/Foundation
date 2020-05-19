@@ -1,0 +1,49 @@
+﻿@using System.Web.Mvc.Html
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+@model Foundation.Features.MyOrganization.Roles.EditRoleViewModel
+@{ 
+    var perSelected = Model.Role.Permissions.Select(x => x.Permission);
+}
+
+<div>
+    <section class="spacer-bottom-l">
+        <div class="section-title spacer-bottom-l">
+            @if (Model.Role.Id == null)
+            {
+                <h2 class="h3">@Html.TranslateFallback("/B2B/Roles/AddRole", "Add role")</h2>
+            }
+            else
+            {
+                <h2 class="h3">@Html.TranslateFallback("/B2B/Roles/EditRole", "Editing role")</h2>
+            }
+
+        </div>
+        @using (Html.BeginForm("CreateOrUpdateRole", "Roles", FormMethod.Post))
+        {
+            @Html.Hidden("RoleId", Model.Role.Id)
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/Shared/Name", "Name")</label>
+                <br />
+                @Html.TextBox("Name", Model.Role.Name, new { @class = "textbox" })
+            </div>
+
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/B2B/Roles/Permissions", "Permissions")</label>
+                <br />
+                <select name="Permissions" multiple style="width: 100%" size="10">
+                    @foreach(var p in Model.Permissions)
+                    {
+                        <option value="@p.Permission" @(perSelected.Contains(p.Permission) ? "selected" :"")>@p.Description</option>
+                    }
+                </select>
+            </div>
+
+            <div class="spacer-top-l">
+                <button type="submit" class="button-black">Save</button>
+                <a href="@Url.Action("Index")" class="button-transparent-black">Cancel</a>
+            </div>
+        }
+    </section>
+</div>

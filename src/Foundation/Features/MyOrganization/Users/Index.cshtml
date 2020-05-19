@@ -16,8 +16,7 @@
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div class="spacer-left-l">
     <section>
-        <div class="section-title spacer-bottom-m">
-            <br />
+        <div class="flex-between">
             @if (Model.Organizations != null && Model.Organizations.Count == 0)
             {
                 <a href="@Url.Action("AddUser", "Users")" class="button-black btn-sm">
@@ -30,7 +29,7 @@
                     @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
                 </a>
             }
-            <div class="pull-right" id="searchUsersOrganiztion">
+            <div id="searchUsersOrganiztion">
                 <div class="custom-search search-box">
                     <input type="text" id="jsSearchUsersOrganizationTxt" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
                     <a id="jsSearchUsersOrganizationBtn" href="javascript:void(0);"><i class="icon-search" data-feather="search" aria-hidden="true"></i></a>
