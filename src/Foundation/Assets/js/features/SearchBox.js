@@ -25,7 +25,7 @@
         $(".jsSearchText").each(function (i, e) {
             inst.boxContent = $($(e).data('result-container'))[0];
             if ($("#searchOption").val() != "QuickSearch") {
-                inst.AutoSearch();
+                inst.AutoSearch(e);
                 $(e).on("keyup", function () {
                     clearTimeout(typingTimer);
                     const val = $(this).val();
@@ -160,8 +160,8 @@
             this.HidePopover();
         }
     }
-
-    AutoSearch() {
+   
+    AutoSearch(e) {
         var options = {
             url: function (phrase) {
                 return "/find_v2/_autocomplete?prefix=" + phrase;
@@ -172,10 +172,10 @@
                     enabled: false
                 },
                 onChooseEvent: function () {
-                    var keyword = $('#js-searchbox-input').getSelectedItemData().query;
-                    $("#js-searchbox-input").val(keyword);
+                    var keyword = $(e).getSelectedItemData().query;
+                    $(e).val(keyword);
                     var e = $.Event("keypress", { which: 13 });
-                    $('#js-searchbox-input').trigger(e);
+                    $(e).trigger(e);
                 }
             },
             listLocation: "hits",
@@ -188,7 +188,7 @@
             },
             adjustWidth: false
         };
-        $("#js-searchbox-input").easyAutocomplete(options);
+        $(e).easyAutocomplete(options);
     }
 
     ShowPopover(containerPopover) {
@@ -199,9 +199,7 @@
         $('.searchbox-popover').hide();
     }
 
-
     // Search Image
-
     ProcessImage() {
         var inst = this;
         $('.jsSearchImage').each(function (i, e) {
