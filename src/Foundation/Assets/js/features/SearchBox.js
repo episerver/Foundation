@@ -32,7 +32,7 @@
                     typingTimer = setTimeout(function () {
                         var e = $.Event("keypress", { which: 13 });
                         $('#js-searchbox-input').trigger(e);
-                    }, 3000);
+                    }, 5000);
                 });
             } else {
                 $(e).on("keyup", function () {
