@@ -23,7 +23,7 @@
     };
 
     window.serializeObject = function (form) {
-        var datas = form.serializeArray();
+        var datas = $(form).serializeArray();
         var jsonData = {};
         for (var d in datas) {
             jsonData[datas[d].name] = datas[d].value;
