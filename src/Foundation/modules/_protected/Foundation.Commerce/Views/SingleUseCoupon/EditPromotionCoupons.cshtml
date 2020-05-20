@@ -1,99 +1,117 @@
-﻿@using EPiServer.Shell.Navigation
-@using EPiServer.Web.Mvc.Html
+﻿@using EPiServer.Shell
+
 @inherits WebViewPage<Foundation.Commerce.Marketing.PromotionCouponsViewModel>
 
-<section class="main-container col1-layout ">
-    <div class="main container">
-        <div class="row col-main">
-            <div id="couponContainer" class="col-12">
-                <div class="page-title">
-                    <h2>Manage Coupon Codes for Promotion @Model.Promotion.Name</h2>
-                </div>
-                <div class="row">
-                    <table class="table col-12">
+<head>
+    <title>Edit promotion coupons</title>
+</head>
+<main class="dash-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h3>Manage Coupon Codes for Promotion @Model.Promotion.Name</h3>
+                <div class="card spur-card">
+                    <div class="card-header">
+                        <div class="spur-card-icon">
+                            <i data-feather="gift"></i>
+                        </div>
+                        <div class="spur-card-title">Generate coupons</div>
+                    </div>
+                    <div class="card-body">
                         @using (Html.BeginForm("Generate", "SingleUseCoupon", FormMethod.Post, new { @class = "form-horizontal" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(x => x.PromotionId)
-                            <thead>
-                                <tr>
-                                    <th>@Html.LabelFor(x => x.Quantity, new { @class = "control-label col-sm-2" })</th>
-                                    <th>@Html.LabelFor(x => x.ValidFrom, new { @class = "control-label col-sm-2" })</th>
-                                    <th>@Html.LabelFor(x => x.Expiration, new { @class = "control-label col-sm-2" })</th>
-                                    <th>@Html.LabelFor(x => x.MaxRedemptions, new { @class = "control-label col-sm-2" })</th>
-                                    <th>@Html.Label("Action", new { @class = "control-label col-sm-2" })</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>@Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @type = "number" })</td>
-                                    <td>@Html.TextBoxFor(x => x.ValidFrom, new { @class = "form-control", @type = "date" })</td>
-                                    <td>@Html.TextBoxFor(x => x.Expiration, new { @class = "form-control", @type = "date" })</td>
-                                    <td>@Html.TextBoxFor(x => x.MaxRedemptions, new { @class = "form-control", @type = "number" })</td>
-                                    <td><button type="submit" class="btn btn-primary">Generate</button></td>
-                                </tr>
-                            </tbody>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-xl-3">
+                                    @Html.LabelFor(x => x.ValidFrom)
+                                    @Html.TextBoxFor(x => x.ValidFrom, new { @class = "form-control", @type = "date" })
+                                </div>
+                                <div class="form-group col-md-6 col-xl-3">
+                                    @Html.LabelFor(x => x.Expiration)
+                                    @Html.TextBoxFor(x => x.Expiration, new { @class = "form-control", @type = "date" })
+                                </div>
+                                <div class="form-group col-md-6 col-xl-3">
+                                    @Html.LabelFor(x => x.Quantity)
+                                    @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @type = "number" })
+                                </div>
+                                <div class="form-group col-md-6 col-xl-3">
+                                    @Html.LabelFor(x => x.MaxRedemptions)
+                                    @Html.TextBoxFor(x => x.MaxRedemptions, new { @class = "form-control", @type = "number" })
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Generate</button>
                         }
-                    </table>
-                </div>
+                        <br />
+                        <div class="mvc-grid">
+                            @using (Html.BeginForm("UpdateOrDeleteCoupon", "SingleUseCoupon", FormMethod.Post, new { @class = "jsCouponUpdateForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <table class="gift-cards-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Created</th>
+                                            <th>Valid From</th>
+                                            <th>Expiration</th>
+                                            <th>Max Redemptions</th>
+                                            <th>Used Redemptions</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="js-users-table-body">
+                                        @for (var i = 0; i < Model.Coupons.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.HiddenFor(x => Model.Coupons[i].Id)
+                                                    @Html.HiddenFor(x => Model.Coupons[i].PromotionId)
+                                                    @Html.TextBoxFor(x => Model.Coupons[i].Code, new { @class = "form-control" })
+                                                </td>
+                                                <td>
+                                                    @Model.Coupons[i].Created
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(x => Model.Coupons[i].ValidFrom, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(x => Model.Coupons[i].Expiration, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(x => Model.Coupons[i].MaxRedemptions, new { @class = "form-control", @type = "number" })
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(x => Model.Coupons[i].UsedRedemptions, new { @class = "form-control", @type = "number" })
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <i class="fa fa-save jsUpdateCoupon" style="cursor: pointer;" />
+                                                    <i class="fa fa-trash-alt jsDeleteCoupon" style="cursor: pointer; color: red"></i>
+                                                </td>
 
-                <div class="row">
-
-                    <div class="table-responsive">
-                        <table class="table col-12">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Created</th>
-                                    <th>Valid From</th>
-                                    <th>Expiration</th>
-                                    <th>Max Redemptions</th>
-                                    <th>Used Redemptions</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="js-users-table-body">
-                                @for (var i = 0; i < Model.Coupons.Count; i++)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.HiddenFor(x => Model.Coupons[i].Id)
-                                            @Html.HiddenFor(x => Model.Coupons[i].PromotionId)
-                                            @Html.TextBoxFor(x => Model.Coupons[i].Code, new { @class = "form-control" })
-                                        </td>
-                                        <td>
-                                            @Model.Coupons[i].Created
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(x => Model.Coupons[i].Valid, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(x => Model.Coupons[i].Expiration, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(x => Model.Coupons[i].MaxRedemptions, new { @class = "form-control", @type = "number" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(x => Model.Coupons[i].UsedRedemptions, new { @class = "form-control", @type = "number" })
-                                        </td>
-                                        <td>
-                                            <a onclick="Coupons.updateCouponRecord(@i);">
-                                                <i class="fa fa-save fa-2x"></i>
-                                            </a>
-                                            &nbsp;&nbsp;
-                                            <a href="#" onclick="Coupons.deleteCouponRecord(@Model.Coupons[i].Id, @Model.Coupons[i].PromotionId);">
-                                                <i class="fa fa-trash fa-2x"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</section>
-<script type="text/javascript" src="~/Assets/js/Features/Admin/Coupons.js"></script>
+</main>
+
+<div style="position: fixed; top: 75px; right: 75px; display: none;" class="coupon-status alert alert-info" role="alert">
+    Updating, please wait ...
+</div>
+<div style="position: fixed; top: 75px; right: 75px; display: none;" class="coupon-alert alert" role="alert">
+</div>
+
+@section AdditionalScripts {
+    <script type="text/javascript" src="@Paths.ToClientResource("Foundation.Commerce", "ClientResources/js/Coupons.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Coupons.init();
+        });
+    </script>
+}
