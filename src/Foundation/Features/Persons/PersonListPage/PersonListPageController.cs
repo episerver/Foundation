@@ -1,0 +1,87 @@
+﻿using EPiServer;
+using EPiServer.Core;
+using EPiServer.Find;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Framework;
+using EPiServer.Web.Mvc;
+using Foundation.Find.Cms.Models.Pages;
+using Foundation.Find.Cms.Persons.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+namespace Foundation.Features.Persons.PersonListPage
+{
+    public class PersonListPageController : PageController<Find.Cms.Models.Pages.PersonListPage>
+    {
+        private readonly IContentLoader _contentLoader;
+
+        public PersonListPageController(IContentLoader contentLoader)
+        {
+            _contentLoader = contentLoader;
+        }
+
+        public ActionResult Index(Find.Cms.Models.Pages.PersonListPage currentPage)
+        {
+            var queryString = Request.QueryString;
+            var query = SearchClient.Instance.Search<Find.Cms.Models.Pages.PersonItemPage>();
+
+            if (!string.IsNullOrWhiteSpace(queryString.Get("name")))
+            {
+                query = query.For(queryString.Get("name")).InField(x => x.Name);
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryString.Get("sector")))
+            {
+                query = query.Filter(x => x.Sector.Match(queryString.Get("sector")));
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryString.Get("location")))
+            {
+                query = query.Filter(x => x.Location.Match(queryString.Get("location")));
+            }
+
+            var persons = query.OrderBy(x => x.PageName)
+                                    .Take(500)
+                                    .GetContentResult();
+
+            var model = new PersonListViewModel(currentPage) { 
+               Persons = persons,
+               Sectors = GetSectors(persons),
+               Locations = GetLocations(persons),
+               Names = GetNames(persons)
+            };
+
+            return View(model);
+        }
+
+        public List<string> GetSectors(IContentResult<PersonItemPage> persons)
+        {
+            List<string> lstSectors = new List<string>();
+            foreach(var person in persons)
+            {
+                lstSectors.Add(person.Sector);
+            }
+            return lstSectors.Distinct().OrderBy(x => x).ToList(); ;
+        }
+
+        public List<string> GetLocations(IContentResult<PersonItemPage> persons)
+        {
+            List<string> lstLocations = new List<string>();
+            foreach (var person in persons)
+            {
+                lstLocations.Add(person.Location);
+            }
+            return lstLocations.Distinct().OrderBy(x => x).ToList(); ;
+        }
+
+        public List<string> GetNames(IContentResult<PersonItemPage> persons)
+        {
+            List<string> lstNames = new List<string>();
+            foreach (var person in persons)
+            {
+                lstNames.Add(person.Name);
+            }
+            return lstNames.Distinct().OrderBy(x => x).ToList();
+        }
+    }
+}
