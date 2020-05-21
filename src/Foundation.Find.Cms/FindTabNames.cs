@@ -11,6 +11,8 @@ namespace Foundation.Find.Cms
         [Display(Order = 100)]
         public const string Location = "Location";
 
+        [Display(Order = 200)]
+        public const string Person = "Person";
         #endregion
     }
 }

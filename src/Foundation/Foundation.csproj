@@ -957,6 +957,8 @@
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Collection\CollectionPageController.cs" />
+    <Compile Include="Features\Persons\PersonListPage\PersonListPageController.cs" />
+    <Compile Include="Features\Persons\PersonItemPage\PersonItemPageController.cs" />
     <Compile Include="Features\Preview\PartialViewDisplayChannel.cs" />
     <Compile Include="Features\Preview\PagePartialPreviewController.cs" />
     <Compile Include="Features\Preview\CatalogPartialPreviewController.cs" />
@@ -1250,6 +1252,7 @@
     <Content Include="Assets\js\features\Search.js" />
     <Content Include="Assets\js\features\SearchBox.js" />
     <Content Include="Assets\js\features\Selection.js" />
+    <Content Include="Assets\js\features\selective\Persons.js" />
     <Content Include="Assets\js\features\selective\Locations.js" />
     <Content Include="Assets\js\features\selective\Stores.js" />
     <Content Include="Assets\js\features\UsersOrganization.js" />
@@ -1953,6 +1956,9 @@
     <Content Include="modules\_protected\EPiServer.Forms\EPiServer.Forms.zip" />
     <Content Include="modules\_protected\EPiServer.Insight.UI\module.config" />
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
+    <Content Include="Features\Persons\PersonItemPage\Index.cshtml" />
+    <Content Include="Features\Persons\PersonListPage\Index.cshtml" />
+    <Content Include="Assets\scss\templates\pages\_person.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
