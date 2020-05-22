@@ -45,12 +45,12 @@
                 <label class="title">Price: </label>
                 @if (Model.DiscountedUnitPrice.HasValue)
                 {
-                    <span class="price__old">@Model.PlacedPrice</span>
-                    <span class="price__discount">@Model.DiscountedUnitPrice</span>
+                    <span class="price__old">@Model.PlacedPrice.ToString()</span>
+                    <span class="price__discount">@Model.DiscountedUnitPrice.ToString()</span>
                 }
                 else
                 {
-                    <span class="price__discount">@Model.PlacedPrice</span>
+                    <span class="price__discount">@Model.PlacedPrice.ToString()</span>
                 }
             </div>
 

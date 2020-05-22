@@ -48,12 +48,12 @@
                                         <span class="price">
                                             @if (product.DiscountedUnitPrice.HasValue)
                                             {
-                                                <span class="price__old">@Helpers.RenderMoney(product.PlacedPrice)</span>
+                                                <span class="price__old">@product.PlacedPrice.ToString()</span>
                                                 <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
                                             }
                                             else
                                             {
-                                                <span class="price__discount">@Helpers.RenderMoney(product.PlacedPrice)</span>
+                                                <span class="price__discount">@product.PlacedPrice.ToString() </span>
                                             }
                                         </span>
                                     </span>
