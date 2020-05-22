@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Core;
 using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
@@ -58,7 +59,9 @@ namespace Foundation.Features.CatalogContent
                 var product = entry;
                 if (entry is VariationContent)
                 {
-                    product = _contentLoader.Get<CatalogContentBase>((entry as VariationContent).GetParentProducts().FirstOrDefault());
+                    var parentLink = (entry as VariationContent).GetParentProducts().FirstOrDefault();
+                    if (!ContentReference.IsNullOrEmpty(parentLink))
+                        product = _contentLoader.Get<CatalogContentBase>(parentLink);
                 }
                 var ancestors = _contentLoader.GetAncestors(product.ContentLink);
                 foreach (var anc in ancestors.Reverse())

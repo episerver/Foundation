@@ -16,6 +16,7 @@
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="product-detail__title">
+                @Html.Partial("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
                 <h5>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h5>
                 <h6 class="light-text">@*@Html.PropertyFor(x => x.CurrentContent.Brand)*@</h6>
                 <p class="sub-title">@Model.CurrentContent.Code</p>
