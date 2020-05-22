@@ -1,11 +1,17 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web.Mvc;
+using Foundation.Cms;
+using Foundation.Cms.Pages;
 using Foundation.Find.Cms.Models.Pages;
 using Foundation.Find.Cms.Persons.ViewModels;
+using Foundation.Find.Cms.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,10 +20,12 @@ namespace Foundation.Features.Persons.PersonListPage
     public class PersonListPageController : PageController<Find.Cms.Models.Pages.PersonListPage>
     {
         private readonly IContentLoader _contentLoader;
-
-        public PersonListPageController(IContentLoader contentLoader)
+        private readonly IContentTypeRepository _contentTypeRepository;
+        
+        public PersonListPageController(IContentLoader contentLoader, IContentTypeRepository contentTypeRepository)
         {
             _contentLoader = contentLoader;
+            _contentTypeRepository = contentTypeRepository;
         }
 
         public ActionResult Index(Find.Cms.Models.Pages.PersonListPage currentPage)
@@ -44,34 +52,16 @@ namespace Foundation.Features.Persons.PersonListPage
                                     .Take(500)
                                     .GetContentResult();
 
+            var settingPage = _contentLoader.Get<CmsHomePage>(ContentReference.StartPage);
+
             var model = new PersonListViewModel(currentPage) { 
                Persons = persons,
-               Sectors = GetSectors(persons),
-               Locations = GetLocations(persons),
+               Sectors = settingPage?.Sectors?.OrderBy(x => x.Text).ToList() ?? new List<SelectionItem>(),
+               Locations = settingPage?.Locations?.OrderBy(x => x.Text).ToList() ?? new List<SelectionItem>(),
                Names = GetNames(persons)
             };
 
             return View(model);
-        }
-
-        public List<string> GetSectors(IContentResult<PersonItemPage> persons)
-        {
-            List<string> lstSectors = new List<string>();
-            foreach(var person in persons)
-            {
-                lstSectors.Add(person.Sector);
-            }
-            return lstSectors.Distinct().OrderBy(x => x).ToList(); ;
-        }
-
-        public List<string> GetLocations(IContentResult<PersonItemPage> persons)
-        {
-            List<string> lstLocations = new List<string>();
-            foreach (var person in persons)
-            {
-                lstLocations.Add(person.Location);
-            }
-            return lstLocations.Distinct().OrderBy(x => x).ToList(); ;
         }
 
         public List<string> GetNames(IContentResult<PersonItemPage> persons)

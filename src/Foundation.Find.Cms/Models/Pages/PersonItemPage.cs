@@ -2,8 +2,10 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms.Pages;
+using Foundation.Find.Cms.Facets.Config;
 
 namespace Foundation.Find.Cms.Models.Pages
 {
@@ -21,10 +23,12 @@ namespace Foundation.Find.Cms.Models.Pages
 
         [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 2)]
+        [SelectOne(SelectionFactoryType = typeof(LocationsSelectionFactory))]
         public virtual string Location { get; set; }
 
         [CultureSpecific]
         [Display(GroupName = SystemTabNames.Content, Order = 3)]
+        [SelectOne(SelectionFactoryType = typeof(SectorsSelectionFactory))]
         public virtual string Sector { get; set; }
 
         [Display(GroupName = SystemTabNames.Content, Order = 4)]

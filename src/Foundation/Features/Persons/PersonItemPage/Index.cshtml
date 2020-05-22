@@ -7,7 +7,7 @@
         </h1>
         <h2>
             @Html.PropertyFor(x => x.CurrentContent.JobTitle),
-            @Html.PropertyFor(x => x.CurrentContent.Location)
+            @Model.CurrentContent.Location
         </h2>
         <div class="row contact">
             <div class="col-6">
@@ -16,12 +16,11 @@
                 </div>
             </div>
 
-
             <div class="col-6 detail-contact">
                 <h2>Contact</h2>
                 <p>Tel: <a href="tel:@Model.CurrentContent.Tel">@Html.PropertyFor(x => x.CurrentContent.Tel)</a></p>
                 <p>Email: <a href="mailto:@Model.CurrentContent.Email">@Html.PropertyFor(x => x.CurrentContent.Email)</a></p>
-                <p>Sector: @Html.PropertyFor(x => x.CurrentContent.Sector)</p>
+                <p>Sector: @Model.CurrentContent.Sector</p>
             </div>
         </div>
         <div class="row">
