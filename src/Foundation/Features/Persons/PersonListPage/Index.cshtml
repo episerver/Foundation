@@ -26,8 +26,8 @@
                 <option value="" selected>All</option>
                 @foreach (var sector in Model.Sectors)
                 {
-                    <option value="@sector">
-                        @sector
+                    <option value="@sector.Value.ToString()">
+                        @sector.Text
                     </option>
                 }
             </select>
@@ -37,8 +37,8 @@
                 <option value="" selected>All</option>
                 @foreach (var location in Model.Locations)
                 {
-                    <option value="@location">
-                        @location
+                    <option value="@location.Value.ToString()">
+                        @location.Text
                     </option>
                 }
             </select>
@@ -63,9 +63,9 @@
                     <ul id="ulSector" class="selection--cm__dropdown hidden">
                         @foreach (var sector in Model.Sectors)
                         {
-                            <li data-sector="@sector">
+                            <li data-sector="@sector.Value.ToString()">
                                 <a href="javascript:void(0)">
-                                    @sector
+                                    @sector.Text
                                 </a>
                             </li>
                         }
@@ -80,9 +80,9 @@
                     <ul id="ulLocation" class="selection--cm__dropdown hidden">
                         @foreach (var location in Model.Locations)
                         {
-                            <li data-location="@location">
+                            <li data-location="@location.Value.ToString()">
                                 <a href="javascript:void(0)">
-                                    @location
+                                    @location.Text
                                 </a>
                             </li>
                         }

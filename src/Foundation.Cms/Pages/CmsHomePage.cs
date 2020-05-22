@@ -1,9 +1,13 @@
+using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
+using EPiServer.PlugIn;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using Foundation.Cms.Blocks;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
@@ -79,5 +83,18 @@ namespace Foundation.Cms.Pages
         public virtual string FooterCopyrightText { get; set; }
 
         #endregion
+
+        [Display(GroupName = CmsTabNames.Settings, Order = 300)]
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
+        public virtual IList<SelectionItem> Sectors { get; set; }
+
+        [Display(GroupName = CmsTabNames.Settings, Order = 350)]
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
+        public virtual IList<SelectionItem> Locations { get; set; }
+    }
+
+    [PropertyDefinitionTypePlugIn]
+    public class SelectionItemProperty : PropertyList<SelectionItem>
+    {
     }
 }
