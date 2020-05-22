@@ -10,7 +10,7 @@
 
         <div class="cart__footer">
             <p class="cart__subtotal">
-                Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total</span>
+                Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total.ToString()</span>
             </p>
             <div class="cart__actions">
                 <button href="@Url.ContentUrl(Model.CheckoutPage)" class="button-transparent-black" onclick="window.location.href=$(this).attr('href')">
