@@ -1452,6 +1452,7 @@
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\bulkupdate.css" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\components\grid-icons.css" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\bulkupdate.js" />
+    <Content Include="modules\_protected\Foundation.Commerce\ClientResources\js\Coupons.js" />
     <Content Include="modules\_protected\Foundation.Demo\ClientResources\js\GiftCards.js" />
     <Content Include="modules\_protected\Foundation.Social\ClientResources\CommentManager.js" />
     <Content Include="modules\_protected\Foundation.Social\ClientResources\comments.css" />
