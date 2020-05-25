@@ -4,18 +4,16 @@ using EPiServer.DataAbstraction;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Pages;
+using Foundation.Find.Cms;
 using Foundation.Find.Cms.Models.Pages;
-using Foundation.Find.Cms.Persons.ViewModels;
-using Foundation.Find.Cms.ViewModels;
-using System;
+using Foundation.Find.Cms.People.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-namespace Foundation.Features.Persons.PersonListPage
+namespace Foundation.Features.People.PersonListPage
 {
     public class PersonListPageController : PageController<Find.Cms.Models.Pages.PersonListPage>
     {
@@ -35,7 +33,7 @@ namespace Foundation.Features.Persons.PersonListPage
 
             if (!string.IsNullOrWhiteSpace(queryString.Get("name")))
             {
-                query = query.For(queryString.Get("name")).InField(x => x.Name);
+                query = query.AddWildCardQuery(queryString.Get("name"), x => x.Name);
             }
 
             if (!string.IsNullOrWhiteSpace(queryString.Get("sector")))

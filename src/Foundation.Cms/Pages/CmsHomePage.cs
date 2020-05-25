@@ -84,11 +84,11 @@ namespace Foundation.Cms.Pages
 
         #endregion
 
-        [Display(GroupName = CmsTabNames.Settings, Order = 300)]
+        [Display(GroupName = CmsTabNames.CustomSettings, Order = 100)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Sectors { get; set; }
 
-        [Display(GroupName = CmsTabNames.Settings, Order = 350)]
+        [Display(GroupName = CmsTabNames.CustomSettings, Order = 200)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Locations { get; set; }
     }

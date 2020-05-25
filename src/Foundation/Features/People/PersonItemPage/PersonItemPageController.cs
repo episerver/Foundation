@@ -1,8 +1,8 @@
 ﻿using EPiServer;
 using EPiServer.Web.Mvc;
-using Foundation.Find.Cms.Persons.ViewModels;
+using Foundation.Find.Cms.People.ViewModels;
 using System.Web.Mvc;
-namespace Foundation.Features.Persons.PersonListPage
+namespace Foundation.Features.People.PersonListPage
 {
     public class PersonItemPageController : PageController<Find.Cms.Models.Pages.PersonItemPage>
     {

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Find.Cms.Facets.Config
+namespace Foundation.Cms.EditorDescriptors
 {
     public class SectorsSelectionFactory : ISelectionFactory
     {
