@@ -1955,6 +1955,7 @@
     <Content Include="modules\_protected\EPiServer.Forms\EPiServer.Forms.zip" />
     <Content Include="modules\_protected\EPiServer.Insight.UI\module.config" />
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
+    <Content Include="Features\Shared\Foundation\_ProductGridItem.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

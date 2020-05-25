@@ -7,6 +7,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
     {
         public int ProductId { get; set; }
         public string DisplayName { get; set; }
+        public string VideoAssetUrl { get; set; }
         public string ImageUrl { get; set; }
         public string Url { get; set; }
         public string Brand { get; set; }
