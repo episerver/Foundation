@@ -38,12 +38,9 @@
 
 <div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="hero-block" style="@blockRatio">
-        @if (ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo))
-        {
         <div class="hero-block__image lazyload" data-bgset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)&format=webp | @Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)">
         </div>
-        }
-        else
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo) && ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
         {
             <div class="hero-block__video">
                 <video autoplay loop playsinline muted>

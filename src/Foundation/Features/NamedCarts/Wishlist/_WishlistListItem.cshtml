@@ -28,12 +28,12 @@
                             <label class="title">Price: </label>
                             @if (product.DiscountedUnitPrice.HasValue)
                             {
-                                <span class="price__old">@product.PlacedPrice</span>
-                                <span class="price__discount">@product.DiscountedUnitPrice</span>
+                                <span class="price__old">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
                             }
                             else
                             {
-                                <span class="price__discount">@product.PlacedPrice</span>
+                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
                             }
                         </div>
                         <div class="action-icons">

@@ -257,7 +257,6 @@
         this.AutoComplete();
         this.OnQuantityChange();
         this.UploadCSVClick();
-        this.AddToCartQuickOrderClick();
     }
 }
 

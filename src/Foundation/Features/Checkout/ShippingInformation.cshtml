@@ -52,12 +52,12 @@
                                                         Price:
                                                         @if (cartItem.DiscountedUnitPrice.HasValue)
                                                         {
-                                                            <span class="price__old">@cartItem.PlacedPrice</span>
-                                                            <span class="price__discount">@cartItem.DiscountedUnitPrice</span>
+                                                            <span class="price__old">@cartItem.PlacedPrice.ToString()</span>
+                                                            <span class="price__discount">@cartItem.DiscountedUnitPrice.ToString()</span>
                                                         }
                                                         else
                                                         {
-                                                            <span class="price__discount">@cartItem.PlacedPrice</span>
+                                                            <span class="price__discount">@cartItem.PlacedPrice.ToString()</span>
                                                         }
                                                     </p>
                                                     <div class="items__quantity-row">
