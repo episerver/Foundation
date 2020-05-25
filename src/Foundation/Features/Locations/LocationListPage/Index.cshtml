@@ -73,7 +73,10 @@
                                         @if (!ContentReference.IsNullOrEmpty(location.Image))
                                         {
                                             <div class="col-lg-5">
-                                                <img src="@Url.ContentUrl(location.Image)" class="location__img img-responsive" alt="@location.Name">
+                                                <picture class="location__img img-responsive">
+                                                    <source data-srcset="@Url.ContentUrl(location.Image)?format=webp" type="image/webp" alt="@location.Name">
+                                                    <img data-src="@Url.ContentUrl(location.Image)" class="location__img img-responsive lazyload" alt="@location.Name" />
+                                                </picture>
                                             </div>
                                             <div class="col-lg-7 location__description">
                                                 @location.MainIntro

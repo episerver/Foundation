@@ -17,7 +17,10 @@
             @if (Model.CurrentBlock.HasCoverImage)
             {
                 <a href="javascript:;" class="starter"><span class="sr-only">Play video</span></a>
-                <img src="@Url.ContentUrl(Model.CurrentBlock.CoverImage)" />
+                <picture class="img-fluid">
+                    <source data-srcset="@Url.ContentUrl(Model.CurrentBlock.CoverImage)?format=webp" type="image/webp">
+                    <img data-src="@Url.ContentUrl(Model.CurrentBlock.CoverImage)" class="img-fluid lazyload" />
+                </picture>
             }
             @if (!string.IsNullOrEmpty(iframeUrl))
             {
