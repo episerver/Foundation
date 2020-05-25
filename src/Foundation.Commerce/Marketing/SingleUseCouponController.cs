@@ -62,41 +62,36 @@ namespace Foundation.Commerce.Marketing
                 Coupons = coupons ?? new List<UniqueCoupon>(),
                 Promotion = promotion,
                 PromotionId = promotion.ContentLink.ID,
-                MaxRedemptions = 1,
-                ValidFrom = DateTime.Now
+                MaxRedemptions = 1
             });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateCoupon(UniqueCoupon model)
+        public string UpdateOrDeleteCoupon(UniqueCoupon model, string actionType)
         {
-            var coupon = _couponService.GetById(model.Id);
-            if (coupon != null)
+            if (actionType.Equals("update", StringComparison.Ordinal))
             {
-                coupon.Code = model.Code;
-                coupon.Expiration = model.Expiration;
-                coupon.MaxRedemptions = model.MaxRedemptions;
-                coupon.UsedRedemptions = model.UsedRedemptions;
-                coupon.Valid = model.Valid;
-                _couponService.SaveCoupons(new List<UniqueCoupon> { coupon });
+                bool updated = false;
+                var coupon = _couponService.GetById(model.Id);
+               
+                if (coupon != null)
+                {
+                    coupon.Code = model.Code;
+                    coupon.Expiration = model.Expiration;
+                    coupon.MaxRedemptions = model.MaxRedemptions;
+                    coupon.UsedRedemptions = model.UsedRedemptions;
+                    coupon.ValidFrom = model.ValidFrom;
+                    updated = _couponService.SaveCoupons(new List<UniqueCoupon> { coupon });
+                }
+
+                return updated ? "update_ok" : "update_nok";
             }
-
-            return new ContentResult
+            else
             {
-                Content = model.PromotionId.ToString()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteCoupon(long id, int promotionId)
-        {
-            _couponService.DeleteById(id);
-            return new ContentResult
-            {
-                Content = promotionId.ToString()
-            };
+                bool deleted = _couponService.DeleteById(model.Id);
+                return deleted ? "delete_ok" : "delete_nok";
+            }
         }
 
         [HttpPost]
@@ -114,7 +109,7 @@ namespace Foundation.Commerce.Marketing
                     MaxRedemptions = model.MaxRedemptions,
                     PromotionId = model.PromotionId,
                     UsedRedemptions = 0,
-                    Valid = model.ValidFrom
+                    ValidFrom = model.ValidFrom
                 });
             }
 
