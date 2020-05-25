@@ -11,10 +11,12 @@
             padding: 0;
 
             > li {
-                & img {
+                & img, & video {
+                    vertical-align: -1px;
+                    width: 65px;
                     height: 100px;
-                    width: auto;
                     border: 1px solid #eee;
+                    object-fit: cover;
                 }
             }
         }

@@ -417,6 +417,7 @@ namespace Foundation.Commerce.Extensions
                 DiscountedPrice = isDiscounted ? minDiscountPrice.Value.Price : (minPrice != null ? minPrice.UnitPrice : new Money(0, currency)),
                 FirstVariationCode = firstCode,
                 ImageUrl = AssetUrlResolver.Value.GetAssetUrl<IContentImage>(entry),
+                VideoAssetUrl = AssetUrlResolver.Value.GetAssetUrl<IContentVideo>(entry),
                 Url = entryUrl,
                 IsAvailable = entry.Prices().Where(price => price.MarketId == market.MarketId)
                     .Any(x => x.UnitPrice.Currency == currency),
