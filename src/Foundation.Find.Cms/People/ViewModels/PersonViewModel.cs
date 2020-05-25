@@ -4,7 +4,7 @@ using Foundation.Cms.ViewModels;
 using Foundation.Find.Cms.Models.Pages;
 using System.Collections.Specialized;
 
-namespace Foundation.Find.Cms.Persons.ViewModels
+namespace Foundation.Find.Cms.People.ViewModels
 {
     public class PersonItemViewModel : ContentViewModel<PersonItemPage>
     {

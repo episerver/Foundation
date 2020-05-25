@@ -5,6 +5,11 @@
 
     Init() {
         var instance = this;
+        if ($('#persons').html().trim()) {
+            $("#mainContentArea").hide();
+        } else {
+            $("#mainContentArea").show();
+        }
 
         var options = {
             data: names,
@@ -27,24 +32,18 @@
         })
 
         $("#slSector").change(function () {
-            $("#ulSector li").each(function () {
-                $(this).removeClass("active")
-            });
+            $("#ulSector li").removeClass("active");
             $("[data-sector='" + $("#slSector").val() + "']").addClass("active");
         })
 
         $("#slLocation").change(function () {
-            $("#ulLocation li").each(function () {
-                $(this).removeClass("active")
-            });
+            $("#ulLocation li").removeClass("active");
             $("[data-location='" + $("#slLocation").val() + "']").addClass("active");
         })
 
         $("#ulSector li").each(function () {
             $(this).click(function () {
-                $("#ulSector li").each(function () {
-                    $(this).removeClass("active")
-                });
+                $("#ulSector li").removeClass("active");
                 $(this).addClass("active");
                 $("#slSector").val($(this).data("sector"));
                 $("#btnSearch").click();
@@ -53,9 +52,7 @@
 
         $("#ulLocation li").each(function () {
             $(this).click(function () {
-                $("#ulLocation li").each(function () {
-                    $(this).removeClass("active")
-                });
+                $("#ulLocation li").removeClass("active");
                 $(this).addClass("active");
                 $("#slLocation").val($(this).data("location"));
                 $("#btnSearch").click();
@@ -78,6 +75,12 @@
             .then(function (result) {
                 var fetched = $(result.data);
                 $('#persons').html(fetched.find('#persons').html());
+                if ($('#persons').html().trim()) {
+                    $("#mainContentArea").hide();
+                }
+                else {
+                    $("#mainContentArea").show();
+                }
             })
             .catch(function (error) {
                 notification.Error(error);

@@ -1,5 +1,5 @@
 ﻿@using EPiServer.Web.Mvc.Html
-@using Foundation.Find.Cms.Persons.ViewModels
+@using Foundation.Find.Cms.People.ViewModels
 @model PersonItemViewModel
     <div class="col-12">
         <h1>
@@ -18,7 +18,7 @@
 
             <div class="col-6 detail-contact">
                 <h2>Contact</h2>
-                <p>Tel: <a href="tel:@Model.CurrentContent.Tel">@Html.PropertyFor(x => x.CurrentContent.Tel)</a></p>
+                <p>Tel: <a href="tel:@Model.CurrentContent.Phone">@Html.PropertyFor(x => x.CurrentContent.Phone)</a></p>
                 <p>Email: <a href="mailto:@Model.CurrentContent.Email">@Html.PropertyFor(x => x.CurrentContent.Email)</a></p>
                 <p>Sector: @Model.CurrentContent.Sector</p>
             </div>
