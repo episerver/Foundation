@@ -7,7 +7,10 @@
     @foreach (var item in Model.Items)
     {
         <div class="cart__row">
-            <img class="cart__product-img" src="@item.ImageUrl?width=60" loading="lazy" />
+            <picture class="cart__product-img">
+                <source data-srcset="@item.ImageUrl?format=webp&width=60" type="image/webp">
+                <img data-src="@item.ImageUrl?width=60" class="cart__product-img lazyload" loading="lazy" />
+            </picture>
             <div class="cart__product">
                 <a class="account-link" href="@item.Url">@item.DisplayName</a>
                 <p class="cart__product-price">
@@ -29,7 +32,7 @@
     }
 </div>
 <div class="cart__footer">
-    <button href="@Url.ContentUrl(Model.WishlistPage)" class="button-black"  onclick="window.location.href=$(this).attr('href')">
+    <button href="@Url.ContentUrl(Model.WishlistPage)" class="button-black" onclick="window.location.href=$(this).attr('href')">
         View @Model.Label
     </button>
 </div>

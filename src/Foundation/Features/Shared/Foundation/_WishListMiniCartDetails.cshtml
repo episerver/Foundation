@@ -38,7 +38,10 @@
 
                                 <div class="item-inner">
                                     <a href="@cartItem.Url" class="product-image" title="@cartItem.DisplayName">
-                                        <img src="@(cartItem.Entry.GetDefaultAsset<IContentImage>())" alt="@cartItem.DisplayName" />
+                                        <picture>
+                                            <source data-srcset="@(cartItem.Entry.GetDefaultAsset<IContentImage>())?format=webp" type="image/webp">
+                                            <img data-src="@(cartItem.Entry.GetDefaultAsset<IContentImage>())" class="lazyload" alt="@cartItem.DisplayName" />
+                                        </picture>
                                     </a>
                                     <div class="product-details">
                                         @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))

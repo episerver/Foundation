@@ -1,4 +1,5 @@
 ﻿@using EPiServer.AddOns.Helpers
+@using ImageProcessor.Web.Episerver
 
 @model BlogListPageViewModel
 @{
@@ -16,7 +17,10 @@
             <div class="preview__card">
                 <div class="preview__card--show">
                     <div class="card--top">
-                        <img src="@Url.WebPFallbackImageUrl(blog.CurrentContent.PageImage, 1200)" />
+                        <picture>
+                            <source data-srcset="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" type="image/webp">
+                            <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)" class="lazyload" />
+                        </picture>
                     </div>
 
                     <div class="card--bottom">
