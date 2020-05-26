@@ -19,7 +19,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         }
 
         public Injected<UrlResolver> UrlResolver { get; set; }
-        public IList<string> Videos { get; set; }
+        public IList<KeyValuePair<string, string>> Media { get; set; }
         public IList<string> Images { get; set; }
         public StoreViewModel Stores { get; set; }
         public IEnumerable<ProductTileViewModel> StaticAssociations { get; set; }
