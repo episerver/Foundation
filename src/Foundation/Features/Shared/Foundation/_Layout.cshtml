@@ -1,5 +1,5 @@
-@using Foundation.Cms.SchemaMarkup;
 @using Foundation.Cms
+
 @model IContentViewModel<IContent>
 
 @{
@@ -8,13 +8,6 @@
 
 @section AdditionalStyles {
     @RenderSection("AdditionalStyles", required: false)
-}
-
-@if (Model.CurrentContent is CatalogContentBase)
-{
-    @section Meta {
-        @RenderSection("Meta", required: false)
-    }
 }
 
 <div class="loading-box" style="display: none">
@@ -62,4 +55,9 @@ else
 
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")
+@Html.RenderExtendedScripts(Model.CurrentContent)
+@if (Model.CurrentContent is EntryContentBase)
+{
+    @Html.RenderExtendedScriptsForCommerce(Model.CurrentContent)
+}
 @Model.SchemaMarkup
