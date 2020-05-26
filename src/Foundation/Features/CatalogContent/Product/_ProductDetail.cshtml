@@ -6,22 +6,13 @@
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
     var shareUrl = Url.Encode(Request.Url.ToString());
-    var media = new List<KeyValuePair<string, string>>();
-    foreach(var i in Model.Images)
-    {
-        media.Add(new KeyValuePair<string, string>("Image", i));
-    }
-    foreach (var i in Model.Videos)
-    {
-        media.Add(new KeyValuePair<string, string>("Video", i));
-    }
 }
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.Product.Code" />
 <div class="col-12">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            @Html.Partial("_Images", media)
+            @Html.Partial("_Images", Model.Media)
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="product-detail__title">

@@ -23,7 +23,7 @@
         }
         else
         {
-            <video class="img-fluid product-tile-grid__image" autoplay="autoplay" loop="loop" muted src="@Model.VideoAssetUrl">
+            <video onclick="location.href='@Model.Url'" class="img-fluid product-tile-grid__image" autoplay="autoplay" loop="loop" muted src="@Model.VideoAssetUrl">
             </video>
         }
         @*<span class="hover-feather-icon added-wishlist"><i data-feather="heart"></i></span>*@
