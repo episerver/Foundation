@@ -84,20 +84,3 @@
         @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}
     </section>
 }
-
-@section Meta {
-    @{
-        if (!String.IsNullOrEmpty(Model.Bundle.SeoInformation.Description))
-        {
-            <meta property="description" content="@Html.AttributeEncode(Model.Bundle.SeoInformation.Description)" />
-        }
-        else if (Model.Bundle.Description != null && !Model.Bundle.Description.IsEmpty)
-        {
-            <meta property="description" content="@Html.AttributeEncode(Model.Bundle.Description)" />
-        }
-        if (!String.IsNullOrEmpty(Model.Bundle.SeoInformation.Keywords))
-        {
-            <meta property="keywords" content="@Html.AttributeEncode(Model.Bundle.SeoInformation.Keywords)" />
-        }
-    }
-}

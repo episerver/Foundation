@@ -5,6 +5,8 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
+using EPiServer.SpecializedProperties;
+using EPiServer.Web;
 using Foundation.Cms;
 using Foundation.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
@@ -66,6 +68,20 @@ namespace Foundation.Commerce.Models.Catalog
         [CultureSpecific]
         [Display(Name = "Hide site footer", GroupName = CmsTabNames.Settings, Order = 200)]
         public virtual bool HideSiteFooter { get; set; }
+
+        [Display(Name = "CSS files", GroupName = CmsTabNames.Styles, Order = 100)]
+        public virtual LinkItemCollection CssFiles { get; set; }
+
+        [Display(Name = "CSS", GroupName = CmsTabNames.Styles, Order = 200)]
+        [UIHint(UIHint.Textarea)]
+        public virtual string Css { get; set; }
+
+        [Display(Name = "Script files", GroupName = CmsTabNames.Scripts, Order = 100)]
+        public virtual LinkItemCollection ScriptFiles { get; set; }
+
+        [UIHint(UIHint.Textarea)]
+        [Display(GroupName = CmsTabNames.Scripts, Order = 200)]
+        public virtual string Scripts { get; set; }
 
         #endregion
 

@@ -6,12 +6,13 @@
         Layout = null;
     }
 }
+
 @Html.FullRefreshPropertiesMetaData(new[] { "FeaturedProducts" })
+
 <div class="category-page">
     <div class="row">
         <div class="col-12">
             @Html.PropertyFor(x => x.CurrentContent.TopContentArea, new { CssClass = "row" })
-
         </div>
     </div>
     <div class="row">
@@ -54,11 +55,10 @@
                 }
                 else
                 {
-            <div class="col-lg-3">
-                @Html.PropertyFor(x => x.CurrentContent.FeaturedProducts);
-            </div>
+                    <div class="col-lg-3">
+                        @Html.PropertyFor(x => x.CurrentContent.FeaturedProducts);
+                    </div>
                     <div class="col-lg-9">
-                       
                         @Html.Partial("_BreadCrumb", Model.BreadCrumb)
                         <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
                         <div class="row">
