@@ -12,7 +12,7 @@
                 @*<source data-srcset="@firstMedia.Value?format=webp" type="image/webp">*@
                 <img src="@firstMedia.Value" class="img-fluid lazyload"
                      style="display: @(firstMedia.Key == "Image" ? "inline" : "none")"/>
-                <video controls class="img-fluid border jsProductImageShow" src="@firstMedia.Value"
+                <video autoplay loop controls class="img-fluid border jsProductImageShow" src="@firstMedia.Value"
                      style="display: @(firstMedia.Key == "Video" ? "inline" : "none")"></video>
             </picture>
         </div>
