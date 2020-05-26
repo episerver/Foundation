@@ -65,20 +65,3 @@
         </div>
     </div>
 </div>
-
-@section Meta {
-    @{
-        if (!String.IsNullOrEmpty(Model.CurrentContent.SeoInformation.Description))
-        {
-            <meta property="description" content="@Html.AttributeEncode(Model.CurrentContent.SeoInformation.Description)" />
-        }
-        else if (Model.CurrentContent.Description != null && !Model.CurrentContent.Description.IsEmpty)
-        {
-            <meta property="description" content="@Html.AttributeEncode(Model.CurrentContent.Description)" />
-        }
-        if (!String.IsNullOrEmpty(Model.CurrentContent.SeoInformation.Keywords))
-        {
-            <meta property="keywords" content="@Html.AttributeEncode(Model.CurrentContent.SeoInformation.Keywords)" />
-        }
-    }
-}

@@ -19,109 +19,92 @@ namespace Foundation.Cms.Extensions
 {
     public static class HtmlHelpers
     {
-        private const string CssFormat = "<link href=\"{0}\" rel=\"stylesheet\" />";
-        private const string ScriptFormat = "<script src=\"{0}\"></script>";
-        private const string MetaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
+        private const string _cssFormat = "<link href=\"{0}\" rel=\"stylesheet\" />";
+        private const string _scriptFormat = "<script src=\"{0}\"></script>";
+        private const string _metaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
 
-        private static readonly Lazy<IContentLoader> ContentLoader =
+        private static readonly Lazy<IContentLoader> _contentLoader =
             new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
 
-        private static readonly Lazy<IUrlResolver> UrlResolver =
+        private static readonly Lazy<IUrlResolver> _urlResolver =
            new Lazy<IUrlResolver>(() => ServiceLocator.Current.GetInstance<IUrlResolver>());
 
-        private static readonly Lazy<IPermanentLinkMapper> PermanentLinkMapper =
+        private static readonly Lazy<IPermanentLinkMapper> _permanentLinkMapper =
            new Lazy<IPermanentLinkMapper>(() => ServiceLocator.Current.GetInstance<IPermanentLinkMapper>());
 
         public static MvcHtmlString RenderExtendedCss(this HtmlHelper helper, IContent content)
         {
-            if (content == null || ContentReference.StartPage == PageReference.EmptyReference)
-            {
-                return new MvcHtmlString("");
-            }
-
-            var sitePageData = content as FoundationPageData;
-            if (sitePageData == null)
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is IFoundationContent sitePageData))
             {
                 return new MvcHtmlString("");
             }
 
             var outputCss = new StringBuilder(string.Empty);
-            var start = ContentLoader.Value.Get<CmsHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Value.Get<CmsHomePage>(ContentReference.StartPage);
 
-            if ((sitePageData.CssFiles == null || sitePageData.CssFiles.Count == 0) && start.CssFiles != null)
+            // Extended Css file
+            AppendFiles(startPage.CssFiles, outputCss, _cssFormat);
+            AppendFiles(sitePageData.CssFiles, outputCss, _cssFormat);
+
+            // Inline CSS
+            if (!string.IsNullOrWhiteSpace(startPage.Css) || !string.IsNullOrWhiteSpace(sitePageData.Css))
             {
-                AppendFiles(start.CssFiles, outputCss, CssFormat);
+                outputCss.AppendLine("<style>");
+                outputCss.AppendLine(!string.IsNullOrWhiteSpace(startPage.Css) ? startPage.Css : "");
+                outputCss.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Css) ? sitePageData.Css : "");
+                outputCss.AppendLine("</style>");
             }
-
-            AppendFiles(sitePageData.CssFiles, outputCss, CssFormat);
-
-            // Inlined CSS & Google Font
-            outputCss.AppendLine("<style>");
-            outputCss.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Css) ? sitePageData.Css :
-                !string.IsNullOrWhiteSpace(start.Css) ? start.Css : "");
-            outputCss.AppendLine("</style>");
 
             return new MvcHtmlString(outputCss.ToString());
         }
 
         public static MvcHtmlString RenderExtendedScripts(this HtmlHelper helper, IContent content)
         {
-            if (content == null)
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is IFoundationContent sitePageData))
             {
                 return new MvcHtmlString("");
             }
 
-            var output = new StringBuilder(string.Empty);
-            var sitePageData = content as FoundationPageData;
-            if (sitePageData == null)
+            var outputScript = new StringBuilder(string.Empty);
+            var startPage = _contentLoader.Value.Get<CmsHomePage>(ContentReference.StartPage);
+
+            // Extended Javascript file
+            AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
+            AppendFiles(sitePageData.ScriptFiles, outputScript, _scriptFormat);
+
+            // Inline Javascript
+            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(sitePageData.Scripts))
             {
-                return new MvcHtmlString("");
+                outputScript.AppendLine("<script type=\"text/javascript\">");
+                outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
+                outputScript.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Scripts) ? sitePageData.Scripts : "");
+                outputScript.AppendLine("</script>");
             }
 
-            AppendFiles(sitePageData.ScriptFiles, output, ScriptFormat);
-
-            if (string.IsNullOrWhiteSpace(sitePageData.Scripts))
-            {
-                return new MvcHtmlString(output.ToString());
-            }
-
-            output.AppendLine("<script type=\"text/javascript\">");
-            output.AppendLine(sitePageData.Scripts);
-            output.AppendLine("</script>");
-
-
-            return new MvcHtmlString(output.ToString());
+            return new MvcHtmlString(outputScript.ToString());
         }
 
         public static MvcHtmlString RenderMetaData(this HtmlHelper helper, IContent content)
         {
-            if (content == null)
+            if (content == null || !(content is FoundationPageData sitePageData))
             {
                 return new MvcHtmlString("");
             }
 
             var output = new StringBuilder(string.Empty);
-            var sitePageData = content as FoundationPageData;
-            if (sitePageData == null)
-            {
-                return new MvcHtmlString("");
-            }
 
             if (!string.IsNullOrWhiteSpace(sitePageData.MetaTitle))
             {
-                output.AppendLine(string.Format(MetaFormat, "title", sitePageData.MetaTitle));
+                output.AppendLine(string.Format(_metaFormat, "title", sitePageData.MetaTitle));
             }
-
             if (!string.IsNullOrEmpty(sitePageData.Keywords))
             {
-                output.AppendLine(string.Format(MetaFormat, "keywords", sitePageData.Keywords));
+                output.AppendLine(string.Format(_metaFormat, "keywords", sitePageData.Keywords));
             }
-
             if (!string.IsNullOrWhiteSpace(sitePageData.PageDescription))
             {
-                output.AppendLine(string.Format(MetaFormat, "description", sitePageData.PageDescription));
+                output.AppendLine(string.Format(_metaFormat, "description", sitePageData.PageDescription));
             }
-
             if (sitePageData.DisableIndexing)
             {
                 output.AppendLine("<meta name=\"robots\" content=\"NOINDEX, NOFOLLOW\">");
@@ -138,10 +121,10 @@ namespace Foundation.Cms.Extensions
 
             foreach (var item in files.Where(item => !string.IsNullOrEmpty(item.Href)))
             {
-                var map = PermanentLinkMapper.Value.Find(new UrlBuilder(item.Href));
+                var map = _permanentLinkMapper.Value.Find(new UrlBuilder(item.Href));
                 outputString.AppendLine(map == null
                     ? string.Format(formatString, item.GetMappedHref())
-                    : string.Format(formatString, UrlResolver.Value.GetUrl(map.ContentReference)));
+                    : string.Format(formatString, _urlResolver.Value.GetUrl(map.ContentReference)));
             }
         }
 
@@ -196,21 +179,21 @@ namespace Foundation.Cms.Extensions
             Func<IEnumerable<PageData>, IEnumerable<PageData>> filter =
                 pages => pages.FilterForDisplay(requirePageTemplate, requireVisibleInMenu);
 
-            var pagePath = ContentLoader.Value.GetAncestors(currentContentLink)
+            var pagePath = _contentLoader.Value.GetAncestors(currentContentLink)
                 .Reverse()
                 .Select(x => x.ContentLink)
                 .SkipWhile(x => !x.CompareToIgnoreWorkID(rootLink))
                 .ToList();
 
-            var menuItems = ContentLoader.Value.GetChildren<PageData>(rootLink)
+            var menuItems = _contentLoader.Value.GetChildren<PageData>(rootLink)
                 .FilterForDisplay(requirePageTemplate, requireVisibleInMenu)
-                .Select(x => CreateMenuItem(x, currentContentLink, pagePath, ContentLoader.Value, filter))
+                .Select(x => CreateMenuItem(x, currentContentLink, pagePath, _contentLoader.Value, filter))
                 .ToList();
 
             if (includeRoot)
             {
                 menuItems.Insert(0,
-                    CreateMenuItem(ContentLoader.Value.Get<PageData>(rootLink), currentContentLink, pagePath, ContentLoader.Value,
+                    CreateMenuItem(_contentLoader.Value.Get<PageData>(rootLink), currentContentLink, pagePath, _contentLoader.Value,
                         filter));
             }
 
@@ -277,7 +260,6 @@ namespace Foundation.Cms.Extensions
         public class MenuItem
         {
             public MenuItem(PageData page) => Page = page;
-
             public PageData Page { get; set; }
             public bool Selected { get; set; }
             public Lazy<bool> HasChildren { get; set; }
