@@ -6,7 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Media
 {
-    [ContentType(DisplayName = "Video File", GUID = "8a9d9d4b-cd4b-40e8-a777-414cfbda7770", Description = "")]
+    [ContentType(DisplayName = "Video File",
+        GUID = "8a9d9d4b-cd4b-40e8-a777-414cfbda7770", 
+        Description = "Used for video file types such as mp4, flv, webm")]
     [MediaDescriptor(ExtensionString = "mp4,flv,webm")]
     public class VideoFile : VideoData
     {
