@@ -13,11 +13,10 @@ namespace Foundation.Cms.SchemaMarkup
     {
         public Thing Map(BlogItemPage content)
         {
-            return new BlogPosting
+            var posting = new BlogPosting
             {
                 Headline = content.Name,
                 Description = content.TeaserText ?? content.PageDescription ?? string.Empty,
-                Image = (content?.PageImage?.Get<MediaData>() as MediaData)?.GetUri(true) ?? new Uri(string.Empty),
                 Author = new Person
                 {
                     Name = content.Author ?? string.Empty
@@ -25,6 +24,13 @@ namespace Foundation.Cms.SchemaMarkup
                 DatePublished = new DateTimeOffset(content.StartPublish ?? content.Changed),
                 DateModified = new DateTimeOffset(content.Changed)
             };
+
+            if (content != null && !ContentReference.IsNullOrEmpty(content.PageImage))
+            {
+                posting.Image = (content.PageImage.Get<MediaData>() as MediaData)?.GetUri(true);
+            }
+
+            return posting;
         }
     }
 }

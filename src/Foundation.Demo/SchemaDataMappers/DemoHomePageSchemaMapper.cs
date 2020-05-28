@@ -1,4 +1,5 @@
-﻿using EPiServer.Web;
+﻿using EPiServer.Core;
+using EPiServer.Web;
 using Foundation.Cms.Extensions;
 using Foundation.Demo.Models;
 using Schema.NET;
@@ -14,6 +15,13 @@ namespace Foundation.Cms.SchemaMarkup
     {
         public Thing Map(DemoHomePage content)
         {
+            var potentialAction = new SearchAction { QueryInput = "required name=search_term_string" };
+
+            if (!ContentReference.IsNullOrEmpty(content.SearchPage))
+            {
+                potentialAction.Target = new Uri($"{content.SearchPage.GetUri(true)}?search={{search_term_string}}");
+            }
+
             return new WebSite
             {
                 MainEntity = new Organization
@@ -29,11 +37,7 @@ namespace Foundation.Cms.SchemaMarkup
                     SameAs = content.SocialLinks != null ? content.SocialLinks.Select(x => new Uri(x.Href ?? string.Empty)).ToArray() : new OneOrMany<Uri>()
                 },
                 Url = content.GetUri(true),
-                PotentialAction = new SearchAction
-                {
-                    Target = new Uri($"{content.SearchPage.GetUri(true)}?search={{search_term_string}}"),
-                    QueryInput = "required name=search_term_string"
-                }
+                PotentialAction = potentialAction
             };
         }
     }
