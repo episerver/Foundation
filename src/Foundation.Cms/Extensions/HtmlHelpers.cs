@@ -44,14 +44,17 @@ namespace Foundation.Cms.Extensions
 
             // Extended Css file
             AppendFiles(startPage.CssFiles, outputCss, _cssFormat);
-            AppendFiles(sitePageData.CssFiles, outputCss, _cssFormat);
+            if (!(sitePageData is CmsHomePage))
+            {
+                AppendFiles(sitePageData.CssFiles, outputCss, _cssFormat);
+            }
 
             // Inline CSS
             if (!string.IsNullOrWhiteSpace(startPage.Css) || !string.IsNullOrWhiteSpace(sitePageData.Css))
             {
                 outputCss.AppendLine("<style>");
                 outputCss.AppendLine(!string.IsNullOrWhiteSpace(startPage.Css) ? startPage.Css : "");
-                outputCss.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Css) ? sitePageData.Css : "");
+                outputCss.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Css) && !(sitePageData is CmsHomePage) ? sitePageData.Css : "");
                 outputCss.AppendLine("</style>");
             }
 
@@ -70,14 +73,17 @@ namespace Foundation.Cms.Extensions
 
             // Extended Javascript file
             AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
-            AppendFiles(sitePageData.ScriptFiles, outputScript, _scriptFormat);
+            if (!(sitePageData is CmsHomePage))
+            {
+                AppendFiles(sitePageData.ScriptFiles, outputScript, _scriptFormat);
+            }
 
             // Inline Javascript
             if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(sitePageData.Scripts))
             {
                 outputScript.AppendLine("<script type=\"text/javascript\">");
                 outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Scripts) ? sitePageData.Scripts : "");
+                outputScript.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Scripts) && !(sitePageData is CmsHomePage) ? sitePageData.Scripts : "");
                 outputScript.AppendLine("</script>");
             }
 
