@@ -11,7 +11,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Media
 {
-    [ContentType(GUID = "20644be7-3ca1-4f84-b893-ee021b73ce6c")]
+    [ContentType(DisplayName = "Image File", 
+        GUID = "20644be7-3ca1-4f84-b893-ee021b73ce6c", 
+        Description = "Used for image file types such as jpg, jpeg, jpe, ico, gif, bmp, png, svg, webp")]
     [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png,svg,webp")]
     public class ImageMediaData : ImageData
     {

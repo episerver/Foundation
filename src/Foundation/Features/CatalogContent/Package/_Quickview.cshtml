@@ -3,7 +3,10 @@
 <input type="hidden" name="productCode" id="productCode" value="@Model.Package.Code" />
 <div class="row">
     <div class="col-md-4 col-sm-12">
-        <img src="@Model.Images.ElementAt(0)" alt="@Model.Package.Code" class="img-fluid" />
+        <picture class="img-fluid">
+            <source data-srcset="@Model.Images.ElementAt(0)?width=1440&format=webp" type="image/webp" alt="@Model.Package.Code">
+            <img class="img-fluid lazyload" data-src="@Model.Images.ElementAt(0)?width=1440" loading="lazy" alt="@Model.Package.Code" />
+        </picture>
     </div>
     <div class="col-md-8 col-sm-12">
         <h4 class="title">@Html.PropertyFor(x => x.Package.Name)</h4>

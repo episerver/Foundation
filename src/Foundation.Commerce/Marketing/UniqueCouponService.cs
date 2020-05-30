@@ -222,7 +222,7 @@ namespace Foundation.Commerce.Marketing
                 row[IdColumn] = coupon.Id;
                 row[PromotionIdColumn] = coupon.PromotionId;
                 row[CodeColumn] = coupon.Code;
-                row[ValidColumn] = coupon.Valid;
+                row[ValidColumn] = coupon.ValidFrom;
                 row[ExpirationColumn] = coupon.Expiration ?? (object)DBNull.Value;
                 row[CustomerIdColumn] = coupon.CustomerId ?? (object)DBNull.Value;
                 row[CreatedColumn] = coupon.Created;
@@ -248,7 +248,7 @@ namespace Foundation.Commerce.Marketing
                 MaxRedemptions = Convert.ToInt32(row[MaxRedemptionsColumn]),
                 PromotionId = Convert.ToInt32(row[PromotionIdColumn]),
                 UsedRedemptions = Convert.ToInt32(row[UsedRedemptionsColumn]),
-                Valid = Convert.ToDateTime(row[ValidColumn])
+                ValidFrom = Convert.ToDateTime(row[ValidColumn])
             };
         }
     }

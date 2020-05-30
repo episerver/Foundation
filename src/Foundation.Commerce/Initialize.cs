@@ -81,20 +81,6 @@ namespace Foundation.Commerce
 
         void IInitializableModule.Initialize(InitializationEngine context)
         {
-            MarketEvent.ChangeMarket += ChangeMarket;
-        }
-
-        private void ChangeMarket(object o, EventArgs e)
-        {
-            var market = o as IMarket;
-            if (market != null)
-            {
-                var marketCache = CacheManager.Get(Constant.CacheKeys.MarketViewModel) as MarketViewModel;
-                if (marketCache.MarketId != market.MarketId)
-                {
-                    CacheManager.Remove(Constant.CacheKeys.MarketViewModel);
-                }
-            }
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)

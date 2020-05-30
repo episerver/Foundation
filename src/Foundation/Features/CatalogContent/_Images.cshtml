@@ -1,22 +1,42 @@
-﻿@model List<string>
+﻿@model List<KeyValuePair<string, string>>
 
 @if (Model != null && Model.Count > 0)
 {
+    var firstMedia = Model.ElementAt(0);
     <div class="row">
         <div class="col-12" style="position: relative">
             <div class="product-zoom-image--container">
                 <div class="product-zoom-image"></div>
             </div>
-            <img src="@Model.ElementAt(0)" class="img-fluid border jsProductImageShow" />
+            <picture class="img-fluid border jsProductImageShow">
+                @*<source data-srcset="@firstMedia.Value?format=webp" type="image/webp">*@
+                <img src="@firstMedia.Value" class="img-fluid lazyload"
+                     style="display: @(firstMedia.Key == "Image" ? "inline" : "none")"/>
+                <video autoplay loop controls class="img-fluid border jsProductImageShow" src="@firstMedia.Value"
+                     style="display: @(firstMedia.Key == "Video" ? "inline" : "none")"></video>
+            </picture>
         </div>
     </div>
     <div class="row product-detail__image">
         <ul class="col-12">
-            @foreach (var image in Model)
+            @foreach (var media in Model)
             {
                 <li class="jsProductImageSelect">
-                    <a href="javascript:void(0)" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '@image' ">
-                        <img src="@image" alt="" />
+                    <a href="javascript:void(0)" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '@media.Value' ">
+                        @if (media.Key == "Image")
+                        {
+                            <picture>
+                                <source data-srcset="@media.Value?format=webp" type="image/webp">
+                                <img data-src="@media.Value" class="lazyload" />
+                            </picture>
+                        }
+                        else
+                        {
+                            <picture>
+                                <source data-srcset="@media.Value?format=webp" type="image/webp">
+                                <video src="@media.Value"></video>
+                            </picture>
+                        }
                     </a>
                 </li>
             }

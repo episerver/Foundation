@@ -32,7 +32,10 @@
                                         <div class="checkout__cart-item jsCartItem">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <img class="items__img" src="@cartItem.ImageUrl" alt="@cartItem.DisplayName" title="@cartItem.DisplayName">
+                                                    <picture class="items__img">
+                                                        <source data-srcset="@cartItem.ImageUrl?format=webp" type="image/webp">
+                                                        <img data-src="@cartItem.ImageUrl" class="items__img lazyload" alt="@cartItem.DisplayName" title="@cartItem.DisplayName" />
+                                                    </picture>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <h5 class="items__item">
@@ -49,12 +52,12 @@
                                                         Price:
                                                         @if (cartItem.DiscountedUnitPrice.HasValue)
                                                         {
-                                                            <span class="price__old">@cartItem.PlacedPrice</span>
-                                                            <span class="price__discount">@cartItem.DiscountedUnitPrice</span>
+                                                            <span class="price__old">@cartItem.PlacedPrice.ToString()</span>
+                                                            <span class="price__discount">@cartItem.DiscountedUnitPrice.ToString()</span>
                                                         }
                                                         else
                                                         {
-                                                            <span class="price__discount">@cartItem.PlacedPrice</span>
+                                                            <span class="price__discount">@cartItem.PlacedPrice.ToString()</span>
                                                         }
                                                     </p>
                                                     <div class="items__quantity-row">

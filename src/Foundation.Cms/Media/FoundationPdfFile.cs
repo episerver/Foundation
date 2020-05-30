@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Media
 {
-    [ContentType(DisplayName = "Pdf File", GUID = "ee7e1eb6-2b6d-4cc9-8ed1-56ec0cbaa40b", Description = "")]
+    [ContentType(DisplayName = "Pdf File", GUID = "ee7e1eb6-2b6d-4cc9-8ed1-56ec0cbaa40b", Description = "Used for PDF file")]
     [MediaDescriptor(ExtensionString = "pdf")]
     public class FoundationPdfFile : PdfFile
     {

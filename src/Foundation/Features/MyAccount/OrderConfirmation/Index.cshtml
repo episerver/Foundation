@@ -112,7 +112,12 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-sm-3 col-md-2">
-                            <a href="@lineItem.GetUrl()"><img src="@lineItem.GetThumbnailUrl()" /></a>
+                            <a href="@lineItem.GetUrl()">
+                                <picture>
+                                    <source data-srcset="@lineItem.GetThumbnailUrl()?format=webp" type="image/webp">
+                                    <img data-src="@lineItem.GetThumbnailUrl()" class="lazyload" />
+                                </picture>
+                            </a>
                         </div>
                         <div class="col-sm-9 col-md-10">
                             <a href="@lineItem.GetUrl()" class="account-link">@lineItem.GetEntryContent().DisplayName</a>

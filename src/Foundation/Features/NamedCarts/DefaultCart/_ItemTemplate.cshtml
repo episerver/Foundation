@@ -12,7 +12,10 @@
 <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
     <div class="product-tile-list__image">
         <a href="@Model.Url">
-            <img class="img-fluid" src="@Model.ImageUrl" alt="">
+            <picture class="img-fluid">
+                <source data-srcset="@Model.ImageUrl?format=webp" type="image/webp">
+                <img data-src="@Model.ImageUrl" class="img-fluid lazyload" alt="" />
+            </picture>
         </a>
     </div>
 </div>
@@ -45,12 +48,12 @@
                 <label class="title">Price: </label>
                 @if (Model.DiscountedUnitPrice.HasValue)
                 {
-                    <span class="price__old">@Model.PlacedPrice</span>
-                    <span class="price__discount">@Model.DiscountedUnitPrice</span>
+                    <span class="price__old">@Model.PlacedPrice.ToString()</span>
+                    <span class="price__discount">@Model.DiscountedUnitPrice.ToString()</span>
                 }
                 else
                 {
-                    <span class="price__discount">@Model.PlacedPrice</span>
+                    <span class="price__discount">@Model.PlacedPrice.ToString()</span>
                 }
             </div>
 

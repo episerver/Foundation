@@ -2,6 +2,7 @@
 @using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
 @using Foundation.Cms.EditorDescriptors
+@using ImageProcessor.Web.Episerver
 
 @model BlogItemPageModel
 
@@ -13,7 +14,10 @@
             <picture>
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <img class="img-fluid" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
+                    <picture class="img-fluid">
+                        <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
+                    </picture>
                 }
             </picture>
         </div>
@@ -50,7 +54,10 @@
             <picture style="width: 100%">
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
+                    <picture class="img-fluid preview--image-top__image">
+                        <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
+                    </picture>
                 }
             </picture>
         </div>
@@ -88,7 +95,10 @@
         <picture style="height: 100%;">
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
-                <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
+                <picture class="img-fluid preview--image-top__image">
+                    <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                    <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
+                </picture>
             }
         </picture>
         <div>
@@ -156,7 +166,10 @@
                     <picture style="width: 100%">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                         {
-                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
+                            <picture class="img-fluid preview--image-top__image">
+                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
+                            </picture>
                         }
                     </picture>
                 </div>
@@ -189,7 +202,10 @@
                     <picture style="width: 100%">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                         {
-                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
+                            <picture class="img-fluid preview--image-top__image">
+                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
+                            </picture>
                         }
                     </picture>
                 </div>
@@ -205,7 +221,10 @@
                     <picture style="width: 100%">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                         {
-                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(Model.CurrentContent.PageImage, 1200)" />
+                            <picture class="img-fluid preview--image-top__image">
+                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
+                            </picture>
                         }
                     </picture>
                 </div>

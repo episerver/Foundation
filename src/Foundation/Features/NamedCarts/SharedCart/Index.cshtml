@@ -33,7 +33,10 @@
                 {
                     <tr>
                         <td>
-                            <img alt="@product.DisplayName" src="@product.ImageUrl" class="img-fluid" width="75">
+                            <picture class="img-fluid">
+                                <source data-srcset="@product.ImageUrl?format=webp&width=75" type="image/webp">
+                                <img data-src="@product.ImageUrl?width=75" class="img-fluid lazyload" alt="@product.DisplayName" width="75" />
+                            </picture>
                         </td>
                         <td>
                             <p class="title">
@@ -48,12 +51,12 @@
                                         <span class="price">
                                             @if (product.DiscountedUnitPrice.HasValue)
                                             {
-                                                <span class="price__old">@Helpers.RenderMoney(product.PlacedPrice)</span>
+                                                <span class="price__old">@product.PlacedPrice.ToString()</span>
                                                 <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
                                             }
                                             else
                                             {
-                                                <span class="price__discount">@Helpers.RenderMoney(product.PlacedPrice)</span>
+                                                <span class="price__discount">@product.PlacedPrice.ToString() </span>
                                             }
                                         </span>
                                     </span>

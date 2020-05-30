@@ -8,7 +8,10 @@
         <div class="row product-tile-list__item">
             <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
                 <div class="product-tile-list__image">
-                    <img class="img-fluid" src="@product.ImageUrl" alt="">
+                    <picture class="img-fluid">
+                        <source data-srcset="@product.ImageUrl?format=webp" type="image/webp">
+                        <img data-src="@product.ImageUrl" class="img-fluid lazyload" alt="" />
+                    </picture>
                 </div>
             </div>
             <div class="col-md-8 col-lg-9 col-sm-6 col-xs-6">
@@ -25,12 +28,12 @@
                             <label class="title">Price: </label>
                             @if (product.DiscountedUnitPrice.HasValue)
                             {
-                                <span class="price__old">@product.PlacedPrice</span>
-                                <span class="price__discount">@product.DiscountedUnitPrice</span>
+                                <span class="price__old">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
                             }
                             else
                             {
-                                <span class="price__discount">@product.PlacedPrice</span>
+                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
                             }
                         </div>
                         <div class="action-icons">

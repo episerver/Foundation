@@ -1,4 +1,5 @@
 ﻿@using Foundation.Helpers
+@using ImageProcessor.Web.Episerver
 
 @model IBlockViewModel<HeroBlock>
 
@@ -37,9 +38,19 @@
 
 <div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="hero-block" style="@blockRatio">
-        <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage)
-             style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
-        </div>
+        @if (PageEditing.PageIsInEditMode)
+        {
+            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage) style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
+            </div>
+        }
+        else
+        {
+            if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
+            {
+                <div class="hero-block__image lazyload" data-bgset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)&format=webp | @Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)">
+                </div>
+            }
+        }
         @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo) && ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
         {
             <div class="hero-block__video">

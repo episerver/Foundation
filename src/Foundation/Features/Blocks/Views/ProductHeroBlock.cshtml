@@ -14,6 +14,9 @@
         @Html.PropertyFor(x => x.CurrentBlock.Callout.Text)
     </div>
     <div class="product-hero-block__image" style="@Model.ImagePosition">
-        <img class="img-fluid" src="@imageUrl" />
+        <picture class="img-fluid">
+            <source data-srcset="@imageUrl&format=webp" type="image/webp">
+            <img class="img-fluid lazyload" data-src="@imageUrl" />
+        </picture>
     </div>
 </div>

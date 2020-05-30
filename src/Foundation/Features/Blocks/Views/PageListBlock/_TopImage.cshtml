@@ -1,5 +1,6 @@
 ﻿@using EPiServer.AddOns.Helpers
 @using EPiServer.Core.Html
+@using ImageProcessor.Web.Episerver
 
 @model PageListBlockViewModel
 
@@ -23,7 +24,8 @@
                     <picture style="height: 100%">
                         @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
-                            <img class="img-fluid preview--image-top__image" src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
+                            <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
                         }
                     </picture>
                 }

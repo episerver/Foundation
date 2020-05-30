@@ -392,8 +392,17 @@ namespace Foundation.Commerce.Extensions
                 var variantEntry = entry as GenericVariant;
                 type = typeof(GenericVariant);
                 firstCode = entry.Code;
-                product = ContentLoader.Value.Get<EntryContentBase>(entry.GetParentProducts().FirstOrDefault()) as GenericProduct;
-                entryUrl = UrlResolver.Value.GetUrl(product.ContentLink) + "?variationCode=" + variantEntry.Code;
+                var parentLink = entry.GetParentProducts().FirstOrDefault();
+                if (ContentReference.IsNullOrEmpty(parentLink))
+                {
+                    product = ContentLoader.Value.Get<EntryContentBase>(variantEntry.ContentLink);
+                    entryUrl = UrlResolver.Value.GetUrl(variantEntry.ContentLink);
+                } 
+                else
+                {
+                    product = ContentLoader.Value.Get<EntryContentBase>(parentLink) as GenericProduct;
+                    entryUrl = UrlResolver.Value.GetUrl(product.ContentLink) + "?variationCode=" + variantEntry.Code;
+                }
             }
 
             return new ProductTileViewModel
@@ -408,6 +417,7 @@ namespace Foundation.Commerce.Extensions
                 DiscountedPrice = isDiscounted ? minDiscountPrice.Value.Price : (minPrice != null ? minPrice.UnitPrice : new Money(0, currency)),
                 FirstVariationCode = firstCode,
                 ImageUrl = AssetUrlResolver.Value.GetAssetUrl<IContentImage>(entry),
+                VideoAssetUrl = AssetUrlResolver.Value.GetAssetUrl<IContentVideo>(entry),
                 Url = entryUrl,
                 IsAvailable = entry.Prices().Where(price => price.MarketId == market.MarketId)
                     .Any(x => x.UnitPrice.Currency == currency),

@@ -97,6 +97,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                     Product = currentContent,
                     CurrentContent = currentContent,
                     Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
+                    Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver),
                     Colors = new List<SelectListItem>(),
                     Sizes = new List<SelectListItem>(),
                     StaticAssociations = new List<ProductTileViewModel>(),
@@ -156,6 +157,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.Color = baseVariant?.Color;
             viewModel.Size = baseVariant?.Size;
             viewModel.Images = variant.GetAssets<IContentImage>(_contentLoader, _urlResolver);
+            viewModel.Media = variant.GetAssetsWithType(_contentLoader, _urlResolver);
             viewModel.IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock;
             viewModel.Stores = new StoreViewModel
             {
@@ -231,6 +233,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.CurrentContent = currentContent;
             viewModel.Bundle = currentContent;
             viewModel.Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver);
+            viewModel.Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver);
             viewModel.Entries = variants;
             viewModel.Stores = new StoreViewModel
             {
@@ -283,6 +286,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 DiscountedPrice = discountedPrice,
                 SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency),
                 Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
+                Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver),
                 IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock,
                 Stores = new StoreViewModel
                 {
@@ -347,6 +351,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.DiscountedPrice = GetDiscountPrice(defaultPrice, market, currency);
             viewModel.SubscriptionPrice = subscriptionPrice?.UnitPrice ?? new Money(0, currency);
             viewModel.Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver);
+            viewModel.Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver);
             viewModel.IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock;
             viewModel.Entries = variants;
             //Reviews = GetReviews(currentContent.Code);

@@ -20,7 +20,8 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
-    return gulp.src(['./assets/js/features/*.js', './assets/js/plugins/notify.js'])
+    return gulp.src(['./assets/js/features/*.js', './assets/js/plugins/notify.js', './Assets/js/plugins/ls.bgset.min.js',
+        './Assets/js/plugins/lazysizes.min.js'])
         .pipe(sourcemaps.init())
         .pipe(js_concat('main.min.js'))
         //.pipe(js_minify())

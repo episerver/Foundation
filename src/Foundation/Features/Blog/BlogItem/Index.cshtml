@@ -20,7 +20,10 @@
                 }
                 else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <img class="blog-item__image img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                    <picture class="blog-item__image img-fluid">
+                        <source data-srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?format=webp" type="image/webp">
+                        <img class="blog-item__image img-fluid lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                    </picture>
                 }
             </div>
         </div>

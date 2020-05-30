@@ -12,7 +12,10 @@
                 <div class="navigation__logo @(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
                      style="@(Model.DemoHomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
                     <a href="/">
-                        <img class="img-fluid" src="@Url.ContentUrl(Model.DemoHomePage.SiteLogo)" @Html.EditAttributes(x => x.DemoHomePage.SiteLogo) />
+                        <picture class="img-fluid">
+                            <source data-srcset="@Url.ContentUrl(Model.DemoHomePage.SiteLogo)?format=webp&width=225" type="image/webp">
+                            <img data-src="@Url.ContentUrl(Model.DemoHomePage.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.DemoHomePage.SiteLogo) />
+                        </picture>
                     </a>
                 </div>
                 <ul class="navigation__right">

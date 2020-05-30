@@ -36,8 +36,12 @@ namespace Foundation.Features.CatalogContent.Product
                 var code = currentContent.Code;
                 if (currentContent is VariationContent)
                 {
-                    var product = (currentContent as VariationContent).GetParentProducts().FirstOrDefault();
-                    code = _contentLoader.Get<EntryContentBase>(product)?.Code;
+                    var parentLink = currentContent.GetParentProducts().FirstOrDefault();
+                    if (!ContentReference.IsNullOrEmpty(parentLink))
+                    {
+                        var product = (currentContent as VariationContent).GetParentProducts().FirstOrDefault();
+                        code = _contentLoader.Get<EntryContentBase>(product)?.Code;
+                    }
                 }
                 //productTileViewModel.ReviewStatistics = _reviewService.GetRatings(new[] { code }).FirstOrDefault();
             }

@@ -16,10 +16,13 @@
     }
 
     &__market-icon {
-        width: 1rem;
-        height: 1rem;
-        border-radius: 4px;
-        margin: 2px 10px 0 0;
+        margin: 0px 4px 0 0;
+
+        img {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 4px;
+        }
     }
 
     &__market-text {
@@ -27,6 +30,12 @@
         font-size: 0.875rem;
         font-weight: 300;
         margin-bottom: 0;
+        padding-top: 4px;
+
+        &--current {
+            padding-top: 0;
+            margin-bottom: 0;
+        }
     }
 
     &__dropdown-icon {
@@ -46,7 +55,7 @@
 
     &__item {
         width: 100%;
-        padding: 6px 22px 6px 10px;
+        padding: 3px 22px 3px 10px;
         display: flex;
         justify-content: flex-start;
         border-bottom: 1px solid #eee;

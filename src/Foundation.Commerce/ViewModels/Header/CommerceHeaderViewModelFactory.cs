@@ -247,14 +247,14 @@ namespace Foundation.Commerce.ViewModels.Header
 
         protected virtual void AddMarketViewModel(IContent currentContent, CommerceHeaderViewModel viewModel)
         {
-            var marketsViewModel = CacheManager.Get(Constant.CacheKeys.MarketViewModel) as MarketViewModel;
-            if (marketsViewModel != null)
+            var currentMarket = _currentMarket.GetCurrentMarket();
+
+            if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
             {
                 viewModel.Markets = marketsViewModel;
             }
             else
             {
-                var currentMarket = _currentMarket.GetCurrentMarket();
                 var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
                     .Select(x => new MarketItem
                     {
@@ -266,19 +266,19 @@ namespace Foundation.Commerce.ViewModels.Header
                 marketsViewModel = new MarketViewModel
                 {
                     Markets = markets,
-                    MarketId = currentMarket != null ? currentMarket.MarketId.Value : string.Empty,
-                    CurrentMarket = currentMarket != null ? new MarketItem
+                    MarketId = currentMarket.MarketId.Value,
+                    CurrentMarket = new MarketItem
                     {
                         Selected = false,
                         Text = currentMarket.MarketName,
                         Value = currentMarket.MarketId.Value,
                         FlagUrl = GetFlagUrl(currentMarket.MarketId)
-                    } : null,
+                    },
                     ContentLink = currentContent?.ContentLink ?? ContentReference.EmptyReference
                 };
                 viewModel.Markets = marketsViewModel;
 
-                CacheManager.Insert(Constant.CacheKeys.MarketViewModel, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
+                CacheManager.Insert(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
             }
         }
 
