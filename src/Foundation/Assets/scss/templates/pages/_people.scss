@@ -1,0 +1,79 @@
+.person-filter-block {
+    margin: 40px 0px 100px 0px;
+
+    .button-transparent-black {
+        padding: 8px 30px;
+        width: 100%;
+    }
+
+    div {
+        padding-left: 0px;
+    }
+
+    button-transparent-black {
+        padding: 8px 10px;
+    }
+
+    .easy-autocomplete-container ul{
+        display: none;
+    }
+}
+
+.person_heading {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 3.85714rem;
+    margin: 28px 0 14px 0;
+    text-align: left;
+}
+
+.person-list-block {
+    margin-bottom: 40px;
+
+    .category-page__facets {
+        margin-top: 60px;
+    }
+
+    .product-tile-grid {
+        padding-bottom: 0px;
+        height: 50%;
+    }
+
+    .detail-info {
+        padding: 20px 0px 0px 10px;
+
+        a {
+            overflow-wrap: break-word;
+            color: black;
+        }
+    }
+
+    .h-50 {
+        margin-bottom: 40px;
+    }
+
+}
+
+.contact {
+    margin-top: 40px;
+
+    .detail-contact {
+        padding: 25px;
+
+        h2, p {
+            margin-bottom: 25px;
+        }
+        a {
+            color: black;
+        }
+    }
+
+    .product-tile-grid {
+        margin-bottom: 0px;
+    }
+
+    .product-tile-grid img {
+        height: auto;
+        width: 100%;
+    }
+}
