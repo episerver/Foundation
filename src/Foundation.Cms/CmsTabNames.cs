@@ -44,6 +44,9 @@ namespace Foundation.Cms
         [RequiredAccess(AccessLevel.Edit)]
         public const string MetaData = "Metadata";
 
+        [Display(Name = "Custom Settings", Order = 265)]
+        public const string CustomSettings = "CustomSettings";
+
         [Display(Order = 270)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string Styles = "Styles";

@@ -3,6 +3,7 @@ using EPiServer.Find;
 using EPiServer.Find.Api.Facets;
 using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Api.Querying.Filters;
+using EPiServer.Find.Api.Querying.Queries;
 using EPiServer.Find.Helpers;
 using EPiServer.ServiceLocation;
 using Foundation.Cms.Categories;
@@ -364,6 +365,31 @@ namespace Foundation.Find.Cms
                 x.Field = name;
                 x.Ranges.AddRange(range);
             };
+        }
+
+        public static ITypeSearch<T> AddWildCardQuery<T>(
+        this ITypeSearch<T> search,
+        string query,
+        Expression<Func<T, string>> fieldSelector)
+        {
+            var fieldName = search.Client.Conventions.FieldNameConvention
+                .GetFieldNameForAnalyzed(fieldSelector);
+            var wildcardQuery = new WildcardQuery(fieldName, query.ToLowerInvariant());
+            return new Search<T, WildcardQuery>(search, context =>
+            {
+                if (context.RequestBody.Query != null)
+                {
+                    var boolQuery = new BoolQuery();
+                    boolQuery.Should.Add(context.RequestBody.Query);
+                    boolQuery.Should.Add(wildcardQuery);
+                    boolQuery.MinimumNumberShouldMatch = 1;
+                    context.RequestBody.Query = boolQuery;
+                }
+                else
+                {
+                    context.RequestBody.Query = wildcardQuery;
+                }
+            });
         }
     }
 }
