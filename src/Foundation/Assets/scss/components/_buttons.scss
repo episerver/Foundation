@@ -152,10 +152,3 @@ a[class^="button-"], a[class*="button-"] {
         color: #468847;
     }
 }
-
-.disabled {
-    pointer-events: none;
-    cursor: default;
-    background-color: grey;
-    border: 0;
-}

@@ -16,6 +16,8 @@
     ContactList: [
     ],
 
+    originalGiftCard: {},
+
     loadData: () => {
         $.ajax({
             url: "/GiftCardManager/GetAllGiftCards",
@@ -143,10 +145,16 @@
 
     enableAllButtons: () => {
         $(':button').prop('disabled', false);
+        $('.gift-cards-table tbody tr').removeClass('disabled');
     },
 
     disableAllButtons: () => {
         $(':button').prop('disabled', true);
+        $('.gift-cards-table tbody tr').each((index, value) => {
+            if (value.id != 'GiftCard_EditableRow') {
+                $('.gift-cards-table tbody tr[id|=' + value.id + ']').addClass('disabled');
+            }
+        });
     },
 
     showCreateRow: () => {
@@ -157,7 +165,7 @@
 
     showUpdateRow: (e) => {
         let giftCardId = $(e.currentTarget).closest('tr').attr('id');
-        let giftCard = {
+        GiftCards.originalGiftCard = {
             giftCardId: giftCardId,
             giftCardName: $(`#${giftCardId} td:nth-child(1)`).text(),
             contactId: $(`#${giftCardId} td:nth-child(2)`).attr('id'),
@@ -168,8 +176,8 @@
             isActive: $(`#${giftCardId} td:nth-child(6)`).text()
         };
 
-        GiftCards.loadEditableRow(giftCard);
-        GiftCards.disableAllButtons();
+        GiftCards.loadEditableRow(GiftCards.originalGiftCard);
+        GiftCards.disableAllButtons(giftCardId);
         $('#GiftCard_EditableRow button').prop('disabled', false);
     },
 
@@ -177,19 +185,8 @@
         let giftCardId = $('#GiftCard_EditableRow').data('value');
 
         if (giftCardId !== undefined && giftCardId !== "") {
-            let giftCard = {
-                giftCardId: giftCardId,
-                giftCardName: $('#GiftCard_GiftCardName').val(),
-                contactId: $('#GiftCard_ContactName option:selected').val(),
-                contactName: $('#GiftCard_ContactName option:selected').text(),
-                initialAmount: $('#GiftCard_InitialAmount').val(),
-                remainBalance: $('#GiftCard_RemainBalance').val(),
-                redemptionCode: $('#GiftCard_RedemptionCode').val(),
-                isActive: $('#GiftCard_IsActive').is(':checked')
-            };
-
             let html = "";
-            html += GiftCards.loadDisplayRow(giftCard);
+            html += GiftCards.loadDisplayRow(GiftCards.originalGiftCard);
 
             $('#GiftCard_EditableRow').before(html);
         }
@@ -216,7 +213,7 @@
             type: "POST",
             data: giftCard,
             success: function (result) {
-                giftCard.GiftCardId = result;
+                giftCard.giftCardId = result;
 
                 let html = "";
                 html += GiftCards.loadDisplayRow(giftCard);
