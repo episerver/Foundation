@@ -6,13 +6,13 @@
     init() {
         this.getContentTypes();
         this.getLanguages();
-        $('.content-group-filter').on('change', this.getContentTypes);
+        $('.content-group-filter').on('change', { inst: this }, this.getContentTypes);
         $('.content-type-filter').on('change', this.getProperties);
         $('.button-apply-filters').on('click', { inst: this }, this.applyFilters);
     }
     
-    getContentTypes() {
-        var inst = this;
+    getContentTypes(e) {
+        var inst = typeof (e) !== 'undefined' ? e.data.inst : this;
         $('.loading-box').show();
         let filter = $('.content-group-filter').val();
         axios.get("/episerver/foundation.cms/bulkupdate/getcontenttypes/?type=" + filter)
