@@ -11,7 +11,9 @@ namespace Foundation.Cms.SiteSettings.Pages
 {
     [ContentType(DisplayName = "Cms Layout Settings Page", 
         GUID = "f7366060-c801-494c-99b8-b761ac3447c3",
-        Description = "Header settings, footer settings, menu settings")]
+        Description = "Header settings, footer settings, menu settings",
+        AvailableInEditMode = false, GroupName = CmsGroupNames.Settings)]
+    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-layout-settings.png")]
     public class CmsLayoutSettingsPage : SettingsBasePage, ICmsLayoutSettings
     {
         #region Footer

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
+using Foundation.Cms;
 using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.SiteSettings.Pages;
 using Foundation.Commerce;
@@ -15,7 +16,9 @@ namespace Foundation.Demo.SiteSettings.Pages
 {
     [ContentType(DisplayName = "Demo Search Settings Page", 
         GUID = "14f5b59c-919c-432e-9bcf-acaac4a2b100", 
-        Description = "")]
+        Description = "Search settings",
+        GroupName = CmsGroupNames.Settings)]
+    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-search-settings.png")]
     public class DemoSearchSettingsPage : SettingsBasePage, IFacetConfiguration, IDemoSearchSettings
     {
 

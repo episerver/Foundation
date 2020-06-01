@@ -6,6 +6,9 @@ namespace Foundation.Cms
     [GroupDefinitions]
     public static class CmsGroupNames
     {
+        [Display(Name = "Settings", Order = 100)]
+        public const string Settings = "Settings";
+
         [Display(Name = "Content", Order = 510)]
         public const string Content = "Content";
 

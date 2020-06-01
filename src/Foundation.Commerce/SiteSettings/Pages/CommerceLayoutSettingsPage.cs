@@ -11,7 +11,10 @@ namespace Foundation.Commerce.SiteSettings.Pages
 {
     [ContentType(DisplayName = "Commerce Layout Settings Page",
         GUID = "7c97b9e5-dce3-4e7c-a4a2-d3b582b129a4", 
-        Description = "Header settings, footer settings, menu settings, label settings")]
+        Description = "Header settings, footer settings, menu settings, label settings",
+        AvailableInEditMode = false,
+        GroupName = CmsGroupNames.Settings)]
+    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-layout-settings.png")]
     public class CommerceLayoutSettingsPage : CmsLayoutSettingsPage, ICommerceLayoutSettings
     {
         #region Header

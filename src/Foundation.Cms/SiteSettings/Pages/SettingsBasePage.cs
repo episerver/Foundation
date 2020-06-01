@@ -9,6 +9,7 @@ namespace Foundation.Cms.SiteSettings.Pages
         Exclude = new[] { typeof(PageData) },
         ExcludeOn = new[] { typeof(FoundationPageData), typeof(FolderPage) },
         IncludeOn = new[] { typeof(SettingNode) })]
+
     public abstract class SettingsBasePage : PageData
     {
     }

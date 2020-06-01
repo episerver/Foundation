@@ -5,7 +5,6 @@ using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms;
 using Foundation.Cms.EditorDescriptors;
-using Foundation.Cms.SiteSettings.Pages;
 using Foundation.Commerce.SiteSettings.Pages;
 using Foundation.Demo.SiteSettings.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +13,9 @@ namespace Foundation.Demo.SiteSettings.Pages
 {
     [ContentType(DisplayName = "Demo Layout Settings Page", 
         GUID = "67df0504-a5e7-40c2-9d69-4a8a6bbc9c13", 
-        Description = "")]
+        Description = "Header settings, footer settings, menu settings, label settings",
+        GroupName = CmsGroupNames.Settings)]
+    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-layout-settings.png")]
     public class DemoLayoutSettingsPage : CommerceLayoutSettingsPage, IDemoLayoutSettings
     {
         #region Header

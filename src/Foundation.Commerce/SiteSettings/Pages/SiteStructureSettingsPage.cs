@@ -1,6 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using Foundation.Cms;
 using Foundation.Cms.Pages;
 using Foundation.Cms.SiteSettings.Pages;
 using Foundation.Commerce.Models.Pages;
@@ -11,7 +12,9 @@ namespace Foundation.Commerce.SiteSettings.Pages
 {
     [ContentType(DisplayName = "Site Structure Settings Page", 
         GUID = "bf69f959-c91b-46cb-9829-2ecf9d11e13b", 
-        Description = "Site structure settings")]
+        Description = "Site structure settings",
+        GroupName = CmsGroupNames.Settings)]
+    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-structure-settings.png")]
     public class SiteStructureSettingsPage : SettingsBasePage, ISiteStructureSettings
     {
         #region Site Structure

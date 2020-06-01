@@ -11,6 +11,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
+    [AvailableContentTypes(
+        Availability = Availability.Specific,
+        Include = new[] { typeof(PageData) })]
     public abstract class CmsHomePage : FoundationPageData
     {
         #region Content
