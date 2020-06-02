@@ -1962,8 +1962,8 @@
     <Content Include="modules\_protected\EPiServer.Insight.UI\module.config" />
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
     <Content Include="Features\Shared\Foundation\_ProductGridItem.cshtml" />
-    <Content Include="Features\Persons\PersonItemPage\Index.cshtml" />
-    <Content Include="Features\Persons\PersonListPage\Index.cshtml" />
+    <Content Include="Features\People\PersonItemPage\Index.cshtml" />
+    <Content Include="Features\People\PersonListPage\Index.cshtml" />
     <Content Include="Assets\scss\templates\pages\_person.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
