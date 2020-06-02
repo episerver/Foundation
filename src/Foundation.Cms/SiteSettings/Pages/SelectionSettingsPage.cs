@@ -11,8 +11,10 @@ using Foundation.Cms.SiteSettings.Interfaces;
 namespace Foundation.Cms.SiteSettings.Pages
 {
     [ContentType(DisplayName = "Selection Settings Page", 
-        GUID = "4356a392-ed29-4895-9e65-bf44fa3db5ca", 
-        Description = "")]
+        GUID = "4356a392-ed29-4895-9e65-bf44fa3db5ca",
+        Description = "Selection options settings",
+        AvailableInEditMode = false, GroupName = CmsGroupNames.Settings)]
+    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-selection-settings.png")]
     public class SelectionSettingsPage : SettingsBasePage, ISelectionSettings
     {
         #region Person settings
