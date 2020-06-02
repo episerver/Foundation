@@ -13,7 +13,7 @@ namespace Foundation.Cms.SiteSettings.Pages
     [ContentType(DisplayName = "Selection Settings Page", 
         GUID = "4356a392-ed29-4895-9e65-bf44fa3db5ca",
         Description = "Selection options settings",
-        AvailableInEditMode = false, GroupName = CmsGroupNames.Settings)]
+        GroupName = CmsGroupNames.Settings)]
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-selection-settings.png")]
     public class SelectionSettingsPage : SettingsBasePage, ISelectionSettings
     {
@@ -36,13 +36,11 @@ namespace Foundation.Cms.SiteSettings.Pages
 
     public class ColorModel
     {
-        public string Property { get; set; }
-        public string Value { get; set; }
         [Display(Name = "Color name")]
         public string ColorName { get; set; }
 
         [Display(Name = "Color code")]
-        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public string ColorCode { get; set; }
     }
 

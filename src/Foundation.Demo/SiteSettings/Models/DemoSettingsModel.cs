@@ -18,10 +18,8 @@ namespace Foundation.Demo.SiteSettings.Models
 
         public ICmsLayoutSettings LayoutSettings { get; set; }
         public ISiteStructureSettings SiteStructureSettings { get; set; }
-        public IDemoSearchSettings SearchSettings { get; set; }
-
-        public IDemoLayoutSettings DemoLayoutSettings => LayoutSettings as IDemoLayoutSettings;
-
         public ISelectionSettings SelectionSettings { get; set; }
+        public IDemoSearchSettings SearchSettings { get; set; }
+        public IDemoLayoutSettings DemoLayoutSettings => LayoutSettings as IDemoLayoutSettings;
     }
 }

@@ -5,7 +5,6 @@ using EPiServer.ServiceLocation;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Pages;
-using Foundation.Cms.SiteSettings.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +12,6 @@ namespace Foundation.Cms.EditorDescriptors
 {
     public class ColorOptionsSelectionFactory : ISelectionFactory
     {
-        private readonly Injected<ISiteSettingsProvider> _siteSettingsProvider;
         private readonly Injected<IContentLoader> _contentLoader;
 
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
