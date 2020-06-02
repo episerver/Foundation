@@ -6,6 +6,7 @@ using EPiServer.Labs.ContentManager;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.SchemaMarkup;
+using Foundation.Cms.SiteSettings.Interfaces;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Catalog.ViewModels;
@@ -19,6 +20,7 @@ using Foundation.Commerce.Order.Payments;
 using Foundation.Commerce.Order.Services;
 using Foundation.Commerce.Order.ViewModelFactories;
 using Foundation.Commerce.SchemaDataMappers;
+using Foundation.Commerce.SiteSettings.Implementations;
 using Foundation.Commerce.ViewModels.Header;
 using Mediachase.Commerce;
 using System.Web.Mvc;
@@ -75,6 +77,7 @@ namespace Foundation.Commerce
             services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
             services.AddSingleton<ICouponUsage, FoundationCouponUsage>();
             services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
+            services.AddSingleton<ISettingsHandler, CommerceSettingsHandler>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

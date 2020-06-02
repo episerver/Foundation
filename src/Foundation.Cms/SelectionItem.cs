@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EPiServer.Core;
+using EPiServer.PlugIn;
 
 namespace Foundation.Cms
 {
@@ -10,5 +7,10 @@ namespace Foundation.Cms
     {
         public virtual string Text { get; set; }
         public virtual string Value { get; set; }
+    }
+
+    [PropertyDefinitionTypePlugIn]
+    public class SelectionItemProperty : PropertyList<SelectionItem>
+    {
     }
 }

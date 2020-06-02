@@ -12,6 +12,7 @@
     <Compile Remove="SchemaMarkup\RegisterSchemaMappers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AddOn.Episerver.Settings" Version="1.0.0" />
     <PackageReference Include="BVN.404Handler" Version="11.4.0" />
     <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.15.1" />

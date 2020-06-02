@@ -12,12 +12,14 @@ using EPiServer.ServiceLocation;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Media;
 using Foundation.Cms.SchemaMarkup;
+using Foundation.Cms.SiteSettings.Interfaces;
 using Foundation.Cms.ViewModels.Header;
 using Foundation.Demo.Campaign;
 using Foundation.Demo.Install;
 using Foundation.Demo.Install.Steps;
 using Foundation.Demo.Models;
 using Foundation.Demo.ProfileStore;
+using Foundation.Demo.SiteSettings.Implementations;
 using Foundation.Demo.ViewModels;
 using Foundation.Find.Cms.ViewModels;
 using System;
@@ -57,6 +59,7 @@ namespace Foundation.Demo
             services.AddSingleton<IStorageService, StorageService>();
             services.AddSingleton<IProfileStoreService, ProfileStoreService>();
             services.AddSingleton<ISchemaDataMapper<DemoHomePage>, DemoHomePageSchemaMapper>();
+            services.AddSingleton<ISettingsHandler, DemoSettingsHandler>();
 
             context.ConfigurationComplete += (o, e) =>
             {

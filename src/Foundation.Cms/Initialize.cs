@@ -18,6 +18,8 @@ using Foundation.Cms.Media;
 using Foundation.Cms.ModelBinders;
 using Foundation.Cms.Pages;
 using Foundation.Cms.SchemaMarkup;
+using Foundation.Cms.SiteSettings.Implementations;
+using Foundation.Cms.SiteSettings.Interfaces;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
@@ -48,6 +50,8 @@ namespace Foundation.Cms
             _services.AddTransient<IViewTemplateModelRegistrator, ViewTemplateModelRegistrator>();
             _services.AddSingleton<ISchemaDataMapper<BlogItemPage>, BlogItemPageSchemaMapper>();
             _services.AddSingleton<ISchemaDataMapper<CmsHomePage>, CmsHomePageSchemaMapper>();
+            _services.AddSingleton<ISiteSettingsProvider, SiteSettingsProvider>();
+            _services.AddSingleton<ISettingsHandler, CmsSettingsHandler>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
