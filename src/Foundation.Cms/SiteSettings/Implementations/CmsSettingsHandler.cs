@@ -14,7 +14,11 @@ namespace Foundation.Cms.SiteSettings.Implementations
                 if (s is ICmsLayoutSettings)
                 {
                     model.LayoutSettings = s as ICmsLayoutSettings;
-                    break;
+                }
+
+                if (s is ISelectionSettings)
+                {
+                    model.SelectionSettings = s as ISelectionSettings;
                 }
             }
 
