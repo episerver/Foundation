@@ -205,7 +205,7 @@ namespace Foundation.Cms
 
         private ContentReference GetContentLink(int objectId, int contentType, int versionId)
         {
-            var contentId = objectId | (contentType << InformationBitCount);
+            var contentId = objectId | 1 - (contentType << InformationBitCount);
             return new ContentReference(contentId, versionId, CatalogProviderKey);
         }
     }
