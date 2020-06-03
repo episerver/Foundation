@@ -68,18 +68,6 @@
                                             <div class="col-4">
                                                 <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
                                             </div>
-                                            <div class="col-12">
-                                                @if (location.Tags != null)
-                                                {
-                                                    <i class="fa fa-tags"></i>
-                                                    foreach (var tag in location.Tags.FilteredItems)
-                                                    {
-                                                        <span data-epi-block-id="@tag.ContentLink.ToString()">
-                                                            <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-dark">@tag.GetContent().Name</span></a>
-                                                        </span>
-                                                    }
-                                                }
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -122,18 +110,6 @@
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-xs-4">
                                             <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            @if (location.Tags != null)
-                                            {
-                                                <i class="fa fa-tags"></i>
-                                                foreach (var tag in location.Tags.FilteredItems)
-                                                {
-                                                    <span data-epi-block-id="@tag.ContentLink.ToString()">
-                                                        <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-round">@tag.GetContent().Name</span></a>
-                                                    </span>
-                                                }
-                                            }
                                         </div>
                                     </div>
                                 </div>

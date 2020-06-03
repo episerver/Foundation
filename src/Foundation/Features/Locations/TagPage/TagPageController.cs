@@ -68,10 +68,13 @@ namespace Foundation.Features.Locations.TagPage
             }
             if (carousel.Items.All(item => item.Image == null) || currentPage.Images != null)
             {
-                foreach (var image in currentPage.Images.FilteredItems.Select(ci => ci.ContentLink))
+                if(currentPage.Images != null && currentPage.Images.FilteredItems != null)
                 {
-                    var title = _contentLoader.Get<ImageMediaData>(image).Title;
-                    carousel.Items.Add(new TagsCarouselItem { Image = image, Heading = title });
+                    foreach (var image in currentPage.Images.FilteredItems.Select(ci => ci.ContentLink))
+                    {
+                        var title = _contentLoader.Get<ImageMediaData>(image).Title;
+                        carousel.Items.Add(new TagsCarouselItem { Image = image, Heading = title });
+                    }
                 }
             }
             model.Carousel = carousel;
