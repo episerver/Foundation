@@ -3,6 +3,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Find;
+using EPiServer.Labs.ContentManager.Cards;
 using EPiServer.Web;
 using Foundation.Cms.Categories;
 using Foundation.Cms.Pages;
@@ -82,6 +83,12 @@ namespace Foundation.Find.Cms.Models.Pages
         {
             var repo = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<IContentRepository>();
             return Categories?.Select(category => repo.Get<StandardCategory>(category).Name).ToList();
+        }
+
+        public override void SetItem(ItemModel itemModel)
+        {
+            itemModel.Description = MainIntro;
+            itemModel.Image = Image;
         }
     }
 }

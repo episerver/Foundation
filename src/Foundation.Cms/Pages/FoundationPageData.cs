@@ -1,6 +1,8 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Labs.ContentManager.Cards;
+using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
@@ -12,7 +14,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Cms.Pages
 {
-    public abstract class FoundationPageData : PageData, ICategorizableContent, IFoundationContent
+    public abstract class FoundationPageData : PageData, ICategorizableContent, IFoundationContent, IDashboardItem
     {
         #region Page Header
 
@@ -248,6 +250,12 @@ namespace Foundation.Cms.Pages
         public virtual string Scripts { get; set; }
 
         #endregion
+
+        public virtual void SetItem(ItemModel itemModel)
+        {
+            itemModel.Description = PageDescription;
+            itemModel.Image = PageImage;
+        }
 
         public override void SetDefaultValues(ContentType contentType)
         {

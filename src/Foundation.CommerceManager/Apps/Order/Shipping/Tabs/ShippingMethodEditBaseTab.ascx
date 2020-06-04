@@ -22,7 +22,7 @@
                 <asp:RequiredFieldValidator ID="rfName" runat="server" ErrorMessage="<%$ Resources:SharedStrings, Name_Required %>"
                     Font-Size="9pt" Font-Names="verdana" Display="Dynamic" ControlToValidate="tbName" />
                     <asp:RegularExpressionValidator runat="server" ID="revName" ControlToValidate="tbName" Display="Dynamic"
-                    ValidationExpression="^[a-zA-Z0-9\s]*$" ErrorMessage="<%$ Resources:SharedStrings, Latin_Symbols_Only %>" />
+                    ValidationExpression="^[a-zA-Z0-9_]*$" ErrorMessage="<%$ Resources:SharedStrings, Latin_Symbols_Only %>" />
                 <asp:RegularExpressionValidator ID="regexTextBox1" Text="<%$ Resources:SharedStrings, Name_MaxLength %>" 
                      ControlToValidate="tbName" runat="server" ValidationExpression="^[\s\S]{0,100}$"
                      Font-Size="9pt" Font-Names="verdana" Display="Dynamic"/>

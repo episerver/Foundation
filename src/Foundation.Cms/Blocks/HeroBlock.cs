@@ -2,6 +2,8 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Labs.ContentManager.Cards;
+using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
@@ -14,7 +16,7 @@ namespace Foundation.Cms.Blocks
         Description = "Image block with overlay for text",
         GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-22.png")]
-    public class HeroBlock : FoundationBlockData
+    public class HeroBlock : FoundationBlockData, IDashboardItem
     {
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Block ratio (width:height)", Order = 5)]
@@ -36,6 +38,12 @@ namespace Foundation.Cms.Blocks
         [UIHint("HeroBlockCallout")]
         [Display(Name = "Callout", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual HeroBlockCallout Callout { get; set; }
+
+        public void SetItem(ItemModel itemModel)
+        {
+            itemModel.Description = Callout?.CalloutContent.ToHtmlString();
+            itemModel.Image = BackgroundImage;
+        }
 
         public override void SetDefaultValues(ContentType contentType)
         {

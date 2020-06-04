@@ -1,8 +1,8 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Marketing;
+﻿using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Order;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Labs.ContentManager;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.SchemaMarkup;
@@ -13,7 +13,6 @@ using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Mail;
 using Foundation.Commerce.Marketing;
 using Foundation.Commerce.Markets;
-using Foundation.Commerce.Markets.ViewModels;
 using Foundation.Commerce.Models.Catalog;
 using Foundation.Commerce.Order;
 using Foundation.Commerce.Order.Payments;
@@ -22,7 +21,6 @@ using Foundation.Commerce.Order.ViewModelFactories;
 using Foundation.Commerce.SchemaDataMappers;
 using Foundation.Commerce.ViewModels.Header;
 using Mediachase.Commerce;
-using System;
 using System.Web.Mvc;
 
 namespace Foundation.Commerce
@@ -81,6 +79,8 @@ namespace Foundation.Commerce
 
         void IInitializableModule.Initialize(InitializationEngine context)
         {
+            var contentOptions = context.Locate.Advanced.GetInstance<ContentManagerOptions>();
+            contentOptions.EnsureCommerceLoaded();
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
