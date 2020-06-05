@@ -13,15 +13,15 @@
   <ItemGroup>
     <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
     <PackageReference Include="EPiServer.Azure" Version="10.0.1" />
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.15.0" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.15.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.24.1" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.18.2" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.15.1" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.15.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.25.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.19.0" />
     <PackageReference Include="EPiServer.ConnectForCampaign" Version="2.1.0" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.10.0" />
     <PackageReference Include="EPiServer.Forms.UI" Version="4.29.0" />
-    <PackageReference Include="EPiServer.Framework" Version="11.15.0" />
-    <PackageReference Include="EPiServer.Insight.Cms" Version="1.16.0" />
+    <PackageReference Include="EPiServer.Framework" Version="11.15.1" />
+    <PackageReference Include="EPiServer.Insight.Cms" Version="1.17.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
