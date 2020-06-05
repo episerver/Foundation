@@ -2,6 +2,8 @@ using EPiBootstrapArea;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Labs.ContentManager.Cards;
+using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
@@ -15,7 +17,7 @@ namespace Foundation.Cms.Blocks
         GroupName = CmsGroupNames.Content)]
     [DefaultDisplayOption(ContentAreaTags.OneThirdWidth)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
-    public class TeaserBlock : FoundationBlockData
+    public class TeaserBlock : FoundationBlockData, IDashboardItem
     {
         [CultureSpecific]
         [Required(AllowEmptyStrings = false)]
@@ -72,6 +74,12 @@ namespace Foundation.Cms.Blocks
             ElementsAlignment = "text-align: center";
             BackgroundColor = "transparent";
             TextColor = "color: black";
+        }
+
+        public void SetItem(ItemModel itemModel)
+        {
+            itemModel.Description = Heading;
+            itemModel.Image = Image;
         }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Labs.ContentManager.Cards;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
 using Foundation.Cms.Pages;
 using Foundation.Find.Cms.Facets.Config;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Find.Cms.Models.Pages
 {
@@ -47,5 +48,11 @@ namespace Foundation.Find.Cms.Models.Pages
         [UIHint(UIHint.Textarea)]
         [Display(GroupName = SystemTabNames.Content, Order = 7)]
         public virtual XhtmlString About { get; set; }
+
+        public override void SetItem(ItemModel itemModel)
+        {
+            itemModel.Description = About?.ToHtmlString();
+            itemModel.Image = Image;
+        }
     }
 }

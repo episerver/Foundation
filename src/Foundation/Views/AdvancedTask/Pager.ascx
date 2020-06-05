@@ -60,11 +60,11 @@
 
     <div class="pagerright">
         <% Html.BeginGadgetForm("Index"); %>
-            <input type="submit" class="refresh" value="" />
-            <input type="text" name="pageSize" class="refreshinput" value="<%=Model.PageSize %>" />
-            <label class="refreshlabel">
-                Page size:
-            </label>
+        <input type="submit" class="refresh" value="" />
+        <input type="text" name="pageSize" class="refreshinput" value="<%=Model.PageSize %>" />
+        <label class="refreshlabel">
+            Page size:
+        </label>
         <% Html.EndForm(); %>
     </div>
 </div>
