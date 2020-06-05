@@ -1,6 +1,8 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Labs.ContentManager.Cards;
+using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
@@ -13,7 +15,7 @@ namespace Foundation.Cms.Blocks
         Description = "Provides a CTA anchor or link",
         GroupName = CmsGroupNames.Content)]
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
-    public class CallToActionBlock : FoundationBlockData
+    public class CallToActionBlock : FoundationBlockData, IDashboardItem
     {
         [CultureSpecific]
         [Display(Name = "Title", Description = "Title displayed", GroupName = SystemTabNames.Content, Order = 10)]
@@ -36,6 +38,12 @@ namespace Foundation.Cms.Blocks
 
         [Display(GroupName = SystemTabNames.Content, Order = 50)]
         public virtual ButtonBlock Button { get; set; }
+
+        public void SetItem(ItemModel itemModel)
+        {
+            itemModel.Description = Subtext?.ToHtmlString();
+            itemModel.Image = BackgroundImage;
+        }
 
         public override void SetDefaultValues(ContentType contentType)
         {

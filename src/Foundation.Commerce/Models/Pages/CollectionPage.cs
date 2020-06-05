@@ -13,6 +13,7 @@ namespace Foundation.Commerce.Models.Pages
         GUID = "e5c11d0c-6932-4888-a610-1474e73b66d1",
         Description = "Collection page",
         GroupName = CommerceGroupNames.Commerce)]
+    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-04.png")]
     public class CollectionPage : FoundationPageData
     {
         [AllowedTypes(typeof(BreadcrumbBlock))]

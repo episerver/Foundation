@@ -17,16 +17,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.15.0" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.15.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.24.1" />
-    <PackageReference Include="EPiServer.Find" Version="13.2.6" />
-    <PackageReference Include="EPiServer.Find.Cms" Version="13.2.6" />
-    <PackageReference Include="EPiServer.Find.Framework" Version="13.2.6" />
-    <PackageReference Include="EPiServer.Framework" Version="11.15.0" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.15.1" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.15.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.25.0" />
+    <PackageReference Include="EPiServer.Find" Version="13.2.7" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="13.2.7" />
+    <PackageReference Include="EPiServer.Find.Framework" Version="13.2.7" />
+    <PackageReference Include="EPiServer.Framework" Version="11.15.1" />
+    <PackageReference Include="EPiServer.Labs.ContentManager.Core.FindQuery" Version="0.1.1" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
-    <PackageReference Include="Geta.EpiCategories" Version="1.2.10" />
-    <PackageReference Include="Geta.EpiCategories.Find" Version="1.2.10" />
+    <PackageReference Include="Geta.EpiCategories" Version="1.2.11" />
+    <PackageReference Include="Geta.EpiCategories.Find" Version="1.2.11" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.Owin.Security" Version="4.1.0" />
     <PackageReference Include="Microsoft.Owin.Security.Cookies" Version="4.1.0" />
