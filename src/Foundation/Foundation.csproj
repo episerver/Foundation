@@ -1972,6 +1972,7 @@
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
     <Content Include="modules\_protected\episerver-labs-grid-view\episerver-labs-grid-view.zip" />
     <Content Include="modules\_protected\geta-epicategories\geta-epicategories.zip" />
+    <Content Include="Features\Blocks\Views\ContentRecommendationsBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
