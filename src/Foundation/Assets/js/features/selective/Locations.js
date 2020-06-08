@@ -63,6 +63,10 @@
             instance.DoAjaxCallback($('.filterblock'));
         });
 
+        $(document).off('change', '.filterblock input[type=checkbox].select-all');
+        $(document).off('change', '.filterblock input[type=checkbox].select-some');
+        $(document).off('change', '.filterblock input[type=checkbox]');
+
         $(document).on('change', ".filterblock input[type=checkbox].select-all", function (event) {
             if ($(event.target).prop('checked')) {
                 $(event.target).closest('.filterblock').find('input[type=checkbox].select-some').prop('checked', false);
