@@ -5,8 +5,8 @@
     <a href="@(string.IsNullOrEmpty(Model.LinkToContent) ? "#" : Url.ContentUrl(Model.LinkToContent))">
         <div style="display: flex; @Model.ImageAlignment; @Model.PaddingStyles">
             <picture class="img-fluid">
-                <source data-srcset="@Url.ContentUrl(Model.ContentLink)?format=webp" type="image/webp">
-                <img data-src="@Url.ContentUrl(Model.ContentLink)" alt="@Model.Description" title="@(Model.Description ?? Model.Name)" class="img-fluid lazyload" />
+                <source data-srcset="@Url.ContentUrl(Model.ImageLink)?format=webp" type="image/webp">
+                <img data-src="@Url.ContentUrl(Model.ImageLink)" alt="@Model.Description" title="@(Model.Description ?? Model.Name)" class="img-fluid lazyload" />
             </picture>
         </div>
     </a>
