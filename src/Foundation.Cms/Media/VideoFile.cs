@@ -40,12 +40,5 @@ namespace Foundation.Cms.Media
             itemModel.Description = Copyright;
             itemModel.Image = PreviewImage;
         }
-        public override void SetDefaultValues(ContentType contentType)
-        {
-            base.SetDefaultValues(contentType);
-
-            Autoplay = false;
-            DisplayControls = true;
-        }
     }
 }

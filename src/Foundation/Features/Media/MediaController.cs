@@ -23,7 +23,7 @@ namespace Foundation.Features.Media
             switch (currentContent)
             {
                 case VideoFile videoFile:
-                    var videoViewModel = new VideoFileViewModel
+                    var videoViewModel = new VideoFileViewModel();
                     if (PageEditing.PageIsInEditMode)
                     {
                         videoViewModel.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
