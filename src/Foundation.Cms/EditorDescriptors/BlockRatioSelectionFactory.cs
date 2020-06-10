@@ -10,6 +10,8 @@ namespace Foundation.Cms.EditorDescriptors
             return new ISelectItem[]
             {
                 new SelectItem { Text = "5:1", Value = "5:1" },
+                new SelectItem { Text = "4:1", Value = "4:1" },
+                new SelectItem { Text = "3:1", Value = "3:1" },
                 new SelectItem { Text = "2:1", Value = "2:1" },
                 new SelectItem { Text = "16:9", Value = "16:9" },
                 new SelectItem { Text = "3:2", Value = "3:2" },
