@@ -31,6 +31,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
         public Money? MsrpPrice { get; set; }
         public Money? MapPrice { get; set; }
         public bool IsAvailable { get; set; }
+        public decimal InStockQuantity { get; set; }
         public bool ShowRecommendations { get; set; }
         public bool IsSalesRep { get; set; }
         public List<MediaData> SalesMaterials { get; set; }
