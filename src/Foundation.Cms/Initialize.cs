@@ -1,6 +1,8 @@
 ﻿using EPiBootstrapArea;
 using EPiBootstrapArea.Initialization;
+using EPiServer;
 using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.Core;
 using EPiServer.Editor;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
@@ -10,7 +12,9 @@ using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.PageExtensions;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Display;
+using Foundation.Cms.Extensions;
 using Foundation.Cms.Identity;
+using Foundation.Cms.Media;
 using Foundation.Cms.ModelBinders;
 using Foundation.Cms.Pages;
 using Foundation.Cms.SchemaMarkup;

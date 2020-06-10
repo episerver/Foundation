@@ -1,0 +1,23 @@
+﻿.video-file {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    &__frame {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &__copyright {
+        position: absolute;
+        z-index: 10;
+        right: 1%;
+        top: 1%;
+        color: white;
+        font-style: italic;
+        font-size: 1.5vw;
+        user-select: none;
+        margin: 0;
+    }
+}
