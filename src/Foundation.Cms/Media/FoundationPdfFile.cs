@@ -21,7 +21,6 @@ namespace Foundation.Cms.Media
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-
             Height = 500;
         }
     }
