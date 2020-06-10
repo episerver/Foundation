@@ -125,6 +125,7 @@ namespace Foundation.Commerce.Customer.Services
 
             var returnedBudgets = budgets.Where(budget =>
                 budget.OrganizationId == organizationId &&
+                budget.ContactId == purchaserGuid &&
                 DateTime.Compare(budget.StartDate, DateTime.Now) <= 0 &&
                 DateTime.Compare(DateTime.Now, budget.DueDate) <= 0);
             return returnedBudgets.Any() ? returnedBudgets.First() : null;

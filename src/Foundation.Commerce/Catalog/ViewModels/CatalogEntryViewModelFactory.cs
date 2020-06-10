@@ -84,6 +84,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : ProductViewModelBase<TProduct, TVariant>, new()
         {
+            var viewModel = new TViewModel();
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var variants = GetVariants<TVariant, TProduct>(currentContent)
@@ -107,12 +108,12 @@ namespace Foundation.Commerce.Catalog.ViewModels
 
             variationCode = string.IsNullOrEmpty(variationCode) ? variants.FirstOrDefault()?.Code : variationCode;
             var isInstock = true;
-            if (!string.IsNullOrEmpty(variationCode) && variant.TrackInventory)
+            var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
+            if (!string.IsNullOrEmpty(variationCode))
             {
-                var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
-                var inventoryRecord = _inventoryService.Get(variationCode, currentWarehouse.Code);
-                var inventory = new Inventory(inventoryRecord);
-                isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
+                var inStockQuantity = GetAvailableStockQuantity(variant, currentWarehouse);
+                isInstock = inStockQuantity > 0;
+                viewModel.InStockQuantity = inStockQuantity;
             }
 
             var defaultPrice = PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, currency);
@@ -127,8 +128,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var baseVariant = variant as GenericVariant;
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
-
-            var viewModel = new TViewModel();
 
             viewModel.CurrentContent = currentContent;
             viewModel.Product = currentContent;
@@ -199,27 +198,30 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : BundleViewModelBase<TBundle>, new()
         {
+            var viewModel = new TViewModel();
             var relatedProducts = currentContent.GetRelatedEntries().ToList();
             var associations = relatedProducts.Any() ?
                 _productService.GetProductTileViewModels(relatedProducts) :
                 new List<ProductTileViewModel>();
             var variants = GetVariants<TVariant, TBundle>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Any()).ToList();
+            var entries = GetEntriesRelation(currentContent);
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
-
             var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
             var isInstock = true;
+
             if (variants != null && variants.Count > 0)
             {
                 foreach (var v in variants)
                 {
-                    if (v.TrackInventory)
+                    var inStockQuantity = GetAvailableStockQuantity(v, currentWarehouse);
+
+                    if (inStockQuantity <= 0)
                     {
-                        var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
-                        var inventory = new Inventory(inventoryRecord);
-                        isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
+                        isInstock = false;
+                        break;
                     }
                 }
             }
@@ -228,13 +230,12 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 isInstock = false;
             }
 
-            var viewModel = new TViewModel();
-
             viewModel.CurrentContent = currentContent;
             viewModel.Bundle = currentContent;
             viewModel.Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver);
             viewModel.Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver);
             viewModel.Entries = variants;
+            viewModel.EntriesRelation = entries;
             viewModel.Stores = new StoreViewModel
             {
                 Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
@@ -270,14 +271,8 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
             var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
-
-            var isInstock = true;
-            if (currentContent.TrackInventory)
-            {
-                var inventoryRecord = _inventoryService.Get(currentContent.Code, currentWarehouse.Code);
-                var inventory = new Inventory(inventoryRecord);
-                isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
-            }
+            var inStockQuantity = GetAvailableStockQuantity(currentContent, currentWarehouse);
+            var isInstock = inStockQuantity > 0;
 
             return new TViewModel
             {
@@ -288,6 +283,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 Images = currentContent.GetAssets<IContentImage>(_contentLoader, _urlResolver),
                 Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver),
                 IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock,
+                InStockQuantity = inStockQuantity,
                 Stores = new StoreViewModel
                 {
                     Stores = _storeService.GetEntryStoresViewModels(currentContent.Code),
@@ -310,7 +306,9 @@ namespace Foundation.Commerce.Catalog.ViewModels
             where TVariant : VariationContent
             where TViewModel : PackageViewModelBase<TPackage>, new()
         {
+            var viewModel = new TViewModel();
             var variants = GetVariants<TVariant, TPackage>(currentContent).Where(x => x.Prices().Where(p => p.UnitPrice > 0).Any()).ToList();
+            var entries = GetEntriesRelation(currentContent);
             var market = _currentMarket.GetCurrentMarket();
             var currency = _currencyservice.GetCurrentCurrency();
             var defaultPrice = PriceCalculationService.GetSalePrice(currentContent.Code, market.MarketId, currency);
@@ -323,28 +321,11 @@ namespace Foundation.Commerce.Catalog.ViewModels
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var productRecommendations = currentContent as IProductRecommendations;
             var isSalesRep = PrincipalInfo.CurrentPrincipal.IsInRole("SalesRep");
-
             var currentWarehouse = _warehouseRepository.GetDefaultWarehouse();
-            var isInstock = true;
-            if (variants != null && variants.Count > 0)
-            {
-                foreach (var v in variants)
-                {
-                    if (v.TrackInventory)
-                    {
-                        var inventoryRecord = _inventoryService.Get(v.Code, currentWarehouse.Code);
-                        var inventory = new Inventory(inventoryRecord);
-                        isInstock = inventory.IsTracked && inventory.InStockQuantity == 0 ? false : isInstock;
-                    }
-                }
-            }
-            else
-            {
-                isInstock = false;
-            }
+            var inStockQuantity = GetAvailableStockQuantity(currentContent, currentWarehouse);
+            var isInstock = inStockQuantity > 0;
 
-            var viewModel = new TViewModel();
-
+            viewModel.InStockQuantity = inStockQuantity;
             viewModel.CurrentContent = currentContent;
             viewModel.Package = currentContent;
             viewModel.ListingPrice = defaultPrice?.UnitPrice ?? new Money(0, currency);
@@ -354,6 +335,7 @@ namespace Foundation.Commerce.Catalog.ViewModels
             viewModel.Media = currentContent.GetAssetsWithType(_contentLoader, _urlResolver);
             viewModel.IsAvailable = _databaseMode.DatabaseMode != DatabaseMode.ReadOnly && defaultPrice != null && isInstock;
             viewModel.Entries = variants;
+            viewModel.EntriesRelation = entries;
             //Reviews = GetReviews(currentContent.Code);
             viewModel.Stores = new StoreViewModel
             {
@@ -498,6 +480,24 @@ namespace Foundation.Commerce.Catalog.ViewModels
             }
 
             return results;
+        }
+
+        private decimal GetAvailableStockQuantity(EntryContentBase entry, IWarehouse currentWarehouse)
+        {
+            decimal quantity = 0;
+            if ((entry as IStockPlacement).TrackInventory)
+            {
+                var inventoryRecord = _inventoryService.Get(entry.Code, currentWarehouse.Code);
+                var inventory = new Inventory(inventoryRecord);
+                quantity = inventory.IsTracked ? inventory.InStockQuantity - inventory.ReorderMinQuantity : 1;
+            }
+
+            return quantity;
+        }
+
+        private IEnumerable<EntryRelation> GetEntriesRelation(EntryContentBase content)
+        {
+            return _relationRepository.GetChildren<EntryRelation>(content.ContentLink);
         }
     }
 }
