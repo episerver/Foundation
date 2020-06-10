@@ -1,4 +1,5 @@
 ﻿using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Catalog.Linking;
 using System.Collections.Generic;
 
 namespace Foundation.Commerce.Catalog.ViewModels
@@ -16,5 +17,6 @@ namespace Foundation.Commerce.Catalog.ViewModels
 
         public TBundle Bundle { get; set; }
         public IEnumerable<EntryContentBase> Entries { get; set; }
+        public IEnumerable<EntryRelation> EntriesRelation { get; set; }
     }
 }

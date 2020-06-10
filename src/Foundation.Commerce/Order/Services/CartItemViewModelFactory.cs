@@ -75,18 +75,20 @@ namespace Foundation.Commerce.Order.Services
                 entry.GetParentProducts(_relationRepository).FirstOrDefault() :
                 entry.ContentLink;
 
-            if (_contentLoader.TryGet(productLink, out GenericProduct product))
+            if (_contentLoader.TryGet(productLink, out EntryContentBase catalogContent))
             {
-                viewModel.Brand = GetBrand(product);
+                var product = catalogContent as GenericProduct;
+                if (product != null)
+                {
+                    viewModel.Brand = GetBrand(product);
+                    var variant = entry as GenericVariant;
+                    if (variant != null)
+                    {
+                        viewModel.AvailableSizes = GetAvailableSizes(product, variant);
+                    }
+                }
             }
 
-            var variant = entry as GenericVariant;
-            if (variant != null)
-            {
-                viewModel.AvailableSizes = GetAvailableSizes(product, variant);
-            }
-
-            viewModel.Description = string.IsNullOrEmpty(viewModel.Description) ? viewModel.Description : product.Description.ToHtmlString();
             return viewModel;
         }
 
