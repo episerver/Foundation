@@ -111,16 +111,20 @@ namespace Foundation.Commerce.Extensions
                 switch (entryContentBase)
                 {
                     case GenericProduct genericProduct:
-                        output.AppendLine(string.Format(_metaFormat, "description", WebUtility.HtmlEncode(genericProduct.Description.ToString())));
+                        output.AppendLine(string.Format(_metaFormat, "description", 
+                            genericProduct.Description != null ? WebUtility.HtmlEncode(genericProduct.Description.ToString()) : ""));
                         break;
                     case GenericVariant genericVariant:
-                        output.AppendLine(string.Format(_metaFormat, "description", WebUtility.HtmlEncode(genericVariant.Description.ToString())));
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericVariant.Description != null ? WebUtility.HtmlEncode(genericVariant.Description.ToString()) : ""));
                         break;
                     case GenericPackage genericPackage:
-                        output.AppendLine(string.Format(_metaFormat, "description", WebUtility.HtmlEncode(genericPackage.Description.ToString())));
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericPackage.Description != null ? WebUtility.HtmlEncode(genericPackage.Description.ToString()) : ""));
                         break;
                     case GenericBundle genericBundle:
-                        output.AppendLine(string.Format(_metaFormat, "description", WebUtility.HtmlEncode(genericBundle.Description.ToString())));
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericBundle.Description != null ? WebUtility.HtmlEncode(genericBundle.Description.ToString()) : ""));
                         break;
                     default:
                         break;
