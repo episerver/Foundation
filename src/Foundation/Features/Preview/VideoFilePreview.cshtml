@@ -1,0 +1,42 @@
+﻿@model Foundation.Cms.ViewModels.Media.VideoFileViewModel
+
+<style>
+    .video-file {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .video-file__frame {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .video-file__copyright {
+        position: absolute;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        z-index: 10;
+        right: 1%;
+        top: 1%;
+        color: white;
+        font-style: italic;
+        font-size: 1.5vw;
+        user-select: none;
+        font-family: "Roboto","Arial",sans-serif;
+        margin: 0;
+    }
+</style>
+
+<div class="video-file">
+    <video class="video-file__frame" @(Model.Autoplay ? "autoplay" : "") @(Model.DisplayControls ? "controls" : "")
+           poster="@(string.IsNullOrEmpty(Model.PreviewImage) ? "" : Model.PreviewImage)">
+        <source src="@Model.VideoLink" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    @if (!string.IsNullOrEmpty(Model.Copyright))
+    {
+        <p class="video-file__copyright">@Model.Copyright</p>
+    }
+</div>

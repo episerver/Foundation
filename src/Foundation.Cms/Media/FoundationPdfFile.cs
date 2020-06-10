@@ -16,8 +16,12 @@ namespace Foundation.Cms.Media
             Description = "The height of PDF preview embed (px)",
             GroupName = SystemTabNames.Content,
             Order = 100)]
-        [BackingType(typeof(PropertyFloatNumber))]
-        public virtual double Height { get; set; }
+        public virtual int Height { get; set; }
 
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+            Height = 500;
+        }
     }
 }

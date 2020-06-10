@@ -1,0 +1,10 @@
+﻿@model Foundation.Cms.ViewModels.Media.ImageMediaDataViewModel
+
+@if (!string.IsNullOrEmpty(Model.ImageLink))
+{
+    <a @String.Format("href={0}", Model.LinkToContent)>
+        <div style="display: flex; @Model.ImageAlignment; @Model.PaddingStyles">
+            <img src="@Url.ContentUrl(Model.ImageLink)" alt="@Model.Description" title="@(Model.Description ?? Model.Name)" style="width: 100%; height: auto" />
+        </div>
+    </a>
+}
