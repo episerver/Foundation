@@ -42,9 +42,11 @@ namespace Foundation.Commerce.SchemaDataMappers
 
             //Set prices or price range
             var prices = content.Prices();
-            var minPrice = prices.Min(x => x.UnitPrice);
-            var maxPrice = prices.Max(x => x.UnitPrice);
-            var priceEndDate = prices.Where(x => x.UnitPrice.Equals(minPrice) || x.UnitPrice.Equals(maxPrice)).Min(x => x.ValidUntil ?? DateTime.MaxValue);
+            var minPrice = prices.Any() ? prices.Min(x => x.UnitPrice) : new Money();
+            var maxPrice = prices.Any() ? prices.Max(x => x.UnitPrice) : new Money();
+            var priceEndDate = prices.Any() ?
+                prices.Where(x => x.UnitPrice.Equals(minPrice) || x.UnitPrice.Equals(maxPrice)).Min(x => x.ValidUntil ?? DateTime.MaxValue)
+                : DateTime.Now;
 
             var offer = new Offer
             {
@@ -72,8 +74,8 @@ namespace Foundation.Commerce.SchemaDataMappers
             return new Product
             {
                 Name = content.DisplayName,
-                Image = content.CommerceMediaCollection.Select(x => x.AssetLink.GetUri(content.Language.Name, true)).ToList(),
-                Description = EPiServer.Core.Html.TextIndexer.StripHtml(content.LongDescription.ToHtmlString(), int.MaxValue),
+                Image = content.CommerceMediaCollection?.Select(x => x.AssetLink.GetUri(content.Language.Name, true)).ToList(),
+                Description = EPiServer.Core.Html.TextIndexer.StripHtml(content.LongDescription?.ToHtmlString(), int.MaxValue),
                 Sku = variants.Select(x => x.Code).ToList(),
                 Brand = new Brand
                 {

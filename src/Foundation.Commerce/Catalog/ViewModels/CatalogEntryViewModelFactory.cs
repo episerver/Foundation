@@ -294,9 +294,9 @@ namespace Foundation.Commerce.Catalog.ViewModels
                 HasOrganization = contact?.OwnerId != null,
                 ShowRecommendations = productRecommendations?.ShowRecommendations ?? true,
                 IsSalesRep = isSalesRep,
-                SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
+                SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection?.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                     .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>(),
-                MinQuantity = (int)defaultPrice.MinQuantity,
+                MinQuantity = defaultPrice != null ? (int)defaultPrice.MinQuantity : 0,
                 HasSaleCode = defaultPrice != null ? !string.IsNullOrEmpty(defaultPrice.CustomerPricing.PriceCode) : false
             };
         }
