@@ -9,6 +9,7 @@ namespace Foundation
     {
         protected void Application_Start()
         {
+            MvcHandler.DisableMvcResponseHeader = true;
             AreaRegistration.RegisterAllAreas();
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRequiredAttribute), typeof(RequiredAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRegularExpressionAttribute), typeof(RegularExpressionAttributeAdapter));
