@@ -20,7 +20,7 @@
     <PackageReference Include="EPiServer.CMS.UI" Version="11.25.0" />
     <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.25.0" />
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.25.0" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.11.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.10.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.16.0" />
     <PackageReference Include="EPiServer.Labs.ContentManager" Version="0.1.2" />
     <PackageReference Include="EPiServer.PdfPreview" Version="1.0.0" />
