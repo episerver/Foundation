@@ -174,14 +174,14 @@
     <Reference Include="EPiServer.ConnectForCampaign.Services, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.ConnectForCampaign.2.1.0\lib\EPiServer.ConnectForCampaign.Services.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.ContentApi.Cms, Version=2.11.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Cms.2.11.0\lib\net461\EPiServer.ContentApi.Cms.dll</HintPath>
+    <Reference Include="EPiServer.ContentApi.Cms, Version=2.10.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Cms.2.10.0\lib\net461\EPiServer.ContentApi.Cms.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.ContentApi.Commerce, Version=2.11.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Commerce.2.11.0\lib\net461\EPiServer.ContentApi.Commerce.dll</HintPath>
+    <Reference Include="EPiServer.ContentApi.Commerce, Version=2.10.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Commerce.2.10.0\lib\net461\EPiServer.ContentApi.Commerce.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.ContentApi.Core, Version=2.11.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Core.2.11.0\lib\net461\EPiServer.ContentApi.Core.dll</HintPath>
+    <Reference Include="EPiServer.ContentApi.Core, Version=2.10.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Core.2.10.0\lib\net461\EPiServer.ContentApi.Core.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.ContentApi.OAuth, Version=2.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.OAuth.2.6.0\lib\net461\EPiServer.ContentApi.OAuth.dll</HintPath>
@@ -189,11 +189,11 @@
     <Reference Include="EPiServer.ContentApi.OAuth.UI, Version=2.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.OAuth.2.6.0\lib\net461\EPiServer.ContentApi.OAuth.UI.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.ContentApi.Routing, Version=2.11.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Cms.2.11.0\lib\net461\EPiServer.ContentApi.Routing.dll</HintPath>
+    <Reference Include="EPiServer.ContentApi.Routing, Version=2.10.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Cms.2.10.0\lib\net461\EPiServer.ContentApi.Routing.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.ContentApi.Search, Version=2.11.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Search.2.11.0\lib\net461\EPiServer.ContentApi.Search.dll</HintPath>
+    <Reference Include="EPiServer.ContentApi.Search, Version=2.10.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.ContentDeliveryApi.Search.2.10.0\lib\net461\EPiServer.ContentApi.Search.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Data, Version=11.16.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Framework.11.16.0\lib\net461\EPiServer.Data.dll</HintPath>
