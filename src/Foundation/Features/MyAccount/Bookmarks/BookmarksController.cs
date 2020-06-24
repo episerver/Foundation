@@ -1,8 +1,5 @@
 using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.Pages;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
 using System;
 using System.Web.Mvc;
 

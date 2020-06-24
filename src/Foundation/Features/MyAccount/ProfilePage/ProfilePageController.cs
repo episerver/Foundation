@@ -6,10 +6,11 @@ using EPiServer.Security;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Identity;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyAccount.OrderHistory;
 using Mediachase.Commerce.Security;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ using System.Web.Mvc;
 namespace Foundation.Features.MyAccount.ProfilePage
 {
     [Authorize]
-    public class ProfilePageController : IdentityControllerBase<Social.Models.Pages.ProfilePage>
+    public class ProfilePageController : IdentityControllerBase<ProfilePage>
     {
         private readonly IAddressBookService _addressBookService;
         private readonly IOrderRepository _orderRepository;
@@ -39,9 +40,9 @@ namespace Foundation.Features.MyAccount.ProfilePage
             _cartService = cartService;
         }
 
-        public ActionResult Index(Social.Models.Pages.ProfilePage currentPage)
+        public ActionResult Index(ProfilePage currentPage)
         {
-            var viewModel = new SocialCommerceProfilePageViewModel(currentPage)
+            var viewModel = new ProfilePageViewModel(currentPage)
             {
                 Orders = GetOrderHistoryViewModels(),
                 Addresses = GetAddressViewModels(),
@@ -49,14 +50,14 @@ namespace Foundation.Features.MyAccount.ProfilePage
                 CustomerContact = new Commerce.Customer.FoundationContact(CustomerService.GetCurrentContact().Contact)
             };
 
-            viewModel.OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderDetailsPage);
+            viewModel.OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
 
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Save(Social.Models.Pages.ProfilePage currentPage, AccountInformationViewModel viewModel)
+        public JsonResult Save(ProfilePage currentPage, AccountInformationViewModel viewModel)
         {
             var user = CustomerService.GetSiteUser(User.Identity.Name);
             var contact = CustomerService.GetCurrentContact();

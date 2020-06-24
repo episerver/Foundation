@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Cms.Media;
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
+﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,13 +19,13 @@ namespace Foundation.Demo
             };
         }
 
-        public async Task TagImagesAsync(ImageMediaData imageFile)
+        public async Task TagImagesAsync(IImageTagging imageFile)
         {
             var analysisResult = await DescribeImageFromStreamAsync(imageFile);
             ProcessAnalysisResult(analysisResult, imageFile);
         }
 
-        private void ProcessAnalysisResult(ImageAnalysis result, ImageMediaData imageFile)
+        private void ProcessAnalysisResult(ImageAnalysis result, IImageTagging imageFile)
         {
             if (result == null || imageFile == null)
             {
@@ -115,7 +113,7 @@ namespace Foundation.Demo
             }
         }
 
-        private async Task<ImageAnalysis> DescribeImageFromStreamAsync(ImageData imageData)
+        private async Task<ImageAnalysis> DescribeImageFromStreamAsync(IImageTagging imageData)
         {
             return await _computerVisionClient.AnalyzeImageInStreamAsync(imageData.BinaryData.OpenRead(), new List<VisualFeatureTypes>()
             {

@@ -3,8 +3,6 @@ using EPiServer.Editor;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Media;
-using Foundation.Cms.ViewModels.Media;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Media

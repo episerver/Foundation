@@ -1,4 +1,4 @@
-﻿using Foundation.Commerce.Customer.ViewModels;
+﻿using Foundation.Features.MyAccount.AddressBook;
 
 namespace Foundation.Features.Login
 {

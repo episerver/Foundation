@@ -1,4 +1,0 @@
-﻿@model IBlockViewModel<ContainerBlock>
-<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin +  " " + Model.CurrentBlock.CssClass)">
-    @Html.PropertyFor(m => m.CurrentBlock.MainContentArea)
-</div>

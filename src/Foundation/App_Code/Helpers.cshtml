@@ -8,8 +8,8 @@
 @using EPiServer.Core;
 @using EPiServer.Web.Routing
 @using Foundation.Cms.Extensions
-@using Foundation.Commerce.Models.Catalog
-@using Foundation.Commerce.Order.ViewModels
+@using Foundation.Features.CatalogContent.Variation
+@using Foundation.Features.Checkout.ViewModels
 
 @functions
 {
@@ -85,18 +85,18 @@
             break;
         }
     }
-    
-    <select name="@name" 
-            class="select-menu @selectorClassItem" @(isDisabled ? "disabled" : "") 
+
+    <select name="@name"
+            class="select-menu @selectorClassItem" @(isDisabled ? "disabled" : "")
             style="@(isShow ? "" : "display: none")">
         @foreach (var item in list)
         {
             <option value="@item.Value"
-                    @(string.IsNullOrEmpty(selectedValue) && i == 1 || !isExistValue && i == 1 ? "checked=checked" : "") 
-                    @(selectedValue == item.Value ? "selected=selected" : "") 
+                    @(string.IsNullOrEmpty(selectedValue) && i == 1 || !isExistValue && i == 1 ? "checked=checked" : "")
+                    @(selectedValue == item.Value ? "selected=selected" : "")
                     @(isShow ? "" : "disabled=disabled")>
                 @item.Key
-                </option>
-            }
+            </option>
+        }
     </select>
 }

@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.ServiceLocation;
-using Foundation.Cms.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,16 +35,16 @@ namespace Foundation.Cms.Extensions
             return ContentLoader.Value.Get<IContentData>(contentAreaItem.ContentLink) as T;
         }
 
-        public static IBlockViewModel<T> GetBlockViewModel<T>(this ContentAreaItem contentAreaItem) where T : BlockData
-        {
-            var block = GetBlock<T>(contentAreaItem);
-            return block != null ? CreateModel(block) : null;
-        }
+        //public static IBlockViewModel<T> GetBlockViewModel<T>(this ContentAreaItem contentAreaItem) where T : BlockData
+        //{
+        //    var block = GetBlock<T>(contentAreaItem);
+        //    return block != null ? CreateModel(block) : null;
+        //}
 
-        private static IBlockViewModel<T> CreateModel<T>(T currentBlock) where T : BlockData
-        {
-            var type = typeof(BlockViewModel<>).MakeGenericType(currentBlock.GetOriginalType());
-            return Activator.CreateInstance(type, currentBlock) as IBlockViewModel<T>;
-        }
+        //private static IBlockViewModel<T> CreateModel<T>(T currentBlock) where T : BlockData
+        //{
+        //    var type = typeof(BlockViewModel<>).MakeGenericType(currentBlock.GetOriginalType());
+        //    return Activator.CreateInstance(type, currentBlock) as IBlockViewModel<T>;
+        //}
     }
 }

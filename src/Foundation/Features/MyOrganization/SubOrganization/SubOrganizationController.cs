@@ -5,10 +5,9 @@ using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Attributes;
 using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyOrganization.Organization;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Collections.Generic;
@@ -44,7 +43,7 @@ namespace Foundation.Features.MyOrganization.SubOrganization
 
             if (viewModel.SubOrganizationModel == null)
             {
-                var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
                 return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
             }
             viewModel.IsAdmin = CustomerContext.Current.CurrentContact.Properties[Constant.Fields.UserRole].Value.ToString() == Constant.UserRoles.Admin;
@@ -61,7 +60,7 @@ namespace Foundation.Features.MyOrganization.SubOrganization
             };
             if (viewModel.SubOrganizationModel == null)
             {
-                var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
                 return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
             }
             if (viewModel.SubOrganizationModel.Locations.Count == 0)
@@ -110,7 +109,7 @@ namespace Foundation.Features.MyOrganization.SubOrganization
         {
             if (Request["suborg"] == null || Request["addressId"] == null)
             {
-                var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
                 return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
             }
             _addressService.DeleteAddress(Request["suborg"], Request["addressId"]);

@@ -1,11 +1,11 @@
-﻿@using Foundation.Commerce.ViewModels.Header
-@using EPiServer.Commerce.Order
-@model Foundation.Features.MyAccount.ProfilePage.SocialCommerceProfilePageViewModel
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.ProfilePage
+
+@model ProfilePageViewModel
 
 @{
     Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
 }
-
 
 <div class="my-account">
     <div class="page-title">
@@ -83,7 +83,6 @@
                 </ul>
             }
         </div>
-
         <div class="address-block">
             <div class="page-title">
                 <h4>@Html.TranslateFallback("/Dashboard/Labels/AccountInformation", "Account Information")</h4>
@@ -100,7 +99,7 @@
                                 <br>
                                 <span>@(Model.SiteUser != null ? Model.SiteUser.Email : null)</span>
                                 <br>
-                                <a class="account-link" href="@Url.ContentUrl(Model.CommerceHomePage.ResetPasswordPage)">
+                                <a class="account-link" href="@Url.ContentUrl(Model.HomePage.ResetPasswordPage)">
                                     @Html.TranslateFallback("/Dashboard/Labels/ChangePassword", "Change Password")
                                 </a>
                             </p>
@@ -224,19 +223,13 @@
                         </div>
                     </div>
                 }
-                @*<div class="col-12 jsProfileContainerEdit" style="display: none">
-
-                    </div>*@
             </div>
         </div>
-
         <div class="address-block">
-
             <div class="row">
-
                 <div class="col-12">
                     <h4>@Html.TranslateFallback("/Dashboard/Labels/AddressBook", "Address Book")</h4>
-                    <a href="@Url.ContentUrl(Model.CommerceHomePage.AddressBookPage)" class="sub-title account-link">@Html.TranslateFallback("/Dashboard/Labels/ManageAddresses", "Manage Addresses")</a>
+                    <a href="@Url.ContentUrl(Model.HomePage.AddressBookPage)" class="sub-title account-link">@Html.TranslateFallback("/Dashboard/Labels/ManageAddresses", "Manage Addresses")</a>
                 </div>
                 <div class="col-sm-6">
                     <p class="title">@Html.TranslateFallback("/Dashboard/Labels/PrimaryBillingAddress", "Primary Billing Address")</p>

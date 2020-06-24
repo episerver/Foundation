@@ -1,6 +1,8 @@
-﻿@using Foundation.Commerce.Models.Catalog
-@using EPiServer.Commerce.Order
+﻿@using EPiServer.Commerce.Order
 @using Mediachase.Commerce.Orders
+@using Foundation.Features.MyAccount.OrderDetails
+@using Foundation.Features.CatalogContent.Variation
+
 @model OrderDetailsItemViewModel
 
 @{
@@ -9,22 +11,17 @@
     var isQuote = ((bool)(ViewData["isQuote"] ?? false));
 }
 
-@*<input type="hidden" class="currentVariantInfo"
-    url="@Url.Action("ChangeCartItem", "DefaultCart", null)"
-    value="@Model.Code" shipmentId="@ViewData["ShipmentId"]" size="@variant.Size" quantity="@Model.Quantity" />*@
-
-    <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
-        <picture class="img-fluid">
-            <source data-srcset="@Model.LineItem.GetThumbnailUrl()?format=webp" type="image/webp">
-            <img data-src="@Model.LineItem.GetThumbnailUrl()" class="img-fluid lazyload" alt="" />
-        </picture>
-    </div>
+<div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+    <picture class="img-fluid">
+        <source data-srcset="@Model.LineItem.GetThumbnailUrl()?format=webp" type="image/webp">
+        <img data-src="@Model.LineItem.GetThumbnailUrl()" class="img-fluid lazyload" alt="" />
+    </picture>
+</div>
 <div class="col-md-10 col-lg-10 col-sm-9 col-xs-9">
     <div class="product-tile-list__right-box">
         <div class="title">
             <a href="@Model.LineItem.GetUrl()" class="account-link">@Model.LineItem.GetEntryContentBase().DisplayName</a>
         </div>
-
         <div class="content product-tile-list__content">
             <div class="row">
                 <div class="col-md-1 col-xs-6 large-cart__label">
@@ -46,9 +43,7 @@
                         <span class="price__discount">@Model.LineItem.GetDiscountedPrice(((IPurchaseOrder)Model.PurchaseOrder).Currency).ToString()</span>
                     }
                 </div>
-
             </div>
-
             @if (variant != null)
             {
                 <div class="row">
@@ -99,12 +94,10 @@
                     </p>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12 required" style="padding-bottom: 15px;">
                     @Model.ReturnFormStatus
                 </div>
-
                 <div class="col-12">
                     @if (!isQuote)
                     {
@@ -114,7 +107,6 @@
                     }
                 </div>
             </div>
-
         </div>
     </div>
 </div>

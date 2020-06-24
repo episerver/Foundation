@@ -1,19 +1,10 @@
-﻿using EPiServer;
-using EPiServer.Web.Mvc;
-using Foundation.Find.Cms.People.ViewModels;
+﻿using EPiServer.Web.Mvc;
 using System.Web.Mvc;
-namespace Foundation.Features.People.PersonListPage
+namespace Foundation.Features.People.PersonItemPage
 {
-    public class PersonItemPageController : PageController<Find.Cms.Models.Pages.PersonItemPage>
+    public class PersonItemPageController : PageController<PersonPage>
     {
-        private readonly IContentLoader _contentLoader;
-
-        public PersonItemPageController(IContentLoader contentLoader)
-        {
-            _contentLoader = contentLoader;
-        }
-
-        public ActionResult Index(Find.Cms.Models.Pages.PersonItemPage currentPage)
+        public ActionResult Index(PersonPage currentPage)
         {
             var model = new PersonItemViewModel(currentPage);
             return View(model);

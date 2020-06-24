@@ -3,8 +3,8 @@ using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Mvc.Html;
 using Foundation.Attributes;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Demo.Models;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Login
@@ -26,7 +26,7 @@ namespace Foundation.Features.Login
         public ActionResult Index(string returnUrl)
         {
             var model = new UserViewModel();
-            _contentLoader.TryGet(ContentReference.StartPage, out DemoHomePage homePage);
+            _contentLoader.TryGet(ContentReference.StartPage, out HomePage homePage);
 
             model.Logo = Url.ContentUrl(homePage?.SiteLogo);
             model.ResetPasswordUrl = Url.ContentUrl(homePage?.ResetPasswordPage);
@@ -40,7 +40,7 @@ namespace Foundation.Features.Login
             var model = new UserViewModel();
             _addressBookService.LoadAddress(model.RegisterAccountViewModel.Address);
             model.RegisterAccountViewModel.Address.Name = _localizationService.GetString("/Shared/Address/DefaultAddressName", "Default Address");
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as DemoHomePage;
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
             model.Logo = Url.ContentUrl(homePage?.SiteLogo);
             model.Title = "Register";
             return View(model);

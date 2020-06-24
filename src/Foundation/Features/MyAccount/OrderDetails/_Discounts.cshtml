@@ -1,7 +1,8 @@
-﻿@using EPiServer.Commerce.Order
-@using Mediachase.Commerce
+﻿@using Mediachase.Commerce
+@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.OrderDetails
 
-@model Foundation.Commerce.Order.ViewModels.OrderDetailsViewModel
+@model OrderDetailsViewModel
 
 @{
     var promotions = Model.PurchaseOrder.GetFirstForm().Promotions;

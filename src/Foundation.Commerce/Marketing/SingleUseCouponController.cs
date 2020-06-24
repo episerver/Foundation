@@ -3,7 +3,7 @@ using EPiServer.Commerce.Marketing;
 using EPiServer.Core;
 using EPiServer.Globalization;
 using EPiServer.Shell.Navigation;
-using Foundation.Cms.ViewModels;
+using Foundation.Cms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +74,7 @@ namespace Foundation.Commerce.Marketing
             {
                 bool updated = false;
                 var coupon = _couponService.GetById(model.Id);
-               
+
                 if (coupon != null)
                 {
                     coupon.Code = model.Code;

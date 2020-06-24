@@ -2,10 +2,8 @@
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
-using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Personalization;
+using Foundation.Personalization;
 using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
 using System.Web.Mvc;

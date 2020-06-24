@@ -1,4 +1,6 @@
-﻿@model BlogListPageViewModel
+﻿@using Foundation.Features.Blog.BlogListPage
+
+@model BlogListPageViewModel
 
 <div class="col-12 toolbar">
     <div class="toolbar__left">
@@ -6,7 +8,6 @@
             @Model.PagingInfo.TotalRecord @Html.TranslateFallback("/Blog/Items", "Items")
         </strong>
     </div>
-
     <div class="toolbar__center">
         @if (Model.PagingInfo.PageCount > 1)
         {
@@ -58,4 +59,3 @@
         </div>
     </div>
 </div>
-

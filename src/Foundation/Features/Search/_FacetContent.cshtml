@@ -1,10 +1,13 @@
 ﻿@using EPiServer.Find
 @using EPiServer.Shell.Web.Mvc.Html
-@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
+@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+
+@model SearchViewModel<SearchResultPage>
+
 @{
     Layout = null;
 }
-
 
 <div class="bblock block-layered-nav jsSearchFacets">
     <div class="selection--cm__label">
@@ -45,6 +48,5 @@
                 </li>
             }
         }
-
     </ul>
 </div>

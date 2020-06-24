@@ -1,5 +1,7 @@
 ﻿@using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blog.BlogItem
+
 @model BlogItemPageModel
 
 @{
@@ -41,7 +43,6 @@
             </div>
         </div>
 
-
         <div class="row">
             @if (Model.CurrentContent.StartPublish != null)
             {
@@ -57,7 +58,6 @@
             <div class="col-12">
                 <h2>@Model.CurrentContent.MetaTitle</h2>
             </div>
-
         </div>
 
         @* Content Area *@
@@ -66,7 +66,6 @@
                 @Html.PropertyFor(x => x.CurrentContent.MainContentArea, new { CssClass = "equal-height" })
             </div>
         </div>
-
 
         @* Main Content *@
         <div class="row">
@@ -101,6 +100,5 @@
                 @Html.PropertyFor(x => x.CurrentContent.Comments, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
             </div>
         </div>
-
     </div>
 </div>

@@ -1,0 +1,52 @@
+﻿@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.CarouselBlock
+
+@model CarouselBlockViewModel
+
+@if (Model.Items != null)
+{
+    <div id="tag-carousel" data-ride="carousel" style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;"  class="carousel slide @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <li data-target="#tag-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+            }
+        </ul>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            @foreach (var item in Model.Items.Select((value, i) => new { i, value }))
+            {
+                <div class="@(item.i == 0 ? "carousel-item active" : "carousel-item")">
+                    @if (item.value.HeroBlock != null)
+                    {
+                        @Html.Partial("~/Features/Blocks/HeroBlock/HeroBlock.cshtml", item.value.HeroBlock)
+                    }
+                    else if (item.value.CarouselImage != null)
+                    {
+                    <a href="@(item.value.CarouselImage.ItemURL != null ? @Url.ContentUrl(item.value.CarouselImage.ItemURL) : "#")">
+                        <picture class="img-fluid">
+                            <source data-srcset="@Url.ContentUrl(item.value.CarouselImage.Image)?format=webp" type="image/webp">
+                            <img class="img-fluid lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(item.value.CarouselImage.Image)).Resize(1440, 720)" />
+                        </picture>
+                    </a>
+                        if (!string.IsNullOrWhiteSpace(item.value.CarouselImage.Heading))
+                        {
+                            <div class="carousel-caption animated fadeInUpBig">
+                                <h3>@item.value.CarouselImage.Heading</h3>
+                                <p>@item.value.CarouselImage.Description</p>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#tag-carousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#tag-carousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+}

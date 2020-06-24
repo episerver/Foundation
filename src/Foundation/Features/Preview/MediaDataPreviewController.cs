@@ -1,14 +1,11 @@
 using EPiServer.Core;
-using EPiServer.Editor;
-using EPiServer.Events.ChangeNotification.Implementation;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
 using EPiServer.Framework.Web.Mvc;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Media;
-using Foundation.Cms.ViewModels.Media;
+using Foundation.Features.Media;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Preview

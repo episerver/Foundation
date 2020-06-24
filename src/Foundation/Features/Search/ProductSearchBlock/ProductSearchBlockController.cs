@@ -6,14 +6,12 @@ using EPiServer.Find;
 using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
-using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Markets;
-using Foundation.Commerce.ViewModels;
-using Foundation.Find.Cms.Facets;
-using Foundation.Find.Cms.Models.Blocks.ProductFilters;
-using Foundation.Find.Commerce;
-using Foundation.Find.Commerce.ViewModels;
+using Foundation.Commerce.Models.EditorDescriptors;
+using Foundation.Features.CatalogContent;
+using Foundation.Features.Locations.Blocks.ProductFilters;
+using Foundation.Find.Facets;
 using Foundation.Social.Services;
 using Mediachase.Commerce;
 using System;
@@ -21,26 +19,24 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using static Foundation.Commerce.Models.EditorDescriptors.DiscontinuedProductModeSelectionFactory;
-using static Foundation.Commerce.Models.EditorDescriptors.SortOrderSelectionFactory;
 
 namespace Foundation.Features.Search.ProductSearchBlock
 {
     [TemplateDescriptor(Default = true)]
-    public class ProductSearchBlockController : BlockController<Commerce.Models.Blocks.ProductSearchBlock>
+    public class ProductSearchBlockController : BlockController<ProductSearchBlock>
     {
         private readonly LanguageService _languageService;
         private readonly IReviewService _reviewService;
         private readonly ICurrentMarket _currentMarket;
         private readonly ICurrencyService _currencyService;
-        private readonly ICommerceSearchService _searchService;
+        private readonly ISearchService _searchService;
         private readonly ReportingDataLoader _reportingDataLoader;
 
         public ProductSearchBlockController(LanguageService languageService,
             IReviewService reviewService,
             ICurrentMarket currentMarket,
             ICurrencyService currencyService,
-            ICommerceSearchService searchService,
+            ISearchService searchService,
             ReportingDataLoader reportingDataLoader)
         {
             _languageService = languageService;
@@ -51,7 +47,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             _reportingDataLoader = reportingDataLoader;
         }
 
-        public override ActionResult Index(Commerce.Models.Blocks.ProductSearchBlock currentBlock)
+        public override ActionResult Index(ProductSearchBlock currentBlock)
         {
             var currentLang = _languageService.GetCurrentLanguage();
 
@@ -95,7 +91,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             return PartialView("~/Features/Search/ProductSearchBlock/Index.cshtml", productSearchResult);
         }
 
-        private void SortProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        private void SortProducts(ProductSearchBlock currentContent, ProductSearchResults result)
         {
             var newList = new List<ProductTileViewModel>();
 
@@ -122,7 +118,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             result.ProductViewModels = newList;
         }
 
-        private void MergePriorityProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        private void MergePriorityProducts(ProductSearchBlock currentContent, ProductSearchResults result)
         {
             var products = new List<EntryContentBase>();
             if (currentContent != null)
@@ -147,7 +143,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             result.ProductViewModels = newList;
         }
 
-        private void HandleDiscontinuedProducts(Commerce.Models.Blocks.ProductSearchBlock currentContent, ProductSearchResults result)
+        private void HandleDiscontinuedProducts(ProductSearchBlock currentContent, ProductSearchResults result)
         {
             var newList = new List<ProductTileViewModel>();
             switch (currentContent.DiscontinuedProductsMode)
@@ -217,10 +213,10 @@ namespace Foundation.Features.Search.ProductSearchBlock
             return topSeller.OrderByDescending(x => x.Value).Select(x => x.Key.GetEntryContentBase().GetProductTileViewModel(market, currency));
         }
 
-        private ProductSearchResults GetSearchResults(string language, Commerce.Models.Blocks.ProductSearchBlock productSearchBlock)
+        private ProductSearchResults GetSearchResults(string language, ProductSearchBlock productSearchBlock)
         {
 
-            var filterOptions = new CommerceFilterOptionViewModel
+            var filterOptions = new FilterOptionViewModel
             {
                 Q = productSearchBlock.SearchTerm,
                 PageSize = productSearchBlock.ResultsPerPage,
@@ -233,7 +229,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             return _searchService.SearchWithFilters(null, filterOptions, filters);
         }
 
-        private IEnumerable<EPiServer.Find.Api.Querying.Filter> GetFilters(Commerce.Models.Blocks.ProductSearchBlock productSearchBlock)
+        private IEnumerable<EPiServer.Find.Api.Querying.Filter> GetFilters(ProductSearchBlock productSearchBlock)
         {
             var filters = new List<EPiServer.Find.Api.Querying.Filter>();
             if (productSearchBlock.Nodes?.FilteredItems != null && productSearchBlock.Nodes.FilteredItems.Any())

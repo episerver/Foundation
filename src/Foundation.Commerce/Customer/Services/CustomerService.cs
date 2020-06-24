@@ -4,7 +4,6 @@ using EPiServer.Framework.Localization;
 using EPiServer.ServiceLocation;
 using Foundation.Cms;
 using Foundation.Cms.Identity;
-using Foundation.Commerce.Customer.ViewModels;
 using Mediachase.Commerce.Customers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -37,14 +36,6 @@ namespace Foundation.Commerce.Customer.Services
         public virtual ServiceAccessor<ApplicationSignInManager<SiteUser>> SignInManager { get; }
         public virtual ServiceAccessor<IAuthenticationManager> AuthenticationManager { get; }
         public virtual Guid CurrentContactId { get { return _customerContext.CurrentContactId; } }
-
-        public virtual ContactViewModel GetCurrentContactViewModel()
-        {
-            var currentContact = GetCurrentContact();
-            return currentContact?.Contact != null ? new ContactViewModel(currentContact) : new ContactViewModel();
-        }
-
-        public virtual ContactViewModel GetContactViewModelById(string id) => new ContactViewModel(GetContactById(id));
 
         public virtual void CreateContact(FoundationContact contact, string contactId)
         {
@@ -118,32 +109,6 @@ namespace Foundation.Commerce.Customer.Services
         {
             var contact = GetContactById(contactId);
             return contact.FoundationOrganization != null;
-        }
-
-        public virtual List<ContactViewModel> GetContactViewModelsForOrganization(FoundationOrganization organization = null)
-        {
-            if (organization == null)
-            {
-                organization = GetCurrentOrganization();
-            }
-
-            if (organization == null)
-            {
-                return new List<ContactViewModel>();
-            }
-
-            var organizationUsers = GetContactsForOrganization(organization);
-
-            if (organization.SubOrganizations.Count > 0)
-            {
-                foreach (var subOrg in organization.SubOrganizations)
-                {
-                    var contacts = GetContactsForOrganization(subOrg);
-                    organizationUsers.AddRange(contacts);
-                }
-            }
-
-            return organizationUsers.Select(user => new ContactViewModel(user)).ToList();
         }
 
         public virtual FoundationContact GetContactByEmail(string email)

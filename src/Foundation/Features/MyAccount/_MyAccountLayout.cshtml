@@ -1,14 +1,15 @@
-﻿@using Foundation.Commerce.ViewModels.Header
+﻿@using Foundation.Features.Header
+
 @model IContentViewModel<IContent>
+
 @{
-    Layout = "~/Features/Shared/Foundation/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-md-12 col-lg-3">
         @Html.Action("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link })
     </div>
-
     <div class="col-md-12 col-lg-9">
         @RenderBody()
     </div>

@@ -1,14 +1,14 @@
 ﻿@using EPiServer.AddOns.Helpers
 @using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
-@using Foundation.Cms.EditorDescriptors
 @using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blog.BlogItem
+@using Foundation.Features.Shared.SelectionFactories
 
 @model BlogItemPageModel
 
 @if (string.IsNullOrEmpty(Model.Template) || Model.Template == TemplateSelections.Grid)
 {
-
     <div class="blog__thumbnail">
         <div style="width: 100%">
             <picture>
@@ -61,7 +61,6 @@
                 }
             </picture>
         </div>
-
         <div class="col-xs-12 col-@textCol">
             <span>
                 @foreach (var tag in Model.Tags)
@@ -81,7 +80,6 @@
                 <br />
                 <p class="light-text">@Html.Raw(Model.PreviewText)</p>
             }
-
         </div>
     </div>
     <hr />
@@ -107,7 +105,6 @@
                 {
                     <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
                 }
-
             </span>
             @if (Model.ShowPublishDate)
             {
@@ -123,7 +120,6 @@
                 <p class="light-text">@Html.Raw(Model.PreviewText)</p>
             }
         </div>
-
     </div>
 }
 
@@ -174,7 +170,6 @@
                     </picture>
                 </div>
             }
-
             <div class="col-xs-12 col-@textCol">
                 <span>
                     @foreach (var tag in Model.Tags)
@@ -195,7 +190,6 @@
                     <p class="light-text">@Html.Raw(Model.PreviewText)</p>
                 }
             </div>
-
             @if (flip)
             {
                 <div class="col-xs-12 col-@imageCol">
@@ -216,7 +210,6 @@
     {
         <div class="screen-width-block">
             <div class="row">
-
                 <div class="col-xs-12 col-@imageCol">
                     <picture style="width: 100%">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
@@ -228,7 +221,6 @@
                         }
                     </picture>
                 </div>
-
                 <div class="col-xs-12 col-@textCol">
                     <span>
                         @foreach (var tag in Model.Tags)
@@ -249,7 +241,6 @@
                         <p class="light-text">@Html.Raw(Model.PreviewText)</p>
                     }
                 </div>
-
             </div>
         </div>
     }

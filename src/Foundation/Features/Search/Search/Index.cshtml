@@ -1,4 +1,8 @@
-﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
+﻿@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+@using Foundation.Features.CatalogContent
+
+@model SearchViewModel<SearchResultPage>
 
 @{
     if (Request.IsAjaxRequest())
@@ -79,11 +83,11 @@
                             {
                                 if (Model.FilterOption.ViewSwitcher == "Grid")
                                 {
-                                    @Html.Partial("~/Features/Shared/Foundation/_ProductGrid.cshtml", Model.ProductViewModels ?? new List<ProductTileViewModel>())
+                                    @Html.Partial("~/Features/Shared/Views/_ProductGrid.cshtml", Model.ProductViewModels ?? new List<ProductTileViewModel>())
                                 }
                                 else
                                 {
-                                    @Html.Partial("~/Features/Shared/Foundation/_ProductList.cshtml", Model.ProductViewModels ?? new List<ProductTileViewModel>())
+                                    @Html.Partial("~/Features/Shared/Views/_ProductList.cshtml", Model.ProductViewModels ?? new List<ProductTileViewModel>())
                                 }
                             }
                             else

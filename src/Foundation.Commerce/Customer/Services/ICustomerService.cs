@@ -1,7 +1,6 @@
 ﻿using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.ServiceLocation;
 using Foundation.Cms.Identity;
-using Foundation.Commerce.Customer.ViewModels;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
@@ -16,10 +15,7 @@ namespace Foundation.Commerce.Customer.Services
         ServiceAccessor<IAuthenticationManager> AuthenticationManager { get; }
         ServiceAccessor<ApplicationSignInManager<SiteUser>> SignInManager { get; }
         Guid CurrentContactId { get; }
-        ContactViewModel GetCurrentContactViewModel();
-        List<ContactViewModel> GetContactViewModelsForOrganization(FoundationOrganization organization = null);
         void CreateContact(FoundationContact contact, string contactId);
-        ContactViewModel GetContactViewModelById(string id);
         void EditContact(FoundationContact model);
         void RemoveContactFromOrganization(string id);
         bool CanSeeOrganizationNav();

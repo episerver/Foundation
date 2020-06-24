@@ -1,4 +1,6 @@
-﻿@model OrderSummaryViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model OrderSummaryViewModel
 
 <div class="checkout--bill__group">
     <div class="checkout--bill__item">
@@ -7,7 +9,6 @@
             <p class="title">@Model.SubTotal.ToString()</p>
         </div>
     </div>
-
     @if (Model.OrderDiscounts != null && Model.OrderDiscounts.Count() > 0)
     {
         <div class="checkout--bill__item">
@@ -23,16 +24,13 @@
                     <span>- @discount.Discount.ToString()</span>
                 </div>
             }
-
         </div>
     }
-
     <div class="checkout--bill__item">
         <div class="flex-between">
             <p class="title">@Html.Translate("/Checkout/ShippingAndTax")</p>
             <p class="title pull-right">@Model.ShippingTaxTotal.ToString()</p>
         </div>
-
         @if (Model.ShippingDiscountTotal != 0)
         {
             <div class="checkout--bill__sub-item">
@@ -48,7 +46,6 @@
                 </div>
             </div>
         }
-
         <div class="checkout--bill__sub-item">
             <div class="flex-between">
                 <span>@Html.Translate("/Checkout/ShippingTotal")</span>
@@ -61,7 +58,6 @@
                 <span>@Model.TaxTotal.ToString()</span>
             </div>
         </div>
-
     </div>
     <div class="checkout--bill__item">
         <div class="flex-between">

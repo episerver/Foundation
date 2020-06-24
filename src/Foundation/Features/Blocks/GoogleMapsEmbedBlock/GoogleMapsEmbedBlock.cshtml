@@ -1,0 +1,10 @@
+﻿@using Foundation.Features.Blocks
+@using Foundation.Features.Blocks.GoogleMapsEmbedBlock
+
+@model IBlockViewModel<GoogleMapsEmbedBlock>
+
+<iframe height="@Model.CurrentBlock.Height"
+        frameborder="0"
+        style="border:0; width: 100%"
+        src="https://www.google.com/maps/embed/v1/search?q=@(Uri.EscapeUriString(Model.CurrentBlock.SearchTerm))&key=@(Model.CurrentBlock.ApiKey)" allowfullscreen>
+</iframe>

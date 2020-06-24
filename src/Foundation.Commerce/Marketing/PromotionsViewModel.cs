@@ -1,5 +1,5 @@
 ﻿using EPiServer.Commerce.Marketing;
-using Foundation.Cms.ViewModels;
+using Foundation.Cms;
 using System.Collections.Generic;
 
 namespace Foundation.Commerce.Marketing

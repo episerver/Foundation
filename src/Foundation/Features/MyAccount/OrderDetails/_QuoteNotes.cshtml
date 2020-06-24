@@ -1,4 +1,7 @@
-﻿@model Foundation.Commerce.Order.ViewModels.OrderDetailsViewModel
+﻿@using Foundation.Features.MyAccount.OrderDetails
+
+@model OrderDetailsViewModel
+
 <div class="row">
     <div class="col-12">
         <h4>Quote Notes</h4>
@@ -12,11 +15,10 @@
                 </div>
             }
         </div>
-        
+
     </div>
 </div>
 <br />
-
 <div class="row">
     <div class="col-12">
         <h4>@Html.TranslateFallback("/Shared/AddNote", "Add Note")</h4>

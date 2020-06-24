@@ -1,0 +1,23 @@
+﻿@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.ProductHeroBlock
+
+@model ProductHeroBlockViewModel
+
+@{
+    var imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
+        : Html.ProcessImage(Model.ImageUrl).Resize(Model.CurrentBlock.Image.ImageWidth, Model.CurrentBlock.Image.ImageHeight).ToString();
+
+    var blockLayout = Model.CurrentBlock.Layout.Equals("CalloutRight", StringComparison.OrdinalIgnoreCase) ? "order: 1" : "";
+}
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="product-hero-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="product-hero-block__callout  @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@blockLayout; background-color: @Model.CurrentBlock.Callout.BackgroundColor;">
+        @Html.PropertyFor(x => x.CurrentBlock.Callout.Text)
+    </div>
+    <div class="product-hero-block__image" style="@Model.ImagePosition">
+        <picture class="img-fluid">
+            <source data-srcset="@imageUrl&format=webp" type="image/webp">
+            <img class="img-fluid lazyload" data-src="@imageUrl" />
+        </picture>
+    </div>
+</div>

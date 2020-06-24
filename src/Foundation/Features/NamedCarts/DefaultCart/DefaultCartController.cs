@@ -9,14 +9,17 @@ using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce;
-using Foundation.Commerce.Catalog;
 using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModels;
-using Foundation.Commerce.Personalization;
+using Foundation.Features.CatalogContent.Services;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Header;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.OrderConfirmation;
+using Foundation.Infrastructure;
+using Foundation.Personalization;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
@@ -284,7 +287,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         public JsonResult RedirectToCart(string message)
         {
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
             if (homePage?.CartPage != null)
             {
                 var cartPage = _contentLoader.Get<CartPage>(homePage.CartPage);
@@ -393,7 +396,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
             await _recommendationService.TrackOrder(HttpContext, order);
 
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
             if (homePage?.OrderConfirmationPage != null)
             {
                 var orderConfirmationPage = _contentLoader.Get<OrderConfirmationPage>(homePage.OrderConfirmationPage);
@@ -570,7 +573,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             }
 
             _orderRepository.Save(CartWithValidationIssues.Cart);
-            return Redirect(Url.ContentUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).CheckoutPage));
+            return Redirect(Url.ContentUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).CheckoutPage));
         }
 
         [HttpPost]
@@ -811,7 +814,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             var placedOrderId = _cartService.PlaceCartForQuoteById(orderId, currentCustomer.ContactId);
 
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             var orderDetailUrl = Url.ContentUrl(startPage.OrderDetailsPage);
             return Redirect(orderDetailUrl + "?orderGroupId=" + placedOrderId);
         }

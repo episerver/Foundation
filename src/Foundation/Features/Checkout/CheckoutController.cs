@@ -9,14 +9,15 @@ using EPiServer.Web.Routing;
 using Foundation.Cms.Identity;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Payments;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModelFactories;
-using Foundation.Commerce.Order.ViewModels;
-using Foundation.Commerce.Personalization;
+using Foundation.Features.Checkout.Payments;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyAccount.GiftCardPage;
+using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.NamedCarts;
+using Foundation.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
 using Microsoft.AspNet.Identity.Owin;
@@ -694,7 +695,7 @@ namespace Foundation.Features.Checkout
             _orderRepository.Save(returnedCart);
 
 
-            var checkoutPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).CheckoutPage;
+            var checkoutPage = _contentLoader.Get<HomePage>(ContentReference.StartPage).CheckoutPage;
             _cartService.ValidateCart(returnedCart);
             return Json(new { link = _urlResolver.GetUrl(checkoutPage) });
         }

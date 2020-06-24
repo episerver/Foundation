@@ -1,0 +1,9 @@
+﻿﻿@model IBlockViewModel<Foundation.Features.Blocks.VideoBlock.VideoBlock>
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div>
+        <video blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="video-block" playsinline seeking controls>
+            <source src="@Url.ContentUrl(Model.CurrentBlock.Video)" type="video/mp4">
+        </video>
+    </div>
+</div>

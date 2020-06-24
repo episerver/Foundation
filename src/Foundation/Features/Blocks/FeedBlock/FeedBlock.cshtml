@@ -1,0 +1,37 @@
+﻿@using EPiServer.Web.Mvc.Html
+@model Foundation.Features.Blocks.FeedBlock.FeedBlockViewModel
+    <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+        @if (Model.ShowHeading)
+        {
+            <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+            <hr />
+        }
+        <div style="margin-top:0.5em">
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                foreach (var message in Model.Messages)
+                {
+                    var messageStyle = message.ResolveStyle(message.Type);
+                    <div style="color:@messageStyle">@message.Body</div>
+                }
+
+                if (Model.Feed != null && Model.Feed.Any())
+                {
+                    <h3> @Model.FeedTitle </h3>
+                    <br />
+                    foreach (var feedItem in Model.Feed)
+                    {
+                        <div>
+                            <strong> @feedItem.Heading </strong><br />
+                            <small> @feedItem.ActivityDate.ToLocalTime() </small>
+                            @if (!String.IsNullOrWhiteSpace(feedItem.Description))
+                            {
+                                <p> @feedItem.Description </p>
+                            }
+                        </div>
+                        <br />
+                    }
+                }
+            }
+        </div>
+    </div>

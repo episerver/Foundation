@@ -2,7 +2,6 @@
 using EPiServer.Core;
 using EPiServer.Tracking.Core;
 using EPiServer.Web;
-using Foundation.Commerce.Customer.ViewModels;
 using Mediachase.Commerce.Orders.Managers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

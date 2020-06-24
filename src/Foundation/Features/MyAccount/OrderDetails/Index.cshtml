@@ -1,11 +1,11 @@
 ﻿@using System.Web.Mvc.Html
 @using EPiServer.Commerce.Order
 @using Foundation.Commerce.Customer
-@using Foundation.Commerce.ViewModels.Header
-
+@using Foundation.Features.MyAccount.OrderDetails
 @using Constants = Foundation.Commerce.Constant
 
-@model Foundation.Commerce.Order.ViewModels.OrderDetailsViewModel
+@model OrderDetailsViewModel
+
 @{
     Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
     if (Model.IsOrganizationOrder)
@@ -57,7 +57,6 @@
                 {
                     @Html.TranslateFallback("/OrderHistory/Labels/TotalPrice", "Price") <strong> @Model.PurchaseOrder.GetTotal().ToString() </strong> <br />
                 }
-
             </p>
         </div>
         <div class="col-xs-12 col-sm-6">
@@ -81,11 +80,8 @@
             }
         </div>
     </div>
-
     <br />
-
     <div class="row">
-
         <div class="col-12">
             <h4>Order Items</h4>
 
@@ -99,9 +95,7 @@
                     @Html.Partial("_ItemTemplate", item, new ViewDataDictionary(viewData))
                 </div>
             }
-
             <br />
-
             @if (Model.IsOrganizationOrder && Model.CurrentCustomer.Role == B2BUserRoles.Approver)
             {
                 if (Model.QuoteStatus != null && Model.QuoteStatus.Equals("RequestQuotationFinished"))
@@ -143,20 +137,17 @@
                 <span class="warning-message warning-message-data"></span>
                 <a class="hidden cancelUpdateBudget" href="@Url.Action("Index", "OrderDetails", new {currentPage = Model.CurrentContent.ContentLink, orderGroupId = @Model.OrderGroupId})"></a>
             </div>
-
         </div>
-
     </div>
-
+    
     @Html.Partial("_Discounts", Model)
-
+    
     <br />
 
     if (isQuote)
     {
         @Html.Partial("_QuoteNotes", Model)
     }
-
 
     <div class="modal fade" id="returnSettingModal" role="dialog">
         <div class="modal-dialog">

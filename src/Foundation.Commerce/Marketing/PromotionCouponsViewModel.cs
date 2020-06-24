@@ -1,5 +1,5 @@
 ﻿using EPiServer.Commerce.Marketing;
-using Foundation.Cms.ViewModels;
+using Foundation.Cms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

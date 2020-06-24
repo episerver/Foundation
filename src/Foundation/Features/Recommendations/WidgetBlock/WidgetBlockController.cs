@@ -4,9 +4,10 @@ using EPiServer.Framework.Web.Resources;
 using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.ViewModels;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Personalization;
+using Foundation.Features.CatalogContent.Services;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Shared;
+using Foundation.Personalization;
 using Mediachase.Commerce.Catalog;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,31 +16,34 @@ using System.Web.Mvc;
 
 namespace Foundation.Features.Recommendations.WidgetBlock
 {
-    public class WidgetBlockController : BlockController<Commerce.Personalization.WidgetBlock>
+    public class WidgetBlockController : BlockController<WidgetBlock>
     {
         private readonly ICommerceTrackingService _trackingService;
         private readonly ReferenceConverter _referenceConverter;
         private readonly IRequiredClientResourceList _requiredClientResource;
         private readonly ICartService _cartService;
         private readonly ConfirmationService _confirmationService;
+        private readonly IProductService _productService;
 
         public WidgetBlockController(ICommerceTrackingService commerceTrackingService,
             ReferenceConverter referenceConverter,
             IRequiredClientResourceList requiredClientResource,
             ICartService cartService,
-            ConfirmationService confirmationService)
+            ConfirmationService confirmationService,
+            IProductService productService)
         {
             _trackingService = commerceTrackingService;
             _referenceConverter = referenceConverter;
             _requiredClientResource = requiredClientResource;
             _cartService = cartService;
             _confirmationService = confirmationService;
+            _productService = productService;
         }
 
-        public override ActionResult Index(Commerce.Personalization.WidgetBlock currentContent)
+        public override ActionResult Index(WidgetBlock currentContent)
         {
             _requiredClientResource.RequireScriptInline($"let recs = new ProductRecs(); recs.getRecommendations('{currentContent.WidgetType}',{currentContent.NumberOfRecommendations},'{currentContent.Name}','{currentContent.Value}');").AtFooter();
-            return PartialView(new BlockViewModel<Commerce.Personalization.WidgetBlock>(currentContent));
+            return PartialView(new BlockViewModel<WidgetBlock>(currentContent));
         }
 
         public async Task<ActionResult> GetRecommendations(string widgetType, string name, string value, int numberOfRecs = 4)
@@ -79,12 +83,10 @@ namespace Foundation.Features.Recommendations.WidgetBlock
                     {
                         break;
                     }
-
                     if (int.TryParse(ControllerContext.HttpContext.Request.QueryString["orderNumber"], out var orderNumber))
                     {
                         order = _confirmationService.GetOrder(orderNumber);
                     }
-
                     if (order == null)
                     {
                         break;
@@ -104,9 +106,9 @@ namespace Foundation.Features.Recommendations.WidgetBlock
             {
                 return new EmptyResult();
             }
-
             recommendations = recommendations.Take(numberOfRecs).ToList();
-            return PartialView("/Features/Recommendations/Index.cshtml", _trackingService.GetRecommendedProductTileViewModels(recommendations));
+
+            return PartialView("/Features/Recommendations/Index.cshtml", _productService.GetRecommendedProductTileViewModels(recommendations));
         }
     }
 }

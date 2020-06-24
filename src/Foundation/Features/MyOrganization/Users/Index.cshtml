@@ -1,6 +1,7 @@
-﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+﻿@using Foundation.Features.MyOrganization.Users
+
 @model UsersPageViewModel
+
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
     var impersonate = ViewBag.Impersonate != null ? (bool)ViewBag.Impersonate : true;
