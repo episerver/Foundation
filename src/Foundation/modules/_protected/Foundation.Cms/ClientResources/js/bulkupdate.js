@@ -43,6 +43,7 @@
         axios.get("/episerver/foundation.cms/bulkupdate/getproperties/" + e.currentTarget.value)
             .then(function (result) {
                 $('.table-content-info').empty();
+                $('.table-content-info').append('<div style="text-align: center;"><h4>Click <b>"Apply Filter"</b> to get Bulk Update Contents</h4></div>');
                 $('.checkbox-content-properties').empty();
                 $.each(result.data, function (index, entry) {
                     var checkbox = `<label class="cb-container">`

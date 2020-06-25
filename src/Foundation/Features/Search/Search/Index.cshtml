@@ -40,17 +40,12 @@
                         {
                             @Html.Action("Facet", new { Model.CurrentContent, Model.FilterOption })
                         }
-                        @*if (Model.ContentResult != null)
-                            {
-                                @Html.Partial("_FacetContent", Model)
-                            }*@
-                        @*@Html.Action("RecentlyBrowsed")*@
                     </div>
                     <div class="col-lg-9">
                         <div class="row">
                             <div class="col-12">
                                 <h2>@Model.Query</h2>
-                                @if (Model.FilterOption.Confidence > 0)
+                                @if (Model.FilterOption.Confidence > 0 && Model.FilterOption.Confidence < 1)
                                 {
                                     <p><b>Confidence: </b>@Model.FilterOption.Confidence.ToString("p")</p>
                                 }
@@ -60,6 +55,26 @@
                             @Html.Partial("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
                         </div>
                         <div class="category-page__products jsProducts">
+                            @if (!string.IsNullOrWhiteSpace(Model.Query))
+                            {
+                                if (Model.DidYouMeans != null && Model.DidYouMeans.Hits.Any())
+                                {
+                                    <div class="alert alert-info">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <i class="fa fa-info"></i> @Html.TranslateFallback("/Search/DidYouMean", "Did you mean"):
+                                        @{ var first = true; }
+                                        @foreach (var item in Model.DidYouMeans.Hits)
+                                        {
+                                            if (!first)
+                                            {
+                                                <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
+                                            }
+                                            <strong>@Html.ActionLink(item.Suggestion, null, new { search = item.Suggestion })</strong>
+                                            first = false;
+                                        }
+                                    </div>
+                                }
+                            }
                             @if (Model.FilterOption.TotalCount > 0)
                             {
                                 if (Model.FilterOption.ViewSwitcher == "Grid")
@@ -74,26 +89,6 @@
                             else
                             {
                                 <h4>No products matched your search criteria.</h4>
-                                if (!string.IsNullOrWhiteSpace(Model.Query))
-                                {
-                                    if (Model.DidYouMeans != null && Model.DidYouMeans.Hits.Any())
-                                    {
-                                        <div class="alert alert-info">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <i class="fa fa-info"></i> @Html.TranslateFallback("/Search/DidYouMean", "Did you mean"):
-                                            @{ var first = true; }
-                                            @foreach (var item in Model.DidYouMeans.Hits)
-                                            {
-                                                if (!first)
-                                                {
-                                                    <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
-                                                }
-                                                <strong>@Html.ActionLink(item.Suggestion, null, new { search = item.Suggestion })</strong>
-                                                first = false;
-                                            }
-                                        </div>
-                                    }
-                                }
                             }
                         </div>
                     </div>
