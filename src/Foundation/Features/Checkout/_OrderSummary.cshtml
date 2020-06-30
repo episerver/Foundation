@@ -32,18 +32,23 @@
             <p class="title">@Html.Translate("/Checkout/ShippingAndTax")</p>
             <p class="title pull-right">@Model.ShippingTaxTotal.ToString()</p>
         </div>
-        <div class="checkout--bill__sub-item">
-            <div class="flex-between">
-                <span>@Html.Translate("/Checkout/ShippingSubtotal")</span>
-                <span>@Model.ShippingSubtotal.ToString()</span>
+
+        @if (Model.ShippingDiscountTotal != 0)
+        {
+            <div class="checkout--bill__sub-item">
+                <div class="flex-between">
+                    <span>@Html.Translate("/Checkout/ShippingSubtotal")</span>
+                    <span>@Model.ShippingSubtotal.ToString()</span>
+                </div>
             </div>
-        </div>
-        <div class="checkout--bill__sub-item">
-            <div class="flex-between">
-                <span>@Html.Translate("/Checkout/ShippingDiscount")</span>
-                <span>- @Model.ShippingDiscountTotal.ToString()</span>
+            <div class="checkout--bill__sub-item">
+                <div class="flex-between">
+                    <span>@Html.Translate("/Checkout/ShippingDiscount")</span>
+                    <span>- @Model.ShippingDiscountTotal.ToString()</span>
+                </div>
             </div>
-        </div>
+        }
+
         <div class="checkout--bill__sub-item">
             <div class="flex-between">
                 <span>@Html.Translate("/Checkout/ShippingTotal")</span>
