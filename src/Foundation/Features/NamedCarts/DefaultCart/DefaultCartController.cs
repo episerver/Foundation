@@ -812,9 +812,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var placedOrderId = _cartService.PlaceCartForQuoteById(orderId, currentCustomer.ContactId);
 
             var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
-
-            return RedirectToAction("Index", "OrderDetails",
-                new { currentPage = startPage.OrderDetailsPage, orderGroupId = placedOrderId });
+            var orderDetailUrl = Url.ContentUrl(startPage.OrderDetailsPage);
+            return Redirect(orderDetailUrl + "?orderGroupId=" + placedOrderId);
         }
 
         [HttpPost]
