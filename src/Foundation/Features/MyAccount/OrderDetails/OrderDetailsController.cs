@@ -123,6 +123,24 @@ namespace Foundation.Features.MyAccount.OrderDetails
                 return orderViewModel;
             }
 
+            var currentContact = _customerService.GetCurrentContact();
+            var currentOrganization = currentContact.FoundationOrganization;
+            if (currentOrganization != null)
+            {
+                var usersOrganization = _customerService.GetContactsForOrganization(currentOrganization);
+                if (!usersOrganization.Where(x => x.ContactId == purchaseOrder.CustomerId).Any())
+                {
+                    return orderViewModel;
+                }
+            }
+            else
+            {
+                if (currentContact.ContactId != purchaseOrder.CustomerId)
+                {
+                    return orderViewModel;
+                }
+            }
+
             // Assume there is only one form per purchase.
             var form = purchaseOrder.GetFirstForm();
 

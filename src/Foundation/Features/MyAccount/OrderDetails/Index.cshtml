@@ -127,7 +127,7 @@
             }
             @if (Request.IsAuthenticated && string.IsNullOrEmpty(Model.PurchaseOrder.Properties[Constants.Quote.QuoteStatus] as string) && Model.CurrentCustomer.Role == B2BUserRoles.Purchaser)
             {
-                using (@Html.BeginForm("RequestQuoteById", "Cart", FormMethod.Post))
+                using (@Html.BeginForm("RequestQuoteById", "DefaultCart", FormMethod.Post))
                 {
                     @Html.Hidden("orderId", Model.OrderGroupId)
                     ;
