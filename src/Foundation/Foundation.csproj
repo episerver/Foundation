@@ -1970,20 +1970,6 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\VirtualTemplates\Compare.cshtml" />
-    <Content Include="Views\VirtualTemplates\Index.cshtml" />
-    <Content Include="Views\VirtualTemplates\_VirtualTemplatesRoot.cshtml" />
-    <Content Include="Views\VirtualTemplates\Shared\VersionList.cshtml" />
-    <Content Include="Views\VirtualTemplates\Shared\PanelTitle.cshtml" />
-    <Content Include="Views\VirtualTemplates\Edit.cshtml" />
-    <Content Include="Views\VirtualTemplates\Display.cshtml" />
-    <Content Include="Views\VirtualTemplates\CompareDisplay.cshtml" />
-    <Content Include="Views\VirtualTemplates\Buttons\SaveAndClose.cshtml" />
-    <Content Include="Views\VirtualTemplates\Buttons\Save.cshtml" />
-    <Content Include="Views\VirtualTemplates\Buttons\Revert.cshtml" />
-    <Content Include="Views\VirtualTemplates\Buttons\MakeVirtual.cshtml" />
-    <Content Include="Views\VirtualTemplates\Buttons\Edit.cshtml" />
-    <Content Include="Views\VirtualTemplates\Buttons\Compare.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
