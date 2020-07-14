@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>7.1</LangVersion>
+    <AssemblyVersion>2020.07.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,10 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.16.0" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.16.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.25.0" />
-    <PackageReference Include="EPiServer.Framework" Version="11.16.0" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.26.0" />
+    <PackageReference Include="EPiServer.Framework" Version="11.17.0" />
     <PackageReference Include="EPiServer.Social.ActivityStreams" Version="1.5.4" />
     <PackageReference Include="EPiServer.Social.Comments" Version="1.5.4" />
     <PackageReference Include="EPiServer.Social.Common" Version="1.5.4" />
