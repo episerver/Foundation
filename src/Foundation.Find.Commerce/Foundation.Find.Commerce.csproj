@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>7.1</LangVersion>
+    <AssemblyVersion>2020.07.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,15 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.16.0" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.16.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.25.0" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.19.0" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.26.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.21.0" />
     <PackageReference Include="EPiServer.Find" Version="13.2.7" />
     <PackageReference Include="EPiServer.Find.Cms" Version="13.2.7" />
     <PackageReference Include="EPiServer.Find.Commerce" Version="11.1.2" />
     <PackageReference Include="EPiServer.Find.Framework" Version="13.2.7" />
-    <PackageReference Include="EPiServer.Framework" Version="11.16.0" />
+    <PackageReference Include="EPiServer.Framework" Version="11.17.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.Owin.Security" Version="4.1.0" />
