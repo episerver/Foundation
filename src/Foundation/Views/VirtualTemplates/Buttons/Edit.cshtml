@@ -1,8 +1,0 @@
-﻿@using System.Web.Mvc.Html
-@using EPiServer.Shell.Web.Mvc.Html
-
-@Html.ActionLink(
-    Html.TranslateFallback("/virtualtemplatesystem/buttons/edit", "Edit"), 
-    "Edit", 
-    new { VirtualPath = @Model.VirtualPath }, 
-    new { @class = "btn btn-sm btn-primary" })
