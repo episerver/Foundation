@@ -518,8 +518,14 @@
     <Reference Include="EPiServer.Web.WebControls, Version=11.17.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.17.0\lib\net461\EPiServer.Web.WebControls.dll</HintPath>
     </Reference>
+    <Reference Include="FileHelpers, Version=3.4.1.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FileHelpers.3.4.1\lib\net45\FileHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="Geta.EpiCategories, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Geta.EpiCategories.1.2.11\lib\net461\Geta.EpiCategories.dll</HintPath>
+    </Reference>
+    <Reference Include="Geta.EpiCategories.Find, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Geta.EpiCategories.Find.1.2.11\lib\net461\Geta.EpiCategories.Find.dll</HintPath>
     </Reference>
     <Reference Include="Geta.SEO.Sitemaps, Version=3.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Geta.SEO.Sitemaps.3.1.2\lib\net461\Geta.SEO.Sitemaps.dll</HintPath>
