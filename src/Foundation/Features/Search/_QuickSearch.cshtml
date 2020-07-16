@@ -1,44 +1,46 @@
-﻿@model IEnumerable<Foundation.Commerce.Catalog.ViewModels.ProductTileViewModel>
+﻿@using Foundation.Features.CatalogContent
+
+@model IEnumerable<ProductTileViewModel>
+
 @{
     Layout = null;
 }
 
 @if (Model != null && Model.Any())
 {
-  <ul class="style-list-none">
-    <li class="searchbox__heading">
-      <b>Products</b>
-    </li>
-    <div class="searchbox__product-list">
-
-      @foreach (var product in Model)
-      {
-        <li class="searchbox__row">
-            <picture class="searchbox__product-img">
-                <source data-srcset="@product.ImageUrl?format=webp&width=60" type="image/webp">
-                <img data-src="@product.ImageUrl?width=60" class="searchbox__product-img lazyload" loading="lazy" />
-            </picture>
-            <div class="searchbox__product">
-                <a class="searchbox__product-name" href="@product.Url">
-                    @product.DisplayName
-                </a>
-                <p class="searchbox__product-price">
-                    @product.PlacedPrice.ToString()
-                </p>
-            </div>
+    <ul class="style-list-none">
+        <li class="searchbox__heading">
+            <b>Products</b>
         </li>
-      }
-    </div>
-  </ul>
+        <div class="searchbox__product-list">
+            @foreach (var product in Model)
+            {
+                <li class="searchbox__row">
+                    <picture class="searchbox__product-img">
+                        <source data-srcset="@product.ImageUrl?format=webp&width=60" type="image/webp">
+                        <img data-src="@product.ImageUrl?width=60" class="searchbox__product-img lazyload" loading="lazy" />
+                    </picture>
+                    <div class="searchbox__product">
+                        <a class="searchbox__product-name" href="@product.Url">
+                            @product.DisplayName
+                        </a>
+                        <p class="searchbox__product-price">
+                            @product.PlacedPrice.ToString()
+                        </p>
+                    </div>
+                </li>
+            }
+        </div>
+    </ul>
 }
 else
 {
-  <ul class="style-list-none">
-    <li class="searchbox__row searchbox__heading">
-      <b>Products</b>
-    </li>
-    <li class="searchbox__row">
-      <p class="searchbox__notfound">No result found.</p>
-    </li>
-  </ul>
+    <ul class="style-list-none">
+        <li class="searchbox__row searchbox__heading">
+            <b>Products</b>
+        </li>
+        <li class="searchbox__row">
+            <p class="searchbox__notfound">No result found.</p>
+        </li>
+    </ul>
 }

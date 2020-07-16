@@ -1,0 +1,20 @@
+﻿@using Foundation.Features.MyAccount.AddressBook
+
+@model IEnumerable<CountryViewModel>
+@{ 
+    var values = new List<KeyValuePair<string, string>>();
+    if (Model != null && Model.Any())
+    {
+        foreach (var c in Model)
+        {
+            values.Add(new KeyValuePair<string, string>(c.Name, c.Code));
+        }
+    }
+}
+
+<div class="row jsCountrySelectionContainer @((string)ViewData["DivSelection"] ?? "")">
+    <input type="hidden" class="jsCountryOptionName" value="@((string)ViewData["Name"] ?? "CountryCode")" />
+    <div class="col-12 jsCountryOptionListing">
+        @Helpers.RenderDropdown(values, (string)ViewData["SelectItem"], "", (string)ViewData["Name"] ?? "CountryCode")
+    </div>
+</div>

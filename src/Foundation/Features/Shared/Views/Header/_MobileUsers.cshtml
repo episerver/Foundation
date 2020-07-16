@@ -1,0 +1,97 @@
+﻿@using Foundation.Features.Header
+
+@model HeaderViewModel
+
+@if (!Request.IsAuthenticated)
+{
+    <ul class="offside-navbar--menu">
+        <li class="offside-navbar--menu__item">
+            <a href="#">
+                @Html.TranslateFallback(" SIGN IN", " Sign in")
+            </a>
+            <i data-feather="chevron-up" class="collapsed expand-collapse-child hidden"></i>
+            <i data-feather="chevron-down" class="expanded expand-collapse-child"></i>
+            <ul class="offside-navbar--menu child-menu">
+                @using (Html.BeginForm("InternalLogin", "PublicApi", FormMethod.Post, new { @role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.LoginViewModel.ReturnUrl)
+                    <li class="offside-navbar--menu__item">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LoginViewModel.Email, new { @class = "label" })
+                            @Html.TextBoxFor(x => x.LoginViewModel.Email, new { @class = "textbox", autofocus = "autofocus" })
+                            @Html.ValidationMessageFor(x => x.LoginViewModel.Email)
+                        </div>
+                    </li>
+                    <li class="offside-navbar--menu__item">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LoginViewModel.Password, new { @class = "label" })
+                            @Html.PasswordFor(x => x.LoginViewModel.Password, new { @class = "textbox" })
+                            @Html.ValidationMessageFor(x => x.LoginViewModel.Password)
+                        </div>
+                    </li>
+                    <li class="offside-navbar--menu__item">
+                        <div class="form-check">
+                            @Html.CheckBoxFor(x => x.LoginViewModel.RememberMe, new { @class = "form-check-input" })
+                            <label class="form-check-label">
+                                @Html.TranslateFallback("/Login/Form/Label/RememberMe", "Remember Me")
+                            </label>
+                        </div>
+                    </li>
+                    <li class="offside-navbar--menu__item">
+                        <div class="header-box__bottom">
+                            <button type="button" class="button-black jsUsersSigninBtn">
+                                <span>@Html.TranslateFallback("/Login/Form/Label/Login", "Login")</span>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="offside-navbar--menu__item">
+                        @if (Model.LoginViewModel.ResetPasswordPage != null)
+                        {
+                            <a class="forgot-word" href="@Url.ContentUrl(Model.LoginViewModel.ResetPasswordPage)">@Html.Translate("/Login/Form/Label/ForgotPasswordLink")</a>
+                        }
+                    </li>
+                }
+            </ul>
+        </li>
+        <li class="offside-navbar--menu__item">
+            <a href="#"> @Html.TranslateFallback("USERS", "Users")</a>
+            <i data-feather="chevron-up" class="collapsed expand-collapse-child hidden"></i>
+            <i data-feather="chevron-down" class="expanded expand-collapse-child"></i>
+            <ul class="offside-navbar--menu child-menu">
+                @foreach (var user in Model.DemoUsers)
+                {
+
+                    var url = Url.Action("Login", "PublicApi");
+                    <li class="offside-navbar--menu__item">
+                        <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + Request.Url.ToString())" class="list-group--header__item">
+                            <p>@user.FullName</p>
+                            <p class="sub-title">@user.Description</p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <li class="offside-navbar--menu__item">
+            <a href="" data-toggle="modal" data-target="#registerMobile">@Html.TranslateFallback(" SIGN UP", " Sign up")</a>
+        </li>
+
+    </ul>
+}
+else
+{
+    <ul class="offside-navbar--menu">
+        <li class="offside-navbar--menu__item title">
+            <p>@Html.TranslateFallback("/Header/Hello", "Hello") @Model.Name!</p>
+        </li>
+        @foreach (var menuItem in Model.UserLinks)
+        {
+            var urlItem = @Url.ContentUrl(new EPiServer.Url(menuItem.Href));
+            <li class="offside-navbar--menu__item @(Request.Url.AbsolutePath.TrimEnd('/') == urlItem.TrimEnd('/') ? "current" : "")">
+                <a class="list-group--header__item" title="@menuItem.Title" href="@urlItem">
+                    @menuItem.Text
+                </a>
+            </li>
+        }
+    </ul>
+}

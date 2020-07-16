@@ -1,6 +1,7 @@
 ﻿@using Foundation.Social.ViewModels
+@using Foundation.Features.CatalogContent.Package
 
-@model Foundation.Demo.ViewModels.DemoGenericPackageViewModel
+@model GenericPackageViewModel
 
 <div class="row product-detail">
     @Html.Partial("_PackageDetail", Model)
@@ -41,7 +42,6 @@
                 </a>
             </li>
         </ul>
-
         <div class="tab-content">
             <div class="tab-pane product-tab__content fade in active show" id="product_tabs_description">
                 @Html.PropertyFor(x => x.CurrentContent.LongDescription)
@@ -67,7 +67,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @if (Model.ShowRecommendations)

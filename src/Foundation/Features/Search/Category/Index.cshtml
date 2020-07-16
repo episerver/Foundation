@@ -1,4 +1,7 @@
-@model Foundation.Demo.ViewModels.DemoSearchViewModel<GenericNode>
+@using Foundation.Features.Search
+@using Foundation.Features.Search.Category
+
+@model SearchViewModel<GenericNode>
 
 @{
     if (Request.IsAjaxRequest())
@@ -31,7 +34,6 @@
                         @Html.Partial("_CategoriesFilter", Model.CategoriesFilter)
                         @Html.Action("Facet", new { Model.CurrentContent, Model.FilterOption })
                     </div>
-
                     <div class="col-lg-9">
                         @Html.Partial("_BreadCrumb", Model.BreadCrumb)
                         <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
@@ -47,9 +49,6 @@
                             {
                                 @Html.Partial("_ProductList", Model.ProductViewModels)
                             }
-                        </div>
-                        <div class="row">
-
                         </div>
                     </div>
                 }

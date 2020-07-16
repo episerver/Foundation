@@ -1,15 +1,11 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
-using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Personalization;
-using Foundation.Demo.ViewModels;
+using Foundation.Features.CatalogContent.Variation;
+using Foundation.Personalization;
 using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
 using System.Net;
@@ -40,7 +36,7 @@ namespace Foundation.Features.CatalogContent.Product
         [HttpGet]
         public async Task<ActionResult> Index(GenericProduct currentContent, string variationCode = "", bool skipTracking = false)
         {
-            var viewModel = _viewModelFactory.Create<GenericProduct, GenericVariant, DemoGenericProductViewModel>(currentContent, variationCode);
+            var viewModel = _viewModelFactory.Create<GenericProduct, GenericVariant, GenericProductViewModel>(currentContent, variationCode);
 
             if (_isInEditMode && viewModel.Variant == null)
             {
@@ -53,8 +49,6 @@ namespace Foundation.Features.CatalogContent.Product
             }
 
             await AddInfomationViewModel(viewModel, currentContent.Code, skipTracking);
-
-            var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
             currentContent.AddBrowseHistory();
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
             return View(viewModel);
@@ -84,7 +78,7 @@ namespace Foundation.Features.CatalogContent.Product
                 var variant = _viewModelFactory.SelectVariant(currentContent, color, size);
                 if (variant != null)
                 {
-                    var viewModel = _viewModelFactory.Create<GenericProduct, GenericVariant, DemoGenericProductViewModel>(currentContent, variant.Code);
+                    var viewModel = _viewModelFactory.Create<GenericProduct, GenericVariant, GenericProductViewModel>(currentContent, variant.Code);
 
                     if (isQuickView)
                     {

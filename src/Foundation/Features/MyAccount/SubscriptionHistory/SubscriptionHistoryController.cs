@@ -3,8 +3,7 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.Home;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace Foundation.Features.MyAccount.SubscriptionHistory
                 PaymentPlans = paymentPlans
             };
 
-            viewModel.PaymentPlanDetailsPageUrl = UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).PaymentPlanDetailsPage);
+            viewModel.PaymentPlanDetailsPageUrl = UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).PaymentPlanDetailsPage);
 
             return View(viewModel);
         }

@@ -1,5 +1,7 @@
 ﻿@using System.Web.Mvc.Html
-@using Foundation.Cms.EditorDescriptors
+@using Foundation.Features.Blog.BlogListPage
+@using Foundation.Features.Shared.SelectionFactories
+
 @model BlogListPageViewModel
 
 @if (string.IsNullOrEmpty(Model.CurrentContent.Template) || Model.CurrentContent.Template == TemplateSelections.Grid)
@@ -60,7 +62,6 @@
         }
     }
 }
-
 
 @* Paging *@
 

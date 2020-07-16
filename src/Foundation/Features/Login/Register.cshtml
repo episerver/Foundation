@@ -1,8 +1,10 @@
-﻿@{
-    Layout = "~/Features/Shared/Foundation/_LoginLayout.cshtml";
-}
-@model Foundation.Features.Login.UserViewModel
+﻿@using Foundation.Features.Login
+
+@model UserViewModel
+
 @{
+    Layout = "~/Features/Shared/Views/_LoginLayout.cshtml";
+
     var logo = Model.Logo;
 }
 
@@ -17,7 +19,7 @@
                 if (!string.IsNullOrEmpty(logo))
                 {
                     <div class="row">
-                        <div class="col-12 login__row" >
+                        <div class="col-12 login__row">
                             <a href="/">
                                 <picture class="img-fluid">
                                     <source data-srcset="@logo?format=webp" type="image/webp">
@@ -27,7 +29,6 @@
                         </div>
                     </div>
                 }
-
                 <div class="row">
                     <div class="col-12">
                         @Html.TextBoxFor(x => x.RegisterAccountViewModel.Email, new { @class = "login__input", placeholder = "Email" })

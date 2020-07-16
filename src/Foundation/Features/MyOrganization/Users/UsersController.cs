@@ -7,14 +7,15 @@ using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Attributes;
 using Foundation.Cms.Identity;
-using Foundation.Cms.Pages;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Mail;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Find.Commerce;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.ResetPassword;
+using Foundation.Features.MyOrganization.Organization;
+using Foundation.Features.MyOrganization.SubOrganization;
+using Foundation.Features.Search;
+using Foundation.Features.Shared;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Foundation.Features.MyOrganization.Users
         private readonly ApplicationUserManager<SiteUser> _userManager;
         private readonly ApplicationSignInManager<SiteUser> _signInManager;
         private readonly LocalizationService _localizationService;
-        private readonly ICommerceSearchService _searchService;
+        private readonly ISearchService _searchService;
         private readonly CookieService _cookieService;
 
         public UsersController(
@@ -47,7 +48,7 @@ namespace Foundation.Features.MyOrganization.Users
             IContentLoader contentLoader,
             IMailService mailService,
             LocalizationService localizationService,
-            ICommerceSearchService searchService,
+            ISearchService searchService,
             CookieService cookieService)
         {
             _customerService = customerService;
@@ -262,7 +263,7 @@ namespace Foundation.Features.MyOrganization.Users
             var user = _userManager.FindByName(viewModel.Contact.Email);
             if (user != null)
             {
-                var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
                 var body = await _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), ContentLanguage.PreferredCulture.TwoLetterISOLanguageName);
                 var mailPage = _contentLoader.Get<MailBasePage>(startPage.ResetPasswordMail);
                 var code = _userManager.GeneratePasswordResetToken(user.Id);

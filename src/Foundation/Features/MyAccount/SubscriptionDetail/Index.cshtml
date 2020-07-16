@@ -1,9 +1,12 @@
 ﻿@using EPiServer.Commerce.Order
-@using Foundation.Commerce.ViewModels.Header
-@model Foundation.Commerce.Order.ViewModels.SubscriptionDetailViewModel
+@using Foundation.Features.MyAccount.SubscriptionDetail
+
+@model SubscriptionDetailViewModel
+
 @{
     Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
 }
+
 <div class="page-title">
     <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
 </div>

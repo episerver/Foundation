@@ -4,10 +4,10 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyAccount.OrderHistory;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System.Collections.Generic;
@@ -81,7 +81,7 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
                 orders.Orders.Add(orderViewModel);
             }
             orders.OrderDetailsPageUrl =
-             UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderDetailsPage);
+             UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
 
             viewModel.Orders = orders;
 

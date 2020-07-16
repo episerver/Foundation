@@ -4,12 +4,9 @@ using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using Foundation.Cms.Attributes;
 using Foundation.Cms.Identity;
-using Foundation.Cms.Pages;
-using Foundation.Cms.ViewModels;
-using Foundation.Cms.ViewModels.Pages;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Mail;
-using Foundation.Commerce.Models.Pages;
+using Foundation.Features.Home;
+using Foundation.Features.Shared;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -60,7 +57,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
                 return RedirectToAction("ForgotPasswordConfirmation");
             }
 
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             //var body = _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), language);
             var mailPage = _contentLoader.Get<MailBasePage>(startPage.ResetPasswordMail);
             var body = mailPage.MainBody.ToHtmlString();
@@ -79,7 +76,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
             var model = ContentViewModel.Create(homePage);
             return View("ForgotPasswordConfirmation", model);
         }
@@ -124,7 +121,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
             var model = ContentViewModel.Create(homePage);
             return View("ResetPasswordConfirmation", model);
         }

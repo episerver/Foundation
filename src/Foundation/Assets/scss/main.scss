@@ -53,31 +53,29 @@
     'templates/widgets/teaser';
 
 @import
-    'templates/blocks/hero-block',
-    'templates/blocks/button-block',
-    'templates/blocks/calendar-block',
+    '../../Features/Blocks/HeroBlock/hero-block',
+    '../../Features/Blocks/ButtonBlock/button-block',
+    '../../Features/Events/CalendarBlock/calendar-block',
     'templates/blocks/featurebox-block',
     'templates/blocks/vimeo-block',
-    'templates/blocks/content-recommendation-block',
-    'templates/blocks/teaser-block',
+    '../../Features/Blocks/TeaserBlock/teaser-block',
     'templates/blocks/video-block',
-    'templates/blocks/breadcrumb-block',
-    'templates/blocks/text-block',
+    '../../Features/Blocks/BreadcrumbBlock/breadcrumb-block',
+    '../../Features/Blocks/TextBlock/text-block',
     'templates/blocks/order-search-block',
-    'templates/blocks/category-block',
-    'templates/blocks/product-hero-block';
+    '../../Features/Blocks/CategoryBlock/category-block',
+    '../../Features/Blocks/ProductHeroBlock/product-hero-block';
 
 @import
     'templates/forms/form';
 
-@import
-    'templates/media/video-file';
+@import '../../Features/Media/video-file';
 
 @import
     'templates/pages/home',
     'templates/pages/standard-page',
     'templates/pages/order-history',
-    'templates/pages/store-locator',
+    '../../Features/Stores/store-locator',
     'templates/pages/product-detail',
     'templates/pages/my-account-pages',
     'templates/pages/credit-card',
@@ -96,7 +94,7 @@
     'templates/pages/blog-item',
     'templates/pages/login',
     'templates/pages/one-page-checkout',
-    'templates/pages/collection';
+    '../../Features/Collection/collection';
 
 // 7. Themes
 @import

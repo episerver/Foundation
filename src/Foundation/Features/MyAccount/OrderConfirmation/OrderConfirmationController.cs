@@ -4,8 +4,8 @@ using EPiServer.Editor;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Services;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Services;
 using System.Web.Mvc;
 

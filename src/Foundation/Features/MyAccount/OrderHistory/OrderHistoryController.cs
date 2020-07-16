@@ -6,11 +6,10 @@ using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModelFactories;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderConfirmation;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Managers;
@@ -123,7 +122,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
                 viewModel.Orders.Add(orderViewModel);
             }
             viewModel.OrderDetailsPageUrl =
-             UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderDetailsPage);
+             UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
 
             viewModel.PagingInfo.PageNumber = pageNum;
             viewModel.PagingInfo.TotalRecord = purchaseOrders.Count();
@@ -135,7 +134,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
 
         public ActionResult ViewAll()
         {
-            return Redirect(UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderHistoryPage));
+            return Redirect(UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderHistoryPage));
         }
 
         [HttpPost]
@@ -175,7 +174,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             paymentPlan.LastTransactionDate = DateTime.UtcNow;
             paymentPlan.CompletedCyclesCount++;
             _orderRepository.Save(paymentPlan);
-            var homePage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var homePage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             var paymentPlanPageUrl = Url.ContentUrl(homePage.PaymentPlanDetailsPage) + $"?paymentPlanId={paymentPlan.OrderLink.OrderGroupId}";
             return Redirect(paymentPlanPageUrl);
         }

@@ -1,0 +1,23 @@
+﻿@using Foundation.Features.Header.Market
+
+@model MarketViewModel
+
+<div class="market-list dropdown-menu dropdown-menu-right">
+    <div class="market-list__list">
+        @foreach (var market in Model.Markets)
+        {
+            using (Html.BeginForm("Set", "Market", new { marketId = market.Value }, FormMethod.Post,
+                new { @class = "market-selector__wrapper", @data_marketid = market.Value }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="market-list__item jsSelectMarket">
+                    <picture class="market-selector__market-icon">
+                        <source data-srcset="@market.FlagUrl?format=webp" type="image/webp">
+                        <img data-src="@market.FlagUrl" class="market-selector__market-icon lazyload" />
+                    </picture>
+                    <p class="market-selector__market-text">@market.Text</p>
+                </div>
+            }
+        }
+    </div>
+</div>

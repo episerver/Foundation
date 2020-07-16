@@ -2,7 +2,7 @@
 using EPiServer.Core;
 using EPiServer.Framework.Web;
 using EPiServer.Web;
-using Foundation.Cms.Pages;
+using Foundation.Features.Home;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,7 +30,7 @@ namespace Foundation.Features.Preview
         public ActionResult RenderResult(IContent currentContent)
         {
             //As the layout requires a page for title etc we "borrow" the start page
-            var startPage = _contentLoader.Get<CmsHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
 
             var model = new PreviewModel(startPage, currentContent);
 

@@ -1,0 +1,4 @@
+namespace Foundation.Features.Shared
+{
+
+}

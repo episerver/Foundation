@@ -1,6 +1,5 @@
 using EPiServer.Shell.ObjectEditing;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Commerce.Models.EditorDescriptors
 {
@@ -8,15 +7,13 @@ namespace Foundation.Commerce.Models.EditorDescriptors
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
-            var dic = new Dictionary<string, string>
+            return new ISelectItem[]
             {
-                {"None", "None"},
-                {"Key", "Key"},
-                {"File", "File"},
-                {"Elevated Role", "ElevatedRole"}
+                new SelectItem { Text = "None", Value = "None" },
+                new SelectItem { Text = "Key", Value = "Key" },
+                new SelectItem { Text = "File", Value = "File" },
+                new SelectItem { Text = "Elevated Role", Value = "ElevatedRole" }
             };
-
-            return dic.Select(x => new SelectItem { Text = x.Key, Value = x.Value });
         }
     }
 }

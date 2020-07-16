@@ -1,6 +1,0 @@
-﻿@model IBlockViewModel<LinkedInCompanyBlock>
-<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
-    <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-    <script type="IN/CompanyProfile" data-id="@Model.CurrentBlock.AccountName" data-format="inline">
-    </script>
-</div>

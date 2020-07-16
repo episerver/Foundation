@@ -1,5 +1,6 @@
 ﻿@using EPiServer.Web.Mvc.Html
-@using Foundation.Find.Cms.People.ViewModels
+@using Foundation.Features.People.PersonListPage
+
 @model PersonListViewModel
 
 @section AdditionalScripts
@@ -84,7 +85,6 @@
                             </li>
                         }
                     </ul>
-
                 </li>
             </ul>
         </div>
@@ -115,5 +115,3 @@
 <script>
     var names = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Names));
 </script>
-
-

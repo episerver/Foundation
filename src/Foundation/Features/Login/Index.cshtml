@@ -1,10 +1,12 @@
-﻿@{
-    Layout = "~/Features/Shared/Foundation/_LoginLayout.cshtml";
-}
-@model Foundation.Features.Login.UserViewModel
+﻿@using Foundation.Features.Login
+
+@model UserViewModel
+
 @{
+    Layout = "~/Features/Shared/Views/_LoginLayout.cshtml";
     var logo = Model.Logo;
 }
+
 <div class="container">
     <div class="row">
         <div class="col-12 login__group">
@@ -25,7 +27,6 @@
                         </div>
                     </div>
                 }
-
                 <div class="row">
                     <div class="col-12">
                         @Html.TextBoxFor(x => x.LoginViewModel.Email, new { @class = "login__input", placeholder = "Email" })

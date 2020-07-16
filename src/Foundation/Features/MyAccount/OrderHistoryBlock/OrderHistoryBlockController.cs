@@ -8,10 +8,10 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Blocks;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyAccount.OrderHistory;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System;
@@ -23,7 +23,7 @@ namespace Foundation.Features.MyAccount.OrdersBlock
 {
     [Authorize]
     [TemplateDescriptor(Default = true)]
-    public class OrderHistoryBlockController : BlockController<OrderHistoryBlock>
+    public class OrderHistoryBlockController : BlockController<OrderHistoryBlock.OrderHistoryBlock>
     {
         private readonly IAddressBookService _addressBookService;
         private readonly IOrderRepository _orderRepository;
@@ -38,7 +38,7 @@ namespace Foundation.Features.MyAccount.OrdersBlock
             _customerService = customerService;
         }
 
-        public override ActionResult Index(OrderHistoryBlock currentBlock)
+        public override ActionResult Index(OrderHistoryBlock.OrderHistoryBlock currentBlock)
         {
             var purchaseOrders = OrderContext.Current.LoadByCustomerId<PurchaseOrder>(PrincipalInfo.CurrentPrincipal.GetContactId())
                                              .OrderByDescending(x => x.Created)
@@ -101,7 +101,7 @@ namespace Foundation.Features.MyAccount.OrdersBlock
             }
 
             viewModel.OrderDetailsPageUrl =
-                UrlResolver.Current.GetUrl(_contentLoader.Get<CommerceHomePage>(ContentReference.StartPage).OrderDetailsPage);
+                UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
 
             return PartialView(viewModel);
         }

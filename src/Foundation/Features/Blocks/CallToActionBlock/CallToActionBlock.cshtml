@@ -1,0 +1,40 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.Common
+@using Foundation.Features.Blocks.CallToActionBlock
+
+@model IBlockViewModel<CallToActionBlock>
+
+@Html.FullRefreshPropertiesMetaData(new[] { "BackgroundImage", "TextColor" })
+
+@{
+    string backgroundImage = "background-image: " + (ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage) ? "none" : "url(" + Url.ContentUrl(Model.CurrentBlock.BackgroundImage) + ")");
+    string backgroundSetting = string.Empty;
+
+    switch (Model.CurrentBlock.BackgroundImageSetting)
+    {
+        case "image-fit-width":
+            backgroundSetting = "background-repeat: no-repeat; background-size: cover";
+            break;
+        case "image-fit-height":
+            backgroundSetting = "background-repeat: no-repeat; background-size: auto 100%";
+            break;
+        case "image-tile":
+            backgroundSetting = "background-repeat: repeat; background-size: auto";
+            break;
+        case "image-stretch":
+            backgroundSetting = "background-repeat: no-repeat; background-size: 100% 100%";
+            break;
+        default:
+            backgroundSetting = "background-repeat: no-repeat; background-size: auto";
+            break;
+    }
+}
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div style="@backgroundImage; @backgroundSetting; color: @Model.CurrentBlock.TextColor;">
+        <h2>@Html.PropertyFor(m => m.CurrentBlock.Title)</h2>
+        <p>@Html.PropertyFor(m => m.CurrentBlock.Subtext)</p>
+        @Html.PropertyFor(m => m.CurrentBlock.Button)
+    </div>
+</div>

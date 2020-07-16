@@ -1,6 +1,7 @@
-﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
-@model Foundation.Commerce.Customer.ViewModels.AccountInformationViewModel
+﻿@using Foundation.Features.Header
+@using Foundation.Features.MyAccount.ProfilePage
+
+@model AccountInformationViewModel
 
 <section class="main-container col2-right-layout container--gutter">
     <div class="main container">
@@ -9,7 +10,6 @@
                 <div class="page-title">
                     <h1 class="heading-title">@Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account")</h1>
                 </div>
-                @*<p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>*@
                 @using (Html.BeginForm("Save", "AccountInformation", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()

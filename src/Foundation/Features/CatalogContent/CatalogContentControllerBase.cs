@@ -6,8 +6,7 @@ using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Personalization;
-using Foundation.Demo.Interfaces;
+using Foundation.Personalization;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Services;
 using Foundation.Social.ViewModels;
@@ -127,7 +126,7 @@ namespace Foundation.Features.CatalogContent
             }
         }
 
-        protected async Task AddInfomationViewModel(IDemoEntryViewModelBase viewModel, string productCode, bool skipTracking)
+        protected async Task AddInfomationViewModel(IEntryViewModelBase viewModel, string productCode, bool skipTracking)
         {
             viewModel.Reviews = GetReviews(productCode);
             var trackingResponse = new TrackingResponseData();

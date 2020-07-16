@@ -4,10 +4,8 @@ using EPiServer.Core.Html;
 using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Cms.Categories;
-using Foundation.Cms.Pages;
-using Foundation.Cms.ViewModels;
+using Foundation.Features.Category;
+using Foundation.Features.Shared;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -105,7 +103,7 @@ namespace Foundation.Features.Blog.BlogItem
         {
             var breadCrumb = new List<KeyValuePair<string, string>>();
             var ancestors = _contentLoader.GetAncestors(currentPage.ContentLink)
-                .Select(x => x as Cms.Pages.BlogListPage)
+                .Select(x => x as BlogListPage.BlogListPage)
                 .Where(x => x != null);
             breadCrumb = ancestors.Reverse().Select(x => new KeyValuePair<string, string>(x.MetaTitle, x.PublicUrl(_urlResolver))).ToList();
 

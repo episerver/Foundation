@@ -1,8 +1,10 @@
-﻿@model CheckoutViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.CatalogContent.Variation
+
+@model CheckoutViewModel
 
 <div class="row">
     <div class="col-12">
-
         @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
         {
             <div class="card items border-radius-none jsShipmentRow">
@@ -21,7 +23,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
                                     @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
@@ -41,7 +42,6 @@
                                                     <h5 class="items__item">
                                                         <a href="@cartItem.Url">@cartItem.DisplayName</a>
                                                     </h5>
-
                                                     @if (variant != null)
                                                     {
                                                         <p class="items__item-meta">
@@ -121,6 +121,5 @@
             </div>
             <br />
         }
-
     </div>
 </div>

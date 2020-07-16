@@ -1,6 +1,4 @@
-using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Models.Catalog;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.Commerce.Customers;
 using Newtonsoft.Json;
@@ -188,15 +186,6 @@ namespace Foundation.Commerce.Customer
         {
             get => Contact.GetStringValue("ElevatedRole");
             set => Contact["ElevatedRole"] = value;
-        }
-
-        public ElevatedRoles CustomerElevatedRole
-        {
-            get
-            {
-                var parsed = Enum.TryParse(ElevatedRole, out ElevatedRoles retVal);
-                return parsed ? retVal : ElevatedRoles.Nonuser;
-            }
         }
 
         public bool ShowOrganizationError { get; set; }

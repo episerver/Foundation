@@ -1,0 +1,57 @@
+﻿@using EPiServer.AddOns.Helpers
+@using EPiServer.Core.Html
+@using EPiServer.Web.Mvc.Html
+@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
+
+@model PageListPreviewViewModel
+
+@{
+    FoundationPageData page = null;
+    var previewTextLength = 200;
+    var titleLength = 55;
+    if (Model.Page is FoundationPageData)
+    {
+        page = Model.Page as FoundationPageData;
+    }
+}
+
+@if (string.IsNullOrEmpty(Model.Template) || Model.Template == TemplateSelections.Grid)
+{
+    <a class="blog__thumbnail" href="@Model.Page.ContentLink.GetPublicUrl()">
+        <div style="width: 100%">
+            @if (page != null && !ContentReference.IsNullOrEmpty(page.TeaserVideo))
+            {
+                <video class="video-fluid" autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(page.TeaserVideo)" type="video/mp4">
+                </video>
+            }
+            else
+            {
+                <picture>
+                    @if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
+                    {
+                        <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(page.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
+                        <img class="img-fluid lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(page.PageImage)).Resize(1200, null)" />
+                    }
+                </picture>
+            }
+        </div>
+        <div class="blog__title-container">
+            <div class="blog__title-wrapper">
+                <h2 class="blog__title">
+                    @(@Html.Raw(TextIndexer.StripHtml(page != null ? page.MetaTitle : Model.Page.Name, titleLength)) + "...")
+                </h2>
+                @if (Model.ShowPublishDate)
+                {
+                    <p class="color-light">@Model.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                }
+                @if (page != null && Model.ShowIntroduction)
+                {
+                    <p>@Html.Raw(TextIndexer.StripHtml(page.TeaserText, previewTextLength))</p>
+                }
+            </div>
+        </div>
+    </a>
+}

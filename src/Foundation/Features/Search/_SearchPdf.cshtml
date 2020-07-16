@@ -1,9 +1,13 @@
-﻿@model Foundation.Demo.ViewModels.DemoSearchViewModel<SearchResultPage>
-@using EPiServer.Find;
+﻿@using EPiServer.Find;
+@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+
+@model SearchViewModel<SearchResultPage>
 
 @{
     Layout = null;
 }
+
 <div class="row">
     <div class="col-12" id="contentResult">
         @if (Model.ShowProductSearchResults)

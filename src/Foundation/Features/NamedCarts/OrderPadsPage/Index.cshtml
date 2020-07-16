@@ -1,13 +1,15 @@
 ﻿@using System.Web.Mvc.Html
 @using EPiServer.Commerce.Order
-@using Foundation.Commerce.ViewModels.Header
-@model Foundation.Commerce.Order.ViewModels.OrderPadsPageViewModel
+@using Foundation.Features.Checkout.ViewModels
+
+@model OrderPadsPageViewModel
+
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
 
-
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
+
 <section>
     <table id="firstTable" class="table table-striped expandable-table">
         <thead class="thead-dark">

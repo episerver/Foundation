@@ -4,7 +4,7 @@ using EPiServer.Core;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
 using EPiServer.Security;
-using Foundation.Commerce.Models.Catalog;
+using Foundation.Features.CatalogContent;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.InventoryService;

@@ -1,5 +1,5 @@
 ﻿using EPiServer.Personalization.Commerce.Tracking;
-using Foundation.Commerce.Personalization;
+using Foundation.Features.CatalogContent.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -8,9 +8,9 @@ namespace Foundation.Features.Recommendations
 {
     public class RecommendationsController : Controller
     {
-        private readonly ICommerceTrackingService _recommendationService;
+        private readonly IProductService _recommendationService;
 
-        public RecommendationsController(ICommerceTrackingService recommendationService) => _recommendationService = recommendationService;
+        public RecommendationsController(IProductService recommendationService) => _recommendationService = recommendationService;
 
         [ChildActionOnly]
         public ActionResult Index(IEnumerable<Recommendation> recommendations)

@@ -1,7 +1,9 @@
 ﻿@using EPiServer.Find
 @using EPiServer.Find.Api.Facets
-@using Foundation.Find.Cms.Models.Blocks
-@model Foundation.Find.Cms.Locations.ViewModels.LocationListViewModel
+@using Foundation.Features.Locations.Blocks
+@using Foundation.Features.Locations.LocationListPage
+
+@model LocationListViewModel
 
 @{
     var filterString = Model.QueryString["d"];

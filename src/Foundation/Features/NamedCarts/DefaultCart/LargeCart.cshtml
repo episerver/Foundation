@@ -1,4 +1,7 @@
-﻿@model LargeCartViewModel
+﻿@using Foundation.Features.Header
+
+@model LargeCartViewModel
+
 @{
     if (Request.IsAjaxRequest())
     {
@@ -38,19 +41,13 @@
             <div id="cartItemsId">
                 @Html.Partial("_CartItems", Model)
             </div>
-
         }
         else
         {
             <p>The cart is empty.</p>
         }
-
     </div>
-
 </div>
-
-
-
 
 @Html.PropertyFor(x => x.CurrentContent.BottomContentArea)
 

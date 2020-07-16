@@ -1,0 +1,84 @@
+﻿@model Foundation.Features.Blocks.OrderSearchBlock.OrderSearchBlockViewModel
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="row">
+        <div class="col-12">
+            <h4 @Html.EditAttributes(x => ((IContent)x.CurrentBlock).Name)>@(((IContent)Model.CurrentBlock).Name)</h4>
+        </div>
+    </div>
+    <form class="row jsOrderSearchFilterContainer" action="@Url.Action("Filter", "OrderSearchBlock")">
+        <input type="hidden" name="CurrentBlockId" value="@(((IContent)Model.CurrentBlock).ContentLink.ID)" />
+        <div class="col-12">
+            <div class="search-box jsOrderSearchBox">
+                <input type="text" name="Keyword" value="@Model.Filter.Keyword" placeholder="Search ..." class="jsOrderSearchInput" />
+                <a href="javascript:void(0);" class="jsFilterOrderSearchBtn"><i data-feather="search"></i></a>
+            </div>
+            <a href="javascript:void(0);" class="link jsAdvancedBtn">Advanced filter</a>
+        </div>
+        <div class="col-12">
+            <div class="row advanced-filter--box jsAdvancedFilterBox" style="display: none">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <label>Date from</label>
+                    <input type="date" name="DateFrom"
+                           value="@(Model.Filter.DateFrom.HasValue ? Model.Filter.DateFrom.Value.ToString("yyyy-MM-dd"): "")"
+                           class="form-control square-box" />
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <label>Date to</label>
+                    <input type="date" name="DateTo"
+                           value="@(Model.Filter.DateTo.HasValue ? Model.Filter.DateTo.Value.ToString("yyyy-MM-dd"): "")"
+                           class="form-control square-box" />
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <label>Price from</label>
+                    <input type="number" name="PriceFrom" value="@Model.Filter.PriceFrom" min="0" class="form-control square-box" />
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <label>Price to</label>
+                    <input type="number" name="PriceTo" value="@Model.Filter.PriceTo" min="0" class="form-control square-box" />
+                </div>
+                <div class="col-12">
+                    <br />
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Payment option</label>
+                            @Helpers.RenderDropdown(Model.Filter.PaymentMethods, Model.Filter.PaymentMethodId, "", "PaymentMethodId")
+                        </div>
+                        <div class="col-6">
+                            <label>Order status</label>
+                            @Helpers.RenderDropdown(Model.Filter.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())), Model.Filter.OrderStatusId.ToString(), "", "OrderStatusId")
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <br />
+                    <div class="row">
+                        <div class="col-12 jsOrderSearchError">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row jsOrderSearchTable">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Payment option</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Order status</th>
+                    </tr>
+                </thead>
+                <tbody class="jsOrderSearchTableBody">
+                    @Html.Partial("~/Features/Blocks/Views/_OrderSearchListing.cshtml", Model)
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

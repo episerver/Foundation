@@ -6,9 +6,10 @@ using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.ViewModels.Header;
-using Foundation.Demo.Models;
+using Foundation.Features.Header;
+using Foundation.Features.Home;
+using Foundation.Features.MyOrganization.Organization;
+using Foundation.Features.NamedCarts.Wishlist;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -42,7 +43,7 @@ namespace Foundation.Features.MyAccount
 
         public ActionResult MyAccountMenu(MyAccountPageType id)
         {
-            var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             if (startPage == null)
             {
                 return new EmptyResult();
