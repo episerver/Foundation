@@ -5,12 +5,13 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
-using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Services;
-using Foundation.Find.Commerce;
+using Foundation.Features.CatalogContent.Services;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Home;
+using Foundation.Features.MyOrganization.QuickOrderPage;
+using Foundation.Features.Search;
+using Foundation.Infrastructure;
 using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ using System.Web.Mvc;
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
 {
     [TemplateDescriptor(Default = true)]
-    public class QuickOrderBlockController : BlockController<Commerce.Models.Blocks.QuickOrderBlock>
+    public class QuickOrderBlockController : BlockController<QuickOrderBlock>
     {
         private readonly IQuickOrderService _quickOrderService;
         private readonly ICartService _cartService;
@@ -30,7 +31,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         private ICart _cart;
         private readonly IOrderRepository _orderRepository;
         private readonly ReferenceConverter _referenceConverter;
-        private readonly ICommerceSearchService __searchService;
+        private readonly ISearchService __searchService;
         private readonly ICustomerService _customerService;
         private readonly IContentLoader _contentLoader;
         private readonly ContentLocator _contentLocator;
@@ -41,7 +42,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             IFileHelperService fileHelperService,
             IOrderRepository orderRepository,
             ReferenceConverter referenceConverter,
-            ICommerceSearchService _searchService,
+            ISearchService _searchService,
             ICustomerService customerService,
             IContentLoader contentLoader,
             ContentLocator contentLocator)
@@ -56,16 +57,16 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             _contentLoader = contentLoader;
             _contentLocator = contentLocator;
         }
-        public override ActionResult Index(Commerce.Models.Blocks.QuickOrderBlock currentBlock)
+        public override ActionResult Index(QuickOrderBlock currentBlock)
         {
             currentBlock.ReturnedMessages = TempData["messages"] as List<string>;
-            currentBlock.ProductsList = TempData["products"] as List<ProductViewModel>;
+            currentBlock.ProductsList = TempData["products"] as List<QuickOrderProductViewModel>;
             return PartialView(currentBlock);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Import(ProductViewModel[] ProductsList)
+        public ActionResult Import(QuickOrderProductViewModel[] ProductsList)
         {
             var returnedMessages = new List<string>();
 
@@ -134,7 +135,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             {
                 Stream uploadedFile = fileContent.InputStream;
                 var fileName = fileContent.FileName;
-                var productsList = new List<ProductViewModel>();
+                var productsList = new List<QuickOrderProductViewModel>();
 
                 //validation for csv
                 if (!fileName.Contains(".csv"))
@@ -172,17 +173,17 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
 
         private ICart Cart => _cart ?? (_cart = _cartService.LoadCart(_cartService.DefaultCartName, true)?.Cart);
 
-        private Foundation.Commerce.Models.Pages.QuickOrderPage GetQuickOrderPage() => _contentLocator.FindPagesRecursively<Foundation.Commerce.Models.Pages.QuickOrderPage>(ContentReference.StartPage).FirstOrDefault();
+        private QuickOrderPage.QuickOrderPage GetQuickOrderPage() => _contentLoader.FindPagesRecursively<QuickOrderPage.QuickOrderPage>(ContentReference.StartPage).FirstOrDefault();
 
         [HttpPost]
 
-        public ActionResult RequestQuote(ProductViewModel[] ProductsList)
+        public ActionResult RequestQuote(QuickOrderProductViewModel[] ProductsList)
         {
             var returnedMessages = new List<string>();
             ModelState.Clear();
 
             var currentCustomer = _customerService.GetCurrentContact();
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             var quoteCart = _cartService.LoadOrCreateCart("QuickOrderToQuote");
 
             if (quoteCart != null)

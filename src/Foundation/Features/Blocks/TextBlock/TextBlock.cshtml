@@ -1,0 +1,7 @@
+﻿@using Foundation.Features.Blocks.TextBlock
+
+@model IBlockViewModel<TextBlock>
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    @Html.PropertyFor(x => x.CurrentBlock.MainBody, new { CssClass = "word-break" })
+</div>

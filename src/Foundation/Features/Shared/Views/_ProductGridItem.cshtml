@@ -1,0 +1,73 @@
+﻿@using Foundation.Features.CatalogContent
+@using Foundation.Features.CatalogContent.Bundle
+@using Foundation.Features.CatalogContent.Package
+
+@model ProductTileViewModel
+
+@{
+    var urlQuickView = "/product/quickview";
+    if (Model.EntryType.Equals(typeof(GenericBundle)))
+    {
+        urlQuickView = "/Bundle/QuickView";
+    }
+    if (Model.EntryType.Equals(typeof(GenericPackage)))
+    {
+        urlQuickView = "/Package/QuickView";
+    }
+}
+
+<div class="product-tile-grid">
+    <a class="product-tile-grid__image-icon">
+        @if (string.IsNullOrEmpty(Model.VideoAssetUrl))
+        {
+            <picture class="img-fluid product-tile-grid__image" onclick="location.href='@Model.Url'">
+                <source srcset="@Model.ImageUrl?width=520&format=webp" type="image/webp">
+                <img class="img-fluid product-tile-grid__image" src="@Model.ImageUrl?width=520" onclick="location.href='@Model.Url'" />
+            </picture>
+        }
+        else
+        {
+            <video onclick="location.href='@Model.Url'" class="img-fluid product-tile-grid__image" autoplay="autoplay" loop="loop" muted src="@Model.VideoAssetUrl">
+            </video>
+        }
+        @*<span class="hover-feather-icon added-wishlist"><i data-feather="heart"></i></span>*@
+
+        @if (!Html.IsReadOnlyMode())
+        {
+            <div class="product-tile-grid__image-bottom">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="hover-feather-icon addToWishlist" data="@Model.FirstVariationCode"><i data-feather="heart"></i></span>
+                }
+                <span class="jsQuickView hover-feather-icon"
+                      data-toggle="modal"
+                      data-target="#quickView"
+                      data="@Model.FirstVariationCode"
+                      productCode="@Model.Code"
+                      urlQuickView="@urlQuickView">
+                    <i data-feather="eye"></i>
+                </span>
+                <span class="addToCart hover-feather-icon" data="@Model.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+            </div>
+        }
+
+    </a>
+    <div class="product-tile-grid__title">
+        <a href="@Model.Url">@Model.DisplayName</a>
+        @if (Model.DiscountedPrice != Model.PlacedPrice)
+        {
+            <span class="price__old">@Model.PlacedPrice.ToString()</span>
+            <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+        }
+        else
+        {
+            <span class="price__discount">
+                @Html.Raw(Model.PlacedPrice != 0 ? Model.PlacedPrice.ToString() : "&nbsp;")
+            </span>
+        }
+    </div>
+</div>
+@if (Model.IsBestBetProduct && Model.HasBestBetStyle)
+{
+    <div class="product-tile-grid__bestbet" title="Best bet"><i data-feather="award"></i></div>
+}

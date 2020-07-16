@@ -1,12 +1,8 @@
 ﻿using EPiServer;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Personalization;
-using Foundation.Demo.ViewModels;
 using Foundation.Features.CatalogContent;
-using Foundation.Find.Cms.ViewModels;
-using Foundation.Find.Commerce.ViewModels;
+using Foundation.Personalization;
 using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
 using System.Threading.Tasks;
@@ -32,19 +28,18 @@ namespace Foundation.Features.Search.Category
         }
 
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
-        public async Task<ViewResult> Index(GenericNode currentContent, CommerceFilterOptionViewModel viewModel)
+        public async Task<ViewResult> Index(GenericNode currentContent, FilterOptionViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
             {
                 viewModel.ViewSwitcher = string.IsNullOrEmpty(currentContent.DefaultTemplate) ? "Grid" : currentContent.DefaultTemplate;
             }
 
-            var model = _viewModelFactory.Create<DemoSearchViewModel<GenericNode>, GenericNode>(currentContent, new CommerceArgs
-            {
-                FilterOption = viewModel,
-                SelectedFacets = HttpContext.Request.QueryString["facets"],
-                CatalogId = 0
-            });
+            var model = _viewModelFactory.Create(currentContent,
+                HttpContext.Request.QueryString["facets"],
+                0,
+                viewModel);
+
             if (HttpContext.Request.HttpMethod == "GET")
             {
                 var response = await _recommendationService.TrackCategory(HttpContext, currentContent);
@@ -56,7 +51,7 @@ namespace Foundation.Features.Search.Category
         }
 
         [ChildActionOnly]
-        public ActionResult Facet(GenericNode currentContent, CommerceFilterOptionViewModel viewModel)
+        public ActionResult Facet(GenericNode currentContent, FilterOptionViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
             {

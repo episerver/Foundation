@@ -1,7 +1,6 @@
-﻿@using EPiServer.Security
-@using Mediachase.Commerce.Security
+﻿@using Foundation.Features.CatalogContent.Product
 
-@model Foundation.Demo.ViewModels.DemoGenericProductViewModel
+@model GenericProductViewModel
 
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
@@ -27,7 +26,6 @@
                     <p class="sub-title">@Model.Variant.Code</p>
                 }
             </div>
-
             <hr />
             @Html.Partial("_Rating", Model)
             <hr />
@@ -45,20 +43,17 @@
                             {
                                 <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
                             }
-
                             @if (Model.HasSaleCode)
                             {
                                 @Html.Partial("_WarningHasSaleCode", null)
                             }
                         </div>
-
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
                             <span class="price__discount" style="padding-left: 10px;">
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
-
                         <span class="pull-right in-stock text-success">
                             <i data-feather="check-circle"></i>
                             @Model.InStockQuantity In Stock
@@ -85,7 +80,6 @@
                                 }
                             </div>
                         }
-
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
                             <span class="price__discount" style="padding-left: 10px;">
@@ -100,10 +94,8 @@
                     }
                 </div>
             </div>
-
             <br />
             @Html.PropertyFor(x => x.CurrentContent.Description)
-
             <br />
             <hr />
             <div class="row product-detail__selection">
@@ -136,9 +128,7 @@
                         @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
                     </div>
                 }
-
             </div>
-
             @if (Model.Variant != null)
             {
                 @Html.Partial("_Store", Model.Stores)
@@ -159,7 +149,6 @@
                             <i class="light-svg" data-feather="heart"></i>
                             Add to wishlist
                         </span>
-
                         if (Model.HasOrganization)
                         {
                             <span class="light-text cursor-pointer link addToSharedCart" data="@Model.Variant.Code">

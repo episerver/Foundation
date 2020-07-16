@@ -12,6 +12,21 @@
 		<WarningsAsErrors />
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Models\Pages\**" />
+	  <Compile Remove="Order\**" />
+	  <Compile Remove="SchemaDataMappers\**" />
+	  <Compile Remove="ViewModels\**" />
+	  <EmbeddedResource Remove="Models\Pages\**" />
+	  <EmbeddedResource Remove="Order\**" />
+	  <EmbeddedResource Remove="SchemaDataMappers\**" />
+	  <EmbeddedResource Remove="ViewModels\**" />
+	  <None Remove="Models\Pages\**" />
+	  <None Remove="Order\**" />
+	  <None Remove="SchemaDataMappers\**" />
+	  <None Remove="ViewModels\**" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />

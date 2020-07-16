@@ -3,9 +3,8 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
-using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Markets;
-using Foundation.Demo.Models;
+using Foundation.Features.Home;
 using Mediachase.Commerce;
 using System.Linq;
 using System.Web.Mvc;
@@ -30,7 +29,7 @@ namespace Foundation.Features.CatalogContent.Product
         public override ActionResult Index(EntryContentBase currentContent)
         {
             var productTileViewModel = currentContent.GetProductTileViewModel(_currentMarket.GetCurrentMarket(), _currencyService.GetCurrentCurrency());
-            var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             if (startPage?.ShowProductRatingsOnListings ?? default(bool))
             {
                 var code = currentContent.Code;

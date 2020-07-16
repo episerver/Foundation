@@ -1,5 +1,6 @@
-﻿@model Foundation.Find.Commerce.ViewModels.CategoriesFilterViewModel
+﻿@using Foundation.Features.Search
 
+@model CategoriesFilterViewModel
 
 <div class="selection--cm__label"> @Html.TranslateFallback("/Shared/Categories", "Categories") </div>
 <ul class="selection--cm">
@@ -47,8 +48,6 @@
                     </li>
                 }
             </ul>
-
         </li>
     }
-
 </ul>

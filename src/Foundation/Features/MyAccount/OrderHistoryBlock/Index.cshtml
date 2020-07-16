@@ -1,6 +1,7 @@
 ﻿@using EPiServer.Commerce.Order
-@using Foundation.Commerce.Models.Blocks
-@model  Foundation.Commerce.Order.ViewModels.OrderHistoryViewModel
+@using Foundation.Features.MyAccount.OrderHistory
+
+@model OrderHistoryViewModel
 
 @{
     Layout = null;
@@ -84,9 +85,6 @@
             {
                 <p>The list is empty.</p>
             }
-
-
         </div>
     </div>
-
 </div>

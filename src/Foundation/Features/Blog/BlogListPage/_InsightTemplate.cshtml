@@ -1,6 +1,9 @@
 ﻿@using EPiServer.AddOns.Helpers
 @using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blog.BlogListPage
+
 @model BlogListPageViewModel
+
 @{
     var insightBlogs = Model.Blogs.Take(3);
     var insightReverseBlogs = Model.Blogs.Skip(3).Take(3).Reverse();

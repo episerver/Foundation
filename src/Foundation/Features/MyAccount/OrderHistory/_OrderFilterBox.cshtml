@@ -1,4 +1,6 @@
-﻿@model OrderFilter
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model OrderFilter
 
 <form action="@Url.Action("Index", "OrderHistory")" method="post" class="row">
     <div class="col-12">
@@ -7,18 +9,15 @@
                 <label>Ship To Address</label>
                 @Helpers.RenderDropdown(Model.Addresses, Model.AddressId, "", "AddressId")
             </div>
-
             <div class="col-sm-6 col-md-3">
                 <label>Status</label>
                 @Helpers.RenderDropdown(Model.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())),
                         Model.OrderStatusId.ToString(), "", "OrderStatusId")
             </div>
-
             <div class="col-sm-6 col-md-3">
                 <label>PO #</label>
                 <input type="text" name="PurchaseOrderNumber" value="@Model.PurchaseOrderNumber" class="form-control square-box" />
             </div>
-
             <div class="col-sm-6 col-md-3">
                 <label>Order #</label>
                 <input type="text" name="OrderGroupId" value="@Model.OrderGroupId" class="form-control square-box" />

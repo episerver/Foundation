@@ -2,8 +2,7 @@ using EPiServer;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Extensions;
-using Foundation.Cms.Pages;
-using Foundation.Cms.ViewModels.Blocks;
+using Foundation.Features.Events.CalendarEvent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +11,13 @@ using System.Web.Mvc;
 namespace Foundation.Features.Events.CalendarBlock
 {
     [TemplateDescriptor(Default = true)]
-    public class CalendarBlockController : BlockController<Cms.Blocks.CalendarBlock>
+    public class CalendarBlockController : BlockController<CalendarBlock>
     {
         private readonly IContentLoader _contentLoader;
 
         public CalendarBlockController(IContentLoader contentLoader) => _contentLoader = contentLoader;
 
-        public override ActionResult Index(Cms.Blocks.CalendarBlock currentBlock)
+        public override ActionResult Index(CalendarBlock currentBlock)
         {
             var events = FindEvents(currentBlock);
 
@@ -32,8 +31,7 @@ namespace Foundation.Features.Events.CalendarBlock
                 Events = events
             };
 
-            ViewData.GetEditHints<CalendarBlockViewModel, Cms.Blocks.CalendarBlock>()
-                .AddConnection(x => x.ViewMode, x => x.ViewMode);
+            ViewData.GetEditHints<CalendarBlockViewModel, CalendarBlock>().AddConnection(x => x.ViewMode, x => x.ViewMode);
 
             if (currentBlock.ViewMode.Equals("List"))
             {
@@ -45,7 +43,7 @@ namespace Foundation.Features.Events.CalendarBlock
             }
         }
 
-        private IEnumerable<CalendarEventPage> FindEvents(Cms.Blocks.CalendarBlock currentBlock)
+        private IEnumerable<CalendarEventPage> FindEvents(CalendarBlock currentBlock)
         {
             IEnumerable<CalendarEventPage> events;
             var root = currentBlock.EventsRoot;

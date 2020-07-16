@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+@using Foundation.Features.MyOrganization.Budgeting
+
 @model BudgetingPageViewModel
 
 @{
@@ -7,7 +8,6 @@
 }
 
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
-
 <div class="row">
     <div class="col-12">
         <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/EditOrganizationBudget", "Edit Organization Budget")</h4>
@@ -16,7 +16,6 @@
 <div class="row">
     @using (Html.BeginForm("NewBudgetToUser", "Budgeting", FormMethod.Post, new { @class = "col-12" }))
     {
-
         <div class="row">
             <div class="form-group col-12">
                 <label>@Html.TranslateFallback("/B2B/Budgeting/UsrEmail", "User Email")</label>
@@ -82,5 +81,4 @@
             <div id="BudgetWarningMessage" class="col-12 required"></div>
         </div>
     }
-
 </div>

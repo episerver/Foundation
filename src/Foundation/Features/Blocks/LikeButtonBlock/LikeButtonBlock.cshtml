@@ -1,0 +1,23 @@
+﻿@using Foundation.Features.Blocks.LikeButtonBlock
+
+@model LikeButtonBlockViewModel
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div style="margin-top:0.5em">
+        @if (Model.CurrentRating.HasValue)
+        {
+            <div> You have already <i data-feather="thumbs-up"></i> this page! </div>
+        }
+        else
+        {
+            using (Html.BeginForm("Submit", null))
+            {
+                @Html.HiddenFor(m => m.Link)
+                <div>
+                    <button name="submitsocialrating" value="Submit" class="btn btn-dark"><i data-feather="thumbs-up"></i> Like </button>
+                </div>
+            }
+        }
+        <br />
+        <div><strong>Likes: @Model.TotalCount</strong></div>
+    </div>
+</div>

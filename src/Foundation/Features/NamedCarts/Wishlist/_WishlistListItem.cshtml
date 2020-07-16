@@ -1,4 +1,6 @@
-﻿@model Foundation.Commerce.Order.ViewModels.WishListViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model WishListViewModel
 
 <input type="hidden" id="countWishListInPage" value="@((int)Model.ItemCount)" />
 @if (Model.CartItems != null && Model.CartItems.Any())
@@ -19,7 +21,6 @@
                     <div class="title">
                         <a href="@product.Url" class="account-link"><h5>@product.DisplayName</h5></a>
                     </div>
-
                     <div class="content product-tile-list__content">
                         <div>
                             @Html.Raw(product.Description)

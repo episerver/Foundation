@@ -1,30 +1,27 @@
 using EPiServer.Shell.ObjectEditing;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Commerce.Models.EditorDescriptors
 {
+    public static class ProductSearchSortOrder
+    {
+        public const string None = "None";
+        public const string BestSellerByQuantity = "Best seller by quantity";
+        public const string BestSellerByRevenue = "Best seller by revenue";
+        public const string NewestProducts = "Newest products by date";
+    }
+
     public class SortOrderSelectionFactory : ISelectionFactory
     {
-        public static class ProductSearchSortOrder
-        {
-            public const string None = "None";
-            public const string BestSellerByQuantity = "Best seller by quantity";
-            public const string BestSellerByRevenue = "Best seller by revenue";
-            public const string NewestProducts = "Newest products by date";
-        }
-
         public virtual IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
-            var dic = new Dictionary<string, string>()
+            return new ISelectItem[]
             {
-                {"None", ProductSearchSortOrder.None},
-                {"Best seller by quantity", ProductSearchSortOrder.BestSellerByQuantity},
-                {"Best seller by revenue", ProductSearchSortOrder.BestSellerByRevenue},
-                {"Newest products by date", ProductSearchSortOrder.NewestProducts}
+                new SelectItem { Text = "None", Value = ProductSearchSortOrder.None },
+                new SelectItem { Text = "Best seller by quantity", Value = ProductSearchSortOrder.BestSellerByQuantity },
+                new SelectItem { Text = "Best seller by revenue", Value = ProductSearchSortOrder.BestSellerByRevenue },
+                new SelectItem { Text = "Newest products by date", Value = ProductSearchSortOrder.NewestProducts }
             };
-
-            return dic.Select(x => new SelectItem() { Text = x.Key, Value = x.Value });
         }
     }
 }

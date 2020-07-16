@@ -9,7 +9,9 @@
         };
         axios.post(url, data)
             .then(function (result) {
-                $('.recommendationwidgetblock').html(result.data);
+                $('.recommendationwidgetblock').html(result.data).ready(function () {
+                    feather.replace();
+                });
             })
             .catch(function (error) {
                 notification.Error(error);

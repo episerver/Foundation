@@ -5,9 +5,9 @@ using EPiServer.Core;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Mvc;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
 using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
@@ -124,7 +124,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
             {
                 _orderRepository.Delete(SharedCart.Cart.OrderLink);
             }
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
 
             return RedirectToAction("Index", new { Node = startPage.SharedCartPage });
         }
@@ -167,7 +167,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         public ActionResult RequestSharedCartQuote()
         {
             var currentCustomer = _customerService.GetCurrentContact();
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
 
             var sharedCart = _cartService.LoadSharedCardByCustomerId(new Guid(OrganizationId));
             var savedCart = _cartService.LoadOrCreateCart(_cartService.DefaultSharedCartName, currentCustomer.ContactId.ToString());

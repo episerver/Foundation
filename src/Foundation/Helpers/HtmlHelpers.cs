@@ -6,13 +6,15 @@ using EPiServer.DataAbstraction;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Categories;
-using Foundation.Cms.Pages;
-using Foundation.Cms.ViewModels;
-using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Extensions;
-using Foundation.Demo.Models;
-using Foundation.Find.Cms.Models.Pages;
+using Foundation.Features.Blog.BlogItem;
+using Foundation.Features.CatalogContent.Product;
+using Foundation.Features.Category;
+using Foundation.Features.Home;
+using Foundation.Features.Locations.LocationItemPage;
+using Foundation.Features.Locations.TagPage;
+using Foundation.Features.Shared;
+using Foundation.Features.Standard;
 using Foundation.Infrastructure.OpenGraph;
 using Mediachase.Commerce;
 using System;
@@ -84,7 +86,7 @@ namespace Foundation.Helpers
 
             switch (contentViewModel.CurrentContent)
             {
-                case DemoHomePage homePage:
+                case HomePage homePage:
                     var openGraphHomePage = new OpenGraphHomePage(metaTitle, new OpenGraphImage(imageUrl), GetUrl(homePage.ContentLink))
                     {
                         Description = homePage.PageDescription,
@@ -209,7 +211,7 @@ namespace Foundation.Helpers
 
         private static string GetDefaultImageUrl()
         {
-            var startPage = _contentLoader.Value.Get<DemoHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Value.Get<HomePage>(ContentReference.StartPage);
             var siteUrl = SiteDefinition.Current.SiteUrl;
             var url = new Uri(siteUrl, UrlResolver.Current.GetUrl(startPage.SiteLogo));
 

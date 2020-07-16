@@ -1,11 +1,11 @@
 ﻿@using EPiServer.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
-@model Foundation.Commerce.ViewModels.OrganizationPageViewModel
-@{
-    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
-}
+@using Foundation.Features.MyOrganization
+@using Foundation.Features.MyOrganization.Organization
+
+@model OrganizationPageViewModel
 
 @{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
     Model.NewSubOrganization.Locations.Add(new B2BAddressViewModel());
 }
 

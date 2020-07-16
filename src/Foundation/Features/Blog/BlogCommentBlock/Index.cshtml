@@ -1,10 +1,13 @@
 ﻿@*
-    This is the blog comment block frontend view.  It accepts a BlogCommentViewModel model whose data is used to
-    fill in view data.
+    This is the blog comment block frontend view. It accepts a BlogCommentViewModel model whose data is used to fill in view data.
 *@
+
 @using System.Web.Mvc
 @using System.Web.Mvc.Html
-@model Foundation.Social.ViewModels.BlogCommentsBlockViewModel
+@using Foundation.Features.Blog.BlogCommentBlock
+
+@model BlogCommentsBlockViewModel
+
 @{
     var padding = "padding: "
                     + Model.CurrentBlock.PaddingTop + "px "
@@ -12,6 +15,7 @@
                     + Model.CurrentBlock.PaddingBottom + "px "
                     + Model.CurrentBlock.PaddingLeft + "px;";
 }
+
 <div style="@padding">
     @if (Model.Comments.Any())
     {
@@ -122,7 +126,6 @@
                                     <li><a href="#" class="get-blog-comment" pageIndex="@(currentPage + 1)">&rsaquo;</a></li>
                                     <li><a href="#" class="get-blog-comment" pageIndex="@Model.PagingInfo.PageCount">&raquo;</a></li>
                                 }
-
                             }
                         </ul>
                     }
@@ -159,7 +162,6 @@
                         <div>
                             <textarea type="text" class="form-control square-box" title="Name" id="comment" name="Body" required></textarea>
                         </div>
-
                         @if ((TempData["BlogCommentBlock"] as List<string>) != null)
                         {
                             <br />
@@ -180,4 +182,3 @@
         </div>
     </div>
 </div>
-

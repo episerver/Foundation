@@ -2,12 +2,10 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
-using Foundation.Commerce.Catalog.ViewModels;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Personalization;
-using Foundation.Demo.ViewModels;
+using Foundation.Features.CatalogContent.Variation;
+using Foundation.Personalization;
 using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
 using System.Linq;
@@ -39,7 +37,7 @@ namespace Foundation.Features.CatalogContent.Package
         [HttpGet]
         public async Task<ActionResult> Index(GenericPackage currentContent, bool skipTracking = false)
         {
-            var viewModel = _viewModelFactory.CreatePackage<GenericPackage, GenericVariant, DemoGenericPackageViewModel>(currentContent);
+            var viewModel = _viewModelFactory.CreatePackage<GenericPackage, GenericVariant, GenericPackageViewModel>(currentContent);
             viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
             if (_isInEditMode && !viewModel.Entries.Any())
             {

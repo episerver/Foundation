@@ -10,12 +10,13 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.Order;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModels;
-using Foundation.Commerce.Personalization;
+using Foundation.Features.CatalogContent.Bundle;
+using Foundation.Features.CatalogContent.Services;
+using Foundation.Features.Checkout;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using System;
@@ -190,7 +191,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             _cartService.ChangeCartItem(WishList.Cart, 0, param.Code, param.Quantity, param.Size, param.NewSize);
             _orderRepository.Save(WishList.Cart);
             _trackingService.TrackWishlist(HttpContext);
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             WishListPage wishlistPage = null;
             if (startPage.WishlistPage != null)
             {
@@ -237,7 +238,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             {
                 _orderRepository.Delete(WishList.Cart.OrderLink);
             }
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
 
             return RedirectToAction("Index", new { Node = startPage.WishlistPage });
         }
@@ -298,7 +299,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                 _orderRepository.Save(userWishCart);
             }
 
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             var pageUrl = _urlResolver.GetUrl(startPage.OrganizationOrderPadsPage);
 
             return Redirect(pageUrl);
@@ -309,7 +310,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         public ActionResult RequestWishListQuote()
         {
             var currentCustomer = _customerService.GetCurrentContact();
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
 
             var wishListCart = _cartService.LoadWishListCardByCustomerId(currentCustomer.ContactId);
             if (wishListCart != null)

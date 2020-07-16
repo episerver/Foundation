@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+@using Foundation.Features.MyOrganization.Budgeting
+
 @model BudgetingPageViewModel
 
 @{
@@ -46,7 +47,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="form-group col-6">
                 <label>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</label>

@@ -1,0 +1,50 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.GroupCreationBlock
+
+@model GroupCreationBlockViewModel
+
+<div class="row">
+    @if (Model.ShowHeading)
+    {
+        <div class="col-12">
+            <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+            <hr />
+        </div>
+    }
+    @foreach (var message in Model.Messages)
+    {
+        var messageStyle = message.ResolveStyle(message.Type);
+        <div class="col-12" style="color:@messageStyle">@message.Body</div>
+    }
+    @using (Html.BeginForm("Submit", "GroupCreationBlock", FormMethod.Post, new { @class = "col-12" }))
+    {
+        @Html.HiddenFor(m => m.CurrentLink)
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Name, new
+            {
+                @required = "require",
+                @style = "width:75%;",
+                @class = "form-control square-box",
+                placeholder = "Group Name"
+            })
+            <br />
+            @Html.TextAreaFor(m => m.Description, new
+            {
+                @required = "require",
+                @style = "width:75%;",
+                @class = "form-control square-box",
+                placeholder = "Group Description"
+            })
+            <br />
+            <label class="checkbox">
+                @Html.CheckBoxFor(m => m.IsModerated)
+                Moderated
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" value="Add" class="button-black">
+        </div>
+    }
+    <br />
+</div>

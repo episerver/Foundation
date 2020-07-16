@@ -2,11 +2,8 @@
 using EPiServer.Core;
 using EPiServer.Core.Html;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.Categories;
-using Foundation.Cms.Pages;
-using Foundation.Cms.ViewModels.Categories;
-using Foundation.Find.Cms;
-using Foundation.Find.Cms.ViewModels;
+using Foundation.Features.Search;
+using Foundation.Features.Shared;
 using Geta.EpiCategories;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +15,10 @@ namespace Foundation.Features.Category
 {
     public class StandardCategoryController : ContentController<StandardCategory>
     {
-        private readonly ICmsSearchService _searchService;
+        private readonly ISearchService _searchService;
         private readonly IContentLoader _contentLoader;
 
-        public StandardCategoryController(ICmsSearchService searchService, IContentLoader contentLoader)
+        public StandardCategoryController(ISearchService searchService, IContentLoader contentLoader)
         {
             _searchService = searchService;
             _contentLoader = contentLoader;

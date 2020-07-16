@@ -1,7 +1,8 @@
 ﻿@using System.Web.Mvc.Html
+@using Foundation.Features.Blog.BlogItem
+@using Foundation.Features.Blog.BlogListPage
 
 @model BlogListPageViewModel
-
 
 @if (Model.Blogs != null && Model.Blogs.Any())
 {
@@ -26,10 +27,8 @@
         listLargeBlogs.Add(Model.Blogs.ElementAt(i));
     }
 
-
     <div class="blog__gallery">
         <div class="blog__row">
-
             <div class="blog__large-col">
                 @Html.Partial("Preview", firstBlog)
             </div>

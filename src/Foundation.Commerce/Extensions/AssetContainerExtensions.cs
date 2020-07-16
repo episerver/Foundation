@@ -47,7 +47,7 @@ namespace Foundation.Commerce.Extensions
             return assets;
         }
 
-        public static IList<KeyValuePair<string,string>> GetAssetsWithType(this IAssetContainer assetContainer,
+        public static IList<KeyValuePair<string, string>> GetAssetsWithType(this IAssetContainer assetContainer,
             IContentLoader contentLoader, UrlResolver urlResolver)
         {
             var assets = new List<KeyValuePair<string, string>>();

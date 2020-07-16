@@ -5,7 +5,7 @@
     <SystemKeyword>GenericCreditCard</SystemKeyword>
     <Description>Credit card payment</Description>
     <PaymentClass>Mediachase.Commerce.Orders.CreditCardPayment, Mediachase.Commerce</PaymentClass>
-    <GatewayClass>Foundation.Commerce.Order.Payments.GenericCreditCardPaymentGateway, Foundation.Commerce</GatewayClass>
+    <GatewayClass>Foundation.Features.Checkout.Payments.GenericCreditCardPaymentGateway, Foundation</GatewayClass>
     <IsDefault>true</IsDefault>
     <SortOrder>1</SortOrder>
   </PaymentMethod>
@@ -23,7 +23,7 @@
     <SystemKeyword>BudgetPayment</SystemKeyword>
     <Description>Budget Payment</Description>
     <PaymentClass>Mediachase.Commerce.Orders.OtherPayment, Mediachase.Commerce</PaymentClass>
-    <GatewayClass>Foundation.Commerce.Order.Payments.BudgetPaymentGateway, Foundation.Commerce</GatewayClass>
+    <GatewayClass>Foundation.Features.Checkout.Payments.BudgetPaymentGateway, Foundation</GatewayClass>
     <IsDefault>false</IsDefault>
     <SortOrder>3</SortOrder>
   </PaymentMethod>
@@ -32,7 +32,7 @@
     <SystemKeyword>GiftCardPayment</SystemKeyword>
     <Description>Gift card payment</Description>
     <PaymentClass>Mediachase.Commerce.Orders.GiftCardPayment, Mediachase.Commerce</PaymentClass>
-    <GatewayClass>Foundation.Commerce.Order.Payments.GiftCardPaymentGateway, Foundation.Commerce</GatewayClass>
+    <GatewayClass>Foundation.Features.Checkout.Payments.GiftCardPaymentGateway, Foundation</GatewayClass>
     <IsDefault>false</IsDefault>
     <SortOrder>4</SortOrder>
   </PaymentMethod>

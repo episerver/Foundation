@@ -1,14 +1,13 @@
-﻿@using EPiServer.Security
-@using Mediachase.Commerce.Security
+﻿@using Foundation.Features.CatalogContent.Bundle
 
-@model Foundation.Demo.ViewModels.DemoGenericBundleViewModel
+@model GenericBundleViewModel
+
 @{
     var isBundle = new KeyValuePair<string, object>("IsBundle", true);
     var viewData = new ViewDataDictionary();
     viewData.Add(isBundle);
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
     var shareUrl = Url.Encode(Request.Url.ToString());
-
 }
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.Bundle.Code" />
@@ -49,20 +48,16 @@
                     </div>
                 </div>
             }
-
             <br />
             @Html.PropertyFor(x => x.CurrentContent.Description)
-
             <br />
             <hr />
-
             @if (Model.Entries != null && Model.Entries.Count() > 0)
             {
                 @Html.Partial("_ListVariants", Model.Entries, viewData)
                 @Html.Partial("_Store", Model.Stores)
                 @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
             }
-
             <hr />
             <div class="row">
                 <div class="col-12">

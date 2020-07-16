@@ -1,11 +1,11 @@
 ﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+@using Foundation.Features.MyOrganization.Budgeting
+
 @model BudgetingPageViewModel
 
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
-
 
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div class="row">
@@ -66,7 +66,6 @@
                             currencies.Add(new KeyValuePair<string, string>(option, option));
                         }
                     }
-
                     @Helpers.RenderDropdown(currencies, "", "currencyBudget", "currencyBudget")
                 </div>
             </div>
@@ -85,5 +84,4 @@
             <div id="BudgetWarningMessage" class="col-12 required"></div>
         </div>
     }
-
 </div>

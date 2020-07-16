@@ -1,0 +1,39 @@
+﻿@*
+    This is the subscription block frontend view.  It accepts a SubscriptionBlockView model whose data is used to
+    fill in view data.
+*@
+@using EPiServer.Web.Mvc.Html
+@model Foundation.Features.Blocks.SubscriptionBlock.SubscriptionBlockViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row no-gutters @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    @if (Model.ShowSubscriptionForm)
+    {
+        <div>
+            @if (Model.ShowHeading)
+            {
+                <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+                <hr />
+            }
+
+            @foreach (var message in Model.Messages)
+            {
+                var messageStyle = message.ResolveStyle(message.Type);
+                <div style="color:@messageStyle">@message.Body</div>
+            }
+
+
+            @{
+                var actionName = Model.UserSubscribedToPage ? "Unsubscribe" : "Subscribe";
+                using (Html.BeginForm(actionName, null))
+                {
+                    @Html.Hidden("action", actionName)
+                    @Html.HiddenFor(m => m.CurrentLink)
+                    <div>
+                        <input type="submit" name="submit" value="@actionName" class="button-black">
+                    </div>
+                }
+            }
+        </div>
+
+    }
+</div>

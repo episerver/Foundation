@@ -1,9 +1,12 @@
 ﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+@using Foundation.Features.MyOrganization.Users
+
 @model UsersPageViewModel
+
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
+
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div>
     <section class="spacer-bottom-l">
@@ -72,14 +75,12 @@
                 </div>
                 @Html.ValidationMessageFor(model => model.Contact.UserLocationId)
             </div>
-
             if (Model.Contact.ShowOrganizationError)
             {
                 <div class="form-group">
                     <p class="text-danger">@Html.TranslateFallback("/B2B/Users/Already", "Already")</p>
                 </div>
             }
-
             <div class="spacer-top-l">
                 <button type="submit" class="button-black">
                     @Html.TranslateFallback("/Shared/Add", "Add")

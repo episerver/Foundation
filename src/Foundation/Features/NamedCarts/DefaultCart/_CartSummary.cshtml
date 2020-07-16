@@ -1,4 +1,6 @@
-﻿@model LargeCartViewModel
+﻿@using Foundation.Features.Header
+
+@model LargeCartViewModel
 
 <h3>@Html.TranslateFallback("/Cart/Labels/ShoppingCartTotal", "Shopping Cart Total")</h3>
 <ul class="list-group--info">
@@ -6,7 +8,6 @@
         <span class="col-6">@Html.TranslateFallback("/Cart/Labels/Subtotal", "Subtotal")</span>
         <span class="col-6 largecart-Subtotal">@Model.Subtotal.ToString()</span>
     </li>
-
     @if (Model.TotalDiscount.Amount > 0)
     {
         <li class="row">
@@ -18,7 +19,6 @@
             </span>
         </li>
     }
-
     <li class="row">
         <span class="col-6">@Html.TranslateFallback("/Cart/Labels/TaxTotal", "Tax Total")</span>
         <span class="col-6 largecart-TaxTotal">@Model.TaxTotal.ToString()</span>

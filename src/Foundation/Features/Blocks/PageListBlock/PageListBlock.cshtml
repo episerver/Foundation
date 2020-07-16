@@ -1,0 +1,53 @@
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
+
+@model PageListBlockViewModel
+
+@Html.FullRefreshPropertiesMetaData(new[] { "IncludePublishDate", "IncludeTeaserText", "Count", "SortOrder", "Root", "PageTypeFilter", "CategoryFilter", "Recursive" })
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="row">
+        <div class="col-12">
+            @if (!string.IsNullOrEmpty(Model.Heading))
+            {
+                <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+                <hr />
+            }
+
+            @if (string.IsNullOrEmpty(Model.CurrentBlock.Template) || Model.CurrentBlock.Template == TemplateSelections.Grid)
+            {
+                @Html.Partial("_GridTemplate", Model)
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.ImageLeft)
+            {
+                @Html.Partial("_LeftImageTemplate", Model)
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.ImageTop)
+            {
+                @Html.Partial("_TopImageTemplate", Model)
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.NoImage)
+            {
+                @Html.Partial("_NoImageTemplate", Model)
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.Highlight)
+            {
+                @Html.Partial("_HighlightPanelTemplate", Model)
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.Card)
+            {
+                @Html.Partial("_CardTemplate", Model)
+            }
+
+            @if (Model.CurrentBlock.Template == TemplateSelections.Insight)
+            {
+                @Html.Partial("_InsightTemplate", Model)
+            }
+        </div>
+    </div>
+</div>

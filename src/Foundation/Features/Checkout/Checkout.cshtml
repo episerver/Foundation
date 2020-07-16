@@ -1,4 +1,6 @@
-﻿@model CheckoutViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
 @{ 
     var errorMessages = ViewBag.ErrorMessages != null ? (string)ViewBag.ErrorMessages : string.Empty;
 }
@@ -84,13 +86,11 @@
                     </div>
                     <br />
                 }
-
                 <div class="row">
                     <div class="col-12">
                         <a href="#" class="button-white full-width jsSelectShipment" data-shipmentid="0">New Shipment</a>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="button-black full-width" data-dismiss="modal">Close</button>
@@ -98,7 +98,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="newAddressModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
