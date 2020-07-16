@@ -1709,7 +1709,6 @@
     <Content Include="Features\Blocks\ButtonBlock\_button-block.scss" />
     <Content Include="Assets\scss\templates\blocks\_featurebox-block.scss" />
     <Content Include="Assets\scss\templates\blocks\_vimeo-block.scss" />
-    <Content Include="Assets\scss\templates\blocks\_content-recommendation-block.scss" />
     <Content Include="Features\Blocks\TeaserBlock\_teaser-block.scss" />
     <Content Include="Assets\scss\templates\pages\_checkout-page.scss" />
     <Content Include="Assets\scss\templates\pages\_order-confirmation-page.scss" />
@@ -2348,7 +2347,6 @@
     <Content Include="Features\Blocks\CommentsBlock\CommentsBlock.cshtml" />
     <Content Include="Features\Blocks\RssReaderBlock\RssReaderBlock.cshtml" />
     <Content Include="Features\Blocks\ContainerBlock\ContainerBlock.cshtml" />
-    <Content Include="Features\Blocks\ContentRecommendationsBlock\ContentRecommendationsBlock.cshtml" />
     <Content Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsEmbedBlock.cshtml" />
     <Content Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlock.cshtml" />
     <Content Include="Features\Blocks\GroupCreationBlock\GroupCreationBlock.cshtml" />

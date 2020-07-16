@@ -23,7 +23,7 @@ namespace Foundation.Features.Recommendations.WidgetBlock
         [Display(Name = "Attribute Name", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string Name { get; set; }
 
-        [Display( Name = "Attribute Value", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Attribute Value", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual string Value { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

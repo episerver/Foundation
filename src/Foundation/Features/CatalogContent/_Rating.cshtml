@@ -1,4 +1,7 @@
-﻿@model Foundation.Demo.Interfaces.IDemoEntryViewModelBase
+﻿@using Foundation.Features.CatalogContent
+
+@model IEntryViewModelBase
+
 <div class="product-detail__rating jsReviewRating">
     @if (Model.Reviews != null)
     {

@@ -1,7 +1,6 @@
-﻿@using EPiServer.Security
-@using Mediachase.Commerce.Security
+﻿@using Foundation.Features.CatalogContent.Variation
 
-@model Foundation.Commerce.Catalog.ViewModels.GenericVariantViewModel
+@model GenericVariantViewModel
 
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
@@ -21,19 +20,6 @@
                 <h6 class="light-text">@*@Html.PropertyFor(x => x.CurrentContent.Brand)*@</h6>
                 <p class="sub-title">@Model.CurrentContent.Code</p>
             </div>
-
-            @*<hr />*@
-            @*<div class="product-detail__rating">
-                   <div class="rating rate-@((int)Model.Reviews.Statistics.OverallRating)">
-                        <i data-feather="star"></i>
-                        <i data-feather="star"></i>
-                        <i data-feather="star"></i>
-                        <i data-feather="star"></i>
-                        <i data-feather="star"></i>
-                    </div>
-                    <span>@Model.Reviews.Statistics.TotalRatings Review(s)</span>
-                </div>*@
-
             <hr />
             <div class="row">
                 <div class="col-12">
@@ -49,13 +35,11 @@
                             {
                                 <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
                             }
-
                             @if (Model.HasSaleCode)
                             {
                                 @Html.Partial("_WarningHasSaleCode", null)
                             }
                         </div>
-
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
                             <span class="price__discount" style="padding-left: 10px;">
@@ -88,14 +72,12 @@
                                 }
                             </div>
                         }
-
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
                             <span class="price__discount" style="padding-left: 10px;">
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
-
                         <span class="pull-right in-stock">
                             <i data-feather="x-circle"></i>
                             @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
@@ -103,15 +85,11 @@
                     }
                 </div>
             </div>
-
             <br />
             @Html.PropertyFor(x => x.CurrentContent.Description)
-
             <br />
             <hr />
-
             @Html.Partial("_Store", Model.Stores)
-
             @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
             <hr />
             <div class="row">
@@ -128,7 +106,6 @@
                             <i class="light-svg" data-feather="heart"></i>
                             Add to wishlist
                         </span>
-
                         if (Model.HasOrganization)
                         {
                             <span class="light-text cursor-pointer link addToSharedCart" data="@Model.CurrentContent.Code">

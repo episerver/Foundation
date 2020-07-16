@@ -5,9 +5,7 @@ using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Standard
 {
