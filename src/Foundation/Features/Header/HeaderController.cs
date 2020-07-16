@@ -1,10 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Web.Routing;
-using Foundation.Cms.ViewModels.Header;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Demo.Models;
-using Foundation.Demo.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -29,14 +26,14 @@ namespace Foundation.Features.Header
         }
 
         [ChildActionOnly]
-        public ActionResult GetHeader(DemoHomePage homePage)
+        public ActionResult GetHeader(HomePage homePage)
         {
             var content = _contentRouteHelper.Content;
-            return PartialView("_Header", _headerViewModelFactory.CreateHeaderViewModel<DemoHeaderViewModel>(content, homePage));
+            return PartialView("_Header", _headerViewModelFactory.CreateHeaderViewModel(content, homePage));
         }
 
         [ChildActionOnly]
-        public ActionResult GetHeaderLogoOnly(DemoHomePage homePage)
+        public ActionResult GetHeaderLogoOnly(HomePage homePage)
         {
             return PartialView("_HeaderLogo", homePage);
         }

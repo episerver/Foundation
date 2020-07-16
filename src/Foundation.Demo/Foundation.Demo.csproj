@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EPiBootstrapArea" Version="5.2.1" />
     <PackageReference Include="EPiServer.Azure" Version="10.0.1" />
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
@@ -33,19 +39,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Foundation.Campaign\Foundation.Campaign.csproj" />
-    <ProjectReference Include="..\Foundation.Cms.Personalization\Foundation.Cms.Personalization.csproj" />
     <ProjectReference Include="..\Foundation.Cms\Foundation.Cms.csproj" />
-    <ProjectReference Include="..\Foundation.Commerce.Personalization\Foundation.Commerce.Personalization.csproj" />
     <ProjectReference Include="..\Foundation.Commerce\Foundation.Commerce.csproj" />
-    <ProjectReference Include="..\Foundation.Find.Cms\Foundation.Find.Cms.csproj" />
-    <ProjectReference Include="..\Foundation.Find.Commerce\Foundation.Find.Commerce.csproj" />
+    <ProjectReference Include="..\Foundation.Find\Foundation.Find.csproj" />
+    <ProjectReference Include="..\Foundation.Personalization\Foundation.Personalization.csproj" />
     <ProjectReference Include="..\Foundation.Social\Foundation.Social.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>

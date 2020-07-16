@@ -1,7 +1,8 @@
-﻿@model  Foundation.Commerce.Order.Payments.GenericCreditCardPaymentOption
+﻿@using Foundation.Features.Checkout.Payments
+
+@model GenericCreditCardPaymentOption
 
 @Html.HiddenFor(model => model.CardType)
-
 
 <div class="row">
     <div class="col-12 checkout--credit__container">
@@ -21,7 +22,6 @@
                 </label>
             </div>
         </div>
-
 
         @Html.HiddenFor(x => x.UseSelectedCreditCard, Model.UseSelectedCreditCard)
 

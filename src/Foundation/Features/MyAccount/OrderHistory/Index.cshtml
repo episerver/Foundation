@@ -1,10 +1,11 @@
 ﻿@using EPiServer.Commerce.Order
-@using Foundation.Commerce.ViewModels.Header
-@model Foundation.Commerce.Order.ViewModels.OrderHistoryViewModel
+@using Foundation.Features.MyAccount.OrderHistory
+
+@model OrderHistoryViewModel
+
 @{
     Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
 }
-
 
 <div class="page-title">
     <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
@@ -85,8 +86,6 @@
     {
         <p>The list is empty.</p>
     }
-
-
 </div>
 
 <div class="toolbar">
@@ -95,7 +94,6 @@
             @Model.PagingInfo.TotalRecord @Html.TranslateFallback("/Blog/Items", "Items")
         </strong>
     </div>
-
     <div class="toolbar__center">
         @if (Model.PagingInfo.PageCount > 1)
         {
@@ -150,5 +148,3 @@
         </div>
     </div>
 </div>
-
-

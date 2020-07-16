@@ -1,13 +1,15 @@
-﻿
-@using EPiServer.Commerce.Order
-@using EPiServer.Commerce.Order.Internal
-@using Mediachase.Commerce
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.MyAccount.OrderConfirmation
+
 @model OrderConfirmationViewModel<OrderConfirmationPage>
+
 @{
     string fontFamily = @"font-family: ""Helvetica Neue"", Helvetica, Arial, sans-serif; font-size: 10pt; line-height: 1.5em;";
     string horizontalLineStyle = "border-top: 1px solid #c7c7c7;";
     string cellPadding = "padding: 5px;";
 }
+
 <div class="row">
     <div class="col-12 flex-center">
         <h1>@Html.PropertyFor(x => x.CurrentContent.Title)</h1>
@@ -26,12 +28,8 @@
             </div>
         </div>
     }
-
 </div>
-
-
 <div class="row">
-
     <div class="col-12">
         @Html.PropertyFor(x => x.CurrentContent.Body)
 
@@ -88,7 +86,6 @@
                 <p class="title">Your purchased elevated role: @Model.ElevatedRole</p>
                 <br />
             }
-
             <div class="row order-confirm--invoice__header-lg">
                 <div class="col-6">
                     <div class="row">
@@ -105,56 +102,50 @@
                     </div>
                 </div>
             </div>
-
             foreach (ILineItem lineItem in Model.Items)
             {
-            <div class="row order-confirm__item">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <a href="@lineItem.GetUrl()">
-                                <picture>
-                                    <source data-srcset="@lineItem.GetThumbnailUrl()?format=webp" type="image/webp">
-                                    <img data-src="@lineItem.GetThumbnailUrl()" class="lazyload" />
-                                </picture>
-                            </a>
+                <div class="row order-confirm__item">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-2">
+                                <a href="@lineItem.GetUrl()">
+                                    <picture>
+                                        <source data-srcset="@lineItem.GetThumbnailUrl()?format=webp" type="image/webp">
+                                        <img data-src="@lineItem.GetThumbnailUrl()" class="lazyload" />
+                                    </picture>
+                                </a>
+                            </div>
+                            <div class="col-sm-9 col-md-10">
+                                <a href="@lineItem.GetUrl()" class="account-link">@lineItem.GetEntryContent().DisplayName</a>
+                            </div>
                         </div>
-                        <div class="col-sm-9 col-md-10">
-                            <a href="@lineItem.GetUrl()" class="account-link">@lineItem.GetEntryContent().DisplayName</a>
+                    </div>
+                    <div class="col-6">
+                        <div class="row order-confirm__unit-group">
+                            <div class="col-lg-2 col-sm-12 order-confirm__unit">
+                                <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Quantity", "Quantity")</label>
+                                @lineItem.Quantity.ToString("0")
+                            </div>
+                            <div class="col-lg-3 col-sm-12 order-confirm__unit">
+                                <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/UnitPrice", "Unit Price")</label>
+                                @Helpers.RenderMoney(lineItem.PlacedPrice, Model.Currency)
+                            </div>
+                            <div class="col-lg-2 col-sm-12 order-confirm__unit">
+                                <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/Price", "Price")</label>
+                                @Helpers.RenderMoney(lineItem.PlacedPrice * lineItem.Quantity, Model.Currency)
+                            </div>
+                            <div class="col-lg-2 col-sm-12 order-confirm__unit">
+                                <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/Discount", "Discount")</label>
+                                @Helpers.RenderMoney(lineItem.GetEntryDiscount(), Model.Currency)
+                            </div>
+                            <div class="col-lg-3 col-sm-12 order-confirm__unit">
+                                <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Total", "Total")</label>
+                                @Helpers.RenderMoney(lineItem.GetDiscountedPrice(Model.Currency))
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-6">
-                    <div class="row order-confirm__unit-group">
-                        <div class="col-lg-2 col-sm-12 order-confirm__unit">
-                            <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Quantity", "Quantity")</label>
-                            @lineItem.Quantity.ToString("0")
-                        </div>
-                        <div class="col-lg-3 col-sm-12 order-confirm__unit">
-                            <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/UnitPrice", "Unit Price")</label>
-                            @Helpers.RenderMoney(lineItem.PlacedPrice, Model.Currency)
-                        </div>
-                        <div class="col-lg-2 col-sm-12 order-confirm__unit">
-                            <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/Price", "Price")</label>
-                            @Helpers.RenderMoney(lineItem.PlacedPrice * lineItem.Quantity, Model.Currency)
-                        </div>
-                        <div class="col-lg-2 col-sm-12 order-confirm__unit">
-                            <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/Discount", "Discount")</label>
-                            @Helpers.RenderMoney(lineItem.GetEntryDiscount(), Model.Currency)
-                        </div>
-                        <div class="col-lg-3 col-sm-12 order-confirm__unit">
-                            <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Total", "Total")</label>
-                            @Helpers.RenderMoney(lineItem.GetDiscountedPrice(Model.Currency))
-                        </div>
-                    </div>
-                    
-                </div>
-               
-                
-            </div>
             }
-
             <div class="row">
                 <ul class="col-lg-3 col-md-6 col-sm-6 col-xs-12 offset-lg-9 offset-md-6 offset-sm-6 order-confirm__invoice">
                     <li>
@@ -187,7 +178,6 @@
                     </li>
                 </ul>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
                     <h4>@Html.TranslateFallback("/OrderConfirmation/BillingDetails", "Billing details")</h4>
@@ -199,7 +189,6 @@
                         @Html.Partial("_Address", shippingAddress)
                     }
                 </div>
-
                 <div class="col-md-6">
 
                     @foreach (var payment in Model.Payments)
@@ -209,9 +198,7 @@
 
                 </div>
             </div>
-
             <hr>
-
             <div class="row">
                 <div class="col-12">
                     @Html.PropertyFor(x => x.CurrentContent.RegistrationArea, new { ContactId = Model.ContactId, OrderNumber = Model.OrderGroupId })

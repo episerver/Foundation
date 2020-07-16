@@ -1,0 +1,90 @@
+﻿@using Foundation.Helpers
+@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.Common
+@using Foundation.Features.Blocks.HeroBlock
+
+@model IBlockViewModel<HeroBlock>
+
+@Html.FullRefreshPropertiesMetaData(new[] { "BackgroundImage" })
+
+@{
+    var blockRatio = string.Empty;
+    switch (Model.CurrentBlock.BlockRatio)
+    {
+        case "5:1":
+            blockRatio = "padding-bottom: 20%";
+            break;
+        case "4:1":
+            blockRatio = "padding-bottom: 25%";
+            break;
+        case "3:1":
+            blockRatio = "padding-bottom: 33%";
+            break;
+        case "16:9":
+            blockRatio = "padding-bottom: 55%";
+            break;
+        case "3:2":
+            blockRatio = "padding-bottom: 65%";
+            break;
+        case "4:3":
+            blockRatio = "padding-bottom: 75%";
+            break;
+        case "1:1":
+            blockRatio = "padding-bottom: 100%";
+            break;
+        case "2:3":
+            blockRatio = "padding-bottom: 150%";
+            break;
+        case "9:16":
+            blockRatio = "padding-bottom: 175%";
+            break;
+        default:
+            blockRatio = "padding-bottom: 50%";
+            break;
+    }
+}
+
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="hero-block" style="@blockRatio">
+        @if (PageEditing.PageIsInEditMode)
+        {
+            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage) style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
+            </div>
+        }
+        else
+        {
+            if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
+            {
+                <div class="hero-block__image lazyload" data-bgset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)&format=webp | @Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)">
+                </div>
+            }
+        }
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo) && ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
+        {
+            <div class="hero-block__video">
+                <video autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(Model.CurrentBlock.MainBackgroundVideo)" type="video/mp4">
+                </video>
+            </div>
+        }
+        <div class="hero-block__overlay" style="background-color: @Model.CurrentBlock.BackgroundColor; opacity: @Model.CurrentBlock.BlockOpacity"></div>
+        <div class="screen-width-wrapper">
+            <div class="hero-block__callout screen-width-container" style="justify-content: @Model.CurrentBlock.Callout.CalloutPosition;">
+                @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsEmpty() && ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo))
+                {
+                    <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
+                }
+                <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="color: @Model.CurrentBlock.Callout.CalloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;">
+                    @Html.PropertyFor(m => m.CurrentBlock.Callout)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
+                background-color: @Model.CurrentBlock.Callout.BackgroundColor;
+                opacity: @Model.CurrentBlock.Callout.CalloutOpacity;
+            }
+</style>

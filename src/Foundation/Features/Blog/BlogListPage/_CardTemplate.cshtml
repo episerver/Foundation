@@ -1,11 +1,14 @@
 ﻿@using EPiServer.AddOns.Helpers
 @using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blog.BlogListPage
 
 @model BlogListPageViewModel
+
 @{
     int index = 1;
     int col = 12;
 }
+
 <div class="row">
     @foreach (var blog in Model.Blogs)
     {
@@ -25,7 +28,6 @@
                             }
                         </picture>
                     </div>
-
                     <div class="card--bottom">
                         <div class="card--bottom__title">
                             <span>

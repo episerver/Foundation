@@ -1,0 +1,33 @@
+﻿@using Foundation.Features.Blocks.RssReaderBlock
+
+@model RssReaderBlockViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    @if (Model.HasHeadingText)
+    {
+        <div class="col-12">
+            <h2>@Html.PropertyFor(m => m.Heading)</h2>
+        </div>
+        <div class="col-12">
+            <p>@Html.PropertyFor(m => m.DescriptiveText)</p>
+        </div>
+    }
+    <div class="col-12">
+        <div class="list-group--header content-search-results">
+            @foreach (var rss in Model.RssList)
+            {
+                <a href="@rss.Url" class="list-group--header__item" style="display: flex">
+                    <div class="col-12 content__item">
+                        <b class="title">@Html.Raw(rss.Title)</b>
+                        @if (Model.CurrentBlock.IncludePublishDate)
+                        {
+                            <div class="sub-title">
+                                <p>@Html.Raw(rss.PublishDate)</p>
+                            </div>
+                        }
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

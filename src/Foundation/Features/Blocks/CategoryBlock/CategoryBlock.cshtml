@@ -1,0 +1,44 @@
+﻿@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.CategoryBlock
+
+@model CategoryBlockViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="col-12">
+        <h2 class="category-heading">@Model.Heading</h2>
+    </div>
+    <div class="col-12" style="display: flex">
+        @foreach (var cat in Model.CategoryItems)
+        {
+            <div class="category">
+                <div class="category__figure">
+                    <a href="@cat.Uri">
+
+                        @if (!string.IsNullOrEmpty(cat.ImageUrl))
+                        {
+                            <picture class="category__img">
+                                <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(cat.ImageUrl)).Resize(1200, null)&format=webp" type="image/webp">
+                                <img class="category__img lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(cat.ImageUrl)).Resize(1200, null)" />
+                            </picture>
+                        }
+                    </a>
+                </div>
+                <ul class="category__children">
+                    <li class="category__name">
+                        <a href="@cat.Uri">
+                            @cat.Name
+                        </a>
+                    </li>
+                    @foreach (var child in cat.ChildLinks)
+                    {
+                        <li>
+                            <a href="@child.Uri">
+                                @child.Text
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

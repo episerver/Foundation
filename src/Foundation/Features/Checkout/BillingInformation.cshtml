@@ -1,9 +1,11 @@
-﻿@model CheckoutViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
 
 <div class="row">
     <div class="col-12">
         <div id="billingAddressContainer">
-            <div id="checkout-step-shipping" class="step a-item jsChangeAddressCard"  data-urlChangeAddress="@Url.Action("ChangeAddress", "Checkout")">
+            <div id="checkout-step-shipping" class="step a-item jsChangeAddressCard" data-urlChangeAddress="@Url.Action("ChangeAddress", "Checkout")">
                 <ul class="style-list-none">
                     <li>
                         @if (Model.Shipments != null && Model.Shipments.Count == 1)
@@ -12,10 +14,7 @@
                             <div>
                                 <label class="checkbox">
                                     @Html.TranslateFallback("Use shipping address as billing address", "Use shipping address as billing address")
-                                    @Html.RadioButtonFor(x => x.BillingAddressType, 2, new
-                               {
-                                   @class = "radio jsBillingAddress"
-                               })
+                                    @Html.RadioButtonFor(x => x.BillingAddressType, 2, new { @class = "radio jsBillingAddress" })
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -36,17 +35,14 @@
                         <div>
                             <label class="checkbox">
                                 @Html.TranslateFallback("/Checkout/Billing/NewAddress", "Bill to new address")
-                                @Html.RadioButtonFor(x => x.BillingAddressType, 0, new
-                           {
-                               @class = "radio jsBillingAddress"
-                           })
+                                @Html.RadioButtonFor(x => x.BillingAddressType, 0, new { @class = "radio jsBillingAddress" })
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                     </li>
 
                     <li class="@(Model.BillingAddressType == 1 && User.Identity.IsAuthenticated ? "" : "hidden") jsChangeAddress" id="oldBillingAddressForm"
-                        data-addresstype="@Foundation.Commerce.Order.ViewModels.AddressType.Billing">
+                        data-addresstype="@AddressType.Billing">
                         <div class="form-group">
                             @{
                                 var values = new List<KeyValuePair<string, string>>();
@@ -64,7 +60,6 @@
                     </li>
 
                     <li class="@(Model.BillingAddressType == 0 ? "" : "hidden")" id="newBillingAddressForm">
-
                         <div>
                             @Html.HiddenFor(model => model.BillingAddress.Name)
                             @Html.HiddenFor(model => model.BillingAddress.DaytimePhoneNumber)
@@ -75,19 +70,13 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.FirstName)
-                                            @Html.TextBoxFor(model => model.BillingAddress.FirstName, new
-                                           {
-                                               @class = "textbox"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.FirstName, new { @class = "textbox" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.FirstName)
                                         </div>
 
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.LastName)
-                                            @Html.TextBoxFor(model => model.BillingAddress.LastName, new
-                                           {
-                                               @class = "textbox"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.LastName, new { @class = "textbox" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.LastName)
                                         </div>
                                     </div>
@@ -96,18 +85,12 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.Email)
-                                            @Html.TextBoxFor(model => model.BillingAddress.Email, new
-                                           {
-                                               @class = "textbox"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.Email, new { @class = "textbox" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.Email)
                                         </div>
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.Organization)
-                                            @Html.TextBoxFor(model => model.BillingAddress.Organization, new
-                                           {
-                                               @class = "textbox"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.Organization, new { @class = "textbox" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.Organization)
                                         </div>
                                     </div>
@@ -116,18 +99,12 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.Line1)
-                                            @Html.TextBoxFor(model => model.BillingAddress.Line1, new
-                                           {
-                                               @class = "textbox"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.Line1, new { @class = "textbox" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.Line1)
                                         </div>
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.Line2)
-                                            @Html.TextBoxFor(model => model.BillingAddress.Line2, new
-                                           {
-                                               @class = "textbox"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.Line2, new { @class = "textbox" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.Line2)
                                         </div>
                                     </div>
@@ -136,18 +113,12 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.City)
-                                            @Html.TextBoxFor(model => model.BillingAddress.City, new
-                                           {
-                                               @class = "textbox jsChangeTaxAddress"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.City, new { @class = "textbox jsChangeTaxAddress" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.City)
                                         </div>
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.PostalCode)
-                                            @Html.TextBoxFor(model => model.BillingAddress.PostalCode, new
-                                           {
-                                               @class = "textbox jsChangeTaxAddress"
-                                           })
+                                            @Html.TextBoxFor(model => model.BillingAddress.PostalCode, new { @class = "textbox jsChangeTaxAddress" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.PostalCode)
                                         </div>
                                     </div>
@@ -160,8 +131,7 @@
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.CountryCode)
                                             @Html.DisplayFor(model => model.Shipments[0].Address.CountryOptions, "CountryOptions",
-                                            new { SelectItem = Model.BillingAddress.CountryCode, Name = "BillingAddress.CountryCode" })
-
+                                                new { SelectItem = Model.BillingAddress.CountryCode, Name = "BillingAddress.CountryCode" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.CountryCode)
                                             @Html.Hidden("address-htmlfieldprefix", "BillingAddress.CountryRegion")
                                         </div>
@@ -170,8 +140,6 @@
                             </ul>
                         </div>
                     </li>
-
-
                 </ul>
 
                 @if (ViewData.ModelState["BillingAddress.AddressId"] != null && ViewData.ModelState["BillingAddress.AddressId"].Errors.Count > 0)

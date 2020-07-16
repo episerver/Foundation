@@ -4,10 +4,10 @@ using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Attributes;
 using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.ViewModels;
+using Foundation.Features.Home;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyOrganization.Budgeting;
+using Foundation.Features.MyOrganization.SubOrganization;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Linq;
@@ -49,7 +49,7 @@ namespace Foundation.Features.MyOrganization.Organization
                 Organization = _organizationService.GetOrganizationModel(currentOrganization)
             };
 
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             if (startPage != null)
             {
                 viewModel.SubOrganizationPage = startPage.SubOrganizationPage;

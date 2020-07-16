@@ -1,7 +1,8 @@
-﻿@model Foundation.Commerce.Order.Payments.CashOnDeliveryPaymentOption
+﻿@using Foundation.Features.Checkout.Payments
+
+@model CashOnDeliveryPaymentOption
 
 @Html.HiddenFor(model => model.PaymentMethodId)
-
 
 <br />
 <div class="row">

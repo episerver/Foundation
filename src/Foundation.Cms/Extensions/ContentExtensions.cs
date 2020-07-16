@@ -4,7 +4,6 @@ using EPiServer.Filters;
 using EPiServer.Framework.Web;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,18 +92,6 @@ namespace Foundation.Cms.Extensions
             return _contentLoader.Value.GetItems(contentLinks, new LoaderOptions())
                 .OfType<PageData>()
                 .ToList();
-        }
-
-        public static ContentReference GetRelativeStartPage(this IContent content)
-        {
-            if (content is CmsHomePage)
-            {
-                return content.ContentLink;
-            }
-
-            var ancestors = _contentLoader.Value.GetAncestors(content.ContentLink);
-            var startPage = ancestors.FirstOrDefault(x => x is CmsHomePage) as CmsHomePage;
-            return startPage == null ? ContentReference.StartPage : startPage.ContentLink;
         }
 
         /// <summary>

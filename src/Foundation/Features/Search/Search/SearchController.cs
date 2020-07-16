@@ -3,16 +3,10 @@ using EPiServer.Core;
 using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
-using Foundation.Cms.Pages;
-using Foundation.Cms.Personalization;
-using Foundation.Commerce.Catalog.ViewModels;
-using Foundation.Commerce.Personalization;
-using Foundation.Demo.Models;
-using Foundation.Demo.ViewModels;
-using Foundation.Find.Cms;
-using Foundation.Find.Cms.ViewModels;
-using Foundation.Find.Commerce;
-using Foundation.Find.Commerce.ViewModels;
+using Foundation.Features.CatalogContent;
+using Foundation.Features.Home;
+using Foundation.Features.Search.Search;
+using Foundation.Personalization;
 using Mediachase.Commerce.Catalog;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +19,7 @@ namespace Foundation.Features.Search
     public class SearchController : PageController<SearchResultPage>
     {
         private readonly ISearchViewModelFactory _viewModelFactory;
-        private readonly ICommerceSearchService _commerceSearchService;
-        private readonly ICmsSearchService _cmsSearchService;
+        private readonly ISearchService _searchService;
         private readonly ICommerceTrackingService _recommendationService;
         private readonly ReferenceConverter _referenceConverter;
         private readonly ICmsTrackingService _cmsTrackingService;
@@ -35,28 +28,26 @@ namespace Foundation.Features.Search
 
         public SearchController(
             ISearchViewModelFactory viewModelFactory,
-            ICommerceSearchService searchService,
+            ISearchService searchService,
             ICommerceTrackingService recommendationService,
             ReferenceConverter referenceConverter,
             HttpContextBase httpContextBase,
             IContentLoader contentLoader,
-            ICmsTrackingService cmsTrackingService,
-            ICmsSearchService cmsSearchService)
+            ICmsTrackingService cmsTrackingService)
         {
             _viewModelFactory = viewModelFactory;
-            _commerceSearchService = searchService;
+            _searchService = searchService;
             _recommendationService = recommendationService;
             _referenceConverter = referenceConverter;
             _cmsTrackingService = cmsTrackingService;
             _httpContextBase = httpContextBase;
             _contentLoader = contentLoader;
-            _cmsSearchService = cmsSearchService;
         }
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         [PageViewTracking]
-        public async Task<ActionResult> Index(SearchResultPage currentPage, CommerceFilterOptionViewModel filterOptions)
+        public async Task<ActionResult> Index(SearchResultPage currentPage, FilterOptionViewModel filterOptions)
         {
             if (filterOptions == null)
             {
@@ -68,13 +59,11 @@ namespace Foundation.Features.Search
                 filterOptions.ViewSwitcher = "Grid";
             }
 
-            var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
-            var viewModel = _viewModelFactory.Create<DemoSearchViewModel<SearchResultPage>, SearchResultPage>(currentPage, new CommerceArgs
-            {
-                FilterOption = filterOptions,
-                SelectedFacets = HttpContext.Request.QueryString["facets"],
-                CatalogId = startPage.SearchCatalog,
-            });
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var viewModel = _viewModelFactory.Create(currentPage,
+                HttpContext.Request.QueryString["facets"],
+                startPage.SearchCatalog,
+                filterOptions);
 
             if (viewModel == null)
             {
@@ -103,7 +92,7 @@ namespace Foundation.Features.Search
             await _cmsTrackingService.SearchedKeyword(_httpContextBase, filterOptions.Q);
             if (startPage.ShowContentSearchResults)
             {
-                viewModel.ContentSearchResult = _cmsSearchService.SearchContent(new CmsFilterOptionViewModel()
+                viewModel.ContentSearchResult = _searchService.SearchContent(new FilterOptionViewModel()
                 {
                     Q = filterOptions.Q,
                     PageSize = 5,
@@ -115,7 +104,7 @@ namespace Foundation.Features.Search
 
             if (startPage.ShowPdfSearchResults)
             {
-                viewModel.PdfSearchResult = _cmsSearchService.SearchPdf(new CmsFilterOptionViewModel()
+                viewModel.PdfSearchResult = _searchService.SearchPdf(new FilterOptionViewModel()
                 {
                     Q = filterOptions.Q,
                     PageSize = 5,
@@ -159,16 +148,16 @@ namespace Foundation.Features.Search
         public ActionResult QuickSearch(string search = "")
         {
             var redirectUrl = "";
-            var startPage = _contentLoader.Get<DemoHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             var productCount = 0;
             var contentCount = 0;
             var pdfCount = 0;
 
-            var model = new DemoSearchViewModel<SearchResultPage>();
+            var model = new SearchViewModel<SearchResultPage>();
 
             if (startPage.ShowProductSearchResults)
             {
-                var productResults = _commerceSearchService.QuickSearch(search, startPage.SearchCatalog);
+                var productResults = _searchService.QuickSearch(search, startPage.SearchCatalog);
                 model.ProductViewModels = productResults;
                 productCount = productResults?.Count() ?? 0;
 
@@ -188,7 +177,7 @@ namespace Foundation.Features.Search
 
             if (startPage.ShowContentSearchResults)
             {
-                var contentResult = _cmsSearchService.SearchContent(new CmsFilterOptionViewModel()
+                var contentResult = _searchService.SearchContent(new FilterOptionViewModel()
                 {
                     Q = search,
                     PageSize = 5,
@@ -201,7 +190,7 @@ namespace Foundation.Features.Search
 
             if (startPage.ShowPdfSearchResults)
             {
-                var pdfResult = _cmsSearchService.SearchPdf(new CmsFilterOptionViewModel()
+                var pdfResult = _searchService.SearchPdf(new FilterOptionViewModel()
                 {
                     Q = search,
                     PageSize = 5,
@@ -239,7 +228,7 @@ namespace Foundation.Features.Search
         }
 
         [ChildActionOnly]
-        public ActionResult Facet(SearchResultPage currentPage, CommerceFilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
+        public ActionResult Facet(SearchResultPage currentPage, FilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
 
 
         public class AssetPreloadLink

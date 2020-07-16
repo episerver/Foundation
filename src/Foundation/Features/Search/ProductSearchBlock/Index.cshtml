@@ -1,4 +1,6 @@
-﻿@model Foundation.Commerce.ViewModels.ProductSearchResultViewModel
+﻿@using Foundation.Features.Search.ProductSearchBlock
+
+@model ProductSearchResultViewModel
 
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="row">

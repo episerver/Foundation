@@ -1,0 +1,20 @@
+﻿@using Foundation.Features.Blocks.AssetsDownloadLinksBlock
+
+@model AssetsDownloadLinksBlockViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" @Html.EditAttributes(x => x.CurrentBlock.RootContent)>
+    <div class="col-12">
+        @if (Model.Assets != null)
+        {
+            foreach (var mediaData in Model.Assets)
+            {
+                <h5>
+                    <a href="/AssetsDownloadLinksBlock/Download?contentLinkId=@mediaData.ContentLink.ID" class="download-file">
+                        <i data-feather="download"></i>
+                        @mediaData.Name
+                    </a>
+                </h5>
+            }
+        }
+    </div>
+</div>

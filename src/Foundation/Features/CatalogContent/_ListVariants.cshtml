@@ -1,7 +1,10 @@
-﻿@using Mediachase.Commerce
+﻿@using EPiServer.Core
+@using Mediachase.Commerce
 @using Foundation.Commerce.Extensions
-@using EPiServer.Core
+@using Foundation.Features.CatalogContent.Services
+
 @model IEnumerable<EntryContentBase>
+
 @{
     var currentMarket = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<Mediachase.Commerce.ICurrentMarket>();
     var market = currentMarket.GetCurrentMarket();
@@ -12,17 +15,17 @@
     <div class="col-12 variant__group">
         @foreach (var variant in Model)
         {
-            var price = Foundation.Commerce.Catalog.PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, market.DefaultCurrency);
+            var price = PriceCalculationService.GetSalePrice(variant.Code, market.MarketId, market.DefaultCurrency);
             var image = variant.GetDefaultAsset<IContentMedia>();
-            
-        <div class="variant__item">
-            <picture class="img-fluid variant__image">
-                <source data-srcset="@image?format=webp" type="image/webp">
-                <img data-src="@image" class="img-fluid variant__image lazyload" alt="Alternate Text" />
-            </picture>
-            <p class="title">@variant.DisplayName</p>
-            <p class="@priceClass">@(price != null ? price.UnitPrice.ToString() : (new Money(0, market.DefaultCurrency)).ToString())</p>
-        </div>
+
+            <div class="variant__item">
+                <picture class="img-fluid variant__image">
+                    <source data-srcset="@image?format=webp" type="image/webp">
+                    <img data-src="@image" class="img-fluid variant__image lazyload" alt="Alternate Text" />
+                </picture>
+                <p class="title">@variant.DisplayName</p>
+                <p class="@priceClass">@(price != null ? price.UnitPrice.ToString() : (new Money(0, market.DefaultCurrency)).ToString())</p>
+            </div>
         }
     </div>
 </div>

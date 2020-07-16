@@ -1,4 +1,6 @@
 ﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Header
+
 @model LargeCartViewModel
 
 <div class="row">
@@ -71,8 +73,6 @@
             </form>
 
         }
-
-
         <div class="col-xs-12">
             <h5 class="jsCouponLabel title @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
                 @Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")
@@ -92,14 +92,11 @@
                 }
             </div>
         </div>
-
     </div>
-
     <div class="large-cart--block col-sm-4">
         <div class="jsCouponReplaceHtml">
             @Html.Partial("_CartSummary", Model)
         </div>
-
         <ul>
             <li>
                 <button class="button-black--icon" title="Proceed to Checkout" type="button" onclick="window.location.href = '@Url.ContentUrl(Model.CheckoutPage)'">

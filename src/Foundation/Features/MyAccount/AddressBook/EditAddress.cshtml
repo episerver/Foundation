@@ -1,6 +1,7 @@
-﻿@using Foundation.Commerce.ViewModels.Header
+﻿@using Foundation.Features.Header
+@using Foundation.Features.MyAccount.AddressBook
 
-@model Foundation.Commerce.Customer.ViewModels.AddressViewModel
+@model AddressViewModel
 
 @{
     var isMultiShipment = (bool)(ViewData["IsInMultiShipment"] == null ? false : ViewData["IsInMultiShipment"]);

@@ -3,13 +3,13 @@ using EPiServer.Commerce.Order;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Pages;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
 using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Models.Catalog;
-using Foundation.Commerce.Order.Services;
-using Foundation.Commerce.Order.ViewModels;
+using Foundation.Features.CatalogContent.Variation;
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.Shared;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System;
@@ -101,7 +101,7 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
                     var currentContact = _customerService.GetCurrentContact();
                     if (currentContact != null)
                     {
-                        currentContact.ElevatedRole = ElevatedRoles.Reader.ToString();
+                        currentContact.ElevatedRole = "Reader";
                         currentContact.SaveChanges();
                     }
                 }

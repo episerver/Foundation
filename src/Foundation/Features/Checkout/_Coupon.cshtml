@@ -1,4 +1,5 @@
-﻿@using EPiServer.AddOns.Helpers
+﻿@using Foundation.Features.Checkout.ViewModels
+
 @model CheckoutViewModel
 
 <div class="row">
@@ -19,15 +20,12 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="alert alert-danger square-box jsCouponErrorMess" style="display: none">
                         <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
                     </div>
                 }
-
                 <div class="row">
                     <div class="col-12">
-
                         <h5 class="jsCouponLabel @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
                             @Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")
                         </h5>
@@ -44,10 +42,8 @@
                                 }
                             }
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

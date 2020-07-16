@@ -1,0 +1,15 @@
+﻿@using Foundation.Features.CatalogContent
+
+@model IEnumerable<ProductTileViewModel>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+                @Html.Partial("_ProductGridItem", product)
+            </div>
+        }
+    </div>
+}

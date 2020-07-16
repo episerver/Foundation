@@ -1,5 +1,4 @@
 ﻿using Foundation.Cms.Attributes;
-using Foundation.Commerce.Customer.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -82,5 +81,11 @@ namespace Foundation.Demo.ProfileStore
 
         [LocalizedDisplay("/ProfileStore/Form/Label/Email")]
         public string Email { get; set; }
+    }
+
+    public class CountryViewModel
+    {
+        public string Name { get; set; }
+        public string Code { get; set; }
     }
 }

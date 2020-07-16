@@ -2,8 +2,7 @@
 using EPiServer.Web.Mvc;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
+using Foundation.Features.MyOrganization.Organization;
 using System.Collections.Generic;
 using System.Web.Mvc;
 

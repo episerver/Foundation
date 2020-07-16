@@ -1,9 +1,9 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.SpecializedProperties;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.ViewModels.Header;
+using Foundation.Features.Header;
+using Foundation.Features.Home;
+using Foundation.Features.MyOrganization.Organization;
 using System;
 using System.Web.Mvc;
 
@@ -24,7 +24,7 @@ namespace Foundation.Features.MyOrganization
 
         public ActionResult Index(IContent currentContent)
         {
-            var startPage = _contentLoader.Get<CommerceHomePage>(ContentReference.StartPage);
+            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
 
             var viewModel = new NavigationViewModel
             {

@@ -1,8 +1,4 @@
 ﻿using EPiServer.Web.Mvc;
-using Foundation.Commerce.Catalog;
-using Foundation.Commerce.Catalog.ViewModels;
-using Foundation.Commerce.Models.Pages;
-using Foundation.Commerce.ViewModels;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Stores

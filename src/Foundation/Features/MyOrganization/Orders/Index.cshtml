@@ -1,15 +1,15 @@
-﻿@using System.Web.Mvc.Html
-@using EPiServer.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.Orders
 
-@model Foundation.Commerce.Order.ViewModels.OrdersPageViewModel
+@model OrdersPageViewModel
+
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
 
-
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 @Html.PropertyFor(model => model.CurrentContent.MainContentArea)
+
 <div class="orders-page-filter">
     <div>
         @Html.Translate("/B2B/Orders/FilterByStatus")

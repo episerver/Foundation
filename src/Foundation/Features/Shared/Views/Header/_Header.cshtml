@@ -1,0 +1,45 @@
+﻿@using Foundation.Features.Header
+
+@model HeaderViewModel
+
+@if (Model.IsReadonlyMode)
+{
+    @Html.RenderReadonlyMessage()
+}
+else
+{
+    <div class="top-header">
+        <div class="container" style="@(Model.LargeHeaderMenu ? "max-width: 1750px;" : "")">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header__banner-text">
+                        @Html.PropertyFor(x => x.HomePage.BannerText)
+                    </div>
+                    @if (Model.ShowCommerceControls)
+                    {
+                        <div class="market-selector d-none d-lg-block dropdown">
+                            <div class="market-selector__wrapper" data-toggle="dropdown" data-offset="1,2" data-flip="false">
+                                <picture class="market-selector__market-icon">
+                                    <source data-srcset="@Model.Markets.CurrentMarket.FlagUrl?format=webp" type="image/webp">
+                                    <img data-src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon lazyload" />
+                                </picture>
+                                <p class="market-selector__market-text--current">@Model.Markets.CurrentMarket.Text</p>
+                                <div class="market-selector__dropdown-icon">
+                                    <i data-feather="chevron-down"></i>
+                                </div>
+                            </div>
+                            @Html.Partial("_MarketList", Model.Markets)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<header class="header @(Model.HomePage.StickyTopHeader ? "sticky-top" : "")">
+    <div class="header__wrapper">
+        @Html.Partial("_MobileNavigation", Model)
+        @Html.Partial("_Navigation", Model)
+    </div>
+</header>

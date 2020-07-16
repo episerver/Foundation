@@ -1,0 +1,69 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.GroupAdmissionBlock
+
+@model GroupAdmissionBlockViewModel
+
+<div class="row">
+    @if (Model.ShowHeading)
+    {
+        <div class="col-12">
+            <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+            <hr />
+        </div>
+    }
+    @foreach (var message in Model.Messages)
+    {
+        var messageStyle = message.ResolveStyle(message.Type);
+        <div class="col-12" style="color:@messageStyle">@message.Body</div>
+    }
+    @if (Model.IsModerated)
+    {
+        <div class="col-12 alert">
+            <strong>This is a moderated group.</strong> New members must be approved before they are added to the group.
+        </div>
+    }
+    @if (!String.IsNullOrWhiteSpace(Model.GroupId))
+    {
+        using (Html.BeginForm("Submit", "GroupAdmissionBlock", FormMethod.Post, new { @class="col-12" }))
+        {
+            @Html.HiddenFor(m => m.CurrentLink)
+            @Html.HiddenFor(m => m.IsModerated)
+            @Html.HiddenFor(m => m.GroupId)
+            @Html.HiddenFor(m => m.GroupName)
+            @Html.HiddenFor(m => m.UserIsLoggedIn)
+            if (Model.IsModerated && Model.UserIsLoggedIn && !String.IsNullOrWhiteSpace(Model.ModeratedUserAdmissionState))
+            {
+                @Html.HiddenFor(m => m.MemberName)
+                <h3 style="color:black"> You have already requested admission to this group. Your admission state is: @Model.ModeratedUserAdmissionState</h3>
+            }
+            else
+            {
+                <div class="form-group">
+                    @if (!Model.UserIsLoggedIn)
+                    {
+                        @Html.TextBoxFor(m => m.MemberName, new { @required = "require",
+                       @style = "width:75%;", @class = "form-control square-box", placeholder = "User Name" })
+                        <br/>
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(m => m.MemberName)
+                    }
+                    @Html.TextBoxFor(m => m.MemberCompany, new { @required = "require",
+                        @style = "width:75%;", @class = "form-control square-box", placeholder = "User Company" })
+                    <br/>
+                    @Html.TextBoxFor(m => m.MemberEmail, new { @required = "require",
+                        @style = "width:75%;", @class = "form-control square-box", placeholder = "User Email" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Join" class="button-black">
+                </div>
+            }
+        }
+    }
+    else
+    {
+        <div class="col-12" style="color: red">A group must be properly configured to use this block</div>
+    }
+    <br />
+</div>

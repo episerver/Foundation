@@ -1,0 +1,49 @@
+﻿@using EPiServer.Web.Mvc.Html
+@model Foundation.Features.Blocks.MembershipDisplayBlock.MembershipDisplayBlockViewModel
+
+    <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+        @if (Model.ShowHeading)
+        {
+            <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+        }
+
+        @foreach (var message in Model.Messages)
+        {
+            var messageStyle = message.ResolveStyle(message.Type);
+            <div style="color:@messageStyle">@message.Body</div>
+        }
+
+        <style>
+            /*These styles ensure that there will be no overflow of member content outside of the MemberDisplayBlock*/
+            .MemberTable {
+                width: 375px;
+                table-layout: fixed;
+                word-wrap: break-word;
+            }
+
+            .MemberTD {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+        @if (Model.Members != null && Model.Members.Any())
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <table class="table table-striped MemberTable">
+                            <tr><th><u>Member</u></th><th><u>Company</u></th></tr>
+                            @foreach (var member in Model.Members)
+                            {
+                                <tr>
+                                    <td class="MemberTD"><strong>@member.Name</strong></td>
+                                    <td class="MemberTD">@member.Company</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

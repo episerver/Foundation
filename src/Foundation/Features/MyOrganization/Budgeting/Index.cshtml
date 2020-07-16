@@ -1,5 +1,6 @@
 ﻿@using EPiServer.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+@using Foundation.Features.MyOrganization.Budgeting
+
 @model BudgetingPageViewModel
 
 @{
@@ -7,7 +8,6 @@
 }
 
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
-
 <div class="row">
     <div class="col-12">
         @if (Model.IsSubOrganization)
@@ -89,11 +89,9 @@
     }
 </div>
 <hr />
-
 @if (Model.IsAdmin)
 {
     <div class="row">
-
         @if (Model.IsSubOrganization)
         {
             <div class="col-12">
@@ -185,7 +183,6 @@
     </div>
     <hr />
     <div class="row">
-
         <div class="col-12">
             <a href="@Url.Action("AddBudget", "Budgeting")" class="button-black pull-right">
                 @Html.TranslateFallback("/B2B/Budgeting/NewBudget", "New Budget")
@@ -198,7 +195,6 @@
             {
                 <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/OrganizationBudgetTimeline", "Organization Budget Timeline")</h4>
             }
-
         </div>
         <div class="col-12"><br /></div>
         <div class="col-12">

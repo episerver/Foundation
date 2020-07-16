@@ -1,4 +1,6 @@
-﻿@model Foundation.Cms.ViewModels.Media.VideoFileViewModel
+﻿@using Foundation.Features.Media
+
+@model VideoFileViewModel
 
 <div class="video-file">
     <video class="video-file__frame" @(Model.Autoplay ? "autoplay" : "") @(Model.DisplayControls ? "controls" : "")

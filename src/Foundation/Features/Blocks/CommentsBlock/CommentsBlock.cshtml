@@ -1,0 +1,46 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using EPiServer.Web.Mvc.Html
+@model Foundation.Features.Blocks.CommentsBlock.CommentsBlockViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    @if (Model.ShowHeading)
+    {
+        <h2 @Html.EditAttributes(x => x.Heading)>@Model.Heading</h2>
+        <hr />
+    }
+    @foreach (var message in Model.Messages)
+    {
+        var messageStyle = message.ResolveStyle(message.Type);
+        <div style="color:@messageStyle">@message.Body</div>
+    }
+    <div class="row">
+        <div class="col-md-5">
+            @using (Html.BeginForm("Submit", "CommentsBlock", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.CurrentPageLink)
+                @Html.HiddenFor(m => m.SendActivity)
+                <div>
+                    @Html.TextArea(name: "Body", htmlAttributes: new
+                    {
+                        placeholder = "Enter your comment",
+                   maxlength = Model.CommentMaxLength,
+                   rows = Model.CommentBoxRows,
+                   @class = "social-comment square-box full-width"
+                    })
+                </div>
+                <div>
+                    <input type="submit" name="submit" value="Add Comment" class="button-black">
+                </div>
+            }
+        </div>
+        <div class="col-md-7 comment-list">
+            @foreach (var comment in Model.Comments)
+            {
+                <div style="font-weight: bold;"> @comment.Created.ToLocalTime() @comment.AuthorUsername said:</div>
+                <div>@comment.Body </div>
+                <hr />
+            }
+        </div>
+    </div>
+</div>

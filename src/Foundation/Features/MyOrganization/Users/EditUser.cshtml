@@ -1,9 +1,12 @@
 ﻿@using System.Web.Mvc.Html
-@using Foundation.Commerce.ViewModels.Header
+@using Foundation.Features.MyOrganization.Users
+
 @model UsersPageViewModel
+
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
+
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div>
     <section class="spacer-bottom-l">

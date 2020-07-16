@@ -1,0 +1,63 @@
+﻿@using Foundation.Features.Stores
+
+@model StoreViewModel
+
+@if (Model.ShowDelivery)
+{
+    <div class="row">
+        <div class="col-12">
+            <label class="checkbox jsSelectDelivery">
+                @Html.TranslateFallback("/Stores/Delivery", "Delivery")
+                <input type="radio" name="store" value="delivery" checked="checked" />
+                <span class="radio"></span>
+            </label>
+        </div>
+        @if (Model.Stores != null && Model.Stores.Count > 0)
+        {
+            <div class="col-12">
+                <label class="checkbox jsSelectDelivery">
+                    @Html.TranslateFallback("/Stores/InStorePickup", "In Store Pickup")
+                    <input type="radio" name="store" value="instore" />
+                    <span class="radio"></span>
+                </label>
+            </div>
+        }
+    </div>
+}
+
+@if (Model.Stores != null && Model.Stores.Count > 0)
+{
+    <div class="row store-pickup" id="pickupStoreBox">
+        <input type="hidden" name="selectedStore" id="selectedStore" value="@Model.SelectedStore" />
+        @foreach (var store in Model.Stores)
+        {
+            <div class="col-12">
+                <div class="store-pickup__item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <P class="title">@store.Name</P>
+                            <p class="light-text">@store.Line1 @store.Line2</p>
+                            <p class="light-text">
+                                @string.Format("{0}, {1}, {2}", store.City, store.RegionName, store.RegionCode)
+                            </p>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-12">
+                            <p class="light-text">@store.Inventory.ToString() Units</p>
+                            @if (Model.ShowDelivery)
+                            {
+                                <i data-feather="check" width="30" height="30" color="green" class="selectedStoreIcon @(store.Name == Model.SelectedStoreName ? "" : "hidden")"></i>
+                                <button class="button-transparent-black btn-lower jsSelectStore" style="display: @(store.Name == Model.SelectedStoreName ? "none" : "")" data="@store.Code">
+                                    @Html.TranslateFallback("/Stores/Select", "Select")
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="button-transparent-black btn-lower jsSetDefaultStore" data="@store.Code">@Html.TranslateFallback("/Stores/SetDefaultStore", "Set Default Store")</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

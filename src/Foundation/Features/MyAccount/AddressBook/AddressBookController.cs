@@ -4,8 +4,8 @@ using EPiServer.Framework.Localization;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Customer.ViewModels;
-using Foundation.Commerce.Models.Pages;
+using Foundation.Features.Home;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Foundation.Features.MyAccount.AddressBook
@@ -16,22 +16,24 @@ namespace Foundation.Features.MyAccount.AddressBook
         private readonly IContentLoader _contentLoader;
         private readonly IAddressBookService _addressBookService;
         private readonly LocalizationService _localizationService;
-
+        private readonly ICustomerService _customerService;
 
         public AddressBookController(
             IContentLoader contentLoader,
             IAddressBookService addressBookService,
-            LocalizationService localizationService)
+            LocalizationService localizationService,
+            ICustomerService customerService)
         {
             _contentLoader = contentLoader;
             _addressBookService = addressBookService;
             _localizationService = localizationService;
+            _customerService = customerService;
         }
 
         [HttpGet]
         public ActionResult Index(AddressBookPage currentPage)
         {
-            return View(_addressBookService.GetAddressBookViewModel(currentPage));
+            return View(GetAddressBookViewModel(currentPage));
         }
 
         [HttpGet]
@@ -54,7 +56,7 @@ namespace Foundation.Features.MyAccount.AddressBook
         [ChildActionOnly]
         public PartialViewResult AddNewAddress(string multiShipmentUrl)
         {
-            var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+            var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
             var addressBookPage = _contentLoader.Get<PageData>(startPage.AddressBookPage) as AddressBookPage;
             var model = new AddressViewModel(addressBookPage)
             {
@@ -168,7 +170,7 @@ namespace Foundation.Features.MyAccount.AddressBook
             return View("~/Features/MyAccount/AddressBook/EditForm.cshtml", viewModel);
         }
 
-        private CommerceHomePage GetStartPage() => _contentLoader.Get<PageData>(ContentReference.StartPage) as CommerceHomePage;
+        private HomePage GetStartPage() => _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
 
         [HttpGet]
         [AllowAnonymous]
@@ -180,7 +182,20 @@ namespace Foundation.Features.MyAccount.AddressBook
                 Region = region
             };
             ViewData["Name"] = inputName;
-            return PartialView("~/Features/Shared/Foundation/DisplayTemplates/CountryRegionViewModel.cshtml", countryRegion);
+            return PartialView("~/Features/Shared/Views/DisplayTemplates/CountryRegionViewModel.cshtml", countryRegion);
+        }
+
+        public AddressCollectionViewModel GetAddressBookViewModel(AddressBookPage addressBookPage)
+        {
+            return new AddressCollectionViewModel(addressBookPage)
+            {
+                CurrentContent = addressBookPage,
+                Addresses = _customerService.GetCurrentContact()?
+                    .Contact?
+                    .ContactAddresses
+                    .Select(x => _addressBookService.ConvertAddress(x))
+                    ?? Enumerable.Empty<AddressModel>()
+            };
         }
     }
 }

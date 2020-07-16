@@ -1,4 +1,6 @@
-﻿@model GenericPackageViewModel
+﻿@using Foundation.Features.CatalogContent.Package
+
+@model GenericPackageViewModel
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.Package.Code" />
 <div class="row">
@@ -10,7 +12,6 @@
     </div>
     <div class="col-md-8 col-sm-12">
         <h4 class="title">@Html.PropertyFor(x => x.Package.Name)</h4>
-
         <div class="row">
             <div class="col-12">
                 @if (Model.DiscountedPrice < Model.ListingPrice)
@@ -22,7 +23,6 @@
                 {
                     <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
                 }
-
             </div>
         </div>
         @Html.Partial("_ListVariants", Model.Entries)
@@ -39,9 +39,7 @@
                     {
                         <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
                     }
-
                 </div>
-
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="col-6">
@@ -70,6 +68,5 @@
                 </div>
             </div>
         }
-
     </div>
 </div>
