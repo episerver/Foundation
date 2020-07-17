@@ -1689,6 +1689,8 @@
     <Content Include="Assets\js\vendors\pdfobject\PdfObject.js" />
     <Content Include="Assets\js\vendors\popper\popper.min.js" />
     <Content Include="Assets\js\vendors\spur-admin\spur.js" />
+    <Content Include="Assets\scss\vendors\jquery\images\css_images_ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Assets\scss\vendors\jquery\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
     <Content Include="Features\Blocks\HeroBlock\_hero-block.scss" />
     <Content Include="Assets\scss\templates\pages\_standard-page.scss" />
     <Content Include="Assets\scss\templates\pages\_location.scss" />
