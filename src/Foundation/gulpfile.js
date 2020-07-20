@@ -30,7 +30,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('./assets/scss/**/*.scss', gulp.series('sass'));
+    gulp.watch('./**/*.scss', gulp.series('sass'));
     gulp.watch('./assets/js/features/**/*.js', gulp.series('js'));
 });
 
