@@ -1,4 +1,6 @@
-﻿@using Foundation.Features.Header
+﻿@using EPiServer.Web;
+@using EPiServer.Web.Routing
+@using Foundation.Features.Header
 
 @model HeaderViewModel
 
@@ -15,10 +17,18 @@
                 <div class="navigation__logo @(Model.HomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
                      style="@(Model.HomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
                     <a href="/">
-                        <picture class="img-fluid">
-                            <source data-srcset="@Url.ContentUrl(Model.HomePage.SiteLogo)?format=webp&width=225" type="image/webp">
-                            <img data-src="@Url.ContentUrl(Model.HomePage.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.HomePage.SiteLogo) />
-                        </picture>
+                        @if (PageEditing.PageIsInEditMode)
+                        {
+                            <img class="img-fluid src="@UrlResolver.Current.GetUrl(Model.HomePage.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })"
+                                 @Html.EditAttributes(x => x.HomePage.SiteLogo)" />
+                        }
+                        else
+                        {
+                            <picture class="img-fluid">
+                                <source data-srcset="@Url.ContentUrl(Model.HomePage.SiteLogo)?format=webp&width=225" type="image/webp">
+                                <img data-src="@Url.ContentUrl(Model.HomePage.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.HomePage.SiteLogo) />
+                            </picture>
+                        }
                     </a>
                 </div>
                 <ul class="navigation__right">
