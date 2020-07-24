@@ -1,8 +1,8 @@
 ﻿using EPiServer.Core;
-using Foundation.Features.Blog.BlogItem;
+using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.LandingPages.LandingPage;
 using Foundation.Features.Shared;
-using Foundation.Features.Standard;
+using Foundation.Features.StandardPage;
 using PowerSlice;
 
 namespace Foundation.Infrastructure.PowerSlices

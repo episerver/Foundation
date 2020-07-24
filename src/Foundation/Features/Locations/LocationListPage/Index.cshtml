@@ -15,16 +15,16 @@
 
 @section AdditionalScripts
 {
-    <script type="text/javascript" src="/Assets/js/vendors/jsuri/jsuri-1.1.1.min.js"></script>
-    <script type="text/javascript" src="/Assets/js/vendors/bootstrap-slider/bootstrap-slider.js"></script>
-    <script type="text/javascript" src="/Assets/js/Features/Selective/Locations.js"></script>
+    <script type="text/javascript" src="~/Assets/js/vendors/jsuri/jsuri-1.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Assets/js/vendors/bootstrap-slider/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="~/Features/Locations/LocationListPage/Locations.js"></script>
     <script type="text/javascript">
         var locations = new Locations();
         function GetMap() { locations.loadMapScenario(); };
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?&callback=GetMap' async defer></script>
 }
-<section class="main-container col2-right-layout wow bounceInUp animated">
+<section class="wow bounceInUp animated">
     <div class="main container">
         <div class="row">
             @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)

@@ -1,22 +1,39 @@
 {
-  "name": "foundation",
+  "name": "Foundation",
   "version": "1.0.0",
-  "description": "foundation",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "",
+  "private": "true",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "axios": "^0.19.2",
+    "easy-autocomplete": "^1.3.5",
+    "feather-icons": "^4.28.0",
+    "jquery": "^3.5.1",
+    "lazysizes": "^5.2.2",
+    "pdfobject": "^2.1.1"
   },
-  "author": "Episerver",
-  "license": "ISC",
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^6.1.0",
-    "gulp-changed": "^3.2.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-terser": "^1.1.7",
-    "node-sass": "^4.12.0"
-  }
+    "bootstrap": "^4.5.0",
+    "css-loader": "^3.6.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "popper.js": "^1.16.1",
+    "sass-loader": "^9.0.2",
+    "source-map-loader": "^1.0.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.0.9"
+  },
+  "scripts": {
+    "dev": "webpack --config webpack.dev.js",
+    "prod": "webpack --config webpack.prod.js",
+    "watch": "webpack --config webpack.dev.js --watch"
+  },
+  "keywords": [
+    "episerver",
+    "foundation"
+  ],
+  "author": "Episerver",
+  "license": "Apache-2.0"
 }
