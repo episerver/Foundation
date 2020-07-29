@@ -15,17 +15,13 @@ using System.Linq;
 
 namespace Foundation.Cms.Settings
 {
-
     [SearchProvider]
     public class GlobalSettingsSearchProvider : ContentSearchProviderBase<SettingsBase, ContentType>
     {
         internal const string SearchArea = "Settings/globalsettings";
-
-        private readonly IContentLoader contentLoader;
-
-        private readonly LocalizationService localizationService;
-
-        private readonly ISettingsService settingsService;
+        private readonly IContentLoader _contentLoader;
+        private readonly LocalizationService _localizationService;
+        private readonly ISettingsService _settingsService;
 
         public GlobalSettingsSearchProvider(
             LocalizationService localizationService,
@@ -50,14 +46,14 @@ namespace Foundation.Cms.Settings
                 templateResolver: templateResolver,
                 uiDescriptorRegistry: uiDescriptorRegistry)
         {
-            this.contentLoader = contentLoader;
-            this.settingsService = settingsService;
-            this.localizationService = localizationService;
+            _contentLoader = contentLoader;
+            _settingsService = settingsService;
+            _localizationService = localizationService;
         }
 
         public override string Area => SearchArea;
 
-        public override string Category => localizationService.GetString("/episerver/cms/components/globalsettings/title");
+        public override string Category => _localizationService.GetString("/episerver/cms/components/globalsettings/title");
 
         protected override string IconCssClass => "epi-iconSettings";
 
@@ -72,7 +68,7 @@ namespace Foundation.Cms.Settings
             var str = query.SearchQuery.Trim();
 
             var globalSettings =
-                contentLoader.GetChildren<SettingsBase>(contentLink: settingsService.GlobalSettingsRoot);
+                _contentLoader.GetChildren<SettingsBase>(contentLink: _settingsService.GlobalSettingsRoot);
 
             foreach (var setting in globalSettings)
             {
@@ -96,7 +92,7 @@ namespace Foundation.Cms.Settings
         {
             return content == null
                        ? string.Empty
-                       : $"{((SettingsBase)content).Name} {localizationService.GetString("/contentrepositories/globalsettings/customselecttitle").ToLower()}";
+                       : $"{((SettingsBase)content).Name} {_localizationService.GetString("/contentrepositories/globalsettings/customselecttitle").ToLower()}";
         }
 
         protected override string GetEditUrl(SettingsBase contentData, out bool onCurrentHost)
