@@ -525,7 +525,7 @@ namespace Foundation.Commerce.Install.Steps
         private static void AddMetaFieldToForms(MetaClass metaClass, MetaField newField)
         {
             var formNames = new string[] { FormController.BaseFormType, FormController.GeneralViewFormType, FormController.ShortViewFormType, FormController.CreateFormType };
-            foreach (string formName in formNames)
+            foreach (var formName in formNames)
             {
                 FormController.AddMetaPrimitive(metaClass.Name, formName, newField.Name);
             }

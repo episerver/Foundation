@@ -163,7 +163,6 @@ namespace Foundation.Features.Checkout
             return View("CheckoutMethod", viewModel);
         }
 
-
         [HttpGet]
         [OutputCache(Duration = 0, NoStore = true)]
         public ActionResult AddPayment(CheckoutPage currentPage)
@@ -190,7 +189,6 @@ namespace Foundation.Features.Checkout
             viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
             return View("PunchoutOrder", viewModel);
         }
-
 
         [HttpPost]
         public ActionResult Update(CheckoutPage currentPage, UpdateShippingMethodViewModel shipmentViewModel, IPaymentMethod paymentOption)
@@ -275,8 +273,10 @@ namespace Foundation.Features.Checkout
 
                 foreach (var payment in model.Payments)
                 {
-                    var paymentViewmodel = new CheckoutViewModel();
-                    paymentViewmodel.Payment = payment;
+                    var paymentViewmodel = new CheckoutViewModel
+                    {
+                        Payment = payment
+                    };
                     _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
                 }
                 _orderRepository.Save(CartWithValidationIssues.Cart);
@@ -299,8 +299,10 @@ namespace Foundation.Features.Checkout
 
             foreach (var payment in model.Payments)
             {
-                var paymentViewmodel = new CheckoutViewModel();
-                paymentViewmodel.Payment = payment;
+                var paymentViewmodel = new CheckoutViewModel
+                {
+                    Payment = payment
+                };
                 _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
             }
             _orderRepository.Save(CartWithValidationIssues.Cart);
@@ -431,8 +433,10 @@ namespace Foundation.Features.Checkout
 
             foreach (var payment in model.Payments)
             {
-                var paymentViewmodel = new CheckoutViewModel();
-                paymentViewmodel.Payment = payment;
+                var paymentViewmodel = new CheckoutViewModel
+                {
+                    Payment = payment
+                };
                 _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
             }
             _orderRepository.Save(CartWithValidationIssues.Cart);
@@ -465,12 +469,16 @@ namespace Foundation.Features.Checkout
                 }
 
                 if (checkoutViewModel.BillingAddressType == 0)
+                {
                     _addressBookService.Save(checkoutViewModel.BillingAddress);
+                }
 
                 foreach (var shipment in checkoutViewModel.Shipments)
                 {
                     if (shipment.ShippingAddressType == 0 && shipment.ShippingMethodId != _cartService.InStorePickupInfoModel.MethodId)
+                    {
                         _addressBookService.Save(shipment.Address);
+                    }
                 }
 
                 if (Request.IsAuthenticated)
@@ -631,10 +639,7 @@ namespace Foundation.Features.Checkout
             }
         }
 
-        public void AddSubscription(CheckoutViewModel checkoutViewModel)
-        {
-            _checkoutService.UpdatePaymentPlan(CartWithValidationIssues.Cart, checkoutViewModel);
-        }
+        public void AddSubscription(CheckoutViewModel checkoutViewModel) => _checkoutService.UpdatePaymentPlan(CartWithValidationIssues.Cart, checkoutViewModel);
 
         public void UpdateShipmentAddress(CheckoutViewModel checkoutViewModel)
         {
@@ -665,7 +670,6 @@ namespace Foundation.Features.Checkout
                         viewModel.Shipments[i].Address = checkoutViewModel.Shipments[i].Address;
                     }
                 }
-
             }
 
             _checkoutService.UpdateShippingAddresses(CartWithValidationIssues.Cart, viewModel);
@@ -674,7 +678,7 @@ namespace Foundation.Features.Checkout
         // using on OrderDetail page
         public ActionResult LoadOrder(int orderLink)
         {
-            bool success = false;
+            var success = false;
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderLink);
 
             DateTime.TryParse(purchaseOrder.Properties[Constant.Quote.QuoteExpireDate].ToString(), out var quoteExpireDate);
@@ -710,8 +714,10 @@ namespace Foundation.Features.Checkout
 
             foreach (var payment in model.Payments)
             {
-                var paymentViewmodel = new CheckoutViewModel();
-                paymentViewmodel.Payment = payment;
+                var paymentViewmodel = new CheckoutViewModel
+                {
+                    Payment = payment
+                };
                 _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
             }
             _orderRepository.Save(CartWithValidationIssues.Cart);
@@ -730,8 +736,10 @@ namespace Foundation.Features.Checkout
                 var model = CreateCheckoutViewModel(currentPage);
                 foreach (var payment in model.Payments)
                 {
-                    var paymentViewmodel = new CheckoutViewModel();
-                    paymentViewmodel.Payment = payment;
+                    var paymentViewmodel = new CheckoutViewModel
+                    {
+                        Payment = payment
+                    };
                     _checkoutService.RemovePaymentFromCart(CartWithValidationIssues.Cart, paymentViewmodel);
                 }
                 _orderRepository.Save(CartWithValidationIssues.Cart);
@@ -741,7 +749,6 @@ namespace Foundation.Features.Checkout
 
             return Json(new { Status = false, Message = string.Join(", ", result.ValidationMessages) });
         }
-
 
         public ActionResult OnPurchaseException(ExceptionContext filterContext)
         {

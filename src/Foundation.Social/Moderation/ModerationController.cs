@@ -45,6 +45,5 @@ namespace Foundation.Social.Moderation
                 Content = "Delete successfully.",
             };
         }
-
     }
 }

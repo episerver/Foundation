@@ -39,7 +39,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         private CartWithValidationIssues _cart;
         private readonly IOrderRepository _orderRepository;
         private readonly ICommerceTrackingService _trackingService;
-        readonly CartViewModelFactory _cartViewModelFactory;
+        private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly IQuickOrderService _quickOrderService;
         private readonly ReferenceConverter _referenceConverter;
         private readonly ICustomerService _customerService;
@@ -211,7 +211,6 @@ namespace Foundation.Features.NamedCarts.Wishlist
 
             return Redirect(_urlResolver.GetUrl(wishlistPage));
         }
-
 
         [HttpPost]
         public async Task<JsonResult> RemoveWishlistItem(RequestParamsToCart param) // only use Code

@@ -11,7 +11,10 @@ namespace Foundation.Demo.Giftcards
     {
         private readonly IGiftCardService _giftCardService;
 
-        public GiftCardManagerController(IGiftCardService giftCardService) => _giftCardService = giftCardService;
+        public GiftCardManagerController(IGiftCardService giftCardService)
+        {
+            _giftCardService = giftCardService;
+        }
 
         [MenuItem("/global/foundation/giftcards", TextResourceKey = "/Shared/GiftCards", SortIndex = 300)]
         public ActionResult Index() => View();

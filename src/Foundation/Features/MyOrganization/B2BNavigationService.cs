@@ -9,7 +9,10 @@ namespace Foundation.Features.MyOrganization
     {
         private readonly ICustomerService _customerService;
 
-        public B2BNavigationService(ICustomerService customerService) => _customerService = customerService;
+        public B2BNavigationService(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         public LinkItemCollection FilterB2BNavigationForCurrentUser(LinkItemCollection b2BLinks)
         {

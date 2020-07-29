@@ -58,6 +58,5 @@ namespace Foundation.Features.Search
             SearchClient.Instance.Conventions.ForInstancesOf<GenericProduct>().IncludeField(x => x.AvailableColors());
             SearchClient.Instance.Conventions.NestedConventions.ForInstancesOf<GenericProduct>().Add(v => v.VariationModels());
         }
-
     }
 }

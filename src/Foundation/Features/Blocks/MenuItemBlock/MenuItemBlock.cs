@@ -61,9 +61,6 @@ namespace Foundation.Features.Blocks.MenuItemBlock
     [PropertyDefinitionTypePlugIn]
     public class GroupLinkCollectionProperty : PropertyList<GroupLinkCollection>
     {
-        protected override GroupLinkCollection ParseItem(string value)
-        {
-            return JsonConvert.DeserializeObject<GroupLinkCollection>(value);
-        }
+        protected override GroupLinkCollection ParseItem(string value) => JsonConvert.DeserializeObject<GroupLinkCollection>(value);
     }
 }

@@ -102,7 +102,7 @@ namespace Foundation.Features.Checkout.Payments
             payment.Amount = amount;
             if (UseSelectedCreditCard && !string.IsNullOrEmpty(SelectedCreditCardId))
             {
-                CreditCard creditCard = _creditCardService.GetCreditCard(SelectedCreditCardId);
+                var creditCard = _creditCardService.GetCreditCard(SelectedCreditCardId);
                 payment.CreditCardNumber = creditCard.CreditCardNumber;
                 payment.CreditCardSecurityCode = creditCard.SecurityCode;
                 payment.ExpirationMonth = creditCard.ExpirationMonth ?? 1;
@@ -128,7 +128,7 @@ namespace Foundation.Features.Checkout.Payments
         {
             get
             {
-                foreach (string property in ValidatedProperties)
+                foreach (var property in ValidatedProperties)
                 {
                     if (GetValidationError(property) != null)
                     {

@@ -58,7 +58,7 @@ namespace Foundation.Features.MyAccount.OrderDetails
         [ValidateAntiForgeryToken]
         public ActionResult CreateReturn(int orderGroupId, int shipmentId, int lineItemId, decimal returnQuantity, string reason)
         {
-            ReturnFormStatus formStatus = _ordersService.CreateReturn(orderGroupId, shipmentId, lineItemId, returnQuantity, reason);
+            var formStatus = _ordersService.CreateReturn(orderGroupId, shipmentId, lineItemId, returnQuantity, reason);
             return Json(new
             {
                 Result = true,
@@ -183,10 +183,8 @@ namespace Foundation.Features.MyAccount.OrderDetails
                     {
                         LogManager.GetLogger(GetType()).Error("Failed to update order status to Quote Expired.", ex.StackTrace);
                     }
-
                 }
             }
-
 
             if (!string.IsNullOrEmpty(purchaseOrder["QuoteStatus"]?.ToString()) &&
                 (purchaseOrder.Status == OrderStatus.InProgress.ToString() ||

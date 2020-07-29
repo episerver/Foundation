@@ -10,7 +10,6 @@ using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.ViewModels;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -79,7 +78,6 @@ namespace Foundation.Features.Blocks.RatingBlock
             // Create a rating block view model to fill the frontend block view
             var blockModel = new RatingBlockViewModel(currentBlock, currentPageLink)
             {
-
                 //get messages for view
                 Messages = RetrieveMessages(MessageKey)
             };
@@ -247,7 +245,7 @@ namespace Foundation.Features.Blocks.RatingBlock
         /// <param name="ratingForm">The rating form that was submitted.</param>
         private void ValidateSubmitRatingForm(RatingFormViewModel ratingForm)
         {
-            string message = string.Empty;
+            var message = string.Empty;
             // Validate user is logged in
             if (!User.Identity.IsAuthenticated)
             {
@@ -264,7 +262,7 @@ namespace Foundation.Features.Blocks.RatingBlock
                 {
                     // Retrieve and validate the page identifier of the page that was rated
                     _pageId = _pageRepository.GetPageId(ratingForm.CurrentLink);
-                    if (String.IsNullOrWhiteSpace(_pageId))
+                    if (string.IsNullOrWhiteSpace(_pageId))
                     {
                         message = "The page id of this page could not be determined. Please try rating this page again.";
                     }
@@ -272,7 +270,7 @@ namespace Foundation.Features.Blocks.RatingBlock
                     {
                         // Retrieve and validate the user identifier of the rater
                         _userId = _userRepository.GetUserId(User);
-                        if (String.IsNullOrWhiteSpace(_userId))
+                        if (string.IsNullOrWhiteSpace(_userId))
                         {
                             message = "There was an error identifying the logged in user. Please make sure you are logged in and try again.";
                         }

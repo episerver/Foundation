@@ -36,10 +36,7 @@ namespace Foundation.Features.MyAccount.AddressBook
         }
 
         [HttpGet]
-        public ActionResult Index(AddressBookPage currentPage)
-        {
-            return View(GetAddressBookViewModel(currentPage));
-        }
+        public ActionResult Index(AddressBookPage currentPage) => View(GetAddressBookViewModel(currentPage));
 
         [HttpGet]
         public ActionResult EditForm(AddressBookPage currentPage, string addressId)
@@ -118,7 +115,9 @@ namespace Foundation.Features.MyAccount.AddressBook
             }
 
             if (string.IsNullOrEmpty(returnUrl))
+            {
                 return RedirectToAction("Index", new { node = referenceSettings?.AddressBookPage ?? ContentReference.StartPage });
+            }
 
             return Redirect(returnUrl);
         }

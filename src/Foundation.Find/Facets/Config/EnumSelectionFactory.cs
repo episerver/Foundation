@@ -7,7 +7,7 @@ namespace Foundation.Find.Facets.Config
 {
     public class EnumSelectionFactory<TEnum> : ISelectionFactory where TEnum : struct, IConvertible
     {
-        private static Type _descriptionType = typeof(EnumSelectionDescriptionAttribute);
+        private static readonly Type _descriptionType = typeof(EnumSelectionDescriptionAttribute);
 
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
@@ -33,7 +33,9 @@ namespace Foundation.Find.Facets.Config
             var member = type.GetMember(enumName).FirstOrDefault();
 
             if (object.Equals(member, null))
+            {
                 return null;
+            }
 
             return member
                 .GetCustomAttributes(_descriptionType, false)

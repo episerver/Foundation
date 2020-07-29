@@ -28,10 +28,7 @@ namespace Foundation.Features.Checkout.Payments
             });
         }
 
-        public static EntityObject GetGiftCardById(PrimaryKeyId giftCardId)
-        {
-            return BusinessManager.Load(GiftCardMetaClass, giftCardId);
-        }
+        public static EntityObject GetGiftCardById(PrimaryKeyId giftCardId) => BusinessManager.Load(GiftCardMetaClass, giftCardId);
 
         public static PrimaryKeyId CreateGiftCard(
             string giftCardName,

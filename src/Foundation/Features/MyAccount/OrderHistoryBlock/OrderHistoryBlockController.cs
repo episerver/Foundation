@@ -93,7 +93,6 @@ namespace Foundation.Features.MyAccount.OrdersBlock
                         {
                             LogManager.GetLogger(GetType()).Error("Failed to update order status to Quote Expired.", ex.StackTrace);
                         }
-
                     }
                 }
 

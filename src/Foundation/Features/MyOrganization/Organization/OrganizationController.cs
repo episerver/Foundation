@@ -75,8 +75,11 @@ namespace Foundation.Features.MyOrganization.Organization
                 {
                     var budget = _budgetService.GetCurrentOrganizationBudget(suborganization.OrganizationId);
                     if (budget != null)
+                    {
                         viewModel.Organization.SubOrganizations.ElementAt(organizationIndex).CurrentBudgetViewModel =
                             new BudgetViewModel(budget);
+                    }
+
                     organizationIndex++;
                 }
             }

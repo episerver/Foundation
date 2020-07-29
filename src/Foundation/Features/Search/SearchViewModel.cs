@@ -11,12 +11,10 @@ namespace Foundation.Features.Search
     {
         public SearchViewModel()
         {
-
         }
 
         public SearchViewModel(T currentContent) : base(currentContent)
         {
-
         }
 
         public FilterOptionViewModel FilterOption { get; set; }

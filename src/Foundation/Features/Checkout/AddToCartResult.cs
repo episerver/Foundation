@@ -5,7 +5,10 @@ namespace Foundation.Features.Checkout
 {
     public class AddToCartResult
     {
-        public AddToCartResult() => ValidationMessages = new List<string>();
+        public AddToCartResult()
+        {
+            ValidationMessages = new List<string>();
+        }
 
         public bool EntriesAddedToCart { get; set; }
         public IList<string> ValidationMessages { get; private set; }

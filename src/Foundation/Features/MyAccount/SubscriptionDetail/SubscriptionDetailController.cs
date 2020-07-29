@@ -55,7 +55,6 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
 
             foreach (var purchaseOrder in purchaseOrders)
             {
-
                 // Assume there is only one form per purchase.
                 var form = purchaseOrder.GetFirstForm();
                 var billingAddress = new AddressModel();
@@ -90,7 +89,6 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
 
             return View(viewModel);
         }
-
 
     }
 }

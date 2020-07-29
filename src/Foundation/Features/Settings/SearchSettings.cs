@@ -42,7 +42,6 @@ namespace Foundation.Features.Settings
           Order = 300)]
         [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterConfigurationItem>))]
         public virtual IList<FacetFilterConfigurationItem> SearchFiltersConfiguration { get; set; }
-
     }
 
 

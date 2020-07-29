@@ -40,8 +40,10 @@ namespace Foundation.Social.Repositories.Comments
                 addedComment = _commentService.Add(newComment);
 
                 if (addedComment == null)
+                {
                     throw new SocialRepositoryException(
                         "The newly posted comment could not be added. Please try again");
+                }
             }
             catch (SocialAuthenticationException ex)
             {

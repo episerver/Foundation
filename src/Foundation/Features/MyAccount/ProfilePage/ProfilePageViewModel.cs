@@ -11,12 +11,10 @@ namespace Foundation.Features.MyAccount.ProfilePage
     {
         public ProfilePageViewModel()
         {
-
         }
 
         public ProfilePageViewModel(ProfilePage profilePage) : base(profilePage)
         {
-
         }
 
         public List<OrderViewModel> Orders { get; set; }

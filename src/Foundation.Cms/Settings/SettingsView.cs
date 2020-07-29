@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Framework.Localization;
+﻿using EPiServer.Framework.Localization;
 using EPiServer.Shell;
 using EPiServer.Shell.ViewComposition;
 using EPiServer.Shell.ViewComposition.Containers;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 
 namespace Foundation.Cms.Settings
 {
-
 
     [CompositeView]
     public class SettingsView : ICompositeView,
@@ -32,7 +30,7 @@ namespace Foundation.Cms.Settings
         {
             get
             {
-                ContentReference defaultContext = _settingsService.GlobalSettingsRoot;
+                var defaultContext = _settingsService.GlobalSettingsRoot;
                 return defaultContext.GetUri(false).ToString();
             }
         }
@@ -48,7 +46,7 @@ namespace Foundation.Cms.Settings
                     return _rootContainer;
                 }
 
-                IContainer navigation = new PinnablePane().Add(
+                var navigation = new PinnablePane().Add(
                     new ComponentPaneContainer { ContainerType = ContainerType.System }.Add(
                         new GlobalSettingsComponent().CreateComponent()));
 
@@ -61,7 +59,7 @@ namespace Foundation.Cms.Settings
                             .Add(new ComponentGroup() { PlugInArea = PlugInArea.AssetsDefaultGroup, ContainerType = ContainerType.System, SortOrder = 10, HeadingLocalizationKey = "/episerver/cms/homeview/assets" })
                     );
 
-                IContainer<BorderSettingsDictionary> content = new BorderContainer()
+                var content = new BorderContainer()
                     .Add(
                         new ContentPane { PlugInArea = "/episerver/cms/action" },
                         new BorderSettingsDictionary(region: BorderContainerRegion.Top)).Add(
@@ -92,24 +90,12 @@ namespace Foundation.Cms.Settings
 
         public string RouteSegment
         {
-            get
-            {
-                return routeSegment ?? (routeSegment = "settings");
-            }
+            get => routeSegment ?? (routeSegment = "settings");
 
-            set
-            {
-                routeSegment = value;
-            }
+            set => routeSegment = value;
         }
 
-        public string Title
-        {
-            get
-            {
-                return "Settings";
-            }
-        }
+        public string Title => "Settings";
 
         public ICompositeView CreateView()
         {
@@ -118,9 +104,6 @@ namespace Foundation.Cms.Settings
                 settingsService: _settingsService);
         }
 
-        public IEnumerable<string> GetComponentCategories()
-        {
-            return new string[] { };
-        }
+        public IEnumerable<string> GetComponentCategories() => new string[] { };
     }
 }

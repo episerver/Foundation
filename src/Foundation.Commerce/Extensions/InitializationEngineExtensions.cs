@@ -220,10 +220,7 @@ namespace Foundation.Commerce.Extensions
             }
         }
 
-        private static void UpdateMetaForm(FormDocument formDocument)
-        {
-            SqlFormDocumentManager.Save(formDocument);
-        }
+        private static void UpdateMetaForm(FormDocument formDocument) => SqlFormDocumentManager.Save(formDocument);
 
         private static FormDocument GetContactBaseForm()
         {

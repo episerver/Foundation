@@ -85,6 +85,5 @@ namespace Foundation.Features.Preview
 
             return templateModel != null;
         }
-
     }
 }

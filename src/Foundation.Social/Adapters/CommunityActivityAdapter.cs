@@ -47,11 +47,9 @@ namespace Foundation.Social.Adapters
             _feedModel.Description = activity.Body;
         }
 
-        public void Visit(PageRatingActivity activity)
-        {
+        public void Visit(PageRatingActivity activity) =>
             // Interpret activity and set description.
             _feedModel.Heading = string.Format("{0} rated \"{1}\" with a {2}.", _actor, _pageName, activity.Value);
-        }
 
         public void Visit(CommunityActivity activity) => activity.Accept(this);
 

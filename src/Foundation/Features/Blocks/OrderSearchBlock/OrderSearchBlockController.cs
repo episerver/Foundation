@@ -177,8 +177,10 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
 
         private OrderFilter CreateFilter()
         {
-            var filter = new OrderFilter();
-            filter.Keyword = _cookieService.Get(_KEYWORD);
+            var filter = new OrderFilter
+            {
+                Keyword = _cookieService.Get(_KEYWORD)
+            };
 
             var dateFromStr = _cookieService.Get(_DATEFROM);
             if (!string.IsNullOrEmpty(dateFromStr))

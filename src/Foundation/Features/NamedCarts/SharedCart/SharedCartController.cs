@@ -24,7 +24,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         private readonly ICartService _cartService;
         private CartWithValidationIssues _sharedCart;
         private readonly IOrderRepository _orderRepository;
-        readonly CartViewModelFactory _cartViewModelFactory;
+        private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly ICustomerService _customerService;
         private readonly ReferenceConverter _referenceConverter;
         private readonly ISettingsService _settingsService;

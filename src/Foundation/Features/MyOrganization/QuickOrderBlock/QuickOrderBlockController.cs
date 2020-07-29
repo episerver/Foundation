@@ -16,9 +16,7 @@ using Foundation.Infrastructure;
 using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
@@ -85,7 +83,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             {
                 if (!product.ProductName.Equals("removed"))
                 {
-                    ContentReference variationReference = _referenceConverter.GetContentLink(product.Sku);
+                    var variationReference = _referenceConverter.GetContentLink(product.Sku);
                     var currentQuantity = GetCurrentItemQuantity(product.Sku);
                     product.Quantity += (int)currentQuantity;
                     var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(product.Quantity), product.Sku);
@@ -134,10 +132,10 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         [ValidateAntiForgeryToken]
         public ActionResult AddFromFile()
         {
-            HttpPostedFileBase fileContent = Request.Files[0];
+            var fileContent = Request.Files[0];
             if (fileContent != null && fileContent.ContentLength > 0)
             {
-                Stream uploadedFile = fileContent.InputStream;
+                var uploadedFile = fileContent.InputStream;
                 var fileName = fileContent.FileName;
                 var productsList = new List<QuickOrderProductViewModel>();
 
@@ -152,7 +150,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                 foreach (var record in fileData)
                 {
                     //find the product
-                    ContentReference variationReference = _referenceConverter.GetContentLink(record.Sku);
+                    var variationReference = _referenceConverter.GetContentLink(record.Sku);
                     var product = _quickOrderService.GetProductByCode(variationReference);
 
                     product.Quantity = record.Quantity;
@@ -196,11 +194,10 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                 {
                     if (!product.ProductName.Equals("removed"))
                     {
-                        ContentReference variationReference = _referenceConverter.GetContentLink(product.Sku);
+                        var variationReference = _referenceConverter.GetContentLink(product.Sku);
                         var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(product.Quantity), product.Sku);
                         if (responseMessage.IsNullOrEmpty())
                         {
-
                             var result = _cartService.AddToCart(quoteCart, product.Sku, 1, "delivery", "");
                             if (!result.EntriesAddedToCart)
                             {

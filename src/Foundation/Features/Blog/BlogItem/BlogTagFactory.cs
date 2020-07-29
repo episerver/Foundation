@@ -68,7 +68,6 @@ namespace Foundation.Features.Blog.BlogItem
                         tagitem.Count++;
                     }
                 }
-
             }
 
             if (!tags.Any())
@@ -119,11 +118,9 @@ namespace Foundation.Features.Blog.BlogItem
                 }
 
                 tag.Weight = weight;
-
             }
 
             return tags;
-
         }
     }
 }

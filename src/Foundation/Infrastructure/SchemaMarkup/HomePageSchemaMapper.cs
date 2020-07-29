@@ -51,7 +51,6 @@ namespace Foundation.Infrastructure.SchemaMarkup
                 Url = content.GetUri(true),
                 PotentialAction = potentialAction
             };
-
         }
     }
 }

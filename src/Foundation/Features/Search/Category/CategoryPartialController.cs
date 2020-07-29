@@ -11,7 +11,10 @@ namespace Foundation.Features.Search.Category
     {
         private readonly ISearchViewModelFactory _viewModelFactory;
 
-        public CategoryPartialController(ISearchViewModelFactory viewModelFactory) => _viewModelFactory = viewModelFactory;
+        public CategoryPartialController(ISearchViewModelFactory viewModelFactory)
+        {
+            _viewModelFactory = viewModelFactory;
+        }
 
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public override ActionResult Index(GenericNode currentContent)

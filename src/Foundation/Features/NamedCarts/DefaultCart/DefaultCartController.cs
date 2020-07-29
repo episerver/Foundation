@@ -533,14 +533,12 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage); ;
             return View("LargeCart", viewModel);
-
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Reorder(string orderId)
         {
-
             if (!int.TryParse(orderId, out var orderIntId))
             {
                 return new HttpStatusCodeResult(500, "Error reordering order");

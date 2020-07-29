@@ -136,10 +136,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             return View(viewModel);
         }
 
-        public ActionResult ViewAll()
-        {
-            return Redirect(UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderHistoryPage ?? ContentReference.StartPage));
-        }
+        public ActionResult ViewAll() => Redirect(UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderHistoryPage ?? ContentReference.StartPage));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -217,10 +214,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             filter.Addresses.AddRange(addresses.Select(x => new KeyValuePair<string, string>(x.Name, x.AddressId)));
         }
 
-        private IEnumerable<IPurchaseOrder> FilterOrders(IEnumerable<IPurchaseOrder> orders, OrderFilter filter)
-        {
-            return orders.Where(x => Filter(filter, x));
-        }
+        private IEnumerable<IPurchaseOrder> FilterOrders(IEnumerable<IPurchaseOrder> orders, OrderFilter filter) => orders.Where(x => Filter(filter, x));
 
         private bool Filter(OrderFilter filter, IPurchaseOrder order)
         {
@@ -293,8 +287,10 @@ namespace Foundation.Features.MyAccount.OrderHistory
 
         private OrderFilter GetFilter()
         {
-            var filter = new OrderFilter();
-            filter.Keyword = _cookieService.Get(_KEYWORD);
+            var filter = new OrderFilter
+            {
+                Keyword = _cookieService.Get(_KEYWORD)
+            };
 
             var dateFromStr = _cookieService.Get(_DATEFROM);
             if (!string.IsNullOrEmpty(dateFromStr))

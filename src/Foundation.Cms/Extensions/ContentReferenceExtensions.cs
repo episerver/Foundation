@@ -94,10 +94,7 @@ namespace Foundation.Cms.Extensions
         /// </summary>
         /// <param name="contentRef">The content reference of a routable content item to get the URL for.</param>
         /// <param name="isAbsolute">Whether the full URL including protocol and host should be returned.</param>
-        public static Uri GetUri(this ContentReference contentRef, bool isAbsolute = false)
-        {
-            return contentRef.GetUri(ContentLanguage.PreferredCulture.Name, isAbsolute);
-        }
+        public static Uri GetUri(this ContentReference contentRef, bool isAbsolute = false) => contentRef.GetUri(ContentLanguage.PreferredCulture.Name, isAbsolute);
 
         /// <summary>
         /// Helper method to get a URL string for a content reference using the provided culture code
@@ -126,6 +123,5 @@ namespace Foundation.Cms.Extensions
             var baseUrl = (host?.Name ?? "*").Equals("*") ? siteDefinition.SiteUrl : new Uri($"http{((host.UseSecureConnection ?? false) ? "s" : string.Empty)}://{host.Name}");
             return new Uri(baseUrl, urlString);
         }
-
     }
 }

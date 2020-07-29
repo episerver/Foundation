@@ -50,7 +50,11 @@ namespace Foundation.Features.Locations
                 else
                 {
                     var cat = catpages.FirstOrDefault(c => c.URLSegment.ToLower() == k);
-                    if (cat == null) return null;
+                    if (cat == null)
+                    {
+                        return null;
+                    }
+
                     additionalcats.Add(cat.Name);
                 }
 
@@ -58,10 +62,12 @@ namespace Foundation.Features.Locations
                 //if s is continent, set continent
                 //if s is another category, set other category
             }
-            if (additionalcats.Count > 0) segmentContext.SetCustomRouteData("Category", string.Join(",", additionalcats.ToArray()));
+            if (additionalcats.Count > 0)
+            {
+                segmentContext.SetCustomRouteData("Category", string.Join(",", additionalcats.ToArray()));
+            }
 
             return cp;
-
         }
     }
 }

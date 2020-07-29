@@ -9,7 +9,7 @@ namespace Foundation.Commerce.Install
     public class FoundationDiskFileProvider : FileProvider
     {
         private bool _searchSubdirectories;
-        private static Dictionary<string, List<FoundationDiskFileDescriptor>> _cache = new Dictionary<string, List<FoundationDiskFileDescriptor>>();
+        private static readonly Dictionary<string, List<FoundationDiskFileDescriptor>> _cache = new Dictionary<string, List<FoundationDiskFileDescriptor>>();
 
         public string ModulesDirectoryPath { get; set; }
 
@@ -44,7 +44,7 @@ namespace Foundation.Commerce.Install
                 SearchDirectoryName = "Config";
             }
 
-            string searchSubdirectories = GetTrimmedConfigurationString(config, "searchSubdirectories");
+            var searchSubdirectories = GetTrimmedConfigurationString(config, "searchSubdirectories");
             if (!string.IsNullOrEmpty(searchSubdirectories))
             {
                 _searchSubdirectories = bool.Parse(searchSubdirectories);
@@ -56,7 +56,7 @@ namespace Foundation.Commerce.Install
             // Collect all files in given directories conforming to search pattern and selectors.
             List<FoundationDiskFileDescriptor> list;
 
-            string cacheKey = BuildCacheKey(selectors, ModulesDirectoryPath, structureName, searchPattern);
+            var cacheKey = BuildCacheKey(selectors, ModulesDirectoryPath, structureName, searchPattern);
             lock (_cache)
             {
                 if (_cache.ContainsKey(cacheKey))
@@ -67,36 +67,38 @@ namespace Foundation.Commerce.Install
                 {
                     list = new List<FoundationDiskFileDescriptor>();
 
-                    Dictionary<string, int> moduleOrderByName = new Dictionary<string, int>();
-                    int index = 0;
-                    foreach (string name in FileResolver.GetOrderedModules())
+                    var moduleOrderByName = new Dictionary<string, int>();
+                    var index = 0;
+                    foreach (var name in FileResolver.GetOrderedModules())
                     {
                         moduleOrderByName.Add(name.ToUpperInvariant(), index++);
                     }
 
                     if (Directory.Exists(ModulesDirectoryPath))
                     {
-                        foreach (string modulePath in Directory.GetDirectories(ModulesDirectoryPath))
+                        foreach (var modulePath in Directory.GetDirectories(ModulesDirectoryPath))
                         {
-                            string searchPath = string.Concat(modulePath, Path.DirectorySeparatorChar, SearchDirectoryName, Path.DirectorySeparatorChar, structureName);
+                            var searchPath = string.Concat(modulePath, Path.DirectorySeparatorChar, SearchDirectoryName, Path.DirectorySeparatorChar, structureName);
                             if (Directory.Exists(searchPath))
                             {
-                                foreach (string filePath in Directory.GetFiles(searchPath, searchPattern, _searchSubdirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
+                                foreach (var filePath in Directory.GetFiles(searchPath, searchPattern, _searchSubdirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
                                 {
-                                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+                                    var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
 
                                     if (selectors == null || ValidateFileName(fileNameWithoutExtension, selectors))
                                     {
-                                        string moduleName = Path.GetFileName(modulePath);
+                                        var moduleName = Path.GetFileName(modulePath);
 
-                                        var descriptor = new FoundationDiskFileDescriptor(this);
-                                        descriptor.ModuleName = moduleName;
-                                        descriptor.FileNameWithoutExtension = fileNameWithoutExtension;
-                                        descriptor.FilePath = filePath;
+                                        var descriptor = new FoundationDiskFileDescriptor(this)
+                                        {
+                                            ModuleName = moduleName,
+                                            FileNameWithoutExtension = fileNameWithoutExtension,
+                                            FilePath = filePath
+                                        };
 
-                                        int moduleOrder = int.MaxValue;
+                                        var moduleOrder = int.MaxValue;
 
-                                        string moduleKey = moduleName.ToUpperInvariant();
+                                        var moduleKey = moduleName.ToUpperInvariant();
                                         if (moduleOrderByName.ContainsKey(moduleKey))
                                         {
                                             moduleOrder = moduleOrderByName[moduleKey];
@@ -122,7 +124,7 @@ namespace Foundation.Commerce.Install
 
         private static string GetTrimmedConfigurationString(NameValueCollection config, string name)
         {
-            string value = config[name];
+            var value = config[name];
             if (value != null)
             {
                 value = value.Trim();

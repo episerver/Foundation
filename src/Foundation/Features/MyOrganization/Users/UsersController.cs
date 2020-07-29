@@ -241,7 +241,9 @@ namespace Foundation.Features.MyOrganization.Users
             {
                 var adminUser = _userManager.FindByEmail(adminUsername);
                 if (adminUser != null)
+                {
                     _signInManager.SignIn(adminUser, false, false);
+                }
 
                 _cookieService.Remove(Constant.Cookies.B2BImpersonatingAdmin);
             }
@@ -286,6 +288,5 @@ namespace Foundation.Features.MyOrganization.Users
                 _mailService.Send(mailPage.Subject, body, user.Email);
             }
         }
-
     }
 }

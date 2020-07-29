@@ -16,7 +16,7 @@ namespace Foundation.Commerce.Install
 
         internal static int Compare(FoundationDiskFileDescriptor x, FoundationDiskFileDescriptor y)
         {
-            int result = 0;
+            var result = 0;
 
             if (x == null)
             {

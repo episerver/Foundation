@@ -16,10 +16,7 @@ namespace Foundation.Find
         private static readonly Lazy<IGeolocationProvider> GeoLocationProvider = new Lazy<IGeolocationProvider>(() => ServiceLocator.Current.GetInstance<IGeolocationProvider>());
         private static readonly ILogger _logger = LogManager.GetLogger(typeof(GeoPosition));
 
-        public static GeoLocation ToFindLocation(this IGeolocationResult geoLocationResult)
-        {
-            return new GeoLocation(geoLocationResult.Location.Latitude, geoLocationResult.Location.Longitude);
-        }
+        public static GeoLocation ToFindLocation(this IGeolocationResult geoLocationResult) => new GeoLocation(geoLocationResult.Location.Latitude, geoLocationResult.Location.Longitude);
 
         public static GeoCoordinate GetUsersPositionOrNull()
         {
@@ -54,7 +51,6 @@ namespace Foundation.Find
                 {
                     result = GeoLocationProvider.Value.Lookup(IPAddress.Parse("8.8.8.8"));
                 }
-
                 catch (Exception e)
                 {
                     _logger.Error(e.Message, e);
@@ -75,7 +71,6 @@ namespace Foundation.Find
                 var result = GeoLocationProvider.Value.Lookup(ip);
                 return result ?? GeoLocationProvider.Value.Lookup(IPAddress.Parse("8.8.8.8"));
             }
-
             catch (Exception ex)
             {
                 _logger.Error(ex.Message, ex);
@@ -83,14 +78,12 @@ namespace Foundation.Find
                 {
                     return GeoLocationProvider.Value.Lookup(IPAddress.Parse("8.8.8.8"));
                 }
-
                 catch (Exception e)
                 {
                     _logger.Error(e.Message, e);
                     return null;
                 }
             }
-
         }
 
         private static string GetRequestIp()
@@ -131,6 +124,5 @@ namespace Foundation.Find
             CacheManager.Insert("local_ip", requestIp);
             return requestIp;
         }
-
     }
 }

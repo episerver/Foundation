@@ -29,10 +29,7 @@ namespace Foundation.Social.Models.Comments
         /// </summary>
         public DateTime Created { get; set; }
 
-        public BlogComment()
-        {
-            Created = DateTime.Now;
-        }
+        public BlogComment() => Created = DateTime.Now;
     }
 
     public class BlogCommentExtension

@@ -5,7 +5,6 @@ using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
-using System;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks.GroupAdmissionBlock
@@ -153,10 +152,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
         /// <param name="userName">The username of the member</param>
         /// <param name="userEmail">Ther email of the  member</param>
         /// <returns>Returns bool for if the username and email are populated</returns>
-        private bool ValidateMemberInputs(string userName, string userEmail)
-        {
-            return !string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(userEmail);
-        }
+        private bool ValidateMemberInputs(string userName, string userEmail) => !string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(userEmail);
 
         /// <summary>
         /// Validates that the group returned exists
@@ -185,8 +181,8 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
         /// <param name="blockModel">The view model for the GroupAdmissionBlock</param>
         private void PopulateMemberDetails(GroupAdmissionBlockViewModel blockModel)
         {
-            var userId = _userRepository.GetUserId(this.User);
-            var loggedIn = !String.IsNullOrWhiteSpace(userId);
+            var userId = _userRepository.GetUserId(User);
+            var loggedIn = !string.IsNullOrWhiteSpace(userId);
             blockModel.UserIsLoggedIn = loggedIn;
             blockModel.MemberName = loggedIn ? _userRepository.CreateAuthenticatedUri(userId) : "";
             blockModel.ModeratedUserAdmissionState = loggedIn ? _moderationRepository.GetMembershipRequestState(blockModel.MemberName, blockModel.GroupId) : "";

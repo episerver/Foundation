@@ -35,10 +35,7 @@ namespace Foundation.Helpers
         private static readonly Lazy<ISettingsService> _settingsService = new Lazy<ISettingsService>(() => ServiceLocator.Current.GetInstance<ISettingsService>());
         private static readonly Lazy<IContentTypeRepository> _contentTypeRepository = new Lazy<IContentTypeRepository>(() => ServiceLocator.Current.GetInstance<IContentTypeRepository>());
 
-        public static LayoutSettings GetLayoutSettings(this HtmlHelper helper)
-        {
-            return _settingsService.Value.GetSiteSettings<LayoutSettings>();
-        }
+        public static LayoutSettings GetLayoutSettings(this HtmlHelper helper) => _settingsService.Value.GetSiteSettings<LayoutSettings>();
 
         public static IHtmlString RenderOpenGraphMetaData(this HtmlHelper helper, IContentViewModel<IContent> contentViewModel)
         {
@@ -241,7 +238,7 @@ namespace Foundation.Helpers
 
         private static List<string> GetNodes(ProductContent currentContent)
         {
-            List<string> nodeList = new List<string>();
+            var nodeList = new List<string>();
 
             foreach (var nodeRelation in currentContent.GetCategories())
             {

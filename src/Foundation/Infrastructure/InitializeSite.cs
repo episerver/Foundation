@@ -201,10 +201,7 @@ namespace Foundation.Infrastructure
             SearchClient.Instance.Conventions.ForInstancesOf<LocationItemPage>().IncludeField(dp => dp.TagString());
         }
 
-        public void Uninitialize(InitializationEngine context)
-        {
-            context.InitComplete -= ContextOnInitComplete;
-        }
+        public void Uninitialize(InitializationEngine context) => context.InitComplete -= ContextOnInitComplete;
 
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {

@@ -17,10 +17,7 @@ namespace Foundation.Cms.Settings
         private Injected<LocalizationService> _localizationService;
         private static Injected<ContentRootService> _rootService;
 
-        public static ContentReference SettingsRoot
-        {
-            get { return GetSettingsRoot(); }
-        }
+        public static ContentReference SettingsRoot => GetSettingsRoot();
 
         public override string Name
         {
@@ -32,15 +29,9 @@ namespace Foundation.Cms.Settings
                 }
                 return base.Name;
             }
-            set
-            {
-                base.Name = value;
-            }
+            set => base.Name = value;
         }
 
-        private static ContentReference GetSettingsRoot()
-        {
-            return _rootService.Service.Get(SettingsRootName);
-        }
+        private static ContentReference GetSettingsRoot() => _rootService.Service.Get(SettingsRootName);
     }
 }

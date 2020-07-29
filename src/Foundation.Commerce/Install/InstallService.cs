@@ -19,10 +19,7 @@ namespace Foundation.Commerce.Install
         private InstallProgressMessenger _progressMessenger;
         private IEnumerable<IInstallStep> _installSteps;
 
-        public InstallService(IConnectionStringHandler connectionStringHandler)
-        {
-            _connectionStringHandler = connectionStringHandler;
-        }
+        public InstallService(IConnectionStringHandler connectionStringHandler) => _connectionStringHandler = connectionStringHandler;
 
         public IEnumerable<IInstallStep> InstallSteps
         {
@@ -58,7 +55,7 @@ namespace Foundation.Commerce.Install
 
             return null;
         }
-       
+
         public void RunInstallSteps()
         {
             foreach (var step in InstallSteps.OrderBy(x => x.Order))
@@ -96,7 +93,7 @@ namespace Foundation.Commerce.Install
             ProgressMessenger.AddProgressMessageText("Completed migration step: " + installStep.Name, false, 0);
             return success;
         }
-       
+
         private FoundationConfiguration GetFoundationConfiguration()
         {
             using (var connection = new SqlConnection(_connectionStringHandler.Commerce.ConnectionString))

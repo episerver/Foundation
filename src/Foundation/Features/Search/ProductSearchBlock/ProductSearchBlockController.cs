@@ -167,7 +167,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByQuantity()
         {
-            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out double days))
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out var days))
             {
                 days = 365;
             }
@@ -191,7 +191,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private IEnumerable<ProductTileViewModel> GetBestSellerByRevenue()
         {
-            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out double days))
+            if (!double.TryParse(ConfigurationManager.AppSettings["episerver:commerce.ReportingTimeRanges"], out var days))
             {
                 days = 365;
             }
@@ -215,7 +215,6 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
         private ProductSearchResults GetSearchResults(string language, ProductSearchBlock productSearchBlock)
         {
-
             var filterOptions = new FilterOptionViewModel
             {
                 Q = productSearchBlock.SearchTerm,
@@ -247,7 +246,6 @@ namespace Foundation.Features.Search.ProductSearchBlock
                 {
                     filters.Add(new OrFilter(outlineFilters.ToArray()));
                 }
-
             }
 
             if (productSearchBlock.MinPrice > 0 || productSearchBlock.MaxPrice > 0)

@@ -34,10 +34,7 @@ namespace Foundation.Cms
             _services.AddSingleton<CookieService>();
         }
 
-        void IInitializableModule.Initialize(InitializationEngine context)
-        {
-            context.InitComplete += (sender, eventArgs) => context.Locate.Advanced.GetInstance<ISettingsService>().InitializeSettings();
-        }
+        void IInitializableModule.Initialize(InitializationEngine context) => context.InitComplete += (sender, eventArgs) => context.Locate.Advanced.GetInstance<ISettingsService>().InitializeSettings();
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
         {

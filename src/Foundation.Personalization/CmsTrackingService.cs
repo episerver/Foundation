@@ -19,10 +19,7 @@ namespace Foundation.Personalization
     {
         private readonly ITrackingService _trackingService;
 
-        public CmsTrackingService(ITrackingService trackingService)
-        {
-            _trackingService = trackingService;
-        }
+        public CmsTrackingService(ITrackingService trackingService) => _trackingService = trackingService;
 
         public virtual async Task VideoBlockViewed(HttpContextBase context, string blockId, string blockName, string pageName)
         {
@@ -95,7 +92,6 @@ namespace Foundation.Personalization
             catch
             {
             }
-
         }
 
         public virtual async Task ImageViewed(ImageData image, IContent page, HttpContextBase httpContext)
@@ -131,6 +127,5 @@ namespace Foundation.Personalization
                 Value = $"Searched {keyword}",
             }, httpContextBase);
         }
-
     }
 }

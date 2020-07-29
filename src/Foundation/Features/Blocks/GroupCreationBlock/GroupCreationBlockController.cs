@@ -101,9 +101,6 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
         /// <param name="groupName">The name of the new group</param>
         /// <param name="groupDescription">The description of the new group</param>
         /// <returns>Returns bool for if the group name and description are populated</returns>
-        private bool ValidateGroupInputs(string groupName, string groupDescription)
-        {
-            return !string.IsNullOrWhiteSpace(groupName) && !string.IsNullOrWhiteSpace(groupDescription);
-        }
+        private bool ValidateGroupInputs(string groupName, string groupDescription) => !string.IsNullOrWhiteSpace(groupName) && !string.IsNullOrWhiteSpace(groupDescription);
     }
 }

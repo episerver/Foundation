@@ -60,8 +60,10 @@ namespace Foundation.Infrastructure.Display
         protected override IView CreatePartialView(ControllerContext controllerContext, string partialPath)
         {
             if (controllerContext.Controller != null)
+            {
                 return base.CreatePartialView(controllerContext,
                 partialPath.Replace("%1", GetFeatureName(controllerContext.Controller.GetType().GetTypeInfo())));
+            }
 
             return base.CreatePartialView(controllerContext, partialPath);
         }

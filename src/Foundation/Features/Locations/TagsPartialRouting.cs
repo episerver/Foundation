@@ -27,7 +27,10 @@ namespace Foundation.Features.Locations
                     .Filter(dp => dp.TagString().Match(content.Name)).Filter(dp => dp.Continent.MatchCaseInsensitive(continent))
                     .Take(0).GetContentResult().TotalMatching;
 
-                if (mcount == 0) return null;
+                if (mcount == 0)
+                {
+                    return null;
+                }
 
                 segmentContext.SetCustomRouteData("Continent", continent);
                 segmentContext.RemainingPath = continentPart.Remaining;

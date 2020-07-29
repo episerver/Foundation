@@ -125,7 +125,10 @@ namespace Foundation.Infrastructure
 
         private static void AppendFiles(LinkItemCollection files, StringBuilder outputString, string formatString)
         {
-            if (files == null || files.Count <= 0) return;
+            if (files == null || files.Count <= 0)
+            {
+                return;
+            }
 
             foreach (var item in files.Where(item => !string.IsNullOrEmpty(item.Href)))
             {
@@ -267,7 +270,11 @@ namespace Foundation.Infrastructure
 
         public class MenuItem
         {
-            public MenuItem(PageData page) => Page = page;
+            public MenuItem(PageData page)
+            {
+                Page = page;
+            }
+
             public PageData Page { get; set; }
             public bool Selected { get; set; }
             public Lazy<bool> HasChildren { get; set; }

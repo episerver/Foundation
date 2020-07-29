@@ -38,6 +38,5 @@ namespace Foundation.Features.Locations.LocationItemPage
         public IEnumerable<LocationItemPage> ContinentLocations { get; set; }
 
         public LocationItemPage CurrentLocation { get; set; }
-
     }
 }

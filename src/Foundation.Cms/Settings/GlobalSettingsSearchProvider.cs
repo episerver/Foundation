@@ -16,7 +16,6 @@ using System.Linq;
 namespace Foundation.Cms.Settings
 {
 
-
     [SearchProvider]
     public class GlobalSettingsSearchProvider : ContentSearchProviderBase<SettingsBase, ContentType>
     {
@@ -69,13 +68,13 @@ namespace Foundation.Cms.Settings
                 return Enumerable.Empty<SearchResult>();
             }
 
-            List<SearchResult> searchResultList = new List<SearchResult>();
-            string str = query.SearchQuery.Trim();
+            var searchResultList = new List<SearchResult>();
+            var str = query.SearchQuery.Trim();
 
-            IEnumerable<SettingsBase> globalSettings =
+            var globalSettings =
                 contentLoader.GetChildren<SettingsBase>(contentLink: settingsService.GlobalSettingsRoot);
 
-            foreach (SettingsBase setting in globalSettings)
+            foreach (var setting in globalSettings)
             {
                 if (setting.Name.IndexOf(value: str, comparisonType: StringComparison.OrdinalIgnoreCase) < 0)
                 {
@@ -109,8 +108,8 @@ namespace Foundation.Cms.Settings
                 return string.Empty;
             }
 
-            ContentReference contentLink = contentData.ContentLink;
-            string language = string.Empty;
+            var contentLink = contentData.ContentLink;
+            var language = string.Empty;
             ILocalizable localizable = contentData;
 
             if (localizable != null)

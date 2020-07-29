@@ -23,7 +23,7 @@ namespace Foundation.Infrastructure.Jobs
 
         public override string Execute()
         {
-            OnStatusChanged(string.Format("Starting execution of {0}", this.GetType()));
+            OnStatusChanged(string.Format("Starting execution of {0}", GetType()));
             ProcessDirectory(new FileBlobProvider().Path);
             var status = string.Format("Converted {0} blobs <br\\>", _count);
             if (_failCount > 0)

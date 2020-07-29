@@ -67,7 +67,6 @@ namespace Foundation.Infrastructure
         private static readonly Lazy<ISiteDefinitionRepository> _siteDefinitionRepository =
           new Lazy<ISiteDefinitionRepository>(() => ServiceLocator.Current.GetInstance<ISiteDefinitionRepository>());
 
-
         private static readonly Lazy<IRelationRepository> RelationRepository =
           new Lazy<IRelationRepository>(() => ServiceLocator.Current.GetInstance<IRelationRepository>());
 
@@ -144,10 +143,7 @@ namespace Foundation.Infrastructure
                    address.CountryRegion.Region == compareAddressViewModel.CountryRegion.Region;
         }
 
-        public static List<string> TagString(this LocationItemPage locationList)
-        {
-            return locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
-        }
+        public static List<string> TagString(this LocationItemPage locationList) => locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
 
         public static ContactViewModel GetCurrentContactViewModel(this ICustomerService customerService)
         {
@@ -344,8 +340,8 @@ namespace Foundation.Infrastructure
                 });
             }
 
-            CreateSite(new FileStream(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"..\appData\imports\foundation.episerverdata"), FileMode.Open), 
-                siteDefinition, 
+            CreateSite(new FileStream(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"..\appData\imports\foundation.episerverdata"), FileMode.Open),
+                siteDefinition,
                 ContentReference.RootPage);
 
             ServiceLocator.Current.GetInstance<ISettingsService>().UpdateSettings();
@@ -359,10 +355,9 @@ namespace Foundation.Infrastructure
             var config = Configuration.GetConfiguration();
             if (!config.ServiceUrl.Equals("https://es-us-api01.episerver.com/9IKGqgMZaTD9KP4Op3ygsVB6JeJzR0N6") && !config.DefaultIndex.Equals("episerverab_index55794"))
             {
-                RunIndexJob(ServiceLocator.Current.GetInstance<IScheduledJobExecutor>(), 
+                RunIndexJob(ServiceLocator.Current.GetInstance<IScheduledJobExecutor>(),
                     ServiceLocator.Current.GetInstance<IScheduledJobRepository>(), new Guid("8EB257F9-FF22-40EC-9958-C1C5BA8C2A53"));
             }
-
         }
 
         private static void CreateSite(Stream stream, SiteDefinition siteDefinition, ContentReference startPage)
@@ -391,8 +386,10 @@ namespace Foundation.Infrastructure
 
             zipDirectory.Create();
 
-            var zipInputStream = new ZipFile(file);
-            zipInputStream.IsStreamOwner = false;
+            var zipInputStream = new ZipFile(file)
+            {
+                IsStreamOwner = false
+            };
             foreach (ZipEntry zipEntry in zipInputStream)
             {
                 if (!zipEntry.IsFile)
@@ -407,7 +404,6 @@ namespace Foundation.Infrastructure
                     zipStream.CopyTo(fs);
                 }
             }
-
 
             var assests = zipDirectory.GetFiles("ProductAssets*")
                 .FirstOrDefault();
@@ -450,8 +446,8 @@ namespace Foundation.Infrastructure
             EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
         }
 
-        public static bool ImportEpiserverContent(Stream stream, 
-            ContentReference destinationRoot, 
+        public static bool ImportEpiserverContent(Stream stream,
+            ContentReference destinationRoot,
             IDataImporter importer,
             SiteDefinition siteDefinition = null)
         {

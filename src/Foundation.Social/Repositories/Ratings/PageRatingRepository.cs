@@ -56,8 +56,10 @@ namespace Foundation.Social.Repositories.Ratings
                     new RatingValue(value)));
 
                 if (rating == null)
+                {
                     throw new SocialRepositoryException(
                         "The newly submitted rating could not be added. Please try again");
+                }
             }
             catch (SocialAuthenticationException ex)
             {

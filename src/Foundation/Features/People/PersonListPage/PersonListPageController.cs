@@ -61,7 +61,7 @@ namespace Foundation.Features.People.PersonListPage
 
         public List<string> GetNames(IContentResult<PersonPage> persons)
         {
-            List<string> lstNames = new List<string>();
+            var lstNames = new List<string>();
             foreach (var person in persons)
             {
                 lstNames.Add(person.Name);

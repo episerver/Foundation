@@ -55,7 +55,6 @@ namespace Foundation.Features.Locations.Blocks.ProductFilters
                     return lessThanFilter;
                 default:
                     return new TermFilter(fullFieldName, FieldValue);
-
             }
         }
     }
