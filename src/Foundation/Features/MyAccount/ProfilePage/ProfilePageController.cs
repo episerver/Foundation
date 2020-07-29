@@ -1,16 +1,16 @@
-﻿using EPiServer;
-using EPiServer.Cms.UI.AspNetIdentity;
+﻿using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Identity;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderHistory;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Security;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,21 +23,21 @@ namespace Foundation.Features.MyAccount.ProfilePage
     {
         private readonly IAddressBookService _addressBookService;
         private readonly IOrderRepository _orderRepository;
-        private readonly IContentLoader _contentLoader;
         private readonly ICartService _cartService;
+        private readonly ISettingsService _settingsService;
 
         public ProfilePageController(IAddressBookService addressBookService,
             IOrderRepository orderRepository,
             ApplicationSignInManager<SiteUser> signinManager,
             ApplicationUserManager<SiteUser> userManager,
             ICartService cartService,
-            IContentLoader contentLoader,
-            ICustomerService customerService) : base(signinManager, userManager, customerService)
+            ICustomerService customerService,
+            ISettingsService settingsService) : base(signinManager, userManager, customerService)
         {
             _addressBookService = addressBookService;
             _orderRepository = orderRepository;
-            _contentLoader = contentLoader;
             _cartService = cartService;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(ProfilePage currentPage)
@@ -50,7 +50,7 @@ namespace Foundation.Features.MyAccount.ProfilePage
                 CustomerContact = new Commerce.Customer.FoundationContact(CustomerService.GetCurrentContact().Contact)
             };
 
-            viewModel.OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
+            viewModel.OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage);
 
             return View(viewModel);
         }

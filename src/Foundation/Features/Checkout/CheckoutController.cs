@@ -7,16 +7,17 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Identity;
+using Foundation.Cms.Settings;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.GiftCardPage;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.NamedCarts;
+using Foundation.Features.Settings;
 using Foundation.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
@@ -51,6 +52,7 @@ namespace Foundation.Features.Checkout
         private readonly IOrganizationService _organizationService;
         private readonly ShipmentViewModelFactory _shipmentViewModelFactory;
         private readonly IGiftCardService _giftCardService;
+        private readonly ISettingsService _settingsService;
 
         public CheckoutController(
             IOrderRepository orderRepository,
@@ -70,7 +72,8 @@ namespace Foundation.Features.Checkout
             ICustomerService customerContext,
             IOrganizationService organizationService,
             ShipmentViewModelFactory shipmentViewModelFactory,
-            IGiftCardService giftCardService)
+            IGiftCardService giftCardService,
+            ISettingsService settingsService)
         {
             _orderRepository = orderRepository;
             _checkoutViewModelFactory = checkoutViewModelFactory;
@@ -90,6 +93,7 @@ namespace Foundation.Features.Checkout
             _organizationService = organizationService;
             _shipmentViewModelFactory = shipmentViewModelFactory;
             _giftCardService = giftCardService;
+            _settingsService = settingsService;
         }
 
         [HttpGet]
@@ -694,10 +698,9 @@ namespace Foundation.Features.Checkout
             returnedCart.Properties[Constant.Quote.ParentOrderGroupId] = purchaseOrder.OrderLink.OrderGroupId;
             _orderRepository.Save(returnedCart);
 
-
-            var checkoutPage = _contentLoader.Get<HomePage>(ContentReference.StartPage).CheckoutPage;
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
             _cartService.ValidateCart(returnedCart);
-            return Json(new { link = _urlResolver.GetUrl(checkoutPage) });
+            return Json(new { link = _urlResolver.GetUrl(referenceSettings?.CheckoutPage ?? ContentReference.StartPage) });
         }
 
         public ActionResult ChangeCartItem(CheckoutPage currentPage, string code, int quantity, int shipmentId = -1)

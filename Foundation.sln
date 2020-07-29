@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Commerce", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Social", "src\Foundation.Social\Foundation.Social.csproj", "{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Demo", "src\Foundation.Demo\Foundation.Demo.csproj", "{08FFAD15-F974-435D-A6D1-8B0C8069594F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04685227-468D-440F-A0DB-4E6C01D550CA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -51,10 +49,6 @@ Global
 		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08FFAD15-F974-435D-A6D1-8B0C8069594F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08FFAD15-F974-435D-A6D1-8B0C8069594F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08FFAD15-F974-435D-A6D1-8B0C8069594F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08FFAD15-F974-435D-A6D1-8B0C8069594F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Release|Any CPU.ActiveCfg = Release|Any CPU

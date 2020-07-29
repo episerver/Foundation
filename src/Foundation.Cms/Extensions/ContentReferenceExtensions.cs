@@ -29,6 +29,8 @@ namespace Foundation.Cms.Extensions
         private static readonly Lazy<ISiteDefinitionResolver> SiteDefinitionResolver =
             new Lazy<ISiteDefinitionResolver>(() => ServiceLocator.Current.GetInstance<ISiteDefinitionResolver>());
 
+        public static bool IsNullOrEmpty(this ContentReference contentReference) => ContentReference.IsNullOrEmpty(contentReference);
+
         public static IContent Get<TContent>(this ContentReference contentLink) where TContent : IContent => ContentLoader.Value.Get<TContent>(contentLink);
 
         public static IEnumerable<T> GetAllRecursively<T>(this ContentReference rootLink) where T : PageData

@@ -4,10 +4,11 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Attributes;
+using Foundation.Cms.Settings;
 using Foundation.Commerce;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Organization;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,17 @@ namespace Foundation.Features.MyOrganization.SubOrganization
         private readonly IOrganizationService _organizationService;
         private readonly IAddressBookService _addressService;
         private readonly CookieService _cookieService = new CookieService();
+        private readonly ISettingsService _settingsService;
 
-        public SubOrganizationController(IOrganizationService organizationService, IContentLoader contentLoader, IAddressBookService addressService)
+        public SubOrganizationController(IOrganizationService organizationService,
+            IContentLoader contentLoader,
+            IAddressBookService addressService,
+            ISettingsService settingsService)
         {
             _organizationService = organizationService;
             _contentLoader = contentLoader;
             _addressService = addressService;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(SubOrganizationPage currentPage)
@@ -43,8 +49,8 @@ namespace Foundation.Features.MyOrganization.SubOrganization
 
             if (viewModel.SubOrganizationModel == null)
             {
-                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
-                return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
+                var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
+                return Redirect(UrlResolver.Current.GetUrl(referencePages?.OrganizationMainPage ?? ContentReference.StartPage));
             }
             viewModel.IsAdmin = CustomerContext.Current.CurrentContact.Properties[Constant.Fields.UserRole].Value.ToString() == Constant.UserRoles.Admin;
 
@@ -60,8 +66,8 @@ namespace Foundation.Features.MyOrganization.SubOrganization
             };
             if (viewModel.SubOrganizationModel == null)
             {
-                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
-                return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
+                var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
+                return Redirect(UrlResolver.Current.GetUrl(referencePages?.OrganizationMainPage ?? ContentReference.StartPage));
             }
             if (viewModel.SubOrganizationModel.Locations.Count == 0)
             {
@@ -109,8 +115,8 @@ namespace Foundation.Features.MyOrganization.SubOrganization
         {
             if (Request["suborg"] == null || Request["addressId"] == null)
             {
-                var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
-                return Redirect(UrlResolver.Current.GetUrl(startPage.OrganizationMainPage));
+                var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
+                return Redirect(UrlResolver.Current.GetUrl(referencePages?.OrganizationMainPage ?? ContentReference.StartPage));
             }
             _addressService.DeleteAddress(Request["suborg"], Request["addressId"]);
             return RedirectToAction("Edit", new { suborg = Request["suborg"] });

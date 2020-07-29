@@ -6,11 +6,13 @@ using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
+using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderHistory;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System;
@@ -30,6 +32,7 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
         private readonly IContentLoader _contentLoader;
         private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
         private readonly CookieService _cookieService;
+        private readonly ISettingsService _settingsService;
 
         private const string _KEYWORD = "OrderSearchBlock:Keyword";
         private const string _DATEFROM = "OrderSearchBlock:DateFrom";
@@ -44,7 +47,8 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
             IOrderGroupCalculator orderGroupCalculator,
             IContentLoader contentLoader,
             PaymentMethodViewModelFactory paymentMethodViewModelFactory,
-            CookieService cookieService)
+            CookieService cookieService,
+            ISettingsService settingsService)
         {
             _addressBookService = addressBookService;
             _customerService = customerService;
@@ -52,24 +56,33 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
             _contentLoader = contentLoader;
             _paymentMethodViewModelFactory = paymentMethodViewModelFactory;
             _cookieService = cookieService;
+            _settingsService = settingsService;
         }
         public override ActionResult Index(OrderSearchBlock currentBlock)
         {
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
             var filter = CreateFilter();
             OrderFilter.LoadDefault(filter, _paymentMethodViewModelFactory);
             var viewModel = CreateViewModel(currentBlock, filter);
-            viewModel.OrderDetailUrl =
-                UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
+            if (!referencePages?.OrderDetailsPage.IsNullOrEmpty() ?? false)
+            {
+                viewModel.OrderDetailUrl = UrlResolver.Current.GetUrl(referencePages.OrderDetailsPage);
+            }
+
             return PartialView("~/Features/Blocks/Views/OrderSearchBlock.cshtml", viewModel);
         }
 
         public ActionResult Filter(OrderFilter filter)
         {
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
             SetCookieFilter(filter);
             var currentBlock = _contentLoader.Get<IContent>(new ContentReference(filter.CurrentBlockId)) as OrderSearchBlock;
             var viewModel = CreateViewModel(currentBlock, filter);
-            viewModel.OrderDetailUrl =
-                UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
+            if (!referencePages?.OrderDetailsPage.IsNullOrEmpty() ?? false)
+            {
+                viewModel.OrderDetailUrl = UrlResolver.Current.GetUrl(referencePages.OrderDetailsPage);
+            }
+
             return PartialView("~/Features/Blocks/Views/_OrderSearchListing.cshtml", viewModel);
         }
 

@@ -4,14 +4,16 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Markets;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Header;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.NamedCarts.DefaultCart;
 using Foundation.Features.NamedCarts.SharedCart;
 using Foundation.Features.NamedCarts.Wishlist;
+using Foundation.Features.Settings;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Security;
@@ -31,6 +33,7 @@ namespace Foundation.Features.Checkout.Services
         private readonly UrlResolver _urlResolver;
         private readonly ServiceAccessor<HttpContextBase> _httpContextAccessor;
         private readonly IAddressBookService _addressBookService;
+        private readonly ISettingsService _settingsService;
 
         public CartViewModelFactory(
             IContentLoader contentLoader,
@@ -40,7 +43,8 @@ namespace Foundation.Features.Checkout.Services
             ReferenceConverter referenceConverter,
             UrlResolver urlResolver,
             ServiceAccessor<HttpContextBase> httpContextAccessor,
-            IAddressBookService addressBookService)
+            IAddressBookService addressBookService,
+            ISettingsService settingsService)
         {
             _contentLoader = contentLoader;
             _currencyService = currencyService;
@@ -50,19 +54,21 @@ namespace Foundation.Features.Checkout.Services
             _urlResolver = urlResolver;
             _httpContextAccessor = httpContextAccessor;
             _addressBookService = addressBookService;
+            _settingsService = settingsService;
         }
 
         public virtual MiniCartViewModel CreateMiniCartViewModel(ICart cart, bool isSharedCart = false)
         {
-            var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
+            var labelSettings = _settingsService.GetSiteSettings<LabelSettings>();
+            var pageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
             if (cart == null)
             {
                 return new MiniCartViewModel
                 {
                     ItemCount = 0,
-                    CheckoutPage = startPage.CheckoutPage,
-                    CartPage = isSharedCart ? startPage.SharedCartPage : startPage.CartPage,
-                    Label = isSharedCart ? startPage.SharedCartLabel : startPage.CartLabel,
+                    CheckoutPage = pageSettings?.CheckoutPage,
+                    CartPage = isSharedCart ? pageSettings?.SharedCartPage : pageSettings?.CartPage,
+                    Label = isSharedCart ? labelSettings?.SharedCartLabel : labelSettings?.CartLabel,
                     Shipments = Enumerable.Empty<ShipmentViewModel>(),
                     Total = new Money(0, _currencyService.GetCurrentCurrency()),
                     IsSharedCart = isSharedCart
@@ -72,9 +78,9 @@ namespace Foundation.Features.Checkout.Services
             return new MiniCartViewModel
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),
-                CheckoutPage = startPage.CheckoutPage,
-                CartPage = isSharedCart ? startPage.SharedCartPage : startPage.CartPage,
-                Label = isSharedCart ? startPage.SharedCartLabel : startPage.CartLabel,
+                CheckoutPage = pageSettings?.CheckoutPage,
+                CartPage = isSharedCart ? pageSettings?.SharedCartPage : pageSettings?.CartPage,
+                Label = isSharedCart ? labelSettings?.SharedCartLabel : labelSettings?.CartLabel,
                 Shipments = _shipmentViewModelFactory.CreateShipmentsViewModel(cart),
                 Total = _orderGroupCalculator.GetSubTotal(cart),
                 IsSharedCart = isSharedCart
@@ -116,10 +122,9 @@ namespace Foundation.Features.Checkout.Services
 
         public virtual LargeCartViewModel CreateLargeCartViewModel(ICart cart, CartPage cartPage)
         {
-            var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
-            _ = _contentLoader.Get<CheckoutPage>(startPage.CheckoutPage);
+            var pageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
-            AddressModel addressModel = null;
+            AddressModel addressModel;
             if (cart == null)
             {
                 var zeroAmount = new Money(0, _currencyService.GetCurrentCurrency());
@@ -134,7 +139,7 @@ namespace Foundation.Features.Checkout.Services
                     ShippingTotal = zeroAmount,
                     Subtotal = zeroAmount,
                     ReferrerUrl = GetReferrerUrl(),
-                    CheckoutPage = startPage.CheckoutPage,
+                    CheckoutPage = pageSettings?.CheckoutPage,
                     //MultiShipmentPage = checkoutPage.MultiShipmentPage,
                     AppliedCouponCodes = Enumerable.Empty<string>(),
                     AddressModel = addressModel,
@@ -156,7 +161,7 @@ namespace Foundation.Features.Checkout.Services
                 Subtotal = totals.SubTotal,
                 TaxTotal = totals.TaxTotal,
                 ReferrerUrl = GetReferrerUrl(),
-                CheckoutPage = startPage.CheckoutPage,
+                CheckoutPage = pageSettings?.CheckoutPage,
                 //MultiShipmentPage = checkoutPage.MultiShipmentPage,
                 AppliedCouponCodes = cart.GetFirstForm().CouponCodes.Distinct(),
                 HasOrganization = contact?.OwnerId != null,
@@ -195,7 +200,8 @@ namespace Foundation.Features.Checkout.Services
 
         public virtual MiniWishlistViewModel CreateMiniWishListViewModel(ICart cart)
         {
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var pageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var labelSettings = _settingsService.GetSiteSettings<LabelSettings>();
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             if (cart == null)
             {
@@ -203,9 +209,9 @@ namespace Foundation.Features.Checkout.Services
                 {
                     ItemCount = 0,
                     Items = Array.Empty<CartItemViewModel>(),
-                    WishlistPage = startPage.WishlistPage,
+                    WishlistPage = pageSettings?.WishlistPage,
                     HasOrganization = contact?.OwnerId != null,
-                    Label = startPage.WishlistLabel,
+                    Label = labelSettings?.WishlistLabel,
                 };
             }
 
@@ -213,17 +219,17 @@ namespace Foundation.Features.Checkout.Services
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),
                 Items = _shipmentViewModelFactory.CreateShipmentsViewModel(cart).SelectMany(x => x.CartItems),
-                WishlistPage = startPage.WishlistPage,
+                WishlistPage = pageSettings?.WishlistPage,
                 Total = _orderGroupCalculator.GetSubTotal(cart),
-                Label = startPage.WishlistLabel,
+                Label = labelSettings?.WishlistLabel,
                 HasOrganization = contact?.OwnerId != null
             };
         }
 
         public virtual WishListMiniCartViewModel CreateWishListMiniCartViewModel(ICart cart)
         {
-            var wishListLink = _contentLoader.Get<HomePage>(ContentReference.StartPage)?.WishlistPage;
-            var wishListPage = wishListLink != null ? _contentLoader.Get<WishListPage>(wishListLink) : null;
+            var wishListLink = _settingsService.GetSiteSettings<ReferencePageSettings>()?.WishlistPage;
+            var wishListPage = !wishListLink.IsNullOrEmpty() ? _contentLoader.Get<WishListPage>(wishListLink) : null;
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             if (cart == null && wishListPage != null)
             {
@@ -278,8 +284,8 @@ namespace Foundation.Features.Checkout.Services
 
         public virtual SharedMiniCartViewModel CreateSharedMiniCartViewModel(ICart cart)
         {
-            var sharedCartLink = _contentLoader.Get<HomePage>(ContentReference.StartPage)?.SharedCartPage;
-            var sharedCartPage = sharedCartLink != null ? _contentLoader.Get<SharedCartPage>(sharedCartLink) : null;
+            var sharedCartLink = _settingsService.GetSiteSettings<ReferencePageSettings>()?.SharedCartPage;
+            var sharedCartPage = !sharedCartLink.IsNullOrEmpty() ? _contentLoader.Get<SharedCartPage>(sharedCartLink) : null;
             if (cart == null && sharedCartPage != null)
             {
                 return new SharedMiniCartViewModel(sharedCartPage)

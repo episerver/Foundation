@@ -5,12 +5,13 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Services;
-using Foundation.Features.Home;
 using Foundation.Features.MyOrganization.QuickOrderPage;
 using Foundation.Features.Search;
+using Foundation.Features.Settings;
 using Foundation.Infrastructure;
 using Mediachase.Commerce.Catalog;
 using System;
@@ -35,6 +36,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         private readonly ICustomerService _customerService;
         private readonly IContentLoader _contentLoader;
         private readonly ContentLocator _contentLocator;
+        private readonly ISettingsService _settingsService;
 
         public QuickOrderBlockController(
             IQuickOrderService quickOrderService,
@@ -45,7 +47,8 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             ISearchService _searchService,
             ICustomerService customerService,
             IContentLoader contentLoader,
-            ContentLocator contentLocator)
+            ContentLocator contentLocator,
+            ISettingsService settingsService)
         {
             _quickOrderService = quickOrderService;
             _cartService = cartService;
@@ -56,6 +59,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             _customerService = customerService;
             _contentLoader = contentLoader;
             _contentLocator = contentLocator;
+            _settingsService = settingsService;
         }
         public override ActionResult Index(QuickOrderBlock currentBlock)
         {
@@ -183,7 +187,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             ModelState.Clear();
 
             var currentCustomer = _customerService.GetCurrentContact();
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
             var quoteCart = _cartService.LoadOrCreateCart("QuickOrderToQuote");
 
             if (quoteCart != null)
@@ -219,7 +223,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                 return Redirect(quickOrderPage?.LinkURL ?? Request.UrlReferrer.AbsoluteUri);
             }
 
-            return RedirectToAction("Index", new { Node = startPage.OrderHistoryPage });
+            return RedirectToAction("Index", new { Node = referencePages?.OrderHistoryPage ?? ContentReference.StartPage });
         }
     }
 }

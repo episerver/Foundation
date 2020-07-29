@@ -1069,6 +1069,7 @@
     <Compile Include="Features\MyAccount\CreditCard\CreditCardService.cs" />
     <Compile Include="Features\MyAccount\CreditCard\CreditCardViewModel.cs" />
     <Compile Include="Features\MyAccount\CreditCard\ICreditCardService.cs" />
+    <Compile Include="Features\MyAccount\GiftCardManager\GiftCardManagerController.cs" />
     <Compile Include="Features\MyAccount\GiftCardPage\GiftCard.cs" />
     <Compile Include="Features\MyAccount\GiftCardPage\GiftCardPage.cs" />
     <Compile Include="Features\MyAccount\GiftCardPage\GiftCardService.cs" />
@@ -1150,6 +1151,11 @@
     <Compile Include="Features\Search\ProductSortOrder.cs" />
     <Compile Include="Features\Search\SortOrder.cs" />
     <Compile Include="Features\Search\VariationModel.cs" />
+    <Compile Include="Features\Settings\CollectionSettings.cs" />
+    <Compile Include="Features\Settings\LabelSettings.cs" />
+    <Compile Include="Features\Settings\LayoutSettings.cs" />
+    <Compile Include="Features\Settings\ReferencePageSettings.cs" />
+    <Compile Include="Features\Settings\SearchSettings.cs" />
     <Compile Include="Features\Shared\HtmlDownloader.cs" />
     <Compile Include="Features\Shared\MailService.cs" />
     <Compile Include="Features\Shared\SelectionFactories\AvailablePageTypesSelectionFactory.cs" />
@@ -1418,8 +1424,6 @@
     <Compile Include="Features\Search\Category\CategoryPartialController.cs" />
     <Compile Include="Features\Search\ProductSearchBlock\ProductSearchBlockController.cs" />
     <Compile Include="Features\Search\Search\SearchController.cs" />
-    <Compile Include="Features\Setup\SetupController.cs" />
-    <Compile Include="Features\Setup\SetupViewModel.cs" />
     <Compile Include="Features\MyAccount\IdentityControllerBase.cs" />
     <Compile Include="Features\Stores\StorePageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1784,6 +1788,7 @@
     <Content Include="lang\Facets.xml" />
     <Content Include="lang\Foundation.Core_EN.xml" />
     <Content Include="lang\geta.epicategories.xml" />
+    <Content Include="lang\settings_en.xml" />
     <Content Include="modules\_protected\CookieDropBlock\Images\block-type-thumbnail-cookiedrop.png" />
     <Content Include="lang\Episerver.Marketing.Automation.Forms_EN.xml" />
     <Content Include="modules\_protected\EPiServer.ContentDeliveryApi.OAuth\ContentApiUserSettings.ascx" />
@@ -2044,7 +2049,6 @@
     <Content Include="Features\Home\Index.cshtml" />
     <Content Include="Features\Shared\Views\_Layout.cshtml" />
     <Content Include="Features\_viewstart.cshtml" />
-    <Content Include="Features\Setup\Index.cshtml" />
     <Content Include="Features\Shared\Views\_Grid.cshtml" />
     <Content Include="Features\Shared\Views\_Pager.cshtml" />
     <Content Include="Features\Shared\Views\Header\_Header.cshtml" />
@@ -2380,10 +2384,6 @@
     <ProjectReference Include="..\Foundation.Commerce\Foundation.Commerce.csproj">
       <Project>{709628b7-2f85-404b-8d1c-27e6da3bcc0f}</Project>
       <Name>Foundation.Commerce</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation.Demo\Foundation.Demo.csproj">
-      <Project>{08ffad15-f974-435d-a6d1-8b0c8069594f}</Project>
-      <Name>Foundation.Demo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Foundation.Find\Foundation.Find.csproj">
       <Project>{b28e97c3-d2cf-4176-a9c4-437a457341e4}</Project>

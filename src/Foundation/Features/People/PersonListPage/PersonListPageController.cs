@@ -1,12 +1,12 @@
-﻿using EPiServer;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
-using Foundation.Features.Home;
+using Foundation.Cms.Settings;
 using Foundation.Features.People.PersonItemPage;
+using Foundation.Features.Settings;
 using Foundation.Find;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +15,11 @@ namespace Foundation.Features.People.PersonListPage
 {
     public class PersonListPageController : PageController<PersonList>
     {
-        private readonly IContentLoader _contentLoader;
+        private readonly ISettingsService _settingsService;
 
-        public PersonListPageController(IContentLoader contentLoader)
+        public PersonListPageController(ISettingsService settingsService)
         {
-            _contentLoader = contentLoader;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(PersonList currentPage)
@@ -46,7 +46,7 @@ namespace Foundation.Features.People.PersonListPage
                                     .Take(500)
                                     .GetContentResult();
 
-            var settingPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var settingPage = _settingsService.GetSiteSettings<CollectionSettings>();
 
             var model = new PersonListViewModel(currentPage)
             {

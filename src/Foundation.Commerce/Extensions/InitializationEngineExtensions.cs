@@ -1,5 +1,6 @@
 ﻿using EPiServer.Commerce.Routing;
 using EPiServer.Framework.Initialization;
+using Foundation.Commerce.Install;
 using Mediachase.BusinessFoundation.Configuration;
 using Mediachase.BusinessFoundation.Core;
 using Mediachase.BusinessFoundation.Data;
@@ -38,6 +39,12 @@ namespace Foundation.Commerce.Extensions
             CatalogRouteHelper.MapDefaultHierarchialRouter(RouteTable.Routes, false);
             AddBusinessFoundationIfNeccessary();
             AddOrderMetaFieldsIfNesccessary();
+            var installService = context.Locate.Advanced.GetInstance<IInstallService>();
+            if (!installService.ShouldInstall())
+            {
+                return;
+            }
+            installService.RunInstallSteps();
         }
 
         private static void AddOrderMetaFieldsIfNesccessary()

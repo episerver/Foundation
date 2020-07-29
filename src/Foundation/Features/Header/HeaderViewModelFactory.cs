@@ -9,6 +9,7 @@ using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
@@ -19,6 +20,7 @@ using Foundation.Features.Home;
 using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.Bookmarks;
+using Foundation.Features.Settings;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Markets;
@@ -45,6 +47,7 @@ namespace Foundation.Features.Header
         private readonly IDatabaseMode _databaseMode;
         private readonly ICustomerService _customerService;
         private readonly CustomerContext _customerContext;
+        private readonly ISettingsService _settingsService;
 
         public HeaderViewModelFactory(LocalizationService localizationService,
             ICustomerService customerService,
@@ -57,7 +60,8 @@ namespace Foundation.Features.Header
             CustomerContext customerContext,
             IContentCacheKeyCreator contentCacheKeyCreator,
             IContentLoader contentLoader,
-            IDatabaseMode databaseMode)
+            IDatabaseMode databaseMode,
+            ISettingsService settingsService)
         {
             _localizationService = localizationService;
             _customerService = customerService;
@@ -71,10 +75,12 @@ namespace Foundation.Features.Header
             _contentLoader = contentLoader;
             _databaseMode = databaseMode;
             _customerContext = customerContext;
+            _settingsService = settingsService;
         }
 
         public virtual HeaderViewModel CreateHeaderViewModel(IContent content, HomePage home)
         {
+            var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
             var contact = _customerService.GetCurrentContact();
             var isBookmarked = IsBookmarked(content);
             var viewModel = CreateViewModel(content, home, contact, isBookmarked);
@@ -82,9 +88,13 @@ namespace Foundation.Features.Header
             AddAnonymousComponents(home, viewModel);
             AddMarketViewModel(content, viewModel);
             AddMyAccountMenu(home, viewModel);
-            viewModel.LargeHeaderMenu = home.LargeHeaderMenu;
-            viewModel.ShowCommerceControls = home.ShowCommerceHeaderComponents;
-            viewModel.DemoUsers = GetDemoUsers(home.ShowCommerceHeaderComponents);
+            viewModel.LargeHeaderMenu = layoutSettings?.LargeHeaderMenu ?? true;
+            viewModel.ShowCommerceControls = layoutSettings?.ShowCommerceHeaderComponents ?? true;
+            viewModel.DemoUsers = GetDemoUsers(layoutSettings?.ShowCommerceHeaderComponents ?? true);
+            viewModel.LayoutSettings = layoutSettings;
+            viewModel.SearchSettings = _settingsService.GetSiteSettings<SearchSettings>();
+            viewModel.ReferencePageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            viewModel.LabelSettings = _settingsService.GetSiteSettings<LabelSettings>();
             return viewModel;
         }
 
@@ -99,12 +109,14 @@ namespace Foundation.Features.Header
             var menuItems = new LinkItemCollection();
             var filter = new FilterContentForVisitor();
             var contact = _customerService.GetCurrentContact();
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
 
             if (contact != null && contact.FoundationOrganization != null)
             {
                 var orgLink = new LinkItem
                 {
-                    Href = _urlResolver.GetUrl(homePage.OrganizationMainPage),
+                    Href = _urlResolver.GetUrl(referenceSettings?.OrganizationMainPage ?? ContentReference.StartPage),
                     Text = _localizationService.GetString("My Organization", "My Organization"),
                     Title = _localizationService.GetString("My Organization", "My Organization")
                 };
@@ -112,7 +124,7 @@ namespace Foundation.Features.Header
                 menuItems.Add(orgLink);
             }
 
-            foreach (var linkItem in homePage.MyAccountCommerceMenu ?? new LinkItemCollection())
+            foreach (var linkItem in layoutSettings?.MyAccountMenu ?? new LinkItemCollection())
             {
                 if (!UrlResolver.Current.TryToPermanent(linkItem.Href, out var linkUrl))
                 {
@@ -165,7 +177,9 @@ namespace Foundation.Features.Header
         {
             var menuItems = new List<MenuItemViewModel>();
             var homeLanguage = homePage.Language.DisplayName;
-            menuItems = homePage.MainMenu?.FilteredItems.Select(x =>
+            var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            menuItems = layoutSettings?.MainMenu?.FilteredItems.Select(x =>
             {
                 var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
@@ -227,7 +241,7 @@ namespace Foundation.Features.Header
                 MenuItems = menuItems ?? new List<MenuItemViewModel>(),
                 LoginViewModel = new LoginViewModel
                 {
-                    ResetPasswordPage = homePage.ResetPasswordPage
+                    ResetPasswordPage = referenceSettings?.ResetPasswordPage ?? ContentReference.StartPage
                 },
                 RegisterAccountViewModel = new RegisterAccountViewModel
                 {
@@ -303,9 +317,10 @@ namespace Foundation.Features.Header
         {
             if (HttpContext.Current != null && !HttpContext.Current.Request.IsAuthenticated)
             {
+                var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
                 viewModel.LoginViewModel = new LoginViewModel
                 {
-                    ResetPasswordPage = homePage.ResetPasswordPage
+                    ResetPasswordPage = referenceSettings?.ResetPasswordPage ?? ContentReference.StartPage
                 };
 
                 viewModel.RegisterAccountViewModel = new RegisterAccountViewModel

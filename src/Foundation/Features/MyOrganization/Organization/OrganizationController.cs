@@ -1,13 +1,13 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
+﻿using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Attributes;
+using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.SubOrganization;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Linq;
@@ -21,15 +21,18 @@ namespace Foundation.Features.MyOrganization.Organization
         private readonly IOrganizationService _organizationService;
         private readonly IAddressBookService _addressService;
         private readonly IBudgetService _budgetService;
-        private readonly IContentLoader _contentLoader;
         private readonly CookieService _cookieService = new CookieService();
+        private readonly ISettingsService _settingsService;
 
-        public OrganizationController(IOrganizationService organizationService, IAddressBookService addressService, IBudgetService budgetService, IContentLoader contentLoader)
+        public OrganizationController(IOrganizationService organizationService,
+            IAddressBookService addressService,
+            IBudgetService budgetService,
+            ISettingsService settingsService)
         {
             _organizationService = organizationService;
             _addressService = addressService;
             _budgetService = budgetService;
-            _contentLoader = contentLoader;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(OrganizationPage currentPage)
@@ -49,10 +52,10 @@ namespace Foundation.Features.MyOrganization.Organization
                 Organization = _organizationService.GetOrganizationModel(currentOrganization)
             };
 
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
-            if (startPage != null)
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            if (referencePages != null && !referencePages.SubOrganizationPage.IsNullOrEmpty())
             {
-                viewModel.SubOrganizationPage = startPage.SubOrganizationPage;
+                viewModel.SubOrganizationPage = referencePages.SubOrganizationPage;
             }
 
             if (viewModel.Organization != null && viewModel.Organization?.Address == null)
