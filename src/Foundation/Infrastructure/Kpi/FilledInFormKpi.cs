@@ -77,7 +77,9 @@ namespace Foundation.Infrastructure.Kpi
                     .FirstOrDefault(x => x.Item1 == FormGuid.ToString());
 
                 if (foundFormId == null)
+                {
                     return "<div>" + content + "</div>";
+                }
 
                 return "<div>" + content + ": <strong>\"" + foundFormId.Item2 + "\"</strong></div>";
             }
@@ -115,7 +117,9 @@ namespace Foundation.Infrastructure.Kpi
             try
             {
                 if (e is FormsSubmittedEventArgs formSubmission)
+                {
                     conversionResult.HasConverted = formSubmission.FormsContent.ContentGuid == FormGuid;
+                }
             }
             catch
             {
@@ -134,10 +138,12 @@ namespace Foundation.Infrastructure.Kpi
                 .FirstOrDefault(x => x.Item2 == responseData["FormKPIFormId"]);
 
             if (foundFormId == null)
+            {
                 throw new KpiValidationException(
                     _localization.GetString(
                     "/formkpi/errors/couldnotfindformid",
                     "Could not look up form id, check it hasn't been deleted and select again"));
+            }
 
             var formId = foundFormId.Item1;
             if (!string.IsNullOrEmpty(formId) && Guid.TryParse(formId, out var formGuid))

@@ -6,7 +6,6 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
     {
         public LikeButtonBlockViewModel() : this(null)
         {
-
         }
         public LikeButtonBlockViewModel(LikeButtonBlock block)
         {

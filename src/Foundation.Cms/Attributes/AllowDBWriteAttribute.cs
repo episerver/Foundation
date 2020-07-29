@@ -8,9 +8,6 @@ namespace Foundation.Cms.Attributes
     {
         protected Injected<IDatabaseMode> DBMode;
 
-        public override bool IsValidForRequest(ControllerContext controllerContext, System.Reflection.MethodInfo methodInfo)
-        {
-            return DBMode.Service != null && DBMode.Service.DatabaseMode != DatabaseMode.ReadOnly;
-        }
+        public override bool IsValidForRequest(ControllerContext controllerContext, System.Reflection.MethodInfo methodInfo) => DBMode.Service != null && DBMode.Service.DatabaseMode != DatabaseMode.ReadOnly;
     }
 }

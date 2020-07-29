@@ -53,7 +53,7 @@ namespace Foundation.Features.Blocks.FeedBlock
             };
 
             // If user logged in, retrieve activity feed for logged in user
-            if (this.User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 GetSocialActivityFeed(currentBlock, blockViewModel);
             }
@@ -70,10 +70,9 @@ namespace Foundation.Features.Blocks.FeedBlock
         private void GetSocialActivityFeed(FeedBlock currentBlock, FeedBlockViewModel blockViewModel)
         {
 
-
             try
             {
-                var userId = _userRepository.GetUserId(this.User);
+                var userId = _userRepository.GetUserId(User);
 
                 if (!string.IsNullOrWhiteSpace(userId))
                 {

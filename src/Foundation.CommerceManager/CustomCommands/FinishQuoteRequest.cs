@@ -16,7 +16,10 @@ namespace Foundation.CommerceManager.CustomCommands
         {
             var flag = base.IsCommandEnable(order, cp);
             if (flag && !string.IsNullOrEmpty(order.Properties[Constant.Quote.QuoteStatus] as string))
+            {
                 flag = order.Properties[Constant.Quote.QuoteStatus].ToString() == Constant.Quote.RequestQuotation;
+            }
+
             return flag;
         }
 
@@ -41,6 +44,5 @@ namespace Foundation.CommerceManager.CustomCommands
                 LogManager.GetLogger(GetType()).Error("Failed to process request quote approve.", ex);
             }
         }
-
     }
 }

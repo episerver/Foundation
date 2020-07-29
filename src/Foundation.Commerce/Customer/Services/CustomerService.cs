@@ -35,7 +35,7 @@ namespace Foundation.Commerce.Customer.Services
         public virtual ServiceAccessor<ApplicationUserManager<SiteUser>> UserManager { get; }
         public virtual ServiceAccessor<ApplicationSignInManager<SiteUser>> SignInManager { get; }
         public virtual ServiceAccessor<IAuthenticationManager> AuthenticationManager { get; }
-        public virtual Guid CurrentContactId { get { return _customerContext.CurrentContactId; } }
+        public virtual Guid CurrentContactId => _customerContext.CurrentContactId;
 
         public virtual void CreateContact(FoundationContact contact, string contactId)
         {

@@ -10,16 +10,10 @@ namespace Foundation.Find.Facets.Config
     {
         private Injected<ObjectSerializerFactory> _objectSerializerFactory;
 
-        private IObjectSerializer _objectSerializer;
+        private readonly IObjectSerializer _objectSerializer;
 
-        public PropertyListBase()
-        {
-            _objectSerializer = this._objectSerializerFactory.Service.GetSerializer("application/json");
-        }
+        public PropertyListBase() => _objectSerializer = _objectSerializerFactory.Service.GetSerializer("application/json");
 
-        protected override T ParseItem(string value)
-        {
-            return JsonConvert.DeserializeObject<T>(value);
-        }
+        protected override T ParseItem(string value) => JsonConvert.DeserializeObject<T>(value);
     }
 }

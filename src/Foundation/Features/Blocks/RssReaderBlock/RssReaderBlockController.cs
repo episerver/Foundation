@@ -45,13 +45,9 @@ namespace Foundation.Features.Blocks.RssReaderBlock
                 viewModel.Heading = "Invalid RSS Feed URL.";
             }
 
-
             return PartialView("~/Features/Blocks/RssReaderBlock/RssReaderBlock.cshtml", viewModel);
         }
 
-        private bool HasHeadingText(RssReaderBlock currentBlock)
-        {
-            return ((!string.IsNullOrEmpty(currentBlock.Heading)) || ((currentBlock.MainBody != null) && (!currentBlock.MainBody.IsEmpty)));
-        }
+        private bool HasHeadingText(RssReaderBlock currentBlock) => ((!string.IsNullOrEmpty(currentBlock.Heading)) || ((currentBlock.MainBody != null) && (!currentBlock.MainBody.IsEmpty)));
     }
 }

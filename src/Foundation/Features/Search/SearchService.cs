@@ -81,7 +81,7 @@ namespace Foundation.Features.Search
         private readonly IPromotionService _promotionService;
         private readonly ICurrencyService _currencyservice;
         private readonly IContentLoader _contentLoader;
-        private static Random _random = new Random();
+        private static readonly Random _random = new Random();
 
         public SearchService(ICurrentMarket currentMarket,
             ICurrencyService currencyService,
@@ -213,7 +213,7 @@ namespace Foundation.Features.Search
             query = query.Filter(x => (x as GenericProduct).OnSale.Match(true));
             var result = query.GetContentResult();
             var searchProducts = CreateProductViewModels(result, currentContent, "").ToList();
-            GetManaualInclusion(searchProducts, currentContent as SalesPage, market, currency);
+            GetManaualInclusion(searchProducts, currentContent, market, currency);
             pages = GetPages(currentContent, page, searchProducts.Count());
             return searchProducts;
         }
@@ -342,34 +342,41 @@ namespace Foundation.Features.Search
             if (pagination.Sort == CategorySorting.PublishedDate.ToString())
             {
                 if (pagination.SortDirection.ToLower() == "asc")
+                {
                     query = query.OrderBy(x => x.StartPublish);
+                }
                 else
+                {
                     query = query.OrderByDescending(x => x.StartPublish);
+                }
             }
 
             if (pagination.Sort == CategorySorting.Name.ToString())
             {
                 if (pagination.SortDirection.ToLower() == "asc")
+                {
                     query = query.OrderBy(x => x.Name);
+                }
                 else
+                {
                     query = query.OrderByDescending(x => x.Name);
+                }
             }
 
             query = query.Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize);
             var results = query.GetContentResult();
-            var model = new CategorySearchResults();
-            model.Pagination = pagination;
-            model.RelatedPages = results;
+            var model = new CategorySearchResults
+            {
+                Pagination = pagination,
+                RelatedPages = results
+            };
             model.Pagination.TotalMatching = results.TotalMatching;
             model.Pagination.TotalPage = model.Pagination.TotalMatching / pagination.PageSize + (model.Pagination.TotalMatching % pagination.PageSize > 0 ? 1 : 0);
 
             return model;
         }
 
-        public ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent
-        {
-            return query.FilterByCategories(categories);
-        }
+        public ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent => query.FilterByCategories(categories);
 
         private List<int> GetPages(BaseInclusionExclusionPage currentContent, int page, int count)
         {
@@ -392,12 +399,12 @@ namespace Foundation.Features.Search
 
         private static List<T> Shuffle<T>(List<T> list)
         {
-            int n = list.Count;
+            var n = list.Count;
             while (n > 1)
             {
                 n--;
-                int k = _random.Next(n + 1);
-                T value = list[k];
+                var k = _random.Next(n + 1);
+                var value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
@@ -521,7 +528,6 @@ namespace Foundation.Features.Search
             IEnumerable<Filter> filters = null,
             int catalogId = 0)
         {
-
             //If contact belong organization, only find product that belong the categories that has owner is this organization
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             var organizationId = contact?.ContactOrganization?.PrimaryKeyId ?? Guid.Empty;
@@ -582,7 +588,6 @@ namespace Foundation.Features.Search
                 DidYouMeans = string.IsNullOrEmpty(filterOptions.Q) ? null : _findClient.Statistics().GetDidYouMean(filterOptions.Q),
                 Query = filterOptions.Q,
             };
-
         }
 
         public IEnumerable<ProductTileViewModel> CreateProductViewModels(IContentResult<EntryContentBase> searchResult, IContent content, string searchQuery)
@@ -638,7 +643,6 @@ namespace Foundation.Features.Search
                 }
 
                 parent = _contentRepository.Get<CatalogContentBase>(parent.ParentLink);
-
             }
             return outline;
         }
@@ -717,7 +721,6 @@ namespace Foundation.Features.Search
             {
                 GroupFieldName = x.FieldName,
                 GroupName = x.DisplayName,
-
             }).ToList();
 
             query = facets.Aggregate(query, (current, facet) => facet.Facet(current, GetSelectedFilter(options, facet.FieldName)));
@@ -816,7 +819,6 @@ namespace Foundation.Features.Search
                 boolFilter.Should.Add(filter);
             }
             return boolFilter;
-
         }
 
         private ITypeSearch<T> FilterSelected<T>(ITypeSearch<T> query, List<FacetGroupOption> options)
@@ -890,7 +892,6 @@ namespace Foundation.Features.Search
                 query = query.Filter(filter);
             }
             return query;
-
         }
 
         private static ProductSearchResults CreateEmptyResult()

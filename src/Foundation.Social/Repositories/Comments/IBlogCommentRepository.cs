@@ -23,5 +23,4 @@ namespace Foundation.Social.Repositories.Comments
         /// <returns>A list of comments.</returns>
         IEnumerable<BlogComment> Get(PageCommentFilter filter, out long total);
     }
-
 }

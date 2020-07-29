@@ -9,10 +9,7 @@ namespace Foundation.Commerce.Customer
 {
     public class FoundationContact
     {
-        public FoundationContact()
-        {
-            Contact = new CustomerContact();
-        }
+        public FoundationContact() => Contact = new CustomerContact();
 
         public FoundationContact(CustomerContact contact) => Contact = contact ?? new CustomerContact();
 

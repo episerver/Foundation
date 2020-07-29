@@ -13,7 +13,7 @@ else
             <div class="row">
                 <div class="col-12">
                     <div class="top-header__banner-text">
-                        @Html.PropertyFor(x => x.HomePage.BannerText)
+                        @Html.PropertyFor(x => x.LayoutSettings.BannerText)
                     </div>
                     @if (Model.ShowCommerceControls)
                     {
@@ -37,7 +37,7 @@ else
     </div>
 }
 
-<header class="header @(Model.HomePage.StickyTopHeader ? "sticky-top" : "")">
+<header class="header @(Model.LayoutSettings.StickyTopHeader ? "sticky-top" : "")">
     <div class="header__wrapper">
         @Html.Partial("_MobileNavigation", Model)
         @Html.Partial("_Navigation", Model)

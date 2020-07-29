@@ -5,7 +5,7 @@ namespace Foundation.Find.Facets
 {
     public class FacetRegistry : IFacetRegistry
     {
-        private List<FacetDefinition> _facetDefinitions;
+        private readonly List<FacetDefinition> _facetDefinitions;
 
         public FacetRegistry() : this(new List<FacetDefinition>())
         {
@@ -13,10 +13,7 @@ namespace Foundation.Find.Facets
 
         public FacetRegistry(IEnumerable<FacetDefinition> facetDefinitions) => _facetDefinitions = facetDefinitions.ToList();
 
-        public void Clear()
-        {
-            _facetDefinitions.Clear();
-        }
+        public void Clear() => _facetDefinitions.Clear();
 
         public List<FacetDefinition> GetFacetDefinitions() => _facetDefinitions;
 

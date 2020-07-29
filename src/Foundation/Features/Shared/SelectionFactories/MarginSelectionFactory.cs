@@ -11,7 +11,6 @@ namespace Foundation.Features.Shared.SelectionFactories
 
         public MarginSelectionFactory() : this(ServiceLocator.Current.GetInstance<LocalizationService>())
         {
-
         }
 
         public MarginSelectionFactory(LocalizationService localizationService)

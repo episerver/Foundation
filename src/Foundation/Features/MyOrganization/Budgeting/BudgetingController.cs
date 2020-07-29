@@ -477,6 +477,5 @@ namespace Foundation.Features.MyOrganization.Budgeting
 
             return Json(new { result });
         }
-
     }
 }

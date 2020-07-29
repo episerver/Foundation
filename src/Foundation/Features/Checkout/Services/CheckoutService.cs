@@ -6,11 +6,12 @@ using EPiServer.Framework.Localization;
 using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
+using Foundation.Cms.Settings;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.Settings;
 using Foundation.Features.Shared;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
@@ -42,6 +43,7 @@ namespace Foundation.Features.Checkout.Services
         private readonly IPromotionEngine _promotionEngine;
         private readonly ILogger _log = LogManager.GetLogger(typeof(CheckoutService));
         private readonly ILoyaltyService _loyaltyService;
+        private readonly ISettingsService _settingsService;
 
         public AuthenticatedPurchaseValidation AuthenticatedPurchaseValidation { get; private set; }
         public AnonymousPurchaseValidation AnonymousPurchaseValidation { get; private set; }
@@ -57,7 +59,8 @@ namespace Foundation.Features.Checkout.Services
             LocalizationService localizationService,
             IMailService mailService,
             IPromotionEngine promotionEngine,
-            ILoyaltyService loyaltyService)
+            ILoyaltyService loyaltyService,
+            ISettingsService settingsService)
         {
             _addressBookService = addressBookService;
             _orderGroupFactory = orderGroupFactory;
@@ -74,6 +77,7 @@ namespace Foundation.Features.Checkout.Services
             AuthenticatedPurchaseValidation = new AuthenticatedPurchaseValidation(_localizationService);
             AnonymousPurchaseValidation = new AnonymousPurchaseValidation(_localizationService);
             CheckoutAddressHandling = new CheckoutAddressHandling(_addressBookService);
+            _settingsService = settingsService;
         }
 
         public virtual void UpdateShippingMethods(ICart cart, IList<ShipmentViewModel> shipmentViewModels)
@@ -234,8 +238,8 @@ namespace Foundation.Features.Checkout.Services
 
         public virtual async Task<bool> SendConfirmation(CheckoutViewModel viewModel, IPurchaseOrder purchaseOrder)
         {
-            var startpage = _contentRepository.Get<HomePage>(ContentReference.StartPage);
-            var sendOrderConfirmationMail = startpage.SendOrderConfirmationMail;
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var sendOrderConfirmationMail = referenceSettings?.SendOrderConfirmationMail ?? false;
             if (sendOrderConfirmationMail)
             {
                 var queryCollection = new NameValueCollection
@@ -246,7 +250,7 @@ namespace Foundation.Features.Checkout.Services
 
                 try
                 {
-                    await _mailService.SendAsync(startpage.OrderConfirmationMail, queryCollection, purchaseOrder.GetFirstForm().Payments.FirstOrDefault().BillingAddress.Email, startpage.Language.Name);
+                    await _mailService.SendAsync(referenceSettings.OrderConfirmationMail, queryCollection, purchaseOrder.GetFirstForm().Payments.FirstOrDefault().BillingAddress.Email, CultureInfo.CurrentCulture.Name);
                 }
                 catch (Exception e)
                 {
@@ -271,7 +275,8 @@ namespace Foundation.Features.Checkout.Services
                 queryCollection.Add("notificationMessage", string.Format(_localizationService.GetString("/OrderConfirmationMail/ErrorMessages/SmtpFailure"), checkoutViewModel.BillingAddress?.Email));
             }
 
-            var confirmationPage = checkoutViewModel.StartPage?.OrderConfirmationPage ?? ContentReference.EmptyReference;
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var confirmationPage = referenceSettings?.OrderConfirmationPage ?? ContentReference.EmptyReference;
             if (ContentReference.IsNullOrEmpty(confirmationPage))
             {
                 return null;

@@ -6,10 +6,7 @@ namespace Foundation.Find.Facets.Config
 {
     public class SelectOneEnumAttribute : SelectOneAttribute, IMetadataAware
     {
-        public SelectOneEnumAttribute(Type enumType)
-        {
-            EnumType = enumType;
-        }
+        public SelectOneEnumAttribute(Type enumType) => EnumType = enumType;
 
         public Type EnumType { get; set; }
 

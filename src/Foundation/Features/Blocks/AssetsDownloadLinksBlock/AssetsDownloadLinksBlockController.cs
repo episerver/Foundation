@@ -59,7 +59,7 @@ namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
             var mediaData = _contentLoader.Get<IContent>(new ContentReference(contentLinkId)) as MediaData;
             if (mediaData != null)
             {
-                var downloadFile = mediaData as MediaData;
+                var downloadFile = mediaData;
                 if (downloadFile != null)
                 {
                     var blob = downloadFile.BinaryData as FileBlob;

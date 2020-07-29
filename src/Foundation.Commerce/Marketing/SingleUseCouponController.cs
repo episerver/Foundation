@@ -72,7 +72,7 @@ namespace Foundation.Commerce.Marketing
         {
             if (actionType.Equals("update", StringComparison.Ordinal))
             {
-                bool updated = false;
+                var updated = false;
                 var coupon = _couponService.GetById(model.Id);
 
                 if (coupon != null)
@@ -89,7 +89,7 @@ namespace Foundation.Commerce.Marketing
             }
             else
             {
-                bool deleted = _couponService.DeleteById(model.Id);
+                var deleted = _couponService.DeleteById(model.Id);
                 return deleted ? "delete_ok" : "delete_nok";
             }
         }

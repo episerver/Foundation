@@ -168,16 +168,16 @@ namespace Foundation.Features.Shared
         [Display(Name = "Padding", GroupName = TabNames.Teaser, Order = 900)]
         public virtual string Padding
         {
-            get { return this.GetPropertyValue(teaser => teaser.Padding) ?? "p-0"; }
-            set { this.SetPropertyValue(teaser => teaser.Padding, value); }
+            get => this.GetPropertyValue(teaser => teaser.Padding) ?? "p-0";
+            set => this.SetPropertyValue(teaser => teaser.Padding, value);
         }
 
         [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
         [Display(Name = "Margin", GroupName = TabNames.Teaser, Order = 910)]
         public virtual string Margin
         {
-            get { return this.GetPropertyValue(teaser => teaser.Margin) ?? "m-0"; }
-            set { this.SetPropertyValue(teaser => teaser.Margin, value); }
+            get => this.GetPropertyValue(teaser => teaser.Margin) ?? "m-0";
+            set => this.SetPropertyValue(teaser => teaser.Margin, value);
         }
 
         [Ignore]

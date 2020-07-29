@@ -93,5 +93,4 @@ namespace Foundation.Features.Locations.LocationItemPage
         }
     }
 
-
 }

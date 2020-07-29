@@ -10,7 +10,10 @@ namespace Foundation.Features.Recommendations
     {
         private readonly IProductService _recommendationService;
 
-        public RecommendationsController(IProductService recommendationService) => _recommendationService = recommendationService;
+        public RecommendationsController(IProductService recommendationService)
+        {
+            _recommendationService = recommendationService;
+        }
 
         [ChildActionOnly]
         public ActionResult Index(IEnumerable<Recommendation> recommendations)

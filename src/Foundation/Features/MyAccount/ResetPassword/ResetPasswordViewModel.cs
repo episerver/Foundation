@@ -7,7 +7,6 @@ namespace Foundation.Features.MyAccount.ResetPassword
     {
         public ResetPasswordViewModel(ResetPasswordPage resetPasswordPage) : base(resetPasswordPage)
         {
-
         }
 
         public ResetPasswordViewModel() { }
@@ -28,6 +27,5 @@ namespace Foundation.Features.MyAccount.ResetPassword
         [LocalizedCompare("Password", "/ResetPassword/Form/Error/PasswordMatch")]
         [LocalizedStringLength("/ResetPassword/Form/Error/PasswordLength2", 5, 100)]
         public string NewPassword { get; set; }
-
     }
 }

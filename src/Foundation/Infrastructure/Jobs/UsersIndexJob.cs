@@ -20,7 +20,10 @@ namespace Foundation.Infrastructure.Jobs
     {
         private readonly int _batchSize = 500;
 
-        public UsersIndexJob() => IsStoppable = false;
+        public UsersIndexJob()
+        {
+            IsStoppable = false;
+        }
 
         public Injected<ILogger> Logger { get; set; }
         public Injected<ICustomerService> CustomerService { get; set; }

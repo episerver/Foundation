@@ -22,7 +22,10 @@ namespace Foundation
             // Parameterless constructor required by OWIN.
         }
 
-        public Startup(IConnectionStringHandler connectionStringHandler) => _connectionStringHandler = connectionStringHandler;
+        public Startup(IConnectionStringHandler connectionStringHandler)
+        {
+            _connectionStringHandler = connectionStringHandler;
+        }
 
         public void Configuration(IAppBuilder app)
         {

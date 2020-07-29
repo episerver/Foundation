@@ -44,7 +44,6 @@ namespace Foundation.Find.Facets.Config
                 DisplayName = "Price",
                 FieldName = "DefaultPrice",
                 BackingType = typeof(double)
-
             };
             priceRanges.Range.Add(new SelectableNumericRange() { To = 50 });
             priceRanges.Range.Add(new SelectableNumericRange() { From = 50, To = 100 });

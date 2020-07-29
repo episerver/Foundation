@@ -15,7 +15,9 @@ namespace Foundation.Cms.DependencyInjection
         public object GetService(Type serviceType)
         {
             if (serviceType.IsInterface || serviceType.IsAbstract)
+            {
                 return GetInterfaceService(serviceType);
+            }
 
             return GetConcreteService(serviceType);
         }

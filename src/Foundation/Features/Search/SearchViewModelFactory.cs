@@ -54,7 +54,6 @@ namespace Foundation.Features.Search
             FilterOptionViewModel filterOption)
             where TContent : IContent
         {
-
             var model = new SearchViewModel<TContent>(currentContent);
 
             if (!filterOption.Q.IsNullOrEmpty() && (filterOption.Q.StartsWith("*") || filterOption.Q.StartsWith("?")))
@@ -156,7 +155,6 @@ namespace Foundation.Features.Search
                         }
                     }
                 }
-
             }
             return viewModel;
         }

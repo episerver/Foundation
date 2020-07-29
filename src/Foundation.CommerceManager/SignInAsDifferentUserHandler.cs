@@ -9,10 +9,7 @@ namespace Foundation.CommerceManager
     {
         private readonly ApplicationSignInManager<SiteUser> _signInManager;
 
-        public SignInAsDifferentUserHandler(ApplicationSignInManager<SiteUser> signInManager)
-        {
-            _signInManager = signInManager;
-        }
+        public SignInAsDifferentUserHandler(ApplicationSignInManager<SiteUser> signInManager) => _signInManager = signInManager;
 
         public void Invoke(object sender, object element)
         {

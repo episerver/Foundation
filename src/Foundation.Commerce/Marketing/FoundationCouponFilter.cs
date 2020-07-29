@@ -11,10 +11,7 @@ namespace Foundation.Commerce.Marketing
     {
         private readonly UniqueCouponService _couponService;
 
-        public FoundationCouponFilter(UniqueCouponService couponService)
-        {
-            _couponService = couponService;
-        }
+        public FoundationCouponFilter(UniqueCouponService couponService) => _couponService = couponService;
 
         public PromotionFilterContext Filter(PromotionFilterContext filterContext, IEnumerable<string> couponCodes)
         {
@@ -43,10 +40,7 @@ namespace Foundation.Commerce.Marketing
             return filterContext;
         }
 
-        protected virtual IEqualityComparer<string> GetCodeEqualityComparer()
-        {
-            return StringComparer.OrdinalIgnoreCase;
-        }
+        protected virtual IEqualityComparer<string> GetCodeEqualityComparer() => StringComparer.OrdinalIgnoreCase;
 
         private void CheckSingleCoupon(PromotionFilterContext filterContext, IEnumerable<string> couponCodes, string couponCode, PromotionData includedPromotion)
         {

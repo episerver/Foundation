@@ -1,10 +1,10 @@
-﻿using EPiServer;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Mvc.Html;
 using Foundation.Attributes;
-using Foundation.Features.Home;
+using Foundation.Cms.Settings;
 using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.Settings;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Login
@@ -12,24 +12,26 @@ namespace Foundation.Features.Login
     [OnlyAnonymous]
     public class UserController : Controller
     {
-        private readonly IContentLoader _contentLoader;
         private readonly IAddressBookService _addressBookService;
         private readonly LocalizationService _localizationService;
+        private readonly ISettingsService _settingsService;
 
-        public UserController(IContentLoader contentLoader, IAddressBookService addressBookService, LocalizationService localizationService)
+        public UserController(IAddressBookService addressBookService,
+            LocalizationService localizationService,
+            ISettingsService settingsService)
         {
-            _contentLoader = contentLoader;
             _addressBookService = addressBookService;
             _localizationService = localizationService;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(string returnUrl)
         {
             var model = new UserViewModel();
-            _contentLoader.TryGet(ContentReference.StartPage, out HomePage homePage);
-
-            model.Logo = Url.ContentUrl(homePage?.SiteLogo);
-            model.ResetPasswordUrl = Url.ContentUrl(homePage?.ResetPasswordPage);
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
+            model.Logo = Url.ContentUrl(layoutSettings?.SiteLogo ?? ContentReference.StartPage);
+            model.ResetPasswordUrl = Url.ContentUrl(referenceSettings?.ResetPasswordPage ?? ContentReference.StartPage);
             model.Title = "Login";
             model.LoginViewModel.ReturnUrl = returnUrl;
             return View(model);
@@ -40,8 +42,8 @@ namespace Foundation.Features.Login
             var model = new UserViewModel();
             _addressBookService.LoadAddress(model.RegisterAccountViewModel.Address);
             model.RegisterAccountViewModel.Address.Name = _localizationService.GetString("/Shared/Address/DefaultAddressName", "Default Address");
-            var homePage = _contentLoader.Get<PageData>(ContentReference.StartPage) as HomePage;
-            model.Logo = Url.ContentUrl(homePage?.SiteLogo);
+            var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
+            model.Logo = Url.ContentUrl(layoutSettings?.SiteLogo ?? ContentReference.StartPage);
             model.Title = "Register";
             return View(model);
         }

@@ -21,9 +21,6 @@ namespace Foundation.Features.Preview
             _previewControllerHelper = previewControllerHelper;
         }
 
-        public ActionResult Index(IContent currentContent)
-        {
-            return _previewControllerHelper.RenderResult(currentContent);
-        }
+        public ActionResult Index(IContent currentContent) => _previewControllerHelper.RenderResult(currentContent);
     }
 }

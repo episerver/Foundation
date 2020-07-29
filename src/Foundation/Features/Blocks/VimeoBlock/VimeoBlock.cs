@@ -73,7 +73,10 @@ namespace Foundation.Features.Blocks.VimeoBlock
     {
         private const string _urlRegex = @"vimeo\.com/(\d+)";
 
-        public VimeoUrl(string videoUrl) => GetVideoId(videoUrl);
+        public VimeoUrl(string videoUrl)
+        {
+            GetVideoId(videoUrl);
+        }
 
         public string Id { get; set; }
 

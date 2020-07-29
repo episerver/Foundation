@@ -26,10 +26,7 @@ namespace Foundation.Features.Locations.Blocks
         [Display(Name = "All condition text")]
         public virtual string AllConditionText { get; set; }
 
-        public ITypeSearch<LocationItemPage.LocationItemPage> AddFilter(ITypeSearch<LocationItemPage.LocationItemPage> query)
-        {
-            return query;
-        }
+        public ITypeSearch<LocationItemPage.LocationItemPage> AddFilter(ITypeSearch<LocationItemPage.LocationItemPage> query) => query;
 
         public ITypeSearch<LocationItemPage.LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage.LocationItemPage> query, NameValueCollection filters)
         {

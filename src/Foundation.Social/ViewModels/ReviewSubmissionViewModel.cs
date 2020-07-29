@@ -6,7 +6,6 @@ namespace Foundation.Social.ViewModels
     {
         public ReviewSubmissionViewModel()
         {
-
         }
 
         public ReviewSubmissionViewModel(string productCode) => ProductCode = productCode;

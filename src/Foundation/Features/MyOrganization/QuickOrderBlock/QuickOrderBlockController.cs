@@ -5,19 +5,18 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Services;
-using Foundation.Features.Home;
 using Foundation.Features.MyOrganization.QuickOrderPage;
 using Foundation.Features.Search;
+using Foundation.Features.Settings;
 using Foundation.Infrastructure;
 using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
@@ -35,6 +34,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         private readonly ICustomerService _customerService;
         private readonly IContentLoader _contentLoader;
         private readonly ContentLocator _contentLocator;
+        private readonly ISettingsService _settingsService;
 
         public QuickOrderBlockController(
             IQuickOrderService quickOrderService,
@@ -45,7 +45,8 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             ISearchService _searchService,
             ICustomerService customerService,
             IContentLoader contentLoader,
-            ContentLocator contentLocator)
+            ContentLocator contentLocator,
+            ISettingsService settingsService)
         {
             _quickOrderService = quickOrderService;
             _cartService = cartService;
@@ -56,6 +57,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             _customerService = customerService;
             _contentLoader = contentLoader;
             _contentLocator = contentLocator;
+            _settingsService = settingsService;
         }
         public override ActionResult Index(QuickOrderBlock currentBlock)
         {
@@ -81,7 +83,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             {
                 if (!product.ProductName.Equals("removed"))
                 {
-                    ContentReference variationReference = _referenceConverter.GetContentLink(product.Sku);
+                    var variationReference = _referenceConverter.GetContentLink(product.Sku);
                     var currentQuantity = GetCurrentItemQuantity(product.Sku);
                     product.Quantity += (int)currentQuantity;
                     var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(product.Quantity), product.Sku);
@@ -130,10 +132,10 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         [ValidateAntiForgeryToken]
         public ActionResult AddFromFile()
         {
-            HttpPostedFileBase fileContent = Request.Files[0];
+            var fileContent = Request.Files[0];
             if (fileContent != null && fileContent.ContentLength > 0)
             {
-                Stream uploadedFile = fileContent.InputStream;
+                var uploadedFile = fileContent.InputStream;
                 var fileName = fileContent.FileName;
                 var productsList = new List<QuickOrderProductViewModel>();
 
@@ -148,7 +150,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                 foreach (var record in fileData)
                 {
                     //find the product
-                    ContentReference variationReference = _referenceConverter.GetContentLink(record.Sku);
+                    var variationReference = _referenceConverter.GetContentLink(record.Sku);
                     var product = _quickOrderService.GetProductByCode(variationReference);
 
                     product.Quantity = record.Quantity;
@@ -183,7 +185,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             ModelState.Clear();
 
             var currentCustomer = _customerService.GetCurrentContact();
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
             var quoteCart = _cartService.LoadOrCreateCart("QuickOrderToQuote");
 
             if (quoteCart != null)
@@ -192,11 +194,10 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                 {
                     if (!product.ProductName.Equals("removed"))
                     {
-                        ContentReference variationReference = _referenceConverter.GetContentLink(product.Sku);
+                        var variationReference = _referenceConverter.GetContentLink(product.Sku);
                         var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(product.Quantity), product.Sku);
                         if (responseMessage.IsNullOrEmpty())
                         {
-
                             var result = _cartService.AddToCart(quoteCart, product.Sku, 1, "delivery", "");
                             if (!result.EntriesAddedToCart)
                             {
@@ -219,7 +220,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                 return Redirect(quickOrderPage?.LinkURL ?? Request.UrlReferrer.AbsoluteUri);
             }
 
-            return RedirectToAction("Index", new { Node = startPage.OrderHistoryPage });
+            return RedirectToAction("Index", new { Node = referencePages?.OrderHistoryPage ?? ContentReference.StartPage });
         }
     }
 }

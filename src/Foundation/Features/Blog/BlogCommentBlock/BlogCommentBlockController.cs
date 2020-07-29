@@ -49,7 +49,6 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         /// <returns>The action's result.</returns>
         public override ActionResult Index(BlogCommentBlock currentBlock)
         {
-
             var pagingInfo = new PagingInfo(_pageRouteHelper.PageLink.ID, currentBlock.CommentsPerPage == 0 ? RecordPerPage : currentBlock.CommentsPerPage, 1);
             return GetComment(pagingInfo, currentBlock);
         }

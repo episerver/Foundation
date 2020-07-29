@@ -8,7 +8,6 @@ using Foundation.Features.CatalogContent;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.InventoryService;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -38,10 +37,7 @@ namespace Foundation.Infrastructure.Jobs
         /// <summary>
         /// Called when a user clicks on Stop for a manually started job, or when ASP.NET shuts down.
         /// </summary>
-        public override void Stop()
-        {
-            _stopSignaled = true;
-        }
+        public override void Stop() => _stopSignaled = true;
 
         /// <summary>
         /// Called when a scheduled job executes
@@ -50,7 +46,7 @@ namespace Foundation.Infrastructure.Jobs
         public override string Execute()
         {
             //Call OnStatusChanged to periodically notify progress of job for manually started jobs
-            OnStatusChanged(String.Format("Starting execution of {0}", this.GetType()));
+            OnStatusChanged(string.Format("Starting execution of {0}", GetType()));
 
             //Add implementation
             UpdateAllCatalogContent();
@@ -69,7 +65,6 @@ namespace Foundation.Infrastructure.Jobs
             {
                 UpdateCatalogContentRecursive(catalog.ContentLink, new CultureInfo("en"));
             }
-
         }
 
         private void UpdateCatalogContentRecursive(ContentReference parentLink, CultureInfo defaultCulture)

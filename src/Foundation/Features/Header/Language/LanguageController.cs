@@ -2,7 +2,6 @@
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce.Markets;
-using System;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
@@ -32,7 +31,7 @@ namespace Foundation.Features.Header.Language
                         Text = x.DisplayName,
                         Value = x.Name
                     }),
-                Language = String.IsNullOrEmpty(language) ? _languageService.GetCurrentLanguage().Name : CultureInfo.GetCultureInfo(language).Name,
+                Language = string.IsNullOrEmpty(language) ? _languageService.GetCurrentLanguage().Name : CultureInfo.GetCultureInfo(language).Name,
                 ContentLink = contentLink
             };
 

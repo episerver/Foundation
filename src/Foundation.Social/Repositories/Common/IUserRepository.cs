@@ -46,6 +46,5 @@ namespace Foundation.Social.Repositories.Common
         /// <param name="user">The unique uri of the user</param>
         /// <returns>Substring of original uri</returns>
         string GetAuthenticatedId(string user);
-
     }
 }

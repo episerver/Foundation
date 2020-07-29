@@ -23,7 +23,9 @@ namespace Foundation.Social.Repositories.Groups
                 var extension = new GroupExtensionData(community.PageLink);
                 addedGroup = _groupService.Add(group, extension);
                 if (addedGroup == null)
+                {
                     throw new SocialRepositoryException("The new community could not be added. Please try again");
+                }
             }
             catch (SocialAuthenticationException ex)
             {
@@ -127,7 +129,6 @@ namespace Foundation.Social.Repositories.Groups
                 throw new SocialRepositoryException("Episerver Social could not find the community requested.", ex);
             }
 
-
             return socialGroups;
         }
 
@@ -141,7 +142,9 @@ namespace Foundation.Social.Repositories.Groups
                 var extension = new GroupExtensionData(community.PageLink);
                 updatedGroup = _groupService.Update(group, extension);
                 if (updatedGroup == null)
+                {
                     throw new SocialRepositoryException("The new community could not be added. Please try again");
+                }
             }
             catch (SocialAuthenticationException ex)
             {
