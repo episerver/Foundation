@@ -19,7 +19,6 @@ using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce.Extensions;
-using Foundation.Demo.Extensions;
 using Foundation.Features.Blog.BlogItem;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.CatalogContent.Product;
@@ -184,8 +183,6 @@ namespace Foundation.Infrastructure
             ViewEngines.Engines.Insert(0, new FeaturesViewEngine());
             context.InitializeFoundationCommerce();
             context.InitializeFoundationFindCms();
-            context.InitializeFoundationDemo();
-
 
             var handler = GlobalConfiguration.Configuration.MessageHandlers
                 .FirstOrDefault(x => x.GetType() == typeof(PassiveAuthenticationMessageHandler));
@@ -204,14 +201,12 @@ namespace Foundation.Infrastructure
             SearchClient.Instance.Conventions.ForInstancesOf<LocationItemPage>().IncludeField(dp => dp.TagString());
         }
 
-        public void Uninitialize(InitializationEngine context)
-        {
-            context.InitComplete -= ContextOnInitComplete;
-        }
+        public void Uninitialize(InitializationEngine context) => context.InitComplete -= ContextOnInitComplete;
 
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {
             _services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
+            Extensions.InstallDefaultContent();
         }
     }
 }

@@ -153,11 +153,11 @@ namespace Foundation.Features.Checkout.ViewModels
 
         private CartItemViewModel[] FlattenCartItems(IEnumerable<CartItemViewModel> cartItems)
         {
-            List<CartItemViewModel> list = new List<CartItemViewModel>();
+            var list = new List<CartItemViewModel>();
 
             foreach (var item in cartItems)
             {
-                for (int i = 0; i < item.Quantity; i++)
+                for (var i = 0; i < item.Quantity; i++)
                 {
                     list.Add(new CartItemViewModel
                     {

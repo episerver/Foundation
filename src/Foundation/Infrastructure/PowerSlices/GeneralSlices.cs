@@ -72,10 +72,7 @@ namespace Foundation.Infrastructure.PowerSlices
             return new ContentRange(filteredResults, itemRange);
         }
 
-        protected bool IsNotReferenced(IContent content)
-        {
-            return !ContentRepository.GetReferencesToContent(content.ContentLink, false).Any();
-        }
+        protected bool IsNotReferenced(IContent content) => !ContentRepository.GetReferencesToContent(content.ContentLink, false).Any();
 
         public override int SortOrder => 200;
     }
@@ -106,12 +103,8 @@ namespace Foundation.Infrastructure.PowerSlices
             return new ContentRange(filteredResults, itemRange);
         }
 
-        protected bool IsNotReferenced(IContent content)
-        {
-            return !ContentRepository.GetReferencesToContent(content.ContentLink, false).Any();
-        }
+        protected bool IsNotReferenced(IContent content) => !ContentRepository.GetReferencesToContent(content.ContentLink, false).Any();
 
         public override int SortOrder => 201;
-
     }
 }

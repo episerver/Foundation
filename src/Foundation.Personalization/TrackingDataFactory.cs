@@ -11,7 +11,6 @@ namespace Foundation.Personalization
 {
     public class TrackingDataFactory : EPiServer.Tracking.Commerce.TrackingDataFactory
     {
-
         private readonly ICurrentMarket _currentMarket;
         private readonly IOrderRepository _orderRepository;
 
@@ -39,5 +38,4 @@ namespace Foundation.Personalization
 
         public string DefaultWishListName => "WishList" + SiteDefinition.Current.StartPage.ID;
     }
-
 }

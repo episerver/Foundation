@@ -38,7 +38,6 @@ namespace Foundation.Social
 
         void IInitializableModule.Initialize(InitializationEngine context)
         {
-
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)

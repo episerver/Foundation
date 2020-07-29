@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
@@ -60,7 +59,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
             // Try to get recent comments
             try
             {
-                var socialComments = this._commentRepository.Get(
+                var socialComments = _commentRepository.Get(
                     new PageCommentFilter
                     {
                         Target = pageId.ToString(),
@@ -114,12 +113,12 @@ namespace Foundation.Features.Blocks.CommentsBlock
         /// <returns>The added PageComment</returns>
         private PageComment AddComment(CommentFormViewModel formViewModel)
         {
-            var newComment = this.AdaptCommentFormViewModelToSocialComment(formViewModel);
+            var newComment = AdaptCommentFormViewModelToSocialComment(formViewModel);
             PageComment addedComment = null;
 
             try
             {
-                addedComment = this._commentRepository.Add(newComment);
+                addedComment = _commentRepository.Add(newComment);
                 AddMessage(MessageKey, new MessageViewModel(SubmitSuccessMessage, SuccessMessage));
             }
             catch (SocialRepositoryException ex)
@@ -157,9 +156,9 @@ namespace Foundation.Features.Blocks.CommentsBlock
         {
             return new PageComment
             {
-                Target = _pageRepository.GetPageId(formViewModel.CurrentPageLink as PageReference),
+                Target = _pageRepository.GetPageId(formViewModel.CurrentPageLink),
                 Body = formViewModel.Body,
-                AuthorId = this._userRepository.GetUserId(this.User)
+                AuthorId = _userRepository.GetUserId(User)
             };
         }
 

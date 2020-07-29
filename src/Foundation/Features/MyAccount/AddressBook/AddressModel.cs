@@ -6,7 +6,10 @@ namespace Foundation.Features.MyAccount.AddressBook
 {
     public class AddressModel
     {
-        public AddressModel() => CountryRegion = new CountryRegionViewModel();
+        public AddressModel()
+        {
+            CountryRegion = new CountryRegionViewModel();
+        }
 
         public string AddressId { get; set; }
 

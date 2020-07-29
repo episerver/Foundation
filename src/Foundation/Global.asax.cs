@@ -52,7 +52,6 @@ namespace Foundation
             catch
             {
             }
-
         }
     }
 }

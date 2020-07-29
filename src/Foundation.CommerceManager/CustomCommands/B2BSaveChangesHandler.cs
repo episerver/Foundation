@@ -36,7 +36,10 @@ namespace Foundation.CommerceManager.CustomCommands
             {
                 var msg = "Unknow error";
                 if (workflowResults.Exception != null)
+                {
                     msg = workflowResults.Exception.Message;
+                }
+
                 ErrorManager.GenerateError(msg);
             }
             else

@@ -253,10 +253,7 @@ namespace Foundation.Commerce.Extensions
             return ContentLoader.Value.Get<EntryContentBase>(entryContentLink);
         }
 
-        public static IEnumerable<VariationContent> GetAllVariants(this ContentReference contentLink)
-        {
-            return GetAllVariants<VariationContent>(contentLink);
-        }
+        public static IEnumerable<VariationContent> GetAllVariants(this ContentReference contentLink) => GetAllVariants<VariationContent>(contentLink);
 
         public static IEnumerable<T> GetAllVariants<T>(this ContentReference contentLink) where T : VariationContent
         {

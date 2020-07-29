@@ -12,9 +12,9 @@ namespace Foundation.Find
 {
     public static class InitializationEngineExtensions
     {
-        private static Lazy<IContentEvents> _contentEvents = new Lazy<IContentEvents>(() => ServiceLocator.Current.GetInstance<IContentEvents>());
-        private static Lazy<IFacetRegistry> _facetRegistry = new Lazy<IFacetRegistry>(() => ServiceLocator.Current.GetInstance<IFacetRegistry>());
-        private static Lazy<IFacetConfigFactory> _facetConfigFactory = new Lazy<IFacetConfigFactory>(() => ServiceLocator.Current.GetInstance<IFacetConfigFactory>());
+        private static readonly Lazy<IContentEvents> _contentEvents = new Lazy<IContentEvents>(() => ServiceLocator.Current.GetInstance<IContentEvents>());
+        private static readonly Lazy<IFacetRegistry> _facetRegistry = new Lazy<IFacetRegistry>(() => ServiceLocator.Current.GetInstance<IFacetRegistry>());
+        private static readonly Lazy<IFacetConfigFactory> _facetConfigFactory = new Lazy<IFacetConfigFactory>(() => ServiceLocator.Current.GetInstance<IFacetConfigFactory>());
 
         public static void InitializeFoundationFindCms(this InitializationEngine context)
         {
@@ -23,7 +23,7 @@ namespace Foundation.Find
             _contentEvents.Value.PublishedContent += OnPublishedContent;
         }
 
-        static void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
+        private static void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
         {
             if (contentEventArgs.Content is IFacetConfiguration facetConfiguration)
             {

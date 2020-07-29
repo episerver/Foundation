@@ -31,5 +31,4 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
             };
         }
     }
-
 }

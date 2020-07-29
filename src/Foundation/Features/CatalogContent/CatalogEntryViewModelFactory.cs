@@ -499,9 +499,6 @@ namespace Foundation.Features.CatalogContent
             return quantity;
         }
 
-        private IEnumerable<EntryRelation> GetEntriesRelation(EntryContentBase content)
-        {
-            return _relationRepository.GetChildren<EntryRelation>(content.ContentLink);
-        }
+        private IEnumerable<EntryRelation> GetEntriesRelation(EntryContentBase content) => _relationRepository.GetChildren<EntryRelation>(content.ContentLink);
     }
 }

@@ -45,7 +45,9 @@ namespace Foundation.Social.Repositories.Groups
                     _communityMemberAdapter.Adapt(addedCompositeMember.Data, addedCompositeMember.Extension);
 
                 if (addedSocialMember == null)
+                {
                     throw new SocialRepositoryException("The new member could not be added. Please try again");
+                }
             }
             catch (SocialAuthenticationException ex)
             {

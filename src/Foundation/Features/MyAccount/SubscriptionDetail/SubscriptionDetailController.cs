@@ -4,10 +4,11 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
+using Foundation.Cms.Settings;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderHistory;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System.Collections.Generic;
@@ -18,15 +19,17 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
 {
     public class SubscriptionDetailController : PageController<SubscriptionDetailPage>
     {
-
+        private readonly ISettingsService _settingsService;
         private readonly AddressBookService _addressBookService;
         private readonly IContentLoader _contentLoader;
 
         public SubscriptionDetailController(AddressBookService addressBookService,
-            IContentLoader contentLoader)
+            IContentLoader contentLoader,
+            ISettingsService settingsService)
         {
             _addressBookService = addressBookService;
             _contentLoader = contentLoader;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(SubscriptionDetailPage currentPage, int paymentPlanId = 0)
@@ -52,7 +55,6 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
 
             foreach (var purchaseOrder in purchaseOrders)
             {
-
                 // Assume there is only one form per purchase.
                 var form = purchaseOrder.GetFirstForm();
                 var billingAddress = new AddressModel();
@@ -81,13 +83,12 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
                 orders.Orders.Add(orderViewModel);
             }
             orders.OrderDetailsPageUrl =
-             UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
+             UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage);
 
             viewModel.Orders = orders;
 
             return View(viewModel);
         }
-
 
     }
 }

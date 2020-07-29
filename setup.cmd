@@ -14,13 +14,14 @@ set APPCMD=%windir%\system32\inetsrv\appcmd.exe
 
 if "%~1" == "" goto loop
 
-for /f "tokens=1-5*" %%a in ("%*") do (
+for /f "tokens=1-7*" %%a in ("%*") do (
 	set APPNAME=%%a
 	set FOUNDATIONDOMAIN=%%b
 	set CMDOMAIN=%%c
 	set LICENSEPATH=%%d
 	set SQLSERVER=%%e
 	set ADDITIONAL_SQLCMD=%%f
+	set SETUP_CONRTOLLER=%%g
 )
 goto main
 
@@ -339,8 +340,11 @@ echo --^>
 echo ^</connectionStrings^>
 ) > "%SOURCEPATH%\Foundation.CommerceManager\connectionStrings.config"
 
-
-start http://%FOUNDATIONDOMAIN%/setup
+if "%SETUP_CONRTOLLER%"=="" (
+    start http://%FOUNDATIONDOMAIN%/
+) else (
+    start http://%FOUNDATIONDOMAIN%/setup
+)
 :error
 if NOT "%errorMessage%"=="" echo %errorMessage%
 

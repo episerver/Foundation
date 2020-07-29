@@ -11,7 +11,6 @@ namespace Foundation.Features.Shared.SelectionFactories
 
         public PaddingSelectionFactory() : this(ServiceLocator.Current.GetInstance<LocalizationService>())
         {
-
         }
 
         public PaddingSelectionFactory(LocalizationService localizationService)

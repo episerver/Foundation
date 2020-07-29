@@ -31,8 +31,9 @@ namespace Foundation.Social.Repositories.Comments
                 addedComment = commentService.Add(newComment, commentEtx);
 
                 if (addedComment == null)
+                {
                     throw new SocialRepositoryException("The newly posted comment could not be added. Please try again");
-
+                }
             }
             catch (SocialAuthenticationException ex)
             {
@@ -85,7 +86,6 @@ namespace Foundation.Social.Repositories.Comments
 
                 total = pageComment.TotalCount;
                 comments = pageComment.Results.ToList();
-
             }
             catch (SocialAuthenticationException ex)
             {
@@ -149,5 +149,4 @@ namespace Foundation.Social.Repositories.Comments
             );
         }
     }
-
 }

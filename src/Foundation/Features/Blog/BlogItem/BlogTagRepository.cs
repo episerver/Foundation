@@ -63,7 +63,5 @@ namespace Foundation.Features.Blog.BlogItem
         }
 
         public BlogTagItem LoadTag(BlogTagItem tag) => LoadTags().FirstOrDefault(x => x.TagName == tag.TagName);
-
     }
-
 }

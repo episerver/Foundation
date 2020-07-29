@@ -17,8 +17,8 @@ namespace Foundation.Infrastructure.Display
 
             foreach (var contentAreaItem in contentAreaItems)
             {
-                string templateTag = GetContentAreaItemTemplateTag(html, contentAreaItem);
-                bool isScreenContentAreaItem = IsScreenWidthTag(templateTag);
+                var templateTag = GetContentAreaItemTemplateTag(html, contentAreaItem);
+                var isScreenContentAreaItem = IsScreenWidthTag(templateTag);
 
                 if (isScreenContentAreaItem)
                 {
@@ -47,9 +47,6 @@ namespace Foundation.Infrastructure.Display
             return string.Format("block {0}", templateTag);
         }
 
-        protected virtual bool IsScreenWidthTag(string templateTag)
-        {
-            return templateTag == "displaymode-screen";
-        }
+        protected virtual bool IsScreenWidthTag(string templateTag) => templateTag == "displaymode-screen";
     }
 }

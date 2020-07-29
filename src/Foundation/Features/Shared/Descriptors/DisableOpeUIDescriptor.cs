@@ -22,5 +22,4 @@ namespace Foundation.Features.Shared.Descriptors
             DisabledViews.Add(CmsViewNames.SideBySideCompareView);
         }
     }
-
 }

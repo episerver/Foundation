@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.Blocks.TeaserBlock
 {
-    class TeaserBlockElementOrderSelectionFactory : ISelectionFactory
+    internal class TeaserBlockElementOrderSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
@@ -19,7 +19,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         }
     }
 
-    class TeaserBlockElementAlignmentSelectionFactory : ISelectionFactory
+    internal class TeaserBlockElementAlignmentSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
@@ -32,7 +32,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         }
     }
 
-    class TeaserBlockHeadingStyleSelectionFactory : ISelectionFactory
+    internal class TeaserBlockHeadingStyleSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
@@ -46,7 +46,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         }
     }
 
-    class TeaserBlockTextColorSelectionFactory : ISelectionFactory
+    internal class TeaserBlockTextColorSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {

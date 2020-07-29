@@ -1,8 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Home;
+﻿using EPiServer.Web.Mvc;
+using Foundation.Cms.Settings;
 using Foundation.Features.Search;
+using Foundation.Features.Settings;
 using System.Web.Mvc;
 
 namespace Foundation.Features.Sales
@@ -10,20 +9,21 @@ namespace Foundation.Features.Sales
     public class SalesPageController : PageController<SalesPage>
     {
         private readonly ISearchService _searchService;
-        private readonly IContentLoader _contentLoader;
+        private readonly ISettingsService _settingsService;
 
-        public SalesPageController(ISearchService searchService, IContentLoader contentLoader)
+        public SalesPageController(ISearchService searchService,
+            ISettingsService settingsService)
         {
             _searchService = searchService;
-            _contentLoader = contentLoader;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(SalesPage currentPage, int page = 1)
         {
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var searchSettings = _settingsService.GetSiteSettings<SearchSettings>();
             var model = new SalesPageViewModel(currentPage)
             {
-                ProductViewModels = _searchService.SearchOnSale(currentPage, out var pages, startPage.SearchCatalog, page, 12),
+                ProductViewModels = _searchService.SearchOnSale(currentPage, out var pages, searchSettings?.SearchCatalog ?? 0, page, 12),
                 PageNumber = page,
                 Pages = pages
             };

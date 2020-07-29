@@ -49,7 +49,6 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
             // Create a subscription block view model to fill the frontend block view
             var blockViewModel = new SubscriptionBlockViewModel(currentBlock, _pageRouteHelper.PageLink)
             {
-
                 //get messages for view
                 Messages = RetrieveMessages(MessageKey)
             };
@@ -68,10 +67,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
         /// <param name="formViewModel">The subscription form being submitted.</param>
         /// <returns>The submit action result.</returns>
         [HttpPost]
-        public ActionResult Subscribe(SubscriptionFormViewModel formViewModel)
-        {
-            return HandleAction(ActionSubscribe, formViewModel);
-        }
+        public ActionResult Subscribe(SubscriptionFormViewModel formViewModel) => HandleAction(ActionSubscribe, formViewModel);
 
         /// <summary>
         /// Unsubscribes the current user from the current page. It accepts a subscription form model,
@@ -80,10 +76,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
         /// <param name="formViewModel">The subscription form being submitted.</param>
         /// <returns>The submit action result.</returns>
         [HttpPost]
-        public ActionResult Unsubscribe(SubscriptionFormViewModel formViewModel)
-        {
-            return HandleAction(ActionUnsubscribe, formViewModel);
-        }
+        public ActionResult Unsubscribe(SubscriptionFormViewModel formViewModel) => HandleAction(ActionUnsubscribe, formViewModel);
 
         /// <summary>
         /// Handle subscribe/unsubscribe actions.

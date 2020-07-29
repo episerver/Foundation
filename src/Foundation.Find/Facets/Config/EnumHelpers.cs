@@ -47,7 +47,7 @@ namespace Foundation.Find.Facets.Config
 
             var staticEnumName = Enum.GetName(typeof(TEnum), enumValue);
 
-            if (LocalizationService.Current.TryGetString($"/Enum/{typeof(TEnum).Name}/{staticEnumName}", out string localizedEnumName))
+            if (LocalizationService.Current.TryGetString($"/Enum/{typeof(TEnum).Name}/{staticEnumName}", out var localizedEnumName))
             {
                 return localizedEnumName;
             }

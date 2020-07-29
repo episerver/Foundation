@@ -21,7 +21,10 @@ namespace Foundation.Features.Checkout.Payments
             ICurrentMarket currentMarket,
             LanguageService languageService,
             IPaymentService paymentService)
-            : base(localizationService, orderGroupFactory, currentMarket, languageService, paymentService) => _orderGroupFactory = orderGroupFactory;
+            : base(localizationService, orderGroupFactory, currentMarket, languageService, paymentService)
+        {
+            _orderGroupFactory = orderGroupFactory;
+        }
 
         public override string SystemKeyword { get; } = "BudgetPayment";
 

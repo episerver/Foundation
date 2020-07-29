@@ -5,7 +5,6 @@ namespace Foundation.Social.ViewModels
 {
     public class ReviewViewModel
     {
-
         public CommentId Id { get; set; }
 
         public virtual bool IsVisible { get; set; }

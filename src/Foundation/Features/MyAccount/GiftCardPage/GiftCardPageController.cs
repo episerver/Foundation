@@ -12,7 +12,10 @@ namespace Foundation.Features.MyAccount.GiftCardPage
     {
         private readonly IGiftCardService _giftCardService;
 
-        public GiftCardPageController(IGiftCardService giftCardService) => _giftCardService = giftCardService;
+        public GiftCardPageController(IGiftCardService giftCardService)
+        {
+            _giftCardService = giftCardService;
+        }
 
         public ActionResult Index(GiftCardPage currentPage)
         {

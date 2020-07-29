@@ -49,8 +49,10 @@ namespace Foundation.Features.CatalogContent
 
         protected List<KeyValuePair<string, string>> GetBreadCrumb(string catalogCode)
         {
-            var model = new List<KeyValuePair<string, string>>();
-            model.Add(new KeyValuePair<string, string>("Home", "/"));
+            var model = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("Home", "/")
+            };
             var entryLink = _referenceConverter.GetContentLink(catalogCode);
             if (entryLink != null)
             {
@@ -60,7 +62,9 @@ namespace Foundation.Features.CatalogContent
                 {
                     var parentLink = (entry as VariationContent).GetParentProducts().FirstOrDefault();
                     if (!ContentReference.IsNullOrEmpty(parentLink))
+                    {
                         product = _contentLoader.Get<CatalogContentBase>(parentLink);
+                    }
                 }
                 var ancestors = _contentLoader.GetAncestors(product.ContentLink);
                 foreach (var anc in ancestors.Reverse())
@@ -82,7 +86,6 @@ namespace Foundation.Features.CatalogContent
             // Create the review activity
             var activity = new ReviewActivity
             {
-
                 Product = product,
                 Rating = rating,
                 Contributor = user,
@@ -92,8 +95,7 @@ namespace Foundation.Features.CatalogContent
             _reviewActivityService.Add(user, product, activity);
         }
 
-        protected ReviewsViewModel GetReviews(string productCode)
-        {
+        protected ReviewsViewModel GetReviews(string productCode) =>
 
             //Testing to query FIND with GetRatingAverage
             //var searchClient = Client.CreateFromConfig();
@@ -102,10 +104,8 @@ namespace Foundation.Features.CatalogContent
             //                .OrderByDescending(c => c.GetRatingAverage()).Take(25)
             //                .GetContentResult();
 
-
             // Return reviews for the product with the ReviewService
-            return _reviewService.Get(productCode);
-        }
+            _reviewService.Get(productCode);
 
         [HttpPost]
         [ValidateAntiForgeryToken]

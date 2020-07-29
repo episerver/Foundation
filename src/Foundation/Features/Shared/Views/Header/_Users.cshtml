@@ -174,7 +174,7 @@ else
     <div class="logged-in-user dropdown-menu dropdown-menu--customized">
         <div class="user-menu">
             <div class="user-menu__title">
-                <h4>@(Model.HomePage.MyAccountLabel ?? Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account"))</h4>
+                <h4>@(Model.LabelSettings.MyAccountLabel ?? Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account"))</h4>
                 <p>  @Html.TranslateFallback("/Header/Hello", "Hello") @Model.Name!</p>
             </div>
             <div class="user-menu__list">

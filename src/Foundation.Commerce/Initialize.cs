@@ -4,6 +4,8 @@ using EPiServer.Framework.Initialization;
 using EPiServer.Labs.ContentManager;
 using EPiServer.ServiceLocation;
 using Foundation.Commerce.Customer.Services;
+using Foundation.Commerce.Install;
+using Foundation.Commerce.Install.Steps;
 using Foundation.Commerce.Marketing;
 using Foundation.Commerce.Markets;
 using Mediachase.Commerce;
@@ -25,6 +27,15 @@ namespace Foundation.Commerce
             services.AddSingleton<MarketContentLoader>();
             services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
             services.AddSingleton<ICouponUsage, FoundationCouponUsage>();
+            services.AddSingleton<IInstallService, InstallService>();
+            services.AddSingleton<IInstallStep, AddCurrencies>();
+            services.AddSingleton<IInstallStep, AddCustomers>();
+            services.AddSingleton<IInstallStep, AddMarkets>();
+            services.AddSingleton<IInstallStep, AddPaymentMethods>();
+            services.AddSingleton<IInstallStep, AddPromotions>();
+            services.AddSingleton<IInstallStep, AddShippingMethods>();
+            services.AddSingleton<IInstallStep, AddTaxes>();
+            services.AddSingleton<IInstallStep, AddWarehouses>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

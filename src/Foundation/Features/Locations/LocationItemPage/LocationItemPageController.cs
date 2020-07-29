@@ -96,6 +96,5 @@ namespace Foundation.Features.Locations.LocationItemPage
 
             return searchText;
         }
-
     }
 }
