@@ -80,7 +80,6 @@ namespace Foundation.Features.Shared
                 return new HtmlString(string.Empty);
             }
         }
-
     }
 
     public static class ContentViewModel

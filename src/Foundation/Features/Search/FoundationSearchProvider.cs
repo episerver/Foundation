@@ -89,26 +89,17 @@ namespace Foundation.Features.Search
         /// The search area where this provider will search.
         /// </summary>
         /// <see cref="SearchArea"/>
-        public override string Area
-        {
-            get { return SearchArea; }
-        }
+        public override string Area => SearchArea;
 
         /// <summary>
         /// Category display
         /// </summary>
-        public override string Category
-        {
-            get { return _localizationService.GetString("/Commerce/Edit/Provider/SearchProductCatalog/Category"); }
-        }
+        public override string Category => _localizationService.GetString("/Commerce/Edit/Provider/SearchProductCatalog/Category");
 
         /// <summary>
         /// Gets the icon CSS class.
         /// </summary>
-        protected override string IconCssClass
-        {
-            get { return "epi-resourceIcon epi-resourceIcon-page"; }
-        }
+        protected override string IconCssClass => "epi-resourceIcon epi-resourceIcon-page";
 
         /// <summary>
         /// Search in ProductCatalog and return list of result
@@ -195,5 +186,4 @@ namespace Foundation.Features.Search
             return search.OrFilter(filter);
         }
     }
-
 }

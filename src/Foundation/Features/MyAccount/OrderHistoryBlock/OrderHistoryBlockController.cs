@@ -1,17 +1,17 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Order;
+﻿using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
+using Foundation.Cms.Settings;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderHistory;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System;
@@ -27,14 +27,14 @@ namespace Foundation.Features.MyAccount.OrdersBlock
     {
         private readonly IAddressBookService _addressBookService;
         private readonly IOrderRepository _orderRepository;
-        private readonly IContentLoader _contentLoader;
+        private readonly ISettingsService _settingsService;
         private readonly ICustomerService _customerService;
 
-        public OrderHistoryBlockController(IAddressBookService addressBookService, IOrderRepository orderRepository, IContentLoader contentLoader, ICustomerService customerService)
+        public OrderHistoryBlockController(IAddressBookService addressBookService, IOrderRepository orderRepository, ISettingsService settingsService, ICustomerService customerService)
         {
             _addressBookService = addressBookService;
             _orderRepository = orderRepository;
-            _contentLoader = contentLoader;
+            _settingsService = settingsService;
             _customerService = customerService;
         }
 
@@ -93,7 +93,6 @@ namespace Foundation.Features.MyAccount.OrdersBlock
                         {
                             LogManager.GetLogger(GetType()).Error("Failed to update order status to Quote Expired.", ex.StackTrace);
                         }
-
                     }
                 }
 
@@ -101,7 +100,7 @@ namespace Foundation.Features.MyAccount.OrdersBlock
             }
 
             viewModel.OrderDetailsPageUrl =
-                UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
+                UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage);
 
             return PartialView(viewModel);
         }

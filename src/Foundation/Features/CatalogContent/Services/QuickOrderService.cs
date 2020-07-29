@@ -58,9 +58,6 @@ namespace Foundation.Features.CatalogContent.Services
             return product;
         }
 
-        public decimal GetTotalInventoryByEntry(string code)
-        {
-            return _inventoryService.QueryByEntry(new[] { code }).Sum(x => x.PurchaseAvailableQuantity);
-        }
+        public decimal GetTotalInventoryByEntry(string code) => _inventoryService.QueryByEntry(new[] { code }).Sum(x => x.PurchaseAvailableQuantity);
     }
 }

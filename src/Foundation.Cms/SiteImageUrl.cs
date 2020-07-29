@@ -12,12 +12,10 @@ namespace Foundation.Cms
         /// </summary>
         public SiteImageUrl() : base("~/assets/icons/gfx/page-type-thumbnail.png")
         {
-
         }
 
         public SiteImageUrl(string path) : base(path)
         {
-
         }
     }
 }

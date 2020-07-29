@@ -91,6 +91,5 @@ namespace Foundation.Features.NamedCarts.OrderPadsPage
 
             return orderPadOrganization;
         }
-
     }
 }

@@ -10,7 +10,6 @@ namespace Foundation.Features.Standard
 
         public StandardPageViewModel(StandardPage currentPage) : base(currentPage)
         {
-
         }
 
         public static StandardPageViewModel Create(StandardPage currentPage, CategoryRepository categoryRepository)

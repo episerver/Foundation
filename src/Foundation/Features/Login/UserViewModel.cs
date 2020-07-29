@@ -14,8 +14,10 @@ namespace Foundation.Features.Login
         public UserViewModel()
         {
             LoginViewModel = new LoginViewModel();
-            RegisterAccountViewModel = new RegisterAccountViewModel();
-            RegisterAccountViewModel.Address = new AddressModel();
+            RegisterAccountViewModel = new RegisterAccountViewModel
+            {
+                Address = new AddressModel()
+            };
         }
     }
 }

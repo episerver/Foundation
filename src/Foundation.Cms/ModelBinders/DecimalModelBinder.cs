@@ -11,14 +11,14 @@ namespace Foundation.Cms.ModelBinders
         {
             object result = null;
 
-            string modelName = bindingContext.ModelName;
-            string attemptedValue =
+            var modelName = bindingContext.ModelName;
+            var attemptedValue =
                 bindingContext.ValueProvider.GetValue(modelName).AttemptedValue;
 
             // Depending on CultureInfo, the NumberDecimalSeparator can be "," or "."
             // Both "." and "," should be accepted, but aren't.
-            string wantedSeparator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
-            string alternateSeparator = (wantedSeparator == "," ? "." : ",");
+            var wantedSeparator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+            var alternateSeparator = (wantedSeparator == "," ? "." : ",");
 
             if (attemptedValue.IndexOf(wantedSeparator) == -1
                 && attemptedValue.IndexOf(alternateSeparator) != -1)

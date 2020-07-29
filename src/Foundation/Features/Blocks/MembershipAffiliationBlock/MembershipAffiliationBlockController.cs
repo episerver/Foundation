@@ -4,7 +4,6 @@ using Foundation.Social;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -47,15 +46,15 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
             try
             {
                 //Retrieve the groups that are associated with the currently logged in user.
-                var userId = _userRepository.GetUserId(this.User);
-                if (!String.IsNullOrWhiteSpace(userId))
+                var userId = _userRepository.GetUserId(User);
+                if (!string.IsNullOrWhiteSpace(userId))
                 {
                     var memberFilter = new CommunityMemberFilter
                     {
                         UserId = _userRepository.CreateAuthenticatedUri(userId),
                         PageSize = currentBlock.NumberOfMembers
                     };
-                    var listOfSocialMembers = this._memberRepository.Get(memberFilter);
+                    var listOfSocialMembers = _memberRepository.Get(memberFilter);
                     GetAffiliatedGroups(membershipAffiliationBlockModel, listOfSocialMembers);
                 }
                 //If the user is not logged in let them know they will need to log in to see the groups they are affiliated with
@@ -83,7 +82,7 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
         {
             if (listOfSocialMembers != null && listOfSocialMembers.Any())
             {
-                var listOfSocialGroups = this._communityRepository.Get(listOfSocialMembers.Select(x => x.GroupId).ToList());
+                var listOfSocialGroups = _communityRepository.Get(listOfSocialMembers.Select(x => x.GroupId).ToList());
                 if (listOfSocialGroups != null && listOfSocialGroups.Any())
                 {
                     membershipAffiliationBlockModel.Groups = listOfSocialGroups;

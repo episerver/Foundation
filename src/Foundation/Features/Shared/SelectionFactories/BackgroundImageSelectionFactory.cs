@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.Shared.SelectionFactories
 {
-    class BackgroundImageSelectionFactory : ISelectionFactory
+    internal class BackgroundImageSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {

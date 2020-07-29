@@ -17,7 +17,10 @@ namespace Foundation.Features.MyOrganization.SubOrganization
                 : new List<B2BAddressViewModel>();
         }
 
-        public SubOrganizationModel() => Locations = new List<B2BAddressViewModel>();
+        public SubOrganizationModel()
+        {
+            Locations = new List<B2BAddressViewModel>();
+        }
 
         [LocalizedDisplay("/B2B/Organization/SubOrganizationName")]
         [LocalizedRequired("/B2B/Organization/SubOrganizationNameRequired")]

@@ -7,7 +7,6 @@ namespace Foundation.Cms
     {
         public PagingInfo()
         {
-
         }
 
         public PagingInfo(int pageId, int pageSize, int pageIndex)

@@ -11,22 +11,22 @@
     <nav class="container @(Model.LargeHeaderMenu ? "large-header-menu" : "")">
         <div class="row no-gutters">
             <div class="navigation">
-                <div class="navigation__left" @Html.EditAttributes(x => x.HomePage.MainMenu)>
+                <div class="navigation__left" @Html.EditAttributes(x => x.LayoutSettings.MainMenu)>
                     @Html.Partial("_Menu", Model.MenuItems)
                 </div>
-                <div class="navigation__logo @(Model.HomePage.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
-                     style="@(Model.HomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
+                <div class="navigation__logo @(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
+                     style="@(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
                     <a href="/">
                         @if (PageEditing.PageIsInEditMode)
                         {
-                            <img class="img-fluid src="@UrlResolver.Current.GetUrl(Model.HomePage.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })"
-                                 @Html.EditAttributes(x => x.HomePage.SiteLogo)" />
+                            <img class="img-fluid src="@UrlResolver.Current.GetUrl(Model.LayoutSettings.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })"
+                                 @Html.EditAttributes(x => x.LayoutSettings.SiteLogo)" />
                         }
                         else
                         {
                             <picture class="img-fluid">
-                                <source data-srcset="@Url.ContentUrl(Model.HomePage.SiteLogo)?format=webp&width=225" type="image/webp">
-                                <img data-src="@Url.ContentUrl(Model.HomePage.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.HomePage.SiteLogo) />
+                                <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp">
+                                <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
                             </picture>
                         }
                     </a>
@@ -93,9 +93,9 @@
                         </div>
                         <div class="searchbox" id="js-searchbox">
                             <i class="icon-left" data-feather="search"></i>
-                            <input type="hidden" id="searchOption" value="@Model.HomePage.SearchOption" />
+                            <input type="hidden" id="searchOption" value="@Model.SearchSettings.SearchOption" />
                             <input placeholder="Search" id="js-searchbox-input" class="jsSearchText"
-                                   data-search="@Url.ContentUrl(Model.HomePage.SearchPage)"
+                                   data-search="@Url.ContentUrl(Model.ReferencePageSettings.SearchPage)"
                                    data-result-container="#jsResultSearch" />
                             <input type="hidden" id="searchConfidence" value="1" />
                             <input class="hidden" type="file" id="fileSearchInput" />

@@ -31,6 +31,5 @@ namespace Foundation.Features.Blog.BlogItem
             public int Count { get; set; }
             public string DisplayName { get; set; }
         }
-
     }
 }

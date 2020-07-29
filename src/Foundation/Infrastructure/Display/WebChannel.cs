@@ -10,9 +10,6 @@ namespace Foundation.Infrastructure.Display
     {
         public override string ChannelName => "Web";
 
-        public override bool IsActive(HttpContextBase context)
-        {
-            return !context.Request.Browser.IsMobileDevice;
-        }
+        public override bool IsActive(HttpContextBase context) => !context.Request.Browser.IsMobileDevice;
     }
 }

@@ -16,11 +16,11 @@
                         <span class="hamburger-menu__line"></span>
                     </div>
                 </div>
-                <div class="mobile-navigation__item" style="@(Model.HomePage.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
+                <div class="mobile-navigation__item" style="@(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
                     <a href="/" class="mobile-navigation__logo">
                         <picture class="img-fluid">
-                            <source data-srcset="@Url.ContentUrl(Model.HomePage.SiteLogo)?format=webp&width=225" type="image/webp">
-                            <img data-src="@Url.ContentUrl(Model.HomePage.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.HomePage.SiteLogo) />
+                            <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp">
+                            <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
                         </picture>
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                         <i data-feather="search"></i>
                     </div>
                     <input class="mobile-navigation__search-text jsSearchText" type="text" placeholder="Search"
-                           data-search="@Url.ContentUrl(Model.HomePage.SearchPage)"
+                           data-search="@Url.ContentUrl(Model.ReferencePageSettings.SearchPage)"
                            data-result-container="#jsResultSearchMobile" />
                     <div class="searchbox-popover" id="jsResultSearchMobile" style="display: none">
                         <div style="position: relative; min-height: 80px;">

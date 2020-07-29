@@ -84,5 +84,8 @@ namespace Foundation.Infrastructure
 
         [Display(Name = "Settings", Order = 290)]
         public const string Settings = SystemTabNames.Settings;
+
+        [Display(Name = "Colors", Order = 300)]
+        public const string Colors = "Colors";
     }
 }

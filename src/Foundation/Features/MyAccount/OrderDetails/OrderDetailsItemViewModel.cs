@@ -41,7 +41,7 @@ namespace Foundation.Features.MyAccount.OrderDetails
             while (returnForms.MoveNext())
             {
                 var returnForm = returnForms.Current;
-                Mediachase.Commerce.Orders.ReturnFormStatus formStatus = ReturnFormStatusManager.GetReturnFormStatus(returnForm);
+                var formStatus = ReturnFormStatusManager.GetReturnFormStatus(returnForm);
                 if (!formStatus.Equals(Mediachase.Commerce.Orders.ReturnFormStatus.Canceled))
                 {
                     total += returnForm.LineItems.Where(x => x.OrigLineItemId == LineItem.LineItemId).Sum(x => x.Quantity);

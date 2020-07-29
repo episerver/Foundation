@@ -1,9 +1,9 @@
-﻿using EPiServer;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Features.Home;
+using Foundation.Cms.Settings;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System.Linq;
@@ -13,9 +13,12 @@ namespace Foundation.Features.MyAccount.SubscriptionHistory
 {
     public class SubscriptionHistoryController : PageController<SubscriptionHistoryPage>
     {
-        private readonly IContentLoader _contentLoader;
+        private readonly ISettingsService _settingsService;
 
-        public SubscriptionHistoryController(IContentLoader contentLoader) => _contentLoader = contentLoader;
+        public SubscriptionHistoryController(ISettingsService settingsService)
+        {
+            _settingsService = settingsService;
+        }
 
         public ActionResult Index(SubscriptionHistoryPage currentPage)
         {
@@ -29,7 +32,7 @@ namespace Foundation.Features.MyAccount.SubscriptionHistory
                 PaymentPlans = paymentPlans
             };
 
-            viewModel.PaymentPlanDetailsPageUrl = UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).PaymentPlanDetailsPage);
+            viewModel.PaymentPlanDetailsPageUrl = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.PaymentPlanDetailsPage ?? ContentReference.StartPage);
 
             return View(viewModel);
         }

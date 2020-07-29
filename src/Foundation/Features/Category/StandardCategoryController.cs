@@ -28,8 +28,10 @@ namespace Foundation.Features.Category
         {
             var categories = new List<ContentReference> { currentContent.ContentLink };
             pagination.Categories = categories;
-            var model = new CategorySearchViewModel(currentContent);
-            model.SearchResults = _searchService.SearchByCategory(pagination);
+            var model = new CategorySearchViewModel(currentContent)
+            {
+                SearchResults = _searchService.SearchByCategory(pagination)
+            };
             return View(model);
         }
 
@@ -37,16 +39,20 @@ namespace Foundation.Features.Category
         {
             var categories = new List<ContentReference> { currentContent.ContentLink };
             pagination.Categories = categories;
-            var model = new CategorySearchViewModel(currentContent);
-            model.SearchResults = _searchService.SearchByCategory(pagination);
+            var model = new CategorySearchViewModel(currentContent)
+            {
+                SearchResults = _searchService.SearchByCategory(pagination)
+            };
             return PartialView("_PageListing", model);
         }
 
         public ActionResult Preview(FoundationPageData pageData)
         {
-            var model = new CategoryFoundationPageViewModel(pageData);
-            model.PreviewText = GetPreviewText(pageData);
-            model.Categories = pageData.Categories.Select(x => _contentLoader.Get<CategoryData>(x) as StandardCategory);
+            var model = new CategoryFoundationPageViewModel(pageData)
+            {
+                PreviewText = GetPreviewText(pageData),
+                Categories = pageData.Categories.Select(x => _contentLoader.Get<CategoryData>(x) as StandardCategory)
+            };
             return PartialView("_Preview", model);
         }
 

@@ -10,10 +10,7 @@ namespace Foundation.Cms.Attributes
     {
         private readonly int _maxItemAllowed;
 
-        public MaxElementsAttribute(int maxItemAllowed)
-        {
-            _maxItemAllowed = maxItemAllowed;
-        }
+        public MaxElementsAttribute(int maxItemAllowed) => _maxItemAllowed = maxItemAllowed;
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {

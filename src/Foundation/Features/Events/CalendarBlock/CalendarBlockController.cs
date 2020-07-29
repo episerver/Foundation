@@ -15,7 +15,10 @@ namespace Foundation.Features.Events.CalendarBlock
     {
         private readonly IContentLoader _contentLoader;
 
-        public CalendarBlockController(IContentLoader contentLoader) => _contentLoader = contentLoader;
+        public CalendarBlockController(IContentLoader contentLoader)
+        {
+            _contentLoader = contentLoader;
+        }
 
         public override ActionResult Index(CalendarBlock currentBlock)
         {

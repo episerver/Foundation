@@ -91,6 +91,5 @@ namespace Foundation.Cms
             return _pageCriteriaQueryService.FindPagesWithCriteria(pageLink, criteria);
         }
 
-
     }
 }

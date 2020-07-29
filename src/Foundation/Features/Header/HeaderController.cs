@@ -33,10 +33,7 @@ namespace Foundation.Features.Header
         }
 
         [ChildActionOnly]
-        public ActionResult GetHeaderLogoOnly(HomePage homePage)
-        {
-            return PartialView("_HeaderLogo", homePage);
-        }
+        public ActionResult GetHeaderLogoOnly(HomePage homePage) => PartialView("_HeaderLogo", homePage);
 
         public ActionResult GetCountryOptions(string inputName)
         {

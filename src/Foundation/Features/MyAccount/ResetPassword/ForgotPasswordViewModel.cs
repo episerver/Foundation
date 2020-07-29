@@ -7,7 +7,6 @@ namespace Foundation.Features.MyAccount.ResetPassword
     {
         public ForgotPasswordViewModel(ResetPasswordPage resetPasswordPage) : base(resetPasswordPage)
         {
-
         }
 
         public ForgotPasswordViewModel() { }

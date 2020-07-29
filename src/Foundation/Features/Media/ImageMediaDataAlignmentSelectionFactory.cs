@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.Media
 {
-    class ImageMediaDataAlignmentSelectionFactory : ISelectionFactory
+    internal class ImageMediaDataAlignmentSelectionFactory : ISelectionFactory
     {
         public virtual IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {

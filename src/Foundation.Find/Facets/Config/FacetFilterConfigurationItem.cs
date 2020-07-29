@@ -139,7 +139,6 @@ namespace Foundation.Find.Facets.Config
                         default:
                             return new SelectableNumericRange();
                     }
-
                 })
                 .ToList();
 

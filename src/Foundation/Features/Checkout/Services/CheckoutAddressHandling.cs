@@ -8,7 +8,10 @@ namespace Foundation.Features.Checkout.Services
     {
         private readonly IAddressBookService _addressBookService;
 
-        public CheckoutAddressHandling(IAddressBookService addressBookService) => _addressBookService = addressBookService;
+        public CheckoutAddressHandling(IAddressBookService addressBookService)
+        {
+            _addressBookService = addressBookService;
+        }
 
         public virtual void UpdateAuthenticatedUserAddresses(CheckoutViewModel viewModel)
         {
@@ -16,10 +19,7 @@ namespace Foundation.Features.Checkout.Services
             LoadShippingAddressesFromAddressBook(viewModel);
         }
 
-        public virtual void UpdateAnonymousUserAddresses(CheckoutViewModel viewModel)
-        {
-            SetDefaultBillingAddressName(viewModel);
-        }
+        public virtual void UpdateAnonymousUserAddresses(CheckoutViewModel viewModel) => SetDefaultBillingAddressName(viewModel);
 
         public virtual void ChangeAddress(CheckoutViewModel viewModel, UpdateAddressViewModel updateViewModel)
         {

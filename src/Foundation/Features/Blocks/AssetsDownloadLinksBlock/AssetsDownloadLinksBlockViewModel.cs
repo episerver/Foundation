@@ -8,6 +8,9 @@ namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
         public AssetsDownloadLinksBlock CurrentBlock { get; set; }
         public IEnumerable<MediaData> Assets { get; set; }
 
-        public AssetsDownloadLinksBlockViewModel(AssetsDownloadLinksBlock currentBlock) => CurrentBlock = currentBlock;
+        public AssetsDownloadLinksBlockViewModel(AssetsDownloadLinksBlock currentBlock)
+        {
+            CurrentBlock = currentBlock;
+        }
     }
 }

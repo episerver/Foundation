@@ -39,7 +39,9 @@ namespace Foundation.Cms.Extensions
             ContentReference pageLink)
         {
             if (ContentReference.IsNullOrEmpty(pageLink))
+            {
                 return MvcHtmlString.Empty;
+            }
 
             var page = ContentLoader.Value.Get<PageData>(pageLink);
 
@@ -63,7 +65,10 @@ namespace Foundation.Cms.Extensions
                 case PageShortcutType.Shortcut:
                     var shortcutProperty = page.Property["PageShortcutLink"] as PropertyPageReference;
                     if (shortcutProperty != null && !ContentReference.IsNullOrEmpty(shortcutProperty.PageLink))
+                    {
                         return urlHelper.PageLinkUrl(shortcutProperty.PageLink);
+                    }
+
                     break;
 
                 case PageShortcutType.External:
@@ -80,7 +85,10 @@ namespace Foundation.Cms.Extensions
             var url = urlHelper.PageLinkUrl(currentPage).ToString();
 
             if (!url.EndsWith("/"))
+            {
                 url = url + '/';
+            }
+
             url += string.Join("/", segments);
             //TODO: Url-encode segments
 
@@ -88,10 +96,7 @@ namespace Foundation.Cms.Extensions
         }
 
         public static IHtmlString ImageExternalUrl(this UrlHelper urlHelper,
-            ImageData image)
-        {
-            return new MvcHtmlString(UrlResolver.Value.GetUrl(image.ContentLink));
-        }
+            ImageData image) => new MvcHtmlString(UrlResolver.Value.GetUrl(image.ContentLink));
 
         public static IHtmlString ImageExternalUrl(this UrlHelper urlHelper,
             ImageData image,
@@ -110,15 +115,24 @@ namespace Foundation.Cms.Extensions
             string variant)
         {
             if (ContentReference.IsNullOrEmpty(imageref))
+            {
                 return MvcHtmlString.Empty;
+            }
 
             var url = UrlResolver.Value.GetUrl(imageref);
             //Inject variant
             if (!string.IsNullOrEmpty(variant))
+            {
                 if (url.Contains("?"))
+                {
                     url = url.Insert(url.IndexOf('?'), "/" + variant);
+                }
                 else
+                {
                     url = url + "/" + variant;
+                }
+            }
+
             return new MvcHtmlString(url);
         }
 
@@ -128,15 +142,14 @@ namespace Foundation.Cms.Extensions
         {
             var s = url.ToString();
             if (s.Contains("?"))
+            {
                 return new MvcHtmlString(s + "&utm_campaign=" + HttpContext.Current.Server.UrlEncode(campaign));
+            }
+
             return new MvcHtmlString(s + "?utm_campaign=" + HttpContext.Current.Server.UrlEncode(campaign));
         }
 
-        public static IHtmlString GetFriendlyUrl(this UrlHelper urlHelper, string url)
-        {
-            return new HtmlString(UrlResolver.Value.GetUrl(url) ?? url);
-
-        }
+        public static IHtmlString GetFriendlyUrl(this UrlHelper urlHelper, string url) => new HtmlString(UrlResolver.Value.GetUrl(url) ?? url);
 
         private static IHtmlString WriteShortenedUrl(string root, string segment)
         {
@@ -150,8 +163,12 @@ namespace Foundation.Cms.Extensions
         {
             var dictionary = new RouteValueDictionary(second);
             foreach (var pair in first)
+            {
                 if (pair.Value != null)
+                {
                     dictionary[pair.Key] = pair.Value;
+                }
+            }
 
             return dictionary;
         }

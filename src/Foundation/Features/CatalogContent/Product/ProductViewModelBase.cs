@@ -12,7 +12,10 @@ namespace Foundation.Features.CatalogContent.Product
         {
         }
 
-        protected ProductViewModelBase(TProduct product) : base(product) => Product = product;
+        protected ProductViewModelBase(TProduct product) : base(product)
+        {
+            Product = product;
+        }
 
         public TProduct Product { get; set; }
         public TVariant Variant { get; set; }

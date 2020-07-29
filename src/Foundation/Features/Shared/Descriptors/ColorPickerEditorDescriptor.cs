@@ -10,7 +10,10 @@ namespace Foundation.Features.Shared.Descriptors
     {
         private const string _editingClient = "foundation/editors/ColorPicker";
 
-        public ColorPickerEditorDescriptor() => ClientEditingClass = _editingClient;
+        public ColorPickerEditorDescriptor()
+        {
+            ClientEditingClass = _editingClient;
+        }
 
         public override void ModifyMetadata(ExtendedMetadata metadata, IEnumerable<Attribute> attributes)
         {

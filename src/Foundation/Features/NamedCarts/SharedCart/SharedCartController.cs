@@ -4,10 +4,11 @@ using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Mvc;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Home;
+using Foundation.Features.Settings;
 using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,10 @@ namespace Foundation.Features.NamedCarts.SharedCart
         private readonly ICartService _cartService;
         private CartWithValidationIssues _sharedCart;
         private readonly IOrderRepository _orderRepository;
-        readonly CartViewModelFactory _cartViewModelFactory;
+        private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly ICustomerService _customerService;
         private readonly ReferenceConverter _referenceConverter;
+        private readonly ISettingsService _settingsService;
 
         public SharedCartController(
             IContentLoader contentLoader,
@@ -33,7 +35,8 @@ namespace Foundation.Features.NamedCarts.SharedCart
             IOrderRepository orderRepository,
             CartViewModelFactory cartViewModelFactory,
             ICustomerService customerService,
-            ReferenceConverter referenceConverter)
+            ReferenceConverter referenceConverter,
+            ISettingsService settingsService)
         {
             _contentLoader = contentLoader;
             _cartService = cartService;
@@ -41,6 +44,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
             _cartViewModelFactory = cartViewModelFactory;
             _customerService = customerService;
             _referenceConverter = referenceConverter;
+            _settingsService = settingsService;
         }
 
         [HttpGet]
@@ -124,9 +128,9 @@ namespace Foundation.Features.NamedCarts.SharedCart
             {
                 _orderRepository.Delete(SharedCart.Cart.OrderLink);
             }
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
 
-            return RedirectToAction("Index", new { Node = startPage.SharedCartPage });
+            return RedirectToAction("Index", new { Node = referencePages?.SharedCartPage ?? ContentReference.StartPage });
         }
 
         [HttpPost]
@@ -167,7 +171,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         public ActionResult RequestSharedCartQuote()
         {
             var currentCustomer = _customerService.GetCurrentContact();
-            var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
 
             var sharedCart = _cartService.LoadSharedCardByCustomerId(new Guid(OrganizationId));
             var savedCart = _cartService.LoadOrCreateCart(_cartService.DefaultSharedCartName, currentCustomer.ContactId.ToString());
@@ -196,7 +200,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
                 return RedirectToAction("Index", "SharedCart");
             }
 
-            return RedirectToAction("Index", new { Node = startPage.OrderHistoryPage });
+            return RedirectToAction("Index", new { Node = referencePages?.OrderHistoryPage ?? ContentReference.StartPage });
         }
 
         private CartWithValidationIssues SharedCart => _sharedCart ?? (_sharedCart = _cartService.LoadCart(_cartService.DefaultSharedCartName, OrganizationId, true));

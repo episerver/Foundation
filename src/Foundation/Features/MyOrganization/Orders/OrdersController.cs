@@ -1,10 +1,10 @@
-﻿using EPiServer;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
-using Foundation.Features.Home;
+using Foundation.Features.Settings;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -15,13 +15,15 @@ namespace Foundation.Features.MyOrganization.Orders
     {
         private readonly ICustomerService _customerService;
         private readonly IOrdersService _ordersService;
-        private readonly IContentLoader _contentLoader;
+        private readonly ISettingsService _settingsService;
 
-        public OrdersController(ICustomerService customerService, IOrdersService ordersService, IContentLoader contentLoader)
+        public OrdersController(ICustomerService customerService,
+            IOrdersService ordersService,
+            ISettingsService settingsService)
         {
             _customerService = customerService;
             _ordersService = ordersService;
-            _contentLoader = contentLoader;
+            _settingsService = settingsService;
         }
 
         public ActionResult Index(OrdersPage currentPage)
@@ -40,7 +42,7 @@ namespace Foundation.Features.MyOrganization.Orders
             viewModel.OrdersOrganization = ordersOrganization;
 
             viewModel.OrderDetailsPageUrl =
-                UrlResolver.Current.GetUrl(_contentLoader.Get<HomePage>(ContentReference.StartPage).OrderDetailsPage);
+                UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage);
             return View(viewModel);
         }
 

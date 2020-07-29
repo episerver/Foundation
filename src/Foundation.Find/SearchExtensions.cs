@@ -132,9 +132,10 @@ namespace Foundation.Find
             Type type)
         {
             if (type != null)
+            {
                 return fieldName + searchClient.Conventions.FieldNameConvention.GetFieldName(
                            Expression.Variable(type, fieldName));
-
+            }
 
             return fieldName;
         }
@@ -224,7 +225,6 @@ namespace Foundation.Find
                 rangeFilter.IncludeUpper = false;
                 filters.Add(rangeFilter);
             }
-
 
             var orFilter = new OrFilter(filters);
             var filterBuilder = new FilterBuilder<T>(client, orFilter);
@@ -345,8 +345,6 @@ namespace Foundation.Find
                     context.RequestBody.Facets.Add(facetRequest);
                 });
         }
-
-
 
         private static Action<RangeFacetFilterRequest> NumericRangeFacetRequestAction(IClient searchClient,
             string fieldName,

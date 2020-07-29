@@ -14,11 +14,11 @@ namespace Foundation.Infrastructure.Services
         protected readonly IRecipientService _campaignRecipient;
         protected readonly ICustomerService _customerService;
 
-        private string recipientName = ConfigurationManager.AppSettings["Campaign.Newsletter.Name"];
-        private string lastOrderDate = ConfigurationManager.AppSettings["Campaign.Newsletter.LastOrderUpdate"];
-        private string lastLogin = ConfigurationManager.AppSettings["Campaign.Newsletter.LastLogin"];
-        private string bonusPoints = ConfigurationManager.AppSettings["Campaign.Newsletter.BonusPoints"];
-        private string score = ConfigurationManager.AppSettings["Campaign.Newsletter.Score"];
+        private readonly string recipientName = ConfigurationManager.AppSettings["Campaign.Newsletter.Name"];
+        private readonly string lastOrderDate = ConfigurationManager.AppSettings["Campaign.Newsletter.LastOrderUpdate"];
+        private readonly string lastLogin = ConfigurationManager.AppSettings["Campaign.Newsletter.LastLogin"];
+        private readonly string bonusPoints = ConfigurationManager.AppSettings["Campaign.Newsletter.BonusPoints"];
+        private readonly string score = ConfigurationManager.AppSettings["Campaign.Newsletter.Score"];
 
         public CampaignService(IRecipientListService campaignRecipientLists,
             IRecipientService campaignRecipient,
@@ -33,10 +33,7 @@ namespace Foundation.Infrastructure.Services
         /// Updates the last login date.
         /// </summary>
         /// <param name="email">The email.</param>
-        public void UpdateLastLoginDate(string email)
-        {
-            UpdateCurrentDate(lastLogin, email);
-        }
+        public void UpdateLastLoginDate(string email) => UpdateCurrentDate(lastLogin, email);
 
         /// <summary>
         /// Updates the last order date.
@@ -72,8 +69,8 @@ namespace Foundation.Infrastructure.Services
                 // Update recipient
                 if (currentRecipientListId != -1)
                 {
-                    long.TryParse(currentPoints[0], out long oldBonusPoints);
-                    long.TryParse(currentPoints[1], out long oldScore);
+                    long.TryParse(currentPoints[0], out var oldBonusPoints);
+                    long.TryParse(currentPoints[1], out var oldScore);
 
                     var data = new Dictionary<string, string>
                     {
@@ -126,7 +123,7 @@ namespace Foundation.Infrastructure.Services
         /// <param name="result">The result.</param>
         private string AddOrUpdateRecipient(Dictionary<string, string> profileValues, long recipientListId)
         {
-            _campaignRecipient.UpsertRecipient(profileValues, recipientListId, 0, out string result);
+            _campaignRecipient.UpsertRecipient(profileValues, recipientListId, 0, out var result);
             return result;
         }
 

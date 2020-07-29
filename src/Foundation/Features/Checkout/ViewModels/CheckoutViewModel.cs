@@ -18,9 +18,15 @@ namespace Foundation.Features.Checkout.ViewModels
 
         public const string SingleShipmentCheckoutViewName = "SingleShipmentCheckout";
 
-        public CheckoutViewModel() => Payments = new List<PaymentOptionBase>();
+        public CheckoutViewModel()
+        {
+            Payments = new List<PaymentOptionBase>();
+        }
 
-        public CheckoutViewModel(CheckoutPage checkoutPage) : base(checkoutPage) => Payments = new List<PaymentOptionBase>();
+        public CheckoutViewModel(CheckoutPage checkoutPage) : base(checkoutPage)
+        {
+            Payments = new List<PaymentOptionBase>();
+        }
 
         /// <summary>
         /// Gets or sets a collection of all coupon codes that have been applied.
