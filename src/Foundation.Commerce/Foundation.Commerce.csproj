@@ -13,25 +13,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Models\Pages\**" />
-	  <Compile Remove="Order\**" />
-	  <Compile Remove="SchemaDataMappers\**" />
-	  <Compile Remove="ViewModels\**" />
-	  <EmbeddedResource Remove="Models\Pages\**" />
-	  <EmbeddedResource Remove="Order\**" />
-	  <EmbeddedResource Remove="SchemaDataMappers\**" />
-	  <EmbeddedResource Remove="ViewModels\**" />
-	  <None Remove="Models\Pages\**" />
-	  <None Remove="Order\**" />
-	  <None Remove="SchemaDataMappers\**" />
-	  <None Remove="ViewModels\**" />
-	</ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.26.0" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.21.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.27.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.22.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.17.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="FileHelpers" Version="3.4.1" />

@@ -12,25 +12,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Locations\**" />
-    <Compile Remove="People\**" />
-    <EmbeddedResource Remove="Locations\**" />
-    <EmbeddedResource Remove="People\**" />
-    <None Remove="Locations\**" />
-    <None Remove="People\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.26.0" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.21.0" />
-    <PackageReference Include="EPiServer.Find" Version="13.2.7" />
-    <PackageReference Include="EPiServer.Find.Cms" Version="13.2.7" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.27.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.22.0" />
+    <PackageReference Include="EPiServer.Find" Version="13.2.8" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="13.2.8" />
     <PackageReference Include="EPiServer.Find.Commerce" Version="11.1.2" />
-    <PackageReference Include="EPiServer.Find.Framework" Version="13.2.7" />
+    <PackageReference Include="EPiServer.Find.Framework" Version="13.2.8" />
     <PackageReference Include="EPiServer.Framework" Version="11.17.0" />
-    <PackageReference Include="EPiServer.Labs.ContentManager.Core.FindQuery" Version="0.1.3" />
+    <PackageReference Include="EPiServer.Labs.ContentManager.Core.FindQuery" Version="0.2.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="Geta.EpiCategories" Version="1.2.11" />
     <PackageReference Include="Geta.EpiCategories.Find" Version="1.2.11" />
