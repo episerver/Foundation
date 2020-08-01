@@ -13,14 +13,14 @@
 
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.26.0" />
-    <PackageReference Include="EPiServer.Commerce" Version="13.21.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.27.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.22.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.17.0" />
     <PackageReference Include="EPiServer.Framework.AspNet" Version="11.17.0" />
-    <PackageReference Include="EPiServer.Personalization.Commerce" Version="3.2.17" />
-    <PackageReference Include="EPiServer.Tracking.Cms" Version="1.18.0" />
-    <PackageReference Include="EPiServer.Tracking.Commerce" Version="3.2.17" />
-    <PackageReference Include="EPiServer.Tracking.Core" Version="1.18.0" />
+    <PackageReference Include="EPiServer.Personalization.Commerce" Version="3.2.18" />
+    <PackageReference Include="EPiServer.Tracking.Cms" Version="1.18.1" />
+    <PackageReference Include="EPiServer.Tracking.Commerce" Version="3.2.18" />
+    <PackageReference Include="EPiServer.Tracking.Core" Version="1.18.1" />
     <PackageReference Include="EPiServer.Tracking.PageView" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
   </ItemGroup>
