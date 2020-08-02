@@ -108,7 +108,7 @@ echo msbuild.exe path: %InstallDir%%msBuildPath%
 
 echo ## Set folder permissions ##
 md "%ROOTPATH%\Build\Logs" 2>nul
-icacls "%ROOTPATH%\\" /grant *S-1-1-0:(OI)(CI)F /T > Build\Logs\Build.log
+icacls "%ROOTPATH%\\" /grant *S-1-1-0:(OI)(CI)F /T > nul
 
 echo ## Restoring Nuget packages ##
 echo ## Restoring Nuget packages ## >> Build\Logs\Build.log
@@ -243,8 +243,8 @@ RD "%ROOTPATH%\packages\" /Q /S >> Build\Logs\Build.log
 
 echo ## Set folder permissions ##
 echo ## Set folder permissions ## >> Build\Logs\Build.log
-icacls "%ROOTPATH%" /grant Everyone:(OI)(CI)F /T >> Build\Logs\Build.log
-attrib -r "%ROOTPATH%\*.*" /s >> Build\Logs\Build.log
+icacls "%ROOTPATH%" /grant Everyone:(OI)(CI)F /T > nul
+attrib -r "%ROOTPATH%\*.*" /s > nul
 
 echo ## Creating IIS application pools ##
 echo ## Creating IIS application pools ## > Build\Logs\IIS.log
