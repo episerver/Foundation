@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
+﻿
 export default class Product {
     constructor(divId) {
         if (divId) {
@@ -24,7 +22,7 @@ export default class Product {
         axios.post(url, data)
             .then(function (result) {
                 if (result.data.StatusCode == 0) {
-                    notification.Warning(result.data.Message);
+                    notification.warning(result.data.Message);
                 }
                 if (result.data.StatusCode == 1) {
                     let checkoutLink = "";
@@ -46,13 +44,13 @@ export default class Product {
                         message += bottomNotification;
                     }
                     
-                    notification.Success(message, false);
+                    notification.success(message, false);
 
                     if (callback) callback(result.data.CountItems);
                 }
             })
             .catch(function (error) {
-                notification.Error("Can not add the product to the cart.\n" + error.response.statusText);
+                notification.error("Can not add the product to the cart.\n" + error.response.statusText);
             })
             .finally(function () {
                 $('body>.loading-box').hide();
@@ -67,7 +65,7 @@ export default class Product {
         axios.post(url, data)
             .then(function (result) {
                 if (result.status == 200) {
-                    notification.Success(message);
+                    notification.success(message);
                     $('#my-wishlist').html(result.data);
                     let product = new Product('#my-wishlist');
                     product.Init();
@@ -77,11 +75,11 @@ export default class Product {
                     feather.replace();
                 }
                 if (result.status == 204) {
-                    notification.Error(result.statusText);
+                    notification.error(result.statusText);
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('body>.loading-box').hide();
@@ -89,9 +87,9 @@ export default class Product {
     }
 
     callbackAddToCart(selector, count) {
-        if (selector == ".jsCartBtn") { cartHelper.SetCartReload(count); }
-        else if (selector == ".jsSharedCartBtn") { cartHelper.SetSharedCartReload(count)}
-        else cartHelper.SetWishlistReload(count);
+        if (selector == ".jsCartBtn") { cartHelper.setCartReload(count); }
+        else if (selector == ".jsSharedCartBtn") { cartHelper.setSharedCartReload(count)}
+        else cartHelper.setWishlistReload(count);
     }
 
     addToSharedCartClick() {
@@ -174,11 +172,11 @@ export default class Product {
                 let url = $(this).attr('url');
                 axios.post(url)
                     .then(function (result) {
-                        notification.Success(result.data.Message);
-                        cartHelper.SetCartReload(result.data.CountItems);
+                        notification.success(result.data.Message);
+                        cartHelper.setCartReload(result.data.CountItems);
                     })
                     .catch(function (error) {
-                        notification.Error(error);
+                        notification.error(error);
                     })
                     .finally(function () {
                         $('.loading-box').hide();

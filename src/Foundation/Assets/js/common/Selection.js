@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export default class Selection {
+﻿export default class Selection {
     init() {
         this.expand();
         this.collapse();

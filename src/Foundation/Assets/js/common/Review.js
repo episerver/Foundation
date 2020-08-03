@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class Review {
+﻿export default class Review {
     ratingHover() {
         $('.rating.voting').each(function (i, e) {
             $(e).find('svg').each(function (j, s) {
@@ -65,13 +62,13 @@ export default class Review {
                 axios.post(form[0].action, convertFormData(data))
                     .then(function (result) {
                         if (result.status == 200) {
-                            notification.Success("You have added a comment to " + code);
+                            notification.success("You have added a comment to " + code);
                             $('#reviewsListing').append(result.data);
                             feather.replace();
                         }
                     })
                     .catch(function (error) {
-                        notification.Error(error.response.statusText);
+                        notification.error(error.response.statusText);
                     })
                     .finally(function () {
                         $('.loading-box').hide();

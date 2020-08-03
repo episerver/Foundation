@@ -32,7 +32,7 @@
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -55,7 +55,7 @@
                 });
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                
@@ -76,7 +76,7 @@
                 });
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
 
@@ -97,7 +97,7 @@
                 });
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -179,7 +179,7 @@
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
                 console.log(error);
             })
             .finally(function () {
@@ -274,7 +274,7 @@
                     });
                 })
                 .catch(function (error) {
-                    notification.Error(error);
+                    notification.error(error);
                 })
                 .finally(function () {
                     $('.loading-box').hide();

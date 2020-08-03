@@ -1,5 +1,4 @@
-﻿import * as $ from "jquery";
-import { ProductSearch, NewProductsSearch, SalesSearch } from "./search";
+﻿import { ProductSearch, NewProductsSearch, SalesSearch } from "./search";
 import Product from "Features/CatalogContent/product";
 import ProductDetail from "Features/CatalogContent/product-detail";
 import Review from "./review";
@@ -17,6 +16,8 @@ import B2bUsersOrganization from "Features/MyOrganization/Users/b2b-users-organi
 
 export default class FoundationCommerce {
     init() {
+        window.cartHelper = new CartHelper();
+
         let search = new ProductSearch();
         search.init();
 
@@ -46,8 +47,6 @@ export default class FoundationCommerce {
 
         let address = new Address();
         address.init();
-
-        window.cartHelper = new CartHelper();
 
         let cart = new Cart();
         cart.initLoadCarts();

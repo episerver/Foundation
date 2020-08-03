@@ -21,7 +21,7 @@ export default class HeroBlockTracking {
             .then(function (result) {
                 console.log("Hero Block clicked: '" + $(e.currentTarget).children('div').attr('name') + "' on page - '" + $('title').text().replace(' - NOT FOR COMMERCIAL USE', '') + "'");
             }).catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             });
     }
 }

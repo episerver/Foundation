@@ -1,14 +1,21 @@
-﻿//import FoundationCms from "Assets/js/common/foundation.cms";
-//import FoundationCommerce from "Assets/js/common/foundation.commerce";
-//import FoundationPersonalization from "Assets/js/common/foundation.cms.personalization";
+﻿import "bootstrap";
+import "../scss/main.scss"
+require("easy-autocomplete");
+require("../js/vendors/notify");
+import * as feather from "feather-icons";
+import "lazysizes";
+import "lazysizes/plugins/bgset/ls.bgset";
+import FoundationCms from "Assets/js/common/foundation.cms";
+import FoundationCommerce from "Assets/js/common/foundation.commerce";
+import FoundationPersonalization from "Assets/js/common/foundation.cms.personalization";
 
-//let foundationCms = new FoundationCms();
-//foundationCms.init();
+feather.replace();
 
-//let foundationCommerce = new FoundationCommerce();
-//foundationCommerce.init();
+let foundationCms = new FoundationCms();
+foundationCms.init();
 
-//let foundationPersonalization = new FoundationPersonalization();
-//foundationPersonalization.init();
+let foundationCommerce = new FoundationCommerce();
+foundationCommerce.init();
 
-console.log("jquery", $);
+let foundationPersonalization = new FoundationPersonalization();
+foundationPersonalization.init();

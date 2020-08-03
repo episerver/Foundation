@@ -33,7 +33,7 @@ export default class ProductDetail {
         }
       })
       .catch(function (error) {
-        notification.Error(error);
+        notification.error(error);
         $('#quickView .modal-body').html('');
       })
       .finally(function () {
@@ -68,7 +68,7 @@ export default class ProductDetail {
         }
       })
       .catch(function (error) {
-        notification.Error(error);
+        notification.error(error);
         $('#quickView .modal-body').html('');
       })
       .finally(function () {
@@ -200,7 +200,7 @@ export default class ProductDetail {
         try {
           const r = await axios.post(url, data);
           if (r.data.Message) {
-            notification.Error(r.data.Message);
+            notification.error(r.data.Message);
             setTimeout(function () {
               window.location.href = r.data.Redirect;
             }, 1000);
@@ -208,7 +208,7 @@ export default class ProductDetail {
             window.location.href = r.data.Redirect;
           }
         } catch (e) {
-          notification.Error(e);
+          notification.error(e);
         } finally {
           $('.loading-box').hide();
         }

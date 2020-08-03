@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class Checkout {
+﻿export default class Checkout {
     addPaymentClick() {
         let inst = this;
         $('.jsAddPayment').click(function () {
@@ -21,7 +18,7 @@ export default class Checkout {
             axios.post(url, data)
                 .then(function (result) {
                     if (result.status != 200) {
-                        notification.Error(result);
+                        notification.error(result);
                     } else {
                         $('#paymentBlock').html(result.data);
                         feather.replace();
@@ -34,7 +31,7 @@ export default class Checkout {
                         $("#giftcard-alert").removeClass("alert-info");
                         $("#giftcard-alert").addClass("alert-danger");
                     } else {
-                        notification.Error(error);
+                        notification.error(error);
                     }
                 })
                 .finally(function () {
@@ -63,7 +60,7 @@ export default class Checkout {
                 inst.initPayment();
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -101,7 +98,7 @@ export default class Checkout {
                         inst.creditCardChange();
                     })
                     .catch(function (error) {
-                        notification.Error(error);
+                        notification.error(error);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -219,7 +216,7 @@ export default class Checkout {
                     }
                 })
                 .catch(function (e) {
-                    notification.Error(e);
+                    notification.error(e);
                 });
         });
     }
@@ -260,7 +257,7 @@ export default class Checkout {
                     $('.jsCouponErrorMess').hide();
                 })
                 .catch(function (e) {
-                    notification.Error(e);
+                    notification.error(e);
                 });
         });
     }
@@ -295,7 +292,7 @@ export default class Checkout {
                         inst.initPayment();
                     })
                     .catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -344,12 +341,12 @@ export default class Checkout {
 
                         $('.jsCouponReplaceHtml').html(r.data);
                         $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
-                        cartHelper.SetCartReload($('.jsTotalQuantityCheckout').val());
+                        cartHelper.setCartReload($('.jsTotalQuantityCheckout').val());
                         feather.replace();
                         inst.initPayment();
                     })
                     .catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -426,11 +423,11 @@ export default class Checkout {
                         if (r.data.Status == true) {
                             window.location.href = r.data.RedirectUrl;
                         } else {
-                            notification.Error(r.data.Message);
+                            notification.error(r.data.Message);
                         }
                     })
                     .catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -473,11 +470,11 @@ export default class Checkout {
                         if (r.data.Status == true) {
 
                         } else {
-                            notification.Error(r.data.Message);
+                            notification.error(r.data.Message);
                         }
                     })
                     .catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -507,7 +504,7 @@ export default class Checkout {
                         }
                     })
                     .catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                         form.find('.jsAddressError').html(e);
                         form.find('.jsAddressError').addClass('error');
                     })

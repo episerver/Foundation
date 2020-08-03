@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class B2bBudget {
+﻿export default class B2bBudget {
     constructor(container) {
         this.divContainer = container != undefined ? container : document;
     }
@@ -54,13 +51,13 @@ export default class B2bBudget {
                     axios.post(url, model)
                         .then(function (result) {
                             if (result.data.result == "true") {
-                                notification.Success("Success");
+                                notification.success("Success");
                             } else {
-                                notification.Error(result.data.result);
+                                notification.error(result.data.result);
                             }
                         })
                         .catch(function (error) {
-                            notification.Error(error);
+                            notification.error(error);
                         })
                         .finally(function () {
                             $('.loading-box').hide();

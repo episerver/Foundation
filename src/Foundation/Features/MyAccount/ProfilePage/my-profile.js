@@ -1,17 +1,14 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class MyProfile {
+﻿export default class MyProfile {
     saveProfile(options) {
         $('.loading-box').show();
         axios(options)
             .then(function (result) {
                 $('.jsFirstName').html(result.data.FirstName);
                 $('.jsLastName').html(result.data.LastName);
-                notification.Success("Update profile successfully.");
+                notification.success("Update profile successfully.");
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();

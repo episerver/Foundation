@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class SearchBox {
+﻿export default class SearchBox {
     constructor() {
         this.apiUrl = "https://eastus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description";
         this.authKey = "38192ad9dc5647d1b4d6328d420ac505";

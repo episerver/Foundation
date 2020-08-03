@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export default class B2bOrganization {
+﻿export default class B2bOrganization {
     init() {
         $(document).ready(function () {
             let $cloner = $('.js-cloner');

@@ -48,7 +48,7 @@ export default class OrderSearchBlock {
                             table.find('.jsOrderSearchTableBody').html(r.data);
                         })
                         .catch(function (e) {
-                            notification.Error(e);
+                            notification.error(e);
                         })
                         .finally(function () {
                             $('.loading-box').hide();

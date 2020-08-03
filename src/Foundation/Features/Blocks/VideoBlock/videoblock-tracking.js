@@ -20,7 +20,7 @@ export default class VideoBlockTracking {
             .then(function (result) {
                 console.log("Video Block viewed: '" + $(e.currentTarget).attr('name') + "' on page - '" + $('title').text().replace(' - NOT FOR COMMERCIAL USE', '') + "'");
             }).catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             });
     }
 }

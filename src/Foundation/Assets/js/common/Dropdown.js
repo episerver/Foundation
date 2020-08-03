@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export default class Dropdown {
+﻿export default class Dropdown {
     constructor(divId) {
         if (divId) {
             this.DivContainer = divId;

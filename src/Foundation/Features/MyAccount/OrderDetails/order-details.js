@@ -26,7 +26,7 @@ export default class OrderDetails {
                         form[0].reset();
                     })
                     .catch(function (error) {
-                        notification.Error(error);
+                        notification.error(error);
                     })
                     .finally(function () {
                         $('.loading-box').hide();
@@ -82,12 +82,12 @@ export default class OrderDetails {
                 //}
                 axios.post(url, data)
                     .then(function (result) {
-                        notification.Success('Success');
+                        notification.success('Success');
                         $('#returnSettingModal').modal('hide');
                         $('#return-' + itemId).prop('disabled', true);
                     })
                     .catch(function (error) {
-                        notification.Error(error);
+                        notification.error(error);
                     })
                     .finally(function () {
                         $('.loading-box').hide();

@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export default class B2bUsersOrganization {
+﻿export default class B2bUsersOrganization {
     init() {
         this.lookupUser();
         this.searchUsersEvent();

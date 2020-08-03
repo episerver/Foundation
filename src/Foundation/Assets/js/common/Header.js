@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class Header {
+﻿export default class Header {
     constructor() {
         this.Popovers = [];
     }
@@ -234,7 +231,7 @@ export default class Header {
                     .then(function (result) {
                         window.location.href = result.data.returnUrl;
                     }).catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                     });
 
                 return false;

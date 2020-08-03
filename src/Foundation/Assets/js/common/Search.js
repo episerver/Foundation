@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export class ProductSearch {
+﻿export class ProductSearch {
     constructor() {
         // for filtering
         this.pageClass = "jsPaginate";
@@ -105,7 +103,7 @@ export class ProductSearch {
                 inst.Init();
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -230,7 +228,7 @@ export class ContentSearch {
                 inst.Init();
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -264,7 +262,7 @@ export class NewProductsSearch {
                 inst.Init();
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -298,7 +296,7 @@ export class SalesSearch {
                 inst.Init();
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();

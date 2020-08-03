@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class B2bOrder {
+﻿export default class B2bOrder {
     init() {
         this.filterByStatus();
         this.approveOder();
@@ -36,14 +33,14 @@ export default class B2bOrder {
             axios.post(form[0].action, postData)
                 .then(function (r) {
                     if (r.data.Status == true) {
-                        notification.Success("Success");
+                        notification.success("Success");
                         setTimeout(function () { window.location.href = window.location.href; }, 500);
                     } else {
-                        notification.Error("Something went wrong.");
+                        notification.error("Something went wrong.");
                     }
                 })
                 .catch(function (e) {
-                    notification.Error(e);
+                    notification.error(e);
                 })
                 .finally(function () {
                     $('.loading-box').hide();

@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export default class NotificationHelper {
+﻿export default class NotificationHelper {
     success(message, encodeMess) {
         let options = this.setOptions("success", encodeMess);
         $.notify(message, options);

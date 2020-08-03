@@ -1,6 +1,4 @@
-﻿import * as $ from "jquery";
-
-export default class OrderPadsComponent {
+﻿export default class OrderPadsComponent {
     constructor(table) {
 
     }

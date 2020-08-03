@@ -1,5 +1,4 @@
-﻿import * as $ from "jquery";
-import PDFObject from "pdfobject";
+﻿import PDFObject from "pdfobject";
 
 export default () => {
     $('.jsPdfPreview').each((i, e) => {

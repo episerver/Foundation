@@ -42,7 +42,7 @@
                 }
             })
             .catch(function (error) {
-                notification.Error(error.response.statusText);
+                notification.error(error.response.statusText);
             })
             .finally(function () {
                 setTimeout(function () {
@@ -69,7 +69,7 @@
                     }
                 })
                 .catch(function (error) {
-                    notification.Error(error.response.statusText);
+                    notification.error(error.response.statusText);
                 })
                 .finally(function () {
                     setTimeout(function () {

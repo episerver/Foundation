@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export default class QuickOrderBlock {
+﻿export default class QuickOrderBlock {
     constructor(containerId) {
         this.container = containerId != undefined ? containerId : document;
         this.rowTemplate = (index, data) => `<div class="row js-product-row" data-order="${index}">
@@ -39,11 +36,11 @@ export default class QuickOrderBlock {
 
                 axios.post(form.action, formData)
                     .then(function (r) {
-                        cartHelper.SetCartReload(r.data.TotalItem);
-                        notification.Success(r.data.Message);
+                        cartHelper.setCartReload(r.data.TotalItem);
+                        notification.success(r.data.Message);
                     })
                     .catch(function (e) {
-                        notification.Error(e);
+                        notification.error(e);
                     })
             })
         })
@@ -253,7 +250,7 @@ export default class QuickOrderBlock {
                     }
                 })
                 .catch(function (err) {
-                    notification.Error(err);
+                    notification.error(err);
                 })
                 .finally(function () {
                     $('.loading-box').hide();

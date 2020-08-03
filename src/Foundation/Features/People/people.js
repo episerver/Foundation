@@ -86,7 +86,7 @@ export default class Persons {
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();

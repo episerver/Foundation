@@ -1,7 +1,4 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
-
-export class Cart {
+﻿export class Cart {
     changeInfoCart(result) {
         $('.largecart-Subtotal').html("$" + result.data.SubTotal.Amount);
         $('.largecart-TotalDiscount').html("$" + result.data.TotalDiscount.Amount);
@@ -9,7 +6,7 @@ export class Cart {
         $('.largecart-ShippingTotal').html("$" + result.data.ShippingTotal.Amount);
         $('.largecart-Total').html("$" + result.data.Total.Amount);
 
-        cartHelper.SetCartReload(result.data.CountItems);
+        cartHelper.setCartReload(result.data.CountItems);
     }
 
     removeItem(url, elementClick, typeCart) {
@@ -23,7 +20,7 @@ export class Cart {
         axios.post(url, data)
             .then(function (result) {
                 if (result.data.StatusCode == 0) {
-                    notification.Error(result.data.Message);
+                    notification.error(result.data.Message);
                 }
                 else if (result.data.StatusCode == 1) {
                     if (typeCart == 'cart') {
@@ -37,14 +34,14 @@ export class Cart {
 
                     if (typeCart !== 'large-cart' && typeCart !== "shared-cart-large") {
                         elementClick.parents('.cart__row').first().remove();
-                        if (typeCart == "cart") cartHelper.SetCartReload(result.data.CountItems);
-                        else if (typeCart == "shared-cart") cartHelper.SetSharedCartReload(result.data.CountItems);
-                        else cartHelper.SetWishlistReload(result.data.CountItems);
+                        if (typeCart == "cart") cartHelper.setCartReload(result.data.CountItems);
+                        else if (typeCart == "shared-cart") cartHelper.setSharedCartReload(result.data.CountItems);
+                        else cartHelper.setWishlistReload(result.data.CountItems);
 
                     } else { // if large cart, large shared 
                         if (typeCart == "shared-cart-large") {
                             elementClick.parents('tr').first().remove();
-                            cartHelper.SetSharedCartReload(result.data.CountItems);
+                            cartHelper.setSharedCartReload(result.data.CountItems);
                         } else {
                             elementClick.parents('.product-tile-list__item').first().remove();
                             inst.changeInfoCart(result);
@@ -52,11 +49,11 @@ export class Cart {
                     }
                 }
                 else {
-                    notification.Error(result.data.Message);
+                    notification.error(result.data.Message);
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
 
@@ -75,13 +72,13 @@ export class Cart {
                     element.parents('.product-tile-list__item').first().remove();
 
                     cartHelper.AddWishlist();
-                    notification.Success(result.data.Message);
+                    notification.success(result.data.Message);
                 } else {
-                    notification.Warning(result.data.Message);
+                    notification.warning(result.data.Message);
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $('.loading-box').hide();
@@ -98,10 +95,10 @@ export class Cart {
                 feather.replace();
                 var dropdown = new Dropdown(container);
                 dropdown.Init();
-                notification.Success("Success");
+                notification.success("Success");
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
 
@@ -125,13 +122,13 @@ export class Cart {
                 switch (result.data.StatusCode) {
                     case 0:
                         $(element).siblings('.required').html(result.data.Message);
-                        notification.Warning(result.data.Message);
+                        notification.warning(result.data.Message);
                         break;
                     case -1:
-                        notification.Error(result.data.Message);
+                        notification.error(result.data.Message);
                         break;
                     default:
-                        notification.Success(result.data.Message);
+                        notification.success(result.data.Message);
                         inst.changeInfoCart(result);
                         var subtotal = parseFloat($(element).attr('unitPrice')) * qty;
                         $('.subtotal-' + code).html($(element).attr('currency') + subtotal);
@@ -140,7 +137,7 @@ export class Cart {
                 }
             })
             .catch(function (error) {
-                notification.Error(error);
+                notification.error(error);
             })
             .finally(function () {
                 $(element).removeAttr('disabled');
@@ -155,7 +152,7 @@ export class Cart {
                 var url = $(this).attr('url');
                 axios.post(url)
                     .then(function (result) {
-                        notification.Success("Delete cart successfully.");
+                        notification.success("Delete cart successfully.");
                         setTimeout(function () { window.location.href = result.data; }, 1000);
                     })
                     .catch(function (error) {

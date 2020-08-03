@@ -1,5 +1,3 @@
-import * as $ from "jquery";
-
 export default class MobileNavigation {
     constructor(params) {
         this.searchBoxId = params.searchBoxId;

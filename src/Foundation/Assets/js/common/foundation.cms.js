@@ -1,11 +1,4 @@
-﻿import "bootstrap";
-import "../../scss/main.scss"
-import * as $ from "jquery";
-import * as axios from "axios";
-import * as feather from "feather-icons";
-import "lazysizes";
-import "lazysizes/plugins/bgset/ls.bgset";
-import PDFPreview from "./pdf-preview";
+﻿import PDFPreview from "./pdf-preview";
 import NotificationHelper from "./notification-helper";
 import Header from "./header";
 import MobileNavigation from "./mobile-navigation";
@@ -51,7 +44,6 @@ export default class FoundationCms {
 
         window.notification = new NotificationHelper();
 
-        feather.replace();
         PDFPreview();
         axios.defaults.headers.common['Accept'] = '*/*';
 
@@ -74,8 +66,8 @@ export default class FoundationCms {
         let dropdown = new Dropdown();
         dropdown.init();
 
-        //let searchBox = new SearchBox();
-        //searchBox.init();
+        let searchBox = new SearchBox();
+        searchBox.init();
 
         let blog = new Blog();
         blog.init();

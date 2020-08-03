@@ -32,7 +32,7 @@ export default class Address {
                     dropdown.Init();
                 })
                 .catch(function (e) {
-                    notification.Error(e);
+                    notification.error(e);
                 })
         })
     }
