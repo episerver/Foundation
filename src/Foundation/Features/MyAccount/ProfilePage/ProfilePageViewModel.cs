@@ -1,3 +1,4 @@
+using EPiServer.Core;
 using Foundation.Cms.Identity;
 using Foundation.Commerce.Customer;
 using Foundation.Features.Checkout.ViewModels;
@@ -22,5 +23,7 @@ namespace Foundation.Features.MyAccount.ProfilePage
         public SiteUser SiteUser { get; set; }
         public FoundationContact CustomerContact { get; set; }
         public string OrderDetailsPageUrl { get; set; }
+        public string ResetPasswordPage { get; set; }
+        public string AddressBookPage { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
-using Foundation.Features.Blog.BlogItem;
+using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.Category;
 using Foundation.Features.Shared.SelectionFactories;
 using Geta.EpiCategories;
@@ -144,7 +144,7 @@ namespace Foundation.Features.Blog.BlogListPage
 
         private BlogItemPageModel GetBlogItemPageModel(PageData currentPage, BlogListPageViewModel blogModel)
         {
-            var pd = (BlogItemPage)currentPage;
+            var pd = (BlogItemPage.BlogItemPage)currentPage;
             PreviewTextLength = 200;
 
             var model = new BlogItemPageModel(pd)
@@ -161,7 +161,7 @@ namespace Foundation.Features.Blog.BlogListPage
             return model;
         }
 
-        private IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
+        private IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage.BlogItemPage currentPage)
         {
             if (currentPage.Categories != null)
             {
@@ -177,7 +177,7 @@ namespace Foundation.Features.Blog.BlogListPage
             return new List<BlogItemPageModel.TagItem>();
         }
 
-        private string GetPreviewText(BlogItemPage page)
+        private string GetPreviewText(BlogItemPage.BlogItemPage page)
         {
             if (PreviewTextLength <= 0)
             {
@@ -207,10 +207,10 @@ namespace Foundation.Features.Blog.BlogListPage
         private IEnumerable<PageData> FindPages(BlogListPage currentPage, IContent category)
         {
             var listRoot = currentPage.Root ?? currentPage.ContentLink;
-            var blogListItemPageType = typeof(BlogItemPage).GetPageType();
+            var blogListItemPageType = typeof(BlogItemPage.BlogItemPage).GetPageType();
             IEnumerable<PageData> pages;
 
-            pages = currentPage.IncludeAllLevels ? listRoot.FindPagesByPageType(true, blogListItemPageType.ID) : _contentLoader.GetChildren<BlogItemPage>(listRoot);
+            pages = currentPage.IncludeAllLevels ? listRoot.FindPagesByPageType(true, blogListItemPageType.ID) : _contentLoader.GetChildren<BlogItemPage.BlogItemPage>(listRoot);
 
             if (category != null)
             {
