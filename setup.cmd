@@ -124,10 +124,6 @@ IF %errorlevel% NEQ 0 (
 )
 cd %ROOTPATH%
 
-echo ## Gulp Install ##
-echo ## Gulp Install ## >> Build\Logs\Build.log			  
-call gulp -b "%SOURCEPATH%\Foundation" --color --gulpfile "%SOURCEPATH%\Foundation\Gulpfile.js" >> Build\Logs\Build.log || call npm install gulp -g && call gulp -b "%SOURCEPATH%\Foundation" --color --gulpfile "%SOURCEPATH%\Foundation\Gulpfile.js" >> Build\Logs\Build.log
-
 echo ## Clean and build ##
 echo ## Clean and build ## >> Build\Logs\Build.log				 
 "%InstallDir%%msBuildPath%" "%ROOTPATH%\Foundation.sln" /t:Clean,Build  >> Build\Logs\Build.log

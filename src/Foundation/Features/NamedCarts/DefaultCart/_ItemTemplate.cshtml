@@ -34,14 +34,12 @@
                             <span><i data-feather="heart"></i></span>
                         </a>
                     }
-
-                    <a class="btn-link jsRemoveCartItem" code="@Model.Code" type="large-cart" shipmentId="@ViewData["ShipmentId"]" title="Delete Item" href="javascript:void(0)">
+                    <a class="btn-link cart-item__remove jsRemoveCartItem" code="@Model.Code" type="large-cart" shipmentId="@ViewData["ShipmentId"]" title="Delete Item" href="javascript:void(0)">
                         <span><i data-feather="trash-2"></i></span>
                     </a>
                 </div>
             }
         </div>
-
         <div class="content product-tile-list__content">
             <div>
                 @Html.Raw(Model.Description)
@@ -58,7 +56,6 @@
                     <span class="price__discount">@Model.PlacedPrice.ToString()</span>
                 }
             </div>
-
             @if (variant != null)
             {
                 <div class="row">
@@ -81,7 +78,6 @@
                     </div>
                 </div>
             }
-
             <div class="row">
                 <div class="col-md-1 col-sm-6 large-cart__label">
                     <label class="title">Quantity: </label>

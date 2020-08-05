@@ -3,7 +3,6 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Blog.BlogItem;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
@@ -18,7 +17,7 @@ namespace Foundation.Features.Blog.BlogListPage
         GUID = "EAADAFF2-3E89-4117-ADEB-F8D43565D2F4",
         Description = "Blog List Page for dates such as year and month",
         GroupName = GroupNames.Blog)]
-    [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage) })]
+    [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage.BlogItemPage) })]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-20.png")]
     public class BlogListPage : FoundationPageData
     {

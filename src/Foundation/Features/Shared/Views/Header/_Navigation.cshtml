@@ -19,13 +19,14 @@
                     <a href="/">
                         @if (PageEditing.PageIsInEditMode)
                         {
-                            <img class="img-fluid src="@UrlResolver.Current.GetUrl(Model.LayoutSettings.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })"
-                                 @Html.EditAttributes(x => x.LayoutSettings.SiteLogo)" />
+                            <div @Html.EditAttributes(x => x.LayoutSettings.SiteLogo)>
+                                <img class="img-fluid" src="@UrlResolver.Current.GetUrl(Model.LayoutSettings.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })" />
+                            </div>
                         }
                         else
                         {
                             <picture class="img-fluid">
-                                <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp">
+                                <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp" />
                                 <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
                             </picture>
                         }

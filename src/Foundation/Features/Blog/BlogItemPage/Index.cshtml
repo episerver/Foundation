@@ -1,0 +1,104 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blog.BlogItemPage
+
+@model BlogItemPageModel
+
+@{
+    var contentLoader = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>();
+}
+
+@Html.FullRefreshPropertiesMetaData()
+
+<div class="row blog-item">
+    <div class="col-10">
+
+        @* Header Image *@
+        <div class="row">
+            <div class="col-12">
+                @if (PageEditing.PageIsInEditMode)
+                {
+                    <img class="blog-item__image img-fluid" src="@Url.ContentUrl(Model.CurrentContent.PageImage)" @Html.EditAttributes(x => x.CurrentContent.PageImage) />
+                }
+                else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+                {
+                    <picture class="blog-item__image img-fluid">
+                        <source data-srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?format=webp" type="image/webp">
+                        <img class="blog-item__image img-fluid lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)" />
+                    </picture>
+                }
+            </div>
+        </div>
+        <br />
+
+        @* Bread Crumb *@
+        <div class="row">
+            <div class="col-12">
+                <ul class="bread-crumb flex-center" style="float: none">
+                    @foreach (var p in Model.BreadCrumbs)
+                    {
+                        <li><a href="@p.Value">@p.Key</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Model.CurrentContent.StartPublish != null)
+            {
+                <div class="col-12 link" @Html.EditAttributes("PageStartPublish")>
+                    @Html.PropertyFor(x => x.CurrentContent.StartPublish, new EPiServer.Web.Mvc.EditHint() { ContentDataPropertyName = "PageStartPublish" })
+                    @if (!Model.CurrentContent.Author.IsNullOrEmpty())
+                    {
+                        <span> - </span>
+                        @Html.PropertyFor(x => x.CurrentContent.Author);
+                    }
+                </div>
+            }
+            <div class="col-12">
+                <h2>@Model.CurrentContent.MetaTitle</h2>
+            </div>
+        </div>
+
+        @* Content Area *@
+        <div class="row">
+            <div class="col-12">
+                @Html.PropertyFor(x => x.CurrentContent.MainContentArea, new { CssClass = "equal-height" })
+            </div>
+        </div>
+
+        @* Main Content *@
+        <div class="row">
+            <div class="col-12">
+                <div @Html.EditAttributes(x => x.CurrentContent.MainBody)>
+                    @Html.Raw(@Model.CurrentContent.MainBody)
+                </div>
+            </div>
+        </div>
+        <br />
+
+        @* Tags *@
+        <div class="row">
+            <div class="col-12">
+                @if (Model.Tags.Any())
+                {
+                    @Html.Raw("With the following tags: ")
+
+                    foreach (var tag in Model.Tags)
+                    {
+                        <a class="tag link" title="@tag.DisplayName" href="@tag.Url" style="margin-left: 5px">
+                            #@tag.DisplayName
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+
+        @* Comments *@
+        <div class="row">
+            <div class="col-12">
+                @Html.PropertyFor(x => x.CurrentContent.Comments, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
+            </div>
+        </div>
+    </div>
+</div>
