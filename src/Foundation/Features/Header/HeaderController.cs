@@ -40,7 +40,7 @@ namespace Foundation.Features.Header
             var model = new List<CountryViewModel>() { new CountryViewModel() { Name = "Select", Code = "undefined" } };
             model.AddRange(_addressBookService.GetAllCountries());
             ViewData["Name"] = inputName;
-            return PartialView("~/Features/Shared/Foundation/DisplayTemplates/CountryOptions.cshtml", model);
+            return PartialView("~/Features/Shared/Views/DisplayTemplates/CountryOptions.cshtml", model);
         }
     }
 }

@@ -1,4 +1,14 @@
 ﻿.large-cart {
+    & .row {
+        margin-right: 0px;
+    }
+
+    .cart-item {
+        &__remove {
+            color: #f0f0a;
+        }
+    }
+
     &--btn-group__bottom {
         padding-top: 15px;
         padding-bottom: 30px;
@@ -10,20 +20,14 @@
     &__label {
         display: flex;
         justify-content: flex-start;
-        align-items:center;
-    }
-
-    &--container {
-        & .row {
-            margin-right: 0px;
-        }
+        align-items: center;
     }
 
     &__margin-btn {
         margin-right: 20px;
     }
 
-    &__margin-top{
+    &__margin-top {
         margin-top: 15px;
     }
 

@@ -2,7 +2,7 @@
 
 @model LargeCartViewModel
 
-<div class="large-cart--container">
+<div class="large-cart">
     @foreach (var shipment in Model.Shipments)
     {
         foreach (var cartItem in shipment.CartItems)

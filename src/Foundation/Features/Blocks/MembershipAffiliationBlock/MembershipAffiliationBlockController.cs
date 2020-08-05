@@ -70,7 +70,7 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
             }
 
             //Return block view with populated model
-            return PartialView("~/Features/Blocks/Views/MembershipAffiliationBlock.cshtml", membershipAffiliationBlockModel);
+            return PartialView("~/Features/Blocks/MembershipAffiliationBlock/MembershipAffiliationBlock.cshtml", membershipAffiliationBlockModel);
         }
 
         /// <summary>
