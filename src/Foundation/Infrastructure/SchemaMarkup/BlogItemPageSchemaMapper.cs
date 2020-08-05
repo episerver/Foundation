@@ -1,7 +1,7 @@
 ﻿using EPiServer.Core;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
-using Foundation.Features.Blog.BlogItem;
+using Foundation.Features.Blog.BlogItemPage;
 using Schema.NET;
 using System;
 

@@ -6,7 +6,7 @@
 
 // 2. Vendors
 @import
-    'vendors/bootstrap-4.3.1/bootstrap';
+    '~bootstrap/scss/bootstrap';
 
 // 3. Base stuff
 @import
@@ -23,77 +23,73 @@
 
 // 5. Components
 @import
-    'components/buttons',
-    'components/textbox',
-    'components/checkbox',
-    'components/select-menu',
-    'components/icon-menu',
-    'components/hamburger-menu',
-    'components/loading-box',
-    'components/list-group',
-    'components/dropdown',
-    'components/table',
-    'components/icon-buttons',
-    'components/easy-autocomplete';
+    'components/elements/buttons',
+    'components/elements/textbox',
+    'components/elements/checkbox',
+    'components/elements/select-menu',
+    'components/elements/icon-menu',
+    'components/elements/hamburger-menu',
+    'components/elements/loading-box',
+    'components/elements/list-group',
+    'components/elements/dropdown',
+    'components/elements/table',
+    'components/elements/icon-buttons',
+    'components/elements/easy-autocomplete';
 
-// 6. Template specific styles
 @import
-    'templates/widgets/market-selector',
-    'templates/widgets/product-tile',
-    'templates/widgets/profile-group',
-    'templates/widgets/product-quick-view',
-    'templates/widgets/login-users',
-    'templates/widgets/logged-in-user',
-    'templates/widgets/cart.scss',
-    'templates/widgets/profile-sidebar',
-    'templates/widgets/toolbar',
-    'templates/widgets/b2b-navigation',
-    'templates/widgets/breadcrumb',
-    'templates/widgets/searchbox',
-    'templates/widgets/teaser';
+    'components/widgets/market-selector',
+    'components/widgets/product-tile',
+    'components/widgets/profile-group',
+    'components/widgets/product-quick-view',
+    'components/widgets/login-users',
+    'components/widgets/logged-in-user',
+    'components/widgets/cart.scss',
+    'components/widgets/profile-sidebar',
+    'components/widgets/toolbar',
+    'components/widgets/b2b-navigation',
+    'components/widgets/breadcrumb',
+    'components/widgets/searchbox',
+    'components/widgets/teaser',
+    'components/widgets/form';
 
 @import
     '../../Features/Blocks/HeroBlock/hero-block',
     '../../Features/Blocks/ButtonBlock/button-block',
     '../../Features/Events/CalendarBlock/calendar-block',
-    'templates/blocks/featurebox-block',
-    'templates/blocks/vimeo-block',
+    '../../Features/Blocks/VideoBlock/video-block',
+    '../../Features/Blocks/VimeoBlock/vimeo-block',
     '../../Features/Blocks/TeaserBlock/teaser-block',
-    'templates/blocks/video-block',
     '../../Features/Blocks/BreadcrumbBlock/breadcrumb-block',
     '../../Features/Blocks/TextBlock/text-block',
-    'templates/blocks/order-search-block',
+    '../../Features/Blocks/OrderSearchBlock/order-search-block',
     '../../Features/Blocks/CategoryBlock/category-block',
     '../../Features/Blocks/ProductHeroBlock/product-hero-block';
 
-@import
-    'templates/forms/form';
-
 @import '../../Features/Media/video-file';
 
+// 6. Page specific styles
 @import
-    'templates/pages/home',
-    'templates/pages/standard-page',
-    'templates/pages/order-history',
+    '../../Features/Home/home',
+    '../../Features/StandardPage/standard-page',
+    '../../Features/MyAccount/OrderHistory/order-history',
+    '../../Features/MyAccount/CreditCard/credit-card',
+    '../../Features/MyAccount/OrderConfirmation/order-confirmation-page',
+    '../../Features/MyAccount/OrderDetails/order-detail-page',
+    '../../Features/MyOrganization/Orders/orders-page',
+    '../../Features/MyOrganization/Users/users-page',
+    '../../Features/Checkout/checkout-page',
+    '../../Features/Checkout/one-page-checkout',
+    '../../Features/NamedCarts/cart-page',
+    '../../Features/NamedCarts/OrderPadsPage/order-pads',
+    '../../Features/CatalogContent/product-detail',
+    '../../Features/Locations/location',
+    '../../Features/People/people',
+    '../../Features/Category/category-page',
+    '../../Features/Search/Search/search-page',
+    '../../Features/Blog/BlogListPage/blog-list',
+    '../../Features/Blog/BlogItemPage/blog-item',
+    '../../Features/Login/login',
     '../../Features/Stores/store-locator',
-    'templates/pages/product-detail',
-    'templates/pages/my-account-pages',
-    'templates/pages/credit-card',
-    'templates/pages/checkout-page',
-    'templates/pages/cart-page',
-    'templates/pages/order-confirmation-page',
-    'templates/pages/location',
-    'templates/pages/people',
-    'templates/pages/order-detail-page',
-    'templates/pages/category-page',
-    'templates/pages/search-page',
-    'templates/pages/order-pads',
-    'templates/pages/orders-page',
-    'templates/pages/users-page',
-    'templates/pages/blog-list',
-    'templates/pages/blog-item',
-    'templates/pages/login',
-    'templates/pages/one-page-checkout',
     '../../Features/Collection/collection';
 
 // 7. Themes

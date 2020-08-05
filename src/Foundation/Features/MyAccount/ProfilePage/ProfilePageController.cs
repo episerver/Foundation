@@ -47,10 +47,11 @@ namespace Foundation.Features.MyAccount.ProfilePage
                 Orders = GetOrderHistoryViewModels(),
                 Addresses = GetAddressViewModels(),
                 SiteUser = CustomerService.GetSiteUser(User.Identity.Name),
-                CustomerContact = new Commerce.Customer.FoundationContact(CustomerService.GetCurrentContact().Contact)
+                CustomerContact = new Commerce.Customer.FoundationContact(CustomerService.GetCurrentContact().Contact),
+                OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage),
+                ResetPasswordPage = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.ResetPasswordPage ?? ContentReference.StartPage),
+                AddressBookPage = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.AddressBookPage ?? ContentReference.StartPage)
             };
-
-            viewModel.OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage);
 
             return View(viewModel);
         }

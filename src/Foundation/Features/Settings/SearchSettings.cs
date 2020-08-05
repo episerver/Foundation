@@ -44,16 +44,14 @@ namespace Foundation.Features.Settings
         public virtual IList<FacetFilterConfigurationItem> SearchFiltersConfiguration { get; set; }
     }
 
-
-
     public class SearchOptionSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
             return new ISelectItem[]
             {
-                new SelectItem {Text = "Quick search", Value = "QuickSearch"},
-                new SelectItem {Text = "Auto search", Value = "AutoSearch"}
+                new SelectItem { Text = "Quick search", Value = "QuickSearch" },
+                new SelectItem { Text = "Auto search", Value = "AutoSearch" }
             };
         }
     }
