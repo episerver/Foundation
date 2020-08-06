@@ -2,5 +2,9 @@
 
 @model IBlockViewModel<WidgetBlock>
 
-<div class="recommendationwidgetblock">
+<div class="recommendation-widget-block"
+     data-widget-type="@Model.CurrentBlock.WidgetType"
+     data-widget-name="@Model.CurrentBlock.Name"
+     data-widget-value="@Model.CurrentBlock.Value"
+     data-recs-number="@Model.CurrentBlock.NumberOfRecommendations">
 </div>
