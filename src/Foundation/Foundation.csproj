@@ -1027,6 +1027,7 @@
     <Compile Include="Features\Checkout\ViewModels\OrderSummaryViewModelFactory.cs" />
     <Compile Include="Features\Checkout\ViewModels\PaymentMethodViewModelFactory.cs" />
     <Compile Include="Features\Header\DemoUserViewModel.cs" />
+    <Compile Include="Features\Header\HeaderLogoViewModel.cs" />
     <Compile Include="Features\Header\LargeCartViewModel.cs" />
     <Compile Include="Features\Header\MiniCartViewModel.cs" />
     <Compile Include="Features\Header\MyAccountNavigationViewModel.cs" />
@@ -1626,7 +1627,7 @@
     <Content Include="Assets\js\common\foundation.cms.js" />
     <Content Include="Features\Blocks\OrderSearchBlock\order-search-block.js" />
     <Content Include="Assets\js\common\pdf-preview.js" />
-    <Content Include="Assets\js\common\product-recommendations.js" />
+    <Content Include="Features\Recommendations\WidgetBlock\product-recommendations.js" />
     <Content Include="Assets\js\common\header.js" />
     <Content Include="Assets\js\common\mobile-navigation.js" />
     <Content Include="Assets\js\common\foundation.commerce.js" />

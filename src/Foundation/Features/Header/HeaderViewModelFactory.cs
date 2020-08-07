@@ -95,6 +95,20 @@ namespace Foundation.Features.Header
             viewModel.SearchSettings = _settingsService.GetSiteSettings<SearchSettings>();
             viewModel.ReferencePageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
             viewModel.LabelSettings = _settingsService.GetSiteSettings<LabelSettings>();
+
+            return viewModel;
+        }
+
+        public virtual HeaderLogoViewModel CreateHeaderLogoViewModel()
+        {
+            var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
+            var viewModel = new HeaderLogoViewModel()
+            {
+                LargeHeaderMenu = layoutSettings.LargeHeaderMenu,
+                HeaderMenuStyle = layoutSettings.HeaderMenuStyle,
+                SiteLogo = layoutSettings.SiteLogo
+            };
+
             return viewModel;
         }
 

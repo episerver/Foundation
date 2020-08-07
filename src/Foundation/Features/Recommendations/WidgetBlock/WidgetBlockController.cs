@@ -42,11 +42,10 @@ namespace Foundation.Features.Recommendations.WidgetBlock
 
         public override ActionResult Index(WidgetBlock currentContent)
         {
-            _requiredClientResource.RequireScriptInline($"let recs = new ProductRecs(); recs.getRecommendations('{currentContent.WidgetType}',{currentContent.NumberOfRecommendations},'{currentContent.Name}','{currentContent.Value}');").AtFooter();
             return PartialView(new BlockViewModel<WidgetBlock>(currentContent));
         }
 
-        public async Task<ActionResult> GetRecommendations(string widgetType, string name, string value, int numberOfRecs = 4)
+        public async Task<ActionResult> GetRecommendations(string widgetType, string name, string value = "", int numberOfRecs = 4)
         {
             if (string.IsNullOrEmpty(widgetType) || PageEditing.PageIsInEditMode)
             {
