@@ -278,7 +278,6 @@ namespace Foundation.Features.Api
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult TrackHeroBlock(string blockId, string blockName, string pageName)
         {
             _cmsTrackingService.HeroBlockClicked(_httpContextBase, blockId, blockName, pageName);
@@ -289,7 +288,6 @@ namespace Foundation.Features.Api
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult TrackVideoBlock(string blockId, string blockName, string pageName)
         {
             _cmsTrackingService.VideoBlockViewed(_httpContextBase, blockId, blockName, pageName);

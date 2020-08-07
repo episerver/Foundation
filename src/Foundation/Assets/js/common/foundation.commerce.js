@@ -9,6 +9,7 @@ import OrderDetails from "Features/MyAccount/OrderDetails/order-details";
 import OrderPadsComponent from "Features/NamedCarts/OrderPadsPage/order-pads";
 import Address from "Features/Checkout/address";
 import OrderSearchBlock from "Features/Blocks/OrderSearchBlock/order-search-block";
+import ProductRecommendations from "Features/Recommendations/WidgetBlock/product-recommendations";
 import B2bOrder from "Features/MyOrganization/Orders/b2b-order";
 import B2bBudget from "Features/MyOrganization/Budgeting/b2b-budget";
 import B2bOrganization from "Features/MyOrganization/b2b-organization";
@@ -89,6 +90,9 @@ export default class FoundationCommerce {
 
         let orderSearchBlock = new OrderSearchBlock();
         orderSearchBlock.init();
+
+        let productRecommendations = new ProductRecommendations();
+        productRecommendations.init();
 
         let b2bBudget = new B2bBudget();
         b2bBudget.saveNewBudget();
