@@ -67,7 +67,7 @@
         }
         @if (Model.CurrentBlock.Text != null)
         {
-            <div class="teaser-block__text" style="order: 4" @Html.EditAttributes(x => x.CurrentBlock.Text)>@Html.Raw(Model.CurrentBlock.Text)</div>
+            <div class="teaser-block__text" style="order: 4">@Html.PropertyFor(m => m.CurrentBlock.Text)</div>
         }
     </div>
 }
