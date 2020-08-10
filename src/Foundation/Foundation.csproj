@@ -1616,6 +1616,12 @@
     <Content Include="Assets\js\vendors\jquery\jquery.validate.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.zoom.js" />
+    <Content Include="Assets\vendors\ui-icons_444444_256x240.png" />
+    <Content Include="Assets\vendors\ui-icons_555555_256x240.png" />
+    <Content Include="Assets\vendors\ui-icons_777620_256x240.png" />
+    <Content Include="Assets\vendors\ui-icons_777777_256x240.png" />
+    <Content Include="Assets\vendors\ui-icons_cc0000_256x240.png" />
+    <Content Include="Assets\vendors\ui-icons_ffffff_256x240.png" />
     <Content Include="Features\Checkout\address.js" />
     <Content Include="Features\MyOrganization\Orders\b2b-order.js" />
     <Content Include="Features\Blocks\VideoBlock\videoblock-tracking.js" />

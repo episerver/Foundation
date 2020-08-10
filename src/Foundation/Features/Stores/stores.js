@@ -1,4 +1,7 @@
-﻿class Stores {
+﻿import axios from "axios";
+require('webpack-jquery-ui');
+
+export default class Stores {
     constructor() {
         this.storeMap = {};
         this.searchManager = null;
@@ -10,7 +13,10 @@
 
     init() {
         let instance = this;
-        instance.setDefaultStore();
+        instance.loadScript("https://www.bing.com/api/maps/mapcontrol?&callback=getMap");
+        window.getMap = () => {
+            instance.loadMapScenario();
+        }
 
         $(document).on('keyup', '#searchMapInput', (e) => {
             if (e.keyCode === 13) {
@@ -30,24 +36,24 @@
                             q: request.term
                         }
                     })
-                    .then(({ data }) => {
-                        let result = data.resourceSets[0];
-                        if (result) {
-                            if (result.estimatedTotal > 0) {
-                                response($.map(result.resources, (item) => {
-                                    $("#searchMapInput").autocomplete('option', 'autoFocus', true);
-                                    return {
-                                        data: item,
-                                        label: item.name + ' (' + item.address.countryRegion + ')',
-                                        value: item.name
-                                    };
-                                }));
+                        .then(({ data }) => {
+                            let result = data.resourceSets[0];
+                            if (result) {
+                                if (result.estimatedTotal > 0) {
+                                    response($.map(result.resources, (item) => {
+                                        $("#searchMapInput").autocomplete('option', 'autoFocus', true);
+                                        return {
+                                            data: item,
+                                            label: item.name + ' (' + item.address.countryRegion + ')',
+                                            value: item.name
+                                        };
+                                    }));
+                                }
                             }
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 },
                 minLength: 1,
                 select: (event, ui) => {
@@ -61,6 +67,15 @@
         });
     }
 
+    loadScript(url) {
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.defer = true;
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
+
     loadMapScenario() {
         this.storeMap = new Microsoft.Maps.Map('#storeMap', {
             credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I"
@@ -68,6 +83,7 @@
         this.storeInfobox = new Microsoft.Maps.Infobox(this.storeMap.getCenter(), { visible: false });
         this.storeInfobox.setMap(this.storeMap);
         this.showStoreLocation();
+        this.setDefaultStore();
     }
 
     showStoreLocation() {
@@ -87,6 +103,7 @@
     }
 
     getStoreLocation(address, html) {
+        let instance = this;
         let searchRequest;
         if (!this.searchManager) {
             Microsoft.Maps.loadModule('Microsoft.Maps.Search', () => {
@@ -111,10 +128,10 @@
                                 description: html,
                                 visible: true
                             });
+                            instance.setDefaultStore();
                         });
                         this.storeMap.entities.push(pushpin);
                         this.markers.push(r.results[0].location);
-
                         this.storeMap.setView({
                             bounds: new Microsoft.Maps.LocationRect.fromLocations(this.markers)
                         });
@@ -201,7 +218,7 @@
 
                 this.storeInfobox.setOptions({ visible: false });
             }, (error) => {
-                alert(error.message + " Use Edge to demo this function since it allows geolocation in http.");
+                alert(error.message + " This feature is available in HTTPS.");
             });
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
