@@ -1,23 +1,6 @@
-﻿﻿@using EPiServer.Framework.Web.Resources
-@using Foundation.Features.Stores
+﻿@using Foundation.Features.Stores
 
 @model StorePageViewModel
-
-@{
-    ClientResources.RequireScript("/Assets/js/vendors/jquery/jquery-ui.min.js").AtFooter();
-    ClientResources.RequireStyle("/Assets/scss/vendors/jquery/jquery-ui.css").AtHeader();
-}
-
-@section AdditionalScripts
-{
-    <script type="text/javascript" src="~/Features/Stores/Stores.js"></script>
-    <script type="text/javascript">
-        let stores = new Stores();
-        function GetMap() { stores.loadMapScenario(); };
-        $(document).ready(() => { stores.init(); });
-    </script>
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?&callback=GetMap' async defer></script>
-}
 
 <div class="container">
     <h1 class="heading-title">Store Locator</h1>
