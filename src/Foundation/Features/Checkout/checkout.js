@@ -445,11 +445,12 @@
         $('.jsChangeAddress').each(function (i, e) {
             $(e).change(function () {
                 $('.loading-box').show();
+                let shipmentIndex = "";
                 let type = $(e).data('addresstype');
                 if (type == "Billing") {
 
                 } else {
-                    let shipmentIndex = $(e).data('shipmentindex');
+                    shipmentIndex = $(e).data('shipmentindex');
                 }
                 let addressId = $(e).find('input[type=radio]:checked').val();
                 let useBillingAddressForShipmentInput = $('#UseBillingAddressForShipment');
