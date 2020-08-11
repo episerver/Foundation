@@ -15,6 +15,7 @@ export default class Stores {
         if ($("#storeMap").length === 0) {
             return;
         }
+
         let instance = this;
         instance.loadScript("https://www.bing.com/api/maps/mapcontrol?&callback=getMap");
         window.getMap = () => {
