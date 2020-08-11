@@ -17,6 +17,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
+            "window.jQuery": "jquery",
             axios: "axios",
         }),
         new MiniCssExtractPlugin({

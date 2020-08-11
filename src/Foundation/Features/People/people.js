@@ -1,14 +1,15 @@
-﻿import * as $ from "jquery";
-import * as axios from "axios";
+﻿import * as axios from "axios";
+import Uri from "jsuri";
+require("easy-autocomplete");
 
-export default class Persons {
-    constructor() {
-        this.init();
-    }
-
+export default class people {
     init() {
+        if ($('#people').length === 0) {
+            return;
+        }
+
         let instance = this;
-        if ($('#persons').html().trim()) {
+        if ($('#people').html().trim()) {
             $("#mainContentArea").hide();
         } else {
             $("#mainContentArea").show();
@@ -77,8 +78,8 @@ export default class Persons {
         axios.get(instance.getFilterUrl())
             .then(function (result) {
                 let fetched = $(result.data);
-                $('#persons').html(fetched.find('#persons').html());
-                if ($('#persons').html().trim()) {
+                $('#people').html(fetched.find('#people').html());
+                if ($('#people').html().trim()) {
                     $("#mainContentArea").hide();
                 }
                 else {

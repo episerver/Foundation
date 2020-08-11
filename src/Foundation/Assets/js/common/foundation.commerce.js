@@ -15,6 +15,7 @@ import B2bBudget from "Features/MyOrganization/Budgeting/b2b-budget";
 import B2bOrganization from "Features/MyOrganization/b2b-organization";
 import B2bUsersOrganization from "Features/MyOrganization/Users/b2b-users-organization";
 import Stores from "Features/Stores/stores";
+import People from "Features/People/people";
 
 export default class FoundationCommerce {
     init() {
@@ -109,5 +110,8 @@ export default class FoundationCommerce {
 
         let stores = new Stores();
         stores.init();
+
+        let people = new People();
+        people.init();
     }
 }
