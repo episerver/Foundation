@@ -7,6 +7,7 @@ import Dropdown from "./dropdown";
 import SearchBox from "./search-box";
 import Blog from "Features/Blog/blog";
 import { ContentSearch } from "./search";
+import Locations from "Features/Locations/locations";
 
 export default class FoundationCms {
     init() {
@@ -75,5 +76,8 @@ export default class FoundationCms {
         //TODO: Seperate search classes
         let contentSearch = new ContentSearch();
         contentSearch.init();
+
+        let locations = new Locations();
+        locations.init();
     }
 }

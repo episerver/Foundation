@@ -1,4 +1,6 @@
-﻿class Locations {
+﻿import axios from "axios";
+
+export default class Locations {
     constructor() {
         this.locationMap = {};
         this.locationInfobox = {};
@@ -6,6 +8,27 @@
         this.markers = [];
         this.tempvals = [-20, 40];
         this.originalVal;
+    }
+
+    init() {
+        if ($("#locationMap").length === 0) {
+            return;
+        }
+
+        let instance = this;
+        instance.loadScript("https://www.bing.com/api/maps/mapcontrol?&callback=getMap");
+        window.getMap = () => {
+            instance.loadMapScenario();
+        }
+    }
+
+    loadScript(url) {
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.defer = true;
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
     }
 
     loadMapScenario() {
@@ -141,5 +164,4 @@
                 $('.loading-box').hide();
             });
     }
-
 }

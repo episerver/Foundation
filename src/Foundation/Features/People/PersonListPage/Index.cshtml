@@ -3,16 +3,6 @@
 
 @model PersonListViewModel
 
-@section AdditionalScripts
-{
-    <script type="text/javascript" src="/Assets/js/vendors/jsuri/jsuri-1.1.1.min.js"></script>
-    <script type="text/javascript" src="/Assets/js/Features/Selective/People.js"></script>
-    <script type="text/javascript">
-        var persons = new Persons();
-        persons.Init();
-    </script>
-}
-
 <div class="col-12">
     <h1>@Html.PropertyFor(x => x.CurrentContent.MetaTitle)</h1>
     <div class="row person-filter-block">
@@ -89,7 +79,7 @@
             </ul>
         </div>
         <div class="col-lg-9">
-            <div id="persons" class="row">
+            <div id="people" class="row">
                 @foreach (var person in Model.Persons)
                 {
                     <div class="col-xs-12 col-sm-6 col-lg-4 h-50">

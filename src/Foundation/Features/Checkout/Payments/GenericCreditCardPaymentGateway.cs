@@ -9,7 +9,7 @@ namespace Foundation.Features.Checkout.Payments
         public PaymentProcessingResult ProcessPayment(IOrderGroup orderGroup, IPayment payment)
         {
             var creditCardPayment = (ICreditCardPayment)payment;
-            return !creditCardPayment.CreditCardNumber.EndsWith("4")
+            return creditCardPayment.CreditCardNumber.EndsWith("4")
                 ? PaymentProcessingResult.CreateUnsuccessfulResult("Invalid credit card number.")
                 : PaymentProcessingResult.CreateSuccessfulResult("");
         }

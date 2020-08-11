@@ -1610,12 +1610,12 @@
     <Content Include="Assets\icons\tiers\platium.svg" />
     <Content Include="Assets\icons\tiers\silver.svg" />
     <Content Include="Assets\imgs\blog-img1.jpg" />
+    <Content Include="Assets\imgs\ipadair.png" />
+    <Content Include="Assets\imgs\iphone11.png" />
+    <Content Include="Assets\js\vendors\axios\axios.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery-3.4.0.min.js" />
-    <Content Include="Assets\js\vendors\jquery\jquery-ui.min.js" />
-    <Content Include="Assets\js\vendors\jquery\jquery.easy-autocomplete.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Assets\js\vendors\jquery\jquery.zoom.js" />
     <Content Include="Assets\vendors\ui-icons_444444_256x240.png" />
     <Content Include="Assets\vendors\ui-icons_555555_256x240.png" />
     <Content Include="Assets\vendors\ui-icons_777620_256x240.png" />
@@ -1660,7 +1660,6 @@
     <Content Include="Assets\js\vendors\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Assets\js\vendors\notify.js" />
     <Content Include="Assets\js\vendors\fullcalendar\fullcalendar.min.js" />
-    <Content Include="Assets\js\vendors\jsuri\jsuri-1.1.1.min.js" />
     <Content Include="Assets\js\vendors\moments\moment.min.js" />
     <Content Include="Assets\js\vendors\gijgo\gijgo.min.js" />
     <Content Include="Assets\js\vendors\gijgo\messages\messages.bg-bg.js" />
