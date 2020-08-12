@@ -19,6 +19,7 @@ using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
 using Foundation.Commerce.Extensions;
+using Foundation.Commerce.GiftCard;
 using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.CatalogContent.Product;

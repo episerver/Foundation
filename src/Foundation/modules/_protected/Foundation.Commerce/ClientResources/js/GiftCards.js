@@ -45,7 +45,7 @@
 
         $.ajax({
             url: "/GiftCardManager/GetAllContacts",
-            type: "POST",
+            type: "GET",
             success(result) {
                 $.each(result, (index, item) => {
                     GiftCards.ContactList.push({ ContactId: item.ContactId, ContactName: item.ContactName });

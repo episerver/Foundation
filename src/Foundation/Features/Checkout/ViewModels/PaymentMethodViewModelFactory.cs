@@ -1,4 +1,5 @@
 ﻿using EPiServer.Commerce.Order;
+using Foundation.Commerce.GiftCard;
 using Foundation.Commerce.Markets;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.MyAccount.GiftCardPage;

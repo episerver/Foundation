@@ -10,6 +10,7 @@ using Foundation.Cms.Identity;
 using Foundation.Cms.Settings;
 using Foundation.Commerce;
 using Foundation.Commerce.Customer.Services;
+using Foundation.Commerce.GiftCard;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;

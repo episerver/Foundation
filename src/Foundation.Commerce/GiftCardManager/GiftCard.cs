@@ -1,4 +1,4 @@
-namespace Foundation.Features.MyAccount.GiftCardPage
+namespace Foundation.Commerce.GiftCard
 {
     public class GiftCard
     {

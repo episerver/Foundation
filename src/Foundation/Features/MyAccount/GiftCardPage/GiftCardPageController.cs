@@ -1,4 +1,5 @@
 ﻿using EPiServer.Web.Mvc;
+using Foundation.Commerce.GiftCard;
 using Mediachase.Commerce.Customers;
 using System.Linq;
 using System.Web.Mvc;
