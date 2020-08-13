@@ -5,7 +5,7 @@ using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
 using System;
 
-namespace Foundation.Features.Checkout.Payments
+namespace Foundation.Commerce.GiftCard
 {
     public static class GiftCardManager
     {

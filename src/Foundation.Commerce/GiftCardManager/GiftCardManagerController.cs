@@ -1,11 +1,10 @@
 ﻿using EPiServer.Shell.Navigation;
-using Foundation.Features.MyAccount.GiftCardPage;
 using Mediachase.Commerce.Customers;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Foundation.Demo.Giftcards
+namespace Foundation.Commerce.GiftCard
 {
     public class GiftCardManagerController : Controller
     {
@@ -16,9 +15,11 @@ namespace Foundation.Demo.Giftcards
             _giftCardService = giftCardService;
         }
 
-        [MenuItem("/global/foundation/giftcards", TextResourceKey = "/Shared/GiftCards", SortIndex = 300)]
+        [HttpGet]
+        [MenuItem("/global/foundation/giftcards", TextResourceKey = "/Shared/GiftCards", SortIndex = 400)]
         public ActionResult Index() => View();
 
+        [HttpGet]
         public ContentResult GetAllGiftCards()
         {
             var data = _giftCardService.GetAllGiftCards();
@@ -38,7 +39,7 @@ namespace Foundation.Demo.Giftcards
         [HttpPost]
         public string DeleteGiftCard(string giftCardId) => _giftCardService.DeleteGiftCard(giftCardId);
 
-        [HttpPost]
+        [HttpGet]
         public ContentResult GetAllContacts()
         {
             var data = CustomerContext.Current.GetContacts(0, 1000).Select(c => new

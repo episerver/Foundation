@@ -1,4 +1,5 @@
 ﻿using EPiServer.Commerce.Order;
+using Foundation.Commerce.GiftCard;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Plugins.Payment;
 

@@ -47,7 +47,7 @@ namespace Foundation.Cms
         }
 
         [HttpGet]
-        [MenuItem("/global/foundation/bulkupdate", Text = "Bulk Update", TextResourceKey = "Bulk Update", SortIndex = 15)]
+        [MenuItem("/global/foundation/bulkupdate", Text = "Bulk Update", TextResourceKey = "Bulk Update", SortIndex = 100)]
         public ActionResult Index() => View();
 
         [HttpGet]

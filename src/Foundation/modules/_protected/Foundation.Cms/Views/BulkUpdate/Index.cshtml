@@ -76,9 +76,10 @@
         </button>
     </div>
 </main>
+
 @section AdditionalScripts {
     <script src="~/Assets/js/vendors/gijgo/gijgo.min.js" type="text/javascript"><</script>
-    <script type="text/javascript" src="@Paths.ToClientResource("Foundation.Cms", "ClientResources/js/bulkupdate.js")"></script>
+    <script type="text/javascript" src="@Paths.ToClientResource("Foundation.Cms", "ClientResources/js/features/bulk-update.js")"></script>
     <script>
         $(document).ready(function () {
             var bulk = new BulkUpdate();
@@ -89,5 +90,5 @@
 
 @section AdditionalStyles {
     <link href="~/Assets/scss/vendors/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <link href="@Paths.ToClientResource("Foundation.Cms", "ClientResources/css/bulkupdate.css")" rel="stylesheet" type="text/css" />
+    <link href="@Paths.ToClientResource("Foundation.Cms", "ClientResources/css/features/bulk-update.css")" rel="stylesheet" type="text/css" />
 }

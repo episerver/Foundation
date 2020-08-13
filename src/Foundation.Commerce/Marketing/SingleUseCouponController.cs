@@ -23,7 +23,7 @@ namespace Foundation.Commerce.Marketing
             _couponService = couponService;
         }
 
-        [MenuItem("/global/foundation/coupons", TextResourceKey = "/Shared/Coupons", SortIndex = 100)]
+        [MenuItem("/global/foundation/coupons", TextResourceKey = "/Shared/Coupons", SortIndex = 200)]
         [HttpGet]
         public ActionResult Index()
         {
