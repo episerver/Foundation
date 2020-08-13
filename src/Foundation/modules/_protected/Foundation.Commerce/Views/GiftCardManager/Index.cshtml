@@ -1,6 +1,7 @@
 ﻿@using EPiServer.Shell
 
 @inherits WebViewPage
+
 <head>
     <title>Gift cards management</title>
 </head>
@@ -11,7 +12,7 @@
                 <div class="card spur-card">
                     <div class="card-header">
                         <div class="spur-card-icon">
-                            <i data-feather="gift"></i>
+                            <i class="fas fa-gift"></i>
                         </div>
                         <div class="spur-card-title">Gift cards management</div>
                     </div>
@@ -50,7 +51,7 @@
 </main>
 
 @section AdditionalScripts {
-    <script type="text/javascript" src="@Paths.ToClientResource("Foundation.Demo", "ClientResources/js/GiftCards.js")"></script>
+    <script type="text/javascript" src="@Paths.ToClientResource("Foundation.Commerce", "ClientResources/js/GiftCards.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             GiftCards.init();

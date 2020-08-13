@@ -1,4 +1,6 @@
-﻿export default class Checkout {
+﻿import feather from "feather-icons";
+
+export default class Checkout {
     addPaymentClick() {
         let inst = this;
         $('.jsAddPayment').click(function () {

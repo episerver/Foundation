@@ -1,12 +1,11 @@
 ﻿using Foundation.Commerce.Extensions;
-using Foundation.Features.Checkout.Payments;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Features.MyAccount.GiftCardPage
+namespace Foundation.Commerce.GiftCard
 {
     public class GiftCardService : IGiftCardService
     {

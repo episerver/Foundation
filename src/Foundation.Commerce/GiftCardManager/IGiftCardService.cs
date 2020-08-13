@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Foundation.Features.MyAccount.GiftCardPage
+namespace Foundation.Commerce.GiftCard
 {
     public interface IGiftCardService
     {
