@@ -11,7 +11,7 @@ namespace Foundation.Social.Moderation
 
         public ModerationController(ICommentManagerService commentManagerService) => _commentManagerService = commentManagerService;
 
-        [MenuItem("/global/foundation/commentsmanager", TextResourceKey = "/Shared/CommentsManager", SortIndex = 300)]
+        [MenuItem("/global/foundation/commentsmanager", TextResourceKey = "/Shared/CommentsManager", SortIndex = 400)]
 
         [HttpGet]
         public ActionResult Index()

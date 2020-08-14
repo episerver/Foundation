@@ -1,5 +1,4 @@
-﻿
-export default class Product {
+﻿export default class Product {
     constructor(divId) {
         if (divId) {
             this.divContainerId = divId;
