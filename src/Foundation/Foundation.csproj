@@ -1435,9 +1435,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\scss\vendors\tinymce-font-awesome\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="App_Data\customers.xml" />
     <Content Include="App_Data\markets.xml" />
@@ -1607,8 +1605,9 @@
     <Content Include="Assets\imgs\blog-img1.jpg" />
     <Content Include="Assets\imgs\ipadair.png" />
     <Content Include="Assets\imgs\iphone11.png" />
-    <Content Include="Assets\js\vendors\axios\axios.min.js" />
-    <Content Include="Assets\js\vendors\jquery\jquery-3.4.0.min.js" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\img\episerver.png" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\axios.min.js" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\jquery-3.4.0.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Assets\vendors\ui-icons_444444_256x240.png" />
@@ -1652,7 +1651,6 @@
     <Content Include="Assets\js\main.min.js" />
     <Content Include="ClientResources\Scripts\fontawesomeicons.js" />
     <Content Include="Assets\js\common\notification-helper.js" />
-    <Content Include="Assets\js\vendors\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Assets\js\vendors\notify.js" />
     <Content Include="Assets\js\vendors\fullcalendar\fullcalendar.min.js" />
     <Content Include="Assets\js\vendors\moments\moment.min.js" />
@@ -1679,9 +1677,9 @@
     <Content Include="Assets\js\vendors\gijgo\messages\messages.zh-cn.min.js" />
     <Content Include="Assets\js\vendors\gijgo\messages\messages.zh-tw.js" />
     <Content Include="Assets\js\vendors\gijgo\messages\messages.zh-tw.min.js" />
-    <Content Include="Assets\js\vendors\mvc-grid\mvc-grid.js" />
-    <Content Include="Assets\js\vendors\popper\popper.min.js" />
-    <Content Include="Assets\js\vendors\spur-admin\spur.js" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\mvc-grid.js" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\popper.min.js" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\spur.js" />
     <Content Include="Assets\scss\main.min.css" />
     <Content Include="Assets\scss\vendors\jquery\images\css_images_ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
     <Content Include="Assets\scss\vendors\jquery\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
@@ -1710,18 +1708,17 @@
     <Content Include="Assets\scss\components\widgets\_toolbar.scss" />
     <Content Include="Features\Category\_category-page.scss" />
     <Content Include="Features\MyAccount\OrderDetails\_order-detail-page.scss" />
-    <Content Include="Assets\scss\vendors\bootstrap-slider\bootstrap-slider.css" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\css\all.css" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\css\all.min.css" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.svg" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.svg" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.svg" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\css\all.css" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\css\all.min.css" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.svg" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.svg" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.svg" />
     <Content Include="Assets\scss\vendors\fullcalendar\fullcalendar.min.css" />
     <Content Include="Assets\scss\vendors\gijgo\css\gijgo.min.css" />
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.svg" />
     <Content Include="Assets\scss\vendors\jquery\jquery-ui.css" />
-    <Content Include="Assets\scss\vendors\mvc-grid\mvc-grid.css" />
-    <Content Include="Assets\scss\vendors\spur-admin\spur.min.css" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\mvc-grid\mvc-grid.css" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\spur.min.css" />
     <Content Include="ClientResources\Styles\tinymce-font-awesome.css" />
     <Content Include="ClientResources\Scripts\Editors\ColorPicker.js" />
     <Content Include="ClientResources\Scripts\MenuChildItems.js" />
@@ -1836,7 +1833,7 @@
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\features\bulk-update.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\features\notify-helper.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\bootstrap.min.js" />
-    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\notify.js" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\notify.min.js" />
     <Content Include="modules\_protected\Foundation.Commerce\ClientResources\js\Coupons.js" />
     <Content Include="modules\_protected\Foundation.Commerce\ClientResources\js\GiftCards.js" />
     <Content Include="modules\_protected\Foundation.Social\ClientResources\CommentManager.js" />
@@ -1890,7 +1887,7 @@
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.eot" />
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.ttf" />
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.woff" />
-    <Content Include="Assets\scss\vendors\mvc-grid\Fonts\GridGlyphs.woff" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\mvc-grid\Fonts\GridGlyphs.woff" />
     <Content Include="Assets\scss\utils\_variables.scss" />
     <Content Include="Assets\scss\base\_helpers.scss" />
     <Content Include="Assets\scss\base\_typography.scss" />
@@ -1910,19 +1907,19 @@
     <Content Include="Features\Home\_home.scss" />
     <Content Include="Assets\scss\themes\_default.scss" />
     <Content Include="Assets\scss\components\widgets\_profile-sidebar.scss" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.eot" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.ttf" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.woff" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.woff2" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.eot" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.ttf" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.woff" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.woff2" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.eot" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.ttf" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.woff" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.woff2" />
-    <Content Include="Assets\scss\vendors\font-awesome-5.9.0\font-awesome-list.json" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.eot" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.ttf" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.woff" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.woff2" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.eot" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.ttf" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.woff" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.woff2" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.eot" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.ttf" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.woff" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.woff2" />
+    <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\font-awesome-list.json" />
     <Content Include="Assets\scss\components\widgets\_logged-in-user.scss" />
     <Content Include="Features\NamedCarts\OrderPadsPage\_order-pads.scss" />
     <Content Include="Assets\scss\components\widgets\_b2b-navigation.scss" />
