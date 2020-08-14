@@ -16,7 +16,7 @@ namespace Foundation.Commerce.GiftCard
         }
 
         [HttpGet]
-        [MenuItem("/global/foundation/giftcards", TextResourceKey = "/Shared/GiftCards", SortIndex = 400)]
+        [MenuItem("/global/foundation/giftcards", TextResourceKey = "/Shared/GiftCards", SortIndex = 300)]
         public ActionResult Index() => View();
 
         [HttpGet]
