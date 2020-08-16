@@ -1,8 +1,10 @@
 using EPiServer;
+using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Extensions;
 using Foundation.Features.Events.CalendarEvent;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,32 +24,14 @@ namespace Foundation.Features.Events.CalendarBlock
 
         public override ActionResult Index(CalendarBlock currentBlock)
         {
-            var events = FindEvents(currentBlock);
-
-            if (currentBlock.ViewMode.Equals("List"))
-            {
-                events = events.Where(x => x.EventStartDate >= DateTime.Now).OrderBy(x => x.EventStartDate).Take(currentBlock.Count == 0 ? 5 : currentBlock.Count);
-            }
-
-            var model = new CalendarBlockViewModel(currentBlock)
-            {
-                Events = events
-            };
-
-            ViewData.GetEditHints<CalendarBlockViewModel, CalendarBlock>().AddConnection(x => x.ViewMode, x => x.ViewMode);
-
-            if (currentBlock.ViewMode.Equals("List"))
-            {
-                return PartialView("~/Features/Events/CalendarBlock/Agenda.cshtml", model);
-            }
-            else
-            {
-                return PartialView(model);
-            }
+            var model = new CalendarBlockViewModel(currentBlock);
+           
+            return PartialView(model);
         }
 
-        private IEnumerable<CalendarEventPage> FindEvents(CalendarBlock currentBlock)
+        private IEnumerable<CalendarEventPage> GetEvents(int blockId)
         {
+            var currentBlock = _contentLoader.Get<CalendarBlock>(new ContentReference(blockId));
             IEnumerable<CalendarEventPage> events;
             var root = currentBlock.EventsRoot;
             if (currentBlock.Recursive)
@@ -63,7 +47,50 @@ namespace Foundation.Features.Events.CalendarBlock
             {
                 events = events.Where(x => x.Category.Intersect(currentBlock.CategoryFilter).Any());
             }
+
+            events.Take(currentBlock.Count);
+
             return events;
+        }
+
+        [HttpPost]
+        public ContentResult CalendarEvents(int blockId)
+        {
+            var events = GetEvents(blockId);
+            var result = events.Select(x => new
+            {
+                title = x.Name,
+                start = x.EventStartDate,
+                end = x.EventEndDate,
+                url = x.LinkURL
+            });
+
+            return new ContentResult
+            {
+                Content = JsonConvert.SerializeObject(result),
+                ContentType = "application/json",
+            };
+        }
+
+        [HttpPost]
+        public ContentResult UpcomingEvents(int blockId)
+        {
+            var events = GetEvents(blockId);
+            var result = events.Where(x => x.EventStartDate >= DateTime.Now)
+                .OrderBy(x => x.EventStartDate)
+                .Select(x => new
+            {
+                x.Name,
+                x.EventStartDate,
+                x.EventEndDate,
+                x.LinkURL
+            });
+
+            return new ContentResult
+            {
+                Content = JsonConvert.SerializeObject(result),
+                ContentType = "application/json",
+            };
         }
     }
 }

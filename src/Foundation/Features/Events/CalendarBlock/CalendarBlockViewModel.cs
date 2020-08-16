@@ -1,5 +1,4 @@
-﻿using Foundation.Features.Events.CalendarEvent;
-using System.Collections.Generic;
+﻿using EPiServer.Core;
 
 namespace Foundation.Features.Events.CalendarBlock
 {
@@ -8,11 +7,12 @@ namespace Foundation.Features.Events.CalendarBlock
         public CalendarBlockViewModel(CalendarBlock block)
         {
             ViewMode = block.ViewMode;
+            BlockId = ((IContent)block).ContentLink.ID;
             CurrentBlock = block;
         }
 
         public string ViewMode { get; set; }
-        public IEnumerable<CalendarEventPage> Events { get; set; }
+        public int BlockId { get; set; }
         public CalendarBlock CurrentBlock { get; set; }
     }
 }

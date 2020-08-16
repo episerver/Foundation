@@ -1605,6 +1605,10 @@
     <Content Include="Assets\imgs\blog-img1.jpg" />
     <Content Include="Assets\imgs\ipadair.png" />
     <Content Include="Assets\imgs\iphone11.png" />
+    <Content Include="Assets\vendors\fa-brands-400.svg" />
+    <Content Include="Assets\vendors\fa-regular-400.svg" />
+    <Content Include="Assets\vendors\fa-solid-900.svg" />
+    <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\img\episerver.png" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\axios.min.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\jquery-3.4.0.min.js" />
@@ -1955,7 +1959,6 @@
     <Content Include="Features\Shared\Views\_Footer.cshtml" />
     <Content Include="Features\Events\CalendarEvent\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\Index.cshtml" />
-    <Content Include="Features\Events\CalendarBlock\Agenda.cshtml" />
     <Content Include="Features\CatalogContent\Product\Index.cshtml" />
     <Content Include="Features\CatalogContent\Product\_QuickView.cshtml" />
     <Content Include="Features\Shared\Views\_Product.cshtml" />
@@ -2259,6 +2262,18 @@
     <Content Include="modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
     <Content Include="modules\_protected\EPiServer.Insight.UI\module.config" />
     <Content Include="modules\_protected\EPiServer.Marketing.Testing\EPiServer.Marketing.Testing.zip" />
+    <Content Include="Assets\vendors\fa-brands-400.eot" />
+    <Content Include="Assets\vendors\fa-brands-400.ttf" />
+    <Content Include="Assets\vendors\fa-brands-400.woff" />
+    <Content Include="Assets\vendors\fa-brands-400.woff2" />
+    <Content Include="Assets\vendors\fa-regular-400.eot" />
+    <Content Include="Assets\vendors\fa-regular-400.ttf" />
+    <Content Include="Assets\vendors\fa-regular-400.woff" />
+    <Content Include="Assets\vendors\fa-regular-400.woff2" />
+    <Content Include="Assets\vendors\fa-solid-900.eot" />
+    <Content Include="Assets\vendors\fa-solid-900.ttf" />
+    <Content Include="Assets\vendors\fa-solid-900.woff" />
+    <Content Include="Assets\vendors\fa-solid-900.woff2" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
