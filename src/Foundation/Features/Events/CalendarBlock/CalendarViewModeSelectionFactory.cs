@@ -7,10 +7,10 @@ namespace Foundation.Features.Events.CalendarBlock
     {
         public static class CalendarViewModes
         {
-            public const string Day = "agendaDay";
-            public const string Week = "agendaWeek";
-            public const string Month = "month";
-            public const string List = "List";
+            public const string Day = "dayGridDay";
+            public const string Week = "dayGridWeek";
+            public const string Month = "dayGridMonth";
+            public const string Upcoming = "listMonth";
         }
 
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
@@ -20,7 +20,7 @@ namespace Foundation.Features.Events.CalendarBlock
                 new SelectItem { Text = "Day", Value = CalendarViewModes.Day },
                 new SelectItem { Text = "Week", Value = CalendarViewModes.Week},
                 new SelectItem { Text = "Month", Value = CalendarViewModes.Month },
-                new SelectItem { Text = "List", Value = CalendarViewModes.List }
+                new SelectItem { Text = "Upcoming", Value = CalendarViewModes.Upcoming }
             };
         }
     }

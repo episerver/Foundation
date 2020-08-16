@@ -1,25 +1,10 @@
-﻿@using EPiServer.Framework.Web.Resources
+﻿@using Foundation.Features.Events.CalendarBlock
+
 @model CalendarBlockViewModel
-@Html.FullRefreshPropertiesMetaData(new[] { "ViewMode", "Root", "CategoryFilter", "Recursive" })
-@{
-    ClientResources.RequireStyle("/Assets/scss/vendors/fullcalendar/fullcalendar.min.css");
-    ClientResources.RequireScript("/Assets/js/vendors/jquery/jquery-3.4.0.min.js");
-    ClientResources.RequireScript("/Assets/js/vendors/moments/moment.min.js");
-    ClientResources.RequireScript("/Assets/js/vendors/fullcalendar/fullcalendar.min.js");
-}
-    <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="calendar-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
 
-        <script type="text/javascript">
-    var events = [
-        @foreach (var item in Model.Events)
-        {
-            @Html.Raw("{ title:'" + @item.Name + "', start:'" + @item.EventStartDate + "', end:'" + @item.EventEndDate + "', url:'" + @item.LinkURL + "' },")
-        }
-    ];
-    $('div[class="calendar-block"][class!="fc"]').fullCalendar({
-        defaultView: '@Model.ViewMode',
-        events: events
-    });
-        </script>
-
-
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" 
+     class="calendar-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)"
+     id="calendar-block-@Model.BlockId"
+     data-block-id="@Model.BlockId"
+     data-block-viewmode="@Model.CurrentBlock.ViewMode">
+</div>

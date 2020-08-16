@@ -8,6 +8,7 @@ import SearchBox from "./search-box";
 import Blog from "Features/Blog/blog";
 import { ContentSearch } from "./search";
 import Locations from "Features/Locations/locations";
+import CalendarBlock from "Features/Events/CalendarBlock/calendar-block";
 
 export default class FoundationCms {
     init() {
@@ -79,5 +80,8 @@ export default class FoundationCms {
 
         let locations = new Locations();
         locations.init();
+
+        let calendarBlock = new CalendarBlock();
+        calendarBlock.init();
     }
 }
