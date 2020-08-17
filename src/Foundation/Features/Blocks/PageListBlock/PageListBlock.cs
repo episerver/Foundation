@@ -1,3 +1,4 @@
+using System;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
@@ -10,6 +11,11 @@ using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
+using EPiServer.PlugIn;
+using EPiServer.Web;
+using Foundation.Features.Blocks.PageListBlock.RootPropertyFeature;
+using Newtonsoft.Json;
 
 namespace Foundation.Features.Blocks.PageListBlock
 {
@@ -41,7 +47,10 @@ namespace Foundation.Features.Blocks.PageListBlock
 
         [Required]
         [Display(GroupName = SystemTabNames.Content, Order = 60)]
-        public virtual PageReference Root { get; set; }
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<PageReferenceModel>))]
+        // [ClientEditor(ClientEditingClass = "PageListBlock/ExtendedCollectionEditor")]
+        // [ImageThumbnailExtender]
+        public virtual IList<PageReferenceModel> Root { get; set; }
 
         [Display(Name = "Filter by page type", GroupName = SystemTabNames.Content, Order = 70)]
         public virtual PageType PageTypeFilter { get; set; }
