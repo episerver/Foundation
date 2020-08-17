@@ -1656,8 +1656,6 @@
     <Content Include="ClientResources\Scripts\fontawesomeicons.js" />
     <Content Include="Assets\js\common\notification-helper.js" />
     <Content Include="Assets\js\vendors\notify.js" />
-    <Content Include="Assets\js\vendors\fullcalendar\fullcalendar.min.js" />
-    <Content Include="Assets\js\vendors\moments\moment.min.js" />
     <Content Include="Assets\js\vendors\gijgo\gijgo.min.js" />
     <Content Include="Assets\js\vendors\gijgo\messages\messages.bg-bg.js" />
     <Content Include="Assets\js\vendors\gijgo\messages\messages.bg-bg.min.js" />
@@ -1717,7 +1715,6 @@
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-brands-400.svg" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-regular-400.svg" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\font-awesome-5.9.0\webfonts\fa-solid-900.svg" />
-    <Content Include="Assets\scss\vendors\fullcalendar\fullcalendar.min.css" />
     <Content Include="Assets\scss\vendors\gijgo\css\gijgo.min.css" />
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.svg" />
     <Content Include="Assets\scss\vendors\jquery\jquery-ui.css" />

@@ -14,6 +14,7 @@ namespace Foundation.Infrastructure.Display
             "~/Features/Shared/{0}.cshtml",
             "~/Features/Shared/Views/{0}.cshtml",
             "~/Features/Shared/Views/{1}/{0}.cshtml",
+            "~/Features/Shared/Views/Header/{0}.cshtml",
         };
 
         public FeaturesViewEngine()

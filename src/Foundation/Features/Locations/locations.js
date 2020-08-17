@@ -129,7 +129,6 @@ export default class Locations {
 
     getFilterUrl() {
         var uri = new Uri(location.pathname);
-        let instance = this;
         $('.filterblock').each(function (i, e) {
             var filterName = $(e).attr('data-filtertype');
             var value = '';
