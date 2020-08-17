@@ -8,6 +8,7 @@ using Geta.EpiCategories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Foundation.Features.Blocks.PageListBlock.RootPropertyFeature;
 
 namespace Foundation.Features.Blocks.PageListBlock
 {
@@ -46,32 +47,49 @@ namespace Foundation.Features.Blocks.PageListBlock
 
         private IEnumerable<PageData> FindPages(PageListBlock currentBlock)
         {
-            IEnumerable<PageData> pages;
-            var listRoot = currentBlock.Root;
+            // return null;
+            IEnumerable<PageData> pages = new List<PageData>();
+            var current = currentBlock;
+            var listRoots = currentBlock.Root ?? new List<PageReferenceModel>();
             if (currentBlock.Recursive)
             {
                 if (currentBlock.PageTypeFilter != null)
                 {
-                    pages = _contentLocator.FindPagesByPageType(listRoot, true, currentBlock.PageTypeFilter.ID);
+                    foreach (var root in listRoots)
+                    {
+                        var page = _contentLocator.FindPagesByPageType(root.RootPages, true, currentBlock.PageTypeFilter.ID);
+                        pages = pages.Concat(page);
+                    }
                 }
                 else
                 {
-                    pages = _contentLocator.GetAll<PageData>(listRoot);
+                    foreach (var root in listRoots)
+                    {
+                        var page = _contentLocator.GetAll<PageData>(root.RootPages);
+                        pages = pages.Concat(page);
+                    }
                 }
             }
             else
             {
                 if (currentBlock.PageTypeFilter != null)
                 {
-                    pages = _contentLoader.GetChildren<PageData>(listRoot)
-                        .Where(p => p.ContentTypeID == currentBlock.PageTypeFilter.ID);
+                    foreach (var root in listRoots)
+                    {
+                        var page = _contentLoader.GetChildren<PageData>(root.RootPages)
+                            .Where(p => p.ContentTypeID == currentBlock.PageTypeFilter.ID);
+                        pages = pages.Concat(page);
+                    }
                 }
                 else
                 {
-                    pages = _contentLoader.GetChildren<PageData>(listRoot);
+                    foreach (var root in listRoots)
+                    {
+                        var page = _contentLoader.GetChildren<PageData>(root.RootPages);
+                        pages = pages.Concat(page);
+                    }
                 }
             }
-
             if (currentBlock.CategoryListFilter != null && currentBlock.CategoryListFilter.Any())
             {
                 pages = pages.Where(x =>
@@ -81,7 +99,6 @@ namespace Foundation.Features.Blocks.PageListBlock
                            categories.Intersect(currentBlock.CategoryListFilter).Any();
                 });
             }
-
             pages = pages.Where(x => x.VisibleInMenu);
             return pages;
         }
