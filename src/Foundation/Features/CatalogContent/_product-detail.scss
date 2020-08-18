@@ -136,19 +136,10 @@
     &__content {
         padding: 15px;
 
-        p {
-            margin-bottom: 15px;
-        }
-
         .required.error {
             background: white;
             padding: 0;
             color: red;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
         }
     }
 
