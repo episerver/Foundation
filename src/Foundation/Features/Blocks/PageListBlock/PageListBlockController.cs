@@ -48,7 +48,7 @@ namespace Foundation.Features.Blocks.PageListBlock
         {
             IEnumerable<PageData> pages = new List<PageData>();
             var current = currentBlock;
-            var rootList = currentBlock.Roots.FilteredItems;
+            var rootList = currentBlock.Roots?.FilteredItems ?? Enumerable.Empty<ContentAreaItem>();
             if (currentBlock.Recursive)
             {
                 if (currentBlock.PageTypeFilter != null)
