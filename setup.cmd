@@ -122,6 +122,7 @@ IF %errorlevel% NEQ 0 (
 	set errorMessage=%errorlevel%
 	goto error
 )
+CALL npm run dev
 cd %ROOTPATH%
 
 echo ## Clean and build ##
