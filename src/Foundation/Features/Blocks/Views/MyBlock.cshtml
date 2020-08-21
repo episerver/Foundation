@@ -1,0 +1,7 @@
+﻿@model IBlockViewModel<MyBlock>
+<div>
+    <h1>@Html.PropertyFor(x => x.CurrentBlock.Header)</h1>
+    <div>
+        @Html.PropertyFor(x => x.CurrentBlock.Description)
+    </div>
+</div>
