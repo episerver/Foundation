@@ -947,6 +947,7 @@
     <Compile Include="Features\Blocks\LikeButtonBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlockController.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlockController.cs" />
+    <Compile Include="Features\Blocks\MyBlockController.cs" />
     <Compile Include="Features\Blocks\NavigationBlockController.cs" />
     <Compile Include="Features\Blocks\OrderSearchBlockController.cs" />
     <Compile Include="Features\Blocks\ProductHeroBlockController.cs" />
@@ -1972,6 +1973,7 @@
     <Content Include="modules\_protected\episerver-telemetry-ui\episerver-telemetry-ui.zip" />
     <Content Include="modules\_protected\episerver-labs-content-manager\web.config" />
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
+    <Content Include="Features\Blocks\Views\MyBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
