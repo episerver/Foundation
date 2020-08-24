@@ -111,10 +111,12 @@ namespace Foundation.Features.Shared
 
         #region Teaser
 
+        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Teaser ratio (width-height)", GroupName = TabNames.Teaser, Order = 50)]
         public virtual string TeaserRatio { get; set; }
 
+        [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", GroupName = TabNames.Teaser, Order = 100)]
         public virtual ContentReference PageImage { get; set; }

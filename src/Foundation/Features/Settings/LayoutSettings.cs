@@ -23,34 +23,44 @@ namespace Foundation.Features.Settings
     {
         #region Footer
 
+        [CultureSpecific]
         [Display(Name = "Introduction", GroupName = TabNames.Footer, Order = 10)]
         public virtual string Introduction { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Company header", GroupName = TabNames.Footer, Order = 20)]
         public virtual string CompanyHeader { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Company name", GroupName = TabNames.Footer, Order = 25)]
         public virtual string CompanyName { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Company address", GroupName = TabNames.Footer, Order = 30)]
         public virtual string CompanyAddress { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Company phone", GroupName = TabNames.Footer, Order = 40)]
         public virtual string CompanyPhone { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Company email", GroupName = TabNames.Footer, Order = 50)]
         public virtual string CompanyEmail { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Links header", GroupName = TabNames.Footer, Order = 60)]
         public virtual string LinksHeader { get; set; }
 
+        [CultureSpecific]
         [UIHint("FooterColumnNavigation")]
         [Display(Name = "Links", GroupName = TabNames.Footer, Order = 70)]
         public virtual LinkItemCollection Links { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Social header", GroupName = TabNames.Footer, Order = 80)]
         public virtual string SocialHeader { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Social links", GroupName = TabNames.Footer, Order = 85)]
         public virtual LinkItemCollection SocialLinks { get; set; }
 
@@ -58,6 +68,7 @@ namespace Foundation.Features.Settings
         [Display(Name = "Content area", GroupName = TabNames.Footer, Order = 90)]
         public virtual ContentArea ContentArea { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Copyright", GroupName = TabNames.Footer, Order = 130)]
         public virtual string FooterCopyrightText { get; set; }
 
@@ -65,6 +76,7 @@ namespace Foundation.Features.Settings
 
         #region Menu   
 
+        [CultureSpecific]
         [AllowedTypes(new[] { typeof(MenuItemBlock), typeof(PageData) })]
         [UIHint("HideContentAreaActionsContainer", PresentationLayer.Edit)]
         [Display(Name = "Main menu", GroupName = TabNames.Menu, Order = 10)]
@@ -89,16 +101,20 @@ namespace Foundation.Features.Settings
         [Display(Name = "Site logo", GroupName = TabNames.Header, Order = 10)]
         public virtual ContentReference SiteLogo { get; set; }
 
+        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(HeaderMenuSelectionFactory))]
         [Display(Name = "Menu style", GroupName = TabNames.Header, Order = 30)]
         public virtual string HeaderMenuStyle { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Large header menu", GroupName = TabNames.Header, Order = 35)]
         public virtual bool LargeHeaderMenu { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Show commerce header components", GroupName = TabNames.Header, Order = 40)]
         public virtual bool ShowCommerceHeaderComponents { get; set; }
 
+        [CultureSpecific]
         [Display(Name = "Sticky header", GroupName = TabNames.Header, Order = 50)]
         public virtual bool StickyTopHeader { get; set; }
 
