@@ -19,16 +19,21 @@ namespace Foundation.Features.Settings
     public class CollectionSettings : SettingsBase
     {
         #region Person settings
+
+        [CultureSpecific]
         [Display(GroupName = TabNames.CustomSettings, Order = 100)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Sectors { get; set; }
 
+        [CultureSpecific]
         [Display(GroupName = TabNames.CustomSettings, Order = 200)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Locations { get; set; }
+
         #endregion
 
         #region Color settings
+
         [Display(Name = "Background colors", GroupName = TabNames.Colors, Order = 10)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<ColorModel>))]
         public virtual IList<ColorModel> BackgroundColor { get; set; }
@@ -64,6 +69,7 @@ namespace Foundation.Features.Settings
         [Display(Name = "Link Color", GroupName = TabNames.Colors, Order = 80)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string LinkColor { get; set; }
+
         #endregion
     }
 
