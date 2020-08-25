@@ -936,6 +936,7 @@
     <Compile Include="Attributes\OnlyAnonymousAttribute.cs" />
     <Compile Include="Features\Api\AuthorizedApiController.cs" />
     <Compile Include="Features\Api\PublicApiController.cs" />
+    <Compile Include="Features\Blocks\AdsBlockController.cs" />
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlockController.cs" />
     <Compile Include="Features\Blocks\CarouselBlockController.cs" />
@@ -1976,6 +1977,7 @@
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
     <Content Include="Features\Blocks\Views\MyBlock.cshtml" />
     <Content Include="Features\Pages\ExtendedStandardPage\Index.cshtml" />
+    <Content Include="Features\Blocks\Views\AdsBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

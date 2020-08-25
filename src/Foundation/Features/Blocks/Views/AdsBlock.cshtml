@@ -1,0 +1,5 @@
+﻿@model IBlockViewModel<AdsBlock>
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity: @Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    @Html.PropertyFor(x => x.CurrentBlock.AdsBody)
+</div>

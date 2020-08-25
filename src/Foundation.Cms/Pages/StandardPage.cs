@@ -5,6 +5,7 @@ using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Cms.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
+using Foundation.Cms.Blocks;
 
 namespace Foundation.Cms.Pages
 {
@@ -57,9 +58,11 @@ namespace Foundation.Cms.Pages
             set { this.SetPropertyValue(page => page.BackgroundOpacity, value); }
         }
 
+        [AllowedTypes(new[] { typeof(AdsBlock) })]
         [Display(Name = "Header", GroupName = SystemTabNames.Content, Order = 211)]
         public virtual ContentArea HeaderAds { get; set; }
 
+        [AllowedTypes(new[] { typeof(AdsBlock) })]
         [Display(Name = "Footer", GroupName = SystemTabNames.Content, Order = 212)]
         public virtual ContentArea FooterAds { get; set; }
 
