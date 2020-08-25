@@ -1,4 +1,3 @@
-using EPiServer.Core;
 using Foundation.Cms.Identity;
 using Foundation.Commerce.Customer;
 using Foundation.Features.Checkout.ViewModels;

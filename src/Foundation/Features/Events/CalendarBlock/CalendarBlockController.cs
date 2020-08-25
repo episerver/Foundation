@@ -25,7 +25,7 @@ namespace Foundation.Features.Events.CalendarBlock
         public override ActionResult Index(CalendarBlock currentBlock)
         {
             var model = new CalendarBlockViewModel(currentBlock);
-           
+
             return PartialView(model);
         }
 
@@ -79,12 +79,12 @@ namespace Foundation.Features.Events.CalendarBlock
             var result = events.Where(x => x.EventStartDate >= DateTime.Now)
                 .OrderBy(x => x.EventStartDate)
                 .Select(x => new
-            {
-                x.Name,
-                x.EventStartDate,
-                x.EventEndDate,
-                x.LinkURL
-            });
+                {
+                    x.Name,
+                    x.EventStartDate,
+                    x.EventEndDate,
+                    x.LinkURL
+                });
 
             return new ContentResult
             {
