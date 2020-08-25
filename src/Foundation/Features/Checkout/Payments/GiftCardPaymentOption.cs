@@ -3,7 +3,6 @@ using EPiServer.Framework.Localization;
 using EPiServer.ServiceLocation;
 using Foundation.Commerce.GiftCard;
 using Foundation.Commerce.Markets;
-using Foundation.Features.MyAccount.GiftCardPage;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
