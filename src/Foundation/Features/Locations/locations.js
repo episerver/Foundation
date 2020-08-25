@@ -1,4 +1,6 @@
 ﻿import axios from "axios";
+import Uri from "jsuri"; 
+require("bootstrap-slider");
 
 export default class Locations {
     constructor() {
@@ -78,10 +80,13 @@ export default class Locations {
 
     initializeFilters() {
         let instance = this;
-        $('#slider-range').slider({ min: -20, max: 40, value: [-20, 40] });
+
+        $('#slider-range').bootstrapSlider(
+            { min: -20, max: 40, value: [-20, 40] }
+        );
 
         $(document).on('slideStop', '#slider-range', () => {
-            var newVal = $('#slider-range').data('slider').getValue();
+            var newVal = $('#slider-range').val().split(",");
             instance.tempvals = newVal;
             instance.doAjaxCallback($('.filterblock'));
         });
@@ -128,6 +133,7 @@ export default class Locations {
     }
 
     getFilterUrl() {
+
         var uri = new Uri(location.pathname);
         $('.filterblock').each(function (i, e) {
             var filterName = $(e).attr('data-filtertype');
@@ -147,6 +153,7 @@ export default class Locations {
     doAjaxCallback(filtersToUpdate) {
         let instance = this;
         $('.loading-box').show();
+
         axios.get(instance.getFilterUrl())
             .then(function (result) {
                 var fetched = $(result.data);
@@ -160,7 +167,7 @@ export default class Locations {
                 notification.error(error);
             })
             .finally(function () {
-                $('.loading-box').hide();
+                setTimeout($('.loading-box').hide(), 300);
             });
     }
 }
