@@ -1,4 +1,6 @@
-﻿@model CheckoutMethodViewModel
+﻿@using Foundation.Features.Checkout
+
+@model CheckoutMethodViewModel
 
 <div class="row">
     <div class="col-xs-12 col-md-6">
@@ -20,7 +22,6 @@
                 </ul>
                 <br />
             </div>
-
             <div>
                 <p class="title">@Html.TranslateFallback("/Checkout/CheckoutMethod/Convience", "Register with us for future convenience:")</p>
                 <ul style="list-style-type: disc; padding-inline-start: 40px;">
@@ -29,7 +30,6 @@
                 </ul>
                 <br />
             </div>
-
             <div class="buttons-set">
                 <button class="button-black jsContinueCheckoutMethod" type="submit">
                     <span>@Html.TranslateFallback("/Shared/Continue", "Continue")</span>
@@ -37,7 +37,6 @@
             </div>
         }
     </div>
-
     <div class="col-xs-12 col-md-6">
         <h4>@Html.TranslateFallback("/Shared/Login", "Login")</h4>
         @using (Html.BeginForm("Login", "Checkout", FormMethod.Post))
@@ -52,13 +51,11 @@
                         @Html.TextBoxFor(x => x.LoginViewModel.Email, new { @class = "textbox", required = "true" })
                         @Html.ValidationMessageFor(x => x.LoginViewModel.Email, null, new { @class = "required" })
                     </li>
-
                     <li class="checkout__form-item">
                         @Html.LabelFor(x => x.LoginViewModel.Password)<span class="required">*</span>
                         @Html.PasswordFor(x => x.LoginViewModel.Password, new { @class = "textbox", required = "true" })
                         @Html.ValidationMessageFor(x => x.LoginViewModel.Password, null, new { @class = "required" })
                     </li>
-
                     <li class="checkout__form-item">
                         <div class="button--group">
                             <button class="button-black" type="submit">
@@ -69,7 +66,6 @@
                     </li>
                 </ul>
             </div>
-
         }
     </div>
 </div>

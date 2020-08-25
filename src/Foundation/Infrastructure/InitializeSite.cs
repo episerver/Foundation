@@ -35,7 +35,6 @@ using Foundation.Features.Locations.LocationListPage;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.Bookmarks;
 using Foundation.Features.MyAccount.CreditCard;
-using Foundation.Features.MyAccount.GiftCardPage;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.Organization;

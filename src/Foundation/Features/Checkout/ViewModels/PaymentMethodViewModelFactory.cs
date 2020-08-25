@@ -2,7 +2,6 @@
 using Foundation.Commerce.GiftCard;
 using Foundation.Commerce.Markets;
 using Foundation.Features.Checkout.Payments;
-using Foundation.Features.MyAccount.GiftCardPage;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
 using System.Collections.Generic;
