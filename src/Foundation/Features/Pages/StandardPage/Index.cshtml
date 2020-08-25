@@ -22,6 +22,11 @@
 <div class="row">
     <div class="col-12 standard-page__container">
         <div class="standard-page__hero @heroClass">
+            <div class="row">
+                <div class="col-12">
+                    @Html.PropertyFor(m => m.CurrentContent.HeaderAds)
+                </div>
+            </div>
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundVideo))
             {
                 <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
@@ -32,22 +37,22 @@
             {
                 <picture class="standard-page__banner">
                     <source srcset="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" type="image/webp">
-                    <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440" loading="lazy" />
+                    <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440" loading="lazy"/>
                 </picture>
                 <div class="hero__gradient">
                 </div>
-                <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
+                <div style="position: absolute; left: 0; top: 0; height: 100%; width: 100%; background: @Model.CurrentContent.BackgroundColor; opacity: @(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
                 </div>
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
                 <picture class="standard-page__banner">
                     <source data-srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
-                    <img class="standard-page__banner lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
+                    <img class="standard-page__banner lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy"/>
                 </picture>
                 <div class="hero__gradient">
                 </div>
-                <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
+                <div style="position: absolute; left: 0; top: 0; height: 100%; width: 100%; background: @Model.CurrentContent.BackgroundColor; opacity: @(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
                 </div>
             }
         </div>
@@ -72,6 +77,11 @@
                     <div class="col-12">
                         @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    @Html.PropertyFor(m => m.CurrentContent.FooterAds)
                 </div>
             </div>
         </div>

@@ -74,6 +74,12 @@ namespace Foundation.Cms.Pages
             set { this.SetPropertyValue(page => page.BackgroundOpacity, value); }
         }
 
+        [Display(Name = "Header", GroupName = SystemTabNames.Content, Order = 211)]
+        public virtual ContentArea HeaderAds { get; set; }
+
+        [Display(Name = "Footer", GroupName = SystemTabNames.Content, Order = 212)]
+        public virtual ContentArea FooterAds { get; set; }
+
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
