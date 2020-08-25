@@ -958,6 +958,7 @@
     <Compile Include="Features\Blog\BlogItem\BlogItemController.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageController.cs" />
     <Compile Include="Features\Collection\CollectionPageController.cs" />
+    <Compile Include="Features\Pages\ExtendedStandardPage\ExtendedStandardPageController.cs" />
     <Compile Include="Features\People\PersonListPage\PersonListPageController.cs" />
     <Compile Include="Features\People\PersonItemPage\PersonItemPageController.cs" />
     <Compile Include="Features\Preview\PartialViewDisplayChannel.cs" />
@@ -1974,6 +1975,7 @@
     <Content Include="modules\_protected\episerver-labs-content-manager\web.config" />
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
     <Content Include="Features\Blocks\Views\MyBlock.cshtml" />
+    <Content Include="Features\Pages\ExtendedStandardPage\Index.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
