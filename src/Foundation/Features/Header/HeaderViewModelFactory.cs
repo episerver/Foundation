@@ -15,7 +15,7 @@ using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Checkout.Services;
-using Foundation.Features.Header.Market;
+using Foundation.Features.Markets;
 using Foundation.Features.Home;
 using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
@@ -288,39 +288,39 @@ namespace Foundation.Features.Header
 
         protected virtual void AddMarketViewModel(IContent currentContent, HeaderViewModel viewModel)
         {
-            var currentMarket = _currentMarket.GetCurrentMarket();
+            //var currentMarket = _currentMarket.GetCurrentMarket();
 
             if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
             {
                 viewModel.Markets = marketsViewModel;
             }
-            else
-            {
-                var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
-                    .Select(x => new MarketItem
-                    {
-                        Selected = false,
-                        Text = x.MarketName,
-                        Value = x.MarketId.Value,
-                        FlagUrl = GetFlagUrl(x.MarketId)
-                    });
-                marketsViewModel = new MarketViewModel
-                {
-                    Markets = markets,
-                    MarketId = currentMarket.MarketId.Value,
-                    CurrentMarket = new MarketItem
-                    {
-                        Selected = false,
-                        Text = currentMarket.MarketName,
-                        Value = currentMarket.MarketId.Value,
-                        FlagUrl = GetFlagUrl(currentMarket.MarketId)
-                    },
-                    ContentLink = currentContent?.ContentLink ?? ContentReference.EmptyReference
-                };
-                viewModel.Markets = marketsViewModel;
+            //else
+            //{
+            //    var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
+            //        .Select(x => new MarketItem
+            //        {
+            //            Selected = false,
+            //            Text = x.MarketName,
+            //            Value = x.MarketId.Value,
+            //            FlagUrl = GetFlagUrl(x.MarketId)
+            //        });
+            //    marketsViewModel = new MarketViewModel
+            //    {
+            //        Markets = markets,
+            //        MarketId = currentMarket.MarketId.Value,
+            //        CurrentMarket = new MarketItem
+            //        {
+            //            Selected = false,
+            //            Text = currentMarket.MarketName,
+            //            Value = currentMarket.MarketId.Value,
+            //            FlagUrl = GetFlagUrl(currentMarket.MarketId)
+            //        },
+            //        ContentLink = currentContent?.ContentLink ?? ContentReference.EmptyReference
+            //    };
+            //    viewModel.Markets = marketsViewModel;
 
-                CacheManager.Insert(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
-            }
+            //    CacheManager.Insert(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
+            //}
         }
 
         protected virtual void AddCommerceComponents(FoundationContact contact, HeaderViewModel viewModel)

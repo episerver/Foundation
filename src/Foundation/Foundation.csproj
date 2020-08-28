@@ -1047,6 +1047,7 @@
     <Compile Include="Features\Locations\IFilterBlock.cs" />
     <Compile Include="Features\Locations\LocationsPartialRouting.cs" />
     <Compile Include="Features\Locations\TagsPartialRouting.cs" />
+    <Compile Include="Features\Markets\CurrentMarketViewModel.cs" />
     <Compile Include="Features\Media\CodingFile.cs" />
     <Compile Include="Features\MyAccount\Bookmarks\BookmarksPage.cs" />
     <Compile Include="Features\MyAccount\Bookmarks\BookmarksService.cs" />
@@ -1206,12 +1207,12 @@
     <Compile Include="Features\Checkout\ViewModels\UpdateShippingMethodViewModel.cs" />
     <Compile Include="Features\Checkout\ViewModels\UsersOrderPadViewModel.cs" />
     <Compile Include="Features\Folder\FolderPage.cs" />
-    <Compile Include="Features\Header\Currency\CurrencyViewModel.cs" />
+    <Compile Include="Features\Markets\CurrencyViewModel.cs" />
     <Compile Include="Features\Header\HeaderViewModelFactory.cs" />
     <Compile Include="Features\Header\HeaderViewModel.cs" />
     <Compile Include="Features\Header\IHeaderViewModelFactory.cs" />
-    <Compile Include="Features\Header\Language\LanguageViewModel.cs" />
-    <Compile Include="Features\Header\Market\MarketViewModel.cs" />
+    <Compile Include="Features\Markets\LanguageViewModel.cs" />
+    <Compile Include="Features\Markets\MarketViewModel.cs" />
     <Compile Include="Features\Header\MegaMenuModel.cs" />
     <Compile Include="Features\Blocks\MenuItemBlock\MenuItemViewModel.cs" />
     <Compile Include="Features\Header\MobileHeaderViewModel.cs" />
@@ -1355,9 +1356,9 @@
     <Compile Include="Features\Locations\LocationItemPage\LocationItemPageController.cs" />
     <Compile Include="Features\Locations\LocationListPage\LocationListPageController.cs" />
     <Compile Include="Features\Locations\TagPage\TagPageController.cs" />
-    <Compile Include="Features\Header\Currency\CurrencyController.cs" />
-    <Compile Include="Features\Header\Language\LanguageController.cs" />
-    <Compile Include="Features\Header\Market\MarketController.cs" />
+    <Compile Include="Features\Markets\CurrencyController.cs" />
+    <Compile Include="Features\Markets\LanguageController.cs" />
+    <Compile Include="Features\Markets\MarketController.cs" />
     <Compile Include="Features\Login\UserViewModel.cs" />
     <Compile Include="Features\Login\UserController.cs" />
     <Compile Include="Features\Media\MediaController.cs" />
@@ -1611,6 +1612,7 @@
     <Content Include="Assets\vendors\fa-regular-400.svg" />
     <Content Include="Assets\vendors\fa-solid-900.svg" />
     <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
+    <Content Include="Features\Markets\market.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\img\episerver.png" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\axios.min.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\js\vendors\jquery-3.4.0.min.js" />

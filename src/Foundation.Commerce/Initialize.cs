@@ -1,14 +1,17 @@
 ﻿using EPiServer.Commerce.Marketing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Globalization;
 using EPiServer.Labs.ContentManager;
 using EPiServer.ServiceLocation;
+using Foundation.Cms;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Install;
 using Foundation.Commerce.Install.Steps;
 using Foundation.Commerce.Marketing;
 using Foundation.Commerce.Markets;
 using Mediachase.Commerce;
+using System.Web.Mvc;
 
 namespace Foundation.Commerce
 {
@@ -36,10 +39,18 @@ namespace Foundation.Commerce
             services.AddSingleton<IInstallStep, AddShippingMethods>();
             services.AddSingleton<IInstallStep, AddTaxes>();
             services.AddSingleton<IInstallStep, AddWarehouses>();
+            services.Intercept<IUpdateCurrentLanguage>(
+               (locator, defaultImplementation) =>
+                   new LanguageService(
+                       locator.GetInstance<ICurrentMarket>(),
+                       locator.GetInstance<CookieService>(),
+                       defaultImplementation));
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
         {
+            GlobalFilters.Filters.Add(new AJAXLocalizationFilterAttribute());
+
             var contentOptions = context.Locate.Advanced.GetInstance<ContentManagerOptions>();
             contentOptions.EnsureCommerceLoaded();
         }

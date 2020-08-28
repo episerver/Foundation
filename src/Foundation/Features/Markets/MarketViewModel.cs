@@ -1,7 +1,7 @@
 using EPiServer.Core;
 using System.Collections.Generic;
 
-namespace Foundation.Features.Header.Market
+namespace Foundation.Features.Markets
 {
     public class MarketViewModel
     {

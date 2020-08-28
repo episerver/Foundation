@@ -1,7 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 using Foundation.Features.Blocks.MenuItemBlock;
-using Foundation.Features.Header.Market;
+using Foundation.Features.Markets;
 using Foundation.Features.Home;
 using Foundation.Features.Login;
 using Foundation.Features.Settings;
