@@ -74,7 +74,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
                 blockViewModel.Messages.Add(new MessageViewModel(ex.Message, ErrorMessage));
             }
 
-            return PartialView("~/Features/Blocks/Views/CommentsBlock.cshtml", blockViewModel);
+            return PartialView("~/Features/Blocks/CommentsBlock/CommentsBlock.cshtml", blockViewModel);
         }
 
         /// <summary>
