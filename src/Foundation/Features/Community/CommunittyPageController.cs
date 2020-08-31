@@ -9,7 +9,7 @@ namespace Foundation.Features.Community
         public ActionResult Index(CommunityPage currentPage)
         {
             var model = new ContentViewModel<CommunityPage>(currentPage);
-            return View("~/Features/Pages/CommunityPage/Index.cshtml", model);
+            return View(model);
         }
     }
 }

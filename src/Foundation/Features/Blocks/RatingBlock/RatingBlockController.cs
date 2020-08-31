@@ -109,7 +109,7 @@ namespace Foundation.Features.Blocks.RatingBlock
                 GetRatingStatistics(target, blockModel);
             }
 
-            return PartialView("~/Features/Blocks/Views/RatingBlock.cshtml", blockModel);
+            return PartialView("~/Features/Blocks/RatingBlock/RatingBlock.cshtml", blockModel);
         }
 
         /// <summary>

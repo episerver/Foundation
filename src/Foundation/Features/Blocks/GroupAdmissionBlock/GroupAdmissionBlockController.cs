@@ -69,7 +69,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
             ModelState.Clear();
 
             //Return block view
-            return PartialView("~/Features/Blocks/Views/GroupAdmissionBlock.cshtml", blockModel);
+            return PartialView("~/Features/Blocks/GroupAdmissionBlock/GroupAdmissionBlock.cshtml", blockModel);
         }
 
         /// <summary>

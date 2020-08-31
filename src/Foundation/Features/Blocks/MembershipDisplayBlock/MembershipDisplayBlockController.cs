@@ -78,7 +78,7 @@ namespace Foundation.Features.Blocks.MembershipDisplayBlock
             }
 
             //Return block view with populated model
-            return PartialView("~/Features/Blocks/Views/MembershipDisplayBlock.cshtml", membershipDisplayBlockModel);
+            return PartialView("~/Features/Blocks/MembershipDisplayBlock/MembershipDisplayBlock.cshtml", membershipDisplayBlockModel);
         }
 
         public List<CommunityMemberViewModel> Adapt(List<CommunityMember> socialMembers) => socialMembers.Select(x => new CommunityMemberViewModel(x.Company, _userRepository.ParseUserUri(x.User))).ToList();

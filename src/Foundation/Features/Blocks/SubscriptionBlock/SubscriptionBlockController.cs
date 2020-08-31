@@ -57,7 +57,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
             SetBlockViewModelProperties(blockViewModel);
 
             // Render the frontend block view
-            return PartialView("~/Features/Blocks/Views/SubscriptionBlock.cshtml", blockViewModel);
+            return PartialView("~/Features/Blocks/SubscriptionBlock/SubscriptionBlock.cshtml", blockViewModel);
         }
 
         /// <summary>
