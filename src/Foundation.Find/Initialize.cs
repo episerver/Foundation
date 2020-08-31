@@ -3,7 +3,6 @@ using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using Foundation.Find.Facets;
 using Foundation.Find.Facets.Config;
-using System.Collections.Generic;
 
 namespace Foundation.Find
 {
@@ -13,8 +12,9 @@ namespace Foundation.Find
         void IConfigurableModule.ConfigureContainer(ServiceConfigurationContext context)
         {
             var services = context.Services;
-            services.AddSingleton<IFacetRegistry>(new FacetRegistry(new List<FacetDefinition>()));
             services.AddSingleton<IFacetConfigFactory, FacetConfigFactory>();
+            services.AddSingleton<IFacetRegistry>((locator) => new FacetRegistry(locator.GetInstance<IFacetConfigFactory>().GetDefaultFacetDefinitions())) ;
+           
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

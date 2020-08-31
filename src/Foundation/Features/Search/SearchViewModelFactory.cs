@@ -66,25 +66,24 @@ namespace Foundation.Features.Search
                 return model;
             }
 
-            var commerceFilterOption = filterOption;
-            var results = _searchService.Search(currentContent, commerceFilterOption, selectedFacets, catalogId);
+            var results = _searchService.Search(currentContent, filterOption, selectedFacets, catalogId);
 
-            commerceFilterOption.TotalCount = results.TotalCount;
-            commerceFilterOption.FacetGroups = results.FacetGroups.ToList();
+            filterOption.TotalCount = results.TotalCount;
+            filterOption.FacetGroups = results.FacetGroups.ToList();
 
-            commerceFilterOption.Sorting = _searchService.GetSortOrder().Select(x => new SelectListItem
+            filterOption.Sorting = _searchService.GetSortOrder().Select(x => new SelectListItem
             {
                 Text = _localizationService.GetString("/Category/Sort/" + x.Name),
                 Value = x.Name.ToString(),
-                Selected = string.Equals(x.Name.ToString(), commerceFilterOption.Sort)
+                Selected = string.Equals(x.Name.ToString(), filterOption.Sort)
             });
 
             model.CurrentContent = currentContent;
             model.ProductViewModels = results?.ProductViewModels ?? new List<ProductTileViewModel>();
-            model.FilterOption = commerceFilterOption;
-            model.CategoriesFilter = GetCategoriesFilter(currentContent, commerceFilterOption.Q);
+            model.FilterOption = filterOption;
+            model.CategoriesFilter = GetCategoriesFilter(currentContent, filterOption.Q);
             model.DidYouMeans = results.DidYouMeans;
-            model.Query = commerceFilterOption.Q;
+            model.Query = filterOption.Q;
             model.IsMobile = _httpContextBase.GetOverriddenBrowser().IsMobileDevice;
 
             return model;

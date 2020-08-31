@@ -30,9 +30,10 @@
             <div class="row">
                 @if (!PageEditing.PageIsInEditMode)
                 {
+                    Model.FilterOption.ViewSwitcher = string.IsNullOrEmpty(Model.CurrentContent.DefaultTemplate) ? "Grid" : Model.CurrentContent.DefaultTemplate;
                     <div class="category-page__facets col-lg-3 jsFacets">
                         @Html.Partial("_CategoriesFilter", Model.CategoriesFilter)
-                        @Html.Action("Facet", new { Model.CurrentContent, Model.FilterOption })
+                        @Html.Partial("_Facet", Model.FilterOption)
                     </div>
                     <div class="col-lg-9">
                         @Html.Partial("_BreadCrumb", Model.BreadCrumb)
