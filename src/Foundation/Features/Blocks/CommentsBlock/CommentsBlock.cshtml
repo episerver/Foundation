@@ -1,7 +1,6 @@
-﻿@using System.Web.Mvc
-@using System.Web.Mvc.Html
-@using EPiServer.Web.Mvc.Html
-@model Foundation.Features.Blocks.CommentsBlock.CommentsBlockViewModel
+﻿@using Foundation.Features.Blocks.CommentsBlock
+
+@model CommentsBlockViewModel
 
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     @if (Model.ShowHeading)
@@ -24,9 +23,9 @@
                     @Html.TextArea(name: "Body", htmlAttributes: new
                     {
                         placeholder = "Enter your comment",
-                   maxlength = Model.CommentMaxLength,
-                   rows = Model.CommentBoxRows,
-                   @class = "social-comment square-box full-width"
+                        maxlength = Model.CommentMaxLength,
+                        rows = Model.CommentBoxRows,
+                        @class = "social-comment square-box full-width"
                     })
                 </div>
                 <div>
