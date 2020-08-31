@@ -1,9 +1,11 @@
 ﻿using EPiBootstrapArea;
 using EPiBootstrapArea.Initialization;
+using EPiServer;
 using EPiServer.Commerce.Internal.Migration;
 using EPiServer.Commerce.Order;
 using EPiServer.ContentApi.Core.Configuration;
 using EPiServer.ContentApi.Search;
+using EPiServer.Core;
 using EPiServer.Find.ClientConventions;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework;
@@ -18,6 +20,7 @@ using EPiServer.Web.PageExtensions;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.GiftCard;
 using Foundation.Features.Blog.BlogItemPage;
@@ -39,15 +42,18 @@ using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.Search;
+using Foundation.Features.Settings;
 using Foundation.Features.Shared;
 using Foundation.Features.Stores;
-using Foundation.Find;
+using Foundation.Find.Facets;
+using Foundation.Find.Facets.Config;
 using Foundation.Infrastructure.Display;
 using Foundation.Infrastructure.PowerSlices;
 using Foundation.Infrastructure.SchemaMarkup;
 using Foundation.Infrastructure.Services;
 using PowerSlice;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Owin;
@@ -64,6 +70,7 @@ namespace Foundation.Infrastructure
     public class InitializeSite : IConfigurableModule
     {
         private IServiceConfigurationProvider _services;
+        private IServiceLocator _locator;
 
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
@@ -174,6 +181,7 @@ namespace Foundation.Infrastructure
 
         public void Initialize(InitializationEngine context)
         {
+            _locator = context.Locate.Advanced;
             var manager = context.Locate.Advanced.GetInstance<MigrationManager>();
             if (manager.SiteNeedsToBeMigrated())
             {
@@ -182,7 +190,6 @@ namespace Foundation.Infrastructure
 
             ViewEngines.Engines.Insert(0, new FeaturesViewEngine());
             context.InitializeFoundationCommerce();
-            context.InitializeFoundationFindCms();
 
             var handler = GlobalConfiguration.Configuration.MessageHandlers
                 .FirstOrDefault(x => x.GetType() == typeof(PassiveAuthenticationMessageHandler));
@@ -201,12 +208,43 @@ namespace Foundation.Infrastructure
             SearchClient.Instance.Conventions.ForInstancesOf<LocationItemPage>().IncludeField(dp => dp.TagString());
         }
 
-        public void Uninitialize(InitializationEngine context) => context.InitComplete -= ContextOnInitComplete;
+        public void Uninitialize(InitializationEngine context)
+        {
+            context.InitComplete -= ContextOnInitComplete;
+            context.Locate.Advanced.GetInstance<IContentEvents>().PublishedContent -= OnPublishedContent;
+        }
 
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {
             _services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
             Extensions.InstallDefaultContent();
+            var settings = _locator.GetInstance<ISettingsService>().GetSiteSettings<SearchSettings>();
+            if (settings != null)
+            {
+                InitializeFacets(settings.SearchFiltersConfiguration);
+            }
+
+            _locator.GetInstance<IContentEvents>().PublishedContent += OnPublishedContent;
+
+        }
+
+        private void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
+        {
+            if (contentEventArgs.Content is IFacetConfiguration facetConfiguration)
+            {
+                InitializeFacets(facetConfiguration.SearchFiltersConfiguration);
+            }
+        }
+
+        private void InitializeFacets(IList<FacetFilterConfigurationItem> configItems)
+        {
+            if (configItems != null && configItems.Any())
+            {
+                _locator.GetInstance<IFacetRegistry>().Clear();
+                configItems
+                    .ToList()
+                    .ForEach(x => _locator.GetInstance<IFacetRegistry>().AddFacetDefinitions(_locator.GetInstance<IFacetConfigFactory>().GetFacetDefinition(x)));
+            }
         }
     }
 }

@@ -42,7 +42,7 @@
                         @Html.Partial("_CategoriesFilter", Model.CategoriesFilter)
                         @if (Model.ProductViewModels != null)
                         {
-                            @Html.Action("Facet", new { Model.CurrentContent, Model.FilterOption })
+                           @Html.Partial("_Facet", Model.FilterOption)
                         }
                     </div>
                     <div class="col-lg-9">

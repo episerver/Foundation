@@ -1,5 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
+﻿using Foundation.Cms.Settings;
 using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
@@ -9,14 +8,14 @@ namespace Foundation.Find.Facets.Config
 {
     public class FacetConfigFactory : IFacetConfigFactory
     {
-        private readonly IContentLoader _contentLoader;
         private readonly ICurrentMarket _currentMarket;
+        private readonly ISettingsService _settingsService;
 
-        public FacetConfigFactory(IContentLoader contentLoader,
-            ICurrentMarket currentMarket)
+        public FacetConfigFactory(ICurrentMarket currentMarket, 
+            ISettingsService settingsService)
         {
-            _contentLoader = contentLoader;
             _currentMarket = currentMarket;
+            _settingsService = settingsService;
         }
 
         public List<FacetDefinition> GetDefaultFacetDefinitions()
@@ -124,24 +123,15 @@ namespace Foundation.Find.Facets.Config
             };
         }
 
-        public List<FacetFilterConfigurationItem> GetFacetFilterConfigurationItems()
+        public List<FacetFilterConfigurationItem> GetFacetFilterConfigurationItems<T>() where T : SettingsBase
         {
-            if (ContentReference.IsNullOrEmpty(ContentReference.StartPage))
+            var settings = _settingsService.GetSiteSettings<T>();
+            if (settings == null || !(settings is IFacetConfiguration facetConfiguration))
             {
                 return new List<FacetFilterConfigurationItem>();
             }
 
-            var startPage = _contentLoader.Get<IContent>(ContentReference.StartPage);
-
-            var facetsConfiguration = startPage as IFacetConfiguration;
-            if (facetsConfiguration?.SearchFiltersConfiguration != null)
-            {
-                return facetsConfiguration
-                    .SearchFiltersConfiguration
-                    .ToList();
-            }
-
-            return new List<FacetFilterConfigurationItem>();
+            return facetConfiguration.SearchFiltersConfiguration.ToList();
         }
     }
 }
