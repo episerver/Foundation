@@ -1,7 +1,10 @@
-﻿@using EPiServer.AddOns.Helpers
-@using EPiServer.Core.Html
+﻿@using EPiServer.Core.Html
+@using EPiServer.AddOns.Helpers
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
 
 @model PageListBlockViewModel
+
 @if (Model.Pages != null && Model.Pages.Any())
 {
     <div class="row">
@@ -12,7 +15,7 @@
             var textCol = imageCol == 12 ? 12 : 12 - imageCol;
 
             <a class="col-@imageCol preview--image-top" href="@page.Page.ContentLink.GetPublicUrl()">
-                <h4>
+                <h4 style="color: black;">
                     @(@Html.Raw(TextIndexer.StripHtml(page != null ? foundationPage.MetaTitle : page.Page.Name, 55)) + "...")
                 </h4>
                 @if (Model.ShowPublishDate)
@@ -27,5 +30,4 @@
             </a>
         }
     </div>
-
 }

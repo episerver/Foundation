@@ -2179,7 +2179,6 @@
     <Content Include="Features\Blocks\PageListBlock\_InsightTemplate.cshtml" />
     <Content Include="Features\Blocks\PageListBlock\_CardTemplate.cshtml" />
     <Content Include="Features\Blocks\PageListBlock\_HighlightPanelTemplate.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_TopImage.cshtml" />
     <Content Include="Features\Blocks\PageListBlock\_LeftImageTemplate.cshtml" />
     <Content Include="Features\Shared\Views\Header\_HeaderLogo.cshtml" />
     <Content Include="Features\Search\_SearchPdf.cshtml" />
@@ -2271,6 +2270,7 @@
     <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="modules\_protected\episerver-labs-content-manager\web.config" />
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
+    <Content Include="Features\Blocks\PageListBlock\_TopImageTemplate.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
