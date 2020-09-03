@@ -1,6 +1,8 @@
-﻿@using EPiServer.AddOns.Helpers
-@using EPiServer.Core.Html
+﻿@using EPiServer.Core.Html
+@using EPiServer.AddOns.Helpers
 @using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
 
 @model PageListBlockViewModel
 
@@ -20,18 +22,12 @@
                 @if (!page.Flip)
                 {
                     <div class="col-xs-12 col-@imageCol">
-                        <picture style="width: 100%">
-                            @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
-                            {
-                            <picture class="img-fluid preview--image-top__image">
-                                <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                                <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
-                            </picture>
-                            }
-                        </picture>
+                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                        }
                     </div>
                 }
-
                 <div class="col-xs-12 col-@textCol">
                     <h4 class="title">
                         <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">@foundationPage.MetaTitle</a>
@@ -46,19 +42,13 @@
                         <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
                     }
                 </div>
-
                 @if (page.Flip)
                 {
                     <div class="col-xs-12 col-@imageCol">
-                        <picture style="width: 100%">
-                            @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
-                            {
-                            <picture class="img-fluid preview--image-top__image">
-                                <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                                <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
-                            </picture>
-                            }
-                        </picture>
+                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                        }
                     </div>
                 }
             </div>
@@ -68,17 +58,11 @@
             <div class="screen-width-block">
                 <div class="row">
                     <div class="col-xs-12 col-@imageCol">
-                        <picture style="width: 100%">
-                            @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
-                            {
-                            <picture class="img-fluid preview--image-top__image">
-                                <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                                <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
-                            </picture>
-                            }
-                        </picture>
+                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                        }
                     </div>
-
                     <div class="col-xs-12 col-@textCol">
                         <h4 class="title">
                             <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">@foundationPage.MetaTitle</a>
@@ -98,7 +82,6 @@
             </div>
         }
         <hr />
-
         if (!(page.Page as FoundationPageData).Highlight)
         {
             flip = !flip;

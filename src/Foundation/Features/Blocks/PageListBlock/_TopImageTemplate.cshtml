@@ -1,6 +1,8 @@
-﻿@using EPiServer.AddOns.Helpers
-@using EPiServer.Core.Html
+﻿@using EPiServer.Core.Html
+@using EPiServer.AddOns.Helpers
 @using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
 
 @model PageListBlockViewModel
 
@@ -9,7 +11,6 @@
     <div class="row">
         @foreach (var page in Model.Pages)
         {
-
             var foundationPage = page.Page as FoundationPageData;
             var imageCol = page.PreviewOption == PreviewOptions.Full ? 12 : (page.PreviewOption == PreviewOptions.Half ? 6 : 4);
             <a class="col-@imageCol preview--image-top" href="@page.Page.ContentLink.GetPublicUrl()">
@@ -21,21 +22,17 @@
                 }
                 else
                 {
-                    <picture style="height: 100%">
-                        @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
-                        {
-                            <source data-srcset="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
-                        }
-                    </picture>
+                    if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                    {
+                        <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                    }
                 }
-
                 <div style="flex-basis: 116px; flex-shrink: 0">
                     @if (page.ShowPublishDate)
                     {
                         <p class="sub-title">@page.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
                     }
-                    <h4>
+                    <h4 style="color: black">
                         @(@Html.Raw(TextIndexer.StripHtml(page != null ? foundationPage.MetaTitle : page.Page.Name, 55)) + "...")
                     </h4>
 
@@ -44,7 +41,6 @@
                         <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
                     }
                 </div>
-
             </a>
         }
     </div>
