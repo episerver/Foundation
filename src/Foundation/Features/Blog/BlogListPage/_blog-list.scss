@@ -501,11 +501,13 @@
             line-height: 18px;
             text-transform: uppercase;
             padding-bottom: 2px;
-            border-bottom: 2px solid #a95228;
-            color: #a95228;
+            border-bottom: 2px solid #000000ab;
+            color: #000000ab;
 
             &:hover {
                 text-decoration: none;
+                border-bottom: 2px solid black;
+                color: black;
             }
         }
     }
