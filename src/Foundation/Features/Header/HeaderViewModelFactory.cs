@@ -290,10 +290,10 @@ namespace Foundation.Features.Header
         {
             //var currentMarket = _currentMarket.GetCurrentMarket();
 
-            if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
-            {
-                viewModel.Markets = marketsViewModel;
-            }
+            //if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
+            //{
+            //    viewModel.Markets = marketsViewModel;
+            //}
             //else
             //{
             //    var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)

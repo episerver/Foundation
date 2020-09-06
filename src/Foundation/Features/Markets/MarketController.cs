@@ -40,54 +40,54 @@ namespace Foundation.Features.Markets
         [ChildActionOnly]
         public ActionResult Index(ContentReference contentLink)
         {
-            var currentMarket = _currentMarket.GetCurrentMarket();
+            //var currentMarket = _currentMarket.GetCurrentMarket();
 
-            if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
-            {
-                return PartialView("", marketsViewModel);
-            }
-            else
-            {
-                var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
-                    .Select(x => new MarketItem
-                    {
-                        Selected = false,
-                        Text = x.MarketName,
-                        Value = x.MarketId.Value,
-                        FlagUrl = GetFlagUrl(x.MarketId)
-                    });
-                marketsViewModel = new MarketViewModel
-                {
-                    Markets = markets,
-                    MarketId = currentMarket.MarketId.Value,
-                    CurrentMarket = new MarketItem
-                    {
-                        Selected = false,
-                        Text = currentMarket.MarketName,
-                        Value = currentMarket.MarketId.Value,
-                        FlagUrl = GetFlagUrl(currentMarket.MarketId)
-                    },
-                    ContentLink = currentContent?.ContentLink ?? ContentReference.EmptyReference
-                };
-                viewModel.Markets = marketsViewModel;
+            //if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
+            //{
+            //    return PartialView("", marketsViewModel);
+            //}
+            //else
+            //{
+            //    var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
+            //        .Select(x => new MarketItem
+            //        {
+            //            Selected = false,
+            //            Text = x.MarketName,
+            //            Value = x.MarketId.Value,
+            //            FlagUrl = GetFlagUrl(x.MarketId)
+            //        });
+            //    marketsViewModel = new MarketViewModel
+            //    {
+            //        Markets = markets,
+            //        MarketId = currentMarket.MarketId.Value,
+            //        CurrentMarket = new MarketItem
+            //        {
+            //            Selected = false,
+            //            Text = currentMarket.MarketName,
+            //            Value = currentMarket.MarketId.Value,
+            //            FlagUrl = GetFlagUrl(currentMarket.MarketId)
+            //        },
+            //        ContentLink = currentContent?.ContentLink ?? ContentReference.EmptyReference
+            //    };
+            //    viewModel.Markets = marketsViewModel;
 
-                CacheManager.Insert(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
+            //    CacheManager.Insert(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
 
 
-                var currentMarket = _currentMarket.GetCurrentMarket();
-            var model = new MarketViewModel
-            {
-                Markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
-                    .Select(x => new SelectListItem
-                    {
-                        Selected = false,
-                        Text = x.MarketName,
-                        Value = x.MarketId.Value
-                    }),
-                MarketId = currentMarket != null ? currentMarket.MarketId.Value : string.Empty,
-                ContentLink = contentLink
-            };
-            return PartialView(model);
+            //    var currentMarket = _currentMarket.GetCurrentMarket();
+            //var model = new MarketViewModel
+            //{
+            //    Markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
+            //        .Select(x => new SelectListItem
+            //        {
+            //            Selected = false,
+            //            Text = x.MarketName,
+            //            Value = x.MarketId.Value
+            //        }),
+            //    MarketId = currentMarket != null ? currentMarket.MarketId.Value : string.Empty,
+            //    ContentLink = contentLink
+            //};
+            return PartialView();
         }
 
         [ChildActionOnly]
