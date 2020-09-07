@@ -1,8 +1,7 @@
 ﻿@charset 'UTF-8';
 
 // 1. Configuration and helpers
-@import
-    'utils/variables';
+@import 'abstracts/**/*.scss';
 
 // 2. Vendors
 @import
@@ -12,89 +11,17 @@
     '~@fortawesome/fontawesome-free/css/all.min.css';
 
 // 3. Base stuff
-@import
-    'base/typography',
-    'base/helpers';
+@import 'base/**/*.scss';
 
 // 4. Layout-related sections
-@import
-    'layout/header',
-    'layout/footer',
-    'layout/navigation-bar',
-    'layout/navigation',
-    'layout/mobile-navigation';
+@import 'layout/**/*.scss';
 
 // 5. Components
-@import
-    'components/elements/buttons',
-    'components/elements/textbox',
-    'components/elements/checkbox',
-    'components/elements/select-menu',
-    'components/elements/icon-menu',
-    'components/elements/hamburger-menu',
-    'components/elements/loading-box',
-    'components/elements/list-group',
-    'components/elements/dropdown',
-    'components/elements/table',
-    'components/elements/icon-buttons',
-    'components/elements/easy-autocomplete';
+@import 'components/**/*.scss';
 
+// 6. Page and block specific styles
 @import
-    'components/widgets/market-selector',
-    'components/widgets/product-tile',
-    'components/widgets/profile-group',
-    'components/widgets/product-quick-view',
-    'components/widgets/login-users',
-    'components/widgets/logged-in-user',
-    'components/widgets/cart.scss',
-    'components/widgets/profile-sidebar',
-    'components/widgets/toolbar',
-    'components/widgets/b2b-navigation',
-    'components/widgets/breadcrumb',
-    'components/widgets/searchbox',
-    'components/widgets/teaser',
-    'components/widgets/form';
-
-@import
-    '../../Features/Blocks/HeroBlock/hero-block',
-    '../../Features/Blocks/ButtonBlock/button-block',
-    '../../Features/Events/CalendarBlock/calendar-block',
-    '../../Features/Blocks/VideoBlock/video-block',
-    '../../Features/Blocks/VimeoBlock/vimeo-block',
-    '../../Features/Blocks/TeaserBlock/teaser-block',
-    '../../Features/Blocks/BreadcrumbBlock/breadcrumb-block',
-    '../../Features/Blocks/TextBlock/text-block',
-    '../../Features/Blocks/OrderSearchBlock/order-search-block',
-    '../../Features/Blocks/CategoryBlock/category-block',
-    '../../Features/Blocks/ProductHeroBlock/product-hero-block';
-
-@import '../../Features/Media/video-file';
-
-// 6. Page specific styles
-@import
-    '../../Features/Home/home',
-    '../../Features/StandardPage/standard-page',
-    '../../Features/MyAccount/OrderHistory/order-history',
-    '../../Features/MyAccount/CreditCard/credit-card',
-    '../../Features/MyAccount/OrderConfirmation/order-confirmation-page',
-    '../../Features/MyAccount/OrderDetails/order-detail-page',
-    '../../Features/MyOrganization/Orders/orders-page',
-    '../../Features/MyOrganization/Users/users-page',
-    '../../Features/Checkout/checkout-page',
-    '../../Features/Checkout/one-page-checkout',
-    '../../Features/NamedCarts/cart-page',
-    '../../Features/NamedCarts/OrderPadsPage/order-pads',
-    '../../Features/CatalogContent/product-detail',
-    '../../Features/Locations/location',
-    '../../Features/People/people',
-    '../../Features/Category/category-page',
-    '../../Features/Search/Search/search-page',
-    '../../Features/Blog/BlogListPage/blog-list',
-    '../../Features/Blog/BlogItemPage/blog-item',
-    '../../Features/Login/login',
-    '../../Features/Stores/store-locator',
-    '../../Features/Collection/collection';
+    '../../Features/**/*.scss';
 
 // 7. Themes
-@import
-    'themes/default';
+@import 'themes/**/*.scss';
