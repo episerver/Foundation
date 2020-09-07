@@ -1889,7 +1889,7 @@
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.ttf" />
     <Content Include="Assets\scss\vendors\gijgo\fonts\gijgo-material.woff" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\css\vendors\mvc-grid\Fonts\GridGlyphs.woff" />
-    <Content Include="Assets\scss\utils\_variables.scss" />
+    <Content Include="Assets\scss\abstracts\_variables.scss" />
     <Content Include="Assets\scss\base\_helpers.scss" />
     <Content Include="Assets\scss\base\_typography.scss" />
     <Content Include="Assets\scss\components\elements\_buttons.scss" />
