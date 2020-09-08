@@ -1312,7 +1312,6 @@
     <Compile Include="Features\Preview\CatalogPartialPreviewController.cs" />
     <Compile Include="Features\Community\CommunittyPageController.cs" />
     <Compile Include="Features\Preview\PreviewControllerHelper.cs" />
-    <Compile Include="Features\Preview\MediaDataPreviewController.cs" />
     <Compile Include="Features\Search\Category\GenericNode.cs" />
     <Compile Include="Features\Search\Search\SearchResultPage.cs" />
     <Compile Include="Features\StandardPage\StandardPage.cs" />
@@ -2193,12 +2192,8 @@
     <Content Include="Features\People\PersonItemPage\Index.cshtml" />
     <Content Include="Features\People\PersonListPage\Index.cshtml" />
     <Content Include="Features\Media\_video-file.scss" />
-    <Content Include="Features\Preview\VideoFilePreview.cshtml" />
     <Content Include="Features\Search\_SearchPdf.cshtml" />
     <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
-    <Content Include="Features\Preview\PdfFilePreview.cshtml" />
-    <Content Include="Features\Preview\ImageMediaPreview.cshtml" />
-    <Content Include="Features\Preview\NoPreview.cshtml" />
     <Content Include="modules\_protected\AdvancedTask\AdvancedTask.zip" />
     <Content Include="modules\_protected\advanced-cms-forms\web.config" />
     <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
