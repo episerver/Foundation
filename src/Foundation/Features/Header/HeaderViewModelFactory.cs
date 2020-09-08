@@ -193,7 +193,27 @@ namespace Foundation.Features.Header
             var homeLanguage = homePage.Language.DisplayName;
             var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>();
             var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            menuItems = layoutSettings?.MainMenu?.FilteredItems.Select(x =>
+            var filter = new FilterContentForVisitor();
+            menuItems = layoutSettings?.MainMenu?.FilteredItems.Where(x =>
+            {
+                var _menuItem = _contentLoader.Get<IContent>(x.ContentLink);
+                MenuItemBlock _menuItemBlock;
+                if (_menuItem is MenuItemBlock)
+                {
+                    _menuItemBlock = _menuItem as MenuItemBlock;
+                    if (_menuItemBlock.Link == null)
+                    {
+                        return true;
+                    }
+                    var linkedItem = UrlResolver.Current.Route(new UrlBuilder(_menuItemBlock.Link));
+                    if (filter.ShouldFilter(linkedItem))
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            }).Select(x =>
             {
                 var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
                 if (itemCached != null && !PageEditing.PageIsInEditMode)
