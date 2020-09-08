@@ -1,7 +1,7 @@
 ﻿import "bootstrap";
 import "../scss/main.scss"
 require("easy-autocomplete");
-require("../js/vendors/notify");
+import "bootstrap-notify";
 import feather from "feather-icons";
 import "lazysizes";
 import "lazysizes/plugins/bgset/ls.bgset";
