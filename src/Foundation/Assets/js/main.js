@@ -1,7 +1,7 @@
 ﻿import "bootstrap";
 import "../scss/main.scss"
+import "bootstrap-notify"
 require("easy-autocomplete");
-require("../js/vendors/notify");
 import feather from "feather-icons";
 import "lazysizes";
 import "lazysizes/plugins/bgset/ls.bgset";
@@ -19,3 +19,9 @@ foundationCommerce.init();
 
 let foundationPersonalization = new FoundationPersonalization();
 foundationPersonalization.init();
+
+$.notify({
+    message: "Hello"
+},{
+    type: 'success'
+});

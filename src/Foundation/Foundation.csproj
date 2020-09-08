@@ -2271,6 +2271,7 @@
     <Content Include="modules\_protected\episerver-labs-content-manager\web.config" />
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
     <Content Include="Features\Blocks\PageListBlock\_TopImageTemplate.cshtml" />
+    <Content Include="Assets\js\main.min.js.map" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
