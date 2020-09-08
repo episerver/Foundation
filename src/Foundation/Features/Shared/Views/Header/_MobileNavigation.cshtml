@@ -151,13 +151,13 @@
                     }
                     @if (Model.ShowCommerceControls)
                     {
-                        <li class="offside-navbar--menu__item">
+                        @*<li class="offside-navbar--menu__item">
                             <a class="flex-start" href="#" data-toggle="modal" data-target="#selectMarket">
                                 Market:&nbsp;
                                 <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
                                 <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>
                             </a>
-                        </li>
+                        </li>*@
                     }
 
                 </ul>
@@ -190,7 +190,7 @@
     @if (Model.ShowCommerceControls)
     {
         <!-- Modal Select Market -->
-        <div class="modal fade" id="selectMarket" tabindex="-1" role="dialog">
+        @*<div class="modal fade" id="selectMarket" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content square-box">
                     <div class="modal-header">
@@ -222,7 +222,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     }
 
     <!-- Modal Register In Mobile-->

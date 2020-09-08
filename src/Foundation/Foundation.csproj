@@ -1140,6 +1140,7 @@
     <Compile Include="Features\Settings\ReferencePageSettings.cs" />
     <Compile Include="Features\Settings\SearchSettings.cs" />
     <Compile Include="Features\Shared\HtmlDownloader.cs" />
+    <Compile Include="Features\Shared\IBlockViewModel.cs" />
     <Compile Include="Features\Shared\MailService.cs" />
     <Compile Include="Features\Shared\SelectionFactories\AvailablePageTypesSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\BackgroundColorSelectionFactory.cs" />
@@ -1264,7 +1265,7 @@
     <Compile Include="Features\Blog\BlogCommentBlock\BlogCommentBlock.cs" />
     <Compile Include="Features\Blog\BlogCommentBlock\BlogCommentsBlockViewModel.cs" />
     <Compile Include="Features\Blog\BlogItemPage\BlogItemPage.cs" />
-    <Compile Include="Features\Blog\BlogItemPage\BlogItemPageModel.cs" />
+    <Compile Include="Features\Blog\BlogItemPage\BlogItemPageViewModel.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPage.cs" />
     <Compile Include="Features\Blog\BlogListPage\BlogListPageViewModel.cs" />
     <Compile Include="Features\Events\CalendarBlock\CalendarBlock.cs" />
@@ -1321,6 +1322,7 @@
     <Compile Include="Features\Stores\StoreViewModel.cs" />
     <Compile Include="Features\Shared\BlockViewModel.cs" />
     <Compile Include="Features\Shared\ContentViewModel.cs" />
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\Display\DisplayResolution.cs" />
     <Compile Include="Infrastructure\Display\DisplayResolutionBase.cs" />
     <Compile Include="Infrastructure\Display\FeaturesViewEngine.cs" />
@@ -1339,7 +1341,6 @@
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Features\Shared\FoundationBlockData.cs" />
     <Compile Include="Features\Shared\FoundationPageData.cs" />
-    <Compile Include="Infrastructure\HtmlHelpers.cs" />
     <Compile Include="Features\Shared\IContentViewModel.cs" />
     <Compile Include="Features\Shared\IFoundationContent.cs" />
     <Compile Include="Features\CatalogContent\CatalogContentControllerBase.cs" />
@@ -1412,7 +1413,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Helpers\OpenGraphHelpers.cs" />
     <Compile Include="Helpers\ImageUrlHelpers.cs" />
     <Compile Include="Helpers\WebPHelper.cs" />
     <Compile Include="Infrastructure\Jobs\BlobJob.cs" />

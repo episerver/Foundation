@@ -18,7 +18,58 @@
         this.viewMode = ".jsViewModeInfo";
     }
 
-    //Search, Filter handler
+    init() {
+        let inst = this;
+
+        // Init filter
+        $('.jsUpdatePage').each(function (i, e) {
+            $(e).click(function () {
+                let data = $(this).attr('data');
+                if ($(this).hasClass(inst.pageClass)) {
+                    inst.paginate(data);
+                }
+
+                if ($(this).hasClass(inst.pageSizeClass)) {
+                    inst.changePageSize(data);
+                }
+
+                if ($(this).hasClass(inst.sortClass)) {
+                    inst.sort(data);
+                }
+
+                if ($(this).hasClass(inst.sortDirectionClass)) {
+                    inst.sortDirection(data);
+                }
+
+                if ($(this).hasClass(inst.viewModeClass)) {
+                    inst.changeViewMode(data);
+                }
+
+                if ($(this).hasClass(inst.facetClass)) {
+                    $(this).siblings('input.jsSearchFacet').first().prop('checked', true);
+                }
+            });
+        });
+
+        $('.jsSearchFacet:checkbox').each(function (i, e) {
+            $(e).change(function () {
+                inst.search();
+            });
+        });
+
+        $('.jsSearchFacetRemoveAll').click(function () {
+            inst.removeAllTag();
+        });
+
+        $('.jsRemoveTag').each(function (i, e) {
+            $(e).click(function () {
+                let name = $(this).siblings('.jsSearchFacetSelected').attr('name');
+                inst.removeTag(name);
+            });
+        });
+    }
+
+    // Search, Filter handler
     paginate(page) {
         $(this.page).val(page);
         this.search();
@@ -110,7 +161,6 @@
             });
     }
 
-
     getUrlWithFacets() {
         let facets = [];
         $('.jsSearchFacet:input:checked').each(function () {
@@ -144,59 +194,6 @@
         }
         return urlParams;
     }
-    ///--- end
-
-    init() {
-        let inst = this;
-
-        // Init filter
-        $('.jsUpdatePage').each(function (i, e) {
-            $(e).click(function () {
-                let data = $(this).attr('data');
-                if ($(this).hasClass(inst.pageClass)) {
-                    inst.paginate(data);
-                }
-
-                if ($(this).hasClass(inst.pageSizeClass)) {
-                    inst.changePageSize(data);
-                }
-
-                if ($(this).hasClass(inst.sortClass)) {
-                    inst.sort(data);
-                }
-
-                if ($(this).hasClass(inst.sortDirectionClass)) {
-                    inst.sortDirection(data);
-                }
-
-                if ($(this).hasClass(inst.viewModeClass)) {
-                    inst.changeViewMode(data);
-                }
-
-                if ($(this).hasClass(inst.facetClass)) {
-                    $(this).siblings('input.jsSearchFacet').first().prop('checked', true);
-                }
-            });
-        });
-
-        $('.jsSearchFacet:checkbox').each(function (i, e) {
-            $(e).change(function () {
-                inst.search();
-            });
-        });
-
-        $('.jsSearchFacetRemoveAll').click(function () {
-            inst.removeAllTag();
-        });
-
-        $('.jsRemoveTag').each(function (i, e) {
-            $(e).click(function () {
-                let name = $(this).siblings('.jsSearchFacetSelected').attr('name');
-                inst.removeTag(name);
-            });
-        });
-        //-- end
-    }
 }
 
 class FilterOption {
@@ -210,6 +207,17 @@ class FilterOption {
 }
 
 export class ContentSearch {
+    init() {
+        let inst = this;
+        $('.jsChangePageContent').each(function (i, e) {
+            $(e).click(function () {
+                $('.loading-box').show();
+                let page = $(this).attr('page');
+                inst.changePageContent(page);
+            });
+        });
+    }
+
     changePageContent(page) {
         let search = new ProductSearch();
         let inst = this;
@@ -225,7 +233,7 @@ export class ContentSearch {
         axios.post(url || "", data)
             .then(function (result) {
                 $('#contentResult').replaceWith($(result.data).find('#contentResult'));
-                inst.Init();
+                inst.init();
             })
             .catch(function (error) {
                 notification.error(error);
@@ -234,10 +242,12 @@ export class ContentSearch {
                 $('.loading-box').hide();
             });
     }
+}
 
+export class NewProductsSearch {
     init() {
         let inst = this;
-        $('.jsChangePageContent').each(function (i, e) {
+        $('.jsPaginateNewProductsPage').each(function (i, e) {
             $(e).click(function () {
                 $('.loading-box').show();
                 let page = $(this).attr('page');
@@ -245,9 +255,7 @@ export class ContentSearch {
             });
         });
     }
-}
 
-export class NewProductsSearch {
     changePageContent(page) {
         let inst = this;
         let url = window.location.href + "?page=" + page;
@@ -259,7 +267,7 @@ export class NewProductsSearch {
         axios.get(url || "")
             .then(function (result) {
                 $('#new-products-page').replaceWith($(result.data).find('#new-products-page'));
-                inst.Init();
+                inst.init();
             })
             .catch(function (error) {
                 notification.error(error);
@@ -268,10 +276,12 @@ export class NewProductsSearch {
                 $('.loading-box').hide();
             });
     }
+}
 
+export class SalesSearch {
     init() {
         let inst = this;
-        $('.jsPaginateNewProductsPage').each(function (i, e) {
+        $('.jsPaginateSalesPage').each(function (i, e) {
             $(e).click(function () {
                 $('.loading-box').show();
                 let page = $(this).attr('page');
@@ -279,9 +289,7 @@ export class NewProductsSearch {
             });
         });
     }
-}
 
-export class SalesSearch {
     changePageContent(page) {
         let inst = this;
         let url = window.location.href + "?page=" + page;
@@ -293,7 +301,7 @@ export class SalesSearch {
         axios.get(url || "")
             .then(function (result) {
                 $('#sales-page').replaceWith($(result.data).find('#sales-page'));
-                inst.Init();
+                inst.init();
             })
             .catch(function (error) {
                 notification.error(error);
@@ -301,16 +309,5 @@ export class SalesSearch {
             .finally(function () {
                 $('.loading-box').hide();
             });
-    }
-
-    init() {
-        let inst = this;
-        $('.jsPaginateSalesPage').each(function (i, e) {
-            $(e).click(function () {
-                $('.loading-box').show();
-                let page = $(this).attr('page');
-                inst.changePageContent(page);
-            });
-        });
     }
 }

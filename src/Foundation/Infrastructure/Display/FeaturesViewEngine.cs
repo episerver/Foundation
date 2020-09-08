@@ -11,7 +11,6 @@ namespace Foundation.Infrastructure.Display
         {
             "~/Features/Blocks/{0}.cshtml",
             "~/Features/Blocks/{1}/{0}.cshtml",
-            "~/Features/Shared/{0}.cshtml",
             "~/Features/Shared/Views/{0}.cshtml",
             "~/Features/Shared/Views/{1}/{0}.cshtml",
             "~/Features/Shared/Views/Header/{0}.cshtml",

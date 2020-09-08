@@ -13,8 +13,8 @@ namespace Foundation.Find
         {
             var services = context.Services;
             services.AddSingleton<IFacetConfigFactory, FacetConfigFactory>();
-            services.AddSingleton<IFacetRegistry>((locator) => new FacetRegistry(locator.GetInstance<IFacetConfigFactory>().GetDefaultFacetDefinitions())) ;
-           
+            services.AddSingleton<IFacetRegistry>((locator) => new FacetRegistry(locator.GetInstance<IFacetConfigFactory>().GetDefaultFacetDefinitions()));
+
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)
