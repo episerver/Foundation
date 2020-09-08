@@ -138,16 +138,16 @@ namespace Foundation.Features.Blog.BlogListPage
                 Heading = category != null ? "Blog tags for post: " + category.Name : string.Empty,
                 PagingInfo = pagingInfo
             };
-            model.Blogs = blogs.Select(x => GetBlogItemPageModel(x, model));
+            model.Blogs = blogs.Select(x => GetBlogItemPageViewModel(x, model));
             return model;
         }
 
-        private BlogItemPageModel GetBlogItemPageModel(PageData currentPage, BlogListPageViewModel blogModel)
+        private BlogItemPageViewModel GetBlogItemPageViewModel(PageData currentPage, BlogListPageViewModel blogModel)
         {
             var pd = (BlogItemPage.BlogItemPage)currentPage;
             PreviewTextLength = 200;
 
-            var model = new BlogItemPageModel(pd)
+            var model = new BlogItemPageViewModel(pd)
             {
                 Tags = GetTags(pd),
                 PreviewText = GetPreviewText(pd),
@@ -161,20 +161,20 @@ namespace Foundation.Features.Blog.BlogListPage
             return model;
         }
 
-        private IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage.BlogItemPage currentPage)
+        private IEnumerable<BlogItemPageViewModel.TagItem> GetTags(BlogItemPage.BlogItemPage currentPage)
         {
             if (currentPage.Categories != null)
             {
                 var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentUICulture);
                 return allCategories.
-                    Select(cat => new BlogItemPageModel.TagItem()
+                    Select(cat => new BlogItemPageViewModel.TagItem()
                     {
                         Title = cat.Name,
                         Url = _blogTagFactory.GetTagUrl(currentPage, cat.ContentLink),
                         DisplayName = (cat as StandardCategory)?.Description,
                     }).ToList();
             }
-            return new List<BlogItemPageModel.TagItem>();
+            return new List<BlogItemPageViewModel.TagItem>();
         }
 
         private string GetPreviewText(BlogItemPage.BlogItemPage page)

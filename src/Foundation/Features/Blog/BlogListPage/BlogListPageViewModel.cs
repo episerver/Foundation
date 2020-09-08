@@ -16,7 +16,7 @@ namespace Foundation.Features.Blog.BlogListPage
 
         public List<KeyValuePair<string, string>> SubNavigation { get; set; }
         public string Heading { get; set; }
-        public IEnumerable<BlogItemPageModel> Blogs { get; set; }
+        public IEnumerable<BlogItemPageViewModel> Blogs { get; set; }
         public bool ShowIntroduction { get; set; }
         public bool ShowPublishDate { get; set; }
         public PagingInfo PagingInfo { get; set; }

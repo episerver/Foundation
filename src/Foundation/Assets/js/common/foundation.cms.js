@@ -5,8 +5,8 @@ import MobileNavigation from "./mobile-navigation";
 import Selection from "./selection";
 import Dropdown from "./dropdown";
 import SearchBox from "./search-box";
-import Blog from "Features/Blog/blog";
 import { ContentSearch } from "./search";
+import Blog from "Features/Blog/blog";
 import Locations from "Features/Locations/locations";
 import CalendarBlock from "Features/Events/CalendarBlock/calendar-block";
 
