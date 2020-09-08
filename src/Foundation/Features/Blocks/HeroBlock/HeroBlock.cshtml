@@ -1,6 +1,5 @@
 ﻿@using Foundation.Helpers
 @using ImageProcessor.Web.Episerver
-@using Foundation.Features.Blocks.Common
 @using Foundation.Features.Blocks.HeroBlock
 
 @model IBlockViewModel<HeroBlock>
@@ -48,7 +47,8 @@
     <div class="hero-block" style="@blockRatio">
         @if (PageEditing.PageIsInEditMode)
         {
-            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage) style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)'">
+            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage) 
+                 style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)')">
             </div>
         }
         else

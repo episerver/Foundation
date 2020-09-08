@@ -9,7 +9,6 @@ namespace Foundation.Features.Blog.BlogItemPage
     {
         private static BlogTagRepository _instance;
         private static DynamicDataStore Store => typeof(BlogTagItem).GetStore();
-
         public static BlogTagRepository Instance => _instance ?? (_instance = new BlogTagRepository());
 
         public void SaveTags(IEnumerable<BlogTagItem> tags)
@@ -42,6 +41,7 @@ namespace Foundation.Features.Blog.BlogItemPage
             {
                 return false;
             }
+
             return true;
         }
 

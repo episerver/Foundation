@@ -11,7 +11,7 @@ namespace Foundation.Find.Facets.Config
         private readonly ICurrentMarket _currentMarket;
         private readonly ISettingsService _settingsService;
 
-        public FacetConfigFactory(ICurrentMarket currentMarket, 
+        public FacetConfigFactory(ICurrentMarket currentMarket,
             ISettingsService settingsService)
         {
             _currentMarket = currentMarket;

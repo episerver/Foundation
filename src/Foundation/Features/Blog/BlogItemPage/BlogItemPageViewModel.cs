@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.Blog.BlogItemPage
 {
-    public class BlogItemPageModel : ContentViewModel<BlogItemPage>
+    public class BlogItemPageViewModel : ContentViewModel<BlogItemPage>
     {
-        public BlogItemPageModel(BlogItemPage currentPage) : base(currentPage)
+        public BlogItemPageViewModel(BlogItemPage currentPage) : base(currentPage)
         {
         }
 

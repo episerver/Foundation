@@ -38,7 +38,7 @@ namespace Foundation.Features.Blog.BlogItemPage
         {
             PreviewTextLength = 200;
 
-            var model = new BlogItemPageModel(currentPage)
+            var model = new BlogItemPageViewModel(currentPage)
             {
                 Category = currentPage.Category,
                 Tags = GetTags(currentPage),
@@ -55,22 +55,21 @@ namespace Foundation.Features.Blog.BlogItemPage
             return View(model);
         }
 
-        public IEnumerable<BlogItemPageModel.TagItem> GetTags(BlogItemPage currentPage)
+        public IEnumerable<BlogItemPageViewModel.TagItem> GetTags(BlogItemPage currentPage)
         {
             if (currentPage.Categories != null)
             {
                 var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentUICulture);
                 return allCategories.
-                    Select(cat => new BlogItemPageModel.TagItem()
+                    Select(cat => new BlogItemPageViewModel.TagItem()
                     {
                         Title = cat.Name,
                         Url = _blogTagFactory.GetTagUrl(currentPage, cat.ContentLink),
                         DisplayName = (cat as StandardCategory)?.Description,
                     }).ToList();
             }
-            return new List<BlogItemPageModel.TagItem>();
+            return new List<BlogItemPageViewModel.TagItem>();
         }
-
 
         private string GetPreviewText(BlogItemPage page)
         {

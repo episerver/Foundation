@@ -10,13 +10,6 @@ using System.Web;
 
 namespace Foundation.Features.Shared
 {
-    public interface IContentViewModel<out TContent> where TContent : IContent
-    {
-        TContent CurrentContent { get; }
-        HomePage StartPage { get; }
-        HtmlString SchemaMarkup { get; }
-    }
-
     public class ContentViewModel<TContent> : IContentViewModel<TContent> where TContent : IContent
     {
         private Injected<IContentLoader> _contentLoader;
