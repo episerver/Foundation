@@ -33,8 +33,6 @@ namespace Foundation.Features.Header
 {
     public class HeaderViewModelFactory : IHeaderViewModelFactory
     {
-        private const string FlagLocation = "/Assets/icons/flags/";
-
         private readonly LocalizationService _localizationService;
         private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly IUrlResolver _urlResolver;
@@ -373,81 +371,6 @@ namespace Foundation.Features.Header
 
                 viewModel.RegisterAccountViewModel.Address.Name = _localizationService.GetString("/Shared/Address/DefaultAddressName", "Default Address");
             }
-        }
-
-        protected virtual string GetFlagUrl(MarketId marketId)
-        {
-            if (marketId == new MarketId("FR"))
-            {
-                return $"{FlagLocation}fr.svg";
-            }
-
-            if (marketId == new MarketId("AUS"))
-            {
-                return $"{FlagLocation}au.svg";
-            }
-
-            if (marketId == new MarketId("BRA"))
-            {
-                return $"{FlagLocation}br.svg";
-            }
-
-            if (marketId == new MarketId("CAN"))
-            {
-                return $"{FlagLocation}ca.svg";
-            }
-
-            if (marketId == new MarketId("CHL"))
-            {
-                return $"{FlagLocation}cl.svg";
-            }
-
-            if (marketId == new MarketId("DEFAULT"))
-            {
-                return $"{FlagLocation}us.svg";
-            }
-
-            if (marketId == new MarketId("DEU"))
-            {
-                return $"{FlagLocation}de.svg";
-            }
-
-            if (marketId == new MarketId("ESP"))
-            {
-                return $"{FlagLocation}es.svg";
-            }
-
-            if (marketId == new MarketId("JPN"))
-            {
-                return $"{FlagLocation}jp.svg";
-            }
-
-            if (marketId == new MarketId("NLD"))
-            {
-                return $"{FlagLocation}nl.svg";
-            }
-
-            if (marketId == new MarketId("NOR"))
-            {
-                return $"{FlagLocation}no.svg";
-            }
-
-            if (marketId == new MarketId("SAU"))
-            {
-                return $"{FlagLocation}sa.svg";
-            }
-
-            if (marketId == new MarketId("SWE"))
-            {
-                return $"{FlagLocation}se.svg";
-            }
-
-            if (marketId == new MarketId("UK"))
-            {
-                return $"{FlagLocation}gb.svg";
-            }
-
-            return marketId == new MarketId("US") ? $"{FlagLocation}us.svg" : "";
         }
 
         private List<DemoUserViewModel> GetDemoUsers(bool showCommerceUsers)

@@ -34,7 +34,6 @@ namespace Foundation.Features.Header
         public PageData StorePage { get; set; }
         public LinkItemCollection RestrictedMenu { get; set; }
         public bool HasOrganization { get; set; }
-        public MarketViewModel Markets { get; set; }
         public bool IsBookmarked { get; set; }
         public List<DemoUserViewModel> DemoUsers { get; set; }
     }
