@@ -9,6 +9,11 @@ body {
     overflow-x: hidden;
 }
 
+video {
+    width: 100%;
+    height: auto;
+}
+
 /* Override bootstrap container for 1200px and up */
 .container {
     @include media-breakpoint-up(xl) {

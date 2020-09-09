@@ -35,7 +35,7 @@ namespace Foundation.Features.StandardPage
         [Display(Name = "Background video", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentReference BackgroundVideo { get; set; }
 
-        [SelectOne(SelectionFactoryType = typeof(TopPaddingModeSelectionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(StandardPageTopPaddingModeSelectionFactory))]
         [Display(Name = "Top padding mode",
             Description = "Sets how much padding should be at the top of the standard content",
             GroupName = SystemTabNames.Content,
@@ -64,7 +64,7 @@ namespace Foundation.Features.StandardPage
             BackgroundColor = "transparent";
             BackgroundOpacity = 1;
             TitleColor = "white";
-            TopPaddingMode = TopPaddingModeSelectionFactory.TopPaddingModes.Half;
+            TopPaddingMode = StandardPageTopPaddingModeSelectionFactory.TopPaddingModes.Half;
         }
     }
 }

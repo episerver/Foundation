@@ -934,7 +934,7 @@
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlock\AssetsDownloadLinksBlockController.cs" />
     <Compile Include="Features\Blocks\AssetsDownloadLinksBlock\AssetsDownloadLinksBlockViewModel.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlock\BreadcrumbBlockController.cs" />
-    <Compile Include="Features\Blocks\BreadcrumbBlock\BreadCrumbBlock.cs" />
+    <Compile Include="Features\Blocks\BreadcrumbBlock\BreadcrumbBlock.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlock\BreadcrumbBlockViewModel.cs" />
     <Compile Include="Features\Blocks\BreadcrumbBlock\BreadcrumbBlockSelectionFactory.cs" />
     <Compile Include="Features\Blocks\ButtonBlock\ButtonBlock.cs" />
@@ -951,7 +951,7 @@
     <Compile Include="Features\Blocks\ContainerBlock\ContainerBlock.cs" />
     <Compile Include="Features\Blocks\FeedBlock\FeedBlock.cs" />
     <Compile Include="Features\Blocks\FeedBlock\FeedBlockViewModel.cs" />
-    <Compile Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsEmbedBlock.cs" />
+    <Compile Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsBlock.cs" />
     <Compile Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlock.cs" />
     <Compile Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlockController.cs" />
     <Compile Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlockViewModel.cs" />
@@ -1025,6 +1025,7 @@
     <Compile Include="Features\Checkout\ViewModels\MultiShipmentViewModelFactory.cs" />
     <Compile Include="Features\Checkout\ViewModels\OrderSummaryViewModelFactory.cs" />
     <Compile Include="Features\Checkout\ViewModels\PaymentMethodViewModelFactory.cs" />
+    <Compile Include="Features\Folder\FolderPageUIDescriptor.cs" />
     <Compile Include="Features\Header\DemoUserViewModel.cs" />
     <Compile Include="Features\Header\HeaderLogoViewModel.cs" />
     <Compile Include="Features\Header\LargeCartViewModel.cs" />
@@ -1132,6 +1133,7 @@
     <Compile Include="Features\Search\ProductSearchBlock\ProductSearchResultViewModel.cs" />
     <Compile Include="Features\Search\ProductSearchResults.cs" />
     <Compile Include="Features\Search\ProductSortOrder.cs" />
+    <Compile Include="Features\Search\Search\SearchPageUIDescriptor.cs" />
     <Compile Include="Features\Search\SortOrder.cs" />
     <Compile Include="Features\Search\VariationModel.cs" />
     <Compile Include="Features\Settings\CollectionSettings.cs" />
@@ -1144,7 +1146,6 @@
     <Compile Include="Features\Shared\MailService.cs" />
     <Compile Include="Features\Shared\SelectionFactories\AvailablePageTypesSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\BackgroundColorSelectionFactory.cs" />
-    <Compile Include="Features\Shared\SelectionFactories\BackgroundImageSelectionFactory.cs" />
     <Compile Include="Features\Shared\BaseInclusionExclusionPage.cs" />
     <Compile Include="Features\Shared\SelectionFactories\BlockRatioSelectionFactory.cs" />
     <Compile Include="Features\Shared\Descriptors\ColorPickerEditorDescriptor.cs" />
@@ -1155,8 +1156,9 @@
     <Compile Include="Features\Shared\Descriptors\MoveCategoryEditorDescriptor.cs" />
     <Compile Include="Features\Shared\SelectionFactories\PaddingSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\PreviewOptionSelectionFactory.cs" />
+    <Compile Include="Features\Shared\SelectionFactories\TeaserSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\TemplateListSelectionFactory.cs" />
-    <Compile Include="Features\StandardPage\TopPaddingModeSelectionFactory.cs" />
+    <Compile Include="Features\StandardPage\StandardPageTopPaddingModeSelectionFactory.cs" />
     <Compile Include="Features\Stores\IStoreService.cs" />
     <Compile Include="Features\CatalogContent\Services\ProductService.cs" />
     <Compile Include="Features\CatalogContent\Services\PromotionService.cs" />
@@ -1219,7 +1221,7 @@
     <Compile Include="Features\Locations\LocationItemPage\LocationItemPage.cs" />
     <Compile Include="Features\Locations\LocationListPage\LocationListPage.cs" />
     <Compile Include="Features\Locations\LocationListPage\LocationListViewModel.cs" />
-    <Compile Include="Features\Locations\LocationItemPage\LocationViewModel.cs" />
+    <Compile Include="Features\Locations\LocationItemPage\LocationItemViewModel.cs" />
     <Compile Include="Features\MyAccount\ResetPassword\ResetPasswordMailPage.cs" />
     <Compile Include="Features\NamedCarts\DefaultCart\CartPage.cs" />
     <Compile Include="Features\People\PersonItemPage\PersonPage.cs" />
@@ -1277,7 +1279,6 @@
     <Compile Include="Features\Blocks\CarouselBlock\CarouselBlock.cs" />
     <Compile Include="Features\Blocks\CarouselBlock\CarouselBlockViewModel.cs" />
     <Compile Include="Features\Blocks\CategoryBlock\CategoryBlockController.cs" />
-    <Compile Include="Features\Blocks\NavigationItem.cs" />
     <Compile Include="Features\Blocks\FacebookBlock\FacebookBlock.cs" />
     <Compile Include="Features\Blocks\FeedBlock\FeedBlockController.cs" />
     <Compile Include="Features\Blocks\HeroBlock\HeroBlock.cs" />
@@ -1706,7 +1707,6 @@
     <Content Include="Features\Blocks\TeaserBlock\_teaser-block.scss" />
     <Content Include="Features\Checkout\_checkout-page.scss" />
     <Content Include="Features\MyAccount\OrderConfirmation\_order-confirmation-page.scss" />
-    <Content Include="Features\Blocks\VideoBlock\_video-block.scss" />
     <Content Include="Assets\scss\components\widgets\_toolbar.scss" />
     <Content Include="Features\Category\_category-page.scss" />
     <Content Include="Features\MyAccount\OrderDetails\_order-detail-page.scss" />
@@ -2210,7 +2210,7 @@
     <Content Include="Features\Blocks\CommentsBlock\CommentsBlock.cshtml" />
     <Content Include="Features\Blocks\RssReaderBlock\RssReaderBlock.cshtml" />
     <Content Include="Features\Blocks\ContainerBlock\ContainerBlock.cshtml" />
-    <Content Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsEmbedBlock.cshtml" />
+    <Content Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsBlock.cshtml" />
     <Content Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlock.cshtml" />
     <Content Include="Features\Blocks\GroupCreationBlock\GroupCreationBlock.cshtml" />
     <Content Include="Features\Blocks\LikeButtonBlock\LikeButtonBlock.cshtml" />

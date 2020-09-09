@@ -24,7 +24,7 @@ namespace Foundation.Features.Locations.LocationItemPage
         [PageViewTracking]
         public ActionResult Index(LocationItemPage currentPage)
         {
-            var model = new LocationViewModel(currentPage);
+            var model = new LocationItemViewModel(currentPage);
             if (!ContentReference.IsNullOrEmpty(currentPage.Image))
             {
                 model.Image = _contentRepository.Get<ImageData>(currentPage.Image);
@@ -57,7 +57,7 @@ namespace Foundation.Features.Locations.LocationItemPage
                 model.Tags = currentPage.Categories.Select(x => _contentRepository.Get<StandardCategory>(x));
             }
 
-            var editingHints = ViewData.GetEditHints<LocationViewModel, LocationItemPage>();
+            var editingHints = ViewData.GetEditHints<LocationItemViewModel, LocationItemPage>();
             editingHints.AddFullRefreshFor(p => p.Image);
             editingHints.AddFullRefreshFor(p => p.Categories);
 
