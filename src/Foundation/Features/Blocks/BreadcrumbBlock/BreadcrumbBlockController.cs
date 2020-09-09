@@ -34,14 +34,14 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
 
             if (ancestors != null && ancestors.Count() > 0)
             {
-                var breadcrumb = new List<NavigationItem>();
+                var breadcrumb = new List<BreadcrumbItem>();
 
                 foreach (var page in ancestors)
                 {
-                    breadcrumb.Add(new NavigationItem(page, Url));
+                    breadcrumb.Add(new BreadcrumbItem(page, Url));
                 }
 
-                breadcrumb.Add(new NavigationItem(_contentLoader.Get<IContent>(destination) as PageData, Url));
+                breadcrumb.Add(new BreadcrumbItem(_contentLoader.Get<IContent>(destination) as PageData, Url));
                 model.Breadcrumb.AddRange(breadcrumb.Where(x => !string.IsNullOrEmpty(x.Url)));
             }
 

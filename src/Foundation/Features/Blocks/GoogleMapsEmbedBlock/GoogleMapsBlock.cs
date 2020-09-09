@@ -4,14 +4,14 @@ using Foundation.Features.Shared;
 using Foundation.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
-namespace Foundation.Features.Blocks.GoogleMapsEmbedBlock
+namespace Foundation.Features.Blocks.GoogleMapsBlock
 {
-    [ContentType(DisplayName = "Google Maps Embed Block",
+    [ContentType(DisplayName = "Google Maps Block",
         GUID = "8fc31051-6d22-4445-b92d-7c394267fa49",
-        Description = "Display Google Maps Embed",
+        Description = "Display Google Maps",
         GroupName = GroupNames.SocialMedia)]
     [ImageUrl("~/assets/icons/cms/blocks/map.png")]
-    public class GoogleMapsEmbedBlock : FoundationBlockData
+    public class GoogleMapsBlock : FoundationBlockData
     {
         [Required]
         [Display(Name = "API Key")]

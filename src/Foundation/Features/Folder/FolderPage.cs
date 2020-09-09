@@ -1,7 +1,6 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Shell;
 using Foundation.Features.Home;
 
 namespace Foundation.Features.Folder
@@ -14,14 +13,5 @@ namespace Foundation.Features.Folder
     [ImageUrl("~/assets/icons/cms/pages/container.png")]
     public class FolderPage : PageData
     {
-    }
-
-    [UIDescriptorRegistration]
-    public class FolderPageUIDescriptor : UIDescriptor<FolderPage>
-    {
-        public FolderPageUIDescriptor()
-            : base(ContentTypeCssClassNames.Folder)
-        {
-        }
     }
 }
