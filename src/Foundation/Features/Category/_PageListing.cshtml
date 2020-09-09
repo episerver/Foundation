@@ -1,6 +1,7 @@
 ﻿@using EPiServer.AddOns.Helpers
-@model Foundation.Find.Cms.ViewModels.CategorySearchViewModel
+@using Foundation.Features.Category
 
+@model CategorySearchViewModel
 
 @if (Model.SearchResults.RelatedPages != null && Model.SearchResults.RelatedPages.Any())
 {
@@ -25,7 +26,6 @@
         listLargeBlogs.Add(Model.SearchResults.RelatedPages.ElementAt(i));
     }
 
-
     <div class="row">
         <div class="col-12">
             <h1 class="blog__heading">
@@ -35,7 +35,6 @@
     </div>
     <div class="blog__gallery">
         <div class="blog__row">
-
             <div class="blog__large-col">
                 @Html.Action("Preview", "StandardCategory", new { pageData = firstBlog })
             </div>
@@ -126,4 +125,3 @@
         </div>
     </div>
 </div>
-

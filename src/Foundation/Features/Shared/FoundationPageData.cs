@@ -216,10 +216,10 @@ namespace Foundation.Features.Shared
                 string themeCssClass;
                 switch (TeaserColorTheme)
                 {
-                    case ColorThemes.Light:
+                    case "Light":
                         themeCssClass = "teaser-theme--light";
                         break;
-                    case ColorThemes.Dark:
+                    case "Dark":
                         themeCssClass = "teaser-theme--dark";
                         break;
                     default:
@@ -264,7 +264,7 @@ namespace Foundation.Features.Shared
         public override void SetDefaultValues(ContentType contentType)
         {
             TeaserTextAlignment = "Left";
-            TeaserColorTheme = ColorThemes.Light;
+            TeaserColorTheme = "Light";
             TeaserRatio = "10-5";
             TeaserButtonStyle = ButtonBlockStyles.TransparentWhite;
             TeaserButtonText = "Read more";
@@ -273,37 +273,5 @@ namespace Foundation.Features.Shared
             Margin = "m-1";
             base.SetDefaultValues(contentType);
         }
-    }
-
-    public class TeaserColorThemeSelectionFactory : ISelectionFactory
-    {
-        public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
-        {
-            return new ISelectItem[]
-            {
-                new SelectItem { Text = "Light", Value = ColorThemes.Light },
-                new SelectItem { Text = "Dark", Value = ColorThemes.Dark }
-            };
-        }
-    }
-
-    public class TeaserTextAlignmentSelectionFactory : ISelectionFactory
-    {
-        public virtual IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
-        {
-            return new ISelectItem[]
-            {
-                new SelectItem { Text = "Left", Value = "Left" },
-                new SelectItem { Text = "Right", Value = "Right" },
-                new SelectItem { Text = "Center", Value = "Center" },
-            };
-        }
-    }
-
-    public static class ColorThemes
-    {
-        public const string None = "None";
-        public const string Light = "Light";
-        public const string Dark = "Dark";
     }
 }

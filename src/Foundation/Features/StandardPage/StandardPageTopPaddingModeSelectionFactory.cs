@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.StandardPage
 {
-    public class TopPaddingModeSelectionFactory : ISelectionFactory
+    public class StandardPageTopPaddingModeSelectionFactory : ISelectionFactory
     {
         public static class TopPaddingModes
         {

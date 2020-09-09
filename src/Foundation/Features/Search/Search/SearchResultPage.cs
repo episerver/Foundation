@@ -25,13 +25,4 @@ namespace Foundation.Features.Search.Search
 
         public override void SetDefaultValues(ContentType contentType) => ShowRecommendations = true;
     }
-
-    [UIDescriptorRegistration]
-    public class SearchPageUIDescriptor : UIDescriptor<SearchResultPage>
-    {
-        public SearchPageUIDescriptor()
-            : base("epi-iconSearch epi-icon--primary")
-        {
-        }
-    }
 }

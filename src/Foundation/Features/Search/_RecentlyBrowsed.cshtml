@@ -1,4 +1,6 @@
-﻿@model IEnumerable<EPiServer.Commerce.Catalog.ContentTypes.EntryContentBase>
+﻿@using EPiServer.Commerce.Catalog.ContentTypes
+
+@model IEnumerable<EntryContentBase>
 
 <div class="selection--cm__label"> @Html.TranslateFallback("/Category/RecentlyViewed", "Recently Viewed") </div>
 <ul class="selection--cm" id="recently-viewed-items">

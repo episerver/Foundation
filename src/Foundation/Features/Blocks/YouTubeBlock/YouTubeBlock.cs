@@ -57,7 +57,8 @@ namespace Foundation.Features.Blocks.YouTubeBlock
         [Display(Name = "Main body", Description = "Descriptive text for the video", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual XhtmlString MainBody { get; set; }
 
-        [Editable(false)] public bool HasVideo => !string.IsNullOrEmpty(YouTubeLink);
+        [Editable(false)]
+        public bool HasVideo => !string.IsNullOrEmpty(YouTubeLink);
 
         [Editable(false)]
         public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;

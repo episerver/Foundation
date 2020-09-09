@@ -6,10 +6,9 @@ using System.Linq;
 
 namespace Foundation.Features.Locations.LocationItemPage
 {
-    public class LocationViewModel : ContentViewModel<LocationItemPage>
+    public class LocationItemViewModel : ContentViewModel<LocationItemPage>
     {
-        public LocationViewModel(LocationItemPage currentPage)
-            : base(currentPage)
+        public LocationItemViewModel(LocationItemPage currentPage) : base(currentPage)
         {
             LocationNavigation = new LocationNavigationModel
             {
