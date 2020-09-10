@@ -33,13 +33,16 @@ namespace Foundation.Features.Search
                 {
                     return new List<int>();
                 }
+                
                 var totalPages = (TotalCount + PageSize - 1) / PageSize;
                 var pages = new List<int>();
                 var startPage = Page > 2 ? Page - 2 : 1;
+                
                 for (var page = startPage; page < Math.Min((totalPages >= 5 ? startPage + 5 : startPage + totalPages), totalPages + 1); page++)
                 {
                     pages.Add(page);
                 }
+
                 return pages;
             }
         }

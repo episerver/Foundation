@@ -10,7 +10,6 @@ using EPiServer.Find.Commerce;
 using EPiServer.Logging;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
-using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
@@ -19,8 +18,6 @@ using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
 using Foundation.Commerce.Install;
-using Foundation.Features.CatalogContent.Bundle;
-using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Category;
@@ -30,7 +27,6 @@ using Foundation.Features.Locations.LocationItemPage;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.Search;
-using Foundation.Features.Shared;
 using Foundation.Find;
 using ICSharpCode.SharpZipLib.Zip;
 using Mediachase.Commerce.Catalog.ImportExport;
@@ -39,19 +35,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Web.Hosting;
-using System.Web.Mvc;
 
 namespace Foundation.Infrastructure
 {
     public static class Extensions
     {
-        private const string _cssFormat = "<link href=\"{0}\" rel=\"stylesheet\" />";
-        private const string _scriptFormat = "<script src=\"{0}\"></script>";
-        private const string _metaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
-
         private static readonly Lazy<IContentRepository> _contentRepository =
             new Lazy<IContentRepository>(() => ServiceLocator.Current.GetInstance<IContentRepository>());
 
@@ -117,6 +106,7 @@ namespace Foundation.Infrastructure
                     DefaultAssetUrl = (x as IAssetContainer).DefaultImageUrl()
                 });
         }
+
         public static ContentReference GetRelativeStartPage(this IContent content)
         {
             if (content is HomePage)
@@ -193,110 +183,6 @@ namespace Foundation.Infrastructure
                     yield return nestedChild;
                 }
             }
-        }
-
-        public static MvcHtmlString RenderExtendedCssForCommerce(this HtmlHelper helper, IContent content)
-        {
-            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is IFoundationContent entryContentBase))
-            {
-                return new MvcHtmlString("");
-            }
-
-            var outputCss = new StringBuilder(string.Empty);
-            var startPage = _contentRepository.Value.Get
-                <HomePage>(ContentReference.StartPage);
-
-            // Extended Css file
-            AppendFiles(startPage.CssFiles, outputCss, _cssFormat);
-            AppendFiles(entryContentBase.CssFiles, outputCss, _cssFormat);
-
-            // Inline CSS
-            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(entryContentBase.Scripts))
-            {
-                outputCss.AppendLine("<style>");
-                outputCss.AppendLine(!string.IsNullOrWhiteSpace(startPage.Css) ? startPage.Css : "");
-                outputCss.AppendLine(!string.IsNullOrWhiteSpace(entryContentBase.Css) ? entryContentBase.Css : "");
-                outputCss.AppendLine("</style>");
-            }
-
-            return new MvcHtmlString(outputCss.ToString());
-        }
-
-        public static MvcHtmlString RenderExtendedScriptsForCommerce(this HtmlHelper helper, IContent content)
-        {
-            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is IFoundationContent entryContentBase))
-            {
-                return new MvcHtmlString("");
-            }
-
-            var outputScript = new StringBuilder(string.Empty);
-            var startPage = _contentRepository.Value.Get<HomePage>(ContentReference.StartPage);
-
-            // Extended Javascript file
-            AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
-            AppendFiles(entryContentBase.ScriptFiles, outputScript, _scriptFormat);
-
-            // Inline Javascript
-            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(entryContentBase.Scripts))
-            {
-                outputScript.AppendLine("<script type=\"text/javascript\">");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(entryContentBase.Scripts) ? entryContentBase.Scripts : "");
-                outputScript.AppendLine("</script>");
-            }
-
-            return new MvcHtmlString(outputScript.ToString());
-        }
-
-        public static MvcHtmlString RenderMetaDataForCommerce(this HtmlHelper helper, IContent content)
-        {
-            if (content == null || !(content is EntryContentBase entryContentBase))
-            {
-                return new MvcHtmlString("");
-            }
-
-            var output = new StringBuilder(string.Empty);
-
-            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Title))
-            {
-                output.AppendLine(string.Format(_metaFormat, "title", entryContentBase.SeoInformation.Title));
-            }
-
-            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Keywords))
-            {
-                output.AppendLine(string.Format(_metaFormat, "keyword", entryContentBase.SeoInformation.Keywords));
-            }
-
-            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Description))
-            {
-                output.AppendLine(string.Format(_metaFormat, "description", entryContentBase.SeoInformation.Description));
-            }
-            else
-            {
-                switch (entryContentBase)
-                {
-                    case GenericProduct genericProduct:
-                        output.AppendLine(string.Format(_metaFormat, "description",
-                            genericProduct.Description != null ? WebUtility.HtmlEncode(genericProduct.Description.ToString()) : ""));
-                        break;
-                    case GenericVariant genericVariant:
-                        output.AppendLine(string.Format(_metaFormat, "description",
-                            genericVariant.Description != null ? WebUtility.HtmlEncode(genericVariant.Description.ToString()) : ""));
-                        break;
-                    case GenericPackage genericPackage:
-                        output.AppendLine(string.Format(_metaFormat, "description",
-                            genericPackage.Description != null ? WebUtility.HtmlEncode(genericPackage.Description.ToString()) : ""));
-                        break;
-                    case GenericBundle genericBundle:
-                        output.AppendLine(string.Format(_metaFormat, "description",
-                            genericBundle.Description != null ? WebUtility.HtmlEncode(genericBundle.Description.ToString()) : ""));
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            return new MvcHtmlString(output.ToString());
         }
 
         public static bool IsVirtualVariant(this ILineItem lineItem)
@@ -519,22 +405,6 @@ namespace Foundation.Infrastructure
             }
 
             scheduledJobExecutor.StartAsync(job, new JobExecutionOptions { Trigger = ScheduledJobTrigger.User });
-        }
-
-        private static void AppendFiles(LinkItemCollection files, StringBuilder outputString, string formatString)
-        {
-            if (files == null || files.Count <= 0)
-            {
-                return;
-            }
-
-            foreach (var item in files.Where(item => !string.IsNullOrEmpty(item.Href)))
-            {
-                var map = _permanentLinkMapper.Value.Find(new UrlBuilder(item.Href));
-                outputString.AppendLine(map == null
-                    ? string.Format(formatString, item.GetMappedHref())
-                    : string.Format(formatString, _urlResolver.Value.GetUrl(map.ContentReference)));
-            }
         }
 
         private static FoundationOrganization GetCurrentOrganization(ICustomerService customerService)

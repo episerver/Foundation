@@ -5,12 +5,13 @@ using EPiServer.Web.Routing;
 using EPiServer.Web.Routing.Segments;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Routing;
 
 namespace Foundation.Features.Locations
 {
     public class LocationsPartialRouting : IPartialRouter<LocationItemPage.LocationItemPage, TagPage.TagPage>
     {
-        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language, System.Web.Routing.RouteValueDictionary routeValues, System.Web.Routing.RequestContext requestContext)
+        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language, RouteValueDictionary routeValues, System.Web.Routing.RequestContext requestContext)
         {
             return new PartialRouteData
             {

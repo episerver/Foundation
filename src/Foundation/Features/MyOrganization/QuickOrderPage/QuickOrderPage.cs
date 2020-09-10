@@ -2,7 +2,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Features.Shared;
-using Foundation.Features.Shared.Descriptors;
+using Foundation.Features.Shared.EditorDescriptors;
 using Foundation.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 

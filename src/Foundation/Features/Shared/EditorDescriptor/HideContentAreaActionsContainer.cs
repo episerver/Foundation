@@ -5,7 +5,7 @@ using EPiServer.Shell.ObjectEditing.EditorDescriptors;
 using System;
 using System.Collections.Generic;
 
-namespace Foundation.Features.Shared.Descriptors
+namespace Foundation.Features.Shared.EditorDescriptors
 {
     [EditorDescriptorRegistration(TargetType = typeof(ContentArea), UIHint = "HideContentAreaActionsContainer")]
     public class HideContentAreaActionsContainer : ContentAreaEditorDescriptor

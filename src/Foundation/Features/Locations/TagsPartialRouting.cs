@@ -2,12 +2,13 @@
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Routing;
+using System.Web.Routing;
 
 namespace Foundation.Features.Locations
 {
     public class TagsPartialRouting : IPartialRouter<TagPage.TagPage, TagPage.TagPage>
     {
-        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language, System.Web.Routing.RouteValueDictionary routeValues, System.Web.Routing.RequestContext requestContext)
+        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language,  RouteValueDictionary routeValues, RequestContext requestContext)
         {
             return new PartialRouteData
             {
@@ -36,6 +37,7 @@ namespace Foundation.Features.Locations
                 segmentContext.RemainingPath = continentPart.Remaining;
                 return content;
             }
+
             return null;
         }
     }
