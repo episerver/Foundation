@@ -9,7 +9,7 @@ namespace Foundation.Features.Category
         {
         }
 
-        public CategoryFoundationPageViewModel(FoundationPageData pageData) : base(pageData) 
+        public CategoryFoundationPageViewModel(FoundationPageData pageData) : base(pageData)
         {
         }
 

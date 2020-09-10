@@ -17,11 +17,8 @@ namespace Foundation.Features.Locations.LocationItemPage
         }
 
         public ImageData Image { get; set; }
-
         public LocationNavigationModel LocationNavigation { get; set; }
-
         public IEnumerable<LocationItemPage> SimilarLocations { get; set; }
-
         public IEnumerable<StandardCategory> Tags { get; set; }
     }
 
@@ -32,10 +29,9 @@ namespace Foundation.Features.Locations.LocationItemPage
             CloseBy = Enumerable.Empty<LocationItemPage>();
             ContinentLocations = Enumerable.Empty<LocationItemPage>();
         }
+
         public IEnumerable<LocationItemPage> CloseBy { get; set; }
-
         public IEnumerable<LocationItemPage> ContinentLocations { get; set; }
-
         public LocationItemPage CurrentLocation { get; set; }
     }
 }

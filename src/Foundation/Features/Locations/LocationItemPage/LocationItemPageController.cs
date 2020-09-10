@@ -92,9 +92,7 @@ namespace Foundation.Features.Locations.LocationItemPage
 
         public virtual string SearchTextFly(LocationItemPage currentPage)
         {
-            var searchText = "";
-
-            return searchText;
+            return "";
         }
     }
 }

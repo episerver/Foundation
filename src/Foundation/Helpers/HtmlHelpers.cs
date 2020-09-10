@@ -1,4 +1,5 @@
 using EPiServer;
+using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.ServiceLocation;
 using EPiServer.SpecializedProperties;
@@ -6,12 +7,17 @@ using EPiServer.Web;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
+using Foundation.Features.CatalogContent.Bundle;
+using Foundation.Features.CatalogContent.Package;
+using Foundation.Features.CatalogContent.Product;
+using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Home;
 using Foundation.Features.Shared;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -65,7 +71,7 @@ namespace Foundation.Infrastructure
 
         public static MvcHtmlString RenderExtendedScripts(this HtmlHelper helper, IContent content)
         {
-            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is IFoundationContent sitePageData))
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
             {
                 return new MvcHtmlString("");
             }
@@ -116,6 +122,111 @@ namespace Foundation.Infrastructure
             if (sitePageData.DisableIndexing)
             {
                 output.AppendLine("<meta name=\"robots\" content=\"NOINDEX, NOFOLLOW\">");
+            }
+
+            return new MvcHtmlString(output.ToString());
+        }
+
+
+        public static MvcHtmlString RenderExtendedCssForCommerce(this HtmlHelper helper, IContent content)
+        {
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase entryContentBase))
+            {
+                return new MvcHtmlString("");
+            }
+
+            var outputCss = new StringBuilder(string.Empty);
+            var startPage = _contentLoader.Value.Get
+                <HomePage>(ContentReference.StartPage);
+
+            // Extended Css file
+            AppendFiles(startPage.CssFiles, outputCss, _cssFormat);
+            AppendFiles(((IFoundationContent)entryContentBase).CssFiles, outputCss, _cssFormat);
+
+            // Inline CSS
+            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts))
+            {
+                outputCss.AppendLine("<style>");
+                outputCss.AppendLine(!string.IsNullOrWhiteSpace(startPage.Css) ? startPage.Css : "");
+                outputCss.AppendLine(!string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Css) ? ((IFoundationContent)entryContentBase).Css : "");
+                outputCss.AppendLine("</style>");
+            }
+
+            return new MvcHtmlString(outputCss.ToString());
+        }
+
+        public static MvcHtmlString RenderExtendedScriptsForCommerce(this HtmlHelper helper, IContent content)
+        {
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase entryContentBase))
+            {
+                return new MvcHtmlString("");
+            }
+
+            var outputScript = new StringBuilder(string.Empty);
+            var startPage = _contentLoader.Value.Get<HomePage>(ContentReference.StartPage);
+
+            // Extended Javascript file
+            AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
+            AppendFiles(((IFoundationContent)entryContentBase).ScriptFiles, outputScript, _scriptFormat);
+
+            // Inline Javascript
+            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts))
+            {
+                outputScript.AppendLine("<script type=\"text/javascript\">");
+                outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
+                outputScript.AppendLine(!string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts) ? ((IFoundationContent)entryContentBase).Scripts : "");
+                outputScript.AppendLine("</script>");
+            }
+
+            return new MvcHtmlString(outputScript.ToString());
+        }
+
+        public static MvcHtmlString RenderMetaDataForCommerce(this HtmlHelper helper, IContent content)
+        {
+            if (content == null || !(content is EntryContentBase entryContentBase))
+            {
+                return new MvcHtmlString("");
+            }
+
+            var output = new StringBuilder(string.Empty);
+
+            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Title))
+            {
+                output.AppendLine(string.Format(_metaFormat, "title", entryContentBase.SeoInformation.Title));
+            }
+
+            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Keywords))
+            {
+                output.AppendLine(string.Format(_metaFormat, "keyword", entryContentBase.SeoInformation.Keywords));
+            }
+
+            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Description))
+            {
+                output.AppendLine(string.Format(_metaFormat, "description", entryContentBase.SeoInformation.Description));
+            }
+            else
+            {
+                switch (entryContentBase)
+                {
+                    case GenericProduct genericProduct:
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericProduct.Description != null ? WebUtility.HtmlEncode(genericProduct.Description.ToString()) : ""));
+                        break;
+                    case GenericVariant genericVariant:
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericVariant.Description != null ? WebUtility.HtmlEncode(genericVariant.Description.ToString()) : ""));
+                        break;
+                    case GenericPackage genericPackage:
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericPackage.Description != null ? WebUtility.HtmlEncode(genericPackage.Description.ToString()) : ""));
+                        break;
+                    case GenericBundle genericBundle:
+                        output.AppendLine(string.Format(_metaFormat, "description",
+                            genericBundle.Description != null ? WebUtility.HtmlEncode(genericBundle.Description.ToString()) : ""));
+                        break;
+                    default:
+                        break;
+                }
             }
 
             return new MvcHtmlString(output.ToString());

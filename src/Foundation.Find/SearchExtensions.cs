@@ -16,9 +16,6 @@ namespace Foundation.Find
 {
     public static class SearchExtensions
     {
-        private static readonly Lazy<IContentRepository> _contentRepository =
-           new Lazy<IContentRepository>(() => ServiceLocator.Current.GetInstance<IContentRepository>());
-
         public static Expression<Func<T, object>> GetTermFacetForResult<T>(string fieldName)
         {
             var paramX = Expression.Parameter(typeof(T), "x");

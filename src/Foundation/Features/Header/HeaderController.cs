@@ -11,17 +11,14 @@ namespace Foundation.Features.Header
     {
         private readonly IHeaderViewModelFactory _headerViewModelFactory;
         private readonly IContentRouteHelper _contentRouteHelper;
-        private readonly IContentLoader _contentLoader;
         private readonly IAddressBookService _addressBookService;
 
         public HeaderController(IHeaderViewModelFactory headerViewModelFactory,
             IContentRouteHelper contentRouteHelper,
-            IContentLoader contentLoader,
             IAddressBookService addressBookService)
         {
             _headerViewModelFactory = headerViewModelFactory;
             _contentRouteHelper = contentRouteHelper;
-            _contentLoader = contentLoader;
             _addressBookService = addressBookService;
         }
 
