@@ -11,7 +11,7 @@
         $.notify({
             message: message
         }, {
-            type: 'error'
+            type: 'danger'
         });
     }
 

@@ -7,7 +7,7 @@ namespace Foundation.Features.Locations.LocationListPage
 {
     public class LocationListViewModel : ContentViewModel<LocationListPage>
     {
-        public LocationListViewModel(LocationListPage currentPage) : base(currentPage) 
+        public LocationListViewModel(LocationListPage currentPage) : base(currentPage)
         {
         }
 
