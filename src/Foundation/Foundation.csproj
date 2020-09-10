@@ -1148,12 +1148,13 @@
     <Compile Include="Features\Shared\SelectionFactories\BackgroundColorSelectionFactory.cs" />
     <Compile Include="Features\Shared\BaseInclusionExclusionPage.cs" />
     <Compile Include="Features\Shared\SelectionFactories\BlockRatioSelectionFactory.cs" />
-    <Compile Include="Features\Shared\Descriptors\ColorPickerEditorDescriptor.cs" />
-    <Compile Include="Features\Shared\Descriptors\DisableOpeUIDescriptor.cs" />
-    <Compile Include="Features\Shared\Descriptors\HideContentAreaActionsContainer.cs" />
+    <Compile Include="Features\Shared\EditorDescriptor\ColorPickerEditorDescriptor.cs" />
+    <Compile Include="Features\Shared\EditorDescriptor\DisableOpeUIDescriptor.cs" />
+    <Compile Include="Features\Shared\EditorDescriptor\HideContentAreaActionsContainer.cs" />
     <Compile Include="Features\Shared\SelectionFactories\InclusionOrderingSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\MarginSelectionFactory.cs" />
-    <Compile Include="Features\Shared\Descriptors\MoveCategoryEditorDescriptor.cs" />
+    <Compile Include="Features\Shared\EditorDescriptor\MoveCategoryEditorDescriptor.cs" />
+    <Compile Include="Features\Locations\Blocks\ProductFilters\NumericOperatorSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\PaddingSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\PreviewOptionSelectionFactory.cs" />
     <Compile Include="Features\Shared\SelectionFactories\TeaserSelectionFactory.cs" />

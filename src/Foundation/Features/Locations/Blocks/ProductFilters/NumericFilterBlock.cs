@@ -5,9 +5,7 @@ using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Framework;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Find;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Locations.Blocks.ProductFilters
 {
@@ -56,28 +54,6 @@ namespace Foundation.Features.Locations.Blocks.ProductFilters
                 default:
                     return new TermFilter(fullFieldName, FieldValue);
             }
-        }
-    }
-
-    public class NumericOperatorSelectionFactory : ISelectionFactory
-    {
-        public static class OperatorNames
-        {
-            public const string Equal = "Equal";
-            public const string GreaterThan = "GreaterThan";
-            public const string LessThan = "LessThan";
-        }
-
-        public virtual IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
-        {
-            var dic = new Dictionary<string, string>()
-            {
-                {"Equals", OperatorNames.Equal},
-                {"Greater Than", OperatorNames.GreaterThan},
-                {"Less Than", OperatorNames.LessThan}
-            };
-
-            return dic.Select(x => new SelectItem() { Text = x.Key, Value = x.Value });
         }
     }
 }

@@ -20,10 +20,8 @@ namespace Foundation.Features.Search
 {
     public interface ISearchViewModelFactory
     {
-        SearchViewModel<TContent> Create<TContent>(TContent currentContent,
-            string selectedFacets,
-            int catlogId,
-            FilterOptionViewModel filterOption)
+        SearchViewModel<TContent> Create<TContent>(TContent currentContent, string selectedFacets,
+            int catlogId, FilterOptionViewModel filterOption)
             where TContent : IContent;
     }
 

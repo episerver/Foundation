@@ -66,6 +66,7 @@ namespace Foundation.Features.Search
         CategorySearchResults SearchByCategory(Pagination pagination);
         ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent;
     }
+
     public class SearchService : ISearchService
     {
         private readonly ICurrentMarket _currentMarket;

@@ -28,8 +28,10 @@ namespace Foundation.Features.Locations.Blocks
         [Display(Name = "All condition text")]
         public virtual string AllConditionText { get; set; }
 
-        public ITypeSearch<LocationItemPage.LocationItemPage> AddFilter(ITypeSearch<LocationItemPage.LocationItemPage> query) =>
-            query.TermsFacetFor(x => x.TagString(), facet => facet.Size = 25);
+        public ITypeSearch<LocationItemPage.LocationItemPage> AddFilter(ITypeSearch<LocationItemPage.LocationItemPage> query)
+        {
+            return query.TermsFacetFor(x => x.TagString(), facet => facet.Size = 25);
+        }
 
         public ITypeSearch<LocationItemPage.LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage.LocationItemPage> query, NameValueCollection filters)
         {
@@ -39,9 +41,8 @@ namespace Foundation.Features.Locations.Blocks
                 var activities = filters["a"].Split(',').ToList();
                 var activitiesFilter = SearchClient.Instance.BuildFilter<LocationItemPage.LocationItemPage>();
                 activitiesFilter = activities.Aggregate(activitiesFilter,
-                                                        (current, name) =>
-                                                        current.Or(
-                                                            x => x.TagString().Match(HttpUtility.UrlDecode(name))));
+                        (current, name) => current.Or(x => x.TagString().Match(HttpUtility.UrlDecode(name)))
+                    );
                 query = query.Filter(x => activitiesFilter);
             }
             return query;

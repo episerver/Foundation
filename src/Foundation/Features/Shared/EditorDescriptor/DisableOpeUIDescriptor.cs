@@ -1,7 +1,7 @@
 ﻿using EPiServer.Shell;
 using System.Collections.Generic;
 
-namespace Foundation.Features.Shared.Descriptors
+namespace Foundation.Features.Shared.EditorDescriptors
 {
     public interface IDisableOPE
     {

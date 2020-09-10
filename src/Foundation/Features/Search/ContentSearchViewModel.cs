@@ -8,7 +8,9 @@ namespace Foundation.Features.Search
     {
         public UnifiedSearchResults Hits { get; set; }
         public FilterOptionViewModel FilterOption { get; set; }
+
         public string SectionFilter => HttpContext.Current.Request.QueryString["t"] ?? string.Empty;
+
         public string GetSectionGroupUrl(string groupName)
         {
             var url = UriUtil.AddQueryString(HttpContext.Current.Request.RawUrl, "t", HttpContext.Current.Server.UrlEncode(groupName));
