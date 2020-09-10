@@ -4,6 +4,11 @@ export default class Checkout {
     addPaymentClick() {
         let inst = this;
         $('.jsAddPayment').click(function () {
+            if ($("#SelectedCreditCardId option:selected").text() === "Select credit card") {
+                notification.error("You have to select Credit card");
+                return;
+            } 
+
             $('.loading-box').show();
             let url = $(this).attr('url');
             let checked = $('.jsChangePayment:checked');

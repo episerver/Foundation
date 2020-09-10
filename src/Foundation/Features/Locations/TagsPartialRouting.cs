@@ -8,7 +8,7 @@ namespace Foundation.Features.Locations
 {
     public class TagsPartialRouting : IPartialRouter<TagPage.TagPage, TagPage.TagPage>
     {
-        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language,  RouteValueDictionary routeValues, RequestContext requestContext)
+        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language, RouteValueDictionary routeValues, RequestContext requestContext)
         {
             return new PartialRouteData
             {
