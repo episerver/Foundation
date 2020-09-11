@@ -24,7 +24,6 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
                 new SelectItem { Text = "Left", Value = "ImageLeft" },
                 new SelectItem { Text = "Center", Value = "ImageCenter" },
                 new SelectItem { Text = "Right", Value = "ImageRight" },
-                new SelectItem { Text = "Use Paddings", Value = "ImagePaddings" }
             };
         }
     }

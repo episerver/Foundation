@@ -4,20 +4,28 @@
 @model ProductHeroBlockViewModel
 
 @{
-    var imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
-        : Html.ProcessImage(Model.ImageUrl).Resize(Model.CurrentBlock.Image.ImageWidth, Model.CurrentBlock.Image.ImageHeight).ToString();
-
+    string imageUrl = string.Empty;
     var blockLayout = Model.CurrentBlock.Layout.Equals("CalloutRight", StringComparison.OrdinalIgnoreCase) ? "order: 1" : "";
+
+    if (Model.CurrentBlock.Image.ImageWidth > 0 && Model.CurrentBlock.Image.ImageHeight > 0)
+    {
+        imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
+            : Html.ProcessImage(Model.ImageUrl).Resize(Model.CurrentBlock.Image.ImageWidth, Model.CurrentBlock.Image.ImageHeight).ToString() + "&format=webp";
+    }
+    else
+    {
+        imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
+           : Html.ProcessImage(Model.ImageUrl).ToString() + "?format=webp";
+    }
 }
 
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="product-hero-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
-    <div class="product-hero-block__callout  @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@blockLayout; background-color: @Model.CurrentBlock.Callout.BackgroundColor;">
+    <div class="product-hero-block__column  @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@blockLayout; background-color: @Model.CurrentBlock.Callout.BackgroundColor;">
         @Html.PropertyFor(x => x.CurrentBlock.Callout.Text)
     </div>
-    <div class="product-hero-block__image" style="@Model.ImagePosition">
-        <picture class="img-fluid">
-            <source data-srcset="@imageUrl&format=webp" type="image/webp">
+    <div class="product-hero-block__column" style="@Model.ImagePosition">
+        <div class="product-hero-block__image">
             <img class="img-fluid lazyload" data-src="@imageUrl" />
-        </picture>
+        </div>
     </div>
 </div>

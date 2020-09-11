@@ -76,107 +76,104 @@ namespace Foundation.Infrastructure
         {
             _services = context.Services;
             context.ConfigureFoundationCms();
-            context.Services.Configure<ContentApiConfiguration>(c =>
+
+            _services.Configure<ContentApiConfiguration>(c =>
             {
                 c.EnablePreviewFeatures = true;
-                c.Default(RestVersion.Version_3_0)
-                    .SetMinimumRoles(string.Empty)
-                    .SetRequiredRole(string.Empty);
-                c.Default(RestVersion.Version_2_0)
-                    .SetMinimumRoles(string.Empty)
-                    .SetRequiredRole(string.Empty);
+                c.Default(RestVersion.Version_3_0).SetMinimumRoles(string.Empty).SetRequiredRole(string.Empty);
+                c.Default(RestVersion.Version_2_0).SetMinimumRoles(string.Empty).SetRequiredRole(string.Empty);
             });
 
-            context.Services.Configure<ContentApiSearchConfiguration>(config =>
+            _services.Configure<ContentApiSearchConfiguration>(config =>
             {
                 config.Default()
                 .SetMaximumSearchResults(200)
                 .SetSearchCacheDuration(TimeSpan.FromMinutes(60));
             });
 
-            context.Services.AddSingleton<IDisplayModeFallbackProvider, FoundationDisplayModeProvider>();
-            context.Services.AddTransient<IQuickNavigatorItemProvider, FoundationQuickNavigatorItemProvider>();
-            context.Services.AddTransient<IViewTemplateModelRegistrator, ViewTemplateModelRegistrator>();
-            context.Services.AddSingleton<DefaultPlacedPriceProcessor, FoundationPlacedPriceProcessor>();
-            context.Services.AddSingleton<ISearchViewModelFactory, SearchViewModelFactory>();
-            context.Services.AddSingleton<IPaymentService, PaymentService>();
-            context.Services.AddTransient<CheckoutViewModelFactory>();
-            context.Services.AddSingleton<MultiShipmentViewModelFactory>();
-            context.Services.AddSingleton<OrderSummaryViewModelFactory>();
-            context.Services.AddTransient<PaymentMethodViewModelFactory>();
-            context.Services.AddSingleton<IBookmarksService, BookmarksService>();
-            context.Services.AddSingleton<IPricingService, PricingService>();
-            context.Services.AddSingleton<IB2BNavigationService, B2BNavigationService>();
-            context.Services.AddSingleton<IBudgetService, BudgetService>();
-            context.Services.AddSingleton<ICreditCardService, CreditCardService>();
-            context.Services.AddSingleton<IGiftCardService, GiftCardService>();
-            context.Services.AddSingleton<IOrganizationService, OrganizationService>();
-            context.Services.AddSingleton<IQuickOrderService, QuickOrderService>();
-            context.Services.AddSingleton<IProductService, ProductService>();
-            context.Services.AddSingleton<IPromotionService, PromotionService>();
-            context.Services.AddSingleton<IStoreService, StoreService>();
-            context.Services.AddSingleton<CatalogEntryViewModelFactory>();
-            context.Services.AddSingleton<IHeaderViewModelFactory, HeaderViewModelFactory>();
-            context.Services.AddSingleton<IAddressBookService, AddressBookService>();
-            context.Services.AddSingleton<CartItemViewModelFactory>();
-            context.Services.AddSingleton<ICartService, CartService>();
-            context.Services.AddSingleton<CartViewModelFactory>();
-            context.Services.AddSingleton<IOrdersService, OrdersService>();
-            context.Services.AddSingleton<ShipmentViewModelFactory>();
-            context.Services.AddSingleton<IShippingService, ShippingService>();
-            context.Services.AddSingleton<ICampaignService, CampaignService>();
-            context.Services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
-            context.Services.AddTransient<IMailService, MailService>();
-            context.Services.AddSingleton<BlogTagFactory>();
-            context.Services.AddTransient<IPaymentMethod, BudgetPaymentOption>();
-            context.Services.AddTransient<IPaymentMethod, CashOnDeliveryPaymentOption>();
-            context.Services.AddTransient<IPaymentMethod, GenericCreditCardPaymentOption>();
-            context.Services.AddTransient<IPaymentMethod, GiftCardPaymentOption>();
-            context.Services.AddSingleton<ISearchService, SearchService>();
-            context.Services.AddSingleton<CatalogContentClientConventions, FoundationFindConventions>();
-            context.Services.AddSingleton<CatalogContentEventListener, FoundationCatalogContentEventListener>();
-            context.Services.AddSingleton<IModelBinderProvider, FilterOptionModelBinderProvider>();
-            context.Services.AddSingleton<IModelBinderProvider, PaymentModelBinderProvider>();
-            context.Services.AddTransient<IContentQuery, LandingPagesSlice>();
-            context.Services.AddTransient<IContentSlice, LandingPagesSlice>();
-            context.Services.AddTransient<IContentQuery, StandardPagesSlice>();
-            context.Services.AddTransient<IContentSlice, StandardPagesSlice>();
-            context.Services.AddTransient<IContentQuery, BlogsSlice>();
-            context.Services.AddTransient<IContentSlice, BlogsSlice>();
-            context.Services.AddTransient<IContentQuery, BlocksSlice>();
-            context.Services.AddTransient<IContentSlice, BlocksSlice>();
-            context.Services.AddTransient<IContentQuery, MediaSlice>();
-            context.Services.AddTransient<IContentSlice, MediaSlice>();
-            context.Services.AddTransient<IContentQuery, ImagesSlice>();
-            context.Services.AddTransient<IContentSlice, ImagesSlice>();
-            context.Services.AddTransient<IContentQuery, EverythingSlice>();
-            context.Services.AddTransient<IContentSlice, EverythingSlice>();
-            context.Services.AddTransient<IContentQuery, MyContentSlice>();
-            context.Services.AddTransient<IContentSlice, MyContentSlice>();
-            context.Services.AddTransient<IContentQuery, MyPagesSlice>();
-            context.Services.AddTransient<IContentSlice, MyPagesSlice>();
-            context.Services.AddTransient<IContentQuery, UnusedMediaSlice>();
-            context.Services.AddTransient<IContentSlice, UnusedMediaSlice>();
-            context.Services.AddTransient<IContentQuery, UnusedBlocksSlice>();
-            context.Services.AddTransient<IContentSlice, UnusedBlocksSlice>();
-            context.Services.AddTransient<IContentQuery, ProductsSlice>();
-            context.Services.AddTransient<IContentSlice, ProductsSlice>();
-            context.Services.AddTransient<IContentQuery, PackagesSlice>();
-            context.Services.AddTransient<IContentSlice, PackagesSlice>();
-            context.Services.AddTransient<IContentQuery, BundlesSlice>();
-            context.Services.AddTransient<IContentSlice, BundlesSlice>();
-            context.Services.AddTransient<IContentQuery, VariantsSlice>();
-            context.Services.AddTransient<IContentSlice, VariantsSlice>();
-            context.Services.AddTransient<IContentQuery, OrderPromotionsSlice>();
-            context.Services.AddTransient<IContentSlice, OrderPromotionsSlice>();
-            context.Services.AddTransient<IContentQuery, ShippingPromotionsSlice>();
-            context.Services.AddTransient<IContentSlice, ShippingPromotionsSlice>();
-            context.Services.AddTransient<IContentQuery, EntryPromotionsSlice>();
-            context.Services.AddTransient<IContentSlice, EntryPromotionsSlice>();
-            context.Services.AddSingleton<ISchemaDataMapper<BlogItemPage>, BlogItemPageSchemaMapper>();
-            context.Services.AddSingleton<ISchemaDataMapper<HomePage>, HomePageSchemaMapper>();
-            context.Services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
-            context.Services.AddSingleton<ISchemaDataMapper<LocationItemPage>, LocationItemPageSchemaDataMapper>();
+            _services.AddSingleton<IDisplayModeFallbackProvider, FoundationDisplayModeProvider>();
+            _services.AddTransient<IQuickNavigatorItemProvider, FoundationQuickNavigatorItemProvider>();
+            _services.AddTransient<IViewTemplateModelRegistrator, ViewTemplateModelRegistrator>();
+            _services.AddSingleton<DefaultPlacedPriceProcessor, FoundationPlacedPriceProcessor>();
+            _services.AddSingleton<ISearchViewModelFactory, SearchViewModelFactory>();
+            _services.AddSingleton<IPaymentService, PaymentService>();
+            _services.AddTransient<CheckoutViewModelFactory>();
+            _services.AddSingleton<MultiShipmentViewModelFactory>();
+            _services.AddSingleton<OrderSummaryViewModelFactory>();
+            _services.AddTransient<PaymentMethodViewModelFactory>();
+            _services.AddSingleton<IBookmarksService, BookmarksService>();
+            _services.AddSingleton<IPricingService, PricingService>();
+            _services.AddSingleton<IB2BNavigationService, B2BNavigationService>();
+            _services.AddSingleton<IBudgetService, BudgetService>();
+            _services.AddSingleton<ICreditCardService, CreditCardService>();
+            _services.AddSingleton<IGiftCardService, GiftCardService>();
+            _services.AddSingleton<IOrganizationService, OrganizationService>();
+            _services.AddSingleton<IQuickOrderService, QuickOrderService>();
+            _services.AddSingleton<IProductService, ProductService>();
+            _services.AddSingleton<IPromotionService, PromotionService>();
+            _services.AddSingleton<IStoreService, StoreService>();
+            _services.AddSingleton<CatalogEntryViewModelFactory>();
+            _services.AddSingleton<IHeaderViewModelFactory, HeaderViewModelFactory>();
+            _services.AddSingleton<IAddressBookService, AddressBookService>();
+            _services.AddSingleton<CartItemViewModelFactory>();
+            _services.AddSingleton<ICartService, CartService>();
+            _services.AddSingleton<CartViewModelFactory>();
+            _services.AddSingleton<IOrdersService, OrdersService>();
+            _services.AddSingleton<ShipmentViewModelFactory>();
+            _services.AddSingleton<IShippingService, ShippingService>();
+            _services.AddSingleton<ICampaignService, CampaignService>();
+            _services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
+            _services.AddTransient<IMailService, MailService>();
+            _services.AddSingleton<BlogTagFactory>();
+            _services.AddTransient<IPaymentMethod, BudgetPaymentOption>();
+            _services.AddTransient<IPaymentMethod, CashOnDeliveryPaymentOption>();
+            _services.AddTransient<IPaymentMethod, GenericCreditCardPaymentOption>();
+            _services.AddTransient<IPaymentMethod, GiftCardPaymentOption>();
+            _services.AddSingleton<ISearchService, SearchService>();
+            _services.AddSingleton<CatalogContentClientConventions, FoundationFindConventions>();
+            _services.AddSingleton<CatalogContentEventListener, FoundationCatalogContentEventListener>();
+            _services.AddSingleton<IModelBinderProvider, FilterOptionModelBinderProvider>();
+            _services.AddSingleton<IModelBinderProvider, PaymentModelBinderProvider>();
+            _services.AddTransient<IContentQuery, LandingPagesSlice>();
+            _services.AddTransient<IContentSlice, LandingPagesSlice>();
+            _services.AddTransient<IContentQuery, StandardPagesSlice>();
+            _services.AddTransient<IContentSlice, StandardPagesSlice>();
+            _services.AddTransient<IContentQuery, BlogsSlice>();
+            _services.AddTransient<IContentSlice, BlogsSlice>();
+            _services.AddTransient<IContentQuery, BlocksSlice>();
+            _services.AddTransient<IContentSlice, BlocksSlice>();
+            _services.AddTransient<IContentQuery, MediaSlice>();
+            _services.AddTransient<IContentSlice, MediaSlice>();
+            _services.AddTransient<IContentQuery, ImagesSlice>();
+            _services.AddTransient<IContentSlice, ImagesSlice>();
+            _services.AddTransient<IContentQuery, EverythingSlice>();
+            _services.AddTransient<IContentSlice, EverythingSlice>();
+            _services.AddTransient<IContentQuery, MyContentSlice>();
+            _services.AddTransient<IContentSlice, MyContentSlice>();
+            _services.AddTransient<IContentQuery, MyPagesSlice>();
+            _services.AddTransient<IContentSlice, MyPagesSlice>();
+            _services.AddTransient<IContentQuery, UnusedMediaSlice>();
+            _services.AddTransient<IContentSlice, UnusedMediaSlice>();
+            _services.AddTransient<IContentQuery, UnusedBlocksSlice>();
+            _services.AddTransient<IContentSlice, UnusedBlocksSlice>();
+            _services.AddTransient<IContentQuery, ProductsSlice>();
+            _services.AddTransient<IContentSlice, ProductsSlice>();
+            _services.AddTransient<IContentQuery, PackagesSlice>();
+            _services.AddTransient<IContentSlice, PackagesSlice>();
+            _services.AddTransient<IContentQuery, BundlesSlice>();
+            _services.AddTransient<IContentSlice, BundlesSlice>();
+            _services.AddTransient<IContentQuery, VariantsSlice>();
+            _services.AddTransient<IContentSlice, VariantsSlice>();
+            _services.AddTransient<IContentQuery, OrderPromotionsSlice>();
+            _services.AddTransient<IContentSlice, OrderPromotionsSlice>();
+            _services.AddTransient<IContentQuery, ShippingPromotionsSlice>();
+            _services.AddTransient<IContentSlice, ShippingPromotionsSlice>();
+            _services.AddTransient<IContentQuery, EntryPromotionsSlice>();
+            _services.AddTransient<IContentSlice, EntryPromotionsSlice>();
+            _services.AddSingleton<ISchemaDataMapper<BlogItemPage>, BlogItemPageSchemaMapper>();
+            _services.AddSingleton<ISchemaDataMapper<HomePage>, HomePageSchemaMapper>();
+            _services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
+            _services.AddSingleton<ISchemaDataMapper<LocationItemPage>, LocationItemPageSchemaDataMapper>();
         }
 
         public void Initialize(InitializationEngine context)
