@@ -355,14 +355,13 @@ namespace Foundation.Find
             };
         }
 
-        public static ITypeSearch<T> AddWildCardQuery<T>(
-        this ITypeSearch<T> search,
-        string query,
-        Expression<Func<T, string>> fieldSelector)
+        public static ITypeSearch<T> AddWildCardQuery<T>(this ITypeSearch<T> search,
+            string query, Expression<Func<T, string>> fieldSelector)
         {
             var fieldName = search.Client.Conventions.FieldNameConvention
                 .GetFieldNameForAnalyzed(fieldSelector);
             var wildcardQuery = new WildcardQuery(fieldName, query.ToLowerInvariant());
+            
             return new Search<T, WildcardQuery>(search, context =>
             {
                 if (context.RequestBody.Query != null)

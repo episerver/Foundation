@@ -1,8 +1,12 @@
 ﻿.product-hero-block {
     display: flex;
-    flex-wrap: wrap;
 
-    &__callout {
+    @include media-breakpoint-down(md) {
+        flex-wrap: wrap;
+    }
+
+    &__column {
+        display: flex;
         flex: 0 0 50%;
 
         @include media-breakpoint-down(md) {
@@ -12,10 +16,7 @@
 
     &__image {
         display: flex;
-        flex: 0 0 50%;
-
-        @include media-breakpoint-down(md) {
-            flex: 0 0 100%;
-        }
+        justify-content: center;
+        align-items: center;
     }
 }

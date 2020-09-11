@@ -1,6 +1,7 @@
 ﻿@using EPiServer.Web;
 @using EPiServer.Web.Routing
 @using Foundation.Features.Header
+@using Foundation.Features.Blocks.MenuItemBlock
 
 @model HeaderViewModel
 
@@ -12,7 +13,7 @@
         <div class="row no-gutters">
             <div class="navigation">
                 <div class="navigation__left" @Html.EditAttributes(x => x.LayoutSettings.MainMenu)>
-                    @Html.Partial("_Menu", Model.MenuItems)
+                    @Html.Partial("_Menu", Model.MenuItems ?? new List<MenuItemViewModel>())
                 </div>
                 <div class="navigation__logo @(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
                      style="@(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">

@@ -951,7 +951,7 @@
     <Compile Include="Features\Blocks\ContainerBlock\ContainerBlock.cs" />
     <Compile Include="Features\Blocks\FeedBlock\FeedBlock.cs" />
     <Compile Include="Features\Blocks\FeedBlock\FeedBlockViewModel.cs" />
-    <Compile Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsBlock.cs" />
+    <Compile Include="Features\Blocks\GoogleMapsBlock\GoogleMapsBlock.cs" />
     <Compile Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlock.cs" />
     <Compile Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlockController.cs" />
     <Compile Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlockViewModel.cs" />
@@ -2211,7 +2211,7 @@
     <Content Include="Features\Blocks\CommentsBlock\CommentsBlock.cshtml" />
     <Content Include="Features\Blocks\RssReaderBlock\RssReaderBlock.cshtml" />
     <Content Include="Features\Blocks\ContainerBlock\ContainerBlock.cshtml" />
-    <Content Include="Features\Blocks\GoogleMapsEmbedBlock\GoogleMapsBlock.cshtml" />
+    <Content Include="Features\Blocks\GoogleMapsBlock\GoogleMapsBlock.cshtml" />
     <Content Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlock.cshtml" />
     <Content Include="Features\Blocks\GroupCreationBlock\GroupCreationBlock.cshtml" />
     <Content Include="Features\Blocks\LikeButtonBlock\LikeButtonBlock.cshtml" />
