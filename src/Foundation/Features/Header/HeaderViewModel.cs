@@ -1,7 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 using Foundation.Features.Blocks.MenuItemBlock;
-using Foundation.Features.Header.Market;
+using Foundation.Features.Markets;
 using Foundation.Features.Home;
 using Foundation.Features.Login;
 using Foundation.Features.Settings;
@@ -34,7 +34,6 @@ namespace Foundation.Features.Header
         public PageData StorePage { get; set; }
         public LinkItemCollection RestrictedMenu { get; set; }
         public bool HasOrganization { get; set; }
-        public MarketViewModel Markets { get; set; }
         public bool IsBookmarked { get; set; }
         public List<DemoUserViewModel> DemoUsers { get; set; }
     }

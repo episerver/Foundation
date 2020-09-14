@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace Foundation.Features.Header.Currency
+namespace Foundation.Features.Markets
 {
     public class CurrencyViewModel
     {
