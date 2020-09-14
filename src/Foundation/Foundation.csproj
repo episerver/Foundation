@@ -1862,7 +1862,6 @@
     <Content Include="App_Data\GeoLite2-City-Locations-en.csv" />
     <Content Include="App_Data\GeoLite2-City.mmdb" />
     <Content Include="episerver.config" />
-    <Content Include="EPiServerFramework.config" />
     <Content Include="appSettings.config" />
     <Content Include="appSettings.debug.config" />
     <Content Include="Configs\baf.config" />
