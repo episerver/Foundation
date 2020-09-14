@@ -52,38 +52,41 @@ namespace Foundation.Features.Markets
                 var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
                     .Select(x => new MarketItem
                     {
-                        Selected = false,
-                        Text = x.MarketName,
+                        DisplayName = x.MarketName,
                         Value = x.MarketId.Value,
-                        FlagUrl = GetFlagUrl(x.MarketId)
+                        FlagUrl = GetFlagUrl(x.MarketId.Value)
+                    });
+                var languages = _languageService.GetAvailableLanguages()
+                    .Select(x => new LanguageItem
+                    {
+                        DisplayName = x.NativeName,
+                        Value = x.Name
+                    });
+                var currencies = _currencyService.GetAvailableCurrencies()
+                    .Select(x => new CurrencyItem
+                    {
+                        DisplayName = x.CurrencyCode,
+                        Value = x.CurrencyCode,
+                        Symbol = x.Format.CurrencySymbol
                     });
                 var marketViewModel = new MarketViewModel
                 {
-                    Markets = markets,
-                    MarketId = currentMarket.MarketId.Value,
                     CurrentMarket = new MarketItem
                     {
-                        Selected = false,
-                        Text = currentMarket.MarketName,
                         Value = currentMarket.MarketId.Value,
-                        FlagUrl = GetFlagUrl(currentMarket.MarketId)
+                        DisplayName = currentMarket.MarketName,
+                        FlagUrl = GetFlagUrl(currentMarket.MarketId.Value)
                     },
+                    CurrentLanguage = _languageService.GetCurrentLanguage().Name,
+                    CurrentCurrency = _currencyService.GetCurrentCurrency().Format.CurrencySymbol,
+                    Markets = markets,
+                    Languages = languages,
+                    Currencies = currencies,
                     ContentLink = contentLink,
                 };
 
-                return PartialView();
+                return PartialView(marketViewModel);
             }
-        }
-
-        [ChildActionOnly]
-        public ActionResult CurrentMarket()
-        {
-            return PartialView("", new CurrentMarketViewModel
-            {
-                CurrentMarket = _currentMarket.GetCurrentMarket().MarketName,
-                CurrentLanguage = _languageService.GetCurrentLanguage().DisplayName,
-                CurrentCurrency = _currencyService.GetCurrentCurrency()
-            });
         }
 
         [HttpPost]
@@ -110,7 +113,6 @@ namespace Foundation.Features.Markets
             return Json(new { returnUrl });
         }
 
-
         protected virtual string GetFlagUrl(string marketId)
         {
             switch (marketId)
@@ -121,104 +123,30 @@ namespace Foundation.Features.Markets
                     return $"{FlagLocation}brazil.svg";
                 case "CAN":
                     return $"{FlagLocation}canada.svg";
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
-                case "AUS":
-
-                    break;
+                case "CHL":
+                    return $"{FlagLocation}chile.svg";
+                case "DEU":
+                    return $"{FlagLocation}germany.svg";
+                case "ESP":
+                    return $"{FlagLocation}spain.svg";
+                case "FR":
+                    return $"{FlagLocation}france.svg";
+                case "JPN":
+                    return $"{FlagLocation}japan.svg";
+                case "NLD":
+                    return $"{FlagLocation}netherlands.svg";
+                case "NOR":
+                    return $"{FlagLocation}norway.svg";
+                case "SAU":
+                    return $"{FlagLocation}saudi-arabia.svg";
+                case "SWE":
+                    return $"{FlagLocation}sweden.svg";
+                case "UK":
+                    return $"{FlagLocation}united-kingdom.svg";
+                case "US":
                 default:
-                    break;
+                    return $"{FlagLocation}united-states-of-america.svg";
             }
-
-            if (marketId == new MarketId("BRA"))
-            {
-                
-            }
-
-            if (marketId == new MarketId("CAN"))
-            {
-              
-            }
-
-            if (marketId == new MarketId("CHL"))
-            {
-                return $"{FlagLocation}chile.svg";
-            }
-
-            if (marketId == new MarketId("FR"))
-            {
-                return $"{FlagLocation}france.svg";
-            }
-
-            if (marketId == new MarketId("DEU"))
-            {
-                return $"{FlagLocation}germany.svg";
-            }
-            if (marketId == new MarketId("JPN"))
-            {
-                return $"{FlagLocation}japan.svg";
-            }
-
-
-            if (marketId == new MarketId("NLD"))
-            {
-                return $"{FlagLocation}netherlands.svg";
-            }
-
-            if (marketId == new MarketId("NOR"))
-            {
-                return $"{FlagLocation}norway.svg";
-            }
-
-            if (marketId == new MarketId("SAU"))
-            {
-                return $"{FlagLocation}saudi-arabia.svg";
-            }
-
-            if (marketId == new MarketId("ESP"))
-            {
-                return $"{FlagLocation}spain.svg";
-            }
-
-
-
-            if (marketId == new MarketId("SWE"))
-            {
-                return $"{FlagLocation}sweden.svg";
-            }
-
-
-
-            if (marketId == new MarketId("UK"))
-            {
-                return $"{FlagLocation}united-kingdom.svg";
-            }
-
-            if (marketId == new MarketId("DEFAULT"))
-            {
-                return $"{FlagLocation}united-states-of-america.svg";
-            }
-
-            return marketId == new MarketId("US") ? $"{FlagLocation}us.svg" : "";
         }
     }
 }

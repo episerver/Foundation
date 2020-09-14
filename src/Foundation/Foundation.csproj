@@ -1890,7 +1890,7 @@
     <Content Include="Assets\scss\components\elements\_checkbox.scss" />
     <Content Include="Assets\scss\components\elements\_hamburger-menu.scss" />
     <Content Include="Assets\scss\components\elements\_icon-menu.scss" />
-    <Content Include="Assets\scss\components\widgets\_market-selector.scss" />
+    <Content Include="Features\Markets\_market-selector.scss" />
     <Content Include="Assets\scss\layout\_mobile-navigation.scss" />
     <Content Include="Assets\scss\layout\_navigation.scss" />
     <Content Include="Assets\scss\components\widgets\_product-tile.scss" />

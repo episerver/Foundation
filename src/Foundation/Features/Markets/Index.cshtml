@@ -1,80 +1,65 @@
-﻿<div class="market-selector dropdown d-none d-lg-block">
+﻿@using Foundation.Features.Markets
+
+@model MarketViewModel
+
+<div class="market-selector dropdown d-none d-lg-block">
     <div class="market-selector__wrapper" data-toggle="dropdown" data-offset="0, -1" data-flip="false">
-        <img data-src="" class="market-selector__market-icon lazyload" />
-        <p class="market-selector__market-text"> | VN | VND</p>
+        <img class="market-selector__market-icon lazyload" data-src="@Model.CurrentMarket.FlagUrl" />
+        <p class="market-selector__market-text"> | @Model.CurrentLanguage</p>
+        <p class="market-selector__market-symbol"> | @Model.CurrentCurrency</p>
         <div class="market-selector__dropdown-icon">
             <i data-feather="chevron-down"></i>
         </div>
     </div>
     <div class="market-panel dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMarket">
         <div class="market-list">
-            <div class="market-list__label">Market: USA</div>
-            <div class="market-list__list">
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/united-states-of-america.svg"
-                         class="market-selector__market-icon">
-                    <p class="market-selector__market-text">USA</p>
+            @using (Html.BeginForm("Set", "Market", new { contentLink = Model.ContentLink }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="market-list__label">Market: @Model.CurrentMarket.DisplayName</div>
+                <div class="market-list__list">
+                    @foreach (var item in Model.Markets)
+                    {
+                        <div class="market-selector__wrapper jsMarketSelector">
+                            <input type="hidden" name="MarketId" value="@item.Value" />
+                            <img class="market-selector__market-icon" src="@item.FlagUrl" />
+                            <p class="market-selector__market-text">@item.DisplayName</p>
+                        </div>
+                    }
                 </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/canada.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Canada</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/japan.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Japan</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/sweden.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Sweden</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/united-kingdom.svg"
-                         class="market-selector__market-icon">
-                    <p class="market-selector__market-text">UK</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/brazil.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Brazil</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/chile.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Chile</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/germany.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Germany</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/australia.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Australia</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/china.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">China</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/south-korea.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">South Korea</p>
-                </div>
-                <div class="market-selector__wrapper">
-                    <img src="assets/images/flags/israel.svg" class="market-selector__market-icon">
-                    <p class="market-selector__market-text">Israel</p>
-                </div>
-            </div>
+            }
         </div>
         <div class="language-list">
-            <div class="language-list__label">Language: VN</div>
-            <div class="language-list__list">
-                <div class="language-list__language-text">VN</div>
-                <div class="language-list__language-text">US</div>
-            </div>
+            @using (Html.BeginForm("Set", "Language", new { contentLink = Model.ContentLink }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="language-list__label">Language: @Model.CurrentLanguage</div>
+                <div class="language-list__list">
+                    @foreach (var item in Model.Languages)
+                    {
+                        <div class="language-list__language-text jsLanguageSelector">
+                            <input type="hidden" name="Language" value="@item.Value" />
+                            @item.DisplayName
+                        </div>
+                    }
+                </div>
+            }
         </div>
         <div class="currency-list">
-            <div class="currency-list__label">Currency: VND</div>
-            <div class="currency-list__list">
-                <div class="currency-list__currency-text">VND</div>
-                <div class="currency-list__currency-text">USD</div>
-            </div>
+            @using (Html.BeginForm("Set", "Currency", new { contentLink = Model.ContentLink }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="currency-list__label">Currency: @Model.CurrentCurrency</div>
+                <div class="currency-list__list">
+                    @foreach (var item in Model.Currencies)
+                    {
+                        <div class="language-list__language-text jsCurrencySelector">
+                            <input type="hidden" name="CurrencyCode" value="@item.Value" />
+                            @item.DisplayName - @item.Symbol
+                        </div>
+                    }
+                </div>
+            }
         </div>
     </div>
 </div>
