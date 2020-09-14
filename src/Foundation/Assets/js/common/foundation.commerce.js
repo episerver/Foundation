@@ -16,10 +16,14 @@ import B2bOrganization from "Features/MyOrganization/b2b-organization";
 import B2bUsersOrganization from "Features/MyOrganization/Users/b2b-users-organization";
 import Stores from "Features/Stores/stores";
 import People from "Features/People/people";
+import Market from "Features/Markets/market";
 
 export default class FoundationCommerce {
     init() {
         window.cartHelper = new CartHelper();
+
+        let market = new Market();
+        market.init();
 
         let search = new ProductSearch();
         search.init();

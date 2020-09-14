@@ -1,4 +1,4 @@
-﻿@using Foundation.Features.Header.Market
+﻿@using Foundation.Features.Markets
 
 @model MarketViewModel
 
@@ -6,11 +6,11 @@
     <div class="market-list__list">
         @foreach (var market in Model.Markets)
         {
-            using (Html.BeginForm("Set", "Market", new { marketId = market.Value }, FormMethod.Post,
+            using (Html.BeginForm("Set", "Market", new { marketId = market.Value, contentLink = @Model.ContentLink }, FormMethod.Post,
                 new { @class = "market-selector__wrapper", @data_marketid = market.Value }))
             {
                 @Html.AntiForgeryToken()
-                <div class="market-list__item jsSelectMarket">
+                <div class="market-list__item jsMarketSelector">
                     <picture class="market-selector__market-icon">
                         <source data-srcset="@market.FlagUrl?format=webp" type="image/webp">
                         <img data-src="@market.FlagUrl" class="market-selector__market-icon lazyload" />

@@ -4,7 +4,7 @@ using Foundation.Features.Checkout.Services;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Foundation.Features.Header.Currency
+namespace Foundation.Features.Markets
 {
     public class CurrencyController : Controller
     {
