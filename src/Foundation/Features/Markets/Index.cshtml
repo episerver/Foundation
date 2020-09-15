@@ -5,8 +5,7 @@
 <div class="market-selector dropdown d-none d-lg-block">
     <div class="market-selector__wrapper" data-toggle="dropdown" data-offset="0, -1" data-flip="false">
         <img class="market-selector__market-icon lazyload" data-src="@Model.CurrentMarket.FlagUrl" />
-        <p class="market-selector__market-text"> | @Model.CurrentLanguage</p>
-        <p class="market-selector__market-symbol"> | @Model.CurrentCurrency</p>
+        <p class="market-selector__market-text"> | @Model.CurrentLanguage | @Model.CurrentCurrency</p>
         <div class="market-selector__dropdown-icon">
             <i data-feather="chevron-down"></i>
         </div>
@@ -22,7 +21,7 @@
                     {
                         <div class="market-selector__wrapper jsMarketSelector">
                             <input type="hidden" name="MarketId" value="@item.Value" />
-                            <img class="market-selector__market-icon" src="@item.FlagUrl" />
+                            <img class="market-selector__market-icon lazyload" data-src="@item.FlagUrl" />
                             <p class="market-selector__market-text">@item.DisplayName</p>
                         </div>
                     }

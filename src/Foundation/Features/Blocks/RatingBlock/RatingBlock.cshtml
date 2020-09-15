@@ -1,13 +1,17 @@
 ﻿@using EPiServer.Web.Mvc.Html
+
 @using Foundation.Features.Blocks.RatingBlock
 
 @model RatingBlockViewModel
 
-<script type="text/javascript">function EnableRatingSubmitButton() {
+<script type="text/javascript">
+    function EnableRatingSubmitButton() {
         $("input[name='submitsocialrating']").removeAttr("disabled");
         $("input[name='submitsocialrating']").removeClass("btn disabled");
         $("input[name='submitsocialrating']").addClass("btn");
-    }</script>
+    }
+</script>
+
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     @if (Model.ShowHeading)
     {
@@ -21,7 +25,7 @@
         <div style="color:@messageStyle">@message.Body</div>
     }
 
-    <div class="col-12" style="margin-top:0.5em">
+    <div style="margin-top:0.5em">
         @if (this.User.Identity.IsAuthenticated && Model.IsMemberOfGroup)
         {
             if (Model.CurrentRating.HasValue)
@@ -34,7 +38,7 @@
                 {
                     @Html.HiddenFor(m => m.SendActivity)
                     @Html.HiddenFor(m => m.CurrentLink)
-                    <div class="clearfix">
+                    <div>
                         <div style="margin-bottom:0.15em;"><b><i>How do you rate this page?</i></b></div>
                         <div style="margin-bottom:0.5em;">
                             @for (var numOfRatings = 0; numOfRatings < @Model.RatingSettings.Count; numOfRatings++)
@@ -45,7 +49,7 @@
                             }
                         </div>
                         <div>
-                            <input type="submit" name="submitsocialrating" value="Submit" disabled="disabled" class="btn btn-community disabled">
+                            <input type="submit" name="submitsocialrating" value="Submit" class="button-black">
                         </div>
                     </div>
                 }
@@ -59,7 +63,7 @@
         else
         {
             <div style="margin-top:0.5em"><strong>Average rating: @Model.Average.ToString("F")</strong></div>
-            <div><strong>Total # of ratings: @Model.TotalCount</strong></div>
+            <div><strong>Total of ratings: @Model.TotalCount</strong></div>
         }
     </div>
 </div>
