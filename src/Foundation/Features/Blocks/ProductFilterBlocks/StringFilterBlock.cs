@@ -4,7 +4,7 @@ using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Api.Querying.Filters;
 using System.ComponentModel.DataAnnotations;
 
-namespace Foundation.Features.Locations.Blocks.ProductFilters
+namespace Foundation.Features.Blocks.ProductFilterBlocks
 {
     [ContentType(DisplayName = "String Filter Block",
         GUID = "efcb0aef-5427-49bb-ab1b-2b429a2f2cc3",

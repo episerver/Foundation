@@ -7,7 +7,7 @@ using EPiServer.Shell.ObjectEditing;
 using Foundation.Find;
 using System.ComponentModel.DataAnnotations;
 
-namespace Foundation.Features.Locations.Blocks.ProductFilters
+namespace Foundation.Features.Blocks.ProductFilterBlocks
 {
     [ContentType(DisplayName = "Numeric Filter Block",
         GUID = "7747D13C-D029-4CB5-B020-549676123AC4",

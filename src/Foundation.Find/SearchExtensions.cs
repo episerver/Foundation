@@ -361,7 +361,7 @@ namespace Foundation.Find
             var fieldName = search.Client.Conventions.FieldNameConvention
                 .GetFieldNameForAnalyzed(fieldSelector);
             var wildcardQuery = new WildcardQuery(fieldName, query.ToLowerInvariant());
-            
+
             return new Search<T, WildcardQuery>(search, context =>
             {
                 if (context.RequestBody.Query != null)
