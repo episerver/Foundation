@@ -4,6 +4,8 @@
     height: 35px;
     background: #000;
     color: #fff;
+    position: relative;
+    z-index: 2000;
 
     &__banner-text {
         flex-grow: 1;

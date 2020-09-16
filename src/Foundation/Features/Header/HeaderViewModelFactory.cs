@@ -15,15 +15,12 @@ using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Checkout.Services;
-using Foundation.Features.Markets;
 using Foundation.Features.Home;
 using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.Bookmarks;
 using Foundation.Features.Settings;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
-using Mediachase.Commerce.Markets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +33,6 @@ namespace Foundation.Features.Header
         private readonly LocalizationService _localizationService;
         private readonly CartViewModelFactory _cartViewModelFactory;
         private readonly IUrlResolver _urlResolver;
-        private readonly IMarketService _marketService;
-        private readonly ICurrentMarket _currentMarket;
         private readonly IBookmarksService _bookmarksService;
         private readonly ICartService _cartService;
         private readonly IContentCacheKeyCreator _contentCacheKeyCreator;
@@ -51,8 +46,6 @@ namespace Foundation.Features.Header
             ICustomerService customerService,
             CartViewModelFactory cartViewModelFactory,
             IUrlResolver urlResolver,
-            IMarketService marketService,
-            ICurrentMarket currentMarket,
             IBookmarksService bookmarksService,
             ICartService cartService,
             CustomerContext customerContext,
@@ -65,8 +58,6 @@ namespace Foundation.Features.Header
             _customerService = customerService;
             _cartViewModelFactory = cartViewModelFactory;
             _urlResolver = urlResolver;
-            _marketService = marketService;
-            _currentMarket = currentMarket;
             _bookmarksService = bookmarksService;
             _cartService = cartService;
             _contentCacheKeyCreator = contentCacheKeyCreator;
@@ -84,7 +75,6 @@ namespace Foundation.Features.Header
             var viewModel = CreateViewModel(content, home, contact, isBookmarked);
             AddCommerceComponents(contact, viewModel);
             AddAnonymousComponents(home, viewModel);
-            AddMarketViewModel(content, viewModel);
             AddMyAccountMenu(home, viewModel);
             viewModel.LargeHeaderMenu = layoutSettings?.LargeHeaderMenu ?? true;
             viewModel.ShowCommerceControls = layoutSettings?.ShowCommerceHeaderComponents ?? true;
@@ -282,43 +272,6 @@ namespace Foundation.Features.Header
                     Address = new AddressModel()
                 },
             };
-        }
-
-        protected virtual void AddMarketViewModel(IContent currentContent, HeaderViewModel viewModel)
-        {
-            //var currentMarket = _currentMarket.GetCurrentMarket();
-
-            //if (CacheManager.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel marketsViewModel)
-            //{
-            //    viewModel.Markets = marketsViewModel;
-            //}
-            //else
-            //{
-            //    var markets = _marketService.GetAllMarkets().Where(x => x.IsEnabled).OrderBy(x => x.MarketName)
-            //        .Select(x => new MarketItem
-            //        {
-            //            Selected = false,
-            //            Text = x.MarketName,
-            //            Value = x.MarketId.Value,
-            //            FlagUrl = GetFlagUrl(x.MarketId)
-            //        });
-            //    marketsViewModel = new MarketViewModel
-            //    {
-            //        Markets = markets,
-            //        MarketId = currentMarket.MarketId.Value,
-            //        CurrentMarket = new MarketItem
-            //        {
-            //            Selected = false,
-            //            Text = currentMarket.MarketName,
-            //            Value = currentMarket.MarketId.Value,
-            //            FlagUrl = GetFlagUrl(currentMarket.MarketId)
-            //        },
-            //        ContentLink = currentContent?.ContentLink ?? ContentReference.EmptyReference
-            //    };
-            //    viewModel.Markets = marketsViewModel;
-
-            //    CacheManager.Insert(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value, marketsViewModel, new CacheEvictionPolicy(TimeSpan.FromHours(1), CacheTimeoutType.Sliding));
-            //}
         }
 
         protected virtual void AddCommerceComponents(FoundationContact contact, HeaderViewModel viewModel)

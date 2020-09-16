@@ -4,7 +4,7 @@ using EPiServer.DataAnnotations;
 using EPiServer.Find.Api.Querying;
 using System.ComponentModel.DataAnnotations;
 
-namespace Foundation.Features.Locations.Blocks.ProductFilters
+namespace Foundation.Features.Blocks.ProductFilterBlocks
 {
     public abstract class FilterBaseBlock : BlockData
     {
