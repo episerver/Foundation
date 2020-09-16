@@ -1,7 +1,7 @@
 using EPiServer.Shell.ObjectEditing;
 using System.Collections.Generic;
 
-namespace Foundation.Features.Locations.Blocks.ProductFilters
+namespace Foundation.Features.Blocks.ProductFilterBlocks
 {
     public class NumericOperatorSelectionFactory : ISelectionFactory
     {

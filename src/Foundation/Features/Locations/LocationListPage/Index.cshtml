@@ -9,110 +9,103 @@
 @model LocationListViewModel
 
 @{
-    ClientResources.RequireStyle(Href("/Assets/scss/vendors/bootstrap-slider/bootstrap-slider.css")).AtHeader();
     var _contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
 }
 
-@section AdditionalScripts
-{
-    <script type="text/javascript" src="~/Assets/js/vendors/jsuri/jsuri-1.1.1.min.js"></script>
-    <script type="text/javascript" src="~/Assets/js/vendors/bootstrap-slider/bootstrap-slider.js"></script>    
-}
-<section class="wow bounceInUp animated">
-    <div class="main container">
-        <div class="row">
-            @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
-            {
-                <div class="col-12">
-                    @Html.PropertyFor(m => m.CurrentContent.MainBody)
-                </div>
-            }
+
+<div class="main container">
+    <div class="row">
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+        {
             <div class="col-12">
-                @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+                @Html.PropertyFor(m => m.CurrentContent.MainBody)
+            </div>
+        }
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        </div>
+    </div>
+    <div class="row container--gutter-layout margin-top-md">
+        <div class="col-md-12">
+            <div id="locationMap">
             </div>
         </div>
-        <div class="row container--gutter-layout margin-top-md">
-            <div class="col-md-12">
-                <div id="locationMap">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="block location-filter animated fadeInDown animation-delay-12">
-                    <div class="portfolio-menu">
-                        <h3>@Html.TranslateFallback("/common/filters", "Filters")</h3>
-                        @if (Model.CurrentContent.FilterArea != null)
+        <div class="col-md-3">
+            <div class="block location-filter animated fadeInDown animation-delay-12">
+                <div class="portfolio-menu">
+                    <h3>@Html.TranslateFallback("/common/filters", "Filters")</h3>
+                    @if (Model.CurrentContent.FilterArea != null)
+                    {
+                        foreach (var item in Model.CurrentContent.FilterArea.FilteredItems)
                         {
-                            foreach (var item in Model.CurrentContent.FilterArea.FilteredItems)
+                            var b = _contentRepository.Get<BlockData>(item.ContentLink) as IFilterBlock;
+                            if (b != null)
                             {
-                                var b = _contentRepository.Get<BlockData>(item.ContentLink) as IFilterBlock;
-                                if (b != null)
-                                {
-                                    @Html.Partial(b.GetOriginalType().Name, Model, new ViewDataDictionary { { "FilterTitle", b.FilterTitle ?? "" }, { "AllConditionText", b.AllConditionText ?? "" } })
-                                }
+                                @Html.Partial($"~/Features/Locations/Blocks/{b.GetOriginalType().Name}.cshtml", Model, new ViewDataDictionary { { "FilterTitle", b.FilterTitle ?? "" }, { "AllConditionText", b.AllConditionText ?? "" } })
                             }
                         }
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div id="locations">
-                    @foreach (var location in Model.Locations)
-                    {
-                        <article class="post animated fadeInRight animation-delay-8 locationArticle"
-                                 data-maplat="@location.Latitude" data-maplon="@location.Longitude"
-                                 data-mapname="@location.PageName" data-mapurl="@location.LinkURL">
-                            <div class="location">
-                                <div class="location__body">
-                                    <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>
-                                    <div class="row">
-                                        @if (!ContentReference.IsNullOrEmpty(location.Image))
-                                        {
-                                            <div class="col-lg-5">
-                                                <picture class="location__img img-responsive">
-                                                    <source data-srcset="@Url.ContentUrl(location.Image)?format=webp" type="image/webp" alt="@location.Name">
-                                                    <img data-src="@Url.ContentUrl(location.Image)" class="location__img img-responsive lazyload" alt="@location.Name" />
-                                                </picture>
-                                            </div>
-                                            <div class="col-lg-7 location__description">
-                                                @location.MainIntro
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="col-lg-12 location__description">
-                                                @location.MainIntro
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="location__footer">
-                                    <div class="row">
-                                        <div class="col-lg-10 col-md-9 col-xs-8">
-                                            <i class="fa fa-globe"></i> @location.Continent / @location.Country
-                                        </div>
-                                        <div class="col-lg-2 col-md-3 col-xs-4">
-                                            <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            @if (location.Categories != null)
-                                            {
-                                                <i class="fa fa-tags"></i>
-                                                foreach (var tag in location.Categories)
-                                                {
-                                                    var t = _contentRepository.Get<StandardCategory>(tag);
-                                                    <span data-epi-block-id="@tag.ToString()">
-                                                        <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@t.Name</span></a>
-                                                    </span>
-                                                }
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
                     }
                 </div>
             </div>
         </div>
+        <div class="col-md-9">
+            <div id="locations">
+                @foreach (var location in Model.Locations)
+                {
+                    <article class="post animated fadeInRight animation-delay-8 locationArticle"
+                             data-maplat="@location.Latitude" data-maplon="@location.Longitude"
+                             data-mapname="@location.PageName" data-mapurl="@location.LinkURL">
+                        <div class="location">
+                            <div class="location__body">
+                                <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>
+                                <div class="row">
+                                    @if (!ContentReference.IsNullOrEmpty(location.Image))
+                                    {
+                                        <div class="col-lg-5">
+                                            <picture class="location__img img-responsive">
+                                                <source data-srcset="@Url.ContentUrl(location.Image)?format=webp" type="image/webp" alt="@location.Name">
+                                                <img data-src="@Url.ContentUrl(location.Image)" class="location__img img-responsive lazyload" alt="@location.Name" />
+                                            </picture>
+                                        </div>
+                                        <div class="col-lg-7 location__description">
+                                            @location.MainIntro
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-12 location__description">
+                                            @location.MainIntro
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="location__footer">
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-9 col-xs-8">
+                                        <i class="fa fa-globe"></i> @location.Continent / @location.Country
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-xs-4">
+                                        <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        @if (location.Categories != null)
+                                        {
+                                            <i class="fa fa-tags"></i>
+                                            foreach (var tag in location.Categories)
+                                            {
+                                                var t = _contentRepository.Get<StandardCategory>(tag);
+                                                <span data-epi-block-id="@tag.ToString()">
+                                                    <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@t.Name</span></a>
+                                                </span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                }
+            </div>
+        </div>
     </div>
-</section>
+</div>
