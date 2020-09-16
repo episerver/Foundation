@@ -17,6 +17,7 @@ namespace Foundation.Features.StandardPage
     public class StandardPage : FoundationPageData
     {
         [CultureSpecific]
+        [Searchable(false)]
         [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
         [Display(Name = "Title color", GroupName = SystemTabNames.Content, Order = 203)]
         public virtual string TitleColor
@@ -35,6 +36,7 @@ namespace Foundation.Features.StandardPage
         [Display(Name = "Background video", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentReference BackgroundVideo { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(StandardPageTopPaddingModeSelectionFactory))]
         [Display(Name = "Top padding mode",
             Description = "Sets how much padding should be at the top of the standard content",
@@ -42,6 +44,7 @@ namespace Foundation.Features.StandardPage
             Order = 220)]
         public virtual string TopPaddingMode { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
         [Display(Name = "Background color", GroupName = SystemTabNames.Content, Order = 204)]
         public virtual string BackgroundColor
@@ -50,6 +53,7 @@ namespace Foundation.Features.StandardPage
             set => this.SetPropertyValue(page => page.BackgroundColor, value);
         }
 
+        [Searchable(false)]
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
         [Display(Name = "Background opacity (0 to 1)", GroupName = SystemTabNames.Content, Order = 205)]
         public virtual double? BackgroundOpacity
@@ -61,6 +65,7 @@ namespace Foundation.Features.StandardPage
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
+
             BackgroundColor = "transparent";
             BackgroundOpacity = 1;
             TitleColor = "white";
