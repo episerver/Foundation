@@ -1,7 +1,6 @@
 ﻿@using EPiServer
 @using EPiServer.Web.Mvc.Html
 @using EPiServer.ServiceLocation
-@using EPiServer.Framework.Web.Resources
 @using Foundation.Features.Category
 @using Foundation.Features.Locations
 @using Foundation.Features.Locations.LocationListPage
@@ -11,7 +10,6 @@
 @{
     var _contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
 }
-
 
 <div class="main container">
     <div class="row">
@@ -52,8 +50,7 @@
             <div id="locations">
                 @foreach (var location in Model.Locations)
                 {
-                    <article class="post animated fadeInRight animation-delay-8 locationArticle"
-                             data-maplat="@location.Latitude" data-maplon="@location.Longitude"
+                    <article data-maplat="@location.Latitude" data-maplon="@location.Longitude"
                              data-mapname="@location.PageName" data-mapurl="@location.LinkURL">
                         <div class="location">
                             <div class="location__body">
@@ -62,10 +59,7 @@
                                     @if (!ContentReference.IsNullOrEmpty(location.Image))
                                     {
                                         <div class="col-lg-5">
-                                            <picture class="location__img img-responsive">
-                                                <source data-srcset="@Url.ContentUrl(location.Image)?format=webp" type="image/webp" alt="@location.Name">
-                                                <img data-src="@Url.ContentUrl(location.Image)" class="location__img img-responsive lazyload" alt="@location.Name" />
-                                            </picture>
+                                            <img class="location__img lazyload" data-src="@Url.ContentUrl(location.Image)?format=webp" alt="@location.Name" />
                                         </div>
                                         <div class="col-lg-7 location__description">
                                             @location.MainIntro

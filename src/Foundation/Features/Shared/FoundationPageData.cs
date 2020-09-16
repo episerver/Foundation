@@ -112,6 +112,7 @@ namespace Foundation.Features.Shared
         #region Teaser
 
         [CultureSpecific]
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Teaser ratio (width-height)", GroupName = TabNames.Teaser, Order = 50)]
         public virtual string TeaserRatio { get; set; }
@@ -144,11 +145,13 @@ namespace Foundation.Features.Shared
         }
 
         [CultureSpecific]
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(TeaserTextAlignmentSelectionFactory))]
         [Display(Name = "Text alignment", GroupName = TabNames.Teaser, Order = 400)]
         public virtual string TeaserTextAlignment { get; set; }
 
         [CultureSpecific]
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(TeaserColorThemeSelectionFactory))]
         [Display(Name = "Color theme", GroupName = TabNames.Teaser, Order = 500)]
         public virtual string TeaserColorTheme { get; set; }
@@ -158,14 +161,17 @@ namespace Foundation.Features.Shared
         public virtual string TeaserButtonText { get; set; }
 
         [CultureSpecific]
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(ButtonBlockStyleSelectionFactory))]
         [Display(Name = "Button theme", GroupName = TabNames.Teaser, Order = 700)]
         public virtual string TeaserButtonStyle { get; set; }
 
         [CultureSpecific]
+        [Searchable(false)]
         [Display(Name = "Display hover effect", GroupName = TabNames.Teaser, Order = 800)]
         public virtual bool ApplyHoverEffect { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
         [Display(Name = "Padding", GroupName = TabNames.Teaser, Order = 900)]
         public virtual string Padding
@@ -174,6 +180,7 @@ namespace Foundation.Features.Shared
             set => this.SetPropertyValue(teaser => teaser.Padding, value);
         }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
         [Display(Name = "Margin", GroupName = TabNames.Teaser, Order = 910)]
         public virtual string Margin
@@ -265,7 +272,7 @@ namespace Foundation.Features.Shared
         {
             TeaserTextAlignment = "Left";
             TeaserColorTheme = "Light";
-            TeaserRatio = "10-5";
+            TeaserRatio = "2:1";
             TeaserButtonStyle = ButtonBlockStyles.TransparentWhite;
             TeaserButtonText = "Read more";
             ApplyHoverEffect = true;
