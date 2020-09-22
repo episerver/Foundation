@@ -7,12 +7,12 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 style="margin-bottom: 20px">Preview</h1>
+            <h1 class="mb-2">Preview</h1>
             @foreach (var area in Model.Areas)
             {
                 if (area.Supported)
                 {
-                    <div class="clearfix" style="margin-bottom: 25px">
+                    <div class="clearfix mb-2">
                         @Html.Partial("TemplateHint", string.Format(Html.TranslateFallback("/preview/heading", "The content '{0}' when displayed as '{1}'"), Model.PreviewContent.Name, Html.Translate(area.AreaName)))
                         @Html.DisplayFor(x => area.ContentArea, new { Tag = area.AreaTag })
                     </div>

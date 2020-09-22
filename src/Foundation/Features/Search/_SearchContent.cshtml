@@ -22,14 +22,11 @@
             <div class="list-group--header content-search-results">
                 @foreach (var content in Model.ContentSearchResult.Hits)
                 {
-                    <a href="@content.Url" class="list-group--header__item" style="display: flex">
+                    <a href="@content.Url" class="list-group--header__item d-flex">
                         @if (content.ImageUri != null)
                         {
                             <div class="col-2 content__item">
-                                <picture class="img-fluid">
-                                    <source data-srcset="@content.ImageUri?width=1440&format=webp" type="image/webp" alt="@content.Title">
-                                    <img class="img-fluid lazyload" data-src="@content.ImageUri?width=1440" loading="lazy" alt="@content.Title" />
-                                </picture>
+                                <img class="img-fluid lazyload" data-src="@content.ImageUri?width=1440&format=webp0" loading="lazy" alt="@content.Title" />
                             </div>
                         }
                         <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">

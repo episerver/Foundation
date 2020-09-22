@@ -1,7 +1,9 @@
 ﻿@using EPiServer.Web.Mvc.Html
 @using EPiServer.Commerce.Order
-@using Foundation.Commerce.ViewModels.Header
-@model Foundation.Commerce.Order.ViewModels.OrderConfirmationViewModel<Foundation.Commerce.Models.Pages.OrderHistoryPage>
+@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.MyAccount.OrderHistory
+
+@model OrderConfirmationViewModel<OrderHistoryPage>
 
 <section class="main-container col2-right-layout">
     <div class="main container">
@@ -9,7 +11,7 @@
             <div class="col-main col-sm-9">
                 <div class="page-title">
                     <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
-                    
+
                 </div>
                 <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
                 <div class="row checkout">
@@ -60,41 +62,40 @@
 
                             <table class="table">
                                 <tbody>
-                                <tr>
-                                    <td class="text-right col-md-10">@Html.TranslateFallback("/OrderConfirmationMail/OrderLevelDiscounts", "Additional discounts")</td>
-                                    <td class="total-price text-right col-md-2">- @Model.OrderLevelDiscountTotal.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/HandlingCost", "Handling cost")</td>
-                                    <td class="total-price text-right">@Model.HandlingTotal.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingSubtotal", "Shipping Subtotal")</td>
-                                    <td class="total-price text-right">@Model.ShippingSubTotal.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingDiscount", "Shipping Discount")</td>
-                                    <td class="total-price text-right">- @Model.ShippingDiscountTotal.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingCost" ,"Shipping cost")</td>
-                                    <td class="total-price text-right">@Model.ShippingTotal.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/TaxCost", "Tax Cost")</td>
-                                    <td class="total-price text-right">@Model.TaxTotal.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right"><strong>@Html.TranslateFallback("/OrderConfirmationMail/Total", "Total")</strong></td>
-                                    <td class="total-price text-right"><strong>@Model.CartTotal.ToString()</strong></td>
-                                </tr>
+                                    <tr>
+                                        <td class="text-right col-md-10">@Html.TranslateFallback("/OrderConfirmationMail/OrderLevelDiscounts", "Additional discounts")</td>
+                                        <td class="total-price text-right col-md-2">- @Model.OrderLevelDiscountTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/HandlingCost", "Handling cost")</td>
+                                        <td class="total-price text-right">@Model.HandlingTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingSubtotal", "Shipping Subtotal")</td>
+                                        <td class="total-price text-right">@Model.ShippingSubTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingDiscount", "Shipping Discount")</td>
+                                        <td class="total-price text-right">- @Model.ShippingDiscountTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingCost", "Shipping cost")</td>
+                                        <td class="total-price text-right">@Model.ShippingTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/TaxCost", "Tax Cost")</td>
+                                        <td class="total-price text-right">@Model.TaxTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right"><strong>@Html.TranslateFallback("/OrderConfirmationMail/Total", "Total")</strong></td>
+                                        <td class="total-price text-right"><strong>@Model.CartTotal.ToString()</strong></td>
+                                    </tr>
                                 </tbody>
                             </table>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="well quicksilver-well">
-
+                                    <div class="well">
                                         <h4>@Html.TranslateFallback("/OrderConfirmation/BillingDetails", "Billing Details")</h4>
                                         @Html.Partial("_Address", Model.BillingAddress)
 
@@ -103,20 +104,16 @@
                                         {
                                             @Html.Partial("_Address", shippingAddress)
                                         }
-
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-
                                     @foreach (var payment in Model.Payments)
                                     {
                                         Html.RenderPartial("_" + payment.PaymentMethodName + "Confirmation", payment);
                                     }
-
                                 </div>
                             </div>
-
                             <hr>
                         }
                         else

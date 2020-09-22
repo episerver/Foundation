@@ -1,6 +1,10 @@
 ﻿.category-page {
     .toolbar {
         margin-bottom: 15px;
+
+        &__page-size {
+            font-size: 5px;
+        }
     }
 }
 

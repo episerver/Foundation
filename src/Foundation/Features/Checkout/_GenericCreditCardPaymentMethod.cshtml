@@ -25,12 +25,12 @@
 
         @Html.HiddenFor(x => x.UseSelectedCreditCard, Model.UseSelectedCreditCard)
 
-        <div id="avaiableCreditCard" class="selectCreditCardType" @(!Model.UseSelectedCreditCard ? "style=display:none" : "")>
+        <div id="avaiableCreditCard" class="selectCreditCardType @(!Model.UseSelectedCreditCard ? "display-none" : "")">
             @Html.DropDownListFor(x => x.SelectedCreditCardId, Model.AvaiableCreditCards, new { @class = "select-menu" })
             @Html.ValidationMessageFor(model => model.SelectedCreditCardId)
         </div>
 
-        <div id="newCreditCard" class="selectCreditCardType" @(Model.UseSelectedCreditCard ? "style=display:none" : "")>
+        <div id="newCreditCard" class="selectCreditCardType @(Model.UseSelectedCreditCard ? "display-none" : "")">
             <div class="form-group">
                 @Html.LabelFor(model => model.CreditCardName)
                 @Html.TextBoxFor(model => model.CreditCardName, new { @class = "textbox" })

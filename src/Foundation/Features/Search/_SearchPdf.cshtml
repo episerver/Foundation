@@ -21,7 +21,7 @@
             <div class="list-group--header content-search-results">
                 @foreach (var content in Model.PdfSearchResult.Hits)
                 {
-                    <a href="@content.Url" class="list-group--header__item" style="display: flex">
+                    <a href="@content.Url" class="list-group--header__item d-flex">
                         @if (content.ImageUri != null)
                         {
                             <div class="col-2 content__item">

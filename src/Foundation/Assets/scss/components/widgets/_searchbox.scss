@@ -105,6 +105,10 @@
     background: #fff;
     font-size: $text-font-size;
     line-height: 16px;
+
+    div {
+        min-height: 800px;
+    }
 }
 
 /* Searchbox widget */

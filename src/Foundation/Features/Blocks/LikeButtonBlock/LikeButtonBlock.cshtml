@@ -1,8 +1,9 @@
 ﻿@using Foundation.Features.Blocks.LikeButtonBlock
 
 @model LikeButtonBlockViewModel
+
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
-    <div style="margin-top:0.5em">
+    <div class="mt-2">
         @if (Model.CurrentRating.HasValue)
         {
             <div> You have already <i data-feather="thumbs-up"></i> this page! </div>
@@ -13,7 +14,7 @@
             {
                 @Html.HiddenFor(m => m.Link)
                 <div>
-                    <button name="submitsocialrating" value="Submit" class="btn btn-dark"><i data-feather="thumbs-up"></i> Like </button>
+                    <button name="submitsocialrating" value="Submit" class="button-black"><i data-feather="thumbs-up"></i> Like </button>
                 </div>
             }
         }

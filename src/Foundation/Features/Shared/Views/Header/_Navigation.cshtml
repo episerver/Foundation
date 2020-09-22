@@ -8,7 +8,7 @@
 @Html.FullRefreshPropertiesMetaData(new[] { "MainMenu", "SiteLogo" })
 
 <!-- Navigation bar for Desktop -->
-<div class="d-none d-lg-block">
+<div class="display-none d-lg-block">
     <nav class="container @(Model.LargeHeaderMenu ? "large-header-menu" : "")">
         <div class="row no-gutters">
             <div class="navigation">
@@ -106,9 +106,9 @@
                                 <i data-feather="x" id="js-searchbox-close"></i>
                             </div>
                         </div>
-                        <div class="searchbox-popover" id="jsResultSearch" style="display: none">
-                            <div style="position: relative; min-height: 80px;">
-                                <div class="loading-cart" style="display: none">
+                        <div class="searchbox-popover display-none" id="jsResultSearch">
+                            <div class="position-relative">
+                                <div class="loading-cart display-none">
                                     <div class="loader"></div>
                                 </div>
                                 <div class="js-searchbox-content">

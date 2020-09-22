@@ -191,7 +191,7 @@
                     </div>
                 </div>
 
-                @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12", @style = "display: none" }))
+                @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12 display-none" }))
                 {
                     <div class="jsTokenProfileEdit">@Html.AntiForgeryToken()</div>
                     <div class="row col-12 input-block">

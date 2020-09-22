@@ -31,11 +31,11 @@
                         <label>Order Total</label>
                     </div>
                     <div class="col-6 flex-start">
-                        <label style="margin-right: 5px;"><i>From </i></label>
+                        <label class="mr-1"><i>From </i></label>
                         <input type="number" name="PriceFrom" value="@Model.PriceFrom" class="square-box form-control" />
                     </div>
                     <div class="col-6 flex-start">
-                        <label style="margin-right: 5px;"><i>To </i></label>
+                        <label class="mr-1"><i>To </i></label>
                         <input type="number" name="PriceTo" value="@Model.PriceTo" class="square-box form-control" />
                     </div>
                 </div>
@@ -46,11 +46,11 @@
                         <label>Date Range</label>
                     </div>
                     <div class="col-6 flex-start">
-                        <label style="margin-right: 5px;"><i>From </i></label>
+                        <label class="mr-1"><i>From </i></label>
                         <input type="date" name="DateFrom" class="square-box form-control" value="@(Model.DateFrom.HasValue ? Model.DateFrom.Value.ToString("yyyy-MM-dd"): "")" />
                     </div>
                     <div class="col-6 flex-start">
-                        <label style="margin-right: 5px;"><i>To </i></label>
+                        <label class="mr-1"><i>To </i></label>
                         <input type="date" name="DateTo" class="square-box form-control" value="@(Model.DateTo.HasValue ? Model.DateTo.Value.ToString("yyyy-MM-dd"): "")" />
                     </div>
                 </div>
@@ -66,7 +66,7 @@
         <br />
         <div class="row">
             <div class="col-12 flex-end">
-                <a class="button-white" style="margin-right: 15px" href="@Request.Url.AbsolutePath">Clear</a>
+                <a class="button-white mr-2" href="@Request.Url.AbsolutePath">Clear</a>
                 <button type="submit" class="button-black">Search</button>
             </div>
         </div>
