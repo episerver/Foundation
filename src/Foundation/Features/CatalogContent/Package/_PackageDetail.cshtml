@@ -39,7 +39,7 @@
 
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
-                            <span class="price__discount" style="padding-left: 10px;">
+                            <span class="price__discount pl-2">
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
@@ -64,7 +64,7 @@
                         }
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
-                            <span class="price__discount" style="padding-left: 10px;">
+                            <span class="price__discount pl-10">
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }

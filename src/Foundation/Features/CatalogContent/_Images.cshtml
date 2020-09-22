@@ -4,17 +4,12 @@
 {
     var firstMedia = Model.ElementAt(0);
     <div class="row">
-        <div class="col-12" style="position: relative">
+        <div class="col-12 position-relative">
             <div class="product-zoom-image--container">
                 <div class="product-zoom-image"></div>
             </div>
-            <picture class="img-fluid border jsProductImageShow">
-                @*<source data-srcset="@firstMedia.Value?format=webp" type="image/webp">*@
-                <img src="@firstMedia.Value" class="img-fluid lazyload"
-                     style="display: @(firstMedia.Key == "Image" ? "inline" : "none")"/>
-                <video autoplay loop controls class="img-fluid border jsProductImageShow" src="@firstMedia.Value"
-                     style="display: @(firstMedia.Key == "Video" ? "inline" : "none")"></video>
-            </picture>
+            <video autoplay loop controls class="img-fluid  lazyload border jsProductImageShow @(firstMedia.Key == "Video" ? "d-inline" : "display-none")"
+                   src="@firstMedia.Value"></video>
         </div>
     </div>
     <div class="row product-detail__image">
@@ -25,17 +20,11 @@
                     <a href="javascript:void(0)" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '@media.Value' ">
                         @if (media.Key == "Image")
                         {
-                            <picture>
-                                <source data-srcset="@media.Value?format=webp" type="image/webp">
-                                <img data-src="@media.Value" class="lazyload" />
-                            </picture>
+                            <img data-src="@media.Value?format=webp" class="lazyload" />
                         }
                         else
                         {
-                            <picture>
-                                <source data-srcset="@media.Value?format=webp" type="image/webp">
-                                <video src="@media.Value"></video>
-                            </picture>
+                            <video src="@media.Value"></video>
                         }
                     </a>
                 </li>

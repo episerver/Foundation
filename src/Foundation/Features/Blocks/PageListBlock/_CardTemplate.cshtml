@@ -23,10 +23,7 @@
                     <div class="card--top">
                         @if (blog != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
-                            <picture>
-                                <source data-srcset="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" type="image/webp">
-                                <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200" class="lazyload" />
-                            </picture>
+                            <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />
                         }
                     </div>
                     <div class="card--bottom">

@@ -9,10 +9,7 @@
     @foreach (var item in Model.Items)
     {
         <div class="cart__row">
-            <picture class="cart__product-img">
-                <source data-srcset="@item.ImageUrl?format=webp&width=60" type="image/webp">
-                <img data-src="@item.ImageUrl?width=60" class="cart__product-img lazyload" loading="lazy" />
-            </picture>
+            <img data-src="@item.ImageUrl?format=webp&width=60" class="cart__product-img lazyload" loading="lazy" />
             <div class="cart__product">
                 <a class="account-link" href="@item.Url">@item.DisplayName</a>
                 <p class="cart__product-price">

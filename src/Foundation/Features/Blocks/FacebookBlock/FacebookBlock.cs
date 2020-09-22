@@ -13,7 +13,23 @@ namespace Foundation.Features.Blocks.FacebookBlock
     [ImageUrl("~/assets/icons/cms/blocks/rss.png")]
     public class FacebookBlock : FoundationBlockData
     {
-        [Display(Name = "Account name", GroupName = SystemTabNames.Content)]
+        [Display(Name = "Account name", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string AccountName { get; set; }
+
+        [Range(180, 500, ErrorMessage = "Min width is 180 & Max width is 500")]
+        [Display(GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual int Width { get; set; }
+
+        [Range(70, 5000, ErrorMessage = "Min width is 70 & Max width is 5000")]
+        [Display(GroupName = SystemTabNames.Content, Order = 30)]
+        public virtual int Height { get; set; }
+
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+
+            Width = 340;
+            Height = 500;
+        }
     }
 }

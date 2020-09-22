@@ -12,7 +12,7 @@
         <div class="selection--cm__label">
             @Html.TranslateFallback("/Category/Filters", "Filters")
         </div>
-        <div style="margin-bottom: 15px;">
+        <div class="mb-2">
             <ul class="selection--cm">
                 @for (var i = 0; i < Model.FacetGroups.Count; i++)
                 {
@@ -27,7 +27,7 @@
                         <li class="selection--cm__inline-item">
                             <label class="filters-tag">
                                 @Html.CheckBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Selected", i, j),
-                                    new { @class = "jsSearchFacetSelected", @style = "position: absolute;z-index: -100;", data_facetkey = facet.Key, @checked = "checked" })
+                                    new { @class = "jsSearchFacetSelected position-absolute", @style = "z-index: -100;", data_facetkey = facet.Key, @checked = "checked" })
                                 @facet.Name
                                 <span class="filters-tag__remove jsRemoveTag"><i data-feather="x" width="12px"></i></span>
                             </label>
@@ -68,7 +68,7 @@
                                 <label class="checkbox selection--cm__link jsFacet jsUpdatePage">
                                     @Html.CheckBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Selected", i, j),
                                         facet.Selected,
-                                        new { @class = "jsSearchFacet hidden", @style = "position: absolute;z-index: -100;", data_facetkey = @facet.Key })
+                                        new { @class = "jsSearchFacet hidden position-absolute", @style = "z-index: -100;", data_facetkey = @facet.Key })
 
                                     @facet.Name (@facet.Count)
                                     <span class="checkmark"></span>

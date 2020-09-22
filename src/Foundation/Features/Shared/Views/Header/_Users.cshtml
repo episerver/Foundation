@@ -29,7 +29,7 @@
                     @Html.HiddenFor(x => x.LoginViewModel.ReturnUrl)
                     @Html.AntiForgeryToken()
                     <div class="login-user__signin-form">
-                        <div class="alert alert-danger" style="display:none;" id="login-signin-errormessage">
+                        <div class="alert alert-danger display-none" id="login-signin-errormessage">
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(x => x.LoginViewModel.Email, new { @class = "label" })
@@ -67,7 +67,7 @@
                     @Html.HiddenFor(x => x.RegisterAccountViewModel.Address.Name)
 
                     <div class="header-box login-users-signupbox">
-                        <div class="alert alert-danger" style="display:none;" id="login-signup-errormessage">
+                        <div class="alert alert-danger display-none" id="login-signup-errormessage">
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(x => x.RegisterAccountViewModel.Email, new { @class = "label" })

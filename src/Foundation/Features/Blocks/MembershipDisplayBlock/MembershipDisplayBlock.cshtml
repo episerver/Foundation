@@ -1,7 +1,7 @@
 ﻿@using EPiServer.Web.Mvc.Html
 @using Foundation.Features.Blocks.MembershipDisplayBlock
 
-@model Foundation.Features.Blocks.MembershipDisplayBlock.MembershipDisplayBlockViewModel
+@model MembershipDisplayBlockViewModel
 
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     @if (Model.ShowHeading)
@@ -15,20 +15,6 @@
         <div style="color:@messageStyle">@message.Body</div>
     }
 
-    <style>
-        /*These styles ensure that there will be no overflow of member content outside of the MemberDisplayBlock*/
-        .MemberTable {
-            width: 375px;
-            table-layout: fixed;
-            word-wrap: break-word;
-        }
-
-        .MemberTD {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
     @if (Model.Members != null && Model.Members.Any())
     {
         <div class="row">

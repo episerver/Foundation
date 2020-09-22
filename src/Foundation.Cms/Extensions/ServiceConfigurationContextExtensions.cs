@@ -32,7 +32,7 @@ namespace Foundation.Cms.Extensions
                 config.Default()
                     .AddExternalPlugin("icons", "/ClientResources/Scripts/fontawesomeicons.js")
                     .AddSetting("extended_valid_elements", "i[class], span")
-                    .ContentCss(new[] { "/node_modules/@fontawesome/fontawesome-free/css/all.min.css",
+                    .ContentCss(new[] { "/ClientResources/Styles/fontawesome.min.css",
                         "https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i",
                         "/ClientResources/Styles/TinyMCE.css" });
             });

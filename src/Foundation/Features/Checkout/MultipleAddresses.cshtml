@@ -1,4 +1,7 @@
-﻿@model MultiAddressViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model MultiAddressViewModel
+
 @{
     if (Request.IsAjaxRequest())
     {
@@ -19,7 +22,7 @@
         @Html.Partial("_CheckoutStatusBar", 2)
     </div>
 </div>
-<div class="row" style="margin-bottom: 15px;">
+<div class="row mt-2">
     <div class="col-12">
         <a class="btn btn-light" href="@Url.Action("SingleShipment", new { node = Model.CurrentContent.ContentLink })"
            title="@Html.TranslateFallback("/Checkout/Shipment/SingleShipment", "Ship to single address")">
@@ -54,7 +57,7 @@
         @Html.HiddenFor(model => model.CartItems[index].IsGift);
         var hasDiscount = Model.CartItems[index].DiscountedUnitPrice.HasValue;
 
-        <div class="row" style="border-bottom: 1px solid #eeeeee">
+        <div class="row" class="border-bottom">
             <div class="col-xs-12 col-sm-6">
                 <div class="row product-tile-list__item">
                     <div class="col-sm-3 col-xs-6">
@@ -88,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-6" style="padding: 20px 0 20px 0">
+            <div class="col-xs-12 col-sm-6 p-2">
                 <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryAddress", "Delivery address")</p>
                 @Helpers.RenderDropdown(addressSeletions, "", "", "CartItems[" + index + "].AddressId")
                 @Html.ValidationMessageFor(model => Model.CartItems[index].AddressId, null, new { @class = "required" })
@@ -96,7 +99,7 @@
         </div>
     }
 
-    <div class="row" style="margin-top: 15px;">
+    <div class="row mt-2">
         <div class="col-12">
             <input type="submit" class="btn btn-light btn-lower pull-right" value="@Html.TranslateFallback("/Checkout/MultiShipment/ContinueShippingInformation", "Continue to Shipping Information")" />
         </div>

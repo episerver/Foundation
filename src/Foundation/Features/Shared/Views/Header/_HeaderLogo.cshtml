@@ -16,10 +16,7 @@
                 }
                 else
                 {
-                    <picture class="img-fluid">
-                        <source data-srcset="@Url.ContentUrl(Model.SiteLogo)?format=webp" type="image/webp">
-                        <img data-src="@Url.ContentUrl(Model.SiteLogo)" class="img-fluid lazyload" @Html.EditAttributes(x => x.SiteLogo) />
-                    </picture>
+                    <img data-src="@Url.ContentUrl(Model.SiteLogo)?format=webp" class="img-fluid lazyload" @Html.EditAttributes(x => x.SiteLogo) />
                 }
             </a>
         </div>

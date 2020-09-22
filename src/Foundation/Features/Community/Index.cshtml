@@ -10,7 +10,7 @@
         @Html.PropertyFor(x => x.CurrentContent.GroupAdmission, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
     </div>
     <div class="col-md-8">
-        <h1 style="margin-top: 0;" @Html.EditAttributes(x => x.CurrentContent.PageName)>@Model.CurrentContent.PageName</h1>
+        <h1 class="mt-0" @Html.EditAttributes(x => x.CurrentContent.PageName)>@Model.CurrentContent.PageName</h1>
         <p class="introduction" @Html.EditAttributes(x => x.CurrentContent.PageDescription)>@Model.CurrentContent.PageDescription</p>
         <div class="clearfix" @Html.EditAttributes(x => x.CurrentContent.MainBody)>
             @Html.DisplayFor(m => m.CurrentContent.MainBody)

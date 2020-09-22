@@ -39,7 +39,7 @@
             {
                 <br />
                 <p class="title">Click to links below to download your file</p>
-                <table style="width:100%;vertical-align: top;border: 1px solid; @fontFamily">
+                <table class="w-100 vertical-align-top border" style="@fontFamily">
                     <thead>
                         <tr>
                             <td class="title" style="@cellPadding">@Html.Translate("/OrderConfirmation/Labels/Product")</td>
@@ -62,7 +62,7 @@
             if (Model.Keys.Any())
             {
                 <p class="title">See below for your purchased keys:</p>
-                <table style="width:100%; vertical-align: top;border: 1px solid; @fontFamily">
+                <table class="w-100 vertical-align-top border" style="@fontFamily">
                     <thead>
                         <tr>
                             <td class="title" style="@cellPadding">@Html.TranslateFallback("/OrderConfirmation/Labels/Product", "Product")</td>
@@ -109,10 +109,7 @@
                         <div class="row">
                             <div class="col-sm-3 col-md-2">
                                 <a href="@lineItem.GetUrl()">
-                                    <picture>
-                                        <source data-srcset="@lineItem.GetThumbnailUrl()?format=webp" type="image/webp">
-                                        <img data-src="@lineItem.GetThumbnailUrl()" class="lazyload" />
-                                    </picture>
+                                    <img data-src="@lineItem.GetThumbnailUrl()?format=webp" class="lazyload" />
                                 </a>
                             </div>
                             <div class="col-sm-9 col-md-10">

@@ -1,36 +1,25 @@
-﻿@using EPiServer.AddOns.Helpers
-@using EPiServer.Core
+﻿@using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
-@using Foundation.Features.Locations.LocationItemPage
+@using EPiServer.AddOns.Helpers
 @using Foundation.Features.Category
+@using Foundation.Features.Locations.LocationItemPage
 
 @model CategoryFoundationPageViewModel
 
 <div class="blog__thumbnail">
-    <div style="width:100%;">
-        <picture>
-            @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
-            {
-                <picture class="img-fluid">
-                    <source data-srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?format=webp" type="image/webp">
-                    <img data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)" class="img-fluid lazyload" />
-                </picture>
-            }
-            else if (Model.CurrentContent as LocationItemPage != null && !ContentReference.IsNullOrEmpty(((LocationItemPage)Model.CurrentContent).Image))
-            {
-                <picture class="img-fluid">
-                    <source data-srcset="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)?format=webp" type="image/webp">
-                    <img data-src="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)" class="img-fluid lazyload" />
-                </picture>
-            }
-            else
-            {
-                <picture class="img-fluid">
-                    <source data-srcset="/Assets/imgs/blog-img1.jpg?format=webp" type="image/webp">
-                    <img data-src="/Assets/imgs/blog-img1.jpg" class="img-fluid lazyload" />
-                </picture>
-            }
-        </picture>
+    <div class="w-100">
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+        {
+            <img data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?format=webp" class="img-fluid lazyload" />
+        }
+        else if (Model.CurrentContent as LocationItemPage != null && !ContentReference.IsNullOrEmpty(((LocationItemPage)Model.CurrentContent).Image))
+        {
+            <img data-src="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)format=webp" class="img-fluid lazyload" />
+        }
+        else
+        {
+            <img data-src="/Assets/imgs/blog-img1.jpg?format=webp" class="img-fluid lazyload" />
+        }
     </div>
     <div class="blog__title-container">
         <div class="blog__title-wrapper">

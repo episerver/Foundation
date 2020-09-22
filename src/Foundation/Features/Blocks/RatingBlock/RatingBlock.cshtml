@@ -25,7 +25,7 @@
         <div style="color:@messageStyle">@message.Body</div>
     }
 
-    <div style="margin-top:0.5em">
+    <div class="mt-2">
         @if (this.User.Identity.IsAuthenticated && Model.IsMemberOfGroup)
         {
             if (Model.CurrentRating.HasValue)
@@ -39,13 +39,13 @@
                     @Html.HiddenFor(m => m.SendActivity)
                     @Html.HiddenFor(m => m.CurrentLink)
                     <div>
-                        <div style="margin-bottom:0.15em;"><b><i>How do you rate this page?</i></b></div>
-                        <div style="margin-bottom:0.5em;">
+                        <div class="mb-1"><b><i>How do you rate this page?</i></b></div>
+                        <div class="mb-2">
                             @for (var numOfRatings = 0; numOfRatings < @Model.RatingSettings.Count; numOfRatings++)
                             {
                                 @Html.RadioButtonFor(r => Model.SubmittedRating, Model.RatingSettings[numOfRatings],
-                                                    new { @style = "display:inline;", @onchange = "EnableRatingSubmitButton();" })
-                                <label style="display:inline;margin-right:0.5em;">@Model.RatingSettings[numOfRatings].ToString()</label>
+                                                    new { @CssClass = "d-inline", @onchange = "EnableRatingSubmitButton();" })
+                                <label class="mr-2 d-inline">@Model.RatingSettings[numOfRatings].ToString()</label>
                             }
                         </div>
                         <div>
@@ -58,11 +58,11 @@
 
         @if (!String.IsNullOrWhiteSpace(Model.NoStatisticsFoundMessage))
         {
-            <div style="color: blue;">@Model.NoStatisticsFoundMessage</div>
+            <div class="text-primary">@Model.NoStatisticsFoundMessage</div>
         }
         else
         {
-            <div style="margin-top:0.5em"><strong>Average rating: @Model.Average.ToString("F")</strong></div>
+            <div class="mt-2"><strong>Average rating: @Model.Average.ToString("F")</strong></div>
             <div><strong>Total of ratings: @Model.TotalCount</strong></div>
         }
     </div>
