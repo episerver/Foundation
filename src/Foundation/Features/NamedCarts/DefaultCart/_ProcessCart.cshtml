@@ -60,7 +60,7 @@
                 @{
                     var couponError = ViewBag.CouponError != null ? (bool)ViewBag.CouponError : false;
                 }
-                <div class="large-cart__margin-top couponcode-errormessage required jsCouponErrorMess" style="@(couponError ? "" : "display: none")">
+                <div class="large-cart__margin-top couponcode-errormessage required jsCouponErrorMess @(couponError ? "" : "display-none")">
                     <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
                 </div>
                 <div class="large-cart__margin-top">

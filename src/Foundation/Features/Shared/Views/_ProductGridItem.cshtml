@@ -20,10 +20,7 @@
     <a class="product-tile-grid__image-icon">
         @if (string.IsNullOrEmpty(Model.VideoAssetUrl))
         {
-            <picture class="img-fluid product-tile-grid__image" onclick="location.href='@Model.Url'">
-                <source srcset="@Model.ImageUrl?width=520&format=webp" type="image/webp">
-                <img class="img-fluid product-tile-grid__image" src="@Model.ImageUrl?width=520" onclick="location.href='@Model.Url'" />
-            </picture>
+            <img class="img-fluid product-tile-grid__image" src="@Model.ImageUrl?width=520&format=webp" onclick="location.href='@Model.Url'" />
         }
         else
         {

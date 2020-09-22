@@ -33,7 +33,7 @@
                 <div class="col-12">
                     @if (Model.IsAvailable)
                     {
-                        <div style="display: inline-block">
+                        <div class="d-inline-block">
                             @if (Model.DiscountedPrice < Model.ListingPrice)
                             {
                                 <span class="price__old">@Model.ListingPrice.ToString()</span>
@@ -50,7 +50,7 @@
                         </div>
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
-                            <span class="price__discount" style="padding-left: 10px;">
+                            <span class="price__discount pl-2">
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
@@ -63,7 +63,7 @@
                     {
                         if (Model.DiscountedPrice > 0 || Model.ListingPrice > 0)
                         {
-                            <div style="display: inline-block">
+                            <div class="d-inline-block">
                                 @if (Model.DiscountedPrice < Model.ListingPrice)
                                 {
                                     <span class="price__old">@Model.ListingPrice.ToString()</span>
@@ -82,7 +82,7 @@
                         }
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
                         {
-                            <span class="price__discount" style="padding-left: 10px;">
+                            <span class="price__discount pl-2">
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }

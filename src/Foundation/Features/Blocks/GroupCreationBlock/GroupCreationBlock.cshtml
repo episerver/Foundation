@@ -22,18 +22,12 @@
         <div class="form-group">
             @Html.TextBoxFor(m => m.Name, new
             {
-                @required = "require",
-                @style = "width:75%;",
-                @class = "form-control square-box",
-                placeholder = "Group Name"
+                @required = "require", @class = "form-control square-box w-75", placeholder = "Group Name"
             })
             <br />
             @Html.TextAreaFor(m => m.Description, new
             {
-                @required = "require",
-                @style = "width:75%;",
-                @class = "form-control square-box",
-                placeholder = "Group Description"
+                @required = "require", @class = "form-control square-box w-75", placeholder = "Group Description"
             })
             <br />
             <label class="checkbox">

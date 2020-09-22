@@ -10,16 +10,11 @@
 @if (string.IsNullOrEmpty(Model.Template) || Model.Template == TemplateSelections.Grid)
 {
     <div class="blog__thumbnail">
-        <div style="width: 100%">
-            <picture>
-                @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
-                {
-                    <picture class="img-fluid">
-                        <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
-                    </picture>
-                }
-            </picture>
+        <div class="w-100">
+            @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+            {
+                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid lazyload" />
+            }
         </div>
         <div class="blog__title-container">
             <div class="blog__title-wrapper">
@@ -51,15 +46,12 @@
     var textCol = imageCol == 12 ? 12 : 12 - imageCol;
     <div class="row">
         <div class="col-xs-12 col-@imageCol">
-            <picture style="width: 100%">
+            <div class="w-100">
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                 {
-                    <picture class="img-fluid preview--image-top__image">
-                        <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
-                    </picture>
+                    <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
                 }
-            </picture>
+            </div>
         </div>
         <div class="col-xs-12 col-@textCol">
             <span>
@@ -90,15 +82,12 @@
     var imageCol = Model.PreviewOption == PreviewOptions.Full ? 12 : (Model.PreviewOption == PreviewOptions.Half ? 6 : 4);
 
     <div class="col-@imageCol preview--image-top">
-        <picture style="height: 100%;">
+        <div class="w-100">
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
-                <picture class="img-fluid preview--image-top__image">
-                    <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                    <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
-                </picture>
+                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
             }
-        </picture>
+        </div>
         <div>
             <span>
                 @foreach (var tag in Model.Tags)
@@ -159,15 +148,12 @@
             @if (!flip)
             {
                 <div class="col-xs-12 col-@imageCol">
-                    <picture style="width: 100%">
+                    <div class="w-100">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                         {
-                            <picture class="img-fluid preview--image-top__image">
-                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
-                            </picture>
+                            <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
                         }
-                    </picture>
+                    </div>
                 </div>
             }
             <div class="col-xs-12 col-@textCol">
@@ -193,15 +179,12 @@
             @if (flip)
             {
                 <div class="col-xs-12 col-@imageCol">
-                    <picture style="width: 100%">
+                    <div class="w-100">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                         {
-                            <picture class="img-fluid preview--image-top__image">
-                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
-                            </picture>
+                            <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
                         }
-                    </picture>
+                    </div>
                 </div>
             }
         </div>
@@ -211,15 +194,12 @@
         <div class="screen-width-block">
             <div class="row">
                 <div class="col-xs-12 col-@imageCol">
-                    <picture style="width: 100%">
+                    <div class="w-100">
                         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                         {
-                            <picture class="img-fluid preview--image-top__image">
-                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" type="image/webp">
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)" class="img-fluid lazyload" />
-                            </picture>
+                            <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
                         }
-                    </picture>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-@textCol">
                     <span>

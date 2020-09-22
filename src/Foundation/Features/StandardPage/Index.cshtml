@@ -32,29 +32,23 @@
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundImage))
             {
-                <picture class="standard-page__banner">
-                    <source srcset="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" type="image/webp">
-                    <img class="standard-page__banner" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440" loading="lazy" />
-                </picture>
+                <img class="standard-page__banner lazyload" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" />
                 <div class="hero__gradient">
                 </div>
-                <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
+                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
                 </div>
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
-                <picture class="standard-page__banner">
-                    <source data-srcset="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" type="image/webp">
-                    <img class="standard-page__banner lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440" loading="lazy" />
-                </picture>
+                <img class="standard-page__banner lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" />
                 <div class="hero__gradient">
                 </div>
-                <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
+                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
                 </div>
             }
         </div>
         <div class="standard-page__box @boxClass">
-            <div class="article__title" style="">
+            <div class="article__title">
                 @if (!Model.CategoryName.IsEmpty())
                 {
                     <h4 style="color: @Model.CurrentContent.TitleColor">@Model.CategoryName</h4>

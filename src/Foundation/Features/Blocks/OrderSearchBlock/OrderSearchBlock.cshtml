@@ -1,4 +1,7 @@
-﻿@model Foundation.Features.Blocks.OrderSearchBlock.OrderSearchBlockViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model OrderSearchBlockViewModel
+
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <div class="row">
         <div class="col-12">
@@ -15,7 +18,7 @@
             <a href="javascript:void(0);" class="link jsAdvancedBtn">Advanced filter</a>
         </div>
         <div class="col-12">
-            <div class="row advanced-filter--box jsAdvancedFilterBox" style="display: none">
+            <div class="row advanced-filter--box jsAdvancedFilterBox display-none">
                 <div class="col-md-3 col-sm-6 col-xs-6">
                     <label>Date from</label>
                     <input type="date" name="DateFrom"
@@ -49,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-12">
                     <br />
                     <div class="row">
@@ -61,7 +63,6 @@
             </div>
         </div>
     </form>
-
     <div class="row jsOrderSearchTable">
         <div class="col-12">
             <table class="table">

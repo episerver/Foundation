@@ -14,17 +14,17 @@
         </label>
     </div>
 
-    <div class="col-12 jsSubscription" style="display: none">
+    <div class="col-12 jsSubscription display-none">
         <div class="row">
             <div class="col-6 flex-start">
                 @Html.Label("Every", new { style = "margin-right: 15px;" })
-                @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number", style = "width: 250px; margin-right: 15px" })
+                @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number" })
                 <span> day(s)</span>
             </div>
 
             <div class="col-6 flex-end">
-                <span style="margin-right: 15px">End date </span>
-                @Html.TextBoxFor(x => x.PaymentPlanSetting.EndDate, new { type = "date", style = "display: inline; width: auto; border-radius: 0; padding: 8px; border: 1px solid #ddd" })
+                <span class="mr-2">End date </span>
+                @Html.TextBoxFor(x => x.PaymentPlanSetting.EndDate, new { type = "date" })
             </div>
         </div>
     </div>

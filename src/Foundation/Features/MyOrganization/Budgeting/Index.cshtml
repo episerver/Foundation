@@ -127,7 +127,7 @@
                                     <td>@purchaser.DueDate.ToString("MMMM dd, yyyy")</td>
                                     <td>@(purchaser.Status == "Planned" ? "Current" : purchaser.Status)</td>
                                     <td class="text-center" data-budget-id="@purchaser.BudgetId">
-                                        <a href="@Url.Action("EditUserBudget", "Budgeting", new {budgetId = @purchaser.BudgetId})" style="color: black">
+                                        <a class="text-dark" href="@Url.Action("EditUserBudget", "Budgeting", new {budgetId = @purchaser.BudgetId})">
                                             <i data-feather="edit"></i>
                                         </a>
                                     </td>
@@ -169,7 +169,7 @@
                                     <td>@suborganizationBudget.DueDate.ToString("MMMM dd, yyyy")</td>
                                     <td>@(suborganizationBudget.Status == "Planned" ? "Current" : @suborganizationBudget.Status)</td>
                                     <td class="text-center" data-budget-id="@suborganizationBudget.BudgetId">
-                                        <a href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @suborganizationBudget.BudgetId})" style="color: black">
+                                        <a class="text-dark" href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @suborganizationBudget.BudgetId})">
                                             <i data-feather="edit"></i>
                                         </a>
                                     </td>
@@ -223,7 +223,7 @@
                             <td>@organizationBudget.DueDate.ToString("MMMM dd, yyyy")</td>
                             <td>@(organizationBudget.IsCurrentBudget ? "Current" : @organizationBudget.Status)</td>
                             <td class="text-center" data-budget-id="@organizationBudget.BudgetId">
-                                <a href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @organizationBudget.BudgetId})" style="color: black">
+                                <a class="text-dark" href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @organizationBudget.BudgetId})">
                                     <i data-feather="edit"></i>
                                 </a>
                             </td>

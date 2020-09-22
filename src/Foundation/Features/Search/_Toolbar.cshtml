@@ -48,7 +48,7 @@
                 <li>
                     <a href="#">
                         @Model.PageSize
-                        <i style="font-size: 5px;" data-feather="chevron-down"></i>
+                        <i data-feather="chevron-down"></i>
                     </a>
                     <ul class="selection__dropdown">
                         <li>
@@ -66,11 +66,11 @@
         </div>
         <div id="sort-by">
             <label class="left">@Html.TranslateFallback("/Search/SortBy", "Sort By"): </label>
-            <ul class="selection" style="width: 150px;">
+            <ul class="selection">
                 <li>
                     <a href="#">
                         @(string.IsNullOrEmpty(Model.Sort) ? "Position" : Model.Sort)
-                        <i style="font-size: 5px;" data-feather="chevron-down"></i>
+                        <i data-feather="chevron-down"></i>
                     </a>
                     <ul class="selection__dropdown">
                         <li>

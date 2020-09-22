@@ -3,18 +3,15 @@
 @model ContentViewModel<CollectionPage>
 
 @Html.PropertyFor(x => x.CurrentContent.Navigation)
-<br />
 
+<br />
 <div class="row">
     <div class="col-12 mediablock-container">
         <div class="row">
             <div class="col-4">
                 @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Image))
                 {
-                    <picture class="img-fluid">
-                        <source data-srcset="@Url.ContentUrl(Model.CurrentContent.Image)?format=webp" type="image/webp">
-                        <img data-src="@Url.ContentUrl(Model.CurrentContent.Image)" class="img-fluid lazyload" />
-                    </picture>
+                    <img data-src="@Url.ContentUrl(Model.CurrentContent.Image)?format=webp" class="img-fluid lazyload" />
                 }
                 else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Video))
                 {

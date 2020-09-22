@@ -36,7 +36,7 @@
         <div class="col-md-7 comment-list">
             @foreach (var comment in Model.Comments)
             {
-                <div style="font-weight: bold;"> @comment.Created.ToLocalTime() @comment.AuthorUsername said:</div>
+                <div class="font-weight-bold"> @comment.Created.ToLocalTime() @comment.AuthorUsername said:</div>
                 <div>@comment.Body </div>
                 <hr />
             }

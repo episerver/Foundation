@@ -32,7 +32,6 @@
                                             <label class="title">@Html.TranslateFallback("/OrderHistory/Labels/TotalPrice", "Price"): </label>
                                             <span class="price__discount">@order.PurchaseOrder.GetTotal().ToString()</span>
                                         </div>
-
                                         <div>
                                             <label class="title">@Html.TranslateFallback("/OrderHistory/Labels/Status", "Status"): </label>
                                             <span class="font-italic">@order.PurchaseOrder.OrderStatus</span>

@@ -20,13 +20,10 @@
             <div class="preview__card">
                 <div class="preview__card--show">
                     <div class="card--top">
-                        <picture>
-                            @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
-                            {
-                                <source data-srcset="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" type="image/webp">
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)" class="lazyload" />
-                            }
-                        </picture>
+                        @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
+                        {
+                            <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" class="lazyload" />
+                        }
                     </div>
                     <div class="card--bottom">
                         <div class="card--bottom__title">

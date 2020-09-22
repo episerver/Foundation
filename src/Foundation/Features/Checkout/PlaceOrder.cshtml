@@ -1,7 +1,8 @@
-﻿@model CheckoutViewModel
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
 
 <div class="row">
-
     <div class="col-12">
         <div class="row">
             <div class="col-12 checkout--panel-block">
@@ -19,7 +20,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <br />
         @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)

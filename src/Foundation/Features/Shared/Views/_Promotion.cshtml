@@ -1,34 +1,35 @@
-﻿@model EPiServer.Commerce.Marketing.PromotionData
+﻿@using EPiServer.Commerce.Marketing
 @using EPiServer.Commerce.Marketing.Promotions
+
+@model PromotionData
+
 @{
     PropertyData pd = Model.Property.FirstOrDefault(p => p.PropertyValueType == typeof(DiscountItems));
 }
 
 @if (Model.Banner != null)
 {
-<div class="teaser">
-
-    @if (pd != null)
-    {
-        <div class="teaser-text-container">
-            <div class="teaser-text">
-                <div class="teaser-details">
-                   <p><a class="button-dark" href="/DiscountPage/Index?promotionId=@Model.ContentGuid">@Html.Translate("/Shared/ViewAll")</a></p>
+    <div class="teaser">
+        @if (pd != null)
+        {
+            <div class="teaser-text-container">
+                <div class="teaser-text">
+                    <div class="teaser-details">
+                        <p><a class="button-dark" href="/DiscountPage/Index?promotionId=@Model.ContentGuid">@Html.Translate("/Shared/ViewAll")</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="teaser-image" style="background-image: url('@Url.ContentUrl(Model.Banner)')">
-        </div>
+            <div class="teaser-image" style="background-image: url('@Url.ContentUrl(Model.Banner)')">
+            </div>
 
-    }
-    else
-    {
-        <div class="teaser-image" style="background-image: url('@Url.ContentUrl(Model.Banner)')">
-        </div>
-
-    }
-</div>
+        }
+        else
+        {
+            <div class="teaser-image" style="background-image: url('@Url.ContentUrl(Model.Banner)')">
+            </div>
+        }
+    </div>
 }
 else
 {

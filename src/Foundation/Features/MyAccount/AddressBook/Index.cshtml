@@ -73,7 +73,7 @@
                                     using (Html.BeginForm("SetPreferredShippingAddress", "AddressBook", new { addressId = address.AddressId }, FormMethod.Post))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <button type="submit" class="button-black btn-xs  btn-block btn-lower" style="margin-top:5px;">@Html.TranslateFallback("/AddressBook/Form/Label/SetShippingAddress", "Set shipping address")</button>
+                                        <button type="submit" class="button-black btn-xs  btn-block btn-lower mt-1">@Html.TranslateFallback("/AddressBook/Form/Label/SetShippingAddress", "Set shipping address")</button>
                                         <br />
                                     }
                                 }

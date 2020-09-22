@@ -27,12 +27,12 @@
                         <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
                     }
                 }
-                <div style="flex-basis: 116px; flex-shrink: 0">
+                <div>
                     @if (page.ShowPublishDate)
                     {
                         <p class="sub-title">@page.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
                     }
-                    <h4 style="color: black">
+                    <h4>
                         @(@Html.Raw(TextIndexer.StripHtml(page != null ? foundationPage.MetaTitle : page.Page.Name, 55)) + "...")
                     </h4>
 

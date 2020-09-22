@@ -1602,6 +1602,7 @@
     <Content Include="Assets\vendors\fa-brands-400.svg" />
     <Content Include="Assets\vendors\fa-regular-400.svg" />
     <Content Include="Assets\vendors\fa-solid-900.svg" />
+    <Content Include="ClientResources\Styles\fontawesome.min.css" />
     <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
     <Content Include="Features\Markets\market.js" />
     <Content Include="modules\_protected\Foundation.Cms\ClientResources\img\episerver.png" />
@@ -2173,8 +2174,6 @@
     <Content Include="Features\Blocks\PageListBlock\_HighlightPanelTemplate.cshtml" />
     <Content Include="Features\Blocks\PageListBlock\_LeftImageTemplate.cshtml" />
     <Content Include="Features\Shared\Views\Header\_HeaderLogo.cshtml" />
-    <Content Include="Features\Search\_SearchPdf.cshtml" />
-    <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\Web.config" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\module.config" />
     <Content Include="App_Data\GeoLiteCity.dat" />
@@ -2184,12 +2183,9 @@
     <Content Include="Features\People\PersonItemPage\Index.cshtml" />
     <Content Include="Features\People\PersonListPage\Index.cshtml" />
     <Content Include="Features\Media\_video-file.scss" />
-    <Content Include="Features\Search\_SearchPdf.cshtml" />
-    <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
     <Content Include="modules\_protected\AdvancedTask\AdvancedTask.zip" />
     <Content Include="modules\_protected\advanced-cms-forms\web.config" />
     <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
-    <Content Include="Features\Blocks\Views\ContentRecommendationsBlock.cshtml" />
     <Content Include="modules\_protected\Episerver.Marketing.Connector\module.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\Views\Web.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServerGoogleAnalytics.config" />
@@ -2262,6 +2258,10 @@
     <Content Include="Features\Markets\Index.cshtml" />
     <Content Include="Assets\js\main.min.js.map" />
     <Content Include="Assets\scss\main.min.css.map" />
+    <Content Include="Features\Blocks\MembershipDisplayBlock\membership-display-block.scss" />
+    <Content Include="Features\Blocks\TwitterBlock\twitter-block.scss" />
+    <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
+    <Content Include="Features\Search\_SearchPdf.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

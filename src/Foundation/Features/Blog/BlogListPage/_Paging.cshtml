@@ -20,7 +20,7 @@
                 </li>
                 @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
                 {
-                    <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "") jsPaginateBlog " data="@page">
+                    <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "") jsPaginateBlog" data="@page">
                         <a href="javascript:void(0)">
                             @page.ToString()
                         </a>
