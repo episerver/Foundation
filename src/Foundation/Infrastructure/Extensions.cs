@@ -226,14 +226,14 @@ namespace Foundation.Infrastructure
                 });
             }
 
-            CreateSite(new FileStream(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"..\appData\imports\foundation.episerverdata"), FileMode.Open),
+            CreateSite(new FileStream(HostingEnvironment.MapPath("~/App_Data/foundation.episerverdata"), FileMode.Open),
                 siteDefinition,
                 ContentReference.RootPage);
 
             ServiceLocator.Current.GetInstance<ISettingsService>().UpdateSettings();
 
-            CreateCatalog(new FileStream(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"..\appData\imports\foundation_fashion.zip"), FileMode.Open),
-                Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"..\appData\imports\foundation_fashion.zip"));
+            CreateCatalog(new FileStream(HostingEnvironment.MapPath("~/App_Data/foundation_fashion.zip"), FileMode.Open),
+                Path.Combine(HostingEnvironment.MapPath("~/App_Data/foundation_fashion.zip")));
 
             var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName);
             searchManager.BuildIndex(true);
@@ -262,7 +262,7 @@ namespace Foundation.Infrastructure
                 throw new Exception("File is required");
             }
             var name = fileName.Substring(fileName.LastIndexOf("\\") == 0 ? 0 : fileName.LastIndexOf("\\") + 1);
-            var path = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"..\appData\Imports\Catalog");
+            var path = HostingEnvironment.MapPath("~/App_Data/Catalog");
             var zipFile = Path.Combine(path, name);
             var zipDirectory = new DirectoryInfo(Path.Combine(path, name.Replace(".zip", "")));
             if (zipDirectory.Exists)
