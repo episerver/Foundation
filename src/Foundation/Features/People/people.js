@@ -94,3 +94,7 @@ export default class people {
             });
     }
 }
+
+$('#btnClear').on("click",function() {
+    $('#txtName').val('');
+});
