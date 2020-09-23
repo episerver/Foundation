@@ -11,12 +11,13 @@ export default class SearchBox {
         const inst = this;
         this.btn = document.getElementById("js-searchbutton");
         this.box = document.getElementById("js-searchbox");
-        this.boxInput = document.getElementById("js-searchbox-input");
+        this.boxInput = document.getElementsByClassName("js-searchbox-input");
         if (this.box) {
             this.box.style.width = "80px";
             this.box.style.visibility = "hidden";
         }
         let typingTimer;
+
 
         $("#js-searchbutton").click(function () {
             inst.expandSearchBox();
@@ -25,16 +26,19 @@ export default class SearchBox {
             inst.collapseSearchBox();
         });
         $(".jsSearchText").each(function (i, e) {
+
             inst.boxContent = $($(e).data('result-container'))[0];
             if ($("#searchOption").val() != "QuickSearch") {
                 inst.AutoSearch(e);
                 $(e).on("keyup", function () {
                     clearTimeout(typingTimer);
                     const val = $(this).val();
-                    typingTimer = setTimeout(function () {
-                        let e = $.Event("keypress", { which: 13 });
-                        $('#js-searchbox-input').trigger(e);
-                    }, 5000);
+                    if(val != ""){
+                        typingTimer = setTimeout(function () {
+                            let e = $.Event("keypress", { which: 13 });
+                            $('.js-searchbox-input').trigger(e);
+                        }, 5000);
+                    }
                 });
             } else {
                 $(e).on("keyup", function () {
@@ -42,9 +46,11 @@ export default class SearchBox {
                     const val = $(this).val();
                     const container = $(this).data('result-container');
                     const divParent = "#" + $(this).parent().attr('id');
-                    typingTimer = setTimeout(function () {
-                        inst.Search(val, divParent, container);
-                    }, 1000);
+                    if(val != ""){
+                        typingTimer = setTimeout(function () {
+                            inst.Search(val, divParent, container);
+                        }, 1000);
+                    }
                 });
             }
 
@@ -53,13 +59,14 @@ export default class SearchBox {
                     if (e.which == 13) {
                         const searchUrl = $(this).data('search');
                         const val = $(this).val();
-                        let url = `${searchUrl}?search=${val}`;
-                        if ($(this).attr('id') == 'js-searchbox-input') {
-                            let confidence = $('#searchConfidence').val();
-                            url += "&Confidence=" + confidence;
+                        if(val != ""){
+                            let url = `${searchUrl}?search=${val}`;
+                            if ($(this).attr('id') == 'js-searchbox-input') {
+                                let confidence = $('#searchConfidence').val();
+                                url += "&Confidence=" + confidence;
+                            }
+                            location.href = url;
                         }
-
-                        location.href = url;
                     }
                 });
         });
@@ -82,7 +89,7 @@ export default class SearchBox {
         this.btn.style.display = "none";
         this.box.style.width = "324px";
         this.box.style.visibility = "visible";
-        this.boxInput.focus();
+        // this.boxInput.focus();
     }
 
     collapseSearchBox() {
