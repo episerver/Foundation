@@ -2176,7 +2176,6 @@
     <Content Include="Features\Shared\Views\Header\_HeaderLogo.cshtml" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\Web.config" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\module.config" />
-    <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="modules\_protected\BVNetwork.404Handler\web.config" />
     <Content Include="modules\_protected\BVNetwork.404Handler\BVNetwork.404Handler.zip" />
     <Content Include="Features\Shared\Views\_ProductGridItem.cshtml" />
@@ -2262,6 +2261,8 @@
     <Content Include="Features\Blocks\TwitterBlock\twitter-block.scss" />
     <Content Include="Features\Search\_QuickSearchPdf.cshtml" />
     <Content Include="Features\Search\_SearchPdf.cshtml" />
+    <Content Include="App_Data\foundation.episerverdata" />
+    <Content Include="App_Data\Foundation_Fashion.zip" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
