@@ -8,8 +8,12 @@
             <div class="product-zoom-image--container">
                 <div class="product-zoom-image"></div>
             </div>
-            <video autoplay loop controls class="img-fluid  lazyload border jsProductImageShow @(firstMedia.Key == "Video" ? "d-inline" : "display-none")"
-                   src="@firstMedia.Value"></video>
+            <picture class="img-fluid border jsProductImageShow">
+                <img src="@firstMedia.Value" class="img-fluid lazyload"
+                     style="display: @(firstMedia.Key == "Image" ? "inline" : "none")" />
+                <video autoplay loop controls class="img-fluid border jsProductImageShow" src="@firstMedia.Value"
+                       style="display: @(firstMedia.Key == "Video" ? "inline" : "none")"></video>
+            </picture>
         </div>
     </div>
     <div class="row product-detail__image">
