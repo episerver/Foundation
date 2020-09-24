@@ -11,6 +11,7 @@ using Foundation.Find;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+
 namespace Foundation.Features.People.PersonListPage
 {
     public class PersonListPageController : PageController<PersonList>
