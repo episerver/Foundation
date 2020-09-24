@@ -314,7 +314,7 @@
     editor.on('init', function () {
         var fontawesomeCss = editor.dom.create('link', {
             rel: 'stylesheet',
-            href: '/node_modules/@fontawesome/fontawesome-free/css/all.min.css'
+            href: '/ClientResources/Styles/fontawesome.min.css'
         });
         var fontawesomeCustomCss = editor.dom.create('link', {
             rel: 'stylesheet',
