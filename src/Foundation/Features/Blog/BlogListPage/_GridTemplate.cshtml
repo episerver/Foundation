@@ -30,7 +30,7 @@
     <div class="blog__gallery">
         <div class="blog__row">
             <div class="blog__large-col">
-                @Html.Partial("Preview", firstBlog)
+                @Html.Partial("_GridTemplateBlock", firstBlog)
             </div>
             @foreach (var list in listGridBlogs)
             {
@@ -38,7 +38,7 @@
                     <div class="blog__grid">
                         @foreach (var blog in list)
                         {
-                            @Html.Partial("Preview", blog)
+                            @Html.Partial("_GridTemplateBlock", blog)
                         }
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             @foreach (var blog in listLargeBlogs)
             {
                 <div class="blog__large-col">
-                    @Html.Partial("Preview", blog)
+                    @Html.Partial("_GridTemplateBlock", blog)
                 </div>
             }
         </div>
