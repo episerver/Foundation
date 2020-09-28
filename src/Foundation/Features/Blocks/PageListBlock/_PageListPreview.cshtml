@@ -31,7 +31,7 @@
             {
                 if (page != null && !ContentReference.IsNullOrEmpty(page.PageImage))
                 {
-                    <img class="img-fluid lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(page.PageImage)).Resize(1200, null)&format=webp" />
+                    <img class="lazyload h-100" data-src="@Html.ProcessImage(@Url.ContentUrl(page.PageImage)).Resize(1200, null)&format=webp" />
                 }
             }
         </div>
