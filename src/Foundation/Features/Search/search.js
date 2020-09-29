@@ -1,4 +1,9 @@
-﻿export class ProductSearch {
+﻿import feather from "feather-icons";
+import Selection from "Assets/js/common/selection";
+import Product from "Features/CatalogContent/product";
+import ProductDetail from "Features/CatalogContent/product-detail";
+
+export class ProductSearch {
     constructor() {
         // for filtering
         this.pageClass = "jsPaginate";
@@ -136,7 +141,7 @@
                 $('.jsFacets').replaceWith($(result.data).find('.jsFacets'));
                 $('.jsProducts').replaceWith($(result.data).find('.jsProducts'));
                 feather.replace();
-                new Selection().Init();
+                new Selection().init();
                 if (expandingFacet) {
                     let ul = document.querySelector(`.selection--cm[data-facetkey=${expandingFacet}]`)
                     let dropdown = ul.querySelector('.selection--cm__dropdown')
@@ -147,11 +152,11 @@
                     expand.classList.add('hidden')
                 }
                 let quickView = new ProductDetail('#quickView');
-                quickView.InitQuickView();
+                quickView.initQuickView();
                 let product = new Product(".jsProducts");
-                product.AddToCartClick();
-                product.AddToWishlistClick();
-                inst.Init();
+                product.addToCartClick();
+                product.addToWishlistClick();
+                inst.init();
             })
             .catch(function (error) {
                 notification.error(error);
