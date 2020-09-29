@@ -1734,7 +1734,6 @@
     <Content Include="Features\Category\_Preview.cshtml" />
     <Content Include="Features\Blog\BlogListPage\_BlogList.cshtml" />
     <Content Include="Features\Blog\BlogListPage\_GridTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\Preview.cshtml" />
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\_calendar-block.scss" />
     <Content Include="Features\Blocks\PageListBlock\_PageListPreview.cshtml" />
@@ -2263,6 +2262,11 @@
     <Content Include="Features\Search\_SearchPdf.cshtml" />
     <Content Include="App_Data\foundation.episerverdata" />
     <Content Include="App_Data\Foundation_Fashion.zip" />
+    <Content Include="Features\Blog\BlogListPage\_ImageLeftTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_ImageTopTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_NoImageTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_HighLightTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\_GridTemplateBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

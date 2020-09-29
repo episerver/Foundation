@@ -1,0 +1,38 @@
+﻿@using EPiServer.AddOns.Helpers
+@using Foundation.Features.Blog.BlogItemPage
+@using Foundation.Features.Shared.SelectionFactories
+@using Foundation.Features.Blog.BlogListPage
+
+@model BlogListPageViewModel
+
+@if (Model.Blogs != null && Model.Blogs.Any())
+{
+    foreach (var blog in Model.Blogs)
+    {
+        var imageCol = blog.PreviewOption == PreviewOptions.Full ? 12 : (blog.PreviewOption == PreviewOptions.Half ? 6 : 4);
+
+        <div class="col-@imageCol preview--image-top">
+            <span>
+                @foreach (var tag in blog.Tags)
+                {
+                    <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+                }
+            </span>
+            <h4>
+                <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@blog.CurrentContent.MetaTitle</a>
+            </h4>
+            @if (blog.ShowPublishDate)
+            {
+                <p class="sub-title">@blog.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
+            }
+            @if (blog.ShowIntroduction)
+            {
+                <br />
+                <p class="light-text">@Html.Raw(blog.PreviewText)</p>
+            }
+        </div>
+
+    }
+}
+
+
