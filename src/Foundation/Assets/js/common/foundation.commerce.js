@@ -1,6 +1,6 @@
-﻿import { ProductSearch, NewProductsSearch, SalesSearch } from "./search";
-import Product from "Features/CatalogContent/product";
+﻿import { ProductSearch, NewProductsSearch, SalesSearch } from "../../../Features/Search/search";
 import ProductDetail from "Features/CatalogContent/product-detail";
+import Product from "Features/CatalogContent/product";
 import Review from "./review";
 import MyProfile from "Features/MyAccount/ProfilePage/my-profile";
 import { Cart, CartHelper } from "Features/NamedCarts/cart";
@@ -25,6 +25,12 @@ export default class FoundationCommerce {
         let market = new Market();
         market.init();
 
+        let productDetail = new ProductDetail('.product-detail');
+        productDetail.initProductDetail();
+
+        let quickView = new ProductDetail('#quickView');
+        quickView.initQuickView();
+
         let search = new ProductSearch();
         search.init();
 
@@ -36,12 +42,6 @@ export default class FoundationCommerce {
 
         let product = new Product();
         product.init();
-
-        let productDetail = new ProductDetail('.product-detail');
-        productDetail.initProductDetail();
-
-        let quickView = new ProductDetail('#quickView');
-        quickView.initQuickView();
 
         let review = new Review();
         review.ratingHover();
