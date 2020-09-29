@@ -4,88 +4,49 @@
 
 @model BlogListPageViewModel
 
-@if (string.IsNullOrEmpty(Model.CurrentContent.Template) || Model.CurrentContent.Template == TemplateSelections.Grid)
+@if (string.IsNullOrEmpty(Model.CurrentContent.Template))
 {
-    @Html.Partial("_GridTemplate", Model)
+    Model.CurrentContent.Template = TemplateSelections.Grid;
 }
-
-@if (Model.CurrentContent.Template == TemplateSelections.Card)
+ 
+@switch(Model.CurrentContent.Template)
 {
-    <div class="row jsBlogListLoadMore">
+    case TemplateSelections.Grid:
+        @Html.Partial("_GridTemplate", Model)
+        break;
+
+    case TemplateSelections.Card:
         @Html.Partial("_CardTemplate", Model)
-    </div>
-}
+        break;
 
-@if (Model.CurrentContent.Template == TemplateSelections.Insight)
-{
-    <div class="row jsBlogListLoadMore">
+    case TemplateSelections.Insight:
         @Html.Partial("_InsightTemplate", Model)
-    </div>
-}
+        break;
 
-@if (Model.CurrentContent.Template == TemplateSelections.ImageLeft)
-{
-    if (Model.Blogs != null && Model.Blogs.Any())
-    {
-        foreach (var blog in Model.Blogs)
+    case TemplateSelections.ImageLeft:
+        @Html.Partial("_ImageLeftTemplate", Model)
+        break;
+
+    case TemplateSelections.ImageTop:
+        @Html.Partial("_ImageTopTemplate", Model)
+        break;
+
+    case TemplateSelections.NoImage:
+        @Html.Partial("_NoImageTemplate", Model)
+        break;
+
+    case TemplateSelections.Highlight:
+        if (Model.Blogs != null && Model.Blogs.Any())
         {
-            @Html.Partial("Preview", blog)
-        }
-    }
-}
-
-@if (Model.CurrentContent.Template == TemplateSelections.ImageTop || Model.CurrentContent.Template == TemplateSelections.NoImage)
-{
-    if (Model.Blogs != null && Model.Blogs.Any())
-    {
-        <div class="row">
-            @foreach (var blog in Model.Blogs)
+            var flip = false;
+            foreach (var blog in Model.Blogs)
             {
-                @Html.Partial("Preview", blog)
-            }
-        </div>
-    }
-}
-
-@if (Model.CurrentContent.Template == TemplateSelections.Highlight)
-{
-    if (Model.Blogs != null && Model.Blogs.Any())
-    {
-        var flip = false;
-        foreach (var blog in Model.Blogs)
-        {
-            @Html.Partial("Preview", blog, new ViewDataDictionary { { "Flip", flip } })
-            if (!blog.CurrentContent.Highlight)
-            {
-                flip = !flip;
+                @Html.Partial("_HighLightTemplate", blog, new ViewDataDictionary { { "Flip", flip } })
+                if (!blog.CurrentContent.Highlight)
+                {
+                    flip = !flip;
+                }
             }
         }
-    }
-}
-
-@* Paging *@
-
-@using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))
-{
-    <input hidden id="RequestUrl" type="text" value="/BlogListPage/GetItemList" />
-    <input hidden id="PageId" name="PageId" type="text" value="@Model.PagingInfo.PageId" />
-    <input hidden id="PageNumber" name="PageNumber" type="text" value="@Model.PagingInfo.PageNumber" />
-    <input hidden id="PageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />
-}
-
-@if (Model.CurrentContent.Template == TemplateSelections.Card || Model.CurrentContent.Template == TemplateSelections.Insight)
-{
-    <div class="flex-center jsLoadMoreDiv">
-        <button class="button-transparent-black @(Model.PagingInfo.PageCount <= Model.PagingInfo.PageNumber ? "" : "jsLoadMoreBlogs")"
-                pageNumber="@Model.PagingInfo.PageNumber"
-                pageId="@Model.PagingInfo.PageId"
-                pageCount="@Model.PagingInfo.PageCount"
-                @(Model.PagingInfo.PageCount <= Model.PagingInfo.PageNumber ? "disabled" : "")>
-            @(Model.PagingInfo.PageCount <= Model.PagingInfo.PageNumber ? "No More" : "Load More")
-        </button>
-    </div>
-}
-else
-{
-    @Html.Partial("_Paging", Model)
+        break;
 }
