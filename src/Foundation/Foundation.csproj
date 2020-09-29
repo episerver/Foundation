@@ -1639,8 +1639,8 @@
     <Content Include="Features\CatalogContent\product-detail.js" />
     <Content Include="Features\MyOrganization\QuickOrderBlock\quick-order-block.js" />
     <Content Include="Assets\js\common\review.js" />
-    <Content Include="Assets\js\common\search.js" />
-    <Content Include="Assets\js\common\search-box.js" />
+    <Content Include="Features\Search\search.js" />
+    <Content Include="Features\Search\search-box.js" />
     <Content Include="Assets\js\common\selection.js" />
     <Content Include="Features\People\people.js" />
     <Content Include="Features\Blocks\HeroBlock\heroblock-tracking.js" />

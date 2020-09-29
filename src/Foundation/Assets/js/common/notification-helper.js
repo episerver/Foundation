@@ -3,7 +3,12 @@
         $.notify({
             message: message
         }, {
-            type: 'success'
+            type: 'success',
+            offset: {
+                x: 20,
+                y: 40,
+            },
+            z_index: 3000
         });
     }
 
@@ -11,7 +16,12 @@
         $.notify({
             message: message
         }, {
-            type: 'danger'
+            type: 'danger',
+            offset: {
+                x: 20,
+                y: 40,
+            },
+            z_index: 3000
         });
     }
 
@@ -19,7 +29,12 @@
         $.notify({
             message: message
         }, {
-            type: 'warning'
+            type: 'warning',
+            offset: {
+                x: 20,
+                y: 40,
+            },
+            z_index: 3000
         });
     }
 
@@ -27,7 +42,12 @@
         $.notify({
             message: message
         }, {
-            type: 'info'
+            type: 'info',
+            offset: {
+                x: 20,
+                y: 40,
+            },
+            z_index: 3000
         });
     }
 }
