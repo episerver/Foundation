@@ -586,7 +586,7 @@ namespace Foundation.Features.Search
                 ProductViewModels = CreateProductViewModels(result, currentContent, filterOptions.Q),
                 FacetGroups = GetFacetResults(filterOptions.FacetGroups, facetQuery, selectedfacets),
                 TotalCount = result.TotalMatching,
-                DidYouMeans = string.IsNullOrEmpty(filterOptions.Q) ? null : _findClient.Statistics().GetDidYouMean(filterOptions.Q),
+                DidYouMeans = string.IsNullOrEmpty(filterOptions.Q) ? null : result.TotalMatching != 0 ? null : _findClient.Statistics().GetDidYouMean(filterOptions.Q),
                 Query = filterOptions.Q,
             };
         }
