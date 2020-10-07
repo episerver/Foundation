@@ -11,6 +11,7 @@ using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Mediachase.Commerce;
+using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace Foundation.Features.CatalogContent
 {
     public static class Extensions
     {
+        private static readonly Lazy<ReferenceConverter> ReferenceConverter =
+            new Lazy<ReferenceConverter>(() => ServiceLocator.Current.GetInstance<ReferenceConverter>());
+
         private static readonly Lazy<AssetUrlResolver> AssetUrlResolver =
             new Lazy<AssetUrlResolver>(() => ServiceLocator.Current.GetInstance<AssetUrlResolver>());
 
@@ -35,7 +39,7 @@ namespace Foundation.Features.CatalogContent
 
         public static ProductTileViewModel GetProductTileViewModel(this EntryContentBase entry, IMarket market, Currency currency, bool isFeaturedProduct = false)
         {
-            var prices = entry.Prices();
+            var prices = entry.Prices().Where(x => x.UnitPrice.Currency == currency).ToList();
             var minPrice = prices.OrderBy(x => x.UnitPrice).ThenBy(x => x.MinQuantity).FirstOrDefault();
             var discountPriceList = GetDiscountPriceCollection(entry, market, currency);
             var minDiscountPrice = GetMinDiscountPrice(discountPriceList);
@@ -54,7 +58,7 @@ namespace Foundation.Features.CatalogContent
             if (entry is GenericProduct)
             {
                 entryUrl = UrlResolver.Value.GetUrl(product.ContentLink);
-                firstCode = isDiscounted ? ContentLoader.Value.Get<EntryContentBase>(minDiscountPrice.Key).Code : minPrice.EntryContent.Code;
+                firstCode = isDiscounted ? ReferenceConverter.Value.GetCode(minDiscountPrice.Key) : minPrice.CatalogEntryCode;
             }
 
             if (entry is GenericBundle)
@@ -103,7 +107,7 @@ namespace Foundation.Features.CatalogContent
                 ImageUrl = AssetUrlResolver.Value.GetAssetUrl<IContentImage>(entry),
                 VideoAssetUrl = AssetUrlResolver.Value.GetAssetUrl<IContentVideo>(entry),
                 Url = entryUrl,
-                IsAvailable = entry.Prices().Where(price => price.MarketId == market.MarketId)
+                IsAvailable = prices.Where(price => price.MarketId == market.MarketId)
                     .Any(x => x.UnitPrice.Currency == currency),
                 OnSale = entry.Property.Keys.Contains("OnSale") && ((bool?)entry.Property["OnSale"]?.Value ?? false),
                 NewArrival = entry.Property.Keys.Contains("NewArrival") && ((bool?)entry.Property["NewArrival"]?.Value ?? false),

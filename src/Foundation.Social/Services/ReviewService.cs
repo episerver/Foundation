@@ -1,4 +1,5 @@
-﻿using EPiServer.Logging;
+﻿using System;
+using EPiServer.Logging;
 using EPiServer.Social.Comments.Core;
 using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
@@ -6,6 +7,7 @@ using Foundation.Social.Composites;
 using Foundation.Social.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using EPiServer.Framework.Cache;
 
 namespace Foundation.Social.Services
 {
@@ -14,14 +16,18 @@ namespace Foundation.Social.Services
         private readonly ICommentService _commentService;
         private readonly IRatingService _ratingService;
         private readonly IRatingStatisticsService _ratingStatisticsService;
+        private readonly ISynchronizedObjectInstanceCache _cache;
         private readonly ILogger _logger = LogManager.GetLogger(typeof(ReviewService));
 
+        private readonly string CachePrefix = "Foundation:Review:";
+
         public ReviewService(ICommentService commentService, IRatingService ratingService,
-            IRatingStatisticsService ratingStatisticsService)
+            IRatingStatisticsService ratingStatisticsService, ISynchronizedObjectInstanceCache cache)
         {
             _commentService = commentService;
             _ratingService = ratingService;
             _ratingStatisticsService = ratingStatisticsService;
+            _cache = cache;
         }
 
         public ReviewViewModel Add(ReviewSubmissionViewModel review)
@@ -50,36 +56,43 @@ namespace Foundation.Social.Services
                 }
             };
 
+            var result = _commentService.Add(comment, extension);
+            _cache.Remove(CachePrefix + review.ProductCode);
             // Add the composite comment for the product
-            return ViewModelAdapter.Adapt(_commentService.Add(comment, extension));
+            return ViewModelAdapter.Adapt(result);
         }
 
         public ReviewsViewModel Get(string productCode)
         {
-            // Instantiate a reference for the product
-            var product = Reference.Create($"product://{productCode}");
-
-            try
+            return _cache.ReadThrough(CachePrefix + productCode, () =>
             {
-                // Retrieve the rating statistics for the product
-                var statistics = GetProductStatistics(product);
+                // Instantiate a reference for the product
+                var product = Reference.Create($"product://{productCode}");
 
-                // Retrieve the reviews for the product
-                var reviews = GetProductReviews(product);
-
-                // Return the data as a ReviewsViewModel
-                return new ReviewsViewModel
+                try
                 {
-                    Statistics = ViewModelAdapter.Adapt(statistics),
-                    Reviews = ViewModelAdapter.Adapt(reviews)
-                };
-            }
-            catch (SocialRepositoryException)
-            {
-                //DO SOMETHING
-            }
+                    // Retrieve the rating statistics for the product
+                    var statistics = GetProductStatistics(product);
 
-            return new ReviewsViewModel();
+                    // Retrieve the reviews for the product
+                    var reviews = GetProductReviews(product);
+
+                    // Return the data as a ReviewsViewModel
+                    return new ReviewsViewModel
+                    {
+                        Statistics = ViewModelAdapter.Adapt(statistics),
+                        Reviews = ViewModelAdapter.Adapt(reviews)
+                    };
+                }
+                catch (SocialRepositoryException)
+                {
+                    //DO SOMETHING
+                }
+
+                return new ReviewsViewModel();
+            },
+            (x) => new CacheEvictionPolicy(TimeSpan.FromMinutes(15), CacheTimeoutType.Absolute),
+            ReadStrategy.Wait);
         }
 
         public IEnumerable<ReviewViewModel> Get(Visibility visibility, int page, int limit, out long total)

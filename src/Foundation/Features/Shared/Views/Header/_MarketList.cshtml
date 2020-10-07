@@ -9,7 +9,6 @@
             using (Html.BeginForm("Set", "Market", new { marketId = market.Value, contentLink = @Model.ContentLink }, FormMethod.Post,
                 new { @class = "market-selector__wrapper", @data_marketid = market.Value }))
             {
-                @Html.AntiForgeryToken()
                 <div class="market-list__item jsMarketSelector">
                     <picture class="market-selector__market-icon">
                         <source data-srcset="@market.FlagUrl?format=webp" type="image/webp">
