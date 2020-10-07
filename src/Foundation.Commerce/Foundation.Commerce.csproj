@@ -16,7 +16,7 @@
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.17.0" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.17.0" />
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.28.0" />
-    <PackageReference Include="EPiServer.Commerce.Core" Version="13.23.0" />
+    <PackageReference Include="EPiServer.Commerce.Core" Version="13.24.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.17.0" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="FileHelpers" Version="3.4.1" />
