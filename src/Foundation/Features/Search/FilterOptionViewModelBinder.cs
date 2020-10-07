@@ -46,20 +46,23 @@ namespace Foundation.Features.Search
             var sort = controllerContext.HttpContext.Request.QueryString["sort"];
             var facets = controllerContext.HttpContext.Request.QueryString["facets"];
             var section = controllerContext.HttpContext.Request.QueryString["t"];
-            var page = controllerContext.HttpContext.Request.QueryString["p"];
+            var page = controllerContext.HttpContext.Request.QueryString["page"];
+            var pageSize = controllerContext.HttpContext.Request.QueryString["pageSize"];
             var confidence = controllerContext.HttpContext.Request.QueryString["confidence"];
-            SetupModel(model, query, sort, section, page, content, confidence);
-            EnsureFacets(model, facets, content);
-            return model;
-        }
+            var viewMode = controllerContext.HttpContext.Request.QueryString["ViewSwitcher"];
+            var sortDirection = controllerContext.HttpContext.Request.QueryString["sortDirection"];
 
-        protected virtual void SetupModel(FilterOptionViewModel model, string q, string sort, string section, string page, IContent content, string confidence)
-        {
             EnsurePage(model, page);
-            EnsureQ(model, q);
+            EnsurePageSize(model, pageSize);
+            EnsureViewMode(model, viewMode);
+            EnsureQ(model, query);
             EnsureSort(model, sort);
+            EnsureSortDirection(model, sortDirection);
             EnsureSection(model, section);
+            EnsureFacets(model, facets, content);
             model.Confidence = decimal.TryParse(confidence, out var confidencePercentage) ? confidencePercentage : 0;
+
+            return model;
         }
 
         protected virtual void EnsurePage(FilterOptionViewModel model, string page)
@@ -77,9 +80,33 @@ namespace Foundation.Features.Search
             }
         }
 
+        protected virtual void EnsurePageSize(FilterOptionViewModel model, string pageSize)
+        {
+            if (!string.IsNullOrEmpty(pageSize))
+            {
+                model.PageSize = int.Parse(pageSize);
+            }
+            else
+            {
+                model.PageSize = 10;
+            }
+        }
+
+        protected virtual void EnsureViewMode(FilterOptionViewModel model, string viewMode)
+        {
+            if (!string.IsNullOrEmpty(viewMode))
+            {
+                model.ViewSwitcher = viewMode;
+            }
+            else
+            {
+                model.ViewSwitcher = "";
+            }
+        }
+
         protected virtual void EnsureQ(FilterOptionViewModel model, string q)
         {
-            if (string.IsNullOrEmpty(model.Q))
+            if (!string.IsNullOrEmpty(q))
             {
                 model.Q = q;
             }
@@ -87,7 +114,7 @@ namespace Foundation.Features.Search
 
         protected virtual void EnsureSection(FilterOptionViewModel model, string section)
         {
-            if (string.IsNullOrEmpty(model.SectionFilter))
+            if (!string.IsNullOrEmpty(section))
             {
                 model.SectionFilter = section;
             }
@@ -95,9 +122,16 @@ namespace Foundation.Features.Search
 
         protected virtual void EnsureSort(FilterOptionViewModel model, string sort)
         {
-            if (string.IsNullOrEmpty(model.Sort))
+            if (!string.IsNullOrEmpty(sort))
             {
                 model.Sort = sort;
+            }
+        }
+        protected virtual void EnsureSortDirection(FilterOptionViewModel model, string sortDirection)
+        {
+            if (!string.IsNullOrEmpty(sortDirection))
+            {
+                model.SortDirection = sortDirection;
             }
         }
 
