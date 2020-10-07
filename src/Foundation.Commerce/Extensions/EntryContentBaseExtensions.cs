@@ -185,18 +185,17 @@ namespace Foundation.Commerce.Extensions
 
         public static Price GetDefaultPrice(this ContentReference contentLink, MarketId marketId, Currency currency, DateTime validOn)
         {
-            var entry = ContentLoader.Value.Get<EntryContentBase>(contentLink.ToReferenceWithoutVersion());
-            var catalogKey = GetCatalogKey(entry);
+            var catalogKey = new CatalogKey(ReferenceConverter.Value.GetCode(contentLink));
 
             var priceValue = PriceService.Value.GetPrices(marketId, validOn, catalogKey, new PriceFilter() { Currencies = new[] { currency } })
                 .OrderBy(x => x.UnitPrice).FirstOrDefault();
-            return priceValue != null ? new Price(priceValue, entry) : new Price();
+            return priceValue == null ? new Price() : new Price(priceValue);
         }
 
-        public static ItemCollection<Price> GetPrices(this ContentReference entryContents,
+        public static IEnumerable<Price> GetPrices(this ContentReference entryContents,
             MarketId marketId, PriceFilter priceFilter) => new[] { entryContents }.GetPrices(marketId, priceFilter);
 
-        public static ItemCollection<Price> GetPrices(this IEnumerable<ContentReference> entryContents, MarketId marketId, PriceFilter priceFilter)
+        public static IEnumerable<Price> GetPrices(this IEnumerable<ContentReference> entryContents, MarketId marketId, PriceFilter priceFilter)
         {
             var customerPricingList = priceFilter.CustomerPricing != null
                 ? priceFilter.CustomerPricing.Where(x => x != null).ToList()
@@ -231,16 +230,7 @@ namespace Foundation.Commerce.Extensions
                 }
             }
 
-            var result = new ItemCollection<Price>();
-            foreach (var priceValue in priceCollection)
-            {
-                var entryLink = entryContentsList.FirstOrDefault(c =>
-                    GetCode(c).Equals(priceValue.CatalogKey.CatalogEntryCode, StringComparison.OrdinalIgnoreCase));
-                var entryContent = ContentLoader.Value.Get<EntryContentBase>(entryLink);
-                result.Add(new Price(priceValue, entryContent));
-            }
-
-            return result;
+            return priceCollection.Select(x => new Price(x));
         }
 
         public static string GetCode(this ContentReference contentLink) => ReferenceConverter.Value.GetCode(contentLink);
@@ -253,7 +243,10 @@ namespace Foundation.Commerce.Extensions
             return ContentLoader.Value.Get<EntryContentBase>(entryContentLink);
         }
 
-        public static IEnumerable<VariationContent> GetAllVariants(this ContentReference contentLink) => GetAllVariants<VariationContent>(contentLink);
+        public static IEnumerable<VariationContent> GetAllVariants(this ContentReference contentLink)
+        {
+            return GetAllVariants<VariationContent>(contentLink);
+        }
 
         public static IEnumerable<T> GetAllVariants<T>(this ContentReference contentLink) where T : VariationContent
         {
@@ -301,7 +294,7 @@ namespace Foundation.Commerce.Extensions
             var parent = ContentLoader.Value.Get<CatalogContentBase>(currentNode.ParentLink);
             while (!ContentReference.IsNullOrEmpty(parent.ParentLink))
             {
-                if (parent is EPiServer.Commerce.Catalog.ContentTypes.CatalogContent catalog)
+                if (parent is CatalogContent catalog)
                 {
                     outline = string.Format("{1}/{0}", outline, catalog.Name);
                 }

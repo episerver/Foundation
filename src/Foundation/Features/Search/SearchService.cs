@@ -82,6 +82,7 @@ namespace Foundation.Features.Search
         private readonly IPromotionService _promotionService;
         private readonly ICurrencyService _currencyservice;
         private readonly IContentLoader _contentLoader;
+        private readonly BestBetRepository _bestBetRepository;       
         private static readonly Random _random = new Random();
 
         public SearchService(ICurrentMarket currentMarket,
@@ -95,7 +96,8 @@ namespace Foundation.Features.Search
             IPriceService priceService,
             IPromotionService promotionService,
             ICurrencyService currencyservice,
-            IContentLoader contentLoader
+            IContentLoader contentLoader,
+            BestBetRepository bestBetRepository
             )
         {
             _currentMarket = currentMarket;
@@ -111,6 +113,7 @@ namespace Foundation.Features.Search
             _promotionService = promotionService;
             _currencyservice = currencyservice;
             _contentLoader = contentLoader;
+            _bestBetRepository = bestBetRepository;
         }
 
         public ProductSearchResults Search(IContent currentContent,
@@ -921,7 +924,7 @@ namespace Foundation.Features.Search
                 UpdateListWithFeatured(ref productViewModels, node);
             }
 
-            var bestBetList = new BestBetRepository().List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
+            var bestBetList = _bestBetRepository.List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
             //Filter for product best bet only.
             var productBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector);
             var ownStyleBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
