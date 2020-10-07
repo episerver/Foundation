@@ -90,7 +90,6 @@ namespace Foundation.Features.Markets
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Set(string marketId, ContentReference contentLink)
         {
             var newMarketId = new MarketId(marketId);
