@@ -10,6 +10,7 @@ import FoundationCommerce from "Assets/js/common/foundation.commerce";
 import FoundationPersonalization from "Assets/js/common/foundation.cms.personalization";
 
 feather.replace();
+window.feather = feather; 
 
 let foundationCms = new FoundationCms();
 foundationCms.init();
