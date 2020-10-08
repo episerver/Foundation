@@ -120,7 +120,19 @@ namespace Foundation.Cms.Extensions
             //Work out the correct domain to use from the hosts defined in the site definition
             var siteDefinition = SiteDefinitionResolver.Value.GetByContent(contentRef, true, true);
             var host = siteDefinition.Hosts.FirstOrDefault(h => h.Type == HostDefinitionType.Primary) ?? siteDefinition.Hosts.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined);
-            var baseUrl = (host?.Name ?? "*").Equals("*") ? siteDefinition.SiteUrl : new Uri($"http{((host.UseSecureConnection ?? false) ? "s" : string.Empty)}://{host.Name}");
+            Uri baseUrl;
+
+            if (host != null)
+            {
+                baseUrl = (host?.Name ?? "*").Equals("*") ? siteDefinition.SiteUrl : new Uri($"http{((host.UseSecureConnection ?? false) ? "s" : string.Empty)}://{host.Name}");
+            }
+            else
+            {
+                var siteDef = SiteDefinitionResolver.Value.GetByContent(ContentReference.StartPage, true, true);
+                var siteDefHost = siteDef.Hosts.FirstOrDefault(h => h.Type == HostDefinitionType.Primary) ?? siteDefinition.Hosts.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined);
+                baseUrl = (siteDefHost?.Name ?? "*").Equals("*") ? siteDef.SiteUrl : new Uri($"http{((siteDefHost.UseSecureConnection ?? false) ? "s" : string.Empty)}://{siteDefHost.Name}");
+            }
+
             return new Uri(baseUrl, urlString);
         }
     }
