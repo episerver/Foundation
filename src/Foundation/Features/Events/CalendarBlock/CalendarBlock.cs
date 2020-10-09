@@ -41,7 +41,7 @@ namespace Foundation.Features.Events.CalendarBlock
             base.SetDefaultValues(contentType);
 
             Count = 5;
-            ViewMode = "month";
+            ViewMode = "dayGridMonth";
         }
     }
 }
