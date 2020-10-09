@@ -10,12 +10,12 @@ export default class CalendarBlock {
 
         let calendarBlocks = document.querySelectorAll(".calendar-block");
         calendarBlocks.forEach((item, index) => {
-            let url = "";
+            let url = window.location.origin;
             if (item.dataset.blockViewmode === "Upcoming") {
-                url = "CalendarBlock/UpcomingEvents";
+                url += "/CalendarBlock/UpcomingEvents";
             }
             else {
-                url = "CalendarBlock/CalendarEvents";
+                url += "/CalendarBlock/CalendarEvents";
             }
 
             let data = {
@@ -31,14 +31,16 @@ export default class CalendarBlock {
             })
                 .then(response => response.json())
                 .then(data => {
-                    let currentBlock = document.querySelector(`#calendar-block-${item.dataset.blockId}`);
-                    let calendar = new Calendar(currentBlock, {
-                        plugins: [dayGridPlugin, listPlugin],
-                        initialView: item.dataset.blockViewmode,
-                        events: data,
-                    });
+                    let blocks = document.querySelectorAll(".calendarblock");
+                    blocks.forEach((obj, index) => {
+                        let calendar = new Calendar(obj.children[0], {
+                            plugins: [dayGridPlugin, listPlugin],
+                            initialView: item.dataset.blockViewmode,
+                            events: data,
+                        });
 
-                    calendar.render();
+                        calendar.render();
+                    });
                 })
                 .catch((error) => {
                     console.error('Error:', error);
