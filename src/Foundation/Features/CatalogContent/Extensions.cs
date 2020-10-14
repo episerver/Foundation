@@ -39,8 +39,8 @@ namespace Foundation.Features.CatalogContent
 
         public static ProductTileViewModel GetProductTileViewModel(this EntryContentBase entry, IMarket market, Currency currency, bool isFeaturedProduct = false)
         {
-            var prices = entry.Prices().Where(x => x.UnitPrice.Currency == currency).ToList();
-            var minPrice = prices.OrderBy(x => x.UnitPrice).ThenBy(x => x.MinQuantity).FirstOrDefault();
+            var prices = entry.Prices().Where(x => x.UnitPrice.Currency == currency)?.ToList() ?? new List<Price>();
+            var minPrice = prices?.OrderBy(x => x.UnitPrice).ThenBy(x => x.MinQuantity).FirstOrDefault() ?? new Price();
             var discountPriceList = GetDiscountPriceCollection(entry, market, currency);
             var minDiscountPrice = GetMinDiscountPrice(discountPriceList);
 
@@ -107,8 +107,8 @@ namespace Foundation.Features.CatalogContent
                 ImageUrl = AssetUrlResolver.Value.GetAssetUrl<IContentImage>(entry),
                 VideoAssetUrl = AssetUrlResolver.Value.GetAssetUrl<IContentVideo>(entry),
                 Url = entryUrl,
-                IsAvailable = prices.Where(price => price.MarketId == market.MarketId)
-                    .Any(x => x.UnitPrice.Currency == currency),
+                IsAvailable = prices?.Where(price => price.MarketId == market.MarketId)
+                    .Any(x => x.UnitPrice.Currency == currency) ?? false,
                 OnSale = entry.Property.Keys.Contains("OnSale") && ((bool?)entry.Property["OnSale"]?.Value ?? false),
                 NewArrival = entry.Property.Keys.Contains("NewArrival") && ((bool?)entry.Property["NewArrival"]?.Value ?? false),
                 ShowRecommendations = entryRecommendations != null ? entryRecommendations.ShowRecommendations : true,
