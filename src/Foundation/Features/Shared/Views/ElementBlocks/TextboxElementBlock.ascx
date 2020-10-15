@@ -5,6 +5,9 @@
 --%>
 
 <%@ import namespace="System.Web.Mvc" %>
+<%@ import namespace="EPiServer.Web.Mvc.Html" %>
+<%@ import namespace="EPiServer.Forms.Core.Models" %>
+<%@ import namespace="EPiServer.Forms.Helpers" %>
 <%@ Import Namespace="EPiServer.Forms.Helpers.Internal" %>
 <%@ import namespace="EPiServer.Forms.Implementation.Elements" %>
 <%@ control language="C#" inherits="ViewUserControl<TextboxElementBlock>" %>
@@ -17,7 +20,7 @@
 <% using(Html.BeginElement(Model, new { @class="FormTextbox form-group" + Model.GetValidationCssClasses(), data_f_type="textbox" })) { %>
     <label for="<%: formElement.Guid %>" class="Form__Element__Caption"><%: labelText %></label>
     <input name="<%: formElement.ElementName %>" id="<%: formElement.Guid %>" type="text" class="FormTextbox__Input textbox"
-        placeholder="<%: Model.PlaceHolder %>" value="<%: Model.GetDefaultValue() %>" <%: Html.Raw(Model.AttributesString) %> data-f-datainput />
+       placeholder="<%: Model.PlaceHolder %>" value="<%: Model.GetDefaultValue() %>" <%: Html.Raw(Model.AttributesString) %> data-f-datainput />
 
     <%= Html.ValidationMessageFor(Model) %>
     <%= Model.RenderDataList() %>
