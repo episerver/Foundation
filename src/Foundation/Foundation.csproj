@@ -1766,7 +1766,6 @@
     <Content Include="Features\Shared\Views\ElementBlocks\SelectionElementBlock.ascx" />
     <Content Include="Features\Shared\Views\ElementBlocks\SubmitButtonElementBlock.ascx" />
     <Content Include="Features\Shared\Views\ElementBlocks\TextareaElementBlock.ascx" />
-    <Content Include="Features\Shared\Views\ElementBlocks\TextboxElementBlock.ascx" />
     <Content Include="Features\Shared\Views\_Category.cshtml" />
     <Content Include="Features\Shared\Views\_Facet.cshtml" />
     <Content Include="Features\Shared\Views\_RecentlyBrowsed.cshtml" />
