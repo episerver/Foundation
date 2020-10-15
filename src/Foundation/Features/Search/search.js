@@ -72,6 +72,15 @@ export class ProductSearch {
         inst.removeTag(name);
       });
     });
+
+    $('ul#jsCategoriesFilter').children("li").each((index, el) => {
+      let $el = $(el);
+      if ($el.find('>a').hasClass('active') && $el.find('>.selection--cm__dropdown').length > 0) {
+         $el.find('>.selection--cm__dropdown')[0].style.display = "block";
+         $el.find('>.selection--cm__expand').addClass("hidden");
+         $el.find('>.selection--cm__collapse').removeClass("hidden");
+      }
+    });
   }
 
   // Search, Filter handler
