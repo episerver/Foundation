@@ -3,6 +3,9 @@ import Uri from "jsuri";
 require("easy-autocomplete");
 
 export default class people {
+    constructor() {
+        this.selectedItem = "";
+    }
     init() {
         if ($('#people').length === 0) {
             return;
@@ -21,15 +24,22 @@ export default class people {
                 match: {
                     enabled: true
                 },
-                onChooseEvent: function () {
-                    let keyword = $("#txtName").getSelectedItemData();
-                    $("#txtName").val(keyword);
+                onClickEvent: function () {
+                    $("#txtName").val(instance.selectedItem);
                     $("#btnSearch").click();
+                },
+                onSelectItemEvent: function () {
+                    instance.selectedItem = $("#txtName").getSelectedItemData();
                 }
             }
         };
 
         $("#txtName").easyAutocomplete(options);
+        $("#txtName").on("keyup", function (e) {
+            if (e.keyCode === 13) {
+                $("#btnSearch").click();
+            }   
+        })
 
         $("#btnSearch").click(function () {
             instance.doAjaxCallback();
