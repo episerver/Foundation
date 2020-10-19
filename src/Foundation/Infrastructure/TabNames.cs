@@ -68,7 +68,7 @@ namespace Foundation.Infrastructure
         [RequiredAccess(AccessLevel.Edit)]
         public const string MetaData = "Metadata";
 
-        [Display(Name = "Custom Settings", Order = 265)]
+        [Display(Name = "Custom settings", Order = 265)]
         public const string CustomSettings = "CustomSettings";
 
         [Display(Order = 270)]
@@ -82,10 +82,10 @@ namespace Foundation.Infrastructure
         [Display(Name = "Block styling", Order = 285)]
         public const string BlockStyling = "BlockStyling";
 
+        [Display(Name = "Colors", Order = 289)]
+        public const string Colors = "Colors";
+
         [Display(Name = "Settings", Order = 290)]
         public const string Settings = SystemTabNames.Settings;
-
-        [Display(Name = "Colors", Order = 300)]
-        public const string Colors = "Colors";
     }
 }

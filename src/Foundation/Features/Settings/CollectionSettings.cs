@@ -62,11 +62,11 @@ namespace Foundation.Features.Settings
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string BannerBackgroundColor { get; set; }
 
-        [Display(Name = "Banner Text Color", GroupName = TabNames.Colors, Order = 70)]
+        [Display(Name = "Banner text color", GroupName = TabNames.Colors, Order = 70)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string BannerTextColor { get; set; }
 
-        [Display(Name = "Link Color", GroupName = TabNames.Colors, Order = 80)]
+        [Display(Name = "Link color", GroupName = TabNames.Colors, Order = 80)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string LinkColor { get; set; }
 
