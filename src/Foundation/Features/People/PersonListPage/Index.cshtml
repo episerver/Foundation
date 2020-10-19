@@ -113,7 +113,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12" id="mainContentArea">
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+        {
+            <div class="col-12">
+                @Html.PropertyFor(x => x.CurrentContent.MainBody)
+            </div>
+        }
+        <div class="col-12">
             @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
         </div>
     </div>
