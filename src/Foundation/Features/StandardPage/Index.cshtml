@@ -32,10 +32,9 @@
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundImage))
             {
+                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");"></div>
                 <img class="standard-page__banner lazyload" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" />
                 <div class="hero__gradient">
-                </div>
-                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
                 </div>
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))

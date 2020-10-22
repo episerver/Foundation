@@ -1103,6 +1103,7 @@
     <Compile Include="Features\MyOrganization\Organization\OrganizationPage.cs" />
     <Compile Include="Features\MyOrganization\Organization\OrganizationPageViewModel.cs" />
     <Compile Include="Features\MyOrganization\Organization\OrganizationService.cs" />
+    <Compile Include="Features\MyOrganization\QuickOrderBlock\QuickOrderViewModel.cs" />
     <Compile Include="Features\MyOrganization\QuickOrderPage\QuickOrderData.cs" />
     <Compile Include="Features\MyOrganization\QuickOrderPage\QuickOrderPage.cs" />
     <Compile Include="Features\MyOrganization\QuickOrderPage\QuickOrderPageViewModel.cs" />
