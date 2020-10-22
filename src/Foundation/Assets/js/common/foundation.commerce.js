@@ -17,6 +17,7 @@ import B2bUsersOrganization from "Features/MyOrganization/Users/b2b-users-organi
 import Stores from "Features/Stores/stores";
 import People from "Features/People/people";
 import Market from "Features/Markets/market";
+import QuickOrderBlock from "Features/MyOrganization/QuickOrderBlock/quick-order-block";
 
 export default class FoundationCommerce {
     init() {
