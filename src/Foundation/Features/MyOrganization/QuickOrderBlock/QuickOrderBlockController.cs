@@ -61,9 +61,11 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         }
         public override ActionResult Index(QuickOrderBlock currentBlock)
         {
-            currentBlock.ReturnedMessages = TempData["messages"] as List<string>;
-            currentBlock.ProductsList = TempData["products"] as List<QuickOrderProductViewModel>;
-            return PartialView(currentBlock);
+            var model = new QuickOrderViewModel(currentBlock);
+
+            model.ReturnedMessages = TempData["messages"] as List<string>;
+            model.ProductsList = TempData["products"] as List<QuickOrderProductViewModel>;
+            return PartialView(model);
         }
 
         [HttpPost]
