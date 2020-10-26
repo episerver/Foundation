@@ -72,7 +72,7 @@ namespace Foundation.Features.Api
             _customerService.SignInManager().SignIn(user, true, true);
 
             //set tracking cookie
-            //TrackingCookieManager.SetTrackingCookie(_pageTrackingService.GetUserTrackingId(userName));
+            TrackingCookieManager.SetTrackingCookie(user.Id);
 
             return Redirect(returnUrl);
         }
@@ -116,6 +116,7 @@ namespace Foundation.Features.Api
                 {
                     _addressBookService.Save(viewModel.Address, registration.FoundationContact);
                 }
+                TrackingCookieManager.SetTrackingCookie(registration.FoundationContact.UserId);
 
                 return new EmptyResult();
             }
@@ -153,6 +154,7 @@ namespace Foundation.Features.Api
                 {
                     case SignInStatus.Success:
                         _campaignService.UpdateLastLoginDate(viewModel.Email);
+                        TrackingCookieManager.SetTrackingCookie(user.Id);
                         break;
 
                     case SignInStatus.LockedOut:
