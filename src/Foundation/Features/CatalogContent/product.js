@@ -16,7 +16,7 @@
   }
 
   addToCart(data, url, callback, isAddToCart) {
-    $('body>.loading-box').show();
+    $('body > .loading-box').show();
     data.requestFrom = "axios";
     axios.post(url, data)
       .then(function (result) {
