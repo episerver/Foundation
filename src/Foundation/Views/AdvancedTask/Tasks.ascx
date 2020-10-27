@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<AdvancedTask.Models.AdvancedTaskIndexViewData>" %>
 <%@ Import Namespace="AdvancedTask.Business.AdvancedTask" %>
+<%@ Import Namespace="AdvancedTask.Models" %>
 <%@ Import Namespace="EPiServer.Core" %>
 <%@ Import Namespace="EPiServer.Editor" %>
 <%@ Import Namespace="EPiServer.Shell.Web.Mvc.Html" %>
@@ -46,6 +47,10 @@
     }
 </style>
 <%  bool enableContentApprovalDeadline = bool.Parse(ConfigurationManager.AppSettings["ATM:EnableContentApprovalDeadline"] ?? "false"); %>
+<% if (Model.ShowChangeApprovalTab)
+   { %>
+    <% Html.RenderPartial("Menu", "Index"); %>
+<% } %>
 <table class="epi-default">
     <thead>
         <tr>
@@ -62,20 +67,6 @@
                                 new { pageNumber = Model.PageNumber, pageSize = Model.PageSize, sorting = Model.Sorting=="name_desc"?"name_aes":"name_desc"})%>
                 </label>
             </th>
-            <% if (Model.ShowApprovalTypeColumn)
-               { %>
-                <th>
-                    <label>
-                        <%= Html.ViewLink(
-                                "Approval Type",
-                                "Approval Type",  // title
-                                "Index", // Action name
-                                "", // css class
-                                "",
-                                new { pageNumber = Model.PageNumber, pageSize = Model.PageSize, sorting = Model.Sorting=="atype_desc"?"atype_aes":"atype_desc"})%>
-                    </label>
-                </th>
-            <% } %>
             <th>
                 <label>
                     <%= Html.ViewLink(
@@ -143,26 +134,21 @@
             {
     %>
     <tr <%=m.NotificationUnread?"style=\"background-color: #FFF9C4;\"" :"" %>>
-         <% if (!string.IsNullOrEmpty(m.ApprovalType) && m.ApprovalType.Equals("Content"))
-            { %>
+         
         <td><%=Html.CheckBox(m.ApprovalId.ToString(), false, new { onchange = "selectionChanged(this)", @class="checkbox" })%></td>
-        <% }
-            else
-            { %>
-        <td></td>
-        <% } %>
+        
         <td>
             <% if (!ContentReference.IsNullOrEmpty(m.ContentReference))
                 {
                     if (!m.CanUserPublish)
                     { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" id="id-<%= m.ApprovalId.ToString() %>" data-value="ID: <%= m.ContentReference.ID %> - <%= m.ContentName %>" target="_blank"><%= Html.Encode(m.ContentName) %>
+            <a href="<%= m.URL %>" id="id-<%= m.ApprovalId.ToString() %>" data-value="ID: <%= m.ContentReference.ID %> - <%= m.ContentName %>" target="_blank"><%= Html.Encode(m.ContentName) %>
                 <span style="color: red" class="error-span" id="span-<%= m.ApprovalId.ToString() %>"></span>
             </a>
             <% }
                 else
                 { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.ContentName) %></a>
+            <a href="<%= m.URL %>" target="_blank"><%= Html.Encode(m.ContentName) %></a>
             <% }
             }
             else
@@ -170,20 +156,6 @@
             <%= m.ContentName%>
             <% } %>
         </td>
-        <% if (Model.ShowApprovalTypeColumn)
-            { %>
-        <td>
-            <% if (ContentReference.IsNullOrEmpty(m.ContentReference))
-                { %>
-            <%= m.ApprovalType%>
-            <% }
-                else
-                { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.ApprovalType) %></a>
-            <% } %>
-
-        </td>
-        <% } %>
         <td>
             <% if (ContentReference.IsNullOrEmpty(m.ContentReference))
                 { %>
@@ -191,7 +163,7 @@
             <% }
                 else
                 { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.ContentType) %></a>
+            <a href="<%= m.URL %>" target="_blank"><%= Html.Encode(m.ContentType) %></a>
             <% } %>
         </td>
         <td>
@@ -201,7 +173,7 @@
             <% }
                 else
                 { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.Type) %></a>
+            <a href="<%= m.URL %>" target="_blank"><%= Html.Encode(m.Type) %></a>
             <% } %>
         </td>
         <td>
@@ -211,7 +183,7 @@
             <% }
                 else
                 { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.DateTime) %></a>
+            <a href="<%= m.URL %>" target="_blank"><%= Html.Encode(m.DateTime) %></a>
             <% } %>
         </td>
         <td>
@@ -221,7 +193,7 @@
             <% }
                 else
                 { %>
-            <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.StartedBy) %></a>
+            <a href="<%= m.URL %>" target="_blank"><%= Html.Encode(m.StartedBy) %></a>
             <% } %>
         </td>
 
@@ -234,7 +206,7 @@
                 <% }
                    else
                    { %>
-                    <a href="<%= PageEditing.GetEditUrl(m.ContentReference) %>" target="_blank"><%= Html.Encode(m.Deadline) %></a>
+                    <a href="<%= m.URL %>" target="_blank"><%= Html.Encode(m.Deadline) %></a>
                 <% } %>
             </td>
         <% } %>
