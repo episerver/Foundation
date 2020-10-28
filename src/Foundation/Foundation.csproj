@@ -1006,6 +1006,10 @@
     <Compile Include="Features\CatalogContent\Bundle\DemoGenericBundleViewModel.cs" />
     <Compile Include="Features\CatalogContent\Bundle\GenericBundle.cs" />
     <Compile Include="Features\CatalogContent\CatalogEntryViewModelFactory.cs" />
+    <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProduct.cs" />
+    <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProductController.cs" />
+    <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProductViewModel.cs" />
+    <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicVariation\DynamicVariant.cs" />
     <Compile Include="Features\CatalogContent\ElevatedRoles.cs" />
     <Compile Include="Features\CatalogContent\EntryViewModelBase.cs" />
     <Compile Include="Features\CatalogContent\Bundle\GenericBundleViewModel.cs" />
@@ -1617,6 +1621,7 @@
     <Content Include="Assets\vendors\fa-regular-400.svg" />
     <Content Include="Assets\vendors\fa-solid-900.svg" />
     <Content Include="ClientResources\Styles\fontawesome.min.css" />
+    <None Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
     <Content Include="Features\Markets\market.js" />
     <Content Include="modules\_protected\Episerver.Marketing.Connector\ClientResources\Profile\Profile.js" />
@@ -2282,6 +2287,7 @@
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
     <Content Include="modules\_protected\BVNetwork.404Handler\web.config" />
     <Content Include="modules\_protected\BVNetwork.404Handler\BVNetwork.404Handler.zip" />
+    <Content Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\_ProductDetail.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
