@@ -1009,6 +1009,7 @@
     <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProduct.cs" />
     <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProductController.cs" />
     <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProductViewModel.cs" />
+    <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicVariation\CurrencySelectionFactory.cs" />
     <Compile Include="Features\CatalogContent\DynamicCatalogContent\DynamicVariation\DynamicVariant.cs" />
     <Compile Include="Features\CatalogContent\ElevatedRoles.cs" />
     <Compile Include="Features\CatalogContent\EntryViewModelBase.cs" />

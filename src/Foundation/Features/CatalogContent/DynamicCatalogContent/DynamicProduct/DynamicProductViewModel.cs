@@ -1,8 +1,11 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Core;
 using EPiServer.Marketing.Testing.Core.DataClass;
 using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.ServiceLocation;
+using EPiServer.Shell;
+using EPiServer.Web.Routing;
 using Foundation.Commerce.Markets;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Features.CatalogContent.Product;
@@ -38,9 +41,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
     public static class DynamicProductViewModelExtensions
     {
-        private static readonly Injected<IPromotionService> _promotionService;
-        private static readonly Injected<IPriceService> _priceService;
-        private static readonly Injected<IContentLoader> _contentLoader;
+        private static readonly Injected<UrlResolver> _url;
         private static readonly Injected<ICurrentMarket> _currentMarket;
         private static readonly Injected<ICurrencyService> _currencyservice;
 
@@ -61,10 +62,12 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
                     foreach (var v in group)
                     {
                         var variantModel = new VariantOptionModel();
-                        var defaultPrice = GetDefaultPrice(model.Variant.Code, market, currency);
-                        variantModel.Variant = _contentLoader.Service.Get<VariationContent>(v.Variant) as GenericVariant;
-                        variantModel.DefaultPrice = defaultPrice?.UnitPrice ?? new Money(0, currency);
-                        variantModel.DiscountedPrice = GetDiscountPrice(defaultPrice, market, currency);
+                        var defaultPriceModel = v.Prices.FirstOrDefault(x => x.Currency == currency.CurrencyCode);
+                        var defaultPrice = defaultPriceModel != null ? new Money(defaultPriceModel.Amount, currency) : new Money(0, currency);
+                        variantModel.Name = v.Name;
+                        variantModel.ImageUrl = !ContentReference.IsNullOrEmpty(v.Image) ? _url.Service.GetUrl(v.Image) : "";
+                        variantModel.DefaultPrice = defaultPrice;
+                        variantModel.DiscountedPrice = defaultPrice;
 
                         groupModel.Variants.Add(variantModel);
                     }
@@ -76,26 +79,6 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
                 model.GroupVariants = groups;
             }
         }
-
-        private static IPriceValue GetDefaultPrice(string entryCode, IMarket market, Currency currency)
-        {
-            return _priceService.Service.GetDefaultPrice(
-                market.MarketId,
-                DateTime.Now,
-                new CatalogKey(entryCode),
-                currency);
-        }
-
-        private static Money? GetDiscountPrice(IPriceValue defaultPrice, IMarket market, Currency currency)
-        {
-            if (defaultPrice == null)
-            {
-                return null;
-            }
-
-            return _promotionService.Service.GetDiscountPrice(defaultPrice.CatalogKey, market.MarketId, currency).UnitPrice;
-        }
-
     }
 
 
@@ -111,7 +94,8 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
     public class VariantOptionModel
     {
-        public GenericVariant Variant { get; set; }
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
         public Money DefaultPrice { get; set; }
         public Money? DiscountedPrice { get; set; }
     }
