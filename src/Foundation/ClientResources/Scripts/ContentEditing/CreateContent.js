@@ -48,7 +48,7 @@
                 } else {
                     domStyle.set(this.contentTypeList._suggestedContentTypes.domNode, "display", "");
                 }
-                this._originalGroups = this._originalGroups || lang.clone(this.contentTypeList.model.groups);
+                this._originalGroups = this._originalGroups || lang.clone(this.contentTypeList.groups);
                 var groupKeys = Object.keys(this._originalGroups);
 
                 array.forEach(groupKeys, function (key) {
@@ -57,11 +57,11 @@
                         return item.name.toLowerCase().indexOf(queryText.toLowerCase()) !== -1 || item.localizedName.toLowerCase().indexOf(queryText.toLowerCase()) !== -1;
                     });
                     if (!contentTypes.length) {
-                        domStyle.set(this.contentTypeList.model.groups[key].domNode, "display", "none");
+                        domStyle.set(this.contentTypeList.groups[key].domNode, "display", "none");
                     }
                     else {
-                        domStyle.set(this.contentTypeList.model.groups[key].domNode, "display", "");
-                        this.contentTypeList.model.groups[key].set("contentTypes", contentTypes);
+                        domStyle.set(this.contentTypeList.groups[key].domNode, "display", "");
+                        this.contentTypeList.groups[key].set("contentTypes", contentTypes);
                     }
                 }, this);
             }
