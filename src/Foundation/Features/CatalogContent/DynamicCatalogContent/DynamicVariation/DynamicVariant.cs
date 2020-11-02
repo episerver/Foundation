@@ -1,10 +1,10 @@
 ﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
-using EPiServer.Commerce;
 using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
 using EPiServer.Shell.ObjectEditing;
+using EPiServer.Web;
 using Foundation.Features.CatalogContent.Variation;
 using Newtonsoft.Json;
 using System;
@@ -27,12 +27,32 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
 
     public class VariantGroup
     {
-        [UIHint(UIHint.ProductVariation)]
-        [Display(Name = "Variation")]
-        public virtual ContentReference Variant { get; set; }
+        [Display(Name = "Name")]
+        public virtual string Name { get; set; }
+
+        [UIHint(UIHint.Image)]
+        [Display(Name = "Image")]
+        public virtual ContentReference Image { get; set; }
+
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<PriceModel>))]
+        public virtual IList<PriceModel> Prices { get; set; }
 
         [Display(Name = "Group name")]
         public virtual string GroupName { get; set; }
+    }
+
+    public class PriceModel
+    {
+        public decimal Amount { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(CurrencySelectionFactory))]
+        public string Currency { get; set; }
+    }
+
+
+    [PropertyDefinitionTypePlugIn]
+    public class PriceModelPropertyList : PropertyList<PriceModel>
+    {
     }
 
     [PropertyDefinitionTypePlugIn]

@@ -33,13 +33,19 @@
                 <div class="col-12">
 
                     <div>
-                        @foreach(var g in Model.GroupVariants)
+                        @foreach (var g in Model.GroupVariants)
                         {
                             <label>@g.GroupName</label>
                             <select>
-                                @foreach(var v in g.Variants)
+                                @foreach (var v in g.Variants)
                                 {
-                                    <option value="@v.Variant.Code">@v.Variant.DisplayName - @v.DefaultPrice.ToString() - @v.DiscountedPrice.ToString()</option>
+                                    <option value="@v.Name">
+                                        @if (!string.IsNullOrEmpty(v.ImageUrl))
+                                        {
+                                            <img src="@v.ImageUrl" alt="Alternate Text" />
+                                        }
+                                        @v.Name - @v.DefaultPrice.ToString()
+                                    </option>
                                 }
                             </select>
                         }
