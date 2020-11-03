@@ -1,4 +1,5 @@
 ﻿using Mediachase.Commerce;
+using System.Collections.Generic;
 
 namespace Foundation.Features.NamedCarts
 {
@@ -39,5 +40,8 @@ namespace Foundation.Features.NamedCarts
         // for Checkout Separate shipment
         public int ToShipmentId { get; set; }
         public string DeliveryMethodId { get; set; }
+
+        // for DynamicProduct 
+        public List<string> DynamicCodes { get; set; }
     }
 }
