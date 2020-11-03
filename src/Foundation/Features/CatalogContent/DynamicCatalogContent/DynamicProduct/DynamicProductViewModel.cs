@@ -1,21 +1,12 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.Marketing.Testing.Core.DataClass;
+﻿using EPiServer.Core;
 using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.ServiceLocation;
-using EPiServer.Shell;
 using EPiServer.Web.Routing;
 using Foundation.Commerce.Markets;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Features.CatalogContent.Product;
-using Foundation.Features.CatalogContent.Services;
-using Foundation.Features.CatalogContent.Variation;
 using Foundation.Social.ViewModels;
 using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Pricing;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -65,6 +56,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
                         var defaultPriceModel = v.Prices.FirstOrDefault(x => x.Currency == currency.CurrencyCode);
                         var defaultPrice = defaultPriceModel != null ? new Money(defaultPriceModel.Amount, currency) : new Money(0, currency);
                         variantModel.Name = v.Name;
+                        variantModel.Code = v.Code;
                         variantModel.ImageUrl = !ContentReference.IsNullOrEmpty(v.Image) ? _url.Service.GetUrl(v.Image) : "";
                         variantModel.DefaultPrice = defaultPrice;
                         variantModel.DiscountedPrice = defaultPrice;
@@ -94,6 +86,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
     public class VariantOptionModel
     {
+        public string Code { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public Money DefaultPrice { get; set; }

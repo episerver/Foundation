@@ -4,6 +4,7 @@ using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
 using EPiServer.Shell.ObjectEditing;
+using EPiServer.Validation;
 using EPiServer.Web;
 using Foundation.Features.CatalogContent.Variation;
 using Newtonsoft.Json;
@@ -24,21 +25,45 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
         public virtual IList<VariantGroup> VariantsOptions { get; set; }
     }
 
+    public class PageListBlockValidator : IValidate<DynamicVariant>
+    {
+        public IEnumerable<ValidationError> Validate(DynamicVariant variant)
+        {
+            if (variant.VariantsOptions != null && variant.VariantsOptions.Any())
+            {
+                if (variant.VariantsOptions.GroupBy(x => x.Code).Where(x => x.Count() > 1).Any())
+                {
+                    return new ValidationError[]
+                    {
+                        new ValidationError()
+                        {
+                             ErrorMessage = "The variant option code is unique",
+                             PropertyName = variant.GetPropertyName(x => x.VariantsOptions),
+                             Severity = ValidationErrorSeverity.Error,
+                             ValidationType = ValidationErrorType.StorageValidation
+                        }
+                    };
+                }
+            }
+
+            return Enumerable.Empty<ValidationError>();
+        }
+    }
 
     public class VariantGroup
     {
-        [Display(Name = "Name")]
+        [Display(Name = "Group name")]
+        public virtual string GroupName { get; set; }
+
         public virtual string Name { get; set; }
 
+        public virtual string Code { get; set; }
+
         [UIHint(UIHint.Image)]
-        [Display(Name = "Image")]
         public virtual ContentReference Image { get; set; }
 
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<PriceModel>))]
         public virtual IList<PriceModel> Prices { get; set; }
-
-        [Display(Name = "Group name")]
-        public virtual string GroupName { get; set; }
     }
 
     public class PriceModel
@@ -62,7 +87,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
         {
             return JsonConvert.DeserializeObject<VariantGroup>(value);
         }
-        
+
         [Obsolete("ParseToObject is no longer required to be implemented. The same functionality can be achieved by creating a new instance and calling the ParseToSelf method.")]
         public override PropertyData ParseToObject(string value)
         {

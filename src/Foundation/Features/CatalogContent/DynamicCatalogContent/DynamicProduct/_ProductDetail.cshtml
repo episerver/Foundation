@@ -36,10 +36,10 @@
                         @foreach (var g in Model.GroupVariants)
                         {
                             <label>@g.GroupName</label>
-                            <select>
+                            <select class="jsDynamicOptions">
                                 @foreach (var v in g.Variants)
                                 {
-                                    <option value="@v.Name">
+                                    <option value="@v.Code">
                                         @if (!string.IsNullOrEmpty(v.ImageUrl))
                                         {
                                             <img src="@v.ImageUrl" alt="Alternate Text" />
