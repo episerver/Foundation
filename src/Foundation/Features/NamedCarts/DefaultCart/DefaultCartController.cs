@@ -23,8 +23,6 @@ using Foundation.Infrastructure;
 using Foundation.Personalization;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Orders;
-using Mediachase.Commerce.Orders.Dto;
-using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Security;
 using System;
 using System.Collections.Generic;
@@ -377,13 +375,10 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             var totals = _orderGroupCalculator.GetOrderGroupTotals(CartWithValidationIssues.Cart);
 
-            var paymentMethod = PaymentManager.GetPaymentMethodBySystemName("GenericCreditCard", "en");
-            var paymentMethodId = paymentMethod.PaymentMethod.Rows[0]["PaymentMethodId"].ToString();
-
             var payment = CartWithValidationIssues.Cart.CreateCardPayment();
             payment.BillingAddress = paymentAddress;
             payment.CardType = "Credit card";
-            payment.PaymentMethodId = new Guid(paymentMethodId);
+            payment.PaymentMethodId = new Guid("B1DA37A6-CF19-40D5-915B-B863D74D8799");
             payment.PaymentMethodName = "GenericCreditCard";
             payment.Amount = CartWithValidationIssues.Cart.GetTotal().Amount;
             payment.CreditCardNumber = creditCard.CreditCardNumber;
@@ -407,7 +402,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             await _recommendationService.TrackOrder(HttpContext, order);
 
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            if (!referencePages?.OrderConfirmationPage.IsNullOrEmpty() ?? false)
+            if (referencePages?.OrderConfirmationPage.IsNullOrEmpty() ?? false)
             {
                 var orderConfirmationPage = _contentLoader.Get<OrderConfirmationPage>(referencePages.OrderConfirmationPage);
                 var queryCollection = new NameValueCollection
