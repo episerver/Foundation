@@ -32,25 +32,6 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div>
-                        @foreach (var g in Model.GroupVariants)
-                        {
-                            <label>@g.GroupName</label>
-                            <select class="jsDynamicOptions">
-                                @foreach (var v in g.Variants)
-                                {
-                                    <option value="@v.Code">
-                                        @if (!string.IsNullOrEmpty(v.ImageUrl))
-                                        {
-                                            <img src="@v.ImageUrl" alt="Alternate Text" />
-                                        }
-                                        @v.Name - @v.DefaultPrice.ToString()
-                                    </option>
-                                }
-                            </select>
-                        }
-                    </div>
-
                     @if (Model.IsAvailable)
                     {
                         <div class="d-inline-block">
@@ -112,6 +93,28 @@
                             @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
                         </span>
                     }
+
+                    <hr />
+                    <div>
+                        @foreach (var g in Model.GroupVariants)
+                        {
+                            <label><strong>@g.GroupName</strong></label>
+                            <select class="jsDynamicOptions select-menu">
+                                @foreach (var v in g.Variants)
+                                {
+                                    <option value="@v.Code">
+                                        @if (!string.IsNullOrEmpty(v.ImageUrl))
+                                        {
+                                            <img src="@v.ImageUrl" alt="Alternate Text" />
+                                        }
+                                        @v.Name - @v.DefaultPrice.ToString()
+                                    </option>
+                                }
+                            </select>
+                        }
+                    </div>
+                    <hr />
+
                 </div>
             </div>
             <br />

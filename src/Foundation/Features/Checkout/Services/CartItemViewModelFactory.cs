@@ -59,7 +59,7 @@ namespace Foundation.Features.Checkout.Services
             var viewModel = new CartItemViewModel
             {
                 Code = lineItem.Code,
-                DisplayName = entry.DisplayName,
+                DisplayName = lineItem.DisplayName,
                 ImageUrl = entry.GetAssets<IContentImage>(_contentLoader, _urlResolver).FirstOrDefault() ?? "",
                 DiscountedPrice = GetDiscountedPrice(cart, lineItem),
                 PlacedPrice = new Money(lineItem.PlacedPrice, _currencyService.GetCurrentCurrency()),

@@ -308,10 +308,10 @@ namespace Foundation.Features.Checkout.Services
             {
                 lineItem = cart.CreateLineItem(entryContent.Code, _orderGroupFactory);
                 var lineDisplayName = entryContent.DisplayName;
-                if (dynamicVariantOptionCodes.Count > 0)
+                if (dynamicVariantOptionCodes?.Count > 0)
                 {
                     lineItem.Properties[VariantOptionCodesProperty] = string.Join(",", dynamicVariantOptionCodes.OrderBy(x => x));
-                    lineDisplayName += lineItem.Properties[VariantOptionCodesProperty];
+                    lineDisplayName += " - " + lineItem.Properties[VariantOptionCodesProperty];
                 }
 
                 lineItem.DisplayName = lineDisplayName;
@@ -392,7 +392,7 @@ namespace Foundation.Features.Checkout.Services
             var shipments = cart.GetFirstForm().Shipments;
             foreach (var shipment in shipments)
             {
-                var dynamicLineItems = shipment.LineItems.Where(x => !string.IsNullOrEmpty(x.Properties[VariantOptionCodesProperty].ToString()));
+                var dynamicLineItems = shipment.LineItems.Where(x => !string.IsNullOrEmpty(x.Properties[VariantOptionCodesProperty]?.ToString()));
 
                 foreach (var item in dynamicLineItems)
                 {
@@ -400,7 +400,7 @@ namespace Foundation.Features.Checkout.Services
                     var dynamicCodes = dynamicCodesStr.Split(',');
                     var contentLink = _referenceConverter.GetContentLink(item.Code);
                     var variant = _contentLoader.Get<IContent>(contentLink) as DynamicVariant;
-                    var dynamicVariants = variant.VariantsOptions.Where(x => dynamicCodes.Contains(x.Code));
+                    var dynamicVariants = variant.VariantOptions.Where(x => dynamicCodes.Contains(x.Code));
                     var totalDynamicVariantsPrice = dynamicVariants.Sum(x => x.Prices.FirstOrDefault(p => p.Currency == cart.Currency.CurrencyCode).Amount);
                     item.PlacedPrice += totalDynamicVariantsPrice;
 

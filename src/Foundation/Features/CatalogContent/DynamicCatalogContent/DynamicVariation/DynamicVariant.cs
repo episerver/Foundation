@@ -15,30 +15,31 @@ using System.Linq;
 
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation
 {
-    [CatalogContentType(DisplayName = "Dynamic Variant", GUID = "11c2960f-79d6-4876-8d8a-6b7bc8cfe869", Description = "Dynamic variant supports multiple variation types")]
+    [CatalogContentType(DisplayName = "Dynamic Variant", GUID = "11c2960f-79d6-4876-8d8a-6b7bc8cfe869", Description = "Dynamic variant supports multiple options")]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-23.png")]
     public class DynamicVariant : GenericVariant
     {
         [BackingType(typeof(VariantGroupPropertyList))]
-        [Display(GroupName = "Variants Options", Order = 400)]
+        [Display(Name = "Variant Options", GroupName = "Variant Options", Order = 400)]
+        [ClientEditor(ClientEditingClass = "foundation/VariantOptionPrices")]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<VariantGroup>))]
-        public virtual IList<VariantGroup> VariantsOptions { get; set; }
+        public virtual IList<VariantGroup> VariantOptions { get; set; }
     }
 
     public class PageListBlockValidator : IValidate<DynamicVariant>
     {
         public IEnumerable<ValidationError> Validate(DynamicVariant variant)
         {
-            if (variant.VariantsOptions != null && variant.VariantsOptions.Any())
+            if (variant.VariantOptions != null && variant.VariantOptions.Any())
             {
-                if (variant.VariantsOptions.GroupBy(x => x.Code).Where(x => x.Count() > 1).Any())
+                if (variant.VariantOptions.GroupBy(x => x.Code).Where(x => x.Count() > 1).Any())
                 {
                     return new ValidationError[]
                     {
                         new ValidationError()
                         {
                              ErrorMessage = "The variant option code is unique",
-                             PropertyName = variant.GetPropertyName(x => x.VariantsOptions),
+                             PropertyName = variant.GetPropertyName(x => x.VariantOptions),
                              Severity = ValidationErrorSeverity.Error,
                              ValidationType = ValidationErrorType.StorageValidation
                         }
@@ -55,13 +56,16 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
         [Display(Name = "Group name")]
         public virtual string GroupName { get; set; }
 
+        [Required]
         public virtual string Name { get; set; }
 
+        [Required]
         public virtual string Code { get; set; }
 
         [UIHint(UIHint.Image)]
         public virtual ContentReference Image { get; set; }
 
+        [Required]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<PriceModel>))]
         public virtual IList<PriceModel> Prices { get; set; }
     }

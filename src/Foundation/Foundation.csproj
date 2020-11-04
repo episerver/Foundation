@@ -1621,6 +1621,7 @@
     <Content Include="Assets\vendors\fa-brands-400.svg" />
     <Content Include="Assets\vendors\fa-regular-400.svg" />
     <Content Include="Assets\vendors\fa-solid-900.svg" />
+    <Content Include="ClientResources\Scripts\VariantOptionPrices.js" />
     <Content Include="ClientResources\Styles\fontawesome.min.css" />
     <None Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
