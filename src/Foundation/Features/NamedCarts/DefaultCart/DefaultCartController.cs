@@ -14,6 +14,7 @@ using Foundation.Commerce.Customer;
 using Foundation.Commerce.Customer.Services;
 using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Services;
+using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Header;
@@ -21,6 +22,7 @@ using Foundation.Features.MyAccount.OrderConfirmation;
 using Foundation.Features.Settings;
 using Foundation.Infrastructure;
 using Foundation.Personalization;
+using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
@@ -56,6 +58,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         private readonly IProductService _productService;
         private readonly LanguageResolver _languageResolver;
         private readonly ISettingsService _settingsService;
+        private readonly IPaymentService _paymentService;
+        private readonly ICurrentMarket _currentMarket;
 
         private const string b2cMinicart = "~/Features/Shared/Foundation/Header/_HeaderCart.cshtml";
 
@@ -75,7 +79,9 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             CartItemViewModelFactory cartItemViewModelFactory,
             IProductService productService,
             LanguageResolver languageResolver,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IPaymentService paymentService,
+            ICurrentMarket currentMarket)
 
         {
             _cartService = cartService;
@@ -94,6 +100,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             _productService = productService;
             _languageResolver = languageResolver;
             _settingsService = settingsService;
+            _paymentService = paymentService;
+            _currentMarket = currentMarket;
         }
 
         private CartWithValidationIssues CartWithValidationIssues => _cart ?? (_cart = _cartService.LoadCart(_cartService.DefaultCartName, true));
@@ -373,12 +381,13 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             }
 
             var totals = _orderGroupCalculator.GetOrderGroupTotals(CartWithValidationIssues.Cart);
-
+            var creditCardPayment = _paymentService.GetPaymentMethodsByMarketIdAndLanguageCode(CartWithValidationIssues.Cart.MarketId.Value, _currentMarket.GetCurrentMarket().DefaultLanguage.Name).FirstOrDefault(x => x.SystemKeyword == "GenericCreditCard");
             var payment = CartWithValidationIssues.Cart.CreateCardPayment();
+
             payment.BillingAddress = paymentAddress;
             payment.CardType = "Credit card";
-            payment.PaymentMethodId = new Guid("B1DA37A6-CF19-40D5-915B-B863D74D8799");
-            payment.PaymentMethodName = "GenericCreditCard";
+            payment.PaymentMethodId = creditCardPayment.PaymentMethodId;
+            payment.PaymentMethodName = creditCardPayment.SystemKeyword;
             payment.Amount = CartWithValidationIssues.Cart.GetTotal().Amount;
             payment.CreditCardNumber = creditCard.CreditCardNumber;
             payment.CreditCardSecurityCode = creditCard.SecurityCode;
@@ -401,7 +410,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             await _recommendationService.TrackOrder(HttpContext, order);
 
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            if (referencePages?.OrderConfirmationPage.IsNullOrEmpty() ?? false)
+            if (!(referencePages?.OrderConfirmationPage.IsNullOrEmpty() ?? true))
             {
                 var orderConfirmationPage = _contentLoader.Get<OrderConfirmationPage>(referencePages.OrderConfirmationPage);
                 var queryCollection = new NameValueCollection
