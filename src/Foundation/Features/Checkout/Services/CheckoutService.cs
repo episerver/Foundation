@@ -232,6 +232,10 @@ namespace Foundation.Features.Checkout.Services
             {
                 modelState.AddModelError("", _localizationService.GetString("/Checkout/Payment/Errors/ProcessingPaymentFailure") + ex.Message);
             }
+            catch (Exception ex)
+            {
+                modelState.AddModelError("", ex.Message);
+            }
 
             return null;
         }
