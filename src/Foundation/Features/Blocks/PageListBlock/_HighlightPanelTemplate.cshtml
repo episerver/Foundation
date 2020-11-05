@@ -12,7 +12,7 @@
     foreach (var page in Model.Pages)
     {
         page.Flip = flip;
-        var imageCol = page.PreviewOption == PreviewOptions.Half ? 6 : 4;
+        var imageCol = page.PreviewOption == PreviewOptions.Half ? 6 : (page.PreviewOption == PreviewOptions.Full ? 12 : 4);
         var textCol = imageCol == 12 ? 12 : 12 - imageCol;
         var foundationPage = page.Page as FoundationPageData;
 

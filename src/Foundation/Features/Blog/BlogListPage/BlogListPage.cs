@@ -54,7 +54,7 @@ namespace Foundation.Features.Blog.BlogListPage
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
-        [Display(Name = "Preview option (not available in the Grid template)", GroupName = TabNames.BlogList, Order = 90)]
+        [Display(Name = "Preview option (not available in the Grid, Card, Insight templates)", GroupName = TabNames.BlogList, Order = 90)]
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 

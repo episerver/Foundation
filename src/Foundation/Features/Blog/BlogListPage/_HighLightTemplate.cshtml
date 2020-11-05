@@ -1,13 +1,12 @@
 ﻿@using EPiServer.AddOns.Helpers
 @using Foundation.Features.Blog.BlogItemPage
 @using Foundation.Features.Shared.SelectionFactories
-@using Foundation.Features.Blog.BlogListPage
 @using ImageProcessor.Web.Episerver
 
 @model BlogItemPageViewModel
 
 @{
-    var imageCol = Model.PreviewOption == PreviewOptions.Half ? 6 : 4;
+    var imageCol = Model.PreviewOption == PreviewOptions.Half ? 6 : (Model.PreviewOption == PreviewOptions.Full ? 12 : 4);
     var textCol = imageCol == 12 ? 12 : 12 - imageCol;
     var flip = ViewData["Flip"] != null ? ((bool)ViewData["Flip"]) : false;
 }
