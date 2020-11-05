@@ -64,7 +64,7 @@ namespace Foundation.Features.Blocks.PageListBlock
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
-        [Display(Name = "Preview option (not available in the Grid template)", GroupName = SystemTabNames.Content, Order = 110)]
+        [Display(Name = "Preview option (not available in the Grid, Card, Insight templates)", GroupName = SystemTabNames.Content, Order = 110)]
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
