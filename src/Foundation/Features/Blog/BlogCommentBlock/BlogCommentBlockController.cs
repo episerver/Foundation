@@ -75,6 +75,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
             // Try to get recent comments
             try
             {
+                blockViewModel.PagingInfo = pagingInfo;
                 var blogComments = _commentRepository.Get(
                     new PageCommentFilter
                     {
@@ -85,8 +86,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
                     out var totalComments
                 );
 
-                blockViewModel.Comments = blogComments;
-                blockViewModel.PagingInfo = pagingInfo;
+                blockViewModel.Comments = blogComments;                
                 blockViewModel.PagingInfo.TotalRecord = (int)totalComments;
             }
             catch (Exception ex)
