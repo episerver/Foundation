@@ -38,33 +38,71 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
         public static void GenerateVariantGroup(this DynamicProductViewModel model)
         {
-            var variantGroups = model.Variant.VariantsOptions.GroupBy(x => x.GroupName);
+            var variantGroups = model.Variant.VariantOptions.GroupBy(x => x.ParentGroupName);
             var market = _currentMarket.Service.GetCurrentMarket();
             var currency = _currencyservice.Service.GetCurrentCurrency();
 
             if (variantGroups != null)
             {
                 var groups = new List<VariantGroupModel>();
+
                 foreach (var group in variantGroups)
                 {
                     var groupModel = new VariantGroupModel();
-                    groupModel.GroupName = group.Key;
 
-                    foreach (var v in group)
+                    if (string.IsNullOrEmpty(group.Key))
                     {
-                        var variantModel = new VariantOptionModel();
-                        var defaultPriceModel = v.Prices.FirstOrDefault(x => x.Currency == currency.CurrencyCode);
-                        var defaultPrice = defaultPriceModel != null ? new Money(defaultPriceModel.Amount, currency) : new Money(0, currency);
-                        variantModel.Name = v.Name;
-                        variantModel.Code = v.Code;
-                        variantModel.ImageUrl = !ContentReference.IsNullOrEmpty(v.Image) ? _url.Service.GetUrl(v.Image) : "";
-                        variantModel.DefaultPrice = defaultPrice;
-                        variantModel.DiscountedPrice = defaultPrice;
+                        var groupByGroups = group.ToList().GroupBy(x => x.GroupName);
+                        foreach (var g in groupByGroups)
+                        {
+                            groupModel.GroupName = g.Key;
 
-                        groupModel.Variants.Add(variantModel);
+                            foreach (var v in g)
+                            {
+                                var variantModel = new VariantOptionModel();
+                                var defaultPriceModel = v.Prices.FirstOrDefault(x => x.Currency == currency.CurrencyCode);
+                                var defaultPrice = defaultPriceModel != null ? new Money(defaultPriceModel.Amount, currency) : new Money(0, currency);
+                                variantModel.Name = v.Name;
+                                variantModel.Code = v.Code;
+                                variantModel.ImageUrl = !ContentReference.IsNullOrEmpty(v.Image) ? _url.Service.GetUrl(v.Image) : "";
+                                variantModel.DefaultPrice = defaultPrice;
+                                variantModel.DiscountedPrice = defaultPrice;
+
+                                groupModel.Variants.Add(variantModel);
+                            }
+
+                            groups.Add(groupModel);
+                        }
                     }
+                    else
+                    {
+                        groupModel.GroupName = group.Key;
 
-                    groups.Add(groupModel);
+                        var groupByGroups = group.ToList().GroupBy(x => x.GroupName);
+                        foreach (var g in groupByGroups)
+                        {
+                            var subGroupModel = new VariantGroupModel();
+                            subGroupModel.GroupName = g.Key;
+
+                            foreach (var v in g)
+                            {
+                                var variantModel = new VariantOptionModel();
+                                var defaultPriceModel = v.Prices.FirstOrDefault(x => x.Currency == currency.CurrencyCode);
+                                var defaultPrice = defaultPriceModel != null ? new Money(defaultPriceModel.Amount, currency) : new Money(0, currency);
+                                variantModel.Name = v.Name;
+                                variantModel.Code = v.Code;
+                                variantModel.ImageUrl = !ContentReference.IsNullOrEmpty(v.Image) ? _url.Service.GetUrl(v.Image) : "";
+                                variantModel.DefaultPrice = defaultPrice;
+                                variantModel.DiscountedPrice = defaultPrice;
+
+                                subGroupModel.Variants.Add(variantModel);
+                            }
+
+                            groupModel.SubGroups.Add(subGroupModel);
+                        }
+
+                        groups.Add(groupModel);
+                    }
                 }
 
 
@@ -79,9 +117,12 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
         public VariantGroupModel()
         {
             Variants = new List<VariantOptionModel>();
+            SubGroups = new List<VariantGroupModel>();
         }
+
         public string GroupName { get; set; }
         public List<VariantOptionModel> Variants { get; set; }
+        public List<VariantGroupModel> SubGroups { get; set; }
     }
 
     public class VariantOptionModel

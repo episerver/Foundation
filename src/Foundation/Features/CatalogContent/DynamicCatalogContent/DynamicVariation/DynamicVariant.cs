@@ -15,30 +15,60 @@ using System.Linq;
 
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation
 {
-    [CatalogContentType(DisplayName = "Dynamic Variant", GUID = "11c2960f-79d6-4876-8d8a-6b7bc8cfe869", Description = "Dynamic variant supports multiple variation types")]
+    [CatalogContentType(DisplayName = "Dynamic Variant", GUID = "11c2960f-79d6-4876-8d8a-6b7bc8cfe869", Description = "Dynamic variant supports multiple options")]
     [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-23.png")]
     public class DynamicVariant : GenericVariant
     {
         [BackingType(typeof(VariantGroupPropertyList))]
         [Display(GroupName = "Variants Options", Order = 400)]
-        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<VariantGroup>))]
-        public virtual IList<VariantGroup> VariantsOptions { get; set; }
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<VariantOption>))]
+        public virtual IList<VariantOption> VariantOptions { get; set; }
     }
 
     public class PageListBlockValidator : IValidate<DynamicVariant>
     {
         public IEnumerable<ValidationError> Validate(DynamicVariant variant)
         {
-            if (variant.VariantsOptions != null && variant.VariantsOptions.Any())
+            if (variant.VariantOptions != null && variant.VariantOptions.Any())
             {
-                if (variant.VariantsOptions.GroupBy(x => x.Code).Where(x => x.Count() > 1).Any())
+                if (variant.VariantOptions.GroupBy(x => x.Code).Where(x => x.Count() > 1).Any())
                 {
                     return new ValidationError[]
                     {
                         new ValidationError()
                         {
                              ErrorMessage = "The variant option code is unique",
-                             PropertyName = variant.GetPropertyName(x => x.VariantsOptions),
+                             PropertyName = variant.GetPropertyName(x => x.VariantOptions),
+                             Severity = ValidationErrorSeverity.Error,
+                             ValidationType = ValidationErrorType.StorageValidation
+                        }
+                    };
+                }
+
+                if (variant.VariantOptions != null && variant.VariantOptions.Count > 0 && variant.VariantOptions.Where(x => x.Code.Contains(",")).Any())
+                {
+                    return new ValidationError[]
+                    {
+                        new ValidationError()
+                        {
+                             ErrorMessage = "The variant option code must not contain ','",
+                             PropertyName = variant.GetPropertyName(x => x.VariantOptions),
+                             Severity = ValidationErrorSeverity.Error,
+                             ValidationType = ValidationErrorType.StorageValidation
+                        }
+                    };
+                }
+
+                if (variant.VariantOptions != null 
+                    && variant.VariantOptions.Count > 0 
+                    && variant.VariantOptions.Where(x => !string.IsNullOrEmpty(x.ParentGroupName) && string.IsNullOrEmpty(x.GroupName)).Any())
+                {
+                    return new ValidationError[]
+                    {
+                        new ValidationError()
+                        {
+                             ErrorMessage = "The GroupName is required when the ParentGroupName is not empty.",
+                             PropertyName = variant.GetPropertyName(x => x.VariantOptions),
                              Severity = ValidationErrorSeverity.Error,
                              ValidationType = ValidationErrorType.StorageValidation
                         }
@@ -50,8 +80,11 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
         }
     }
 
-    public class VariantGroup
+    public class VariantOption
     {
+        [Display(Name = "Parent group name")]
+        public virtual string ParentGroupName { get; set; }
+
         [Display(Name = "Group name")]
         public virtual string GroupName { get; set; }
 
@@ -81,11 +114,11 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
     }
 
     [PropertyDefinitionTypePlugIn]
-    public class VariantGroupPropertyList : PropertyList<VariantGroup>
+    public class VariantGroupPropertyList : PropertyList<VariantOption>
     {
-        protected override VariantGroup ParseItem(string value)
+        protected override VariantOption ParseItem(string value)
         {
-            return JsonConvert.DeserializeObject<VariantGroup>(value);
+            return JsonConvert.DeserializeObject<VariantOption>(value);
         }
 
         [Obsolete("ParseToObject is no longer required to be implemented. The same functionality can be achieved by creating a new instance and calling the ParseToSelf method.")]
