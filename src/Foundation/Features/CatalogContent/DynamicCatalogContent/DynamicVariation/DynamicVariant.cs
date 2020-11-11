@@ -20,13 +20,13 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
     public class DynamicVariant : GenericVariant
     {
         [BackingType(typeof(VariantGroupPropertyList))]
-        [Display(GroupName = "Variants Options", Order = 400)]
+        [Display(GroupName = "Variant Options", Order = 400)]
         [ClientEditor(ClientEditingClass = "foundation/VariantOptionPrices")]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<VariantOption>))]
         public virtual IList<VariantOption> VariantOptions { get; set; }
     }
 
-    public class PageListBlockValidator : IValidate<DynamicVariant>
+    public class DynamicVariantValidator : IValidate<DynamicVariant>
     {
         public IEnumerable<ValidationError> Validate(DynamicVariant variant)
         {
