@@ -15,9 +15,9 @@
     <PackageReference Include="EPiServer.CMS.AspNet" Version="11.20.1" />
     <PackageReference Include="EPiServer.CMS.Core" Version="11.20.1" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="2.13.0" />
-    <PackageReference Include="EPiServer.CMS.UI" Version="11.30.0" />
-    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.30.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.30.0" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="11.30.1" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="11.30.1" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.30.1" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="2.17.0" />
     <PackageReference Include="EPiServer.Framework" Version="11.20.1" />
     <PackageReference Include="EPiServer.Labs.ContentManager" Version="0.3.0" />

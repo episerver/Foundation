@@ -20,6 +20,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
             CurrentPageLink = pageReference;
             Comments = new List<BlogComment>();
             CurrentBlock = block;
+            Messages = new List<string>();
         }
         /// <summary>
         /// Gets or sets the reference link of the page containing the comment form.
