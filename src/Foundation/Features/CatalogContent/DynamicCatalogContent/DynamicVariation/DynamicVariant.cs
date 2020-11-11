@@ -21,6 +21,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
     {
         [BackingType(typeof(VariantGroupPropertyList))]
         [Display(GroupName = "Variants Options", Order = 400)]
+        [ClientEditor(ClientEditingClass = "foundation/VariantOptionPrices")]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<VariantOption>))]
         public virtual IList<VariantOption> VariantOptions { get; set; }
     }
