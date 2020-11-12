@@ -72,7 +72,7 @@ namespace Foundation.Features.MyAccount.AddressBook
             addressModel.FirstName = customerAddress.FirstName;
             addressModel.LastName = customerAddress.LastName;
             addressModel.PostalCode = customerAddress.PostalCode;
-            addressModel.AddressId = customerAddress.Name;
+            addressModel.AddressId = customerAddress.AddressId.ToString();
             addressModel.Name = customerAddress.Name;
             addressModel.DaytimePhoneNumber = customerAddress.DaytimePhoneNumber;
 
@@ -600,7 +600,7 @@ namespace Foundation.Features.MyAccount.AddressBook
             return addressModel;
         }
 
-        private CustomerAddress GetAddress(CustomerContact contact, string addressId) => contact.ContactAddresses.FirstOrDefault(x => x.Name == addressId);
+        private CustomerAddress GetAddress(CustomerContact contact, string addressId) => contact.ContactAddresses.FirstOrDefault(x => x.Name == addressId || x.AddressId.ToString() == addressId);
 
         private FoundationOrganization GetFoundationOrganizationById(string organizationId)
         {
