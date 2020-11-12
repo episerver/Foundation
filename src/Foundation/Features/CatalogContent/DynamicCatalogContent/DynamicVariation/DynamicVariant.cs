@@ -20,7 +20,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
     public class DynamicVariant : GenericVariant
     {
         [BackingType(typeof(VariantGroupPropertyList))]
-        [Display(GroupName = "Variant Options", Order = 400)]
+        [Display(Name = "Variant Options", GroupName = "Variant Options", Order = 400)]
         [ClientEditor(ClientEditingClass = "foundation/VariantOptionPrices")]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<VariantOption>))]
         public virtual IList<VariantOption> VariantOptions { get; set; }
@@ -45,36 +45,6 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
                         }
                     };
                 }
-
-                if (variant.VariantOptions != null && variant.VariantOptions.Count > 0 && variant.VariantOptions.Where(x => x.Code.Contains(",")).Any())
-                {
-                    return new ValidationError[]
-                    {
-                        new ValidationError()
-                        {
-                             ErrorMessage = "The variant option code must not contain ','",
-                             PropertyName = variant.GetPropertyName(x => x.VariantOptions),
-                             Severity = ValidationErrorSeverity.Error,
-                             ValidationType = ValidationErrorType.StorageValidation
-                        }
-                    };
-                }
-
-                if (variant.VariantOptions != null 
-                    && variant.VariantOptions.Count > 0 
-                    && variant.VariantOptions.Where(x => !string.IsNullOrEmpty(x.ParentGroupName) && string.IsNullOrEmpty(x.GroupName)).Any())
-                {
-                    return new ValidationError[]
-                    {
-                        new ValidationError()
-                        {
-                             ErrorMessage = "The GroupName is required when the ParentGroupName is not empty.",
-                             PropertyName = variant.GetPropertyName(x => x.VariantOptions),
-                             Severity = ValidationErrorSeverity.Error,
-                             ValidationType = ValidationErrorType.StorageValidation
-                        }
-                    };
-                }
             }
 
             return Enumerable.Empty<ValidationError>();
@@ -83,19 +53,24 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
 
     public class VariantOption
     {
-        [Display(Name = "Parent group name")]
-        public virtual string ParentGroupName { get; set; }
-
+        [Required]
         [Display(Name = "Group name")]
         public virtual string GroupName { get; set; }
 
+        [Display(Name = "Subgroup name")]
+        public virtual string SubgroupName { get; set; }
+
+        [Required]
         public virtual string Name { get; set; }
 
+        [Required]
+        [RegularExpression("^[^,]+$", ErrorMessage ="The variant option code must not contain ','")]
         public virtual string Code { get; set; }
 
         [UIHint(UIHint.Image)]
         public virtual ContentReference Image { get; set; }
 
+        [Required]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<PriceModel>))]
         public virtual IList<PriceModel> Prices { get; set; }
     }
