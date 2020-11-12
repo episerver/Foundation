@@ -18,6 +18,7 @@
           <DemoSort>2</DemoSort>
           <Addresses>
             <Address>
+              <Name>Work</Name>
               <Line1>4118 Blueberry Lane</Line1>
               <City>Sprinfield</City>
               <CountryCode>USA</CountryCode>
@@ -56,6 +57,7 @@
           <DemoSort>3</DemoSort>
           <Addresses>
             <Address>
+              <Name>Work</Name>
               <Line1>12345 Any street</Line1>
               <City>Anytown</City>
               <CountryCode>USA</CountryCode>
@@ -94,6 +96,7 @@
               <DemoSort>5</DemoSort>
               <Addresses>
                 <Address>
+                  <Name>Work</Name>
                   <Line1>12345 Any street</Line1>
                   <City>Anytown</City>
                   <CountryCode>USA</CountryCode>
@@ -117,6 +120,7 @@
               <DemoSort>6</DemoSort>
               <Addresses>
                 <Address>
+                  <Name>Work</Name>
                   <Line1>12345 Any street</Line1>
                   <City>Anytown</City>
                   <CountryCode>USA</CountryCode>
