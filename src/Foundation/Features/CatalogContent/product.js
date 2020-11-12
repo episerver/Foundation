@@ -140,7 +140,7 @@
         //if ($(this).attr('dynamicCodes')) data.DynamicCodes = $(this).attr('dynamicCodes');
         if ($('.jsDynamicOptions').length > 0) {
           data.DynamicCodes = [];
-          $('.jsDynamicOptions').each(function (j, dynamicOption) {
+          $('.jsDynamicOptions:checked').each(function (j, dynamicOption) {
             data.DynamicCodes.push(dynamicOption.value);
           })
         }

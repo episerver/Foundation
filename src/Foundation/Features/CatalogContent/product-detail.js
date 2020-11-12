@@ -216,6 +216,17 @@ export default class ProductDetail {
         })
     }
 
+    selectDynamicVariantChange() {
+        $(this.divContainerId).find('.jsDynamicVariants').each(function (i, e) {
+            $(e).change(function () {
+                $('.loading-box').show();
+                let search = new URLSearchParams(location.search);
+                search.set('variationCode', $(this).val());
+                location.search = search.toString();
+            })
+        })
+    }
+
     initProductDetail() {
         let inst = this;
         this.inStorePickupClick();
@@ -249,6 +260,7 @@ export default class ProductDetail {
         this.changeImageClick();
         this.changeQuantityKeyup();
         this.buyNowClick();
+        this.selectDynamicVariantChange();
     }
 
     initQuickView() {

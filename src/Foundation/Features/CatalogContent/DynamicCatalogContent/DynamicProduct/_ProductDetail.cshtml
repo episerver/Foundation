@@ -27,30 +27,8 @@
                 }
             </div>
             <hr />
-            @Html.Partial("_Rating", Model)
-            <hr />
             <div class="row">
-                <div class="col-12">
-
-                    <div>
-                        @foreach (var g in Model.GroupVariants)
-                        {
-                            <label>@g.GroupName</label>
-                            <select class="jsDynamicOptions">
-                                @foreach (var v in g.Variants)
-                                {
-                                    <option value="@v.Code">
-                                        @if (!string.IsNullOrEmpty(v.ImageUrl))
-                                        {
-                                            <img src="@v.ImageUrl" alt="Alternate Text" />
-                                        }
-                                        @v.Name - @v.DefaultPrice.ToString()
-                                    </option>
-                                }
-                            </select>
-                        }
-                    </div>
-
+                <div class="col-12 mb-3">
                     @if (Model.IsAvailable)
                     {
                         <div class="d-inline-block">
@@ -74,10 +52,6 @@
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
-                        <span class="pull-right in-stock text-success">
-                            <i data-feather="check-circle"></i>
-                            @Model.InStockQuantity In Stock
-                        </span>
                     }
                     else
                     {
@@ -106,52 +80,139 @@
                                 @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
                             </span>
                         }
-
-                        <span class="pull-right in-stock">
-                            <i data-feather="x-circle"></i>
-                            @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
-                        </span>
                     }
                 </div>
-            </div>
-            <br />
-            @Html.PropertyFor(x => x.CurrentContent.Description)
-            <br />
-            <hr />
-            <div class="row product-detail__selection">
-                @if (Model != null && Model.Colors.Any())
-                {
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Color", "Colors")</label>
-                        @{
-                            var colors = new List<KeyValuePair<string, string>>();
-                            foreach (var c in Model.Colors)
-                            {
-                                colors.Add(new KeyValuePair<string, string>(c.Text, c.Value));
-                            }
-                        }
-                        @Helpers.RenderDropdown(colors, Model.Color, "jsSelectColorSize", "color")
+                <div class="col-12">
+                    <div class="variant-selector">
+                        <div class="tab-header">
+                            <strong>Select variation: </strong>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4 col-lg-4 variants-container">
+                                @for (int i = 0; i < Model.Variants.Count; i++)
+                                {
+                                    var variant = Model.Variants[i];
+                                    <div class="variant">
+                                        <div class="variant__content">
+                                            <label class="checkbox">
+                                                @variant.Sku
+                                                @if (Request.QueryString["variationCode"] == variant.Sku)
+                                                {
+                                                    <input class="radio jsDynamicVariants" name="variant-selector" type="radio" value="@variant.Sku" checked="checked">
+                                                }
+                                                else
+                                                {
+                                                    <input class="radio jsDynamicVariants" name="variant-selector" type="radio" value="@variant.Sku">
+                                                }
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-sm-12 col-md-7 col-lg-8 variant-description">
+                                @Html.Raw(Model.Variant.Description)
+                            </div>
+                        </div>
                     </div>
-                }
+                    <div>
+                        @foreach (var tab in Model.GroupVariants.ToList())
+                        {
+                            <div class="variant-options-section">
+                                <div class="tab-header">
+                                    <strong>@tab.GroupName</strong>
+                                </div>
+                                @if (tab.SubGroups.Count > 0)
+                                {
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        @for (int k = 0; k < tab.SubGroups.Count; k++)
+                                        {
+                                            var group = tab.SubGroups[k];
+                                            var groupKey = string.Join("-", tab.GroupName, group.GroupName).Replace(" ", "");
+                                            <li class="nav-item">
+                                                <a class="nav-link @(k == 0?"active":"")" data-toggle="tab" href="#@groupKey">
+                                                    @group.GroupName
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
 
-                @if (Model != null && Model.Sizes.Any())
-                {
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Size", "Sizes")</label>
-                        @{
-                            var sizes = new List<KeyValuePair<string, string>>();
-                            foreach (var c in Model.Sizes)
-                            {
-                                sizes.Add(new KeyValuePair<string, string>(c.Text + (c.Disabled ? " (out of stock)" : ""), c.Value));
-                            }
+                                    <div class="tab-content">
+                                        @for (int k = 0; k < tab.SubGroups.Count; k++)
+                                        {
+                                            var group = tab.SubGroups[k];
+                                            var groupKey = string.Join("-", tab.GroupName, group.GroupName).Replace(" ", "");
+                                            <div class="tab-pane fade @(k == 0?"active show":"")" id="@groupKey">
+                                                <div class="variant-option-container">
+                                                    @for (int i = 0; i < group.Variants.Count; i++)
+                                                    {
+                                                        var option = group.Variants[i];
+                                                        <div class="variant-option">
+                                                            @if (!string.IsNullOrEmpty(option.ImageUrl))
+                                                            {
+                                                                <div class="variant-option__image" style="background-image: url(@option.ImageUrl);">
+                                                                </div>
+                                                            }
+                                                            <div class="variant-option__content">
+                                                                <label class="checkbox">
+                                                                    @option.Name
+                                                                    @if (i == 0)
+                                                                    {
+                                                                        <input class="radio jsDynamicOptions" name="@groupKey" type="radio" value="@option.Code" checked="checked">
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input class="radio jsDynamicOptions" name="@groupKey" type="radio" value="@option.Code">
+                                                                    }
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="variant-option-container">
+                                        @for (int i = 0; i < tab.Variants.Count; i++)
+                                        {
+                                            var option = tab.Variants[i];
+                                            var groupKey = tab.GroupName.Replace(" ", "");
+                                            <div class="variant-option">
+                                                @if (!string.IsNullOrEmpty(option.ImageUrl))
+                                                {
+                                                    <div class="variant-option__image" style="background-image: url(@option.ImageUrl);">
+                                                    </div>
+                                                }
+                                                <div class="variant-option__content">
+                                                    <label class="checkbox">
+                                                        @option.Name
+                                                        @if (i == 0)
+                                                        {
+                                                            <input class="radio jsDynamicOptions" name="@groupKey" type="radio" value="@option.Code" checked="checked">
+                                                        }
+                                                        else
+                                                        {
+                                                            <input class="radio jsDynamicOptions" name="@groupKey" type="radio" value="@option.Code">
+                                                        }
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
                         }
-                        @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
                     </div>
-                }
+                </div>
             </div>
+            
             @if (Model.Variant != null)
             {
-                @Html.Partial("_Store", Model.Stores)
                 @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.Variant.Code, Model.MinQuantity, Model.IsAvailable))
             }
             <hr />
