@@ -38,12 +38,42 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
                     {
                         new ValidationError()
                         {
-                             ErrorMessage = "The variant option code is unique",
+                             ErrorMessage = "The variant option code is unique.",
                              PropertyName = variant.GetPropertyName(x => x.VariantOptions),
                              Severity = ValidationErrorSeverity.Error,
                              ValidationType = ValidationErrorType.StorageValidation
                         }
                     };
+                }
+
+                // Check the group already has subgroups cannot contain an empty subgroup
+                var vgs = variant.VariantOptions.GroupBy(x => x.GroupName);
+                foreach (var vg in vgs)
+                {
+                    var svgKeys = new List<string>();
+                    var svgs = vg.ToList().GroupBy(x => x.SubgroupName);
+                    foreach (var svg in svgs)
+                    {
+                        if (!svgKeys.Contains(svg.Key))
+                        {
+                            svgKeys.Add(svg.Key);
+                        }
+                    }
+                    if (svgKeys.Count > 1 && svgKeys.Contains(string.Empty))
+                    {
+                        var message = string.Format("The [{0}] group already has subgroups and cannot contain an empty subgroup.", vg.Key);
+                        return new ValidationError[]
+                                {
+                                    new ValidationError()
+                                    {
+                                         ErrorMessage = message,
+                                         PropertyName = variant.GetPropertyName(x => x.VariantOptions),
+                                         Severity = ValidationErrorSeverity.Error,
+                                         ValidationType = ValidationErrorType.StorageValidation
+                                    }
+                                };
+                    }
+
                 }
             }
 
@@ -64,7 +94,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
         public virtual string Name { get; set; }
 
         [Required]
-        [RegularExpression("^[^,]+$", ErrorMessage ="The variant option code must not contain ','")]
+        [RegularExpression("^[^,]+$", ErrorMessage = "The variant option code must not contain ','")]
         public virtual string Code { get; set; }
 
         [UIHint(UIHint.Image)]
