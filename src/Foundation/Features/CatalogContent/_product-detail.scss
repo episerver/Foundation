@@ -39,7 +39,7 @@
     &__buy {
         margin-top: 20px;
 
-        div:last-child {
+        > div:last-child {
             padding: 0;
 
             > button:first-child {
