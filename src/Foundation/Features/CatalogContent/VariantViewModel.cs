@@ -9,6 +9,7 @@ namespace Foundation.Features.CatalogContent
         public Money ListingPrice { get; set; }
         public string Size { get; set; }
         public string Sku { get; set; }
+        public string Name { get; set; }
         public int Quantity { get; set; }
         public decimal StockQuantity { get; set; }
 

@@ -176,6 +176,7 @@ namespace Foundation.Features.CatalogContent
                 return new VariantViewModel
                 {
                     Sku = x.Code,
+                    Name = x.Name,
                     Size = x is GenericVariant ? $"{(x as GenericVariant).Color} {(x as GenericVariant).Size}" : "",
                     ImageUrl = string.IsNullOrEmpty(variantImage) ? "http://placehold.it/54x54/" : variantImage,
                     DiscountedPrice = GetDiscountPrice(variantDefaultPrice, market, currency),
