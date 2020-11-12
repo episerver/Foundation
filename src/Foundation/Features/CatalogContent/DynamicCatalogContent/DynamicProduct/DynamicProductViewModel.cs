@@ -38,7 +38,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
         public static void GenerateVariantGroup(this DynamicProductViewModel model)
         {
-            var variantGroups = model.Variant.VariantOptions.GroupBy(x => x.GroupName);
+            var variantGroups = model.Variant.VariantOptions?.GroupBy(x => x.GroupName);
             var market = _currentMarket.Service.GetCurrentMarket();
             var currency = _currencyservice.Service.GetCurrentCurrency();
 

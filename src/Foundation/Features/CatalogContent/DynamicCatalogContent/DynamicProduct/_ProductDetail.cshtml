@@ -18,13 +18,14 @@
                 @Html.Partial("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
                 @if (Model.Variant != null)
                 {
-                    <h5>@Html.PropertyFor(x => x.Variant.DisplayName)</h5>
+                    <h5>@Html.PropertyFor(x => x.Product.DisplayName)</h5>
                 }
                 <h6 class="light-text">@Html.PropertyFor(x => x.Product.Brand)</h6>
                 @if (Model.Variant != null)
                 {
                     <p class="sub-title">@Model.Variant.Code</p>
                 }
+                @Html.PropertyFor(x => x.CurrentContent.Description)
             </div>
             <hr />
             <div class="row">
@@ -85,7 +86,7 @@
                 <div class="col-12">
                     <div class="variant-selector">
                         <div class="tab-header">
-                            <strong>Select variation: </strong>
+                            <strong>Select model: </strong>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-4 col-lg-4 variants-container">
@@ -95,8 +96,8 @@
                                     <div class="variant">
                                         <div class="variant__content">
                                             <label class="checkbox">
-                                                @variant.Sku
-                                                @if (Request.QueryString["variationCode"] == variant.Sku)
+                                                @variant.Name
+                                                @if (Request.QueryString["variationCode"] == variant.Sku || variant.Sku == Model.Variants[0].Sku)
                                                 {
                                                     <input class="radio jsDynamicVariants" name="variant-selector" type="radio" value="@variant.Sku" checked="checked">
                                                 }
