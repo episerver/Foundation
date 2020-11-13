@@ -11,6 +11,10 @@
     &__product-list {
         max-height: 45vh;
         overflow-y: auto;
+
+        ul {
+            padding-left: 0px;
+        }
     }
 
     &__row {
