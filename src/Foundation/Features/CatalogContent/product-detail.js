@@ -227,6 +227,14 @@ export default class ProductDetail {
         })
     }
 
+    onToggleVariantSubgroup() {
+        $(this.divContainerId).find('.variant-options-section .nav-tabs a').on('shown.bs.tab', function (event) {
+            let tabId = $(event.target).attr('href').substring(1);
+            let $tabElement = $('.tab-pane#' + tabId);
+            $tabElement.find('.jsDynamicOptionsInSubgroup').eq(0).click();
+        });
+    }
+
     initProductDetail() {
         let inst = this;
         this.inStorePickupClick();
@@ -261,6 +269,7 @@ export default class ProductDetail {
         this.changeQuantityKeyup();
         this.buyNowClick();
         this.selectDynamicVariantChange();
+        this.onToggleVariantSubgroup();
     }
 
     initQuickView() {

@@ -111,9 +111,12 @@
                                     </div>
                                 }
                             </div>
-                            <div class="col-sm-12 col-md-7 col-lg-8 variant-description">
-                                @Html.Raw(Model.Variant.Description)
-                            </div>
+                            @if (Model.Variant != null)
+                            {
+                                <div class="col-sm-12 col-md-7 col-lg-8 variant-description">
+                                    @Html.Raw(Model.Variant.Description)
+                                </div>
+                            }
                         </div>
                     </div>
                     <div>
@@ -159,11 +162,11 @@
                                                                     @option.Name
                                                                     @if (i == 0)
                                                                     {
-                                                                        <input class="radio jsDynamicOptions" name="@groupKey" type="radio" value="@option.Code" checked="checked">
+                                                                        <input class="radio jsDynamicOptionsInSubgroup" name="@groupKey" type="radio" value="@option.Code" checked="checked">
                                                                     }
                                                                     else
                                                                     {
-                                                                        <input class="radio jsDynamicOptions" name="@groupKey" type="radio" value="@option.Code">
+                                                                        <input class="radio jsDynamicOptionsInSubgroup" name="@groupKey" type="radio" value="@option.Code">
                                                                     }
                                                                     <span class="checkmark"></span>
                                                                 </label>
