@@ -336,7 +336,7 @@ namespace Foundation.Features.Checkout.Services
                     {
                         lineItem = cart.CreateLineItem(entryContent.Code, _orderGroupFactory);
                         lineItem.Properties[VariantOptionCodesProperty] = string.Join(",", dynamicVariantOptionCodes.OrderBy(x => x));
-                        lineItem.DisplayName = entryContent.DisplayName + lineItem.Properties[VariantOptionCodesProperty];
+                        lineItem.DisplayName = entryContent.DisplayName + " - " + lineItem.Properties[VariantOptionCodesProperty];
                         lineItem.Quantity = quantity;
                         cart.AddLineItem(shipment, lineItem);
                     }
@@ -402,6 +402,8 @@ namespace Foundation.Features.Checkout.Services
                     var variant = _contentLoader.Get<IContent>(contentLink) as DynamicVariant;
                     var dynamicVariants = variant.VariantOptions.Where(x => dynamicCodes.Contains(x.Code));
                     var totalDynamicVariantsPrice = dynamicVariants.Sum(x => x.Prices.FirstOrDefault(p => p.Currency == cart.Currency.CurrencyCode).Amount);
+                    item.Properties["BasePrice"] = item.PlacedPrice;
+                    item.Properties["OptionPrice"] = totalDynamicVariantsPrice;
                     item.PlacedPrice += totalDynamicVariantsPrice;
 
                     cart.UpdateLineItemQuantity(shipment, item, item.Quantity);

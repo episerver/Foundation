@@ -19,6 +19,10 @@ namespace Foundation.Features.Checkout.ViewModels
 
         public Money? DiscountedPrice { get; set; }
 
+        public Money BasePrice { get; set; }
+
+        public Money OptionPrice { get; set; }
+
         public Money PlacedPrice { get; set; }
 
         public string Code { get; set; }
@@ -50,5 +54,7 @@ namespace Foundation.Features.Checkout.ViewModels
         public bool IsFeaturedProduct { get; set; }
 
         public bool IsBestBetProduct { get; set; }
+
+        public bool IsDynamicProduct { get; set; }
     }
 }

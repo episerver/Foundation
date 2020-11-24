@@ -48,6 +48,17 @@
                                                             Size: @(variant.Size.IsNullOrEmpty() ? "N/A" : variant.Size), Color: @(variant.Color.IsNullOrEmpty() ? "N/A" : variant.Color)
                                                         </p>
                                                     }
+                                                    @if (cartItem.IsDynamicProduct)
+                                                    {
+                                                        <div>
+                                                            <label class="title">Base Price: </label>
+                                                            <span class="price__discount">@cartItem.BasePrice.ToString()</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="title">Option Price: </label>
+                                                            <span class="price__discount">@cartItem.OptionPrice.ToString()</span>
+                                                        </div>
+                                                    }
                                                     <p>
                                                         Price:
                                                         @if (cartItem.DiscountedUnitPrice.HasValue)
