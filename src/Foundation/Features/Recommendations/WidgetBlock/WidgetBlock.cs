@@ -14,16 +14,16 @@ namespace Foundation.Features.Recommendations.WidgetBlock
     public class WidgetBlock : BlockData
     {
         [SelectOne(SelectionFactoryType = typeof(WidgetSelectionFactory))]
-        [Display(Name = "Widget Type", GroupName = SystemTabNames.Content, Order = 10)]
+        [Display(Name = "Widget type", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string WidgetType { get; set; }
 
-        [Display(Name = "Number Of Recommendations", GroupName = SystemTabNames.Content, Order = 20)]
+        [Display(Name = "Number of recommendations", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual int NumberOfRecommendations { get; set; }
 
-        [Display(Name = "Attribute Name", GroupName = SystemTabNames.Content, Order = 30)]
+        [Display(Name = "Attribute name", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string Name { get; set; }
 
-        [Display(Name = "Attribute Value", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Attribute value", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual string Value { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)

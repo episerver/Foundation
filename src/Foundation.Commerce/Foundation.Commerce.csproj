@@ -13,11 +13,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.20.1" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="11.20.1" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.30.0" />
+    <PackageReference Include="EPiServer.CMS.AspNet" Version="11.20.2" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="11.20.2" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.30.1" />
     <PackageReference Include="EPiServer.Commerce.Core" Version="13.26.0" />
-    <PackageReference Include="EPiServer.Framework" Version="11.20.1" />
+    <PackageReference Include="EPiServer.Framework" Version="11.20.2" />
     <PackageReference Include="EPiServer.ServiceLocation.StructureMap" Version="2.0.3" />
     <PackageReference Include="FileHelpers" Version="3.4.1" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
