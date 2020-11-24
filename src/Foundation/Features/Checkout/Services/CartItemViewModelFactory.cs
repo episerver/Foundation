@@ -56,12 +56,16 @@ namespace Foundation.Features.Checkout.Services
 
         public virtual CartItemViewModel CreateCartItemViewModel(ICart cart, ILineItem lineItem, EntryContentBase entry)
         {
+            var basePrice = lineItem.Properties["BasePrice"] != null ? decimal.Parse(lineItem.Properties["BasePrice"].ToString()) : 0;
+            var optionPrice = lineItem.Properties["OptionPrice"] != null ? decimal.Parse(lineItem.Properties["OptionPrice"].ToString()) : 0;
             var viewModel = new CartItemViewModel
             {
                 Code = lineItem.Code,
-                DisplayName = entry.DisplayName,
+                DisplayName = lineItem.DisplayName,
                 ImageUrl = entry.GetAssets<IContentImage>(_contentLoader, _urlResolver).FirstOrDefault() ?? "",
                 DiscountedPrice = GetDiscountedPrice(cart, lineItem),
+                BasePrice = new Money(basePrice, _currencyService.GetCurrentCurrency()),
+                OptionPrice = new Money(optionPrice, _currencyService.GetCurrentCurrency()),
                 PlacedPrice = new Money(lineItem.PlacedPrice, _currencyService.GetCurrentCurrency()),
                 Quantity = lineItem.Quantity,
                 Url = entry.GetUrl(_relationRepository, _urlResolver),
@@ -69,7 +73,8 @@ namespace Foundation.Features.Checkout.Services
                 IsAvailable = _pricingService.GetCurrentPrice(entry.Code).HasValue,
                 DiscountedUnitPrice = GetDiscountedUnitPrice(cart, lineItem),
                 IsGift = lineItem.IsGift,
-                Description = entry["Description"] != null ? entry["Description"].ToString() : ""
+                Description = entry["Description"] != null ? entry["Description"].ToString() : "",
+                IsDynamicProduct = lineItem.Properties["VariantOptionCodes"] != null
             };
 
             var productLink = entry is VariationContent ?
