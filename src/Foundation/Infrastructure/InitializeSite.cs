@@ -51,6 +51,8 @@ using Foundation.Infrastructure.Display;
 using Foundation.Infrastructure.PowerSlices;
 using Foundation.Infrastructure.SchemaMarkup;
 using Foundation.Infrastructure.Services;
+using Mediachase.Commerce.Orders;
+using Mediachase.MetaDataPlus.Configurator;
 using PowerSlice;
 using System;
 using System.Collections.Generic;
@@ -196,6 +198,7 @@ namespace Foundation.Infrastructure
             }
 
             context.InitComplete += ContextOnInitComplete;
+            context.InitComplete += AddMetaFieldLineItem;
 
             SearchClient.Instance.Conventions.UnifiedSearchRegistry
                 .ForInstanceOf<LocationListPage>()
@@ -207,6 +210,7 @@ namespace Foundation.Infrastructure
         public void Uninitialize(InitializationEngine context)
         {
             context.InitComplete -= ContextOnInitComplete;
+            context.InitComplete -= AddMetaFieldLineItem;
             context.Locate.Advanced.GetInstance<IContentEvents>().PublishedContent -= OnPublishedContent;
         }
 
@@ -240,6 +244,41 @@ namespace Foundation.Infrastructure
                 configItems
                     .ToList()
                     .ForEach(x => _locator.GetInstance<IFacetRegistry>().AddFacetDefinitions(_locator.GetInstance<IFacetConfigFactory>().GetFacetDefinition(x)));
+            }
+        }
+
+        private void AddMetaFieldLineItem(object sender, EventArgs eventArgs)
+        {
+            var lineItemMetaClass = OrderContext.Current.LineItemMetaClass;
+            var context = OrderContext.MetaDataContext;
+
+            var name = "VariantOptionCodes";
+            var displayName = "Variant Option Codes";
+            var length = 256;
+            var metaFieldType = MetaDataType.LongString;
+            var metaNamespace = string.Empty;
+            var description = string.Empty;
+            var isNullable = false;
+            var isMultiLanguage = true;
+            var isSearchable = true;
+            var isEncrypted = true;
+
+            var metaField = MetaField.Load(context, name) ?? MetaField.Create(context,
+                                             lineItemMetaClass.Namespace,
+                                             name,
+                                             displayName,
+                                             description,
+                                             metaFieldType,
+                                             length,
+                                             isNullable,
+                                             isMultiLanguage,
+                                             isSearchable,
+                                             isEncrypted);
+
+
+            if (lineItemMetaClass.MetaFields.All(x => x.Id != metaField.Id))
+            {
+                lineItemMetaClass.AddField(metaField);
             }
         }
     }

@@ -91,7 +91,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                     var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(product.Quantity), product.Sku);
                     if (responseMessage.IsNullOrEmpty())
                     {
-                        var result = _cartService.AddToCart(Cart, product.Sku, 1, "delivery", "");
+                        var result = _cartService.AddToCart(Cart, new NamedCarts.RequestParamsToCart { Code = product.Sku, Quantity = 1, Store = "delivery", SelectedStore = "" });
                         if (!result.EntriesAddedToCart)
                         {
                             continue;
@@ -200,7 +200,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
                         var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(product.Quantity), product.Sku);
                         if (responseMessage.IsNullOrEmpty())
                         {
-                            var result = _cartService.AddToCart(quoteCart, product.Sku, 1, "delivery", "");
+                            var result = _cartService.AddToCart(quoteCart, new NamedCarts.RequestParamsToCart { Code = product.Sku, Quantity = 1, Store = "delivery", SelectedStore = "" });
                             if (!result.EntriesAddedToCart)
                             {
                                 continue;

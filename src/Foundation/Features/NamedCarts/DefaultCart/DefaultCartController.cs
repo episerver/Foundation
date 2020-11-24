@@ -181,7 +181,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 };
             }
 
-            var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param.Code, param.Quantity, param.Store, param.SelectedStore);
+            var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param);
 
             if (result.EntriesAddedToCart)
             {
@@ -239,7 +239,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             foreach (var lineitem in allLineItem)
             {
-                var result = _cartService.AddToCart(CartWithValidationIssues.Cart, lineitem.Code, lineitem.Quantity, "delivery", "");
+                var result = _cartService.AddToCart(CartWithValidationIssues.Cart, 
+                    new RequestParamsToCart { Code = lineitem.Code, Quantity = lineitem.Quantity, Store = "delivery", SelectedStore = "" });
                 entriesAddedToCart &= result.EntriesAddedToCart;
                 validationMessage += result.GetComposedValidationMessage();
             }
@@ -278,7 +279,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             }
 
 
-            var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param.Code, param.Quantity, param.Store, param.SelectedStore);
+            var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param);
             if (result.EntriesAddedToCart)
             {
                 var item = CartWithValidationIssues.Cart.GetAllLineItems().FirstOrDefault(x => x.Code.Equals(param.Code));
@@ -325,7 +326,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 };
             }
 
-            var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param.Code, param.Quantity, param.Store, param.SelectedStore);
+            var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param);
             if (!result.EntriesAddedToCart)
             {
                 return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
@@ -472,7 +473,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             }
             _orderRepository.Save(CartWithValidationIssues.Cart);
 
-            var result = _cartService.AddToCart(WishListWithValidationIssues.Cart, param.Code, 1, "delivery", "");
+            var result = _cartService.AddToCart(WishListWithValidationIssues.Cart, 
+                new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             if (!result.EntriesAddedToCart)
             {
                 return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
@@ -532,7 +534,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 return View("LargeCart", _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage));
             }
 
-            var result = _cartService.AddToCart(SharedCardWithValidationIssues.Cart, param.Code, 1, "delivery", "");
+            var result = _cartService.AddToCart(SharedCardWithValidationIssues.Cart, 
+                new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             if (!result.EntriesAddedToCart)
             {
                 return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
@@ -572,7 +575,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var lineitems = order.Forms.First().GetAllLineItems();
             foreach (var item in lineitems)
             {
-                var result = _cartService.AddToCart(CartWithValidationIssues.Cart, item.Code, item.Quantity, "delivery", "");
+                var result = _cartService.AddToCart(CartWithValidationIssues.Cart, 
+                    new RequestParamsToCart { Code = item.Code, Quantity = item.Quantity, Store = "delivery", SelectedStore = "" });
                 if (result.EntriesAddedToCart)
                 {
                     await _recommendationService.TrackCart(HttpContext, CartWithValidationIssues.Cart);
@@ -869,7 +873,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(quantity), sku);
                 if (responseMessage.IsNullOrEmpty())
                 {
-                    var result = _cartService.AddToCart(CartWithValidationIssues.Cart, sku, quantity, "delivery", "");
+                    var result = _cartService.AddToCart(CartWithValidationIssues.Cart,
+                        new RequestParamsToCart { Code = sku, Quantity = quantity, Store = "delivery", SelectedStore = "" });
                     if (result.EntriesAddedToCart)
                     {
                         _cartService.ChangeCartItem(CartWithValidationIssues.Cart, 0, sku, quantity, "", "");
