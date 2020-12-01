@@ -1,4 +1,5 @@
-﻿using EPiServer.Logging;
+﻿using EPiServer.Framework.Cache;
+using EPiServer.Logging;
 using Mediachase.Data.Provider;
 using Powells.CouponCode;
 using System;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using EPiServer.Framework.Cache;
 
 namespace Foundation.Commerce.Marketing
 {

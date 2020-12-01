@@ -354,7 +354,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
 
             foreach (var lineitem in allLineItem)
             {
-                var result = _cartService.AddToCart(Cart.Cart, 
+                var result = _cartService.AddToCart(Cart.Cart,
                     new RequestParamsToCart { Code = lineitem.Code, Quantity = lineitem.Quantity, Store = "delivery", SelectedStore = "", DynamicCodes = lineitem.Properties["VariantOptionCodes"].ToString().Split(',').ToList() });
                 entriesAddedToCart &= result.EntriesAddedToCart;
                 validationMessage += result.GetComposedValidationMessage();

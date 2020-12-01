@@ -86,7 +86,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
                     out var totalComments
                 );
 
-                blockViewModel.Comments = blogComments;                
+                blockViewModel.Comments = blogComments;
                 blockViewModel.PagingInfo.TotalRecord = (int)totalComments;
             }
             catch (Exception ex)

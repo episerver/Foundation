@@ -7,7 +7,6 @@ using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Personalization;
 using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
