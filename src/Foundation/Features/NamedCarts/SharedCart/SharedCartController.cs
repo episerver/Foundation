@@ -181,7 +181,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
             var allLineItem = sharedCart.GetAllLineItems();
             foreach (var lineItem in allLineItem)
             {
-                _cartService.AddToCart(savedCart, 
+                _cartService.AddToCart(savedCart,
                     new RequestParamsToCart { Code = lineItem.Code, Quantity = lineItem.Quantity, Store = "delivery", SelectedStore = "", DynamicCodes = lineItem.Properties["VariantOptionCodes"].ToString().Split(',').ToList() });
             }
 

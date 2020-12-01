@@ -1,13 +1,13 @@
-﻿using System;
+﻿using EPiServer.Framework.Cache;
 using EPiServer.Logging;
 using EPiServer.Social.Comments.Core;
 using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
 using Foundation.Social.Composites;
 using Foundation.Social.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using EPiServer.Framework.Cache;
 
 namespace Foundation.Social.Services
 {

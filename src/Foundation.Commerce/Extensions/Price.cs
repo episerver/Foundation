@@ -1,6 +1,6 @@
-﻿using System;
-using Mediachase.Commerce;
+﻿using Mediachase.Commerce;
 using Mediachase.Commerce.Pricing;
+using System;
 
 namespace Foundation.Commerce.Extensions
 {

@@ -496,7 +496,7 @@ namespace Foundation.Features.CatalogContent
                 var inventory = new Inventory(inventoryRecord);
                 quantity = inventory.IsTracked ? inventory.InStockQuantity - inventory.ReorderMinQuantity : 1;
                 return quantity;
-            } 
+            }
             else
             {
                 return 1;

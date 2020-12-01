@@ -194,7 +194,7 @@ namespace Foundation.Features.Header
                         return true;
                     }
                     var linkedItem = UrlResolver.Current.Route(new UrlBuilder(_menuItemBlock.Link));
-                    if (filter.ShouldFilter(linkedItem))
+                    if (linkedItem != null && filter.ShouldFilter(linkedItem))
                     {
                         return false;
                     }

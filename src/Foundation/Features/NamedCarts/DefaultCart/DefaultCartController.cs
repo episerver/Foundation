@@ -239,7 +239,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             foreach (var lineitem in allLineItem)
             {
-                var result = _cartService.AddToCart(CartWithValidationIssues.Cart, 
+                var result = _cartService.AddToCart(CartWithValidationIssues.Cart,
                     new RequestParamsToCart { Code = lineitem.Code, Quantity = lineitem.Quantity, Store = "delivery", SelectedStore = "" });
                 entriesAddedToCart &= result.EntriesAddedToCart;
                 validationMessage += result.GetComposedValidationMessage();
@@ -473,7 +473,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             }
             _orderRepository.Save(CartWithValidationIssues.Cart);
 
-            var result = _cartService.AddToCart(WishListWithValidationIssues.Cart, 
+            var result = _cartService.AddToCart(WishListWithValidationIssues.Cart,
                 new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             if (!result.EntriesAddedToCart)
             {
@@ -534,7 +534,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 return View("LargeCart", _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage));
             }
 
-            var result = _cartService.AddToCart(SharedCardWithValidationIssues.Cart, 
+            var result = _cartService.AddToCart(SharedCardWithValidationIssues.Cart,
                 new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             if (!result.EntriesAddedToCart)
             {
@@ -575,7 +575,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var lineitems = order.Forms.First().GetAllLineItems();
             foreach (var item in lineitems)
             {
-                var result = _cartService.AddToCart(CartWithValidationIssues.Cart, 
+                var result = _cartService.AddToCart(CartWithValidationIssues.Cart,
                     new RequestParamsToCart { Code = item.Code, Quantity = item.Quantity, Store = "delivery", SelectedStore = "" });
                 if (result.EntriesAddedToCart)
                 {
