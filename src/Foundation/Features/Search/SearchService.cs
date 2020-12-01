@@ -82,7 +82,7 @@ namespace Foundation.Features.Search
         private readonly IPromotionService _promotionService;
         private readonly ICurrencyService _currencyservice;
         private readonly IContentLoader _contentLoader;
-        private readonly BestBetRepository _bestBetRepository;       
+        private readonly BestBetRepository _bestBetRepository;
         private static readonly Random _random = new Random();
 
         public SearchService(ICurrentMarket currentMarket,
