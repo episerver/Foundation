@@ -491,11 +491,18 @@ namespace Foundation.Features.CatalogContent
         {
             if ((entry as IStockPlacement).TrackInventory)
             {
-                decimal quantity = 0;
-                var inventoryRecord = _inventoryService.Get(entry.Code, currentWarehouse.Code);
-                var inventory = new Inventory(inventoryRecord);
-                quantity = inventory.IsTracked ? inventory.InStockQuantity - inventory.ReorderMinQuantity : 1;
-                return quantity;
+                if (currentWarehouse != null)
+                {
+                    decimal quantity = 0;
+                    var inventoryRecord = _inventoryService.Get(entry.Code, currentWarehouse.Code);
+                    var inventory = new Inventory(inventoryRecord);
+                    quantity = inventory.IsTracked ? inventory.InStockQuantity - inventory.ReorderMinQuantity : 1;
+                    return quantity;
+                } 
+                else
+                {
+                    return 0;
+                }
             }
             else
             {
