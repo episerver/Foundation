@@ -974,7 +974,6 @@
     <Compile Include="Features\Blocks\LikeButtonBlock\LikeButtonBlock.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlock\LikeButtonBlockController.cs" />
     <Compile Include="Features\Blocks\LikeButtonBlock\LikeButtonBlockViewModel.cs" />
-    <Compile Include="Features\Blocks\LinkedInCompanyBlock\LinkedInCompanyBlock.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlock\MembershipAffiliationBlock.cs" />
     <Compile Include="Features\Blocks\MembershipAffiliationBlock\MembershipAffiliationBlockViewModel.cs" />
     <Compile Include="Features\Blocks\MembershipDisplayBlock\MembershipDisplayBlock.cs" />
@@ -2216,7 +2215,6 @@
     <Content Include="Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlock.cshtml" />
     <Content Include="Features\Blocks\GroupCreationBlock\GroupCreationBlock.cshtml" />
     <Content Include="Features\Blocks\LikeButtonBlock\LikeButtonBlock.cshtml" />
-    <Content Include="Features\Blocks\LinkedInCompanyBlock\LinkedInCompanyBlock.cshtml" />
     <Content Include="Features\Blocks\ProductHeroBlock\ProductHeroBlock.cshtml" />
     <Content Include="Features\Blocks\ProductHeroBlock\_product-hero-block.scss" />
     <Content Include="Features\Blocks\TwitterBlock\TwitterBlock.cshtml" />
