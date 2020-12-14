@@ -79,6 +79,12 @@ namespace Foundation.Infrastructure
         [RequiredAccess(AccessLevel.Edit)]
         public const string Scripts = "Scripts";
 
+        [Display(Name = "Background", Order = 283)]
+        public const string Background = "Background";
+
+        [Display(Name = "Border", Order = 284)]
+        public const string Border = "Border";
+
         [Display(Name = "Block styling", Order = 285)]
         public const string BlockStyling = "BlockStyling";
 
