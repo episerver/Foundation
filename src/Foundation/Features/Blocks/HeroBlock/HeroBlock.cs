@@ -67,11 +67,11 @@ namespace Foundation.Features.Blocks.HeroBlock
         [Display(Name = "Text placement", Order = 20)]
         public virtual string CalloutContentAlignment { get; set; }
 
-        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Text color", Description = "Sets text color of callout content", Order = 30)]
         public virtual string CalloutTextColor { get; set; }
 
-        [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Background color", Order = 40)]
         public virtual string BackgroundColor { get; set; }
 
@@ -97,11 +97,11 @@ namespace Foundation.Features.Blocks.HeroBlock
 
             Padding = "p-1";
             Margin = "m-0";
-            BackgroundColor = "transparent";
+            BackgroundColor = "#00000000";
             CalloutOpacity = 1;
-            CalloutPosition = "flex-middle";
+            CalloutPosition = "center";
             CalloutContentAlignment = "left";
-            CalloutTextColor = "black";
+            CalloutTextColor = "#000000ff";
         }
     }
 }

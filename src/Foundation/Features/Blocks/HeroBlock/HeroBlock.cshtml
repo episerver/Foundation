@@ -47,7 +47,7 @@
     <div class="hero-block" style="@blockRatio">
         @if (PageEditing.PageIsInEditMode)
         {
-            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage) 
+            <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.BackgroundImage)
                  style="background-image: url('@Url.WebPFallbackImageUrl(Model.CurrentBlock.BackgroundImage, 1440, null)')">
             </div>
         }
@@ -55,7 +55,9 @@
         {
             if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
             {
-                <div class="hero-block__image lazyload" data-bgset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)&format=webp | @Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)">
+                <div class="hero-block__image lazyload"
+                     data-bgset="@Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)&format=webp
+                     | @Html.ProcessImage(Url.ContentUrl(Model.CurrentBlock.BackgroundImage)).Resize(1440, null)">
                 </div>
             }
         }
