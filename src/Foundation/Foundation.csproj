@@ -1622,6 +1622,15 @@
     <Content Include="Assets\vendors\fa-solid-900.svg" />
     <Content Include="ClientResources\Scripts\VariantOptionPrices.js" />
     <Content Include="ClientResources\Styles\fontawesome.min.css" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_CardTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_GridTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_GridTemplateComponent.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_HighlightPanelTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_InsightTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_LeftImageTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_NoImageTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\Template\_TopImageTemplate.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\_page-list-block.scss" />
     <None Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
     <Content Include="Features\Markets\market.js" />
@@ -1758,7 +1767,6 @@
     <Content Include="Features\Blog\BlogListPage\_GridTemplate.cshtml" />
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\_calendar-block.scss" />
-    <Content Include="Features\Blocks\PageListBlock\_PageListPreview.cshtml" />
     <Content Include="Features\Login\_login.scss" />
     <Content Include="Features\Checkout\Checkout.cshtml" />
     <Content Include="Features\Checkout\_one-page-checkout.scss" />
@@ -2009,7 +2017,7 @@
     <Content Include="Features\Blocks\CallToActionBlock\CallToActionBlock.cshtml" />
     <Content Include="Features\Blocks\FacebookBlock\FacebookBlock.cshtml" />
     <Content Include="Features\Blocks\HeroBlock\HeroBlock.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\PageListBlock.cshtml" />
+    <Content Include="Features\Blocks\PageListBlock\View\PageListBlock.cshtml" />
     <Content Include="Features\Blocks\TextBlock\TextBlock.cshtml" />
     <Content Include="Features\Blocks\VideoBlock\VideoBlock.cshtml" />
     <Content Include="Features\Blocks\VimeoBlock\VimeoBlock.cshtml" />
@@ -2185,12 +2193,6 @@
     <Content Include="Features\Blog\BlogListPage\_CardTemplate.cshtml" />
     <Content Include="Features\Blog\BlogListPage\_InsightTemplate.cshtml" />
     <Content Include="Features\Blog\BlogListPage\_Paging.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_GridTemplate.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_NoImageTemplate.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_InsightTemplate.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_CardTemplate.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_HighlightPanelTemplate.cshtml" />
-    <Content Include="Features\Blocks\PageListBlock\_LeftImageTemplate.cshtml" />
     <Content Include="Features\Shared\Views\Header\_HeaderLogo.cshtml" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\Web.config" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\module.config" />
@@ -2242,7 +2244,6 @@
     <Content Include="Assets\vendors\fa-solid-900.ttf" />
     <Content Include="Assets\vendors\fa-solid-900.woff" />
     <Content Include="Assets\vendors\fa-solid-900.woff2" />
-    <Content Include="Features\Blocks\PageListBlock\_TopImageTemplate.cshtml" />
     <Content Include="Features\Markets\Index.cshtml" />
     <Content Include="Assets\js\main.min.js.map" />
     <Content Include="Assets\scss\main.min.css.map" />

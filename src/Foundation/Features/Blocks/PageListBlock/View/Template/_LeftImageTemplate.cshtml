@@ -1,6 +1,7 @@
 ﻿@using EPiServer.Core.Html
 @using EPiServer.AddOns.Helpers
 @using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
 
 @model PageListBlockViewModel
 
@@ -8,9 +9,12 @@
 {
     foreach (var page in Model.Pages)
     {
+        var imageCol = page.PreviewOption == PreviewOptions.Full ? 12 : (page.PreviewOption == PreviewOptions.Half ? 6 : 4);
+        var textCol = imageCol == 12 ? 12 : 12 - imageCol;
         var foundationPage = page.Page as FoundationPageData;
+
         <a class="row" href="@page.Page.ContentLink.GetPublicUrl()">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-@imageCol">
                 @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                 {
                     <video class="video-fluid" autoplay loop playsinline muted>
@@ -25,7 +29,7 @@
                     }
                 }
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-@textCol">
                 <h4 class="title">
                     @Html.Raw(page != null ? foundationPage.MetaTitle : page.Page.Name)
                 </h4>
