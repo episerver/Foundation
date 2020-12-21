@@ -5,21 +5,18 @@
 @model PageListBlockViewModel
 
 @{
-    int index = 1;
-    int col = 12;
+    //Set the right column width based on PreviewOption
+    int col = Model.PreviewOption;
 }
 
 <div class="row">
     @foreach (var blog in Model.Pages)
     {
         var foundationPage = blog.Page as FoundationPageData;
-        if (index % 6 < 4) { col = 4; }
-        if (index % 6 >= 4) { col = 6; }
-        if (index % 6 == 0) { col = 12; }
-        index++;
+
         <div class="col-xs-12 col-sm-6 col-md-@col">
-            <div class="preview__card">
-                <div class="preview__card--show">
+            <div class="page-list-block-preview__card">
+                <div class="page-list-block-preview__card--show">
                     <div class="card--top">
                         @if (blog != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
@@ -41,13 +38,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview__card--middle">
+                <div class="page-list-block-preview__card--middle">
                     <div class="triangle-side"></div>
                     <div class="triangle-center"></div>
                     <div class="triangle-side"></div>
                 </div>
-                <div class="preview__card--overlay" style="background-color: @Model.CurrentBlock.OverlayColor;">
-                    <div class="preview__card--description" style=" color: @Model.CurrentBlock.OverlayTextColor">
+                <div class="page-list-block-preview__card--overlay" style="background-color: @Model.CurrentBlock.OverlayColor;">
+                    <div class="page-list-block-preview__card--description" style="color: @Model.CurrentBlock.OverlayTextColor">
                         <p>@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
                         <a href="@foundationPage.ContentLink.GetPublicUrl()">
                             Read more

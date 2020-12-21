@@ -25,27 +25,26 @@
         listLargePages.Add(Model.Pages.ElementAt(i));
     }
 
-    <div class="blog__gallery">
-        <div class="blog__row">
-
-            <div class="blog__large-col">
-                @Html.Partial("_PageListPreview", firstPage)
+    <div>
+        <div class="page-list-block__row">
+            <div class="page-list-block__large-col">
+                @Html.Partial("View/Template/_GridTemplateComponent", firstPage)
             </div>
             @foreach (var list in listGridPages)
             {
-                <div class="blog__large-col">
-                    <div class="blog__grid">
+                <div class="page-list-block__large-col">
+                    <div class="page-list-block__grid">
                         @foreach (var page in list)
                         {
-                            @Html.Partial("_PageListPreview", page)
+                            @Html.Partial("View/Template/_GridTemplateComponent", page)
                         }
                     </div>
                 </div>
             }
             @foreach (var page in listLargePages)
             {
-                <div class="blog__large-col">
-                    @Html.Partial("_PageListPreview", page)
+                <div class="page-list-block__large-col">
+                    @Html.Partial("View/Template/_GridTemplateComponent", page)
                 </div>
             }
         </div>

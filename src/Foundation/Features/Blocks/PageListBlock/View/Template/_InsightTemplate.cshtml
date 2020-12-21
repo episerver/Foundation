@@ -49,19 +49,19 @@
     if (groupPage.Key % 2 == 0)
     {
         index = 0;
-        <div class="col-12 insight">
+        <div class="col-12 page-list-block-insight">
             @foreach (var blog in groupPage.Value)
             {
                 var foundationPage = blog.Page as FoundationPageData;
                 var typeIndex = index % 3;
-                var insightClass = "insight__large";
+                var insightClass = "page-list-block-insight__large";
                 switch (typeIndex)
                 {
                     case 1:
-                        insightClass = "insight__small--image";
+                        insightClass = "page-list-block-insight__small--image";
                         break;
                     case 2:
-                        insightClass = "insight__small--text";
+                        insightClass = "page-list-block-insight__small--text";
                         break;
                     default:
                         break;
@@ -72,7 +72,7 @@
                 <div class="@insightClass">
                     @if (typeIndex == 0)
                     {
-                        <div class="insight__thumbnail insight__thumbnail--large">
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--large">
                             @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp" />
@@ -81,7 +81,7 @@
                     }
                     @if (typeIndex == 1)
                     {
-                        <div class="insight__thumbnail insight__thumbnail--small">
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--small">
                             <picture>
                                 @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                                 {
@@ -90,14 +90,14 @@
                             </picture>
                         </div>
                     }
-                    <div class="insight__description">
+                    <div class="page-list-block-insight__description">
                         <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">
                             <h4>@foundationPage.MetaTitle</h4>
                         </a>
-                        <div class="insight__date">
+                        <div class="page-list-block-insight__date">
                             @foundationPage.StartPublish.Value.ToString("dd MMM yyyy")
                         </div>
-                        <div class="insight__sumary">@Html.Raw(foundationPage.TeaserText)</div>
+                        <div class="page-list-block-insight__sumary">@Html.Raw(foundationPage.TeaserText)</div>
                         <a class="read-more" href="@foundationPage.ContentLink.GetPublicUrl()">
                             Read more
                         </a>
@@ -109,19 +109,19 @@
     else
     { <!-- Insight blogs -->
         index = 0;
-        <div class="col-12 insight insight--reverse">
+        <div class="col-12 page-list-block-insight page-list-block-insight--reverse">
             @foreach (var blog in groupPage.Value)
             {
                 var foundationPage = blog.Page as FoundationPageData;
                 var typeIndex = index % 3;
-                var insightClass = "insight__large";
+                var insightClass = "page-list-block-insight__large";
                 switch (typeIndex)
                 {
                     case 1:
-                        insightClass = "insight__small--image";
+                        insightClass = "page-list-block-insight__small--image";
                         break;
                     case 2:
-                        insightClass = "insight__small--text";
+                        insightClass = "page-list-block-insight__small--text";
                         break;
                     default:
                         break;
@@ -132,24 +132,24 @@
                 <div class="@insightClass">
                     @if (typeIndex == 0)
                     {
-                        <div class="insight__thumbnail insight__thumbnail--large">
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--large">
                             <img src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
                         </div>
                     }
                     @if (typeIndex == 1)
                     {
-                        <div class="insight__thumbnail insight__thumbnail--small">
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--small">
                             <img src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
                         </div>
                     }
-                    <div class="insight__description">
+                    <div class="page-list-block-insight__description">
                         <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">
                             <h4>@foundationPage.MetaTitle</h4>
                         </a>
-                        <div class="insight__date">
+                        <div class="page-list-block-insight__date">
                             @foundationPage.StartPublish.Value.ToString("dd MMM yyyy")
                         </div>
-                        <div class="insight__sumary">@Html.Raw(foundationPage.TeaserText)</div>
+                        <div class="page-list-block-insight__sumary">@Html.Raw(foundationPage.TeaserText)</div>
                         <a class="read-more" href="@foundationPage.ContentLink.GetPublicUrl()">
                             Read more
                         </a>
