@@ -128,21 +128,17 @@ Or clone project using Git
 ```
 ![Build progress](https://i.ibb.co/GvZBcYY/Build-Progress.png)
 
-5.	When the installation is finished, a setup page is opened in your browser. If not, enter the URL http://_yourdomainname_/setup manually.
+5.	When the installation is finished, a Mosey start page is opened in your browser. If not, enter the URL http://_yourdomainname_/ manually.
+![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
+
 6.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
 ![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
 
-7.	In the setup page under Import Content, select **Remote Site File: Mosey** and **Remote Catalog File: Foundation_Fashion** to import the Mosey demo site content.
-![Demo content import](https://i.ibb.co/WG6bVcx/Demo-Content-Import.png)
-
-8.	Click **Submit** and the Mosey demo site is displayed.
-![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
-
-9.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
+7.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
 
 > **_Note:_** A **resetup.cmd** file has been created in your project which you can run to re-install the database.
 
-10. Developer licenses for evaluation purposes can be obtained from the [Episerver License Center](https://license.episerver.com/). Place the **License.config** file in your webroot. 
+8. Developer licenses for evaluation purposes can be obtained from the [Episerver License Center](https://license.episerver.com/). Place the **License.config** file in your webroot. 
 
 ## Troubleshooting
 ### The installation fails
@@ -157,7 +153,6 @@ Or clone project using Git
   Build\Logs\IIS.log
   ```
 ### The site does not start
-* Foundation does not include any website, pages or catalogs in its initial state, so it is not possible to start a site until you have imported or created content. Go to URL http://_yourdomainname_/setup to import content.
 * Check that the site is actually running by navigating to http://_yourdomainname_/episerver/cms.
 
 ## Modular set-up
