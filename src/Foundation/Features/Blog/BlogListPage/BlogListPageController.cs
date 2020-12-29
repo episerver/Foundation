@@ -3,7 +3,6 @@ using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.Core.Html;
 using EPiServer.Filters;
-using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
@@ -36,8 +35,6 @@ namespace Foundation.Features.Blog.BlogListPage
             _urlResolver = urlResolver;
             _blogTagFactory = blogTagFactory;
         }
-
-        [PageViewTracking]
         public ActionResult Index(BlogListPage currentPage)
         {
             var model = new BlogListPageViewModel(currentPage)
@@ -97,7 +94,7 @@ namespace Foundation.Features.Blog.BlogListPage
 
             var model = GetViewModel(currentPage, pagingInfo);
 
-            return PartialView("~/Features/Blog/BlogListPage/_BlogList.cshtml", model);
+            return PartialView("~/Features/Blog/BlogListPage/View/_BlogList.cshtml", model);
         }
 
         public BlogListPageViewModel GetViewModel(BlogListPage currentPage, PagingInfo pagingInfo)

@@ -1631,6 +1631,16 @@
     <Content Include="Features\Blocks\PageListBlock\View\Template\_NoImageTemplate.cshtml" />
     <Content Include="Features\Blocks\PageListBlock\View\Template\_TopImageTemplate.cshtml" />
     <Content Include="Features\Blocks\PageListBlock\_page-list-block.scss" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_CardTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_GridTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_GridTemplateComponent.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_HighLightTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_ImageLeftTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_ImageTopTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_InsightTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\Template\_NoImageTemplate.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\_BlogList.cshtml" />
+    <Content Include="Features\Blog\BlogListPage\View\_Paging.cshtml" />
     <None Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\calendar-block.js" />
     <Content Include="Features\Markets\market.js" />
@@ -1763,8 +1773,6 @@
     <Content Include="Features\Category\Index.cshtml" />
     <Content Include="Features\Category\_PageListing.cshtml" />
     <Content Include="Features\Category\_Preview.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_BlogList.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_GridTemplate.cshtml" />
     <Content Include="Features\Checkout\ConfirmationMail\Index.cshtml" />
     <Content Include="Features\Events\CalendarBlock\_calendar-block.scss" />
     <Content Include="Features\Login\_login.scss" />
@@ -2190,9 +2198,6 @@
     <Content Include="modules\_protected\CmsAudit\Views\BlockTypes\Index.cshtml" />
     <Content Include="modules\_protected\CmsAudit\Views\BlockTypes\BlockTypeAudit.cshtml" />
     <Content Include="modules\_protected\CmsAudit\module.config" />
-    <Content Include="Features\Blog\BlogListPage\_CardTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_InsightTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_Paging.cshtml" />
     <Content Include="Features\Shared\Views\Header\_HeaderLogo.cshtml" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\Web.config" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\module.config" />
@@ -2253,11 +2258,6 @@
     <Content Include="Features\Search\_SearchPdf.cshtml" />
     <Content Include="App_Data\foundation.episerverdata" />
     <Content Include="App_Data\Foundation_Fashion.zip" />
-    <Content Include="Features\Blog\BlogListPage\_ImageLeftTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_ImageTopTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_NoImageTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_HighLightTemplate.cshtml" />
-    <Content Include="Features\Blog\BlogListPage\_GridTemplateBlock.cshtml" />
     <Content Include="modules\_protected\EPiServer.Cms.TinyMce\web.config" />
     <Content Include="modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
     <Content Include="modules\_protected\AdvancedTask\AdvancedTask.zip" />
