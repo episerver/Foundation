@@ -12,27 +12,27 @@
 @switch(Model.CurrentContent.Template)
 {
     case TemplateSelections.Grid:
-        @Html.Partial("_GridTemplate", Model)
+        @Html.Partial("View/Template/_GridTemplate", Model)
         break;
 
     case TemplateSelections.Card:
-        @Html.Partial("_CardTemplate", Model)
+        @Html.Partial("View/Template/_CardTemplate", Model)
         break;
 
     case TemplateSelections.Insight:
-        @Html.Partial("_InsightTemplate", Model)
+        @Html.Partial("View/Template/_InsightTemplate", Model)
         break;
 
     case TemplateSelections.ImageLeft:
-        @Html.Partial("_ImageLeftTemplate", Model)
+        @Html.Partial("View/Template/_ImageLeftTemplate", Model)
         break;
 
     case TemplateSelections.ImageTop:
-        @Html.Partial("_ImageTopTemplate", Model)
+        @Html.Partial("View/Template/_ImageTopTemplate", Model)
         break;
 
     case TemplateSelections.NoImage:
-        @Html.Partial("_NoImageTemplate", Model)
+        @Html.Partial("View/Template/_NoImageTemplate", Model)
         break;
 
     case TemplateSelections.Highlight:
@@ -41,7 +41,7 @@
             var flip = false;
             foreach (var blog in Model.Blogs)
             {
-                @Html.Partial("_HighLightTemplate", blog, new ViewDataDictionary { { "Flip", flip } })
+                @Html.Partial("View/Template/_HighLightTemplate", blog, new ViewDataDictionary { { "Flip", flip } })
                 if (!blog.CurrentContent.Highlight)
                 {
                     flip = !flip;
