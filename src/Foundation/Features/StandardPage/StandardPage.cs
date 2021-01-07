@@ -66,7 +66,7 @@ namespace Foundation.Features.StandardPage
             base.SetDefaultValues(contentType);
 
             BackgroundColor = "#ffffffff";
-            BackgroundOpacity = 1;
+            BackgroundOpacity = 0;
             TitleColor = "#ffffffff";
             TopPaddingMode = StandardPageTopPaddingModeSelectionFactory.TopPaddingModes.Half;
         }
