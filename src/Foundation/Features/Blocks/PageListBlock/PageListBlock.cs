@@ -8,6 +8,7 @@ using EPiServer.Web;
 using Foundation.Features.Folder;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
+using Foundation.Infrastructure;
 using Geta.EpiCategories.DataAnnotations;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace Foundation.Features.Blocks.PageListBlock
     [ContentType(DisplayName = "Page List Block",
         GUID = "30685434-33DE-42AF-88A7-3126B936AEAD",
         Description = "A block that lists a bunch of pages",
-        GroupName = SystemTabNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
+        GroupName = GroupNames.Content)]
+    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-18.png")]
     public class PageListBlock : FoundationBlockData
     {
         [CultureSpecific]
