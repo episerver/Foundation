@@ -1,6 +1,7 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Blocks.CommentsBlock
@@ -11,7 +12,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
     [ContentType(DisplayName = "Comments Block",
         GUID = "b8a110ff-a8e2-4c17-9706-ce777694ebd4",
         Description = "Configures the frontend view properties of a comment block",
-        GroupName = "Social")]
+        GroupName = GroupNames.Social)]
     [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
     public class CommentsBlock : FoundationBlockData
     {
