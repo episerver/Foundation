@@ -298,11 +298,16 @@ namespace Foundation.Cms.Settings
 
         private void SiteUpdated(object sender, SiteDefinitionEventArgs e)
         {
-            var folder = _contentRepository.GetChildren<SettingsFolder>(GlobalSettingsRoot)
-                .FirstOrDefault(x => x.Name.Equals(e.Site.Name, StringComparison.InvariantCultureIgnoreCase));
-
-            if (folder != null)
+            var updatedArgs = e as SiteDefinitionUpdatedEventArgs;
+            var prevSite = updatedArgs.PreviousSite;
+            var updatedSite = updatedArgs.Site;
+            var settingsRoot = GlobalSettingsRoot;
+            var currentSettingsFolder = _contentRepository.GetChildren<IContent>(settingsRoot).FirstOrDefault(x => x.Name == prevSite.Name) as ContentFolder;
+            if (currentSettingsFolder != null)
             {
+                var cloneFolder = currentSettingsFolder.CreateWritableClone();
+                cloneFolder.Name = updatedSite.Name;
+                _contentRepository.Save(cloneFolder);
                 return;
             }
 
