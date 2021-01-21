@@ -323,12 +323,15 @@ namespace Foundation.Cms.Settings
 
             if (e.Content is SettingsBase)
             {
-                var id = ResolveSiteId();
-                if (id == Guid.Empty)
+                var parent = _contentRepository.Get<IContent>(e.Content.ParentLink);
+                var site = _siteDefinitionRepository.Get(parent.Name);
+
+                var id = site?.Id;
+                if (id == null || id == Guid.Empty)
                 {
                     return;
                 }
-                UpdateSettings(id, e.Content, false);
+                UpdateSettings(id.Value, e.Content, false);
             }
         }
 
