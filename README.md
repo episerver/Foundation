@@ -93,11 +93,22 @@ Or clone project using Git
 
 ![Folder access rights](https://i.ibb.co/Wkcbr9m/Folder-Access-Rights.png)
 
-2.	Right-click on the batch file called **setup.cmd** and select **Run as administrator**:
+2.	Go to the appSettings.config and appSettings.debug.config: 
+
+• Search the config for "https://ChangeMe.com/" 
+• Update Perform, Insight, Profile Store urls and keys.
+
+3.	Go to the Web.config:
+    
+• Search the config for "changeme"
+• Update Social appId and secret key.
+• Update the Find index to your own credentials.
+
+4.	Right-click on the batch file called **setup.cmd** and select **Run as administrator**:
 
 ![Run batch file](https://i.ibb.co/SBFfLzt/Run-Batch-File.png)
 
-3.	The installation starts and you are asked to provide the following parameters:
+5.	The installation starts and you are asked to provide the following parameters:
 
 | Parameter | Description |
 |-----------|-------------|
@@ -110,7 +121,7 @@ Or clone project using Git
 
 ![Build parameters](https://i.ibb.co/WcKGLVh/Build-Parameters.png)
 
-4.	The build process executes a number of steps and logs both to the console and to the log files. The automatic build steps are:
+6.	The build process executes a number of steps and logs both to the console and to the log files. The automatic build steps are:
 ```
 •	Set permissions on the folder to everyone full control
 •	Restore NuGet packages
@@ -128,17 +139,17 @@ Or clone project using Git
 ```
 ![Build progress](https://i.ibb.co/GvZBcYY/Build-Progress.png)
 
-5.	When the installation is finished, a Mosey start page is opened in your browser. If not, enter the URL http://_yourdomainname_/ manually.
+7.	When the installation is finished, a Mosey start page is opened in your browser. If not, enter the URL http://_yourdomainname_/ manually.
 ![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
 
-6.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
+8.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
 ![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
 
-7.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
+9.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
 
 > **_Note:_** A **resetup.cmd** file has been created in your project which you can run to re-install the database.
 
-8. Developer licenses for evaluation purposes can be obtained from the [Episerver License Center](https://license.episerver.com/). Place the **License.config** file in your webroot. 
+10. Developer licenses for evaluation purposes can be obtained from the [Episerver License Center](https://license.episerver.com/). Place the **License.config** file in your webroot. 
 
 ## Troubleshooting
 ### The installation fails
