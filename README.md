@@ -95,14 +95,14 @@ Or clone project using Git
 
 2.	Go to the appSettings.config and appSettings.debug.config: 
 
-• Search the config for "https://ChangeMe.com/" 
-• Update Perform, Insight, Profile Store urls and keys.
+  * Search the config for "https://ChangeMe.com/" 
+  * Update Perform, Insight, Profile Store urls and keys
 
 3.	Go to the Web.config:
     
-• Search the config for "changeme"
-• Update Social appId and secret key.
-• Update the Find index to your own credentials.
+  * Search the config for "changeme"
+  * Update Social appId and secret key
+  * Update the Find index to your own credentials
 
 4.	Right-click on the batch file called **setup.cmd** and select **Run as administrator**:
 
