@@ -14,10 +14,10 @@ namespace Foundation.Commerce.Marketing
     public class SingleUseCouponController : Controller
     {
         private readonly IContentLoader _contentLoader;
-        private readonly UniqueCouponService _couponService;
+        private readonly IUniqueCouponService _couponService;
 
         public SingleUseCouponController(IContentLoader contentLoader,
-            UniqueCouponService couponService)
+            IUniqueCouponService couponService)
         {
             _contentLoader = contentLoader;
             _couponService = couponService;
@@ -114,6 +114,14 @@ namespace Foundation.Commerce.Marketing
             }
 
             _couponService.SaveCoupons(couponRecords);
+            return RedirectToAction("EditPromotionCoupons", new { id = model.PromotionId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAll(PromotionCouponsViewModel model)
+        {
+            var deleted = _couponService.DeleteByPromotionId(model.PromotionId);
             return RedirectToAction("EditPromotionCoupons", new { id = model.PromotionId });
         }
 

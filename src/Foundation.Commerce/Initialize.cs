@@ -25,7 +25,7 @@ namespace Foundation.Commerce
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IFileHelperService, FileHelperService>();
             services.AddTransient<ILoyaltyService, LoyaltyService>();
-            services.AddSingleton<UniqueCouponService>();
+            services.AddSingleton<IUniqueCouponService, UniqueCouponService>();
             services.AddSingleton<ICurrencyService, CurrencyService>();
             services.AddSingleton<MarketContentLoader>();
             services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
