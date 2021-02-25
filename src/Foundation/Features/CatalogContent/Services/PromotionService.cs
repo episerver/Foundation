@@ -54,7 +54,7 @@ namespace Foundation.Features.CatalogContent.Services
 
         public IPriceValue GetDiscountPrice(IPriceValue price, ContentReference contentLink, Currency currency, IMarket market)
         {
-            var discountedPrice = _promotionEngine.GetDiscountPrices(new[] { contentLink }, market, currency, _referenceConverter, _lineItemCalculator);
+            var discountedPrice = GetDiscountPrices(new[] { contentLink }, market, currency, _referenceConverter);
             if (discountedPrice.Any())
             {
                 var highestDiscount = discountedPrice.SelectMany(x => x.DiscountPrices).OrderBy(x => x.Price).FirstOrDefault().Price;
@@ -71,6 +71,50 @@ namespace Foundation.Features.CatalogContent.Services
             }
 
             return price;
+        }
+
+        private IEnumerable<DiscountedEntry> GetDiscountPrices(
+          IEnumerable<ContentReference> entryLinks,
+          IMarket market,
+          Mediachase.Commerce.Currency marketCurrency,
+          Mediachase.Commerce.Catalog.ReferenceConverter referenceConverter)
+        {
+            if (entryLinks is null || (market is null) || marketCurrency.IsEmpty)
+            {
+                throw new ArgumentNullException(nameof(marketCurrency));
+            }
+
+            List<DiscountedEntry> source = new List<DiscountedEntry>();
+            HashSet<string> entryCodes = new HashSet<string>(entryLinks.Select<ContentReference, string>(new Func<ContentReference, string>(referenceConverter.GetCode)));
+            Dictionary<string, decimal> dictionary = new Dictionary<string, decimal>();
+            foreach (RewardDescription rewardDescription in _promotionEngine.Evaluate(entryLinks, market, marketCurrency, RequestFulfillmentStatus.Fulfilled))
+            {
+                HashSet<string> usedCodes = new HashSet<string>();
+                foreach (ILineItem lineItem in rewardDescription.Redemptions.Where<RedemptionDescription>((Func<RedemptionDescription, bool>)(x => x.AffectedEntries != null)).SelectMany<RedemptionDescription, PriceEntry>((Func<RedemptionDescription, IEnumerable<PriceEntry>>)(x => x.AffectedEntries.PriceEntries)).Where<PriceEntry>((Func<PriceEntry, bool>)(x => x != null)).Select<PriceEntry, ILineItem>((Func<PriceEntry, ILineItem>)(x => x.ParentItem)).Where<ILineItem>((Func<ILineItem, bool>)(x => !usedCodes.Contains(x.Code))).Where<ILineItem>((Func<ILineItem, bool>)(x => entryCodes.Contains(x.Code))))
+                {
+                    usedCodes.Add(lineItem.Code);
+                    ContentReference entryLink = referenceConverter.GetContentLink(lineItem.Code);
+                    DiscountedEntry discountedEntry = source.SingleOrDefault<DiscountedEntry>((Func<DiscountedEntry, bool>)(x => x.EntryLink == entryLink));
+                    if (discountedEntry == null)
+                    {
+                        discountedEntry = new DiscountedEntry(entryLink, (IList<DiscountPrice>)new List<DiscountPrice>());
+                        source.Add(discountedEntry);
+                    }
+                    if (dictionary.ContainsKey(lineItem.Code))
+                    {
+                        dictionary[lineItem.Code] -= rewardDescription.SavedAmount;
+                    }
+                    else
+                    {
+                        // lineItemCalculator.GetExtendedPrice(lineItem, marketCurrency).Amount;
+                        decimal amount = PriceCalculationService.GetSalePrice(lineItem.Code, market.MarketId, marketCurrency).UnitPrice.Amount;
+                        dictionary.Add(lineItem.Code, amount - rewardDescription.SavedAmount);
+                    }
+                    DiscountPrice discountPrice = new DiscountPrice((EntryPromotion)rewardDescription.Promotion, new Money(Math.Max(dictionary[lineItem.Code], 0M), marketCurrency), new Money(lineItem.PlacedPrice, marketCurrency));
+                    discountedEntry.DiscountPrices.Add(discountPrice);
+                }
+            }
+            return (IEnumerable<DiscountedEntry>)source;
         }
 
         public IPriceValue GetDiscountPrice(Price price, ContentReference contentLink, Currency currency, IMarket market)
