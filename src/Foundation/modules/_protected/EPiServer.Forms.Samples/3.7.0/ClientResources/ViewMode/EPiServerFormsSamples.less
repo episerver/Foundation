@@ -1,0 +1,47 @@
+/**
+    This file should contain only minimal style for EPiServer Forms Samples.
+    This file is applied for both rendering in ViewMode and authoring in EditView.
+    Real styling must be done in customer-side (E.g.: in their Alloy template)
+*/
+.EPiServerForms {
+    .FormDateTime {
+        .FormDateTime__Input {
+            width: 15rem;
+        }
+    }
+
+    .FormDateTimeRange {
+        .FormDateTimeRange__Start, .FormDateTimeRange__End {
+            width: 7rem;
+        }        
+        .FormDateTimeRange_Seperator {
+            display: inline-block;
+            font-weight: 600;
+            vertical-align: top;
+            margin-top: 5px;            
+        }
+    }
+
+    .FormImageSubmitButton{
+        width:100%;
+        height:100%;
+        padding:0;
+        border:none;
+    }
+
+    .FormAddressElement {        
+        .FormAddressElement__Map {
+            display: inline-block;
+        }
+    }
+}
+
+.TimePicker {
+    .TimePicker__Input {
+        width: 2rem;
+    }
+    
+    select {
+        width: 30%;
+    }
+}

@@ -1,4 +1,4 @@
-﻿define([
+define([
 // dojo
     'dojo/_base/declare',
     'dojo/aspect',

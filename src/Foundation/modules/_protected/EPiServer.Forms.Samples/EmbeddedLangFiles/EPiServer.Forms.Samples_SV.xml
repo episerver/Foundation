@@ -150,6 +150,8 @@
         <name>Datum/tidsintervall</name>
         <description></description>
         <newitemdefaultname>Nytt datum/tidsintervall</newitemdefaultname>
+        <start>Start</start>
+        <end>Slut</end>
         <properties>
 
           <description>

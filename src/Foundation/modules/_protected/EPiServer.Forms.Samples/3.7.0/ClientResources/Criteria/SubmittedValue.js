@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     var MODULE_ROOT_PATH = '../../EPiServer.Forms.Samples';
 
     return {

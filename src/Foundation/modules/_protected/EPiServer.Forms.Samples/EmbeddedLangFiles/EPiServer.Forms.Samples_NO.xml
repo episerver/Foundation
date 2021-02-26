@@ -150,6 +150,8 @@
         <name>Dato- og tidsperiode</name>
         <description></description>
         <newitemdefaultname>Ny dato- og tidsperiode</newitemdefaultname>
+        <start>Start</start>
+        <end>Slutt</end>
         <properties>
 
           <description>
