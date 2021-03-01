@@ -103,3 +103,14 @@ END
 GO
 
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+Create PROCEDURE [dbo].[UniqueCoupons_DeleteExpiredCoupons]
+AS
+BEGIN
+	DELETE FROM UniqueCoupons
+	WHERE Expiration < GETDATE()
+END
