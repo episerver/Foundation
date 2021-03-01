@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Foundation.Commerce.Marketing
 {
-    public class UniqueCouponService
+    public class UniqueCouponService : IUniqueCouponService
     {
         private readonly IConnectionStringHandler _connectionHandler;
         private readonly ILogger _logger = LogManager.GetLogger(typeof(UniqueCouponService));
@@ -223,6 +223,39 @@ namespace Foundation.Commerce.Marketing
             {
                 Plaintext = "Foundation"
             });
+        }
+
+        public bool DeleteExpiredCoupons()
+        {
+            try
+            {
+                var connectionString = _connectionHandler.Commerce.ConnectionString;
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        var command = new SqlCommand
+                        {
+                            Connection = transaction.Connection,
+                            Transaction = transaction,
+                            CommandType = CommandType.StoredProcedure,
+                            CommandText = "UniqueCoupons_DeleteExpiredCoupons"
+                        };
+
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception exn)
+            {
+                _logger.Error(exn.Message, exn);
+            }
+
+            return false;
         }
 
         private DataTable CreateUniqueCouponsDataTable(IEnumerable<UniqueCoupon> coupons)
