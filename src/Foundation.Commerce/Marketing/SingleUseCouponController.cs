@@ -7,6 +7,7 @@ using Foundation.Cms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 
 namespace Foundation.Commerce.Marketing
@@ -14,10 +15,10 @@ namespace Foundation.Commerce.Marketing
     public class SingleUseCouponController : Controller
     {
         private readonly IContentLoader _contentLoader;
-        private readonly UniqueCouponService _couponService;
+        private readonly IUniqueCouponService _couponService;
 
         public SingleUseCouponController(IContentLoader contentLoader,
-            UniqueCouponService couponService)
+            IUniqueCouponService couponService)
         {
             _contentLoader = contentLoader;
             _couponService = couponService;
@@ -117,6 +118,14 @@ namespace Foundation.Commerce.Marketing
             return RedirectToAction("EditPromotionCoupons", new { id = model.PromotionId });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAll(PromotionCouponsViewModel model)
+        {
+            var deleted = _couponService.DeleteByPromotionId(model.PromotionId);
+            return RedirectToAction("EditPromotionCoupons", new { id = model.PromotionId });
+        }
+
         private ContentReference GetCampaignRoot()
         {
             return _contentLoader.GetChildren<SalesCampaignFolder>(ContentReference.RootPage)
@@ -128,6 +137,33 @@ namespace Foundation.Commerce.Marketing
             return _contentLoader.GetItems(references, ContentLanguage.PreferredCulture)
                 .OfType<PromotionData>()
                 .ToList();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public FileResult Download(PromotionCouponsViewModel model)
+        {
+            var coupons = _couponService.GetByPromotionId(model.PromotionId);
+
+            var sb = new StringBuilder();
+
+            //Headers
+
+            sb.Append($"PromotionId,Code,ValidFrom,Expiration,CustomerId,MaxRedemptions,UsedRedemptions");
+            sb.Append("\r\n");
+            for (int i = 0; i < coupons.Count; i++)
+            {
+                sb.Append($"{coupons[i].PromotionId}," +
+                    $"{coupons[i].Code}," +
+                    $"{coupons[i].ValidFrom}," +
+                    $"{coupons[i].Expiration}," +
+                    $"{coupons[i].CustomerId}," +
+                    $"{coupons[i].MaxRedemptions}," +
+                    $"{coupons[i].UsedRedemptions}");
+                sb.Append("\r\n");
+            }
+
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", $"{model.PromotionId}.csv");
         }
     }
 }
