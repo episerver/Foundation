@@ -8,11 +8,11 @@ namespace Foundation.Commerce.Marketing
 {
     public class FoundationCouponUsage : ICouponUsage
     {
-        private readonly UniqueCouponService _uniqueCouponService;
+        private readonly IUniqueCouponService _uniqueCouponService;
         private readonly IContentRepository _contentRepository;
 
         public FoundationCouponUsage(IContentRepository contentRepository,
-            UniqueCouponService uniqueCouponService)
+            IUniqueCouponService uniqueCouponService)
         {
             _contentRepository = contentRepository;
             _uniqueCouponService = uniqueCouponService;

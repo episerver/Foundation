@@ -9,9 +9,9 @@ namespace Foundation.Commerce.Marketing
 {
     public class FoundationCouponFilter : ICouponFilter
     {
-        private readonly UniqueCouponService _couponService;
+        private readonly IUniqueCouponService _couponService;
 
-        public FoundationCouponFilter(UniqueCouponService couponService) => _couponService = couponService;
+        public FoundationCouponFilter(IUniqueCouponService couponService) => _couponService = couponService;
 
         public PromotionFilterContext Filter(PromotionFilterContext filterContext, IEnumerable<string> couponCodes)
         {
