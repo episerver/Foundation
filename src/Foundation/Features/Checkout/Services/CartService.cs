@@ -290,14 +290,23 @@ namespace Foundation.Features.Checkout.Services
 
             if (shipment == null)
             {
-                if (cart.GetFirstShipment().LineItems.Count > 0)
+                var cartFirstShipment = cart.GetFirstShipment();
+                if (cartFirstShipment == null)
                 {
                     shipment = _orderGroupFactory.CreateShipment(cart);
                     cart.GetFirstForm().Shipments.Add(shipment);
-                }
+                } 
                 else
                 {
-                    shipment = cart.GetFirstShipment();
+                    if (cartFirstShipment.LineItems.Count > 0)
+                    {
+                        shipment = _orderGroupFactory.CreateShipment(cart);
+                        cart.GetFirstForm().Shipments.Add(shipment);
+                    }
+                    else
+                    {
+                        shipment = cartFirstShipment;
+                    }
                 }
             }
 

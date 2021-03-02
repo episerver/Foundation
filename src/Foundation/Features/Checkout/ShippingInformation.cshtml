@@ -124,10 +124,11 @@
                     <!--Shipment Address-->
                     <br />
                     @{
-                        var shipmentIndexViewData = new ViewDataDictionary();
-                        shipmentIndexViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
+                        var newViewData = new ViewDataDictionary(ViewData);
+                        newViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
                     }
-                    @Html.Partial("SingleAddress", Model, shipmentIndexViewData)
+
+                    @Html.Partial("SingleAddress", Model, newViewData)
                 </div>
             </div>
             <br />
