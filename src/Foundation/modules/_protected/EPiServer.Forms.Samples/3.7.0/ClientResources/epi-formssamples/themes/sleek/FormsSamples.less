@@ -1,0 +1,38 @@
+@iconSizeSmall: 16;
+
+/*Relative link to the image inside the Samples package*/
+.commonIcons(@iconSize, @y: 1, @x: 0) {
+    @posY: (@iconSize * @y);
+    @posX: (@iconSize * @x);    
+
+    background: url(images/formIcons16x16.png) -@posX + 0px -@posY + 0px no-repeat;
+}
+
+.iconsList(@modifier, @iconSize, @x) {
+    &@{modifier} {
+        height: @iconSize + 0px;
+        width: @iconSize + 0px;
+
+        &.epi-forms-datetimeelementblock__icon {
+            .commonIcons(@iconSize, 0, @x);
+        }
+
+        &.epi-forms-recaptchaelementblock__icon {
+            .commonIcons(@iconSize, 1, @x);
+        }
+
+        &.epi-forms-addresseselementblock__icon {
+            .commonIcons(@iconSize, 3, @x);
+        }
+
+        &.epi-forms-datetimerangeelementblock__icon {
+            .commonIcons(@iconSize, 4, @x);
+        }
+    }
+}
+
+.epi-forms-icon {
+    display: inline-block;
+    vertical-align: middle;
+    .iconsList(~'.epi-forms-icon--small', @iconSizeSmall, 0);
+}

@@ -150,6 +150,8 @@
         <name>Page de dates</name>
         <description></description>
         <newitemdefaultname>Nouvelle plage de dates</newitemdefaultname>
+        <start>Démarrage</start>
+        <end>Fin</end>
         <properties>
 
           <description>

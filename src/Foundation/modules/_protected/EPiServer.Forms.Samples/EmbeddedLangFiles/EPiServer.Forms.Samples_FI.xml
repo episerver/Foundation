@@ -150,6 +150,8 @@
         <name>Päivämääräalue</name>
         <description></description>
         <newitemdefaultname>Uusi päivämääräalue</newitemdefaultname>
+        <start>Aloitus</start>
+        <end>Lopetus</end>
         <properties>
 
           <description>

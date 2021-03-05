@@ -150,6 +150,8 @@
         <name>Intervalo de fecha y hora</name>
         <description></description>
         <newitemdefaultname>Nuevo intervalo de fecha y hora</newitemdefaultname>
+        <start>Iniciar</start>
+        <end>Finalizar</end>
         <properties>
 
           <description>

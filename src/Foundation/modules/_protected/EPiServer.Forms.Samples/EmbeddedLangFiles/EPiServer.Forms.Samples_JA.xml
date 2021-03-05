@@ -150,6 +150,8 @@
         <name>日付と時刻の範囲</name>
         <description></description>
         <newitemdefaultname>新しい日付と時刻の範囲</newitemdefaultname>
+        <start>開始</start>
+        <end>終了</end>
         <properties>
 
           <description>
