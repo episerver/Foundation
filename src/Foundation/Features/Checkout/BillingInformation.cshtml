@@ -59,7 +59,7 @@
                         </div>
                     </li>
 
-                    <li class="@(Model.BillingAddressType == 0 ? "" : "hidden")" id="newBillingAddressForm">
+                    <li class="@(Model.BillingAddressType == 0 ? "" : "hidden") jsFormInputRequired" id="newBillingAddressForm">
                         <div>
                             @Html.HiddenFor(model => model.BillingAddress.Name)
                             @Html.HiddenFor(model => model.BillingAddress.DaytimePhoneNumber)
@@ -70,13 +70,13 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.FirstName)
-                                            @Html.TextBoxFor(model => model.BillingAddress.FirstName, new { @class = "textbox" })
+                                            @Html.TextBoxFor(model => model.BillingAddress.FirstName, new { @class = "textbox jsRequired" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.FirstName)
                                         </div>
 
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.LastName)
-                                            @Html.TextBoxFor(model => model.BillingAddress.LastName, new { @class = "textbox" })
+                                            @Html.TextBoxFor(model => model.BillingAddress.LastName, new { @class = "textbox jsRequired" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.LastName)
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.Line1)
-                                            @Html.TextBoxFor(model => model.BillingAddress.Line1, new { @class = "textbox" })
+                                            @Html.TextBoxFor(model => model.BillingAddress.Line1, new { @class = "textbox jsRequired" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.Line1)
                                         </div>
                                         <div class="form-group col-xs-12 col-md-6">
@@ -113,12 +113,12 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.City)
-                                            @Html.TextBoxFor(model => model.BillingAddress.City, new { @class = "textbox jsChangeTaxAddress" })
+                                            @Html.TextBoxFor(model => model.BillingAddress.City, new { @class = "textbox jsChangeTaxAddress jsRequired" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.City)
                                         </div>
                                         <div class="form-group col-xs-12 col-md-6">
                                             @Html.LabelFor(model => model.BillingAddress.PostalCode)
-                                            @Html.TextBoxFor(model => model.BillingAddress.PostalCode, new { @class = "textbox jsChangeTaxAddress" })
+                                            @Html.TextBoxFor(model => model.BillingAddress.PostalCode, new { @class = "textbox jsChangeTaxAddress jsRequired" })
                                             @Html.ValidationMessageFor(model => model.BillingAddress.PostalCode)
                                         </div>
                                     </div>
