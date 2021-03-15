@@ -48,7 +48,9 @@ namespace Foundation.Infrastructure.OpenGraph.Extensions
         /// <param name="content">The content value of the meta tag.</param>
         public static void AppendMetaPropertyContent<T>(this StringBuilder stringBuilder, string property, T content)
         {
-            stringBuilder.Append("<meta property=\"");
+            stringBuilder.Append("<meta name=\"");
+            stringBuilder.Append(property);
+            stringBuilder.Append("\" property=\"");
             stringBuilder.Append(property);
             stringBuilder.Append("\" content=\"");
             stringBuilder.Append(content);
@@ -65,7 +67,9 @@ namespace Foundation.Infrastructure.OpenGraph.Extensions
         /// <param name="content">The content value of the meta tag.</param>
         public static void AppendMetaPropertyContent(this StringBuilder stringBuilder, string property, DateTime content)
         {
-            stringBuilder.Append("<meta property=\"");
+            stringBuilder.Append("<meta name=\"");
+            stringBuilder.Append(property);
+            stringBuilder.Append("\" property=\"");
             stringBuilder.Append(property);
             stringBuilder.Append("\" content=\"");
             if ((content.Hour == 0) && (content.Minute == 0) && (content.Second == 0))
