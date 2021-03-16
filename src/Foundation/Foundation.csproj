@@ -2209,8 +2209,6 @@
     <Content Include="Features\People\PersonItemPage\Index.cshtml" />
     <Content Include="Features\People\PersonListPage\Index.cshtml" />
     <Content Include="Features\Media\_video-file.scss" />
-    <Content Include="modules\_protected\advanced-cms-forms\web.config" />
-    <Content Include="modules\_protected\advanced-cms-forms\advanced-cms-forms.zip" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\Views\Web.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServerGoogleAnalytics.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServer.GoogleAnalytics.zip" />
