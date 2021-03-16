@@ -69,11 +69,12 @@
                                         @{ var first = true; }
                                         @foreach (var item in Model.DidYouMeans.Hits)
                                         {
+                                            var suggestion = HttpUtility.HtmlEncode(item.Suggestion);
                                             if (!first)
                                             {
                                                 <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
                                             }
-                                            <strong>@Html.ActionLink(item.Suggestion, null, new { search = item.Suggestion })</strong>
+                                            <strong>@Html.ActionLink(suggestion, null, new { search = suggestion })</strong>
                                             first = false;
                                         }
                                     </div>
@@ -135,11 +136,12 @@
                                 @{ var first = true; }
                                 @foreach (var item in Model.DidYouMeans.Hits)
                                 {
+                                    var suggestion = HttpUtility.HtmlEncode(item.Suggestion);
                                     if (!first)
                                     {
                                         <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
                                     }
-                                    <strong>@Html.ActionLink(item.Suggestion, null, new { search = item.Suggestion })</strong>
+                                    <strong>@Html.ActionLink(suggestion, null, new { search = suggestion })</strong>
                                     first = false;
                                 }
                             </div>
@@ -185,11 +187,12 @@
                                 @{ var first = true; }
                                 @foreach (var item in Model.DidYouMeans.Hits)
                                 {
+                                    var suggestion = HttpUtility.HtmlEncode(item.Suggestion);
                                     if (!first)
                                     {
                                         <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
                                     }
-                                    <strong>@Html.ActionLink(item.Suggestion, null, new { search = item.Suggestion })</strong>
+                                    <strong>@Html.ActionLink(suggestion, null, new { search = suggestion })</strong>
                                     first = false;
                                 }
                             </div>
