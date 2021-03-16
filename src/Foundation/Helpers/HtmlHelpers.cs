@@ -29,7 +29,7 @@ namespace Foundation.Infrastructure
     {
         private const string _cssFormat = "<link href=\"{0}\" rel=\"stylesheet\" />";
         private const string _scriptFormat = "<script src=\"{0}\"></script>";
-        private const string _metaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
+        private const string _metaFormat = "<meta name=\"{0}\" property=\"{0}\" content=\"{1}\" />";
 
         private static readonly Lazy<IContentLoader> _contentLoader =
             new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());

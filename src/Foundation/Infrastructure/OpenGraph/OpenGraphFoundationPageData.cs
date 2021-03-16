@@ -31,7 +31,49 @@ namespace Foundation.Infrastructure.OpenGraph
                 throw new ArgumentNullException(nameof(stringBuilder));
             }
 
-            base.ToString(stringBuilder);
+            stringBuilder.AppendMetaPropertyContent("og:title", Title);
+            if (Type != OpenGraphType.Website)
+            {
+                stringBuilder.AppendMetaPropertyContent("og:type", Type.ToLowercaseString());
+            }
+            stringBuilder.AppendMetaPropertyContent("og:url", Url);
+            foreach (OpenGraphMedia medium in Media)
+            {
+                stringBuilder.AppendMetaPropertyContent("og:image", medium.Url);
+            }
+            stringBuilder.AppendMetaPropertyContentIfNotNull("og:description", Description);
+            stringBuilder.AppendMetaPropertyContentIfNotNull("og:site_name", SiteName);
+            if (Determiner != 0)
+            {
+                stringBuilder.AppendMetaPropertyContent("og:determiner", Determiner.ToLowercaseString());
+            }
+            if (Locale != null)
+            {
+                stringBuilder.AppendMetaPropertyContent("og:locale", Locale);
+                if (AlternateLocales != null)
+                {
+                    foreach (string alternateLocale in AlternateLocales)
+                    {
+                        stringBuilder.AppendMetaPropertyContent("og:locale:alternate", alternateLocale);
+                    }
+                }
+            }
+            if (SeeAlso != null)
+            {
+                foreach (string item in SeeAlso)
+                {
+                    stringBuilder.AppendMetaPropertyContent("og:see_also", item);
+                }
+            }
+            if (FacebookAdministrators != null)
+            {
+                foreach (string facebookAdministrator in FacebookAdministrators)
+                {
+                    stringBuilder.AppendMetaPropertyContentIfNotNull("fb:admins", facebookAdministrator);
+                }
+            }
+            stringBuilder.AppendMetaPropertyContentIfNotNull("fb:app_id", FacebookApplicationId);
+            stringBuilder.AppendMetaPropertyContentIfNotNull("fb:profile_id", FacebookProfileId);
 
             stringBuilder.AppendMetaPropertyContentIfNotNull("article:content_type", ContentType);
             stringBuilder.AppendMetaPropertyContentIfNotNull("article:category", Category);
