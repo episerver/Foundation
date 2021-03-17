@@ -44,7 +44,7 @@ namespace Foundation.Features.CatalogContent.Package
                 return View(viewModel);
             }
 
-            if (viewModel.Entries == null || viewModel.Entries.Count() == 0)
+            if (viewModel.Entries == null || !viewModel.Entries.Any())
             {
                 return HttpNotFound();
             }

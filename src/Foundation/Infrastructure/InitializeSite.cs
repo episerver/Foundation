@@ -225,7 +225,6 @@ namespace Foundation.Infrastructure
             }
 
             _locator.GetInstance<IContentEvents>().PublishedContent += OnPublishedContent;
-
         }
 
         private void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
@@ -274,7 +273,6 @@ namespace Foundation.Infrastructure
                                              isMultiLanguage,
                                              isSearchable,
                                              isEncrypted);
-
 
             if (lineItemMetaClass.MetaFields.All(x => x.Id != metaField.Id))
             {

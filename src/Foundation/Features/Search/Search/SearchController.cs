@@ -236,7 +236,6 @@ namespace Foundation.Features.Search
         [ChildActionOnly]
         public ActionResult Facet(SearchResultPage currentPage, FilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
 
-
         public class AssetPreloadLink
         {
             public enum AssetType

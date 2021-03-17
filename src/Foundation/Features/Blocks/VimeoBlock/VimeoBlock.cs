@@ -66,7 +66,7 @@ namespace Foundation.Features.Blocks.VimeoBlock
         public bool HasCoverImage => !ContentReference.IsNullOrEmpty(CoverImage);
 
         [Editable(false)]
-        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;
+        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || (MainBody != null && !MainBody.IsEmpty);
     }
 
     public class VimeoUrl

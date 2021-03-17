@@ -31,7 +31,7 @@ namespace Foundation.Features.Blocks.NavigationBlock
 
             var childPages = _contentLoader.GetChildren<PageData>(rootNavigation);
             var model = new NavigationBlockViewModel(currentBlock);
-            if (childPages != null && childPages.Count() > 0)
+            if (childPages != null && childPages.Any())
             {
                 var linkCollection = new List<NavigationItem>();
                 foreach (var page in childPages)

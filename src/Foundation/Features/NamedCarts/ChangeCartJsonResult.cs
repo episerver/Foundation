@@ -28,7 +28,6 @@ namespace Foundation.Features.NamedCarts
         public string Size { get; set; } = null;
         public string NewSize { get; set; } = null;
 
-
         // for Add to cart
         public string Store { get; set; } = "delivery";
         public string SelectedStore { get; set; } = "";

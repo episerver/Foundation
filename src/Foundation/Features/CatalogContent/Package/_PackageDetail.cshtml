@@ -79,7 +79,7 @@
             @Html.PropertyFor(x => x.CurrentContent.Description)
             <br />
 
-            @if (Model.Entries != null && Model.Entries.Count() > 0)
+            @if (Model.Entries != null && Model.Entries.Any())
             {
                 @Html.Partial("_ListVariants", Model.Entries)
                 @Html.Partial("_Store", Model.Stores)
@@ -94,7 +94,7 @@
                             Email to a friend
                         </a>
                     </span>
-                    @if (User.Identity.IsAuthenticated && Model.Entries != null && Model.Entries.Count() > 0)
+                    @if (User.Identity.IsAuthenticated && Model.Entries != null && Model.Entries.Any())
                     {
                         <span class="light-text cursor-pointer link addToWishlist" data="@Model.CurrentContent.Code">
                             <i class="light-svg" data-feather="heart"></i>

@@ -65,7 +65,7 @@ namespace Foundation.Features.Blocks.PageListBlock
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
-        [Display(Name = "Preview option (only available in 'Image on the top' templates)", GroupName = SystemTabNames.Content, Order = 110)]
+        [Display(Name = "Preview option (only for 'Image on the top' and 'Image on the left' templates)", GroupName = SystemTabNames.Content, Order = 110)]
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 

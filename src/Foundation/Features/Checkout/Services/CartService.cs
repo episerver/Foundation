@@ -295,7 +295,7 @@ namespace Foundation.Features.Checkout.Services
                 {
                     shipment = _orderGroupFactory.CreateShipment(cart);
                     cart.GetFirstForm().Shipments.Add(shipment);
-                } 
+                }
                 else
                 {
                     if (cartFirstShipment.LineItems.Count > 0)

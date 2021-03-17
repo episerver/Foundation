@@ -89,6 +89,5 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
 
             return View(viewModel);
         }
-
     }
 }

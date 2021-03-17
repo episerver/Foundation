@@ -129,7 +129,7 @@ namespace Foundation.Features.CatalogContent
                 foreach (var subWord in wordColl.Cast<Match>().Select(r => r.Value).Take(40))
                 {
                     sb.Append(subWord);
-                    sb.Append(" ");
+                    sb.Append(' ');
                 }
             }
 
