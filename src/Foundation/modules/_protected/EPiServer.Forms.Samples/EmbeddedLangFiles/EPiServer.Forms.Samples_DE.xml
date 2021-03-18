@@ -150,6 +150,8 @@
         <name>Zeitraum</name>
         <description></description>
         <newitemdefaultname>Neuer Zeitraum</newitemdefaultname>
+        <start>Start</start>
+        <end>Ende</end>
         <properties>
 
           <description>

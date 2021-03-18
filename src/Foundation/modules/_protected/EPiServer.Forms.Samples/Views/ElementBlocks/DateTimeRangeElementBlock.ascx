@@ -1,4 +1,4 @@
-﻿<%@ import namespace="System.Web.Mvc" %>
+<%@ import namespace="System.Web.Mvc" %>
 <%@ import namespace="EPiServer.Core" %>
 <%@ import namespace="EPiServer.Web.Mvc.Html" %>
 <%@ import namespace="EPiServer.Forms.Core" %>

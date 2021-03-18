@@ -1,4 +1,4 @@
-﻿/* This plugin is clone from jQuery UI Datepicker, then EpiForm modifies to insert Timepicker feature */
+/* This plugin is clone from jQuery UI Datepicker, then EpiForm modifies to insert Timepicker feature */
 /* ================================= */
 (function ($) {
     /*!

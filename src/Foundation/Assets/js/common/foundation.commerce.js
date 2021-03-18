@@ -20,103 +20,89 @@ import Market from "Features/Markets/market";
 import QuickOrderBlock from "Features/MyOrganization/QuickOrderBlock/quick-order-block";
 
 export default class FoundationCommerce {
-    init() {
-        window.cartHelper = new CartHelper();
+  init() {
+    window.cartHelper = new CartHelper();
 
-        let market = new Market();
-        market.init();
+    let market = new Market();
+    market.init();
 
-        let productDetail = new ProductDetail('.product-detail');
-        productDetail.initProductDetail();
+    let productDetail = new ProductDetail('.product-detail');
+    productDetail.initProductDetail();
 
-        let quickView = new ProductDetail('#quickView');
-        quickView.initQuickView();
+    let quickView = new ProductDetail('#quickView');
+    quickView.initQuickView();
 
-        let search = new ProductSearch();
-        search.init();
+    let search = new ProductSearch();
+    search.init();
 
-        let newProductsSearch = new NewProductsSearch();
-        newProductsSearch.init();
+    let newProductsSearch = new NewProductsSearch();
+    newProductsSearch.init();
 
-        let salesSearch = new SalesSearch();
-        salesSearch.init();
+    let salesSearch = new SalesSearch();
+    salesSearch.init();
 
-        let product = new Product();
-        product.init();
+    let product = new Product();
+    product.init();
 
-        let review = new Review();
-        review.ratingHover();
-        review.ratingClick();
-        review.submitReview();
+    let review = new Review();
+    review.ratingHover();
+    review.ratingClick();
+    review.submitReview();
 
-        let myProfile = new MyProfile();
-        myProfile.editProfileClick();
-        myProfile.saveProfileClick();
+    let myProfile = new MyProfile();
+    myProfile.editProfileClick();
+    myProfile.saveProfileClick();
 
-        let address = new Address();
-        address.init();
+    let address = new Address();
+    address.init();
 
-        let cart = new Cart();
-        cart.initLoadCarts();
-        cart.initRemoveItem();
-        cart.initClearCart();
-        cart.initMoveToWishtlist();
-        cart.initChangeQuantityItem();
-        cart.initChangeVariant();
+    let cart = new Cart();
+    cart.initLoadCarts();
+    cart.initRemoveItem();
+    cart.initClearCart();
+    cart.initMoveToWishtlist();
+    cart.initChangeQuantityItem();
+    cart.initChangeVariant();
 
-        let checkout = new Checkout();
-        checkout.formShippingAddressChange();
-        checkout.formBillingAddressChange();
-        checkout.addPaymentClick();
-        checkout.removePaymentClick();
-        checkout.paymentMethodChange();
-        checkout.creditCardChange();
-        checkout.checkoutAsGuestOrRegister();
-        checkout.applyCouponCode();
-        checkout.removeCouponCode();
-        checkout.changeShippingMethod();
-        checkout.changeCartItem();
-        checkout.separateInit();
-        checkout.changeAddressClick();
-        checkout.addNewAddress();
-        checkout.showHideSubscription();
+    let checkout = new Checkout();
+    checkout.init();
 
-        let orderDetails = new OrderDetails();
-        orderDetails.initNote();
-        orderDetails.initReturnOrder();
+    let orderDetails = new OrderDetails();
+    orderDetails.initNote();
+    orderDetails.initReturnOrder();
 
-        let firstTable = new OrderPadsComponent('#firstTable');
+    let firstTable = new OrderPadsComponent('#firstTable');
 
-        // Quick Order Block
-        $('.jsQuickOrderBlockForm').each(function (i, e) {
-            let newBlockId = 'jsQuickOrderBlockForm' + i;
-            $(e).attr('id', newBlockId);
-            let quickOrderBlock = new QuickOrderBlock('#' + newBlockId);
-            quickOrderBlock.init();
-        })
+    // Quick Order Block
+    $('.jsQuickOrderBlockForm').each(function (i, e) {
+      let newBlockId = 'jsQuickOrderBlockForm' + i;
+      $(e).attr('id', newBlockId);
+      let quickOrderBlock = new QuickOrderBlock('#' + newBlockId);
+      quickOrderBlock.init();
+    })
 
-        let orderSearchBlock = new OrderSearchBlock();
-        orderSearchBlock.init();
+    let orderSearchBlock = new OrderSearchBlock();
+    orderSearchBlock.init();
 
-        let productRecommendations = new ProductRecommendations();
-        productRecommendations.init();
+    let productRecommendations = new ProductRecommendations();
+    productRecommendations.init();
 
-        let b2bBudget = new B2bBudget();
-        b2bBudget.saveNewBudget();
+    let b2bBudget = new B2bBudget();
+    b2bBudget.saveNewBudget();
 
-        let b2bOrganization = new B2bOrganization();
-        b2bOrganization.init();
+    let b2bOrganization = new B2bOrganization();
+    b2bOrganization.init();
 
-        let b2bOrder = new B2bOrder();
-        b2bOrder.init();
+    let b2bOrder = new B2bOrder();
+    b2bOrder.init();
 
-        //let b2bUsers = new B2bUsersOrganization();
-        //b2bUsers.init();
+    //let b2bUsers = new B2bUsersOrganization();
+    //b2bUsers.init();
 
-        let stores = new Stores();
-        stores.init();
+    let stores = new Stores();
+    stores.init();
 
-        let people = new People();
-        people.init();
-    }
+    let people = new People();
+    people.init();
+  }
 }

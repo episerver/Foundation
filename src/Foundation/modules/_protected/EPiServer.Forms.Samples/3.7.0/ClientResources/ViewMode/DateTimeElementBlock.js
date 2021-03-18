@@ -1,4 +1,4 @@
-﻿(function ($) {
+(function ($) {
     var _utilsSvc = epi.EPiServer.Forms.Utils,
         language = navigator.language || navigator.userLanguage, // on iOS naviagtor.language is in lower case (ex: en-us)
         dateFormatSettings = epi.EPiServer.Forms.Samples.DateFormats[language.toLowerCase()] || epi.EPiServer.Forms.Samples.DateFormats["en-us"],

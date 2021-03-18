@@ -1,4 +1,4 @@
-﻿(function ($) {
+(function ($) {
     $.extend(true, epi.EPiServer.Forms, {
         // this dateFormats is for using in Samples only
         Samples: {
@@ -67,10 +67,15 @@
                 var friendlyFormat = dateFormatSettings.friendlyFormat,
                     message = _utilsSvc.stringFormat(validatorMetaData.model.message, [friendlyFormat]);
 
-                return { isValid: false, message: message };
+                return {
+                    isValid: false,
+                    message: message
+                };
             }
 
-            return { isValid: true };
+            return {
+                isValid: true
+            };
         },
 
         dateTimeRangeValidate = function (fieldName, fieldValue, validatorMetaData) {
@@ -79,32 +84,48 @@
             // the fieldValue return by get getCustomElementValue already contains validate information,
             // just check fieldValue.isValid and return along with error message
             if (typeof fieldValue === 'object' && fieldValue.isValid == false) {
-                return { isValid: false, message: validatorMetaData.model.message };
+                return {
+                    isValid: false,
+                    message: validatorMetaData.model.message
+                };
             }
             // if value is empty, then let the required validator take the decision
             if (fieldValue == "") {
-                return { isValid: true };
+                return {
+                    isValid: true
+                };
             }
 
             var values = fieldValue.split('|');
             if (!values || values.length < 2) {
-                return { isValid: false };
+                return {
+                    isValid: false
+                };
             }
 
             var startDateTimeString = values[0],
-                endDateTimeString = values[1];
-            var startDate = Date.parse(startDateTimeString);
-            var endDate = Date.parse(endDateTimeString);
+                endDateTimeString = values[1],
+                startDate = Date.parse(startDateTimeString),
+                endDate = Date.parse(endDateTimeString);
+
             if (!startDate || !endDate || startDate >= endDate) {
-                return { isValid: false, message: validatorMetaData.model.message };
+                return {
+                    isValid: false,
+                    message: validatorMetaData.model.message
+                };
             }
 
-            return { isValid: true };
+            return {
+                isValid: true
+            };
         };
 
-    addressesValidate = function validateAddress(fieldName, fieldValue, validatorMetaData ) {
-        var validateEnpoint = '/ExternalValidate/ValidateAddress';
-        var validateResult = { isValid: false };
+    addressesValidate = function validateAddress(fieldName, fieldValue, validatorMetaData) {
+        var validateEnpoint = '/ExternalValidate/ValidateAddress',
+            validateResult = {
+                isValid: false
+            };
+
         $.ajax({
             url: validateEnpoint,
             type: "POST",
@@ -133,13 +154,8 @@
             "EPiServer.Forms.Samples.Implementation.Validation.DateTimeValidator": dateTimeValidate,
             "EPiServer.Forms.Samples.Implementation.Validation.DateValidator": dateTimeValidate,
             "EPiServer.Forms.Samples.Implementation.Validation.TimeValidator": dateTimeValidate,
-            "EPiServer.Forms.Samples.Implementation.Validation.RecaptchaValidator": function (fieldName, fieldValue, validatorMetaData) {
-                // validate recaptcha element
-                if (fieldValue) {
-                    return { isValid: true };
-                }
-
-                return { isValid: false, message: validatorMetaData.model.message };
+            "EPiServer.Forms.Samples.Implementation.Validation.RecaptchaValidator": function () {
+                return {};
             }
         },
 
@@ -153,11 +169,19 @@
                     return;
                 }
 
-                var picker = { settings: { dateFormat: dateFormat } },
+                var picker = {
+                        settings: {
+                            dateFormat: dateFormat
+                        }
+                    },
                     dateTime = new Date(val),
                     dateString = $.datetimepicker.formatDate(picker.settings.dateFormat, dateTime),
                     //we only support time with AM/PM -> 'en-US' is used.
-                    timeString = dateTime.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }),  
+                    timeString = dateTime.toLocaleString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                    }),
                     timeStringWithLeadingZero = ("0" + timeString).slice(-8); // with format "hh:mm tt", toLocaleString return hour without leading zero
 
 
@@ -180,9 +204,10 @@
                     return;
                 }
                 var startDate = dateTimes[0],
-                    endDate = dateTimes[1];
-                var startDateString = this["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"](elementInfo, startDate);
-                var endDateString = this["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"](elementInfo, endDate);
+                    endDate = dateTimes[1],
+                    startDateString = this["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"](elementInfo, startDate),
+                    endDateString = this["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"](elementInfo, endDate);
+
                 return startDateString + ' : ' + endDateString;
             },
 
@@ -190,8 +215,9 @@
                 if (!val) {
                     return;
                 }
-                var locationObj = JSON.parse(val);
-                var locationString = locationObj.address;
+                var locationObj = JSON.parse(val),
+                    locationString = locationObj.address;
+
                 if (locationObj.street) {
                     locationString += ', ' + locationObj.street;
                 }
@@ -237,8 +263,7 @@
                     title: confirmationResources.title,
                     resizable: false,
                     modal: true,
-                    buttons: [
-                        {
+                    buttons: [{
                             text: confirmationResources.buttons.ok,
                             click: function () {
                                 $(this).dialog("close");
@@ -258,35 +283,70 @@
                 return $deferred.promise();
             },
 
+            // OVERRIDE
+            onBeforeSubmit: function (currentForm) {
+                return this._getRecaptchaToken(currentForm);
+            },
+
+            // get reCaptcha token.
+            _getRecaptchaToken: function (form) {
+                var $deferred = $.Deferred(),
+                    $recaptchaElement = $(form).find(".Form__Element.FormRecaptcha");
+
+                // If we don't have recaptcha element -> do nothing.
+                if (!$recaptchaElement.hasClass("FormRecaptcha")) {
+                    $deferred.resolve();
+                    return $deferred.promise();
+                }
+
+                var siteKey = $recaptchaElement.data("epiforms-sitekey");
+                // get reCaptcha token to validate in serverside.
+
+                try {
+                    grecaptcha.execute(siteKey).then(function (token) {
+                        $recaptchaElement.attr("g-recaptcha-response", token);
+                        $deferred.resolve(token);
+                    });
+                } catch (err) {
+                    $deferred.resolve();
+                    return $deferred.promise();
+                };
+
+                return $deferred.promise();
+            },
+
             // OVERRIDE, process to get value from datetime picker element
             getCustomElementValue: function ($element) {
 
                 // for datetime picker we always return result in format "2015-12-25 10:30 AM",
                 // and depend on picker type (date/time/datetime) we will parse its value later.
+
                 if ($element.hasClass("FormDateTime")) {
                     var $input = $('.FormDateTime__Input', $element);
                     return this.getCustomDateTimeElementValue($input);
-                } else if ($element.hasClass("FormRecaptcha")) {
-                    // for recaptcha element
-                    var widgetId = $element.data("epiforms-recaptcha-widgetid");
-                    if (widgetId != undefined && grecaptcha) {
-                        return grecaptcha.getResponse(widgetId);
-                    } else {
-                        return null;
-                    }
                 }
-                else if ($element.hasClass("FormDateTimeRange")) {
+
+                if ($element.hasClass("FormRecaptcha")) {
+                    return $element.attr("g-recaptcha-response");
+                }
+
+                if ($element.hasClass("FormDateTimeRange")) {
                     var $startInput = $('.FormDateTimeRange__Start', $element),
-                        $endInput = $('.FormDateTimeRange__End', $element);
-                    var startDateTime = this.getCustomDateTimeElementValue($startInput);
-                    var endDateTime = this.getCustomDateTimeElementValue($endInput);
+                        $endInput = $('.FormDateTimeRange__End', $element),
+                        startDateTime = this.getCustomDateTimeElementValue($startInput),
+                        endDateTime = this.getCustomDateTimeElementValue($endInput);
+
                     if (startDateTime.isValid == false || endDateTime.isValid == false) {
-                        return { isValid: false };
+                        return {
+                            isValid: false
+                        };
                     }
 
                     // if only startDate or endDate exists, then return invalid
                     if (!((startDateTime && endDateTime) || (!startDateTime && !endDateTime))) {
-                        return { isValid: false };
+                        return {
+                            isValid: false
+                        };
                     }
                     if (!startDateTime && !endDateTime) {
                         return '';
@@ -294,7 +354,7 @@
                     return startDateTime + '|' + endDateTime;
                 }
 
-                else if ($element.hasClass("FormAddressElement")) {
+                if ($element.hasClass("FormAddressElement")) {
 
                     var address = $('.FormAddressElement__Address', $element).first().val(),
                         country = $('.FormAddressElement__Country', $element).first().val(),
@@ -319,8 +379,8 @@
 
             getCustomDateTimeElementValue: function ($element) {
                 var dateTimeString = $.trim($element.val()),
-                        picker = $.datetimepicker._getInst($element[0]),
-                        timeRegex = "^(0?[1-9]|1[012])(:[0-5]\\d) [APap][mM]$";
+                    picker = $.datetimepicker._getInst($element[0]),
+                    timeRegex = "^(0?[1-9]|1[012])(:[0-5]\\d) [APap][mM]$";
 
                 if (!dateTimeString) {
                     return dateTimeString;
@@ -335,19 +395,25 @@
                             // try to parse date with format
                             dateTime = $.datetimepicker.parseDate(picker.settings.dateFormat, dateTimeString);
                         } catch (err) {
-                            return { isValid: false };
+                            return {
+                                isValid: false
+                            };
                         }
                         var result = _utilsSvc.stringFormat("{0}-{1}-{2}", [dateTime.getFullYear(), this.addLeadingZero(dateTime.getMonth() + 1), this.addLeadingZero(dateTime.getDate())]);
                         if (picker.settings.type == dateTimePickerTypes.dateTimePicker) {
                             var dateTimeSegments = dateTimeString.split(" ");
 
                             if (dateTimeSegments.length < 3) {
-                                return { isValid: false };
+                                return {
+                                    isValid: false
+                                };
                             }
 
                             var timeString = dateTimeSegments[1] + " " + dateTimeSegments[2];
                             if (!_utilsSvc.isMatchedReg(timeString, timeRegex)) {
-                                return { isValid: false };
+                                return {
+                                    isValid: false
+                                };
                             }
 
                             result += " " + timeString;
@@ -358,7 +424,9 @@
 
                     case dateTimePickerTypes.timePicker:
                         if (!_utilsSvc.isMatchedReg(dateTimeString, timeRegex)) {
-                            return { isValid: false };
+                            return {
+                                isValid: false
+                            };
                         }
                         var yearString = new Date().getFullYear();
                         return this.toISODateTimeString(yearString + "-01-01 " + dateTimeString); // add fake date string into return results, this will be ignored when rebind data
@@ -418,8 +486,8 @@
 
                 timeZoneOffset = Math.abs(timeZoneOffset);
 
-                var offsetMinutes = timeZoneOffset % 60;
-                var offsetHours = (timeZoneOffset - offsetMinutes) / 60;
+                var offsetMinutes = timeZoneOffset % 60,
+                    offsetHours = (timeZoneOffset - offsetMinutes) / 60;
 
                 return dif + this.addLeadingZero(offsetHours) + ":" + this.addLeadingZero(offsetMinutes);
             },
@@ -444,35 +512,42 @@
                         return;
                     }
 
-                    var $startEl = $element.find(".FormDateTimeRange__Start");
-                    var $endEl = $element.find(".FormDateTimeRange__End");
-                    var startPicker = $.datetimepicker._getInst($startEl[0]),
-                        startBindingValue = epi.EPiServer.Forms.CustomBindingElements["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"]({ pickerType: startPicker.settings.type }, values[0]);
-                    var endPicker = $.datetimepicker._getInst($endEl[0]),
-                        endBindingValue = epi.EPiServer.Forms.CustomBindingElements["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"]({ pickerType: endPicker.settings.type }, values[1]);
+                    var $startEl = $element.find(".FormDateTimeRange__Start"),
+                        $endEl = $element.find(".FormDateTimeRange__End"),
+                        startPicker = $.datetimepicker._getInst($startEl[0]),
+                        startBindingValue = epi.EPiServer.Forms.CustomBindingElements["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"]({
+                            pickerType: startPicker.settings.type
+                        }, values[0]),
+                        endPicker = $.datetimepicker._getInst($endEl[0]),
+                        endBindingValue = epi.EPiServer.Forms.CustomBindingElements["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"]({
+                            pickerType: endPicker.settings.type
+                        }, values[1]);
                     $startEl.val(startBindingValue);
                     $endEl.val(endBindingValue);
                     return;
                 }
-                else if ($element.hasClass('FormDateTime')) {
+
+                if ($element.hasClass('FormDateTime')) {
                     var $item = $element.find(".Form__CustomInput");
                     if ($item.hasClass("FormDateTime__Input")) {
 
                         var picker = $.datetimepicker._getInst($item[0]),
-                            bindingValue = epi.EPiServer.Forms.CustomBindingElements["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"]({ pickerType: picker.settings.type }, val);
+                            bindingValue = epi.EPiServer.Forms.CustomBindingElements["EPiServer.Forms.Samples.Implementation.Elements.DateTimeElementBlock"]({
+                                pickerType: picker.settings.type
+                            }, val);
                         $item.val(bindingValue);
                         return;
                     }
                 }
 
-                else if ($element.hasClass('FormAddressElement')) {
-                    var $addressEl = $element.find(".FormAddressElement__Address");
-                    var $countryEl = $element.find(".FormAddressElement__Country");
-                    var $stateEl = $element.find(".FormAddressElement__State");
-                    var $cityEl = $element.find(".FormAddressElement__Locality");
-                    var $routeEl = $element.find(".FormAddressElement__Route");
-                    var $zipEl = $element.find(".FormAddressElement__ZipCode");
-                    var addressInfo = JSON.parse(val);
+                if ($element.hasClass('FormAddressElement')) {
+                    var $addressEl = $element.find(".FormAddressElement__Address"),
+                        $countryEl = $element.find(".FormAddressElement__Country"),
+                        $stateEl = $element.find(".FormAddressElement__State"),
+                        $cityEl = $element.find(".FormAddressElement__Locality"),
+                        $routeEl = $element.find(".FormAddressElement__Route"),
+                        $zipEl = $element.find(".FormAddressElement__ZipCode"),
+                        addressInfo = JSON.parse(val);
                     $countryEl.val(addressInfo.country);
                     $zipEl.val(addressInfo.postalCode);
                     $stateEl.val(addressInfo.state);

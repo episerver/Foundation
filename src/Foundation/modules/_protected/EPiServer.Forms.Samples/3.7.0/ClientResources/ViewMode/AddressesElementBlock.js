@@ -1,4 +1,4 @@
-﻿(function ($) {
+(function ($) {
     var _utilsSvc = epi.EPiServer.Forms.Utils;
     var addressComponentsMap = {
         street_number: 'short_name',

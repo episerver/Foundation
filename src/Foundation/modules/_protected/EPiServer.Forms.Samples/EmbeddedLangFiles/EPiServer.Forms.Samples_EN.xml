@@ -100,7 +100,7 @@
           </episerver.forms.samples.implementation.validation.timevalidator>
           <episerver.forms.samples.implementation.validation.recaptchavalidator>
             <displayname>Recaptcha validator</displayname>
-            <message>Invalid captcha value.</message>
+            <message>Invalid reCAPTCHA value, please try again.</message>
           </episerver.forms.samples.implementation.validation.recaptchavalidator>
           <episerver.forms.implementation.validation.datetimerangevalidator>
             <displayname>Date time range</displayname>
@@ -144,12 +144,18 @@
             <caption>Secret key</caption>
             <help>The shared key between your site and reCAPTCHA.</help>
           </secretkey>
+          <scorethreshold>
+            <caption> Score Threshold</caption>
+            <help>The score threshold for reCAPTCHA.</help>
+          </scorethreshold>
         </properties>
       </recaptchaelementblock>
       <datetimerangeelementblock>
         <name>Date time range</name>
         <description></description>
         <newitemdefaultname>New date time range</newitemdefaultname>
+        <start>Start</start>
+        <end>End</end>
         <properties>
 
           <description>
