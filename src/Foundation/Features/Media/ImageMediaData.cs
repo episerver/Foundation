@@ -25,6 +25,9 @@ namespace Foundation.Features.Media
         public virtual Blob LargeThumbnail { get; set; }
 
         [Editable(false)]
+        public override Blob Thumbnail { get => BinaryData; }
+
+        [Editable(false)]
         [Display(Name = "File size", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual string FileSize { get; set; }
 
