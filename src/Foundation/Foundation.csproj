@@ -119,11 +119,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="EPiBootstrapArea, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiBootstrapArea.5.3.2\lib\net461\EPiBootstrapArea.dll</HintPath>
+    <Reference Include="EPiBootstrapArea, Version=5.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiBootstrapArea.5.3.3\lib\net461\EPiBootstrapArea.dll</HintPath>
     </Reference>
-    <Reference Include="EPiBootstrapArea.Forms, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiBootstrapArea.Forms.5.3.2\lib\net461\EPiBootstrapArea.Forms.dll</HintPath>
+    <Reference Include="EPiBootstrapArea.Forms, Version=5.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiBootstrapArea.Forms.5.3.3\lib\net461\EPiBootstrapArea.Forms.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer, Version=11.20.5.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.Core.11.20.5\lib\net461\EPiServer.dll</HintPath>
