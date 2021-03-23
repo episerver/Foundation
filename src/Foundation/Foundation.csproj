@@ -1197,6 +1197,8 @@
     <Compile Include="Features\Locations\TagsPartialRouting.cs" />
     <Compile Include="Features\Markets\CurrentMarketViewModel.cs" />
     <Compile Include="Features\Media\CodingFile.cs" />
+    <Compile Include="Features\Media\VectorImageMediaData.cs" />
+    <Compile Include="Features\Media\WebImageMediaData.cs" />
     <Compile Include="Features\MyAccount\Bookmarks\BookmarksPage.cs" />
     <Compile Include="Features\MyAccount\Bookmarks\BookmarksService.cs" />
     <Compile Include="Features\MyAccount\Bookmarks\BookmarksViewModel.cs" />
