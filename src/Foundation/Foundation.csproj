@@ -1021,6 +1021,7 @@
     <Compile Include="Features\CatalogContent\Package\GenericPackage.cs" />
     <Compile Include="Features\CatalogContent\ProductTileViewModel.cs" />
     <Compile Include="Features\CatalogContent\RecommendedProductTileViewModel.cs" />
+    <Compile Include="Features\CatalogContent\Services\FoundationPromotionEngineContentLoader.cs" />
     <Compile Include="Features\CatalogContent\Services\PriceCalculationService.cs" />
     <Compile Include="Features\CatalogContent\Services\PricingService.cs" />
     <Compile Include="Features\Checkout\CheckoutPage.cs" />
