@@ -82,11 +82,11 @@
     <Reference Include="EPiServer.Cms.AspNet, Version=11.20.5.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.20.5\lib\net461\EPiServer.Cms.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Cms.Shell.UI, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.Cms.Shell.UI.dll</HintPath>
+    <Reference Include="EPiServer.Cms.Shell.UI, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.Cms.Shell.UI.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Cms.UI.AspNetIdentity, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.AspNetIdentity.11.34.0\lib\net461\EPiServer.Cms.UI.AspNetIdentity.dll</HintPath>
+    <Reference Include="EPiServer.Cms.UI.AspNetIdentity, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.AspNetIdentity.11.34.1\lib\net461\EPiServer.Cms.UI.AspNetIdentity.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Commerce.Internal.Migration, Version=13.30.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Commerce.Core.13.30.0\lib\net461\EPiServer.Commerce.Internal.Migration.dll</HintPath>
@@ -127,14 +127,14 @@
     <Reference Include="EPiServer.ServiceLocation.StructureMap, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.ServiceLocation.StructureMap.2.0.3\lib\net461\EPiServer.ServiceLocation.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Shell, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.Shell.dll</HintPath>
+    <Reference Include="EPiServer.Shell, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Shell.UI, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.Shell.UI.dll</HintPath>
+    <Reference Include="EPiServer.Shell.UI, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.Shell.UI.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.UI, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.UI.dll</HintPath>
+    <Reference Include="EPiServer.UI, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Web.WebControls, Version=11.20.5.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.20.5\lib\net461\EPiServer.Web.WebControls.dll</HintPath>

@@ -149,14 +149,14 @@
     <Reference Include="EPiServer.Cms.AspNet, Version=11.20.5.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.20.5\lib\net461\EPiServer.Cms.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Cms.Shell.UI, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.Cms.Shell.UI.dll</HintPath>
+    <Reference Include="EPiServer.Cms.Shell.UI, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.Cms.Shell.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Cms.TinyMce, Version=2.13.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.TinyMce.2.13.2\lib\net461\EPiServer.Cms.TinyMce.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Cms.UI.AspNetIdentity, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.AspNetIdentity.11.34.0\lib\net461\EPiServer.Cms.UI.AspNetIdentity.dll</HintPath>
+    <Reference Include="EPiServer.Cms.UI.AspNetIdentity, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.AspNetIdentity.11.34.1\lib\net461\EPiServer.Cms.UI.AspNetIdentity.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Commerce.Azure, Version=14.0.19.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Commerce.Azure.14.0.19\lib\net462\EPiServer.Commerce.Azure.dll</HintPath>
@@ -221,29 +221,29 @@
     <Reference Include="EPiServer.Events, Version=11.20.5.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Framework.11.20.5\lib\net461\EPiServer.Events.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Find, Version=13.4.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.13.4.1\lib\net461\EPiServer.Find.dll</HintPath>
+    <Reference Include="EPiServer.Find, Version=13.4.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.13.4.2\lib\net461\EPiServer.Find.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Find.Blocks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.1\lib\net461\EPiServer.Find.Blocks.dll</HintPath>
+      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.2\lib\net461\EPiServer.Find.Blocks.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Find.Cms, Version=13.4.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.1\lib\net461\EPiServer.Find.Cms.dll</HintPath>
+    <Reference Include="EPiServer.Find.Cms, Version=13.4.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.2\lib\net461\EPiServer.Find.Cms.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Find.Commerce, Version=11.1.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Find.Commerce.11.1.2\lib\net461\EPiServer.Find.Commerce.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Find.Framework, Version=13.4.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.Framework.13.4.1\lib\net461\EPiServer.Find.Framework.dll</HintPath>
+    <Reference Include="EPiServer.Find.Framework, Version=13.4.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Framework.13.4.2\lib\net461\EPiServer.Find.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Find.Optimizations, Version=13.4.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.1\lib\net461\EPiServer.Find.Optimizations.dll</HintPath>
+    <Reference Include="EPiServer.Find.Optimizations, Version=13.4.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.2\lib\net461\EPiServer.Find.Optimizations.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Find.Statistics, Version=13.4.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.1\lib\net461\EPiServer.Find.Statistics.dll</HintPath>
+    <Reference Include="EPiServer.Find.Statistics, Version=13.4.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.2\lib\net461\EPiServer.Find.Statistics.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Find.UI, Version=13.4.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.1\lib\net461\EPiServer.Find.UI.dll</HintPath>
+    <Reference Include="EPiServer.Find.UI, Version=13.4.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.13.4.2\lib\net461\EPiServer.Find.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Forms, Version=4.30.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Forms.4.30.2\lib\EPiServer.Forms.dll</HintPath>
@@ -303,10 +303,10 @@
       <HintPath>..\..\packages\EPiServer.Logging.Log4Net.2.2.2\lib\net461\EPiServer.Logging.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="Episerver.Marketing.Common, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ConnectForMarketingAutomation.5.6.2\lib\net461\Episerver.Marketing.Common.dll</HintPath>
+      <HintPath>..\..\packages\EPiServer.ConnectForMarketingAutomation.5.6.3\lib\net461\Episerver.Marketing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Episerver.Marketing.Connector, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.ConnectForMarketingAutomation.5.6.2\lib\net461\Episerver.Marketing.Connector.dll</HintPath>
+    <Reference Include="Episerver.Marketing.Connector, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.ConnectForMarketingAutomation.5.6.3\lib\net461\Episerver.Marketing.Connector.dll</HintPath>
     </Reference>
     <Reference Include="Episerver.Marketing.Connector.Forms, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Marketing.Automation.Forms.2.3.1\lib\net461\Episerver.Marketing.Connector.Forms.dll</HintPath>
@@ -368,11 +368,11 @@
     <Reference Include="EPiServer.Session, Version=1.0.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Session.1.0.1\lib\net461\EPiServer.Session.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Shell, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.Shell.dll</HintPath>
+    <Reference Include="EPiServer.Shell, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Shell.UI, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.Shell.UI.dll</HintPath>
+    <Reference Include="EPiServer.Shell.UI, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.Shell.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Social, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Social.3.1.0\lib\net461\EPiServer.Social.dll</HintPath>
@@ -520,8 +520,8 @@
     <Reference Include="EPiServer.Turnstile.Contracts.Hmac, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Turnstile.Contracts.Hmac.4.0.0\lib\net461\EPiServer.Turnstile.Contracts.Hmac.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.UI, Version=11.34.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.0\lib\net461\EPiServer.UI.dll</HintPath>
+    <Reference Include="EPiServer.UI, Version=11.34.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.11.34.1\lib\net461\EPiServer.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.VisitorGroupsCriteriaPack, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.VisitorGroupsCriteriaPack.2.0.1\lib\EPiServer.VisitorGroupsCriteriaPack.dll</HintPath>
@@ -2012,8 +2012,6 @@
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\DateTimeRangeElementBlock.ascx" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\ElementBlocks\RecaptchaElementBlock.ascx" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\Views\Shared\EditorTemplates\FormModel.ascx" />
-    <Content Include="modules\_protected\Episerver.Marketing.Connector\ClientResources\Profile\Profile.js" />
-    <Content Include="modules\_protected\Episerver.Marketing.Connector\Views\Admin\Settings.aspx" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.min.js" />
     <Content Include="Assets\js\vendors\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Assets\vendors\ui-icons_444444_256x240.png" />
@@ -2160,6 +2158,8 @@
     <Content Include="lang\settings_en.xml" />
     <Content Include="modules\_protected\CookieDropBlock\Images\block-type-thumbnail-cookiedrop.png" />
     <Content Include="lang\Episerver.Marketing.Automation.Forms_EN.xml" />
+    <Content Include="modules\_protected\Episerver.Marketing.Connector\ClientResources\Profile\Profile.js" />
+    <Content Include="modules\_protected\Episerver.Marketing.Connector\Views\Admin\Settings.aspx" />
     <Content Include="modules\_protected\VisualCompareMode\ClientResources\Scripts\compareWithMarkupView.js" />
     <Content Include="modules\_protected\VisualCompareMode\ClientResources\Styles\DiffStyles.css" />
     <Content Include="modules\_protected\VisualCompareMode\EpiServerOverridenLibs\CustomCompareCommandProvider.js" />
@@ -2518,7 +2518,6 @@
     <Content Include="modules\_protected\AdvancedTask\AdvancedTask.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\EPiServer.ConnectForCampaign.zip" />
     <Content Include="modules\_protected\EPiServer.ConnectForCampaign\Campaign.config" />
-    <Content Include="modules\_protected\Episerver.Marketing.Connector\module.config" />
     <Content Include="Features\CatalogContent\DynamicCatalogContent\DynamicProduct\_ProductDetail.cshtml" />
     <Content Include="modules\_protected\advanced-cms.Reviews\web.config" />
     <Content Include="modules\_protected\advanced-cms.Reviews\advanced-cms.Reviews.zip" />
@@ -2531,8 +2530,6 @@
     <Content Include="modules\_protected\EPiServer.Insight.UI\module.config" />
     <Content Include="modules\_protected\episerver-telemetry-ui\web.config" />
     <Content Include="modules\_protected\episerver-telemetry-ui\episerver-telemetry-ui.zip" />
-    <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
-    <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="modules\_protected\BVNetwork.404Handler\web.config" />
     <Content Include="modules\_protected\BVNetwork.404Handler\BVNetwork.404Handler.zip" />
     <Content Include="modules\_protected\Geta.SEO.Sitemaps\Geta.SEO.Sitemaps.zip" />
@@ -2545,15 +2542,20 @@
     <Content Include="modules\_protected\EPiServer.Forms.Samples\3.7.0\ClientResources\ViewMode\EPiServerFormsSamples.less" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\3.7.0\ClientResources\epi-formssamples\themes\sleek\images\contenttypes\README.md" />
     <Content Include="modules\_protected\EPiServer.Forms.Samples\3.7.0\ClientResources\epi-formssamples\themes\sleek\FormsSamples.less" />
+    <Content Include="modules\_protected\EPiServer.Commerce.Shell\EPiServer.Commerce.Shell.zip" />
+    <Content Include="modules\_protected\Commerce\Commerce.zip" />
+    <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
+    <Content Include="modules\_protected\Episerver.Marketing.Connector\module.config" />
     <Content Include="modules\_protected\Shell\web.config" />
     <Content Include="modules\_protected\Shell\Shell.zip" />
     <Content Include="modules\_protected\CMS\web.config" />
     <Content Include="modules\_protected\CMS\CMS.zip" />
-    <Content Include="modules\_protected\EPiServer.Commerce.Shell\EPiServer.Commerce.Shell.zip" />
-    <Content Include="modules\_protected\Commerce\Commerce.zip" />
-    <Content Include="modules\_protected\EPiServer.Commerce.UI.CustomerService\EPiServer.Commerce.UI.CustomerService.zip" />
+    <Content Include="modules\_protected\episerver-labs-block-enhancements\web.config" />
+    <Content Include="modules\_protected\episerver-labs-block-enhancements\episerver-labs-block-enhancements.zip" />
     <Content Include="modules\_protected\episerver-labs-content-manager\web.config" />
+    <Content Include="modules\_protected\episerver-labs-content-manager\episerver-labs-content-manager.zip" />
     <Content Include="modules\_protected\episerver-labs-grid-view\web.config" />
+    <Content Include="modules\_protected\episerver-labs-grid-view\episerver-labs-grid-view.zip" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -2574,6 +2576,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
