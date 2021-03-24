@@ -8,7 +8,6 @@ using EPiServer.Filters;
 using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
@@ -184,7 +183,7 @@ namespace Foundation.Features.CatalogContent
                 foreach (var subWord in wordColl.Cast<Match>().Select(r => r.Value).Take(40))
                 {
                     sb.Append(subWord);
-                    sb.Append(" ");
+                    sb.Append(' ');
                 }
             }
 

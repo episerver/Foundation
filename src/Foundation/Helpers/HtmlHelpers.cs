@@ -127,7 +127,6 @@ namespace Foundation.Infrastructure
             return new MvcHtmlString(output.ToString());
         }
 
-
         public static MvcHtmlString RenderExtendedCssForCommerce(this HtmlHelper helper, IContent content)
         {
             if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase entryContentBase))

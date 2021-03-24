@@ -177,7 +177,6 @@ namespace Foundation.Infrastructure
             _services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
             _services.AddSingleton<ISchemaDataMapper<LocationItemPage>, LocationItemPageSchemaDataMapper>();
             _services.AddSingleton<PromotionEngineContentLoader, FoundationPromotionEngineContentLoader>();
-
         }
 
         public void Initialize(InitializationEngine context)
@@ -228,7 +227,6 @@ namespace Foundation.Infrastructure
             }
 
             _locator.GetInstance<IContentEvents>().PublishedContent += OnPublishedContent;
-
         }
 
         private void OnPublishedContent(object sender, ContentEventArgs contentEventArgs)
@@ -277,7 +275,6 @@ namespace Foundation.Infrastructure
                                              isMultiLanguage,
                                              isSearchable,
                                              isEncrypted);
-
 
             if (lineItemMetaClass.MetaFields.All(x => x.Id != metaField.Id))
             {

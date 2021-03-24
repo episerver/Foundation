@@ -140,7 +140,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                     .Select(x => x.Code);
                 var allLineItemCodes = allLineItems.Select(x => x.Code);
                 var allNewCodes = variantCodes.Where(x => !allLineItemCodes.Contains(x));
-                if (allNewCodes.Count() == 0)
+                if (!allNewCodes.Any())
                 {
                     return Json(new ChangeCartJsonResult { StatusCode = 0, Message = productName + " already exist in the wishlist." });
                 }

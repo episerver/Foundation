@@ -73,7 +73,6 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
                                     }
                                 };
                     }
-
                 }
             }
 
@@ -112,7 +111,6 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
         [SelectOne(SelectionFactoryType = typeof(CurrencySelectionFactory))]
         public string Currency { get; set; }
     }
-
 
     [PropertyDefinitionTypePlugIn]
     public class PriceModelPropertyList : PropertyList<PriceModel>

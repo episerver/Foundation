@@ -1,6 +1,5 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.Logging;
-using Foundation.Commerce;
 using Mediachase.BusinessFoundation;
 using Mediachase.Commerce.Manager.Order.CommandHandlers.PurchaseOrderHandlers;
 using Mediachase.Commerce.Orders;
@@ -12,12 +11,22 @@ namespace Foundation.CommerceManager.CustomCommands
 {
     public class FinishQuoteRequest : TransactionCommandHandler
     {
+        public const string QuoteExpireDate = "QuoteExpireDate";
+        public const string ParentOrderGroupId = "ParentOrderGroupId";
+        public const string QuoteStatus = "QuoteStatus";
+        public const string RequestQuotation = "RequestQuotation";
+        public const string RequestQuotationFinished = "RequestQuotationFinished";
+        public const string PreQuoteTotal = "PreQuoteTotal";
+        public const string PreQuotePrice = "PreQuotePrice";
+        public const string QuoteExpired = "QuoteExpired";
+        public const string RequestQuoteStatus = "RequestQuoteStatus";
+
         protected override bool IsCommandEnable(IOrderGroup order, CommandParameters cp)
         {
             var flag = base.IsCommandEnable(order, cp);
-            if (flag && !string.IsNullOrEmpty(order.Properties[Constant.Quote.QuoteStatus] as string))
+            if (flag && !string.IsNullOrEmpty(order.Properties[QuoteStatus] as string))
             {
-                flag = order.Properties[Constant.Quote.QuoteStatus].ToString() == Constant.Quote.RequestQuotation;
+                flag = order.Properties[QuoteStatus].ToString() == RequestQuotation;
             }
 
             return flag;
@@ -28,13 +37,13 @@ namespace Foundation.CommerceManager.CustomCommands
             try
             {
                 var purchaseOrder = order as PurchaseOrder;
-                int.TryParse(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate], out var quoteExpireDays);
-                purchaseOrder[Constant.Quote.QuoteExpireDate] =
-                    string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Quote.QuoteExpireDate])
+                int.TryParse(ConfigurationManager.AppSettings[QuoteExpireDate], out var quoteExpireDays);
+                purchaseOrder[QuoteExpireDate] =
+                    string.IsNullOrEmpty(ConfigurationManager.AppSettings[QuoteExpireDate])
                         ? DateTime.Now.AddDays(30)
                         : DateTime.Now.AddDays(quoteExpireDays);
 
-                purchaseOrder[Constant.Quote.QuoteStatus] = Constant.Quote.RequestQuotationFinished;
+                purchaseOrder[QuoteStatus] = RequestQuotationFinished;
                 OrderStatusManager.ReleaseHoldOnOrder(purchaseOrder);
                 AddNoteToOrder(purchaseOrder, "OrderNote_ChangeOrderStatusPattern", purchaseOrder.Status);
                 SavePurchaseOrderChanges(purchaseOrder);

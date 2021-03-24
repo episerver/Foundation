@@ -99,8 +99,6 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
             }
         }
     }
-
-
     public class VariantGroupModel
     {
         public VariantGroupModel()

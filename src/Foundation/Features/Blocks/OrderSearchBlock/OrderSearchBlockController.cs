@@ -139,7 +139,7 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
             if (result && !string.IsNullOrEmpty(filter.Keyword))
             {
                 result = result ? order.OrderGroupId.ToString().Contains(filter.Keyword) : result;
-                result = !result ? order.Items.Where(x => x.LineItem.Code.Contains(filter.Keyword)).Count() > 0 : true;
+                result = !result ? order.Items.Where(x => x.LineItem.Code.Contains(filter.Keyword)).Any() : true;
             }
 
             if (result && filter.DateFrom.HasValue)
@@ -154,7 +154,7 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
 
             if (result && !string.IsNullOrEmpty(filter.PaymentMethodId))
             {
-                result = order.OrderPayments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Count() > 0;
+                result = order.OrderPayments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Any();
             }
 
             if (result && !(filter.OrderStatusId == 0))

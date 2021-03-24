@@ -19,7 +19,7 @@
             @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
         </div>
     </div>
-    @if (Model.ProductViewModels != null && Model.ProductViewModels.Count() > 0)
+    @if (Model.ProductViewModels != null && Model.ProductViewModels.Any())
     {
         <div class="row">
             @foreach (var product in Model.ProductViewModels)

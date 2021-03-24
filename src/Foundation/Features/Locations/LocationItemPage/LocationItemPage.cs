@@ -92,5 +92,4 @@ namespace Foundation.Features.Locations.LocationItemPage
             itemModel.Image = Image;
         }
     }
-
 }

@@ -31,8 +31,8 @@ namespace Foundation.Features.Blocks.FeedBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public FeedBlockController(IUserRepository userRepository, ICommunityFeedRepository communityFeedRepository, IPageRouteHelper pageRouteHelper
-            , ICommunityActivityAdapter communityActivityAdapter) : base(pageRouteHelper)
+        public FeedBlockController(IUserRepository userRepository, ICommunityFeedRepository communityFeedRepository, IPageRouteHelper pageRouteHelper,
+            ICommunityActivityAdapter communityActivityAdapter) : base(pageRouteHelper)
         {
             _userRepository = userRepository;
             _feedRepository = communityFeedRepository;
@@ -66,7 +66,7 @@ namespace Foundation.Features.Blocks.FeedBlock
         /// </summary>
         /// <param name="currentBlock">The current frontend block instance.</param>
         /// <param name="blockViewModel">a reference to the FeedBlockViewModel to 
-        ///populate with activity feed for the logged in user and errors, if any</param>
+        /// populate with activity feed for the logged in user and errors, if any</param>
         private void GetSocialActivityFeed(FeedBlock currentBlock, FeedBlockViewModel blockViewModel)
         {
 
