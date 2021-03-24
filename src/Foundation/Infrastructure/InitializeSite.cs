@@ -177,7 +177,6 @@ namespace Foundation.Infrastructure
             _services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
             _services.AddSingleton<ISchemaDataMapper<LocationItemPage>, LocationItemPageSchemaDataMapper>();
             _services.AddSingleton<PromotionEngineContentLoader, FoundationPromotionEngineContentLoader>();
-
         }
 
         public void Initialize(InitializationEngine context)

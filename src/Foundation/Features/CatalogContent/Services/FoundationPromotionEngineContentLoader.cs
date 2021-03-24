@@ -11,11 +11,7 @@ using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Marketing;
 using Mediachase.Commerce.Pricing;
 using Mediachase.Commerce.Security;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent.Services
 {
