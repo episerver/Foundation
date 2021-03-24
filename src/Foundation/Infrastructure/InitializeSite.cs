@@ -2,6 +2,7 @@
 using EPiBootstrapArea.Initialization;
 using EPiServer;
 using EPiServer.Commerce.Internal.Migration;
+using EPiServer.Commerce.Marketing.Internal;
 using EPiServer.Commerce.Order;
 using EPiServer.ContentApi.Core.Configuration;
 using EPiServer.ContentApi.Search;
@@ -175,6 +176,8 @@ namespace Foundation.Infrastructure
             _services.AddSingleton<ISchemaDataMapper<HomePage>, HomePageSchemaMapper>();
             _services.AddSingleton<ISchemaDataMapper<GenericProduct>, GenericProductSchemaDataMapper>();
             _services.AddSingleton<ISchemaDataMapper<LocationItemPage>, LocationItemPageSchemaDataMapper>();
+            _services.AddSingleton<PromotionEngineContentLoader, FoundationPromotionEngineContentLoader>();
+
         }
 
         public void Initialize(InitializationEngine context)
