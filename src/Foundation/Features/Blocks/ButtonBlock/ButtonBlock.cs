@@ -70,8 +70,8 @@ namespace Foundation.Features.Blocks.ButtonBlock
         public virtual string BorderStyle { get; set; }
 
         [Display(Name = "Border width (px)", GroupName = TabNames.Border, Order = 20)]
-        [RegularExpression("^[+]?\\d*$"
-            , ErrorMessage = "BorderWidth must be non-negative")]
+        [RegularExpression("^[+]?\\d*$",
+            ErrorMessage = "BorderWidth must be non-negative")]
         public virtual int BorderWidth { get; set; }
 
         [CultureSpecific]

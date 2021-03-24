@@ -2,7 +2,7 @@
 
 @model IEnumerable<ProductTileViewModel>
 
-@if (Model != null && Model.Count() > 0)
+@if (Model != null && Model.Any())
 {
     <div class="row">
         @foreach (var product in Model)

@@ -82,7 +82,6 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             ISettingsService settingsService,
             IPaymentService paymentService,
             ICurrentMarket currentMarket)
-
         {
             _cartService = cartService;
             _orderRepository = orderRepository;
@@ -278,7 +277,6 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 };
             }
 
-
             var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param);
             if (result.EntriesAddedToCart)
             {
@@ -426,7 +424,6 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             return RedirectToCart("Something went wrong");
         }
 
-
         [HttpPost]
         public ActionResult MoveToWishlist(RequestParamsToCart param)
         {
@@ -543,7 +540,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             _orderRepository.Save(SharedCardWithValidationIssues.Cart);
 
-            var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage); ;
+            var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage);
             return View("LargeCart", viewModel);
         }
 
@@ -723,7 +720,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         {
             _cartService.RemoveCouponCode(CartWithValidationIssues.Cart, couponCode);
             _orderRepository.Save(CartWithValidationIssues.Cart);
-            var viewModel = _cartViewModelFactory.CreateSimpleLargeCartViewModel(CartWithValidationIssues.Cart); ;
+            var viewModel = _cartViewModelFactory.CreateSimpleLargeCartViewModel(CartWithValidationIssues.Cart);
             return PartialView("_CartSummary", viewModel);
         }
 

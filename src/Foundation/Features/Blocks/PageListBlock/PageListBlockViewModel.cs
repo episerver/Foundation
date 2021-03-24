@@ -23,11 +23,17 @@ namespace Foundation.Features.Blocks.PageListBlock
         private void SetPreviewOptionValue(string option)
         {
             if (option.Equals("1/3"))
+            {
                 PreviewOption = 4;
+            }
             else if (option.Equals("1/2"))
+            {
                 PreviewOption = 6;
+            }
             else if (option.Equals("1"))
+            {
                 PreviewOption = 12;
+            }
         }
     }
 

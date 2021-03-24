@@ -87,7 +87,7 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
 
                 if (variant.VirtualProductMode.Equals("File"))
                 {
-                    var url = "";// _urlResolver.GetUrl(((FileVariant)lineItem.GetEntryContentBase()).File);
+                    var url = ""; // _urlResolver.GetUrl(((FileVariant)lineItem.GetEntryContentBase()).File);
                     viewModel.FileUrls.Add(new Dictionary<string, string>() { { lineItem.DisplayName, url } });
                 }
                 else if (variant.VirtualProductMode.Equals("Key"))

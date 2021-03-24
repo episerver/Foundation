@@ -24,7 +24,6 @@ using Mediachase.Commerce.Shared;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -124,7 +123,7 @@ namespace Foundation.Features.Checkout
 
             var shipmentBillingTypes = TempData["ShipmentBillingTypes"] as List<KeyValuePair<string, int>>;
 
-            if (shipmentBillingTypes != null && shipmentBillingTypes.Count(x => x.Key == "Billing") > 0)
+            if (shipmentBillingTypes != null && shipmentBillingTypes.Any(x => x.Key == "Billing"))
             {
                 viewModel.BillingAddressType = 0;
             }
@@ -147,7 +146,7 @@ namespace Foundation.Features.Checkout
             var shippingAddressType = Request.IsAuthenticated ? 1 : 0;
             for (var i = 0; i < viewModel.Shipments.Count; i++)
             {
-                if (shipmentBillingTypes != null && shipmentBillingTypes.Where(x => x.Key == "Shipment").Count(x => x.Value == i) > 0)
+                if (shipmentBillingTypes != null && shipmentBillingTypes.Where(x => x.Key == "Shipment").Any(x => x.Value == i))
                 {
                     viewModel.Shipments[i].ShippingAddressType = 0;
                 }
@@ -333,7 +332,7 @@ namespace Foundation.Features.Checkout
             }
             _orderRepository.Save(CartWithValidationIssues.Cart);
             model = CreateCheckoutViewModel(currentPage);
-            model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart); ;
+            model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
             return PartialView("_AddPayment", model);
         }
 

@@ -15,17 +15,14 @@ namespace Foundation.Features.Media
 {
     [ContentType(DisplayName = "Image File",
         GUID = "20644be7-3ca1-4f84-b893-ee021b73ce6c",
-        Description = "Used for image file types such as jpg, jpeg, jpe, ico, gif, bmp, png, svg, webp")]
-    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png,svg,webp")]
+        Description = "Used for image file types such as jpg, jpeg, jpe, ico, gif, bmp, png")]
+    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png")]
     public class ImageMediaData : ImageData, IDashboardItem
     {
         [Editable(false)]
         [ImageDescriptor(Width = 256, Height = 256)]
         [Display(Name = "Large thumbnail", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual Blob LargeThumbnail { get; set; }
-
-        [Editable(false)]
-        public override Blob Thumbnail { get => BinaryData; }
 
         [Editable(false)]
         [Display(Name = "File size", GroupName = SystemTabNames.Content, Order = 20)]

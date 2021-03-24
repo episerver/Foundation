@@ -15,7 +15,7 @@ namespace Foundation.Features.People
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
             var settings = _settingsService.Value.GetSiteSettings<CollectionSettings>();
-            return settings.Locations?.Select(x => new SelectItem { Value = x.Value, Text = x.Text }) ?? new List<SelectItem>(); ;
+            return settings.Locations?.Select(x => new SelectItem { Value = x.Value, Text = x.Text }) ?? new List<SelectItem>();
         }
     }
 }

@@ -89,7 +89,8 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
                 }
             }
             else
-            {   //Persist the exception message in temp data to be used in the error message
+            {
+                //Persist the exception message in temp data to be used in the error message
                 var message = "Group name and description cannot be empty";
                 AddMessage(MessageKey, new MessageViewModel(message, ErrorMessage));
             }

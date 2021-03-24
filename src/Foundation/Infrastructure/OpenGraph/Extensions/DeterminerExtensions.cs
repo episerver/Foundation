@@ -1,8 +1,4 @@
 ﻿using Boilerplate.Web.Mvc.OpenGraph;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Foundation.Infrastructure.OpenGraph.Extensions
 {
@@ -17,8 +13,7 @@ namespace Foundation.Infrastructure.OpenGraph.Extensions
                 case OpenGraphDeterminer.Auto: return "auto";
                 case OpenGraphDeterminer.The: return "the";
                 default: return string.Empty;
-            };
+            }
         }
-
     }
 }

@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
-
 namespace Foundation.Features.Blocks.ProductHeroBlock
 {
     [TemplateDescriptor(Default = true)]
@@ -29,7 +28,6 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
         {
             var imageUrl = string.Empty;
             var imagePosition = new StringBuilder();
-
 
             if (currentBlock.Image.Product != null)
             {
@@ -55,7 +53,6 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
                 + currentBlock.Image.PaddingRight + "px "
                 + currentBlock.Image.PaddingBottom + "px "
                 + currentBlock.Image.PaddingLeft + "px;");
-
 
             var model = new ProductHeroBlockViewModel(currentBlock)
             {

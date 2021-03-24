@@ -14,6 +14,9 @@ namespace Foundation.Infrastructure.Display
             "~/Features/Shared/Views/{0}.cshtml",
             "~/Features/Shared/Views/{1}/{0}.cshtml",
             "~/Features/Shared/Views/Header/{0}.cshtml",
+            "~/Cms/Views/{1}/{0}.cshtml",
+            "~/Commerce/Views/{1}/{0}.cshtml",
+            "~/Social/Views/{1}/{0}.cshtml"
         };
 
         public FeaturesViewEngine()
@@ -25,7 +28,10 @@ namespace Foundation.Infrastructure.Display
                 "~/Features/%1/{1}/{0}.cshtml",
                 "~/Features/%1/%2/{1}/{0}.cshtml",
                 "~/Features/%1/{0}.cshtml",
-                "~/Features/%1/%2/{0}.cshtml"
+                "~/Features/%1/%2/{0}.cshtml",
+                "~/Cms/%1/{1}/{0}.cshtml",
+                "~/Commerce/%1/{1}/{0}.cshtml",
+                "~/Social/%1/{1}/{0}.cshtml"
             };
 
             featureFolders = featureFolders.Union(AdditionalPartialViewFormats).ToArray();

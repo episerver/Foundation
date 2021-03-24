@@ -32,7 +32,7 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
             var ancestors = _contentLoader.GetAncestors(destination).Where(x => x is PageData).Select(x => x as PageData).Reverse();
             var model = new BreadcrumbBlockViewModel(currentBlock);
 
-            if (ancestors != null && ancestors.Count() > 0)
+            if (ancestors != null && ancestors.Any())
             {
                 var breadcrumb = new List<BreadcrumbItem>();
 
