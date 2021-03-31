@@ -1,4 +1,5 @@
-﻿using EPiServer.Commerce.Marketing;
+﻿using EPiServer.Commerce.Catalog.Linking;
+using EPiServer.Commerce.Marketing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Globalization;
@@ -53,6 +54,13 @@ namespace Foundation.Commerce
 
             var contentOptions = context.Locate.Advanced.GetInstance<ContentManagerOptions>();
             contentOptions.EnsureCommerceLoaded();
+
+            var associationDefinitionRepository = context.Locate.Advanced.GetInstance<GroupDefinitionRepository<AssociationGroupDefinition>>();
+            associationDefinitionRepository.Add(new AssociationGroupDefinition { Name = "Accessory" });
+            associationDefinitionRepository.Add(new AssociationGroupDefinition { Name = "Part" });
+            associationDefinitionRepository.Add(new AssociationGroupDefinition { Name = "Related product" });
+            associationDefinitionRepository.Add(new AssociationGroupDefinition { Name = "Cross sell" });
+            associationDefinitionRepository.Add(new AssociationGroupDefinition { Name = "Up sell" });
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
