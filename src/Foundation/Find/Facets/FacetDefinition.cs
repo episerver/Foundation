@@ -1,6 +1,3 @@
-using EPiServer.Find;
-using EPiServer.Find.Api.Facets;
-using EPiServer.Find.Api.Querying;
 using EPiServer.Framework.Localization;
 
 namespace Foundation.Find.Facets

@@ -3,7 +3,6 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Labs.ContentManager.Cards;
 using EPiServer.Labs.ContentManager.Dashboard;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.Blocks.ButtonBlock;

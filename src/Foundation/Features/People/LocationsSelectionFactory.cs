@@ -1,5 +1,4 @@
 ﻿using EPiServer.ServiceLocation;
-using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.Settings;
 using Foundation.Features.Settings;
 using System;

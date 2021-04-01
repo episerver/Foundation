@@ -2,7 +2,6 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;

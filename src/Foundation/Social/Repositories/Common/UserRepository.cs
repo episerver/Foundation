@@ -1,5 +1,4 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
-using Foundation.Cms.Identity;
+﻿using Foundation.Cms.Identity;
 using Foundation.Social.Models;
 using Microsoft.AspNet.Identity;
 using System.Security.Principal;

@@ -1,5 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Cms.Shell;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Tracking.Commerce.Data;

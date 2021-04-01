@@ -1,6 +1,4 @@
-﻿using EPiServer.Find.Api.Facets;
-using EPiServer.Find.Api.Querying;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Foundation.Find.Facets
 {

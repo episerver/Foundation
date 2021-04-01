@@ -1,7 +1,6 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Find.Api.Querying;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Blocks.ProductFilterBlocks

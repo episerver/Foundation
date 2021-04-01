@@ -1,7 +1,4 @@
-﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
-using EPiServer.Core;
-using EPiServer.Shell.ObjectEditing;
-using EPiServer.Shell.ObjectEditing.EditorDescriptors;
+﻿using EPiServer.Core;
 using System;
 using System.Collections.Generic;
 

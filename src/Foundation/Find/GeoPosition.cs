@@ -1,5 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Find;
 using EPiServer.Logging;
 using EPiServer.Personalization;
 using EPiServer.ServiceLocation;

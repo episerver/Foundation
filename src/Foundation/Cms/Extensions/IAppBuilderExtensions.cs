@@ -1,5 +1,4 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Identity;
 using Microsoft.AspNet.Identity;

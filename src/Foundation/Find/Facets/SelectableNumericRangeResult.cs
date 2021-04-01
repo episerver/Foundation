@@ -1,5 +1,3 @@
-using EPiServer.Find.Api.Facets;
-
 namespace Foundation.Find.Facets
 {
     public class SelectableNumericRangeResult : NumericRangeResult, ISelectable

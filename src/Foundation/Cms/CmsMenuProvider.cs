@@ -1,5 +1,4 @@
 ﻿using EPiServer.Security;
-using EPiServer.Shell.Navigation;
 using System.Collections.Generic;
 
 namespace Foundation.Cms

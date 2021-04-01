@@ -1,5 +1,4 @@
-﻿using EPiServer.Shell;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Foundation.Features.Shared.EditorDescriptors
 {

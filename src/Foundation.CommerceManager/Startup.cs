@@ -1,5 +1,4 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.ServiceLocation;
 using Foundation.CommerceManager;
 using Mediachase.Data.Provider;
 using Microsoft.AspNet.Identity;

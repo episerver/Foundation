@@ -1,5 +1,4 @@
 ﻿using Castle.Core.Internal;
-using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Framework.Localization;
 using EPiServer.ServiceLocation;
 using Foundation.Cms;

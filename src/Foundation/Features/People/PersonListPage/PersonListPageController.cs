@@ -1,7 +1,4 @@
 ﻿using EPiServer.Core;
-using EPiServer.Find;
-using EPiServer.Find.Cms;
-using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
 using Foundation.Cms.Settings;

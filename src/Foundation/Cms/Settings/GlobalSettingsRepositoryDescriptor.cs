@@ -1,8 +1,6 @@
-﻿using EPiServer.Cms.Shell.UI.CompositeViews.Internal;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.ServiceLocation;
-using EPiServer.Shell;
 using System;
 using System.Collections.Generic;
 

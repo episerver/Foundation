@@ -1,5 +1,4 @@
-﻿using EPiServer.Find.UnifiedSearch;
-using EPiServer.Web;
+﻿using EPiServer.Web;
 using System.Web;
 
 namespace Foundation.Features.Search

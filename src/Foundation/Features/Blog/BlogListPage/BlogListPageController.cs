@@ -1,5 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.Core.Html;
 using EPiServer.Filters;

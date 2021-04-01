@@ -1,7 +1,4 @@
-﻿using EPiServer.Find.Api;
-using EPiServer.Find.Helpers;
-using EPiServer.Find.Json;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
 using System.Linq;

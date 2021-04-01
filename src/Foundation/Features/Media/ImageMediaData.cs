@@ -6,7 +6,6 @@ using EPiServer.Framework.Blobs;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Labs.ContentManager.Cards;
 using EPiServer.Labs.ContentManager.Dashboard;
-using EPiServer.Shell.ObjectEditing;
 using Foundation.Infrastructure;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

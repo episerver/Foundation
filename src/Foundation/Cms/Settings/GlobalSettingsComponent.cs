@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell;
-using EPiServer.Shell.ViewComposition;
-
-namespace Foundation.Cms.Settings
+﻿namespace Foundation.Cms.Settings
 {
     [Component]
     public sealed class GlobalSettingsComponent : ComponentDefinitionBase

@@ -1,4 +1,3 @@
-using EPiServer.Shell.ObjectEditing;
 using Mediachase.Commerce.Customers;
 using System.Collections.Generic;
 using System.Linq;

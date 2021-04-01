@@ -1,6 +1,4 @@
-﻿using EPiServer.Shell;
-
-namespace Foundation.Features.Search.Search
+﻿namespace Foundation.Features.Search.Search
 {
     /// <summary>
     /// Describes how the UI should appear for <see cref="SearchResultPage"/> content.

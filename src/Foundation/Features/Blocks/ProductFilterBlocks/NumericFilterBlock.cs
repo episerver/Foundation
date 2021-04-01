@@ -1,9 +1,5 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Find.Api.Querying;
-using EPiServer.Find.Api.Querying.Filters;
-using EPiServer.Find.Framework;
-using EPiServer.Shell.ObjectEditing;
 using Foundation.Find;
 using System.ComponentModel.DataAnnotations;
 

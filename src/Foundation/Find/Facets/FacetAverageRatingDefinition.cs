@@ -1,7 +1,4 @@
-﻿using EPiServer.Find;
-using EPiServer.Find.Api.Facets;
-using EPiServer.Find.Api.Querying;
-using Mediachase.Commerce;
+﻿using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
 using System.Linq;

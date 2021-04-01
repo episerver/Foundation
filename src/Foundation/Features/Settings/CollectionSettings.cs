@@ -1,8 +1,6 @@
-﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
-using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms;
 using Foundation.Cms.Settings;
 using Foundation.Infrastructure;

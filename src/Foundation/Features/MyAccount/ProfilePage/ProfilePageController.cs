@@ -1,5 +1,4 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Commerce.Order;
+﻿using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
