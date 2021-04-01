@@ -22,7 +22,8 @@
 .market-selector {
     position: absolute;
     z-index: 100;
-    top: 0;
+    top: 50%;
+    transform: translateY(-40%);
     right: 15px;
     user-select: none;
     outline: none;
