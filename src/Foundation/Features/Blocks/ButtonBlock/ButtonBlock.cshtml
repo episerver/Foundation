@@ -5,15 +5,21 @@
 @{
     var style = "";
 
-    style += $"color: {Model.CurrentBlock.ButtonTextColor};";
+    if (Model.CurrentBlock.TextColorOverdrive)
+    {
+        style += $"color: {Model.CurrentBlock.ButtonTextColor};";
+    }
 
-    style += $"border: {Model.CurrentBlock.BorderWidth}px {Model.CurrentBlock.BorderStyle} {Model.CurrentBlock.ButtonBorderColor};";
+    if (Model.CurrentBlock.BorderStyleOverdrive)
+    {
+        style += $"border: {Model.CurrentBlock.BorderWidth}px {Model.CurrentBlock.BorderStyle} {Model.CurrentBlock.ButtonBorderColor};";
+    }
 
     if (Model.CurrentBlock.ShowTransparentBackground)
     {
         style += "background : transparent;";
     }
-    else
+    else if (Model.CurrentBlock.BackgroundColorOverdrive)
     {
         style += $"background-color:{Model.CurrentBlock.ButtonBackgroundColor};";
     }
