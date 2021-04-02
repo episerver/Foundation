@@ -97,6 +97,9 @@ namespace Foundation.Infrastructure
         [Display(Name = "Block styling", Order = 287)]
         public const string BlockStyling = "BlockStyling";
 
+        [Display(Name = "Button", Order = 287)]
+        public const string Button = "Button";
+
         [Display(Name = "Settings", Order = 290)]
         public const string Settings = SystemTabNames.Settings;
     }

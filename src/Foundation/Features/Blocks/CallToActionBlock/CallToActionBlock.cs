@@ -3,6 +3,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Labs.ContentManager.Cards;
 using EPiServer.Labs.ContentManager.Dashboard;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
@@ -17,6 +18,7 @@ namespace Foundation.Features.Blocks.CallToActionBlock
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
     public class CallToActionBlock : FoundationBlockData, IDashboardItem
     {
+        #region Content
         [CultureSpecific]
         [Display(Name = "Title", Description = "Title displayed", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Title { get; set; }
@@ -26,17 +28,21 @@ namespace Foundation.Features.Blocks.CallToActionBlock
         public virtual XhtmlString Subtext { get; set; }
 
         [Display(Name = "Text color", GroupName = SystemTabNames.Content, Order = 30)]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string TextColor { get; set; }
+        #endregion
 
+        #region image
         [UIHint(UIHint.Image)]
-        [Display(Name = "Background image", GroupName = SystemTabNames.Content, Order = 40)]
+        [Display(Name = "Background image", GroupName = TabNames.Image, Order = 40)]
         public virtual ContentReference BackgroundImage { get; set; }
 
         [SelectOne(SelectionFactoryType = typeof(BackgroundImageSelectionFactory))]
-        [Display(Name = "Choose image style to fit the block", Order = 41, GroupName = SystemTabNames.Content)]
+        [Display(Name = "Choose image style to fit the block", Order = 41, GroupName = TabNames.Image)]
         public virtual string BackgroundImageSetting { get; set; }
+        #endregion
 
-        [Display(GroupName = SystemTabNames.Content, Order = 50)]
+        [Display(GroupName = TabNames.Button, Order = 50)]
         public virtual ButtonBlock.ButtonBlock Button { get; set; }
 
         public void SetItem(ItemModel itemModel)
