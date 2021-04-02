@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EPiServer.Shell.ObjectEditing;
+using System;
 using System.Web.Mvc;
 
 namespace Foundation.Find.Facets.Config

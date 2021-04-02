@@ -1,4 +1,5 @@
 ﻿using EPiServer.ServiceLocation;
+using EPiServer.Shell.ObjectEditing;
 using Mediachase.Commerce.Markets;
 using System.Collections.Generic;
 using System.Linq;

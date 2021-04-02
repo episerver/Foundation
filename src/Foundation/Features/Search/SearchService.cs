@@ -1,7 +1,17 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
+using EPiServer.Find;
+using EPiServer.Find.Api.Querying;
+using EPiServer.Find.Api.Querying.Filters;
+using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
+using EPiServer.Find.Framework.BestBets;
+using EPiServer.Find.Framework.Statistics;
+using EPiServer.Find.Helpers;
+using EPiServer.Find.Statistics;
+using EPiServer.Find.UI;
+using EPiServer.Find.UnifiedSearch;
 using EPiServer.Globalization;
 using EPiServer.Security;
 using EPiServer.Web;

@@ -1,4 +1,5 @@
 ﻿using EPiServer;
+using EPiServer.Cms.UI.AspNetIdentity;
 using Foundation.Cms.Extensions;
 using Foundation.Cms.Identity;
 using Foundation.Commerce.Customer;

@@ -1,4 +1,7 @@
-﻿using EPiServer.Web.Routing;
+﻿using EPiServer.Find;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Framework;
+using EPiServer.Web.Routing;
 using System.Web.Routing;
 
 namespace Foundation.Features.Locations

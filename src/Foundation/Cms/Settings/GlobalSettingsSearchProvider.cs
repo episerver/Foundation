@@ -1,9 +1,12 @@
 ﻿using EPiServer;
+using EPiServer.Cms.Shell.Search;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Framework.Localization;
 using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
+using EPiServer.Shell;
+using EPiServer.Shell.Search;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using System;

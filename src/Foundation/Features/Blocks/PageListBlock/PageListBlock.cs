@@ -2,6 +2,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.Validation;
 using EPiServer.Web;
 using Foundation.Features.Folder;

@@ -1,5 +1,8 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAnnotations;
+using EPiServer.Find;
+using EPiServer.Find.Api.Facets;
+using EPiServer.Find.Framework;
 using Foundation.Features.Shared;
 using Foundation.Find;
 using Foundation.Infrastructure;

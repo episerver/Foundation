@@ -2,6 +2,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms.Attributes;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;

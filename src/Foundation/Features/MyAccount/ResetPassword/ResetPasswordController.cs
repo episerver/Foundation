@@ -1,4 +1,5 @@
 ﻿using EPiServer;
+using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using Foundation.Cms.Attributes;

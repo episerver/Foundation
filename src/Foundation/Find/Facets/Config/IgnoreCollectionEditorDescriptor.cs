@@ -1,4 +1,6 @@
-﻿using EPiServer.DataAnnotations;
+﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
+using EPiServer.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
 using System;
 using System.Collections.Generic;
 using System.Linq;

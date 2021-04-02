@@ -1,5 +1,8 @@
 ﻿using EPiServer.Data;
 using EPiServer.ServiceLocation;
+using EPiServer.Shell.Modules;
+using EPiServer.Shell.ViewComposition;
+using EPiServer.Shell.Web.Mvc;
 using System.Web.Mvc;
 
 namespace Foundation.Cms.Settings

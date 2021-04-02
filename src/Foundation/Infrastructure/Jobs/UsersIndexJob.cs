@@ -1,3 +1,4 @@
+using EPiServer.Find;
 using EPiServer.Logging;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;

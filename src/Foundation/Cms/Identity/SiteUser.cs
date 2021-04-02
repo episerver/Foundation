@@ -1,3 +1,4 @@
+using EPiServer.Cms.UI.AspNetIdentity;
 using Microsoft.AspNet.Identity;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;

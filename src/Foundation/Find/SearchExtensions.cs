@@ -1,3 +1,9 @@
+using EPiServer.Find;
+using EPiServer.Find.Api.Facets;
+using EPiServer.Find.Api.Querying;
+using EPiServer.Find.Api.Querying.Filters;
+using EPiServer.Find.Api.Querying.Queries;
+using EPiServer.Find.Helpers;
 using Foundation.Find.Facets;
 using System;
 using System.Collections.Generic;

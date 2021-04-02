@@ -2,6 +2,8 @@
 using EPiServer.Commerce.Reporting.Order.Internal.DataAccess;
 using EPiServer.Commerce.Reporting.Order.ReportingModels;
 using EPiServer.Core;
+using EPiServer.Find;
+using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Commerce.Extensions;

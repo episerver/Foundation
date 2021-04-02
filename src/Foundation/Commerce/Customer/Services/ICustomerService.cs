@@ -1,4 +1,5 @@
-﻿using EPiServer.ServiceLocation;
+﻿using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.ServiceLocation;
 using Foundation.Cms.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;

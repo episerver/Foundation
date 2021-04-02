@@ -1,4 +1,5 @@
-﻿using Mediachase.BusinessFoundation;
+﻿using EPiServer.Cms.UI.AspNetIdentity;
+using Mediachase.BusinessFoundation;
 using System.Web;
 
 namespace Foundation.CommerceManager

@@ -1,4 +1,5 @@
-﻿using EPiServer.ContentApi.OAuth;
+﻿using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.ContentApi.OAuth;
 using EPiServer.ServiceLocation;
 using Foundation;
 using Foundation.Cms.Extensions;

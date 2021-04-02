@@ -1,5 +1,8 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Find;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Framework;
 using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using Foundation.Features.Category;

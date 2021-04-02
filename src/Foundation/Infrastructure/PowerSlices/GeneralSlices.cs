@@ -1,6 +1,10 @@
 ﻿using EPiServer;
+using EPiServer.Cms.Shell.UI.Rest.ContentQuery;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
+using EPiServer.Find;
+using EPiServer.Shell.Rest;
+using EPiServer.Shell.Services.Rest;
 using Foundation.Features.Shared;
 using PowerSlice;
 using System.Linq;

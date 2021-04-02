@@ -5,6 +5,7 @@ using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Enterprise;
+using EPiServer.Find;
 using EPiServer.Find.Commerce;
 using EPiServer.Logging;
 using EPiServer.Scheduler;

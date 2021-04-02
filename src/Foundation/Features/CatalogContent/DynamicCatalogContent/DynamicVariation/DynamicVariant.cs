@@ -1,7 +1,9 @@
-﻿using EPiServer.Commerce.Catalog.DataAnnotations;
+﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
+using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.Validation;
 using EPiServer.Web;
 using Foundation.Features.CatalogContent.Variation;
