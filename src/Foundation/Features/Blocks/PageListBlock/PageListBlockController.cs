@@ -4,6 +4,7 @@ using EPiServer.Filters;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms;
+using Foundation.Features.Folder;
 using Geta.EpiCategories;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Foundation.Features.Blocks.PageListBlock
         public override ActionResult Index(PageListBlock currentBlock)
         {
             var pages = FindPages(currentBlock);
-
+            pages = pages.Where(x => x.PageTypeName != typeof(FolderPage).Name);
             pages = Sort(pages, currentBlock.SortOrder);
 
             if (currentBlock.Count > 0)

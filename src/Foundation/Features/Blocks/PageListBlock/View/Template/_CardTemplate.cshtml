@@ -10,15 +10,15 @@
 }
 
 <div class="row">
-    @foreach (var blog in Model.Pages)
+    @foreach (var page in Model.Pages)
     {
-        var foundationPage = blog.Page as FoundationPageData;
+        var foundationPage = page.Page as FoundationPageData;
 
         <div class="col-xs-12 col-sm-6 col-md-@col">
             <div class="page-list-block-preview__card">
                 <div class="page-list-block-preview__card--show">
                     <div class="card--top">
-                        @if (blog != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
                             <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />
                         }
