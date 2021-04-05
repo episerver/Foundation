@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {
-    [SettingsContentType(DisplayName = "LabelSettings",
+    [SettingsContentType(DisplayName = "Label Settings",
         GUID = "c17375a6-4a01-402b-8c7f-18257e944527",
         SettingsName = "Site Labels")]
     public class LabelSettings : SettingsBase
