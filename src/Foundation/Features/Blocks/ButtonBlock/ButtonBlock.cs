@@ -38,6 +38,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
 
         #region Button Text
         [CultureSpecific]
+        [Searchable(false)]
         [Display(Name = "Use Custom Text Color", GroupName = TabNames.Text,
             Description = "This will determine whether or not to overdride text color", Order = 5)]
         public virtual bool TextColorOverdrive { get; set; }
@@ -56,6 +57,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
 
         #region Button Background
         [CultureSpecific]
+        [Searchable(false)]
         [Display(Name = "Use Custom Background Color", GroupName = TabNames.Background,
             Description = "This will determine whether or not to overdride background color", Order = 5)]
         public virtual bool BackgroundColorOverdrive { get; set; }
@@ -78,6 +80,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
 
         #region Border
         [CultureSpecific]
+        [Searchable(false)]
         [Display(Name = "Use Custom Border", GroupName = TabNames.Border,
             Description = "This will determine whether or not to overdride border style", Order = 5)]
         public virtual bool BorderStyleOverdrive { get; set; }
