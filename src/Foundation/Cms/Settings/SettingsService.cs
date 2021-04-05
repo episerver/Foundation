@@ -302,7 +302,7 @@ namespace Foundation.Cms.Settings
             var prevSite = updatedArgs.PreviousSite;
             var updatedSite = updatedArgs.Site;
             var settingsRoot = GlobalSettingsRoot;
-            var currentSettingsFolder = _contentRepository.GetChildren<IContent>(settingsRoot).FirstOrDefault(x => x.Name == prevSite.Name) as ContentFolder;
+            var currentSettingsFolder = _contentRepository.GetChildren<IContent>(settingsRoot).FirstOrDefault(x => x.Name.Equals(prevSite.Name, StringComparison.InvariantCultureIgnoreCase)) as ContentFolder;
             if (currentSettingsFolder != null)
             {
                 var cloneFolder = currentSettingsFolder.CreateWritableClone();
