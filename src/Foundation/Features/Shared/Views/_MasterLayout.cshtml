@@ -38,6 +38,7 @@
     @RenderSection("AdditionalStyles", required: false)
     @Html.RequiredClientResources("Header")
     @Html.RenderExtendedCss(Model.CurrentContent)
+    @Html.RenderHeaderScripts(Model.CurrentContent)
 </head>
 <body>
     @RenderBody()

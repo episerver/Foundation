@@ -7,11 +7,13 @@ using EPiServer.Web;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Home;
+using Foundation.Features.Settings;
 using Foundation.Features.Shared;
 using System;
 using System.Collections.Generic;
@@ -39,6 +41,9 @@ namespace Foundation.Infrastructure
 
         private static readonly Lazy<IPermanentLinkMapper> _permanentLinkMapper =
            new Lazy<IPermanentLinkMapper>(() => ServiceLocator.Current.GetInstance<IPermanentLinkMapper>());
+
+        private static readonly Lazy<ISettingsService> _settingsService =
+           new Lazy<ISettingsService>(() => ServiceLocator.Current.GetInstance<ISettingsService>());
 
         public static MvcHtmlString RenderExtendedCss(this HtmlHelper helper, IContent content)
         {
@@ -81,6 +86,9 @@ namespace Foundation.Infrastructure
 
             // Extended Javascript file
             AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
+
+            RenderFooterScripts(content, outputScript);
+
             if (!(sitePageData is HomePage))
             {
                 AppendFiles(sitePageData.ScriptFiles, outputScript, _scriptFormat);
@@ -96,6 +104,54 @@ namespace Foundation.Infrastructure
             }
 
             return new MvcHtmlString(outputScript.ToString());
+        }
+
+        public static MvcHtmlString RenderHeaderScripts(this HtmlHelper helper, IContent content)
+        {
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
+            {
+                return new MvcHtmlString("");
+            }
+
+            var outputScript = new StringBuilder(string.Empty);
+
+            // Injection Hierarchically Javascript files
+            var settings = _settingsService.Value.GetSiteSettings<ScriptInjectionSettings>();
+            if (settings != null && settings.HeaderScripts != null)
+            {
+                foreach (var script in settings.HeaderScripts)
+                {
+                    var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
+                    if (pages.Any(x => content.ContentLink.ID == x.ID) || content.ContentLink.ID == script.ScriptRoot.ID)
+                    {
+                        AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
+                    }
+                }
+            }
+
+            return new MvcHtmlString(outputScript.ToString());
+        }
+
+        private static void RenderFooterScripts(IContent content, StringBuilder outputScript)
+        {
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
+            {
+                return;
+            }
+
+            // Injection Hierarchically Javascript files
+            var settings = _settingsService.Value.GetSiteSettings<ScriptInjectionSettings>();
+            if (settings != null && settings.FooterScripts != null)
+            {
+                foreach (var script in settings.FooterScripts)
+                {
+                    var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
+                    if (pages.Any(x => content.ContentLink.ID == x.ID) || content.ContentLink.ID == script.ScriptRoot.ID)
+                    {
+                        AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
+                    }
+                }
+            }
         }
 
         public static MvcHtmlString RenderMetaData(this HtmlHelper helper, IContent content)

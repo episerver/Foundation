@@ -1292,6 +1292,7 @@
     <Compile Include="Features\Settings\CollectionSettings.cs" />
     <Compile Include="Features\Settings\LabelSettings.cs" />
     <Compile Include="Features\Settings\LayoutSettings.cs" />
+    <Compile Include="Features\Settings\ScriptInjectionSettings.cs" />
     <Compile Include="Features\Settings\ReferencePageSettings.cs" />
     <Compile Include="Features\Settings\SearchSettings.cs" />
     <Compile Include="Features\Shared\HtmlDownloader.cs" />
@@ -1907,6 +1908,7 @@
     <Content Include="Assets\vendors\fa-brands-400.svg" />
     <Content Include="Assets\vendors\fa-regular-400.svg" />
     <Content Include="Assets\vendors\fa-solid-900.svg" />
+    <Content Include="ClientResources\Scripts\ScriptInjectionItems.js" />
     <Content Include="ClientResources\Scripts\VariantOptionPrices.js" />
     <Content Include="ClientResources\Styles\fontawesome.min.css" />
     <Content Include="Features\Blocks\PageListBlock\View\Template\_CardTemplate.cshtml" />
