@@ -31,7 +31,7 @@ namespace Foundation.Features.Settings
 
         [JsonIgnore]
         [CultureSpecific]
-        [Display(Name = "Header Scripts (Scripts will inject at the bottom of footer)", GroupName = TabNames.Scripts, Description = "Scripts will inject at the bottom of footer", Order = 20)]
+        [Display(Name = "Footer Scripts (Scripts will inject at the bottom of footer)", GroupName = TabNames.Scripts, Description = "Scripts will inject at the bottom of footer", Order = 20)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<ScriptInjectionModel>))]
         [ClientEditor(ClientEditingClass = "foundation/ScriptInjectionItems")]
         public virtual IList<ScriptInjectionModel> FooterScripts { get; set; }
