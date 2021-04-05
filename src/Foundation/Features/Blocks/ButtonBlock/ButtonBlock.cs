@@ -41,6 +41,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
         [Display(Name = "Use Custom Text Color", GroupName = TabNames.Text,
             Description = "This will determine whether or not to overdride text color", Order = 5)]
         public virtual bool TextColorOverdrive { get; set; }
+
         [CultureSpecific]
         [Searchable(false)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
@@ -58,6 +59,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
         [Display(Name = "Use Custom Background Color", GroupName = TabNames.Background,
             Description = "This will determine whether or not to overdride background color", Order = 5)]
         public virtual bool BackgroundColorOverdrive { get; set; }
+
         [CultureSpecific]
         [Display(Name = "Use transparent background", GroupName = TabNames.Background,
             Description = "This will determine whether or not to use transparent background", Order = 10)]
@@ -79,6 +81,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
         [Display(Name = "Use Custom Border", GroupName = TabNames.Border,
             Description = "This will determine whether or not to overdride border style", Order = 5)]
         public virtual bool BorderStyleOverdrive { get; set; }
+
         [CultureSpecific]
         [Display(Name = "Border Styles", GroupName = TabNames.Border, Description = "This will determine whether or not to show border", Order = 10)]
         [SelectOne(SelectionFactoryType = typeof(BorderStyleSelectionFactory))]
