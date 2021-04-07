@@ -8,7 +8,7 @@ namespace Foundation.Features.Shared
         bool HideSiteFooter { get; set; }
         LinkItemCollection CssFiles { get; set; }
         string Css { get; set; }
-        LinkItemCollection ScriptFiles { get; set; }
-        string Scripts { get; set; }
+        //LinkItemCollection ScriptFiles { get; set; }
+        //string Scripts { get; set; }
     }
 }
