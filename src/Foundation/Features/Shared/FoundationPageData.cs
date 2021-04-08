@@ -251,17 +251,6 @@ namespace Foundation.Features.Shared
 
         #endregion
 
-        #region Scripts
-
-        [Display(Name = "Script files", GroupName = TabNames.Scripts, Order = 100)]
-        public virtual LinkItemCollection ScriptFiles { get; set; }
-
-        [UIHint(UIHint.Textarea)]
-        [Display(GroupName = TabNames.Scripts, Order = 200)]
-        public virtual string Scripts { get; set; }
-
-        #endregion
-
         public virtual void SetItem(ItemModel itemModel)
         {
             itemModel.Description = PageDescription;

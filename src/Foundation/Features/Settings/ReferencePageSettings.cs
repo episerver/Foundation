@@ -27,7 +27,6 @@ namespace Foundation.Features.Settings
         GUID = "bf69f959-c91b-46cb-9829-2ecf9d11e13b",
         Description = "Site structure settings",
         SettingsName = "Page references")]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-structure-settings.png")]
     public class ReferencePageSettings : SettingsBase
     {
         #region Site Structure
