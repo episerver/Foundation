@@ -42,9 +42,9 @@ else
 
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")
-@Html.RenderExtendedScripts(Model.CurrentContent)
-@if (Model.CurrentContent is EntryContentBase)
+@Html.RenderFooterScripts(Model.CurrentContent)
+@if (Model.CurrentContent is EntryContentBase || Model.CurrentContent is CatalogContentBase)
 {
-    @Html.RenderExtendedScriptsForCommerce(Model.CurrentContent)
+    @Html.RenderFooterScriptsForCommerce(Model.CurrentContent)
 }
 @Model.SchemaMarkup

@@ -15,7 +15,6 @@ namespace Foundation.Features.Settings
         GUID = "4356a392-ed29-4895-9e65-bf44fa3db5ca",
         Description = "Selection options settings",
         SettingsName = "Collection Settings")]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-selection-settings.png")]
     public class CollectionSettings : SettingsBase
     {
         #region Person settings

@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {
-    [SettingsContentType(DisplayName = "SearchSettings",
+    [SettingsContentType(DisplayName = "Search Settings",
         GUID = "d4171337-70a4-476a-aa3c-0d976ac185e8",
         SettingsName = "Search Settings")]
     public class SearchSettings : SettingsBase, IFacetConfiguration
