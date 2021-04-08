@@ -74,35 +74,6 @@ namespace Foundation.Infrastructure
             return new MvcHtmlString(outputCss.ToString());
         }
 
-        //public static MvcHtmlString RenderExtendedScripts(this HtmlHelper helper, IContent content)
-        //{
-        //    if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
-        //    {
-        //        return new MvcHtmlString("");
-        //    }
-
-        //    var outputScript = new StringBuilder(string.Empty);
-        //    var startPage = _contentLoader.Value.Get<HomePage>(ContentReference.StartPage);
-
-        //    // Extended Javascript file
-        //    AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
-        //    if (!(sitePageData is HomePage))
-        //    {
-        //        AppendFiles(sitePageData.ScriptFiles, outputScript, _scriptFormat);
-        //    }
-
-        //    // Inline Javascript
-        //    if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(sitePageData.Scripts))
-        //    {
-        //        outputScript.AppendLine("<script type=\"text/javascript\">");
-        //        outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
-        //        outputScript.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Scripts) && !(sitePageData is HomePage) ? sitePageData.Scripts : "");
-        //        outputScript.AppendLine("</script>");
-        //    }
-
-        //    return new MvcHtmlString(outputScript.ToString());
-        //}
-
         public static MvcHtmlString RenderHeaderScripts(this HtmlHelper helper, IContent content)
         {
             if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
@@ -240,32 +211,6 @@ namespace Foundation.Infrastructure
 
             return new MvcHtmlString(outputCss.ToString());
         }
-
-        //public static MvcHtmlString RenderExtendedScriptsForCommerce(this HtmlHelper helper, IContent content)
-        //{
-        //    if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase entryContentBase))
-        //    {
-        //        return new MvcHtmlString("");
-        //    }
-
-        //    var outputScript = new StringBuilder(string.Empty);
-        //    var startPage = _contentLoader.Value.Get<HomePage>(ContentReference.StartPage);
-
-        //    // Extended Javascript file
-        //    AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
-        //    AppendFiles(((IFoundationContent)entryContentBase).ScriptFiles, outputScript, _scriptFormat);
-
-        //    // Inline Javascript
-        //    if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts))
-        //    {
-        //        outputScript.AppendLine("<script type=\"text/javascript\">");
-        //        outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
-        //        outputScript.AppendLine(!string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts) ? ((IFoundationContent)entryContentBase).Scripts : "");
-        //        outputScript.AppendLine("</script>");
-        //    }
-
-        //    return new MvcHtmlString(outputScript.ToString());
-        //}
 
         public static MvcHtmlString RenderHeaderScriptsForCommerce(this HtmlHelper helper, IContent content)
         {
