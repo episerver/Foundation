@@ -32,7 +32,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         #region Header
         [CultureSpecific]
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "Heading text",GroupName = TabNames.Header, Order = 10)]
+        [Display(Name = "Heading text", GroupName = TabNames.Header, Order = 10)]
         public virtual string Heading { get; set; }
 
         [Display(Name = "Heading size", GroupName = TabNames.Header, Order = 11)]
@@ -83,7 +83,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         [Display(Name = "Image size (%)", GroupName = TabNames.Image, Order = 46)]
         public virtual int SecondImageSize { get; set; }
         #endregion
-        
+
         #region Style
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockHeightStyleSelectionFactory))]
         [Display(Name = "Height", GroupName = TabNames.BlockStyling, Order = 100)]
