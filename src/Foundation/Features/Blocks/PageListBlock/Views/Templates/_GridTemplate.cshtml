@@ -28,7 +28,7 @@
     <div>
         <div class="page-list-block__row">
             <div class="page-list-block__large-col">
-                @Html.Partial("View/Template/_GridTemplateComponent", firstPage)
+                @Html.Partial("Views/Templates/_GridTemplateComponent", firstPage)
             </div>
             @foreach (var list in listGridPages)
             {
@@ -36,7 +36,7 @@
                     <div class="page-list-block__grid">
                         @foreach (var page in list)
                         {
-                            @Html.Partial("View/Template/_GridTemplateComponent", page)
+                            @Html.Partial("Views/Templates/_GridTemplateComponent", page)
                         }
                     </div>
                 </div>
@@ -44,7 +44,7 @@
             @foreach (var page in listLargePages)
             {
                 <div class="page-list-block__large-col">
-                    @Html.Partial("View/Template/_GridTemplateComponent", page)
+                    @Html.Partial("Views/Templates/_GridTemplateComponent", page)
                 </div>
             }
         </div>

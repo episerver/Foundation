@@ -17,35 +17,35 @@
                 switch (Model.CurrentBlock.Template)
                 {
                     case TemplateSelections.Grid:
-                        @Html.Partial("View/Template/_GridTemplate", Model)
+                        @Html.Partial("Views/Templates/_GridTemplate", Model)
                         break;
 
                     case TemplateSelections.ImageLeft:
-                        @Html.Partial("View/Template/_LeftImageTemplate", Model)
+                        @Html.Partial("Views/Templates/_LeftImageTemplate", Model)
                         break;
 
                     case TemplateSelections.ImageTop:
-                        @Html.Partial("View/Template/_TopImageTemplate", Model)
+                        @Html.Partial("Views/Templates/_TopImageTemplate", Model)
                         break;
 
                     case TemplateSelections.NoImage:
-                        @Html.Partial("View/Template/_NoImageTemplate", Model)
+                        @Html.Partial("Views/Templates/_NoImageTemplate", Model)
                         break;
 
                     case TemplateSelections.Highlight:
-                        @Html.Partial("View/Template/_HighlightPanelTemplate", Model)
+                        @Html.Partial("Views/Templates/_HighlightPanelTemplate", Model)
                         break;
 
                     case TemplateSelections.Card:
-                        @Html.Partial("View/Template/_CardTemplate", Model)
+                        @Html.Partial("Views/Templates/_CardTemplate", Model)
                         break;
 
                     case TemplateSelections.Insight:
-                        @Html.Partial("View/Template/_InsightTemplate", Model)
+                        @Html.Partial("Views/Templates/_InsightTemplate", Model)
                         break;
 
                     default:
-                        @Html.Partial("View/Template/_GridTemplate", Model)
+                        @Html.Partial("Views/Templates/_GridTemplate", Model)
                         break;
                 }
             }
