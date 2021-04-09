@@ -94,7 +94,7 @@ namespace Foundation.Features.Blog.BlogListPage
 
             var model = GetViewModel(currentPage, pagingInfo);
 
-            return PartialView("~/Features/Blog/BlogListPage/View/_BlogList.cshtml", model);
+            return PartialView("~/Features/Blog/BlogListPage/Views/_BlogList.cshtml", model);
         }
 
         public BlogListPageViewModel GetViewModel(BlogListPage currentPage, PagingInfo pagingInfo)
