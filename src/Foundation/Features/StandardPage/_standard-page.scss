@@ -110,6 +110,10 @@
         }
     }
 
+    &__container .article__title h1 {
+        text-shadow: 2px 2px 5px black;
+    }
+
     @media (min-width: 320px) and (max-width: 768px) {
         &__box {
             width: 95%;
