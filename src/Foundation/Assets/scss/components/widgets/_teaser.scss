@@ -99,6 +99,14 @@
     transform: translateY(-50%);
     padding: 1em 4em;
     top: 50% !important;
+
+    h2 {
+        text-shadow: 2px 2px 5px black;
+    }
+
+    p {
+        text-shadow: 2px 2px 5px black;
+    }
 }
 
 .displaymode-one-third .teaser {
