@@ -34,7 +34,6 @@ namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
 
         [Display(
             Name = "Group name of assets",
-            Description = "Available if root content is catalog content",
             GroupName = SystemTabNames.Content,
             Order = 20)]
         public virtual string GroupName { get; set; }
