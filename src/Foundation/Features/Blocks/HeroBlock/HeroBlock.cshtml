@@ -1,6 +1,7 @@
 ﻿@using Foundation.Helpers
 @using ImageProcessor.Web.Episerver
 @using Foundation.Features.Blocks.HeroBlock
+@using System.Globalization
 
 @model IBlockViewModel<HeroBlock>
 
@@ -41,6 +42,10 @@
             blockRatio = "padding-bottom: 50%";
             break;
     }
+
+    NumberFormatInfo nfi = new NumberFormatInfo();
+    nfi.NumberDecimalSeparator = ".";
+    var a = @Model.CurrentBlock.Callout.CalloutOpacity.ToString(nfi);
 }
 
 <div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
@@ -85,8 +90,8 @@
 </div>
 
 <style>
-            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
-                background-color: @Model.CurrentBlock.Callout.BackgroundColor;
-                opacity: @Model.CurrentBlock.Callout.CalloutOpacity;
-            }
+    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
+        background-color: @Model.CurrentBlock.Callout.BackgroundColor;
+        opacity: @a;
+    }
 </style>
