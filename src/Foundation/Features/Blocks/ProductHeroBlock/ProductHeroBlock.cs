@@ -72,6 +72,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
     {
         [MaxElements(1)]
         [CultureSpecific]
+        [UIHint(EPiServer.Commerce.UIHint.AllContent)]
         [AllowedTypes(new[] { typeof(EntryContentBase) })]
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual ContentArea Product { get; set; }

@@ -1,4 +1,5 @@
 ﻿using EPiServer;
+using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Routing;
@@ -74,7 +75,7 @@ namespace Foundation.Features.MyAccount
             {
                 return PartialView("_ProfileSidebar", model);
             }
-            var wishlist = _contentLoader.Get<WishListPage>(referenceSettings.WishlistPage);
+            var wishlist = referenceSettings.WishlistPage != null ? _contentLoader.Get<WishListPage>(referenceSettings.WishlistPage) : null;
             menuItems = menuItems.CreateWritableClone();
 
             if (model.Organization != null)
