@@ -95,6 +95,7 @@ namespace Foundation.Cms.Settings
 
         public T GetSiteSettings<T>(Guid? siteId = null)
         {
+            var contentLanguage = ContentLanguage.PreferredCulture.Name;
             if (!siteId.HasValue)
             {
                 siteId = ResolveSiteId();
@@ -107,19 +108,30 @@ namespace Foundation.Cms.Settings
             {
                 if (PageEditing.PageIsInEditMode)
                 {
-                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + "-common-draft", out var siteSettings))
+                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + $"-common-draft-{contentLanguage}", out var siteSettings))
                     {
                         if (siteSettings.TryGetValue(typeof(T), out var setting))
                         {
                             return (T)setting;
                         }
                     }
+                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + "-common-draft-default", out var defaultSiteSettings))
+                    {
+                        if (defaultSiteSettings.TryGetValue(typeof(T), out var defaultSetting))
+                        {
+                            return (T)defaultSetting;
+                        }
+                    }
                 }
                 else
                 {
-                    if (SiteSettings.TryGetValue(siteId.Value.ToString(), out var siteSettings) && siteSettings.TryGetValue(typeof(T), out var setting))
+                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + $"-{contentLanguage}", out var siteSettings) && siteSettings.TryGetValue(typeof(T), out var setting))
                     {
                         return (T)setting;
+                    }
+                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + "-default", out var defaultSiteSettings) && defaultSiteSettings.TryGetValue(typeof(T), out var defaultSetting))
+                    {
+                        return (T)defaultSetting;
                     }
                 }
             }
@@ -138,27 +150,54 @@ namespace Foundation.Cms.Settings
         public void UpdateSettings(Guid siteId, IContent content, bool isContentNotPublished)
         {
             var contentType = content.GetOriginalType();
+            var contentLanguage = ContentLanguage.PreferredCulture.Name;
             try
             {
                 if (isContentNotPublished)
                 {
-                    if (!SiteSettings.ContainsKey(siteId.ToString()))
+                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-default"))
                     {
-                        SiteSettings[$"{siteId}-common-draft"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteId}-common-draft-default"] = new Dictionary<Type, object>();
                     }
 
-                    SiteSettings[$"{siteId}-common-draft"][contentType] = content;
+                    if (!SiteSettings[$"{siteId}-common-draft-default"].ContainsKey(contentType))
+                    {
+                        SiteSettings[$"{siteId}-common-draft-default"][contentType] = content;
+                    }
+
+                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-{contentLanguage}"))
+                    {
+                        SiteSettings[$"{siteId}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
+                    }
+
+                    SiteSettings[$"{siteId}-common-draft-{contentLanguage}"][contentType] = content;
                 }
                 else
                 {
-                    if (!SiteSettings.ContainsKey(siteId.ToString()))
+                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-default"))
                     {
-                        SiteSettings[siteId.ToString()] = new Dictionary<Type, object>();
-                        SiteSettings[$"{siteId}-common-draft"] = new Dictionary<Type, object>();
+                        SiteSettings[siteId.ToString() + $"-default"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteId}-common-draft-default"] = new Dictionary<Type, object>();
                     }
 
-                    SiteSettings[siteId.ToString()][contentType] = content;
-                    SiteSettings[$"{siteId}-common-draft"][contentType] = content;
+                    if (!SiteSettings[$"{siteId}-default"].ContainsKey(contentType))
+                    {
+                        SiteSettings[$"{siteId}-default"][contentType] = content;
+                    }
+
+                    if (!SiteSettings[$"{siteId}-common-draft-default"].ContainsKey(contentType))
+                    {
+                        SiteSettings[$"{siteId}-common-draft-default"][contentType] = content;
+                    }
+
+                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-{contentLanguage}"))
+                    {
+                        SiteSettings[siteId.ToString() + $"-{contentLanguage}"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteId}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
+                    }
+
+                    SiteSettings[siteId.ToString() + $"-{contentLanguage}"][contentType] = content;
+                    SiteSettings[$"{siteId}-common-draft-{contentLanguage}"][contentType] = content;
                 }
             }
             catch (KeyNotFoundException keyNotFoundException)
