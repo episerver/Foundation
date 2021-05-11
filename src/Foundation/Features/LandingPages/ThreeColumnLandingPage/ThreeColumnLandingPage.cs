@@ -11,7 +11,7 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
        GUID = "947EDF31-8C8C-4595-8591-A17DEF75685E",
        Description = "Three column landing page with properties to determin column size",
        GroupName = SystemTabNames.Content)]
-    [ImageUrl("~/assets/icons/gfx/page-type-thumbnail-landingpage-threecol.png")]
+    [ImageUrl("/icons/gfx/page-type-thumbnail-landingpage-threecol.png")]
     public class ThreeColumnLandingPage : LandingPage.LandingPage
     {
         [CultureSpecific]
@@ -49,10 +49,8 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
             var validations = new List<ValidationError>();
             if (instance.LeftColumn + instance.CenterColumn + instance.RightColumn != 12)
             {
-                var error = new ValidationError
-                {
-                    PropertyName = nameof(instance.LeftColumn) + ", " + nameof(instance.CenterColumn) + ", " + nameof(instance.RightColumn)
-                };
+                var error = new ValidationError();
+                error.PropertyName = nameof(instance.LeftColumn) + ", " + nameof(instance.CenterColumn) + ", " + nameof(instance.RightColumn);
                 error.ErrorMessage = "Sum of columns must be 12. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
                 error.RelatedProperties = new List<string> { nameof(instance.LeftColumn), nameof(instance.CenterColumn), nameof(instance.RightColumn) };
@@ -61,10 +59,8 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
 
             if (instance.LeftColumn < 1)
             {
-                var error = new ValidationError
-                {
-                    PropertyName = nameof(instance.LeftColumn)
-                };
+                var error = new ValidationError();
+                error.PropertyName = nameof(instance.LeftColumn);
                 error.ErrorMessage = "Value must be greater than 0. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
                 error.RelatedProperties = new List<string> { nameof(instance.LeftColumn) };
@@ -73,10 +69,8 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
 
             if (instance.CenterColumn < 1)
             {
-                var error = new ValidationError
-                {
-                    PropertyName = nameof(instance.CenterColumn)
-                };
+                var error = new ValidationError();
+                error.PropertyName = nameof(instance.CenterColumn);
                 error.ErrorMessage = "Value must be greater than 0. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
                 error.RelatedProperties = new List<string> { nameof(instance.CenterColumn) };
@@ -85,10 +79,8 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
 
             if (instance.RightColumn < 1)
             {
-                var error = new ValidationError
-                {
-                    PropertyName = nameof(instance.RightColumn)
-                };
+                var error = new ValidationError();
+                error.PropertyName = nameof(instance.RightColumn);
                 error.ErrorMessage = "Value must be greater than 0. Properties " + error.PropertyName;
                 error.Severity = ValidationErrorSeverity.Error;
                 error.RelatedProperties = new List<string> { nameof(instance.RightColumn) };

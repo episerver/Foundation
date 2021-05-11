@@ -9,6 +9,7 @@ using System.Text;
 namespace Foundation.Infrastructure.Jobs
 {
     [ScheduledPlugIn(DisplayName = "Convert File Blobs", Description = "Converts all file blobs into the currently configured blob type", SortIndex = 10000)]
+    [ServiceConfiguration]
     public class BlobJob : ScheduledJobBase
     {
         protected Injected<IBlobFactory> BlobFactory { get; set; }
@@ -23,7 +24,7 @@ namespace Foundation.Infrastructure.Jobs
 
         public override string Execute()
         {
-            OnStatusChanged(string.Format("Starting execution of {0}", GetType()));
+            OnStatusChanged(string.Format("Starting execution of {0}", this.GetType()));
             ProcessDirectory(new FileBlobProvider().Path);
             var status = string.Format("Converted {0} blobs <br\\>", _count);
             if (_failCount > 0)

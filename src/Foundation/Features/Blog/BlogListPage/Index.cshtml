@@ -10,14 +10,14 @@
             <ul class="blog__navbar">
                 @foreach (var n in Model.SubNavigation)
                 {
-                    <li class="blog__navitem @(Request.Url.AbsolutePath == n.Value ? "is-active" : "")">
+                    <li class="blog__navitem @(ViewContext.HttpContext.Request.GetDisplayUrl() == n.Value ? "is-active" : "")">
                         <a href="@n.Value">@n.Key</a>
                     </li>
                 }
             </ul>
         </nav>
         <div class="row">
-            @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+            @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
             {
                 <div class="col-12">
                     @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -28,8 +28,8 @@
             </div>
         </div>
         <div id="blog-list">
-            @Html.Partial("Views/_BlogList", Model)
-            @Html.Partial("Views/_Paging", Model)
+            @await Html.PartialAsync("Views/_BlogList", Model)
+            @await Html.PartialAsync("Views/_Paging", Model)
         </div>
     </div>
 </div>

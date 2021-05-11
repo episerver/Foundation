@@ -1,7 +1,7 @@
 using EPiServer.Find.Cms;
 using EPiServer.Personalization;
 using Foundation.Features.Shared;
-using System.Collections.Specialized;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Locations.LocationListPage
 {
@@ -14,6 +14,6 @@ namespace Foundation.Features.Locations.LocationListPage
         public GeoCoordinate MapCenter { get; set; }
         public IGeolocationResult UserLocation { get; set; }
         public IContentResult<LocationItemPage.LocationItemPage> Locations { get; set; }
-        public NameValueCollection QueryString { get; set; }
+        public IQueryCollection QueryString { get; set; }
     }
 }

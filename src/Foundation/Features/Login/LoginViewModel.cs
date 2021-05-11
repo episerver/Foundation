@@ -1,5 +1,5 @@
 using EPiServer.Core;
-using Foundation.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Attributes;
 
 namespace Foundation.Features.Login
 {

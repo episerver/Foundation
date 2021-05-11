@@ -16,7 +16,7 @@ using System.Linq;
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation
 {
     [CatalogContentType(DisplayName = "Dynamic Variant", GUID = "11c2960f-79d6-4876-8d8a-6b7bc8cfe869", Description = "Dynamic variant supports multiple options")]
-    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-23.png")]
+    [ImageUrl("/icons/cms/pages/cms-icon-page-23.png")]
     public class DynamicVariant : GenericVariant
     {
         [BackingType(typeof(VariantGroupPropertyList))]
@@ -125,12 +125,9 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariat
             return JsonConvert.DeserializeObject<VariantOption>(value);
         }
 
-        [Obsolete("ParseToObject is no longer required to be implemented. The same functionality can be achieved by creating a new instance and calling the ParseToSelf method.")]
-        public override PropertyData ParseToObject(string value)
+        public override void ParseToSelf(string value)
         {
-            var prop = new VariantGroupPropertyList();
-            prop.ParseToSelf(value);
-            return prop;
+            ParseToSelf(value);
         }
 
         public override string ToString()

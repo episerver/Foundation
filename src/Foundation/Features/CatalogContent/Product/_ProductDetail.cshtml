@@ -4,18 +4,18 @@
 
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
-    var shareUrl = Url.Encode(Request.Url.ToString());
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
 }
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.Product.Code" />
 <div class="col-12">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            @Html.Partial("_Images", Model.Media)
+            @await Html.PartialAsync("_Images", Model.Media)
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="product-detail__title">
-                @Html.Partial("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
+                @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
                 @if (Model.Variant != null)
                 {
                     <h5>@Html.PropertyFor(x => x.Variant.DisplayName)</h5>
@@ -27,7 +27,7 @@
                 }
             </div>
             <hr />
-            @Html.Partial("_Rating", Model)
+            @await Html.PartialAsync("_Rating", Model)
             <hr />
             <div class="row">
                 <div class="col-12">
@@ -45,7 +45,7 @@
                             }
                             @if (Model.HasSaleCode)
                             {
-                                @Html.Partial("_WarningHasSaleCode", null)
+                                @await Html.PartialAsync("_WarningHasSaleCode", null)
                             }
                         </div>
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
@@ -76,7 +76,7 @@
 
                                 @if (Model.HasSaleCode)
                                 {
-                                    @Html.Partial("_WarningHasSaleCode", null)
+                                    @await Html.PartialAsync("_WarningHasSaleCode", null)
                                 }
                             </div>
                         }
@@ -110,7 +110,11 @@
                                 colors.Add(new KeyValuePair<string, string>(c.Text, c.Value));
                             }
                         }
-                        @Helpers.RenderDropdown(colors, Model.Color, "jsSelectColorSize", "color")
+                        @(await Component.InvokeAsync("Dropdown", 
+                            new { list = colors,
+                            selectedValue = Model.Color,
+                            selectorClassItem = "jsSelectColorSize",
+                            name = "color"}))
                     </div>
                 }
 
@@ -125,14 +129,18 @@
                                 sizes.Add(new KeyValuePair<string, string>(c.Text + (c.Disabled ? " (out of stock)" : ""), c.Value));
                             }
                         }
-                        @Helpers.RenderDropdown(sizes, Model.Size, "jsSelectColorSize", "size")
+                        @(await Component.InvokeAsync("Dropdown", new { list = sizes,
+                    selectedValue = Model.Size,
+                    selectorClassItem = "jsSelectColorSize",
+                    name = "size"
+                }))
                     </div>
                 }
             </div>
             @if (Model.Variant != null)
             {
-                @Html.Partial("_Store", Model.Stores)
-                @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.Variant.Code, Model.MinQuantity, Model.IsAvailable))
+                @await Html.PartialAsync("_Store", Model.Stores)
+                @await Html.PartialAsync("_BuyNow", new Tuple<string, int, bool>(Model.Variant.Code, Model.MinQuantity, Model.IsAvailable))
             }
             <hr />
             <div class="row">
@@ -159,7 +167,7 @@
                     }
                 </div>
             </div>
-            @Html.Partial("_SocialIconsListing", Model.CurrentContent.DisplayName)
+            @await Html.PartialAsync("_SocialIconsListing", Model.CurrentContent.DisplayName)
         </div>
     </div>
 </div>

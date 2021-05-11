@@ -9,7 +9,7 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
         Description = "Page for customer to see their subscription details.",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-14.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-14.png")]
     public class SubscriptionDetailPage : FoundationPageData
     {
     }

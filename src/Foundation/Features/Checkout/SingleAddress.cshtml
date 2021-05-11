@@ -26,7 +26,7 @@
                     <div>
                         <label class="checkbox">
                             @Html.TranslateFallback("/Checkout/Shipment/NewAddress", "Ship to new address")
-                            @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 0, new { @class = "radio jsSingleAddress"  })
+                            @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 0, new { @class = "radio jsSingleAddress" })
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -42,11 +42,15 @@
                         {
                             values.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
                         }
-          
+
                         var defaultShippingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.ShippingDefault);
                         var defaultShippingAddressId = defaultShippingAddress != null ? defaultShippingAddress.AddressId : null;
                     }
-                    @Helpers.RenderDropdown(values, Model.Shipments[index].Address.AddressId ?? defaultShippingAddressId, "", "Shipments[" + index + "].Address.AddressId")
+                    @(await Component.InvokeAsync("Dropdown", new { list = values,
+                        selectedValue = Model.Shipments[index].Address.AddressId ?? defaultShippingAddressId,
+                        selectorClassItem = "",
+                        name = "Shipments[" + index + "].Address.AddressId"
+                    }))
                 </div>
             </li>
 

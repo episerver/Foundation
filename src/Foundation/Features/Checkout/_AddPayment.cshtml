@@ -45,7 +45,7 @@
 
 @if (Model.OrderSummary.PaymentTotal != 0)
 {
-    { Html.RenderPartial("Payment", Model); }
+    { await Html.RenderPartialAsync("Payment", Model); }
     <div class="form-group">
         @Html.LabelFor(model => model.OrderSummary.PaymentTotal)
         @Html.TextBoxFor(model => model.OrderSummary.PaymentTotal, new { @class = "textbox" })
@@ -73,5 +73,5 @@
 }
 
 <div class="jsOrderSummaryInPayment display-none">
-    @Html.Partial("_OrderSummary", Model.OrderSummary)
+    @await Html.PartialAsync("_OrderSummary", Model.OrderSummary)
 </div>

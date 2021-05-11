@@ -12,7 +12,7 @@ namespace Foundation.Features.Home
         Description = "Used for home page of all sites",
         AvailableInEditMode = true,
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-02.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-02.png")]
     public class HomePage : FoundationPageData
     {
         [CultureSpecific]

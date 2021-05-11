@@ -66,9 +66,9 @@
 
                                     @foreach (var page in Model.PdfSearchResult.FilterOption.Pages)
                                     {
-                                        <li class="jsChangePageContent @(Model.PdfSearchResult.FilterOption.Page == page ? "active" : "")" page="@page">
+                                        <li class="jsChangePageContent @(Model.PdfSearchResult.FilterOption.Page == page ? "active" : "")" page="@(page)">
                                             <a href="javascript:void(0)">
-                                                @page.ToString()
+                                                @(page).ToString()
                                             </a>
                                         </li>
                                     }

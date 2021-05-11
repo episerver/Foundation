@@ -1,7 +1,6 @@
-using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using System;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.MyAccount.Bookmarks
 {
@@ -17,7 +16,7 @@ namespace Foundation.Features.MyAccount.Bookmarks
             _bookmarksService = bookmarksService;
         }
 
-        [PageViewTracking]
+        //[PageViewTracking]
         public ActionResult Index(BookmarksPage currentPage)
         {
             var model = new BookmarksViewModel(currentPage)
@@ -29,25 +28,25 @@ namespace Foundation.Features.MyAccount.Bookmarks
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Bookmark(Guid contentId)
-        {
-            _bookmarksService.Add(contentId);
-            return Json(new { Success = true });
-        }
+        //[HttpPost]
+        //public ActionResult Bookmark(Guid contentId)
+        //{
+        //    _bookmarksService.Add(contentId);
+        //    return Json(new { Success = true });
+        //}
 
-        [HttpPost]
-        public ActionResult Unbookmark(Guid contentId)
-        {
-            _bookmarksService.Remove(contentId);
-            return Json(new { Success = true });
-        }
+        //[HttpPost]
+        //public ActionResult Unbookmark(Guid contentId)
+        //{
+        //    _bookmarksService.Remove(contentId);
+        //    return Json(new { Success = true });
+        //}
 
-        [HttpPost]
-        public ActionResult Remove(Guid contentGuid)
-        {
-            _bookmarksService.Remove(contentGuid);
-            return Json(new { Success = true });
-        }
+        //[HttpPost]
+        //public ActionResult Remove(Guid contentGuid)
+        //{
+        //    _bookmarksService.Remove(contentGuid);
+        //    return Json(new { Success = true });
+        //}
     }
 }

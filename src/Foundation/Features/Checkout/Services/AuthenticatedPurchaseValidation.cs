@@ -1,7 +1,7 @@
 using EPiServer.Framework.Localization;
 using Foundation.Features.Checkout.ViewModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Checkout.Services
 {
@@ -45,12 +45,12 @@ namespace Foundation.Features.Checkout.Services
         {
             foreach (var state in modelState.Where(x => x.Key.StartsWith("BillingAddress")).ToArray())
             {
-                modelState.Remove(state);
+                modelState.Remove(state.Key);
             }
 
             foreach (var state in modelState.Where(x => x.Key.StartsWith("Shipments")).ToArray())
             {
-                modelState.Remove(state);
+                modelState.Remove(state.Key);
             }
         }
     }

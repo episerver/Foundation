@@ -1,7 +1,7 @@
 ﻿using EPiServer.SpecializedProperties;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 
 namespace Foundation.Features.MyOrganization
 {

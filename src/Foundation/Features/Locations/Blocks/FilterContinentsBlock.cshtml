@@ -8,7 +8,7 @@
     var filterContinents = Enumerable.Empty<string>();
     if (!string.IsNullOrWhiteSpace(filterString))
     {
-        filterContinents = filterString.Split(',').ToList();
+        filterContinents = filterString.ToList();
     }
 }
 

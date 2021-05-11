@@ -5,7 +5,7 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Infrastructure;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Foundation.Features.Settings
         Description = "Header settings, footer settings, menu settings",
         AvailableInEditMode = false,
         SettingsName = "Layout Settings")]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-layout-settings.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-layout-settings.png")]
     public class LayoutSettings : SettingsBase
     {
         #region Footer

@@ -4,18 +4,18 @@
 
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
-    var shareUrl = Url.Encode(Request.Url.ToString());
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
 }
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.CurrentContent.Code" />
 <div class="col-12">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            @Html.Partial("_Images", Model.Media)
+            @await Html.PartialAsync("_Images", Model.Media)
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="product-detail__title">
-                @Html.Partial("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
+                @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
                 <h5>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h5>
                 <h6 class="light-text">@*@Html.PropertyFor(x => x.CurrentContent.Brand)*@</h6>
                 <p class="sub-title">@Model.CurrentContent.Code</p>
@@ -37,7 +37,7 @@
                             }
                             @if (Model.HasSaleCode)
                             {
-                                @Html.Partial("_WarningHasSaleCode", null)
+                                @await Html.PartialAsync("_WarningHasSaleCode", null)
                             }
                         </div>
                         if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
@@ -68,7 +68,7 @@
 
                                 @if (Model.HasSaleCode)
                                 {
-                                    @Html.Partial("_WarningHasSaleCode", null)
+                                    @await Html.PartialAsync("_WarningHasSaleCode", null)
                                 }
                             </div>
                         }
@@ -89,8 +89,8 @@
             @Html.PropertyFor(x => x.CurrentContent.Description)
             <br />
             <hr />
-            @Html.Partial("_Store", Model.Stores)
-            @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
+            @await Html.PartialAsync("_Store", Model.Stores)
+            @await Html.PartialAsync("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
             <hr />
             <div class="row">
                 <div class="col-12">
@@ -116,7 +116,7 @@
                     }
                 </div>
             </div>
-            @Html.Partial("_SocialIconsListing", Model.CurrentContent.DisplayName)
+            @await Html.PartialAsync("_SocialIconsListing", Model.CurrentContent.DisplayName)
         </div>
     </div>
 </div>

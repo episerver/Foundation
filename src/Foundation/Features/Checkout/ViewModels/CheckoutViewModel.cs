@@ -7,11 +7,10 @@ using Mediachase.Commerce;
 using Mediachase.Commerce.Orders;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Checkout.ViewModels
 {
-    [Bind(Exclude = "Payment")]
+    //[Bind(Exclude = "Payment")]
     public class CheckoutViewModel : ContentViewModel<CheckoutPage>
     {
         public const string MultiShipmentCheckoutViewName = "MultiShipmentCheckout";

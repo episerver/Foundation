@@ -10,14 +10,14 @@
 @{
     if (Model.ShowProductSearchResults)
     {
-        Html.RenderPartial("_QuickSearch", Model.ProductViewModels);
+        await Html.RenderPartialAsync("_QuickSearch", Model.ProductViewModels);
     }
     if (Model.ShowContentSearchResults)
     {
-        Html.RenderPartial("_QuickSearchContent", Model);
+        await Html.RenderPartialAsync("_QuickSearchContent", Model);
     }
     if (Model.ShowPdfSearchResults)
     {
-        Html.RenderPartial("_QuickSearchPdf", Model);
+        await Html.RenderPartialAsync("_QuickSearchPdf", Model);
     }
 }

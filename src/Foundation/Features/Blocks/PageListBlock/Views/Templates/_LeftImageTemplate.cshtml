@@ -1,21 +1,19 @@
-﻿@using EPiServer.Core.Html
-@using EPiServer.AddOns.Helpers
+﻿@model PageListBlockViewModel
+@using EPiServer.Core.Html
 @using Foundation.Features.Blocks.PageListBlock
 @using Foundation.Features.Shared.SelectionFactories
 
-@model PageListBlockViewModel
-
 @if (Model.Pages != null && Model.Pages.Any())
 {
-    foreach (var page in Model.Pages)
+    foreach (var pageModel in Model.Pages)
     {
-        var imageCol = page.PreviewOption == PreviewOptions.Full ? 12 : (page.PreviewOption == PreviewOptions.Half ? 6 : 4);
+        var imageCol = pageModel.PreviewOption == PreviewOptions.Full ? 12 : (pageModel.PreviewOption == PreviewOptions.Half ? 6 : 4);
         var textCol = imageCol == 12 ? 12 : 12 - imageCol;
-        var foundationPage = page.Page as FoundationPageData;
+        var foundationPage = pageModel.Page as FoundationPageData;
 
-        <a class="row" href="@page.Page.ContentLink.GetPublicUrl()">
+        <a class="row" href="@pageModel.Page.ContentLink.GetPublicUrl()">
             <div class="col-sm-12 col-md-@imageCol">
-                @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                @if (pageModel != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                 {
                     <video class="video-fluid" autoplay loop playsinline muted>
                         <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
@@ -23,21 +21,21 @@
                 }
                 else
                 {
-                    if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                    if (pageModel != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                     {
-                        <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200" />
+                        <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                     }
                 }
             </div>
             <div class="col-sm-12 col-md-@textCol">
                 <h4 class="title">
-                    @Html.Raw(page != null ? foundationPage.MetaTitle : page.Page.Name)
+                    @Html.Raw(pageModel != null ? foundationPage.MetaTitle : pageModel.Page.Name)
                 </h4>
-                @if (page.ShowPublishDate)
+                @if (pageModel.ShowPublishDate)
                 {
-                    <p class="sub-title">@page.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                    <p class="sub-title">@pageModel.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
                 }
-                @if (page != null && page.ShowIntroduction)
+                @if (pageModel != null && pageModel.ShowIntroduction)
                 {
                     <br />
                     <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>

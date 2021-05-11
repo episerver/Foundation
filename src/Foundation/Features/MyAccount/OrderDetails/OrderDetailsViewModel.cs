@@ -1,5 +1,5 @@
 ﻿using EPiServer.Commerce.Order;
-using Foundation.Commerce;
+using Foundation.Infrastructure.Commerce;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.Shared;

@@ -6,7 +6,7 @@
     <div class="col-12">
         @Html.PropertyFor(x => x.CurrentContent.TopContentArea)
     </div>
-    @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+    @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
     {
         <div class="col-12">
             @Html.PropertyFor(m => m.CurrentContent.MainBody)

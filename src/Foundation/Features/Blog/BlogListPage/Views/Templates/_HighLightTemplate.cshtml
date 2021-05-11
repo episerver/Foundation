@@ -1,8 +1,5 @@
-﻿@using EPiServer.AddOns.Helpers
-@using Foundation.Features.Blog.BlogItemPage
+﻿@using Foundation.Features.Blog.BlogItemPage
 @using Foundation.Features.Shared.SelectionFactories
-@using Foundation.Features.Blog.BlogListPage
-@using ImageProcessor.Web.Episerver
 
 @model BlogItemPageViewModel
 
@@ -22,7 +19,7 @@
                 <div class="w-100">
                     @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                     {
-                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                        <img data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)&format=webp" class="img-fluid preview--image-top__image lazyload" />
                     }
                 </div>
             </div>
@@ -53,7 +50,7 @@
                 <div class="w-100">
                     @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                     {
-                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                        <img data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)&format=webp" class="img-fluid preview--image-top__image lazyload" />
                     }
                 </div>
             </div>
@@ -68,7 +65,7 @@ else
                 <div class="w-100">
                     @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
                     {
-                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                        <img data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)" class="img-fluid preview--image-top__image lazyload" />
                     }
                 </div>
             </div>

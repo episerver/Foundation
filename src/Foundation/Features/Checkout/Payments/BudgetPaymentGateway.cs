@@ -1,8 +1,8 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.ServiceLocation;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Budgeting;

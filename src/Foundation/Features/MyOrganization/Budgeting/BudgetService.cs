@@ -1,6 +1,6 @@
 ﻿using EPiServer.Logging;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using System;

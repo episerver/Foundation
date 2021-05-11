@@ -2,7 +2,24 @@
 
 @model MarketViewModel
 
-<div class="market-list dropdown-menu dropdown-menu-right">
+<div class="market-list">
+    <form action="/Market/Set?contentLink=@Model.ContentLink" method="post">
+        @Html.AntiForgeryToken()
+        <div class="market-list__label">Market: @Model.CurrentMarket.DisplayName</div>
+        <div class="market-list__list">
+            @foreach (var item in Model.Markets)
+            {
+                <div class="market-selector__wrapper jsMarketSelector">
+                    <input type="hidden" name="MarketId" value="@item.Value" />
+                    <img class="market-selector__market-icon lazyload" data-src="@item.FlagUrl" />
+                    <p class="market-selector__market-text">@item.DisplayName</p>
+                </div>
+            }
+        </div>
+    </form>
+</div>
+
+@*<div class="market-list dropdown-menu dropdown-menu-right">
     <div class="market-list__list">
         @foreach (var market in Model.Markets)
         {
@@ -19,4 +36,4 @@
             }
         }
     </div>
-</div>
+</div>*@

@@ -14,7 +14,7 @@
         </h1>
     </div>
     <div class="row">
-        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
         {
             <div class="col-12">
                 @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -44,7 +44,7 @@
 
                         <div class="content product-tile-list__content">
                             <div>
-                                <a href="@bookmark.Url" class="account-link" target="_blank">@(Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, string.Empty))@bookmark.Url</a>
+                                <a href="@bookmark.Url" class="account-link" target="_blank">@(Context.Request.Path.Value) @bookmark.Url</a>
                             </div>
                             <div class="action-icons">
                                 <a class="account-link" href="@bookmark.Url" target="_blank" title="View page"><span><i data-feather="eye"></i></span></a>

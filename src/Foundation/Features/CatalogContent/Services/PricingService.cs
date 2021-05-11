@@ -1,4 +1,4 @@
-﻿using Foundation.Commerce.Markets;
+﻿using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Pricing;

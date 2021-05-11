@@ -3,8 +3,6 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.Shared;
@@ -19,7 +17,7 @@ namespace Foundation.Features.CatalogContent.Bundle
         MetaClassName = "FashionBundle",
         Description = "Displays a bundle, which is collection of individual fashion variants.")]
     [ImageUrl("~/content/icons/pages/cms-icon-page-21.png")]
-    public class GenericBundle : BundleContent, IProductRecommendations, IFoundationContent, IDashboardItem
+    public class GenericBundle : BundleContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         [Searchable]
         [CultureSpecific]
@@ -87,10 +85,10 @@ namespace Foundation.Features.CatalogContent.Bundle
             AssociationsTitle = "You May Also Like";
         }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Description?.ToHtmlString();
-            itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
-        }
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Description?.ToHtmlString();
+        //    itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
+        //}
     }
 }

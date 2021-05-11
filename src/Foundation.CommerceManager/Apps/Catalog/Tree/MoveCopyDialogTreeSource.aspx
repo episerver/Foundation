@@ -1,2 +1,0 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="Mediachase.Commerce.Manager.Catalog.Tree.MoveCopyDialogTreeSource" Codebehind="MoveCopyDialogTreeSource.aspx.cs" %>
-<head id="Head1" runat="server" visible="false" />

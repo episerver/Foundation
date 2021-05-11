@@ -13,7 +13,7 @@ namespace Foundation.Features.Events.CalendarBlock
         DisplayName = "Calendar Block",
         Description = "A block that lists a bunch of calendar events",
         GroupName = GroupNames.Calendar)]
-    [ImageUrl("~/assets/icons/cms/pages/calendar.png")]
+    [ImageUrl("/icons/cms/pages/calendar.png")]
     public class CalendarBlock : FoundationBlockData
     {
         [Required]

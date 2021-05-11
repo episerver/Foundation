@@ -3,39 +3,43 @@ using EPiServer.Core;
 using EPiServer.Editor;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Mediachase.Commerce.Orders;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using EPiServer.Web;
 
 namespace Foundation.Features.Checkout.ConfirmationMail
 {
     public class OrderConfirmationMailController : PageController<OrderConfirmationMailPage>
     {
-        private readonly ConfirmationService _confirmationService;
-        private readonly AddressBookService _addressBookService;
-        private readonly CustomerService _customerService;
+        private readonly IConfirmationService _confirmationService;
+        private readonly IAddressBookService _addressBookService;
+        private readonly ICustomerService _customerService;
         private readonly IOrderGroupCalculator _orderGroupCalculator;
+        private readonly IContextModeResolver _contextModeResolver;
 
-        public OrderConfirmationMailController(ConfirmationService confirmationService,
-            AddressBookService addressBookService,
-            CustomerService customerService,
-            IOrderGroupCalculator orderGroupCalculator)
+        public OrderConfirmationMailController(IConfirmationService confirmationService,
+            IAddressBookService addressBookService,
+            ICustomerService customerService,
+            IOrderGroupCalculator orderGroupCalculator,
+            IContextModeResolver contextModeResolver)
         {
             _confirmationService = confirmationService;
             _addressBookService = addressBookService;
             _customerService = customerService;
             _orderGroupCalculator = orderGroupCalculator;
+            _contextModeResolver = contextModeResolver;
         }
 
         public ActionResult Index(OrderConfirmationMailPage currentPage, int? orderNumber)
         {
             IPurchaseOrder order;
-            if (PageEditing.PageIsInEditMode)
+            if (_contextModeResolver.CurrentMode.EditOrPreview())
             {
                 order = _confirmationService.CreateFakePurchaseOrder();
             }

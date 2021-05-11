@@ -10,7 +10,7 @@ namespace Foundation.Features.Blocks.TwitterBlock
         GUID = "8ed98895-c4a5-4d4d-8abf-43853bd46bc8",
         Description = "Display content from a Twitter feed",
         GroupName = GroupNames.SocialMedia)]
-    [ImageUrl("~/assets/icons/cms/blocks/twitter.png")]
+    [ImageUrl("/icons/cms/blocks/twitter.png")]
     public class TwitterBlock : FoundationBlockData
     {
         [Display(Name = "Account name", GroupName = SystemTabNames.Content, Order = 10)]

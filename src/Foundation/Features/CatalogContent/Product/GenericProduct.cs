@@ -3,13 +3,11 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
-using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -20,8 +18,8 @@ namespace Foundation.Features.CatalogContent.Product
         MetaClassName = "GenericProduct",
         DisplayName = "Generic Product",
         Description = "Generic product supports mutiple products")]
-    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-23.png")]
-    public class GenericProduct : ProductContent, IProductRecommendations, IFoundationContent, IDashboardItem
+    [ImageUrl("/icons/cms/pages/cms-icon-page-23.png")]
+    public class GenericProduct : ProductContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         #region Content
 
@@ -178,10 +176,10 @@ namespace Foundation.Features.CatalogContent.Product
             ProductStatus = "Active";
         }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Description?.ToHtmlString();
-            itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
-        }
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Description?.ToHtmlString();
+        //    itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
+        //}
     }
 }

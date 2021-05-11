@@ -17,19 +17,19 @@
                 if (Model.ItemsPerRow == 6)
                 {
                     <div class="col-sm-12 col-md-4 col-lg-2">
-                        @Html.Partial("_ProductGridItem", product)
+                        @await Html.PartialAsync("_ProductGridItem", product)
                     </div>
                 }
                 else if (Model.ItemsPerRow == 4)
                 {
                     <div class="col-sm-12 col-md-6 col-lg-3">
-                        @Html.Partial("_ProductGridItem", product)
+                        @await Html.PartialAsync("_ProductGridItem", product)
                     </div>
                 }
                 else
                 {
                     <div class="col col-6 col-lg-4">
-                        @Html.Partial("_ProductGridItem", product)
+                        @await Html.PartialAsync("_ProductGridItem", product)
                     </div>
                 }
             }

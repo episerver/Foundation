@@ -44,11 +44,23 @@
                     <div class="row">
                         <div class="col-6">
                             <label>Payment option</label>
-                            @Helpers.RenderDropdown(Model.Filter.PaymentMethods, Model.Filter.PaymentMethodId, "", "PaymentMethodId")
+                            @*@Helpers.RenderDropdown(Model.Filter.PaymentMethods, Model.Filter.PaymentMethodId, "", "PaymentMethodId")*@
+                            @(await Component.InvokeAsync("Dropdown",
+                                new { list = Model.Filter.PaymentMethods,
+                                    selectedValue = Model.Filter.PaymentMethodId,
+                                    selectorClassItem = "",
+                                    name = "PaymentMethodId"
+                                }))
                         </div>
                         <div class="col-6">
                             <label>Order status</label>
-                            @Helpers.RenderDropdown(Model.Filter.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())), Model.Filter.OrderStatusId.ToString(), "", "OrderStatusId")
+                            @*@Helpers.RenderDropdown(Model.Filter.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())), Model.Filter.OrderStatusId.ToString(), "", "OrderStatusId")*@
+                            @(await Component.InvokeAsync("Dropdown",
+                                new { list = Model.Filter.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())),
+                                    selectedValue = Model.Filter.OrderStatusId.ToString(),
+                                    selectorClassItem = "",
+                                    name = "OrderStatusId"
+                                }))
                         </div>
                     </div>
                 </div>
@@ -76,7 +88,7 @@
                     </tr>
                 </thead>
                 <tbody class="jsOrderSearchTableBody">
-                    @Html.Partial("~/Features/Blocks/Views/_OrderSearchListing.cshtml", Model)
+                    @await Html.PartialAsync("~/Features/Blocks/Views/_OrderSearchListing.cshtml", Model)
                 </tbody>
             </table>
 

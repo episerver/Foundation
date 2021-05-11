@@ -1,33 +1,37 @@
 ﻿using EPiServer;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.CatalogContent;
-using Foundation.Personalization;
-using Foundation.Social.Services;
+using Foundation.Infrastructure.Personalization;
+//using Foundation.Social.Services;
 using Mediachase.Commerce.Catalog;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Search.Category
 {
     public class CategoryController : CatalogContentControllerBase<GenericNode>
     {
         private readonly ISearchViewModelFactory _viewModelFactory;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public CategoryController(
             ISearchViewModelFactory viewModelFactory,
+            IHttpContextAccessor httpContextAccessor,
             ICommerceTrackingService recommendationService,
-            IReviewService reviewService,
-            IReviewActivityService reviewActivityService,
+            //IReviewService reviewService,
+            //IReviewActivityService reviewActivityService,
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             UrlResolver urlResolver,
-            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService, loyaltyService)
+            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver/*, reviewService, reviewActivityService*/, recommendationService, loyaltyService)
         {
             _viewModelFactory = viewModelFactory;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
         public async Task<ViewResult> Index(GenericNode currentContent, FilterOptionViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.ViewSwitcher))
@@ -36,11 +40,11 @@ namespace Foundation.Features.Search.Category
             }
 
             var model = _viewModelFactory.Create(currentContent,
-                HttpContext.Request.QueryString["facets"],
+                _httpContextAccessor.HttpContext.Request.Query["facets"].ToString(),
                 0,
                 viewModel);
 
-            if (HttpContext.Request.HttpMethod == "GET")
+            if (HttpContext.Request.Method == "GET")
             {
                 var response = await _recommendationService.TrackCategory(HttpContext, currentContent);
                 model.Recommendations = response.GetCategoryRecommendations(_referenceConverter);
@@ -50,7 +54,6 @@ namespace Foundation.Features.Search.Category
             return View(model);
         }
 
-        [ChildActionOnly]
         public ActionResult Facet(GenericNode currentContent, FilterOptionViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.ViewSwitcher))

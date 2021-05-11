@@ -2,12 +2,12 @@
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.Settings;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.MyAccount.SubscriptionHistory
 {

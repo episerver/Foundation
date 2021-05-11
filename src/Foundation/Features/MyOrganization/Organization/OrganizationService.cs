@@ -1,5 +1,5 @@
-﻿using Foundation.Commerce.Customer;
-using Foundation.Commerce.Extensions;
+﻿using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.SubOrganization;
 using Mediachase.Commerce.Customers;

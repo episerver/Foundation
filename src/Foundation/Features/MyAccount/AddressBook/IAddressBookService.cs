@@ -1,5 +1,5 @@
 ﻿using EPiServer.Commerce.Order;
-using Foundation.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyOrganization;
 using Mediachase.Commerce.Customers;

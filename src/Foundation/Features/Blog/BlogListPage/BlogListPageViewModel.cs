@@ -1,4 +1,4 @@
-﻿using Foundation.Cms;
+﻿using Foundation.Infrastructure.Cms;
 using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.Shared;
 using System.Collections.Generic;

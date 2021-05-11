@@ -11,7 +11,7 @@ namespace Foundation.Features.MyOrganization.Organization
         Description = "Page to manage an organization",
         AvailableInEditMode = false,
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/pages/elected.png")]
+    [ImageUrl("/icons/cms/pages/elected.png")]
     public class OrganizationPage : FoundationPageData, IDisableOPE
     {
     }

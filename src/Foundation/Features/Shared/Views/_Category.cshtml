@@ -3,4 +3,4 @@
 
 @model SearchViewModel<GenericNode>
 
-@Html.Partial("_ProductGrid", Model.ProductViewModels)
+@await Html.PartialAsync("_ProductGrid", Model.ProductViewModels)

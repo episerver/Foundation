@@ -1,9 +1,9 @@
 ﻿using EPiServer.Web.Mvc;
-using Foundation.Cms;
-using Foundation.Cms.Attributes;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.SubOrganization;
@@ -11,7 +11,9 @@ using Foundation.Features.Settings;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using EPiServer.Core;
 
 namespace Foundation.Features.MyOrganization.Organization
 {
@@ -21,23 +23,26 @@ namespace Foundation.Features.MyOrganization.Organization
         private readonly IOrganizationService _organizationService;
         private readonly IAddressBookService _addressService;
         private readonly IBudgetService _budgetService;
-        private readonly CookieService _cookieService = new CookieService();
+        private readonly ICookieService _cookieService;
         private readonly ISettingsService _settingsService;
 
         public OrganizationController(IOrganizationService organizationService,
             IAddressBookService addressService,
             IBudgetService budgetService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            ICookieService cookieService)
         {
             _organizationService = organizationService;
             _addressService = addressService;
             _budgetService = budgetService;
             _settingsService = settingsService;
+            _cookieService = cookieService;
         }
 
-        public ActionResult Index(OrganizationPage currentPage)
+        public IActionResult Index(OrganizationPage currentPage)
         {
-            if (Request.QueryString["showForm"] != null && bool.Parse(Request.QueryString["showForm"]))
+            bool.TryParse(Request.Query["showForm"].ToString(), out var isShowForm);
+            if (!string.IsNullOrEmpty(Request.Query["showForm"].ToString()) && isShowForm)
             {
                 return RedirectToAction("Create");
             }
@@ -53,7 +58,7 @@ namespace Foundation.Features.MyOrganization.Organization
             };
 
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            if (referencePages != null && !referencePages.SubOrganizationPage.IsNullOrEmpty())
+            if (referencePages != null && !ContentReference.IsNullOrEmpty(referencePages.SubOrganizationPage))
             {
                 viewModel.SubOrganizationPage = referencePages.SubOrganizationPage;
             }
@@ -90,7 +95,7 @@ namespace Foundation.Features.MyOrganization.Organization
         }
 
         [NavigationAuthorize("Admin,None")]
-        public ActionResult Create(OrganizationPage currentPage)
+        public IActionResult Create(OrganizationPage currentPage)
         {
             var viewModel = new OrganizationPageViewModel
             {
@@ -107,7 +112,7 @@ namespace Foundation.Features.MyOrganization.Organization
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult Edit(OrganizationPage currentPage, string organizationId)
+        public IActionResult Edit(OrganizationPage currentPage, string organizationId)
         {
             var currentOrganization = _organizationService.GetCurrentFoundationOrganization();
             var viewModel = new OrganizationPageViewModel
@@ -133,7 +138,7 @@ namespace Foundation.Features.MyOrganization.Organization
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult AddSub(OrganizationPage currentPage)
+        public IActionResult AddSub(OrganizationPage currentPage)
         {
             var currentOrganization = _organizationService.GetCurrentFoundationOrganization();
             var viewModel = new OrganizationPageViewModel
@@ -153,7 +158,7 @@ namespace Foundation.Features.MyOrganization.Organization
         [AllowDBWrite]
         [NavigationAuthorize("Admin,None")]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(OrganizationPageViewModel viewModel)
+        public IActionResult Save(OrganizationPageViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.Organization.Name))
             {
@@ -175,7 +180,7 @@ namespace Foundation.Features.MyOrganization.Organization
         [AllowDBWrite]
         [NavigationAuthorize("Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveSub(OrganizationPageViewModel viewModel)
+        public IActionResult SaveSub(OrganizationPageViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.NewSubOrganization.Name))
             {

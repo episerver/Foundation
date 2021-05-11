@@ -26,9 +26,9 @@
                 </li>
                 @foreach (var page in Model.Pages)
                 {
-                    <li class="@(Model.Page == page ? "active" : "") jsPaginate jsUpdatePage" data="@page">
+                    <li class="@(Model.Page == page ? "active" : "") jsPaginate jsUpdatePage" data="@(page)">
                         <a href="javascript:void(0)">
-                            @page.ToString()
+                            @(page).ToString()
                         </a>
                     </li>
                 }

@@ -3,22 +3,20 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
-using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Features.Blocks.ElevatedRoleBlock;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Variation
 {
     [CatalogContentType(DisplayName = "Generic Variant", GUID = "1aaa2c58-c424-4c37-81b0-77e76d254eb0", Description = "Generic variant supports multiple variation types")]
-    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-23.png")]
-    public class GenericVariant : VariationContent, IProductRecommendations, IFoundationContent, IDashboardItem
+    [ImageUrl("/icons/cms/pages/cms-icon-page-23.png")]
+    public class GenericVariant : VariationContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         [Tokenize]
         [Searchable]
@@ -131,10 +129,10 @@ namespace Foundation.Features.CatalogContent.Variation
             AssociationsTitle = "You May Also Like";
         }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Description?.ToHtmlString();
-            itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
-        }
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Description?.ToHtmlString();
+        //    itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
+        //}
     }
 }

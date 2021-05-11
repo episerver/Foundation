@@ -11,7 +11,7 @@ namespace Foundation.Features.Blocks.VideoBlock
         GUID = "03D454F9-3BE8-4421-9A5D-CBBE8E38443D",
         Description = "Video Block",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-05.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-05.png")]
     public class VideoBlock : FoundationBlockData
     {
         [CultureSpecific]

@@ -1,5 +1,5 @@
 using EPiServer.Framework.Localization;
-using Foundation.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Features.MyOrganization.Organization;
 using Mediachase.Commerce.Customers;
 using System;
@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Foundation.Features.MyAccount.CreditCard
 {

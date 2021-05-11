@@ -1,4 +1,4 @@
-﻿using Boilerplate.Web.Mvc.OpenGraph;
+﻿using Boxed.AspNetCore.TagHelpers.OpenGraph;
 using Foundation.Infrastructure.OpenGraph.Extensions;
 using System;
 using System.Text;
@@ -7,7 +7,7 @@ namespace Foundation.Infrastructure.OpenGraph
 {
     public class OpenGraphGenericNode : OpenGraphMetadata
     {
-        public OpenGraphGenericNode(string title, OpenGraphImage image, string url = null) : base(title, image, url)
+        public OpenGraphGenericNode(string title, OpenGraphImage image, string url = null)
         {
         }
 

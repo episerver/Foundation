@@ -2,22 +2,21 @@
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Identity;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Infrastructure.Services;
-using Foundation.Personalization;
-using Microsoft.AspNet.Identity.Owin;
+using Foundation.Infrastructure.Personalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Helpers;
 using System.Web;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Api
 {
@@ -27,49 +26,49 @@ namespace Foundation.Features.Api
         private readonly IAddressBookService _addressBookService;
         private readonly LocalizationService _localizationService;
         private readonly ICustomerService _customerService;
-        private readonly ICampaignService _campaignService;
+        //private readonly ICampaignService _campaignService;
         private readonly IUrlResolver _urlResolver;
         private readonly ICmsTrackingService _cmsTrackingService;
-        private readonly HttpContextBase _httpContextBase;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public PublicApiController(LocalizationService localizationService,
             IContentLoader contentLoader,
             IAddressBookService addressBookService,
             ICustomerService customerService,
-            ICampaignService campaignService,
+            //ICampaignService campaignService,
             IUrlResolver urlResolver,
             ICmsTrackingService cmsTrackingService,
-            HttpContextBase httpContextBase)
+            IHttpContextAccessor httpContextAccessor)
         {
             _localizationService = localizationService;
             _contentLoader = contentLoader;
             _customerService = customerService;
             _addressBookService = addressBookService;
-            _campaignService = campaignService;
+            //_campaignService = campaignService;
             _urlResolver = urlResolver;
             _cmsTrackingService = cmsTrackingService;
-            _httpContextBase = httpContextBase;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
-        public ActionResult SignOut()
+        new public async Task<IActionResult> SignOut()
         {
-            _customerService.SignOut();
+            await _customerService.SignOutAsync();
             TrackingCookieManager.SetTrackingCookie(Guid.NewGuid().ToString());
             return RedirectToAction("Index", new { node = ContentReference.StartPage });
         }
 
         [HttpGet]
-        public ActionResult Login(string userName, string returnUrl)
+        public async Task<IActionResult> Login(string userName, string returnUrl)
         {
-            _customerService.SignOut();
+            await _customerService.SignOutAsync();
             var user = _customerService.UserManager().FindByEmailAsync(userName).GetAwaiter().GetResult();
             if (user == null)
             {
                 return new EmptyResult();
             }
 
-            _customerService.SignInManager().SignIn(user, true, true);
+            await _customerService.SignInManager().SignInAsync(user.UserName, user.Password, returnUrl);
 
             //set tracking cookie
             TrackingCookieManager.SetTrackingCookie(user.Id);
@@ -134,155 +133,124 @@ namespace Foundation.Features.Api
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> InternalLogin(LoginViewModel viewModel)
         {
-            var returnUrl = GetSafeReturnUrl(Request.UrlReferrer);
+            var returnUrl = GetSafeReturnUrl(Request.GetTypedHeaders().Referer);
 
             if (!ModelState.IsValid)
             {
-                return Json(new
-                {
-                    success = false,
-                    errors = ModelState.Keys
-                        .SelectMany(k => ModelState[k].Errors)
-                        .Select(m => m.ErrorMessage).ToArray()
-                });
+                return View("~/Features/Login/Index.cshtml", Url.GetUserViewModel(returnUrl));
             }
-            var user = _customerService.GetSiteUser(viewModel.Email);
+            var user = await _customerService.GetSiteUserAsync(viewModel.Email);
             if (user != null)
             {
-                var result = await _customerService.SignInManager().PasswordSignInAsync(user.UserName, viewModel.Password, viewModel.RememberMe, shouldLockout: true);
-                switch (result)
+                var result = await _customerService.SignInManager().SignInAsync(user.UserName, viewModel.Password, returnUrl);
+                if (!result)
                 {
-                    case SignInStatus.Success:
-                        _campaignService.UpdateLastLoginDate(viewModel.Email);
-                        TrackingCookieManager.SetTrackingCookie(user.Id);
-                        break;
-
-                    case SignInStatus.LockedOut:
-                        throw new Exception("Account is locked out.");
-
-                    default:
-                        ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));
-                        return Json(new
-                        {
-                            success = false,
-                            errors = ModelState.Keys
-                             .SelectMany(k => ModelState[k].Errors)
-                             .Select(m => m.ErrorMessage).ToArray()
-                        });
+                    ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));
+                    return View("~/Features/Login/Index.cshtml", Url.GetUserViewModel(returnUrl));
                 }
 
-                return Json(new
-                {
-                    success = true,
-                    returnUrl = viewModel.ReturnUrl
-                });
+                return Redirect(returnUrl);
             }
 
             ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail", "You have entered wrong username or password"));
-            return Json(new
-            {
-                success = false,
-                errors = ModelState.Keys
-                 .SelectMany(k => ModelState[k].Errors)
-                 .Select(m => m.ErrorMessage).ToArray()
-            });
+            return View("~/Features/Login/Index.cshtml", Url.GetUserViewModel(returnUrl));
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl) =>
-            // Request a redirect to the external login provider
-            new ChallengeResult(provider, Url.Action("ExternalLoginCallback", new { returnUrl }));
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult ExternalLogin(string provider, string returnUrl) =>
+        //    // Request a redirect to the external login provider
+        //    new ChallengeResult(provider, Url.Action("ExternalLoginCallback", new { returnUrl }));
 
-        [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await _customerService.GetExternalLoginInfoAsync();
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        //{
+        //    var loginInfo = await _customerService.GetExternalLoginInfoAsync();
 
-            if (loginInfo == null)
-            {
-                return Redirect("/");
-            }
+        //    if (loginInfo == null)
+        //    {
+        //        return Redirect("/");
+        //    }
 
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await _customerService.SignInManager().ExternalSignInAsync(loginInfo, isPersistent: false);
+        //    // Sign in the user with this external login provider if the user already has a login
+        //    var result = await _customerService.SignInManager().ExternalSignInAsync(loginInfo, isPersistent: false);
 
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+        //    switch (result)
+        //    {
+        //        case SignInStatus.Success:
+        //            return RedirectToLocal(returnUrl);
 
-                case SignInStatus.LockedOut:
-                    return RedirectToAction("Lockout", "Login");
+        //        case SignInStatus.LockedOut:
+        //            return RedirectToAction("Lockout", "Login");
 
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", "Login", new { ReturnUrl = returnUrl, RememberMe = false });
-                default:
-                    // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+        //        case SignInStatus.RequiresVerification:
+        //            return RedirectToAction("SendCode", "Login", new { ReturnUrl = returnUrl, RememberMe = false });
+        //        default:
+        //            // If the user does not have an account, then prompt the user to create an account
+        //            ViewBag.ReturnUrl = returnUrl;
+        //            ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { ReturnUrl = returnUrl });
-            }
-        }
+        //            return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { ReturnUrl = returnUrl });
+        //    }
+        //}
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel viewModel)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Manage");
-            }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel viewModel)
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        return RedirectToAction("Index", "Manage");
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var socialLoginDetails = await _customerService.GetExternalLoginInfoAsync();
-                if (socialLoginDetails == null)
-                {
-                    return View("ExternalLoginFailure");
-                }
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Get the information about the user from the external login provider
+        //        var socialLoginDetails = await _customerService.GetExternalLoginInfoAsync();
+        //        if (socialLoginDetails == null)
+        //        {
+        //            return View("ExternalLoginFailure");
+        //        }
 
-                var eMail = socialLoginDetails.ExternalIdentity.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Email))?.Value;
-                var names = socialLoginDetails.ExternalIdentity.Name.Split(' ');
-                var firstName = names[0];
-                var lastName = names.Length > 1 ? names[1] : string.Empty;
+        //        var eMail = socialLoginDetails.ExternalIdentity.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Email))?.Value;
+        //        var names = socialLoginDetails.ExternalIdentity.Name.Split(' ');
+        //        var firstName = names[0];
+        //        var lastName = names.Length > 1 ? names[1] : string.Empty;
 
-                var user = new SiteUser
-                {
-                    UserName = eMail,
-                    Email = eMail,
-                    FirstName = firstName,
-                    LastName = lastName,
-                    RegistrationSource = "Social login",
-                    NewsLetter = viewModel.Newsletter,
-                    IsApproved = true
-                };
+        //        var user = new SiteUser
+        //        {
+        //            UserName = eMail,
+        //            Email = eMail,
+        //            FirstName = firstName,
+        //            LastName = lastName,
+        //            RegistrationSource = "Social login",
+        //            NewsLetter = viewModel.Newsletter,
+        //            IsApproved = true
+        //        };
 
-                var result = await _customerService.CreateUser(user);
-                if (result.IdentityResult.Succeeded)
-                {
-                    var identityResult = await _customerService.UserManager().AddLoginAsync(user.Id, socialLoginDetails.Login);
-                    if (identityResult.Succeeded)
-                    {
-                        await _customerService.SignInManager().SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(viewModel.ReturnUrl);
-                    }
-                }
+        //        var result = await _customerService.CreateUser(user);
+        //        if (result.IdentityResult.Succeeded)
+        //        {
+        //            var identityResult = await _customerService.UserManager().AddLoginAsync(user.Id, socialLoginDetails.Login);
+        //            if (identityResult.Succeeded)
+        //            {
+        //                await _customerService.SignInManager().SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //                return RedirectToLocal(viewModel.ReturnUrl);
+        //            }
+        //        }
 
-                AddErrors(result.IdentityResult.Errors);
-            }
+        //        AddErrors(result.IdentityResult.Errors);
+        //    }
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
         [HttpPost]
         public ActionResult TrackHeroBlock(string blockId, string blockName, string pageName)
         {
-            _cmsTrackingService.HeroBlockClicked(_httpContextBase, blockId, blockName, pageName);
+            _cmsTrackingService.HeroBlockClicked(_httpContextAccessor.HttpContext, blockId, blockName, pageName);
             return new ContentResult()
             {
                 Content = blockName
@@ -292,7 +260,7 @@ namespace Foundation.Features.Api
         [HttpPost]
         public ActionResult TrackVideoBlock(string blockId, string blockName, string pageName)
         {
-            _cmsTrackingService.VideoBlockViewed(_httpContextBase, blockId, blockName, pageName);
+            _cmsTrackingService.VideoBlockViewed(_httpContextAccessor.HttpContext, blockId, blockName, pageName);
             return new ContentResult()
             {
                 Content = blockName

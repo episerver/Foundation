@@ -1,5 +1,4 @@
-﻿@using System.Web.Mvc.Html
-@using Foundation.Features.MyOrganization.Budgeting
+﻿@using Foundation.Features.MyOrganization.Budgeting
 
 @model BudgetingPageViewModel
 
@@ -53,10 +52,13 @@
                 <div>
                     @{
                         var statuses = new List<KeyValuePair<string, string>>();
-                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/Planned", "Planned"), "Planned"));
-                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/OnHold", "OnHold"), "OnHold"));
+                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/Planned", "Planned").ToString(), "Planned"));
+                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/OnHold", "OnHold").ToString(), "OnHold"));
                     }
-                    @Helpers.RenderDropdown(statuses, "", "statusBudget", "statusBudget")
+                    @(await Component.InvokeAsync("Dropdown", new { list = statuses,
+                        selectedValue = "",
+                        selectorClassItem = "statusBudget",
+                        name = "statusBudget"}))
                 </div>
             </div>
             <div class="col-6 form-group">
@@ -67,7 +69,11 @@
                         currencies.Add(new KeyValuePair<string, string>(Model.NewBudgetOption.Currency, Model.NewBudgetOption.Currency));
                     }
 
-                    @Helpers.RenderDropdown(currencies, "", "currencyBudget", "currencyBudget")
+                    @(await Component.InvokeAsync("Dropdown", new { list = currencies,
+                        selectedValue = "",
+                        selectorClassItem = "currencyBudget",
+                        name = "currencyBudget"
+                    }))
                 </div>
             </div>
         </div>

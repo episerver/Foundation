@@ -161,22 +161,22 @@
             </div>
 
             <div id="mobile-account" class="tab-pane fade">
-                @Html.Partial("_MobileUsers", Model)
+                @await Html.PartialAsync("_MobileUsers", Model)
             </div>
 
             @if (Model.ShowCommerceControls)
             {
                 <div id="mobile-cart" class="tab-pane fade">
-                    @Html.Partial("_MobileMiniCart", Model.MiniCart)
+                    @await Html.PartialAsync("_MobileMiniCart", Model.MiniCart)
                 </div>
                 <div id="mobile-wishlist" class="tab-pane fade">
-                    @Html.Partial("_MobileMiniWishlist", Model.WishListMiniCart)
+                    @await Html.PartialAsync("_MobileMiniWishlist", Model.WishListMiniCart)
                 </div>
 
                 if (Model.ShowSharedCart)
                 {
                     <div id="mobile-sharedcart" class="tab-pane fade">
-                        @Html.Partial("_MobileMiniSharedCart", Model.SharedMiniCart)
+                        @await Html.PartialAsync("_MobileMiniSharedCart", Model.SharedMiniCart)
                     </div>
                 }
             }
@@ -223,7 +223,7 @@
     }
 
     <!-- Modal Register In Mobile-->
-    @if (!Request.IsAuthenticated)
+    @if (!User.Identity.IsAuthenticated)
     {
         <div class="modal fade" id="registerMobile" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -327,11 +327,11 @@
                                 <li>
                                     <div class="form-group jsCountryRegionContainer">
                                         @{
-                                            var viewData = new ViewDataDictionary();
+                                            var viewData = new ViewDataDictionary(ViewData);
                                             var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
                                             viewData.Add(regionName);
                                         }
-                                        @Html.Partial("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
+                                        @await Html.PartialAsync("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
                                     </div>
                                 </li>
                                 <li>

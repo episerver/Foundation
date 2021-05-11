@@ -5,19 +5,19 @@ using EPiServer.Core.Html;
 using EPiServer.Filters;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Cms.Extensions;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Features.Blog.BlogItemPage;
-using Foundation.Features.Category;
+//using Foundation.Features.Category;
 using Foundation.Features.Shared.SelectionFactories;
-using Geta.EpiCategories;
+//using Geta.EpiCategories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Blog.BlogListPage
 {
@@ -66,13 +66,13 @@ namespace Foundation.Features.Blog.BlogListPage
             var childrenPages = _contentLoader.GetChildren<PageData>(currentPage.ContentLink).Select(x => x as BlogListPage).Where(x => x != null);
             var siblingPages = _contentLoader.GetChildren<PageData>(currentPage.ParentLink).Select(x => x as BlogListPage).Where(x => x != null);
 
-            if (siblingPages != null && siblingPages.Any())
+            if (siblingPages != null && siblingPages.Count() > 0)
             {
                 subNavigation.AddRange(siblingPages.Select(x => new KeyValuePair<string, string>(x.MetaTitle, x.PublicUrl(_urlResolver))));
             }
 
             // when current page is blog start page
-            if (childrenPages != null && childrenPages.Any())
+            if (childrenPages != null && childrenPages.Count() > 0)
             {
                 subNavigation.AddRange(childrenPages.Select(x => new KeyValuePair<string, string>(x.MetaTitle, x.PublicUrl(_urlResolver))));
             }
@@ -99,19 +99,19 @@ namespace Foundation.Features.Blog.BlogListPage
 
         public BlogListPageViewModel GetViewModel(BlogListPage currentPage, PagingInfo pagingInfo)
         {
-            var categoryQuery = Request.QueryString["category"] ?? string.Empty;
+            var categoryQuery = Request.Query["category"].Count > 0 ? Request.Query["category"].ToString() : string.Empty;
             IContent category = null;
-            if (categoryQuery != string.Empty)
-            {
-                if (int.TryParse(categoryQuery, out var categoryContentId))
-                {
-                    var content = _contentLoader.Get<StandardCategory>(new ContentReference(categoryContentId));
-                    if (content != null)
-                    {
-                        category = content;
-                    }
-                }
-            }
+            //if (categoryQuery != string.Empty)
+            //{
+            //    if (int.TryParse(categoryQuery, out var categoryContentId))
+            //    {
+            //        var content = _contentLoader.Get<StandardCategory>(new ContentReference(categoryContentId));
+            //        if (content != null)
+            //        {
+            //            category = content;
+            //        }
+            //    }
+            //}
             var pageSize = pagingInfo.PageSize;
 
             // TODO: Need a better solution to get data by page
@@ -160,17 +160,17 @@ namespace Foundation.Features.Blog.BlogListPage
 
         private IEnumerable<BlogItemPageViewModel.TagItem> GetTags(BlogItemPage.BlogItemPage currentPage)
         {
-            if (currentPage.Categories != null)
-            {
-                var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentUICulture);
-                return allCategories.
-                    Select(cat => new BlogItemPageViewModel.TagItem()
-                    {
-                        Title = cat.Name,
-                        Url = _blogTagFactory.GetTagUrl(currentPage, cat.ContentLink),
-                        DisplayName = (cat as StandardCategory)?.Description,
-                    }).ToList();
-            }
+            //if (currentPage.Categories != null)
+            //{
+            //    var allCategories = _contentLoader.GetItems(currentPage.Categories, CultureInfo.CurrentUICulture);
+            //    return allCategories.
+            //        Select(cat => new BlogItemPageViewModel.TagItem()
+            //        {
+            //            Title = cat.Name,
+            //            Url = _blogTagFactory.GetTagUrl(currentPage, cat.ContentLink),
+            //            DisplayName = (cat as StandardCategory)?.Description,
+            //        }).ToList();
+            //}
             return new List<BlogItemPageViewModel.TagItem>();
         }
 
@@ -209,24 +209,24 @@ namespace Foundation.Features.Blog.BlogListPage
 
             pages = currentPage.IncludeAllLevels ? listRoot.FindPagesByPageType(true, blogListItemPageType.ID) : _contentLoader.GetChildren<BlogItemPage.BlogItemPage>(listRoot);
 
-            if (category != null)
-            {
-                pages = pages.Where(x =>
-                {
-                    var contentReferences = ((ICategorizableContent)x).Categories;
-                    return contentReferences != null && contentReferences
-                               .Intersect(new List<ContentReference>() { category.ContentLink }).Any();
-                });
-            }
-            else if (currentPage.CategoryListFilter != null && currentPage.CategoryListFilter.Any())
-            {
-                pages = pages.Where(x =>
-                {
-                    var contentReferences = ((ICategorizableContent)x).Categories;
-                    return contentReferences != null &&
-                           contentReferences.Intersect(currentPage.CategoryListFilter).Any();
-                });
-            }
+            //if (category != null)
+            //{
+            //    pages = pages.Where(x =>
+            //    {
+            //        var contentReferences = ((ICategorizableContent)x).Categories;
+            //        return contentReferences != null && contentReferences
+            //                   .Intersect(new List<ContentReference>() { category.ContentLink }).Any();
+            //    });
+            //}
+            //else if (currentPage.CategoryListFilter != null && currentPage.CategoryListFilter.Any())
+            //{
+            //    pages = pages.Where(x =>
+            //    {
+            //        var contentReferences = ((ICategorizableContent)x).Categories;
+            //        return contentReferences != null &&
+            //               contentReferences.Intersect(currentPage.CategoryListFilter).Any();
+            //    });
+            //}
 
             return pages;
         }

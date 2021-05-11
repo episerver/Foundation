@@ -1,4 +1,4 @@
-using Foundation.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
         GUID = "F8C78C8A-9EB8-4171-8A0B-8CA4B190DE3E",
         Description = "Blocks to show links for assets to download",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-32.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-32.png")]
     public class AssetsDownloadLinksBlock : FoundationBlockData
     {
         [Display(

@@ -11,7 +11,7 @@ namespace Foundation.Features.Search.Search
         GUID = "6e0c84de-bd17-43ee-9019-04f08c7fcf8d",
         Description = "Page to allow customer to search the site",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-03.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-03.png")]
     public class SearchResultPage : FoundationPageData
     {
         [CultureSpecific]

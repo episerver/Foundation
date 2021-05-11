@@ -12,7 +12,7 @@ namespace Foundation.Features.StandardPage
         GUID = "c0a25bb7-199c-457d-98c6-b0179c7acae8",
         Description = "Allows for creation of rich standard pages",
         GroupName = SystemTabNames.Content)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-23.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-23.png")]
     public class StandardPage : FoundationPageData
     {
         [CultureSpecific]

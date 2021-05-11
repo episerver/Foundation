@@ -3,7 +3,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
@@ -15,7 +15,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
         GUID = "6b43692b-6abd-49b1-b5f2-48ffbb8e626a",
         Description = "Product hero block",
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
     {
         [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockLayoutSelectionFactory))]

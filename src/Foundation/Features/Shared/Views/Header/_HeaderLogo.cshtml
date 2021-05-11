@@ -9,7 +9,7 @@
         <div class="header__logo @(Model.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
              style="@(Model.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
             <a href="/">
-                @if (PageEditing.PageIsInEditMode)
+                @if (Html.IsInEditMode())
                 {
                     <img class="img-fluid" src="@UrlResolver.Current.GetUrl(Model.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })"
                          @Html.EditAttributes(x => x.SiteLogo) />

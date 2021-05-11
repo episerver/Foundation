@@ -5,7 +5,7 @@ using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.Folder;
 using Foundation.Features.Media;
 using Foundation.Features.Shared;

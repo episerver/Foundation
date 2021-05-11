@@ -6,9 +6,9 @@ using EPiServer.Framework.Localization;
 using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.Settings;
@@ -18,14 +18,13 @@ using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Exceptions;
 using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Security;
-using Mediachase.Web.Console.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Foundation.Features.Checkout.Services
 {
@@ -217,7 +216,7 @@ namespace Foundation.Features.Checkout.Services
                     throw new InvalidOperationException("Wrong amount");
                 }
 
-                var orderReference = (cart.Properties["IsUsePaymentPlan"] != null && cart.Properties["IsUsePaymentPlan"].Equals(true)) ? SaveAsPaymentPlan(cart) : _orderRepository.SaveAsPurchaseOrder(cart);
+                var orderReference = cart.Properties["IsUsePaymentPlan"] != null && cart.Properties["IsUsePaymentPlan"].Equals(true) ? SaveAsPaymentPlan(cart) : _orderRepository.SaveAsPurchaseOrder(cart);
                 var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderReference.OrderGroupId);
                 _orderRepository.Delete(cart.OrderLink);
 
@@ -289,15 +288,6 @@ namespace Foundation.Features.Checkout.Services
             return new UrlBuilder(UrlResolver.Current.GetUrl(confirmationPage)) { QueryCollection = queryCollection }.ToString();
         }
 
-        public void ProcessPaymentCancel(CheckoutViewModel viewModel, TempDataDictionary tempData, ControllerContext controlerContext)
-        {
-            var message = tempData["message"] != null ? tempData["message"].ToString() : controlerContext.HttpContext.Request.QueryString["message"];
-            if (!string.IsNullOrEmpty(message))
-            {
-                viewModel.Message = message;
-            }
-        }
-
         #region Payment Plan
 
         /// <summary>
@@ -330,7 +320,7 @@ namespace Foundation.Features.Checkout.Services
             var purchaseOrder = _orderRepository.Load(orderReference);
             OrderGroupWorkflowManager.RunWorkflow((OrderGroup)purchaseOrder, OrderGroupWorkflowManager.CartCheckOutWorkflowName);
             var noteDetailPattern = "New purchase order placed by {0} in {1} from payment plan {2}";
-            var noteDetail = string.Format(noteDetailPattern, ManagementHelper.GetUserName(PrincipalInfo.CurrentPrincipal.GetContactId()), "VNext site", (paymentPlan as PaymentPlan).Id);
+            var noteDetail = string.Format(noteDetailPattern, PrincipalInfo.CurrentPrincipal.Identity.Name, "VNext site", (paymentPlan as PaymentPlan).Id);
             AddNoteToPurchaseOrder(purchaseOrder as IPurchaseOrder, noteDetail, OrderNoteTypes.System, PrincipalInfo.CurrentPrincipal.GetContactId());
             _orderRepository.Save(purchaseOrder);
 

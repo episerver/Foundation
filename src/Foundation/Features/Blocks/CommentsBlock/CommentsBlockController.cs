@@ -8,7 +8,7 @@ using Foundation.Social.Repositories.Comments;
 using Foundation.Social.Repositories.Common;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Blocks.CommentsBlock
 {

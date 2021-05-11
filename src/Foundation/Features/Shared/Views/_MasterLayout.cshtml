@@ -1,7 +1,9 @@
-﻿@model IContentViewModel<IContent>
+﻿@using EPiServer.Commerce.Catalog.ContentTypes
+@using EPiServer.Framework.Web.Mvc.Html
+@model IContentViewModel<IContent>
 
 <!DOCTYPE html>
-<html lang="en" class="@(PageEditing.PageIsInEditMode ? "editMode" : "")">
+<html lang="en" class="@(Html.IsInEditMode() ? "editMode" : "")">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
