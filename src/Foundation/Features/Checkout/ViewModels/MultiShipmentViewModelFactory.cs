@@ -6,10 +6,10 @@ using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Foundation.Features.Checkout.ViewModels
 {
@@ -18,14 +18,14 @@ namespace Foundation.Features.Checkout.ViewModels
         private readonly LocalizationService _localizationService;
         private readonly IAddressBookService _addressBookService;
         private readonly UrlResolver _urlResolver;
-        private readonly ServiceAccessor<HttpContextBase> _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ShipmentViewModelFactory _shipmentViewModelFactory;
 
         public MultiShipmentViewModelFactory(
             LocalizationService localizationService,
             IAddressBookService addressBookService,
             UrlResolver urlResolver,
-            ServiceAccessor<HttpContextBase> httpContextAccessor,
+            IHttpContextAccessor httpContextAccessor,
             ShipmentViewModelFactory shipmentViewModelFactory)
         {
             _localizationService = localizationService;
@@ -87,7 +87,7 @@ namespace Foundation.Features.Checkout.ViewModels
                     }
 
                     var shipmentAddress = _addressBookService.ConvertToModel(shipment.ShippingAddress);
-                    var savedAddress = addresses.FirstOrDefault(x => x.IsEqual(shipmentAddress));
+                    var savedAddress = addresses.FirstOrDefault(x => IsEqual(x, shipmentAddress));
                     if (savedAddress != null)
                     {
                         continue;
@@ -141,11 +141,12 @@ namespace Foundation.Features.Checkout.ViewModels
 
         private string GetReferrerUrl()
         {
-            var httpContext = _httpContextAccessor();
-            if (httpContext.Request.UrlReferrer != null &&
-                httpContext.Request.UrlReferrer.Host.Equals(httpContext.Request.Url.Host, StringComparison.OrdinalIgnoreCase))
+            var httpContext = _httpContextAccessor.HttpContext;
+            var urlReferer = httpContext.Request.Headers["UrlReferrer"].ToString();
+            var hostUrlReferer = string.IsNullOrEmpty(urlReferer) ? "" : new Uri(urlReferer).Host;
+            if (urlReferer != null && hostUrlReferer.Equals(httpContext.Request.Host.Host.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                return httpContext.Request.UrlReferrer.ToString();
+                return urlReferer;
             }
 
             return _urlResolver.GetUrl(ContentReference.StartPage);
@@ -180,6 +181,20 @@ namespace Foundation.Features.Checkout.ViewModels
             }
 
             return list.ToArray();
+        }
+
+        public bool IsEqual(AddressModel address,
+           AddressModel compareAddressViewModel)
+        {
+            return address.FirstName == compareAddressViewModel.FirstName &&
+                   address.LastName == compareAddressViewModel.LastName &&
+                   address.Line1 == compareAddressViewModel.Line1 &&
+                   address.Line2 == compareAddressViewModel.Line2 &&
+                   address.Organization == compareAddressViewModel.Organization &&
+                   address.PostalCode == compareAddressViewModel.PostalCode &&
+                   address.City == compareAddressViewModel.City &&
+                   address.CountryCode == compareAddressViewModel.CountryCode &&
+                   address.CountryRegion.Region == compareAddressViewModel.CountryRegion.Region;
         }
     }
 }

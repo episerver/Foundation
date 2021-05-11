@@ -4,10 +4,10 @@
 @model SearchViewModel<GenericNode>
 
 @{
-    if (Request.IsAjaxRequest())
-    {
-        Layout = null;
-    }
+//if (Request.IsAjaxRequest())
+//{
+//    Layout = null;
+//}
 }
 
 @Html.FullRefreshPropertiesMetaData(new[] { "FeaturedProducts" })
@@ -28,27 +28,27 @@
             <input class="jsViewModeInfo" hidden id="FilterOption_ViewSwitcher" name="FilterOption.ViewSwitcher" type="text" value="@Model.FilterOption.ViewSwitcher" />
 
             <div class="row">
-                @if (!PageEditing.PageIsInEditMode)
+                @if (!Html.IsInEditMode())
                 {
                     //Model.FilterOption.ViewSwitcher = string.IsNullOrEmpty(Model.CurrentContent.DefaultTemplate) ? "Grid" : Model.CurrentContent.DefaultTemplate;
                     <div class="category-page__facets col-lg-3 jsFacets">
-                        @Html.Partial("_CategoriesFilter", Model.CategoriesFilter)
-                        @Html.Partial("_Facet", Model.FilterOption)
+                        @await Html.PartialAsync("_CategoriesFilter", Model.CategoriesFilter)
+                        @await Html.PartialAsync("_Facet", Model.FilterOption)
                     </div>
                     <div class="col-lg-9">
-                        @Html.Partial("_BreadCrumb", Model.BreadCrumb)
+                        @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
                         <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
                         <div class="row">
-                            @Html.Partial("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                            @await Html.PartialAsync("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
                         </div>
                         <div class="category-page__products jsProducts">
                             @if (Model.FilterOption.ViewSwitcher == "Grid")
                             {
-                                @Html.Partial("_ProductGrid", Model.ProductViewModels)
+                                @await Html.PartialAsync("_ProductGrid", Model.ProductViewModels)
                             }
                             else
                             {
-                                @Html.Partial("_ProductList", Model.ProductViewModels)
+                                @await Html.PartialAsync("_ProductList", Model.ProductViewModels)
                             }
                         </div>
                     </div>
@@ -59,19 +59,19 @@
                         @Html.PropertyFor(x => x.CurrentContent.FeaturedProducts)
                     </div>
                     <div class="col-lg-9">
-                        @Html.Partial("_BreadCrumb", Model.BreadCrumb)
+                        @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
                         <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
                         <div class="row">
-                            @Html.Partial("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                            @await Html.PartialAsync("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
                         </div>
                         <div class="category-page__products jsProducts">
                             @if (Model.FilterOption.ViewSwitcher == "Grid")
                             {
-                                @Html.Partial("_ProductGrid", Model.ProductViewModels)
+                                @await Html.PartialAsync("_ProductGrid", Model.ProductViewModels)
                             }
                             else
                             {
-                                @Html.Partial("_ProductList", Model.ProductViewModels)
+                                @await Html.PartialAsync("_ProductList", Model.ProductViewModels)
                             }
                         </div>
                     </div>

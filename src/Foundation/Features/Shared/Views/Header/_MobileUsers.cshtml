@@ -2,7 +2,7 @@
 
 @model HeaderViewModel
 
-@if (!Request.IsAuthenticated)
+@if (!User.Identity.IsAuthenticated)
 {
     <ul class="offside-navbar--menu">
         <li class="offside-navbar--menu__item">
@@ -64,7 +64,7 @@
 
                     var url = Url.Action("Login", "PublicApi");
                     <li class="offside-navbar--menu__item">
-                        <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + Request.Url.ToString())" class="list-group--header__item">
+                        <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetDisplayUrl())" class="list-group--header__item">
                             <p>@user.FullName</p>
                             <p class="sub-title">@user.Description</p>
                         </a>
@@ -87,7 +87,7 @@ else
         @foreach (var menuItem in Model.UserLinks)
         {
             var urlItem = @Url.ContentUrl(new EPiServer.Url(menuItem.Href));
-            <li class="offside-navbar--menu__item @(Request.Url.AbsolutePath.TrimEnd('/') == urlItem.TrimEnd('/') ? "current" : "")">
+            <li class="offside-navbar--menu__item @(this.Url.ActionContext.HttpContext.Request.GetDisplayUrl().Trim('/') == urlItem.TrimEnd('/') ? "current" : "")">
                 <a class="list-group--header__item" title="@menuItem.Title" href="@urlItem">
                     @menuItem.Text
                 </a>

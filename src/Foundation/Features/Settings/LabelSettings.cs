@@ -1,5 +1,5 @@
 ﻿using EPiServer.DataAnnotations;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 

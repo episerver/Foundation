@@ -4,9 +4,9 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Settings;
-using Foundation.Commerce.Markets;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Header;
 using Foundation.Features.MyAccount.AddressBook;
@@ -19,7 +19,7 @@ using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Security;
 using System;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Checkout.Services
 {
@@ -31,7 +31,7 @@ namespace Foundation.Features.Checkout.Services
         private readonly ShipmentViewModelFactory _shipmentViewModelFactory;
         private readonly ReferenceConverter _referenceConverter;
         private readonly UrlResolver _urlResolver;
-        private readonly ServiceAccessor<HttpContextBase> _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IAddressBookService _addressBookService;
         private readonly ISettingsService _settingsService;
 
@@ -42,7 +42,7 @@ namespace Foundation.Features.Checkout.Services
             ShipmentViewModelFactory shipmentViewModelFactory,
             ReferenceConverter referenceConverter,
             UrlResolver urlResolver,
-            ServiceAccessor<HttpContextBase> httpContextAccessor,
+            IHttpContextAccessor httpContextAccessor,
             IAddressBookService addressBookService,
             ISettingsService settingsService)
         {
@@ -330,11 +330,12 @@ namespace Foundation.Features.Checkout.Services
 
         private string GetReferrerUrl()
         {
-            var httpContext = _httpContextAccessor();
-            if (httpContext.Request.UrlReferrer != null &&
-                httpContext.Request.UrlReferrer.Host.Equals(httpContext.Request.Url.Host, StringComparison.OrdinalIgnoreCase))
+            var httpContext = _httpContextAccessor.HttpContext;
+            var urlReferer = httpContext.Request.Headers["UrlReferrer"].ToString();
+            var hostUrlReferer = string.IsNullOrEmpty(urlReferer) ? "" : new Uri(urlReferer).Host;
+            if (urlReferer != null && hostUrlReferer.Equals(httpContext.Request.Host.Host.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                return httpContext.Request.UrlReferrer.ToString();
+                return urlReferer;
             }
 
             return _urlResolver.GetUrl(ContentReference.StartPage);

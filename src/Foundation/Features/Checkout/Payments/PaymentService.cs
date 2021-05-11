@@ -1,14 +1,14 @@
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Extensions;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Mediachase.Commerce.Orders.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Checkout.Payments
 {
@@ -16,15 +16,15 @@ namespace Foundation.Features.Checkout.Payments
     {
         private readonly ICustomerService _customerService;
         private readonly ICartService _cartService;
-        private readonly HttpContextBase _httpContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public PaymentService(ICustomerService customerService,
             ICartService cartService,
-            HttpContextBase httpContext)
+            IHttpContextAccessor httpContextAccessor)
         {
             _customerService = customerService;
             _cartService = cartService;
-            _httpContext = httpContext;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IEnumerable<PaymentMethodViewModel> GetPaymentMethodsByMarketIdAndLanguageCode(string marketId, string languageCode)
@@ -42,7 +42,7 @@ namespace Foundation.Features.Checkout.Payments
                     IsDefault = x.IsDefault
                 });
 
-            if (_httpContext == null || !EPiServer.Security.PrincipalInfo.CurrentPrincipal.Identity.IsAuthenticated)
+            if (_httpContextAccessor.HttpContext == null || !EPiServer.Security.PrincipalInfo.CurrentPrincipal.Identity.IsAuthenticated)
             {
                 return methods.Where(payment => !payment.SystemKeyword.Equals(Constant.Order.BudgetPayment));
             }

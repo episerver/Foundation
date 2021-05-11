@@ -2,7 +2,7 @@
 
 @model HeaderViewModel
 
-@if (!Request.IsAuthenticated)
+@if (!User.Identity.IsAuthenticated)
 {
     <div class="login-users dropdown-menu dropdown-menu--customized">
         <ul class="login-users__tabs nav nav-tabs" id="loginUsersTab" role="tablist">
@@ -136,11 +136,11 @@
                         </div>
                         <div class="form-group jsCountryRegionContainer">
                             @{
-                                var viewData = new ViewDataDictionary();
+                                var viewData = new ViewDataDictionary(ViewData);
                                 var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
                                 viewData.Add(regionName);
                             }
-                            @Html.Partial("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
+                            @await Html.PartialAsync("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
                         </div>
                         <div class="form-check">
                             @Html.CheckBoxFor(x => x.RegisterAccountViewModel.Newsletter, new { @class = "form-check-input" })
@@ -159,7 +159,7 @@
                     @foreach (var user in Model.DemoUsers)
                     {
                         var url = Url.Action("Login", "PublicApi");
-                        <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + Request.Url.ToString())" class="list-group--header__item">
+                        <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetDisplayUrl())" class="list-group--header__item">
                             <p>@user.FullName</p>
                             <p class="sub-title">@user.Description</p>
                         </a>
@@ -174,7 +174,7 @@ else
     <div class="logged-in-user dropdown-menu dropdown-menu--customized">
         <div class="user-menu">
             <div class="user-menu__title">
-                <h4>@(Model.LabelSettings.MyAccountLabel ?? Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account"))</h4>
+                <h4>@(Model.LabelSettings.MyAccountLabel.IsNullOrEmpty() ? Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account") : Model.LabelSettings.MyAccountLabel)</h4>
                 <p>  @Html.TranslateFallback("/Header/Hello", "Hello") @Model.Name!</p>
             </div>
             <div class="user-menu__list">

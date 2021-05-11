@@ -3,9 +3,8 @@ using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Identity;
-using Foundation.Cms.Settings;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
@@ -14,7 +13,11 @@ using Foundation.Features.Settings;
 using Mediachase.Commerce.Security;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Foundation.Infrastructure.Cms.Users;
+using System.Threading.Tasks;
+using Foundation.Infrastructure.Commerce.Customer;
 
 namespace Foundation.Features.MyAccount.ProfilePage
 {
@@ -40,14 +43,14 @@ namespace Foundation.Features.MyAccount.ProfilePage
             _settingsService = settingsService;
         }
 
-        public ActionResult Index(ProfilePage currentPage)
+        public async Task<IActionResult> Index(ProfilePage currentPage)
         {
             var viewModel = new ProfilePageViewModel(currentPage)
             {
                 Orders = GetOrderHistoryViewModels(),
                 Addresses = GetAddressViewModels(),
-                SiteUser = CustomerService.GetSiteUser(User.Identity.Name),
-                CustomerContact = new Commerce.Customer.FoundationContact(CustomerService.GetCurrentContact().Contact),
+                SiteUser = await CustomerService.GetSiteUserAsync(User.Identity.Name),
+                CustomerContact = new FoundationContact(CustomerService.GetCurrentContact().Contact),
                 OrderDetailsPageUrl = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage),
                 ResetPasswordPage = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.ResetPasswordPage ?? ContentReference.StartPage),
                 AddressBookPage = UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.AddressBookPage ?? ContentReference.StartPage)
@@ -58,9 +61,9 @@ namespace Foundation.Features.MyAccount.ProfilePage
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Save(ProfilePage currentPage, AccountInformationViewModel viewModel)
+        public async Task<JsonResult> Save(ProfilePage currentPage, AccountInformationViewModel viewModel)
         {
-            var user = CustomerService.GetSiteUser(User.Identity.Name);
+            var user = await CustomerService.GetSiteUserAsync(User.Identity.Name);
             var contact = CustomerService.GetCurrentContact();
             user.FirstName = contact.FirstName = viewModel.FirstName;
             user.LastName = contact.LastName = viewModel.LastName;
@@ -73,7 +76,7 @@ namespace Foundation.Features.MyAccount.ProfilePage
 
             contact.SaveChanges();
 
-            return Json(new { FirstName = contact.FirstName, LastName = contact.LastName });
+            return Json(new { contact.FirstName, contact.LastName });
         }
 
         private IList<AddressModel> GetAddressViewModels() => _addressBookService.List();

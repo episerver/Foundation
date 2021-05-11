@@ -1,7 +1,7 @@
-﻿using Foundation.Find.Facets;
+﻿using Foundation.Infrastructure.Find.Facets;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Search
 {

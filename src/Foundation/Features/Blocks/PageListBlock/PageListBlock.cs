@@ -9,7 +9,7 @@ using Foundation.Features.Folder;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
-using Geta.EpiCategories.DataAnnotations;
+//using Geta.EpiCategories.DataAnnotations;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +21,7 @@ namespace Foundation.Features.Blocks.PageListBlock
         GUID = "30685434-33DE-42AF-88A7-3126B936AEAD",
         Description = "A block that lists a bunch of pages",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-18.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-18.png")]
     public class PageListBlock : FoundationBlockData
     {
         [CultureSpecific]
@@ -51,7 +51,7 @@ namespace Foundation.Features.Blocks.PageListBlock
         [Display(Name = "Filter by page type", GroupName = SystemTabNames.Content, Order = 70)]
         public virtual PageType PageTypeFilter { get; set; }
 
-        [Categories]
+        //[Categories]
         [Display(Name = "Filter by category",
             Description = "Categories to filter the list on",
             GroupName = SystemTabNames.Content,

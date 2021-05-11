@@ -8,7 +8,7 @@
             <div class="loader"></div>
         </div>
         <div class="cart-item-listing">
-            @Html.Partial("_MiniWishlistItems", Model)
+            @await Html.PartialAsync("_MiniWishlistItems", Model)
         </div>
     </div>
 </div>

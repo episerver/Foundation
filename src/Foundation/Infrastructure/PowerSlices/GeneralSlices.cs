@@ -8,7 +8,7 @@ using EPiServer.Shell.Services.Rest;
 using Foundation.Features.Shared;
 using PowerSlice;
 using System.Linq;
-using System.Web;
+using AlloyTemplates;
 
 namespace Foundation.Infrastructure.PowerSlices
 {
@@ -25,7 +25,7 @@ namespace Foundation.Infrastructure.PowerSlices
 
         protected override ITypeSearch<IContent> Filter(ITypeSearch<IContent> searchRequest, ContentQueryParameters parameters)
         {
-            var userName = HttpContext.Current.User.Identity.Name;
+            var userName = HttpContextHelper.Current.User.Identity.Name;
             return searchRequest.Filter(x => x.MatchTypeHierarchy(typeof(IChangeTrackable)) & ((IChangeTrackable)x).CreatedBy.Match(userName));
         }
 
@@ -38,7 +38,7 @@ namespace Foundation.Infrastructure.PowerSlices
 
         protected override ITypeSearch<FoundationPageData> Filter(ITypeSearch<FoundationPageData> searchRequest, ContentQueryParameters parameters)
         {
-            var userName = HttpContext.Current.User.Identity.Name;
+            var userName = HttpContextHelper.Current.User.Identity.Name;
             return searchRequest.Filter(x => x.MatchTypeHierarchy(typeof(IChangeTrackable)) & ((IChangeTrackable)x).CreatedBy.Match(userName));
         }
 

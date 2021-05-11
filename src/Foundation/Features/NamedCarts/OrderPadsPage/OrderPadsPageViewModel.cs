@@ -1,5 +1,5 @@
 using EPiServer.Commerce.Order;
-using Foundation.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Features.NamedCarts.OrderPadsPage;
 using Foundation.Features.Shared;
 using System.Collections.Generic;

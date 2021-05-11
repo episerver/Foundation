@@ -1,5 +1,5 @@
 ﻿using EPiServer.Web.Mvc;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Stores
 {
@@ -12,7 +12,7 @@ namespace Foundation.Features.Stores
             _storeService = storeService;
         }
 
-        public ActionResult Index(StorePage currentPage)
+        public IActionResult Index(StorePage currentPage)
         {
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var storesViewModel = new StoreViewModel
@@ -32,7 +32,7 @@ namespace Foundation.Features.Stores
         }
 
         [HttpGet]
-        public ActionResult GetStoreLocator()
+        public IActionResult GetStoreLocator()
         {
             var currentStore = _storeService.GetCurrentStoreViewModel();
             var storesViewModel = new StoreViewModel
@@ -46,14 +46,14 @@ namespace Foundation.Features.Stores
         }
 
         [HttpPost]
-        public ActionResult SetDefaultStore(string storeCode)
+        public IActionResult SetDefaultStore(string storeCode)
         {
             if (!_storeService.SetCurrentStore(storeCode))
             {
-                return new HttpStatusCodeResult(400, "Unsupported");
+                return StatusCode(400, "Unsupported");
             }
 
-            return Json(new { returnUrl = Request.UrlReferrer.ToString() });
+            return Json(new { returnUrl = Request.Headers["Referer"].ToString() });
         }
     }
 }

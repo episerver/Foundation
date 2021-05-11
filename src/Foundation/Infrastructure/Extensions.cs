@@ -12,12 +12,6 @@ using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Settings;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Install;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Category;
@@ -27,15 +21,18 @@ using Foundation.Features.Locations.LocationItemPage;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.Search;
-using Foundation.Find;
-using ICSharpCode.SharpZipLib.Zip;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Commerce.Install;
+using Foundation.Infrastructure.Find;
 using Mediachase.Commerce.Catalog.ImportExport;
 using Mediachase.Search;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web.Hosting;
 
 namespace Foundation.Infrastructure
 {
@@ -133,7 +130,7 @@ namespace Foundation.Infrastructure
                    address.CountryRegion.Region == compareAddressViewModel.CountryRegion.Region;
         }
 
-        public static List<string> TagString(this LocationItemPage locationList) => locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
+        //public static List<string> TagString(this LocationItemPage locationList) => locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
 
         public static ContactViewModel GetCurrentContactViewModel(this ICustomerService customerService)
         {
@@ -183,6 +180,29 @@ namespace Foundation.Infrastructure
                     yield return nestedChild;
                 }
             }
+        }
+
+        public static string GetPublicUrl(this ContentReference contentLink, string language = null)
+        {
+            if (ContentReference.IsNullOrEmpty(contentLink))
+            {
+                return string.Empty;
+            }
+
+            var content = language != null ? contentLink.Get<IContent>(language) : contentLink.Get<IContent>();
+            if (content == null || !PublishedStateAssessor.IsPublished(content))
+            {
+                return string.Empty;
+            }
+
+            return _urlResolver.Value.GetUrl(contentLink, language);
+        }
+
+
+        public static string GetPublicUrl(this Guid contentGuid, string language)
+        {
+            var contentLink = PermanentLinkUtility.FindContentReference(contentGuid);
+            return GetPublicUrl(contentLink, language);
         }
 
         public static bool IsVirtualVariant(this ILineItem lineItem)

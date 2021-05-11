@@ -1,4 +1,5 @@
-﻿using System.Web.Helpers;
+﻿
+using System.Web.Helpers;
 
 namespace Foundation.Features.Search
 {

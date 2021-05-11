@@ -11,7 +11,7 @@ using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.ViewModels;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Blocks.RatingBlock
 {

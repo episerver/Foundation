@@ -1,5 +1,4 @@
-﻿import axios from "axios";
-import Uri from "jsuri"; 
+﻿import Uri from "jsuri";
 require("bootstrap-slider");
 
 export default class Locations {

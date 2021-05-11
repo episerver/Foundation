@@ -1,4 +1,4 @@
-﻿using Foundation.Commerce.Customer;
+﻿using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Features.Blocks.OrderSearchBlock;
 using Foundation.Features.Shared;
 using Mediachase.Commerce.Orders;

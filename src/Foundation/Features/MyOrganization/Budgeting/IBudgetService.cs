@@ -1,4 +1,4 @@
-﻿using Foundation.Commerce.Customer;
+﻿using Foundation.Infrastructure.Commerce.Customer;
 using System;
 using System.Collections.Generic;
 

@@ -12,13 +12,13 @@
             </h2>
         </div>
         <div class="col-md-12">
-            @Html.Partial("CarouselSimple", Model.Carousel)
+            @await Html.PartialAsync("CarouselSimple", Model.Carousel)
         </div>
         <div class="col-md-12">
             @Html.PropertyFor(m => m.CurrentContent.TopContentArea, new { CssClass = "row" })
         </div>
         <div class="col-md-12">
-            @if (!string.IsNullOrWhiteSpace(Model.CurrentContent.MainIntro) || EPiServer.Editor.PageEditing.PageIsInEditMode)
+            @if (!string.IsNullOrWhiteSpace(Model.CurrentContent.MainIntro) || Html.IsInEditMode())
             {
                 <p class="lead location-main-intro" @Html.EditAttributes(x => x.CurrentContent.MainIntro)>@Model.CurrentContent.MainIntro</p>
             }

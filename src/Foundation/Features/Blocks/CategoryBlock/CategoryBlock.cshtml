@@ -1,5 +1,4 @@
-﻿@using ImageProcessor.Web.Episerver
-@using Foundation.Features.Blocks.CategoryBlock
+﻿@using Foundation.Features.Blocks.CategoryBlock
 
 @model CategoryBlockViewModel
 
@@ -16,7 +15,7 @@
                         <a href="@cat.Uri">
                             @if (!string.IsNullOrEmpty(cat.ImageUrl))
                             {
-                                <img class="category__img lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(cat.ImageUrl)).Resize(null, 100)&format=webp" />
+                                <img class="category__img lazyload" data-src="@Url.ContentUrl(cat.ImageUrl)?format=webp" />
                             }
                         </a>
                     </div>

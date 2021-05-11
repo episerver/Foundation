@@ -4,9 +4,9 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Cms.Settings;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
@@ -19,7 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Foundation.Features.MyAccount.OrderHistory
 {
@@ -67,7 +68,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             _settingsService = settingsService;
         }
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
         public ActionResult Index(OrderHistoryPage currentPage, OrderFilter filter, int? page, int? size, int? isPaging)
         {
             if (isPaging.HasValue)
@@ -131,7 +132,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             viewModel.PagingInfo.PageNumber = pageNum;
             viewModel.PagingInfo.TotalRecord = purchaseOrders.Count;
             viewModel.PagingInfo.PageSize = pageSize;
-            viewModel.OrderHistoryUrl = Request.Url.PathAndQuery;
+            viewModel.OrderHistoryUrl = Request.Path + Request.QueryString;
             viewModel.Filter = filter;
             return View(viewModel);
         }
@@ -145,7 +146,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderid);
             if (purchaseOrder == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                return StatusCode(404);
             }
 
             var cart = _orderRepository.Create<ICart>(Guid.NewGuid().ToString());

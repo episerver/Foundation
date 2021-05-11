@@ -7,14 +7,16 @@ using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Features.CatalogContent;
 using Mediachase.Commerce.Catalog;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.WebPages;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Wangkanai.Detection;
+using Microsoft.Extensions.DependencyInjection;
+using EPiServer.Framework.Cache;
 
 namespace Foundation.Features.Search
 {
@@ -32,23 +34,26 @@ namespace Foundation.Features.Search
         private readonly IContentLoader _contentLoader;
         private readonly ReferenceConverter _referenceConverter;
         private readonly UrlResolver _urlResolver;
-        private readonly HttpContextBase _httpContextBase;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IClient _findClient;
+        private readonly ISynchronizedObjectInstanceCache _synchronizedObjectInstanceCache;
 
         public SearchViewModelFactory(LocalizationService localizationService, ISearchService searchService,
             IContentLoader contentLoader,
             ReferenceConverter referenceConverter,
             UrlResolver urlResolver,
-            HttpContextBase httpContextBase,
-            IClient findClient)
+            IHttpContextAccessor httpContextAccessor,
+            IClient findClient,
+            ISynchronizedObjectInstanceCache synchronizedObjectInstanceCache)
         {
             _searchService = searchService;
             _contentLoader = contentLoader;
             _referenceConverter = referenceConverter;
             _urlResolver = urlResolver;
-            _httpContextBase = httpContextBase;
+            _httpContextAccessor = httpContextAccessor;
             _localizationService = localizationService;
             _findClient = findClient;
+            _synchronizedObjectInstanceCache = synchronizedObjectInstanceCache;
         }
 
         public virtual SearchViewModel<TContent> Create<TContent>(TContent currentContent,
@@ -87,14 +92,15 @@ namespace Foundation.Features.Search
             model.CategoriesFilter = GetCategoriesFilter(currentContent, filterOption.Q);
             model.DidYouMeans = results.DidYouMeans;
             model.Query = filterOption.Q;
-            model.IsMobile = _httpContextBase.GetOverriddenBrowser().IsMobileDevice;
+            var detection = _httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IDetection>();
+            model.IsMobile = detection.Device.Type == DeviceType.Mobile;
 
             return model;
         }
 
         private CategoriesFilterViewModel GetCategoriesFilter(IContent currentContent, string query)
         {
-            var bestBets = new BestBetRepository().List().Where(i => i.PhraseCriterion.Phrase.CompareTo(query) == 0);
+            var bestBets = new BestBetRepository(_synchronizedObjectInstanceCache).List().Where(i => i.PhraseCriterion.Phrase.CompareTo(query) == 0);
             var ownStyleBestBets = bestBets.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
             var catalogId = 0;
             var node = currentContent as NodeContent;

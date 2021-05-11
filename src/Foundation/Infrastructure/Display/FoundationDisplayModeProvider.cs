@@ -85,7 +85,7 @@ namespace Foundation.Infrastructure.Display
                     Tag = "displaymode-one-sixth",
                     LargeScreenWidth = 2,
                     MediumScreenWidth = 4,
-                    SmallScreenWidth = 12,
+                    SmallScreenWidth = 6,
                     ExtraSmallScreenWidth = 12
                 }
             };

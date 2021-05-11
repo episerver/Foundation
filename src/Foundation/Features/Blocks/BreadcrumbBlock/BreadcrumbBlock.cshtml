@@ -13,7 +13,7 @@
             <ul class="breadcrumb__group @(string.IsNullOrEmpty(Model.CurrentBlock.Alignment) ? "flex-center" : Model.CurrentBlock.Alignment)">
                 @for (var i = 0; i < totalItem; i++)
                 {
-                    <li class="breadcrumb__item @(Request.Url.AbsolutePath == Model.Breadcrumb[i].Url ? "is-active" : "")">
+                    <li class="breadcrumb__item @(this.Url.ActionContext.HttpContext.Request.GetDisplayUrl() == Model.Breadcrumb[i].Url ? "is-active" : "")">
                         <a href="@Model.Breadcrumb[i].Url">@Model.Breadcrumb[i].Name</a>
                     </li>
                     if (i < totalItem - 1)

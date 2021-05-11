@@ -1,0 +1,28 @@
+﻿using EPiServer.Framework.DataAnnotations;
+using EPiServer.Web.Mvc;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Features.CatalogContent;
+using Mediachase.Commerce.Customers;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+namespace Foundation.Features.Blocks.ElevatedRoleBlock
+{
+    public class ElevatedRoleBlockComponent : AsyncBlockComponent<ElevatedRoleBlock>
+    {
+        public override async Task<IViewComponentResult> InvokeAsync(ElevatedRoleBlock currentBlock)
+        {
+            var viewModel = new ElevatedRoleBlockViewModel(currentBlock);
+            var currentContact = CustomerContext.Current.CurrentContact;
+            if (currentContact != null)
+            {
+                var contact = new FoundationContact(currentContact);
+                if (contact.ElevatedRole == ElevatedRoles.Reader.ToString())
+                {
+                    viewModel.IsAccess = true;
+                }
+            }
+            return await Task.FromResult(View("~/Features/Blocks/ElevatedRoleBlock/ElevatedRoleBlock.cshtml", viewModel));
+        }
+    }
+}

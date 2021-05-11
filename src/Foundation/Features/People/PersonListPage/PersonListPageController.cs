@@ -3,14 +3,14 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
-using Foundation.Cms;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.People.PersonItemPage;
 using Foundation.Features.Settings;
-using Foundation.Find;
+using Foundation.Infrastructure.Find;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.People.PersonListPage
 {
@@ -25,22 +25,22 @@ namespace Foundation.Features.People.PersonListPage
 
         public ActionResult Index(PersonList currentPage)
         {
-            var queryString = Request.QueryString;
+            var queryString = Request.Query;
             var query = SearchClient.Instance.Search<PersonPage>();
 
-            if (!string.IsNullOrWhiteSpace(queryString.Get("name")))
+            if (!string.IsNullOrWhiteSpace(queryString["name"].ToString()))
             {
-                query = query.AddWildCardQuery(queryString.Get("name"), x => x.Name);
+                query = query.AddWildCardQuery(queryString["name"].ToString(), x => x.Name);
             }
 
-            if (!string.IsNullOrWhiteSpace(queryString.Get("sector")))
+            if (!string.IsNullOrWhiteSpace(queryString["sector"].ToString()))
             {
-                query = query.Filter(x => x.Sector.Match(queryString.Get("sector")));
+                query = query.Filter(x => x.Sector.Match(queryString["sector"].ToString()));
             }
 
-            if (!string.IsNullOrWhiteSpace(queryString.Get("location")))
+            if (!string.IsNullOrWhiteSpace(queryString["location"].ToString()))
             {
-                query = query.Filter(x => x.Location.Match(queryString.Get("location")));
+                query = query.Filter(x => x.Location.Match(queryString["location"].ToString()));
             }
 
             var persons = query.OrderBy(x => x.PageName)

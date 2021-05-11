@@ -1,6 +1,7 @@
 ﻿using EPiServer.Web;
-using System.Web;
-using System.Web.WebPages;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Wangkanai.Detection;
 
 namespace Foundation.Infrastructure.Display
 {
@@ -10,6 +11,10 @@ namespace Foundation.Infrastructure.Display
 
         public override string ResolutionId => typeof(IphoneVerticalResolution).FullName;
 
-        public override bool IsActive(HttpContextBase context) => context.GetOverriddenBrowser().IsMobileDevice;
+        public override bool IsActive(HttpContext context)
+        {
+            var detection = context.RequestServices.GetRequiredService<IDetection>();
+            return detection.Device.Type == DeviceType.Mobile;
+        }
     }
 }

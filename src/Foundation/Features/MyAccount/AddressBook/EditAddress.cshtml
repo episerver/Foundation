@@ -11,7 +11,7 @@
 @if (!isMultiShipment)
 {
     <div class="col-md-12 col-lg-3">
-        @Html.Action("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link })
+        @(await Component.InvokeAsync("MyAccountNavigation", new { id = MyAccountPageType.Link }))
     </div>
 }
 
@@ -111,16 +111,16 @@
                 </label>
             </div>
             @Html.HiddenFor(x => x.Address.AddressId)
-            <div class="form-group">
-                @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
-                {
-                    <button type="submit" class="button-black">@Html.TranslateFallback("/AddressBook/Form/Label/Submit", "Submit")</button>
-                }
-                @if (!string.IsNullOrEmpty(Model.Address.AddressId))
-                {
-                    @Html.ActionLink(Html.TranslateFallback("/AddressBook/Form/Label/Cancel", "Cancel"), "Index", "AddressBook", new { }, new { @class = "button-black" })
-                }
-            </div>
+    <div class="form-group">
+        @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+        {
+            <button type="submit" class="button-black">@Html.TranslateFallback("/AddressBook/Form/Label/Submit", "Submit")</button>
+        }
+        @if (!string.IsNullOrEmpty(Model.Address.AddressId))
+        {
+            @Html.ActionLink(Html.TranslateFallback("/AddressBook/Form/Label/Cancel", "Cancel").ToString(), "Index", "AddressBook", new { }, new { @class = "button-black" })
+        }
+    </div>
         }
     </div>
 </div>

@@ -1,0 +1,1098 @@
+2021-05-07 09:30:30.069 +07:00 [INF] MSBuild registered from C:\Program Files\dotnet\sdk\5.0.201\
+2021-05-07 09:30:30.126 +07:00 [INF] Registered 1 extensions:
+	Default extension
+2021-05-07 09:30:47.391 +07:00 [INF] Initializing upgrade step Select an entrypoint
+2021-05-07 09:30:49.907 +07:00 [INF] Applying upgrade step Select an entrypoint
+2021-05-07 09:30:53.298 +07:00 [INF] Upgrade step Select an entrypoint applied successfully
+2021-05-07 09:30:54.733 +07:00 [INF] Initializing upgrade step Select project to upgrade
+2021-05-07 09:30:54.784 +07:00 [INF] Initializing upgrade step Back up project
+2021-05-07 09:30:59.106 +07:00 [INF] Skipping upgrade step Back up project
+2021-05-07 09:30:59.110 +07:00 [INF] Upgrade step Back up project skipped
+2021-05-07 09:31:00.576 +07:00 [INF] Initializing upgrade step Convert project file to SDK style
+2021-05-07 09:31:02.162 +07:00 [INF] Applying upgrade step Convert project file to SDK style
+2021-05-07 09:31:02.166 +07:00 [INF] Converting project file format with try-convert, version 0.7.216201
+2021-05-07 09:31:03.072 +07:00 [INF] [try-convert] C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Foundation.csproj contains a reference to System.Web, which is not supported on .NET Core. You may have significant work ahead of you to fully port this project.
+2021-05-07 09:31:03.076 +07:00 [INF] [try-convert] 'C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Foundation.csproj' is a legacy web project and/or references System.Web. Legacy Web projects and System.Web are unsupported on .NET Core. You will need to rewrite your application or find a way to not depend on System.Web to convert this project.
+2021-05-07 09:31:06.016 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: Microsoft.NetFramework.Analyzers.props
+2021-05-07 09:31:06.019 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: Microsoft.NetCore.Analyzers.props
+2021-05-07 09:31:06.021 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: Microsoft.CodeQuality.Analyzers.props
+2021-05-07 09:31:06.023 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: Microsoft.CodeAnalysis.VersionCheckAnalyzer.props
+2021-05-07 09:31:06.024 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: EntityFramework.props
+2021-05-07 09:31:06.025 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: Microsoft.Bcl.Build.targets
+2021-05-07 09:31:06.027 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: EntityFramework.targets
+2021-05-07 09:31:06.028 +07:00 [INF] [try-convert] This project has an unrecognized custom import which may need reviewed after conversion: Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets
+2021-05-07 09:31:34.370 +07:00 [INF] [try-convert] Conversion complete!
+2021-05-07 09:31:35.790 +07:00 [INF] Project file converted successfully! The project may require additional changes to build successfully against the new .NET target.
+2021-05-07 09:31:52.401 +07:00 [INF] Upgrade step Convert project file to SDK style applied successfully
+2021-05-07 09:32:26.921 +07:00 [INF] Initializing upgrade step Clean up NuGet package references
+2021-05-07 09:32:31.686 +07:00 [INF] Marking package System.ComponentModel.Annotations, Version=4.7.0 for removal because it is referenced elsewhere in the project with a higher version
+2021-05-07 09:32:31.719 +07:00 [INF] Marking package Microsoft.CSharp for removal because it appears to be a transitive dependency
+2021-05-07 09:32:31.879 +07:00 [INF] Marking package AuthorizeNet for removal because it appears to be a transitive dependency
+2021-05-07 09:32:31.991 +07:00 [INF] Marking package CsvHelper for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.026 +07:00 [INF] Marking package EPiBootstrapArea for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.061 +07:00 [INF] Marking package EPiServer.AddOns.Helpers for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.121 +07:00 [INF] Marking package EPiServer.CMS.AspNet for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.142 +07:00 [INF] Marking package EPiServer.CMS.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.212 +07:00 [INF] Marking package EPiServer.CMS.UI.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.241 +07:00 [INF] Marking package EPiServer.Commerce.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.344 +07:00 [INF] Marking package EPiServer.ContentDeliveryApi.Cms for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.379 +07:00 [INF] Marking package EPiServer.ContentDeliveryApi.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.424 +07:00 [INF] Marking package EPiServer.Find for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.477 +07:00 [INF] Marking package EPiServer.Find.Framework for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.512 +07:00 [INF] Marking package EPiServer.Forms.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.544 +07:00 [INF] Marking package EPiServer.Forms.UI for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.560 +07:00 [INF] Marking package EPiServer.Framework for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.578 +07:00 [INF] Marking package EPiServer.Framework.AspNet for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.605 +07:00 [INF] Marking package EPiServer.Insight.Cms for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.647 +07:00 [INF] Marking package EPiServer.Labs.BlockEnhancements for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.690 +07:00 [INF] Marking package EPiServer.Labs.ContentManager.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.780 +07:00 [INF] Marking package EPiServer.Marketing.KPI for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.810 +07:00 [INF] Marking package EPiServer.Marketing.Messaging for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.842 +07:00 [INF] Marking package EPiServer.Packaging for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.896 +07:00 [INF] Marking package EPiServer.Personalization.Common for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.943 +07:00 [INF] Marking package EPiServer.Profiles.Client.Common for removal because it appears to be a transitive dependency
+2021-05-07 09:32:32.961 +07:00 [INF] Marking package EPiServer.ServiceApi for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.191 +07:00 [INF] Marking package EPiServer.Telemetry.UI for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.210 +07:00 [INF] Marking package EPiServer.Telemetry.UI.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.248 +07:00 [INF] Marking package EPiServer.Tracking.Commerce for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.274 +07:00 [INF] Marking package EPiServer.Tracking.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.409 +07:00 [INF] Marking package HtmlAgilityPack for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.457 +07:00 [INF] Marking package ImageProcessor.Plugins.WebP for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.490 +07:00 [INF] Marking package ImageProcessor.Web.Config for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.537 +07:00 [INF] Marking package log4net for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.555 +07:00 [INF] Marking package Lucene.Net for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.570 +07:00 [INF] Marking package Lucene.Net.Store.Azure for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.589 +07:00 [INF] Marking package MaxMind.Db for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.620 +07:00 [INF] Marking package Microsoft.AspNet.Cors for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.642 +07:00 [INF] Marking package Microsoft.AspNet.OData for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.678 +07:00 [INF] Marking package Microsoft.AspNet.Providers.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.709 +07:00 [INF] Marking package Microsoft.AspNet.WebApi.Client for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.778 +07:00 [INF] Marking package Microsoft.Bcl for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.844 +07:00 [INF] Marking package Microsoft.Data.Edm for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.858 +07:00 [INF] Marking package Microsoft.Data.OData for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.887 +07:00 [INF] Marking package Microsoft.Extensions.DependencyInjection for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.902 +07:00 [INF] Marking package Microsoft.Extensions.DependencyInjection.Abstractions for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.933 +07:00 [INF] Marking package Microsoft.IdentityModel.JsonWebTokens for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.950 +07:00 [INF] Marking package Microsoft.IdentityModel.Logging for removal because it appears to be a transitive dependency
+2021-05-07 09:32:33.966 +07:00 [INF] Marking package Microsoft.IdentityModel.Tokens for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.043 +07:00 [INF] Marking package Microsoft.OData.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.063 +07:00 [INF] Marking package Microsoft.OData.Edm for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.080 +07:00 [INF] Marking package Microsoft.ReportViewer.Common for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.098 +07:00 [INF] Marking package Microsoft.ReportViewer.WebForms for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.139 +07:00 [INF] Marking package Microsoft.Spatial for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.153 +07:00 [INF] Marking package Microsoft.Tpl.Dataflow for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.209 +07:00 [INF] Marking package Newtonsoft.Json for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.241 +07:00 [INF] Marking package NuGet.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.286 +07:00 [INF] Marking package RestSharp for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.335 +07:00 [INF] Marking package StructureMap for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.350 +07:00 [INF] Marking package structuremap.web for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.510 +07:00 [INF] Marking package System.IO for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.723 +07:00 [INF] Marking package System.Security.AccessControl for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.778 +07:00 [INF] Marking package System.Security.Cryptography.Encoding for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.811 +07:00 [INF] Marking package System.Security.Cryptography.Primitives for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.858 +07:00 [INF] Marking package System.Security.Permissions for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.875 +07:00 [INF] Marking package System.Security.Principal.Windows for removal because it appears to be a transitive dependency
+2021-05-07 09:32:34.893 +07:00 [INF] Marking package System.Spatial for removal because it appears to be a transitive dependency
+2021-05-07 09:32:35.070 +07:00 [INF] Marking package WindowsAzure.Storage for removal because it appears to be a transitive dependency
+2021-05-07 09:32:35.186 +07:00 [INF] Marking package Microsoft.Net.Http for removal based on package mapping configuration HTTP packages
+2021-05-07 09:32:35.192 +07:00 [INF] Adding package System.Net.Http based on package mapping configuration HTTP packages
+2021-05-07 09:32:35.195 +07:00 [INF] Marking assembly reference System.ServiceModel for removal based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.199 +07:00 [INF] Adding package System.ServiceModel.Primitives based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.202 +07:00 [INF] Adding package System.ServiceModel.Http based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.225 +07:00 [INF] Adding package System.ServiceModel.Duplex based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.228 +07:00 [INF] Adding package System.ServiceModel.NetTcp based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.249 +07:00 [INF] Adding package System.ServiceModel.Security based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.252 +07:00 [INF] Adding package System.ServiceModel.Federation based on package mapping configuration System.ServiceModel
+2021-05-07 09:32:35.274 +07:00 [INF] Marking assembly reference System.Configuration for removal based on package mapping configuration System.Configuration
+2021-05-07 09:32:35.297 +07:00 [INF] Adding package System.Configuration.ConfigurationManager based on package mapping configuration System.Configuration
+2021-05-07 09:32:43.648 +07:00 [INF] Reference to .NET Upgrade Assistant analyzer package (Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, version 0.2.222702) needs added
+2021-05-07 09:32:48.280 +07:00 [INF] Reference to Newtonsoft package (Microsoft.AspNetCore.Mvc.NewtonsoftJson, version 5.0.5) needs added
+2021-05-07 09:32:48.284 +07:00 [INF] References to be removed:
+System.ServiceModel
+System.Configuration
+2021-05-07 09:32:48.287 +07:00 [INF] Packages to be removed:
+System.ComponentModel.Annotations, Version=4.7.0
+Microsoft.CSharp, Version=4.7.0
+AuthorizeNet, Version=1.9.4
+CsvHelper, Version=7.1.0
+EPiBootstrapArea, Version=5.3.3
+EPiServer.AddOns.Helpers, Version=0.4.0.0
+EPiServer.CMS.AspNet, Version=11.20.5
+EPiServer.CMS.Core, Version=11.20.5
+EPiServer.CMS.UI.Core, Version=11.34.1
+EPiServer.Commerce.Core, Version=13.30.0
+EPiServer.ContentDeliveryApi.Cms, Version=2.19.0
+EPiServer.ContentDeliveryApi.Core, Version=2.19.0
+EPiServer.Find, Version=13.4.2
+EPiServer.Find.Framework, Version=13.4.2
+EPiServer.Forms.Core, Version=4.30.2
+EPiServer.Forms.UI, Version=4.30.2
+EPiServer.Framework, Version=11.20.5
+EPiServer.Framework.AspNet, Version=11.20.5
+EPiServer.Insight.Cms, Version=1.23.0
+EPiServer.Labs.BlockEnhancements, Version=0.10.0
+EPiServer.Labs.ContentManager.Core, Version=0.5.2
+EPiServer.Marketing.KPI, Version=2.5.4
+EPiServer.Marketing.Messaging, Version=1.3.0
+EPiServer.Packaging, Version=3.4.0
+EPiServer.Personalization.Common, Version=3.1.0
+EPiServer.Profiles.Client.Common, Version=1.23.0
+EPiServer.ServiceApi, Version=5.4.5
+EPiServer.Telemetry.UI, Version=1.3.0
+EPiServer.Telemetry.UI.Core, Version=1.3.0
+EPiServer.Tracking.Commerce, Version=3.2.27
+EPiServer.Tracking.Core, Version=1.23.0
+HtmlAgilityPack, Version=1.4.6
+ImageProcessor.Plugins.WebP, Version=1.3.0
+ImageProcessor.Web.Config, Version=2.6.0
+log4net, Version=2.0.8
+Lucene.Net, Version=3.0.3
+Lucene.Net.Store.Azure, Version=3.0.5553.21100
+MaxMind.Db, Version=2.6.1
+Microsoft.AspNet.Cors, Version=5.2.7
+Microsoft.AspNet.OData, Version=7.5.2
+Microsoft.AspNet.Providers.Core, Version=2.0.0
+Microsoft.AspNet.WebApi.Client, Version=5.2.7
+Microsoft.Bcl, Version=1.1.10
+Microsoft.Data.Edm, Version=5.8.4
+Microsoft.Data.OData, Version=5.8.4
+Microsoft.Extensions.DependencyInjection, Version=1.0.0
+Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0
+Microsoft.IdentityModel.JsonWebTokens, Version=6.7.1
+Microsoft.IdentityModel.Logging, Version=6.7.1
+Microsoft.IdentityModel.Tokens, Version=6.7.1
+Microsoft.OData.Core, Version=7.7.1
+Microsoft.OData.Edm, Version=7.7.1
+Microsoft.ReportViewer.Common, Version=10.0.40219.1
+Microsoft.ReportViewer.WebForms, Version=10.0.40219.1
+Microsoft.Spatial, Version=7.7.1
+Microsoft.Tpl.Dataflow, Version=4.5.24
+Newtonsoft.Json, Version=12.0.3
+NuGet.Core, Version=2.5.0
+RestSharp, Version=106.2.2
+StructureMap, Version=4.7.1
+structuremap.web, Version=4.0.0.315
+System.IO, Version=4.3.0
+System.Security.AccessControl, Version=4.7.0
+System.Security.Cryptography.Encoding, Version=4.3.0
+System.Security.Cryptography.Primitives, Version=4.3.0
+System.Security.Permissions, Version=4.7.0
+System.Security.Principal.Windows, Version=4.7.0
+System.Spatial, Version=5.8.4
+WindowsAzure.Storage, Version=9.3.3
+Microsoft.Net.Http, Version=2.2.29
+2021-05-07 09:32:48.386 +07:00 [INF] Packages to be addded:
+System.Net.Http, Version=4.3.0
+System.ServiceModel.Primitives, Version=4.8.1
+System.ServiceModel.Http, Version=4.8.1
+System.ServiceModel.Duplex, Version=4.8.1
+System.ServiceModel.NetTcp, Version=4.8.1
+System.ServiceModel.Security, Version=4.8.1
+System.ServiceModel.Federation, Version=4.8.1
+System.Configuration.ConfigurationManager, Version=5.0.0
+Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.2.222702
+Microsoft.AspNetCore.Mvc.NewtonsoftJson, Version=5.0.5
+2021-05-07 09:33:54.041 +07:00 [INF] Applying upgrade step Clean up NuGet package references
+2021-05-07 09:33:54.053 +07:00 [INF] Removing outdated assembly reference: System.ServiceModel
+2021-05-07 09:33:54.065 +07:00 [INF] Removing outdated assembly reference: System.Configuration
+2021-05-07 09:33:54.070 +07:00 [INF] Removing outdated package reference: Microsoft.CSharp, Version=4.7.0
+2021-05-07 09:33:54.093 +07:00 [INF] Removing outdated package reference: AuthorizeNet, Version=1.9.4
+2021-05-07 09:33:54.095 +07:00 [INF] Removing outdated package reference: CsvHelper, Version=7.1.0
+2021-05-07 09:33:54.117 +07:00 [INF] Removing outdated package reference: EPiBootstrapArea, Version=5.3.3
+2021-05-07 09:33:54.118 +07:00 [INF] Removing outdated package reference: EPiServer.AddOns.Helpers, Version=0.4.0.0
+2021-05-07 09:33:54.140 +07:00 [INF] Removing outdated package reference: EPiServer.CMS.AspNet, Version=11.20.5
+2021-05-07 09:33:54.164 +07:00 [INF] Removing outdated package reference: EPiServer.CMS.Core, Version=11.20.5
+2021-05-07 09:33:54.166 +07:00 [INF] Removing outdated package reference: EPiServer.CMS.UI.Core, Version=11.34.1
+2021-05-07 09:33:54.192 +07:00 [INF] Removing outdated package reference: EPiServer.Commerce.Core, Version=13.30.0
+2021-05-07 09:33:54.216 +07:00 [INF] Removing outdated package reference: EPiServer.ContentDeliveryApi.Cms, Version=2.19.0
+2021-05-07 09:33:54.218 +07:00 [INF] Removing outdated package reference: EPiServer.ContentDeliveryApi.Core, Version=2.19.0
+2021-05-07 09:33:54.239 +07:00 [INF] Removing outdated package reference: EPiServer.Find, Version=13.4.2
+2021-05-07 09:33:54.261 +07:00 [INF] Removing outdated package reference: EPiServer.Find.Framework, Version=13.4.2
+2021-05-07 09:33:54.264 +07:00 [INF] Removing outdated package reference: EPiServer.Forms.Core, Version=4.30.2
+2021-05-07 09:33:54.283 +07:00 [INF] Removing outdated package reference: EPiServer.Forms.UI, Version=4.30.2
+2021-05-07 09:33:54.285 +07:00 [INF] Removing outdated package reference: EPiServer.Framework, Version=11.20.5
+2021-05-07 09:33:54.304 +07:00 [INF] Removing outdated package reference: EPiServer.Framework.AspNet, Version=11.20.5
+2021-05-07 09:33:54.320 +07:00 [INF] Removing outdated package reference: EPiServer.Insight.Cms, Version=1.23.0
+2021-05-07 09:33:54.337 +07:00 [INF] Removing outdated package reference: EPiServer.Labs.BlockEnhancements, Version=0.10.0
+2021-05-07 09:33:54.354 +07:00 [INF] Removing outdated package reference: EPiServer.Labs.ContentManager.Core, Version=0.5.2
+2021-05-07 09:33:54.369 +07:00 [INF] Removing outdated package reference: EPiServer.Marketing.KPI, Version=2.5.4
+2021-05-07 09:33:54.372 +07:00 [INF] Removing outdated package reference: EPiServer.Marketing.Messaging, Version=1.3.0
+2021-05-07 09:33:54.389 +07:00 [INF] Removing outdated package reference: EPiServer.Packaging, Version=3.4.0
+2021-05-07 09:33:54.410 +07:00 [INF] Removing outdated package reference: EPiServer.Personalization.Common, Version=3.1.0
+2021-05-07 09:33:54.413 +07:00 [INF] Removing outdated package reference: EPiServer.Profiles.Client.Common, Version=1.23.0
+2021-05-07 09:33:54.433 +07:00 [INF] Removing outdated package reference: EPiServer.ServiceApi, Version=5.4.5
+2021-05-07 09:33:54.436 +07:00 [INF] Removing outdated package reference: EPiServer.Telemetry.UI, Version=1.3.0
+2021-05-07 09:33:54.456 +07:00 [INF] Removing outdated package reference: EPiServer.Telemetry.UI.Core, Version=1.3.0
+2021-05-07 09:33:54.474 +07:00 [INF] Removing outdated package reference: EPiServer.Tracking.Commerce, Version=3.2.27
+2021-05-07 09:33:54.489 +07:00 [INF] Removing outdated package reference: EPiServer.Tracking.Core, Version=1.23.0
+2021-05-07 09:33:54.505 +07:00 [INF] Removing outdated package reference: HtmlAgilityPack, Version=1.4.6
+2021-05-07 09:33:54.521 +07:00 [INF] Removing outdated package reference: ImageProcessor.Plugins.WebP, Version=1.3.0
+2021-05-07 09:33:54.536 +07:00 [INF] Removing outdated package reference: ImageProcessor.Web.Config, Version=2.6.0
+2021-05-07 09:33:54.539 +07:00 [INF] Removing outdated package reference: log4net, Version=2.0.8
+2021-05-07 09:33:54.559 +07:00 [INF] Removing outdated package reference: Lucene.Net, Version=3.0.3
+2021-05-07 09:33:54.578 +07:00 [INF] Removing outdated package reference: Lucene.Net.Store.Azure, Version=3.0.5553.21100
+2021-05-07 09:33:54.580 +07:00 [INF] Removing outdated package reference: MaxMind.Db, Version=2.6.1
+2021-05-07 09:33:54.601 +07:00 [INF] Removing outdated package reference: Microsoft.AspNet.Cors, Version=5.2.7
+2021-05-07 09:33:54.603 +07:00 [INF] Removing outdated package reference: Microsoft.AspNet.OData, Version=7.5.2
+2021-05-07 09:33:54.623 +07:00 [INF] Removing outdated package reference: Microsoft.AspNet.Providers.Core, Version=2.0.0
+2021-05-07 09:33:54.637 +07:00 [INF] Removing outdated package reference: Microsoft.AspNet.WebApi.Client, Version=5.2.7
+2021-05-07 09:33:54.655 +07:00 [INF] Removing outdated package reference: Microsoft.Bcl, Version=1.1.10
+2021-05-07 09:33:54.669 +07:00 [INF] Removing outdated package reference: Microsoft.CSharp, Version=4.7.0
+2021-05-07 09:33:54.671 +07:00 [INF] Removing outdated package reference: Microsoft.Data.Edm, Version=5.8.4
+2021-05-07 09:33:54.691 +07:00 [INF] Removing outdated package reference: Microsoft.Data.OData, Version=5.8.4
+2021-05-07 09:33:54.712 +07:00 [INF] Removing outdated package reference: Microsoft.Extensions.DependencyInjection, Version=1.0.0
+2021-05-07 09:33:54.714 +07:00 [INF] Removing outdated package reference: Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0
+2021-05-07 09:33:54.734 +07:00 [INF] Removing outdated package reference: Microsoft.IdentityModel.JsonWebTokens, Version=6.7.1
+2021-05-07 09:33:54.736 +07:00 [INF] Removing outdated package reference: Microsoft.IdentityModel.Logging, Version=6.7.1
+2021-05-07 09:33:54.759 +07:00 [INF] Removing outdated package reference: Microsoft.IdentityModel.Tokens, Version=6.7.1
+2021-05-07 09:33:54.773 +07:00 [INF] Removing outdated package reference: Microsoft.Net.Http, Version=2.2.29
+2021-05-07 09:33:54.787 +07:00 [INF] Removing outdated package reference: Microsoft.OData.Core, Version=7.7.1
+2021-05-07 09:33:54.790 +07:00 [INF] Removing outdated package reference: Microsoft.OData.Edm, Version=7.7.1
+2021-05-07 09:33:54.810 +07:00 [INF] Removing outdated package reference: Microsoft.ReportViewer.Common, Version=10.0.40219.1
+2021-05-07 09:33:54.839 +07:00 [INF] Removing outdated package reference: Microsoft.ReportViewer.WebForms, Version=10.0.40219.1
+2021-05-07 09:33:54.856 +07:00 [INF] Removing outdated package reference: Microsoft.Spatial, Version=7.7.1
+2021-05-07 09:33:54.876 +07:00 [INF] Removing outdated package reference: Microsoft.Tpl.Dataflow, Version=4.5.24
+2021-05-07 09:33:54.891 +07:00 [INF] Removing outdated package reference: Newtonsoft.Json, Version=12.0.3
+2021-05-07 09:33:54.907 +07:00 [INF] Removing outdated package reference: NuGet.Core, Version=2.5.0
+2021-05-07 09:33:54.922 +07:00 [INF] Removing outdated package reference: RestSharp, Version=106.2.2
+2021-05-07 09:33:54.937 +07:00 [INF] Removing outdated package reference: StructureMap, Version=4.7.1
+2021-05-07 09:33:54.940 +07:00 [INF] Removing outdated package reference: structuremap.web, Version=4.0.0.315
+2021-05-07 09:33:54.959 +07:00 [INF] Removing outdated package reference: System.ComponentModel.Annotations, Version=4.7.0
+2021-05-07 09:33:54.971 +07:00 [INF] Removing outdated package reference: System.IO, Version=4.3.0
+2021-05-07 09:33:54.987 +07:00 [INF] Removing outdated package reference: System.Security.AccessControl, Version=4.7.0
+2021-05-07 09:33:54.988 +07:00 [INF] Removing outdated package reference: System.Security.Cryptography.Encoding, Version=4.3.0
+2021-05-07 09:33:54.989 +07:00 [INF] Removing outdated package reference: System.Security.Cryptography.Primitives, Version=4.3.0
+2021-05-07 09:33:54.990 +07:00 [INF] Removing outdated package reference: System.Security.Permissions, Version=4.7.0
+2021-05-07 09:33:55.004 +07:00 [INF] Removing outdated package reference: System.Security.Principal.Windows, Version=4.7.0
+2021-05-07 09:33:55.006 +07:00 [INF] Removing outdated package reference: System.Spatial, Version=5.8.4
+2021-05-07 09:33:55.007 +07:00 [INF] Removing outdated package reference: WindowsAzure.Storage, Version=9.3.3
+2021-05-07 09:33:55.010 +07:00 [INF] Adding package reference: System.Net.Http, Version=4.3.0
+2021-05-07 09:33:55.021 +07:00 [INF] Adding package reference: System.ServiceModel.Primitives, Version=4.8.1
+2021-05-07 09:33:55.023 +07:00 [INF] Adding package reference: System.ServiceModel.Http, Version=4.8.1
+2021-05-07 09:33:55.039 +07:00 [INF] Adding package reference: System.ServiceModel.Duplex, Version=4.8.1
+2021-05-07 09:33:55.041 +07:00 [INF] Adding package reference: System.ServiceModel.NetTcp, Version=4.8.1
+2021-05-07 09:33:55.042 +07:00 [INF] Adding package reference: System.ServiceModel.Security, Version=4.8.1
+2021-05-07 09:33:55.042 +07:00 [INF] Adding package reference: System.ServiceModel.Federation, Version=4.8.1
+2021-05-07 09:33:55.063 +07:00 [INF] Adding package reference: System.Configuration.ConfigurationManager, Version=5.0.0
+2021-05-07 09:33:55.067 +07:00 [INF] Adding package reference: Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.2.222702
+2021-05-07 09:33:55.073 +07:00 [INF] Adding package reference: Microsoft.AspNetCore.Mvc.NewtonsoftJson, Version=5.0.5
+2021-05-07 09:34:16.645 +07:00 [INF] Marking package System.ServiceModel.Primitives for removal because it appears to be a transitive dependency
+2021-05-07 09:34:16.663 +07:00 [INF] Marking package System.ServiceModel.Http for removal because it appears to be a transitive dependency
+2021-05-07 09:34:16.726 +07:00 [INF] Marking package System.ServiceModel.Security for removal because it appears to be a transitive dependency
+2021-05-07 09:34:23.056 +07:00 [WRN] No version of Microsoft.AspNetCore.Mvc.NewtonsoftJson found that supports net472; leaving unchanged
+2021-05-07 09:34:23.206 +07:00 [INF] Removing outdated package reference: System.ServiceModel.Primitives, Version=4.8.1
+2021-05-07 09:34:23.209 +07:00 [INF] Removing outdated package reference: System.ServiceModel.Http, Version=4.8.1
+2021-05-07 09:34:23.210 +07:00 [INF] Removing outdated package reference: System.ServiceModel.Security, Version=4.8.1
+2021-05-07 09:34:35.137 +07:00 [WRN] No version of Microsoft.AspNetCore.Mvc.NewtonsoftJson found that supports net472; leaving unchanged
+2021-05-07 09:34:35.309 +07:00 [INF] Upgrade step Clean up NuGet package references applied successfully
+2021-05-07 09:38:33.759 +07:00 [INF] Initializing upgrade step Update TFM
+2021-05-07 09:38:33.905 +07:00 [INF] TFM needs updated to net5.0-windows
+2021-05-07 09:38:35.546 +07:00 [INF] Applying upgrade step Update TFM
+2021-05-07 09:38:48.490 +07:00 [INF] Updated TFM to net5.0-windows
+2021-05-07 09:38:48.491 +07:00 [INF] Upgrade step Update TFM applied successfully
+2021-05-07 09:39:36.085 +07:00 [INF] Initializing upgrade step Update NuGet Packages
+2021-05-07 09:39:43.572 +07:00 [INF] Marking package System.Net.Http for removal because it appears to be a transitive dependency
+2021-05-07 09:39:43.650 +07:00 [INF] Marking package System.Configuration.ConfigurationManager for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.749 +07:00 [INF] Marking package System.Collections for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.771 +07:00 [INF] Marking package System.Collections.Concurrent for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.787 +07:00 [INF] Marking package System.ComponentModel for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.827 +07:00 [INF] Marking package System.Data.SqlClient for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.844 +07:00 [INF] Marking package System.Diagnostics.Debug for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.872 +07:00 [INF] Marking package System.Dynamic.Runtime for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.888 +07:00 [INF] Marking package System.Globalization for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.924 +07:00 [INF] Marking package System.Linq for removal because it appears to be a transitive dependency
+2021-05-07 09:39:45.941 +07:00 [INF] Marking package System.Linq.Expressions for removal because it appears to be a transitive dependency
+2021-05-07 09:39:46.016 +07:00 [INF] Marking package System.Reflection for removal because it appears to be a transitive dependency
+2021-05-07 09:39:46.074 +07:00 [INF] Marking package System.Resources.ResourceManager for removal because it appears to be a transitive dependency
+2021-05-07 09:39:46.104 +07:00 [INF] Marking package System.Runtime for removal because it appears to be a transitive dependency
+2021-05-07 09:39:46.188 +07:00 [INF] Marking package System.Security.Cryptography.Xml for removal because it appears to be a transitive dependency
+2021-05-07 09:39:46.205 +07:00 [INF] Marking package System.Threading for removal because it appears to be a transitive dependency
+2021-05-07 09:39:46.242 +07:00 [INF] Marking package System.Threading.Tasks for removal because it appears to be a transitive dependency
+2021-05-07 09:39:49.988 +07:00 [WRN] No version of AbTestVisitorGroupCriteria found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:39:53.382 +07:00 [WRN] No version of AddOn.Edit.ContextMenuOpenInNewTab found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:39:56.925 +07:00 [WRN] No version of Advanced.CMS.AdvancedReviews found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:00.590 +07:00 [WRN] No version of AdvancedTaskManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:04.047 +07:00 [WRN] No version of Boilerplate.Web.Mvc5 found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:09.168 +07:00 [WRN] No version of CookieDropBlock found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:12.775 +07:00 [WRN] No version of CookieVisitorGroupCriteria found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:17.631 +07:00 [WRN] No version of EPiBootstrapArea.Forms found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:25.110 +07:00 [INF] Marking package EPiServer.Azure, Version=10.0.1 for removal because it doesn't support the target framework but a newer version (11.0.0-inte-020021) does
+2021-05-07 09:40:25.114 +07:00 [WRN] Package EPiServer.Azure has been upgraded across major versions (10 -> 11) which may introduce breaking changes
+2021-05-07 09:40:28.439 +07:00 [WRN] No version of EPiServer.ChangeApproval found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:40:49.145 +07:00 [INF] Marking package EPiServer.CMS.TinyMce, Version=2.13.2 for removal because it doesn't support the target framework but a newer version (3.0.0-inte-020115) does
+2021-05-07 09:40:49.148 +07:00 [WRN] Package EPiServer.CMS.TinyMce has been upgraded across major versions (2 -> 3) which may introduce breaking changes
+2021-05-07 09:41:09.857 +07:00 [INF] Marking package EPiServer.CMS.UI.AspNetIdentity, Version=11.34.1 for removal because it doesn't support the target framework but a newer version (12.0.0-inte-021069) does
+2021-05-07 09:41:09.861 +07:00 [WRN] Package EPiServer.CMS.UI.AspNetIdentity has been upgraded across major versions (11 -> 12) which may introduce breaking changes
+2021-05-07 09:41:30.645 +07:00 [INF] Marking package EPiServer.Commerce.Azure, Version=14.0.19 for removal because it doesn't support the target framework but a newer version (15.0.0-inte-020643) does
+2021-05-07 09:41:30.648 +07:00 [WRN] Package EPiServer.Commerce.Azure has been upgraded across major versions (14 -> 15) which may introduce breaking changes
+2021-05-07 09:41:56.004 +07:00 [INF] Marking package EPiServer.Commerce.UI, Version=13.30.0 for removal because it doesn't support the target framework but a newer version (14.0.0-inte-020643) does
+2021-05-07 09:41:56.006 +07:00 [WRN] Package EPiServer.Commerce.UI has been upgraded across major versions (13 -> 14) which may introduce breaking changes
+2021-05-07 09:42:17.724 +07:00 [INF] Marking package EPiServer.Commerce.UI.CustomerService, Version=13.30.0 for removal because it doesn't support the target framework but a newer version (14.0.0-inte-020643) does
+2021-05-07 09:42:17.727 +07:00 [WRN] Package EPiServer.Commerce.UI.CustomerService has been upgraded across major versions (13 -> 14) which may introduce breaking changes
+2021-05-07 09:42:23.145 +07:00 [WRN] No version of EPiServer.ConnectForMarketingAutomation found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:42:25.639 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:42:29.014 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:42:33.507 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.OAuth found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:42:36.566 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.Search found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:42:53.846 +07:00 [INF] Marking package EPiServer.Find.Cms, Version=13.4.2 for removal because it doesn't support the target framework but a newer version (14.0.0-inte-020147) does
+2021-05-07 09:42:53.850 +07:00 [WRN] Package EPiServer.Find.Cms has been upgraded across major versions (13 -> 14) which may introduce breaking changes
+2021-05-07 09:42:57.075 +07:00 [INF] Marking package EPiServer.Find.Commerce, Version=11.1.2 for removal because it doesn't support the target framework but a newer version (12.0.0-inte-000026) does
+2021-05-07 09:42:57.078 +07:00 [WRN] Package EPiServer.Find.Commerce has been upgraded across major versions (11 -> 12) which may introduce breaking changes
+2021-05-07 09:43:05.649 +07:00 [WRN] No version of EPiServer.Insight.UI found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:09.258 +07:00 [WRN] No version of EPiServer.Labs.ContentManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:12.357 +07:00 [WRN] No version of EPiServer.Labs.ContentManager.Core.FindQuery found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:15.479 +07:00 [WRN] No version of EPiServer.Labs.GridView found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:18.513 +07:00 [WRN] No version of EPiServer.Logging.Log4Net found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:22.318 +07:00 [WRN] No version of EPiServer.Marketing.Automation.Forms found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:26.646 +07:00 [WRN] No version of EPiServer.Marketing.KPI.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:34.286 +07:00 [WRN] No version of EPiServer.Marketing.Testing found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:43:37.215 +07:00 [WRN] No version of EPiServer.PdfPreview found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:02.406 +07:00 [INF] Marking package EPiServer.Personalization.Commerce, Version=3.2.27 for removal because it doesn't support the target framework but a newer version (4.0.0-inte-020643) does
+2021-05-07 09:44:02.410 +07:00 [WRN] Package EPiServer.Personalization.Commerce has been upgraded across major versions (3 -> 4) which may introduce breaking changes
+2021-05-07 09:44:06.144 +07:00 [INF] Marking package EPiServer.Profiles.Client, Version=1.23.0 for removal because it doesn't support the target framework but a newer version (2.0.0-inte-020017) does
+2021-05-07 09:44:06.147 +07:00 [WRN] Package EPiServer.Profiles.Client has been upgraded across major versions (1 -> 2) which may introduce breaking changes
+2021-05-07 09:44:10.190 +07:00 [WRN] No version of EPiServer.ServiceApi.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:16.187 +07:00 [INF] Marking package EPiServer.Session, Version=1.0.1 for removal because it doesn't support the target framework but a newer version (2.0.0-inte-020017) does
+2021-05-07 09:44:16.190 +07:00 [WRN] Package EPiServer.Session has been upgraded across major versions (1 -> 2) which may introduce breaking changes
+2021-05-07 09:44:20.257 +07:00 [WRN] No version of EPiServer.Social found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:24.196 +07:00 [INF] Marking package EPiServer.Tracking.Cms, Version=1.23.0 for removal because it doesn't support the target framework but a newer version (2.0.0-inte-020017) does
+2021-05-07 09:44:24.200 +07:00 [WRN] Package EPiServer.Tracking.Cms has been upgraded across major versions (1 -> 2) which may introduce breaking changes
+2021-05-07 09:44:27.032 +07:00 [WRN] No version of Geta.404Handler found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:30.102 +07:00 [WRN] No version of Geta.EpiCategories found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:33.505 +07:00 [WRN] No version of Geta.EpiCategories.Find found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:36.996 +07:00 [WRN] No version of Geta.SEO.Sitemaps found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:39.862 +07:00 [WRN] No version of ImageProcessor found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:43.336 +07:00 [WRN] No version of ImageProcessor.Web found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:47.155 +07:00 [WRN] No version of ImageProcessor.Web.Episerver found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:50.593 +07:00 [WRN] No version of InsightFormFieldMapper found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:54.046 +07:00 [WRN] No version of Microsoft.AspNet.WebApi.Cors found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:56.935 +07:00 [WRN] No version of Microsoft.AspNet.WebApi.Owin found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:44:59.758 +07:00 [WRN] No version of Microsoft.WindowsAzure.ConfigurationManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:45:03.356 +07:00 [WRN] No version of N1990.Episerver.Cms.Audit found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:45:05.625 +07:00 [WRN] No version of NonFactors.Grid.Core.Mvc5 found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:45:09.223 +07:00 [WRN] No version of PowerSlice found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:45:13.906 +07:00 [WRN] No version of VisualCompareMode found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:45:20.369 +07:00 [WRN] No version of WindowsAzure.ServiceBus found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:45:23.676 +07:00 [INF] Adding Microsoft.Windows.Compatibility 5.0.2
+2021-05-07 09:45:23.740 +07:00 [INF] Packages to be removed:
+System.Net.Http, Version=4.3.0
+System.Configuration.ConfigurationManager, Version=5.0.0
+System.Collections, Version=4.3.0
+System.Collections.Concurrent, Version=4.3.0
+System.ComponentModel, Version=4.3.0
+System.Data.SqlClient, Version=4.8.1
+System.Diagnostics.Debug, Version=4.3.0
+System.Dynamic.Runtime, Version=4.3.0
+System.Globalization, Version=4.3.0
+System.Linq, Version=4.3.0
+System.Linq.Expressions, Version=4.3.0
+System.Reflection, Version=4.3.0
+System.Resources.ResourceManager, Version=4.3.0
+System.Runtime, Version=4.3.1
+System.Security.Cryptography.Xml, Version=4.7.0
+System.Threading, Version=4.3.0
+System.Threading.Tasks, Version=4.3.0
+EPiServer.Azure, Version=10.0.1
+EPiServer.CMS.TinyMce, Version=2.13.2
+EPiServer.CMS.UI.AspNetIdentity, Version=11.34.1
+EPiServer.Commerce.Azure, Version=14.0.19
+EPiServer.Commerce.UI, Version=13.30.0
+EPiServer.Commerce.UI.CustomerService, Version=13.30.0
+EPiServer.Find.Cms, Version=13.4.2
+EPiServer.Find.Commerce, Version=11.1.2
+EPiServer.Personalization.Commerce, Version=3.2.27
+EPiServer.Profiles.Client, Version=1.23.0
+EPiServer.Session, Version=1.0.1
+EPiServer.Tracking.Cms, Version=1.23.0
+2021-05-07 09:45:23.748 +07:00 [INF] Packages to be addded:
+EPiServer.Azure, Version=11.0.0-inte-020021
+EPiServer.CMS.TinyMce, Version=3.0.0-inte-020115
+EPiServer.CMS.UI.AspNetIdentity, Version=12.0.0-inte-021069
+EPiServer.Commerce.Azure, Version=15.0.0-inte-020643
+EPiServer.Commerce.UI, Version=14.0.0-inte-020643
+EPiServer.Commerce.UI.CustomerService, Version=14.0.0-inte-020643
+EPiServer.Find.Cms, Version=14.0.0-inte-020147
+EPiServer.Find.Commerce, Version=12.0.0-inte-000026
+EPiServer.Personalization.Commerce, Version=4.0.0-inte-020643
+EPiServer.Profiles.Client, Version=2.0.0-inte-020017
+EPiServer.Session, Version=2.0.0-inte-020017
+EPiServer.Tracking.Cms, Version=2.0.0-inte-020017
+Microsoft.Windows.Compatibility, Version=5.0.2
+2021-05-07 09:46:22.714 +07:00 [INF] Applying upgrade step Update NuGet Packages
+2021-05-07 09:46:22.721 +07:00 [INF] Removing outdated package reference: System.Net.Http, Version=4.3.0
+2021-05-07 09:46:22.723 +07:00 [INF] Removing outdated package reference: System.Configuration.ConfigurationManager, Version=5.0.0
+2021-05-07 09:46:22.740 +07:00 [INF] Removing outdated package reference: EPiServer.Azure, Version=10.0.1
+2021-05-07 09:46:22.743 +07:00 [INF] Removing outdated package reference: EPiServer.CMS.TinyMce, Version=2.13.2
+2021-05-07 09:46:22.762 +07:00 [INF] Removing outdated package reference: EPiServer.CMS.UI.AspNetIdentity, Version=11.34.1
+2021-05-07 09:46:22.765 +07:00 [INF] Removing outdated package reference: EPiServer.Commerce.Azure, Version=14.0.19
+2021-05-07 09:46:22.796 +07:00 [INF] Removing outdated package reference: EPiServer.Commerce.UI, Version=13.30.0
+2021-05-07 09:46:22.798 +07:00 [INF] Removing outdated package reference: EPiServer.Commerce.UI.CustomerService, Version=13.30.0
+2021-05-07 09:46:22.827 +07:00 [INF] Removing outdated package reference: EPiServer.Find.Cms, Version=13.4.2
+2021-05-07 09:46:22.830 +07:00 [INF] Removing outdated package reference: EPiServer.Find.Commerce, Version=11.1.2
+2021-05-07 09:46:22.856 +07:00 [INF] Removing outdated package reference: EPiServer.Personalization.Commerce, Version=3.2.27
+2021-05-07 09:46:22.859 +07:00 [INF] Removing outdated package reference: EPiServer.Profiles.Client, Version=1.23.0
+2021-05-07 09:46:22.883 +07:00 [INF] Removing outdated package reference: EPiServer.Session, Version=1.0.1
+2021-05-07 09:46:22.901 +07:00 [INF] Removing outdated package reference: EPiServer.Tracking.Cms, Version=1.23.0
+2021-05-07 09:46:22.933 +07:00 [INF] Removing outdated package reference: System.Collections, Version=4.3.0
+2021-05-07 09:46:22.957 +07:00 [INF] Removing outdated package reference: System.Collections.Concurrent, Version=4.3.0
+2021-05-07 09:46:22.960 +07:00 [INF] Removing outdated package reference: System.ComponentModel, Version=4.3.0
+2021-05-07 09:46:22.985 +07:00 [INF] Removing outdated package reference: System.Data.SqlClient, Version=4.8.1
+2021-05-07 09:46:23.006 +07:00 [INF] Removing outdated package reference: System.Diagnostics.Debug, Version=4.3.0
+2021-05-07 09:46:23.009 +07:00 [INF] Removing outdated package reference: System.Dynamic.Runtime, Version=4.3.0
+2021-05-07 09:46:23.025 +07:00 [INF] Removing outdated package reference: System.Globalization, Version=4.3.0
+2021-05-07 09:46:23.027 +07:00 [INF] Removing outdated package reference: System.Linq, Version=4.3.0
+2021-05-07 09:46:23.053 +07:00 [INF] Removing outdated package reference: System.Linq.Expressions, Version=4.3.0
+2021-05-07 09:46:23.058 +07:00 [INF] Removing outdated package reference: System.Reflection, Version=4.3.0
+2021-05-07 09:46:23.083 +07:00 [INF] Removing outdated package reference: System.Resources.ResourceManager, Version=4.3.0
+2021-05-07 09:46:23.100 +07:00 [INF] Removing outdated package reference: System.Runtime, Version=4.3.1
+2021-05-07 09:46:23.117 +07:00 [INF] Removing outdated package reference: System.Security.Cryptography.Xml, Version=4.7.0
+2021-05-07 09:46:23.138 +07:00 [INF] Removing outdated package reference: System.Threading, Version=4.3.0
+2021-05-07 09:46:23.158 +07:00 [INF] Removing outdated package reference: System.Threading.Tasks, Version=4.3.0
+2021-05-07 09:46:23.160 +07:00 [INF] Adding package reference: EPiServer.Azure, Version=11.0.0-inte-020021
+2021-05-07 09:46:23.178 +07:00 [INF] Adding package reference: EPiServer.CMS.TinyMce, Version=3.0.0-inte-020115
+2021-05-07 09:46:23.181 +07:00 [INF] Adding package reference: EPiServer.CMS.UI.AspNetIdentity, Version=12.0.0-inte-021069
+2021-05-07 09:46:23.199 +07:00 [INF] Adding package reference: EPiServer.Commerce.Azure, Version=15.0.0-inte-020643
+2021-05-07 09:46:23.217 +07:00 [INF] Adding package reference: EPiServer.Commerce.UI, Version=14.0.0-inte-020643
+2021-05-07 09:46:23.231 +07:00 [INF] Adding package reference: EPiServer.Commerce.UI.CustomerService, Version=14.0.0-inte-020643
+2021-05-07 09:46:23.235 +07:00 [INF] Adding package reference: EPiServer.Find.Cms, Version=14.0.0-inte-020147
+2021-05-07 09:46:23.252 +07:00 [INF] Adding package reference: EPiServer.Find.Commerce, Version=12.0.0-inte-000026
+2021-05-07 09:46:23.269 +07:00 [INF] Adding package reference: EPiServer.Personalization.Commerce, Version=4.0.0-inte-020643
+2021-05-07 09:46:23.284 +07:00 [INF] Adding package reference: EPiServer.Profiles.Client, Version=2.0.0-inte-020017
+2021-05-07 09:46:23.299 +07:00 [INF] Adding package reference: EPiServer.Session, Version=2.0.0-inte-020017
+2021-05-07 09:46:23.315 +07:00 [INF] Adding package reference: EPiServer.Tracking.Cms, Version=2.0.0-inte-020017
+2021-05-07 09:46:23.316 +07:00 [INF] Adding package reference: Microsoft.Windows.Compatibility, Version=5.0.2
+2021-05-07 09:46:45.799 +07:00 [INF] Marking package System.ComponentModel.Annotations for removal because it appears to be a transitive dependency
+2021-05-07 09:46:45.851 +07:00 [INF] Marking package System.ComponentModel.Composition for removal because it appears to be a transitive dependency
+2021-05-07 09:46:45.903 +07:00 [INF] Marking package System.Data.DataSetExtensions for removal because it appears to be a transitive dependency
+2021-05-07 09:46:45.940 +07:00 [INF] Marking package System.Runtime.Caching for removal because it appears to be a transitive dependency
+2021-05-07 09:46:46.078 +07:00 [INF] Marking package EPiServer.Azure for removal because it appears to be a transitive dependency
+2021-05-07 09:46:46.476 +07:00 [INF] Marking package Castle.Core for removal because it appears to be a transitive dependency
+2021-05-07 09:46:48.324 +07:00 [INF] Marking package System.Reflection.Emit for removal because it appears to be a transitive dependency
+2021-05-07 09:46:48.349 +07:00 [INF] Marking package System.Reflection.Emit.Lightweight for removal because it appears to be a transitive dependency
+2021-05-07 09:46:50.956 +07:00 [WRN] No version of AbTestVisitorGroupCriteria found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:46:53.261 +07:00 [WRN] No version of AddOn.Edit.ContextMenuOpenInNewTab found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:46:56.326 +07:00 [WRN] No version of Advanced.CMS.AdvancedReviews found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:46:58.661 +07:00 [WRN] No version of AdvancedTaskManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:00.117 +07:00 [WRN] No version of Boilerplate.Web.Mvc5 found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:03.391 +07:00 [WRN] No version of CookieDropBlock found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:06.355 +07:00 [WRN] No version of CookieVisitorGroupCriteria found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:08.717 +07:00 [WRN] No version of EPiBootstrapArea.Forms found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:11.021 +07:00 [WRN] No version of EPiServer.ChangeApproval found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:13.352 +07:00 [WRN] No version of EPiServer.ConnectForMarketingAutomation found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:15.698 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:17.527 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:21.313 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.OAuth found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:23.651 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.Search found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:26.905 +07:00 [WRN] No version of EPiServer.Insight.UI found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:29.781 +07:00 [WRN] No version of EPiServer.Labs.ContentManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:32.114 +07:00 [WRN] No version of EPiServer.Labs.ContentManager.Core.FindQuery found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:35.025 +07:00 [WRN] No version of EPiServer.Labs.GridView found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:37.910 +07:00 [WRN] No version of EPiServer.Logging.Log4Net found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:40.261 +07:00 [WRN] No version of EPiServer.Marketing.Automation.Forms found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:43.104 +07:00 [WRN] No version of EPiServer.Marketing.KPI.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:46.367 +07:00 [WRN] No version of EPiServer.Marketing.Testing found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:48.133 +07:00 [WRN] No version of EPiServer.PdfPreview found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:50.461 +07:00 [WRN] No version of EPiServer.ServiceApi.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:52.812 +07:00 [WRN] No version of EPiServer.Social found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:55.162 +07:00 [WRN] No version of Geta.404Handler found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:57.486 +07:00 [WRN] No version of Geta.EpiCategories found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:47:59.955 +07:00 [WRN] No version of Geta.EpiCategories.Find found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:02.275 +07:00 [WRN] No version of Geta.SEO.Sitemaps found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:03.771 +07:00 [WRN] No version of ImageProcessor found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:05.234 +07:00 [WRN] No version of ImageProcessor.Web found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:09.160 +07:00 [WRN] No version of ImageProcessor.Web.Episerver found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:11.462 +07:00 [WRN] No version of InsightFormFieldMapper found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:12.956 +07:00 [WRN] No version of Microsoft.AspNet.WebApi.Cors found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:14.461 +07:00 [WRN] No version of Microsoft.AspNet.WebApi.Owin found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:15.930 +07:00 [WRN] No version of Microsoft.WindowsAzure.ConfigurationManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:18.861 +07:00 [WRN] No version of N1990.Episerver.Cms.Audit found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:20.866 +07:00 [WRN] No version of NonFactors.Grid.Core.Mvc5 found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:22.706 +07:00 [WRN] No version of PowerSlice found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:25.983 +07:00 [WRN] No version of VisualCompareMode found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:28.005 +07:00 [WRN] No version of WindowsAzure.ServiceBus found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:30.160 +07:00 [INF] Removing outdated package reference: System.ComponentModel.Annotations, Version=5.0.0
+2021-05-07 09:48:30.162 +07:00 [INF] Removing outdated package reference: System.ComponentModel.Composition, Version=5.0.0
+2021-05-07 09:48:30.165 +07:00 [INF] Removing outdated package reference: System.Data.DataSetExtensions, Version=4.5.0
+2021-05-07 09:48:30.166 +07:00 [INF] Removing outdated package reference: System.Runtime.Caching, Version=5.0.0
+2021-05-07 09:48:30.168 +07:00 [INF] Removing outdated package reference: EPiServer.Azure, Version=11.0.0-inte-020021
+2021-05-07 09:48:30.174 +07:00 [INF] Removing outdated package reference: Castle.Core, Version=4.4.1
+2021-05-07 09:48:30.196 +07:00 [INF] Removing outdated package reference: System.Reflection.Emit, Version=4.7.0
+2021-05-07 09:48:30.197 +07:00 [INF] Removing outdated package reference: System.Reflection.Emit.Lightweight, Version=4.7.0
+2021-05-07 09:48:44.841 +07:00 [WRN] No version of AbTestVisitorGroupCriteria found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:46.608 +07:00 [WRN] No version of AddOn.Edit.ContextMenuOpenInNewTab found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:49.534 +07:00 [WRN] No version of Advanced.CMS.AdvancedReviews found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:52.032 +07:00 [WRN] No version of AdvancedTaskManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:53.478 +07:00 [WRN] No version of Boilerplate.Web.Mvc5 found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:56.766 +07:00 [WRN] No version of CookieDropBlock found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:48:59.089 +07:00 [WRN] No version of CookieVisitorGroupCriteria found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:01.433 +07:00 [WRN] No version of EPiBootstrapArea.Forms found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:03.759 +07:00 [WRN] No version of EPiServer.ChangeApproval found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:06.100 +07:00 [WRN] No version of EPiServer.ConnectForMarketingAutomation found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:07.891 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:10.217 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:13.428 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.OAuth found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:15.764 +07:00 [WRN] No version of EPiServer.ContentDeliveryApi.Search found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:19.612 +07:00 [WRN] No version of EPiServer.Insight.UI found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:21.447 +07:00 [WRN] No version of EPiServer.Labs.ContentManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:23.841 +07:00 [WRN] No version of EPiServer.Labs.ContentManager.Core.FindQuery found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:27.341 +07:00 [WRN] No version of EPiServer.Labs.GridView found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:30.196 +07:00 [WRN] No version of EPiServer.Logging.Log4Net found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:33.176 +07:00 [WRN] No version of EPiServer.Marketing.Automation.Forms found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:35.493 +07:00 [WRN] No version of EPiServer.Marketing.KPI.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:38.724 +07:00 [WRN] No version of EPiServer.Marketing.Testing found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:41.052 +07:00 [WRN] No version of EPiServer.PdfPreview found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:43.941 +07:00 [WRN] No version of EPiServer.ServiceApi.Commerce found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:46.285 +07:00 [WRN] No version of EPiServer.Social found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:48.632 +07:00 [WRN] No version of Geta.404Handler found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:50.977 +07:00 [WRN] No version of Geta.EpiCategories found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:53.352 +07:00 [WRN] No version of Geta.EpiCategories.Find found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:55.689 +07:00 [WRN] No version of Geta.SEO.Sitemaps found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:57.205 +07:00 [WRN] No version of ImageProcessor found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:49:59.259 +07:00 [WRN] No version of ImageProcessor.Web found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:01.034 +07:00 [WRN] No version of ImageProcessor.Web.Episerver found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:03.417 +07:00 [WRN] No version of InsightFormFieldMapper found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:05.882 +07:00 [WRN] No version of Microsoft.AspNet.WebApi.Cors found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:07.343 +07:00 [WRN] No version of Microsoft.AspNet.WebApi.Owin found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:08.825 +07:00 [WRN] No version of Microsoft.WindowsAzure.ConfigurationManager found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:11.160 +07:00 [WRN] No version of N1990.Episerver.Cms.Audit found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:12.665 +07:00 [WRN] No version of NonFactors.Grid.Core.Mvc5 found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:15.571 +07:00 [WRN] No version of PowerSlice found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:18.295 +07:00 [WRN] No version of VisualCompareMode found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:19.828 +07:00 [WRN] No version of WindowsAzure.ServiceBus found that supports net5.0-windows; leaving unchanged
+2021-05-07 09:50:21.521 +07:00 [INF] Upgrade step Update NuGet Packages applied successfully
+2021-05-07 09:51:04.709 +07:00 [INF] Initializing upgrade step Add template files
+2021-05-07 09:51:04.844 +07:00 [INF] 4 expected template items needed
+2021-05-07 09:51:06.266 +07:00 [INF] Applying upgrade step Add template files
+2021-05-07 09:51:06.302 +07:00 [INF] Added template file Program.cs from Default extension
+2021-05-07 09:51:06.306 +07:00 [INF] File already exists, moving Startup.cs to Startup.old.cs
+2021-05-07 09:51:06.326 +07:00 [INF] Added template file Startup.cs from Default extension
+2021-05-07 09:51:06.342 +07:00 [INF] Added template file appsettings.json from Default extension
+2021-05-07 09:51:06.355 +07:00 [INF] Added template file appsettings.Development.json from Default extension
+2021-05-07 09:51:09.891 +07:00 [INF] 4 template items added
+2021-05-07 09:51:09.894 +07:00 [INF] Upgrade step Add template files applied successfully
+2021-05-07 09:51:13.473 +07:00 [INF] Initializing upgrade step Upgrade app config files
+2021-05-07 09:51:14.062 +07:00 [INF] Found 0 app settings for upgrade: 
+2021-05-07 09:51:14.068 +07:00 [INF] system.serviceModel is not supported in .NET 5. See https://devblogs.microsoft.com/dotnet/migrating-a-sample-wpf-app-to-net-core-3-part-2/#updating-wcf-client-usage for details. For now, it will be disabled.
+2021-05-07 09:51:14.074 +07:00 [INF] 7 web page namespace imports need upgraded: EPiServer.Commerce.Catalog.ContentTypes, EPiServer.Core, EPiServer.Editor, EPiServer.Framework.Web.Mvc.Html , EPiServer.Security, EPiServer.Shell.Web.Mvc.Html, EPiServer.Web.Mvc.Html
+2021-05-07 09:51:15.371 +07:00 [INF] Applying upgrade step Disable unsupported configuration sections
+2021-05-07 09:51:15.375 +07:00 [INF] system.serviceModel is not supported in .NET 5. See https://devblogs.microsoft.com/dotnet/migrating-a-sample-wpf-app-to-net-core-3-part-2/#updating-wcf-client-usage for details. For now, it will be disabled.
+2021-05-07 09:51:15.378 +07:00 [INF] Configuration file C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\web.config has been updated
+2021-05-07 09:51:15.381 +07:00 [INF] Upgrade step Disable unsupported configuration sections applied successfully
+2021-05-07 09:51:17.803 +07:00 [INF] Applying upgrade step Convert system.web.webPages.razor/pages/namespaces
+2021-05-07 09:51:17.806 +07:00 [INF] View imports written to C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Views\_ViewImports.cshtml
+2021-05-07 09:51:17.808 +07:00 [INF] Upgrade step Convert system.web.webPages.razor/pages/namespaces applied successfully
+2021-05-07 09:51:17.810 +07:00 [INF] Applying upgrade step Upgrade app config files
+2021-05-07 09:51:17.813 +07:00 [INF] Upgrade step Upgrade app config files applied successfully
+2021-05-07 09:51:18.875 +07:00 [INF] Initializing upgrade step Update C# source
+2021-05-07 09:51:31.756 +07:00 [INF] Applying upgrade step Apply fix for UA0001: ASP.NET Core projects should not reference ASP.NET namespaces
+2021-05-07 09:51:32.037 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Attributes\OnlyAnonymousAttribute.cs
+2021-05-07 09:51:32.064 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Attributes\AllowDBWriteAttribute.cs
+2021-05-07 09:51:32.075 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\BulkUpdateController.cs
+2021-05-07 09:51:32.087 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:51:32.097 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\DependencyInjection\StructureMapDependencyResolver.cs
+2021-05-07 09:51:32.109 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\DependencyInjection\StructureMapDependencyScope.cs
+2021-05-07 09:51:32.125 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\DependencyInjection\StructureMapResolver.cs
+2021-05-07 09:51:32.137 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\HtmlHelperExtensions.cs
+2021-05-07 09:51:32.148 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\IAppBuilderExtensions.cs
+2021-05-07 09:51:32.160 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\ServiceConfigurationContextExtensions.cs
+2021-05-07 09:51:32.169 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\StringExtensions.cs
+2021-05-07 09:51:32.180 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:51:32.192 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlResolverExtensions.cs
+2021-05-07 09:51:32.202 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Identity\ChallengeResult.cs
+2021-05-07 09:51:32.217 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Identity\SiteUser.cs
+2021-05-07 09:51:32.228 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Initialize.cs
+2021-05-07 09:51:32.237 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\ModelBinders\DecimalModelBinder.cs
+2021-05-07 09:51:32.246 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\ModelBinders\ModelBinderProvider.cs
+2021-05-07 09:51:32.259 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Settings\SettingsController.cs
+2021-05-07 09:51:32.268 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Settings\SettingsService.cs
+2021-05-07 09:51:32.280 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:51:32.289 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Customer\IdentityContactResult.cs
+2021-05-07 09:51:32.297 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Customer\Services\CustomerService.cs
+2021-05-07 09:51:32.315 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Customer\Services\ICustomerService.cs
+2021-05-07 09:51:32.326 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Extensions\InitializationEngineExtensions.cs
+2021-05-07 09:51:32.334 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Extensions\LineItemExtensions.cs
+2021-05-07 09:51:32.346 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\GiftCard\GiftCardManagerController.cs
+2021-05-07 09:51:32.358 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Initialize.cs
+2021-05-07 09:51:32.374 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddCustomers.cs
+2021-05-07 09:51:32.383 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddMarkets.cs
+2021-05-07 09:51:32.407 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddPaymentMethods.cs
+2021-05-07 09:51:32.417 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddPromotions.cs
+2021-05-07 09:51:32.442 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddShippingMethods.cs
+2021-05-07 09:51:32.452 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddTaxes.cs
+2021-05-07 09:51:32.491 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddWarehouses.cs
+2021-05-07 09:51:32.505 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Marketing\SingleUseCouponController.cs
+2021-05-07 09:51:32.529 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Markets\AJAXLocalizationFilterAttribute.cs
+2021-05-07 09:51:32.548 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\NavigationAuthorizeAttribute.cs
+2021-05-07 09:51:32.566 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Api\AuthorizedApiController.cs
+2021-05-07 09:51:32.580 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Api\PublicApiController.cs
+2021-05-07 09:51:32.598 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\AssetsDownloadLinksBlock\AssetsDownloadLinksBlockController.cs
+2021-05-07 09:51:32.612 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\BreadcrumbBlock\BreadcrumbBlockController.cs
+2021-05-07 09:51:32.634 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\BreadcrumbBlock\BreadcrumbBlockViewModel.cs
+2021-05-07 09:51:32.656 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\CarouselBlock\CarouselBlockController.cs
+2021-05-07 09:51:32.674 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\CategoryBlock\CategoryBlockController.cs
+2021-05-07 09:51:32.686 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\CommentsBlock\CommentsBlockController.cs
+2021-05-07 09:51:32.701 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\DefaultBlockController.cs
+2021-05-07 09:51:32.711 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\ElevatedRoleBlock\ElevatedRoleBlockController.cs
+2021-05-07 09:51:32.729 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\FeedBlock\FeedBlockController.cs
+2021-05-07 09:51:32.739 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlockController.cs
+2021-05-07 09:51:32.751 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\GroupCreationBlock\GroupCreationBlockController.cs
+2021-05-07 09:51:32.769 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\LikeButtonBlock\LikeButtonBlockController.cs
+2021-05-07 09:51:32.783 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\MembershipAffiliationBlock\MembershipAffiliationBlockController.cs
+2021-05-07 09:51:32.797 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\MembershipDisplayBlock\MembershipDisplayBlockController.cs
+2021-05-07 09:51:32.812 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\NavigationBlock\NavigationBlockController.cs
+2021-05-07 09:51:32.827 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\NavigationBlock\NavigationBlockViewModel.cs
+2021-05-07 09:51:32.840 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\OrderSearchBlock\OrderSearchBlockController.cs
+2021-05-07 09:51:32.861 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\PageListBlock\PageListBlockController.cs
+2021-05-07 09:51:32.872 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\ProductHeroBlock\ProductHeroBlockController.cs
+2021-05-07 09:51:32.886 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\RatingBlock\RatingBlockController.cs
+2021-05-07 09:51:32.900 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\RssReaderBlock\RssReaderBlockController.cs
+2021-05-07 09:51:32.913 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\SubscriptionBlock\SubscriptionBlockController.cs
+2021-05-07 09:51:32.924 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blog\BlogCommentBlock\BlogCommentBlockController.cs
+2021-05-07 09:51:32.941 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blog\BlogItemPage\BlogItemPageController.cs
+2021-05-07 09:51:32.953 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blog\BlogListPage\BlogListPageController.cs
+2021-05-07 09:51:32.971 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Bundle\BundleController.cs
+2021-05-07 09:51:32.981 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\CatalogContentControllerBase.cs
+2021-05-07 09:51:32.993 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\CatalogEntryViewModelFactory.cs
+2021-05-07 09:51:33.006 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProductController.cs
+2021-05-07 09:51:33.018 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Package\PackageController.cs
+2021-05-07 09:51:33.034 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductController.cs
+2021-05-07 09:51:33.053 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductPartialController.cs
+2021-05-07 09:51:33.064 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductViewModelBase.cs
+2021-05-07 09:51:33.073 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Variation\VariationController.cs
+2021-05-07 09:51:33.091 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Category\StandardCategoryController.cs
+2021-05-07 09:51:33.100 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:51:33.118 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\ConfirmationMail\OrderConfirmationMailController.cs
+2021-05-07 09:51:33.136 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Payments\GenericCreditCardPaymentOption.cs
+2021-05-07 09:51:33.145 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Payments\GiftCardPaymentOption.cs
+2021-05-07 09:51:33.154 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Payments\PaymentModelBinderProvider.cs
+2021-05-07 09:51:33.171 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Payments\PaymentOptionViewModelBinder.cs
+2021-05-07 09:51:33.182 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Payments\PaymentService.cs
+2021-05-07 09:51:33.195 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Services\AnonymousPurchaseValidation.cs
+2021-05-07 09:51:33.206 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Services\AuthenticatedPurchaseValidation.cs
+2021-05-07 09:51:33.218 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Services\CartViewModelFactory.cs
+2021-05-07 09:51:33.247 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Services\CheckoutService.cs
+2021-05-07 09:51:33.264 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\Services\PurchaseValidation.cs
+2021-05-07 09:51:33.279 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\ViewModels\CheckoutViewModel.cs
+2021-05-07 09:51:33.290 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\ViewModels\CheckoutViewModelFactory.cs
+2021-05-07 09:51:33.304 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\ViewModels\MultiShipmentViewModelFactory.cs
+2021-05-07 09:51:33.318 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Collection\CollectionPageController.cs
+2021-05-07 09:51:33.330 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Community\CommunittyPageController.cs
+2021-05-07 09:51:33.346 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Events\CalendarBlock\CalendarBlockController.cs
+2021-05-07 09:51:33.362 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Events\CalendarEvent\CalendarEventController.cs
+2021-05-07 09:51:33.379 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderController.cs
+2021-05-07 09:51:33.392 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderViewModelFactory.cs
+2021-05-07 09:51:33.402 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Home\HomeController.cs
+2021-05-07 09:51:33.412 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\LandingPages\LandingPage\LandingPageController.cs
+2021-05-07 09:51:33.426 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\LandingPages\ThreeColumnLandingPage\ThreeColumnLandingPageController.cs
+2021-05-07 09:51:33.441 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\LandingPages\TwoColumnLandingPage\TwoColumnLandingPageController.cs
+2021-05-07 09:51:33.451 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\Blocks\FilterActivitiesBlock.cs
+2021-05-07 09:51:33.462 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\LocationItemPage\LocationItemPageController.cs
+2021-05-07 09:51:33.485 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\LocationListPage\LocationListPageController.cs
+2021-05-07 09:51:33.496 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\LocationsPartialRouting.cs
+2021-05-07 09:51:33.506 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\TagPage\TagPageController.cs
+2021-05-07 09:51:33.517 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\TagsPartialRouting.cs
+2021-05-07 09:51:33.530 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Login\UserController.cs
+2021-05-07 09:51:33.543 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\CurrencyController.cs
+2021-05-07 09:51:33.560 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\CurrencyViewModel.cs
+2021-05-07 09:51:33.571 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\LanguageController.cs
+2021-05-07 09:51:33.581 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\LanguageViewModel.cs
+2021-05-07 09:51:33.596 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\MarketController.cs
+2021-05-07 09:51:33.606 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Media\MediaController.cs
+2021-05-07 09:51:33.619 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\AddressBook\AddressBookController.cs
+2021-05-07 09:51:33.635 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\Bookmarks\BookmarksController.cs
+2021-05-07 09:51:33.648 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\CreditCard\CreditCardController.cs
+2021-05-07 09:51:33.658 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\CreditCard\CreditCardModel.cs
+2021-05-07 09:51:33.685 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\GiftCardPage\GiftCardPageController.cs
+2021-05-07 09:51:33.694 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\IdentityControllerBase.cs
+2021-05-07 09:51:33.708 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\MyAccountNavigationController.cs
+2021-05-07 09:51:33.721 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderConfirmation\OrderConfirmationController.cs
+2021-05-07 09:51:33.733 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderDetails\OrderDetailsController.cs
+2021-05-07 09:51:33.744 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderHistoryBlock\OrderHistoryBlockController.cs
+2021-05-07 09:51:33.763 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderHistory\OrderHistoryController.cs
+2021-05-07 09:51:33.774 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderHistory\OrderHistoryViewModel.cs
+2021-05-07 09:51:33.784 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\ProfilePage\ProfilePageController.cs
+2021-05-07 09:51:33.798 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\ResetPassword\ResetPasswordController.cs
+2021-05-07 09:51:33.807 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\SubscriptionDetail\SubscriptionDetailController.cs
+2021-05-07 09:51:33.819 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\SubscriptionHistory\SubscriptionHistoryController.cs
+2021-05-07 09:51:33.834 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\B2BNavigationController.cs
+2021-05-07 09:51:33.853 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Budgeting\BudgetingController.cs
+2021-05-07 09:51:33.864 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Orders\OrdersController.cs
+2021-05-07 09:51:33.875 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Organization\OrganizationController.cs
+2021-05-07 09:51:33.891 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\QuickOrderBlock\QuickOrderBlockController.cs
+2021-05-07 09:51:33.903 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\QuickOrderPage\QuickOrderPageController.cs
+2021-05-07 09:51:33.918 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\SubOrganization\SubOrganizationController.cs
+2021-05-07 09:51:33.934 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Users\UsersController.cs
+2021-05-07 09:51:33.944 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:51:33.955 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\OrderPadsPage\OrderPadsPageController.cs
+2021-05-07 09:51:33.966 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\SharedCart\SharedCartController.cs
+2021-05-07 09:51:33.983 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\Wishlist\WishlistController.cs
+2021-05-07 09:51:33.998 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NewProducts\NewProductsPageController.cs
+2021-05-07 09:51:34.008 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\People\PersonItemPage\PersonItemPageController.cs
+2021-05-07 09:51:34.020 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\People\PersonListPage\PersonListPageController.cs
+2021-05-07 09:51:34.039 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\CatalogPartialPreviewController.cs
+2021-05-07 09:51:34.048 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PagePartialPreviewController.cs
+2021-05-07 09:51:34.057 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PartialViewDisplayChannel.cs
+2021-05-07 09:51:34.073 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PreviewController.cs
+2021-05-07 09:51:34.085 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PreviewControllerHelper.cs
+2021-05-07 09:51:34.101 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Recommendations\RecommendationsController.cs
+2021-05-07 09:51:34.119 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Recommendations\WidgetBlock\WidgetBlockController.cs
+2021-05-07 09:51:34.127 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Sales\SalesPageController.cs
+2021-05-07 09:51:34.139 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Category\CategoryController.cs
+2021-05-07 09:51:34.150 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Category\CategoryPartialController.cs
+2021-05-07 09:51:34.161 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\ContentSearchViewModel.cs
+2021-05-07 09:51:34.174 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\FilterOptionModelBinderProvider.cs
+2021-05-07 09:51:34.192 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\FilterOptionViewModel.cs
+2021-05-07 09:51:34.203 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\FilterOptionViewModelBinder.cs
+2021-05-07 09:51:34.214 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\ProductSearchBlock\ProductSearchBlockController.cs
+2021-05-07 09:51:34.235 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SearchService.cs
+2021-05-07 09:51:34.245 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SearchViewModelFactory.cs
+2021-05-07 09:51:34.260 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Search\SearchController.cs
+2021-05-07 09:51:34.276 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SortOrder.cs
+2021-05-07 09:51:34.287 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Shared\ContentViewModel.cs
+2021-05-07 09:51:34.297 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Shared\IContentViewModel.cs
+2021-05-07 09:51:34.311 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Shared\MailService.cs
+2021-05-07 09:51:34.323 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\StandardPage\StandardPageController.cs
+2021-05-07 09:51:34.343 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Stores\StorePageController.cs
+2021-05-07 09:51:34.353 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Find\Facets\Config\EnumHelpers.cs
+2021-05-07 09:51:34.362 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Find\Facets\Config\SelectOneEnumAttribute.cs
+2021-05-07 09:51:34.375 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Find\GeoPosition.cs
+2021-05-07 09:51:34.387 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Global.asax.cs
+2021-05-07 09:51:34.402 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:51:34.415 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\ImageUrlHelpers.cs
+2021-05-07 09:51:34.431 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\OpenGraphHelpers.cs
+2021-05-07 09:51:34.443 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\WebPHelper.cs
+2021-05-07 09:51:34.465 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\FeaturesViewEngine.cs
+2021-05-07 09:51:34.477 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\FoundationContentAreaRenderer.cs
+2021-05-07 09:51:34.490 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\MobileChannel.cs
+2021-05-07 09:51:34.500 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\WebChannel.cs
+2021-05-07 09:51:34.516 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Extensions.cs
+2021-05-07 09:51:34.525 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\InitializeSite.cs
+2021-05-07 09:51:34.537 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Plugins\GoogleAnalyticsUserIdPluginScript.cs
+2021-05-07 09:51:34.548 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\PowerSlices\GeneralSlices.cs
+2021-05-07 09:51:34.569 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Personalization\CmsTrackingService.cs
+2021-05-07 09:51:34.581 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Personalization\CommerceTrackingService.cs
+2021-05-07 09:51:34.594 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Personalization\ICommerceTrackingService.cs
+2021-05-07 09:51:34.606 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Personalization\RecommendationsExtensions.cs
+2021-05-07 09:51:34.618 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Social\IPrincipalExtensions.cs
+2021-05-07 09:51:34.627 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Social\Moderation\ModerationController.cs
+2021-05-07 09:51:34.645 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Social\Repositories\Common\UserRepository.cs
+2021-05-07 09:51:34.659 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Startup.old.cs
+2021-05-07 09:51:36.357 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\DependencyInjection\StructureMapResolver.cs
+2021-05-07 09:51:36.364 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\HtmlHelperExtensions.cs
+2021-05-07 09:51:36.380 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\IAppBuilderExtensions.cs
+2021-05-07 09:51:36.391 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\ServiceConfigurationContextExtensions.cs
+2021-05-07 09:51:36.401 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:51:36.416 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Identity\ChallengeResult.cs
+2021-05-07 09:51:36.430 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Initialize.cs
+2021-05-07 09:51:36.448 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Customer\Services\CustomerService.cs
+2021-05-07 09:51:36.463 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Customer\Services\ICustomerService.cs
+2021-05-07 09:51:36.480 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Install\Steps\AddCustomers.cs
+2021-05-07 09:51:36.494 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Api\PublicApiController.cs
+2021-05-07 09:51:36.519 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\LikeButtonBlock\LikeButtonBlockController.cs
+2021-05-07 09:51:36.530 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:51:36.544 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\ResetPassword\ResetPasswordController.cs
+2021-05-07 09:51:36.558 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Users\UsersController.cs
+2021-05-07 09:51:36.573 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PreviewControllerHelper.cs
+2021-05-07 09:51:36.588 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SearchViewModelFactory.cs
+2021-05-07 09:51:36.599 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Search\SearchController.cs
+2021-05-07 09:51:36.614 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Shared\MailService.cs
+2021-05-07 09:51:36.639 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Global.asax.cs
+2021-05-07 09:51:36.651 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:51:36.662 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\OpenGraphHelpers.cs
+2021-05-07 09:51:36.679 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\MobileChannel.cs
+2021-05-07 09:51:36.693 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\InitializeSite.cs
+2021-05-07 09:51:36.703 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Startup.old.cs
+2021-05-07 09:51:38.687 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\DependencyInjection\StructureMapResolver.cs
+2021-05-07 09:51:38.700 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\IAppBuilderExtensions.cs
+2021-05-07 09:51:38.711 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:51:38.725 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Identity\ChallengeResult.cs
+2021-05-07 09:51:38.737 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Initialize.cs
+2021-05-07 09:51:38.774 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Customer\Services\CustomerService.cs
+2021-05-07 09:51:38.791 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Api\PublicApiController.cs
+2021-05-07 09:51:38.801 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Users\UsersController.cs
+2021-05-07 09:51:38.818 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SearchViewModelFactory.cs
+2021-05-07 09:51:38.829 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Global.asax.cs
+2021-05-07 09:51:38.850 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:51:38.864 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\InitializeSite.cs
+2021-05-07 09:51:38.884 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Startup.old.cs
+2021-05-07 09:51:40.492 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\IAppBuilderExtensions.cs
+2021-05-07 09:51:40.504 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Initialize.cs
+2021-05-07 09:51:40.513 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Users\UsersController.cs
+2021-05-07 09:51:42.207 +07:00 [INF] Diagnostic UA0001 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\IAppBuilderExtensions.cs
+2021-05-07 09:51:44.027 +07:00 [INF] Upgrade step Apply fix for UA0001: ASP.NET Core projects should not reference ASP.NET namespaces applied successfully
+2021-05-07 09:52:10.410 +07:00 [INF] Applying upgrade step Apply fix for UA0002: HtmlString types should be replaced with Microsoft.AspNetCore.Html.HtmlString
+2021-05-07 09:52:10.820 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Shared\ContentViewModel.cs
+2021-05-07 09:52:10.852 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Shared\IContentViewModel.cs
+2021-05-07 09:52:10.909 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\OpenGraphHelpers.cs
+2021-05-07 09:52:10.957 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:11.034 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:11.054 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\HtmlHelperExtensions.cs
+2021-05-07 09:52:12.757 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:12.831 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:14.729 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:14.793 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:16.465 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:16.518 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:18.370 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:18.449 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:20.097 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:20.177 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:21.823 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:21.880 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:23.750 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:23.799 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:25.588 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:25.658 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:27.455 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:27.532 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:29.318 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:29.384 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:31.160 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:31.199 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:32.946 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:32.981 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:35.041 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:35.080 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:37.183 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:37.328 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:39.241 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:39.275 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:41.080 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:41.132 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:42.845 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:42.891 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:44.702 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:44.776 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:46.741 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:46.777 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:49.144 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:49.181 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:51.966 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:52:52.036 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:54.096 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:56.005 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:57.696 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:52:59.355 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:53:01.196 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:53:02.994 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:53:04.857 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:53:06.853 +07:00 [INF] Diagnostic UA0002 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:53:08.787 +07:00 [INF] Upgrade step Apply fix for UA0002: HtmlString types should be replaced with Microsoft.AspNetCore.Html.HtmlString applied successfully
+2021-05-07 09:55:03.266 +07:00 [INF] Applying upgrade step Apply fix for UA0003: ActionResult types should come from the Microsoft.AspNetCore.Mvc namespace
+2021-05-07 09:55:03.290 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Identity\ChallengeResult.cs
+2021-05-07 09:55:03.313 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\NavigationAuthorizeAttribute.cs
+2021-05-07 09:55:03.344 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\AssetsDownloadLinksBlock\AssetsDownloadLinksBlockController.cs
+2021-05-07 09:55:03.394 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Api\PublicApiController.cs
+2021-05-07 09:55:03.416 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\BreadcrumbBlock\BreadcrumbBlockController.cs
+2021-05-07 09:55:03.462 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\BulkUpdateController.cs
+2021-05-07 09:55:03.484 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\SubscriptionBlock\SubscriptionBlockController.cs
+2021-05-07 09:55:03.521 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\RssReaderBlock\RssReaderBlockController.cs
+2021-05-07 09:55:03.537 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Settings\SettingsController.cs
+2021-05-07 09:55:03.559 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\CarouselBlock\CarouselBlockController.cs
+2021-05-07 09:55:03.578 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\CategoryBlock\CategoryBlockController.cs
+2021-05-07 09:55:03.621 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\RatingBlock\RatingBlockController.cs
+2021-05-07 09:55:03.642 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Variation\VariationController.cs
+2021-05-07 09:55:03.708 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blog\BlogListPage\BlogListPageController.cs
+2021-05-07 09:55:03.731 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\ProductHeroBlock\ProductHeroBlockController.cs
+2021-05-07 09:55:03.770 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blog\BlogCommentBlock\BlogCommentBlockController.cs
+2021-05-07 09:55:03.876 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:55:03.897 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blog\BlogItemPage\BlogItemPageController.cs
+2021-05-07 09:55:03.940 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\PageListBlock\PageListBlockController.cs
+2021-05-07 09:55:03.962 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductPartialController.cs
+2021-05-07 09:55:03.990 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductController.cs
+2021-05-07 09:55:04.021 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Package\PackageController.cs
+2021-05-07 09:55:04.095 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\OrderSearchBlock\OrderSearchBlockController.cs
+2021-05-07 09:55:04.119 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Category\StandardCategoryController.cs
+2021-05-07 09:55:04.148 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\NavigationBlock\NavigationBlockController.cs
+2021-05-07 09:55:04.172 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\MembershipDisplayBlock\MembershipDisplayBlockController.cs
+2021-05-07 09:55:04.194 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\MembershipAffiliationBlock\MembershipAffiliationBlockController.cs
+2021-05-07 09:55:04.227 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\LikeButtonBlock\LikeButtonBlockController.cs
+2021-05-07 09:55:04.248 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\GroupCreationBlock\GroupCreationBlockController.cs
+2021-05-07 09:55:04.279 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\GroupAdmissionBlock\GroupAdmissionBlockController.cs
+2021-05-07 09:55:04.308 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\FeedBlock\FeedBlockController.cs
+2021-05-07 09:55:04.330 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\DynamicCatalogContent\DynamicProduct\DynamicProductController.cs
+2021-05-07 09:55:04.352 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\DefaultBlockController.cs
+2021-05-07 09:55:04.386 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\ElevatedRoleBlock\ElevatedRoleBlockController.cs
+2021-05-07 09:55:04.411 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\CommentsBlock\CommentsBlockController.cs
+2021-05-07 09:55:04.427 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Collection\CollectionPageController.cs
+2021-05-07 09:55:04.465 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\ConfirmationMail\OrderConfirmationMailController.cs
+2021-05-07 09:55:04.493 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\CatalogContentControllerBase.cs
+2021-05-07 09:55:04.514 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Community\CommunittyPageController.cs
+2021-05-07 09:55:04.541 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Bundle\BundleController.cs
+2021-05-07 09:55:04.571 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Events\CalendarEvent\CalendarEventController.cs
+2021-05-07 09:55:04.591 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Home\HomeController.cs
+2021-05-07 09:55:04.616 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Events\CalendarBlock\CalendarBlockController.cs
+2021-05-07 09:55:04.651 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderController.cs
+2021-05-07 09:55:04.671 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\LandingPages\TwoColumnLandingPage\TwoColumnLandingPageController.cs
+2021-05-07 09:55:04.703 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Marketing\SingleUseCouponController.cs
+2021-05-07 09:55:04.724 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\LandingPages\ThreeColumnLandingPage\ThreeColumnLandingPageController.cs
+2021-05-07 09:55:04.763 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\LandingPages\LandingPage\LandingPageController.cs
+2021-05-07 09:55:04.786 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\GiftCard\GiftCardManagerController.cs
+2021-05-07 09:55:04.805 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Social\Moderation\ModerationController.cs
+2021-05-07 09:55:04.846 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\LocationItemPage\LocationItemPageController.cs
+2021-05-07 09:55:04.879 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\MarketController.cs
+2021-05-07 09:55:04.906 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Media\MediaController.cs
+2021-05-07 09:55:04.940 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\LanguageController.cs
+2021-05-07 09:55:04.966 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\CurrencyController.cs
+2021-05-07 09:55:04.988 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\LocationListPage\LocationListPageController.cs
+2021-05-07 09:55:05.009 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\SubscriptionHistory\SubscriptionHistoryController.cs
+2021-05-07 09:55:05.041 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Login\UserController.cs
+2021-05-07 09:55:05.065 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\Bookmarks\BookmarksController.cs
+2021-05-07 09:55:05.091 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\ResetPassword\ResetPasswordController.cs
+2021-05-07 09:55:05.131 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\SubscriptionDetail\SubscriptionDetailController.cs
+2021-05-07 09:55:05.158 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Locations\TagPage\TagPageController.cs
+2021-05-07 09:55:05.197 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\ProfilePage\ProfilePageController.cs
+2021-05-07 09:55:05.229 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\AddressBook\AddressBookController.cs
+2021-05-07 09:55:05.286 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Users\UsersController.cs
+2021-05-07 09:55:05.305 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\GiftCardPage\GiftCardPageController.cs
+2021-05-07 09:55:05.330 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\IdentityControllerBase.cs
+2021-05-07 09:55:05.393 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\Wishlist\WishlistController.cs
+2021-05-07 09:55:05.424 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\SubOrganization\SubOrganizationController.cs
+2021-05-07 09:55:05.465 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NewProducts\NewProductsPageController.cs
+2021-05-07 09:55:05.482 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\QuickOrderPage\QuickOrderPageController.cs
+2021-05-07 09:55:05.522 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\QuickOrderBlock\QuickOrderBlockController.cs
+2021-05-07 09:55:05.593 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderHistory\OrderHistoryController.cs
+2021-05-07 09:55:05.630 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PreviewControllerHelper.cs
+2021-05-07 09:55:05.653 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\CatalogPartialPreviewController.cs
+2021-05-07 09:55:05.674 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PagePartialPreviewController.cs
+2021-05-07 09:55:05.695 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Preview\PreviewController.cs
+2021-05-07 09:55:05.731 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderConfirmation\OrderConfirmationController.cs
+2021-05-07 09:55:05.762 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderHistoryBlock\OrderHistoryBlockController.cs
+2021-05-07 09:55:05.790 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\MyAccountNavigationController.cs
+2021-05-07 09:55:05.848 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderDetails\OrderDetailsController.cs
+2021-05-07 09:55:05.975 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:06.016 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\OrderPadsPage\OrderPadsPageController.cs
+2021-05-07 09:55:06.039 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Orders\OrdersController.cs
+2021-05-07 09:55:06.125 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Budgeting\BudgetingController.cs
+2021-05-07 09:55:06.150 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\CreditCard\CreditCardController.cs
+2021-05-07 09:55:06.202 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Recommendations\WidgetBlock\WidgetBlockController.cs
+2021-05-07 09:55:06.235 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\SharedCart\SharedCartController.cs
+2021-05-07 09:55:06.257 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\B2BNavigationController.cs
+2021-05-07 09:55:06.296 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Recommendations\RecommendationsController.cs
+2021-05-07 09:55:06.319 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Sales\SalesPageController.cs
+2021-05-07 09:55:06.385 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Search\SearchController.cs
+2021-05-07 09:55:06.405 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Category\CategoryPartialController.cs
+2021-05-07 09:55:06.430 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\Category\CategoryController.cs
+2021-05-07 09:55:06.451 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\People\PersonItemPage\PersonItemPageController.cs
+2021-05-07 09:55:06.492 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\StandardPage\StandardPageController.cs
+2021-05-07 09:55:06.515 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\People\PersonListPage\PersonListPageController.cs
+2021-05-07 09:55:06.542 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Stores\StorePageController.cs
+2021-05-07 09:55:06.588 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyOrganization\Organization\OrganizationController.cs
+2021-05-07 09:55:06.634 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\ProductSearchBlock\ProductSearchBlockController.cs
+2021-05-07 09:55:08.398 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Bundle\BundleController.cs
+2021-05-07 09:55:08.424 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\CatalogContentControllerBase.cs
+2021-05-07 09:55:08.452 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Package\PackageController.cs
+2021-05-07 09:55:08.492 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductController.cs
+2021-05-07 09:55:08.602 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:55:08.625 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Markets\CurrencyController.cs
+2021-05-07 09:55:08.766 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:08.835 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\MyAccount\OrderHistory\OrderHistoryController.cs
+2021-05-07 09:55:08.856 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Stores\StorePageController.cs
+2021-05-07 09:55:08.936 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\Wishlist\WishlistController.cs
+2021-05-07 09:55:10.613 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\CatalogContent\Product\ProductController.cs
+2021-05-07 09:55:10.693 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\Wishlist\WishlistController.cs
+2021-05-07 09:55:10.818 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:10.969 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:55:12.706 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:14.356 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:15.994 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:17.597 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:19.190 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:20.797 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:22.395 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:24.420 +07:00 [INF] Diagnostic UA0003 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\NamedCarts\DefaultCart\DefaultCartController.cs
+2021-05-07 09:55:26.365 +07:00 [INF] Upgrade step Apply fix for UA0003: ActionResult types should come from the Microsoft.AspNetCore.Mvc namespace applied successfully
+2021-05-07 09:55:44.803 +07:00 [INF] Applying upgrade step Apply fix for UA0004: Filter types should be used from the Microsoft.AspNetCore.Mvc.Filters namespace
+2021-05-07 09:55:44.819 +07:00 [INF] Diagnostic UA0004 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Markets\AJAXLocalizationFilterAttribute.cs
+2021-05-07 09:55:44.849 +07:00 [INF] Diagnostic UA0004 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\NavigationAuthorizeAttribute.cs
+2021-05-07 09:55:46.332 +07:00 [INF] Upgrade step Apply fix for UA0004: Filter types should be used from the Microsoft.AspNetCore.Mvc.Filters namespace applied successfully
+2021-05-07 09:55:50.074 +07:00 [INF] Applying upgrade step Apply fix for UA0005: Do not use HttpContext.Current
+2021-05-07 09:55:50.866 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:55:50.943 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Find\GeoPosition.cs
+2021-05-07 09:55:51.017 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\PowerSlices\GeneralSlices.cs
+2021-05-07 09:55:51.082 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Plugins\GoogleAnalyticsUserIdPluginScript.cs
+2021-05-07 09:55:51.139 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:55:51.219 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderViewModelFactory.cs
+2021-05-07 09:55:51.275 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\ContentSearchViewModel.cs
+2021-05-07 09:55:51.341 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\Extensions\LineItemExtensions.cs
+2021-05-07 09:55:51.403 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:55:51.475 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Initialize.cs
+2021-05-07 09:55:51.681 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SearchService.cs
+2021-05-07 09:55:53.607 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:55:53.663 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:55:53.747 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Find\GeoPosition.cs
+2021-05-07 09:55:53.853 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderViewModelFactory.cs
+2021-05-07 09:55:53.980 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Plugins\GoogleAnalyticsUserIdPluginScript.cs
+2021-05-07 09:55:54.140 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\PowerSlices\GeneralSlices.cs
+2021-05-07 09:55:54.243 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:55:54.343 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\ContentSearchViewModel.cs
+2021-05-07 09:55:54.549 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\SearchService.cs
+2021-05-07 09:55:56.345 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:55:56.397 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:55:56.456 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Search\ContentSearchViewModel.cs
+2021-05-07 09:55:56.537 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderViewModelFactory.cs
+2021-05-07 09:55:58.289 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:55:58.343 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:55:58.431 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Header\HeaderViewModelFactory.cs
+2021-05-07 09:55:59.954 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:56:00.018 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:56:01.482 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\TrackingCookieManager.cs
+2021-05-07 09:56:01.555 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:56:03.169 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:56:04.710 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:56:06.288 +07:00 [INF] Diagnostic UA0005 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\CookieService.cs
+2021-05-07 09:56:07.713 +07:00 [INF] Upgrade step Apply fix for UA0005: Do not use HttpContext.Current applied successfully
+2021-05-07 09:56:11.395 +07:00 [INF] Applying upgrade step Apply fix for UA0007: HtmlHelper should be replaced with IHtmlHelper
+2021-05-07 09:56:11.451 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\OpenGraphHelpers.cs
+2021-05-07 09:56:11.514 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:11.541 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\FoundationContentAreaRenderer.cs
+2021-05-07 09:56:11.564 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\HtmlHelperExtensions.cs
+2021-05-07 09:56:13.152 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:13.182 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\FoundationContentAreaRenderer.cs
+2021-05-07 09:56:13.218 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\OpenGraphHelpers.cs
+2021-05-07 09:56:13.244 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\HtmlHelperExtensions.cs
+2021-05-07 09:56:14.723 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Infrastructure\Display\FoundationContentAreaRenderer.cs
+2021-05-07 09:56:14.781 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:16.271 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:17.864 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:19.399 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:20.915 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:22.482 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:24.071 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:25.560 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:27.078 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:28.703 +07:00 [INF] Diagnostic UA0007 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:56:30.512 +07:00 [INF] Upgrade step Apply fix for UA0007: HtmlHelper should be replaced with IHtmlHelper applied successfully
+2021-05-07 09:56:39.858 +07:00 [INF] Applying upgrade step Apply fix for UA0008: UrlHelper should be replaced with IUrlHelper
+2021-05-07 09:56:39.936 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:56:39.962 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Commerce\NavigationAuthorizeAttribute.cs
+2021-05-07 09:56:40.010 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:40.029 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\ImageUrlHelpers.cs
+2021-05-07 09:56:40.048 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\BreadcrumbBlock\BreadcrumbBlockViewModel.cs
+2021-05-07 09:56:40.081 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Blocks\NavigationBlock\NavigationBlockViewModel.cs
+2021-05-07 09:56:41.569 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:41.648 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Features\Checkout\CheckoutController.cs
+2021-05-07 09:56:43.182 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:44.650 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:46.126 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:47.683 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:49.256 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:50.721 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:52.121 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:53.760 +07:00 [INF] Diagnostic UA0008 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Cms\Extensions\UrlHelpers.cs
+2021-05-07 09:56:55.331 +07:00 [INF] Upgrade step Apply fix for UA0008: UrlHelper should be replaced with IUrlHelper applied successfully
+2021-05-07 09:57:00.842 +07:00 [INF] Applying upgrade step Apply fix for UA0009: HelperResult should be replaced with Microsoft.AspNetCore.Mvc.Razor.HelperResult
+2021-05-07 09:57:00.923 +07:00 [INF] Diagnostic UA0009 fixed in C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Helpers\HtmlHelpers.cs
+2021-05-07 09:57:02.587 +07:00 [INF] Applying upgrade step Update C# source
+2021-05-07 09:57:05.276 +07:00 [INF] Upgrade step Update C# source applied successfully
+2021-05-07 09:57:05.278 +07:00 [INF] Upgrade step Apply fix for UA0009: HelperResult should be replaced with Microsoft.AspNetCore.Mvc.Razor.HelperResult applied successfully
+2021-05-07 09:57:07.476 +07:00 [INF] Initializing upgrade step Move to next project
+2021-05-07 09:57:10.290 +07:00 [INF] Applying upgrade step Move to next project
+2021-05-07 09:57:10.291 +07:00 [INF] Upgrade step Move to next project applied successfully
+2021-05-07 09:57:12.866 +07:00 [INF] Initializing upgrade step Select project to upgrade
+2021-05-07 09:57:12.989 +07:00 [INF] No projects need upgraded for entry point C:\Projects\NetCore\Foundation Mvc Commerce\Src\Foundation\Foundation.csproj
+2021-05-07 09:57:12.992 +07:00 [INF] Initializing upgrade step Finalize upgrade
+2021-05-07 09:57:15.219 +07:00 [INF] Applying upgrade step Finalize upgrade
+2021-05-07 09:57:15.221 +07:00 [INF] Upgrade step Finalize upgrade applied successfully
+2021-05-07 09:57:17.474 +07:00 [INF] Upgrade has completed. Please review any changes.
+2021-05-07 09:57:17.476 +07:00 [INF] Saving upgrade progress file at C:\Projects\NetCore\Foundation Mvc Commerce\.upgrade-assistant

@@ -2,14 +2,14 @@
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
+using Foundation.Infrastructure.Cms;
 using Foundation.Social.Models.Comments;
 using Foundation.Social.Repositories.Comments;
 using Foundation.Social.Repositories.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Blog.BlogCommentBlock
 {

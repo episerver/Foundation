@@ -36,7 +36,8 @@
     <div class="blog__gallery">
         <div class="blog__row">
             <div class="blog__large-col">
-                @Html.Action("Preview", "StandardCategory", new { pageData = firstBlog })
+                @(await Component.InvokeAsync("StandardCategory", new { pageData = firstBlog }))
+                @*@Html.Action("Preview", "StandardCategory", new { pageData = firstBlog })*@
             </div>
             @foreach (var list in listGridBlogs)
             {
@@ -44,7 +45,7 @@
                     <div class="blog__grid">
                         @foreach (var page in list)
                         {
-                            @Html.Action("Preview", "StandardCategory", new { pageData = page })
+                            @(await Component.InvokeAsync("StandardCategory", new { pageData = firstBlog }))
                         }
                     </div>
                 </div>
@@ -52,7 +53,7 @@
             @foreach (var page in listLargeBlogs)
             {
                 <div class="blog__large-col">
-                    @Html.Action("Preview", "StandardCategory", new { pageData = page })
+                    @(await Component.InvokeAsync("StandardCategory", new { pageData = firstBlog }))
                 </div>
             }
         </div>
@@ -86,9 +87,9 @@
                 </li>
                 @for (int page = 1; page <= Model.SearchResults.Pagination.TotalPage; page++)
                 {
-                    <li class="@(Model.SearchResults.Pagination.Page == page ? "active" : "") jsPaginateBlog " data="@page">
+                    <li class="@(Model.SearchResults.Pagination.Page == page ? "active" : "") jsPaginateBlog " data="@(page)">
                         <a href="javascript:void(0)">
-                            @page.ToString()
+                            @(page).ToString()
                         </a>
                     </li>
                 }

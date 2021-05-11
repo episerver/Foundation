@@ -11,7 +11,7 @@ namespace Foundation.Features.Locations.TagPage
         GUID = "fc83ded1-be4a-40fe-99b2-9ab739b018d5",
         Description = "Used to define a Tag",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-27.png")]
+    [ImageUrl("/icons/cms/pages/cms-icon-page-27.png")]
     public class TagPage : FoundationPageData
     {
         [Display(GroupName = SystemTabNames.Content, Order = 10)]

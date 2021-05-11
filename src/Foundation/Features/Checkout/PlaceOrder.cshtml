@@ -46,11 +46,11 @@
 
                             @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
                             {
-                                var viewData = new ViewDataDictionary();
+                                var viewData = new ViewDataDictionary(ViewData);
                                 viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
                                 <div class="checkout__cart-item">
                                     <div class="row">
-                                        @Html.Partial("~/Features/NamedCarts/DefaultCart/_ItemTemplate.cshtml", cartItem, viewData)
+                                        @await Html.PartialAsync("~/Features/NamedCarts/DefaultCart/_ItemTemplate.cshtml", cartItem, viewData)
                                     </div>
                                 </div>
                             }

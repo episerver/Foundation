@@ -15,7 +15,7 @@
         <div class="welcome-msg">
             <strong>@Html.TranslateFallback("/Dashboard/Labels/Hello", "Hello"), @Model.CustomerContact.FirstName @Model.CustomerContact.LastName!</strong>
             <div class="row">
-                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
                 {
                     <div class="col-12">
                         @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -61,7 +61,7 @@
                                     <span class="title">Shipped</span>
                                     @foreach (var shippingAddress in order.ShippingAddresses)
                                     {
-                                        @Html.Partial("_Address", shippingAddress)
+                                        @await Html.PartialAsync("_Address", shippingAddress)
                                     }
                                 </div>
                             </div>
@@ -235,21 +235,21 @@
                     <p class="title">@Html.TranslateFallback("/Dashboard/Labels/PrimaryBillingAddress", "Primary Billing Address")</p>
                     @if (Model.Addresses.Any(x => x.BillingDefault))
                     {
-                        @Html.Partial("_Address", Model.Addresses.FirstOrDefault(x => x.BillingDefault))
+                        @await Html.PartialAsync("_Address", Model.Addresses.FirstOrDefault(x => x.BillingDefault))
                     }
                 </div>
                 <div class="col-sm-6">
                     <p class="title">@Html.TranslateFallback("/Dashboard/Labels/PrimaryShippingAddress", "Primary Shipping Address")</p>
                     @if (Model.Addresses.Any(x => x.ShippingDefault))
                     {
-                        @Html.Partial("_Address", Model.Addresses.FirstOrDefault(x => x.ShippingDefault))
+                        @await Html.PartialAsync("_Address", Model.Addresses.FirstOrDefault(x => x.ShippingDefault))
                     }
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
+@*<div class="row">
     <div class="col-12">
         @Html.PropertyFor(x => x.CurrentContent.MembershipAffiliation)
     </div>
@@ -258,4 +258,4 @@
     <div class="col-12">
         @Html.PropertyFor(x => x.CurrentContent.ActivityFeed)
     </div>
-</div>
+</div>*@

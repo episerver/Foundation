@@ -44,8 +44,8 @@ namespace Foundation.Features.CatalogContent
         private static readonly Lazy<IRelationRepository> RelationRepository =
             new Lazy<IRelationRepository>(() => ServiceLocator.Current.GetInstance<IRelationRepository>());
 
-        private static readonly Lazy<LanguageResolver> LanguageResolver =
-            new Lazy<LanguageResolver>(() => ServiceLocator.Current.GetInstance<LanguageResolver>());
+        private static readonly Lazy<IContentLanguageAccessor> ContentLanguageAccessor =
+            new Lazy<IContentLanguageAccessor>(() => ServiceLocator.Current.GetInstance<IContentLanguageAccessor>());
 
         private static readonly Lazy<ICurrentMarket> CurrentMarket =
             new Lazy<ICurrentMarket>(() => ServiceLocator.Current.GetInstance<ICurrentMarket>());
@@ -163,7 +163,7 @@ namespace Foundation.Features.CatalogContent
             if (product != null)
             {
                 return ContentLoader.Value
-                    .GetItems(product.GetVariants(RelationRepository.Value), LanguageResolver.Value.GetPreferredCulture())
+                    .GetItems(product.GetVariants(RelationRepository.Value), ContentLanguageAccessor.Value.Language)
                     .OfType<VariationContent>()
                     .Where(v => v.IsAvailableInCurrentMarket(CurrentMarket.Value) && !FilterPublished.Value.ShouldFilter(v))
                     .ToArray();

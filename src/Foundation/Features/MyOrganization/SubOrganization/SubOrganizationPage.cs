@@ -10,7 +10,7 @@ namespace Foundation.Features.MyOrganization.SubOrganization
         Description = "Manage a sub organization",
         AvailableInEditMode = false,
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/pages/elected.png")]
+    [ImageUrl("/icons/cms/pages/elected.png")]
     public class SubOrganizationPage : FoundationPageData, IDisableOPE
     {
     }

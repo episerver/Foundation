@@ -6,11 +6,10 @@ using EPiServer.Framework.Localization;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Identity;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.GiftCard;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.GiftCard;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
@@ -18,21 +17,23 @@ using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.NamedCarts;
 using Foundation.Features.Settings;
-using Foundation.Personalization;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
-using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Foundation.Infrastructure.Cms.Users;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Foundation.Features.Checkout
 {
     public class CheckoutController : PageController<CheckoutPage>
     {
+        private readonly IPageRouteHelper _pageRouteHelper;
         private readonly CheckoutViewModelFactory _checkoutViewModelFactory;
         private readonly OrderSummaryViewModelFactory _orderSummaryViewModelFactory;
         private readonly IOrderRepository _orderRepository;
@@ -54,7 +55,7 @@ namespace Foundation.Features.Checkout
         private readonly IGiftCardService _giftCardService;
         private readonly ISettingsService _settingsService;
 
-        public CheckoutController(
+        public CheckoutController(IPageRouteHelper pageRouteHelper,
             IOrderRepository orderRepository,
             CheckoutViewModelFactory checkoutViewModelFactory,
             ICartService cartService,
@@ -75,6 +76,7 @@ namespace Foundation.Features.Checkout
             IGiftCardService giftCardService,
             ISettingsService settingsService)
         {
+            _pageRouteHelper = pageRouteHelper;
             _orderRepository = orderRepository;
             _checkoutViewModelFactory = checkoutViewModelFactory;
             _cartService = cartService;
@@ -97,15 +99,15 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpGet]
-        [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult Index(CheckoutPage currentPage, int? isGuest)
+        //[OutputCache(Duration = 0, NoStore = true)]
+        public IActionResult Index(CheckoutPage currentPage, int? isGuest)
         {
             if (CartIsNullOrEmpty())
             {
                 return View("EmptyCart", new CheckoutMethodViewModel(currentPage));
             }
 
-            if (!Request.IsAuthenticated && (!isGuest.HasValue || isGuest.Value != 1))
+            if (!HttpContext.User.Identity.IsAuthenticated && (!isGuest.HasValue || isGuest.Value != 1))
             {
                 return RedirectToAction("CheckoutMethod", new { node = currentPage.ContentLink });
             }
@@ -133,7 +135,7 @@ namespace Foundation.Features.Checkout
                 {
                     viewModel.BillingAddressType = 2;
                 }
-                else if (Request.IsAuthenticated)
+                else if (HttpContext.User.Identity.IsAuthenticated)
                 {
                     viewModel.BillingAddressType = 1;
                 }
@@ -143,7 +145,7 @@ namespace Foundation.Features.Checkout
                 }
             }
 
-            var shippingAddressType = Request.IsAuthenticated ? 1 : 0;
+            var shippingAddressType = HttpContext.User.Identity.IsAuthenticated ? 1 : 0;
             for (var i = 0; i < viewModel.Shipments.Count; i++)
             {
                 if (shipmentBillingTypes != null && shipmentBillingTypes.Where(x => x.Key == "Shipment").Any(x => x.Value == i))
@@ -181,16 +183,16 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpGet]
-        [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult CheckoutMethod(CheckoutPage currentPage)
+        //[OutputCache(Duration = 0, NoStore = true)]
+        public IActionResult CheckoutMethod(CheckoutPage currentPage)
         {
             var viewModel = new CheckoutMethodViewModel(currentPage, _urlHelper.Action("Index", "Checkout"));
             return View("CheckoutMethod", viewModel);
         }
 
         [HttpGet]
-        [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult AddPayment(CheckoutPage currentPage)
+        //[OutputCache(Duration = 0, NoStore = true)]
+        public IActionResult AddPayment(CheckoutPage currentPage)
         {
             var viewModel = CreateCheckoutViewModel(currentPage);
             viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
@@ -198,8 +200,8 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpGet]
-        [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult PlaceOrder(CheckoutPage currentPage)
+        //[OutputCache(Duration = 0, NoStore = true)]
+        public IActionResult PlaceOrder(CheckoutPage currentPage)
         {
             var viewModel = CreateCheckoutViewModel(currentPage);
             viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
@@ -207,8 +209,8 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpGet]
-        [OutputCache(Duration = 0, NoStore = true)]
-        public ActionResult PunchoutOrder(CheckoutPage currentPage)
+        //[OutputCache(Duration = 0, NoStore = true)]
+        public IActionResult PunchoutOrder(CheckoutPage currentPage)
         {
             var viewModel = CreateCheckoutViewModel(currentPage);
             viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
@@ -216,7 +218,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult Update(CheckoutPage currentPage, UpdateShippingMethodViewModel shipmentViewModel, IPaymentMethod paymentOption)
+        public IActionResult Update(CheckoutPage currentPage, UpdateShippingMethodViewModel shipmentViewModel, IPaymentMethod paymentOption)
         {
             ModelState.Clear();
 
@@ -230,7 +232,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult ChangeAddress(CheckoutPage currentPage, UpdateAddressViewModel addressViewModel)
+        public IActionResult ChangeAddress(CheckoutPage currentPage, UpdateAddressViewModel addressViewModel)
         {
             ModelState.Clear();
             try
@@ -245,13 +247,13 @@ namespace Foundation.Features.Checkout
             }
             catch (Exception e)
             {
-                return Json(new { Status = false, Message = e.Message });
+                return Json(new { Status = false, e.Message });
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddAddress(CheckoutPage currentPage, AddressModel viewModel, string returnUrl)
+        public IActionResult AddAddress(CheckoutPage currentPage, AddressModel viewModel, string returnUrl)
         {
             if (string.IsNullOrEmpty(viewModel.Name))
             {
@@ -281,8 +283,8 @@ namespace Foundation.Features.Checkout
             return Json(new { Status = true, RedirectUrl = returnUrl });
         }
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
-        public ActionResult OrderSummary()
+        [AcceptVerbs(new string[] { "GET", "POST" })]
+        public IActionResult OrderSummary()
         {
             var viewModel = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
             return PartialView(viewModel);
@@ -290,7 +292,7 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCouponCode(CheckoutPage currentPage, string couponCode)
+        public IActionResult AddCouponCode(CheckoutPage currentPage, string couponCode)
         {
             if (_cartService.AddCouponCode(CartWithValidationIssues.Cart, couponCode))
             {
@@ -311,13 +313,13 @@ namespace Foundation.Features.Checkout
             }
             else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+                return StatusCode(204);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RemoveCouponCode(CheckoutPage currentPage, string couponCode)
+        public IActionResult RemoveCouponCode(CheckoutPage currentPage, string couponCode)
         {
             _cartService.RemoveCouponCode(CartWithValidationIssues.Cart, couponCode);
             var model = CreateCheckoutViewModel(currentPage);
@@ -337,7 +339,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public async Task<ActionResult> Purchase(CheckoutViewModel viewModel, IPaymentMethod paymentOption)
+        public async Task<IActionResult> Purchase(CheckoutViewModel viewModel, IPaymentMethod paymentOption)
         {
             if (CartIsNullOrEmpty())
             {
@@ -390,7 +392,7 @@ namespace Foundation.Features.Checkout
                 return View(viewModel);
             }
 
-            if (Request.IsAuthenticated)
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
                 var contact = _customerContext.GetCurrentContact().Contact;
                 var organization = contact.ContactOrganization;
@@ -413,34 +415,31 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult GuestOrRegister(string checkoutMethod)
+        public IActionResult GuestOrRegister(string checkoutMethod)
         {
             if (CartIsNullOrEmpty())
             {
                 return View("EmptyCart", new CheckoutMethodViewModel());
             }
 
-            var content = Request.RequestContext.GetRoutedData<CheckoutPage>();
+            var content = _settingsService.GetSiteSettings<ReferencePageSettings>().CheckoutPage;
             if (checkoutMethod.Equals("register"))
             {
-                return RedirectToAction("Index", "Login", new { returnUrl = content != null ? _urlHelper.ContentUrl(content.ContentLink) : "/" });
+                return RedirectToAction("Index", "Login", new { returnUrl = content != null ? _urlHelper.ContentUrl(content) : "/" });
             }
 
-            return RedirectToAction("Index", new { node = content.ContentLink, isGuest = 1 });
+            return RedirectToAction("Index", new { node = content, isGuest = 1 });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(CheckoutMethodViewModel viewModel)
+        public async Task<IActionResult> Login(CheckoutMethodViewModel viewModel)
         {
             var result = await _applicationSignInManager.PasswordSignInAsync(viewModel.LoginViewModel.Email, viewModel.LoginViewModel.Password, true, true);
-            switch (result)
+            if (!result.Succeeded)
             {
-                case SignInStatus.Success:
-                    break;
-                default:
-                    ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail"));
-                    return View("CheckoutMethod", viewModel);
+                ModelState.AddModelError("LoginViewModel.Password", _localizationService.GetString("/Login/Form/Error/WrongPasswordOrEmail"));
+                return View("CheckoutMethod", viewModel);
             }
 
             return RedirectToAction("Index", "Checkout");
@@ -448,7 +447,7 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateShippingMethods(CheckoutPage currentPage, CheckoutViewModel viewModel)
+        public IActionResult UpdateShippingMethods(CheckoutPage currentPage, CheckoutViewModel viewModel)
         {
             _checkoutService.UpdateShippingMethods(CartWithValidationIssues.Cart, viewModel.Shipments);
             _checkoutService.ApplyDiscounts(CartWithValidationIssues.Cart);
@@ -472,7 +471,7 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PlaceOrder(CheckoutPage currentPage, CheckoutViewModel checkoutViewModel)
+        public async Task<IActionResult> PlaceOrder(CheckoutPage currentPage, CheckoutViewModel checkoutViewModel)
         {
             ModelState.Clear();
 
@@ -521,7 +520,7 @@ namespace Foundation.Features.Checkout
                     }
                 }
 
-                if (Request.IsAuthenticated)
+                if (HttpContext.User.Identity.IsAuthenticated)
                 {
                     var contact = _customerContext.GetCurrentContact().Contact;
                     var organization = contact.ContactOrganization;
@@ -549,7 +548,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult UpdatePaymentOption(CheckoutPage currentPage, IPaymentMethod paymentOption)
+        public IActionResult UpdatePaymentOption(CheckoutPage currentPage, IPaymentMethod paymentOption)
         {
             ModelState.Clear();
 
@@ -560,7 +559,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult UpdatePayment(CheckoutPage currentPage, CheckoutViewModel viewModel, IPaymentMethod paymentOption)
+        public IActionResult UpdatePayment(CheckoutPage currentPage, CheckoutViewModel viewModel, IPaymentMethod paymentOption)
         {
             if (!paymentOption.ValidateData())
             {
@@ -573,7 +572,7 @@ namespace Foundation.Features.Checkout
                 var paymentTotal = CurrencyFormatter.ConvertCurrency(new Money(viewModel.OrderSummary.PaymentTotal, CartWithValidationIssues.Cart.Currency), Currency.USD);
                 if (paymentTotal > giftCard.RemainBalance)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Not enought money in Gift Card");
+                    return StatusCode(400, "Not enought money in Gift Card");
                 }
             }
 
@@ -584,7 +583,7 @@ namespace Foundation.Features.Checkout
             var model = CreateCheckoutViewModel(currentPage);
             model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
 
-            if (Request.IsAuthenticated)
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
                 model.BillingAddressType = 1;
             }
@@ -596,7 +595,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult RemovePayment(CheckoutPage currentPage, CheckoutViewModel viewModel, IPaymentMethod paymentOption)
+        public IActionResult RemovePayment(CheckoutPage currentPage, CheckoutViewModel viewModel, IPaymentMethod paymentOption)
         {
             if (!paymentOption.ValidateData())
             {
@@ -609,7 +608,7 @@ namespace Foundation.Features.Checkout
 
             var model = CreateCheckoutViewModel(currentPage);
             model.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
-            if (Request.IsAuthenticated)
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
                 model.BillingAddressType = 1;
             }
@@ -688,8 +687,9 @@ namespace Foundation.Features.Checkout
 
         public void UpdateShipmentAddress(CheckoutViewModel checkoutViewModel, List<KeyValuePair<string, int>> errorTypes)
         {
-            var content = Request.RequestContext.GetRoutedData<CheckoutPage>();
-            var viewModel = CreateCheckoutViewModel(content);
+            var content = _settingsService.GetSiteSettings<ReferencePageSettings>().CheckoutPage;
+            var checkoutPage = _contentLoader.Get<PageData>(content) as CheckoutPage;
+            var viewModel = CreateCheckoutViewModel(checkoutPage);
             if (!checkoutViewModel.UseShippingingAddressForBilling)
             {
                 for (var i = 0; i < checkoutViewModel.Shipments.Count; i++)
@@ -725,7 +725,7 @@ namespace Foundation.Features.Checkout
         }
 
         // using on OrderDetail page
-        public ActionResult LoadOrder(int orderLink)
+        public IActionResult LoadOrder(int orderLink)
         {
             var success = false;
             var purchaseOrder = _orderRepository.Load<IPurchaseOrder>(orderLink);
@@ -756,7 +756,7 @@ namespace Foundation.Features.Checkout
             return Json(new { link = _urlResolver.GetUrl(referenceSettings?.CheckoutPage ?? ContentReference.StartPage) });
         }
 
-        public ActionResult ChangeCartItem(CheckoutPage currentPage, string code, int quantity, int shipmentId = -1)
+        public IActionResult ChangeCartItem(CheckoutPage currentPage, string code, int quantity, int shipmentId = -1)
         {
             var result = _cartService.ChangeQuantity(CartWithValidationIssues.Cart, shipmentId, code, quantity);
             var model = CreateCheckoutViewModel(currentPage);
@@ -776,7 +776,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public ActionResult SeparateShipment(CheckoutPage currentPage, RequestParamsToCart param)
+        public IActionResult SeparateShipment(CheckoutPage currentPage, RequestParamsToCart param)
         {
             var result = _cartService.SeparateShipment(CartWithValidationIssues.Cart, param.Code, (int)param.Quantity, param.ShipmentId, param.ToShipmentId, param.DeliveryMethodId, param.SelectedStore);
 
@@ -799,9 +799,9 @@ namespace Foundation.Features.Checkout
             return Json(new { Status = false, Message = string.Join(", ", result.ValidationMessages) });
         }
 
-        public ActionResult OnPurchaseException(ExceptionContext filterContext)
+        public IActionResult OnPurchaseException(ExceptionContext filterContext)
         {
-            var currentPage = filterContext.RequestContext.GetRoutedData<CheckoutPage>();
+            var currentPage = _pageRouteHelper.Page as CheckoutPage;
             if (currentPage == null)
             {
                 return new EmptyResult();

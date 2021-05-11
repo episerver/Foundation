@@ -1,7 +1,6 @@
 ﻿using EPiServer.DataAbstraction;
-using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.StandardPage
 {
@@ -14,7 +13,6 @@ namespace Foundation.Features.StandardPage
             _categoryRepository = categoryRepository;
         }
 
-        [PageViewTracking]
         public ActionResult Index(StandardPage currentPage)
         {
             var model = StandardPageViewModel.Create(currentPage, _categoryRepository);

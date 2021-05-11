@@ -1,2 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PlacedPriceTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Order.GridTemplates.PlacedPriceTemplate" %>
-<asp:Label runat="server" ID="lblPlacedPrice"></asp:Label>

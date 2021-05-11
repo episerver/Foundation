@@ -23,7 +23,7 @@
                 <i data-feather="shopping-cart"></i>
                 Add to cart
             </button>
-            if (Request.IsAuthenticated)
+            if (Context.User.Identity.IsAuthenticated)
             {
                 <button type="button" class="button-transparent-black btn-lower jsBuyNow"
                         url="@Url.Action("BuyNow", "DefaultCart")"
@@ -41,7 +41,7 @@
                 <i data-feather="shopping-cart"></i>
                 Add to cart
             </button>
-            if (Request.IsAuthenticated)
+            if (Context.User.Identity.IsAuthenticated)
             {
                 <button type="button" class="button-transparent-black btn-lower" disabled>
                     <span>Buy Now</span>

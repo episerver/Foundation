@@ -107,8 +107,8 @@
                 @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
                 {
                     <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "")">
-                        <a href="@Model.OrderHistoryUrl?page=@page&size=@Model.PagingInfo.PageSize&isPaging=1">
-                            @page.ToString()
+                        <a href="@Model.OrderHistoryUrl?page=@(page)&size=@Model.PagingInfo.PageSize&isPaging=1">
+                            @(page).ToString()
                         </a>
                     </li>
                 }

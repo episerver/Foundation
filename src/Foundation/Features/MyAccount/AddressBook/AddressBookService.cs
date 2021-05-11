@@ -1,7 +1,7 @@
 ﻿using EPiServer.Commerce.Order;
-using Foundation.Cms.Extensions;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyOrganization;
 using Mediachase.BusinessFoundation.Data;

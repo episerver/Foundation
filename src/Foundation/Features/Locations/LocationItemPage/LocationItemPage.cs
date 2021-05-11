@@ -1,16 +1,12 @@
-using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Find;
-using EPiServer.Labs.ContentManager.Cards;
 using EPiServer.Web;
-using Foundation.Features.Category;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Locations.LocationItemPage
 {
@@ -18,7 +14,7 @@ namespace Foundation.Features.Locations.LocationItemPage
         GUID = "ac26ee4b-104f-4719-8aab-ad6d3fcb0d75",
         Description = "Used to display the details of a location",
         GroupName = TabNames.Location)]
-    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-27.png")]
+    [ImageUrl("/icons/cms/pages/cms-icon-page-27.png")]
     public class LocationItemPage : FoundationPageData
     {
         [StringLength(5000)]
@@ -82,14 +78,15 @@ namespace Foundation.Features.Locations.LocationItemPage
 
         public List<string> TagString()
         {
-            var repo = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<IContentRepository>();
-            return Categories?.Select(category => repo.Get<StandardCategory>(category).Name).ToList();
+            //var repo = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<IContentRepository>();
+            //return Categories?.Select(category => repo.Get<StandardCategory>(category).Name).ToList();
+            return new List<string>();
         }
 
-        public override void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = MainIntro;
-            itemModel.Image = Image;
-        }
+        //public override void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = MainIntro;
+        //    itemModel.Image = Image;
+        //}
     }
 }

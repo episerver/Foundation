@@ -13,12 +13,12 @@
         <div class="row no-gutters">
             <div class="navigation">
                 <div class="navigation__left" @Html.EditAttributes(x => x.LayoutSettings.MainMenu)>
-                    @Html.Partial("_Menu", Model.MenuItems ?? new List<MenuItemViewModel>())
+                    @await Html.PartialAsync("_Menu", Model.MenuItems ?? new List<MenuItemViewModel>())
                 </div>
                 <div class="navigation__logo @(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
                      style="@(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
                     <a href="/">
-                        @if (PageEditing.PageIsInEditMode)
+                        @if (Html.IsInEditMode())
                         {
                             <div @Html.EditAttributes(x => x.LayoutSettings.SiteLogo)>
                                 <img class="img-fluid" src="@UrlResolver.Current.GetUrl(Model.LayoutSettings.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })" />
@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 <ul class="navigation__right">
-                    @if (Request.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
                         if (Model.IsBookmarked)
                         {
@@ -55,7 +55,7 @@
                     }
                     @if (!Model.IsReadonlyMode && Model.ShowCommerceControls)
                     {
-                        if (Request.IsAuthenticated)
+                        if (User.Identity.IsAuthenticated)
                         {
                             <li>
                                 <div class="dropdown">
@@ -63,7 +63,7 @@
                                         <i data-feather="heart"></i>
                                         <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
                                     </div>
-                                    @Html.Partial("_MiniWishlist", Model.WishListMiniCart)
+                                    @await Html.PartialAsync("_MiniWishlist", Model.WishListMiniCart)
                                 </div>
                             </li>
                         }
@@ -73,7 +73,7 @@
                                     <i data-feather="shopping-cart"></i>
                                     <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
                                 </div>
-                                @Html.Partial("_HeaderCart", Model.MiniCart)
+                                @await Html.PartialAsync("_HeaderCart", Model.MiniCart)
                             </div>
                         </li>
                         if (!Model.IsReadonlyMode && Model.ShowSharedCart)
@@ -84,7 +84,7 @@
                                         <i data-feather="shopping-bag"></i>
                                         <span class="icon-menu__badge">@((int)Model.SharedMiniCart.ItemCount)</span>
                                     </div>
-                                    @Html.Partial("_MiniSharedCart", Model.SharedMiniCart)
+                                    @await Html.PartialAsync("_MiniSharedCart", Model.SharedMiniCart)
                                 </div>
                             </li>
                         }
@@ -123,7 +123,7 @@
                                 <div class="icon-menu" data-toggle="dropdown" data-offset="-324, -1" data-flip="false" id="js-profile">
                                     <i data-feather="user"></i>
                                 </div>
-                                @Html.Partial("_Users", Model)
+                                @await Html.PartialAsync("_Users", Model)
                             </div>
                         </li>
                     }

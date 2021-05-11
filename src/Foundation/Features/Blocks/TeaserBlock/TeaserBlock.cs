@@ -1,9 +1,6 @@
-using EPiBootstrapArea;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Features.Shared;
@@ -16,9 +13,9 @@ namespace Foundation.Features.Blocks.TeaserBlock
         GUID = "EB67A99A-E239-41B8-9C59-20EAA5936047",
         Description = "Image block with overlay for text",
         GroupName = GroupNames.Content)]
-    [DefaultDisplayOption(ContentAreaTags.OneThirdWidth)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
-    public class TeaserBlock : FoundationBlockData, IDashboardItem
+    //[DefaultDisplayOption(ContentAreaTags.OneThirdWidth)]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-26.png")]
+    public class TeaserBlock : FoundationBlockData//, IDashboardItem
     {
         #region Content
         [CultureSpecific]
@@ -103,10 +100,10 @@ namespace Foundation.Features.Blocks.TeaserBlock
             TextColor = "#000000ff";
         }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Heading;
-            itemModel.Image = Image;
-        }
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Heading;
+        //    itemModel.Image = Image;
+        //}
     }
 }

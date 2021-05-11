@@ -1,5 +1,4 @@
-﻿@using Foundation.Social.ViewModels
-@using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
+﻿@using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
 
 @model DynamicProductViewModel
 
@@ -7,7 +6,7 @@
     @Html.Partial("_ProductDetail", Model)
 </div>
 
-@if ((Model.CurrentContent.ContentArea != null && !Model.CurrentContent.ContentArea.IsEmpty) || PageEditing.PageIsInEditMode)
+@if ((Model.CurrentContent.ContentArea != null && !Model.CurrentContent.ContentArea.IsEmpty) || Html.IsInEditMode())
 {
 <div class="row product-detail__contentarea">
     <div class="col-12">
@@ -21,12 +20,14 @@
 <br />
 <section class="related-products">
     <h2>@Html.TranslateFallback("/Shared/RelatedProducts", "Related Products")</h2>
-    @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.AlternativeProducts });}
+    @(await Component.InvokeAsync("Recommendations", new { recommendations = Model.AlternativeProducts }))
+    @*@{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.AlternativeProducts });}*@
 </section>
 
 <br />
 <section class="upsell-pro">
     <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
-    @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}
+    @(await Component.InvokeAsync("Recommendations", new { recommendations = Model.CrossSellProducts }))
+    @*@{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}*@
 </section>
 }

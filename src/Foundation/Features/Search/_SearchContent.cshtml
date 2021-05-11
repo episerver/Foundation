@@ -67,9 +67,9 @@
 
                                     @foreach (var page in Model.ContentSearchResult.FilterOption.Pages)
                                     {
-                                        <li class="jsChangePageContent @(Model.ContentSearchResult.FilterOption.Page == page ? "active" : "")" page="@page">
+                                        <li class="jsChangePageContent @(Model.ContentSearchResult.FilterOption.Page == page ? "active" : "")" page="@(page)">
                                             <a href="javascript:void(0)">
-                                                @page.ToString()
+                                                @(page).ToString()
                                             </a>
                                         </li>
                                     }

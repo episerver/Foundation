@@ -2,7 +2,7 @@ using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
 using EPiServer.Globalization;
-using Foundation.Commerce.Markets;
+using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure;
@@ -13,6 +13,7 @@ using Mediachase.Commerce.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EPiServer.Core;
 
 namespace Foundation.Features.Checkout.Services
 {
@@ -24,7 +25,7 @@ namespace Foundation.Features.Checkout.Services
         private readonly ReferenceConverter _referenceConverter;
         private readonly IAddressBookService _addressBookService;
         private readonly CartItemViewModelFactory _cartItemViewModelFactory;
-        private readonly LanguageResolver _languageResolver;
+        private readonly IContentLanguageAccessor _contentLanguageAccessor;
         private readonly IMarketService _marketService;
         private ShippingMethodInfoModel _instorePickup;
 
@@ -35,7 +36,7 @@ namespace Foundation.Features.Checkout.Services
             ReferenceConverter referenceConverter,
             IAddressBookService addressBookService,
             CartItemViewModelFactory cartItemViewModelFactory,
-            LanguageResolver languageResolver,
+            IContentLanguageAccessor contentLanguageAccessor,
             IMarketService marketService)
         {
             _contentLoader = contentLoader;
@@ -44,7 +45,7 @@ namespace Foundation.Features.Checkout.Services
             _referenceConverter = referenceConverter;
             _addressBookService = addressBookService;
             _cartItemViewModelFactory = cartItemViewModelFactory;
-            _languageResolver = languageResolver;
+            _contentLanguageAccessor = contentLanguageAccessor;
             _marketService = marketService;
         }
 
@@ -52,7 +53,7 @@ namespace Foundation.Features.Checkout.Services
 
         public virtual IEnumerable<ShipmentViewModel> CreateShipmentsViewModel(ICart cart)
         {
-            var preferredCulture = _languageResolver.GetPreferredCulture();
+            var preferredCulture = _contentLanguageAccessor.Language;
             foreach (var shipment in cart.GetFirstForm().Shipments)
             {
                 var shipmentModel = new ShipmentViewModel

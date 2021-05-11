@@ -1,4 +1,4 @@
-﻿using Boilerplate.Web.Mvc.OpenGraph;
+﻿using Boxed.AspNetCore.TagHelpers.OpenGraph;
 
 namespace Foundation.Infrastructure.OpenGraph.Extensions
 {

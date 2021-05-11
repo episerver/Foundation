@@ -1,17 +1,16 @@
-﻿using EPiServer.Find;
+﻿using EPiServer.Core.Routing;
+using EPiServer.Core.Routing.Pipeline;
+using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using EPiServer.Web.Routing;
-using EPiServer.Web.Routing.Segments;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Routing;
 
 namespace Foundation.Features.Locations
 {
     public class LocationsPartialRouting : IPartialRouter<LocationItemPage.LocationItemPage, TagPage.TagPage>
     {
-        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language, RouteValueDictionary routeValues, System.Web.Routing.RequestContext requestContext)
+        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, UrlGeneratorContext requestContext)
         {
             return new PartialRouteData
             {
@@ -20,10 +19,10 @@ namespace Foundation.Features.Locations
             };
         }
 
-        public object RoutePartial(LocationItemPage.LocationItemPage content, SegmentContext segmentContext)
+        public object RoutePartial(LocationItemPage.LocationItemPage content, UrlResolverContext urlResolverContext)
         {
-            var elements = segmentContext.RemainingPath.Split('/');
-            segmentContext.RemainingPath = string.Empty;
+            var elements = urlResolverContext.RemainingPath.Split('/');
+            urlResolverContext.RemainingPath = string.Empty;
 
             TagPage.TagPage cp = null;
             var catpages = SearchClient.Instance.Search<TagPage.TagPage>().Take(100).GetContentResult().ToList();
@@ -42,7 +41,7 @@ namespace Foundation.Features.Locations
                 var k = s.ToLower();
                 if (continents.Contains(k))
                 {
-                    segmentContext.SetCustomRouteData("Continent", s);
+                    urlResolverContext.RouteValues.Add("Continent", s);
                 }
                 else if (cp == null)
                 {
@@ -65,7 +64,7 @@ namespace Foundation.Features.Locations
             }
             if (additionalcats.Count > 0)
             {
-                segmentContext.SetCustomRouteData("Category", string.Join(",", additionalcats.ToArray()));
+                urlResolverContext.RouteValues.Add("Category", string.Join(",", additionalcats.ToArray()));
             }
 
             return cp;

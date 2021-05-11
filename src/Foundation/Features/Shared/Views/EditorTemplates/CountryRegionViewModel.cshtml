@@ -21,8 +21,17 @@
             }
         }
 
-        @Helpers.RenderDropdown(values, Model.Region, "", (string)ViewData["Name"] ?? "Region", isShow: !isShowTextbox)
-
+        @*@Helpers.RenderDropdown(values, Model.Region, "", (string)ViewData["Name"] ?? "Region", isShow: !isShowTextbox)*@
+        if (!isShowTextbox)
+        {
+            @(await Component.InvokeAsync("Dropdown", new
+                {
+                    list = values,
+                    selectedValue = Model.Region,
+                    selectorClassItem = "",
+                    name = (string)ViewData["Name"] ?? "Region"
+                }))
+        }
         @*if (isShowTextbox)
             {
                 @Html.TextBoxFor(formModel => formModel.Region, new { @class = Model.TextboxClass + " textbox jsChangeTaxAddress" })

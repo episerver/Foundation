@@ -11,7 +11,7 @@
             foreach (var mediaData in Model.Assets)
             {
                 <h5>
-                    <a href="/AssetsDownloadLinksBlock/Download?contentLinkId=@mediaData.ContentLink.ID" class="download-file">
+                    <a href="/AssetsDownloadLinksBlock/Download/@mediaData.ContentLink.ID" class="download-file">
                         <i data-feather="download"></i>
                         @mediaData.Name
                     </a>

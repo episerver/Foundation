@@ -15,7 +15,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
         Description = "Used to insert a link which is styled as a button",
         GroupName = GroupNames.Content,
         AvailableInEditMode = true)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-26.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-26.png")]
     public class ButtonBlock : FoundationBlockData
     {
         #region Content

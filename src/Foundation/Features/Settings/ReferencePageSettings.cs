@@ -1,6 +1,6 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAnnotations;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.Checkout;
 using Foundation.Features.Checkout.ConfirmationMail;
 using Foundation.Features.MyAccount.AddressBook;

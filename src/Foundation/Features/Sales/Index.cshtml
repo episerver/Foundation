@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row">
-        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
         {
             <div class="col-12">
                 @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -55,9 +55,9 @@
                         </li>
                         @for (int page = 1; page <= Model.Pages.Last(); page++)
                         {
-                            <li class=" jsPaginateSalesPage @(Model.PageNumber == page ? "active" : "")" page="@page">
+                            <li class=" jsPaginateSalesPage @(Model.PageNumber == page ? "active" : "")" page="@(page)">
                                 <a href="javascript:void(0)">
-                                    @page.ToString()
+                                    @(page).ToString()
                                 </a>
                             </li>
                         }

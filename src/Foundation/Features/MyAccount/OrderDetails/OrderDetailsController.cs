@@ -2,8 +2,8 @@
 using EPiServer.Commerce.Order;
 using EPiServer.Logging;
 using EPiServer.Web.Mvc;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure;
@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.MyAccount.OrderDetails
 {

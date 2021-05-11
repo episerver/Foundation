@@ -55,7 +55,7 @@
                 <h1 style="color: @Model.CurrentContent.TitleColor">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
             </div>
             <div class="standard-page__content">
-                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
                 {
                     <div class="row">
                         <div class="col-12">

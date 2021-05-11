@@ -8,11 +8,11 @@ using EPiServer.Framework.Localization;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Home;
@@ -24,7 +24,8 @@ using Mediachase.Commerce.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using EPiServer.Find.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Header
 {
@@ -41,6 +42,8 @@ namespace Foundation.Features.Header
         private readonly ICustomerService _customerService;
         private readonly CustomerContext _customerContext;
         private readonly ISettingsService _settingsService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IContextModeResolver _contextModeResolver;
 
         public HeaderViewModelFactory(LocalizationService localizationService,
             ICustomerService customerService,
@@ -52,7 +55,9 @@ namespace Foundation.Features.Header
             IContentCacheKeyCreator contentCacheKeyCreator,
             IContentLoader contentLoader,
             IDatabaseMode databaseMode,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IHttpContextAccessor httpContextAccessor,
+            IContextModeResolver contextModeResolver)
         {
             _localizationService = localizationService;
             _customerService = customerService;
@@ -65,6 +70,8 @@ namespace Foundation.Features.Header
             _databaseMode = databaseMode;
             _customerContext = customerContext;
             _settingsService = settingsService;
+            _httpContextAccessor = httpContextAccessor;
+            _contextModeResolver = contextModeResolver;
         }
 
         public virtual HeaderViewModel CreateHeaderViewModel(IContent content, HomePage home)
@@ -102,7 +109,7 @@ namespace Foundation.Features.Header
 
         public virtual void AddMyAccountMenu(HomePage homePage, HeaderViewModel viewModel)
         {
-            if (HttpContext.Current != null && !HttpContext.Current.Request.IsAuthenticated)
+            if (HttpContextHelper.Current != null && !_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
             {
                 viewModel.UserLinks = new LinkItemCollection();
                 return;
@@ -167,7 +174,7 @@ namespace Foundation.Features.Header
             var isBookmarked = false;
             var bookmarks = _bookmarksService.Get();
 
-            if (bookmarks != null && bookmarks.Any() && bookmarks.FirstOrDefault().ContentGuid != null && currentContent != null)
+            if (bookmarks != null && bookmarks.Any() && currentContent != null)
             {
                 isBookmarked = bookmarks.FirstOrDefault(x => x.ContentGuid == currentContent.ContentGuid) != null;
             }
@@ -204,7 +211,7 @@ namespace Foundation.Features.Header
             }).Select(x =>
             {
                 var itemCached = CacheManager.Get(x.ContentLink.ID + homeLanguage + ":" + Constant.CacheKeys.MenuItems) as MenuItemViewModel;
-                if (itemCached != null && !PageEditing.PageIsInEditMode)
+                if (itemCached != null && !_contextModeResolver.CurrentMode.EditOrPreview())
                 {
                     return itemCached;
                 }
@@ -237,7 +244,7 @@ namespace Foundation.Features.Header
                         };
                     }
 
-                    if (!PageEditing.PageIsInEditMode)
+                    if (!_contextModeResolver.CurrentMode.EditOrPreview())
                     {
                         var keyDependency = new List<string>
                         {
@@ -302,7 +309,7 @@ namespace Foundation.Features.Header
 
         protected virtual void AddAnonymousComponents(HomePage homePage, HeaderViewModel viewModel)
         {
-            if (HttpContext.Current != null && !HttpContext.Current.Request.IsAuthenticated)
+            if (HttpContextHelper.Current != null && !_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
             {
                 var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
                 viewModel.LoginViewModel = new LoginViewModel

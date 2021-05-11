@@ -1,15 +1,14 @@
 ﻿using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Mvc.Html;
-using Foundation.Attributes;
-using Foundation.Cms.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.Settings;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Foundation.Infrastructure.Attributes;
 
 namespace Foundation.Features.Login
 {
-    [OnlyAnonymous]
     public class UserController : Controller
     {
         private readonly IAddressBookService _addressBookService;
@@ -25,6 +24,7 @@ namespace Foundation.Features.Login
             _settingsService = settingsService;
         }
 
+        [OnlyAnonymous]
         public ActionResult Index(string returnUrl)
         {
             var model = new UserViewModel();
@@ -37,6 +37,7 @@ namespace Foundation.Features.Login
             return View(model);
         }
 
+        [OnlyAnonymous]
         public ActionResult Register()
         {
             var model = new UserViewModel();

@@ -1,7 +1,7 @@
 ﻿using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using Foundation.Cms;
+using Foundation.Infrastructure.Cms;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +12,7 @@ namespace Foundation.Features.Blocks.NavigationBlock
         GUID = "7C53F707-C932-4FDD-A654-37FF2A1258EB",
         Description = "Render normal left/right navigation structures",
         GroupName = GroupNames.Content)]
-    [SiteImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-30.png")]
+    [SiteImageUrl("/icons/cms/blocks/CMS-icon-block-30.png")]
     public class NavigationBlock : FoundationBlockData
     {
         [Display(Name = "Heading", Order = 10, GroupName = SystemTabNames.Content)]

@@ -3,7 +3,6 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
-
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.MyAccount.OrderHistoryBlock
@@ -12,7 +11,7 @@ namespace Foundation.Features.MyAccount.OrderHistoryBlock
         GUID = "6b910185-7270-43bf-90e5-fc57cc0d1b5c",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = true)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-18.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-18.png")]
     public class OrderHistoryBlock : FoundationBlockData
     {
         [CultureSpecific]

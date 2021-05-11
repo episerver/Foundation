@@ -17,35 +17,35 @@
                 switch (Model.CurrentBlock.Template)
                 {
                     case TemplateSelections.Grid:
-                        @Html.Partial("Views/Templates/_GridTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_GridTemplate.cshtml", Model)
                         break;
 
                     case TemplateSelections.ImageLeft:
-                        @Html.Partial("Views/Templates/_LeftImageTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_LeftImageTemplate.cshtml", Model)
                         break;
 
                     case TemplateSelections.ImageTop:
-                        @Html.Partial("Views/Templates/_TopImageTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_TopImageTemplate.cshtml", Model)
                         break;
 
                     case TemplateSelections.NoImage:
-                        @Html.Partial("Views/Templates/_NoImageTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_NoImageTemplate.cshtml", Model)
                         break;
 
                     case TemplateSelections.Highlight:
-                        @Html.Partial("Views/Templates/_HighlightPanelTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_HighlightPanelTemplate.cshtml", Model)
                         break;
 
                     case TemplateSelections.Card:
-                        @Html.Partial("Views/Templates/_CardTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_CardTemplate.cshtml", Model)
                         break;
 
                     case TemplateSelections.Insight:
-                        @Html.Partial("Views/Templates/_InsightTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_InsightTemplate.cshtml", Model)
                         break;
 
                     default:
-                        @Html.Partial("Views/Templates/_GridTemplate", Model)
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_GridTemplate.cshtml", Model)
                         break;
                 }
             }

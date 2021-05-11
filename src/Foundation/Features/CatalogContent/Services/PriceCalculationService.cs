@@ -19,7 +19,7 @@ namespace Foundation.Features.CatalogContent.Services
             var customerPricing = new List<CustomerPricing>
             {
                 new CustomerPricing(CustomerPricing.PriceType.AllCustomers, string.Empty),
-                new CustomerPricing(CustomerPricing.PriceType.UserName, PrincipalInfo.Current.Name)
+                new CustomerPricing(CustomerPricing.PriceType.UserName, PrincipalInfo.CurrentPrincipal.Identity.Name)
             };
             if (CustomerContext.Current.CurrentContact != null)
             {

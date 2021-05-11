@@ -1,2 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PaymentAmountTemplate.ascx.cs" Inherits="Mediachase.Commerce.Manager.Apps.Order.GridTemplates.PaymentAmountTemplate" %>
-<asp:Label runat="server" ID="lblPaymentAmount"></asp:Label>

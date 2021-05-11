@@ -28,7 +28,7 @@
             @if (!isDisabledEdit)
             {
                 <div class="action-icons pull-right">
-                    @if (Request.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
                         <a class="btn-link large-cart__margin-btn jsMoveToWishlist hover-feather-icon" title="Move to wishlist" code="@Model.Code" url="@Url.Action("MoveToWishlist", "DefaultCart", null)" href="javascript:void(0);">
                             <span><i data-feather="heart"></i></span>
@@ -84,7 +84,13 @@
                             {
                                 return new KeyValuePair<string, string>(x, x);
                             });
-                            @Helpers.RenderDropdown(sizes, variant.Size, "jsChangeSizeVariantLargeCart", "size" + Model.Code);
+                            @*@Helpers.RenderDropdown(sizes, variant.Size, "jsChangeSizeVariantLargeCart", "size" + Model.Code);*@
+                            @(await Component.InvokeAsync("Dropdown",
+                            new { list = sizes,
+                                selectedValue = variant.Size,
+                                selectorClassItem = "jsChangeSizeVariantLargeCart",
+                                name = "size" + Model.Code
+                            }))
                         }
                     </div>
                 </div>
