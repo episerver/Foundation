@@ -8,7 +8,6 @@ using EPiServer.Find.Commerce;
 using EPiServer.ServiceLocation;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
-using Foundation.Features.Category;
 using Foundation.Features.Folder;
 using Foundation.Features.Home;
 using Foundation.Features.Locations.LocationItemPage;

@@ -5,13 +5,12 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 //using Foundation.Features.Category;
 using Foundation.Features.Shared;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Blog.BlogItemPage
 {

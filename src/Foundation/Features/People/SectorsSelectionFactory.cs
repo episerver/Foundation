@@ -1,7 +1,7 @@
 ﻿using EPiServer.ServiceLocation;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

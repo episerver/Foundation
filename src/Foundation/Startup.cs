@@ -132,7 +132,7 @@ namespace Foundation
         }
 
         private void ConfigureMvcOptions(MvcOptions mvcOptions)
-        { 
+        {
         }
     }
 }

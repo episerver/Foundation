@@ -5,20 +5,20 @@ using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce;
-using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderHistory;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.MyAccount.OrderHistoryBlock

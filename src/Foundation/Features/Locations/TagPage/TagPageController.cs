@@ -3,11 +3,10 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Features.Media;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Locations.TagPage
 {

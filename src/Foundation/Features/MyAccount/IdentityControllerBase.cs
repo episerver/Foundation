@@ -3,10 +3,10 @@ using EPiServer.Core;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using Foundation.Infrastructure.Cms.Extensions;
-using Foundation.Infrastructure.Commerce.Customer.Services;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.MyAccount

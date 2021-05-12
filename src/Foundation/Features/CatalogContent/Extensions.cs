@@ -5,7 +5,6 @@ using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Marketing;
 using EPiServer.Core;
 using EPiServer.Filters;
-using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Bundle;

@@ -10,7 +10,6 @@ using Foundation.Features.Blocks.ElevatedRoleBlock;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Variation
 {

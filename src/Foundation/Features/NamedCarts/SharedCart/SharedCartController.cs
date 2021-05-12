@@ -4,17 +4,17 @@ using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Mvc;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Foundation.Features.NamedCarts.SharedCart
 {

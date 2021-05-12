@@ -1,7 +1,7 @@
 using EPiServer.Find.Cms;
-using Foundation.Infrastructure.Cms;
 using Foundation.Features.People.PersonItemPage;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Cms;
 using System.Collections.Generic;
 
 namespace Foundation.Features.People.PersonListPage

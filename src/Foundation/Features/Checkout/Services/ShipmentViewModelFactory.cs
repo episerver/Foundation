@@ -1,11 +1,11 @@
 using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
-using EPiServer.Globalization;
-using Foundation.Infrastructure.Commerce.Markets;
+using EPiServer.Core;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Markets;
@@ -13,7 +13,6 @@ using Mediachase.Commerce.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EPiServer.Core;
 
 namespace Foundation.Features.Checkout.Services
 {

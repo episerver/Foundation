@@ -1,9 +1,9 @@
-using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Shared;
-using System.Collections.Generic;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce.Customer;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace Foundation.Features.MyAccount.OrderHistory
 {

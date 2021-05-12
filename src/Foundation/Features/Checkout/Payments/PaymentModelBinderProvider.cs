@@ -12,7 +12,8 @@ namespace Foundation.Features.Checkout.Payments
             {typeof(IPaymentMethod), typeof(PaymentOptionViewModelBinder)},
         };
 
-        public IModelBinder GetBinder(ModelBinderProviderContext context) {
+        public IModelBinder GetBinder(ModelBinderProviderContext context)
+        {
             if (ModelBinderTypeMappings.ContainsKey(context.Metadata.ModelType))
             {
                 return context.Services.GetService(ModelBinderTypeMappings[context.Metadata.ModelType]) as IModelBinder;

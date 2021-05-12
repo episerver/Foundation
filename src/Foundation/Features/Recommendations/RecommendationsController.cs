@@ -1,8 +1,5 @@
-﻿using EPiServer.Personalization.Commerce.Tracking;
-using Foundation.Features.CatalogContent.Services;
+﻿using Foundation.Features.CatalogContent.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Recommendations
 {

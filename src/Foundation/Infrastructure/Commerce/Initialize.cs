@@ -1,11 +1,7 @@
 ﻿using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Marketing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
-using Mediachase.Commerce;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure.Commerce
 {

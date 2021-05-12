@@ -1,5 +1,5 @@
-﻿using Foundation.Infrastructure.Cms.Attributes;
-using Foundation.Features.Shared;
+﻿using Foundation.Features.Shared;
+using Foundation.Infrastructure.Cms.Attributes;
 
 namespace Foundation.Features.MyAccount.ResetPassword
 {

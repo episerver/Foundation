@@ -2,11 +2,7 @@
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Extensions;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Header;
 using Foundation.Features.MyAccount.AddressBook;
@@ -14,12 +10,15 @@ using Foundation.Features.NamedCarts.DefaultCart;
 using Foundation.Features.NamedCarts.SharedCart;
 using Foundation.Features.NamedCarts.Wishlist;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Security;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Checkout.Services
 {

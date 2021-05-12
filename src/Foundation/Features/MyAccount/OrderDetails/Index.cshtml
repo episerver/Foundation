@@ -86,7 +86,7 @@
 
             @foreach (var item in Model.Items)
             {
-                var viewData = new ViewDataDictionary(ViewData);
+                var viewData = new ViewDataDictionary(this.ViewData);
                 viewData.Add("isQuoteRequestStatus", isQuoteRequestStatus);
                 viewData.Add("isQuote", isQuote);
 

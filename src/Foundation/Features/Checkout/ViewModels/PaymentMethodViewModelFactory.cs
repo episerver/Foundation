@@ -1,7 +1,7 @@
 ﻿using EPiServer.Commerce.Order;
+using Foundation.Features.Checkout.Payments;
 using Foundation.Infrastructure.Commerce.GiftCard;
 using Foundation.Infrastructure.Commerce.Markets;
-using Foundation.Features.Checkout.Payments;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
 using System.Collections.Generic;

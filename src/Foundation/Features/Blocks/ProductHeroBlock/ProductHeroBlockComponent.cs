@@ -4,10 +4,10 @@ using EPiServer.Core;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Commerce.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Text;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.ProductHeroBlock

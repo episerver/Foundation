@@ -1,18 +1,18 @@
 ﻿using EPiServer;
+using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Routing;
+using Foundation.Features.Header;
+using Foundation.Features.MyOrganization.Organization;
+using Foundation.Features.Settings;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Features.Header;
-using Foundation.Features.MyOrganization.Organization;
-using Foundation.Features.Settings;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
-using EPiServer.Core;
+using System.Linq;
 
 namespace Foundation.Features.MyAccount
 {

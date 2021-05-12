@@ -1,16 +1,15 @@
-﻿using EPiServer.Core;
-using EPiServer.Find;
+﻿using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Web.Mvc;
-using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.People.PersonItemPage;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Find;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.People.PersonListPage
 {

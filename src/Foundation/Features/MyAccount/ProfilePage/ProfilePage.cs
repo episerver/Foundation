@@ -1,7 +1,6 @@
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using Foundation.Features.Shared;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.MyAccount.ProfilePage
 {

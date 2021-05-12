@@ -1,9 +1,8 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Mvc;
+﻿using EPiServer.Web.Mvc;
 using Foundation.Infrastructure.Find.Facets;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Foundation.Features.Search.Category
 {

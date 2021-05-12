@@ -327,7 +327,7 @@
                                 <li>
                                     <div class="form-group jsCountryRegionContainer">
                                         @{
-                                            var viewData = new ViewDataDictionary(ViewData);
+                                            var viewData = new ViewDataDictionary(this.ViewData);
                                             var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
                                             viewData.Add(regionName);
                                         }

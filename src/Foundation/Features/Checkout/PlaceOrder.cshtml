@@ -46,7 +46,7 @@
 
                             @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
                             {
-                                var viewData = new ViewDataDictionary(ViewData);
+                                var viewData = new ViewDataDictionary(this.ViewData);
                                 viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
                                 <div class="checkout__cart-item">
                                     <div class="row">

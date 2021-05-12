@@ -3,18 +3,18 @@ using EPiServer.Core;
 //using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
-using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.Home;
 using Foundation.Features.Search.Search;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Search
 {

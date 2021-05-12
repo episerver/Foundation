@@ -28,7 +28,7 @@
                                     @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
                                     {
                                         var variant = cartItem.Entry as GenericVariant;
-                                        var viewData = new ViewDataDictionary(ViewData);
+                                        var viewData = new ViewDataDictionary(this.ViewData);
                                         viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
                                         <div class="checkout__cart-item jsCartItem">
                                             <div class="row">
@@ -124,7 +124,7 @@
                     <!--Shipment Address-->
                     <br />
                     @{
-                        var newViewData = new ViewDataDictionary(ViewData);
+                        var newViewData = new ViewDataDictionary(this.ViewData);
                         newViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
                     }
 
