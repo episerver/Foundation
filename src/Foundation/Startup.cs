@@ -1,13 +1,10 @@
-﻿// This Startup file is based on ASP.NET Core new project templates and is included
-// as a starting point for DI registration and HTTP request processing pipeline configuration.
-// This file will need updated according to the specific scenario of the application being upgraded.
-// For more information on ASP.NET Core startup files, see https://docs.microsoft.com/aspnet/core/fundamentals/startup
-
-using EPiServer.Cms.UI.AspNetIdentity;
+﻿using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Data;
 using EPiServer.DependencyInjection;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
+using EPiServer.Web;
+using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Infrastructure.Display;
@@ -18,6 +15,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
@@ -82,7 +80,7 @@ namespace Foundation
             services.AddDisplay();
             services.AddTinyMce();
             services.AddFindUI(_configuration);
-            //services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
+            services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
 
             //Commerce

@@ -12,7 +12,7 @@
     <div class="teaser teaser-content-align--center" style="padding-bottom: 50%">
         @if (pd != null)
         {
-            <div class="teaser__image " style="background-image: url('@Url.WebPFallbackImageUrl(Model.Banner, null, null)')"></div>
+            <div class="teaser__image " style="background-image: url('@Url.ContentUrl(Model.Banner)')"></div>
             <div class="screen-width-wrapper">
                 <div class="teaser-text screen-width-container">
                     <div class="teaser-text__details">
@@ -23,7 +23,7 @@
         }
         else
         {
-            <div class="teaser__image " style="background-image: url('@Url.WebPFallbackImageUrl(Model.Banner, null, null)')"></div>
+            <div class="teaser__image " style="background-image: url('@Url.ContentUrl(Model.Banner)')"></div>
             <div class="screen-width-wrapper">
                 <div class="teaser-text screen-width-container">
                     <div class="teaser-text__details">

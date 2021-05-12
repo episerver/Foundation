@@ -1,7 +1,11 @@
-﻿using EPiServer;
+﻿//using EPiBootstrapArea;
+//using EPiBootstrapArea.Initialization;
+using EPiServer;
 using EPiServer.Commerce.Internal.Migration;
 using EPiServer.Commerce.Marketing.Internal;
 using EPiServer.Commerce.Order;
+//using EPiServer.ContentApi.Core.Configuration;
+//using EPiServer.ContentApi.Search;
 using EPiServer.Core;
 using EPiServer.Find.ClientConventions;
 using EPiServer.Find.Commerce;
@@ -10,7 +14,6 @@ using EPiServer.Find.UnifiedSearch;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
-using EPiServer.Shell.ContentQuery;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
@@ -40,15 +43,18 @@ using Foundation.Features.Stores;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Commerce.GiftCard;
 using Foundation.Infrastructure.Display;
 using Foundation.Infrastructure.Find.Facets;
 using Foundation.Infrastructure.Find.Facets.Config;
 using Foundation.Infrastructure.SchemaMarkup;
+//using Foundation.Infrastructure.Services;
 using Mediachase.Commerce.Orders;
 using Mediachase.MetaDataPlus.Configurator;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.DependencyInjection;
+//using PowerSlice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -179,16 +185,7 @@ namespace Foundation.Infrastructure
                 manager.Migrate();
             }
 
-            //ViewEngines.Engines.Insert(0, new FeaturesViewEngine());
-            //context.InitializeFoundationCommerce();
-
-            //var handler = GlobalConfiguration.Configuration.MessageHandlers
-            //    .FirstOrDefault(x => x.GetType() == typeof(PassiveAuthenticationMessageHandler));
-
-            //if (handler != null)
-            //{
-            //    GlobalConfiguration.Configuration.MessageHandlers.Remove(handler);
-            //}
+            context.InitializeFoundationCommerce();
 
             context.InitComplete += ContextOnInitComplete;
             context.InitComplete += AddMetaFieldLineItem;
@@ -210,7 +207,6 @@ namespace Foundation.Infrastructure
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {
             _services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
-            Extensions.InstallDefaultContent();
             var settings = _locator.GetInstance<ISettingsService>().GetSiteSettings<SearchSettings>();
             if (settings != null)
             {

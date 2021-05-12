@@ -4,7 +4,7 @@
 
 @{
     var isBundle = new KeyValuePair<string, object>("IsBundle", true);
-    var viewData = new ViewDataDictionary();
+    var viewData = new ViewDataDictionary(this.ViewData);
     viewData.Add(isBundle);
 }
 
@@ -31,8 +31,8 @@
                 }
             </div>
         </div>
-        @Html.Partial("_ListVariants", Model.Entries, viewData)
-        @Html.Partial("_Store", Model.Stores)
+        @await Html.PartialAsync("_ListVariants", Model.Entries, viewData)
+        @await Html.PartialAsync("_Store", Model.Stores)
         @if (!Model.HasOrganization)
         {
             <div class="row">

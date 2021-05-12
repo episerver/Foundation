@@ -2,6 +2,7 @@
 using EPiServer.Cms.UI.AspNetIdentity;
 using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.BusinessFoundation.Data.Meta.Management;
@@ -12,43 +13,30 @@ using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Shared;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Foundation.Infrastructure.Commerce.Install.Steps
 {
     public class AddCustomers : BaseInstallStep
     {
-        private readonly XmlSerializer _listViewProfileXmlSerializer = new XmlSerializer(typeof(ListViewProfile), new Type[]{
-            typeof(int[]),
-            typeof(double[]),
-            typeof(decimal[]),
-            typeof(PrimaryKeyId[]),
-            typeof(string[]),
-            typeof(DateTime[]),
-            typeof(object[])
-        });
-
-        //No OWIN Context yet so we cannot use Constructor injection for these two
-        private readonly ApplicationUserManager<SiteUser> _userManager =
-            new ApplicationUserManager<SiteUser>(new UserStore<SiteUser>(new ApplicationDbContext<SiteUser>("EcfSqlConnection")));
-
-        private readonly ApplicationRoleManager<SiteUser> _roleManager =
-            new ApplicationRoleManager<SiteUser>(new RoleStore<IdentityRole>(new ApplicationDbContext<SiteUser>("EcfSqlConnection")));
-
+        private readonly ApplicationUserManager<SiteUser> _userManager;
+        private readonly ApplicationRoleProvider<SiteUser> _roleManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public AddCustomers(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService)
+            IWebHostEnvironment webHostEnvironment,
+            ApplicationUserManager<SiteUser> userManager, 
+            ApplicationRoleProvider<SiteUser> roleManager) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public override int Order => 8;
@@ -57,7 +45,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
-            using (var scope = DataContext.Current.MetaModel.BeginEdit(MetaClassManagerEditScope.SystemOwner, Mediachase.BusinessFoundation.Data.Meta.Management.AccessLevel.System))
+            using (var scope = DataContext.Current.MetaModel.BeginEdit(MetaClassManagerEditScope.SystemOwner, AccessLevel.System))
             {
                 var manager = DataContext.Current.MetaModel;
                 var changeTrackingManifest = ChangeTrackingManager.CreateModuleManifest();
@@ -78,11 +66,6 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                     builder.SaveChanges();
                 }
 
-                AddMetaFieldToForms(contactMetaClass, contactMetaClass.Fields["ShowInDemoUserMenu"]);
-                AddMetaFieldToForms(contactMetaClass, contactMetaClass.Fields["DemoUserTitle"]);
-                AddMetaFieldToForms(contactMetaClass, contactMetaClass.Fields["DemoUserDescription"]);
-                AddMetaFieldToForms(contactMetaClass, contactMetaClass.Fields["DemoSortOrder"]);
-
                 var giftCardClass = manager.CreateMetaClass("GiftCard", "{Customer:GiftCard}", "{Customer:GiftCard}", "cls_GiftCard", PrimaryKeyIdValueType.Guid);
                 ModuleManager.Activate(giftCardClass, changeTrackingManifest);
                 using (var builder = new MetaFieldBuilder(giftCardClass))
@@ -93,57 +76,13 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                     builder.CreateText("RedemptionCode", "{Customer:RedemptionCode}", true, 100, false);
                     builder.CreateCheckBoxBoolean("IsActive", "{Customer:IsActive}", true, true, "{Customer:IsActive}");
                     giftCardClass.Fields[MetaClassManager.GetPrimaryKeyName(giftCardClass.Name)].FriendlyName = "{GlobalMetaInfo:PrimaryKeyId}";
-                    var contactReference = builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
-                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayBlock, "InfoBlock");
-                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayText, "{Customer:GiftCard}");
-                    contactReference.Attributes.Add(McDataTypeAttribute.ReferenceDisplayOrder, "10000");
+                    builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
                     builder.SaveChanges();
                 }
+                
                 giftCardClass.AddPermissions();
-
-                AddMetaFieldToForms(giftCardClass, giftCardClass.Fields["GiftCardName"]);
-                AddMetaFieldToForms(giftCardClass, giftCardClass.Fields["InitialAmount"]);
-                AddMetaFieldToForms(giftCardClass, giftCardClass.Fields["RemainBalance"]);
-                AddMetaFieldToForms(giftCardClass, giftCardClass.Fields["RedemptionCode"]);
-                AddMetaFieldToForms(giftCardClass, giftCardClass.Fields["IsActive"]);
-                AddMetaFieldToForms(giftCardClass, giftCardClass.Fields["ContactId"]);
-
                 scope.SaveChanges();
             }
-
-            var contactProfile = @"<ListViewProfile xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-                    <Id>{54a649a9-302f-48bd-b657-11ca3604fda9}</Id>
-                    <Name>{Customer:AllContacts}</Name>
-                    <IsSystem>true</IsSystem>
-                    <IsPublic>true</IsPublic>
-                    <FieldSetName>Contacts</FieldSetName>
-                   <FieldSet>
-                    <string>FullName</string>
-                    <string>Email</string>
-                    <string>LastOrder</string>
-                    <string>NumberOfOrders</string>
-                    <string>NumberOfReviews</string>
-                    <string>Points</string>
-                    <string>ShowInDemoUserMenu</string>
-                    <string>DemoUserTitle</string>
-                  </FieldSet>
-                  <GroupByFieldName />
-                  <Filters />
-                  <Sorting />
-                  <ColumnsUI>
-                    <Column field=""FullName"" width=""150"" />
-                    <Column field=""Email"" width=""150"" />
-                    <Column field=""LastOrder"" width=""150"" />
-                    <Column field=""NumberOfOrders"" width=""150"" />
-                    <Column field=""NumberOfReviews"" width=""150"" />
-                    <Column field=""Points"" width=""150"" />
-                    <Column field=""ShowInDemoUserMenu"" width=""150"" />
-                    <Column field=""DemoUserTitle"" width=""150"" />
-                  </ColumnsUI>
-                </ListViewProfile>";
-
-            //var contactviewProfile = (ListViewProfile)_listViewProfileXmlSerializer.Deserialize(new StringReader(contactProfile));
-            //ListViewProfile.SaveSystemProfile("Contact", "EntityList", Guid.NewGuid(), contactviewProfile);
 
             using (var stream = new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data\Customers.xml"), FileMode.Open))
             {
@@ -418,9 +357,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                     .GetAwaiter()
                     .GetResult())
                 {
-                    var createdRole = new IdentityRole(role);
-
-                    var roleResult = _roleManager.CreateAsync(createdRole)
+                    var roleResult = _roleManager.CreateRoleAsync(role)
                         .GetAwaiter()
                         .GetResult();
 
@@ -428,7 +365,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                     {
                         continue;
                     }
-                    _userManager.AddToRoleAsync(user.Id, role)
+                    _userManager.AddToRoleAsync(user, role)
                         .GetAwaiter()
                         .GetResult();
                 }
@@ -520,15 +457,6 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                 creditCard.ExpirationYear = cc.ExpirationYear;
                 creditCard.OrganizationId = org.PrimaryKeyId;
                 BusinessManager.Create(creditCard);
-            }
-        }
-
-        private static void AddMetaFieldToForms(MetaClass metaClass, MetaField newField)
-        {
-            var formNames = new string[] { FormController.BaseFormType, FormController.GeneralViewFormType, FormController.ShortViewFormType, FormController.CreateFormType };
-            foreach (var formName in formNames)
-            {
-                FormController.AddMetaPrimitive(metaClass.Name, formName, newField.Name);
             }
         }
 

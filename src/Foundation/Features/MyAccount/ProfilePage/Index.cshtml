@@ -1,6 +1,6 @@
 ﻿@using EPiServer.Commerce.Order
 @using Foundation.Features.MyAccount.ProfilePage
-
+@inject IContextModeResolver contextModeResolver
 @model ProfilePageViewModel
 
 @{
@@ -15,7 +15,7 @@
         <div class="welcome-msg">
             <strong>@Html.TranslateFallback("/Dashboard/Labels/Hello", "Hello"), @Model.CustomerContact.FirstName @Model.CustomerContact.LastName!</strong>
             <div class="row">
-                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
+                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
                 {
                     <div class="col-12">
                         @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -250,12 +250,12 @@
     </div>
 </div>
 @*<div class="row">
-    <div class="col-12">
-        @Html.PropertyFor(x => x.CurrentContent.MembershipAffiliation)
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MembershipAffiliation)
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        @Html.PropertyFor(x => x.CurrentContent.ActivityFeed)
-    </div>
-</div>*@
+    <div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.ActivityFeed)
+        </div>
+    </div>*@

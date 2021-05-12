@@ -117,6 +117,48 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
             return viewModel;
         }
 
+        private bool FilterOrder(OrderFilter filter, OrderViewModel order)
+        {
+            var result = true;
+            if (result && !string.IsNullOrEmpty(filter.Keyword))
+            {
+                result = result ? order.OrderGroupId.ToString().Contains(filter.Keyword) : result;
+                result = !result ? order.Items.Where(x => x.LineItem.Code.Contains(filter.Keyword)).Any() : true;
+            }
+
+            if (result && filter.DateFrom.HasValue)
+            {
+                result = order.PurchaseOrder.Created.Date >= filter.DateFrom.Value.Date;
+            }
+
+            if (result && filter.DateTo.HasValue)
+            {
+                result = order.PurchaseOrder.Created.Date <= filter.DateTo.Value.Date;
+            }
+
+            if (result && !string.IsNullOrEmpty(filter.PaymentMethodId))
+            {
+                result = order.OrderPayments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Any();
+            }
+
+            if (result && !(filter.OrderStatusId == 0))
+            {
+                result = order.PurchaseOrder.OrderStatus.Id == filter.OrderStatusId;
+            }
+
+            if (result && filter.PriceFrom > 0)
+            {
+                result = order.OrderTotal >= filter.PriceFrom;
+            }
+
+            if (result && filter.PriceTo > 0)
+            {
+                result = order.OrderTotal <= filter.PriceTo;
+            }
+
+            return result;
+        }
+
         private void SetCookieFilter(OrderFilter filter)
         {
             _cookieService.Set(_KEYWORD, filter.Keyword);

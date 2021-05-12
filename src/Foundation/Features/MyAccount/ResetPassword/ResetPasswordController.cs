@@ -2,16 +2,17 @@
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
-using Foundation.Infrastructure.Cms.Attributes;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Home;
 using Foundation.Features.Settings;
 using Foundation.Features.Shared;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using Foundation.Infrastructure.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Foundation.Features.MyAccount.ResetPassword
@@ -119,7 +120,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
                 return RedirectToAction("ResetPasswordConfirmation");
             }
 
-            AddErrors(result.Errors);
+            AddErrors(result.Errors.Select(x => x.Code));
 
             return View();
         }

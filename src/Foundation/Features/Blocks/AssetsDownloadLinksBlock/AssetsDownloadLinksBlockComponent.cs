@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock.Component
 {
-    [TemplateDescriptor(Default = true)]
     public class AssetsDownloadLinksBlockComponent : AsyncBlockComponent<AssetsDownloadLinksBlock>
     {
         private readonly IContentLoader _contentLoader;

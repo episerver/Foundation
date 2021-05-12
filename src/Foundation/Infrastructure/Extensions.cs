@@ -3,15 +3,9 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.Enterprise;
 using EPiServer.Find;
 using EPiServer.Find.Commerce;
-using EPiServer.Logging;
-using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Category;
@@ -21,17 +15,13 @@ using Foundation.Features.Locations.LocationItemPage;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.Search;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Infrastructure.Commerce.Install;
 using Foundation.Infrastructure.Find;
-using Mediachase.Commerce.Catalog.ImportExport;
-using Mediachase.Search;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Foundation.Infrastructure
@@ -40,18 +30,6 @@ namespace Foundation.Infrastructure
     {
         private static readonly Lazy<IContentRepository> _contentRepository =
             new Lazy<IContentRepository>(() => ServiceLocator.Current.GetInstance<IContentRepository>());
-
-        private static readonly Lazy<IUrlResolver> _urlResolver =
-           new Lazy<IUrlResolver>(() => ServiceLocator.Current.GetInstance<IUrlResolver>());
-
-        private static readonly Lazy<IPermanentLinkMapper> _permanentLinkMapper =
-           new Lazy<IPermanentLinkMapper>(() => ServiceLocator.Current.GetInstance<IPermanentLinkMapper>());
-
-        private static readonly Lazy<IInstallService> _installService =
-           new Lazy<IInstallService>(() => ServiceLocator.Current.GetInstance<IInstallService>());
-
-        private static readonly Lazy<ISiteDefinitionRepository> _siteDefinitionRepository =
-          new Lazy<ISiteDefinitionRepository>(() => ServiceLocator.Current.GetInstance<ISiteDefinitionRepository>());
 
         private static readonly Lazy<IRelationRepository> RelationRepository =
           new Lazy<IRelationRepository>(() => ServiceLocator.Current.GetInstance<IRelationRepository>());
@@ -130,7 +108,7 @@ namespace Foundation.Infrastructure
                    address.CountryRegion.Region == compareAddressViewModel.CountryRegion.Region;
         }
 
-        //public static List<string> TagString(this LocationItemPage locationList) => locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
+        public static List<string> TagString(this LocationItemPage locationList) => new List<string>();// locationList.Categories.Select(cai => _contentRepository.Value.Get<StandardCategory>(cai).Name).ToList();
 
         public static ContactViewModel GetCurrentContactViewModel(this ICustomerService customerService)
         {
@@ -182,250 +160,13 @@ namespace Foundation.Infrastructure
             }
         }
 
-        public static string GetPublicUrl(this ContentReference contentLink, string language = null)
-        {
-            if (ContentReference.IsNullOrEmpty(contentLink))
-            {
-                return string.Empty;
-            }
-
-            var content = language != null ? contentLink.Get<IContent>(language) : contentLink.Get<IContent>();
-            if (content == null || !PublishedStateAssessor.IsPublished(content))
-            {
-                return string.Empty;
-            }
-
-            return _urlResolver.Value.GetUrl(contentLink, language);
-        }
-
-
-        public static string GetPublicUrl(this Guid contentGuid, string language)
-        {
-            var contentLink = PermanentLinkUtility.FindContentReference(contentGuid);
-            return GetPublicUrl(contentLink, language);
-        }
-
         public static bool IsVirtualVariant(this ILineItem lineItem)
         {
             var entry = lineItem.GetEntryContent<EntryContentBase>() as GenericVariant;
             return entry != null && entry.VirtualProductMode != null && !string.IsNullOrWhiteSpace(entry.VirtualProductMode) && !entry.VirtualProductMode.Equals("None");
         }
 
-        public static void InstallDefaultContent()
-        {
-            if (_siteDefinitionRepository.Value.List().Any() || Type.GetType("Foundation.Features.Setup.SetupController, Foundation") != null)
-            {
-                return;
-            }
-
-            var siteDefinition = new SiteDefinition
-            {
-                Name = "foundation",
-                SiteUrl = new Uri($"http://{_installService.Value.FoundationConfiguration.ApplicationName}"),
-                Hosts = new List<HostDefinition>()
-                    {
-                        new HostDefinition { Name = "*", Type = HostDefinitionType.Undefined }
-                    }
-            };
-
-            if (!_installService.Value.FoundationConfiguration.SitePublicDomain.IsNullOrEmpty() &&
-                !_installService.Value.FoundationConfiguration.ApplicationName.Equals(_installService.Value.FoundationConfiguration.SitePublicDomain))
-            {
-                siteDefinition.Hosts.Add(new HostDefinition
-                {
-                    Name = _installService.Value.FoundationConfiguration.SitePublicDomain,
-                    Type = HostDefinitionType.Primary
-                });
-            }
-            else
-            {
-                siteDefinition.Hosts.Add(new HostDefinition
-                {
-                    Name = _installService.Value.FoundationConfiguration.ApplicationName,
-                    Type = HostDefinitionType.Primary
-                });
-            }
-
-            CreateSite(new FileStream(HostingEnvironment.MapPath("~/App_Data/foundation.episerverdata"), FileMode.Open),
-                siteDefinition,
-                ContentReference.RootPage);
-
-            ServiceLocator.Current.GetInstance<ISettingsService>().UpdateSettings();
-
-            CreateCatalog(new FileStream(HostingEnvironment.MapPath("~/App_Data/foundation_fashion.zip"), FileMode.Open),
-                Path.Combine(HostingEnvironment.MapPath("~/App_Data/foundation_fashion.zip")));
-
-            var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName);
-            searchManager.BuildIndex(true);
-
-            var config = Configuration.GetConfiguration();
-            if (!config.ServiceUrl.Equals("https://es-us-api01.episerver.com/9IKGqgMZaTD9KP4Op3ygsVB6JeJzR0N6") && !config.DefaultIndex.Equals("episerverab_index55794"))
-            {
-                RunIndexJob(ServiceLocator.Current.GetInstance<IScheduledJobExecutor>(),
-                    ServiceLocator.Current.GetInstance<IScheduledJobRepository>(), new Guid("8EB257F9-FF22-40EC-9958-C1C5BA8C2A53"));
-            }
-        }
-
-        private static void CreateSite(Stream stream, SiteDefinition siteDefinition, ContentReference startPage)
-        {
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
-            ImportEpiserverContent(stream, startPage, ServiceLocator.Current.GetInstance<IDataImporter>(), siteDefinition);
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
-        }
-
-        private static void CreateCatalog(Stream file, string fileName)
-        {
-            if (file == null || fileName.IsNullOrEmpty())
-            {
-                throw new Exception("File is required");
-            }
-            var name = fileName.Substring(fileName.LastIndexOf("\\") == 0 ? 0 : fileName.LastIndexOf("\\") + 1);
-            var path = HostingEnvironment.MapPath("~/App_Data/Catalog");
-            var zipFile = Path.Combine(path, name);
-            var zipDirectory = new DirectoryInfo(Path.Combine(path, name.Replace(".zip", "")));
-            if (zipDirectory.Exists)
-            {
-                zipDirectory.Delete(true);
-            }
-
-            zipDirectory.Create();
-
-            var zipInputStream = new ZipFile(file)
-            {
-                IsStreamOwner = false
-            };
-            foreach (ZipEntry zipEntry in zipInputStream)
-            {
-                if (!zipEntry.IsFile)
-                {
-                    continue;
-                }
-
-                var entryFileName = zipEntry.Name;
-                var zipStream = zipInputStream.GetInputStream(zipEntry);
-                using (var fs = new FileStream(Path.Combine(zipDirectory.FullName, entryFileName), FileMode.Create, FileAccess.ReadWrite))
-                {
-                    zipStream.CopyTo(fs);
-                }
-            }
-
-            var assests = zipDirectory.GetFiles("ProductAssets*")
-                .FirstOrDefault();
-
-            var catalogXml = zipDirectory.GetFiles("*.xml")
-                .FirstOrDefault();
-
-            if (catalogXml == null || assests == null)
-            {
-                throw new Exception("Zip does not contain catalog.xml or ProductAssets.episerverdata");
-            }
-
-            var catalogFolder = _contentRepository.Value.GetChildren<ContentFolder>(ContentReference.GlobalBlockFolder)
-                .FirstOrDefault(_ => _.Name.Equals("Catalogs"));
-
-            if (catalogFolder == null)
-            {
-                catalogFolder = _contentRepository.Value.GetDefault<ContentFolder>(ContentReference.GlobalBlockFolder);
-                catalogFolder.Name = "Catalogs";
-                _contentRepository.Value.Save(catalogFolder, EPiServer.DataAccess.SaveAction.Publish, EPiServer.Security.AccessLevel.NoAccess);
-            }
-
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = false;
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = false;
-            ImportEpiserverContent(assests.OpenRead(), catalogFolder.ContentLink, ServiceLocator.Current.GetInstance<IDataImporter>());
-            try
-            {
-                var catalogImportExport = new CatalogImportExport()
-                {
-                    IsModelsAvailable = true
-                };
-                catalogImportExport.Import(catalogXml.OpenRead(), true);
-            }
-            catch (Exception exception)
-            {
-                LogManager.GetLogger().Error(exception.Message, exception);
-            }
-
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.EventedIndexingEnabled = true;
-            EPiServer.Find.Cms.EventedIndexingSettings.Instance.ScheduledPageQueueEnabled = true;
-        }
-
-        public static bool ImportEpiserverContent(Stream stream,
-            ContentReference destinationRoot,
-            IDataImporter importer,
-            SiteDefinition siteDefinition = null)
-        {
-            var success = false;
-            try
-            {
-                var log = importer.Import(stream, destinationRoot, new ImportOptions
-                {
-                    KeepIdentity = true,
-                });
-
-                var status = importer.Status;
-                if (status == null)
-                {
-                    return false;
-                }
-
-                UpdateLanguageBranches(status);
-                if (siteDefinition != null && !ContentReference.IsNullOrEmpty(status.ImportedRoot))
-                {
-                    siteDefinition.StartPage = status.ImportedRoot;
-                    _siteDefinitionRepository.Value.Save(siteDefinition);
-                    SiteDefinition.Current = siteDefinition;
-                    success = true;
-                }
-            }
-            catch (Exception exception)
-            {
-                LogManager.GetLogger().Error(exception.Message, exception);
-                success = false;
-            }
-
-            return success;
-        }
-
-        private static void UpdateLanguageBranches(IImportStatus status)
-        {
-            var languageBranchRepository = ServiceLocator.Current.GetInstance<ILanguageBranchRepository>();
-
-            if (status.ContentLanguages == null)
-            {
-                return;
-            }
-
-            foreach (var languageId in status.ContentLanguages)
-            {
-                var languageBranch = languageBranchRepository.Load(languageId);
-
-                if (languageBranch == null)
-                {
-                    languageBranch = new LanguageBranch(languageId);
-                    languageBranchRepository.Save(languageBranch);
-                }
-                else if (!languageBranch.Enabled)
-                {
-                    languageBranch = languageBranch.CreateWritableClone();
-                    languageBranch.Enabled = true;
-                    languageBranchRepository.Save(languageBranch);
-                }
-            }
-        }
-
-        private static void RunIndexJob(IScheduledJobExecutor scheduledJobExecutor, IScheduledJobRepository scheduledJobRepository, Guid jobId)
-        {
-            var job = scheduledJobRepository.Get(jobId);
-            if (job == null)
-            {
-                return;
-            }
-
-            scheduledJobExecutor.StartAsync(job, new JobExecutionOptions { Trigger = ScheduledJobTrigger.User });
-        }
+        public static bool IsAjaxRequest(this HttpRequest httpRequest) => httpRequest.Headers["X-Requested-With"] == "XMLHttpRequest";
 
         private static FoundationOrganization GetCurrentOrganization(ICustomerService customerService)
         {

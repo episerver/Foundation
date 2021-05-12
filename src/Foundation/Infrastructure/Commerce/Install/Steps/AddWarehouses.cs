@@ -13,16 +13,14 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
     public class AddWarehouses : BaseInstallStep
     {
         private readonly IWarehouseRepository _warehouseRepository;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public AddWarehouses(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
             IWarehouseRepository warehouseRepository,
-            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService)
+            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
             _warehouseRepository = warehouseRepository;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         public override int Order => 3;
@@ -31,7 +29,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
-            using (var stream = new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data\warehouses.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/warehouses.xml"), FileMode.Open))
             {
                 foreach (var xWarehouse in GetXElements(stream, "Warehouse"))
                 {

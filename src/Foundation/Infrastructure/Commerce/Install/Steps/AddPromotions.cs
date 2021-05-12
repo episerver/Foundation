@@ -5,6 +5,7 @@ using EPiServer.Core;
 using EPiServer.DataAccess;
 using EPiServer.Security;
 using EPiServer.Web;
+using Foundation.Infrastructure.Cms.Extensions;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Markets;
@@ -37,7 +38,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
         private void ConfigureMarketing()
         {
             //ImportEpiserverData(null);
-            using (var stream = new FileStream(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\promotions.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/promotions.xml"), FileMode.Open))
             {
                 foreach (var xCampaign in GetXElements(stream, "Campaign"))
                 {

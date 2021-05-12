@@ -15,7 +15,8 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
     {
         public AddCurrencies(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
-            IMarketService marketService) : base(contentRepository, referenceConverter, marketService)
+            IMarketService marketService, 
+            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
         }
 

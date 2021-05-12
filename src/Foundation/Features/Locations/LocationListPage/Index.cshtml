@@ -4,14 +4,13 @@
 @using EPiServer.ServiceLocation
 @using Foundation.Features.Locations
 @using Foundation.Features.Locations.LocationListPage
+@inject IContextModeResolver contextModeResolver
+@inject IContentRepository _contentRepository
 
-@{
-    var _contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
-}
 
 <div class="main container">
     <div class="row">
-        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
         {
             <div class="col-12">
                 @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -86,16 +85,16 @@
                                                         </div>
                                                         <div class="col-xs-12">
                                                             @*@if (location.Categories != null)
-                                        {
-                                            <i class="fa fa-tags"></i>
-                                            foreach (var tag in location.Categories)
-                                            {
-                                                var t = _contentRepository.Get<StandardCategory>(tag);
-                                                <span data-epi-block-id="@tag.ToString()">
-                                                    <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@t.Name</span></a>
-                                                </span>
-                                            }
-                                        }*@
+                                                                {
+                                                                    <i class="fa fa-tags"></i>
+                                                                    foreach (var tag in location.Categories)
+                                                                    {
+                                                                        var t = _contentRepository.Get<StandardCategory>(tag);
+                                                                        <span data-epi-block-id="@tag.ToString()">
+                                                                            <a href="@Url.ContentUrl(tag)"><span class="badge badge-dark">@t.Name</span></a>
+                                                                        </span>
+                                                                    }
+                                                                }*@
                                                         </div>
                                                     </div>
                                                 </div>

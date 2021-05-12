@@ -32,6 +32,7 @@ namespace Foundation.Features.Search
         public bool ShowProductSearchResults { get; set; }
         public bool ShowContentSearchResults { get; set; }
         public bool ShowPdfSearchResults { get; set; }
+        public bool ShowRecommendations { get; set; }
         public IEnumerable<Recommendation> Recommendations { get; set; }
     }
 }

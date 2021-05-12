@@ -39,7 +39,7 @@
         @if (Model.Shipments.Any())
         {
             <div id="cartItemsId">
-                @Html.Partial("_CartItems", Model)
+                @await Html.PartialAsync("_CartItems", Model)
             </div>
         }
         else
@@ -57,7 +57,7 @@
         <div class="col-12">
             @if (Model.Shipments.Any())
             {
-                @Html.Partial("_ProcessCart", Model)
+                @await Html.PartialAsync("_ProcessCart", Model)
             }
         </div>
     </div>

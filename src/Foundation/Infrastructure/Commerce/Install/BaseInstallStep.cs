@@ -6,6 +6,7 @@ using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Shared;
 using Mediachase.Data.Provider;
 using Mediachase.MetaDataPlus.Configurator;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,16 +25,19 @@ namespace Foundation.Infrastructure.Commerce.Install
         protected ReferenceConverter ReferenceConverter { get; }
         protected IMarketService MarketService { get; }
         protected ILogger Logger { get; }
+        protected IWebHostEnvironment WebHostEnvironment { get; }
 
         protected BaseInstallStep(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
-            IMarketService marketService)
+            IMarketService marketService, 
+            IWebHostEnvironment webHostEnvironment)
         {
             Logger = LogManager.GetLogger(GetType());
             CustomerContext = CustomerContext.Current;
             ContentRepository = contentRepository;
             ReferenceConverter = referenceConverter;
             MarketService = marketService;
+            WebHostEnvironment = webHostEnvironment;
         }
 
         public abstract int Order { get; }

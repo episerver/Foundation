@@ -1,9 +1,7 @@
-﻿@using EPiServer.Commerce.Catalog.ContentTypes
-@using EPiServer.Framework.Web.Mvc.Html
-@model IContentViewModel<IContent>
-
+﻿@model IContentViewModel<IContent>
+@inject IContextModeResolver contextModeResolver
 <!DOCTYPE html>
-<html lang="en" class="@(Html.IsInEditMode() ? "editMode" : "")">
+<html lang="en" class="@(contextModeResolver.CurrentMode == ContextMode.Edit ? "editMode" : "")">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
