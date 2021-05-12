@@ -21,7 +21,7 @@ namespace Foundation.Features.Markets
         private readonly ICartService _cartService;
         private readonly ICurrencyService _currencyService;
         private readonly IContentRouteHelper _contentRouteHelper;
-        private const string FlagLocation = "/Assets/icons/flags/";
+        private const string FlagLocation = "/icons/flags/";
 
         public MarketController(
             IMarketService marketService,

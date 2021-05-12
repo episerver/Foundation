@@ -5,9 +5,9 @@ import "bootstrap-notify";
 import feather from "feather-icons";
 import "lazysizes";
 import "lazysizes/plugins/bgset/ls.bgset";
-import FoundationCms from "Assets/js/common/foundation.cms";
-import FoundationCommerce from "Assets/js/common/foundation.commerce";
-import FoundationPersonalization from "Assets/js/common/foundation.cms.personalization";
+import FoundationCms from "wwwroot/js/common/foundation.cms";
+import FoundationCommerce from "wwwroot/js/common/foundation.commerce";
+import FoundationPersonalization from "wwwroot/js/common/foundation.cms.personalization";
 
 feather.replace();
 window.feather = feather; 
