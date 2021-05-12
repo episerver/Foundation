@@ -11,12 +11,12 @@
 }
 
 .epi-viewPort-320x692 {
-    background: url('/Assets/imgs/iphone11.png') no-repeat center center;
+    background: url('/imgs/iphone11.png') no-repeat center center;
     background-size: 368px 796px;
 }
 
 .epi-viewPort-519x692 {
-    background: url('/Assets/imgs/ipadair.png') no-repeat center center;
+    background: url('/imgs/ipadair.png') no-repeat center center;
     background-size: 775px 890px;
 }
 

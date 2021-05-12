@@ -1,7 +1,17 @@
 ﻿using EPiServer.Commerce.Catalog.Linking;
+using EPiServer.Commerce.Marketing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Install;
+using Foundation.Infrastructure.Commerce.Install.Steps;
+using Foundation.Infrastructure.Commerce.Marketing;
+using Foundation.Infrastructure.Commerce.Markets;
+using Mediachase.Commerce;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure.Commerce
 {
@@ -10,31 +20,34 @@ namespace Foundation.Infrastructure.Commerce
     {
         void IConfigurableModule.ConfigureContainer(ServiceConfigurationContext context)
         {
-            var services = context.Services;
-            //services.AddSingleton<ICurrentMarket, CurrentMarket>();
-            //services.AddSingleton<ICustomerService, CustomerService>();
-            //services.AddSingleton<IFileHelperService, FileHelperService>();
-            //services.AddTransient<ILoyaltyService, LoyaltyService>();
-            //services.AddSingleton<IUniqueCouponService, UniqueCouponService>();
-            //services.AddSingleton<ICurrencyService, CurrencyService>();
-            //services.AddSingleton<MarketContentLoader>();
-            //services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
-            //services.AddSingleton<ICouponUsage, FoundationCouponUsage>();
-            //services.AddSingleton<IInstallService, InstallService>();
-            //services.AddSingleton<IInstallStep, AddCurrencies>();
-            //services.AddSingleton<IInstallStep, AddCustomers>();
-            //services.AddSingleton<IInstallStep, AddMarkets>();
-            //services.AddSingleton<IInstallStep, AddPaymentMethods>();
-            //services.AddSingleton<IInstallStep, AddPromotions>();
-            //services.AddSingleton<IInstallStep, AddShippingMethods>();
-            //services.AddSingleton<IInstallStep, AddTaxes>();
-            //services.AddSingleton<IInstallStep, AddWarehouses>();
-            //services.Intercept<IUpdateCurrentLanguage>(
-            //   (locator, defaultImplementation) =>
-            //       new LanguageService(
-            //           locator.GetInstance<ICurrentMarket>(),
-            //           locator.GetInstance<CookieService>(),
-            //           defaultImplementation));
+            var _services = context.Services;
+            _services.AddSingleton<ICurrentMarket, CurrentMarket>();
+            _services.AddSingleton<ICustomerService, CustomerService>();
+            _services.AddSingleton<IFileHelperService, FileHelperService>();
+            _services.AddTransient<ILoyaltyService, LoyaltyService>();
+            _services.AddSingleton<IUniqueCouponService, UniqueCouponService>();
+            _services.AddSingleton<ICurrencyService, CurrencyService>();
+            _services.AddSingleton<MarketContentLoader>();
+            _services.AddSingleton<ICouponFilter, FoundationCouponFilter>();
+            _services.AddSingleton<ICouponUsage, FoundationCouponUsage>();
+            _services.AddSingleton<IInstallService, InstallService>();
+            _services.AddSingleton<IInstallStep, AddCurrencies>();
+            _services.AddSingleton<IInstallStep, AddCustomers>();
+            _services.AddSingleton<IInstallStep, AddMarkets>();
+            _services.AddSingleton<IInstallStep, AddPaymentMethods>();
+            _services.AddSingleton<IInstallStep, AddPromotions>();
+            _services.AddSingleton<IInstallStep, AddShippingMethods>();
+            _services.AddSingleton<IInstallStep, AddTaxes>();
+            _services.AddSingleton<IInstallStep, AddWarehouses>();
+            context.ConfigurationComplete += (o, e) =>
+            {
+                e.Services.Intercept<IUpdateCurrentLanguage>(
+                (locator, defaultImplementation) =>
+                    new LanguageService(
+                        locator.GetInstance<ICurrentMarket>(),
+                        locator.GetInstance<CookieService>(),
+                        defaultImplementation));
+            };
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

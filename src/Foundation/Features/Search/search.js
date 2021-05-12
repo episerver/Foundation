@@ -1,5 +1,5 @@
 ﻿import feather from "feather-icons";
-import Selection from "Assets/js/common/selection";
+import Selection from "js/common/selection";
 import Product from "Features/CatalogContent/product";
 import ProductDetail from "Features/CatalogContent/product-detail";
 

@@ -45,6 +45,7 @@ using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Commerce.GiftCard;
+using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Infrastructure.Display;
 using Foundation.Infrastructure.Find.Facets;
 using Foundation.Infrastructure.Find.Facets.Config;
@@ -102,6 +103,7 @@ namespace Foundation.Infrastructure
             _services.AddTransient<PaymentMethodViewModelFactory>();
             _services.AddSingleton<IBookmarksService, BookmarksService>();
             _services.AddSingleton<IPricingService, PricingService>();
+            _services.AddSingleton<ICurrencyService, CurrencyService>();
             _services.AddSingleton<IB2BNavigationService, B2BNavigationService>();
             _services.AddSingleton<IBudgetService, BudgetService>();
             _services.AddSingleton<ICreditCardService, CreditCardService>();
@@ -120,6 +122,7 @@ namespace Foundation.Infrastructure
             _services.AddSingleton<IOrdersService, OrdersService>();
             _services.AddSingleton<ShipmentViewModelFactory>();
             _services.AddSingleton<IShippingService, ShippingService>();
+            _services.AddSingleton<IConfirmationService, ConfirmationService>();
             //_services.AddSingleton<ICampaignService, CampaignService>();
             _services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
             _services.AddTransient<IMailService, MailService>();
@@ -206,7 +209,7 @@ namespace Foundation.Infrastructure
 
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {
-            _services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
+            //_services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
             var settings = _locator.GetInstance<ISettingsService>().GetSiteSettings<SearchSettings>();
             if (settings != null)
             {

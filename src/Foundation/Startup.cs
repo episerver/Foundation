@@ -89,7 +89,6 @@ namespace Foundation
 
             //site specific
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
-            services.AddSingleton<ICurrentMarket, CurrentMarket>();
             services.AddEmbeddedLocalization<Startup>();
             services.Configure<MvcOptions>(o =>
             {
