@@ -11,7 +11,6 @@ using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
 //using Geta.EpiCategories;
 //using Geta.EpiCategories.DataAnnotations;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Shared

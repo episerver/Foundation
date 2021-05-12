@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Cms.Shell.Search;
 using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying;
@@ -8,15 +9,14 @@ using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Framework.Localization;
 using EPiServer.Framework.Modules;
-using EPiServer.Globalization;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell;
 using EPiServer.Shell.Search;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Product;
+using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Find;
 using Mediachase.Commerce.Core;
 using Mediachase.Search;
@@ -25,7 +25,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
-using EPiServer.Core;
 
 namespace Foundation.Features.Search
 {

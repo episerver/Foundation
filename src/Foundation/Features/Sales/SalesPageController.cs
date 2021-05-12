@@ -1,7 +1,7 @@
 ﻿using EPiServer.Web.Mvc;
-using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Features.Search;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Sales

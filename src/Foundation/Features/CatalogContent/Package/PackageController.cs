@@ -9,7 +9,6 @@ using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent.Package

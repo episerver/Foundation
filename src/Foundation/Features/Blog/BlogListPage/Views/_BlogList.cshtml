@@ -40,7 +40,7 @@
             var flip = false;
             foreach (var blog in Model.Blogs)
             {
-                @await Html.PartialAsync("Views/Templates/_HighLightTemplate", blog, new ViewDataDictionary(ViewData) { { "Flip", flip } })
+                @await Html.PartialAsync("Views/Templates/_HighLightTemplate", blog, new ViewDataDictionary(this.ViewData) { { "Flip", flip } })
                 if (!blog.CurrentContent.Highlight)
                 {
                     flip = !flip;

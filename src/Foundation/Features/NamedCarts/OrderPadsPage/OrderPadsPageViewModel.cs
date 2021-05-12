@@ -1,7 +1,7 @@
 using EPiServer.Commerce.Order;
-using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Features.NamedCarts.OrderPadsPage;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Commerce.Customer;
 using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.ViewModels

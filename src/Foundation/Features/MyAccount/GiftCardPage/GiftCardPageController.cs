@@ -1,8 +1,8 @@
 ﻿using EPiServer.Web.Mvc;
 using Foundation.Infrastructure.Commerce.GiftCard;
 using Mediachase.Commerce.Customers;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Foundation.Features.MyAccount.GiftCardPage
 {

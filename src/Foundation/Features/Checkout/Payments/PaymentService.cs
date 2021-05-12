@@ -1,14 +1,14 @@
+using Foundation.Features.Checkout.Services;
+using Foundation.Features.Checkout.ViewModels;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Features.Checkout.Services;
-using Foundation.Features.Checkout.ViewModels;
 using Mediachase.Commerce.Orders.Managers;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Checkout.Payments
 {

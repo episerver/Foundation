@@ -5,18 +5,18 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
+using EPiServer.Framework.Cache;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Features.CatalogContent;
+using Foundation.Infrastructure.Cms.Extensions;
 using Mediachase.Commerce.Catalog;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Wangkanai.Detection;
 using Microsoft.Extensions.DependencyInjection;
-using EPiServer.Framework.Cache;
+using System.Collections.Generic;
+using System.Linq;
+using Wangkanai.Detection;
 
 namespace Foundation.Features.Search
 {

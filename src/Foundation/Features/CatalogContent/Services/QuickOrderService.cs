@@ -44,7 +44,7 @@ namespace Foundation.Features.CatalogContent.Services
             ICurrencyService currencyService,
             IClient findClient,
             IPriceService priceService,
-            IPromotionService promotionService, 
+            IPromotionService promotionService,
             IContentLanguageAccessor languageResolver)
         {
             _contentLoader = contentLoader;

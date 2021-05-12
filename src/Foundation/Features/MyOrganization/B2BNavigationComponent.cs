@@ -1,13 +1,12 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.SpecializedProperties;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Features.Header;
 using Foundation.Features.Home;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.Settings;
-using System;
+using Foundation.Infrastructure.Cms.Settings;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Foundation.Features.MyOrganization
 {

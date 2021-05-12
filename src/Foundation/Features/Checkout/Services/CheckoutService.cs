@@ -6,25 +6,25 @@ using EPiServer.Framework.Localization;
 using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce;
-using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.Settings;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Exceptions;
 using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Security;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Foundation.Features.Checkout.Services
 {

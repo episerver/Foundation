@@ -1,5 +1,4 @@
 using EPiServer.Web.Mvc;
-using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.MyAccount.Bookmarks

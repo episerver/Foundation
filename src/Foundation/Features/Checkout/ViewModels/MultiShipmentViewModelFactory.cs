@@ -1,11 +1,9 @@
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;

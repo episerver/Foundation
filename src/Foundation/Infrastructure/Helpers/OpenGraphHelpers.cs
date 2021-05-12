@@ -2,7 +2,6 @@
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
-using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;

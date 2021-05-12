@@ -31,7 +31,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
             ReferenceConverter referenceConverter,
             IMarketService marketService,
             IWebHostEnvironment webHostEnvironment,
-            ApplicationUserManager<SiteUser> userManager, 
+            ApplicationUserManager<SiteUser> userManager,
             ApplicationRoleProvider<SiteUser> roleManager) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
@@ -79,7 +79,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                     builder.CreateReference("Contact", "{Customer:CreditCard_mf_Contact}", true, "Contact", false);
                     builder.SaveChanges();
                 }
-                
+
                 giftCardClass.AddPermissions();
                 scope.SaveChanges();
             }

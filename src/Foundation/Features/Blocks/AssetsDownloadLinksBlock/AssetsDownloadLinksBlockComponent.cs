@@ -1,7 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Commerce.Extensions;

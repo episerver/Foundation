@@ -1,14 +1,13 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.Core;
-using EPiServer.Editor;
+using EPiServer.Web;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 //using Foundation.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
-using EPiServer.Web;
 
 namespace Foundation.Features.MyAccount.OrderConfirmation
 {

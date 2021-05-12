@@ -1,5 +1,5 @@
-using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Infrastructure.Cms.Attributes;
 
 namespace Foundation.Features.Login
 {

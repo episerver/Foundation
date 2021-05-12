@@ -5,10 +5,10 @@ using EPiServer.Find.Cms;
 using EPiServer.Find.Cms.Conventions;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Commerce.Extensions;
 
 namespace Foundation.Features.Search
 {

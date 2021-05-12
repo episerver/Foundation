@@ -1,9 +1,9 @@
 ﻿using EPiServer.Commerce.Order;
+using Foundation.Features.Checkout.ViewModels;
+using Foundation.Features.MyOrganization;
 using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.MyOrganization;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.Commerce.Customers;

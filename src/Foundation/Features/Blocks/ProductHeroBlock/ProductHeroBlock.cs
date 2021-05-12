@@ -3,10 +3,10 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Cms.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Blocks.ProductHeroBlock

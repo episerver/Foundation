@@ -29,7 +29,7 @@ namespace Foundation.Infrastructure.Commerce.Install
 
         protected BaseInstallStep(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
-            IMarketService marketService, 
+            IMarketService marketService,
             IWebHostEnvironment webHostEnvironment)
         {
             Logger = LogManager.GetLogger(GetType());

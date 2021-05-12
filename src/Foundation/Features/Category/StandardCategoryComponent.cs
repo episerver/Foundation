@@ -1,9 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Core.Html;
 using Foundation.Features.Shared;
-using Geta.EpiCategories;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 

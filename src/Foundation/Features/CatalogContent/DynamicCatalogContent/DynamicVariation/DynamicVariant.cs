@@ -8,7 +8,6 @@ using EPiServer.Validation;
 using EPiServer.Web;
 using Foundation.Features.CatalogContent.Variation;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

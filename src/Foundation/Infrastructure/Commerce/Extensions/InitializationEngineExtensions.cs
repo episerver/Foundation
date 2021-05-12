@@ -17,8 +17,6 @@ namespace Foundation.Infrastructure.Commerce.Extensions
 {
     public static class InitializationEngineExtensions
     {
-
-
         public static void InitializeFoundationCommerce(this InitializationEngine context)
         {
             CatalogRouteHelper.MapDefaultHierarchialRouter(false);

@@ -2,7 +2,6 @@
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
-using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Tracking.Commerce.Data;

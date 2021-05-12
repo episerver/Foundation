@@ -5,7 +5,6 @@ using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
 using EPiServer.Data;
 using EPiServer.Filters;
-using EPiServer.Globalization;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Bundle;

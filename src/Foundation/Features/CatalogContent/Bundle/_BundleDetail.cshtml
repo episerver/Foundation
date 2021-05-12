@@ -5,7 +5,7 @@
 
 @{
     var isBundle = new KeyValuePair<string, object>("IsBundle", true);
-    var viewData = new ViewDataDictionary(ViewData);
+    var viewData = new ViewDataDictionary(this.ViewData);
     viewData.Add(isBundle);
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
     var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());

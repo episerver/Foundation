@@ -6,10 +6,6 @@ using EPiServer.Framework.Localization;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce;
-using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.GiftCard;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
@@ -17,17 +13,21 @@ using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.NamedCarts;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.GiftCard;
 using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Foundation.Infrastructure.Cms.Users;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Foundation.Features.Checkout
 {

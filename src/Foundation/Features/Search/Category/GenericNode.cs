@@ -9,7 +9,6 @@ using EPiServer.Web;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.Shared;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Search.Category
 {

@@ -9,7 +9,6 @@ using EPiServer.Web;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Product
 {

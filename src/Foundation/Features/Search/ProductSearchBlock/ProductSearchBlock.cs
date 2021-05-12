@@ -3,9 +3,9 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Search.ProductSearchBlock

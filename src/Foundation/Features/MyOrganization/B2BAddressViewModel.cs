@@ -1,6 +1,6 @@
+using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Infrastructure.Commerce.Customer;
-using Foundation.Features.MyAccount.AddressBook;
 using System;
 using System.Collections.Generic;
 

@@ -4,21 +4,20 @@ using EPiServer.Commerce.Reporting.Order.ReportingModels;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying.Filters;
-using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
+using Foundation.Features.Blocks.ProductFilterBlocks;
+using Foundation.Features.CatalogContent;
 using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
-using Foundation.Features.Blocks.ProductFilterBlocks;
-using Foundation.Features.CatalogContent;
 using Foundation.Infrastructure.Find.Facets;
 //using Foundation.Social.Services;
 using Mediachase.Commerce;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.Search.ProductSearchBlock

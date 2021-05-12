@@ -8,7 +8,6 @@ using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent.Product

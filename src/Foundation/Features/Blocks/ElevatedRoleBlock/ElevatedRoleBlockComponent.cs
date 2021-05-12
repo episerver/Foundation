@@ -1,7 +1,6 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Mvc;
-using Foundation.Infrastructure.Commerce.Customer;
+﻿using EPiServer.Web.Mvc;
 using Foundation.Features.CatalogContent;
+using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.Commerce.Customers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

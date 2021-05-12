@@ -2,7 +2,6 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
-using EPiServer.Globalization;
 using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Find.Facets;
 using Mediachase.Search;

@@ -123,7 +123,7 @@
                             </div>
                         </div>
                     }
-                    ViewDataDictionary contentViewData = new ViewDataDictionary(ViewData);
+                    ViewDataDictionary contentViewData = new ViewDataDictionary(this.ViewData);
                     contentViewData.Add(new KeyValuePair<string, object>("SearchLabel", "Content"));
                     contentViewData.Add(new KeyValuePair<string, object>("FilterId", "SearchContent"));
 
@@ -174,7 +174,7 @@
                         </div>
                     }
 
-                    ViewDataDictionary pdfViewData = new ViewDataDictionary(ViewData);
+                    ViewDataDictionary pdfViewData = new ViewDataDictionary(this.ViewData);
                     pdfViewData.Add(new KeyValuePair<string, object>("SearchLabel", "Documents"));
                     pdfViewData.Add(new KeyValuePair<string, object>("FilterId", "SearchPdf"));
 

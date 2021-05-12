@@ -5,8 +5,8 @@ using EPiServer.Find.Commerce;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Mediachase.Commerce.Catalog;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.CategoryBlock

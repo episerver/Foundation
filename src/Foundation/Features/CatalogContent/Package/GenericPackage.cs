@@ -7,7 +7,6 @@ using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.Shared;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Package
 {
