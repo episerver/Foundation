@@ -269,12 +269,6 @@
     <Reference Include="EPiServer.ImageLibrary, Version=11.20.5.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.AspNet.11.20.5\lib\net461\EPiServer.ImageLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="EPiServer.Insight.Cms, Version=1.23.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Insight.Cms.1.23.0\lib\net461\EPiServer.Insight.Cms.dll</HintPath>
-    </Reference>
-    <Reference Include="EPiServer.Insight.UI, Version=1.23.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPiServer.Insight.UI.1.23.0\lib\net461\EPiServer.Insight.UI.dll</HintPath>
-    </Reference>
     <Reference Include="EPiServer.Labs.BlockEnhancements, Version=0.10.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Labs.BlockEnhancements.0.10.0\lib\net45\EPiServer.Labs.BlockEnhancements.dll</HintPath>
     </Reference>
@@ -2529,7 +2523,6 @@
     <Content Include="modules\_protected\EPiServer.Forms.UI\EPiServer.Forms.UI.zip" />
     <Content Include="modules\_protected\EPiServer.Forms\Views\ElementBlocks\Web.config" />
     <Content Include="modules\_protected\EPiServer.Forms\EPiServer.Forms.zip" />
-    <Content Include="modules\_protected\EPiServer.Insight.UI\module.config" />
     <Content Include="modules\_protected\episerver-telemetry-ui\web.config" />
     <Content Include="modules\_protected\episerver-telemetry-ui\episerver-telemetry-ui.zip" />
     <Content Include="modules\_protected\BVNetwork.404Handler\web.config" />
