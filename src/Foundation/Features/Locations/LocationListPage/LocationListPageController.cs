@@ -23,7 +23,8 @@ namespace Foundation.Features.Locations.LocationListPage
         {
             var query = SearchClient.Instance.Search<LocationItemPage.LocationItemPage>()
                 .PublishedInCurrentLanguage()
-                .FilterOnReadAccess();
+                .FilterOnReadAccess()
+                .ExcludeDeleted();
 
             if (currentPage.FilterArea != null)
             {

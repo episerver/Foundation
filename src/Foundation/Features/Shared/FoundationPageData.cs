@@ -241,11 +241,13 @@ namespace Foundation.Features.Shared
 
         #region Styles
 
+        [Searchable(false)]
         [Display(Name = "CSS files", GroupName = TabNames.Styles, Order = 100)]
         public virtual LinkItemCollection CssFiles { get; set; }
 
-        [Display(Name = "CSS", GroupName = TabNames.Styles, Order = 200)]
+        [Searchable(false)]
         [UIHint(UIHint.Textarea)]
+        [Display(Name = "CSS", GroupName = TabNames.Styles, Order = 200)]
         public virtual string Css { get; set; }
 
         #endregion
