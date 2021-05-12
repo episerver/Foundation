@@ -1,5 +1,5 @@
 ﻿@using Foundation.Features.NewProducts
-
+@inject IContextModeResolver contextModeResolver
 @model NewProductsPageViewModel
 
 <div id="new-products-page">
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row">
-        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
         {
             <div class="col-12">
                 @Html.PropertyFor(m => m.CurrentContent.MainBody)

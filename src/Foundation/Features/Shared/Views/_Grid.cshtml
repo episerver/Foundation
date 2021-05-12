@@ -154,12 +154,12 @@
     @if (!String.IsNullOrEmpty(Model.FooterPartialViewName))
     {
         <tfoot>
-            @Html.Partial(Model.FooterPartialViewName, Model)
+            @await Html.PartialAsync(Model.FooterPartialViewName, Model)
         </tfoot>
     }
     </table>
     @if (Model.Pager != null)
     {
-        @Html.Partial(Model.Pager.PartialViewName, Model.Pager)
+        @await Html.PartialAsync(Model.Pager.PartialViewName, Model.Pager)
     }
 </div>

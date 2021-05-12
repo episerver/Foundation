@@ -24,7 +24,7 @@ namespace Foundation.Features.Category
             var model = new CategoryFoundationPageViewModel(pageData)
             {
                 PreviewText = GetPreviewText(pageData),
-                Categories = pageData.Categories.Select(x => _contentLoader.Get<CategoryData>(x) as StandardCategory)
+                //Categories = pageData.Categories.Select(x => _contentLoader.Get<CategoryData>(x) as StandardCategory)
             };
             return View("_Preview", model);
         }

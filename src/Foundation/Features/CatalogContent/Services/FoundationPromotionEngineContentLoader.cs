@@ -46,7 +46,7 @@ namespace Foundation.Features.CatalogContent.Services
             memoryOrderGroup.CustomerId = PrincipalInfo.CurrentPrincipal.GetContactId();
             string code = this._referenceConverter.GetCode(entryLink);
             IPriceValue price = PriceCalculationService.GetSalePrice(code, market.MarketId, marketCurrency);
-            if (price != null && price.UnitPrice != null)
+            if (price != null && price.UnitPrice != default)
             {
                 decimal priceAmount = price.UnitPrice.Amount;
                 memoryOrderGroup.Forms.First<IOrderForm>().Shipments.First<IShipment>().LineItems.Add((ILineItem)new InMemoryLineItem()

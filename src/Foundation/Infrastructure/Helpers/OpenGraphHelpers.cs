@@ -77,7 +77,7 @@ namespace Foundation.Infrastructure.Helpers
                         Locale = defaultLocale.Name.Replace('-', '_'),
                         AlternateLocales = alternateLocales,
                         ContentType = contentType,
-                        Category = GetCategoryNames(homePage.Categories),
+                        //Category = GetCategoryNames(homePage.Categories),
                         ModifiedTime = homePage.Changed,
                         PublishedTime = homePage.StartPublish ?? null,
                         ExpirationTime = homePage.StopPublish ?? null
@@ -148,7 +148,7 @@ namespace Foundation.Infrastructure.Helpers
                         AlternateLocales = alternateLocales,
                         Author = foundationPageData.AuthorMetaData,
                         ContentType = contentType,
-                        Category = GetCategoryNames(foundationPageData.Categories),
+                        //Category = GetCategoryNames(foundationPageData.Categories),
                         ModifiedTime = foundationPageData.Changed,
                         PublishedTime = foundationPageData.StartPublish ?? null,
                         ExpirationTime = foundationPageData.StopPublish ?? null

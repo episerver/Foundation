@@ -2,7 +2,7 @@
 @using Foundation.Features.Search.Search
 @using Foundation.Features.CatalogContent
 @using System.Web;
-
+@inject IContextModeResolver contextModeResolver
 @model SearchViewModel<SearchResultPage>
 
 @{
@@ -17,7 +17,7 @@
         <div class="col-12">
             @Html.PropertyFor(x => x.CurrentContent.TopContentArea, new { CssClass = "row" })
         </div>
-        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
         {
             <div class="col-12">
                 @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -204,16 +204,15 @@
             </div>
         </div>
     }
-    <!--<hr />
+    <hr />
     <div class="row">
         @if (Model.ShowRecommendations && !Model.IsMobile)
         {
             <div class="col-12 slider-items-products">
                 <div class="new_title center">
                     <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
-                </div>-->
-                @*@{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.Recommendations });}*@
-                <!--@(await Component.InvokeAsync("Recommendations", new { recommendations = Model.Recommendations }))
+                </div>
+                @(await Component.InvokeAsync("Recommendations", new { recommendations = Model.Recommendations }))
             </div>
         }
     </div>-->

@@ -16,13 +16,11 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 {
     public class AddShippingMethods : BaseInstallStep
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
         public AddShippingMethods(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService)
+            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
-            _webHostEnvironment = webHostEnvironment;
         }
 
         public override int Order => 6;
@@ -31,7 +29,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
-            using (var stream = new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data\shippingMethods.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/shippingMethods.xml"), FileMode.Open))
             {
                 var enabledMarkets = MarketService.GetAllMarkets().Where(x => x.IsEnabled).ToList();
                 foreach (var language in enabledMarkets.SelectMany(x => x.Languages).Distinct())

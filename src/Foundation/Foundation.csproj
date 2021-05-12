@@ -21,6 +21,7 @@
 		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.0-inte-020546" />
 		<PackageReference Include="FileHelpers" Version="3.4.2" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
+		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
 		<PackageReference Include="Schema.NET" Version="8.0.0" />
 		<PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
 		<PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.2" />
@@ -49,7 +50,6 @@
 	  <Compile Remove="Features\MultiShipment\**" />
 	  <Compile Remove="Infrastructure\Cms\Identity\**" />
 	  <Compile Remove="Infrastructure\Cms\Views\**" />
-	  <Compile Remove="Infrastructure\Commerce\Marketing\**" />
 	  <Compile Remove="Infrastructure\Commerce\Views\**" />
 	  <Compile Remove="Infrastructure\Kpi\**" />
 	  <Compile Remove="Infrastructure\Plugins\**" />
@@ -72,7 +72,6 @@
 	  <Content Remove="Features\MultiShipment\**" />
 	  <Content Remove="Infrastructure\Cms\Identity\**" />
 	  <Content Remove="Infrastructure\Cms\Views\**" />
-	  <Content Remove="Infrastructure\Commerce\Marketing\**" />
 	  <Content Remove="Infrastructure\Commerce\Views\**" />
 	  <Content Remove="Infrastructure\Kpi\**" />
 	  <Content Remove="Infrastructure\Plugins\**" />
@@ -95,7 +94,6 @@
 	  <EmbeddedResource Remove="Features\MultiShipment\**" />
 	  <EmbeddedResource Remove="Infrastructure\Cms\Identity\**" />
 	  <EmbeddedResource Remove="Infrastructure\Cms\Views\**" />
-	  <EmbeddedResource Remove="Infrastructure\Commerce\Marketing\**" />
 	  <EmbeddedResource Remove="Infrastructure\Commerce\Views\**" />
 	  <EmbeddedResource Remove="Infrastructure\Kpi\**" />
 	  <EmbeddedResource Remove="Infrastructure\Plugins\**" />
@@ -118,15 +116,12 @@
 	  <None Remove="Features\MultiShipment\**" />
 	  <None Remove="Infrastructure\Cms\Identity\**" />
 	  <None Remove="Infrastructure\Cms\Views\**" />
-	  <None Remove="Infrastructure\Commerce\Marketing\**" />
 	  <None Remove="Infrastructure\Commerce\Views\**" />
 	  <None Remove="Infrastructure\Kpi\**" />
 	  <None Remove="Infrastructure\Plugins\**" />
 	  <None Remove="Infrastructure\PowerSlices\**" />
 	  <None Remove="Infrastructure\Services\**" />
 	  <None Remove="Infrastructure\Social\**" />
-	</ItemGroup>
-	<ItemGroup>
 	  <Compile Remove="Features\Media\FoundationPdfFile.cs" />
 	  <Compile Remove="Features\Media\FoundationPdfFileViewModel.cs" />
 	  <Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
@@ -136,14 +131,8 @@
 	  <Compile Remove="Infrastructure\Commerce\Markets\AJAXLocalizationFilterAttribute.cs" />
 	  <Compile Remove="Infrastructure\Display\FeaturesViewEngine.cs" />
 	  <Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
-	</ItemGroup>
-	<ItemGroup>
 	  <Content Remove="Features\Media\PdfFile.cshtml" />
-	</ItemGroup>
-	<ItemGroup>
 		<Folder Include="wwwroot\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <None Include="Features\Shared\Components\Dropdown\Default.cshtml" />
 	  <None Include="Features\Shared\Components\Money\Default.cshtml" />
 	</ItemGroup>

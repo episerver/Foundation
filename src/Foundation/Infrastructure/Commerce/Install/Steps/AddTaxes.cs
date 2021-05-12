@@ -11,20 +11,20 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
     public class AddTaxes : BaseInstallStep
     {
         private readonly TaxImportExport _taxImportExport;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+
         public AddTaxes(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
             TaxImportExport taxImportExport,
-            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService)
+            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
-            _webHostEnvironment = webHostEnvironment;
+            _taxImportExport = taxImportExport;
         }
 
         public override int Order => 4;
 
         public override string Description => "Adds taxes to Foundation.";
 
-        protected override void ExecuteInternal(IProgressMessenger progressMessenger) => _taxImportExport.Import(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data\Taxes.csv"), ',');
+        protected override void ExecuteInternal(IProgressMessenger progressMessenger) => _taxImportExport.Import(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data\Taxes.csv"), ',');
     }
 }

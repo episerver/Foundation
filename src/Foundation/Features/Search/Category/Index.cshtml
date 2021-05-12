@@ -1,13 +1,13 @@
 @using Foundation.Features.Search
 @using Foundation.Features.Search.Category
-
+@inject IContextModeResolver contextModeResolver
 @model SearchViewModel<GenericNode>
 
 @{
-//if (Request.IsAjaxRequest())
-//{
-//    Layout = null;
-//}
+    //if (Request.IsAjaxRequest())
+    //{
+    //    Layout = null;
+    //}
 }
 
 @Html.FullRefreshPropertiesMetaData(new[] { "FeaturedProducts" })
@@ -28,7 +28,7 @@
             <input class="jsViewModeInfo" hidden id="FilterOption_ViewSwitcher" name="FilterOption.ViewSwitcher" type="text" value="@Model.FilterOption.ViewSwitcher" />
 
             <div class="row">
-                @if (!Html.IsInEditMode())
+                @if (contextModeResolver.CurrentMode == ContextMode.Edit)
                 {
                     //Model.FilterOption.ViewSwitcher = string.IsNullOrEmpty(Model.CurrentContent.DefaultTemplate) ? "Grid" : Model.CurrentContent.DefaultTemplate;
                     <div class="category-page__facets col-lg-3 jsFacets">

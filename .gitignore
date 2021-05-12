@@ -77,12 +77,7 @@ Setup*.log
 # Foundation
 Build/Logs/*.log
 src/appdata/*
-src/Foundation/Assets/scss/main.min.css
-src/Foundation/Assets/scss/main.min.css.map
-src/Foundation/Assets/js/main.min.js
-src/Foundation/Assets/js/main.min.js.map
 src/Foundation/License.config
-src/Foundation/connectionStrings.config
 rebuild.cmd
 resetup.cmd
 src/Foundation/App_Data/

@@ -56,7 +56,7 @@ namespace Foundation.Features.Locations.LocationItemPage
 
             var editingHints = ViewData.GetEditHints<LocationItemViewModel, LocationItemPage>();
             editingHints.AddFullRefreshFor(p => p.Image);
-            editingHints.AddFullRefreshFor(p => p.Categories);
+            //editingHints.AddFullRefreshFor(p => p.Categories);
 
             return View(model);
         }

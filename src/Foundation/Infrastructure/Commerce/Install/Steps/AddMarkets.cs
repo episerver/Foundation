@@ -14,13 +14,11 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 {
     public class AddMarkets : BaseInstallStep
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
         public AddMarkets(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService)
+            IWebHostEnvironment webHostEnvironment) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
-            _webHostEnvironment = webHostEnvironment;
         }
 
         public override int Order => 1;
@@ -30,7 +28,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
             progressMessenger.AddProgressMessageText("Creating markets...", false, 0);
-            using (var stream = new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data\markets.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/markets.xml"), FileMode.Open))
             {
                 foreach (var xMarket in GetXElements(stream, "Market"))
                 {

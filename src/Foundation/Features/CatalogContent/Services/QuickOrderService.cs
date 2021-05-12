@@ -2,14 +2,18 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Find;
+using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
+using EPiServer.Find.Framework.Statistics;
 using Foundation.Features.MyOrganization.QuickOrderBlock;
 using Foundation.Features.MyOrganization.QuickOrderPage;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
+using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.InventoryService;
 using Mediachase.Commerce.Pricing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,6 +36,7 @@ namespace Foundation.Features.CatalogContent.Services
         private readonly IClient _findClient;
         private readonly IPriceService _priceService;
         private readonly IPromotionService _promotionService;
+        private readonly IContentLanguageAccessor _languageResolver;
 
         public QuickOrderService(IContentLoader contentLoader,
             IInventoryService inventoryService,
@@ -39,7 +44,8 @@ namespace Foundation.Features.CatalogContent.Services
             ICurrencyService currencyService,
             IClient findClient,
             IPriceService priceService,
-            IPromotionService promotionService)
+            IPromotionService promotionService, 
+            IContentLanguageAccessor languageResolver)
         {
             _contentLoader = contentLoader;
             _inventoryService = inventoryService;
@@ -48,6 +54,7 @@ namespace Foundation.Features.CatalogContent.Services
             _findClient = findClient;
             _priceService = priceService;
             _promotionService = promotionService;
+            _languageResolver = languageResolver;
         }
 
         public string ValidateProduct(ContentReference variationReference, decimal quantity, string code)
@@ -92,7 +99,7 @@ namespace Foundation.Features.CatalogContent.Services
             var results = _findClient.Search<ProductContent>()
                 .Filter(_ => _.VariationModels(), x => x.Code.PrefixCaseInsensitive(query))
                 .FilterMarket(market)
-                .Filter(x => x.Language.Name.Match(_languageResolver.GetPreferredCulture().Name))
+                .Filter(x => x.Language.Name.Match(_languageResolver.Language.Name))
                 .Track()
                 .FilterForVisitor()
                 .Select(_ => _.VariationModels())
