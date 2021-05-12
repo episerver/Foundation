@@ -78,7 +78,7 @@ namespace Foundation.Features.MyAccount
                 return View("_ProfileSidebar.cshtml", model);
             }
 
-            var wishlist = _contentLoader.Get<PageData>(referenceSettings.WishlistPage);
+            var wishlist = referenceSettings.WishlistPage != null ? _contentLoader.Get<PageData>(referenceSettings.WishlistPage) : null;
             menuItems = menuItems.CreateWritableClone();
 
             if (model.Organization != null)
