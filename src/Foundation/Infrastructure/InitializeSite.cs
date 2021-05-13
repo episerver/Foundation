@@ -16,7 +16,6 @@ using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
-using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.CatalogContent;

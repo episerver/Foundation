@@ -6,9 +6,7 @@ using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
-using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Infrastructure.Display;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -82,7 +80,7 @@ namespace Foundation
             services.AddFind();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
-            
+
             //site specific
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
             services.AddEmbeddedLocalization<Startup>();
