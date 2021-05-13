@@ -59,7 +59,7 @@ namespace Foundation.Infrastructure
             IWebHostEnvironment webHostEnvironment,
             EventedIndexingSettings eventedIndexingSettings,
             IServiceProvider serviceProvider,
-            IOptions<SearchOptions> searchOptions, 
+            IOptions<SearchOptions> searchOptions,
             IndexBuilder indexBuilder)
         {
             _uIUserProvider = uIUserProvider;
