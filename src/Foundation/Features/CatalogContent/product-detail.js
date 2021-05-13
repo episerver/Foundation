@@ -1,5 +1,5 @@
 ﻿import feather from "feather-icons";
-import Dropdown from "../../js/common/dropdown";
+import Dropdown from "../../wwwroot/js/common/dropdown";
 import Product from "../../Features/CatalogContent/product";
 require("jquery-zoom");
 
