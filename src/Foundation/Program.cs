@@ -1,10 +1,7 @@
-﻿// This application entry point is based on ASP.NET Core new project templates and is included
-// as a starting point for app host configuration.
-// This file may need updated according to the specific scenario of the application being upgraded.
-// For more information on ASP.NET Core hosting, see https://docs.microsoft.com/aspnet/core/fundamentals/host/web-host
-
+﻿using EPiServer.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Foundation
 {
@@ -12,11 +9,18 @@ namespace Foundation
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Warning()
+                .WriteTo.File("app_data/log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
             CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureCmsDefaults()
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

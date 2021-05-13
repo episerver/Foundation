@@ -76,17 +76,13 @@ namespace Foundation
             services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
                 .AddRazorOptions(ro => ro.ConfigureFeatureFolders());
 
-            services.AddCms();
+            services.AddCommerce();
             services.AddDisplay();
             services.AddTinyMce();
-            services.AddFindUI(_configuration);
+            services.AddFind();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
-
-            //Commerce
-            services.AddCommerce();
-            services.AddTinyMce();
-
+            
             //site specific
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
             services.AddEmbeddedLocalization<Startup>();

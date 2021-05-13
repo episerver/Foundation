@@ -43,6 +43,7 @@ namespace Foundation.Infrastructure
         private readonly EventedIndexingSettings _eventedIndexingSettings;
         private readonly IServiceProvider _serviceProvider;
         private readonly IOptions<SearchOptions> _searchOptions;
+        private readonly IndexBuilder _indexBuilder;
 
         public ContentInstaller(UIUserProvider uIUserProvider,
             UISignInManager uISignInManager,
@@ -58,7 +59,8 @@ namespace Foundation.Infrastructure
             IWebHostEnvironment webHostEnvironment,
             EventedIndexingSettings eventedIndexingSettings,
             IServiceProvider serviceProvider,
-            IOptions<SearchOptions> searchOptions)
+            IOptions<SearchOptions> searchOptions, 
+            IndexBuilder indexBuilder)
         {
             _uIUserProvider = uIUserProvider;
             _uISignInManager = uISignInManager;
@@ -75,6 +77,7 @@ namespace Foundation.Infrastructure
             _eventedIndexingSettings = eventedIndexingSettings;
             _serviceProvider = serviceProvider;
             _searchOptions = searchOptions;
+            _indexBuilder = indexBuilder;
         }
 
         public bool CanRunInParallel => false;
@@ -164,7 +167,7 @@ namespace Foundation.Infrastructure
             CreateCatalog(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation_fashion.zip"), FileMode.Open),
                 Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation_fashion.zip"));
 
-            var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName, _searchOptions);
+            var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName, _searchOptions, _serviceProvider, _indexBuilder);
             searchManager.BuildIndex(true);
             RunIndexJob(new Guid("8EB257F9-FF22-40EC-9958-C1C5BA8C2A53"));
         }
