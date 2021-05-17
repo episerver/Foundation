@@ -1,7 +1,7 @@
 ﻿using EPiServer;
-using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.Authorization;
+using EPiServer.Shell.Security;
 using Foundation.Infrastructure.Cms.Extensions;
-using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
@@ -17,26 +17,27 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Install.Steps
 {
     public class AddCustomers : BaseInstallStep
     {
-        private readonly ApplicationUserManager<SiteUser> _userManager;
-        private readonly ApplicationRoleProvider<SiteUser> _roleManager;
+        private readonly UIUserProvider _uIUserProvider;
+        private readonly UIRoleProvider _uIRoleProvider;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public AddCustomers(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            IWebHostEnvironment webHostEnvironment,
-            ApplicationUserManager<SiteUser> userManager,
-            ApplicationRoleProvider<SiteUser> roleManager) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment, 
+            UIUserProvider uIUserProvider, 
+            UIRoleProvider uIRoleProvider) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
-            _userManager = userManager;
-            _roleManager = roleManager;
+            _uIUserProvider = uIUserProvider;
+            _uIRoleProvider = uIRoleProvider;
         }
 
         public override int Order => 8;
@@ -325,51 +326,18 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         private void SaveCustomer(CustomerPoco customer, PrimaryKeyId orgId)
         {
-            var user = _userManager.FindByEmailAsync(customer.Email)
+            var user = _uIUserProvider.GetUserAsync(customer.Email)
                 .GetAwaiter()
                 .GetResult();
 
             if (user == null)
             {
-                user = new SiteUser
-                {
-                    CreationDate = DateTime.UtcNow,
-                    Username = customer.Email,
-                    Email = customer.Email,
-                    FirstName = customer.FirstName,
-                    LastName = customer.LastName,
-                    IsApproved = true
-                };
+                return;
+            }
 
-                var result = _userManager.CreateAsync(user, "Episerver123!")
+            CreateUser(customer.Email, customer.Email, customer.Roles)
                 .GetAwaiter()
                 .GetResult();
-
-                if (!result.Succeeded)
-                {
-                    return;
-                }
-            }
-
-            foreach (var role in customer.Roles)
-            {
-                if (!_roleManager.RoleExistsAsync(role)
-                    .GetAwaiter()
-                    .GetResult())
-                {
-                    var roleResult = _roleManager.CreateRoleAsync(role)
-                        .GetAwaiter()
-                        .GetResult();
-
-                    if (!roleResult.Succeeded)
-                    {
-                        continue;
-                    }
-                    _userManager.AddToRoleAsync(user, role)
-                        .GetAwaiter()
-                        .GetResult();
-                }
-            }
 
             FoundationContact foundationContact;
             var contact = CustomerContext.GetContactByUserId($"String:{customer.Email}");
@@ -406,6 +374,24 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
             MapAddressesFromCustomerToContact(customer, foundationContact.Contact);
             MapCreditCardsFromCustomerToContact(customer.CreditCards, foundationContact.Contact);
             foundationContact.SaveChanges();
+        }
+
+        private async Task CreateUser(string username, string email, IEnumerable<string> roles)
+        {
+            var result = await _uIUserProvider.CreateUserAsync(username, "Episerver123!", email, null, null, true);
+            if (result.Status == UIUserCreateStatus.Success)
+            {
+                foreach (var role in roles)
+                {
+                    var exists = await _uIRoleProvider.RoleExistsAsync(role);
+                    if (!exists)
+                    {
+                        await _uIRoleProvider.CreateRoleAsync(role);
+                    }
+                }
+
+                await _uIRoleProvider.AddUserToRolesAsync(result.User.Username, roles);
+            }
         }
 
         private static void MapAddressesFromCustomerToContact(CustomerPoco customer, CustomerContact contact)

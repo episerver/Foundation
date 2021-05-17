@@ -1,4 +1,4 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
+﻿using EPiServer.Cms.TinyMce;
 using EPiServer.Data;
 using EPiServer.DependencyInjection;
 using EPiServer.Framework.Web.Resources;
@@ -7,7 +7,9 @@ using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
+using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Display;
+using Mediachase.Commerce.Anonymous;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,7 +47,7 @@ namespace Foundation
                 });
             });
 
-            services.AddCmsAspNetIdentity<ApplicationUser>(o =>
+            services.AddCmsAspNetIdentity<SiteUser>(o =>
             {
                 if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
                 {
@@ -60,7 +62,6 @@ namespace Foundation
             //UI
             if (_webHostingEnvironment.IsDevelopment())
             {
-
                 services.Configure<ClientResourceOptions>(uiOptions =>
                 {
                     uiOptions.Debug = true;
@@ -90,18 +91,11 @@ namespace Foundation
                 o.ModelBinderProviders.Insert(0, new ModelBinderProvider());
             });
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/util/Login";
-                options.ExpireTimeSpan = new TimeSpan(0, 20, 0);
-                options.SlidingExpiration = true;
-            });
-
+            
             services.Configure<OrderOptions>(o =>
             {
                 o.DisableOrderDataLocalization = true;
             });
-            services.AddHttpContextAccessor();
 
         }
 
@@ -113,6 +107,7 @@ namespace Foundation
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAnonymousId();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
@@ -120,9 +115,9 @@ namespace Foundation
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapContent();
+                endpoints.MapControllerRoute(name: "Default", pattern: "{controller}/{action}/{id?}");
                 endpoints.MapControllers();
-                endpoints.MapRazorPages();
+                endpoints.MapContent();
             });
         }
 

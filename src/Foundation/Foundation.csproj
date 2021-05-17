@@ -14,7 +14,6 @@
 		<PackageReference Include="EPiServer.Commerce.Core" Version="14.0.0-inte-020659" />
 		<PackageReference Include="EPiServer.Commerce.Web" Version="14.0.0-inte-020659" />
 		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.0-inte-020182" />
-		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.0-inte-000026" />
 		<PackageReference Include="EPiServer.Forms" Version="5.0.0-inte-020027" />
 		<PackageReference Include="EPiServer.Framework" Version="12.0.0-pre-020400" />
 		<PackageReference Include="EPiServer.Hosting" Version="12.0.0-pre-020400" />
@@ -124,6 +123,9 @@
 		<None Remove="Infrastructure\Social\**" />
 		<Compile Remove="Features\Media\FoundationPdfFile.cs" />
 		<Compile Remove="Features\Media\FoundationPdfFileViewModel.cs" />
+		<Compile Remove="Features\Search\FoundationCatalogContentEventListener.cs" />
+		<Compile Remove="Features\Search\FoundationFindConventions.cs" />
+		<Compile Remove="Features\Search\FoundationSearchProvider.cs" />
 		<Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
 		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
 		<Compile Remove="Infrastructure\Commerce\Install\FoundationDiskFileDescriptor.cs" />

@@ -45,7 +45,7 @@ namespace Foundation.Infrastructure.Commerce
                 (locator, defaultImplementation) =>
                     new LanguageService(
                         locator.GetInstance<ICurrentMarket>(),
-                        locator.GetInstance<CookieService>(),
+                        locator.GetInstance<ICookieService>(),
                         defaultImplementation));
             };
         }

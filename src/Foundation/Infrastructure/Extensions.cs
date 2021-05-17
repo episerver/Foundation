@@ -4,7 +4,7 @@ using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Find;
-using EPiServer.Find.Commerce;
+//using EPiServer.Find.Commerce;
 using EPiServer.ServiceLocation;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
@@ -77,7 +77,7 @@ namespace Foundation.Infrastructure
                     Code = x.Code,
                     LanguageId = productContent.Language.Name,
                     Name = x.DisplayName,
-                    DefaultAssetUrl = (x as IAssetContainer).DefaultImageUrl()
+                    DefaultAssetUrl = ""//(x as IAssetContainer).DefaultImageUrl()
                 });
         }
 

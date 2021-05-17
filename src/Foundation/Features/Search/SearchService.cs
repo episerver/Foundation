@@ -5,7 +5,7 @@ using EPiServer.Find;
 using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Cms;
-using EPiServer.Find.Commerce;
+//using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
 using EPiServer.Find.Framework.Statistics;
 using EPiServer.Find.Helpers;
@@ -77,7 +77,7 @@ namespace Foundation.Features.Search
         private readonly IPromotionService _promotionService;
         private readonly ICurrencyService _currencyservice;
         private readonly IContentLoader _contentLoader;
-        private readonly BestBetRepository _bestBetRepository;
+        private readonly IBestBetRepository _bestBetRepository;
         private static readonly Random _random = new Random();
 
         public SearchService(ICurrentMarket currentMarket,
@@ -92,7 +92,7 @@ namespace Foundation.Features.Search
             IPromotionService promotionService,
             ICurrencyService currencyservice,
             IContentLoader contentLoader,
-            BestBetRepository bestBetRepository
+            IBestBetRepository bestBetRepository
             )
         {
             _currentMarket = currentMarket;
@@ -175,7 +175,7 @@ namespace Foundation.Features.Search
 
             var results = _findClient.Search<GenericProduct>()
                 .Filter(_ => _.VariationModels(), x => x.Code.PrefixCaseInsensitive(query))
-                .FilterMarket(market)
+                //.FilterMarket(market)
                 .Filter(x => x.Language.Name.Match(_contentLanguageAccessor.Language.Name))
                 .Track()
                 .FilterForVisitor()
@@ -454,7 +454,7 @@ namespace Foundation.Features.Search
         {
             var market = _currentMarket.GetCurrentMarket();
             var query = _findClient.Search<EntryContentBase>();
-            query = query.FilterMarket(market);
+            //query = query.FilterMarket(market);
             query = query.Filter(x => x.Language.Name.Match(_contentLanguageAccessor.Language.Name));
             query = query.FilterForVisitor();
             if (catalogId != 0)
@@ -558,7 +558,7 @@ namespace Foundation.Features.Search
                 query = query.FilterOutline(new[] { outline });
             }
 
-            query = query.FilterMarket(market);
+            //query = query.FilterMarket(market);
             var facetQuery = query;
 
             query = FilterSelected(query, filterOptions.FacetGroups);
@@ -919,22 +919,22 @@ namespace Foundation.Features.Search
                 UpdateListWithFeatured(ref productViewModels, node);
             }
 
-            var bestBetList = _bestBetRepository.List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
-            //Filter for product best bet only.
-            var productBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector);
-            var ownStyleBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
-            productViewModels.ToList()
-                             .ForEach(p =>
-                             {
-                                 if (productBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
-                                 {
-                                     p.IsBestBetProduct = true;
-                                 }
-                                 if (ownStyleBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
-                                 {
-                                     p.HasBestBetStyle = true;
-                                 }
-                             });
+            //var bestBetList = _bestBetRepository.List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
+            ////Filter for product best bet only.
+            //var productBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector);
+            //var ownStyleBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
+            //productViewModels.ToList()
+            //                 .ForEach(p =>
+            //                 {
+            //                     if (productBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
+            //                     {
+            //                         p.IsBestBetProduct = true;
+            //                     }
+            //                     if (ownStyleBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
+            //                     {
+            //                         p.HasBestBetStyle = true;
+            //                     }
+            //                 });
         }
 
         private void UpdateListWithFeatured(ref List<ProductTileViewModel> productViewModels, GenericNode node)

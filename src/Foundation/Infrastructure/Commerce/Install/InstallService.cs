@@ -112,9 +112,7 @@ namespace Foundation.Infrastructure.Commerce.Install
                         return new FoundationConfiguration
                         {
                             ApplicationName = reader["AppName"].ToString(),
-                            CommerceMangerDomain = reader["CMHostname"].ToString(),
                             IsInstalled = Convert.ToBoolean(reader["IsInstalled"]),
-                            SitePublicDomain = reader["FoundationHostname"].ToString()
                         };
                     }
                 }

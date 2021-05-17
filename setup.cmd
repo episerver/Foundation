@@ -46,7 +46,7 @@ timeout 15
 
 set cms_db=%APPNAME%.Cms
 set commerce_db=%APPNAME%.Commerce
-set user=%APPNAME%User
+set user=%cms_db%User
 set password=Episerver123!
 set errorMessage = "" 
 
@@ -90,12 +90,12 @@ md "%ROOTPATH%\Build\Logs" 2>nul
 echo ## NPM Install ##  
 echo ## NPM Install > Build\Logs\Build.log
 cd %SOURCEPATH%\Foundation
-CALL npm ci
+::CALL npm ci
 IF %errorlevel% NEQ 0 (
 	set errorMessage=%errorlevel%
 	goto error
 )
-CALL npm run dev
+::CALL npm run dev
 cd %ROOTPATH%
 
 echo ## Clean and build ##
@@ -118,9 +118,15 @@ echo ## Dropping user ##
 echo ## Dropping user ## >> Build\Logs\Database.log
 %sql% -Q "if exists (select loginname from master.dbo.syslogins where name = '%user%') EXEC sp_droplogin @loginame='%user%'" >> Build\Logs\Database.log
 
-powershell -command "&{.\build\build.ps1 -server %SQLSERVER% -additionalSQL %ADDITIONAL_SQLCMD% "}" 
+powershell -command "&{.\build\build.ps1 -server %SQLSERVER% -additionalSQL %ADDITIONAL_SQLCMD% -appName %APPNAME% "}" 
 
-::call "%ROOTDIR%\build\jrepl" "\" "\\" /f "%SOURCEPATH%\Foundation\appsettings.json" /L /o -
+echo ## Installing foundation configuration ##
+echo ## Installing foundation configuration ## >> Build\Logs\Database.log
+%sql% -d %commerce_db% -b -i "Build\SqlScripts\FoundationConfigurationSchema.sql" -v appname=%APPNAME% >> Build\Logs\Database.log
+
+echo ## Installing unique coupon schema ##
+echo ## Installing unique coupon schema ## >> Build\Logs\Database.log
+%sql% -d %commerce_db% -b -i "Build\SqlScripts\UniqueCouponSchema.sql" >> Build\Logs\Database.log
 
 :error
 if NOT "%errorMessage%"=="" echo %errorMessage%
