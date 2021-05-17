@@ -6,6 +6,7 @@ using EPiServer.Enterprise;
 using EPiServer.Find.Cms;
 using EPiServer.Logging;
 using EPiServer.Scheduler;
+using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
@@ -22,6 +23,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure
@@ -44,6 +47,7 @@ namespace Foundation.Infrastructure
         private readonly IServiceProvider _serviceProvider;
         private readonly IOptions<SearchOptions> _searchOptions;
         private readonly IndexBuilder _indexBuilder;
+        private readonly IPrincipalAccessor _principalAccessor;
 
         public ContentInstaller(UIUserProvider uIUserProvider,
             UISignInManager uISignInManager,
@@ -60,7 +64,8 @@ namespace Foundation.Infrastructure
             EventedIndexingSettings eventedIndexingSettings,
             IServiceProvider serviceProvider,
             IOptions<SearchOptions> searchOptions,
-            IndexBuilder indexBuilder)
+            IndexBuilder indexBuilder, 
+            IPrincipalAccessor principalAccessor)
         {
             _uIUserProvider = uIUserProvider;
             _uISignInManager = uISignInManager;
@@ -78,6 +83,7 @@ namespace Foundation.Infrastructure
             _serviceProvider = serviceProvider;
             _searchOptions = searchOptions;
             _indexBuilder = indexBuilder;
+            _principalAccessor = principalAccessor;
         }
 
         public bool CanRunInParallel => false;
@@ -131,7 +137,7 @@ namespace Foundation.Infrastructure
 
             var siteDefinition = new SiteDefinition
             {
-                Name = "foundation-mvc-commerce",
+                Name = "foundation",
                 SiteUrl = new Uri(request.GetDisplayUrl()),
             };
 
@@ -164,6 +170,7 @@ namespace Foundation.Infrastructure
 
             ServiceLocator.Current.GetInstance<ISettingsService>().UpdateSettings();
 
+            _principalAccessor.Principal = new GenericPrincipal(new GenericIdentity("Importer"), null);
             CreateCatalog(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation_fashion.zip"), FileMode.Open),
                 Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation_fashion.zip"));
 

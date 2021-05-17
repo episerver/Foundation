@@ -3,7 +3,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
-using EPiServer.Find.Commerce;
+//using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
 using EPiServer.Framework.Cache;
 using EPiServer.Framework.Localization;
@@ -101,7 +101,7 @@ namespace Foundation.Features.Search
         private CategoriesFilterViewModel GetCategoriesFilter(IContent currentContent, string query)
         {
             var bestBets = new BestBetRepository(_synchronizedObjectInstanceCache).List().Where(i => i.PhraseCriterion.Phrase.CompareTo(query) == 0);
-            var ownStyleBestBets = bestBets.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
+            //var ownStyleBestBets = bestBets.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
             var catalogId = 0;
             var node = currentContent as NodeContent;
             if (node != null)
@@ -129,11 +129,11 @@ namespace Foundation.Features.Search
                     DisplayName = nodeContent.DisplayName,
                     Url = _urlResolver.GetUrl(nodeContent.ContentLink),
                     IsActive = currentContent != null && currentContent.ContentLink == nodeContent.ContentLink,
-                    IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeContent.ContentLink.ID)
+                    IsBestBet = false//ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeContent.ContentLink.ID)
                 };
                 viewModel.Categories.Add(nodeFilter);
 
-                GetChildrenNode(currentContent, nodeContent, nodeFilter, ownStyleBestBets);
+                GetChildrenNode(currentContent, nodeContent, nodeFilter, null);
             }
             return viewModel;
         }
@@ -151,7 +151,7 @@ namespace Foundation.Features.Search
                     DisplayName = nodeChildOfChild.DisplayName,
                     Url = _urlResolver.GetUrl(nodeChildOfChild.ContentLink),
                     IsActive = currentContent != null && currentContent.ContentLink == nodeChildOfChild.ContentLink,
-                    IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeChildOfChild.ContentLink.ID)
+                    IsBestBet = false//ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeChildOfChild.ContentLink.ID)
                 };
 
                 nodeFilter.Children.Add(nodeChildOfChildFilter);
