@@ -4,6 +4,7 @@ using EPiServer.DependencyInjection;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
+using EPiServer.Web.Routing;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Display;
@@ -107,7 +108,6 @@ namespace Foundation
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //HttpContextHelper.Initialize(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -115,17 +115,16 @@ namespace Foundation
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapContent();
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
 
-        private void ConfigureMvcOptions(MvcOptions mvcOptions)
-        {
-        }
     }
 }
