@@ -1,5 +1,5 @@
-﻿using EPiServer.Data;
-using EPiServer.DependencyInjection;
+﻿using EPiServer.Cms.TinyMce;
+using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
