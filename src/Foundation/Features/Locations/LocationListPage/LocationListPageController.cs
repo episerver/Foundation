@@ -4,10 +4,9 @@ using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
 using EPiServer.Personalization;
-using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
-using Foundation.Find;
-using System.Web.Mvc;
+using Foundation.Infrastructure.Find;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Locations.LocationListPage
 {
@@ -20,12 +19,12 @@ namespace Foundation.Features.Locations.LocationListPage
             _contentLoader = contentLoader;
         }
 
-        [PageViewTracking]
         public ActionResult Index(LocationListPage currentPage)
         {
             var query = SearchClient.Instance.Search<LocationItemPage.LocationItemPage>()
                 .PublishedInCurrentLanguage()
-                .FilterOnReadAccess();
+                .FilterOnReadAccess()
+                .ExcludeDeleted();
 
             if (currentPage.FilterArea != null)
             {
@@ -43,7 +42,7 @@ namespace Foundation.Features.Locations.LocationListPage
                     var b = _contentLoader.Get<BlockData>(filterBlock.ContentLink) as IFilterBlock;
                     if (b != null)
                     {
-                        query = b.ApplyFilter(query, Request.QueryString);
+                        query = b.ApplyFilter(query, Request.Query);
                     }
                 }
             }
@@ -57,7 +56,7 @@ namespace Foundation.Features.Locations.LocationListPage
                 Locations = locations,
                 MapCenter = GetMapCenter(),
                 UserLocation = GeoPosition.GetUsersLocation(),
-                QueryString = Request.QueryString
+                QueryString = Request.Query
             };
 
             return View(model);

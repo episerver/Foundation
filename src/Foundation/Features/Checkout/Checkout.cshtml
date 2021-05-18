@@ -1,7 +1,7 @@
 ﻿@using Foundation.Features.Checkout.ViewModels
 
 @model CheckoutViewModel
-@{ 
+@{
     var errorMessages = ViewBag.ErrorMessages != null ? (string)ViewBag.ErrorMessages : string.Empty;
 }
 
@@ -22,37 +22,37 @@
     <div class="col-md-8 col-xs-12">
         <div class="card items border-radius-none">
             <div class="card-body flex-between">
-                @if (Request.UrlReferrer != null)
+                @if (Context.Request.Headers["UrlReferrer"].ToString() != null)
                 {
-                    <a class="button-white" href="@Request.UrlReferrer.PathAndQuery">Back</a>
+                    <a class="button-white" href="@Context.Request.Headers["UrlReferrer"].ToString()">Back</a>
                 }
-                @if (Request.IsAuthenticated)
+                @if (Context.User.Identity.IsAuthenticated)
                 {
                     <button class="button-black" type="button" data-toggle="modal" data-target="#newAddressModal">Add New Address</button>
                 }
             </div>
         </div>
         <br />
-        @Html.Partial("ShippingInformation", Model)
+        @await Html.PartialAsync("ShippingInformation", Model)
         <div class="card items border-radius-none">
             <div class="card-body">
-                @Html.Partial("BillingInformation", Model)
+                @await Html.PartialAsync("BillingInformation", Model)
             </div>
         </div>
         <br />
         <div class="card items border-radius-none">
             <div class="card-body">
-                @Html.Partial("Subscription", Model)
+                @await Html.PartialAsync("Subscription", Model)
             </div>
         </div>
     </div>
     <div class="col-md-4 col-xs-12">
         <div class="card summary border-radius-none">
             <div class="card-body">
-                @Html.Partial("_Coupon", Model)
+                @await Html.PartialAsync("_Coupon", Model)
                 <div class="row">
                     <div class="col-12 jsOrderSummary">
-                        @Html.Partial("_OrderSummary", Model.OrderSummary)
+                        @await Html.PartialAsync("_OrderSummary", Model.OrderSummary)
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@
 
 <div class="modal fade" id="newAddressModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        @using (Html.BeginForm("AddAddress", "Checkout", FormMethod.Post, new { @class = "jsFormNewAddress" })) 
+        @using (Html.BeginForm("AddAddress", "Checkout", FormMethod.Post, new { @class = "jsFormNewAddress" }))
         {
             @Html.AntiForgeryToken()
             @Html.Hidden("AddressReturnUrl", Url.Action("Index", "Checkout"), new { @class = "jsAddressReturnUrl" })
@@ -182,7 +182,7 @@
                             <div class="row">
                                 <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
                                     <label>Country/Region</label>
-                                    <input type="hidden" class="jsRegionName" value="CountryRegion.Region")" />
+                                    <input type="hidden" class="jsRegionName" value="CountryRegion.Region" )" />
                                     @{
                                         var regionValues = new List<KeyValuePair<string, string>>();
                                         foreach (var a in Model.BillingAddress.CountryRegion.RegionOptions)
@@ -190,7 +190,12 @@
                                             regionValues.Add(new KeyValuePair<string, string>(a, a));
                                         }
                                     }
-                                    @Helpers.RenderDropdown(regionValues, "", "jsRegionSelectionContainer", "CountryRegion.Region")
+
+                                    @(await Component.InvokeAsync("Dropdown", new { list = regionValues,
+                                        selectedValue = "",
+                                        selectorClassItem = "jsRegionSelectionContainer",
+                                        name = "CountryRegion.Region"
+                                    }))
                                 </div>
                                 <div class="form-group col-xs-12 col-md-6 jsCountrySelectionContainer">
                                     <label>Country</label>
@@ -201,7 +206,12 @@
                                             countryValues.Add(new KeyValuePair<string, string>(a.Name, a.Code));
                                         }
                                     }
-                                    @Helpers.RenderDropdown(countryValues, "", "", "CountryCode")
+                                    @(await Component.InvokeAsync("Dropdown", new { list = countryValues,
+                                        selectedValue = "",
+                                        selectorClassItem = "",
+                                        name = "CountryCode"
+                                    }))
+
                                 </div>
                             </div>
                         </li>

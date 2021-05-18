@@ -1,5 +1,5 @@
-﻿using Foundation.Cms;
-using Foundation.Features.Locations.LocationItemPage;
+﻿using Foundation.Features.Locations.LocationItemPage;
+using Foundation.Infrastructure.Cms;
 using Schema.NET;
 
 namespace Foundation.Infrastructure.SchemaMarkup

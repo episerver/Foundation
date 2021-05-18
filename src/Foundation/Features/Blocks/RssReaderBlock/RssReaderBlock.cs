@@ -12,7 +12,7 @@ namespace Foundation.Features.Blocks.RssReaderBlock
         GUID = "8fc5a3bb-727c-4871-8b2e-5ff337e30e82",
         Description = "Display content from a RSS feed",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/gfx/block-type-thumbnail-rss.png")]
+    [ImageUrl("/icons/gfx/block-type-thumbnail-rss.png")]
     public class RssReaderBlock : FoundationBlockData
     {
         [Required]

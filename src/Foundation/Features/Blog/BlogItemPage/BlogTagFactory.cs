@@ -2,7 +2,7 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +87,8 @@ namespace Foundation.Features.Blog.BlogItemPage
             {
                 var weightPercent = (double.Parse(tag.Count.ToString()) / largestCount) * 100;
                 var weight = 0;
+
+
                 if (weightPercent >= 99)
                 {
                     //heaviest

@@ -1,15 +1,26 @@
-﻿using Boilerplate.Web.Mvc.OpenGraph;
+﻿using Boxed.AspNetCore.TagHelpers.OpenGraph;
 using Foundation.Infrastructure.OpenGraph.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Foundation.Infrastructure.OpenGraph
 {
     public class OpenGraphFoundationPageData : OpenGraphMetadata
     {
-        public OpenGraphFoundationPageData(string title, OpenGraphImage image, string url = null) : base(title, image, url)
+        public OpenGraphFoundationPageData(string title, OpenGraphImage image, string url = null)
         {
+            Title = title;
+            if (image != null)
+            {
+                MainImage = image;
+            }
+            if (!string.IsNullOrEmpty(url))
+            {
+                Url = new Uri(url);
+            }
+
         }
 
         public override string Namespace => "website: http://ogp.me/ns/article#";
@@ -34,10 +45,16 @@ namespace Foundation.Infrastructure.OpenGraph
             stringBuilder.AppendMetaPropertyContent("og:title", Title);
             if (Type != OpenGraphType.Website)
             {
-                stringBuilder.AppendMetaPropertyContent("og:type", Type.ToLowercaseString());
+                stringBuilder.AppendMetaPropertyContent("og:type", Type.ToString().ToLower());
             }
             stringBuilder.AppendMetaPropertyContent("og:url", Url);
-            foreach (OpenGraphMedia medium in Media)
+
+            if (MainImage != null)
+            {
+                stringBuilder.AppendMetaPropertyContent("og:image", MainImage.Url);
+            }
+
+            foreach (OpenGraphImage medium in Images ?? Enumerable.Empty<OpenGraphImage>())
             {
                 stringBuilder.AppendMetaPropertyContent("og:image", medium.Url);
             }
@@ -45,7 +62,7 @@ namespace Foundation.Infrastructure.OpenGraph
             stringBuilder.AppendMetaPropertyContentIfNotNull("og:site_name", SiteName);
             if (Determiner != 0)
             {
-                stringBuilder.AppendMetaPropertyContent("og:determiner", Determiner.ToLowercaseString());
+                stringBuilder.AppendMetaPropertyContent("og:determiner", Determiner.ToString().ToLower());
             }
             if (Locale != null)
             {

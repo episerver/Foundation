@@ -1,14 +1,14 @@
-﻿using EPiServer.Find;
+﻿using EPiServer.Core.Routing;
+using EPiServer.Core.Routing.Pipeline;
+using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using EPiServer.Web.Routing;
-using System.Web.Routing;
 
 namespace Foundation.Features.Locations
 {
     public class TagsPartialRouting : IPartialRouter<TagPage.TagPage, TagPage.TagPage>
     {
-        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, string language, RouteValueDictionary routeValues, RequestContext requestContext)
+        public PartialRouteData GetPartialVirtualPath(TagPage.TagPage content, UrlGeneratorContext requestContext)
         {
             return new PartialRouteData
             {
@@ -17,9 +17,9 @@ namespace Foundation.Features.Locations
             };
         }
 
-        public object RoutePartial(TagPage.TagPage content, EPiServer.Web.Routing.Segments.SegmentContext segmentContext)
+        public object RoutePartial(TagPage.TagPage content, UrlResolverContext urlResolverContext)
         {
-            var continentPart = segmentContext.GetNextValue(segmentContext.RemainingPath);
+            var continentPart = urlResolverContext.GetNextRemainingSegment(urlResolverContext.RemainingPath);
             if (!string.IsNullOrEmpty(continentPart.Next))
             {
                 var continent = continentPart.Next;
@@ -33,8 +33,8 @@ namespace Foundation.Features.Locations
                     return null;
                 }
 
-                segmentContext.SetCustomRouteData("Continent", continent);
-                segmentContext.RemainingPath = continentPart.Remaining;
+                urlResolverContext.RouteValues.Add("Continent", continent);
+                urlResolverContext.RemainingPath = continentPart.Remaining;
                 return content;
             }
 

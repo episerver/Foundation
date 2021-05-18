@@ -1,8 +1,8 @@
 ﻿using EPiServer.Web.Routing;
 using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Header
 {
@@ -21,14 +21,12 @@ namespace Foundation.Features.Header
             _addressBookService = addressBookService;
         }
 
-        [ChildActionOnly]
         public ActionResult GetHeader(HomePage homePage)
         {
             var content = _contentRouteHelper.Content;
             return PartialView("_Header", _headerViewModelFactory.CreateHeaderViewModel(content, homePage));
         }
 
-        [ChildActionOnly]
         public ActionResult GetHeaderLogoOnly()
         {
             return PartialView("_HeaderLogo", _headerViewModelFactory.CreateHeaderLogoViewModel());

@@ -1,4 +1,5 @@
 ﻿@using Foundation.Features.Header
+@using Foundation.Infrastructure.Commerce.Extensions
 
 @model MiniWishlistViewModel
 
@@ -51,7 +52,7 @@
                                                 <button role="button" class="btn-remove jsRemoveCartItem">Delete</button>
                                             </div>
                                         }
-                                        <strong>@cartItem.Quantity.ToString("0")</strong> x <span class="price">@Helpers.RenderMoney(cartItem.DiscountedPrice.GetValueOrDefault())</span>
+                                        <strong>@cartItem.Quantity.ToString("0")</strong> x <span class="price">cartItem.DiscountedPrice.GetValueOrDefault().ToString()</span>
                                         <p class="product-name">
                                             <a href="@cartItem.Url">@cartItem.DisplayName</a>
                                         </p>

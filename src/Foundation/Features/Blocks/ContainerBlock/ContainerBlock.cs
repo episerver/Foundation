@@ -10,7 +10,7 @@ namespace Foundation.Features.Blocks.ContainerBlock
         GUID = "8bdfac81-1dbd-43b9-a012-522bd67ee8b3",
         Description = "Allow to style individual blocks, as well as groups of blocks",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-04.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-04.png")]
     public class ContainerBlock : FoundationBlockData
     {
         [Display(Name = "Main content area")]

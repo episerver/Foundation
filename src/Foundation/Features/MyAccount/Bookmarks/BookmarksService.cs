@@ -2,7 +2,7 @@
 using EPiServer.Core;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.Commerce.Customers;
 using Newtonsoft.Json;
 using System;

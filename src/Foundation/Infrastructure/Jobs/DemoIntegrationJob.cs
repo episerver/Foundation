@@ -4,6 +4,7 @@ using EPiServer.Core;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
 using EPiServer.Security;
+using EPiServer.ServiceLocation;
 using Foundation.Features.CatalogContent;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
@@ -16,6 +17,7 @@ using System.Linq;
 namespace Foundation.Infrastructure.Jobs
 {
     [ScheduledPlugIn(DisplayName = "Demo Integration Job", GUID = "6DDF8B1A-2BAE-4492-AB21-777C70634D9F")]
+    [ServiceConfiguration]
     public class DemoIntegrationJob : ScheduledJobBase
     {
         private bool _stopSignaled;

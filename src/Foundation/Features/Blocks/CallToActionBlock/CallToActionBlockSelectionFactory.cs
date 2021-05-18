@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.Blocks.CallToActionBlock
 {
-    public class BackgroundImageSelectionFactory : ISelectionFactory
+    class BackgroundImageSelectionFactory : ISelectionFactory
     {
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {

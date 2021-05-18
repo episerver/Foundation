@@ -1,16 +1,14 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Variation;
-using Foundation.Personalization;
-using Foundation.Social.Services;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
-using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Foundation.Features.CatalogContent.Product
 {
@@ -21,13 +19,13 @@ namespace Foundation.Features.CatalogContent.Product
 
         public ProductController(IsInEditModeAccessor isInEditModeAccessor,
             CatalogEntryViewModelFactory viewModelFactory,
-            IReviewService reviewService,
-            IReviewActivityService reviewActivityService,
+            //IReviewService reviewService,
+            //IReviewActivityService reviewActivityService,
             ICommerceTrackingService recommendationService,
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             UrlResolver urlResolver,
-            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService, loyaltyService)
+            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, /*reviewService, reviewActivityService,*/ recommendationService, loyaltyService)
         {
             _isInEditMode = isInEditModeAccessor();
             _viewModelFactory = viewModelFactory;
@@ -45,7 +43,7 @@ namespace Foundation.Features.CatalogContent.Product
 
             if (viewModel.Variant == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             await AddInfomationViewModel(viewModel, currentContent.Code, skipTracking);
@@ -65,7 +63,7 @@ namespace Foundation.Features.CatalogContent.Product
                 return PartialView("_QuickView", viewModel);
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product not found.");
+            return StatusCode(404, "Product not found.");
         }
 
         [HttpGet]
@@ -91,7 +89,7 @@ namespace Foundation.Features.CatalogContent.Product
                 }
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product not found.");
+            return StatusCode(404, "Product not found.");
         }
     }
 }

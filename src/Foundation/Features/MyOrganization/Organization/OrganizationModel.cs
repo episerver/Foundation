@@ -1,8 +1,8 @@
-using Foundation.Cms.Attributes;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.MyOrganization.Budgeting;
+using Foundation.Infrastructure.Cms.Attributes;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.Commerce.Customers;
 using System;
 using System.Collections.Generic;

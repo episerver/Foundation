@@ -1,14 +1,13 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAnnotations;
+﻿using EPiServer.DataAnnotations;
 using EPiServer.Find;
 using EPiServer.Find.Api.Facets;
 using EPiServer.Find.Framework;
 using Foundation.Features.Shared;
-using Foundation.Find;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Find;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -18,7 +17,7 @@ namespace Foundation.Features.Locations.Blocks
         GUID = "eab40a8c-9006-4766-a87e-1dec153e735f",
         Description = "Distance facets for locations",
         GroupName = TabNames.Location)]
-    [ImageUrl("~/assets/icons/cms/blocks/map.png")]
+    [ImageUrl("/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage.LocationListPage) })]
     public class FilterDistancesBlock : FoundationBlockData, IFilterBlock
     {
@@ -40,12 +39,12 @@ namespace Foundation.Features.Locations.Blocks
                 new NumericRange { From = 10000, To = 25000 });
         }
 
-        public ITypeSearch<LocationItemPage.LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage.LocationItemPage> query, NameValueCollection filters)
+        public ITypeSearch<LocationItemPage.LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage.LocationItemPage> query, IQueryCollection filters)
         {
             var filterString = filters["d"];
             if (!string.IsNullOrWhiteSpace(filterString))
             {
-                var stringDistances = filterString.Split(',').ToList();
+                var stringDistances = filterString.ToList();
                 if (stringDistances.Any())
                 {
                     var userLocation = GeoPosition.GetUsersLocation().ToFindLocation();

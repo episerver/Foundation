@@ -10,7 +10,7 @@
                 @foreach (var linkItem in Model.Items)
                 {
                     var url = Url.PageUrl(linkItem.Url);
-                    <li class="@(Request.Url.AbsolutePath.Trim('/') == url.ToString().Trim('/') ? "current" : "") profile-sidebar__item">
+                    <li class="@(this.Url.ActionContext.HttpContext.Request.GetDisplayUrl().Trim('/') == url.ToString().Trim('/') ? "current" : "") profile-sidebar__item">
                         <a href="@url">@linkItem.Name</a>
                     </li>
                 }

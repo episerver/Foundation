@@ -2,17 +2,18 @@
 using EPiServer.Core;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Cms.Attributes;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
 using Mediachase.Commerce.Customers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.MyOrganization.SubOrganization
 {
@@ -22,30 +23,33 @@ namespace Foundation.Features.MyOrganization.SubOrganization
         private readonly IContentLoader _contentLoader;
         private readonly IOrganizationService _organizationService;
         private readonly IAddressBookService _addressService;
-        private readonly CookieService _cookieService = new CookieService();
+        private readonly ICookieService _cookieService;
         private readonly ISettingsService _settingsService;
 
         public SubOrganizationController(IOrganizationService organizationService,
             IContentLoader contentLoader,
             IAddressBookService addressService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            ICookieService cookieService)
         {
             _organizationService = organizationService;
             _contentLoader = contentLoader;
             _addressService = addressService;
             _settingsService = settingsService;
+            _cookieService = cookieService;
         }
 
-        public ActionResult Index(SubOrganizationPage currentPage)
+        public IActionResult Index(SubOrganizationPage currentPage)
         {
+            var subOrg = Request.Query["suborg"];
             var viewModel = new SubOrganizationPageViewModel
             {
                 CurrentContent = currentPage,
-                SubOrganizationModel = _organizationService.GetSubOrganizationById(Request["suborg"])
+                SubOrganizationModel = _organizationService.GetSubOrganizationById(subOrg)
             };
             //Set selected suborganization
-            _cookieService.Set(Constant.Fields.SelectedOrganization, Request["suborg"]);
-            _cookieService.Set(Constant.Fields.SelectedNavOrganization, Request["suborg"]);
+            _cookieService.Set(Constant.Fields.SelectedOrganization, subOrg);
+            _cookieService.Set(Constant.Fields.SelectedNavOrganization, subOrg);
 
             if (viewModel.SubOrganizationModel == null)
             {
@@ -57,12 +61,12 @@ namespace Foundation.Features.MyOrganization.SubOrganization
             return View(viewModel);
         }
 
-        public ActionResult Edit(SubOrganizationPage currentPage)
+        public IActionResult Edit(SubOrganizationPage currentPage)
         {
             var viewModel = new SubOrganizationPageViewModel
             {
                 CurrentContent = currentPage,
-                SubOrganizationModel = _organizationService.GetSubOrganizationById(Request["suborg"])
+                SubOrganizationModel = _organizationService.GetSubOrganizationById(Request.Query["suborg"])
             };
             if (viewModel.SubOrganizationModel == null)
             {
@@ -80,7 +84,7 @@ namespace Foundation.Features.MyOrganization.SubOrganization
         [HttpPost]
         [AllowDBWrite]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(SubOrganizationPageViewModel viewModel)
+        public IActionResult Save(SubOrganizationPageViewModel viewModel)
         {
             if (string.IsNullOrEmpty(viewModel.SubOrganizationModel.Name))
             {
@@ -111,15 +115,17 @@ namespace Foundation.Features.MyOrganization.SubOrganization
             return RedirectToAction("Index", new { suborg = viewModel.SubOrganizationModel.OrganizationId });
         }
 
-        public ActionResult DeleteAddress(SubOrganizationPage currentPage)
+        public IActionResult DeleteAddress(SubOrganizationPage currentPage)
         {
-            if (Request["suborg"] == null || Request["addressId"] == null)
+            var subOrg = Request.Query["suborg"].ToString();
+            var addressId = Request.Query["addressId"].ToString();
+            if (string.IsNullOrEmpty(subOrg) || string.IsNullOrEmpty(addressId))
             {
                 var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
                 return Redirect(UrlResolver.Current.GetUrl(referencePages?.OrganizationMainPage ?? ContentReference.StartPage));
             }
-            _addressService.DeleteAddress(Request["suborg"], Request["addressId"]);
-            return RedirectToAction("Edit", new { suborg = Request["suborg"] });
+            _addressService.DeleteAddress(subOrg, addressId);
+            return RedirectToAction("Edit", new { suborg = subOrg });
         }
     }
 }

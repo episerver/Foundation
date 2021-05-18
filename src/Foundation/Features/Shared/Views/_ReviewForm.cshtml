@@ -1,6 +1,6 @@
-﻿@model Foundation.Social.ViewModels.ReviewSubmissionViewModel
+﻿@*@model Foundation.Social.ViewModels.ReviewSubmissionViewModel*@
 
-@using (Html.BeginForm("AddAReview", "Product", FormMethod.Post, new { onsubmit = "return false" }))
+@*@using (Html.BeginForm("AddAReview", "Product", FormMethod.Post, new { onsubmit = "return false" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.ProductCode)
@@ -58,4 +58,4 @@
             <button class="button-transparent-black--icon" title="Submit Review" id="submitReview"><i data-feather="play" style="fill: black"></i>@Html.TranslateFallback("/Reviews/SubmitReview", "Submit Review")</button>
         </div>
     </div>
-}
+}*@

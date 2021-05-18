@@ -3,18 +3,20 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
-using EPiServer.Find.Commerce;
+//using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
+using EPiServer.Framework.Cache;
 using EPiServer.Framework.Localization;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
 using Foundation.Features.CatalogContent;
+using Foundation.Infrastructure.Cms.Extensions;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.WebPages;
+using Wangkanai.Detection;
 
 namespace Foundation.Features.Search
 {
@@ -32,23 +34,26 @@ namespace Foundation.Features.Search
         private readonly IContentLoader _contentLoader;
         private readonly ReferenceConverter _referenceConverter;
         private readonly UrlResolver _urlResolver;
-        private readonly HttpContextBase _httpContextBase;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IClient _findClient;
+        private readonly ISynchronizedObjectInstanceCache _synchronizedObjectInstanceCache;
 
         public SearchViewModelFactory(LocalizationService localizationService, ISearchService searchService,
             IContentLoader contentLoader,
             ReferenceConverter referenceConverter,
             UrlResolver urlResolver,
-            HttpContextBase httpContextBase,
-            IClient findClient)
+            IHttpContextAccessor httpContextAccessor,
+            IClient findClient,
+            ISynchronizedObjectInstanceCache synchronizedObjectInstanceCache)
         {
             _searchService = searchService;
             _contentLoader = contentLoader;
             _referenceConverter = referenceConverter;
             _urlResolver = urlResolver;
-            _httpContextBase = httpContextBase;
+            _httpContextAccessor = httpContextAccessor;
             _localizationService = localizationService;
             _findClient = findClient;
+            _synchronizedObjectInstanceCache = synchronizedObjectInstanceCache;
         }
 
         public virtual SearchViewModel<TContent> Create<TContent>(TContent currentContent,
@@ -87,15 +92,16 @@ namespace Foundation.Features.Search
             model.CategoriesFilter = GetCategoriesFilter(currentContent, filterOption.Q);
             model.DidYouMeans = results.DidYouMeans;
             model.Query = filterOption.Q;
-            model.IsMobile = _httpContextBase.GetOverriddenBrowser().IsMobileDevice;
+            var detection = _httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IDetection>();
+            model.IsMobile = detection.Device.Type == DeviceType.Mobile;
 
             return model;
         }
 
         private CategoriesFilterViewModel GetCategoriesFilter(IContent currentContent, string query)
         {
-            var bestBets = new BestBetRepository().List().Where(i => i.PhraseCriterion.Phrase.CompareTo(query) == 0);
-            var ownStyleBestBets = bestBets.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
+            var bestBets = new BestBetRepository(_synchronizedObjectInstanceCache).List().Where(i => i.PhraseCriterion.Phrase.CompareTo(query) == 0);
+            //var ownStyleBestBets = bestBets.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
             var catalogId = 0;
             var node = currentContent as NodeContent;
             if (node != null)
@@ -123,11 +129,11 @@ namespace Foundation.Features.Search
                     DisplayName = nodeContent.DisplayName,
                     Url = _urlResolver.GetUrl(nodeContent.ContentLink),
                     IsActive = currentContent != null && currentContent.ContentLink == nodeContent.ContentLink,
-                    IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeContent.ContentLink.ID)
+                    IsBestBet = false//ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeContent.ContentLink.ID)
                 };
                 viewModel.Categories.Add(nodeFilter);
 
-                GetChildrenNode(currentContent, nodeContent, nodeFilter, ownStyleBestBets);
+                GetChildrenNode(currentContent, nodeContent, nodeFilter, null);
             }
             return viewModel;
         }
@@ -145,7 +151,7 @@ namespace Foundation.Features.Search
                     DisplayName = nodeChildOfChild.DisplayName,
                     Url = _urlResolver.GetUrl(nodeChildOfChild.ContentLink),
                     IsActive = currentContent != null && currentContent.ContentLink == nodeChildOfChild.ContentLink,
-                    IsBestBet = ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeChildOfChild.ContentLink.ID)
+                    IsBestBet = false//ownStyleBestBets.Any(x => ((CommerceBestBetSelector)x.BestBetSelector).ContentLink.ID == nodeChildOfChild.ContentLink.ID)
                 };
 
                 nodeFilter.Children.Add(nodeChildOfChildFilter);

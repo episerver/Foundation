@@ -10,7 +10,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         Description = "Manage budgets for organization.",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
-    [ImageUrl("~/assets/icons/cms/pages/elected.png")]
+    [ImageUrl("/icons/cms/pages/elected.png")]
     public class BudgetingPage : FoundationPageData, IDisableOPE
     {
     }

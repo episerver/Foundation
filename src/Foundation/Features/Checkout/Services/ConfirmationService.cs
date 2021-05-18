@@ -6,7 +6,13 @@ using System.Linq;
 
 namespace Foundation.Features.Checkout.Services
 {
-    public class ConfirmationService
+    public interface IConfirmationService
+    {
+        IPurchaseOrder GetOrder(int orderNumber);
+        IPurchaseOrder CreateFakePurchaseOrder();
+    }
+
+    public class ConfirmationService : IConfirmationService
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ICurrentMarket _currentMarket;

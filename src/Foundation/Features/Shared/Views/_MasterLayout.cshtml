@@ -1,7 +1,7 @@
 ﻿@model IContentViewModel<IContent>
-
+@inject IContextModeResolver contextModeResolver
 <!DOCTYPE html>
-<html lang="en" class="@(PageEditing.PageIsInEditMode ? "editMode" : "")">
+<html lang="en" class="@(contextModeResolver.CurrentMode == ContextMode.Edit ? "editMode" : "")">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,9 +32,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Thasadith&display=swap" rel="stylesheet">
 
-    <link rel="icon" href="~/Assets/icons/episerver.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="~/Assets/icons/episerver.png" type="image/x-icon" />
-    <link href="~/Assets/scss/main.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="~/icons/episerver.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/icons/episerver.png" type="image/x-icon" />
+    <link href="~/scss/main.min.css" rel="stylesheet" type="text/css" />
     @RenderSection("AdditionalStyles", required: false)
     @Html.RequiredClientResources("Header")
     @Html.RenderExtendedCss(Model.CurrentContent)

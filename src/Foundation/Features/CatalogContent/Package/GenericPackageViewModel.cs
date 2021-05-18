@@ -1,5 +1,4 @@
 ﻿using EPiServer.Personalization.Commerce.Tracking;
-using Foundation.Social.ViewModels;
 using System.Collections.Generic;
 
 namespace Foundation.Features.CatalogContent.Package
@@ -14,7 +13,7 @@ namespace Foundation.Features.CatalogContent.Package
         {
         }
 
-        public ReviewsViewModel Reviews { get; set; }
+        //public ReviewsViewModel Reviews { get; set; }
         public IEnumerable<Recommendation> AlternativeProducts { get; set; }
         public IEnumerable<Recommendation> CrossSellProducts { get; set; }
     }

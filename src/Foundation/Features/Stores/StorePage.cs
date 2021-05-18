@@ -9,7 +9,7 @@ namespace Foundation.Features.Stores
         Description = "Store locator page.",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-22.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-22.png")]
     public class StorePage : FoundationPageData
     {
     }

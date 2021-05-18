@@ -1,4 +1,5 @@
-﻿using EPiServer.DataAbstraction;
+﻿
+using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.Blobs;
 using EPiServer.Framework.DataAnnotations;

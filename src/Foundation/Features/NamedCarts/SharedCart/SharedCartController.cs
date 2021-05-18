@@ -4,16 +4,17 @@ using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.Settings;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.NamedCarts.SharedCart
 {
@@ -55,7 +56,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
             return View(viewModel);
         }
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
         public ActionResult LoadMiniSharedCart()
         {
             var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(SharedCart.Cart, true);

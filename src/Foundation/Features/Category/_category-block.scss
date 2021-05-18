@@ -1,0 +1,32 @@
+﻿.category__figure {
+    flex: 0 0 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category__img {
+    max-height: 180px;
+    width: auto;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.category-heading {
+    font-size: 18px;
+}
+
+.category__children {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    line-height: 1.7;
+}
+
+.category__name {
+    font-weight: 500;
+}

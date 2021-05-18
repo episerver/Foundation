@@ -1,10 +1,6 @@
-﻿@using EPiServer.AddOns.Helpers
-@using EPiServer.Web.Mvc.Html
-@using ImageProcessor.Web.Episerver
+﻿@model BlogListPageViewModel
 @using Foundation.Features.Shared.SelectionFactories
 @using Foundation.Features.Blog.BlogListPage
-
-@model BlogListPageViewModel
 
 @if (Model.Blogs != null && Model.Blogs.Any())
 {
@@ -17,7 +13,7 @@
                 <div class="w-100">
                     @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
                     {
-                        <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                        <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="img-fluid preview--image-top__image lazyload" />
                     }
                 </div>
             </div>

@@ -3,19 +3,19 @@ using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Features.Shared;
+using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Web.Mvc;
 
-namespace Foundation.Features.Blocks.Common
+namespace Foundation.Features.Blocks
 {
-    [TemplateDescriptor(Default = true, Inherited = true)]
-    public class DefaultBlockController : BlockController<FoundationBlockData>
+    [TemplateDescriptor(Inherited = true)]
+    public class DefaultBlockController : BlockComponent<FoundationBlockData>
     {
-        public override ActionResult Index(FoundationBlockData currentBlock)
+        public override IViewComponentResult Invoke(FoundationBlockData currentBlock)
         {
             var model = CreateModel(currentBlock);
             var blockName = currentBlock.GetOriginalType().Name;
-            return PartialView(string.Format("~/Features/Blocks/{0}/{1}.cshtml", blockName, blockName), model);
+            return View(string.Format("~/Features/Blocks/{0}/{1}.cshtml", blockName, blockName), model);
         }
 
         private static IBlockViewModel<BlockData> CreateModel(BlockData currentBlock)

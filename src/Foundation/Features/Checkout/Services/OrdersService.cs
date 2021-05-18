@@ -2,11 +2,11 @@
 using EPiServer.Commerce.Order;
 using EPiServer.Logging;
 using EPiServer.Security;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Orders;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Managers;

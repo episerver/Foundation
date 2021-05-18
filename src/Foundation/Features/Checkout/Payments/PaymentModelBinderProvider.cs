@@ -1,7 +1,7 @@
 ﻿using EPiServer.Commerce.Order;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Checkout.Payments
 {
@@ -12,13 +12,12 @@ namespace Foundation.Features.Checkout.Payments
             {typeof(IPaymentMethod), typeof(PaymentOptionViewModelBinder)},
         };
 
-        public IModelBinder GetBinder(Type modelType)
+        public IModelBinder GetBinder(ModelBinderProviderContext context)
         {
-            if (ModelBinderTypeMappings.ContainsKey(modelType))
+            if (ModelBinderTypeMappings.ContainsKey(context.Metadata.ModelType))
             {
-                return DependencyResolver.Current.GetService(ModelBinderTypeMappings[modelType]) as IModelBinder;
+                return context.Services.GetService(ModelBinderTypeMappings[context.Metadata.ModelType]) as IModelBinder;
             }
-
             return null;
         }
     }

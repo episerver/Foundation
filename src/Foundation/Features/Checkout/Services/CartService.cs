@@ -7,15 +7,15 @@ using EPiServer.Core;
 using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.Web;
-using Foundation.Commerce;
-using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Markets;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.NamedCarts;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
@@ -47,7 +47,7 @@ namespace Foundation.Features.Checkout.Services
         private readonly ReferenceConverter _referenceConverter;
         private readonly IContentLoader _contentLoader;
         private readonly IRelationRepository _relationRepository;
-        private readonly ShippingService _shippingManagerFacade;
+        private readonly IShippingService _shippingManagerFacade;
         private readonly IWarehouseRepository _warehouseRepository;
         private readonly ILineItemCalculator _lineItemCalculator;
         private readonly IPromotionService _promotionService;
@@ -68,7 +68,7 @@ namespace Foundation.Features.Checkout.Services
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             IRelationRepository relationRepository,
-            ShippingService shippingManagerFacade,
+            IShippingService shippingManagerFacade,
             IWarehouseRepository warehouseRepository,
             ILineItemCalculator lineItemCalculator,
             IPromotionService promotionService, IOrganizationService organizationService)

@@ -3,20 +3,17 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.Shared;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Search.Category
 {
     [CatalogContentType(DisplayName = "Generic Node", GUID = "4ac27ad4-bf60-4ea0-9a77-28a89d38d3fd", Description = "")]
-    public class GenericNode : NodeContent, IProductRecommendations, IFoundationContent, IDashboardItem
+    public class GenericNode : NodeContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         [CultureSpecific]
         [Display(Name = "Long name", GroupName = SystemTabNames.Content, Order = 5)]
@@ -94,10 +91,10 @@ namespace Foundation.Features.Search.Category
             DefaultTemplate = "Grid";
         }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Teaser;
-            itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
-        }
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Teaser;
+        //    itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
+        //}
     }
 }

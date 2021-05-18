@@ -5,12 +5,8 @@ using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
 using EPiServer.Data;
 using EPiServer.Filters;
-using EPiServer.Globalization;
-using EPiServer.PdfPreview.Models;
 using EPiServer.Security;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Markets;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
@@ -18,16 +14,18 @@ using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Media;
 using Foundation.Features.Stores;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.InventoryService;
 using Mediachase.Commerce.Pricing;
 using Mediachase.Commerce.Security;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.CatalogContent
 {
@@ -41,7 +39,7 @@ namespace Foundation.Features.CatalogContent
         private readonly IRelationRepository _relationRepository;
         private readonly UrlResolver _urlResolver;
         private readonly FilterPublished _filterPublished;
-        private readonly LanguageResolver _languageResolver;
+        private readonly IContentLanguageAccessor _contentLanguageAccessor;
         private readonly IStoreService _storeService;
         private readonly IProductService _productService;
         private readonly IQuickOrderService _quickOrderService;
@@ -57,8 +55,8 @@ namespace Foundation.Features.CatalogContent
             CurrencyService currencyservice,
             IRelationRepository relationRepository,
             UrlResolver urlResolver,
-            FilterPublished filterPublished,
-            LanguageResolver languageResolver,
+            //FilterPublished filterPublished,
+            IContentLanguageAccessor contentLanguageAccessor,
             IStoreService storeService,
             IProductService productService,
             IQuickOrderService quickOrderService,
@@ -73,8 +71,8 @@ namespace Foundation.Features.CatalogContent
             _currencyservice = currencyservice;
             _relationRepository = relationRepository;
             _urlResolver = urlResolver;
-            _filterPublished = filterPublished;
-            _languageResolver = languageResolver;
+            _filterPublished = new FilterPublished();
+            _contentLanguageAccessor = contentLanguageAccessor;
             _storeService = storeService;
             _productService = productService;
             _quickOrderService = quickOrderService;
@@ -190,7 +188,7 @@ namespace Foundation.Features.CatalogContent
             viewModel.SalesMaterials = isSalesRep ? currentContent.CommerceMediaCollection.Where(x => !string.IsNullOrEmpty(x.GroupName) && x.GroupName.Equals("sales"))
                 .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList() : new List<MediaData>();
             viewModel.Documents = currentContent.CommerceMediaCollection
-                .Where(o => o.AssetType.Equals(typeof(PdfFile).FullName.ToLowerInvariant()) || o.AssetType.Equals(typeof(StandardFile).FullName.ToLowerInvariant()))
+                .Where(o => /*o.AssetType.Equals(typeof(PdfFile).FullName.ToLowerInvariant()) || */o.AssetType.Equals(typeof(StandardFile).FullName.ToLowerInvariant()))
                 .Select(x => _contentLoader.Get<MediaData>(x.AssetLink)).ToList();
             viewModel.MinQuantity = (int)defaultPrice.MinQuantity;
             viewModel.HasSaleCode = defaultPrice != null ? !string.IsNullOrEmpty(defaultPrice.CustomerPricing.PriceCode) : false;
@@ -379,7 +377,7 @@ namespace Foundation.Features.CatalogContent
             if (bundle != null)
             {
                 return _contentLoader
-                    .GetItems(bundle.GetEntries(_relationRepository), _languageResolver.GetPreferredCulture())
+                    .GetItems(bundle.GetEntries(_relationRepository), _contentLanguageAccessor.Language)
                     .OfType<TVariant>()
                     .Where(v => v.IsAvailableInCurrentMarket(_currentMarket) && !_filterPublished.ShouldFilter(v))
                     .ToArray();
@@ -389,7 +387,7 @@ namespace Foundation.Features.CatalogContent
             if (package != null)
             {
                 return _contentLoader
-                    .GetItems(package.GetEntries(_relationRepository), _languageResolver.GetPreferredCulture())
+                    .GetItems(package.GetEntries(_relationRepository), _contentLanguageAccessor.Language)
                     .OfType<TVariant>()
                     .Where(v => v.IsAvailableInCurrentMarket(_currentMarket) && !_filterPublished.ShouldFilter(v))
                     .ToArray();
@@ -399,7 +397,7 @@ namespace Foundation.Features.CatalogContent
             if (product != null)
             {
                 return _contentLoader
-                    .GetItems(product.GetVariants(_relationRepository), _languageResolver.GetPreferredCulture())
+                    .GetItems(product.GetVariants(_relationRepository), _contentLanguageAccessor.Language)
                     .OfType<TVariant>()
                     .Where(v => v.IsAvailableInCurrentMarket(_currentMarket) && !_filterPublished.ShouldFilter(v))
                     .ToArray();

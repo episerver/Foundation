@@ -1,15 +1,16 @@
 ﻿using EPiServer.Logging;
 using EPiServer.Web.Mvc;
-using Foundation.Cms;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.MyOrganization.Organization;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.MyOrganization.Budgeting
 {
@@ -20,18 +21,23 @@ namespace Foundation.Features.MyOrganization.Budgeting
         private readonly IOrganizationService _organizationService;
         private readonly ICurrentMarket _currentMarket;
         private readonly ICustomerService _customerService;
-        private readonly CookieService _cookieService = new CookieService();
+        private readonly ICookieService _cookieService;
 
-        public BudgetingController(IBudgetService budgetService, IOrganizationService organizationService, ICurrentMarket currentMarket, ICustomerService customerService)
+        public BudgetingController(IBudgetService budgetService,
+            IOrganizationService organizationService,
+            ICurrentMarket currentMarket,
+            ICustomerService customerService,
+            ICookieService cookieService)
         {
             _budgetService = budgetService;
             _organizationService = organizationService;
             _currentMarket = currentMarket;
             _customerService = customerService;
+            _cookieService = cookieService;
         }
 
         [NavigationAuthorize("Admin,Approver,Purchaser")]
-        public ActionResult Index(BudgetingPage currentPage)
+        public IActionResult Index(BudgetingPage currentPage)
         {
             var selectedOrgId = _cookieService.Get(Constant.Fields.SelectedOrganization);
             var isSubOrgSelected = !string.IsNullOrEmpty(selectedOrgId);
@@ -92,7 +98,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult AddBudget(BudgetingPage currentPage)
+        public IActionResult AddBudget(BudgetingPage currentPage)
         {
             var viewModel = new BudgetingPageViewModel { CurrentContent = currentPage };
             try
@@ -131,7 +137,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
 
         [NavigationAuthorize("Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult NewBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status)
+        public IActionResult NewBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status)
         {
             var result = "true";
             try
@@ -206,7 +212,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult EditBudget(BudgetingPage currentPage, int budgetId)
+        public IActionResult EditBudget(BudgetingPage currentPage, int budgetId)
         {
             var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
                 ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))
@@ -227,7 +233,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult UpdateBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, int budgetId)
+        public IActionResult UpdateBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, int budgetId)
         {
             var result = "true";
 
@@ -307,7 +313,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult AddBudgetToUser(BudgetingPage currentPage)
+        public IActionResult AddBudgetToUser(BudgetingPage currentPage)
         {
             var viewModel = new BudgetingPageViewModel { CurrentContent = currentPage };
             var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
@@ -324,7 +330,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult NewBudgetToUser(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, string userEmail)
+        public IActionResult NewBudgetToUser(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, string userEmail)
         {
             var result = "true";
             try
@@ -402,7 +408,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult EditUserBudget(BudgetingPage currentPage, int budgetId)
+        public IActionResult EditUserBudget(BudgetingPage currentPage, int budgetId)
         {
             var viewModel = new BudgetingPageViewModel
             {
@@ -414,7 +420,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult UpdateUserBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, int budgetId)
+        public IActionResult UpdateUserBudget(DateTime startDateTime, DateTime finishDateTime, decimal amount, string currency, string status, int budgetId)
         {
             var currentOrganization = !string.IsNullOrEmpty(_cookieService.Get(Constant.Fields.SelectedOrganization))
               ? _organizationService.GetSubFoundationOrganizationById(_cookieService.Get(Constant.Fields.SelectedOrganization))

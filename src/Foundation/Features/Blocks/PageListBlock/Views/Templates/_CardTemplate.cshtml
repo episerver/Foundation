@@ -1,5 +1,4 @@
-﻿@using EPiServer.AddOns.Helpers
-@using EPiServer.Core.Html
+﻿@using EPiServer.Core.Html
 @using Foundation.Features.Blocks.PageListBlock
 
 @model PageListBlockViewModel
@@ -17,7 +16,7 @@
         <div class="col-xs-12 col-sm-6 col-md-@col">
             <div class="page-list-block-preview__card">
                 <div class="page-list-block-preview__card--show">
-                    <div class="card--top">
+                    <div class="card--top" style="background-color: @Model.CurrentBlock.OverlayColor;">
                         @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
                             <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />

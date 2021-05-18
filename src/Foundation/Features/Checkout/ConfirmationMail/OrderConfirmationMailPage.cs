@@ -10,7 +10,7 @@ namespace Foundation.Features.Checkout.ConfirmationMail
         Description = "The reset passord template mail page.",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-26.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-26.png")]
     public class OrderConfirmationMailPage : MailBasePage
     {
     }

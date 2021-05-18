@@ -3,28 +3,27 @@ using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Framework.Localization;
 using EPiServer.Globalization;
 using EPiServer.Web.Mvc;
-using Foundation.Cms;
-using Foundation.Cms.Attributes;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Identity;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.MyAccount.ResetPassword;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.MyOrganization.SubOrganization;
 using Foundation.Features.Search;
 using Foundation.Features.Settings;
 using Foundation.Features.Shared;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 
 namespace Foundation.Features.MyOrganization.Users
 {
@@ -39,7 +38,7 @@ namespace Foundation.Features.MyOrganization.Users
         private readonly ApplicationSignInManager<SiteUser> _signInManager;
         private readonly LocalizationService _localizationService;
         private readonly ISearchService _searchService;
-        private readonly CookieService _cookieService;
+        private readonly ICookieService _cookieService;
         private readonly ISettingsService _settingsService;
 
         public UsersController(
@@ -51,7 +50,7 @@ namespace Foundation.Features.MyOrganization.Users
             IMailService mailService,
             LocalizationService localizationService,
             ISearchService searchService,
-            CookieService cookieService,
+            ICookieService cookieService,
             ISettingsService settingsService)
         {
             _customerService = customerService;
@@ -166,7 +165,7 @@ namespace Foundation.Features.MyOrganization.Users
         [NavigationAuthorize("Admin")]
         public async Task<ActionResult> AddUser(UsersPageViewModel viewModel)
         {
-            var user = _userManager.FindByEmail(viewModel.Contact.Email);
+            var user = await _userManager.FindByEmailAsync(viewModel.Contact.Email);
             if (user != null)
             {
                 var contact = _customerService.GetContactByEmail(user.Email);
@@ -200,7 +199,7 @@ namespace Foundation.Features.MyOrganization.Users
         public JsonResult GetUsers(string query)
         {
             var data = _searchService.SearchUsers(query);
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data);
         }
 
         public JsonResult GetAddresses(string id)
@@ -208,18 +207,18 @@ namespace Foundation.Features.MyOrganization.Users
             var organization = _organizationService.GetSubOrganizationById(id);
             var addresses = organization.Locations;
 
-            return Json(addresses, JsonRequestBehavior.AllowGet);
+            return Json(addresses);
         }
 
         [NavigationAuthorize("Admin")]
-        public ActionResult ImpersonateUser(string email)
+        public async Task<ActionResult> ImpersonateUserAsync(string email)
         {
             var success = false;
-            var user = _userManager.FindByEmail(email);
+            var user = await _userManager.FindByEmailAsync(email);
             if (user != null)
             {
-                _cookieService.Set(Constant.Cookies.B2BImpersonatingAdmin, User.Identity.GetUserName(), true);
-                _signInManager.SignIn(user, false, false);
+                _cookieService.Set(Constant.Cookies.B2BImpersonatingAdmin, User.Identity.Name, true);
+                await _signInManager.SignInAsync(user.UserName, user.Password, "");
                 success = true;
             }
 
@@ -234,20 +233,20 @@ namespace Foundation.Features.MyOrganization.Users
             }
         }
 
-        public ActionResult BackAsAdmin()
+        public async Task<ActionResult> BackAsAdminAsync()
         {
             var adminUsername = _cookieService.Get(Constant.Cookies.B2BImpersonatingAdmin);
             if (!string.IsNullOrEmpty(adminUsername))
             {
-                var adminUser = _userManager.FindByEmail(adminUsername);
+                var adminUser = await _userManager.FindByEmailAsync(adminUsername);
                 if (adminUser != null)
                 {
-                    _signInManager.SignIn(adminUser, false, false);
+                    await _signInManager.SignInAsync(adminUser, false);
                 }
 
                 _cookieService.Remove(Constant.Cookies.B2BImpersonatingAdmin);
             }
-            return Redirect(Request.UrlReferrer?.AbsoluteUri ?? "/");
+            return Redirect(Request.Headers["Referer"].ToString() ?? "/");
         }
 
         private async Task SaveUser(UsersPageViewModel viewModel)
@@ -262,11 +261,11 @@ namespace Foundation.Features.MyOrganization.Users
                 RegistrationSource = "Registration page"
             };
 
-            _userManager.Create(contactUser);
+            await _userManager.CreateAsync(contactUser);
 
             _customerService.CreateContact(viewModel.Contact, contactUser.Id);
 
-            var user = _userManager.FindByName(viewModel.Contact.Email);
+            var user = await _userManager.FindByNameAsync(viewModel.Contact.Email);
             if (user != null)
             {
                 var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
@@ -276,8 +275,8 @@ namespace Foundation.Features.MyOrganization.Users
                 }
                 var body = await _mailService.GetHtmlBodyForMail(referencePages.ResetPasswordMail, new NameValueCollection(), ContentLanguage.PreferredCulture.TwoLetterISOLanguageName);
                 var mailPage = _contentLoader.Get<MailBasePage>(referencePages.ResetPasswordMail);
-                var code = _userManager.GeneratePasswordResetToken(user.Id);
-                var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language = ContentLanguage.PreferredCulture.TwoLetterISOLanguageName }, Request.Url.Scheme);
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language = ContentLanguage.PreferredCulture.TwoLetterISOLanguageName }, Request.Scheme);
 
                 body = body.Replace("[MailUrl]",
                     string.Format("{0}<a href=\"{1}\">{2}</a>",

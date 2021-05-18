@@ -1,28 +1,26 @@
-﻿@using EPiServer.Core.Html
-@using EPiServer.AddOns.Helpers
+﻿@model PageListBlockViewModel
+@using EPiServer.Core.Html
 @using Foundation.Features.Blocks.PageListBlock
 @using Foundation.Features.Shared.SelectionFactories
-
-@model PageListBlockViewModel
 
 @if (Model.Pages != null && Model.Pages.Any())
 {
     <div class="row">
-        @foreach (var page in Model.Pages)
+        @foreach (var pageModel in Model.Pages)
         {
-            var foundationPage = page.Page as FoundationPageData;
-            var imageCol = page.PreviewOption == PreviewOptions.Full ? 12 : (page.PreviewOption == PreviewOptions.Half ? 6 : 4);
+            var foundationPage = pageModel.Page as FoundationPageData;
+            var imageCol = pageModel.PreviewOption == PreviewOptions.Full ? 12 : (pageModel.PreviewOption == PreviewOptions.Half ? 6 : 4);
             var textCol = imageCol == 12 ? 12 : 12 - imageCol;
 
-            <a class="col-@imageCol preview--image-top" href="@page.Page.ContentLink.GetPublicUrl()">
+            <a class="col-@imageCol preview--image-top" href="@pageModel.Page.ContentLink.GetPublicUrl()">
                 <h4>
-                    @(@Html.Raw(TextIndexer.StripHtml(page != null ? foundationPage.MetaTitle : page.Page.Name, 55)) + "...")
+                    @(@Html.Raw(TextIndexer.StripHtml(pageModel != null ? foundationPage.MetaTitle : pageModel.Page.Name, 55)) + "...")
                 </h4>
                 @if (Model.ShowPublishDate)
                 {
-                    <p class="sub-title">@page.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                    <p class="sub-title">@pageModel.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
                 }
-                @if (page != null && Model.ShowIntroduction)
+                @if (pageModel != null && Model.ShowIntroduction)
                 {
                     <br />
                     <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>

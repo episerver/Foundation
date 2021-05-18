@@ -1,6 +1,6 @@
-﻿using Foundation.Commerce.Customer;
-using Foundation.Features.MyOrganization.SubOrganization;
+﻿using Foundation.Features.MyOrganization.SubOrganization;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Commerce.Customer;
 using System.Collections.Generic;
 
 namespace Foundation.Features.MyOrganization.Users

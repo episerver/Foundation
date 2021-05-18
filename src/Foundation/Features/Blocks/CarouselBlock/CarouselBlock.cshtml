@@ -1,7 +1,4 @@
-﻿@using ImageProcessor.Web.Episerver
-@using Foundation.Features.Blocks.CarouselBlock
-
-@model CarouselBlockViewModel
+﻿@model Foundation.Features.Blocks.CarouselBlock.CarouselBlockViewModel
 
 @if (Model.Items != null)
 {
@@ -20,16 +17,16 @@
                 <div class="@(item.i == 0 ? "carousel-item active" : "carousel-item")">
                     @if (item.value.HeroBlock != null)
                     {
-                        @Html.Partial("~/Features/Blocks/HeroBlock/HeroBlock.cshtml", item.value.HeroBlock)
+                        @await Html.PartialAsync("HeroBlock", item.value.HeroBlock)
                     }
                     else if (item.value.CarouselImage != null)
                     {
-                    <a href="@(item.value.CarouselImage.ItemURL != null ? @Url.ContentUrl(item.value.CarouselImage.ItemURL) : "#")">
-                        <picture class="img-fluid">
-                            <source data-srcset="@Url.ContentUrl(item.value.CarouselImage.Image)?format=webp" type="image/webp">
-                            <img class="img-fluid lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(item.value.CarouselImage.Image)).Resize(1440, 720)" />
-                        </picture>
-                    </a>
+                        <a href="@(item.value.CarouselImage.ItemURL != null ? Url.ContentUrl(item.value.CarouselImage.ItemURL) : "#")">
+                            <picture class="img-fluid">
+                                <source data-srcset="@Url.ContentUrl(item.value.CarouselImage.Image)?format=webp" type="image/webp">
+                                <img class="img-fluid lazyload" data-src="@Url.ContentUrl(item.value.CarouselImage.Image)"/>
+                            </picture>
+                        </a>
                         if (!string.IsNullOrWhiteSpace(item.value.CarouselImage.Heading))
                         {
                             <div class="carousel-caption animated fadeInUpBig">

@@ -7,7 +7,7 @@
         <div class="loader"></div>
     </div>
     <div class="cart-item-listing">
-        @Html.Partial("_MobileMiniSharedCartItems", Model)
+        @await Html.PartialAsync("_MobileMiniSharedCartItems", Model)
     </div>
 
     <div class="cart__footer">

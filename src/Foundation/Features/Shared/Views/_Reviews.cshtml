@@ -1,4 +1,4 @@
-﻿@model Foundation.Social.ViewModels.ReviewsViewModel
+﻿@*@model Foundation.Social.ViewModels.ReviewsViewModel
 <br />
 <div class="row">
     <div class="col-12">
@@ -6,8 +6,8 @@
         <ul class="row" id="reviewsListing">
             @foreach (var review in Model.Reviews)
             {
-                @Html.Partial("_ReviewItem", review)
+                @await Html.PartialAsync("_ReviewItem", review)
             }
         </ul>
     </div>
-</div>
+</div>*@

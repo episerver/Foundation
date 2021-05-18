@@ -41,11 +41,11 @@ else
                             &laquo;
                         </a>
                     </li>
-                    @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
+                    @for (int pageNo = 1; pageNo <= Model.PagingInfo.PageCount; pageNo++)
                     {
-                        <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "") jsPaginateBlog" data="@page">
+                        <li class="@(Model.PagingInfo.PageNumber == pageNo ? "active" : "") jsPaginateBlog" data="@pageNo">
                             <a href="javascript:void(0)">
-                                @page.ToString()
+                                @pageNo.ToString()
                             </a>
                         </li>
                     }

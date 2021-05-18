@@ -1,4 +1,4 @@
-using Foundation.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Attributes;
 
 namespace Foundation.Features.Api
 {

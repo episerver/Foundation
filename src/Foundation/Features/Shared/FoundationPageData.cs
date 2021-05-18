@@ -1,31 +1,30 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
+//using EPiServer.Labs.ContentManager.Cards;
+//using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.Blocks.ButtonBlock;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
-using Geta.EpiCategories;
-using Geta.EpiCategories.DataAnnotations;
-using System.Collections.Generic;
+//using Geta.EpiCategories;
+//using Geta.EpiCategories.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Shared
 {
-    public abstract class FoundationPageData : PageData, ICategorizableContent, IFoundationContent, IDashboardItem
+    public abstract class FoundationPageData : PageData, /*ICategorizableContent,*/ IFoundationContent/*, IDashboardItem*/
     {
         #region Page Header
 
-        [Categories]
-        [Display(Name = "Categories",
-            Description = "Categories associated with this content.",
-            GroupName = SystemTabNames.PageHeader,
-            Order = 10)]
-        public virtual IList<ContentReference> Categories { get; set; }
+        //[Categories]
+        //[Display(Name = "Categories",
+        //    Description = "Categories associated with this content.",
+        //    GroupName = SystemTabNames.PageHeader,
+        //    Order = 10)]
+        //public virtual IList<ContentReference> Categories { get; set; }
 
         #endregion
 
@@ -242,20 +241,22 @@ namespace Foundation.Features.Shared
 
         #region Styles
 
+        [Searchable(false)]
         [Display(Name = "CSS files", GroupName = TabNames.Styles, Order = 100)]
         public virtual LinkItemCollection CssFiles { get; set; }
 
-        [Display(Name = "CSS", GroupName = TabNames.Styles, Order = 200)]
+        [Searchable(false)]
         [UIHint(UIHint.Textarea)]
+        [Display(Name = "CSS", GroupName = TabNames.Styles, Order = 200)]
         public virtual string Css { get; set; }
 
         #endregion
 
-        public virtual void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = PageDescription;
-            itemModel.Image = PageImage;
-        }
+        //public virtual void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = PageDescription;
+        //    itemModel.Image = PageImage;
+        //}
 
         public override void SetDefaultValues(ContentType contentType)
         {

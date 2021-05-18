@@ -1,12 +1,14 @@
 ﻿using EPiServer.Commerce.Order;
-using Foundation.Commerce.Markets;
 using Foundation.Features.Checkout.Services;
-using System.Linq;
-using System.Web.Mvc;
+using Foundation.Infrastructure.Commerce.Markets;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Foundation.Features.Markets
 {
-    public class CurrencyController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class CurrencyController : ControllerBase
     {
         private readonly ICurrencyService _currencyService;
         private readonly ICartService _cartService;
@@ -21,29 +23,13 @@ namespace Foundation.Features.Markets
             _orderRepository = orderRepository;
         }
 
-        [ChildActionOnly]
-        public ActionResult Index()
-        {
-            var model = new CurrencyViewModel
-            {
-                Currencies = _currencyService.GetAvailableCurrencies()
-                    .Select(x => new SelectListItem
-                    {
-                        Selected = false,
-                        Text = x.CurrencyCode,
-                        Value = x.CurrencyCode
-                    }),
-                CurrencyCode = _currencyService.GetCurrentCurrency().CurrencyCode,
-            };
-            return PartialView(model);
-        }
-
         [HttpPost]
-        public ActionResult Set(string currencyCode)
+        [Route("Set")]
+        public ActionResult Set([FromForm] string currencyCode)
         {
             if (!_currencyService.SetCurrentCurrency(currencyCode))
             {
-                return new HttpStatusCodeResult(400, "Unsupported");
+                return new BadRequestResult();
             }
 
             var cart = _cartService.LoadCart(_cartService.DefaultCartName, true)?.Cart;
@@ -57,7 +43,11 @@ namespace Foundation.Features.Markets
                 }
             }
 
-            return Json(new { returnUrl = Request.UrlReferrer.ToString() });
+            return new ContentResult
+            {
+                Content = JsonConvert.SerializeObject(new { returnUrl = !string.IsNullOrEmpty(Request.Headers["Referer"]) ? Request.Headers["Referer"].ToString() : "/" }),
+                ContentType = "application/json",
+            };
         }
     }
 }

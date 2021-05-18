@@ -9,7 +9,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
         Description = "Page for allowing users to reset their passwords. The page must also be set in the StartPage's ResetPasswordPage property.",
         GroupName = GroupNames.Account,
         AvailableInEditMode = false)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-09.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-09.png")]
     public class ResetPasswordPage : FoundationPageData
     {
     }

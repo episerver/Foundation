@@ -1,5 +1,4 @@
-﻿@using System.Web.Mvc.Html
-@using Foundation.Features.Blog.BlogItemPage
+﻿@using Foundation.Features.Blog.BlogItemPage
 @using Foundation.Features.Blog.BlogListPage
 
 @model BlogListPageViewModel
@@ -30,7 +29,7 @@
     <div class="blog__gallery">
         <div class="blog__row">
             <div class="blog__large-col">
-                @Html.Partial("Views/Templates/_GridTemplateComponent", firstBlog)
+                @await Html.PartialAsync("Views/Templates/_GridTemplateComponent", firstBlog)
             </div>
             @foreach (var list in listGridBlogs)
             {
@@ -38,7 +37,7 @@
                     <div class="blog__grid">
                         @foreach (var blog in list)
                         {
-                            @Html.Partial("Views/Templates/_GridTemplateComponent", blog)
+                            @await Html.PartialAsync("Views/Templates/_GridTemplateComponent", blog)
                         }
                     </div>
                 </div>
@@ -46,7 +45,7 @@
             @foreach (var blog in listLargeBlogs)
             {
                 <div class="blog__large-col">
-                    @Html.Partial("Views/Templates/_GridTemplateComponent", blog)
+                    @await Html.PartialAsync("Views/Templates/_GridTemplateComponent", blog)
                 </div>
             }
         </div>

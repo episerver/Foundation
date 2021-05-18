@@ -1,8 +1,5 @@
-﻿@using EPiServer.AddOns.Helpers
-@using ImageProcessor.Web.Episerver
+﻿@model BlogListPageViewModel
 @using Foundation.Features.Blog.BlogListPage
-
-@model BlogListPageViewModel
 
 @{
     var insightBlogs = Model.Blogs.Take(3);
@@ -38,7 +35,7 @@
                         <div class="insight__thumbnail insight__thumbnail--large">
                             @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
                             {
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" class="lazyload" />
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
                             }
                         </div>
                     }
@@ -47,7 +44,7 @@
                         <div class="insight__thumbnail insight__thumbnail--small">
                             @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
                             {
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" class="lazyload" />
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
                             }
                         </div>
                     }
@@ -102,7 +99,7 @@
                         <div class="insight__thumbnail insight__thumbnail--large">
                             @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
                             {
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" class="lazyload" />
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
                             }
                         </div>
                     }
@@ -111,7 +108,7 @@
                         <div class="insight__thumbnail insight__thumbnail--small">
                             @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
                             {
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" class="lazyload" />
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
                             }
                         </div>
                     }

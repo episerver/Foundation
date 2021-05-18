@@ -1,4 +1,4 @@
-﻿using Boilerplate.Web.Mvc.OpenGraph;
+﻿using Boxed.AspNetCore.TagHelpers.OpenGraph;
 using Foundation.Infrastructure.OpenGraph.Extensions;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace Foundation.Infrastructure.OpenGraph
 {
     public class OpenGraphGenericProduct : OpenGraphMetadata
     {
-        public OpenGraphGenericProduct(string title, OpenGraphImage image, string url = null) : base(title, image, url)
+        public OpenGraphGenericProduct(string title, OpenGraphImage image, string url = null)
         {
         }
 

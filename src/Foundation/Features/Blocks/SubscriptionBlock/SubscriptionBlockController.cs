@@ -4,7 +4,7 @@ using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Common;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Blocks.SubscriptionBlock
 {

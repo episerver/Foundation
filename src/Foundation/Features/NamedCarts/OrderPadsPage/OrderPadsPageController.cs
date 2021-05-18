@@ -1,13 +1,14 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.Web.Mvc;
-using Foundation.Cms;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyOrganization.Organization;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.NamedCarts.OrderPadsPage
 {
@@ -17,13 +18,14 @@ namespace Foundation.Features.NamedCarts.OrderPadsPage
         private readonly ICustomerService _customerService;
         private readonly ICartService _cartService;
         private readonly IOrganizationService _organizationService;
-        private readonly CookieService _cookieService = new CookieService();
+        private readonly ICookieService _cookieService;
 
-        public OrderPadsPageController(ICartService cartService, ICustomerService customerService, IOrganizationService organizationService)
+        public OrderPadsPageController(ICartService cartService, ICustomerService customerService, IOrganizationService organizationService, ICookieService cookieService)
         {
             _customerService = customerService;
             _cartService = cartService;
             _organizationService = organizationService;
+            _cookieService = cookieService;
         }
 
         [NavigationAuthorize("Admin,Approver")]

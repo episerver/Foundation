@@ -10,7 +10,7 @@ namespace Foundation.Features.Blocks.FacebookBlock
         GUID = "fe935bfb-44b0-4ce2-a448-1d366ff3bbc0",
         Description = "Display content from a Facebook feed",
         GroupName = GroupNames.SocialMedia)]
-    [ImageUrl("~/assets/icons/cms/blocks/rss.png")]
+    [ImageUrl("/icons/cms/blocks/rss.png")]
     public class FacebookBlock : FoundationBlockData
     {
         [Display(Name = "Account name", GroupName = SystemTabNames.Content, Order = 10)]

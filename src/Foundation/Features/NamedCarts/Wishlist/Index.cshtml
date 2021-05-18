@@ -16,7 +16,7 @@
             </div>
             <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
             <div id="my-wishlist">
-                @Html.Partial("_WishlistListItem", Model)
+                @await Html.PartialAsync("_WishlistListItem", Model)
             </div>
         </div>
     </div>

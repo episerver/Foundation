@@ -32,7 +32,7 @@
             {
                 var partialView = string.Format("_{0}PaymentMethod", Model.Payment.SystemKeyword);
 
-                Html.RenderPartial(partialView, Model.Payment);
+                await Html.RenderPartialAsync(partialView, Model.Payment);
             }
         </div>
     </div>

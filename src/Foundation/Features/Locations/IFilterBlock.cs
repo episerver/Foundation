@@ -1,5 +1,5 @@
 using EPiServer.Find;
-using System.Collections.Specialized;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Locations
 {
@@ -11,6 +11,6 @@ namespace Foundation.Features.Locations
 
         ITypeSearch<LocationItemPage.LocationItemPage> AddFilter(ITypeSearch<LocationItemPage.LocationItemPage> query);
 
-        ITypeSearch<LocationItemPage.LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage.LocationItemPage> query, NameValueCollection filters);
+        ITypeSearch<LocationItemPage.LocationItemPage> ApplyFilter(ITypeSearch<LocationItemPage.LocationItemPage> query, IQueryCollection filters);
     }
 }

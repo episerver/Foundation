@@ -3,10 +3,10 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Cms.Attributes;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Cms.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Blocks.ProductHeroBlock
@@ -15,7 +15,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
         GUID = "6b43692b-6abd-49b1-b5f2-48ffbb8e626a",
         Description = "Product hero block",
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
     {
         [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockLayoutSelectionFactory))]
@@ -72,6 +72,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
     {
         [MaxElements(1)]
         [CultureSpecific]
+        [UIHint(EPiServer.Commerce.UIHint.AllContent)]
         [AllowedTypes(new[] { typeof(EntryContentBase) })]
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual ContentArea Product { get; set; }

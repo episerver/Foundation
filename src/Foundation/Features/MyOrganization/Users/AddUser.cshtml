@@ -1,4 +1,5 @@
-﻿@using System.Web.Mvc.Html
+﻿@using EPiServer.Web.Mvc.Html
+@using EPiServer.Shell.Web.Mvc.Html
 @using Foundation.Features.MyOrganization.Users
 
 @model UsersPageViewModel
@@ -60,9 +61,9 @@
                 <br />
                 @Html.DropDownListFor(m => m.Contact.UserRole, new SelectList(new List<SelectListItem>
                                                             {
-                                                                new SelectListItem { Text = Html.TranslateFallback("/B2B/Admin", "Admin"), Value = "Admin" },
-                                                                new SelectListItem { Text = Html.TranslateFallback("/B2B/Approver", "Approver"), Value = "Approver" },
-                                                                new SelectListItem { Text = Html.TranslateFallback("/B2B/Purchaser", "Purchaser"), Value = "Purchaser" }
+                                                                new SelectListItem { Text = "Admin", Value = "Admin" },
+                                                                new SelectListItem { Text = "Approver", Value = "Approver" },
+                                                                new SelectListItem { Text = "Purchaser", Value = "Purchaser" }
                                                             }, "Value", "Text", Model.Contact.UserRole), new { @id = "select-role", @class = "textbox" })
             </div>
             <div class="form-group display-none" id="location-div">
@@ -71,7 +72,7 @@
                 <div class="custom-select">
                     <span class="custom-select-split"></span>
                     <span class="custom-select-arrow arrow-down"></span>
-                    @Html.DropDownListFor(model => model.Contact.UserLocationId, new List<SelectListItem>(), Html.TranslateFallback("/B2B/Users/SelectLocation", "Select location"), new { @id = "select-location" })
+                    @Html.DropDownListFor(model => model.Contact.UserLocationId, new List<SelectListItem>(), "Select location", new { @id = "select-location" })
                 </div>
                 @Html.ValidationMessageFor(model => model.Contact.UserLocationId)
             </div>

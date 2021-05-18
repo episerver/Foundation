@@ -7,12 +7,18 @@
         <div class="row">
             <div class="col-sm-6 col-md-3">
                 <label>Ship To Address</label>
-                @Helpers.RenderDropdown(Model.Addresses, Model.AddressId, "", "AddressId")
+                @(await Component.InvokeAsync("Dropdown", new { list = Model.Addresses,
+                    selectedValue = Model.AddressId,
+                    selectorClassItem = "",
+                    name = "AddressId" }))
             </div>
             <div class="col-sm-6 col-md-3">
                 <label>Status</label>
-                @Helpers.RenderDropdown(Model.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())),
-                        Model.OrderStatusId.ToString(), "", "OrderStatusId")
+                @(await Component.InvokeAsync("Dropdown", new { list = Model.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())),
+                    selectedValue = Model.OrderStatusId.ToString(),
+                    selectorClassItem = "",
+                    name = "OrderStatusId"
+                }))
             </div>
             <div class="col-sm-6 col-md-3">
                 <label>PO #</label>
@@ -66,7 +72,7 @@
         <br />
         <div class="row">
             <div class="col-12 flex-end">
-                <a class="button-white mr-2" href="@Request.Url.AbsolutePath">Clear</a>
+                <a class="button-white mr-2" href="@Context.Request.Path">Clear</a>
                 <button type="submit" class="button-black">Search</button>
             </div>
         </div>

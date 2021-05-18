@@ -2,6 +2,7 @@
 
 @model CheckoutViewModel
 
+
 <div class="row">
     <div class="col-12">
         <div id="billingAddressContainer">
@@ -55,7 +56,12 @@
                                 var defaultBillingAddress = Model.AvailableAddresses.FirstOrDefault(x => x.BillingDefault);
                                 var defaultBillingAddressId = defaultBillingAddress != null ? defaultBillingAddress.AddressId : null;
                             }
-                            @Helpers.RenderDropdown(values, Model.BillingAddress.AddressId ?? defaultBillingAddressId, "", "BillingAddress.AddressId")
+                            @(await Component.InvokeAsync("Dropdown", new { list = values,
+                                selectedValue = Model.BillingAddress.AddressId ?? defaultBillingAddressId,
+                                selectorClassItem = "",
+                                name = "BillingAddress.AddressId"
+                            }))
+
                         </div>
                     </li>
 
@@ -153,7 +159,7 @@
         <div class="jsPaymentForm" action="@Url.Action("UpdatePaymentAddress", "Checkout")" novalidate>
             <div class="row section-box container--gutter-layout">
                 <div class="col-12 jsCouponReplaceHtml" id="paymentBlock">
-                    @Html.Partial("_AddPayment", Model)
+                    @await Html.PartialAsync("_AddPayment", Model)
                 </div>
             </div>
         </div>

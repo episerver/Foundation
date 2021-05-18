@@ -2,7 +2,7 @@
 
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model);
-    var shareUrl = Url.Encode(Request.Url.ToString());
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
 }
 
 <div class="row product-detail__social-icon">
