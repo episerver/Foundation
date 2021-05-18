@@ -1,5 +1,4 @@
-﻿using EPiServer.Cms.TinyMce;
-using EPiServer.Data;
+﻿using EPiServer.Data;
 using EPiServer.DependencyInjection;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
@@ -91,7 +90,7 @@ namespace Foundation
                 o.ModelBinderProviders.Insert(0, new ModelBinderProvider());
             });
 
-            
+
             services.Configure<OrderOptions>(o =>
             {
                 o.DisableOrderDataLocalization = true;

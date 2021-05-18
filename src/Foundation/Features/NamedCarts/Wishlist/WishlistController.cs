@@ -64,7 +64,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             IRelationRepository relationRepository,
             IContentLanguageAccessor contentLanguageAccessor,
             ICurrentMarket currentMarket,
-            FilterPublished filterPublished,
+            //FilterPublished filterPublished,
             ISettingsService settingsService,
             IHttpContextAccessor httpContextAccessor)
         {
@@ -80,7 +80,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             _relationRepository = relationRepository;
             _contentLanguageAccessor = contentLanguageAccessor;
             _currentMarket = currentMarket;
-            _filterPublished = filterPublished;
+            _filterPublished = new FilterPublished();
             _settingsService = settingsService;
             _httpContextAccessor = httpContextAccessor;
         }

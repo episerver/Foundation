@@ -1,5 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Authorization;
 using EPiServer.Shell.Security;
 using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Commerce.Customer;
@@ -31,8 +30,8 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
         public AddCustomers(IContentRepository contentRepository,
             ReferenceConverter referenceConverter,
             IMarketService marketService,
-            IWebHostEnvironment webHostEnvironment, 
-            UIUserProvider uIUserProvider, 
+            IWebHostEnvironment webHostEnvironment,
+            UIUserProvider uIUserProvider,
             UIRoleProvider uIRoleProvider) : base(contentRepository, referenceConverter, marketService, webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;

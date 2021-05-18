@@ -57,7 +57,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             }
             catch (ServiceException)
             {
-                return View("FindError");
+                return await Task.FromResult(View("~/Features/Search/ProductSearchBlock/FindError.cshtml"));
             }
 
             if (result == null)
@@ -77,7 +77,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
 
             if (!result.ProductViewModels.Any())
             {
-                return View("EmptyResult");
+                return await Task.FromResult(View("~/Features/Search/ProductSearchBlock/EmptyResult.cshtml"));
             }
 
             var productSearchResult = new ProductSearchResultViewModel(currentBlock)
@@ -87,7 +87,6 @@ namespace Foundation.Features.Search.ProductSearchBlock
                 Products = result.ProductViewModels.ToList()
             };
 
-            //return PartialView("~/Features/Search/ProductSearchBlock/Index.cshtml", productSearchResult);
             return await Task.FromResult(View("~/Features/Search/ProductSearchBlock/Index.cshtml", productSearchResult));
         }
 

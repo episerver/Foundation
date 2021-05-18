@@ -20,7 +20,7 @@ namespace Foundation.Features.Stores
         private readonly ReferenceConverter _referenceConverter;
         private readonly ICurrentMarket _currentMarket;
         private readonly IRelationRepository _relationRepository;
-        private readonly CookieService _cookieService;
+        private readonly ICookieService _cookieService;
 
         public StoreService(IInventoryService inventoryService,
             IWarehouseRepository warehouseRepository,
@@ -28,7 +28,7 @@ namespace Foundation.Features.Stores
             ReferenceConverter referenceConverter,
             ICurrentMarket currentMarket,
             IRelationRepository relationRepository,
-            CookieService cookieService)
+            ICookieService cookieService)
         {
             _inventoryService = inventoryService;
             _warehouseRepository = warehouseRepository;

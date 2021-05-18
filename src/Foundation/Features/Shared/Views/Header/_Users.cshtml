@@ -7,7 +7,7 @@
     <div class="login-users dropdown-menu dropdown-menu--customized">
         <ul class="login-users__tabs nav nav-tabs" id="loginUsersTab" role="tablist">
             <li class="login-users__item nav-item">
-                <a class="login-users__item-link nav-link" id="login-selector-signin-tab" data-toggle="tab" data-target="#login-selector-signin" role="tab" aria-controls="login-selector-signin" aria-selected="false">
+                <a class="login-users__item-link nav-link active" id="login-selector-signin-tab" data-toggle="tab" data-target="#login-selector-signin" role="tab" aria-controls="login-selector-signin" aria-selected="true">
                     @Html.TranslateFallback("/Header/SignIn", "Sign in")
                 </a>
             </li>
@@ -16,14 +16,17 @@
                     @Html.TranslateFallback("/Shared/SignUp", "Sign up")
                 </a>
             </li>
-            <li class="login-users__item nav-item">
-                <a class="login-users__item-link nav-link active" id="login-selector-users-tab" data-toggle="tab" data-target="#login-selector-users" role="tab" aria-controls="login-selector-users" aria-selected="true">
-                    @Html.TranslateFallback("/Shared/Users", "Users")
-                </a>
-            </li>
+            @if (Model.DemoUsers.Any())
+            {
+                <li class="login-users__item nav-item">
+                    <a class="login-users__item-link nav-link" id="login-selector-users-tab" data-toggle="tab" data-target="#login-selector-users" role="tab" aria-controls="login-selector-users" aria-selected="false">
+                        @Html.TranslateFallback("/Shared/Users", "Users")
+                    </a>
+                </li>
+            }
         </ul>
         <div class="login-users__content tab-content">
-            <div class="tab-pane fade" id="login-selector-signin" role="tabpanel" aria-labelledby="login-selector-signin-tab">
+            <div class="tab-pane fade show active" id="login-selector-signin" role="tabpanel" aria-labelledby="login-selector-signin-tab">
                 @using (Html.BeginForm("InternalLogin", "PublicApi", FormMethod.Post, new { @role = "form" }))
                 {
                     @Html.HiddenFor(x => x.LoginViewModel.ReturnUrl)
@@ -154,18 +157,21 @@
                     </div>
                 }
             </div>
-            <div class="tab-pane fade show active" id="login-selector-users" role="tabpanel" aria-labelledby="login-selector-users-tab">
-                <div class="list-group--header">
-                    @foreach (var user in Model.DemoUsers)
-                    {
-                        var url = Url.Action("Login", "PublicApi");
-                        <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetDisplayUrl())" class="list-group--header__item">
-                            <p>@user.FullName</p>
-                            <p class="sub-title">@user.Description</p>
-                        </a>
-                    }
+            @if (Model.DemoUsers.Any())
+            {
+                <div class="tab-pane fade" id="login-selector-users" role="tabpanel" aria-labelledby="login-selector-users-tab">
+                    <div class="list-group--header">
+                        @foreach (var user in Model.DemoUsers)
+                        {
+                            var url = Url.Action("Login", "PublicApi");
+                            <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetDisplayUrl())" class="list-group--header__item">
+                                <p>@user.FullName</p>
+                                <p class="sub-title">@user.Description</p>
+                            </a>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 }

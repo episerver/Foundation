@@ -84,8 +84,8 @@ export default class FoundationCommerce {
     let orderSearchBlock = new OrderSearchBlock();
     orderSearchBlock.init();
 
-    //let productRecommendations = new ProductRecommendations();
-    //productRecommendations.init();
+    let productRecommendations = new ProductRecommendations();
+    productRecommendations.init();
 
     let b2bBudget = new B2bBudget();
     b2bBudget.saveNewBudget();

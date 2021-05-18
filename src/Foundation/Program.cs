@@ -45,7 +45,7 @@ namespace Foundation
                     {
                         webBuilder.UseStartup<Startup>();
                     });
-            }    
+            }
         }
     }
 }

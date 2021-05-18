@@ -55,7 +55,7 @@ namespace Foundation.Features.CatalogContent
             CurrencyService currencyservice,
             IRelationRepository relationRepository,
             UrlResolver urlResolver,
-            FilterPublished filterPublished,
+            //FilterPublished filterPublished,
             IContentLanguageAccessor contentLanguageAccessor,
             IStoreService storeService,
             IProductService productService,
@@ -71,7 +71,7 @@ namespace Foundation.Features.CatalogContent
             _currencyservice = currencyservice;
             _relationRepository = relationRepository;
             _urlResolver = urlResolver;
-            _filterPublished = filterPublished;
+            _filterPublished = new FilterPublished();
             _contentLanguageAccessor = contentLanguageAccessor;
             _storeService = storeService;
             _productService = productService;

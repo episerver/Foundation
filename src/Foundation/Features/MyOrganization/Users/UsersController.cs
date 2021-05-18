@@ -38,7 +38,7 @@ namespace Foundation.Features.MyOrganization.Users
         private readonly ApplicationSignInManager<SiteUser> _signInManager;
         private readonly LocalizationService _localizationService;
         private readonly ISearchService _searchService;
-        private readonly CookieService _cookieService;
+        private readonly ICookieService _cookieService;
         private readonly ISettingsService _settingsService;
 
         public UsersController(
@@ -50,7 +50,7 @@ namespace Foundation.Features.MyOrganization.Users
             IMailService mailService,
             LocalizationService localizationService,
             ISearchService searchService,
-            CookieService cookieService,
+            ICookieService cookieService,
             ISettingsService settingsService)
         {
             _customerService = customerService;

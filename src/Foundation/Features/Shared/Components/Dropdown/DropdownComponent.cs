@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Features.Shared.Components.Dropdown
 {
-    public class DropdownComponent : ViewComponent
+    public class DropdownViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke(IEnumerable<KeyValuePair<string, string>> list,
               string selectedValue = "",

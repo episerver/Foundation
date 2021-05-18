@@ -53,7 +53,7 @@ namespace Foundation.Features.CatalogContent.Services
             ICurrencyService currencyService,
             ReferenceConverter referenceConverter,
             LanguageService languageService,
-            FilterPublished filterPublished,
+            //FilterPublished filterPublished,
             IStoreService storeService,
             ICurrentMarket currentMarket)
         {
@@ -66,7 +66,7 @@ namespace Foundation.Features.CatalogContent.Services
             _currencyService = currencyService;
             _referenceConverter = referenceConverter;
             _languageService = languageService;
-            _filterPublished = filterPublished;
+            _filterPublished = new FilterPublished();
             _storeService = storeService;
             _currentMarket = currentMarket;
         }
