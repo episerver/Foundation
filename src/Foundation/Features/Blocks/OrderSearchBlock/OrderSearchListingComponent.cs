@@ -28,7 +28,7 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
         private readonly IOrderGroupCalculator _orderGroupCalculator;
         private readonly IContentLoader _contentLoader;
         private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
-        private readonly CookieService _cookieService;
+        private readonly ICookieService _cookieService;
         private readonly ISettingsService _settingsService;
 
         private const string _KEYWORD = "OrderSearchBlock:Keyword";
@@ -44,7 +44,7 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
             IOrderGroupCalculator orderGroupCalculator,
             IContentLoader contentLoader,
             PaymentMethodViewModelFactory paymentMethodViewModelFactory,
-            CookieService cookieService,
+            ICookieService cookieService,
             ISettingsService settingsService)
         {
             _addressBookService = addressBookService;

@@ -90,12 +90,12 @@ md "%ROOTPATH%\Build\Logs" 2>nul
 echo ## NPM Install ##  
 echo ## NPM Install > Build\Logs\Build.log
 cd %SOURCEPATH%\Foundation
-::CALL npm ci
+CALL npm ci
 IF %errorlevel% NEQ 0 (
 	set errorMessage=%errorlevel%
 	goto error
 )
-::CALL npm run dev
+CALL npm run dev
 cd %ROOTPATH%
 
 echo ## Clean and build ##

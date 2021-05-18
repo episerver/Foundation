@@ -127,6 +127,7 @@
 		<Compile Remove="Features\Search\FoundationFindConventions.cs" />
 		<Compile Remove="Features\Search\FoundationSearchProvider.cs" />
 		<Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
+		<Compile Remove="Infrastructure\Cms\CmsMenuProvider.cs" />
 		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
 		<Compile Remove="Infrastructure\Commerce\Install\FoundationDiskFileDescriptor.cs" />
 		<Compile Remove="Infrastructure\Commerce\Install\FoundationDiskFileProvider.cs" />

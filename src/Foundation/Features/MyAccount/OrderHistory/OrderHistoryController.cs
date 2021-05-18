@@ -32,7 +32,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
         private readonly ICartService _cartService;
         private readonly IOrderGroupFactory _orderGroupFactory;
         private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
-        private readonly CookieService _cookieService;
+        private readonly ICookieService _cookieService;
         private readonly ISettingsService _settingsService;
 
         private const string _KEYWORD = "OrderHistoryPage:Keyword";
@@ -53,7 +53,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             IContentLoader contentLoader,
             UrlResolver urlResolver, IOrderGroupFactory orderGroupFactory, ICustomerService customerService,
             PaymentMethodViewModelFactory paymentMethodViewModelFactory,
-            CookieService cookieService,
+            ICookieService cookieService,
             ISettingsService settingsService) :
             base(confirmationService, addressBookService, orderGroupCalculator, urlResolver, customerService)
         {

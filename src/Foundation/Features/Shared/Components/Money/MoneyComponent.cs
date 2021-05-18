@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Shared.Components.Money
 {
-    public class DropdownComponent : ViewComponent
+    public class MoneyViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke(decimal amount, Currency currency)
         {

@@ -55,7 +55,7 @@ namespace Foundation.Features.Api
         {
             await _customerService.SignOutAsync();
             TrackingCookieManager.SetTrackingCookie(Guid.NewGuid().ToString());
-            return RedirectToAction("Index", new { node = ContentReference.StartPage });
+            return Redirect("~/");
         }
 
         [HttpGet]

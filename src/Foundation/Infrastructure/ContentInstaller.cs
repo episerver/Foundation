@@ -24,7 +24,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Security.Principal;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure
@@ -64,7 +63,7 @@ namespace Foundation.Infrastructure
             EventedIndexingSettings eventedIndexingSettings,
             IServiceProvider serviceProvider,
             IOptions<SearchOptions> searchOptions,
-            IndexBuilder indexBuilder, 
+            IndexBuilder indexBuilder,
             IPrincipalAccessor principalAccessor)
         {
             _uIUserProvider = uIUserProvider;

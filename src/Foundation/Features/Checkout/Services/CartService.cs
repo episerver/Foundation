@@ -47,7 +47,7 @@ namespace Foundation.Features.Checkout.Services
         private readonly ReferenceConverter _referenceConverter;
         private readonly IContentLoader _contentLoader;
         private readonly IRelationRepository _relationRepository;
-        private readonly ShippingService _shippingManagerFacade;
+        private readonly IShippingService _shippingManagerFacade;
         private readonly IWarehouseRepository _warehouseRepository;
         private readonly ILineItemCalculator _lineItemCalculator;
         private readonly IPromotionService _promotionService;
@@ -68,7 +68,7 @@ namespace Foundation.Features.Checkout.Services
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             IRelationRepository relationRepository,
-            ShippingService shippingManagerFacade,
+            IShippingService shippingManagerFacade,
             IWarehouseRepository warehouseRepository,
             ILineItemCalculator lineItemCalculator,
             IPromotionService promotionService, IOrganizationService organizationService)

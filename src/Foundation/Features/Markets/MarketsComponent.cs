@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Foundation.Features.Markets
 {
-    public class MarketsComponent : ViewComponent
+    public class MarketsViewComponent : ViewComponent
     {
         private readonly IMarketService _marketService;
         private readonly ICurrentMarket _currentMarket;
@@ -20,7 +20,7 @@ namespace Foundation.Features.Markets
         private const string FlagLocation = "/icons/flags/";
         private const string ViewName = "~/Features/Markets/Index.cshtml";
 
-        public MarketsComponent(IMarketService marketService,
+        public MarketsViewComponent(IMarketService marketService,
             ICurrentMarket currentMarket,
             UrlResolver urlResolver,
             LanguageService languageService,
