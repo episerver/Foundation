@@ -1,4 +1,7 @@
+@using EPiServer.Commerce.Catalog.ContentTypes
+@using EPiServer.Framework.Web.Mvc.Html
 @model IContentViewModel<IContent>
+@inject Foundation.Features.Header.IHeaderViewModelFactory factory
 
 @{
     Layout = "~/Features/Shared/Views/_MasterLayout.cshtml";
@@ -12,7 +15,7 @@
     <div class="loader"></div>
 </div>
 
-@Html.RenderEPiServerQuickNavigator()
+@await Html.RenderEPiServerQuickNavigatorAsync()
 
 @{
     var foundationPageData = Model.CurrentContent as IFoundationContent;
@@ -20,11 +23,11 @@
 
 @if (!foundationPageData?.HideSiteHeader ?? false)
 {
-    Html.RenderAction("GetHeader", "Header", new { homePage = Model.StartPage });
+    await Html.RenderPartialAsync("_Header", factory.CreateHeaderViewModel(Model.CurrentContent, Model.StartPage));
 }
 else
 {
-    Html.RenderAction("GetHeaderLogoOnly", "Header");
+    await Html.RenderPartialAsync("_HeaderLogo", factory.CreateHeaderLogoViewModel());
 }
 
 <div class="container">
@@ -33,12 +36,12 @@ else
 
 @if (!foundationPageData?.HideSiteFooter ?? false)
 {
-    @Html.Partial("_Footer", Html.GetLayoutSettings())
+    await Html.RenderPartialAsync("_Footer", Html.GetLayoutSettings());
 }
 
-@Html.Partial("_QuickViewModal")
+@await Html.PartialAsync("_QuickViewModal")
 
-<script src="~/Assets/js/main.min.js"></script>
+<script src="~/js/main.min.js"></script>
 
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")

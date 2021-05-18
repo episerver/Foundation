@@ -1,6 +1,6 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.CatalogContent.Product
 {

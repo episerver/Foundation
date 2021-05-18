@@ -49,7 +49,7 @@
                         <td>
                             @foreach (var shippingAddress in order.ShippingAddresses)
                             {
-                                @Html.Partial("_Address", shippingAddress)
+                                @await Html.PartialAsync("_Address", shippingAddress)
                             }
                         </td>
                         <td><span class="price">@order.PurchaseOrder.GetTotal().ToString()</span></td>

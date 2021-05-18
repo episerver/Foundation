@@ -1,5 +1,0 @@
-﻿div.LayoutBase > div
-{
-	overflow: auto;
-	*position: relative; /*fix IE7 bug with scrolling tabs and grids*/
-}

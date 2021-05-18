@@ -1,8 +1,8 @@
 ﻿using EPiServer.Core;
 using EPiServer.Web.Mvc.Html;
 using Foundation.Features.Shared;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks.BreadcrumbBlock
 {
@@ -22,7 +22,7 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
         public string Url { get; set; }
         public PageData PageData { get; set; }
 
-        public BreadcrumbItem(PageData page, UrlHelper urlHelper)
+        public BreadcrumbItem(PageData page, IUrlHelper urlHelper)
         {
             if (page != null)
             {

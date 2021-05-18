@@ -179,7 +179,7 @@ export default class Stores {
 
     addSearchedLocationMarker(location) {
         let pushpin = new Microsoft.Maps.Pushpin(location, {
-            icon: window.location.origin + '/Assets/icons/gfx/bingmap-position.png'
+            icon: window.location.origin + '/icons/gfx/bingmap-position.png'
         });
         Microsoft.Maps.Events.addHandler(pushpin, 'click', (e) => {
             this.storeMap.setView({

@@ -11,7 +11,7 @@ namespace Foundation.Features.Events.CalendarEvent
         GUID = "f086fd08-4e54-4eb9-8367-c45630415226",
         GroupName = GroupNames.Calendar,
         Description = "Used to define an Event")]
-    [ImageUrl("~/assets/icons/cms/pages/calendar.png")]
+    [ImageUrl("/icons/cms/pages/calendar.png")]
     public class CalendarEventPage : FoundationPageData
     {
         [CultureSpecific]

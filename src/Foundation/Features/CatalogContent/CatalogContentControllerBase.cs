@@ -5,18 +5,13 @@ using EPiServer.Core;
 using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Personalization;
-using Foundation.Social.Models.ActivityStreams;
-using Foundation.Social.Services;
-using Foundation.Social.ViewModels;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Foundation.Features.CatalogContent
 {
@@ -25,24 +20,24 @@ namespace Foundation.Features.CatalogContent
         protected readonly ReferenceConverter _referenceConverter;
         protected readonly IContentLoader _contentLoader;
         protected readonly UrlResolver _urlResolver;
-        protected readonly IReviewService _reviewService;
-        protected readonly IReviewActivityService _reviewActivityService;
+        //protected readonly IReviewService _reviewService;
+        //protected readonly IReviewActivityService _reviewActivityService;
         protected readonly ICommerceTrackingService _recommendationService;
         protected readonly ILoyaltyService _loyaltyService;
 
         public CatalogContentControllerBase(ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             UrlResolver urlResolver,
-            IReviewService reviewService,
-            IReviewActivityService reviewActivityService,
+            //IReviewService reviewService,
+            //IReviewActivityService reviewActivityService,
             ICommerceTrackingService recommendationService,
             ILoyaltyService loyaltyService)
         {
             _referenceConverter = referenceConverter;
             _contentLoader = contentLoader;
             _urlResolver = urlResolver;
-            _reviewService = reviewService;
-            _reviewActivityService = reviewActivityService;
+            //_reviewService = reviewService;
+            //_reviewActivityService = reviewActivityService;
             _recommendationService = recommendationService;
             _loyaltyService = loyaltyService;
         }
@@ -79,56 +74,56 @@ namespace Foundation.Features.CatalogContent
             return model;
         }
 
-        protected void AddActivity(string product,
-            int rating,
-            string user)
-        {
-            // Create the review activity
-            var activity = new ReviewActivity
-            {
-                Product = product,
-                Rating = rating,
-                Contributor = user,
-            };
+        //protected void AddActivity(string product,
+        //    int rating,
+        //    string user)
+        //{
+        //    // Create the review activity
+        //    var activity = new ReviewActivity
+        //    {
+        //        Product = product,
+        //        Rating = rating,
+        //        Contributor = user,
+        //    };
 
-            // Add the review activity 
-            _reviewActivityService.Add(user, product, activity);
-        }
+        //    // Add the review activity 
+        //    _reviewActivityService.Add(user, product, activity);
+        //}
 
-        protected ReviewsViewModel GetReviews(string productCode) =>
+        //protected ReviewsViewModel GetReviews(string productCode) =>
 
-            //Testing to query FIND with GetRatingAverage
-            //var searchClient = Client.CreateFromConfig();
-            //var contentResult = searchClient.Search<FashionProduct>()
-            //                .Filter(c => c.GetRatingAverage().GreaterThan(0))
-            //                .OrderByDescending(c => c.GetRatingAverage()).Take(25)
-            //                .GetContentResult();
+        //    //Testing to query FIND with GetRatingAverage
+        //    //var searchClient = Client.CreateFromConfig();
+        //    //var contentResult = searchClient.Search<FashionProduct>()
+        //    //                .Filter(c => c.GetRatingAverage().GreaterThan(0))
+        //    //                .OrderByDescending(c => c.GetRatingAverage()).Take(25)
+        //    //                .GetContentResult();
 
-            // Return reviews for the product with the ReviewService
-            _reviewService.Get(productCode);
+        //    // Return reviews for the product with the ReviewService
+        //    _reviewService.Get(productCode);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddAReview(ReviewSubmissionViewModel reviewForm)
-        {
-            // Invoke the ReviewService to add the submission
-            try
-            {
-                var model = _reviewService.Add(reviewForm);
-                //Loyalty Program: Add Points and Number Of Reviews
-                _loyaltyService.AddNumberOfReviews();
-                AddActivity(reviewForm.ProductCode, reviewForm.Rating, reviewForm.Nickname);
-                return PartialView("_ReviewItem", model);
-            }
-            catch (Exception e)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, e.Message);
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddAReview(ReviewSubmissionViewModel reviewForm)
+        //{
+        //    // Invoke the ReviewService to add the submission
+        //    try
+        //    {
+        //        var model = _reviewService.Add(reviewForm);
+        //        //Loyalty Program: Add Points and Number Of Reviews
+        //        _loyaltyService.AddNumberOfReviews();
+        //        AddActivity(reviewForm.ProductCode, reviewForm.Rating, reviewForm.Nickname);
+        //        return PartialView("_ReviewItem", model);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return StatusCode(HttpStatusCode.InternalServerError, e.Message);
+        //    }
+        //}
 
         protected async Task AddInfomationViewModel(IEntryViewModelBase viewModel, string productCode, bool skipTracking)
         {
-            viewModel.Reviews = GetReviews(productCode);
+            //viewModel.Reviews = GetReviews(productCode);
             var trackingResponse = new TrackingResponseData();
             if (!skipTracking)
             {

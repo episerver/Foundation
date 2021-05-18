@@ -12,7 +12,7 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
         GUID = "DE43EB04-0D26-442A-91FC-E36E14A352B6",
         Description = "Render normal navigation structures as a breadcrumb",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-31.png")]
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-31.png")]
     public class BreadcrumbBlock : FoundationBlockData
     {
         [Display(Name = "Destination page", Order = 10, GroupName = SystemTabNames.Content)]

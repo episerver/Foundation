@@ -1,5 +1,5 @@
 ﻿using EPiServer.Core;
-using Foundation.Cms;
+using Foundation.Infrastructure.Cms;
 using Foundation.Social.Models.Comments;
 using System.Collections.Generic;
 

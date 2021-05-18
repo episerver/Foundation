@@ -1,5 +1,4 @@
-﻿@using System.Web.Mvc.Html
-@using Foundation.Features.MyOrganization.Users
+﻿@using Foundation.Features.MyOrganization.Users
 
 @model UsersPageViewModel
 
@@ -35,8 +34,8 @@
                 <br />
                 @Html.DropDownListFor(m => m.Contact.UserRole, new SelectList(new List<SelectListItem>
                                                             {
-                                                                new SelectListItem {Text = Html.TranslateFallback("/B2B/Approver", "Approver"), Value = "Approver"},
-                                                                new SelectListItem {Text = Html.TranslateFallback("/B2B/Purchaser", "Purchaser"), Value = "Purchaser"}
+                                                                new SelectListItem {Text = "Approver", Value = "Approver"},
+                                                                new SelectListItem {Text = "Purchaser", Value = "Purchaser"}
                                                             }, "Value", "Text", Model.Contact.UserRole), new { @class = "textbox" })
             </div>
             <div class="form-group">

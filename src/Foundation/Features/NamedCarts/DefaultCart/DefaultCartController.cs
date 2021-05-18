@@ -2,17 +2,10 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
-using EPiServer.Globalization;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
@@ -21,19 +14,26 @@ using Foundation.Features.Header;
 using Foundation.Features.MyAccount.OrderConfirmation;
 using Foundation.Features.Settings;
 using Foundation.Infrastructure;
-using Foundation.Personalization;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Foundation.Features.NamedCarts.DefaultCart
 {
@@ -56,10 +56,11 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         private readonly IOrderGroupCalculator _orderGroupCalculator;
         private readonly CartItemViewModelFactory _cartItemViewModelFactory;
         private readonly IProductService _productService;
-        private readonly LanguageResolver _languageResolver;
+        private readonly IContentLanguageAccessor _contentLanguageAccessor;
         private readonly ISettingsService _settingsService;
         private readonly IPaymentService _paymentService;
         private readonly ICurrentMarket _currentMarket;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         private const string b2cMinicart = "~/Features/Shared/Foundation/Header/_HeaderCart.cshtml";
 
@@ -78,10 +79,11 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             IOrderGroupCalculator orderGroupCalculator,
             CartItemViewModelFactory cartItemViewModelFactory,
             IProductService productService,
-            LanguageResolver languageResolver,
+            IContentLanguageAccessor contentLanguageAccessor,
             ISettingsService settingsService,
             IPaymentService paymentService,
-            ICurrentMarket currentMarket)
+            ICurrentMarket currentMarket,
+            IHttpContextAccessor httpContextAccessor)
         {
             _cartService = cartService;
             _orderRepository = orderRepository;
@@ -97,10 +99,11 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             _orderGroupCalculator = orderGroupCalculator;
             _cartItemViewModelFactory = cartItemViewModelFactory;
             _productService = productService;
-            _languageResolver = languageResolver;
+            _contentLanguageAccessor = contentLanguageAccessor;
             _settingsService = settingsService;
             _paymentService = paymentService;
             _currentMarket = currentMarket;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         private CartWithValidationIssues CartWithValidationIssues => _cart ?? (_cart = _cartService.LoadCart(_cartService.DefaultCartName, true));
@@ -113,7 +116,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         private string OrganizationId => _customerService.GetCurrentContact().FoundationOrganization?.OrganizationId.ToString();
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
         public ActionResult MiniCartDetails()
         {
             var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
@@ -132,7 +135,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             return PartialView("_MobileMiniCartItems", viewModel);
         }
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
         public async Task<ActionResult> Index(CartPage currentPage)
         {
             var messages = string.Empty;
@@ -160,7 +163,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage);
             viewModel.Message = messages;
             var trackingResponse = await _recommendationService.TrackCart(HttpContext, CartWithValidationIssues.Cart);
-            //viewModel.Recommendations = trackingResponse.GetCartRecommendations(_referenceConverter);
+            viewModel.Recommendations = trackingResponse.GetCartRecommendations(_referenceConverter);
             return View("LargeCart", viewModel);
         }
 
@@ -224,7 +227,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 return MiniCartDetails();
             }
 
-            return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
+            return StatusCode(500, result.GetComposedValidationMessage());
         }
 
         [HttpPost]
@@ -258,7 +261,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 });
             }
 
-            return new HttpStatusCodeResult(500, validationMessage);
+            return StatusCode(500, validationMessage);
         }
 
         [HttpPost]
@@ -293,7 +296,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 return MiniCartDetails();
             }
 
-            return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
+            return StatusCode(500, result.GetComposedValidationMessage());
         }
 
         public JsonResult RedirectToCart(string message)
@@ -305,7 +308,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 return Json(new { Redirect = cartPage.StaticLinkURL, Message = message });
             }
 
-            return Json(new { Redirect = Request.UrlReferrer.PathAndQuery, Message = message });
+            return Json(new { Redirect = Request.Path + Request.QueryString, Message = message });
         }
 
         [HttpPost]
@@ -327,7 +330,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             var result = _cartService.AddToCart(CartWithValidationIssues.Cart, param);
             if (!result.EntriesAddedToCart)
             {
-                return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
+                return StatusCode(500, result.GetComposedValidationMessage());
             }
             var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
             if (contact == null)
@@ -474,7 +477,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             if (!result.EntriesAddedToCart)
             {
-                return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
+                return StatusCode(500, result.GetComposedValidationMessage());
             }
 
             _orderRepository.Save(WishListWithValidationIssues.Cart);
@@ -535,7 +538,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             if (!result.EntriesAddedToCart)
             {
-                return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
+                return StatusCode(500, result.GetComposedValidationMessage());
             }
 
             _orderRepository.Save(SharedCardWithValidationIssues.Cart);
@@ -550,13 +553,13 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         {
             if (!int.TryParse(orderId, out var orderIntId))
             {
-                return new HttpStatusCodeResult(500, "Error reordering order");
+                return StatusCode(500, "Error reordering order");
             }
             var order = _orderRepository.Load<IPurchaseOrder>(orderIntId);
 
             if (order == null)
             {
-                return new HttpStatusCodeResult(500, "Error reordering order");
+                return StatusCode(500, "Error reordering order");
             }
             ModelState.Clear();
 
@@ -580,7 +583,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 }
                 else
                 {
-                    return new HttpStatusCodeResult(500, result.GetComposedValidationMessage());
+                    return StatusCode(500, result.GetComposedValidationMessage());
                 }
             }
 
@@ -609,7 +612,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
             if (param.RequestFrom == "changeSizeItem")
             {
-                var preferredCulture = _languageResolver.GetPreferredCulture();
+                var preferredCulture = _contentLanguageAccessor.Language;
                 var newCode = _productService.GetSiblingVariantCodeBySize(param.Code, param.NewSize);
                 var shipment = CartWithValidationIssues.Cart.GetFirstForm().Shipments.FirstOrDefault(x => x.ShipmentId == param.ShipmentId);
                 var lineItem = shipment.LineItems.FirstOrDefault(x => x.Code == newCode);
@@ -707,7 +710,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             }
             else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+                return StatusCode(204);
             }
 
             var viewModel = _cartViewModelFactory.CreateSimpleLargeCartViewModel(CartWithValidationIssues.Cart);
@@ -841,7 +844,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 ValidationIssues = new Dictionary<ILineItem, List<ValidationIssue>>()
             };
 
-            return Json("success", JsonRequestBehavior.AllowGet);
+            return Json("success");
         }
 
         [HttpPost]
@@ -883,9 +886,9 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                     returnedMessages.Add(responseMessage);
                 }
             }
-            Session[Constant.ErrorMessages] = returnedMessages;
+            _httpContextAccessor.HttpContext.Session.SetString(Constant.ErrorMessages, returnedMessages.ToString());
 
-            return Json(returnedMessages, JsonRequestBehavior.AllowGet);
+            return Json(returnedMessages);
         }
 
         private static string GetValidationMessages(ILineItem lineItem, Dictionary<ILineItem, List<ValidationIssue>> validationIssues)

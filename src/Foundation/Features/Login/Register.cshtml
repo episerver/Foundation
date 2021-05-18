@@ -96,11 +96,11 @@
                 <div class="row">
                     <div class="col-12 jsCountryRegionContainer">
                         @{
-                            var viewData = new ViewDataDictionary();
+                            var viewData = new ViewDataDictionary(this.ViewData);
                             var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
                             viewData.Add(regionName);
                         }
-                        @Html.Partial("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
+                        @await Html.PartialAsync("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
                     </div>
                 </div>
                 <br />

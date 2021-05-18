@@ -2,16 +2,18 @@
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
-using Foundation.Cms.Attributes;
-using Foundation.Cms.Identity;
-using Foundation.Cms.Settings;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.Home;
 using Foundation.Features.Settings;
 using Foundation.Features.Shared;
+using Foundation.Infrastructure.Cms.Attributes;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 
 namespace Foundation.Features.MyAccount.ResetPassword
 {
@@ -66,8 +68,8 @@ namespace Foundation.Features.MyAccount.ResetPassword
             //var body = _mailService.GetHtmlBodyForMail(startPage.ResetPasswordMail, new NameValueCollection(), language);
             var mailPage = _contentLoader.Get<MailBasePage>(referencePages.ResetPasswordMail);
             var body = mailPage.MainBody.ToHtmlString();
-            var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-            var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language }, Request.Url.Scheme);
+            var code = await UserManager.GeneratePasswordResetTokenAsync(user);
+            var url = Url.Action("ResetPassword", "ResetPassword", new { userId = user.Id, code = HttpUtility.UrlEncode(code), language }, Request.Scheme);
 
             body = body.Replace("[MailUrl]",
                 string.Format("{0}<a href=\"{1}\">{2}</a>", _localizationService.GetString("/ResetPassword/Mail/Text"), url, _localizationService.GetString("/ResetPassword/Mail/Link"))
@@ -111,14 +113,14 @@ namespace Foundation.Features.MyAccount.ResetPassword
                 return RedirectToAction("ResetPasswordConfirmation");
             }
 
-            var result = await UserManager.ResetPasswordAsync(user.Id, HttpUtility.UrlDecode(model.Code), model.Password);
+            var result = await UserManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(model.Code), model.Password);
 
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation");
             }
 
-            AddErrors(result.Errors);
+            AddErrors(result.Errors.Select(x => x.Code));
 
             return View();
         }

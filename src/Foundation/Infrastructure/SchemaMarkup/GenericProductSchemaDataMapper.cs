@@ -1,8 +1,8 @@
-﻿using Foundation.Cms;
-using Foundation.Cms.Extensions;
-using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Markets;
-using Foundation.Features.CatalogContent.Product;
+﻿using Foundation.Features.CatalogContent.Product;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Schema.NET;
 using System;
@@ -59,7 +59,7 @@ namespace Foundation.Infrastructure.SchemaMarkup
             if (minPrice.Equals(maxPrice))
             {
                 offer.Price = minPrice.Amount;
-                offer.PriceValidUntil = new DateTimeOffset(priceEndDate);
+                offer.PriceValidUntil = priceEndDate;
             }
             else
             {

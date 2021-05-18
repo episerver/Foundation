@@ -1,6 +1,6 @@
 ﻿using EPiServer.Web.Mvc;
 using Foundation.Features.Shared;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Collection
 {

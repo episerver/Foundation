@@ -4,16 +4,16 @@ using EPiServer.Core;
 using EPiServer.Security;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Settings;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderHistory;
 using Foundation.Features.Settings;
+using Foundation.Infrastructure.Cms.Settings;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.MyAccount.SubscriptionDetail
 {

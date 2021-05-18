@@ -10,7 +10,7 @@
     var distances = Enumerable.Empty<NumericRange>();
     if (!string.IsNullOrWhiteSpace(filterString))
     {
-        var filterDistances = filterString.Split(',').ToList();
+        var filterDistances = filterString.ToList();
         distances = FilterDistancesBlock.ParseDistances(filterDistances);
     }
 }

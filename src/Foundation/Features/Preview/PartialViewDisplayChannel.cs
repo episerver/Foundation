@@ -1,5 +1,5 @@
 ﻿using EPiServer.Web;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Preview
 {
@@ -9,6 +9,6 @@ namespace Foundation.Features.Preview
 
         public override string ChannelName => PartialViewDisplayChannelName;
 
-        public override bool IsActive(HttpContextBase context) => false;
+        public override bool IsActive(HttpContext context) => false;
     }
 }

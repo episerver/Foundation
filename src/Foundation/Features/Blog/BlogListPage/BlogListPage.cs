@@ -6,7 +6,7 @@ using EPiServer.Shell.ObjectEditing;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
-using Geta.EpiCategories.DataAnnotations;
+//using Geta.EpiCategories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +18,7 @@ namespace Foundation.Features.Blog.BlogListPage
         Description = "Blog List Page for dates such as year and month",
         GroupName = GroupNames.Blog)]
     [AvailableContentTypes(Availability.Specific, Include = new[] { typeof(BlogListPage), typeof(BlogItemPage.BlogItemPage) })]
-    [ImageUrl("~/assets/icons/cms/pages/cms-icon-page-20.png")]
+    [ImageUrl("/icons/cms/pages/cms-icon-page-20.png")]
     public class BlogListPage : FoundationPageData
     {
         [Display(GroupName = SystemTabNames.Content, Order = 5)]
@@ -42,7 +42,7 @@ namespace Foundation.Features.Blog.BlogListPage
         [Display(Name = "Include teaser text", GroupName = TabNames.BlogList, Order = 50)]
         public virtual bool IncludeTeaserText { get; set; }
 
-        [Categories]
+        //[Categories]
         [Display(
             Name = "Category filter (match all selected)",
             Description = "Categories to filter the list on",
@@ -54,7 +54,7 @@ namespace Foundation.Features.Blog.BlogListPage
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
-        [Display(Name = "Preview option (only available in the 'Image on the top' template)", GroupName = TabNames.BlogList, Order = 90)]
+        [Display(Name = "Preview option (not available in the Grid template)", GroupName = TabNames.BlogList, Order = 90)]
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 

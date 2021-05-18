@@ -7,10 +7,10 @@
     {
         foreach (var cartItem in shipment.CartItems)
         {
-            var viewData = new ViewDataDictionary();
+            var viewData = new ViewDataDictionary(this.ViewData);
             viewData.Add(new KeyValuePair<string, object>("ShipmentId", shipment.ShipmentId));
             <div class="row product-tile-list__item jsCartItem">
-                @Html.Partial("_ItemTemplate", cartItem, viewData)
+                @await Html.PartialAsync("_ItemTemplate", cartItem, viewData)
             </div>
         }
     }

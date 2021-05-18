@@ -1,7 +1,7 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.Framework.Localization;
 using EPiServer.ServiceLocation;
-using Foundation.Commerce.Markets;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Orders;
 

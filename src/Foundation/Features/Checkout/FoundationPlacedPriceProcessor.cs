@@ -1,7 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Order;
-using Foundation.Commerce;
+using Foundation.Infrastructure.Commerce;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;

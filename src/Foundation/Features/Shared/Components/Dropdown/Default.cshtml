@@ -1,0 +1,26 @@
+﻿@model Foundation.Features.Shared.Components.Dropdown.DropdownModel
+@{
+    var isExistValue = false;
+    foreach (var item in Model.List)
+    {
+        if (item.Value == Model.SelectedValue)
+        {
+            isExistValue = true;
+            break;
+        }
+    }
+}
+
+<select name="@Model.Name"
+        class="select-menu @Model.SelectorClassItem" @(Model.IsDisabled ? "disabled" : "")
+        style="@(Model.IsShow ? "" : "display: none")">
+    @foreach (var item in Model.List)
+    {
+        <dropdown-option value="@item.Value" 
+                dropdown-checked=@(string.IsNullOrEmpty(Model.SelectedValue) || !isExistValue ? true : false)
+                dropdown-selected=@(Model.SelectedValue == item.Value ? true : false)
+                dropdown-disabled=@(Model.IsShow ? false : true)>
+            @item.Key
+        </dropdown-option>
+    }
+</select>

@@ -5,10 +5,10 @@ using EPiServer.Find.Cms;
 using EPiServer.Find.Cms.Conventions;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Commerce.Extensions;
 
 namespace Foundation.Features.Search
 {
@@ -45,7 +45,7 @@ namespace Foundation.Features.Search
         {
             base.ApplyPackageContentConventions(conventionBuilder);
             conventionBuilder.ExcludeField(x => IPricingExtensions.DefaultPrice(x));
-            conventionBuilder.IncludeField(x => Foundation.Commerce.Extensions.EntryContentBaseExtensions.DefaultPrice(x))
+            conventionBuilder.IncludeField(x => Foundation.Infrastructure.Commerce.Extensions.EntryContentBaseExtensions.DefaultPrice(x))
                 .IncludeField(x => x.Outline())
                 .IncludeField(x => x.SortOrder());
         }

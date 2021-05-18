@@ -1,13 +1,10 @@
-﻿@using EPiServer.AddOns.Helpers
-@using ImageProcessor.Web.Episerver
-
-@model Foundation.Features.Blog.BlogItemPage.BlogItemPageViewModel
+﻿@model Foundation.Features.Blog.BlogItemPage.BlogItemPageViewModel
 
 <div class="blog__thumbnail">
     <div class="w-100">
         @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
         {
-            <img data-src="@Html.ProcessImage(Url.ContentUrl((ContentReference)Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp"
+            <img data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)"
                  class="lazyload h-100 w-100" />
         }
     </div>

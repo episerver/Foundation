@@ -2,55 +2,80 @@
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
-using EPiServer.Globalization;
 using EPiServer.Web.Routing;
-using Foundation.Find.Facets;
+using Foundation.Infrastructure.Find.Facets;
 using Mediachase.Search;
 using Mediachase.Search.Extensions;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Search
 {
-    public class FilterOptionViewModelBinder : DefaultModelBinder
+    public class FilterOptionViewModelBinder : IModelBinder
     {
         private readonly IContentLoader _contentLoader;
         private readonly LocalizationService _localizationService;
-        private readonly LanguageResolver _languageResolver;
+        private readonly IContentLanguageAccessor _contentLanguageAccessor;
         private readonly IFacetRegistry _facetRegistry;
 
         public FilterOptionViewModelBinder(IContentLoader contentLoader,
             LocalizationService localizationService,
-            LanguageResolver languageResolver,
+            IContentLanguageAccessor contentLanguageAccessor,
             IFacetRegistry facetRegistry)
         {
             _contentLoader = contentLoader;
             _localizationService = localizationService;
-            _languageResolver = languageResolver;
+            _contentLanguageAccessor = contentLanguageAccessor;
             _facetRegistry = facetRegistry;
         }
 
-        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            bindingContext.ModelName = "FilterOption";
+            if (bindingContext == null)
+            {
+                throw new ArgumentNullException(nameof(bindingContext));
+            }
+
+            var modelName = bindingContext.ModelName = "FilterOption";
+
+            // Try to fetch the value of the argument by name
+            var valueProviderResult = bindingContext.ValueProvider.GetValue(modelName);
+
+            if (valueProviderResult == ValueProviderResult.None)
+            {
+                return;
+            }
+
+            bindingContext.ModelState.SetModelValue(modelName, valueProviderResult);
+
+            var value = valueProviderResult.FirstValue;
+
+            // Check if the argument value is null or empty
+            if (string.IsNullOrEmpty(value))
+            {
+                return;
+            }
+
             var model = new FilterOptionViewModel();
-            var contentLink = controllerContext.RequestContext.GetContentLink();
+            var contentLink = bindingContext.ActionContext.HttpContext.GetContentLink();
             IContent content = null;
             if (!ContentReference.IsNullOrEmpty(contentLink))
             {
                 content = _contentLoader.Get<IContent>(contentLink);
             }
 
-            var query = controllerContext.HttpContext.Request.QueryString["search"];
-            var sort = controllerContext.HttpContext.Request.QueryString["sort"];
-            var facets = controllerContext.HttpContext.Request.QueryString["facets"];
-            var section = controllerContext.HttpContext.Request.QueryString["t"];
-            var page = controllerContext.HttpContext.Request.QueryString["page"];
-            var pageSize = controllerContext.HttpContext.Request.QueryString["pageSize"];
-            var confidence = controllerContext.HttpContext.Request.QueryString["confidence"];
-            var viewMode = controllerContext.HttpContext.Request.QueryString["ViewSwitcher"];
-            var sortDirection = controllerContext.HttpContext.Request.QueryString["sortDirection"];
+            var query = bindingContext.ActionContext.HttpContext.Request.Query["search"];
+            var sort = bindingContext.ActionContext.HttpContext.Request.Query["sort"];
+            var facets = bindingContext.ActionContext.HttpContext.Request.Query["facets"];
+            var section = bindingContext.ActionContext.HttpContext.Request.Query["t"];
+            var page = bindingContext.ActionContext.HttpContext.Request.Query["page"];
+            var pageSize = bindingContext.ActionContext.HttpContext.Request.Query["pageSize"];
+            var confidence = bindingContext.ActionContext.HttpContext.Request.Query["confidence"];
+            var viewMode = bindingContext.ActionContext.HttpContext.Request.Query["ViewSwitcher"];
+            var sortDirection = bindingContext.ActionContext.HttpContext.Request.Query["sortDirection"];
 
             EnsurePage(model, page);
             EnsurePageSize(model, pageSize);
@@ -61,8 +86,8 @@ namespace Foundation.Features.Search
             EnsureSection(model, section);
             EnsureFacets(model, facets, content);
             model.Confidence = decimal.TryParse(confidence, out var confidencePercentage) ? confidencePercentage : 0;
-
-            return model;
+            bindingContext.Result = ModelBindingResult.Success(model);
+            await Task.CompletedTask;
         }
 
         protected virtual void EnsurePage(FilterOptionViewModel model, string page)
@@ -204,7 +229,7 @@ namespace Foundation.Features.Search
                 field = BaseCatalogIndexBuilder.FieldConstants.Node,
                 Descriptions = new Descriptions
                 {
-                    defaultLocale = _languageResolver.GetPreferredCulture().Name
+                    defaultLocale = _contentLanguageAccessor.Language.Name
                 },
                 Values = new SearchFilterValues()
             };
@@ -219,7 +244,7 @@ namespace Foundation.Features.Search
             var nodes = _contentLoader.GetChildren<NodeContent>(nodeContent.ContentLink).ToList();
             var nodeValues = new SimpleValue[nodes.Count];
             var index = 0;
-            var preferredCultureName = _languageResolver.GetPreferredCulture().Name;
+            var preferredCultureName = _contentLanguageAccessor.Language.Name;
             foreach (var node in nodes)
             {
                 var val = new SimpleValue

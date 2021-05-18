@@ -1,6 +1,4 @@
-﻿@using EPiServer.AddOns.Helpers
-@using ImageProcessor.Web.Episerver
-@using Foundation.Features.Blog.BlogListPage
+﻿@using Foundation.Features.Blog.BlogListPage
 
 @model BlogListPageViewModel
 
@@ -22,7 +20,7 @@
                         <div class="card--top">
                             @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
                             {
-                                <img data-src="@Html.ProcessImage(Url.ContentUrl(blog.CurrentContent.PageImage)).Resize(1200, null)?format=webp" class="lazyload" />
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
                             }
                         </div>
                         <div class="card--bottom">

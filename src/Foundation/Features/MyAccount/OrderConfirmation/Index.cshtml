@@ -1,6 +1,7 @@
 ﻿@using EPiServer.Commerce.Order
 @using Foundation.Features.Checkout.ViewModels
 @using Foundation.Features.MyAccount.OrderConfirmation
+@using Foundation.Infrastructure.Commerce.Extensions
 
 @model OrderConfirmationViewModel<OrderConfirmationPage>
 
@@ -125,19 +126,23 @@
                             </div>
                             <div class="col-lg-3 col-sm-12 order-confirm__unit">
                                 <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/UnitPrice", "Unit Price")</label>
-                                @Helpers.RenderMoney(lineItem.PlacedPrice, Model.Currency)
+                                @*@Helpers.RenderMoney(lineItem.PlacedPrice, Model.Currency)*@
+                                @{await Component.InvokeAsync("Money", new { amount = lineItem.PlacedPrice, currency = Model.Currency });}
                             </div>
                             <div class="col-lg-2 col-sm-12 order-confirm__unit">
                                 <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/Price", "Price")</label>
-                                @Helpers.RenderMoney(lineItem.PlacedPrice * lineItem.Quantity, Model.Currency)
+                                @*@Helpers.RenderMoney(lineItem.PlacedPrice * lineItem.Quantity, Model.Currency)*@
+                                @{await Component.InvokeAsync("Money", new { amount = lineItem.PlacedPrice * lineItem.Quantity, currency = Model.Currency });}
                             </div>
                             <div class="col-lg-2 col-sm-12 order-confirm__unit">
                                 <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmationMail/Discount", "Discount")</label>
-                                @Helpers.RenderMoney(lineItem.GetEntryDiscount(), Model.Currency)
+                                @*@Helpers.RenderMoney(lineItem.GetEntryDiscount(), Model.Currency)*@
+                                @{await Component.InvokeAsync("Money", new { amount = lineItem.GetEntryDiscount(), currency = Model.Currency });}
                             </div>
                             <div class="col-lg-3 col-sm-12 order-confirm__unit">
                                 <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Total", "Total")</label>
-                                @Helpers.RenderMoney(lineItem.GetDiscountedPrice(Model.Currency))
+                                @*@Helpers.RenderMoney(lineItem.GetDiscountedPrice(Model.Currency))*@
+                                @{await Component.InvokeAsync("Money", new { amount = lineItem.GetDiscountedPrice(Model.Currency), currency = Model.Currency });}
                             </div>
                         </div>
                     </div>
@@ -178,19 +183,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <h4>@Html.TranslateFallback("/OrderConfirmation/BillingDetails", "Billing details")</h4>
-                    @Html.Partial("_Address", Model.BillingAddress)
+                    @await Html.PartialAsync("_Address", Model.BillingAddress)
 
                     <h4>@Html.TranslateFallback("/OrderConfirmation/ShippingDetails", "Shipping details")</h4>
                     @foreach (var shippingAddress in Model.ShippingAddresses)
                     {
-                        @Html.Partial("_Address", shippingAddress)
+                        @await Html.PartialAsync("_Address", shippingAddress)
                     }
                 </div>
                 <div class="col-md-6">
 
                     @foreach (var payment in Model.Payments)
                     {
-                        Html.RenderPartial("_" + payment.PaymentMethodName + "Confirmation", payment);
+                        await Html.RenderPartialAsync("_" + payment.PaymentMethodName + "Confirmation", payment);
                     }
 
                 </div>

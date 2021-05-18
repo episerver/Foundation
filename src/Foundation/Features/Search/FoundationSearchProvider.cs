@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Cms.Shell.Search;
 using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Find;
 using EPiServer.Find.Api.Querying;
@@ -8,16 +9,15 @@ using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Framework.Localization;
 using EPiServer.Framework.Modules;
-using EPiServer.Globalization;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell;
 using EPiServer.Shell.Search;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Product;
-using Foundation.Find;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Find;
 using Mediachase.Commerce.Core;
 using Mediachase.Search;
 using System;
@@ -37,7 +37,7 @@ namespace Foundation.Features.Search
         private readonly ILogger _log = LogManager.GetLogger(typeof(FoundationSearchProvider));
 
         private readonly LocalizationService _localizationService;
-        private readonly LanguageResolver _languageResolver;
+        private readonly IContentLanguageAccessor _contentLanguageAccessor;
         private readonly Mediachase.Commerce.Catalog.ReferenceConverter _referenceConverter;
         private readonly IContentLoader _contentLoader;
         private readonly ServiceAccessor<SiteContext> _siteContextAcessor;
@@ -51,7 +51,7 @@ namespace Foundation.Features.Search
             IContentTypeRepository<ContentType> contentTypeRepository,
             EditUrlResolver editUrlResolver,
             ServiceAccessor<SiteDefinition> currentSiteDefinition,
-            LanguageResolver languageResolver,
+            IContentLanguageAccessor contentLanguageAccessor,
             UrlResolver urlResolver,
             TemplateResolver templateResolver,
             UIDescriptorRegistry uiDescriptorRegistry,
@@ -66,12 +66,12 @@ namespace Foundation.Features.Search
                     contentTypeRepository,
                     editUrlResolver,
                     currentSiteDefinition,
-                    languageResolver,
+                    contentLanguageAccessor,
                     urlResolver,
                     templateResolver,
                     uiDescriptorRegistry)
         {
-            _languageResolver = languageResolver;
+            _contentLanguageAccessor = contentLanguageAccessor;
             _localizationService = localizationService;
             _referenceConverter = referenceConverter;
             _searchManagerAccessor = searchManagerAccessor;
@@ -141,12 +141,12 @@ namespace Foundation.Features.Search
 
         private IEnumerable<SearchResult> CreateSearchResults(IEnumerable<EntryContentBase> documents, string keyword)
         {
-            var culture = _languageResolver.GetPreferredCulture();
+            var culture = _contentLanguageAccessor.Language;
             var references = documents.Select(_ => _.ContentLink)
                 .ToList();
 
             var childReferences = documents.OfType<GenericProduct>()
-                .SelectMany(x => x.Variations())
+                //.SelectMany(x => x.Variations())
                 .Select(x => x)
                 .ToList();
 

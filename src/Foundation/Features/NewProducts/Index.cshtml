@@ -1,5 +1,5 @@
 ﻿@using Foundation.Features.NewProducts
-
+@inject IContextModeResolver contextModeResolver
 @model NewProductsPageViewModel
 
 <div id="new-products-page">
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row">
-        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || PageEditing.PageIsInEditMode)
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
         {
             <div class="col-12">
                 @Html.PropertyFor(m => m.CurrentContent.MainBody)
@@ -25,7 +25,7 @@
             @foreach (var product in Model.ProductViewModels)
             {
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                    @Html.Partial("_ProductGridItem", product)
+                    @await Html.PartialAsync("_ProductGridItem", product)
                     <div class="product-label">New</div>
                 </div>
             }
@@ -47,9 +47,9 @@
                         </li>
                         @for (int page = 1; page <= Model.Pages.Last(); page++)
                         {
-                            <li class="jsPaginateNewProductsPage @(Model.PageNumber == page ? "active" : "")" page="@page">
+                            <li class="jsPaginateNewProductsPage @(Model.PageNumber == page ? "active" : "")" page="@(page)">
                                 <a href="javascript:void(0)">
-                                    @page.ToString()
+                                    @(page).ToString()
                                 </a>
                             </li>
                         }

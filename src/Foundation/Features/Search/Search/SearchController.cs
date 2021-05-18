@@ -1,20 +1,20 @@
 ﻿using EPiServer;
 using EPiServer.Core;
-using EPiServer.Tracking.PageView;
+//using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
-using Foundation.Cms.Settings;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.Home;
 using Foundation.Features.Search.Search;
 using Foundation.Features.Settings;
-using Foundation.Personalization;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Search
 {
@@ -25,7 +25,7 @@ namespace Foundation.Features.Search
         private readonly ICommerceTrackingService _recommendationService;
         private readonly ReferenceConverter _referenceConverter;
         private readonly ICmsTrackingService _cmsTrackingService;
-        private readonly HttpContextBase _httpContextBase;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IContentLoader _contentLoader;
         private readonly ISettingsService _settingsService;
 
@@ -34,7 +34,7 @@ namespace Foundation.Features.Search
             ISearchService searchService,
             ICommerceTrackingService recommendationService,
             ReferenceConverter referenceConverter,
-            HttpContextBase httpContextBase,
+            IHttpContextAccessor httpContextAccessor,
             IContentLoader contentLoader,
             ICmsTrackingService cmsTrackingService,
             ISettingsService settingsService)
@@ -44,14 +44,13 @@ namespace Foundation.Features.Search
             _recommendationService = recommendationService;
             _referenceConverter = referenceConverter;
             _cmsTrackingService = cmsTrackingService;
-            _httpContextBase = httpContextBase;
+            _httpContextAccessor = httpContextAccessor;
             _contentLoader = contentLoader;
             _settingsService = settingsService;
         }
 
-        [ValidateInput(false)]
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
-        [PageViewTracking]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
+        //[PageViewTracking]
         public async Task<ActionResult> Index(SearchResultPage currentPage, FilterOptionViewModel filterOptions)
         {
             if (filterOptions == null)
@@ -67,7 +66,7 @@ namespace Foundation.Features.Search
             var searchSettings = _settingsService.GetSiteSettings<SearchSettings>();
             var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
             var viewModel = _viewModelFactory.Create(currentPage,
-                HttpContext.Request.QueryString["facets"],
+                _httpContextAccessor.HttpContext.Request.Query["facets"].ToString(),
                 searchSettings?.SearchCatalog ?? 0,
                 filterOptions);
 
@@ -86,7 +85,7 @@ namespace Foundation.Features.Search
                 var notBestBestList = viewModel.ProductViewModels.Where(x => !x.IsBestBetProduct);
                 viewModel.ProductViewModels = bestBestList.Union(notBestBestList);
 
-                if (filterOptions.Page <= 1 && HttpContext.Request.HttpMethod == "GET")
+                if (filterOptions.Page <= 1 && _httpContextAccessor.HttpContext.Request.Method == "GET")
                 {
                     var trackingResult =
                         await _recommendationService.TrackSearch(HttpContext, filterOptions.Q, filterOptions.PageSize,
@@ -95,7 +94,7 @@ namespace Foundation.Features.Search
                 }
             }
 
-            await _cmsTrackingService.SearchedKeyword(_httpContextBase, filterOptions.Q);
+            await _cmsTrackingService.SearchedKeyword(_httpContextAccessor.HttpContext, filterOptions.Q);
             if (searchSettings?.ShowContentSearchResults ?? true)
             {
                 viewModel.ContentSearchResult = _searchService.SearchContent(new FilterOptionViewModel()
@@ -110,13 +109,14 @@ namespace Foundation.Features.Search
 
             if (searchSettings?.ShowPdfSearchResults ?? true)
             {
-                viewModel.PdfSearchResult = _searchService.SearchPdf(new FilterOptionViewModel()
-                {
-                    Q = filterOptions.Q,
-                    PageSize = 5,
-                    Page = filterOptions.SearchPdf ? filterOptions.Page : 1,
-                    SectionFilter = filterOptions.SectionFilter
-                });
+                //viewModel.PdfSearchResult = _searchService.SearchPdf(new FilterOptionViewModel()
+                //{
+                //    Q = filterOptions.Q,
+                //    PageSize = 5,
+                //    Page = filterOptions.SearchPdf ? filterOptions.Page : 1,
+                //    SectionFilter = filterOptions.SectionFilter
+                //});
+                viewModel.PdfSearchResult = null;
             }
 
             var productCount = viewModel.ProductViewModels?.Count() ?? 0;
@@ -150,7 +150,6 @@ namespace Foundation.Features.Search
         }
 
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult QuickSearch(string search = "")
         {
             var redirectUrl = "";
@@ -177,7 +176,7 @@ namespace Foundation.Features.Search
                         links.Add(new AssetPreloadLink(AssetPreloadLink.AssetType.Image) { NoPush = false, Url = productResult.ImageUrl + "?width=60" });
                     }
 
-                    HttpContext.Response.AppendHeader("Link", string.Join(",", links));
+                    _httpContextAccessor.HttpContext.Response.Headers.Append("Link", string.Join(",", links));
                 }
             }
 
@@ -196,14 +195,15 @@ namespace Foundation.Features.Search
 
             if (searchSettings?.ShowPdfSearchResults ?? true)
             {
-                var pdfResult = _searchService.SearchPdf(new FilterOptionViewModel()
-                {
-                    Q = search,
-                    PageSize = 5,
-                    Page = 1
-                });
-                model.PdfSearchResult = pdfResult;
-                pdfCount = pdfResult?.Hits.Count() ?? 0;
+                //var pdfResult = _searchService.SearchPdf(new FilterOptionViewModel()
+                //{
+                //    Q = search,
+                //    PageSize = 5,
+                //    Page = 1
+                //});
+                model.PdfSearchResult = null;
+                //pdfCount = pdfResult?.Hits.Count() ?? 0;
+                pdfCount = 0;
             }
 
             if (productCount + contentCount + pdfCount == 1)
@@ -233,7 +233,6 @@ namespace Foundation.Features.Search
             return View("_QuickSearchAll", model);
         }
 
-        [ChildActionOnly]
         public ActionResult Facet(SearchResultPage currentPage, FilterOptionViewModel viewModel) => PartialView("_Facet", viewModel);
 
         public class AssetPreloadLink

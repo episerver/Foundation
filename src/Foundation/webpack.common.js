@@ -5,14 +5,14 @@ const NodeSassGlobImporter = require('node-sass-glob-importer');
 
 module.exports = {
     entry: {
-        main: path.join(__dirname, 'Assets/js', 'main.js'),
+        main: path.join(__dirname, 'wwwroot/js', 'main.js'),
     },
     resolve: {
         modules: [__dirname, "node_modules"],
     },
     output: {
         filename: "[name].min.js",
-        path: path.resolve(__dirname, "Assets/js"),
+        path: path.resolve(__dirname, "wwwroot/js"),
     },
     plugins: [
         new webpack.ProvidePlugin({

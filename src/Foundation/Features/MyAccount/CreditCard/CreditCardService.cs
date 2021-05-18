@@ -1,8 +1,7 @@
 ﻿using EPiServer.Framework.Localization;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.MyOrganization.Organization;
-using Foundation.Infrastructure;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.Commerce.Customers;

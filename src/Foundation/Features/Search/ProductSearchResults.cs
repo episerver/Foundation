@@ -1,6 +1,6 @@
 ﻿using EPiServer.Find.Statistics.Api;
 using Foundation.Features.CatalogContent;
-using Foundation.Find.Facets;
+using Foundation.Infrastructure.Find.Facets;
 using System.Collections.Generic;
 
 namespace Foundation.Features.Search

@@ -1,6 +1,4 @@
 ﻿@using EPiServer.Core.Html
-@using EPiServer.AddOns.Helpers
-@using ImageProcessor.Web.Episerver
 @using Foundation.Features.Blocks.PageListBlock
 @using Foundation.Features.Shared.SelectionFactories
 
@@ -24,7 +22,7 @@
                     <div class="col-xs-12 col-@imageCol">
                         @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
-                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                         }
                     </div>
                 }
@@ -47,7 +45,7 @@
                     <div class="col-xs-12 col-@imageCol">
                         @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
-                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                         }
                     </div>
                 }
@@ -60,7 +58,7 @@
                     <div class="col-xs-12 col-@imageCol">
                         @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                         {
-                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                         }
                     </div>
                     <div class="col-xs-12 col-@textCol">

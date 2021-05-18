@@ -1,6 +1,6 @@
 ﻿using EPiServer.Commerce.Marketing;
 using EPiServer.Commerce.Order;
-using Foundation.Commerce.Markets;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using System.Linq;
 

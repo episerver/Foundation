@@ -1,12 +1,13 @@
 ﻿@using EPiServer.Core
 @using Mediachase.Commerce
-@using Foundation.Commerce.Extensions
+@using EPiServer.Commerce.Catalog.ContentTypes
+@using Foundation.Infrastructure.Commerce.Extensions
 @using Foundation.Features.CatalogContent.Services
 
 @model IEnumerable<EntryContentBase>
 
 @{
-    var currentMarket = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<Mediachase.Commerce.ICurrentMarket>();
+    var currentMarket = EPiServer.ServiceLocation.ServiceLocator.Current.GetService(typeof(Mediachase.Commerce.ICurrentMarket)) as ICurrentMarket;
     var market = currentMarket.GetCurrentMarket();
     var priceClass = ((bool)(ViewData["IsBundle"] == null ? false : ViewData["IsBundle"])) ? "price__discount" : "price__old";
 }

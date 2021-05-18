@@ -8,7 +8,7 @@ namespace Foundation.Features.MyAccount.ResetPassword
         Description = "The reset password template mail page.",
         GroupName = GroupNames.Account,
         AvailableInEditMode = false)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-26.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-26.png")]
     public class ResetPasswordMailPage : MailBasePage
     {
     }

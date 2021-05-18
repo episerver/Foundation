@@ -1,5 +1,4 @@
 using EPiServer.Core;
-using Foundation.Features.Category;
 using Foundation.Features.Shared;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace Foundation.Features.Locations.LocationItemPage
         public ImageData Image { get; set; }
         public LocationNavigationModel LocationNavigation { get; set; }
         public IEnumerable<LocationItemPage> SimilarLocations { get; set; }
-        public IEnumerable<StandardCategory> Tags { get; set; }
+        //public IEnumerable<StandardCategory> Tags { get; set; }
     }
 
     public class LocationNavigationModel

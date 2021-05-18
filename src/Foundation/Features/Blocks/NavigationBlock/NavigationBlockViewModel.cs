@@ -1,8 +1,8 @@
 ﻿using EPiServer.Core;
 using EPiServer.Web.Mvc.Html;
 using Foundation.Features.Shared;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Blocks.NavigationBlock
 {
@@ -24,7 +24,7 @@ namespace Foundation.Features.Blocks.NavigationBlock
         public string Url { get; set; }
         public PageData PageData { get; set; }
 
-        public NavigationItem(PageData page, UrlHelper urlHelper)
+        public NavigationItem(PageData page, IUrlHelper urlHelper)
         {
             if (page != null)
             {

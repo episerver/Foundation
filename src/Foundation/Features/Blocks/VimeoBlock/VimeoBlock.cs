@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.VimeoBlock
         GUID = "a8172c33-e087-4e68-980e-a79b0e093675",
         Description = "Display Vimeo video",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/gfx/Multimedia-thumbnail.png")]
+    [ImageUrl("/icons/gfx/Multimedia-thumbnail.png")]
     public class VimeoBlock : FoundationBlockData
     {
         private VimeoUrl _vimeoUrl;
@@ -66,17 +66,14 @@ namespace Foundation.Features.Blocks.VimeoBlock
         public bool HasCoverImage => !ContentReference.IsNullOrEmpty(CoverImage);
 
         [Editable(false)]
-        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || (MainBody != null && !MainBody.IsEmpty);
+        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;
     }
 
     public class VimeoUrl
     {
         private const string _urlRegex = @"vimeo\.com/(\d+)";
 
-        public VimeoUrl(string videoUrl)
-        {
-            GetVideoId(videoUrl);
-        }
+        public VimeoUrl(string videoUrl) => GetVideoId(videoUrl);
 
         public string Id { get; set; }
 

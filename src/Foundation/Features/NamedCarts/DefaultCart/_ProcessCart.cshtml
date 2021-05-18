@@ -95,7 +95,7 @@
     </div>
     <div class="large-cart--block col-sm-4">
         <div class="jsCouponReplaceHtml">
-            @Html.Partial("_CartSummary", Model)
+            @await Html.PartialAsync("_CartSummary", Model)
         </div>
         <ul>
             <li>

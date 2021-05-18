@@ -1,31 +1,37 @@
-﻿using Foundation.Features.Checkout.ViewModels;
+﻿using EPiServer.Commerce.Order;
+using EPiServer.ServiceLocation;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Checkout.Payments
 {
-    public class PaymentOptionViewModelBinder : DefaultModelBinder
+    public class PaymentOptionViewModelBinder : IModelBinder
     {
-        private readonly PaymentMethodViewModelFactory _paymentMethodViewModelFactory;
+        private readonly IEnumerable<IPaymentMethod> _paymentMethods;
+        private readonly IModelMetadataProvider _defaultProvider;
 
-        public PaymentOptionViewModelBinder(PaymentMethodViewModelFactory paymentMethodViewModelFactory)
+        public PaymentOptionViewModelBinder(IEnumerable<IPaymentMethod> paymentMethods, IModelMetadataProvider defaultProvider)
         {
-            _paymentMethodViewModelFactory = paymentMethodViewModelFactory;
+            _paymentMethods = paymentMethods;
+            _defaultProvider = defaultProvider;
         }
 
-        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        public Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            var systemKeyword = bindingContext.ValueProvider.GetValue("SystemKeyword")?.AttemptedValue;
-            if (string.IsNullOrEmpty(systemKeyword))
+            var systemKeyword = bindingContext.ValueProvider.GetValue("SystemKeyword").FirstOrDefault();
+            var selectedPaymentMethod = _paymentMethods.FirstOrDefault(p => !string.IsNullOrEmpty(p.SystemKeyword) && p.SystemKeyword.ToString() == systemKeyword);
+            if (selectedPaymentMethod != null)
             {
-                return base.BindModel(controllerContext, bindingContext);
+                var modelType = selectedPaymentMethod.GetType();
+                var model = ActivatorUtilities.CreateInstance(ServiceLocator.Current, modelType);
+                bindingContext.ModelMetadata = _defaultProvider.GetMetadataForType(modelType);
+                bindingContext.Result = ModelBindingResult.Success(model);
             }
 
-            var paymentMethodViewModels = _paymentMethodViewModelFactory.GetPaymentMethodViewModels();
-            var selectedPaymentMethod = paymentMethodViewModels.FirstOrDefault(p => p.SystemKeyword == systemKeyword);
-
-            bindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(null, selectedPaymentMethod?.PaymentOption.GetType());
-            return base.BindModel(controllerContext, bindingContext);
+            return Task.CompletedTask;
         }
     }
 }

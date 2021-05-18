@@ -12,7 +12,7 @@
 </div>
 <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
 
-@Html.Partial("_OrderFilterBox", Model.Filter)
+@await Html.PartialAsync("_OrderFilterBox", Model.Filter)
 
 <div class="recent-orders">
     @if (Model.Orders != null && Model.Orders.Count > 0)
@@ -46,7 +46,7 @@
                             <label class="title">@Html.TranslateFallback("/OrderHistory/Labels/ShippedTo", "Shipped")</label>
                             @foreach (var shippingAddress in order.ShippingAddresses)
                             {
-                                @Html.Partial("_Address", shippingAddress)
+                                @await Html.PartialAsync("_Address", shippingAddress)
                             }
                         </div>
                     </div>
@@ -107,8 +107,8 @@
                 @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
                 {
                     <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "")">
-                        <a href="@Model.OrderHistoryUrl?page=@page&size=@Model.PagingInfo.PageSize&isPaging=1">
-                            @page.ToString()
+                        <a href="@Model.OrderHistoryUrl?page=@(page)&size=@Model.PagingInfo.PageSize&isPaging=1">
+                            @(page).ToString()
                         </a>
                     </li>
                 }

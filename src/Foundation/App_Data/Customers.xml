@@ -171,7 +171,7 @@
     <Email>admin@example.com</Email>
     <FirstName>Perry</FirstName>
     <LastName>Riley</LastName>
-    <Roles></Roles>
+    <Roles>Administrators,WebAdmins</Roles>
     <ShowInDemoUserMenu>2</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
     <DemoUserTitle>Global Admin </DemoUserTitle>
     <DemoUserDescription>Has global admin rights</DemoUserDescription>

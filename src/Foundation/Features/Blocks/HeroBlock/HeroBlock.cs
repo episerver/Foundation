@@ -2,8 +2,6 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using Foundation.Features.Shared;
@@ -17,8 +15,8 @@ namespace Foundation.Features.Blocks.HeroBlock
         GUID = "8bdfac81-3dbd-43b9-a092-522bd67ee8b3",
         Description = "Image block with overlay for text",
         GroupName = GroupNames.Content)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-22.png")]
-    public class HeroBlock : FoundationBlockData, IDashboardItem
+    [ImageUrl("/icons/cms/blocks/CMS-icon-block-22.png")]
+    public class HeroBlock : FoundationBlockData//, IDashboardItem
     {
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Block ratio (width:height)", Order = 5)]
@@ -41,19 +39,18 @@ namespace Foundation.Features.Blocks.HeroBlock
         [Display(Name = "Callout", GroupName = SystemTabNames.Content, Order = 40)]
         public virtual HeroBlockCallout Callout { get; set; }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Callout?.CalloutContent.ToHtmlString();
-            itemModel.Image = BackgroundImage;
-        }
-
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-
             BlockOpacity = 1;
             BlockRatio = "2:1";
         }
+
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Callout?.CalloutContent.ToHtmlString();
+        //    itemModel.Image = BackgroundImage;
+        //}
     }
 
     [ContentType(DisplayName = "Hero Block Callout", GUID = "7A3C9E9E-8612-4722-B795-2A93CB54A476", AvailableInEditMode = false)]

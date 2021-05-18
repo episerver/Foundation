@@ -1,10 +1,10 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.Framework.Localization;
 using Foundation.Features.Checkout.ViewModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Checkout.Services
 {

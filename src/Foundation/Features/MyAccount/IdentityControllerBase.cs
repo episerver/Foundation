@@ -2,11 +2,12 @@
 using EPiServer.Core;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Identity;
-using Foundation.Commerce.Customer.Services;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Users;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.MyAccount
 {
@@ -48,9 +49,9 @@ namespace Foundation.Features.MyAccount
         }
 
         [HttpGet]
-        public ActionResult SignOut()
+        public async Task<IActionResult> SignOut()
         {
-            CustomerService.SignOut();
+            await CustomerService.SignOutAsync();
             return RedirectToAction("Index", new { node = ContentReference.StartPage });
         }
 
@@ -75,10 +76,10 @@ namespace Foundation.Features.MyAccount
                 UserManager.Dispose();
             }
 
-            if (SignInManager != null)
-            {
-                SignInManager.Dispose();
-            }
+            //if (SignInManager != null)
+            //{
+            //    SignInManager.Dispose();
+            //}
 
             base.Dispose(disposing);
 

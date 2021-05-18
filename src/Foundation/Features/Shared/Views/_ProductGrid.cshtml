@@ -8,7 +8,7 @@
         @foreach (var product in Model)
         {
             <div class="col-xs-12 col-sm-6 col-lg-4">
-                @Html.Partial("_ProductGridItem", product)
+                @await Html.PartialAsync("_ProductGridItem", product)
             </div>
         }
     </div>

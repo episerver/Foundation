@@ -10,7 +10,7 @@ namespace Foundation.Features.MyOrganization.Users
         Description = "Page to manage an organization's users.",
         AvailableInEditMode = false,
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/pages/elected.png")]
+    [ImageUrl("/icons/cms/pages/elected.png")]
     public class UsersPage : FoundationPageData, IDisableOPE
     {
     }

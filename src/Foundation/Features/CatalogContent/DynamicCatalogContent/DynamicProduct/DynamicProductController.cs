@@ -1,14 +1,13 @@
 ﻿using EPiServer;
 using EPiServer.Web.Routing;
-using Foundation.Cms;
-using Foundation.Commerce.Customer.Services;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
-using Foundation.Personalization;
-using Foundation.Social.Services;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
 {
@@ -19,13 +18,13 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
         public DynamicProductController(IsInEditModeAccessor isInEditModeAccessor,
             CatalogEntryViewModelFactory viewModelFactory,
-            IReviewService reviewService,
-            IReviewActivityService reviewActivityService,
+            //IReviewService reviewService,
+            //IReviewActivityService reviewActivityService,
             ICommerceTrackingService recommendationService,
             ReferenceConverter referenceConverter,
             IContentLoader contentLoader,
             UrlResolver urlResolver,
-            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, reviewService, reviewActivityService, recommendationService, loyaltyService)
+            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, /*reviewService, reviewActivityService,*/ recommendationService, loyaltyService)
         {
             _isInEditMode = isInEditModeAccessor();
             _viewModelFactory = viewModelFactory;
@@ -43,7 +42,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
 
             if (viewModel.Variant == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             viewModel.GenerateVariantGroup();

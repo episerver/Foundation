@@ -1,12 +1,12 @@
 ﻿using EPiServer;
 using EPiServer.Core;
-using EPiServer.Editor;
 using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
-using Foundation.Cms;
+using EPiServer.Web;
 using Foundation.Features.Home;
 using Foundation.Infrastructure;
-using System.Web;
+using Foundation.Infrastructure.Cms;
+using Microsoft.AspNetCore.Html;
 
 namespace Foundation.Features.Shared
 {
@@ -14,6 +14,7 @@ namespace Foundation.Features.Shared
     {
         private Injected<IContentLoader> _contentLoader;
         private Injected<IContentVersionRepository> _contentVersion;
+        private Injected<IContextModeResolver> _contextModeResolver;
         private HomePage _startPage;
 
         public ContentViewModel() : this(default)
@@ -39,7 +40,7 @@ namespace Foundation.Features.Shared
                         currentStartPageLink = CurrentContent.GetRelativeStartPage();
                     }
 
-                    if (PageEditing.PageIsInEditMode)
+                    if (_contextModeResolver.Service.CurrentMode == ContextMode.Edit)
                     {
                         var startPageRef = _contentVersion.Service.LoadCommonDraft(currentStartPageLink, ContentLanguage.PreferredCulture.Name);
                         if (startPageRef == null)

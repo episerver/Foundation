@@ -39,7 +39,8 @@
                 }
             </div>
             @{
-                Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
+                //Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
+                @(await Component.InvokeAsync("MyAccountNavigation", new { id = MyAccountPageType.Link }))
             }
         </div>
     </div>

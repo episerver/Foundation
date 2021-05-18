@@ -25,8 +25,8 @@
                 }
             </div>
         </div>
-        @Html.Partial("_ListVariants", Model.Entries)
-        @Html.Partial("_Store", Model.Stores)
+        @await Html.PartialAsync("_ListVariants", Model.Entries)
+        @await Html.PartialAsync("_Store", Model.Stores)
         @if (!Model.HasOrganization)
         {
             <div class="row">

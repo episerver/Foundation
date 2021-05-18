@@ -8,7 +8,7 @@
     var filterActivities = Enumerable.Empty<string>();
     if (!string.IsNullOrWhiteSpace(filterString))
     {
-        filterActivities = filterString.Split(',').ToList();
+        filterActivities = filterString.ToList();
     }
 }
 
@@ -33,7 +33,7 @@
             <li>
                 <span>
                     <label for="a-@category.Term">
-                        <input class="select-some" type="checkbox" id="a-@category.Term" value="@HttpUtility.UrlEncode(category.Term)"
+                        <input class="select-some" type="checkbox" id="a-@category.Term" value="@WebUtility.UrlEncode(category.Term)"
                                @(filterActivities.Contains(category.Term) ? "checked=checked" : "")>
                         @category.Term (@category.Count)
                     </label>

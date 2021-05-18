@@ -9,8 +9,8 @@
         </p>
     </div>
     <div class="modal-body row">
-    	<div class="container-fluid">
-        	@Html.Partial("EditAddress", Model)
-        </div>		
+        <div class="container-fluid">
+            @await Html.PartialAsync("EditAddress", Model)
+        </div>
     </div>
 </div>

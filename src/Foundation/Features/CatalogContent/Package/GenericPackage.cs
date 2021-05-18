@@ -3,18 +3,15 @@ using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Labs.ContentManager.Cards;
-using EPiServer.Labs.ContentManager.Dashboard;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.Shared;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Package
 {
     [CatalogContentType(DisplayName = "Generic Package", GUID = "7b18ab7a-6344-4879-928e-e1b129d7379c", Description = "")]
-    public class GenericPackage : PackageContent, IProductRecommendations, IFoundationContent, IDashboardItem
+    public class GenericPackage : PackageContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         [Searchable]
         [CultureSpecific]
@@ -86,10 +83,10 @@ namespace Foundation.Features.CatalogContent.Package
             AssociationsTitle = "You May Also Like";
         }
 
-        public void SetItem(ItemModel itemModel)
-        {
-            itemModel.Description = Description?.ToHtmlString();
-            itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
-        }
+        //public void SetItem(ItemModel itemModel)
+        //{
+        //    itemModel.Description = Description?.ToHtmlString();
+        //    itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
+        //}
     }
 }

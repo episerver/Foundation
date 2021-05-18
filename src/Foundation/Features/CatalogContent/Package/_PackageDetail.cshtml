@@ -4,24 +4,24 @@
 
 @{
     var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
-    var shareUrl = Url.Encode(Request.Url.ToString());
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
 }
 
 <input type="hidden" name="productCode" id="productCode" value="@Model.Package.Code" />
 <div class="col-12">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            @Html.Partial("_Images", Model.Media)
+            @await Html.PartialAsync("_Images", Model.Media)
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="product-detail__title">
-                @Html.Partial("_BreadCrumb", Model.BreadCrumb)
+                @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
                 <h5>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h5>
                 @*<h6 class="light-text">@Html.PropertyFor(x => x.Package.Brand)</h6>*@
                 <p class="sub-title">@Model.CurrentContent.Code</p>
             </div>
             <hr />
-            @Html.Partial("_Rating", Model)
+            @await Html.PartialAsync("_Rating", Model)
             <hr />
             <div class="row">
                 <div class="col-12">
@@ -81,9 +81,9 @@
 
             @if (Model.Entries != null && Model.Entries.Any())
             {
-                @Html.Partial("_ListVariants", Model.Entries)
-                @Html.Partial("_Store", Model.Stores)
-                @Html.Partial("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
+                @await Html.PartialAsync("_ListVariants", Model.Entries)
+                @await Html.PartialAsync("_Store", Model.Stores)
+                @await Html.PartialAsync("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
             }
             <hr />
             <div class="row">
@@ -111,7 +111,7 @@
                     }
                 </div>
             </div>
-            @Html.Partial("_SocialIconsListing", Model.CurrentContent.DisplayName)
+            @await Html.PartialAsync("_SocialIconsListing", Model.CurrentContent.DisplayName)
         </div>
     </div>
 </div>

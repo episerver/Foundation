@@ -1,6 +1,6 @@
-using Foundation.Commerce.Customer;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.Organization;
+using Foundation.Infrastructure.Commerce.Customer;
 using System;
 using System.ComponentModel.DataAnnotations;
 

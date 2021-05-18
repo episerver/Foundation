@@ -1,7 +1,7 @@
 ﻿@using Foundation.Features.MyAccount.AddressBook
 
 @model IEnumerable<CountryViewModel>
-@{ 
+@{
     var values = new List<KeyValuePair<string, string>>();
     if (Model != null && Model.Any())
     {
@@ -15,6 +15,12 @@
 <div class="row jsCountrySelectionContainer @((string)ViewData["DivSelection"] ?? "")">
     <input type="hidden" class="jsCountryOptionName" value="@((string)ViewData["Name"] ?? "CountryCode")" />
     <div class="col-12 jsCountryOptionListing">
-        @Helpers.RenderDropdown(values, (string)ViewData["SelectItem"], "", (string)ViewData["Name"] ?? "CountryCode")
+        @*@Helpers.RenderDropdown(values, (string)ViewData["SelectItem"], "", (string)ViewData["Name"] ?? "CountryCode")*@
+        @(await Component.InvokeAsync("Dropdown", new {
+                list = values,
+                selectedValue = (string)ViewData["SelectItem"],
+                selectorClassItem = "",
+                name = (string)ViewData["Name"] ?? "CountryCode"
+            }))
     </div>
 </div>

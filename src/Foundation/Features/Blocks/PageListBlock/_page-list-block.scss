@@ -248,10 +248,6 @@
             left: 2rem;
             right: 2rem;
         }
-
-        p {
-            text-shadow: 2px 2px 5px black;
-        }
     }
 
     .page-list-block__meta {
@@ -269,7 +265,6 @@
         text-transform: none;
         margin: .5rem 0 0;
         font-size: 3.5vw;
-        text-shadow: 2px 2px 5px black;
 
         @media screen and (min-width: 768px) {
             font-size: 1.7vw;

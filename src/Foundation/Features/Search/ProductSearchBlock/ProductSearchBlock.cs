@@ -3,9 +3,9 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
-using Foundation.Commerce.Models.EditorDescriptors;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Search.ProductSearchBlock
@@ -14,7 +14,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
         GUID = "8BD1CF05-4980-4BA2-9304-C0EAF946DAD5",
         Description = "Configurable search block for all products, allows generic filtering",
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/pages/search.png")]
+    [ImageUrl("/icons/cms/pages/search.png")]
     public class ProductSearchBlock : FoundationBlockData
     {
         [CultureSpecific]

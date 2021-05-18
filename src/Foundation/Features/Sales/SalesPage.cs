@@ -10,7 +10,7 @@ namespace Foundation.Features.Sales
         GUID = "9f6352bc-eea4-416a-bf76-144037c7d3db",
         Description = "Show all items on sale",
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-21.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-21.png")]
     public class SalesPage : BaseInclusionExclusionPage
     {
         public override void SetDefaultValues(ContentType contentType)

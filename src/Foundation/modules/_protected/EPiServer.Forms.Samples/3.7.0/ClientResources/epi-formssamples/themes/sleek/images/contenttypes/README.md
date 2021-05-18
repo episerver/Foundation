@@ -1,1 +1,0 @@
-Name of the png picture should be the same with the ElementBlock. This will be used as the big icon when creating Element.

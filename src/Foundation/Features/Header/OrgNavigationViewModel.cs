@@ -1,5 +1,5 @@
 ﻿using EPiServer.Core;
-using EPiServer.ServiceApi.Commerce.Models.Order;
+using Foundation.Features.MyOrganization.Organization;
 
 namespace Foundation.Features.Header
 {

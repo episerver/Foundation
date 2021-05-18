@@ -28,7 +28,7 @@
                                     @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
                                     {
                                         var variant = cartItem.Entry as GenericVariant;
-                                        var viewData = new ViewDataDictionary();
+                                        var viewData = new ViewDataDictionary(this.ViewData);
                                         viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
                                         <div class="checkout__cart-item jsCartItem">
                                             <div class="row">
@@ -45,7 +45,7 @@
                                                     @if (variant != null)
                                                     {
                                                         <p class="items__item-meta">
-                                                            Size: @(variant.Size.IsNullOrEmpty() ? "N/A" : variant.Size), Color: @(variant.Color.IsNullOrEmpty() ? "N/A" : variant.Color)
+                                                            Size: @(string.IsNullOrEmpty(variant.Size) ? "N/A" : variant.Size), Color: @(string.IsNullOrEmpty(variant.Color) ? "N/A" : variant.Color)
                                                         </p>
                                                     }
                                                     @if (cartItem.IsDynamicProduct)
@@ -124,11 +124,11 @@
                     <!--Shipment Address-->
                     <br />
                     @{
-                        var newViewData = new ViewDataDictionary(ViewData);
+                        var newViewData = new ViewDataDictionary(this.ViewData);
                         newViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
                     }
 
-                    @Html.Partial("SingleAddress", Model, newViewData)
+                    @await Html.PartialAsync("SingleAddress", Model, newViewData)
                 </div>
             </div>
             <br />

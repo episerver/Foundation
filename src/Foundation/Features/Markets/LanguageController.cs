@@ -1,50 +1,40 @@
 ﻿using EPiServer.Core;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
-using Foundation.Commerce.Markets;
-using System.Globalization;
-using System.Linq;
-using System.Web.Mvc;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Commerce.Markets;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Foundation.Features.Markets
 {
-    public class LanguageController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class LanguageController : ControllerBase
     {
         private readonly LanguageService _languageService;
         private readonly UrlResolver _urlResolver;
+        private readonly IContentRouteHelper _contentRouteHelper;
 
-        public LanguageController(LanguageService languageService, UrlResolver urlResolver)
+        public LanguageController(LanguageService languageService, UrlResolver urlResolver, IContentRouteHelper contentRouteHelper)
+
         {
             _languageService = languageService;
             _urlResolver = urlResolver;
-        }
-
-        [ChildActionOnly]
-        public ActionResult Index(ContentReference contentLink, string language)
-        {
-            var model = new LanguageViewModel
-            {
-                Languages = _languageService.GetAvailableLanguages()
-                    .Select(x => new SelectListItem
-                    {
-                        Selected = false,
-                        Text = x.DisplayName,
-                        Value = x.Name
-                    }),
-                Language = string.IsNullOrEmpty(language) ? _languageService.GetCurrentLanguage().Name : CultureInfo.GetCultureInfo(language).Name,
-                ContentLink = contentLink
-            };
-
-            return PartialView(model);
+            _contentRouteHelper = contentRouteHelper;
         }
 
         [HttpPost]
-        public ActionResult Set(string language, ContentReference contentLink)
+        [Route("Set")]
+        public ActionResult Set([FromForm] string language, ContentReference contentLink)
         {
-            _languageService.UpdateLanguage(language);
+            _languageService.SetRoutedContent(_contentRouteHelper.Content, language);
 
             var returnUrl = _urlResolver.GetUrl(Request, contentLink, language);
-            return Json(new { returnUrl });
+            return new ContentResult
+            {
+                Content = JsonConvert.SerializeObject(new { returnUrl }),
+                ContentType = "application/json",
+            };
         }
     }
 }

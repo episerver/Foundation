@@ -3,12 +3,10 @@ using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
-using Foundation.Features.Category;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace Foundation.Features.Locations.LocationItemPage
 {
@@ -21,7 +19,6 @@ namespace Foundation.Features.Locations.LocationItemPage
             _contentRepository = contentRepository;
         }
 
-        [PageViewTracking]
         public ActionResult Index(LocationItemPage currentPage)
         {
             var model = new LocationItemViewModel(currentPage);
@@ -52,14 +49,14 @@ namespace Foundation.Features.Locations.LocationItemPage
                 .StaticallyCacheFor(new System.TimeSpan(0, 10, 0))
                 .GetContentResult();
 
-            if (currentPage.Categories != null)
-            {
-                model.Tags = currentPage.Categories.Select(x => _contentRepository.Get<StandardCategory>(x));
-            }
+            //if (currentPage.Categories != null)
+            //{
+            //    model.Tags = currentPage.Categories.Select(x => _contentRepository.Get<StandardCategory>(x));
+            //}
 
             var editingHints = ViewData.GetEditHints<LocationItemViewModel, LocationItemPage>();
             editingHints.AddFullRefreshFor(p => p.Image);
-            editingHints.AddFullRefreshFor(p => p.Categories);
+            //editingHints.AddFullRefreshFor(p => p.Categories);
 
             return View(model);
         }

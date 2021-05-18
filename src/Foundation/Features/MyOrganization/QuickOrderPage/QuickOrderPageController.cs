@@ -1,5 +1,6 @@
 ﻿using EPiServer.Web.Mvc;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.MyOrganization.QuickOrderPage
 {

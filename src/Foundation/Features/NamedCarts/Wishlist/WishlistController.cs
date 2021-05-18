@@ -4,29 +4,29 @@ using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Order;
 using EPiServer.Core;
 using EPiServer.Filters;
-using EPiServer.Globalization;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
-using Foundation.Cms.Extensions;
-using Foundation.Cms.Settings;
-using Foundation.Commerce;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Settings;
-using Foundation.Personalization;
+using Foundation.Infrastructure.Cms.Extensions;
+using Foundation.Infrastructure.Cms.Settings;
+using Foundation.Infrastructure.Commerce;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+using Foundation.Infrastructure.Personalization;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Foundation.Features.NamedCarts.Wishlist
 {
@@ -45,10 +45,11 @@ namespace Foundation.Features.NamedCarts.Wishlist
         private readonly ICustomerService _customerService;
         private readonly IUrlResolver _urlResolver;
         private readonly IRelationRepository _relationRepository;
-        private readonly LanguageResolver _languageResolver;
+        private readonly IContentLanguageAccessor _contentLanguageAccessor;
         private readonly ICurrentMarket _currentMarket;
         private readonly FilterPublished _filterPublished;
         private readonly ISettingsService _settingsService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public WishListController(
             IContentLoader contentLoader,
@@ -61,10 +62,11 @@ namespace Foundation.Features.NamedCarts.Wishlist
             ICustomerService customerService,
             IUrlResolver urlResolver,
             IRelationRepository relationRepository,
-            LanguageResolver languageResolver,
+            IContentLanguageAccessor contentLanguageAccessor,
             ICurrentMarket currentMarket,
-            FilterPublished filterPublished,
-            ISettingsService settingsService)
+            //FilterPublished filterPublished,
+            ISettingsService settingsService,
+            IHttpContextAccessor httpContextAccessor)
         {
             _contentLoader = contentLoader;
             _cartService = cartService;
@@ -76,10 +78,11 @@ namespace Foundation.Features.NamedCarts.Wishlist
             _customerService = customerService;
             _urlResolver = urlResolver;
             _relationRepository = relationRepository;
-            _languageResolver = languageResolver;
+            _contentLanguageAccessor = contentLanguageAccessor;
             _currentMarket = currentMarket;
-            _filterPublished = filterPublished;
+            _filterPublished = new FilterPublished();
             _settingsService = settingsService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -90,7 +93,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             return View(viewModel);
         }
 
-        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        [AcceptVerbs(new string[] { "GET", "POST" })]
         public ActionResult WishListMiniCartDetails()
         {
             var viewModel = _cartViewModelFactory.CreateMiniWishListViewModel(WishList.Cart);
@@ -134,7 +137,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
             if (_contentLoader.Get<EntryContentBase>(contentLink) is GenericBundle bundle) // Add bundle
             {
                 var variantCodes = _contentLoader
-                    .GetItems(bundle.GetEntries(_relationRepository), _languageResolver.GetPreferredCulture())
+                    .GetItems(bundle.GetEntries(_relationRepository), _contentLanguageAccessor.Language)
                     .OfType<VariationContent>()
                     .Where(v => v.IsAvailableInCurrentMarket(_currentMarket) && !_filterPublished.ShouldFilter(v))
                     .Select(x => x.Code);
@@ -191,7 +194,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
 
             if (WishList.Cart.GetAllLineItems().FirstOrDefault(x => x.Code == param.Code) == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NoContent, productName + " is not exist in the wishlist.");
+                return StatusCode(204, productName + " is not exist in the wishlist.");
             }
 
             _cartService.ChangeCartItem(WishList.Cart, 0, param.Code, param.Quantity, param.Size, param.NewSize);
@@ -284,9 +287,9 @@ namespace Foundation.Features.NamedCarts.Wishlist
                     returnedMessages.Add(responseMessage);
                 }
             }
-            Session[Constant.ErrorMessages] = returnedMessages;
+            _httpContextAccessor.HttpContext.Session.SetString(Constant.ErrorMessages, returnedMessages.ToString());
 
-            return Json(returnedMessages, JsonRequestBehavior.AllowGet);
+            return Json(returnedMessages);
         }
 
         [HttpPost]
@@ -372,7 +375,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                 });
             }
 
-            return new HttpStatusCodeResult(500, validationMessage);
+            return StatusCode(500, validationMessage);
         }
 
         private CartWithValidationIssues WishList => _wishlist ?? (_wishlist = _cartService.LoadCart(_cartService.DefaultWishListName, true));

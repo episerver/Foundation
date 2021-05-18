@@ -2,10 +2,9 @@
 using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Markets;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Features.CatalogContent.Product;
-using Foundation.Social.ViewModels;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,7 @@ namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduc
             GroupVariants = new List<VariantGroupModel>();
         }
 
-        public ReviewsViewModel Reviews { get; set; }
+        //public ReviewsViewModel Reviews { get; set; }
         public IEnumerable<Recommendation> AlternativeProducts { get; set; }
         public IEnumerable<Recommendation> CrossSellProducts { get; set; }
         public List<VariantGroupModel> GroupVariants { get; set; }

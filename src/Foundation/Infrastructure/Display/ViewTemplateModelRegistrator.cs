@@ -1,13 +1,21 @@
 ﻿using EPiServer.Commerce.Marketing;
 using EPiServer.DataAbstraction;
 using EPiServer.Framework.Web;
+using EPiServer.ServiceLocation;
+using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using Foundation.Features.Shared;
 
 namespace Foundation.Infrastructure.Display
 {
+    [ServiceConfiguration(typeof(IViewTemplateModelRegistrator))]
     public class ViewTemplateModelRegistrator : IViewTemplateModelRegistrator
     {
+        public static void OnTemplateResolved(object sender, TemplateResolverEventArgs args)
+        {
+
+        }
+
         public const string FoundationFolder = "~/Features/Shared/Views/";
 
         public void Register(TemplateModelCollection viewTemplateModelRegistrator)

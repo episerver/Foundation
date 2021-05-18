@@ -1,6 +1,6 @@
 @using EPiServer.Web
 @using EPiServer.Web.Routing.Segments.Internal
-@using Foundation.Helpers
+@using Foundation.Infrastructure.Helpers
 
 @model FoundationPageData
 
@@ -56,7 +56,7 @@
     }
 }
 <div class="@Model.Padding @Model.Margin">
-    <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect && RequestSegmentContext.CurrentContextMode != ContextMode.Edit ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
+    <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect && !Html.IsInEditMode() ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
         <div class="teaser__image" @Html.EditAttributes(m => m.PageImage)
              style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
         </div>

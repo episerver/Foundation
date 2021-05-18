@@ -6,11 +6,11 @@ using EPiServer.Filters;
 using EPiServer.Globalization;
 using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Extensions;
-using Foundation.Commerce.Markets;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Stores;
+using Foundation.Infrastructure.Commerce.Extensions;
+using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Pricing;
@@ -53,7 +53,7 @@ namespace Foundation.Features.CatalogContent.Services
             ICurrencyService currencyService,
             ReferenceConverter referenceConverter,
             LanguageService languageService,
-            FilterPublished filterPublished,
+            //FilterPublished filterPublished,
             IStoreService storeService,
             ICurrentMarket currentMarket)
         {
@@ -66,7 +66,7 @@ namespace Foundation.Features.CatalogContent.Services
             _currencyService = currencyService;
             _referenceConverter = referenceConverter;
             _languageService = languageService;
-            _filterPublished = filterPublished;
+            _filterPublished = new FilterPublished();
             _storeService = storeService;
             _currentMarket = currentMarket;
         }

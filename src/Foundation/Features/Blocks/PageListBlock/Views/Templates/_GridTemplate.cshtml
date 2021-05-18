@@ -28,7 +28,7 @@
     <div>
         <div class="page-list-block__row">
             <div class="page-list-block__large-col">
-                @Html.Partial("Views/Templates/_GridTemplateComponent", firstPage)
+                @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_GridTemplateComponent.cshtml", firstPage)
             </div>
             @foreach (var list in listGridPages)
             {
@@ -36,7 +36,7 @@
                     <div class="page-list-block__grid">
                         @foreach (var page in list)
                         {
-                            @Html.Partial("Views/Templates/_GridTemplateComponent", page)
+                            @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_GridTemplateComponent.cshtml", page)
                         }
                     </div>
                 </div>
@@ -44,7 +44,7 @@
             @foreach (var page in listLargePages)
             {
                 <div class="page-list-block__large-col">
-                    @Html.Partial("Views/Templates/_GridTemplateComponent", page)
+                    @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_GridTemplateComponent.cshtml", page)
                 </div>
             }
         </div>

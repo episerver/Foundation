@@ -3,9 +3,9 @@ using EPiServer.Logging;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
-using Foundation.Commerce.Customer;
-using Foundation.Commerce.Customer.Services;
 using Foundation.Features.MyOrganization.Users;
+using Foundation.Infrastructure.Commerce.Customer;
+using Foundation.Infrastructure.Commerce.Customer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +16,7 @@ namespace Foundation.Infrastructure.Jobs
         DisplayName = "Users Index Job",
         Description = "Index users in the database ",
         SortIndex = 1)]
+    [ServiceConfiguration]
     public class UsersIndexJob : ScheduledJobBase
     {
         private readonly int _batchSize = 500;
