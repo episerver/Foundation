@@ -68,7 +68,7 @@ namespace Foundation.Features.Api
                 return new EmptyResult();
             }
 
-            await _customerService.SignInManager().SignInAsync(user.UserName, user.Password, returnUrl);
+            await _customerService.SignInManager().SignInAsync(user.UserName, "Episerver123!", returnUrl);
 
             //set tracking cookie
             TrackingCookieManager.SetTrackingCookie(user.Id);

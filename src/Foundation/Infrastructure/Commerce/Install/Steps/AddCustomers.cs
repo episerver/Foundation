@@ -329,7 +329,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                 .GetAwaiter()
                 .GetResult();
 
-            if (user == null)
+            if (user != null)
             {
                 return;
             }
