@@ -119,6 +119,5 @@ namespace Foundation
                 endpoints.MapContent();
             });
         }
-
     }
 }

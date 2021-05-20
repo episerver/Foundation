@@ -1,176 +1,122 @@
 <a href="https://github.com/episerver/Foundation"><img src="http://ux.episerver.com/images/logo.png" title="Foundation" alt="Foundation"></a>
 
-## Foundation
+## Foundation Net Core
 
-Foundation offers a starting point that is intuitive, well-structured and modular allowing developers to select Episerver products as projects to include or exclude from their solution. 
-Including as of now projects for CMS, Commerce, Personalization, Find and Social, with the rest to follow.
-
-For documentation on Episerver Foundation, see [the documentation repository](https://github.com/episerver/Foundation-docs). Note that this is till work-in-progress.
-
-You can request a demo of the project by one of our Episerver experts on [Get a demo](https://www.episerver.com/get-a-demo/).
-
-[![Build status](https://dev.azure.com/episerver-foundation/Foundation/_apis/build/status/Foundation-Release)](https://dev.azure.com/episerver-foundation/Foundation/_build/latest?definitionId=1)
-[![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
+This preview repository is early access to the latest Episerver packages targeting .NET 5.
 
 ---
 
-## Table of Contents
+## The Solution
 
-- [System requirements](#system-requirements)
-- [Pre-installation set-up](#pre-installation-set-up)
-- [Installation](#installation)
-- [Troubleshooting](#troubleshooting)
-- [Modular set-up](#modular-set-up)
-- [Contributing](#contributing)
-
----
-
-## System requirements
-
-* Visual Studio 2017 or higher - [Download](https://visualstudio.microsoft.com/downloads/)
-* SQL Server Express or Developer or SQL Azure Server - [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (If using SQL Azure [download sqlcmd](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017))
-* Microsoft SQL Server Management Studio - [Download](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
-* Nodejs - [Download](https://nodejs.org/en/download/)
-* Microsoft Internet Information Server (IIS) - [Download](https://www.iis.net/downloads)
-
-See also the general [Episerver system requirements](https://world.episerver.com/documentation/system-requirements/) on Episerver World.
-
----
-
-## Pre-installation set-up
-
-### SQL server
-
-1. In Microsoft SQL Server Management Studio, connect to your SQL server:
-![SQL server login](https://i.ibb.co/dW5n5wQ/SQLServer-Log-In.png)
-2. Right-click on your server and select Properties.
-3. Under **Security**, make sure that **SQL Server and Windows Authentication mode** is selected:
-![SQL server authentication](https://i.ibb.co/2Sktyrb/SQLServer-Authentication.png")
-
-### IIS settings
-
-How to find the IIS settings depends on the system where you are running IIS.
-
-1.	Go to your IIS settings. If you are running IIS locally on your Windows machine, you find these under **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off**. 
-2.	Check that the following features have been enabled:
-  *	Under Application Development:
-    *	ASP .NET
-    * NET Extensibility
-    * ASP
-    * ISAPI Extensions
-    *	ISAPI Filters
-  *	Common HTTP Features (Installed) node (all are required):
-    *	Static Content (Installed)
-    *	Default Document (Installed)
-    *	Directory Browsing (Installed
-    *	HTTP Errors (Installed) (Installed)
-    *	HTTP Redirection
-  *	Under the Performance (Installed) node:
-    *	Static Content Compression (Installed)
-    *	Dynamic Content Compression (Installed)
-  *	Under the Security (Installed) node:
-    *	URL Authorization (Installed)
-
-![IIS settings](https://i.ibb.co/cNTmzc2/ISSSettings.png)
+`Foundation has a default username and password of admin@example.com / Episerver123!`
 
 ---
 
 ## Installation
 
-The installation files on GitHub contain a batch file that will install the Foundation project with all products and set up an empty demo site. After the installation, you can fetch demo content from a remote repository to create a Mosey demo site, a fictitious fashion retail company.
+The installation files contain a batch file that will install the Foundation project and create database.
 
-1.	Download the ZIP file from the Foundation project's **master** branch on GitHub and extract the files, or clone the project from GitHub to a local folder using the command prompt and the git command ```git clone https://github.com/episerver/Foundation foundation  ``` (the _foundation_ part specifies the folder where to put the files):
-
-Download ZIP file
-
-![Download Zip file](https://i.ibb.co/SB38p3z/Git-Hub-Zip.png)
-
-Or clone project using Git
-
-![Clone project](https://i.ibb.co/23tJmNm/Git-Cloning.png)
-
-> **_Note:_** It is recommended that you store the project in a folder directly under C:, in a folder where your user has full access rights:
-
-![Folder access rights](https://i.ibb.co/Wkcbr9m/Folder-Access-Rights.png)
-
-2.	Go to the appSettings.config and appSettings.debug.config: 
-
-  * Search the config for "https://ChangeMe.com/" 
-  * Update Perform, Insight, Profile Store urls and keys
-
-3.	Go to the Web.config:
-    
-  * Search the config for "changeme"
-  * Update Social appId and secret key
-  * Update the Find index to your own credentials
-
-4.	Right-click on the batch file called **setup.cmd** and select **Run as administrator**:
-
-![Run batch file](https://i.ibb.co/SBFfLzt/Run-Batch-File.png)
-
-5.	The installation starts and you are asked to provide the following parameters:
-
-| Parameter | Description |
-|-----------|-------------|
-|Application name: | The name of the application. Note: The application name should contain only letters and numbers as it used as the prefix to create the website and database components.|
-|Public domain name for foundation:| Domain name for the application, for example, foundation.com.|
-|Public domain name for Commerce Manager: | Domain name for the Commerce Manager application, for example, commerce.foundation.com.|
-|License path:| If you have a license file, add the path to it. Otherwise you can add that later.|
-|SQL server name:| SQL server instance name. Add the same server name as the one you connected to in the [Pre-installation set-up](#pre-installation-set-up) steps for the SQL server. If using Azure SQL, provide the full dns name for your Azure SQL instance |
-|sqlcmd command: | SQL command to execute, by default ```-S . -E ```. This can generally be left as is. If using Azure SQL, pass username and password as ```-U <user> -P <password>```|
-
-![Build parameters](https://i.ibb.co/WcKGLVh/Build-Parameters.png)
-
-6.	The build process executes a number of steps and logs both to the console and to the log files. The automatic build steps are:
-```
-•	Set permissions on the folder to everyone full control
-•	Restore NuGet packages
-•	npm install
-•	gulp Saas task
-•	Build solution
-•	Install Databases
-•	Create two application pools
-•	Create two websites
-•	Update host file
-•	Copy License file
-•	Update commerce manager url for access from cms
-•	create connectionstrings files
-•	Start the site to finish setup in browser
-```
-![Build progress](https://i.ibb.co/GvZBcYY/Build-Progress.png)
-
-7.	When the installation is finished, a Mosey start page is opened in your browser. If not, enter the URL http://_yourdomainname_/ manually.
-![Mosey start page](https://i.ibb.co/F5BHtb3/Mosey-Start-Page.png)
-
-8.	If the setup page throws an error, open your host file, found under **C:\Windows\System32\drivers\etc**, and add the two domain names you entered during the installation. Reload the page in your browser.
-![Example host file](https://i.ibb.co/Ss79b55/Host-File-Example.png)
-
-9.	Log in with user: **admin@example.com** and password: **store** to access the Episerver user interface.  
-
-> **_Note:_** A **resetup.cmd** file has been created in your project which you can run to re-install the database.
-
-10. Developer licenses for evaluation purposes can be obtained from the [Episerver License Center](https://license.episerver.com/). Place the **License.config** file in your webroot. 
-
-## Troubleshooting
-### The installation fails
-* Check that you have full access rights to the project folder.
-* Check that you meet [the system requirements](#system-requirements).
-* Check your SQL authentication settings as described in [SQL Server](#sql-server).
-* Check your IIS settings so that they match those specified in [IIS settings](#iis-settings).
-* Check the log files:
-  ```
-  Build\Logs\Build.log
-  Build\Logs\Database.log
-  Build\Logs\IIS.log
-  ```
-### The site does not start
-* Check that the site is actually running by navigating to http://_yourdomainname_/episerver/cms.
-
-## Modular set-up
-
-The Foundation project is set up to include all Episerver’s main products. Each product is set up as a project of its own inside the main project, so if you don’t want all products, you can simply remove their projects.
-
-## Contributing
-As this is an open-source project, we encourage you to contribute to the source code and the documentation. See the [Contribution guidelines for this project](docs/CONTRIBUTING.md).
+Right-click on the batch file called **setup.cmd** and select **Run as administrator**
 
 ---
+
+## Configuration
+
+Most of the configuration has been moved to options classes.  The options classes can be configured through code or the appsettings.json configuration file.  For option classes to be automatically configured from `appsettings.json`, please use the `EPiServer.ServiceLocation.OptionsAttribute`.  There is a configuration section which maps to the leaf node in the JSON.
+
+To utilize legacy configuration sections you can install the `EPiServer.Cms.AspNetCore.Migration` package. This is available to ease migration, however we encourage to update the use options or `appsettings.json` if possible.
+
+---
+
+## Startup extensibility
+
+### Program.cs
+EPiServer will by default use the built-in Dependency Injection framework (DI) in .NET 5. To connect the DI framework with EPiServer you need to call extension method `IHostBuilder.ConfigureCmsDefault()` in Program.cs. <br/>
+To configure the application (including EPiServer) to use another DI framework you should call the extension method `IHostBuilder.UseServiceProviderFactory`. The example below shows how to configure the application to use Autofac:
+
+```
+host.UseServiceProviderFactory(context => new  ServiceLocatorProviderFactoryFacade<ContainerBuilder>(context,
+    new AutofacServiceProviderFactory()));
+```
+
+### Startup.cs
+There are some added extensibility points when interacting with the Startup class.
+  1.  `services.AddCms();` - This configures than CMS and needs to be called to function properly.
+  2.  `endpoints.MapContent();` - This registers EPiServer content routing with the endpoint routing feature.
+  3.  `IEndpointRoutingExtension` - Access to the `IEndpointRouteBuilder` to register routes. Convience method `services.AddEndpointRoutingExtension<T>()`
+  4.  `IStartupFilter` - Access to IApplicationBuilder if you need to register middleware for instance.  Convience method `services.AddStartupFilter<T>()`
+  5.  `IBlockingFirstRequestInitializer` - Use this if you need to do something before the first request
+  6.  `IRedirectingFirstRequestInitializer` - Use this if you need to redirect to a page until some type of initialization takes place.
+
+---
+
+## Compiled Views for Shell Modules
+
+For addon developers, we have added a default location expander that will look for compiled views in a certain location or based on configuration value.
+  1.  /{ShellModuleName}/Views/
+  2.  The folder defined in the module.config viewFolder attribute on module element.
+
+---
+
+## Preview links to documentation
+
+### CMS
+
+* [CMS 12 Breaking changes](https://world.episerver.com/externalContentView/2f46e48e-19d5-4735-a0fa-f9b193a78eb7 "CMS 12 Breaking changes")
+* [Configuration](https://world.episerver.com/externalContentView/91e3ad6f-ec40-44c4-a667-7d48e2f1c2f0 "Configuration")
+* [Dependency injection](https://world.episerver.com/externalContentView/a798288a-90af-44ff-b495-68e827403903 "Dependency injection")
+* [File Providers](https://world.episerver.com/externalContentView/c10509ac-40b4-4c0e-92d5-016b4e37081b "File Providers")
+* [Logging](https://world.episerver.com/externalContentView/ac48d781-f9f6-4f16-8677-8281bacdaffa "Logging")
+* [Routing](https://world.episerver.com/externalContentView/968f52c2-8a0f-4111-a34a-d51450d62b1e "Routing")
+* [Security](https://world.episerver.com/externalContentView/bf63f0a1-da67-4a0c-8b71-d753099956d0 "Security")
+* [Upgrade assistant - overview](https://world.episerver.com/externalContentView/01ad2880-18c2-4898-90d0-9fa99a6fdbe1 "Upgrade assistant - overview")
+* [Upgrade assistant - installation and running](https://world.episerver.com/externalContentView/f5838f07-fc03-464a-9bff-724272e6bf1e "Upgrade assistant - installation and running")
+
+### Commerce
+
+* [Breaking changes Commerce 14](https://world.episerver.com/externalContentView/e324ac1b-aa08-4335-87e0-1f2abc6ab054 "Upgrading/breaking changes")
+* [Commerce-specific configurations](https://world.episerver.com/externalContentView/615a8a17-150a-485f-88e0-4938f07db965 "Commerce-specific configurations")
+* [Feature-specific configurations](https://world.episerver.com/externalContentView/60171983-89a5-4761-ad1e-d28124d5517b "Feature-specific configurations")
+* [Caching](https://world.episerver.com/externalContentView/accb3c7b-bd04-4bfd-98b1-2737eeca7fcb "Caching")
+* [Importing catalog data](https://world.episerver.com/externalContentView/a57e2a15-e429-450e-a3cb-387d1a70589c "Importing catalog data")
+* [Catalog DTO and object models](https://world.episerver.com/externalContentView/2bd5fe5b-40a2-41de-836d-6c772e865479 "Catalog DTO and object models")
+* [Catalog product search](https://world.episerver.com/externalContentView/8cf54f54-aa55-48b3-9975-fa599da6cd24 "Catalog product search")
+* [Event-driven catalog indexing](https://world.episerver.com/externalContentView/02482dbc-542b-45c8-bfaa-44f46c0912f4 "Event-driven catalog indexing")
+* [Low-level APIs](https://world.episerver.com/externalContentView/089492e2-a1e8-486d-a50b-1d75e3a5155d "Low-level APIs")
+* [Globalization](https://world.episerver.com/externalContentView/fdaed320-44c8-486e-a4f8-9cc95e8484ed "Globalization")
+* [Logging](https://world.episerver.com/externalContentView/9c75a5ac-bfa4-4903-8f6b-f6147264f9da "Logging")
+* [Markets](https://world.episerver.com/externalContentView/52f78cf0-18b6-4a0f-af33-1274fc96b100 "Markets")
+* [Collecting data for reports](https://world.episerver.com/externalContentView/26b681ab-37ba-4bdb-b5e4-0d13cd68bb6d "Collecting data for reports")
+* [Collecting subscription data](https://world.episerver.com/externalContentView/f7b9e057-9039-47a7-a22e-e618bf884339 "Collecting subscription data")
+* [Customers](https://world.episerver.com/externalContentView/5eef00df-3a49-452d-b6f5-58e30d2221a5 "Customers")
+* [Customer groups](https://world.episerver.com/externalContentView/e5b6659a-3e06-4534-9813-2de6b4abe40e "Customer groups")
+* [Order management](https://world.episerver.com/externalContentView/4265cd26-f6eb-4377-96b1-703ee6b88c65 "Order management")
+* [Extending order classes](https://world.episerver.com/externalContentView/35a56df3-0a19-47c6-87ad-a654b2bbc614 "Extending order classes")
+* [Serializable carts](https://world.episerver.com/externalContentView/7872356b-ff2a-46c5-926f-47720fab9d67 "Serializable carts")
+* [Payments](https://world.episerver.com/externalContentView/e5eaac36-ced0-457b-b57f-015040405275 "Payments")
+* [Payment gateways](https://world.episerver.com/externalContentView/9c545dfe-182f-4786-9d36-a713b86c7986 "Payment gateways")
+* [Payment plugins](https://world.episerver.com/externalContentView/003b0605-1b3b-48f1-86ef-8e471ecff4a5 "Payment plugins")
+* [Pricing](https://world.episerver.com/externalContentView/dbf2cf30-1aea-4805-bdae-19b985e71d56 "Pricing")
+* [PriceType examples](https://world.episerver.com/externalContentView/d70ba314-3752-46f8-b0a5-1af780d8a993 "PriceType examples")
+* [Shipping gateways and providers](https://world.episerver.com/externalContentView/d65374e8-c4b4-4c57-8e7d-a41580f7515b "Shipping gateways and providers")
+* [Shipping methods](https://world.episerver.com/externalContentView/3ba865ed-8d9d-483b-b6b0-365ba12b87e4 "Shipping methods")
+* [Scheduled jobs](https://world.episerver.com/externalContentView/c6931e2b-896f-4018-a526-68c94724a473 "Scheduled jobs")
+* [Search](https://world.episerver.com/externalContentView/b6615bbc-d3a3-4fcf-801e-23a109cf66d8 "Search")
+* [Customizing search](https://world.episerver.com/externalContentView/c77b3cfa-45fe-42fa-85bb-f828c0364d63 "Customizing search")
+* [Disabling product update events](https://world.episerver.com/externalContentView/f71c4eec-22d7-40ec-b0a8-fe4c58e326b0 "Disabling product update events")
+* [Creating a search provider](https://world.episerver.com/externalContentView/1b46cd43-2677-4796-827f-7e051ec2fa05 "Creating a search provider")
+* [Customizing search](https://world.episerver.com/externalContentView/c77b3cfa-45fe-42fa-85bb-f828c0364d63 "Customizing search")
+* [Indexing variants in a product document](https://world.episerver.com/externalContentView/4e0c3e6e-45c5-41fd-a2b4-e76f6af5cdc2 "Indexing variants in a product document")
+* [MetaType class](https://world.episerver.com/externalContentView/9bf86d3e-3d5f-49fe-b17c-9b8e8cbb2afd "MetaType class")
+* [Metadata Plus](https://world.episerver.com/externalContentView/18a116b2-9ee8-4203-8709-82c4edebeb02 "MetadataPlus") 
+* [Working with entity objects](https://world.episerver.com/externalContentView/5630b604-488e-4f57-ac9e-2876b93f1b26 "Working with entity objects")
+* [Working with SQL records](https://world.episerver.com/externalContentView/1fcf2a7e-04f0-40d5-b394-dcf8d040910c "Working with SQL records")
+* [Security](https://world.episerver.com/externalContentView/250587d7-1aa0-4ce1-b4a1-976fdb004024 "Security")
+* [Authorization and authentication](https://world.episerver.com/externalContentView/74b63d8c-7b0e-45f6-b04a-0b0e4ea42145 "Authorization and authentication")
+* [Support for OpenID Connect](https://world.episerver.com/externalContentView/7ea7be44-e5aa-4673-b9c2-ed92a116fa76 "Support for OpenID Connect")
+* [Installing and configuring the native integration package](https://world.episerver.com/externalContentView/0836e74c-4175-4657-9e8b-bcc015b5a8d8 "Installing and configuring the native integration package")
+* [Workflows and activities](https://world.episerver.com/externalContentView/c72e976b-ed92-454d-8830-cd87075209e4 "Workflows and activities")
+* [Option configuration classes](https://world.episerver.com/externalContentView/6a58d1b5-7f9a-41c2-a4c8-0b63bf33a18d "Option configuration classes")
+* [Currencies](https://world.episerver.com/externalContentView/bd2ea693-130c-4bcd-9ddb-bc93fcbc1b00 "Currencies")
+* [Object configuration](https://world.episerver.com/externalContentView/65dee408-4998-470d-bb4c-b5f6620954f4 "Object configuration")
+* [Countries and regions](https://world.episerver.com/externalContentView/c6c1d936-318d-412a-9ee9-7a52f4bfd5e3 "Countries and regions")
