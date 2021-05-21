@@ -23,7 +23,7 @@
                 </div>
 
                 <!-- Search box -->
-                <div class="mobile-navigation__search-box display-none" id="mobile-searchbox">
+                <div class="mobile-navigation__search-box display-none" id="mobile-searchbox" style="display: none;">
                     <div class="icon-menu">
                         <i data-feather="search"></i>
                     </div>
@@ -54,14 +54,14 @@
                     <i data-feather="x"></i>
                 </div>
 
-                <div class="display-none d-sm-block">
+                @*<div class="display-none d-sm-block">
                     <div class="icon-menu jsCartBtn jsOpenCartMobile" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0">
                         <span class="none-border icon-menu--has-badge">
                             <i data-feather="shopping-cart"></i>
                             <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
                         </span>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
@@ -82,7 +82,7 @@
                 </div>
             </a>
 
-            @if (Model.ShowCommerceControls)
+            @if (Model.ShowCommerceControls && Request.IsAuthenticated)
             {
                 <a class="offside-navbar--nav__item jsCartBtn" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0" data-toggle="tab" href="#mobile-cart">
                     <div class="icon-menu-description icon-menu-description--has-badge">

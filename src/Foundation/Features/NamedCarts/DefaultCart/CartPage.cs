@@ -19,7 +19,6 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 300)]
         public virtual ContentArea BottomContentArea { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Show Recommendations", Order = 50, Description = "This will determine whether or not to show recommendations.")]
         public virtual bool ShowRecommendations { get; set; }
 

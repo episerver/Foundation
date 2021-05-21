@@ -34,6 +34,7 @@ namespace Foundation.Features.Shared
         /// <summary>
         /// The manual inclusion products based on the Manual Inclusion Ordering.
         /// </summary>
+        [Searchable(false)]
         [Display(Name = "Manual inclusion ordering", Order = 250)]
         [SelectOne(SelectionFactoryType = typeof(InclusionOrderingSelectionFactory))]
         public virtual string ManualInclusionOrdering { get; set; }

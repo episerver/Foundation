@@ -25,13 +25,11 @@ namespace Foundation.Features.Settings
         #region Scripts
 
         [JsonIgnore]
-        [CultureSpecific]
         [Display(Name = "Header Scripts (Scripts will inject at the bottom of header)", GroupName = TabNames.Scripts, Description = "Scripts will inject at the bottom of header", Order = 10)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<ScriptInjectionModel>))]
         public virtual IList<ScriptInjectionModel> HeaderScripts { get; set; }
 
         [JsonIgnore]
-        [CultureSpecific]
         [Display(Name = "Footer Scripts (Scripts will inject at the bottom of footer)", GroupName = TabNames.Scripts, Description = "Scripts will inject at the bottom of footer", Order = 20)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<ScriptInjectionModel>))]
         public virtual IList<ScriptInjectionModel> FooterScripts { get; set; }
@@ -42,7 +40,6 @@ namespace Foundation.Features.Settings
     public class ScriptInjectionModel
     {
         [Required]
-        [CultureSpecific]
         [UIHint(EPiServer.Commerce.UIHint.AllContent)]
         [AllowedTypes(typeof(FoundationPageData), typeof(FolderPage), typeof(CatalogContentBase), typeof(EntryContentBase))]
         [Display(Name = "Root (Scripts will inject for this page and all children pages)", Description = "Scripts will inject for this page and all children pages", Order = 10)]

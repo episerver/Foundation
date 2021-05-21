@@ -15,7 +15,6 @@ namespace Foundation.Features.StandardPage
     [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-23.png")]
     public class StandardPage : FoundationPageData
     {
-        [CultureSpecific]
         [Searchable(false)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Title color", GroupName = SystemTabNames.Content, Order = 210)]
@@ -34,7 +33,6 @@ namespace Foundation.Features.StandardPage
             set => this.SetPropertyValue(page => page.BackgroundColor, value);
         }
 
-        [Searchable(false)]
         [Range(0, 1.0, ErrorMessage = "Opacity only allows value between 0 and 1")]
         [Display(Name = "Background opacity (0 to 1)", GroupName = SystemTabNames.Content, Order = 230)]
         public virtual double? BackgroundOpacity
@@ -43,12 +41,10 @@ namespace Foundation.Features.StandardPage
             set => this.SetPropertyValue(page => page.BackgroundOpacity, value);
         }
 
-        [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Display(Name = "Background image", GroupName = SystemTabNames.Content, Order = 240)]
         public virtual ContentReference BackgroundImage { get; set; }
 
-        [CultureSpecific]
         [UIHint(UIHint.Video)]
         [Display(Name = "Background video", GroupName = SystemTabNames.Content, Order = 250)]
         public virtual ContentReference BackgroundVideo { get; set; }

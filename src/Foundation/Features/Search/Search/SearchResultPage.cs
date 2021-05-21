@@ -18,7 +18,6 @@ namespace Foundation.Features.Search.Search
         [Display(Name = "Top content area", Order = 210)]
         public virtual ContentArea TopContentArea { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Show recommendations", Description = "This will determine whether or not to show recommendations", Order = 220)]
         public virtual bool ShowRecommendations { get; set; }
 
