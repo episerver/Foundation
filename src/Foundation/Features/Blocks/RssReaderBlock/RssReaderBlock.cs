@@ -17,7 +17,6 @@ namespace Foundation.Features.Blocks.RssReaderBlock
     {
         [Required]
         [Editable(true)]
-        [CultureSpecific]
         [Display(Name = "RSS feed URL", Description = "URL for RSS feed", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual Url RssUrl { get; set; }
 

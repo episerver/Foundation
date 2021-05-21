@@ -16,6 +16,7 @@ namespace Foundation.Features.Blocks.YouTubeBlock
     {
         [Required]
         [Editable(true)]
+        [Searchable(false)]
         [Display(Name = "YouTube link", Description = "URL link to YouTube video", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string YouTubeLink
         {

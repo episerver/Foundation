@@ -1,5 +1,6 @@
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
+using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
@@ -16,6 +17,7 @@ namespace Foundation.Features.Shared
         [Display(Description = "Categories associated with this content", GroupName = SystemTabNames.PageHeader, Order = 0)]
         public virtual IList<ContentReference> Categories { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
         [Display(Name = "Padding", GroupName = TabNames.BlockStyling, Order = 1)]
         public virtual string Padding
@@ -24,6 +26,7 @@ namespace Foundation.Features.Shared
             set => this.SetPropertyValue(page => page.Padding, value);
         }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
         [Display(Name = "Margin", GroupName = TabNames.BlockStyling, Order = 2)]
         public virtual string Margin
@@ -32,6 +35,7 @@ namespace Foundation.Features.Shared
             set => this.SetPropertyValue(page => page.Margin, value);
         }
 
+        [Searchable(false)]
         [Display(Name = "Background color", GroupName = TabNames.BlockStyling, Order = 3)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string BackgroundColor

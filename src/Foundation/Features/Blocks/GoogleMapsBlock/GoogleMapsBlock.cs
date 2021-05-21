@@ -14,6 +14,7 @@ namespace Foundation.Features.Blocks.GoogleMapsBlock
     public class GoogleMapsBlock : FoundationBlockData
     {
         [Required]
+        [Searchable(false)]
         [Display(Name = "API Key")]
         public virtual string ApiKey { get; set; }
 

@@ -25,7 +25,6 @@ namespace Foundation.Features.Blocks.MenuItemBlock
         [Display(Description = "Name in menu", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Name { get; set; }
 
-        [CultureSpecific]
         [Display(Description = "Link", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual Url Link { get; set; }
 

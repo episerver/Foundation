@@ -17,7 +17,7 @@ namespace Foundation.Features.Events.CalendarBlock
     public class CalendarBlock : FoundationBlockData
     {
         [Required]
-        [CultureSpecific]
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(CalendarViewModeSelectionFactory))]
         [Display(Name = "View as", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string ViewMode { get; set; }

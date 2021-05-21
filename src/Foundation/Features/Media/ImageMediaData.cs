@@ -80,11 +80,9 @@ namespace Foundation.Features.Media
         [Display(Name = "Credits text", GroupName = SystemTabNames.Content, Order = 180)]
         public virtual string CreditsText { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Credits link", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual Url CreditsLink { get; set; }
 
-        [CultureSpecific]
         [UIHint("allcontent")]
         [Display(Description = "Link to content", GroupName = SystemTabNames.Content, Order = 200)]
         public virtual ContentReference Link { get; set; }

@@ -14,7 +14,6 @@ namespace Foundation.Features.Blocks.VideoBlock
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-05.png")]
     public class VideoBlock : FoundationBlockData
     {
-        [CultureSpecific]
         [UIHint(UIHint.Video)]
         public virtual ContentReference Video { get; set; }
     }
