@@ -7,14 +7,14 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
-		<PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.0.0-inte-021244" />
-		<PackageReference Include="EPiServer.CMS" Version="12.0.0-inte-021244" />
-		<PackageReference Include="EPiServer.Commerce.Core" Version="14.0.0-inte-020683" />
-		<PackageReference Include="EPiServer.Commerce.Web" Version="14.0.0-inte-020683" />
+		<PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.0.0-inte-021292" />
+		<PackageReference Include="EPiServer.CMS" Version="12.0.0-inte-021292" />
+		<PackageReference Include="EPiServer.Commerce.Core" Version="14.0.0-inte-020696" />
+		<PackageReference Include="EPiServer.Commerce.Web" Version="14.0.0-inte-020696" />
 		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.0-inte-020197" />
-    <!--<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.0-inte-000035" />-->
+    <PackageReference Include="EPiServer.Find.Commerce" Version="12.0.0-inte-000046" />
 		<PackageReference Include="EPiServer.Forms" Version="5.0.0-inte-020030" />
-		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.0-inte-020683" />
+		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.0-inte-020696" />
 		<PackageReference Include="FileHelpers" Version="3.4.2" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
 		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
@@ -120,9 +120,6 @@
 		<None Remove="Infrastructure\Social\**" />
 		<Compile Remove="Features\Media\FoundationPdfFile.cs" />
 		<Compile Remove="Features\Media\FoundationPdfFileViewModel.cs" />
-		<Compile Remove="Features\Search\FoundationCatalogContentEventListener.cs" />
-		<Compile Remove="Features\Search\FoundationFindConventions.cs" />
-		<Compile Remove="Features\Search\FoundationSearchProvider.cs" />
 		<Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
 		<Compile Remove="Infrastructure\Cms\CmsMenuProvider.cs" />
 		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />

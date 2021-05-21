@@ -3,7 +3,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
-//using EPiServer.Find.Commerce;
+using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.Statistics;
 using Foundation.Features.MyOrganization.QuickOrderBlock;
 using Foundation.Features.MyOrganization.QuickOrderPage;
@@ -98,7 +98,7 @@ namespace Foundation.Features.CatalogContent.Services
 
             var results = _findClient.Search<ProductContent>()
                 .Filter(_ => _.VariationModels(), x => x.Code.PrefixCaseInsensitive(query))
-                //.FilterMarket(market)
+                .FilterMarket(market)
                 .Filter(x => x.Language.Name.Match(_languageResolver.Language.Name))
                 .Track()
                 .FilterForVisitor()
