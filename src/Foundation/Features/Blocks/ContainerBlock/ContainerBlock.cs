@@ -16,6 +16,7 @@ namespace Foundation.Features.Blocks.ContainerBlock
         [Display(Name = "Main content area")]
         public virtual ContentArea MainContentArea { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "CSS class")]
         public virtual string CssClass { get; set; }
     }

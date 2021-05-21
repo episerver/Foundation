@@ -26,6 +26,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
         [Display(Name = "Link", Order = 20, GroupName = SystemTabNames.Content)]
         public virtual Url ButtonLink { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(ButtonBlockStyleSelectionFactory))]
         [Display(Name = "Style", Order = 30, GroupName = SystemTabNames.Content)]
         public virtual string ButtonStyle { get; set; }
@@ -37,13 +38,11 @@ namespace Foundation.Features.Blocks.ButtonBlock
         #endregion
 
         #region Button Text
-        [CultureSpecific]
-        [Searchable(false)]
+
         [Display(Name = "Use Custom Text Color", GroupName = TabNames.Text,
             Description = "This will determine whether or not to overdride text color", Order = 5)]
         public virtual bool TextColorOverdrive { get; set; }
 
-        [CultureSpecific]
         [Searchable(false)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Button Text color", GroupName = TabNames.Text, Order = 50)]
@@ -56,18 +55,15 @@ namespace Foundation.Features.Blocks.ButtonBlock
         #endregion
 
         #region Button Background
-        [CultureSpecific]
-        [Searchable(false)]
+
         [Display(Name = "Use Custom Background Color", GroupName = TabNames.Background,
             Description = "This will determine whether or not to overdride background color", Order = 5)]
         public virtual bool BackgroundColorOverdrive { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Use transparent background", GroupName = TabNames.Background,
             Description = "This will determine whether or not to use transparent background", Order = 10)]
         public virtual bool ShowTransparentBackground { get; set; }
 
-        [CultureSpecific]
         [Searchable(false)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Button background color", GroupName = TabNames.Background, Order = 20)]
@@ -79,13 +75,12 @@ namespace Foundation.Features.Blocks.ButtonBlock
         #endregion
 
         #region Border
-        [CultureSpecific]
-        [Searchable(false)]
+
         [Display(Name = "Use Custom Border", GroupName = TabNames.Border,
             Description = "This will determine whether or not to overdride border style", Order = 5)]
         public virtual bool BorderStyleOverdrive { get; set; }
 
-        [CultureSpecific]
+        [Searchable(false)]
         [Display(Name = "Border Styles", GroupName = TabNames.Border, Description = "This will determine whether or not to show border", Order = 10)]
         [SelectOne(SelectionFactoryType = typeof(BorderStyleSelectionFactory))]
         public virtual string BorderStyle { get; set; }
@@ -94,7 +89,6 @@ namespace Foundation.Features.Blocks.ButtonBlock
         [RegularExpression("^[+]?\\d*$", ErrorMessage = "BorderWidth must be non-negative")]
         public virtual int BorderWidth { get; set; }
 
-        [CultureSpecific]
         [Searchable(false)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Button Border color", GroupName = TabNames.Border, Order = 30)]

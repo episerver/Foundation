@@ -25,11 +25,9 @@ namespace Foundation.Features.Search.ProductSearchBlock
         [Display(Name = "Search term", Order = 20)]
         public virtual string SearchTerm { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Number of results", Description = "The number of products to show in the list, default is 6", Order = 30)]
         public virtual int ResultsPerPage { get; set; }
 
-        [CultureSpecific]
         [SelectOne(SelectionFactoryType = typeof(ProductSearchBlockItemsPerRowSelectionFactory))]
         [Display(Name = "Results per row", Description = "The number of products to show in a row, default is 3", Order = 40)]
         public virtual int ItemsPerRow { get; set; }
@@ -38,6 +36,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
         [Display(Name = "Catalog categories", Description = "Root categories to get products from, includes sub categories", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual ContentArea Nodes { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Sort order", Description = "Sort order to apply to the search result", Order = 55)]
         [SelectOne(SelectionFactoryType = typeof(SortOrderSelectionFactory))]
         public virtual string SortOrder { get; set; }
@@ -49,18 +48,18 @@ namespace Foundation.Features.Search.ProductSearchBlock
         [Display(Name = "Priority products", Description = "Products to put first in the list", Order = 70)]
         public virtual ContentArea PriorityProducts { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Discontinued products mode", Description = "Handle discontinued products to show in the list", Order = 75)]
         [SelectOne(SelectionFactoryType = typeof(DiscontinuedProductModeSelectionFactory))]
         public virtual string DiscontinuedProductsMode { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Minimum price", Description = "The minimum price in the current market currency", Order = 80)]
         public virtual int MinPrice { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Maximum price", Description = "The maximum price in the current market currency", Order = 90)]
         public virtual int MaxPrice { get; set; }
 
+        [Searchable(false)]
         [SelectMany(SelectionFactoryType = typeof(BrandSelectionFactory))]
         [Display(Name = "Brand filter", Description = "Filter based on all available brands", Order = 100)]
         public virtual string BrandFilter { get; set; }

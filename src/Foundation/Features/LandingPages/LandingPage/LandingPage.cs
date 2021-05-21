@@ -14,6 +14,7 @@ namespace Foundation.Features.LandingPages.LandingPage
     [ImageUrl("~/assets/icons/gfx/page-type-thumbnail-landingpage-onecol.png")]
     public class LandingPage : FoundationPageData
     {
+        [CultureSpecific]
         [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual ContentArea TopContentArea { get; set; }
     }

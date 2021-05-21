@@ -18,10 +18,12 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
         [Display(Name = "Destination page", Order = 10, GroupName = SystemTabNames.Content)]
         public virtual PageReference DestinationPage { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Breadcrumb separator", Order = 20, GroupName = SystemTabNames.Content)]
         [SelectOne(SelectionFactoryType = typeof(BreadcrumbSeparatorSelectionFactory))]
         public virtual string Separator { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Alignment option", Order = 30, GroupName = SystemTabNames.Content)]
         [SelectOne(SelectionFactoryType = typeof(BreadcrumbAlignmentOptionSelectionFactory))]
         public virtual string Alignment { get; set; }

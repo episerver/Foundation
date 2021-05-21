@@ -61,18 +61,22 @@ namespace Foundation.Features.Blocks.PageListBlock
         [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual bool Recursive { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Template of pages listing", GroupName = SystemTabNames.Content, Order = 100)]
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Preview option (not available in the Grid, Insight templates)", GroupName = SystemTabNames.Content, Order = 110)]
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Overlay color (only for Card template)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 120)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string OverlayColor { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Overlay text color (only for Card template)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 130)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string OverlayTextColor { get; set; }

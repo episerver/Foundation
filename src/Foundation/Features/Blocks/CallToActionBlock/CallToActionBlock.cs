@@ -27,6 +27,7 @@ namespace Foundation.Features.Blocks.CallToActionBlock
         [Display(GroupName = SystemTabNames.Content, Order = 20)]
         public virtual XhtmlString Subtext { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Text color", GroupName = SystemTabNames.Content, Order = 30)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string TextColor { get; set; }
@@ -37,6 +38,7 @@ namespace Foundation.Features.Blocks.CallToActionBlock
         [Display(Name = "Background image", GroupName = TabNames.Image, Order = 40)]
         public virtual ContentReference BackgroundImage { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BackgroundImageSelectionFactory))]
         [Display(Name = "Choose image style to fit the block", Order = 41, GroupName = TabNames.Image)]
         public virtual string BackgroundImageSetting { get; set; }

@@ -16,7 +16,6 @@ namespace Foundation.Features.MyAccount.CreditCard
     public class CreditCardPage : FoundationPageData, IDisableOPE
     {
         [Display(GroupName = SystemTabNames.Content, Order = 200)]
-        [CultureSpecific]
         public virtual bool B2B { get; set; }
     }
 }

@@ -19,12 +19,10 @@ namespace Foundation.Features.Settings
     {
         #region Person settings
 
-        [CultureSpecific]
         [Display(GroupName = TabNames.CustomSettings, Order = 100)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Sectors { get; set; }
 
-        [CultureSpecific]
         [Display(GroupName = TabNames.CustomSettings, Order = 200)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Locations { get; set; }
