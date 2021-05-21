@@ -1,7 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
-//using EPiServer.Find.Commerce;
+using EPiServer.Find.Commerce;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Mediachase.Commerce.Catalog;
@@ -45,7 +45,7 @@ namespace Foundation.Features.Blocks.CategoryBlock
             return new CategoryItemViewModel
             {
                 Name = model.DisplayName,
-                //ImageUrl = model.DefaultImageUrl(),
+                ImageUrl = model.DefaultImageUrl(),
                 Uri = _urlResolver.GetUrl(model.ContentLink),
                 ChildLinks = children.Select(
                     x => new CategoryChildLinkViewModel

@@ -146,7 +146,7 @@ namespace Foundation.Features.Search
                 .ToList();
 
             var childReferences = documents.OfType<GenericProduct>()
-                //.SelectMany(x => x.Variations())
+                .SelectMany(x => x.Variations())
                 .Select(x => x)
                 .ToList();
 

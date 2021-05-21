@@ -13,6 +13,7 @@ namespace Foundation.Infrastructure.Personalization
             var services = context.Services;
             services.AddTransient<ICmsTrackingService, CmsTrackingService>();
             services.AddTransient<ICommerceTrackingService, CommerceTrackingService>();
+            services.AddTransient<TrackingDataFactory>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

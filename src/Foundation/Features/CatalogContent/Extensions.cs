@@ -50,7 +50,7 @@ namespace Foundation.Features.CatalogContent
             new Lazy<ICurrentMarket>(() => ServiceLocator.Current.GetInstance<ICurrentMarket>());
 
         private static readonly Lazy<FilterPublished> FilterPublished =
-            new Lazy<FilterPublished>(() => ServiceLocator.Current.GetInstance<FilterPublished>());
+            new Lazy<FilterPublished>(() => new FilterPublished());
 
         private static readonly Lazy<IPromotionService> PromotionService =
             new Lazy<IPromotionService>(() => ServiceLocator.Current.GetInstance<IPromotionService>());

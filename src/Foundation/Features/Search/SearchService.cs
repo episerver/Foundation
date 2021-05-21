@@ -5,7 +5,7 @@ using EPiServer.Find;
 using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Cms;
-//using EPiServer.Find.Commerce;
+using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
 using EPiServer.Find.Framework.Statistics;
 using EPiServer.Find.Helpers;
@@ -175,7 +175,7 @@ namespace Foundation.Features.Search
 
             var results = _findClient.Search<GenericProduct>()
                 .Filter(_ => _.VariationModels(), x => x.Code.PrefixCaseInsensitive(query))
-                //.FilterMarket(market)
+                .FilterMarket(market)
                 .Filter(x => x.Language.Name.Match(_contentLanguageAccessor.Language.Name))
                 .Track()
                 .FilterForVisitor()
@@ -454,7 +454,7 @@ namespace Foundation.Features.Search
         {
             var market = _currentMarket.GetCurrentMarket();
             var query = _findClient.Search<EntryContentBase>();
-            //query = query.FilterMarket(market);
+            query = query.FilterMarket(market);
             query = query.Filter(x => x.Language.Name.Match(_contentLanguageAccessor.Language.Name));
             query = query.FilterForVisitor();
             if (catalogId != 0)
@@ -558,7 +558,7 @@ namespace Foundation.Features.Search
                 query = query.FilterOutline(new[] { outline });
             }
 
-            //query = query.FilterMarket(market);
+            query = query.FilterMarket(market);
             var facetQuery = query;
 
             query = FilterSelected(query, filterOptions.FacetGroups);

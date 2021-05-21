@@ -18,7 +18,7 @@ namespace Foundation.Infrastructure.Cms
         {
             context.Services.AddTransient<IsInEditModeAccessor>(locator => () => locator.GetInstance<IContextModeResolver>().CurrentMode.EditOrPreview());
             context.Services.AddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
-            context.Services.AddTransient<IModelBinderProvider, ModelBinderProvider>();
+            context.Services.AddTransient<IModelBinderProvider, DecimalModelBinderProvider>();
             context.Services.AddSingleton<IUserService, UserService>();
             context.Services.AddTransient<ICookieService, CookieService>();
             context.Services.AddSingleton<ISettingsService, SettingsService>();

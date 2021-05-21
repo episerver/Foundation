@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Cms.ModelBinders
 {
-    public class ModelBinderProvider : IModelBinderProvider
+    public class DecimalModelBinderProvider : IModelBinderProvider
     {
         private static readonly IDictionary<Type, Type> ModelBinderTypeMappings = new Dictionary<Type, Type>
         {

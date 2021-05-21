@@ -4,6 +4,8 @@ using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
+using Foundation.Features.Checkout.Payments;
+using Foundation.Features.Search;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
@@ -73,11 +75,10 @@ namespace Foundation
             });
 
             services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
-                .AddRazorOptions(ro => ro.ConfigureFeatureFolders());
+            .AddRazorOptions(ro => ro.ConfigureFeatureFolders());
 
             services.AddCommerce();
             services.AddDisplay();
-            services.AddTinyMce();
             services.AddFind();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
@@ -85,17 +86,16 @@ namespace Foundation
             //site specific
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
             services.AddEmbeddedLocalization<Startup>();
-            services.Configure<MvcOptions>(o =>
-            {
-                o.ModelBinderProviders.Insert(0, new ModelBinderProvider());
-            });
-
-
             services.Configure<OrderOptions>(o =>
             {
                 o.DisableOrderDataLocalization = true;
             });
-
+            services.Configure<MvcOptions>(o =>
+            {
+                o.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                o.ModelBinderProviders.Insert(0, new FilterOptionModelBinderProvider());
+                o.ModelBinderProviders.Insert(0, new PaymentModelBinderProvider());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
