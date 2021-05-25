@@ -1,5 +1,4 @@
-﻿using EPiServer.Cms.TinyMce;
-using EPiServer.Data;
+﻿using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
