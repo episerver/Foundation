@@ -105,7 +105,7 @@ namespace Foundation.Features.Shared
         #endregion
 
         #region Teaser
-     
+
         [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Teaser ratio (width-height)", GroupName = TabNames.Teaser, Order = 50)]
