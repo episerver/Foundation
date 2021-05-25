@@ -1,5 +1,4 @@
 ﻿using EPiServer;
-using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Routing;

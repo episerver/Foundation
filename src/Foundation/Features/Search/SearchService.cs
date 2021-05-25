@@ -578,6 +578,8 @@ namespace Foundation.Features.Search
             }
 
             query = query.ApplyBestBets()
+                .PublishedInCurrentLanguage()
+                .FilterForVisitor()
                 .Skip((filterOptions.Page - 1) * pageSize)
                 .Take(pageSize)
                 .StaticallyCacheFor(TimeSpan.FromMinutes(1));
