@@ -41,7 +41,7 @@ namespace Foundation.Infrastructure.SchemaMarkup
             }
 
             //Set prices or price range
-            var prices = content.Prices();
+            var prices = content.Prices().Where(x => x.UnitPrice.Currency.Equals(_currencyService.GetCurrentCurrency()));
             var minPrice = prices.Any() ? prices.Min(x => x.UnitPrice) : new Money();
             var maxPrice = prices.Any() ? prices.Max(x => x.UnitPrice) : new Money();
             var priceEndDate = prices.Any() ?
