@@ -64,13 +64,16 @@ namespace Foundation.Infrastructure.Display
         protected virtual string GetContentAreaItemCssClass(HtmlHelper htmlHelper, ContentAreaItem contentAreaItem, string templateTag)
         {
             var baseClass = base.GetContentAreaItemCssClass(htmlHelper, contentAreaItem);
-
+            var contentRef = contentAreaItem.ContentLink.ID.ToString();
+            if (contentAreaItem.ContentLink.IsExternalProvider)
+            {
+                contentRef += $"_{contentAreaItem.ContentLink.ProviderName}";
+            }
             if (!string.IsNullOrEmpty(baseClass))
             {
-                return baseClass;
+                return $"{baseClass} id-{contentRef}";
             }
-
-            return string.Format("block {0}", templateTag);
+            return $"block {templateTag} id-{contentRef}";
         }
 
         protected virtual bool IsScreenWidthTag(string templateTag) => templateTag == "displaymode-screen";
