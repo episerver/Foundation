@@ -79,11 +79,26 @@ namespace Foundation.Infrastructure
         [RequiredAccess(AccessLevel.Edit)]
         public const string Scripts = "Scripts";
 
-        [Display(Name = "Block styling", Order = 285)]
+        [Display(Name = "Text", Order = 281)]
+        public const string Text = "Text";
+
+        [Display(Name = "Background", Order = 283)]
+        public const string Background = "Background";
+
+        [Display(Name = "Border", Order = 284)]
+        public const string Border = "Border";
+
+        [Display(Name = "Colors", Order = 285)]
+        public const string Colors = "Colors";
+
+        [Display(Name = "Image", Order = 286)]
+        public const string Image = "Image";
+
+        [Display(Name = "Block styling", Order = 287)]
         public const string BlockStyling = "BlockStyling";
 
-        [Display(Name = "Colors", Order = 289)]
-        public const string Colors = "Colors";
+        [Display(Name = "Button", Order = 288)]
+        public const string Button = "Button";
 
         [Display(Name = "Settings", Order = 290)]
         public const string Settings = SystemTabNames.Settings;

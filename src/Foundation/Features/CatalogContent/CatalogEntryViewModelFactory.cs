@@ -176,6 +176,7 @@ namespace Foundation.Features.CatalogContent
                 return new VariantViewModel
                 {
                     Sku = x.Code,
+                    Name = x.Name,
                     Size = x is GenericVariant ? $"{(x as GenericVariant).Color} {(x as GenericVariant).Size}" : "",
                     ImageUrl = string.IsNullOrEmpty(variantImage) ? "http://placehold.it/54x54/" : variantImage,
                     DiscountedPrice = GetDiscountPrice(variantDefaultPrice, market, currency),
@@ -488,15 +489,25 @@ namespace Foundation.Features.CatalogContent
 
         private decimal GetAvailableStockQuantity(EntryContentBase entry, IWarehouse currentWarehouse)
         {
-            decimal quantity = 0;
             if ((entry as IStockPlacement).TrackInventory)
             {
-                var inventoryRecord = _inventoryService.Get(entry.Code, currentWarehouse.Code);
-                var inventory = new Inventory(inventoryRecord);
-                quantity = inventory.IsTracked ? inventory.InStockQuantity - inventory.ReorderMinQuantity : 1;
+                if (currentWarehouse != null)
+                {
+                    decimal quantity = 0;
+                    var inventoryRecord = _inventoryService.Get(entry.Code, currentWarehouse.Code);
+                    var inventory = new Inventory(inventoryRecord);
+                    quantity = inventory.IsTracked ? inventory.InStockQuantity - inventory.ReorderMinQuantity : 1;
+                    return quantity;
+                }
+                else
+                {
+                    return 0;
+                }
             }
-
-            return quantity;
+            else
+            {
+                return 1;
+            }
         }
 
         private IEnumerable<EntryRelation> GetEntriesRelation(EntryContentBase content) => _relationRepository.GetChildren<EntryRelation>(content.ContentLink);

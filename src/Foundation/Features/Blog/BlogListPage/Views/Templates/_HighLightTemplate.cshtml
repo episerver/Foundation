@@ -1,0 +1,98 @@
+﻿@using EPiServer.AddOns.Helpers
+@using Foundation.Features.Blog.BlogItemPage
+@using Foundation.Features.Shared.SelectionFactories
+@using Foundation.Features.Blog.BlogListPage
+@using ImageProcessor.Web.Episerver
+
+@model BlogItemPageViewModel
+
+@{
+    var imageCol = Model.PreviewOption == PreviewOptions.Half ? 6 : 4;
+    var textCol = imageCol == 12 ? 12 : 12 - imageCol;
+    var flip = ViewData["Flip"] != null ? ((bool)ViewData["Flip"]) : false;
+}
+
+
+@if (!Model.CurrentContent.Highlight)
+{
+    <div class="row">
+        @if (!flip)
+        {
+            <div class="col-xs-12 col-@imageCol">
+                <div class="w-100">
+                    @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+                    {
+                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                    }
+                </div>
+            </div>
+        }
+        <div class="col-xs-12 col-@textCol">
+            <span>
+                @foreach (var tag in Model.Tags)
+                {
+                    <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+                }
+            </span>
+            <h4 class="title">
+                <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
+            </h4>
+            @if (Model.ShowPublishDate)
+            {
+                <p class="sub-title">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
+            }
+            @if (Model.ShowIntroduction)
+            {
+                <br />
+                <p class="light-text">@Html.Raw(Model.PreviewText)</p>
+            }
+        </div>
+        @if (flip)
+        {
+            <div class="col-xs-12 col-@imageCol">
+                <div class="w-100">
+                    @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+                    {
+                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="screen-width-block">
+        <div class="row">
+            <div class="col-xs-12 col-@imageCol">
+                <div class="w-100">
+                    @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+                    {
+                        <img data-src="@Html.ProcessImage(Url.ContentUrl(Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp" class="img-fluid preview--image-top__image lazyload" />
+                    }
+                </div>
+            </div>
+            <div class="col-xs-12 col-@textCol">
+                <span>
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+                    }
+                </span>
+                <h4 class="title">
+                    <a class="link" href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
+                </h4>
+                @if (Model.ShowPublishDate)
+                {
+                    <p class="sub-title">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                }
+                @if (Model.ShowIntroduction)
+                {
+                    <br />
+                    <p class="light-text">@Html.Raw(Model.PreviewText)</p>
+                }
+            </div>
+        </div>
+    </div>
+}
+<hr/>

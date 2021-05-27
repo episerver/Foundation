@@ -137,6 +137,17 @@
         if ($(this).attr('qty')) data.Quantity = $(this).attr('qty');
         if ($(this).attr('store')) data.Store = $(this).attr('store');
         if ($(this).attr('selectedStore')) data.SelectedStore = $(this).attr('selectedStore');
+        //if ($(this).attr('dynamicCodes')) data.DynamicCodes = $(this).attr('dynamicCodes');
+        if ($('.jsDynamicOptions').length > 0 || $('.jsDynamicOptionsInSubgroup').length > 0) {
+          data.DynamicCodes = [];
+          $('.jsDynamicOptions:checked').each(function (j, dynamicOption) {
+            data.DynamicCodes.push(dynamicOption.value);
+          })
+          $('.jsDynamicOptionsInSubgroup:checked').each(function (j, dynamicOption) {
+            if ($(dynamicOption).closest('.tab-pane').hasClass('active'))
+              data.DynamicCodes.push(dynamicOption.value);
+          })    
+        }
 
         let callback = (count) => {
           inst.callbackAddToCart('.jsCartBtn', count);

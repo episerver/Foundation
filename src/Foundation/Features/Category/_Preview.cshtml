@@ -14,7 +14,7 @@
         }
         else if (Model.CurrentContent as LocationItemPage != null && !ContentReference.IsNullOrEmpty(((LocationItemPage)Model.CurrentContent).Image))
         {
-            <img data-src="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)format=webp" class="img-fluid lazyload" />
+            <img data-src="@Url.ContentUrl(((LocationItemPage)Model.CurrentContent).Image)?format=webp" class="img-fluid lazyload" />
         }
         else
         {

@@ -140,7 +140,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                     .Select(x => x.Code);
                 var allLineItemCodes = allLineItems.Select(x => x.Code);
                 var allNewCodes = variantCodes.Where(x => !allLineItemCodes.Contains(x));
-                if (allNewCodes.Count() == 0)
+                if (!allNewCodes.Any())
                 {
                     return Json(new ChangeCartJsonResult { StatusCode = 0, Message = productName + " already exist in the wishlist." });
                 }
@@ -148,7 +148,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                 {
                     foreach (var v in allNewCodes)
                     {
-                        result = _cartService.AddToCart(WishList.Cart, v, 1, "delivery", "");
+                        result = _cartService.AddToCart(WishList.Cart, new RequestParamsToCart { Code = v, Quantity = 1, Store = "delivery", SelectedStore = "" });
                         if (result.ValidationMessages.Count > 0)
                         {
                             message += string.Join("\n", result.ValidationMessages);
@@ -163,7 +163,8 @@ namespace Foundation.Features.NamedCarts.Wishlist
                     return Json(new ChangeCartJsonResult { StatusCode = 0, Message = productName + " already exist in the wishlist." });
                 }
 
-                result = _cartService.AddToCart(WishList.Cart, param.Code, 1, "delivery", "");
+                result = _cartService.AddToCart(WishList.Cart,
+                    new RequestParamsToCart { Code = param.Code, Quantity = 1, Store = "delivery", SelectedStore = "" });
             }
 
             if (result.EntriesAddedToCart)
@@ -273,7 +274,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                 var responseMessage = _quickOrderService.ValidateProduct(variationReference, Convert.ToDecimal(quantity), sku);
                 if (string.IsNullOrEmpty(responseMessage))
                 {
-                    if (_cartService.AddToCart(WishList.Cart, sku, 1, "delivery", "").EntriesAddedToCart)
+                    if (_cartService.AddToCart(WishList.Cart, new RequestParamsToCart { Code = sku, Quantity = 1, Store = "delivery", SelectedStore = "" }).EntriesAddedToCart)
                     {
                         _orderRepository.Save(WishList.Cart);
                     }
@@ -353,7 +354,8 @@ namespace Foundation.Features.NamedCarts.Wishlist
 
             foreach (var lineitem in allLineItem)
             {
-                var result = _cartService.AddToCart(Cart.Cart, lineitem.Code, lineitem.Quantity, "delivery", "");
+                var result = _cartService.AddToCart(Cart.Cart,
+                    new RequestParamsToCart { Code = lineitem.Code, Quantity = lineitem.Quantity, Store = "delivery", SelectedStore = "", DynamicCodes = lineitem.Properties["VariantOptionCodes"]?.ToString().Split(',').ToList() });
                 entriesAddedToCart &= result.EntriesAddedToCart;
                 validationMessage += result.GetComposedValidationMessage();
             }

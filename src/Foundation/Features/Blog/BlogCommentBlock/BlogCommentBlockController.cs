@@ -56,9 +56,8 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         /// <summary>
         /// Render the comment block frontend view.
         /// </summary>
-        /// <param name="pageId">ID of current page link that contain blogCommentBlock</param>
-        /// <param name="pageIndex">Current page index of comments</param>
-        /// <param name="recordPerPage">Records of comments per page</param>
+        /// <param name="pagingInfo">Paging info of block</param>
+        /// <param name="currentBlock">The current frontend block instance.</param>
         /// <returns>The action's result.</returns>
         public ActionResult GetComment(PagingInfo pagingInfo, BlogCommentBlock currentBlock)
         {
@@ -86,7 +85,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
                     out var totalComments
                 );
 
-                blockViewModel.Comments = blogComments;                
+                blockViewModel.Comments = blogComments;
                 blockViewModel.PagingInfo.TotalRecord = (int)totalComments;
             }
             catch (Exception ex)
@@ -109,7 +108,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         {
             var errors = ValidateCommentForm(formViewModel);
 
-            if (errors.Count() == 0)
+            if (errors.Count == 0)
             {
                 var addedComment = AddComment(formViewModel);
             }

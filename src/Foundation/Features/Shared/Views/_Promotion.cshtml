@@ -9,24 +9,27 @@
 
 @if (Model.Banner != null)
 {
-    <div class="teaser">
+    <div class="teaser teaser-content-align--center" style="padding-bottom: 50%">
         @if (pd != null)
         {
-            <div class="teaser-text-container">
-                <div class="teaser-text">
-                    <div class="teaser-details">
-                        <p><a class="button-dark" href="/DiscountPage/Index?promotionId=@Model.ContentGuid">@Html.Translate("/Shared/ViewAll")</a></p>
+            <div class="teaser__image " style="background-image: url('@Url.WebPFallbackImageUrl(Model.Banner, null, null)')"></div>
+            <div class="screen-width-wrapper">
+                <div class="teaser-text screen-width-container">
+                    <div class="teaser-text__details">
+                        <a href="/DiscountPage/Index?promotionId=@Model.ContentGuid"><h2>@Model.Name</h2></a>
                     </div>
                 </div>
             </div>
-
-            <div class="teaser-image" style="background-image: url('@Url.ContentUrl(Model.Banner)')">
-            </div>
-
         }
         else
         {
-            <div class="teaser-image" style="background-image: url('@Url.ContentUrl(Model.Banner)')">
+            <div class="teaser__image " style="background-image: url('@Url.WebPFallbackImageUrl(Model.Banner, null, null)')"></div>
+            <div class="screen-width-wrapper">
+                <div class="teaser-text screen-width-container">
+                    <div class="teaser-text__details">
+                        <h2>@Model.Name</h2>
+                    </div>
+                </div>
             </div>
         }
     </div>

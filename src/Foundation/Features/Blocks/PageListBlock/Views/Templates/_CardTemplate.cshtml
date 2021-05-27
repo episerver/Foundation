@@ -1,0 +1,57 @@
+﻿@using EPiServer.AddOns.Helpers
+@using EPiServer.Core.Html
+@using Foundation.Features.Blocks.PageListBlock
+
+@model PageListBlockViewModel
+
+@{
+    //Set the right column width based on PreviewOption
+    int col = Model.PreviewOption;
+}
+
+<div class="row">
+    @foreach (var page in Model.Pages)
+    {
+        var foundationPage = page.Page as FoundationPageData;
+
+        <div class="col-xs-12 col-sm-6 col-md-@col">
+            <div class="page-list-block-preview__card">
+                <div class="page-list-block-preview__card--show">
+                    <div class="card--top">
+                        @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />
+                        }
+                    </div>
+                    <div class="card--bottom">
+                        <div class="card--bottom__title">
+                            <a class="account-link">
+                                <h4>@foundationPage.MetaTitle</h4>
+                            </a>
+                        </div>
+                        <div class="card--bottom__date">
+                            <small>
+                                <i>
+                                    @foundationPage.StartPublish.Value.ToString("dd MMM yyyy")
+                                </i>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-list-block-preview__card--middle">
+                    <div class="triangle-side"></div>
+                    <div class="triangle-center"></div>
+                    <div class="triangle-side"></div>
+                </div>
+                <div class="page-list-block-preview__card--overlay" style="background-color: @Model.CurrentBlock.OverlayColor;">
+                    <div class="page-list-block-preview__card--description" style="color: @Model.CurrentBlock.OverlayTextColor">
+                        <p>@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
+                        <a href="@foundationPage.ContentLink.GetPublicUrl()">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

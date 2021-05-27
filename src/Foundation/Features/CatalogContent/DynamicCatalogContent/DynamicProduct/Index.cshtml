@@ -1,0 +1,32 @@
+﻿@using Foundation.Social.ViewModels
+@using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
+
+@model DynamicProductViewModel
+
+<div class="row product-detail dynamic-product">
+    @Html.Partial("_ProductDetail", Model)
+</div>
+
+@if ((Model.CurrentContent.ContentArea != null && !Model.CurrentContent.ContentArea.IsEmpty) || PageEditing.PageIsInEditMode)
+{
+<div class="row product-detail__contentarea">
+    <div class="col-12">
+        @Html.PropertyFor(x => x.CurrentContent.ContentArea)
+    </div>
+</div>
+}
+
+@if (Model.ShowRecommendations)
+{
+<br />
+<section class="related-products">
+    <h2>@Html.TranslateFallback("/Shared/RelatedProducts", "Related Products")</h2>
+    @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.AlternativeProducts });}
+</section>
+
+<br />
+<section class="upsell-pro">
+    <h2>@Html.TranslateFallback("/Shared/RecommendationsForYou", "Recommendations for you")</h2>
+    @{ Html.RenderAction("Index", "Recommendations", new { recommendations = Model.CrossSellProducts });}
+</section>
+}

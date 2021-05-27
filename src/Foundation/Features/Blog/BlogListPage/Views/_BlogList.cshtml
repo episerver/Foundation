@@ -1,0 +1,52 @@
+﻿@using System.Web.Mvc.Html
+@using Foundation.Features.Blog.BlogListPage
+@using Foundation.Features.Shared.SelectionFactories
+
+@model BlogListPageViewModel
+
+@if (string.IsNullOrEmpty(Model.CurrentContent.Template))
+{
+    Model.CurrentContent.Template = TemplateSelections.Grid;
+}
+ 
+@switch(Model.CurrentContent.Template)
+{
+    case TemplateSelections.Grid:
+        @Html.Partial("Views/Templates/_GridTemplate", Model)
+        break;
+
+    case TemplateSelections.Card:
+        @Html.Partial("Views/Templates/_CardTemplate", Model)
+        break;
+
+    case TemplateSelections.Insight:
+        @Html.Partial("Views/Templates/_InsightTemplate", Model)
+        break;
+
+    case TemplateSelections.ImageLeft:
+        @Html.Partial("Views/Templates/_ImageLeftTemplate", Model)
+        break;
+
+    case TemplateSelections.ImageTop:
+        @Html.Partial("Views/Templates/_ImageTopTemplate", Model)
+        break;
+
+    case TemplateSelections.NoImage:
+        @Html.Partial("Views/Templates/_NoImageTemplate", Model)
+        break;
+
+    case TemplateSelections.Highlight:
+        if (Model.Blogs != null && Model.Blogs.Any())
+        {
+            var flip = false;
+            foreach (var blog in Model.Blogs)
+            {
+                @Html.Partial("Views/Templates/_HighLightTemplate", blog, new ViewDataDictionary { { "Flip", flip } })
+                if (!blog.CurrentContent.Highlight)
+                {
+                    flip = !flip;
+                }
+            }
+        }
+        break;
+}

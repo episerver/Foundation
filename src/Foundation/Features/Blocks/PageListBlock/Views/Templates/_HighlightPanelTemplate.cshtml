@@ -1,0 +1,90 @@
+﻿@using EPiServer.Core.Html
+@using EPiServer.AddOns.Helpers
+@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
+
+@model PageListBlockViewModel
+
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    var flip = false;
+    foreach (var page in Model.Pages)
+    {
+        page.Flip = flip;
+        var imageCol = page.PreviewOption == PreviewOptions.Half ? 6 : 4;
+        var textCol = imageCol == 12 ? 12 : 12 - imageCol;
+        var foundationPage = page.Page as FoundationPageData;
+
+        if (!foundationPage.Highlight)
+        {
+            <div class="row">
+                @if (!page.Flip)
+                {
+                    <div class="col-xs-12 col-@imageCol">
+                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                        }
+                    </div>
+                }
+                <div class="col-xs-12 col-@textCol">
+                    <h4 class="title">
+                        <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">@foundationPage.MetaTitle</a>
+                    </h4>
+                    @if (page.ShowPublishDate)
+                    {
+                        <p class="sub-title">@foundationPage.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                    }
+                    @if (page.ShowIntroduction)
+                    {
+                        <br />
+                        <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
+                    }
+                </div>
+                @if (page.Flip)
+                {
+                    <div class="col-xs-12 col-@imageCol">
+                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                        }
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="screen-width-block">
+                <div class="row">
+                    <div class="col-xs-12 col-@imageCol">
+                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        {
+                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
+                        }
+                    </div>
+                    <div class="col-xs-12 col-@textCol">
+                        <h4 class="title">
+                            <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">@foundationPage.MetaTitle</a>
+                        </h4>
+                        @if (page.ShowPublishDate)
+                        {
+                            <p class="sub-title">@foundationPage.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                        }
+                        @if (page.ShowIntroduction)
+                        {
+                            <br />
+                            <p class="light-text">@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        }
+        <hr />
+        if (!(page.Page as FoundationPageData).Highlight)
+        {
+            flip = !flip;
+        }
+    }
+}

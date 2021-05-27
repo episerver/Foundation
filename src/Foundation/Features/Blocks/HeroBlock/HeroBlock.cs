@@ -20,16 +20,15 @@ namespace Foundation.Features.Blocks.HeroBlock
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-22.png")]
     public class HeroBlock : FoundationBlockData, IDashboardItem
     {
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Block ratio (width:height)", Order = 5)]
         public virtual string BlockRatio { get; set; }
 
-        [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", Order = 10)]
         public virtual ContentReference BackgroundImage { get; set; }
 
-        [CultureSpecific]
         [UIHint(UIHint.Video)]
         [Display(Name = "Video", Order = 20)]
         public virtual ContentReference MainBackgroundVideo { get; set; }
@@ -63,15 +62,18 @@ namespace Foundation.Features.Blocks.HeroBlock
         [Display(Name = "Text", Order = 10)]
         public virtual XhtmlString CalloutContent { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(CalloutContentAlignmentSelectionFactory))]
         [Display(Name = "Text placement", Order = 20)]
         public virtual string CalloutContentAlignment { get; set; }
 
-        [ClientEditor(ClientEditingClass = "dijit/ColorPalette")]
+        [Searchable(false)]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Text color", Description = "Sets text color of callout content", Order = 30)]
         public virtual string CalloutTextColor { get; set; }
 
-        [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
+        [Searchable(false)]
+        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         [Display(Name = "Background color", Order = 40)]
         public virtual string BackgroundColor { get; set; }
 
@@ -79,14 +81,17 @@ namespace Foundation.Features.Blocks.HeroBlock
         [Display(Name = "Callout opacity (0 to 1)", Order = 50)]
         public virtual double CalloutOpacity { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(CalloutPositionSelectionFactory))]
         [Display(Name = "Callout position", Order = 55)]
         public virtual string CalloutPosition { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
         [Display(Name = "Padding", Order = 60)]
         public virtual string Padding { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
         [Display(Name = "Margin", Order = 65)]
         public virtual string Margin { get; set; }
@@ -97,11 +102,11 @@ namespace Foundation.Features.Blocks.HeroBlock
 
             Padding = "p-1";
             Margin = "m-0";
-            BackgroundColor = "transparent";
+            BackgroundColor = "#00000000";
             CalloutOpacity = 1;
-            CalloutPosition = "flex-middle";
+            CalloutPosition = "center";
             CalloutContentAlignment = "left";
-            CalloutTextColor = "black";
+            CalloutTextColor = "#000000ff";
         }
     }
 }

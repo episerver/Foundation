@@ -15,8 +15,8 @@ namespace Foundation.Features.Media
 {
     [ContentType(DisplayName = "Image File",
         GUID = "20644be7-3ca1-4f84-b893-ee021b73ce6c",
-        Description = "Used for image file types such as jpg, jpeg, jpe, ico, gif, bmp, png, svg, webp")]
-    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png,svg,webp")]
+        Description = "Used for image file types such as jpg, jpeg, jpe, ico, gif, bmp, png")]
+    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png")]
     public class ImageMediaData : ImageData, IDashboardItem
     {
         [Editable(false)]
@@ -80,11 +80,9 @@ namespace Foundation.Features.Media
         [Display(Name = "Credits text", GroupName = SystemTabNames.Content, Order = 180)]
         public virtual string CreditsText { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Credits link", GroupName = SystemTabNames.Content, Order = 190)]
         public virtual Url CreditsLink { get; set; }
 
-        [CultureSpecific]
         [UIHint("allcontent")]
         [Display(Description = "Link to content", GroupName = SystemTabNames.Content, Order = 200)]
         public virtual ContentReference Link { get; set; }

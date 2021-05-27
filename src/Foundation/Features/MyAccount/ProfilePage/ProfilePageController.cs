@@ -88,7 +88,6 @@ namespace Foundation.Features.MyAccount.ProfilePage
                 purchaseOrders = purchaseOrders.Take(3).ToList();
             }
 
-
             var viewModel = new List<OrderViewModel>();
 
             foreach (var purchaseOrder in purchaseOrders)

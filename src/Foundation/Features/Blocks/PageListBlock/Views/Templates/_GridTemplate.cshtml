@@ -1,0 +1,52 @@
+﻿@using Foundation.Features.Blocks.PageListBlock
+
+@model PageListBlockViewModel
+
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    var grid = (Model.Pages.Count() - 1) / 4;
+    grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
+    var firstPage = Model.Pages.ElementAt(0);
+    var listGridPages = new List<List<PageListPreviewViewModel>>();
+    var listLargePages = new List<PageListPreviewViewModel>();
+
+    for (var g = 0; g < grid; g++)
+    {
+        var list = new List<PageListPreviewViewModel>();
+        for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
+        {
+            list.Add(Model.Pages.ElementAt(i));
+        }
+        listGridPages.Add(list);
+    }
+
+    for (var i = grid * 4 + 1; i < Model.Pages.Count(); i++)
+    {
+        listLargePages.Add(Model.Pages.ElementAt(i));
+    }
+
+    <div>
+        <div class="page-list-block__row">
+            <div class="page-list-block__large-col">
+                @Html.Partial("Views/Templates/_GridTemplateComponent", firstPage)
+            </div>
+            @foreach (var list in listGridPages)
+            {
+                <div class="page-list-block__large-col">
+                    <div class="page-list-block__grid">
+                        @foreach (var page in list)
+                        {
+                            @Html.Partial("Views/Templates/_GridTemplateComponent", page)
+                        }
+                    </div>
+                </div>
+            }
+            @foreach (var page in listLargePages)
+            {
+                <div class="page-list-block__large-col">
+                    @Html.Partial("Views/Templates/_GridTemplateComponent", page)
+                </div>
+            }
+        </div>
+    </div>
+}

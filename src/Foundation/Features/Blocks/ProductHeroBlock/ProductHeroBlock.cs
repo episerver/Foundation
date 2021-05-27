@@ -18,6 +18,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
     [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
     {
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockLayoutSelectionFactory))]
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string Layout { get; set; }
@@ -45,14 +46,17 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual XhtmlString Text { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
         [Display(Name = "Padding", Order = 1)]
         public virtual string Padding { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(MarginSelectionFactory))]
         [Display(Name = "Margin", Order = 2)]
         public virtual string Margin { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BackgroundColorSelectionFactory))]
         [Display(Name = "Background Color", Order = 3)]
         public virtual string BackgroundColor { get; set; }
@@ -72,6 +76,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
     {
         [MaxElements(1)]
         [CultureSpecific]
+        [UIHint(EPiServer.Commerce.UIHint.AllContent)]
         [AllowedTypes(new[] { typeof(EntryContentBase) })]
         [Display(GroupName = SystemTabNames.Content, Order = 10)]
         public virtual ContentArea Product { get; set; }
@@ -82,6 +87,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
         [Display(Name = "Image height", GroupName = SystemTabNames.Content, Order = 21)]
         public virtual int ImageHeight { get; set; }
 
+        [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(ProductHeroBlockImagePositionSelectionFactory))]
         [Display(Name = "Image position", GroupName = SystemTabNames.Content, Order = 30,
             Description = "Set image position in the image section to the left, center, right or set a certain position using paddings")]

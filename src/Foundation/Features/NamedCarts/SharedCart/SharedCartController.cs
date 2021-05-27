@@ -82,7 +82,8 @@ namespace Foundation.Features.NamedCarts.SharedCart
                 };
             }
 
-            var result = _cartService.AddToCart(SharedCart.Cart, param.Code, param.Quantity, "delivery", "");
+            param.Store = "delivery";
+            var result = _cartService.AddToCart(SharedCart.Cart, param);
             if (result.EntriesAddedToCart)
             {
                 _orderRepository.Save(SharedCart.Cart);
@@ -180,7 +181,8 @@ namespace Foundation.Features.NamedCarts.SharedCart
             var allLineItem = sharedCart.GetAllLineItems();
             foreach (var lineItem in allLineItem)
             {
-                _cartService.AddToCart(savedCart, lineItem.Code, lineItem.Quantity, "delivery", "");
+                _cartService.AddToCart(savedCart,
+                    new RequestParamsToCart { Code = lineItem.Code, Quantity = lineItem.Quantity, Store = "delivery", SelectedStore = "", DynamicCodes = lineItem.Properties["VariantOptionCodes"].ToString().Split(',').ToList() });
             }
 
             //Used saved cart to place

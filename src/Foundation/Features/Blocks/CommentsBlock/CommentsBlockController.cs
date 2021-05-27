@@ -89,7 +89,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
         {
             var errors = ValidateCommentForm(formViewModel);
 
-            if (errors.Count() == 0)
+            if (errors.Count == 0)
             {
                 var addedComment = AddComment(formViewModel);
                 if (addedComment != null && formViewModel.SendActivity)

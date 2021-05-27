@@ -69,8 +69,8 @@ namespace Foundation.Infrastructure.Services
                 // Update recipient
                 if (currentRecipientListId != -1)
                 {
-                    long.TryParse(currentPoints[0], out var oldBonusPoints);
-                    long.TryParse(currentPoints[1], out var oldScore);
+                    var b = long.TryParse(currentPoints[0], out var oldBonusPoints);
+                    var s = long.TryParse(currentPoints[1], out var oldScore);
 
                     var data = new Dictionary<string, string>
                     {
@@ -92,7 +92,6 @@ namespace Foundation.Infrastructure.Services
         /// Adds the new recipient list.
         /// </summary>
         /// <param name="email">The email which identifies the recipient.</param>
-        /// <returns></returns>
         public void AddNewRecipient(string email)
         {
             var currentRecipientListId = GetRecipientListId(recipientName);
@@ -120,7 +119,6 @@ namespace Foundation.Infrastructure.Services
         /// </summary>
         /// <param name="profileValues">The profile values.</param>
         /// <param name="recipientListId">The recipient list identifier.</param>
-        /// <param name="result">The result.</param>
         private string AddOrUpdateRecipient(Dictionary<string, string> profileValues, long recipientListId)
         {
             _campaignRecipient.UpsertRecipient(profileValues, recipientListId, 0, out var result);

@@ -50,18 +50,22 @@ namespace Foundation.Features.Blog.BlogListPage
             Order = 70)]
         public virtual IList<ContentReference> CategoryListFilter { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Template of blogs listing", GroupName = TabNames.BlogList, Order = 80)]
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
-        [Display(Name = "Preview option (not available in the Grid, Card, Insight templates)", GroupName = TabNames.BlogList, Order = 90)]
+        [Searchable(false)]
+        [Display(Name = "Preview option (only available in the 'Image on the top' template)", GroupName = TabNames.BlogList, Order = 90)]
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Overlay color (hex or rgba)", Description = "Apply for Card template", GroupName = TabNames.BlogList, Order = 100)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string OverlayColor { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "Overlay text color (hex or rgba)", Description = "Apply for Card template", GroupName = TabNames.BlogList, Order = 110)]
         [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
         public virtual string OverlayTextColor { get; set; }

@@ -22,15 +22,12 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
         [Display(Name = "Right content area", GroupName = SystemTabNames.Content, Order = 210)]
         public virtual ContentArea RightContentArea { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Left column", GroupName = SystemTabNames.Content, Order = 220)]
         public virtual int LeftColumn { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Center column", GroupName = SystemTabNames.Content, Order = 221)]
         public virtual int CenterColumn { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Right column", GroupName = SystemTabNames.Content, Order = 222)]
         public virtual int RightColumn { get; set; }
 

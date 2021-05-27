@@ -150,6 +150,8 @@
         <name>Intervallo di date</name>
         <description></description>
         <newitemdefaultname>Nuovo intervallo di date</newitemdefaultname>
+        <start>Avvia</start>
+        <end>Finisci</end>
         <properties>
 
           <description>

@@ -1,0 +1,94 @@
+﻿@using EPiServer.Shell
+@using EPiServer.Shell.Navigation
+@inherits WebViewPage
+<title>Bulk Update</title>
+<main class="dash-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card spur-card">
+                    <div class="card-header">
+                        <div class="spur-card-icon" aria-hidden="true">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="spur-card-title">@Html.TranslateFallback("Content Filter", "Content Filter")</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="ContentGroup">Content Group</label>
+                                    <select class="form-control content-group-filter" data-val="true" data-val-required="The Content Group Filter is required." name="ContentGroupFilter">
+                                        <option value="Page">Page</option>
+                                        <option value="Block">Block</option>
+                                        <option value="Media">Media</option>
+                                        <option value="Node">Node</option>
+                                        <option value="Entry">Entry</option>
+                                        <option value="Camapign">Campaign</option>
+                                        <option value="Discount">Discount</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ContentType">Content Type</label>
+                                    <select class="form-control content-type-filter" data-val="true" data-val-required="The Content Type Filter is required." name="ContentTypeFilter">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Language">Language</label>
+                                    <select class="form-control content-language-filter" data-val="true" data-val-required="The Language field is required." name="ContentLanguageFilter">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Keyword">Keyword</label>
+                                    <input class="form-control content-name-filter" id="Keyword" name="Keyword" type="text" value="" placeholder="Please enter a keyword to filter" name="ContentNameFilter">
+                                </div>
+                                <input type="submit" class="btn btn-primary button-apply-filters" value="Apply Filter">
+                            </div>
+                            <div class="col-4">
+                                <label for="Properties">Properties</label><br />
+                                <div class="checkbox-content-properties">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card spur-card">
+                    <div class="card-header">
+                        <div class="spur-card-icon">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                        </div>
+                        <div class="spur-card-title">@Html.TranslateFallback("Bulk Update Contents", "Bulk Update Contents")</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-content-info">
+                            <div style='text-align: center;'><h4>Click <b>"Apply Filter"</b> to get Bulk Update Contents</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="grid-icon__loading">
+            <i class="fa fa-spinner fa-spin"></i> Loading
+        </button>
+    </div>
+</main>
+
+@section AdditionalScripts {
+    <script src="~/Assets/js/vendors/gijgo/gijgo.min.js" type="text/javascript"><</script>
+    <script src="~/Assets/js/extensions/bulk-update.js" type="text/javascript" ></script>
+    <script>
+        $(document).ready(function () {
+            var bulk = new BulkUpdate();
+            bulk.init();
+        });
+    </script>
+}
+
+@section AdditionalStyles {
+    <link href="~/Assets/scss/vendors/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/scss/extensions/bulk-update.css" rel="stylesheet" type="text/css" />
+}

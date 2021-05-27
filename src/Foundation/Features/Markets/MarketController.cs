@@ -39,7 +39,7 @@ namespace Foundation.Features.Markets
         }
 
         [ChildActionOnly]
-        public ActionResult Index(ContentReference contentLink)
+        public ActionResult Index(ContentReference contentLink, bool showCommerceControls)
         {
             var currentMarket = _currentMarket.GetCurrentMarket();
 
@@ -83,6 +83,7 @@ namespace Foundation.Features.Markets
                     Languages = languages,
                     Currencies = currencies,
                     ContentLink = contentLink,
+                    ShowCommerceControls = showCommerceControls
                 };
 
                 return PartialView(marketViewModel);

@@ -1,0 +1,161 @@
+﻿@using EPiServer.Core.Html
+@using EPiServer.AddOns.Helpers
+@using ImageProcessor.Web.Episerver
+@using Foundation.Features.Blocks.PageListBlock
+
+@model PageListBlockViewModel
+
+@{
+    var listGroupPages = new Dictionary<int, List<PageListPreviewViewModel>>();
+    int index = 1;
+    int groupIndex = 0;
+    var group = new List<PageListPreviewViewModel>();
+    for (var i = 0; i < Model.Pages.Count(); i++)
+    {
+        var page = Model.Pages.ElementAt(i);
+        if (index < 3)
+        {
+            group.Add(page);
+            index++;
+        }
+        else if (index == 3)
+        {
+            group.Add(page);
+            if (groupIndex % 2 != 0)
+            {
+                group.Reverse();
+                listGroupPages.Add(groupIndex, group);
+            }
+            else
+            {
+                listGroupPages.Add(groupIndex, group);
+            }
+
+            group = new List<PageListPreviewViewModel>();
+            index = 1;
+            groupIndex++;
+        }
+
+        if (i == Model.Pages.Count() - 1)
+        {
+            listGroupPages.Add(groupIndex, group);
+        }
+    }
+}
+
+@foreach (var groupPage in listGroupPages)
+{
+    <!-- Insight blogs -->
+    if (groupPage.Key % 2 == 0)
+    {
+        index = 0;
+        <div class="col-12 page-list-block-insight">
+            @foreach (var blog in groupPage.Value)
+            {
+                var foundationPage = blog.Page as FoundationPageData;
+                var typeIndex = index % 3;
+                var insightClass = "page-list-block-insight__large";
+                switch (typeIndex)
+                {
+                    case 1:
+                        insightClass = "page-list-block-insight__small--image";
+                        break;
+                    case 2:
+                        insightClass = "page-list-block-insight__small--text";
+                        break;
+                    default:
+                        break;
+
+                }
+                index++;
+
+                <div class="@insightClass">
+                    @if (typeIndex == 0)
+                    {
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--large">
+                            @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp" />
+                            }
+                        </div>
+                    }
+                    @if (typeIndex == 1)
+                    {
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--small">
+                            <picture>
+                                @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                {
+                                    <img class="lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)&format=webp" type="image/webp" />
+                                }
+                            </picture>
+                        </div>
+                    }
+                    <div class="page-list-block-insight__description">
+                        <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">
+                            <h4>@foundationPage.MetaTitle</h4>
+                        </a>
+                        <div class="page-list-block-insight__date">
+                            @foundationPage.StartPublish.Value.ToString("dd MMM yyyy")
+                        </div>
+                        <div class="page-list-block-insight__sumary">@Html.Raw(foundationPage.TeaserText)</div>
+                        <a class="read-more" href="@foundationPage.ContentLink.GetPublicUrl()">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    { <!-- Insight blogs -->
+        index = 0;
+        <div class="col-12 page-list-block-insight page-list-block-insight--reverse">
+            @foreach (var blog in groupPage.Value)
+            {
+                var foundationPage = blog.Page as FoundationPageData;
+                var typeIndex = index % 3;
+                var insightClass = "page-list-block-insight__large";
+                switch (typeIndex)
+                {
+                    case 1:
+                        insightClass = "page-list-block-insight__small--image";
+                        break;
+                    case 2:
+                        insightClass = "page-list-block-insight__small--text";
+                        break;
+                    default:
+                        break;
+
+                }
+                index++;
+
+                <div class="@insightClass">
+                    @if (typeIndex == 0)
+                    {
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--large">
+                            <img src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
+                        </div>
+                    }
+                    @if (typeIndex == 1)
+                    {
+                        <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--small">
+                            <img src="@Url.WebPFallbackImageUrl(foundationPage.PageImage, 1200)" />
+                        </div>
+                    }
+                    <div class="page-list-block-insight__description">
+                        <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">
+                            <h4>@foundationPage.MetaTitle</h4>
+                        </a>
+                        <div class="page-list-block-insight__date">
+                            @foundationPage.StartPublish.Value.ToString("dd MMM yyyy")
+                        </div>
+                        <div class="page-list-block-insight__sumary">@Html.Raw(foundationPage.TeaserText)</div>
+                        <a class="read-more" href="@foundationPage.ContentLink.GetPublicUrl()">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

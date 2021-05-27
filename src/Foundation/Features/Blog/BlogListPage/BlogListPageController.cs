@@ -3,7 +3,6 @@ using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.Core.Html;
 using EPiServer.Filters;
-using EPiServer.Tracking.PageView;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Foundation.Cms;
@@ -36,8 +35,6 @@ namespace Foundation.Features.Blog.BlogListPage
             _urlResolver = urlResolver;
             _blogTagFactory = blogTagFactory;
         }
-
-        [PageViewTracking]
         public ActionResult Index(BlogListPage currentPage)
         {
             var model = new BlogListPageViewModel(currentPage)
@@ -69,13 +66,13 @@ namespace Foundation.Features.Blog.BlogListPage
             var childrenPages = _contentLoader.GetChildren<PageData>(currentPage.ContentLink).Select(x => x as BlogListPage).Where(x => x != null);
             var siblingPages = _contentLoader.GetChildren<PageData>(currentPage.ParentLink).Select(x => x as BlogListPage).Where(x => x != null);
 
-            if (siblingPages != null && siblingPages.Count() > 0)
+            if (siblingPages != null && siblingPages.Any())
             {
                 subNavigation.AddRange(siblingPages.Select(x => new KeyValuePair<string, string>(x.MetaTitle, x.PublicUrl(_urlResolver))));
             }
 
             // when current page is blog start page
-            if (childrenPages != null && childrenPages.Count() > 0)
+            if (childrenPages != null && childrenPages.Any())
             {
                 subNavigation.AddRange(childrenPages.Select(x => new KeyValuePair<string, string>(x.MetaTitle, x.PublicUrl(_urlResolver))));
             }
@@ -97,7 +94,7 @@ namespace Foundation.Features.Blog.BlogListPage
 
             var model = GetViewModel(currentPage, pagingInfo);
 
-            return PartialView("~/Features/Blog/BlogListPage/_BlogList.cshtml", model);
+            return PartialView("~/Features/Blog/BlogListPage/Views/_BlogList.cshtml", model);
         }
 
         public BlogListPageViewModel GetViewModel(BlogListPage currentPage, PagingInfo pagingInfo)
