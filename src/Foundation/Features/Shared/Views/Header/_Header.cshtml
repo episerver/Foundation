@@ -16,9 +16,8 @@ else
                     <div class="top-header__banner-text">
                         @Html.PropertyFor(x => x.LayoutSettings.BannerText)
                     </div>
-                    @if (Model.ShowCommerceControls)
-                    {
-                        Html.RenderAction("Index", "Market", new { contentLink = ViewContext.RequestContext.GetContentLink() });
+                    @{
+                        Html.RenderAction("Index", "Market", new { contentLink = ViewContext.RequestContext.GetContentLink(), showCommerceControls = Model.ShowCommerceControls });
                     }
                 </div>
             </div>

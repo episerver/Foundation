@@ -90,7 +90,7 @@ namespace Foundation.Infrastructure
                 foreach (var script in settings.HeaderScripts)
                 {
                     var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
-                    if (pages.Any(x => content.ContentLink.ID == x.ID) || content.ContentLink.ID == script.ScriptRoot.ID)
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
                     {
                         // Script Files
                         AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
@@ -131,7 +131,7 @@ namespace Foundation.Infrastructure
                 foreach (var script in settings.FooterScripts)
                 {
                     var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
-                    if (pages.Any(x => content.ContentLink.ID == x.ID) || content.ContentLink.ID == script.ScriptRoot.ID)
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
                     {
                         // Script Files
                         AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
@@ -228,7 +228,7 @@ namespace Foundation.Infrastructure
                 foreach (var script in settings.HeaderScripts)
                 {
                     var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
-                    if (pages.Any(x => content.ContentLink.ID == x.ID) || content.ContentLink.ID == script.ScriptRoot.ID)
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
                     {
                         // Script Files
                         AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
@@ -269,7 +269,7 @@ namespace Foundation.Infrastructure
                 foreach (var script in settings.FooterScripts)
                 {
                     var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
-                    if (pages.Any(x => content.ContentLink.ID == x.ID) || content.ContentLink.ID == script.ScriptRoot.ID)
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
                     {
                         // Script Files
                         AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
