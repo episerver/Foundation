@@ -12,6 +12,7 @@ namespace Foundation.Features.Markets
         public IEnumerable<LanguageItem> Languages { get; set; }
         public IEnumerable<CurrencyItem> Currencies { get; set; }
         public ContentReference ContentLink { get; set; }
+        public bool ShowCommerceControls { get; set; }
     }
 
     public class MarketItem
