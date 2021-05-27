@@ -1,7 +1,7 @@
 {
   "name": "Foundation",
   "version": "1.0.0",
-  "description": "Foundation mvc cms only",
+  "description": "Foundation",
   "private": "true",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",

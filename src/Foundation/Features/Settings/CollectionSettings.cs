@@ -1,6 +1,5 @@
 ﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
 using EPiServer.Core;
-using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
 using EPiServer.Shell.ObjectEditing;
 using Foundation.Cms;
@@ -15,17 +14,14 @@ namespace Foundation.Features.Settings
         GUID = "4356a392-ed29-4895-9e65-bf44fa3db5ca",
         Description = "Selection options settings",
         SettingsName = "Collection Settings")]
-    [ImageUrl("~/assets/icons/cms/pages/CMS-icon-page-selection-settings.png")]
     public class CollectionSettings : SettingsBase
     {
         #region Person settings
 
-        [CultureSpecific]
         [Display(GroupName = TabNames.CustomSettings, Order = 100)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Sectors { get; set; }
 
-        [CultureSpecific]
         [Display(GroupName = TabNames.CustomSettings, Order = 200)]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SelectionItem>))]
         public virtual IList<SelectionItem> Locations { get; set; }

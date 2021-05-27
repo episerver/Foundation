@@ -4,6 +4,8 @@
 
 <div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="row @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" @Html.EditAttributes(x => x.CurrentBlock.RootContent)>
     <div class="col-12">
+        <h3>@Model.CurrentBlock.GroupName</h3>
+
         @if (Model.Assets != null)
         {
             foreach (var mediaData in Model.Assets)

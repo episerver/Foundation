@@ -1,0 +1,54 @@
+﻿@using System.Web.Mvc.Html
+@using Foundation.Features.Blog.BlogItemPage
+@using Foundation.Features.Blog.BlogListPage
+
+@model BlogListPageViewModel
+
+@if (Model.Blogs != null && Model.Blogs.Any())
+{
+    var grid = (Model.Blogs.Count() - 1) / 4;
+    grid = grid % 2 == 1 ? grid : (grid > 0 ? grid - 1 : 0);
+    var firstBlog = Model.Blogs.ElementAt(0);
+    var listGridBlogs = new List<List<BlogItemPageViewModel>>();
+    var listLargeBlogs = new List<BlogItemPageViewModel>();
+
+    for (var g = 0; g < grid; g++)
+    {
+        var list = new List<BlogItemPageViewModel>();
+        for (var i = g * 4 + 1; i <= (g + 1) * 4; i++)
+        {
+            list.Add(Model.Blogs.ElementAt(i));
+        }
+        listGridBlogs.Add(list);
+    }
+
+    for (var i = grid * 4 + 1; i < Model.Blogs.Count(); i++)
+    {
+        listLargeBlogs.Add(Model.Blogs.ElementAt(i));
+    }
+
+    <div class="blog__gallery">
+        <div class="blog__row">
+            <div class="blog__large-col">
+                @Html.Partial("Views/Templates/_GridTemplateComponent", firstBlog)
+            </div>
+            @foreach (var list in listGridBlogs)
+            {
+                <div class="blog__large-col">
+                    <div class="blog__grid">
+                        @foreach (var blog in list)
+                        {
+                            @Html.Partial("Views/Templates/_GridTemplateComponent", blog)
+                        }
+                    </div>
+                </div>
+            }
+            @foreach (var blog in listLargeBlogs)
+            {
+                <div class="blog__large-col">
+                    @Html.Partial("Views/Templates/_GridTemplateComponent", blog)
+                </div>
+            }
+        </div>
+    </div>
+}

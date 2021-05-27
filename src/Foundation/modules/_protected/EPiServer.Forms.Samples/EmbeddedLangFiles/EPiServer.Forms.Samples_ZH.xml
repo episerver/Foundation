@@ -150,6 +150,8 @@
         <name>日期时间范围</name>
         <description></description>
         <newitemdefaultname>新的日期时间范围</newitemdefaultname>
+        <start>开始</start>
+        <end>结束</end>
         <properties>
 
           <description>

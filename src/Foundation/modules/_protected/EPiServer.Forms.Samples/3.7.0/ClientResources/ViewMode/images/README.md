@@ -1,0 +1,1 @@
+Images in this folder is jQuery icons

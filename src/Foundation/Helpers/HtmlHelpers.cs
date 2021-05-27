@@ -7,11 +7,13 @@ using EPiServer.Web;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Cms.Extensions;
+using Foundation.Cms.Settings;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Home;
+using Foundation.Features.Settings;
 using Foundation.Features.Shared;
 using System;
 using System.Collections.Generic;
@@ -29,7 +31,7 @@ namespace Foundation.Infrastructure
     {
         private const string _cssFormat = "<link href=\"{0}\" rel=\"stylesheet\" />";
         private const string _scriptFormat = "<script src=\"{0}\"></script>";
-        private const string _metaFormat = "<meta property=\"{0}\" content=\"{1}\" />";
+        private const string _metaFormat = "<meta name=\"{0}\" property=\"{0}\" content=\"{1}\" />";
 
         private static readonly Lazy<IContentLoader> _contentLoader =
             new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
@@ -39,6 +41,9 @@ namespace Foundation.Infrastructure
 
         private static readonly Lazy<IPermanentLinkMapper> _permanentLinkMapper =
            new Lazy<IPermanentLinkMapper>(() => ServiceLocator.Current.GetInstance<IPermanentLinkMapper>());
+
+        private static readonly Lazy<ISettingsService> _settingsService =
+           new Lazy<ISettingsService>(() => ServiceLocator.Current.GetInstance<ISettingsService>());
 
         public static MvcHtmlString RenderExtendedCss(this HtmlHelper helper, IContent content)
         {
@@ -69,7 +74,7 @@ namespace Foundation.Infrastructure
             return new MvcHtmlString(outputCss.ToString());
         }
 
-        public static MvcHtmlString RenderExtendedScripts(this HtmlHelper helper, IContent content)
+        public static MvcHtmlString RenderHeaderScripts(this HtmlHelper helper, IContent content)
         {
             if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
             {
@@ -77,22 +82,75 @@ namespace Foundation.Infrastructure
             }
 
             var outputScript = new StringBuilder(string.Empty);
-            var startPage = _contentLoader.Value.Get<HomePage>(ContentReference.StartPage);
 
-            // Extended Javascript file
-            AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
-            if (!(sitePageData is HomePage))
+            // Injection Hierarchically Javascript files
+            var settings = _settingsService.Value.GetSiteSettings<ScriptInjectionSettings>();
+            if (settings != null && settings.HeaderScripts != null)
             {
-                AppendFiles(sitePageData.ScriptFiles, outputScript, _scriptFormat);
+                foreach (var script in settings.HeaderScripts)
+                {
+                    var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
+                    {
+                        // Script Files
+                        AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
+
+                        // External Javascript
+                        if (!string.IsNullOrWhiteSpace(script.ExternalScripts))
+                        {
+                            outputScript.AppendLine(script.ExternalScripts);
+                        }
+
+                        // Inline Javascript
+                        if (!string.IsNullOrWhiteSpace(script.InlineScripts))
+                        {
+                            outputScript.AppendLine("<script type=\"text/javascript\">");
+                            outputScript.AppendLine(!string.IsNullOrWhiteSpace(script.InlineScripts) ? script.InlineScripts : "");
+                            outputScript.AppendLine("</script>");
+                        }
+                    }
+                }
             }
 
-            // Inline Javascript
-            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(sitePageData.Scripts))
+            return new MvcHtmlString(outputScript.ToString());
+        }
+
+        public static MvcHtmlString RenderFooterScripts(this HtmlHelper helper, IContent content)
+        {
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is FoundationPageData sitePageData))
             {
-                outputScript.AppendLine("<script type=\"text/javascript\">");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Scripts) && !(sitePageData is HomePage) ? sitePageData.Scripts : "");
-                outputScript.AppendLine("</script>");
+                return new MvcHtmlString("");
+            }
+
+            var outputScript = new StringBuilder(string.Empty);
+
+            // Injection Hierarchically Javascript files
+            var settings = _settingsService.Value.GetSiteSettings<ScriptInjectionSettings>();
+            if (settings != null && settings.FooterScripts != null)
+            {
+                foreach (var script in settings.FooterScripts)
+                {
+                    var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
+                    {
+                        // Script Files
+                        AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
+
+                        // External Javascript
+                        if (!string.IsNullOrWhiteSpace(script.ExternalScripts))
+                        {
+                            outputScript.AppendLine(script.ExternalScripts);
+                        }
+
+                        // Inline Javascript
+                        if (!string.IsNullOrWhiteSpace(script.InlineScripts))
+                        {
+                            outputScript.AppendLine("<script type=\"text/javascript\">");
+                            outputScript.AppendLine(!string.IsNullOrWhiteSpace(script.InlineScripts) ? script.InlineScripts : "");
+                            outputScript.AppendLine("</script>");
+                        }
+                    }
+                }
             }
 
             return new MvcHtmlString(outputScript.ToString());
@@ -127,7 +185,6 @@ namespace Foundation.Infrastructure
             return new MvcHtmlString(output.ToString());
         }
 
-
         public static MvcHtmlString RenderExtendedCssForCommerce(this HtmlHelper helper, IContent content)
         {
             if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase entryContentBase))
@@ -144,7 +201,7 @@ namespace Foundation.Infrastructure
             AppendFiles(((IFoundationContent)entryContentBase).CssFiles, outputCss, _cssFormat);
 
             // Inline CSS
-            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts))
+            if (!string.IsNullOrWhiteSpace(startPage.Css) || !string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Css))
             {
                 outputCss.AppendLine("<style>");
                 outputCss.AppendLine(!string.IsNullOrWhiteSpace(startPage.Css) ? startPage.Css : "");
@@ -155,27 +212,83 @@ namespace Foundation.Infrastructure
             return new MvcHtmlString(outputCss.ToString());
         }
 
-        public static MvcHtmlString RenderExtendedScriptsForCommerce(this HtmlHelper helper, IContent content)
+        public static MvcHtmlString RenderHeaderScriptsForCommerce(this HtmlHelper helper, IContent content)
         {
-            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase entryContentBase))
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase || content is CatalogContentBase))
             {
                 return new MvcHtmlString("");
             }
 
             var outputScript = new StringBuilder(string.Empty);
-            var startPage = _contentLoader.Value.Get<HomePage>(ContentReference.StartPage);
 
-            // Extended Javascript file
-            AppendFiles(startPage.ScriptFiles, outputScript, _scriptFormat);
-            AppendFiles(((IFoundationContent)entryContentBase).ScriptFiles, outputScript, _scriptFormat);
-
-            // Inline Javascript
-            if (!string.IsNullOrWhiteSpace(startPage.Scripts) || !string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts))
+            // Injection Hierarchically Javascript
+            var settings = _settingsService.Value.GetSiteSettings<ScriptInjectionSettings>();
+            if (settings != null && settings.HeaderScripts != null)
             {
-                outputScript.AppendLine("<script type=\"text/javascript\">");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(startPage.Scripts) ? startPage.Scripts : "");
-                outputScript.AppendLine(!string.IsNullOrWhiteSpace(((IFoundationContent)entryContentBase).Scripts) ? ((IFoundationContent)entryContentBase).Scripts : "");
-                outputScript.AppendLine("</script>");
+                foreach (var script in settings.HeaderScripts)
+                {
+                    var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
+                    {
+                        // Script Files
+                        AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
+
+                        // External Javascript
+                        if (!string.IsNullOrWhiteSpace(script.ExternalScripts))
+                        {
+                            outputScript.AppendLine(script.ExternalScripts);
+                        }
+
+                        // Inline Javascript
+                        if (!string.IsNullOrWhiteSpace(script.InlineScripts))
+                        {
+                            outputScript.AppendLine("<script type=\"text/javascript\">");
+                            outputScript.AppendLine(!string.IsNullOrWhiteSpace(script.InlineScripts) ? script.InlineScripts : "");
+                            outputScript.AppendLine("</script>");
+                        }
+                    }
+                }
+            }
+
+            return new MvcHtmlString(outputScript.ToString());
+        }
+
+        public static MvcHtmlString RenderFooterScriptsForCommerce(this HtmlHelper helper, IContent content)
+        {
+            if (content == null || ContentReference.StartPage == PageReference.EmptyReference || !(content is EntryContentBase || content is CatalogContentBase))
+            {
+                return new MvcHtmlString("");
+            }
+
+            var outputScript = new StringBuilder(string.Empty);
+
+            // Injection Hierarchically Javascript
+            var settings = _settingsService.Value.GetSiteSettings<ScriptInjectionSettings>();
+            if (settings != null && settings.FooterScripts != null)
+            {
+                foreach (var script in settings.FooterScripts)
+                {
+                    var pages = _contentLoader.Value.GetDescendents(script.ScriptRoot);
+                    if (pages.Any(x => x == content.ContentLink) || content.ContentLink == script.ScriptRoot)
+                    {
+                        // Script Files
+                        AppendFiles(script.ScriptFiles, outputScript, _scriptFormat);
+
+                        // External Javascript
+                        if (!string.IsNullOrWhiteSpace(script.ExternalScripts))
+                        {
+                            outputScript.AppendLine(script.ExternalScripts);
+                        }
+
+                        // Inline Javascript
+                        if (!string.IsNullOrWhiteSpace(script.InlineScripts))
+                        {
+                            outputScript.AppendLine("<script type=\"text/javascript\">");
+                            outputScript.AppendLine(!string.IsNullOrWhiteSpace(script.InlineScripts) ? script.InlineScripts : "");
+                            outputScript.AppendLine("</script>");
+                        }
+                    }
+                }
             }
 
             return new MvcHtmlString(outputScript.ToString());
@@ -247,6 +360,20 @@ namespace Foundation.Infrastructure
                 outputString.AppendLine(map == null
                     ? string.Format(formatString, item.GetMappedHref())
                     : string.Format(formatString, _urlResolver.Value.GetUrl(map.ContentReference)));
+            }
+        }
+
+        private static void AppendFiles(IList<ContentReference> files, StringBuilder outputString, string formatString)
+        {
+            if (files == null || files.Count <= 0)
+            {
+                return;
+            }
+
+            foreach (var item in files.Where(item => !string.IsNullOrEmpty(_urlResolver.Value.GetUrl(item))))
+            {
+                var url = _urlResolver.Value.GetUrl(item);
+                outputString.AppendLine(string.Format(formatString, url));
             }
         }
 

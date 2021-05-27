@@ -104,14 +104,13 @@ namespace Foundation.Features.CatalogContent.Product
             Order = 70)]
         public virtual string AssociationsTitle { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Show recommendations",
             GroupName = SystemTabNames.Content,
             Description = "This will determine whether or not to show recommendations.",
             Order = 75)]
         public virtual bool ShowRecommendations { get; set; }
 
-        [CultureSpecific]
+        [Searchable(false)]
         [Display(Name = "Product Status",
             GroupName = SystemTabNames.Content,
             Order = 80)]
@@ -146,17 +145,16 @@ namespace Foundation.Features.CatalogContent.Product
 
         #region Implement IFoundationContent
 
-        [CultureSpecific]
         [Display(Name = "Hide site header", GroupName = Infrastructure.TabNames.Settings, Order = 100)]
         public virtual bool HideSiteHeader { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Hide site footer", GroupName = Infrastructure.TabNames.Settings, Order = 200)]
         public virtual bool HideSiteFooter { get; set; }
 
         [Display(Name = "CSS files", GroupName = Infrastructure.TabNames.Styles, Order = 100)]
         public virtual LinkItemCollection CssFiles { get; set; }
 
+        [Searchable(false)]
         [Display(Name = "CSS", GroupName = Infrastructure.TabNames.Styles, Order = 200)]
         [UIHint(UIHint.Textarea)]
         public virtual string Css { get; set; }
@@ -164,6 +162,7 @@ namespace Foundation.Features.CatalogContent.Product
         [Display(Name = "Script files", GroupName = Infrastructure.TabNames.Scripts, Order = 100)]
         public virtual LinkItemCollection ScriptFiles { get; set; }
 
+        [Searchable(false)]
         [UIHint(UIHint.Textarea)]
         [Display(GroupName = Infrastructure.TabNames.Scripts, Order = 200)]
         public virtual string Scripts { get; set; }

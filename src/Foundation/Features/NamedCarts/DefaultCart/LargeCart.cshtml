@@ -36,7 +36,7 @@
         }
         @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
 
-        @if (Model.Shipments.Count() > 0)
+        @if (Model.Shipments.Any())
         {
             <div id="cartItemsId">
                 @Html.Partial("_CartItems", Model)
@@ -51,11 +51,11 @@
 
 @Html.PropertyFor(x => x.CurrentContent.BottomContentArea)
 
-@if (Model.Shipments.Count() > 0)
+@if (Model.Shipments.Any())
 {
     <div class="row">
         <div class="col-12">
-            @if (Model.Shipments.Count() > 0)
+            @if (Model.Shipments.Any())
             {
                 @Html.Partial("_ProcessCart", Model)
             }

@@ -150,6 +150,8 @@
         <name>Dato-/tidsinterval</name>
         <description></description>
         <newitemdefaultname>Nyt dato-/tidsinterval</newitemdefaultname>
+        <start>Start</start>
+        <end>Slut</end>
         <properties>
 
           <description>

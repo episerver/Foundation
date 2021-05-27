@@ -56,15 +56,6 @@
                     </button>
                 }
             }
-            else
-            {
-                <button class="button-transparent-black--icon" title="Share Wishlist" name="save_and_share" type="submit" style="margin-right: 15px">
-                    <span>
-                        <i data-feather="share-2"></i>
-                        @Html.TranslateFallback("/WishList/Share", "Share")
-                    </span>
-                </button>
-            }
             <button class="button-transparent-black--icon jsAddAllToCart" title="Add All to Cart" type="button" url="@Url.Action("AddAllToCart")">
                 <span>
                     <i data-feather="plus"></i>

@@ -88,7 +88,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
                     // should be 1 (LIKED_RATING).  Anonymous user Likes are generated with unique random users
                     // and thus the current anonymous user will never see a current rating value as he/she
                     // can Like the page indefinitely.
-                    if (ratingPage.Results.Count() > 0)
+                    if (ratingPage.Results.Any())
                     {
                         blockModel.CurrentRating = ratingPage.Results.ToList().FirstOrDefault().Value.Value;
                     }
@@ -113,7 +113,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
                 );
 
                 // Add the page Like statistics to the block view model
-                if (ratingStatisticsPage.Results.Count() > 0)
+                if (ratingStatisticsPage.Results.Any())
                 {
                     var statistics = ratingStatisticsPage.Results.ToList().FirstOrDefault();
                     if (statistics.TotalCount > 0)

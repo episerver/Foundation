@@ -1,0 +1,68 @@
+﻿@using EPiServer.Shell
+@using NonFactors.Mvc.Grid
+@inherits WebViewPage<Foundation.Social.Moderation.ModerationViewModel>
+<head>
+    <title>Comments Manager</title>
+</head>
+<main class="dash-content">
+    <div class="container-fluid comment-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card spur-card">
+                    <div class="card-header">
+                        <div class="spur-card-icon">
+                            <i class="far fa-comment"></i>
+                        </div>
+                        <div class="spur-card-title">Comments Manager</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="form-group">
+                                @(Html
+                                    .Grid("_Grid", Model.Comments)
+                                    .Build(columns =>
+                                    {
+                                        columns.Add(model => model.Title).Titled("Title");
+                                        columns.Add(model => model.Body).Titled("Body");
+                                        columns.Add(model => model.Rating).Titled("Rating").RenderedAs(model => model.Rating == 0 ? "" : model.Rating.ToString());
+                                        columns.Add(model => model.Nickname).Titled("Author").RenderedAs(model => model.Nickname == "" ? model.Author.Id : model.Nickname);
+                                        columns.Add(model => model.IsVisible).Titled("IsVisible");
+                                        columns.Add(model => model.AddedOn).Titled("Created");
+                                        columns.Add().Titled("Approved").RenderedAs(model => model.IsVisible ? new HtmlString("<span class='approved-label'>Approved</span>") : new HtmlString("<i class='fas fa-check-circle grid-icon__approve' commentId='" + model.Id.Id + "'>"));
+                                        columns.Add().Titled("Delete").RenderedAs(model => new HtmlString("<i class='far fa-trash-alt grid-icon__delete' commentId='" + model.Id.Id + "'></i>"));
+                                    })
+                                    .Pageable(pager =>
+                                    {
+                                        pager.PartialViewName = "_Pager";
+                                        pager.RowsPerPage = 20;
+                                    })
+                                    .Id("comment-grid")
+                                    .UsingFilterMode(GridFilterMode.Row)
+                                    .Filterable()
+                                    .Sortable()
+                                )
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="grid-icon__loading">
+            <i class="fa fa-spinner fa-spin"></i> Loading
+        </button>
+    </div>
+</main>
+@section AdditionalScripts {
+    <script src="~/Assets/js/vendors/gijgo/gijgo.min.js" type="text/javascript"></script>
+    <script src="~/Assets/js/extensions/CommentManager.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CommentManager.init();
+        });
+    </script>
+}
+
+@section AdditionalStyles {
+    <link href="~/Assets/scss/vendors/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/scss/extensions/comments.css" rel="stylesheet" type="text/css" />
+}

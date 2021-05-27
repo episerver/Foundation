@@ -7,21 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation", "Src\Foundatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foundation.CommerceManager", "src\Foundation.CommerceManager\Foundation.CommerceManager.csproj", "{121D8737-4300-4828-83D4-61D807A6339F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Cms", "src\Foundation.Cms\Foundation.Cms.csproj", "{C9638F52-7402-446D-BF89-993686E26A52}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Commerce", "src\Foundation.Commerce\Foundation.Commerce.csproj", "{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Social", "src\Foundation.Social\Foundation.Social.csproj", "{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04685227-468D-440F-A0DB-4E6C01D550CA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		default.ruleset = default.ruleset
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Find", "src\Foundation.Find\Foundation.Find.csproj", "{B28E97C3-D2CF-4176-A9C4-437A457341E4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foundation.Personalization", "src\Foundation.Personalization\Foundation.Personalization.csproj", "{7FFB7D49-6365-4B84-BFB9-6872E1129911}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,26 +27,6 @@ Global
 		{121D8737-4300-4828-83D4-61D807A6339F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{121D8737-4300-4828-83D4-61D807A6339F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{121D8737-4300-4828-83D4-61D807A6339F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9638F52-7402-446D-BF89-993686E26A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9638F52-7402-446D-BF89-993686E26A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9638F52-7402-446D-BF89-993686E26A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9638F52-7402-446D-BF89-993686E26A52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{709628B7-2F85-404B-8D1C-27E6DA3BCC0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B1624A8-CB7A-4C32-ACB2-397D6049BB1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B28E97C3-D2CF-4176-A9C4-437A457341E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7FFB7D49-6365-4B84-BFB9-6872E1129911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FFB7D49-6365-4B84-BFB9-6872E1129911}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FFB7D49-6365-4B84-BFB9-6872E1129911}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FFB7D49-6365-4B84-BFB9-6872E1129911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

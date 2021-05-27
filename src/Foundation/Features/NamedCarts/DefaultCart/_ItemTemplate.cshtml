@@ -44,6 +44,17 @@
             <div>
                 @Html.Raw(Model.Description)
             </div>
+            @if (Model.IsDynamicProduct)
+            {
+                <div>
+                    <label class="title">Base Price: </label>
+                    <span class="price__discount">@Model.BasePrice.ToString()</span>
+                </div>
+                <div>
+                    <label class="title">Option Price: </label>
+                    <span class="price__discount">@Model.OptionPrice.ToString()</span>
+                </div>
+            }
             <div>
                 <label class="title">Price: </label>
                 @if (Model.DiscountedUnitPrice.HasValue)
@@ -56,7 +67,7 @@
                     <span class="price__discount">@Model.PlacedPrice.ToString()</span>
                 }
             </div>
-            @if (variant != null)
+            @if (variant != null && !Model.IsDynamicProduct)
             {
                 <div class="row">
                     <div class="col-md-1 col-xs-6 large-cart__label">

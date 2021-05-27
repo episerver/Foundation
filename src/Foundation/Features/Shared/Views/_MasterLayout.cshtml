@@ -1,4 +1,4 @@
-﻿﻿@model IContentViewModel<IContent>
+﻿@model IContentViewModel<IContent>
 
 <!DOCTYPE html>
 <html lang="en" class="@(PageEditing.PageIsInEditMode ? "editMode" : "")">
@@ -38,6 +38,11 @@
     @RenderSection("AdditionalStyles", required: false)
     @Html.RequiredClientResources("Header")
     @Html.RenderExtendedCss(Model.CurrentContent)
+    @Html.RenderHeaderScripts(Model.CurrentContent)
+    @if (Model.CurrentContent is EntryContentBase || Model.CurrentContent is CatalogContentBase)
+    {
+        @Html.RenderHeaderScriptsForCommerce(Model.CurrentContent)
+    }
 </head>
 <body>
     @RenderBody()

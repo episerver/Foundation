@@ -1,17 +1,21 @@
 ﻿using EPiServer;
 using EPiServer.Commerce.Catalog;
 using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Marketing;
 using EPiServer.Core;
+using EPiServer.Filters;
+using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Foundation.Commerce.Extensions;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
+using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.CatalogContent.Variation;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
+using Mediachase.Commerce.Pricing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,18 +41,23 @@ namespace Foundation.Features.CatalogContent
         private static readonly Lazy<UrlResolver> UrlResolver =
             new Lazy<UrlResolver>(() => ServiceLocator.Current.GetInstance<UrlResolver>());
 
+        private static readonly Lazy<IRelationRepository> RelationRepository =
+            new Lazy<IRelationRepository>(() => ServiceLocator.Current.GetInstance<IRelationRepository>());
+
+        private static readonly Lazy<LanguageResolver> LanguageResolver =
+            new Lazy<LanguageResolver>(() => ServiceLocator.Current.GetInstance<LanguageResolver>());
+
+        private static readonly Lazy<ICurrentMarket> CurrentMarket =
+            new Lazy<ICurrentMarket>(() => ServiceLocator.Current.GetInstance<ICurrentMarket>());
+
+        private static readonly Lazy<FilterPublished> FilterPublished =
+            new Lazy<FilterPublished>(() => ServiceLocator.Current.GetInstance<FilterPublished>());
+
+        private static readonly Lazy<IPromotionService> PromotionService =
+            new Lazy<IPromotionService>(() => ServiceLocator.Current.GetInstance<IPromotionService>());
+
         public static ProductTileViewModel GetProductTileViewModel(this EntryContentBase entry, IMarket market, Currency currency, bool isFeaturedProduct = false)
         {
-            var prices = entry.Prices().Where(x => x.UnitPrice.Currency == currency)?.ToList() ?? new List<Price>();
-            var minPrice = prices?.OrderBy(x => x.UnitPrice).ThenBy(x => x.MinQuantity).FirstOrDefault() ?? new Price();
-            var discountPriceList = GetDiscountPriceCollection(entry, market, currency);
-            var minDiscountPrice = GetMinDiscountPrice(discountPriceList);
-
-            // if discount price is selected
-            var isDiscounted = minDiscountPrice.Value != null
-                ? (minDiscountPrice.Value.Price < minPrice.UnitPrice ? true : false)
-                : false;
-
             var entryRecommendations = entry as IProductRecommendations;
             var product = entry;
             var entryUrl = "";
@@ -57,8 +66,12 @@ namespace Foundation.Features.CatalogContent
 
             if (entry is GenericProduct)
             {
-                entryUrl = UrlResolver.Value.GetUrl(product.ContentLink);
-                firstCode = isDiscounted ? ReferenceConverter.Value.GetCode(minDiscountPrice.Key) : minPrice.CatalogEntryCode;
+                var variants = GetProductVariants(entry);
+                if (variants != null && variants.Any())
+                {
+                    firstCode = variants.First().Code;
+                }
+                entryUrl = UrlResolver.Value.GetUrl(entry.ContentLink);
             }
 
             if (entry is GenericBundle)
@@ -93,6 +106,18 @@ namespace Foundation.Features.CatalogContent
                 }
             }
 
+            IPriceValue price = PriceCalculationService.GetSalePrice(firstCode, market.MarketId, currency);
+            if (price == null)
+            {
+                price = GetEmptyPrice(entry, market, currency);
+            }
+            IPriceValue discountPrice = price;
+            if (price.UnitPrice.Amount > 0 && !string.IsNullOrEmpty(firstCode))
+            {
+                discountPrice = PromotionService.Value.GetDiscountPrice(new CatalogKey(firstCode), market.MarketId, currency);
+            }
+
+            bool isAvailable = price.UnitPrice.Amount > 0;
             return new ProductTileViewModel
             {
                 ProductId = product.ContentLink.ID,
@@ -101,14 +126,13 @@ namespace Foundation.Features.CatalogContent
                 DisplayName = entry.DisplayName,
                 Description = entry.Property.Keys.Contains("Description") ? entry.Property["Description"]?.Value != null ? ((XhtmlString)entry.Property["Description"].Value).ToHtmlString() : "" : "",
                 LongDescription = ShortenLongDescription(entry.Property.Keys.Contains("LongDescription") ? entry.Property["LongDescription"]?.Value != null ? ((XhtmlString)entry.Property["LongDescription"].Value).ToHtmlString() : "" : ""),
-                PlacedPrice = isDiscounted ? minDiscountPrice.Value.DefaultPrice : (minPrice != null ? minPrice.UnitPrice : new Money(0, currency)),
-                DiscountedPrice = isDiscounted ? minDiscountPrice.Value.Price : (minPrice != null ? minPrice.UnitPrice : new Money(0, currency)),
+                PlacedPrice = price.UnitPrice,
+                DiscountedPrice = discountPrice.UnitPrice,
                 FirstVariationCode = firstCode,
                 ImageUrl = AssetUrlResolver.Value.GetAssetUrl<IContentImage>(entry),
                 VideoAssetUrl = AssetUrlResolver.Value.GetAssetUrl<IContentVideo>(entry),
                 Url = entryUrl,
-                IsAvailable = prices?.Where(price => price.MarketId == market.MarketId)
-                    .Any(x => x.UnitPrice.Currency == currency) ?? false,
+                IsAvailable = isAvailable,
                 OnSale = entry.Property.Keys.Contains("OnSale") && ((bool?)entry.Property["OnSale"]?.Value ?? false),
                 NewArrival = entry.Property.Keys.Contains("NewArrival") && ((bool?)entry.Property["NewArrival"]?.Value ?? false),
                 ShowRecommendations = entryRecommendations != null ? entryRecommendations.ShowRecommendations : true,
@@ -119,6 +143,36 @@ namespace Foundation.Features.CatalogContent
             };
         }
 
+        private static IPriceValue GetEmptyPrice(EntryContentBase entry, IMarket market, Currency currency)
+        {
+            return new PriceValue()
+            {
+                CatalogKey = new CatalogKey(entry.Code),
+                MarketId = market.MarketId,
+                CustomerPricing = new CustomerPricing(CustomerPricing.PriceType.AllCustomers, string.Empty),
+                ValidFrom = DateTime.Now.AddDays(-1),
+                ValidUntil = DateTime.Now.AddDays(1),
+                MinQuantity = 1,
+                UnitPrice = new Money(0, currency)
+            };
+        }
+
+        private static IEnumerable<VariationContent> GetProductVariants(EntryContentBase entry)
+        {
+            var product = entry as ProductContent;
+            if (product != null)
+            {
+                return ContentLoader.Value
+                    .GetItems(product.GetVariants(RelationRepository.Value), LanguageResolver.Value.GetPreferredCulture())
+                    .OfType<VariationContent>()
+                    .Where(v => v.IsAvailableInCurrentMarket(CurrentMarket.Value) && !FilterPublished.Value.ShouldFilter(v))
+                    .ToArray();
+            }
+            else
+            {
+                return null;
+            }
+        }
         private static string ShortenLongDescription(string longDescription)
         {
             var wordColl = Regex.Matches(longDescription, @"[\S]+");
@@ -129,7 +183,7 @@ namespace Foundation.Features.CatalogContent
                 foreach (var subWord in wordColl.Cast<Match>().Select(r => r.Value).Take(40))
                 {
                     sb.Append(subWord);
-                    sb.Append(" ");
+                    sb.Append(' ');
                 }
             }
 

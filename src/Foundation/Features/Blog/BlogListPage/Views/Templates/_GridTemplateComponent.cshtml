@@ -1,0 +1,35 @@
+﻿@using EPiServer.AddOns.Helpers
+@using ImageProcessor.Web.Episerver
+
+@model Foundation.Features.Blog.BlogItemPage.BlogItemPageViewModel
+
+<div class="blog__thumbnail">
+    <div class="w-100">
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
+        {
+            <img data-src="@Html.ProcessImage(Url.ContentUrl((ContentReference)Model.CurrentContent.PageImage)).Resize(1200, null)&format=webp"
+                 class="lazyload h-100 w-100" />
+        }
+    </div>
+    <div class="blog__title-container">
+        <div class="blog__title-wrapper">
+            <span>
+                @foreach (var tag in Model.Tags)
+                {
+                    <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+                }
+            </span>
+            <h2 class="blog__title">
+                <a href="@Model.CurrentContent.ContentLink.GetPublicUrl()">@Model.CurrentContent.MetaTitle</a>
+            </h2>
+            @if (Model.ShowPublishDate)
+            {
+                <p class="color-light">@Model.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")</p>
+            }
+            @if (Model.ShowIntroduction)
+            {
+                <p>@Html.Raw(Model.PreviewText)</p>
+            }
+        </div>
+    </div>
+</div>

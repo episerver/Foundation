@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    @if (Model.Products != null && Model.Products.Count() > 0)
+    @if (Model.Products != null && Model.Products.Any())
     {
         <div class="row">
             @foreach (var product in Model.Products)

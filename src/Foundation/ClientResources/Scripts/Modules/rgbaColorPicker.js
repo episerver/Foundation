@@ -257,7 +257,7 @@ var ColorPicker = function () {
                 var hex = (input.startsWith('#') ? input.slice(1) : input).replace(/^(\w{3})$/, '$1F').replace(/^(\w)(\w)(\w)(\w)$/, '$1$1$2$2$3$3$4$4').replace(/^(\w{6})$/, '$1FF');
 
                 if (!hex.match(/^([0-9a-fA-F]{8})$/)) {
-                    throw new Error('Unknown hex color; ' + input);
+                    hex = 'ffffffFF';
                 }
 
                 var rgba = hex.match(/^(\w\w)(\w\w)(\w\w)(\w\w)$/).slice(1).map(function (x) {

@@ -1,6 +1,7 @@
 ﻿using EPiBootstrapArea;
 using EPiServer.Core;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Foundation.Infrastructure.Display
@@ -11,42 +12,77 @@ namespace Foundation.Infrastructure.Display
         {
         }
 
-        protected override void RenderContentAreaItems(HtmlHelper html, IEnumerable<ContentAreaItem> contentAreaItems)
+        protected override void RenderContentAreaItems(HtmlHelper htmlHelper, IEnumerable<ContentAreaItem> contentAreaItems)
+        {
+            bool? result = null;
+            var actualValue = htmlHelper.ViewContext.ViewData["rowsupport"];
+            if (actualValue is bool)
+            {
+                result = (bool)actualValue;
+            }
+            var isRowSupported = result;
+            var addRowMarkup = ConfigurationContext.Current.RowSupportEnabled && isRowSupported.HasValue && isRowSupported.Value;
+
+            // there is no need to proceed if row rendering support is disabled
+            if (!addRowMarkup)
+            {
+                CustomizedRenderContentAreaItems(htmlHelper, contentAreaItems);
+                return;
+            }
+
+            var rowRender = new RowRenderer();
+            rowRender.Render(contentAreaItems,
+                             htmlHelper,
+                             GetContentAreaItemTemplateTag,
+                             GetColumnWidth,
+                             CustomizedRenderContentAreaItems);
+        }
+
+        protected virtual void CustomizedRenderContentAreaItems(HtmlHelper htmlHelper, IEnumerable<ContentAreaItem> contentAreaItems)
         {
             TagBuilder currentRow;
-
             foreach (var contentAreaItem in contentAreaItems)
             {
-                var templateTag = GetContentAreaItemTemplateTag(html, contentAreaItem);
+                var templateTag = GetContentAreaItemTemplateTag(htmlHelper, contentAreaItem);
                 var isScreenContentAreaItem = IsScreenWidthTag(templateTag);
 
                 if (isScreenContentAreaItem)
                 {
                     currentRow = new TagBuilder("div");
                     currentRow.AddCssClass("screen-width-block");
-                    html.ViewContext.Writer.Write(currentRow.ToString(TagRenderMode.StartTag));
-                    RenderContentAreaItem(html, contentAreaItem, templateTag, GetContentAreaItemHtmlTag(html, contentAreaItem), GetContentAreaItemCssClass(html, contentAreaItem, templateTag));
-                    html.ViewContext.Writer.Write(currentRow.ToString(TagRenderMode.EndTag));
+                    htmlHelper.ViewContext.Writer.Write(currentRow.ToString(TagRenderMode.StartTag));
+                    RenderContentAreaItem(htmlHelper, contentAreaItem, templateTag, GetContentAreaItemHtmlTag(htmlHelper, contentAreaItem), GetContentAreaItemCssClass(htmlHelper, contentAreaItem, templateTag));
+                    htmlHelper.ViewContext.Writer.Write(currentRow.ToString(TagRenderMode.EndTag));
                 }
                 else
                 {
-                    RenderContentAreaItem(html, contentAreaItem, templateTag, GetContentAreaItemHtmlTag(html, contentAreaItem), GetContentAreaItemCssClass(html, contentAreaItem, templateTag));
+                    RenderContentAreaItem(htmlHelper, contentAreaItem, templateTag, GetContentAreaItemHtmlTag(htmlHelper, contentAreaItem), GetContentAreaItemCssClass(htmlHelper, contentAreaItem, templateTag));
                 }
             }
         }
 
-        protected virtual string GetContentAreaItemCssClass(HtmlHelper html, ContentAreaItem contentAreaItem, string templateTag)
+        protected virtual string GetContentAreaItemCssClass(HtmlHelper htmlHelper, ContentAreaItem contentAreaItem, string templateTag)
         {
-            var baseClass = base.GetContentAreaItemCssClass(html, contentAreaItem);
-
+            var baseClass = base.GetContentAreaItemCssClass(htmlHelper, contentAreaItem);
+            var contentRef = contentAreaItem.ContentLink.ID.ToString();
+            if (contentAreaItem.ContentLink.IsExternalProvider)
+            {
+                contentRef += $"_{contentAreaItem.ContentLink.ProviderName}";
+            }
             if (!string.IsNullOrEmpty(baseClass))
             {
-                return baseClass;
+                return $"{baseClass} id-{contentRef}";
             }
-
-            return string.Format("block {0}", templateTag);
+            return $"block {templateTag} id-{contentRef}";
         }
 
         protected virtual bool IsScreenWidthTag(string templateTag) => templateTag == "displaymode-screen";
+
+        protected virtual int GetColumnWidth(string templateTag)
+        {
+            var displayModes = new FoundationDisplayModeProvider().GetAll();
+            var displayMode = displayModes.FirstOrDefault(x => x.Tag == templateTag);
+            return displayMode?.LargeScreenWidth ?? 12;
+        }
     }
 }

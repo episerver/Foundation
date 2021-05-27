@@ -51,7 +51,7 @@
                 @foreach (var location in Model.Locations)
                 {
                     <article data-maplat="@location.Latitude" data-maplon="@location.Longitude"
-                             data-mapname="@location.PageName" data-mapurl="@location.LinkURL">
+                             data-mapname="@location.PageName" data-mapurl="@location.LinkURL" class="locationArticle">
                         <div class="location">
                             <div class="location__body">
                                 <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>

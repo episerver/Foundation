@@ -45,8 +45,19 @@
                                                     @if (variant != null)
                                                     {
                                                         <p class="items__item-meta">
-                                                            Size: @variant.Size, Color: @variant.Color
+                                                            Size: @(variant.Size.IsNullOrEmpty() ? "N/A" : variant.Size), Color: @(variant.Color.IsNullOrEmpty() ? "N/A" : variant.Color)
                                                         </p>
+                                                    }
+                                                    @if (cartItem.IsDynamicProduct)
+                                                    {
+                                                        <div>
+                                                            <label class="title">Base Price: </label>
+                                                            <span class="price__discount">@cartItem.BasePrice.ToString()</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="title">Option Price: </label>
+                                                            <span class="price__discount">@cartItem.OptionPrice.ToString()</span>
+                                                        </div>
                                                     }
                                                     <p>
                                                         Price:
@@ -72,7 +83,7 @@
                                                     </div>
                                                     <br />
                                                     <div class="@(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "" : "hidden" )">
-                                                        <button type="button" class="button-white jsSeparateHint 
+                                                        <button type="button" class="button-white jsSeparateHint
                                                                 @(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "jsSeparateBtn" : "")"
                                                                 data-toggle="modal" data-target="#shipmentListing"
                                                                 data-code="@cartItem.Entry.Code"
@@ -112,11 +123,12 @@
 
                     <!--Shipment Address-->
                     <br />
-                    @{ 
-                        var shipmentIndexViewData = new ViewDataDictionary();
-                        shipmentIndexViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
+                    @{
+                        var newViewData = new ViewDataDictionary(ViewData);
+                        newViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
                     }
-                    @Html.Partial("SingleAddress", Model, shipmentIndexViewData)
+
+                    @Html.Partial("SingleAddress", Model, newViewData)
                 </div>
             </div>
             <br />

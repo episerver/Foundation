@@ -16,6 +16,7 @@ namespace Foundation.Features.Blocks.YouTubeBlock
     {
         [Required]
         [Editable(true)]
+        [Searchable(false)]
         [Display(Name = "YouTube link", Description = "URL link to YouTube video", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string YouTubeLink
         {
@@ -27,8 +28,8 @@ namespace Foundation.Features.Blocks.YouTubeBlock
                     return null;
                 }
 
-                if (!linkName.Contains("youtube") || !linkName.Contains("/watch?v=") && !linkName.Contains("/v/") &&
-                    !linkName.Contains("/embed/"))
+                if (!linkName.Contains("youtube") || (!linkName.Contains("/watch?v=") && !linkName.Contains("/v/") &&
+                    !linkName.Contains("/embed/")))
                 {
                     return null;
                 }
@@ -61,6 +62,6 @@ namespace Foundation.Features.Blocks.YouTubeBlock
         public bool HasVideo => !string.IsNullOrEmpty(YouTubeLink);
 
         [Editable(false)]
-        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;
+        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || (MainBody != null && !MainBody.IsEmpty);
     }
 }

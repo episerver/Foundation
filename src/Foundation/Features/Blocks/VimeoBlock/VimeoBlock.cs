@@ -24,7 +24,6 @@ namespace Foundation.Features.Blocks.VimeoBlock
         [Display(Name = "Vimeo link", Description = "URL link to Vimeo video", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string VimeoVideoLink { get; set; }
 
-        [Searchable(false)]
         [UIHint(UIHint.Image)]
         [Display(Name = "Cover image", GroupName = SystemTabNames.Content, Order = 20)]
         public virtual ContentReference CoverImage { get; set; }
@@ -66,7 +65,7 @@ namespace Foundation.Features.Blocks.VimeoBlock
         public bool HasCoverImage => !ContentReference.IsNullOrEmpty(CoverImage);
 
         [Editable(false)]
-        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || MainBody != null && !MainBody.IsEmpty;
+        public bool HasHeadingText => !string.IsNullOrEmpty(Heading) || (MainBody != null && !MainBody.IsEmpty);
     }
 
     public class VimeoUrl

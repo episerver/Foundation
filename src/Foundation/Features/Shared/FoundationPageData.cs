@@ -80,7 +80,6 @@ namespace Foundation.Features.Shared
         [Display(Name = "Author", GroupName = TabNames.MetaData, Order = 320)]
         public virtual string AuthorMetaData { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Disable indexing", GroupName = TabNames.MetaData, Order = 400)]
         public virtual bool DisableIndexing { get; set; }
 
@@ -88,22 +87,18 @@ namespace Foundation.Features.Shared
 
         #region Settings
 
-        [CultureSpecific]
         [Display(Name = "Exclude from results",
             Description = "This will determine whether or not to show on search",
             GroupName = TabNames.Settings,
             Order = 100)]
         public virtual bool ExcludeFromSearch { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Hide site header", GroupName = TabNames.Settings, Order = 200)]
         public virtual bool HideSiteHeader { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Hide site footer", GroupName = TabNames.Settings, Order = 300)]
         public virtual bool HideSiteFooter { get; set; }
 
-        [CultureSpecific]
         [Display(Name = "Highlight in page list", GroupName = TabNames.Settings, Order = 400)]
         public virtual bool Highlight { get; set; }
 
@@ -111,18 +106,15 @@ namespace Foundation.Features.Shared
 
         #region Teaser
 
-        [CultureSpecific]
         [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Teaser ratio (width-height)", GroupName = TabNames.Teaser, Order = 50)]
         public virtual string TeaserRatio { get; set; }
 
-        [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", GroupName = TabNames.Teaser, Order = 100)]
         public virtual ContentReference PageImage { get; set; }
 
-        [CultureSpecific]
         [UIHint(UIHint.Video)]
         [Display(Name = "Video", GroupName = TabNames.Teaser, Order = 200)]
         public virtual ContentReference TeaserVideo { get; set; }
@@ -144,13 +136,11 @@ namespace Foundation.Features.Shared
             set => this.SetPropertyValue(p => p.TeaserText, value);
         }
 
-        [CultureSpecific]
         [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(TeaserTextAlignmentSelectionFactory))]
         [Display(Name = "Text alignment", GroupName = TabNames.Teaser, Order = 400)]
         public virtual string TeaserTextAlignment { get; set; }
 
-        [CultureSpecific]
         [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(TeaserColorThemeSelectionFactory))]
         [Display(Name = "Color theme", GroupName = TabNames.Teaser, Order = 500)]
@@ -160,14 +150,11 @@ namespace Foundation.Features.Shared
         [Display(Name = "Button label", GroupName = TabNames.Teaser, Order = 600)]
         public virtual string TeaserButtonText { get; set; }
 
-        [CultureSpecific]
         [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(ButtonBlockStyleSelectionFactory))]
         [Display(Name = "Button theme", GroupName = TabNames.Teaser, Order = 700)]
         public virtual string TeaserButtonStyle { get; set; }
 
-        [CultureSpecific]
-        [Searchable(false)]
         [Display(Name = "Display hover effect", GroupName = TabNames.Teaser, Order = 800)]
         public virtual bool ApplyHoverEffect { get; set; }
 
@@ -245,20 +232,10 @@ namespace Foundation.Features.Shared
         [Display(Name = "CSS files", GroupName = TabNames.Styles, Order = 100)]
         public virtual LinkItemCollection CssFiles { get; set; }
 
+        [Searchable(false)]
+        [UIHint(UIHint.Textarea)]
         [Display(Name = "CSS", GroupName = TabNames.Styles, Order = 200)]
-        [UIHint(UIHint.Textarea)]
         public virtual string Css { get; set; }
-
-        #endregion
-
-        #region Scripts
-
-        [Display(Name = "Script files", GroupName = TabNames.Scripts, Order = 100)]
-        public virtual LinkItemCollection ScriptFiles { get; set; }
-
-        [UIHint(UIHint.Textarea)]
-        [Display(GroupName = TabNames.Scripts, Order = 200)]
-        public virtual string Scripts { get; set; }
 
         #endregion
 

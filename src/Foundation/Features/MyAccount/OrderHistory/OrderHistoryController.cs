@@ -129,7 +129,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
              UrlResolver.Current.GetUrl(_settingsService.GetSiteSettings<ReferencePageSettings>()?.OrderDetailsPage ?? ContentReference.StartPage);
 
             viewModel.PagingInfo.PageNumber = pageNum;
-            viewModel.PagingInfo.TotalRecord = purchaseOrders.Count();
+            viewModel.PagingInfo.TotalRecord = purchaseOrders.Count;
             viewModel.PagingInfo.PageSize = pageSize;
             viewModel.OrderHistoryUrl = Request.Url.PathAndQuery;
             viewModel.Filter = filter;
@@ -256,17 +256,17 @@ namespace Foundation.Features.MyAccount.OrderHistory
 
             if (result && !string.IsNullOrEmpty(filter.AddressId))
             {
-                result = order.GetFirstForm().Shipments.Where(x => x.ShippingAddress.Id == filter.AddressId).Count() > 0;
+                result = order.GetFirstForm().Shipments.Where(x => x.ShippingAddress.Id == filter.AddressId).Any();
             }
 
             if (result && !string.IsNullOrEmpty(filter.PaymentMethodId))
             {
-                result = order.GetFirstForm().Payments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Count() > 0;
+                result = order.GetFirstForm().Payments.Where(x => x.PaymentMethodId.ToString() == filter.PaymentMethodId).Any();
             }
 
             if (result && !string.IsNullOrEmpty(filter.Keyword))
             {
-                result = order.GetAllLineItems().Where(x => x.DisplayName.Contains(filter.Keyword) || x.Code.Contains(filter.Keyword)).Count() > 0;
+                result = order.GetAllLineItems().Where(x => x.DisplayName.Contains(filter.Keyword) || x.Code.Contains(filter.Keyword)).Any();
             }
 
             return result;

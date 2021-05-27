@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<EPiServer.Forms.Samples.Criteria.FormModel>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<EPiServer.Forms.Samples.Criteria.FormModel>" %>
 <%@ Assembly Name="EPiServer.Forms.Samples" %>
 <%@ Import Namespace="EPiServer.Personalization.VisitorGroups.Criteria" %>
 <%@ Import Namespace="EPiServer.Personalization.VisitorGroups" %>
