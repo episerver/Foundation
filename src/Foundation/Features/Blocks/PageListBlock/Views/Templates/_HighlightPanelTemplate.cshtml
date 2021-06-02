@@ -20,9 +20,18 @@
                 @if (!page.Flip)
                 {
                     <div class="col-xs-12 col-@imageCol">
-                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                         {
-                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            }
                         }
                     </div>
                 }
@@ -43,9 +52,18 @@
                 @if (page.Flip)
                 {
                     <div class="col-xs-12 col-@imageCol">
-                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                         {
-                            <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            }
                         }
                     </div>
                 }
@@ -56,9 +74,18 @@
             <div class="screen-width-block">
                 <div class="row">
                     <div class="col-xs-12 col-@imageCol">
-                        @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                         {
-                            <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            }
                         }
                     </div>
                     <div class="col-xs-12 col-@textCol">

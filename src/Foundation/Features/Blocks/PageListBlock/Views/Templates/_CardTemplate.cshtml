@@ -17,9 +17,18 @@
             <div class="page-list-block-preview__card">
                 <div class="page-list-block-preview__card--show">
                     <div class="card--top" style="background-color: @Model.CurrentBlock.OverlayColor;">
-                        @if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                         {
-                            <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />
+                            }
                         }
                     </div>
                     <div class="card--bottom">
