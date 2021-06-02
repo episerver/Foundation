@@ -70,21 +70,40 @@
                     @if (typeIndex == 0)
                     {
                         <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--large">
-                            @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
                             {
-                                <img class="lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" type="image/webp" />
+                                <video class="video-fluid" autoplay loop playsinline muted>
+                                    <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                {
+                                    <img class="lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" type="image/webp" />
+                                }
                             }
                         </div>
                     }
                     @if (typeIndex == 1)
                     {
                         <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--small">
-                            <picture>
-                                @if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                            {
+                                <video class="video-fluid" autoplay loop playsinline muted>
+                                    <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                                 {
-                                    <img class="lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" type="image/webp" />
+                                    <picture>
+                                        <img class="lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" type="image/webp" />
+                                    </picture>
+
                                 }
-                            </picture>
+                            }
                         </div>
                     }
                     <div class="page-list-block-insight__description">
@@ -130,13 +149,37 @@
                     @if (typeIndex == 0)
                     {
                         <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--large">
-                            <img src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                            {
+                                <video class="video-fluid" autoplay loop playsinline muted>
+                                    <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                {
+                                    <img src="@Url.ContentUrl(foundationPage.PageImage)" />
+                                }
+                            }
                         </div>
                     }
                     @if (typeIndex == 1)
                     {
                         <div class="page-list-block-insight__thumbnail page-list-block-insight__thumbnail--small">
-                            <img src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                            {
+                                <video class="video-fluid" autoplay loop playsinline muted>
+                                    <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                {
+                                    <img src="@Url.ContentUrl(foundationPage.PageImage)" />
+                                }
+                            }
                         </div>
                     }
                     <div class="page-list-block-insight__description">

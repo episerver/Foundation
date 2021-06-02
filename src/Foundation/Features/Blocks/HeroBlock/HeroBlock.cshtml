@@ -1,5 +1,6 @@
 ﻿@using Foundation.Infrastructure.Helpers
 @using Foundation.Features.Blocks.HeroBlock
+@using System.Globalization
 
 @model IBlockViewModel<HeroBlock>
 
@@ -40,6 +41,10 @@
             blockRatio = "padding-bottom: 50%";
             break;
     }
+
+    NumberFormatInfo nfi = new NumberFormatInfo();
+    nfi.NumberDecimalSeparator = ".";
+    var calloutOpacity = Model.CurrentBlock.Callout.CalloutOpacity.ToString(nfi);
 }
 
 <div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
@@ -55,9 +60,9 @@
             if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.BackgroundImage))
             {
                 @*<div class="hero-block__image lazyload"
-                     data-bgset="@Url.ContentUrl(Model.CurrentBlock.BackgroundImage)&format=webp
-                     | @Url.ContentUrl(Model.CurrentBlock.BackgroundImage)">
-                </div>*@
+                         data-bgset="@Url.ContentUrl(Model.CurrentBlock.BackgroundImage)&format=webp
+                         | @Url.ContentUrl(Model.CurrentBlock.BackgroundImage)">
+                    </div>*@
                 <div class="hero-block__image"
                      style="background-image: url('@Url.ContentUrl(Model.CurrentBlock.BackgroundImage)')">
                 </div>
@@ -87,8 +92,12 @@
 </div>
 
 <style>
-            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
-                background-color: @Model.CurrentBlock.Callout.BackgroundColor;
-                opacity: @Model.CurrentBlock.Callout.CalloutOpacity;
-            }
+    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
+        background-color: @Model.CurrentBlock.Callout.BackgroundColor;
+        opacity: @calloutOpacity
+    }
+
+    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout a:not(.button-origin) {
+        color: @Model.CurrentBlock.Callout.CalloutTextColor
+    }
 </style>
