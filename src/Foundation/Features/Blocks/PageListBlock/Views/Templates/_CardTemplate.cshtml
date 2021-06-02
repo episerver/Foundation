@@ -25,7 +25,7 @@
                         }
                         else
                         {
-                            if (page != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img data-src="@Url.ContentUrl(foundationPage.PageImage)?width=1200&format=webp" class="lazyload" />
                             }

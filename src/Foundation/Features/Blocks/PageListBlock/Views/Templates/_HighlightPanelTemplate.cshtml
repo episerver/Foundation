@@ -28,7 +28,7 @@
                         }
                         else
                         {
-                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                             }
@@ -60,7 +60,7 @@
                         }
                         else
                         {
-                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                             }
@@ -82,7 +82,7 @@
                         }
                         else
                         {
-                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
                             }
