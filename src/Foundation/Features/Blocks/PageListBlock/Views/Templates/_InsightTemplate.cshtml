@@ -78,7 +78,7 @@
                             }
                             else
                             {
-                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                                 {
                                     <img class="lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" type="image/webp" />
                                 }
@@ -96,7 +96,7 @@
                             }
                             else
                             {
-                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                                 {
                                     <picture>
                                         <img class="lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" type="image/webp" />
@@ -157,7 +157,7 @@
                             }
                             else
                             {
-                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                                 {
                                     <img src="@Url.ContentUrl(foundationPage.PageImage)" />
                                 }
@@ -175,7 +175,7 @@
                             }
                             else
                             {
-                                if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                                if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                                 {
                                     <img src="@Url.ContentUrl(foundationPage.PageImage)" />
                                 }
