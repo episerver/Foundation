@@ -94,4 +94,8 @@
         background-color: @Model.CurrentBlock.Callout.BackgroundColor;
         opacity: @calloutOpacity;
     }
+
+    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout a:not(.button-origin) {
+        color: @Model.CurrentBlock.Callout.CalloutTextColor
+    }
 </style>
