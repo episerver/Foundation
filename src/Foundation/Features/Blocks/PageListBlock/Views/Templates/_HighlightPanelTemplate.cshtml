@@ -30,7 +30,7 @@
                         }
                         else
                         {
-                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
                             }
@@ -62,7 +62,7 @@
                         }
                         else
                         {
-                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
                             }
@@ -84,7 +84,7 @@
                         }
                         else
                         {
-                            if (!ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
                             {
                                 <img class="img-fluid preview--image-top__image lazyload" data-src="@Html.ProcessImage(@Url.ContentUrl(foundationPage.PageImage)).Resize(1200, null)" />
                             }
