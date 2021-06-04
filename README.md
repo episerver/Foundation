@@ -107,7 +107,7 @@ For addon developers, we have added a default location expander that will look f
 * [Creating a search provider](https://world.episerver.com/externalContentView/1b46cd43-2677-4796-827f-7e051ec2fa05 "Creating a search provider")
 * [Customizing search](https://world.episerver.com/externalContentView/c77b3cfa-45fe-42fa-85bb-f828c0364d63 "Customizing search")
 * [Indexing variants in a product document](https://world.episerver.com/externalContentView/4e0c3e6e-45c5-41fd-a2b4-e76f6af5cdc2 "Indexing variants in a product document")
-* [MetaType class](https://world.episerver.com/externalContentView/9bf86d3e-3d5f-49fe-b17c-9b8e8cbb2afd "MetaType class")
+* [MetaType class](https://world.episerver.com/externalContentView/3c4a7263-8556-4a03-8d40-b4387b2cd6d0 "MetaType class")
 * [Metadata Plus](https://world.episerver.com/externalContentView/18a116b2-9ee8-4203-8709-82c4edebeb02 "MetadataPlus") 
 * [Working with entity objects](https://world.episerver.com/externalContentView/5630b604-488e-4f57-ac9e-2876b93f1b26 "Working with entity objects")
 * [Working with SQL records](https://world.episerver.com/externalContentView/1fcf2a7e-04f0-40d5-b394-dcf8d040910c "Working with SQL records")
