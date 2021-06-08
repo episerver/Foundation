@@ -11,8 +11,14 @@
         <div class="row">
             <div class="col-md-6 col-lg-4">
                 <h3 class="footer__heading" @Html.EditAttributes(x => x.CompanyHeader)> @Html.DisplayFor(x => x.CompanyHeader)</h3>
-                <div>Phone:&nbsp<a href="tel:@Html.DisplayFor(x => x.CompanyPhone)" @Html.EditAttributes(x => x.CompanyPhone)>@Html.DisplayFor(x => x.CompanyPhone)</a></div>
-                <div>Email:&nbsp<a href="mailto:@Html.DisplayFor(x => x.CompanyEmail)" @Html.EditAttributes(x => x.CompanyEmail)>@Html.DisplayFor(x => x.CompanyEmail)</a></div>
+                @if (Model.CompanyPhone != null)
+                {
+                    <div>Phone:&nbsp<a href="tel:@Html.DisplayFor(x => x.CompanyPhone)" @Html.EditAttributes(x => x.CompanyPhone)>@Html.DisplayFor(x => x.CompanyPhone)</a></div>
+                }
+                @if (Model.CompanyEmail != null)
+                {
+                    <div>Email:&nbsp<a href="mailto:@Html.DisplayFor(x => x.CompanyEmail)" @Html.EditAttributes(x => x.CompanyEmail)>@Html.DisplayFor(x => x.CompanyEmail)</a></div>
+                }
                 <a @Html.EditAttributes(x => x.CompanyAddress)>@Html.DisplayFor(x => x.CompanyAddress)</a>
             </div>
             <div class="col-md-6 col-lg-2">
