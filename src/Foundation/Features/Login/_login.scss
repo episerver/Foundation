@@ -43,6 +43,10 @@
         align-items: center;
         padding: 15px;
 
+        & > a {
+            min-width: 50%;
+        }
+
         &--bottom {
             width: 100%;
             display: flex;
