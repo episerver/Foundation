@@ -1007,6 +1007,7 @@
     <Compile Include="Commerce\Customer\Services\ILoyaltyService.cs" />
     <Compile Include="Commerce\Customer\Services\LoyaltyService.cs" />
     <Compile Include="Commerce\Customer\UserRoles.cs" />
+    <Compile Include="Commerce\Export\CatalogExportController.cs" />
     <Compile Include="Commerce\Extensions\AssetContainerExtensions.cs" />
     <Compile Include="Commerce\Extensions\CartExtensions.cs" />
     <Compile Include="Commerce\Extensions\CustomerAddressExtensions.cs" />
