@@ -4,6 +4,7 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
 using Foundation.Cms.Extensions;
 using Foundation.Features.Events.CalendarEvent;
+using Geta.EpiCategories;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Foundation.Features.Events.CalendarBlock
             var root = currentBlock.EventsRoot;
             if (currentBlock.Recursive)
             {
-                events = root.GetAllRecursively<CalendarEventPage>();
+                events = root.FindPagesByPageType(true, typeof(CalendarEventPage).GetPageType().ID).Select(x => x as CalendarEventPage);
             }
             else
             {
@@ -45,7 +46,12 @@ namespace Foundation.Features.Events.CalendarBlock
 
             if (currentBlock.CategoryFilter != null && currentBlock.CategoryFilter.Any())
             {
-                events = events.Where(x => x.Category.Intersect(currentBlock.CategoryFilter).Any());
+                events = events.Where(x =>
+                {
+                    var categories = (x as ICategorizableContent)?.Categories;
+                    return categories != null &&
+                           categories.Intersect(currentBlock.CategoryFilter).Any();
+                });
             }
 
             events.Take(currentBlock.Count);
