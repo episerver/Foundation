@@ -5,6 +5,8 @@ using EPiServer.Shell.ObjectEditing;
 using Foundation.Features.Folder;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
+using Geta.EpiCategories.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Events.CalendarBlock
@@ -30,8 +32,12 @@ namespace Foundation.Features.Events.CalendarBlock
         [Display(Name = "Number of events", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual int Count { get; set; }
 
-        [Display(Name = "Filter by category", GroupName = SystemTabNames.Content, Order = 40)]
-        public virtual CategoryList CategoryFilter { get; set; }
+        [Categories]
+        [Display(Name = "Filter by category",
+            Description = "Categories to filter the list on",
+            GroupName = SystemTabNames.Content,
+            Order = 40)]
+        public virtual IList<ContentReference> CategoryFilter { get; set; }
 
         [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 50)]
         public virtual bool Recursive { get; set; }
