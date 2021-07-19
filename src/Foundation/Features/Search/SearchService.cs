@@ -80,7 +80,6 @@ namespace Foundation.Features.Search
         private readonly IContentRepository _contentRepository;
         private readonly IPriceService _priceService;
         private readonly IPromotionService _promotionService;
-        private readonly ICurrencyService _currencyservice;
         private readonly IContentLoader _contentLoader;
         private readonly BestBetRepository _bestBetRepository;
         private static readonly Random _random = new Random();
@@ -95,7 +94,6 @@ namespace Foundation.Features.Search
             IContentRepository contentRepository,
             IPriceService priceService,
             IPromotionService promotionService,
-            ICurrencyService currencyservice,
             IContentLoader contentLoader,
             BestBetRepository bestBetRepository
             )
@@ -111,7 +109,6 @@ namespace Foundation.Features.Search
             _contentRepository = contentRepository;
             _priceService = priceService;
             _promotionService = promotionService;
-            _currencyservice = currencyservice;
             _contentLoader = contentLoader;
             _bestBetRepository = bestBetRepository;
         }
@@ -176,7 +173,7 @@ namespace Foundation.Features.Search
         public IEnumerable<SkuSearchResultModel> SearchSkus(string query)
         {
             var market = _currentMarket.GetCurrentMarket();
-            var currency = _currencyservice.GetCurrentCurrency();
+            var currency = _currencyService.GetCurrentCurrency();
 
             var results = _findClient.Search<GenericProduct>()
                 .Filter(_ => _.VariationModels(), x => x.Code.PrefixCaseInsensitive(query))

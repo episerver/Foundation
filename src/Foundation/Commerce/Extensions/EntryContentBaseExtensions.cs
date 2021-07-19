@@ -69,14 +69,16 @@ namespace Foundation.Commerce.Extensions
                 : Enumerable.Empty<Inventory>();
         }
 
-        public static decimal DefaultPrice(this EntryContentBase entryContentBase)
+        // Episerver Find: Sorting by expressions of type Decimal is not supported
+        // Supported types to sort by are native value types such as int, DateTime, nullable versions of the same and strings.
+        // Workaround: Convert a Price (decimal) to an int
+        public static int DefaultPrice(this EntryContentBase entryContentBase)
         {
-            var market = MarketService.Value.GetAllMarkets()
-                .FirstOrDefault(x => x.DefaultLanguage.Name.Equals(entryContentBase.Language.Name));
+            var market = CurrentMarket.Value.GetCurrentMarket();
 
             if (market == null)
             {
-                return 0m;
+                return 0;
             }
 
             var minPrice = new Price();
@@ -94,24 +96,26 @@ namespace Foundation.Commerce.Extensions
                     }
                 }
 
-                return minPrice.UnitPrice.Amount;
+                return (int)(minPrice.UnitPrice.Amount * 10000);
             }
 
             if (entryContentBase is PackageContent packageContent)
             {
-                return packageContent.ContentLink
+                var price = packageContent.ContentLink
                            .GetDefaultPrice(market.MarketId, market.DefaultCurrency, DateTime.UtcNow)?.UnitPrice
-                           .Amount ?? 0m;
+                           .Amount;
+                return price == null ? 0 : (int)(price * 10000);
             }
 
             if (entryContentBase is VariationContent variationContent)
             {
-                return variationContent.ContentLink
+                var price = variationContent.ContentLink
                            .GetDefaultPrice(market.MarketId, market.DefaultCurrency, DateTime.UtcNow)?.UnitPrice
-                           .Amount ?? 0m;
+                           .Amount;
+                return price == null ? 0 : (int)(price * 10000);
             }
 
-            return 0m;
+            return 0;
         }
 
         public static IEnumerable<Price> Prices(this EntryContentBase entryContentBase)
