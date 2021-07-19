@@ -57,7 +57,7 @@ namespace Foundation.Find.Facets
             {
                 Count = x.Count,
                 Key = $"{facet.Name}:{GetKey(x)}",
-                Name = GetDisplayText(x),
+                Name = facet.Name == "DefaultPrice" ? GetDefaultPriceDisplayText(x) : GetDisplayText(x),
                 Selected = selectedFacets != null && selectedFacets.Contains($"{facet.Name}:{GetKey(x)}")
             }).ToList();
         }
@@ -66,6 +66,23 @@ namespace Foundation.Find.Facets
         {
             var from = result.From == null ? "MIN" : result.From.ToString();
             var to = result.To == null ? "MAX" : result.To.ToString();
+            return from + "-" + to;
+        }
+
+        // Workaround: Display actual Price value (devide by 10000) from Find index
+        // Reference: DefaultPrice() on EntryContentBaseExtensions class
+        private string GetDefaultPriceDisplayText(NumericRangeResult result)
+        {
+            var currency = _currentMarket.GetCurrentMarket().DefaultCurrency;
+
+            var from = result.From == null || result.From == 0
+                ? new Money(0, currency).ToString()
+                : new Money(Convert.ToDecimal(result.From.Value / 10000), currency).ToString();
+
+            var to = result.To == null || result.To == 0
+                ? new Money(10000, currency).ToString()
+                : new Money(Convert.ToDecimal(result.To.Value / 10000), currency).ToString();
+
             return from + "-" + to;
         }
 
