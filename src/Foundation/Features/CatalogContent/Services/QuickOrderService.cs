@@ -4,6 +4,7 @@ using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
+using EPiServer.Find.Commerce.Services.Internal;
 using EPiServer.Find.Framework.Statistics;
 using Foundation.Features.MyOrganization.QuickOrderBlock;
 using Foundation.Features.MyOrganization.QuickOrderPage;

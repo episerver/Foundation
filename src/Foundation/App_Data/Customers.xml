@@ -168,7 +168,7 @@
     </Addresses>
   </Customer>
   <Customer>
-    <Email>administrator@example.com</Email>
+    <Email>admin@example.com</Email>
     <FirstName>Perry</FirstName>
     <LastName>Riley</LastName>
     <Roles>Administrators,WebAdmins</Roles>

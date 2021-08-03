@@ -52,6 +52,9 @@ using Foundation.Infrastructure.SchemaMarkup;
 //using Foundation.Infrastructure.Services;
 using Mediachase.Commerce.Orders;
 using Mediachase.MetaDataPlus.Configurator;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 //using PowerSlice;
 using System;
@@ -75,7 +78,12 @@ namespace Foundation.Infrastructure
         {
             _services = context.Services;
             context.ConfigureFoundationCms();
-
+            _services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            ServiceCollectionServiceExtensions.AddScoped(_services, x => {
+                var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+                var factory = x.GetRequiredService<IUrlHelperFactory>();
+                return factory.GetUrlHelper(actionContext);
+            });
             //_services.Configure<ContentApiConfiguration>(c =>
             //{
             //    c.EnablePreviewFeatures = true;
@@ -121,7 +129,7 @@ namespace Foundation.Infrastructure
             _services.AddSingleton<ShipmentViewModelFactory>();
             _services.AddSingleton<IShippingService, ShippingService>();
             _services.AddSingleton<IConfirmationService, ConfirmationService>();
-            //_services.AddSingleton<ICampaignService, CampaignService>();
+            _services.AddSingleton<CheckoutService>();
             _services.AddSingleton<IHtmlDownloader, HtmlDownloader>();
             _services.AddTransient<IMailService, MailService>();
             _services.AddSingleton<BlogTagFactory>();

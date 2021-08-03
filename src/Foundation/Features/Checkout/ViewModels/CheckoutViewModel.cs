@@ -82,7 +82,7 @@ namespace Foundation.Features.Checkout.ViewModels
         /// <summary>
         /// Gets the name of the checkout view required depending on the number of distinct shipping addresses.
         /// </summary>
-        public string ViewName => Shipments.Count > 1 ? MultiShipmentCheckoutViewName : SingleShipmentCheckoutViewName;
+        public string ViewName => Shipments != null && Shipments.Count > 1 ? MultiShipmentCheckoutViewName : SingleShipmentCheckoutViewName;
 
         public ContactViewModel CurrentCustomer { get; set; }
         public string QuoteStatus { get; set; } = "";
@@ -91,6 +91,10 @@ namespace Foundation.Features.Checkout.ViewModels
         public bool IsUsePaymentPlan { get; set; }
 
         public PaymentPlanSetting PaymentPlanSetting { get; set; }
+
+        public string SystemKeyword { get; set; }
+
+        public Guid PaymentMethodId { get; set; }
     }
 
     public class PaymentPlanSetting

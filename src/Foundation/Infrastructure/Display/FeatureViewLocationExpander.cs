@@ -2,11 +2,30 @@
 using Microsoft.AspNetCore.Mvc.Razor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Foundation.Infrastructure.Display
 {
     public class FeatureViewLocationExpander : IViewLocationExpander
     {
+        private const string ChildFeature = "childfeature";
+        private const string Feature = "feature";
+        private readonly List<string> _viewLocationFormats = new List<string>()
+        {
+            "/Features/Shared/{0}.cshtml",
+            "/Features/Blocks/{0}.cshtml",
+            "/Features/Blocks/{1}/{0}.cshtml",
+            "/Features/Shared/Views/{0}.cshtml",
+            "/Features/Shared/Views/{1}/{0}.cshtml",
+            "/Features/Shared/Views/Header/{0}.cshtml",
+            "/Cms/Views/{1}/{0}.cshtml",
+            "/Features/{3}/{1}/{0}.cshtml",
+            "/Features/{3}/{0}.cshtml",
+            "/Features/{3}/{4}/{1}/{0}.cshtml",
+            "/Features/{3}/{4}/{0}.cshtml",
+            "/FormsViews/Views/ElementBlocks/{0}.cshtml"
+        };
+
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context,
             IEnumerable<string> viewLocations)
         {
@@ -21,36 +40,59 @@ namespace Foundation.Infrastructure.Display
             }
 
             var controllerActionDescriptor = context.ActionContext.ActionDescriptor as ControllerActionDescriptor;
-            if (controllerActionDescriptor == null)
+            if (controllerActionDescriptor != null && controllerActionDescriptor.Properties.ContainsKey("feature"))
             {
-                throw new NullReferenceException("ControllerActionDescriptor cannot be null.");
-            }
-
-
-            if (!controllerActionDescriptor.Properties.ContainsKey("feature"))
-            {
-                return new List<string>()
+                string featureName = controllerActionDescriptor.Properties[Feature] as string;
+                string childFeatureName = null;
+                if (controllerActionDescriptor.Properties.ContainsKey(ChildFeature))
                 {
-                    "/Views/{1}/{0}.cshtml",
-                    "/Views/Shared/{0}.cshtml",
-                    "/Pages/Shared/{0}.cshtml"
-                };
+                    childFeatureName = controllerActionDescriptor.Properties[ChildFeature] as string;
+                }
+                foreach (var item in ExpandViewLocations(_viewLocationFormats.Union(viewLocations), featureName, childFeatureName))
+                {
+                    yield return item;
+                }
             }
-
-            string featureName = controllerActionDescriptor.Properties["feature"] as string;
-            return ExpandViewLocations(viewLocations, featureName);
+            else
+            {
+                foreach (var location in viewLocations)
+                {
+                    yield return location;
+                }
+            }
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)
         {
-            //context.Values["customviewlocation"] = nameof(FeatureViewLocationExpander);
+            var controllerActionDescriptor = context.ActionContext?.ActionDescriptor as ControllerActionDescriptor;
+            if (controllerActionDescriptor == null || !controllerActionDescriptor.Properties.ContainsKey(Feature))
+            {
+                return;
+            }
+            context.Values[Feature] = controllerActionDescriptor?.Properties[Feature].ToString();
+
+            if (controllerActionDescriptor.Properties.ContainsKey(ChildFeature))
+            {
+                context.Values[ChildFeature] = controllerActionDescriptor?.Properties[ChildFeature].ToString();
+            }
         }
 
-        private IEnumerable<string> ExpandViewLocations(IEnumerable<string> viewLocations, string featureName)
+        private IEnumerable<string> ExpandViewLocations(IEnumerable<string> viewLocations, 
+            string featureName,
+            string childFeatureName)
         {
             foreach (var location in viewLocations)
             {
-                yield return location.Replace("{3}", featureName);
+                var updatedLocation = location.Replace("{3}", featureName);
+                if (location.Contains("{4}") && string.IsNullOrEmpty(childFeatureName))
+                {
+                    continue;
+                }
+                else
+                {
+                    updatedLocation = updatedLocation.Replace("{4}", childFeatureName);
+                }
+                yield return updatedLocation;
             }
         }
     }

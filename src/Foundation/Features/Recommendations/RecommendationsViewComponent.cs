@@ -1,4 +1,5 @@
 ﻿using EPiServer.Personalization.Commerce.Tracking;
+using Foundation.Features.CatalogContent;
 using Foundation.Features.CatalogContent.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Linq;
 
 namespace Foundation.Features.Recommendations
 {
-    public class RecommendationsComponent : ViewComponent
+    public class RecommendationsViewComponent : ViewComponent
     {
         private readonly IProductService _recommendationService;
 
-        public RecommendationsComponent(IProductService recommendationService)
+        public RecommendationsViewComponent(IProductService recommendationService)
         {
             _recommendationService = recommendationService;
         }
@@ -19,7 +20,7 @@ namespace Foundation.Features.Recommendations
         {
             if (recommendations == null || !recommendations.Any())
             {
-                return View("Index", new List<Recommendation>()); ;
+                return View("/Features/Recommendations/Index.cshtml", new List<RecommendedProductTileViewModel>()); ;
             }
 
             if (recommendations.Count() > 4)
@@ -27,7 +28,7 @@ namespace Foundation.Features.Recommendations
                 recommendations = recommendations.Take(4);
             }
 
-            return View("Index", _recommendationService.GetRecommendedProductTileViewModels(recommendations));
+            return View("/Features/Recommendations/Index.cshtml", _recommendationService.GetRecommendedProductTileViewModels(recommendations));
         }
     }
 }

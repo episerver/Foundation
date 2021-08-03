@@ -16,14 +16,14 @@ namespace Foundation.Features.Recommendations.WidgetBlock
         private readonly ReferenceConverter _referenceConverter;
         private readonly IRequiredClientResourceList _requiredClientResource;
         private readonly ICartService _cartService;
-        private readonly ConfirmationService _confirmationService;
+        private readonly IConfirmationService _confirmationService;
         private readonly IProductService _productService;
 
         public WidgetBlockComponent(ICommerceTrackingService commerceTrackingService,
             ReferenceConverter referenceConverter,
             IRequiredClientResourceList requiredClientResource,
             ICartService cartService,
-            ConfirmationService confirmationService,
+            IConfirmationService confirmationService,
             IProductService productService)
         {
             _trackingService = commerceTrackingService;
@@ -36,7 +36,7 @@ namespace Foundation.Features.Recommendations.WidgetBlock
 
         public override async Task<IViewComponentResult> InvokeAsync(WidgetBlock currentBlock)
         {
-            return await Task.FromResult(View("~/Features/Recommendations/Index.cshtml", new BlockViewModel<WidgetBlock>(currentBlock)));
+            return await Task.FromResult(View("/Features/Recommendations/WidgetBlock/Index.cshtml", new BlockViewModel<WidgetBlock>(currentBlock)));
         }
     }
 }

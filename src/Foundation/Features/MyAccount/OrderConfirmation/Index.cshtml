@@ -142,7 +142,7 @@
                             <div class="col-lg-3 col-sm-12 order-confirm__unit">
                                 <label class="order-confirm--invoice__header-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Total", "Total")</label>
                                 @*@Helpers.RenderMoney(lineItem.GetDiscountedPrice(Model.Currency))*@
-                                @{await Component.InvokeAsync("Money", new { amount = lineItem.GetDiscountedPrice(Model.Currency), currency = Model.Currency });}
+                                @{await Component.InvokeAsync("Money", new { amount = lineItem.GetDiscountedPrice(Model.Currency).Amount, currency = Model.Currency });}
                             </div>
                         </div>
                     </div>

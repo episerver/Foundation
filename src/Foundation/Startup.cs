@@ -73,28 +73,26 @@ namespace Foundation
                 o.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
 
-            services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
-            .AddRazorOptions(ro => ro.ConfigureFeatureFolders());
+            services.AddMvc(o =>
+            {
+                o.Conventions.Add(new FeatureConvention());
+                o.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                //o.ModelBinderProviders.Insert(0, new FilterOptionModelBinderProvider());
+                o.ModelBinderProviders.Insert(0, new PaymentModelBinderProvider());
+            })
+            .AddRazorOptions(ro => ro.ViewLocationExpanders.Add(new FeatureViewLocationExpander()));
 
             services.AddCommerce();
-            services.AddDisplay();
             services.AddFind();
+            services.AddDisplay();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
 
             //site specific
-            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+            //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
             services.AddEmbeddedLocalization<Startup>();
-            services.Configure<OrderOptions>(o =>
-            {
-                o.DisableOrderDataLocalization = true;
-            });
-            services.Configure<MvcOptions>(o =>
-            {
-                o.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
-                o.ModelBinderProviders.Insert(0, new FilterOptionModelBinderProvider());
-                o.ModelBinderProviders.Insert(0, new PaymentModelBinderProvider());
-            });
+            services.Configure<OrderOptions>(o => o.DisableOrderDataLocalization = true);
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

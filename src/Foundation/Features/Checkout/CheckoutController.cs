@@ -41,7 +41,7 @@ namespace Foundation.Features.Checkout
         private readonly ICommerceTrackingService _recommendationService;
         private CartWithValidationIssues _cart;
         private readonly CheckoutService _checkoutService;
-        private readonly UrlHelper _urlHelper;
+        private readonly IUrlHelper _urlHelper;
         private readonly ApplicationSignInManager<SiteUser> _applicationSignInManager;
         private readonly LocalizationService _localizationService;
         private readonly IAddressBookService _addressBookService;
@@ -62,7 +62,7 @@ namespace Foundation.Features.Checkout
             OrderSummaryViewModelFactory orderSummaryViewModelFactory,
             ICommerceTrackingService recommendationService,
             CheckoutService checkoutService,
-            UrlHelper urlHelper,
+            IUrlHelper urlHelper,
             ApplicationSignInManager<SiteUser> applicationSignInManager,
             LocalizationService localizationService,
             IAddressBookService addressBookService,
@@ -218,7 +218,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult Update(CheckoutPage currentPage, UpdateShippingMethodViewModel shipmentViewModel, IPaymentMethod paymentOption)
+        public IActionResult Update(CheckoutPage currentPage, [FromBody]UpdateShippingMethodViewModel shipmentViewModel)
         {
             ModelState.Clear();
 
@@ -226,6 +226,7 @@ namespace Foundation.Features.Checkout
             _checkoutService.ApplyDiscounts(CartWithValidationIssues.Cart);
             _orderRepository.Save(CartWithValidationIssues.Cart);
 
+            var paymentOption = shipmentViewModel.SystemKeyword.GetPaymentMethod();
             var viewModel = CreateCheckoutViewModel(currentPage, paymentOption);
 
             return PartialView("Partial", viewModel);
@@ -339,7 +340,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public async Task<IActionResult> Purchase(CheckoutViewModel viewModel, IPaymentMethod paymentOption)
+        public async Task<IActionResult> Purchase([FromBody]CheckoutViewModel viewModel)
         {
             if (CartIsNullOrEmpty())
             {
@@ -377,6 +378,7 @@ namespace Foundation.Features.Checkout
                 }
             }
 
+            var paymentOption = viewModel.SystemKeyword.GetPaymentMethod();
             if (!paymentOption.ValidateData())
             {
                 return View(viewModel);
@@ -447,7 +449,7 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateShippingMethods(CheckoutPage currentPage, CheckoutViewModel viewModel)
+        public IActionResult UpdateShippingMethods(CheckoutPage currentPage, [FromForm] CheckoutViewModel viewModel)
         {
             _checkoutService.UpdateShippingMethods(CartWithValidationIssues.Cart, viewModel.Shipments);
             _checkoutService.ApplyDiscounts(CartWithValidationIssues.Cart);
@@ -471,7 +473,7 @@ namespace Foundation.Features.Checkout
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PlaceOrder(CheckoutPage currentPage, CheckoutViewModel checkoutViewModel)
+        public async Task<IActionResult> PlaceOrder(CheckoutPage currentPage, [FromForm] CheckoutViewModel checkoutViewModel)
         {
             ModelState.Clear();
 
@@ -548,7 +550,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult UpdatePaymentOption(CheckoutPage currentPage, IPaymentMethod paymentOption)
+        public IActionResult UpdatePaymentOption(CheckoutPage currentPage, [FromBody]IPaymentMethod paymentOption)
         {
             ModelState.Clear();
 
@@ -559,9 +561,11 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult UpdatePayment(CheckoutPage currentPage, CheckoutViewModel viewModel, IPaymentMethod paymentOption)
+        public IActionResult UpdatePayment(CheckoutPage currentPage, [FromForm] CheckoutViewModel viewModel)
         {
-            if (!paymentOption.ValidateData())
+
+            var paymentOption = viewModel.SystemKeyword.GetPaymentMethod();
+            if (paymentOption == null || !paymentOption.ValidateData())
             {
                 return View(viewModel);
             }
@@ -595,10 +599,11 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult RemovePayment(CheckoutPage currentPage, CheckoutViewModel viewModel, IPaymentMethod paymentOption)
+        public IActionResult RemovePayment(CheckoutPage currentPage, [FromBody] CheckoutViewModel viewModel)
         {
-            if (!paymentOption.ValidateData())
-            {
+            var paymentOption = viewModel.SystemKeyword.GetPaymentMethod();
+            if (paymentOption == null || !paymentOption.ValidateData())
+            { 
                 return View(viewModel);
             }
 
@@ -810,7 +815,7 @@ namespace Foundation.Features.Checkout
             var viewModel = CreateCheckoutViewModel(currentPage);
             ModelState.AddModelError("Purchase", filterContext.Exception.Message);
 
-            return View(viewModel.ViewName, viewModel);
+            return View("PlaceHolder", viewModel);
         }
 
         private ViewResult View(CheckoutViewModel checkoutViewModel) => View(checkoutViewModel.ViewName, CreateCheckoutViewModel(checkoutViewModel.CurrentContent, checkoutViewModel.Payments.FirstOrDefault()));

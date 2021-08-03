@@ -3,6 +3,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Core;
 using EPiServer.Find;
+using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Commerce.Services;
 using Mediachase.Commerce.Catalog;
@@ -24,8 +25,9 @@ namespace Foundation.Features.Search
            CatalogEventIndexer indexer,
            CatalogContentClientConventions catalogContentClientConventions,
            PriceIndexing priceIndexing,
-           IRelationRepository relationRepository) :
-            base(referenceConverter, contentRepository, client, indexer, catalogContentClientConventions, priceIndexing)
+           IRelationRepository relationRepository,
+           EventedIndexingSettings eventedIndexingSettings) :
+            base(referenceConverter, contentRepository, client, indexer, catalogContentClientConventions, priceIndexing, eventedIndexingSettings)
         {
             _contentRepository = contentRepository;
             _relationRepository = relationRepository;

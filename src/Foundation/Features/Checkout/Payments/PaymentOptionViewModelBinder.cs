@@ -2,7 +2,9 @@
 using EPiServer.ServiceLocation;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,10 +21,21 @@ namespace Foundation.Features.Checkout.Payments
             _defaultProvider = defaultProvider;
         }
 
-        public Task BindModelAsync(ModelBindingContext bindingContext)
+        public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            var systemKeyword = bindingContext.ValueProvider.GetValue("SystemKeyword").FirstOrDefault();
-            var selectedPaymentMethod = _paymentMethods.FirstOrDefault(p => !string.IsNullOrEmpty(p.SystemKeyword) && p.SystemKeyword.ToString() == systemKeyword);
+            string valueFromBody;
+            using (var streamReader = new StreamReader(bindingContext.HttpContext.Request.Body))
+            {
+                valueFromBody = await streamReader.ReadToEndAsync();
+            }
+
+            var systemKeyword = "";
+            if (!string.IsNullOrEmpty(valueFromBody))
+            {
+                var jObject = JObject.Parse(valueFromBody);
+                systemKeyword = jObject["SystemKeyword"].ToString();
+            }
+            var selectedPaymentMethod = _paymentMethods.FirstOrDefault(p => !string.IsNullOrEmpty(p.SystemKeyword) && p.SystemKeyword == systemKeyword);
             if (selectedPaymentMethod != null)
             {
                 var modelType = selectedPaymentMethod.GetType();
@@ -30,8 +43,6 @@ namespace Foundation.Features.Checkout.Payments
                 bindingContext.ModelMetadata = _defaultProvider.GetMetadataForType(modelType);
                 bindingContext.Result = ModelBindingResult.Success(model);
             }
-
-            return Task.CompletedTask;
         }
     }
 }
