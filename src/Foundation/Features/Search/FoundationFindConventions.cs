@@ -9,11 +9,18 @@ using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Commerce.Extensions;
+using System.Linq;
 
 namespace Foundation.Features.Search
 {
     public class FoundationFindConventions : CatalogContentClientConventions
     {
+        private readonly IClient _client;
+
+        public FoundationFindConventions(FindCommerceOptions findCommerceOptions, IClient client) : base(findCommerceOptions)
+        {
+            _client = client;
+        }
         protected override void ApplyProductContentConventions(EPiServer.Find.ClientConventions.TypeConventionBuilder<ProductContent> conventionBuilder)
         {
             base.ApplyProductContentConventions(conventionBuilder);
@@ -52,6 +59,10 @@ namespace Foundation.Features.Search
 
         public override void ApplyConventions(IClientConventions clientConventions)
         {
+            if (!_client.Settings.Languages.Any())
+            {
+                return;
+            }
             base.ApplyConventions(clientConventions);
             ContentIndexer.Instance.Conventions.ForInstancesOf<GenericVariant>().ShouldIndex(x => false);
             SearchClient.Instance.Conventions.ForInstancesOf<GenericProduct>().IncludeField(x => x.AvailableSizes());

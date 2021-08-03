@@ -62,7 +62,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         private readonly ICurrentMarket _currentMarket;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        private const string b2cMinicart = "~/Features/Shared/Foundation/Header/_HeaderCart.cshtml";
+        private const string b2cMinicart = "/Features/Shared/Views/Header/_HeaderCart.cshtml";
 
         public DefaultCartController(
             ICartService cartService,
@@ -116,26 +116,8 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         private string OrganizationId => _customerService.GetCurrentContact().FoundationOrganization?.OrganizationId.ToString();
 
-        [AcceptVerbs(new string[] { "GET", "POST" })]
-        public ActionResult MiniCartDetails()
-        {
-            var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
-            return PartialView(b2cMinicart, viewModel);
-        }
-
-        public PartialViewResult LoadCartItems()
-        {
-            var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
-            return PartialView("_MiniCartItems", viewModel);
-        }
-
-        public PartialViewResult LoadMobileCartItems()
-        {
-            var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
-            return PartialView("_MobileMiniCartItems", viewModel);
-        }
-
-        [AcceptVerbs(new string[] { "GET", "POST" })]
+        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> Index(CartPage currentPage)
         {
             var messages = string.Empty;
@@ -167,8 +149,27 @@ namespace Foundation.Features.NamedCarts.DefaultCart
             return View("LargeCart", viewModel);
         }
 
+        [AcceptVerbs(new string[] { "GET", "POST" })]
+        public ActionResult MiniCartDetails()
+        {
+            var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
+            return PartialView(b2cMinicart, viewModel);
+        }
+
+        public PartialViewResult LoadCartItems()
+        {
+            var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
+            return PartialView("_MiniCartItems", viewModel);
+        }
+
+        public PartialViewResult LoadMobileCartItems()
+        {
+            var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(CartWithValidationIssues.Cart);
+            return PartialView("_MobileMiniCartItems", viewModel);
+        }
+
         [HttpPost]
-        public async Task<ActionResult> AddToCart(RequestParamsToCart param)
+        public async Task<ActionResult> AddToCart([FromBody] RequestParamsToCart param)
         {
             var warningMessage = string.Empty;
 
@@ -265,7 +266,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public async Task<ActionResult> Subscription(RequestParamsToCart param)
+        public async Task<ActionResult> Subscription([FromBody] RequestParamsToCart param)
         {
             var warningMessage = string.Empty;
 
@@ -312,7 +313,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public async Task<ActionResult> BuyNow(RequestParamsToCart param)
+        public async Task<ActionResult> BuyNow([FromBody] RequestParamsToCart param)
         {
             var warningMessage = string.Empty;
 
@@ -428,7 +429,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public ActionResult MoveToWishlist(RequestParamsToCart param)
+        public ActionResult MoveToWishlist([FromBody] RequestParamsToCart param)
         {
             ModelState.Clear();
             var productName = "";
@@ -498,7 +499,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public ActionResult AddToSharedCart(RequestParamsToCart param)
+        public ActionResult AddToSharedCart([FromBody] RequestParamsToCart param)
         {
             ModelState.Clear();
             var currentPage = _contentRouteHelper.Content as CartPage;
@@ -549,7 +550,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Reorder(string orderId)
+        public async Task<ActionResult> Reorder([FromQuery] string orderId)
         {
             if (!int.TryParse(orderId, out var orderIntId))
             {
@@ -592,7 +593,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public async Task<ActionResult> ChangeCartItem(RequestParamsToCart param) // change quantity
+        public async Task<ActionResult> ChangeCartItem([FromBody] RequestParamsToCart param) // change quantity
         {
             ModelState.Clear();
 
@@ -653,7 +654,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public async Task<ActionResult> RemoveCartItem(RequestParamsToCart param) // only use ShipmentId, Code (variant Code)
+        public async Task<ActionResult> RemoveCartItem([FromBody] RequestParamsToCart param) // only use ShipmentId, Code (variant Code)
         {
             ModelState.Clear();
             var productName = "";
@@ -702,7 +703,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCouponCode(string couponCode)
+        public ActionResult AddCouponCode([FromQuery] string couponCode)
         {
             if (_cartService.AddCouponCode(CartWithValidationIssues.Cart, couponCode))
             {
@@ -719,7 +720,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RemoveCouponCode(string couponCode)
+        public ActionResult RemoveCouponCode([FromQuery] string couponCode)
         {
             _cartService.RemoveCouponCode(CartWithValidationIssues.Cart, couponCode);
             _orderRepository.Save(CartWithValidationIssues.Cart);
@@ -729,7 +730,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EstimateShipping(CartPage currentPage, LargeCartViewModel largeCartViewModel)
+        public ActionResult EstimateShipping(CartPage currentPage, [FromBody] LargeCartViewModel largeCartViewModel)
         {
             var orderAddress = CartWithValidationIssues.Cart.GetFirstShipment().ShippingAddress;
             if (orderAddress == null)
@@ -819,7 +820,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public ActionResult RequestQuoteById(int orderId)
+        public ActionResult RequestQuoteById([FromBody] int orderId)
         {
             var currentCustomer = _customerService.GetCurrentContact();
             if (currentCustomer.B2BUserRole != B2BUserRoles.Purchaser)
@@ -848,7 +849,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         }
 
         [HttpPost]
-        public JsonResult AddVariantsToCart(List<string> variants)
+        public JsonResult AddVariantsToCart([FromBody] List<string> variants)
         {
             var returnedMessages = new List<string>();
 

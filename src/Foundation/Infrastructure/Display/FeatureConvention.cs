@@ -9,8 +9,8 @@ namespace Foundation.Infrastructure.Display
     {
         public void Apply(ControllerModel controller)
         {
-            controller.Properties.Add("feature",
-              GetFeatureName(controller.ControllerType));
+            controller.Properties.Add("feature", GetFeatureName(controller.ControllerType));
+            controller.Properties.Add("childFeature", GetChildFeatureName(controller.ControllerType));
         }
         private string GetFeatureName(TypeInfo controllerType)
         {
@@ -22,6 +22,22 @@ namespace Foundation.Infrastructure.Display
               .Skip(1)
               .Take(1)
               .FirstOrDefault();
+        }
+
+        private string GetChildFeatureName(TypeInfo controllerType)
+        {
+            var tokens = controllerType.FullName?.Split('.');
+            if (!tokens?.Any(t => t == "Features") ?? true)
+            {
+                return "";
+            }
+
+            return tokens
+                .SkipWhile(t => !t.Equals("features",
+                    StringComparison.CurrentCultureIgnoreCase))
+                .Skip(2)
+                .Take(1)
+                .FirstOrDefault();
         }
     }
 }

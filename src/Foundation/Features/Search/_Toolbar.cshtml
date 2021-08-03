@@ -28,7 +28,7 @@
                 {
                     <li class="@(Model.Page == page ? "active" : "") jsPaginate jsUpdatePage" data="@(page)">
                         <a href="javascript:void(0)">
-                            @(page).ToString()
+                            @(page.ToString())
                         </a>
                     </li>
                 }

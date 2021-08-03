@@ -20,13 +20,13 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
 {
     public abstract class OrderConfirmationControllerBase<T> : PageController<T> where T : FoundationPageData
     {
-        protected readonly ConfirmationService _confirmationService;
+        protected readonly IConfirmationService _confirmationService;
         private readonly IAddressBookService _addressBookService;
         private readonly IOrderGroupCalculator _orderGroupCalculator;
         private readonly UrlResolver _urlResolver;
         protected readonly ICustomerService _customerService;
 
-        protected OrderConfirmationControllerBase(ConfirmationService confirmationService,
+        protected OrderConfirmationControllerBase(IConfirmationService confirmationService,
             IAddressBookService addressBookService,
             IOrderGroupCalculator orderGroupTotalsCalculator,
             UrlResolver urlResolver,

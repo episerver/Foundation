@@ -1,5 +1,7 @@
 ﻿using EPiServer.Commerce.Order;
+using EPiServer.ServiceLocation;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -16,7 +18,7 @@ namespace Foundation.Features.Checkout.Payments
         {
             if (ModelBinderTypeMappings.ContainsKey(context.Metadata.ModelType))
             {
-                return context.Services.GetService(ModelBinderTypeMappings[context.Metadata.ModelType]) as IModelBinder;
+                return ActivatorUtilities.CreateInstance(ServiceLocator.Current, ModelBinderTypeMappings[context.Metadata.ModelType]) as IModelBinder;
             }
             return null;
         }

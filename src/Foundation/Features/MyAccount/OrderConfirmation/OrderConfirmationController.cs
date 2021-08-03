@@ -17,7 +17,7 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
         private readonly IContextModeResolver _contextModeResolver;
         public OrderConfirmationController(
             //ICampaignService campaignService,
-            ConfirmationService confirmationService,
+            IConfirmationService confirmationService,
             IAddressBookService addressBookService,
             IOrderGroupCalculator orderGroupCalculator,
             UrlResolver urlResolver, ICustomerService customerService,

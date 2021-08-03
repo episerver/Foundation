@@ -16,11 +16,17 @@
         style="@(Model.IsShow ? "" : "display: none")">
     @foreach (var item in Model.List)
     {
-        <dropdown-option value="@item.Value" 
-                dropdown-checked=@(string.IsNullOrEmpty(Model.SelectedValue) || !isExistValue ? true : false)
-                dropdown-selected=@(Model.SelectedValue == item.Value ? true : false)
-                dropdown-disabled=@(Model.IsShow ? false : true)>
-            @item.Key
-        </dropdown-option>
+        if (string.IsNullOrEmpty(Model.SelectedValue) || !Model.SelectedValue.Equals(item.Value))
+        {
+            <option value="@item.Value">
+                @item.Key
+            </option>
+        }
+        else
+        {
+            <option value="@item.Value" selected="selected">
+                @item.Key
+            </option>
+        }
     }
 </select>

@@ -52,7 +52,7 @@ namespace Foundation.Features.CatalogContent
             IContentLoader contentLoader,
             IPriceService priceService,
             ICurrentMarket currentMarket,
-            CurrencyService currencyservice,
+            ICurrencyService currencyservice,
             IRelationRepository relationRepository,
             UrlResolver urlResolver,
             //FilterPublished filterPublished,

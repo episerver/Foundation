@@ -18,11 +18,11 @@ namespace Foundation.Features.MyAccount.CreditCard
     {
         private readonly CustomerContext _customerContext;
         private readonly IOrganizationService _organizationService;
-        private readonly CustomerService _customerService;
+        private readonly ICustomerService _customerService;
         private readonly LocalizationService _localizationService;
 
         public CreditCardService(IOrganizationService organizationService,
-            CustomerService customerService,
+            ICustomerService customerService,
             LocalizationService localizationService
         )
         {

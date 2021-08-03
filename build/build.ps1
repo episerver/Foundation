@@ -13,13 +13,13 @@ exec .\build\dotnet-cli-install.ps1
 # Get cli tool
 try
 {
-    exec "dotnet" "tool install EPiServer.Net.Cli --global --add-source http://nuget-dev.ep.se/nuget --version 1.0.0-inte-020024"
+    exec "dotnet" "tool install EPiServer.Net.Cli --global --add-source https://pkgs.dev.azure.com/EpiserverEngineering/netCore/_packaging/beta-program/nuget/v3/index.json --version 1.0.0-pre-020034"
 }
 catch
 {
    try
    {
-    exec "dotnet" "tool update EPiServer.Net.Cli --global --add-source http://nuget-dev.ep.se/nuget --version 1.0.0-inte-020024"
+    exec "dotnet" "tool update EPiServer.Net.Cli --global --add-source https://pkgs.dev.azure.com/EpiserverEngineering/netCore/_packaging/beta-program/nuget/v3/index.json --version 1.0.0-pre-020034"
    }
    catch
    {
