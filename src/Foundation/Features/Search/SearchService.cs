@@ -921,22 +921,22 @@ namespace Foundation.Features.Search
                 UpdateListWithFeatured(ref productViewModels, node);
             }
 
-            //var bestBetList = _bestBetRepository.List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
-            ////Filter for product best bet only.
-            //var productBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector);
-            //var ownStyleBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
-            //productViewModels.ToList()
-            //                 .ForEach(p =>
-            //                 {
-            //                     if (productBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
-            //                     {
-            //                         p.IsBestBetProduct = true;
-            //                     }
-            //                     if (ownStyleBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
-            //                     {
-            //                         p.HasBestBetStyle = true;
-            //                     }
-            //                 });
+            var bestBetList = _bestBetRepository.List().Where(i => i.PhraseCriterion.Phrase.CompareTo(searchQuery) == 0);
+            //Filter for product best bet only.
+            var productBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector);
+            var ownStyleBestBet = bestBetList.Where(i => i.BestBetSelector is CommerceBestBetSelector && i.HasOwnStyle);
+            productViewModels.ToList()
+                             .ForEach(p =>
+                             {
+                                 if (productBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
+                                 {
+                                     p.IsBestBetProduct = true;
+                                 }
+                                 if (ownStyleBestBet.Any(i => ((CommerceBestBetSelector)i.BestBetSelector).ContentLink.ID == p.ProductId))
+                                 {
+                                     p.HasBestBetStyle = true;
+                                 }
+                             });
         }
 
         private void UpdateListWithFeatured(ref List<ProductTileViewModel> productViewModels, GenericNode node)

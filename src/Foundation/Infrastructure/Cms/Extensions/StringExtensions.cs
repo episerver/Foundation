@@ -13,7 +13,7 @@ namespace Foundation.Infrastructure.Cms.Extensions
 
         public static bool IsNullOrEmpty(this string input) => string.IsNullOrEmpty(input);
 
-        public static bool IsEmpty(this string input) => input.Equals("");
+        public static bool IsEmpty(this string input) => input == null || input.Equals("");
 
         public static string MakeCompactString(this string str, int maxLength = 30, string suffix = "...")
         {

@@ -150,7 +150,7 @@ namespace Foundation.Features.Search
         }
 
         [HttpPost]
-        public ActionResult QuickSearch(string search = "")
+        public ActionResult QuickSearch([FromBody] string search = "")
         {
             var redirectUrl = "";
             var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
@@ -190,7 +190,7 @@ namespace Foundation.Features.Search
                     IncludeImagesContent = searchSettings?.IncludeImagesInContentsSearchResults ?? true
                 });
                 model.ContentSearchResult = contentResult;
-                contentCount = contentResult?.Hits.Count() ?? 0;
+                contentCount = contentResult?.Hits?.Count() ?? 0;
             }
 
             if (searchSettings?.ShowPdfSearchResults ?? true)

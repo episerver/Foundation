@@ -4,16 +4,17 @@ using EPiServer.Web.Mvc;
 using Foundation.Infrastructure.Commerce.Markets;
 using Mediachase.Commerce;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent.Product
 {
     [TemplateDescriptor(Inherited = true)]
-    public class ProductPartialController : PartialContentComponent<EntryContentBase>
+    public class ProductPartialContentComponent : AsyncPartialContentComponent<EntryContentBase>
     {
         private readonly ICurrentMarket _currentMarket;
         private readonly ICurrencyService _currencyService;
 
-        public ProductPartialController(ICurrentMarket currentMarket,
+        public ProductPartialContentComponent(ICurrentMarket currentMarket,
             ICurrencyService currencyService)
         {
             _currentMarket = currentMarket;
@@ -21,10 +22,10 @@ namespace Foundation.Features.CatalogContent.Product
         }
 
         [AcceptVerbs(new string[] { "GET", "POST" })]
-        public override IViewComponentResult Invoke(EntryContentBase currentContent)
+        public override async Task<IViewComponentResult> InvokeAsync(EntryContentBase currentContent)
         {
             var productTileViewModel = currentContent.GetProductTileViewModel(_currentMarket.GetCurrentMarket(), _currencyService.GetCurrentCurrency());
-            return View("_Product", productTileViewModel);
+            return await Task.FromResult(View("/Features/Shared/Views/_Product.cshtml", productTileViewModel));
         }
     }
 }
