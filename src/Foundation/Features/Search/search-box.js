@@ -143,7 +143,7 @@ export default class SearchBox {
             axios.post(
                 "/Search/QuickSearch",
                 {
-                    search: val
+                    "search": val
                 },
                 {
                     cancelToken: new CancelToken(function (c) {

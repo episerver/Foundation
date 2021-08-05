@@ -1,4 +1,5 @@
 ﻿using EPiServer.Data;
+using EPiServer.Find.UI;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
@@ -92,7 +93,8 @@ namespace Foundation
             //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
             services.AddEmbeddedLocalization<Startup>();
             services.Configure<OrderOptions>(o => o.DisableOrderDataLocalization = true);
-           
+            services.Configure<FindUIOptions>(x => x.ClientSideResourceBaseUrl = "https://stage.dl.episerver.net/$version$/");
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
