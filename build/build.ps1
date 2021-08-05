@@ -7,9 +7,6 @@ $ErrorActionPreference = "Stop"
 
 Import-Module .\build\exechelper.ps1
 
-# Install .NET tooling
-
-exec .\build\dotnet-cli-install.ps1
 # Get cli tool
 try
 {

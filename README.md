@@ -6,6 +6,12 @@ This preview repository is early access to the latest Episerver packages targeti
 
 ---
 
+## Prerequisites
+
+[Net 5](https://dotnet.microsoft.com/download/dotnet/5.0) sdk is required to use with visual studio.  Runtime maybe sufficent to just run the application.
+
+---
+
 ## The Solution
 
 `Foundation has a default username and password of admin@example.com / Episerver123!`
