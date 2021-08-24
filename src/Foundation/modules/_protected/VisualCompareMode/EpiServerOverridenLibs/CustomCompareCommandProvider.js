@@ -34,7 +34,7 @@ define("epi-cms/compare/command/CompareCommandProvider", [
             /* ********************************************************************************************************************************** */
 
             model.modeOptions.push(
-                { label: "Visual comparision", value: "compareWithMarkup", iconClass: "epi-iconForms" });
+                { label: "Visual comparison", value: "compareWithMarkup", iconClass: "epi-iconForms" });
 
             /* ********************************************************************************************************************************** */
 
