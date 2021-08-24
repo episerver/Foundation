@@ -15,7 +15,7 @@ else
 {
     <script type="text/javascript">
     // <![CDATA[
-        document.cookie = "@Model.CookieName=@Model.CookieValue; expires=Thu, 31 Dec 2020 12:00:00 UTC; path=/";
-        // ]]>
+    document.cookie = "@Model.CookieName=@Model.CookieValue; expires=Thu, 31 Dec @DateTime.Now.AddYears(10).Year 12:00:00 UTC; path=/";
+    // ]]>
     </script>
 }
