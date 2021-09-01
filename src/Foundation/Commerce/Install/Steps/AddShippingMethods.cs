@@ -57,7 +57,7 @@ namespace Foundation.Commerce.Install.Steps
                                 shippingOption,
                                 languageId,
                                 method.SortOrder,
-                                method.Name + "-" + currency,
+                                method.Name + currency,
                                 string.Format(method.Description, currency, languageId), new Money(method.CostInUSD, currency),
                                 currency));
                         }
