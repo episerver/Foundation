@@ -21,28 +21,41 @@
     }
 }
 
+@Html.FullRefreshPropertiesMetaData(new string[] { "PageImage", "BackgroundImage", "BackgroundVideo" })
+
 <div class="row">
     <div class="col-12 standard-page__container">
         <div class="standard-page__hero @heroClass">
+            @if (PageEditing.PageIsInEditMode &&
+                 ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundVideo) &&
+                 ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundImage) &&
+                 ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage)
+                )
+            {
+                <div style="float: right">
+                    <button class="button-white button" @Html.EditAttributes(x => x.CurrentContent.PageImage)>Add background image</button>
+                    <button class="button-white button" @Html.EditAttributes(x => x.CurrentContent.BackgroundVideo)>Add background video</button>
+                </div>
+            }
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundVideo))
             {
-                <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
+                <video class="standard-page__video @heroClass" autoplay loop playsinline muted @Html.EditAttributes(x => x.CurrentContent.BackgroundVideo)>
                     <source src="@Url.ContentUrl(Model.CurrentContent.BackgroundVideo)" type="video/mp4" @Html.EditAttributes(x => x.CurrentContent.BackgroundVideo)>
                 </video>
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundImage))
             {
-                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");"></div>
-                <img class="standard-page__banner lazyload" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" />
+                <div class="standard-page__background" style="background: @Model.CurrentContent.BackgroundColor; opacity: @(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");"></div>
+                <img class="standard-page__banner lazyload" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" @Html.EditAttributes(x => x.CurrentContent.BackgroundImage) />
                 <div class="hero__gradient">
                 </div>
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.PageImage))
             {
-                <img class="standard-page__banner lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" />
+                <img class="standard-page__banner lazyload" data-src="@Url.ContentUrl(Model.CurrentContent.PageImage)?width=1440&format=webp" @Html.EditAttributes(x => x.CurrentContent.PageImage) />
                 <div class="hero__gradient">
                 </div>
-                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
+                <div class="standard-page__background" style="background: @Model.CurrentContent.BackgroundColor; opacity: @(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
                 </div>
             }
         </div>
