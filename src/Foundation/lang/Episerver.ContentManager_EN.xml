@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <language name="English" id="en">
+    <contentmanager>
+      <dashboard>
+        <title>Optimizely Content Manager</title>
+      </dashboard>
+    </contentmanager>
+  </language>
+</languages>
