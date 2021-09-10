@@ -19,6 +19,18 @@ namespace Foundation.Features.Media
     [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png")]
     public class ImageMediaData : ImageData, IDashboardItem
     {
+        [CultureSpecific]
+        [Display(GroupName = SystemTabNames.Content, Order = 2)]
+        public virtual string Title { get; set; }
+
+        [CultureSpecific]
+        [Display(Description = "Description of the image", GroupName = SystemTabNames.Content, Order = 4)]
+        public virtual string Description { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Alternate text", GroupName = SystemTabNames.Content, Order = 6)]
+        public virtual string AltText { get; set; }
+
         [Editable(false)]
         [ImageDescriptor(Width = 256, Height = 256)]
         [Display(Name = "Large thumbnail", GroupName = SystemTabNames.Content, Order = 10)]
@@ -63,18 +75,6 @@ namespace Foundation.Features.Media
 
         [Display(GroupName = SystemTabNames.Content, Order = 140)]
         public virtual IList<string> Tags { get; set; }
-
-        [CultureSpecific]
-        [Display(GroupName = SystemTabNames.Content, Order = 150)]
-        public virtual string Title { get; set; }
-
-        [CultureSpecific]
-        [Display(Description = "Description of the image", GroupName = SystemTabNames.Content, Order = 160)]
-        public virtual string Description { get; set; }
-
-        [CultureSpecific]
-        [Display(Name = "Alternate text", GroupName = SystemTabNames.Content, Order = 170)]
-        public virtual string AltText { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Credits text", GroupName = SystemTabNames.Content, Order = 180)]
