@@ -1,0 +1,21 @@
+﻿@model Optimizely.Labs.MarketingAutomationIntegration.ODP.Models.ODPListConsentFormBlock
+@using EPiServer.Forms.Helpers.Internal
+@{
+    var formElement = Model.FormElement;
+    var labelText = Model.Label;
+    var cssClasses = Model.GetValidationCssClasses();
+}
+@using (Html.BeginElement(Model, new { @class = "form-check form-group" + cssClasses, data_f_type = "textbox" }))
+{
+    <input name="@formElement.ElementName"
+           id="@formElement.Guid"
+           type="checkbox"
+           class="form-check-input "
+           aria-describedby="@Util.GetAriaDescribedByElementName(formElement.ElementName)"
+           value="@Model.GetDefaultValue()" @Model.AttributesString
+           data-f-datainput aria-invalid="@Util.GetAriaInvalidByValidationCssClasses(cssClasses)" />
+    <label for="@formElement.Guid" class="Form__Element__Caption form-check-label">
+        @Html.Raw(labelText)
+    </label>
+    @Html.ValidationMessageFor(Model)
+}
