@@ -26,8 +26,7 @@ namespace Foundation.Features.Search
                 .IncludeField(x => x.Prices())
                 .IncludeField(x => x.Inventories())
                 .IncludeField(x => x.Outline())
-                .IncludeField(x => x.SortOrder())
-                ;
+                .IncludeField(x => x.SortOrder());
         }
 
         protected override void ApplyBundleContentConventions(EPiServer.Find.ClientConventions.TypeConventionBuilder<BundleContent> conventionBuilder)
@@ -45,7 +44,7 @@ namespace Foundation.Features.Search
         {
             base.ApplyPackageContentConventions(conventionBuilder);
             conventionBuilder.ExcludeField(x => IPricingExtensions.DefaultPrice(x));
-            conventionBuilder.IncludeField(x => Foundation.Commerce.Extensions.EntryContentBaseExtensions.DefaultPrice(x))
+            conventionBuilder.IncludeField(x => Commerce.Extensions.EntryContentBaseExtensions.DefaultPrice(x))
                 .IncludeField(x => x.Outline())
                 .IncludeField(x => x.SortOrder());
         }

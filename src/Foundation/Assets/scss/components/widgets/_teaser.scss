@@ -1,5 +1,4 @@
-﻿@mixin content-align($left, $text-align) {
-    left: $left;
+﻿@mixin content-align($text-align) {
     text-align: $text-align;
 }
 
@@ -51,19 +50,19 @@
 
     &.teaser-content-align--left {
         .teaser-text {
-            @include content-align(0, left);
+            @include content-align(left);
         }
     }
 
     &.teaser-content-align--center {
         .teaser-text {
-            @include content-align(0, center);
+            @include content-align(center);
         }
     }
 
     &.teaser-content-align--right {
         .teaser-text {
-            @include content-align(auto, right);
+            @include content-align(right);
         }
     }
 
@@ -94,7 +93,6 @@
 
 .teaser-text {
     position: absolute;
-    right: 0;
     z-index: 1;
     transform: translateY(-50%);
     padding: 1em 4em;
