@@ -1,11 +1,9 @@
 ﻿using EPiServer.Data;
-using EPiServer.Find.UI;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Payments;
-using Foundation.Features.Search;
 using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
@@ -14,13 +12,10 @@ using Mediachase.Commerce.Anonymous;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
 
 namespace Foundation
 {
@@ -38,7 +33,6 @@ namespace Foundation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data"));
             services.Configure<DataAccessOptions>(o =>
             {
                 o.ConnectionStrings.Add(new ConnectionStringOptions
@@ -69,16 +63,10 @@ namespace Foundation
                 });
             }
 
-            services.Configure<JsonOptions>(o =>
-            {
-                o.JsonSerializerOptions.PropertyNamingPolicy = null;
-            });
-
             services.AddMvc(o =>
             {
                 o.Conventions.Add(new FeatureConvention());
                 o.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
-                //o.ModelBinderProviders.Insert(0, new FilterOptionModelBinderProvider());
                 o.ModelBinderProviders.Insert(0, new PaymentModelBinderProvider());
             })
             .AddRazorOptions(ro => ro.ViewLocationExpanders.Add(new FeatureViewLocationExpander()));
@@ -90,10 +78,8 @@ namespace Foundation
             services.AddDetection();
 
             //site specific
-            //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
             services.AddEmbeddedLocalization<Startup>();
             services.Configure<OrderOptions>(o => o.DisableOrderDataLocalization = true);
-            services.Configure<FindUIOptions>(x => x.ClientSideResourceBaseUrl = "https://stage.dl.episerver.net/$version$/");
 
         }
 
