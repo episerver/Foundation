@@ -17,7 +17,7 @@ namespace Foundation.Features.Blocks.CarouselBlock
             _contentLoader = contentLoader;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(CarouselBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(CarouselBlock currentBlock)
         {
             var model = new CarouselBlockViewModel(currentBlock);
 

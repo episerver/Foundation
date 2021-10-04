@@ -22,7 +22,7 @@ namespace Foundation.Features.Blocks.PageListBlock
             _contentLoader = contentLoader;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(PageListBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(PageListBlock currentBlock)
         {
             var pages = FindPages(currentBlock);
             pages = pages.Where(x => x.PageTypeName != typeof(FolderPage).Name);

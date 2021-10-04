@@ -3,10 +3,11 @@ using Foundation.Infrastructure.Find.Facets;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Search.Category
 {
-    public class CategoryPartialComponent : PartialContentComponent<GenericNode>
+    public class CategoryPartialComponent : AsyncPartialContentComponent<GenericNode>
     {
         private readonly ISearchViewModelFactory _viewModelFactory;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -19,10 +20,10 @@ namespace Foundation.Features.Search.Category
         }
 
         [AcceptVerbs(new string[] { "GET", "POST" })]
-        public override IViewComponentResult Invoke(GenericNode currentContent)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(GenericNode currentContent)
         {
             var viewmodel = GetSearchModel(currentContent);
-            return View("_Category", viewmodel);
+            return await Task.FromResult(View("_Category", viewmodel));
         }
 
         protected virtual SearchViewModel<GenericNode> GetSearchModel(GenericNode currentContent)

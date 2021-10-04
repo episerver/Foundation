@@ -14,7 +14,7 @@ namespace Foundation.Features.Events.CalendarBlock
             _contentLoader = contentLoader;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(CalendarBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(CalendarBlock currentBlock)
         {
             var model = new CalendarBlockViewModel(currentBlock);
 

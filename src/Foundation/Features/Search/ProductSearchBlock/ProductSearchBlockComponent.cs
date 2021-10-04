@@ -46,7 +46,7 @@ namespace Foundation.Features.Search.ProductSearchBlock
             _reportingDataLoader = reportingDataLoader;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(ProductSearchBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(ProductSearchBlock currentBlock)
         {
             var currentLang = _languageService.GetCurrentLanguage();
 

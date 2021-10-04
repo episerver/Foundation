@@ -65,7 +65,6 @@ namespace Foundation.Infrastructure
 {
     [ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule))]
     [ModuleDependency(typeof(Cms.Initialize))]
-    //[ModuleDependency(typeof(EPiServer.ServiceApi.IntegrationInitialization))]
     //[ModuleDependency(typeof(EPiServer.ContentApi.Core.Internal.ContentApiCoreInitialization))]
     [ModuleDependency(typeof(ServiceContainerInitialization))]
     //[ModuleDependency(typeof(SetupBootstrapRenderer))]

@@ -7,11 +7,11 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
-		<PackageReference Include="EPiServer.Commerce" Version="14.0.0-pre-021170" />
-		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.0-pre-020304" />
-		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.0-pre-000067" />
-		<PackageReference Include="EPiServer.Forms" Version="5.0.0-pre-020047" />
-		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.0-pre-021170" />
+		<PackageReference Include="EPiServer.Commerce" Version="14.0.2" />
+		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.2" />
+		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
+		<PackageReference Include="EPiServer.Forms" Version="5.0.0" />
+		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.2" />
 		<PackageReference Include="FileHelpers" Version="3.4.2" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
 		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />

@@ -57,7 +57,7 @@ namespace Foundation.Features.Blocks.OrderSearchBlock
             _cookieService = cookieService;
             _settingsService = settingsService;
         }
-        public override async Task<IViewComponentResult> InvokeAsync(OrderSearchBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(OrderSearchBlock currentBlock)
         {
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
             var filter = CreateFilter();

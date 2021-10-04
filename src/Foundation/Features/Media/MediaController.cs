@@ -5,11 +5,12 @@ using EPiServer.Web;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Media
 {
     [TemplateDescriptor(TemplateTypeCategory = TemplateTypeCategories.MvcPartialComponent, Inherited = true)]
-    public class MediaController : PartialContentComponent<MediaData>
+    public class MediaController : AsyncPartialContentComponent<MediaData>
     {
         private readonly UrlResolver _urlResolver;
         private readonly IContextModeResolver _contextModeResolver;
@@ -20,7 +21,7 @@ namespace Foundation.Features.Media
             _contextModeResolver = contextModeResolver;
         }
 
-        public override IViewComponentResult Invoke(MediaData currentContent)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(MediaData currentContent)
         {
             switch (currentContent)
             {
@@ -43,7 +44,7 @@ namespace Foundation.Features.Media
                         videoViewModel.VideoLink = _urlResolver.GetUrl(videoFile.ContentLink);
                         videoViewModel.PreviewImage = ContentReference.IsNullOrEmpty(videoFile.PreviewImage) ? string.Empty : _urlResolver.GetUrl(videoFile.PreviewImage);
                     }
-                    return View("~/Features/Media/VideoFile.cshtml", videoViewModel);
+                    return await Task.FromResult(View("~/Features/Media/VideoFile.cshtml", videoViewModel));
                 case ImageMediaData image:
                     var imageViewModel = new ImageMediaDataViewModel
                     {
@@ -65,7 +66,7 @@ namespace Foundation.Features.Media
                         imageViewModel.LinkToContent = ContentReference.IsNullOrEmpty(image.Link) ? string.Empty : _urlResolver.GetUrl(image.Link);
                     }
 
-                    return View("~/Features/Media/ImageMedia.cshtml", imageViewModel);
+                    return await Task.FromResult(View("~/Features/Media/ImageMedia.cshtml", imageViewModel));
                 //case FoundationPdfFile pdfFile:
                 //    var pdfViewModel = new FoundationPdfFileViewModel
                 //    {
@@ -83,7 +84,7 @@ namespace Foundation.Features.Media
 
                 //    return View("~/Features/Media/PdfFile.cshtml", pdfViewModel);
                 default:
-                    return View("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name);
+                    return await Task.FromResult(View("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name));
             }
         }
     }

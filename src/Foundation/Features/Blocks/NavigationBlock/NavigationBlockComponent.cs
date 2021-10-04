@@ -20,7 +20,7 @@ namespace Foundation.Features.Blocks.NavigationBlock
             _pageRouteHelper = pageRouteHelper;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(NavigationBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(NavigationBlock currentBlock)
         {
             var rootNavigation = currentBlock.RootPage as ContentReference;
             if (ContentReference.IsNullOrEmpty(currentBlock.RootPage))
