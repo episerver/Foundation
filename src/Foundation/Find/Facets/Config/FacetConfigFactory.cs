@@ -98,6 +98,17 @@ namespace Foundation.Find.Facets.Config
 
                         rangeDefinition.Range = facetConfiguration.GetSelectableNumericRanges();
 
+                        // Workaround: Update range * 10000 to map with Find index value
+                        // Reference: DefaultPrice() on EntryContentBaseExtensions class
+                        if (facetConfiguration.FieldName == "DefaultPrice")
+                        {
+                            foreach (var range in rangeDefinition.Range)
+                            {
+                                range.From = range.From * 10000;
+                                range.To = range.To * 10000;
+                            }
+                        }
+
                         return rangeDefinition;
                     }
                     else if (facetConfiguration.DisplayMode == FacetDisplayMode.Rating.ToString())

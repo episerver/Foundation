@@ -45,6 +45,8 @@ namespace Foundation.Features.Media
                     {
                         Name = image.Name,
                         Description = image.Description,
+                        Title = image.Title,
+                        AltText = image.AltText,
                         ImageAlignment = image.ImageAlignment,
                         PaddingStyles = image.PaddingStyles
                     };
