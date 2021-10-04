@@ -24,7 +24,7 @@ namespace Foundation.Features.Blocks.CategoryBlock
             _urlResolver = urlResolver;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(CategoryBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(CategoryBlock currentBlock)
         {
             var categories = !ContentReference.IsNullOrEmpty(currentBlock.Catalog)
                 ? _contentLoader.GetChildren<NodeContent>(currentBlock.Catalog)

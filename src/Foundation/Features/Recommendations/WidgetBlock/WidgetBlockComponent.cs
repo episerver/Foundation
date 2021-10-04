@@ -34,7 +34,7 @@ namespace Foundation.Features.Recommendations.WidgetBlock
             _productService = productService;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(WidgetBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(WidgetBlock currentBlock)
         {
             return await Task.FromResult(View("/Features/Recommendations/WidgetBlock/Index.cshtml", new BlockViewModel<WidgetBlock>(currentBlock)));
         }

@@ -40,7 +40,7 @@ namespace Foundation.Features.MyAccount.OrderHistoryBlock
             _customerService = customerService;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(OrderHistoryBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(OrderHistoryBlock currentBlock)
         {
             var purchaseOrders = OrderContext.Current.LoadByCustomerId<PurchaseOrder>(PrincipalInfo.CurrentPrincipal.GetContactId())
                                              .OrderByDescending(x => x.Created)

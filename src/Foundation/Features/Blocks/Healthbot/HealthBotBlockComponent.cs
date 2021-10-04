@@ -16,7 +16,7 @@ namespace Foundation.Features.Blocks.Healthbot
             _requiredClientResourceList = requiredClientResourceList;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(HealthChatbotBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(HealthChatbotBlock currentBlock)
         {
             _requiredClientResourceList.Require(HealthBotClientResourceProvider.BotJs).AtHeader();
             var model = new BlockViewModel<HealthChatbotBlock>(currentBlock);

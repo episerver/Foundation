@@ -20,7 +20,7 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
             _pageRouteHelper = pageRouteHelper;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(BreadcrumbBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(BreadcrumbBlock currentBlock)
         {
             var destination = currentBlock.DestinationPage as ContentReference;
             if (ContentReference.IsNullOrEmpty(currentBlock.DestinationPage))

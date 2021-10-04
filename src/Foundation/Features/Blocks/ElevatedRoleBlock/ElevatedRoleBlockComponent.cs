@@ -9,7 +9,7 @@ namespace Foundation.Features.Blocks.ElevatedRoleBlock
 {
     public class ElevatedRoleBlockComponent : AsyncBlockComponent<ElevatedRoleBlock>
     {
-        public override async Task<IViewComponentResult> InvokeAsync(ElevatedRoleBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(ElevatedRoleBlock currentBlock)
         {
             var viewModel = new ElevatedRoleBlockViewModel(currentBlock);
             var currentContact = CustomerContext.Current.CurrentContact;

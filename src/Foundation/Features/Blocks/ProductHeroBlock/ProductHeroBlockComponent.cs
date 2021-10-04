@@ -23,7 +23,7 @@ namespace Foundation.Features.Blocks.ProductHeroBlock
             _urlResolver = urlResolver;
         }
 
-        public override async Task<IViewComponentResult> InvokeAsync(ProductHeroBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(ProductHeroBlock currentBlock)
         {
             var imageUrl = string.Empty;
             var imagePosition = new StringBuilder();

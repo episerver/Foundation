@@ -62,7 +62,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
             _contentLocator = contentLocator;
             _settingsService = settingsService;
         }
-        public override async Task<IViewComponentResult> InvokeAsync(QuickOrderBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(QuickOrderBlock currentBlock)
         {
             var model = new QuickOrderViewModel(currentBlock);
 

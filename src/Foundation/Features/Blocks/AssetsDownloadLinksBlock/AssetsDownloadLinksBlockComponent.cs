@@ -21,7 +21,8 @@ namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock.Component
             _contentLoader = contentLoader;
             _urlResolver = urlResolver;
         }
-        public override async Task<IViewComponentResult> InvokeAsync(AssetsDownloadLinksBlock currentBlock)
+
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(AssetsDownloadLinksBlock currentBlock)
         {
             var model = new AssetsDownloadLinksBlockViewModel(currentBlock);
             var rootContent = _contentLoader.Get<IContent>(currentBlock.RootContent);

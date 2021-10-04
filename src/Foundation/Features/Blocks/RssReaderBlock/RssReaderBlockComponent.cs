@@ -10,7 +10,7 @@ namespace Foundation.Features.Blocks.RssReaderBlock
 {
     public class RssReaderBlockComponent : AsyncBlockComponent<RssReaderBlock>
     {
-        public override async Task<IViewComponentResult> InvokeAsync(RssReaderBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(RssReaderBlock currentBlock)
         {
             var viewModel = new RssReaderBlockViewModel
             {
