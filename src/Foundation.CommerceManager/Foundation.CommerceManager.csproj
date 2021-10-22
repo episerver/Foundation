@@ -187,10 +187,10 @@
     <Reference Include="Mediachase.Search.Extensions, Version=13.31.1.0, Culture=neutral, PublicKeyToken=6e58b501b34abce3, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Commerce.Core.13.31.1\lib\net461\Mediachase.Search.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Mediachase.Search.Extensions.Azure, Version=13.31.0.0, Culture=neutral, PublicKeyToken=6e58b501b34abce3, processorArchitecture=MSIL">
+    <Reference Include="Mediachase.Search.Extensions.Azure, Version=13.31.1.0, Culture=neutral, PublicKeyToken=6e58b501b34abce3, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CommerceManager.Azure.14.0.20\lib\net462\Mediachase.Search.Extensions.Azure.dll</HintPath>
     </Reference>
-    <Reference Include="Mediachase.Search.LuceneAzureSearchProvider, Version=13.31.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Mediachase.Search.LuceneAzureSearchProvider, Version=13.31.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CommerceManager.Azure.14.0.20\lib\net462\Mediachase.Search.LuceneAzureSearchProvider.dll</HintPath>
     </Reference>
     <Reference Include="Mediachase.Search.LuceneSearchProvider, Version=13.31.1.0, Culture=neutral, processorArchitecture=MSIL">
