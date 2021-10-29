@@ -118,7 +118,7 @@ echo ## Dropping user ##
 echo ## Dropping user ## >> Build\Logs\Database.log
 %sql% -Q "if exists (select loginname from master.dbo.syslogins where name = '%user%') EXEC sp_droplogin @loginame='%user%'" >> Build\Logs\Database.log
 
-powershell -command "&{.\build\build.ps1 -server %SQLSERVER% -additionalSQL %ADDITIONAL_SQLCMD% -appName %APPNAME% "}" 
+powershell -command "&{.\build\build.ps1 -server ""%SQLSERVER%"" -additionalSQL %ADDITIONAL_SQLCMD% -appName %APPNAME% "}" 
 
 echo ## Installing foundation configuration ##
 echo ## Installing foundation configuration ## >> Build\Logs\Database.log
