@@ -106,9 +106,9 @@ namespace Foundation.Infrastructure.Kpi
             add
             {
                 _eventHander = value.Invoke;
-                _formsEvents.FormsSubmissionFinalized += _eventHander;
+                _servicelocator.GetInstance<FormsEvents>().FormsSubmissionFinalized += _eventHander;
             }
-            remove => _formsEvents.FormsSubmissionFinalized -= _eventHander;
+            remove => _servicelocator.GetInstance<FormsEvents>().FormsSubmissionFinalized -= _eventHander;
         }
 
         public override IKpiResult Evaluate(object sender, EventArgs e)
