@@ -6,22 +6,31 @@
 		<PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.4" />
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
-		<PackageReference Include="EPiServer.Commerce" Version="14.0.2" />
-		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.2" />
+		<PackageReference Include="EPiServer.Commerce" Version="14.1.0" />
+		<PackageReference Include="EPiServer.CMS" Version="12.1.0" />
+		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.1.0" />
+		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.0.0" />
+		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.0.0" />
+		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.0.0" />
+		<PackageReference Include="EPiServer.Framework" Version="12.1.0" />
+		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
 		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
-		<PackageReference Include="EPiServer.Forms" Version="5.0.0" />
-		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.2" />
-		<PackageReference Include="FileHelpers" Version="3.4.2" />
+		<PackageReference Include="EPiServer.Forms" Version="5.0.1" />
+		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.0.0" />
+		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.4" />
+		<PackageReference Include="FileHelpers" Version="3.5.1" />
+		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.0" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
 		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
-		<PackageReference Include="Schema.NET" Version="8.0.0" />
+		<PackageReference Include="Schema.NET" Version="11.0.0" />
 		<PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
-		<PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.2" />
-		<PackageReference Include="Wangkanai.Detection" Version="2.0.1" />
+		<PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.4" />
+		<PackageReference Include="Wangkanai.Detection" Version="4.0.0" />
 		<PackageReference Include="Serilog" Version="2.10.0" />
-		<PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
-		<PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="lang\**\*" />

@@ -17,6 +17,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
 using Wangkanai.Detection;
+using Wangkanai.Detection.Models;
+using Wangkanai.Detection.Services;
 
 namespace Foundation.Features.Search
 {
@@ -92,8 +94,8 @@ namespace Foundation.Features.Search
             model.CategoriesFilter = GetCategoriesFilter(currentContent, filterOption.Q);
             model.DidYouMeans = results.DidYouMeans;
             model.Query = filterOption.Q;
-            var detection = _httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IDetection>();
-            model.IsMobile = detection.Device.Type == DeviceType.Mobile;
+            var detection = _httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IDetectionService>();
+            model.IsMobile = detection.Device.Type == Device.Mobile;
 
             return model;
         }

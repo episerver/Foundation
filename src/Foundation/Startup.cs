@@ -1,5 +1,11 @@
-﻿using EPiServer.Data;
+﻿using EPiServer.Authorization;
+using EPiServer.ContentApi.Cms;
+using EPiServer.ContentApi.Cms.Internal;
+using EPiServer.ContentDefinitionsApi;
+using EPiServer.ContentManagementApi;
+using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
+using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
@@ -8,6 +14,9 @@ using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Display;
+using Geta.NotFoundHandler.Infrastructure.Configuration;
+using Geta.NotFoundHandler.Infrastructure.Initialization;
+using Geta.NotFoundHandler.Optimizely;
 using Mediachase.Commerce.Anonymous;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +25,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Foundation
 {
@@ -81,11 +91,67 @@ namespace Foundation
             services.AddEmbeddedLocalization<Startup>();
             services.Configure<OrderOptions>(o => o.DisableOrderDataLocalization = true);
 
+            services.ConfigureContentApiOptions(o =>
+            {
+                o.EnablePreviewFeatures = true;
+                o.IncludeEmptyContentProperties = false;
+                o.FlattenPropertyModel = true;
+                o.IncludeMasterLanguage = false; 
+                
+            });
+
+            // Content Delivery API
+            services.AddContentDeliveryApi()
+                .WithFriendlyUrl()
+                .WithSiteBasedCors();
+
+            // Content Definitions API
+            services.AddContentDefinitionsApi(options =>
+            {
+                // Accept anonymous calls
+                options.DisableScopeValidation = true;
+            });
+
+            // Content Management
+            services.AddContentManagementApi(c =>
+            {
+                // Accept anonymous calls
+                c.DisableScopeValidation = true;
+            });
+            services.AddOpenIDConnect<SiteUser>(options =>
+            {
+                //options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
+                var application = new OpenIDConnectApplication()
+                {
+                    ClientId = "postman-client",
+                    ClientSecret = "postman",
+                    Scopes =
+                    {
+                        ContentDeliveryApiOptionsDefaults.Scope,
+                        ContentManagementApiOptionsDefaults.Scope,
+                        ContentDefinitionsApiOptionsDefaults.Scope
+                    }
+                };
+
+                // Using Postman for testing purpose.
+                // The authorization code is sent to postman after successful authentication.
+                application.RedirectUris.Add(new Uri("https://oauth.pstmn.io/v1/callback"));
+                options.Applications.Add(application);
+                options.AllowResourceOwnerPasswordFlow = true;
+            });
+            
+            services.AddOpenIDConnectUI();
+
+            services.ConfigureContentDeliveryApiSerializer(settings => settings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore);
+
+            services.AddNotFoundHandler(o => o.UseSqlServer(_configuration.GetConnectionString("EPiServerDB")), policy => policy.RequireRole(Roles.CmsAdmins));
+            services.AddOptimizelyNotFoundHandler();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseNotFoundHandler();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -94,6 +160,7 @@ namespace Foundation
             app.UseAnonymousId();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -101,6 +168,7 @@ namespace Foundation
             {
                 endpoints.MapControllerRoute(name: "Default", pattern: "{controller}/{action}/{id?}");
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
                 endpoints.MapContent();
             });
         }
