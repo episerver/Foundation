@@ -83,18 +83,6 @@ namespace Foundation.Infrastructure
                 var factory = x.GetRequiredService<IUrlHelperFactory>();
                 return factory.GetUrlHelper(actionContext);
             });
-            //_services.Configure<ContentApiConfiguration>(c =>
-            //{
-            //    c.EnablePreviewFeatures = true;
-            //    c.Default().SetMinimumRoles(string.Empty).SetRequiredRole(string.Empty);
-            //});
-
-            //_services.Configure<ContentApiSearchConfiguration>(config =>
-            //{
-            //    config.Default()
-            //    .SetMaximumSearchResults(200)
-            //    .SetSearchCacheDuration(TimeSpan.FromMinutes(60));
-            //});
 
             //_services.AddSingleton<IDisplayModeFallbackProvider, FoundationDisplayModeProvider>();
             _services.AddTransient<IQuickNavigatorItemProvider, FoundationQuickNavigatorItemProvider>();

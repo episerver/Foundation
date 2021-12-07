@@ -36,8 +36,6 @@
 		<EmbeddedResource Include="lang\**\*" />
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Remove="App_Code\**" />
-		<Compile Remove="Configs\**" />
 		<Compile Remove="Features\Blocks\CommentsBlock\**" />
 		<Compile Remove="Features\Blocks\FeedBlock\**" />
 		<Compile Remove="Features\Blocks\GroupAdmissionBlock\**" />
@@ -58,8 +56,6 @@
 		<Compile Remove="Infrastructure\PowerSlices\**" />
 		<Compile Remove="Infrastructure\Services\**" />
 		<Compile Remove="Infrastructure\Social\**" />
-		<Content Remove="App_Code\**" />
-		<Content Remove="Configs\**" />
 		<Content Remove="Features\Blocks\CommentsBlock\**" />
 		<Content Remove="Features\Blocks\FeedBlock\**" />
 		<Content Remove="Features\Blocks\GroupAdmissionBlock\**" />
@@ -80,8 +76,6 @@
 		<Content Remove="Infrastructure\PowerSlices\**" />
 		<Content Remove="Infrastructure\Services\**" />
 		<Content Remove="Infrastructure\Social\**" />
-		<EmbeddedResource Remove="App_Code\**" />
-		<EmbeddedResource Remove="Configs\**" />
 		<EmbeddedResource Remove="Features\Blocks\CommentsBlock\**" />
 		<EmbeddedResource Remove="Features\Blocks\FeedBlock\**" />
 		<EmbeddedResource Remove="Features\Blocks\GroupAdmissionBlock\**" />
@@ -102,8 +96,6 @@
 		<EmbeddedResource Remove="Infrastructure\PowerSlices\**" />
 		<EmbeddedResource Remove="Infrastructure\Services\**" />
 		<EmbeddedResource Remove="Infrastructure\Social\**" />
-		<None Remove="App_Code\**" />
-		<None Remove="Configs\**" />
 		<None Remove="Features\Blocks\CommentsBlock\**" />
 		<None Remove="Features\Blocks\FeedBlock\**" />
 		<None Remove="Features\Blocks\GroupAdmissionBlock\**" />
@@ -135,6 +127,9 @@
 		<Compile Remove="Infrastructure\Display\FeaturesViewEngine.cs" />
 		<Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
 		<Content Remove="Features\Media\PdfFile.cshtml" />
+		<Content Include="modules\_protected\foundation\Scripts\ContentEditing\CreateContent.js" />
+		<Content Include="modules\_protected\foundation\Scripts\Initialize.js" />
+		<Content Include="modules\_protected\foundation\Styles\Styles.css" />
 		<Folder Include="wwwroot\" />
 		<None Include="Features\Shared\Components\Dropdown\Default.cshtml" />
 		<None Include="Features\Shared\Components\Money\Default.cshtml" />

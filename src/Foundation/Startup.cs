@@ -7,6 +7,7 @@ using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
+using EPiServer.Shell.Modules;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Payments;
@@ -26,6 +27,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Linq;
 
 namespace Foundation
 {
@@ -146,6 +148,16 @@ namespace Foundation
 
             services.AddNotFoundHandler(o => o.UseSqlServer(_configuration.GetConnectionString("EPiServerDB")), policy => policy.RequireRole(Roles.CmsAdmins));
             services.AddOptimizelyNotFoundHandler();
+            services.Configure<ProtectedModuleOptions>(x =>
+            {
+                if (!x.Items.Any(x => x.Name.Equals("foundation")))
+                {
+                    x.Items.Add(new ModuleDetails
+                    {
+                        Name = "foundation"
+                    });
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
