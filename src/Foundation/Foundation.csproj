@@ -6,20 +6,20 @@
 		<PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.4" />
+		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.5" />
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
-		<PackageReference Include="EPiServer.Commerce" Version="14.1.0" />
+		<PackageReference Include="EPiServer.Commerce" Version="14.1.1" />
 		<PackageReference Include="EPiServer.CMS" Version="12.1.0" />
-		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.1.0" />
+		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.1.1" />
 		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.0.0" />
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.0.0" />
 		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.0.0" />
-		<PackageReference Include="EPiServer.Framework" Version="12.1.0" />
+		<PackageReference Include="EPiServer.Framework" Version="12.1.1" />
 		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
 		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
 		<PackageReference Include="EPiServer.Forms" Version="5.0.1" />
 		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.0.0" />
-		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.4" />
+		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.5" />
 		<PackageReference Include="FileHelpers" Version="3.5.1" />
 		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.0" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
@@ -48,7 +48,6 @@
 		<Compile Remove="Features\Blog\BlogCommentBlock\**" />
 		<Compile Remove="Features\Community\**" />
 		<Compile Remove="Features\MultiShipment\**" />
-		<Compile Remove="Infrastructure\Cms\Identity\**" />
 		<Compile Remove="Infrastructure\Cms\Views\**" />
 		<Compile Remove="Infrastructure\Commerce\Views\**" />
 		<Compile Remove="Infrastructure\Kpi\**" />
@@ -68,13 +67,11 @@
 		<Content Remove="Features\Blog\BlogCommentBlock\**" />
 		<Content Remove="Features\Community\**" />
 		<Content Remove="Features\MultiShipment\**" />
-		<Content Remove="Infrastructure\Cms\Identity\**" />
 		<Content Remove="Infrastructure\Cms\Views\**" />
 		<Content Remove="Infrastructure\Commerce\Views\**" />
 		<Content Remove="Infrastructure\Kpi\**" />
 		<Content Remove="Infrastructure\Plugins\**" />
 		<Content Remove="Infrastructure\PowerSlices\**" />
-		<Content Remove="Infrastructure\Services\**" />
 		<Content Remove="Infrastructure\Social\**" />
 		<EmbeddedResource Remove="Features\Blocks\CommentsBlock\**" />
 		<EmbeddedResource Remove="Features\Blocks\FeedBlock\**" />
@@ -88,13 +85,11 @@
 		<EmbeddedResource Remove="Features\Blog\BlogCommentBlock\**" />
 		<EmbeddedResource Remove="Features\Community\**" />
 		<EmbeddedResource Remove="Features\MultiShipment\**" />
-		<EmbeddedResource Remove="Infrastructure\Cms\Identity\**" />
 		<EmbeddedResource Remove="Infrastructure\Cms\Views\**" />
 		<EmbeddedResource Remove="Infrastructure\Commerce\Views\**" />
 		<EmbeddedResource Remove="Infrastructure\Kpi\**" />
 		<EmbeddedResource Remove="Infrastructure\Plugins\**" />
 		<EmbeddedResource Remove="Infrastructure\PowerSlices\**" />
-		<EmbeddedResource Remove="Infrastructure\Services\**" />
 		<EmbeddedResource Remove="Infrastructure\Social\**" />
 		<None Remove="Features\Blocks\CommentsBlock\**" />
 		<None Remove="Features\Blocks\FeedBlock\**" />
@@ -108,23 +103,18 @@
 		<None Remove="Features\Blog\BlogCommentBlock\**" />
 		<None Remove="Features\Community\**" />
 		<None Remove="Features\MultiShipment\**" />
-		<None Remove="Infrastructure\Cms\Identity\**" />
 		<None Remove="Infrastructure\Cms\Views\**" />
 		<None Remove="Infrastructure\Commerce\Views\**" />
 		<None Remove="Infrastructure\Kpi\**" />
 		<None Remove="Infrastructure\Plugins\**" />
 		<None Remove="Infrastructure\PowerSlices\**" />
-		<None Remove="Infrastructure\Services\**" />
 		<None Remove="Infrastructure\Social\**" />
 		<Compile Remove="Features\Media\FoundationPdfFile.cs" />
 		<Compile Remove="Features\Media\FoundationPdfFileViewModel.cs" />
 		<Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
 		<Compile Remove="Infrastructure\Cms\CmsMenuProvider.cs" />
 		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
-		<Compile Remove="Infrastructure\Commerce\Install\FoundationDiskFileDescriptor.cs" />
-		<Compile Remove="Infrastructure\Commerce\Install\FoundationDiskFileProvider.cs" />
 		<Compile Remove="Infrastructure\Commerce\Markets\AJAXLocalizationFilterAttribute.cs" />
-		<Compile Remove="Infrastructure\Display\FeaturesViewEngine.cs" />
 		<Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
 		<Content Remove="Features\Media\PdfFile.cshtml" />
 		<Content Include="modules\_protected\foundation\Scripts\ContentEditing\CreateContent.js" />
