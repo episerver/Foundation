@@ -70,7 +70,14 @@
         }
         <div class="screen-width-wrapper">
             <div class="teaser-text @textStyle screen-width-container">
-                <h2 @Html.EditAttributes(x => x.PageName)>@Model.PageName</h2>
+                @if (!String.IsNullOrWhiteSpace(Model.TeaserTitle))
+                {
+                    <h2 @Html.EditAttributes(x => x.TeaserTitle)>@Model.TeaserTitle</h2>
+                }
+                else
+                {
+                    <h2 @Html.EditAttributes(x => x.PageName)>@Model.PageName</h2>
+                }
                 <div class="teaser-text__details">
                     @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
                     {

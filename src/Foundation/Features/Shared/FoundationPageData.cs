@@ -111,6 +111,10 @@ namespace Foundation.Features.Shared
         [Display(Name = "Teaser ratio (width-height)", GroupName = TabNames.Teaser, Order = 50)]
         public virtual string TeaserRatio { get; set; }
 
+        [CultureSpecific]
+        [Display(Name = "Teaser title", GroupName = TabNames.Teaser, Order = 70)]
+        public virtual string TeaserTitle { get; set; }
+
         [UIHint(UIHint.Image)]
         [Display(Name = "Image", GroupName = TabNames.Teaser, Order = 100)]
         public virtual ContentReference PageImage { get; set; }
