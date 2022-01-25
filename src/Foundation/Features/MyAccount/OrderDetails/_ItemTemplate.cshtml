@@ -103,7 +103,7 @@
                 <div class="col-12">
                     @if (!isQuote)
                     {
-                        <button type="submit" id="return-@Model.LineItem.LineItemId" data-shipment-link="@Model.Shipment.ShipmentId" data-order-link="@Model.PurchaseOrder.OrderGroupId" data-total-return="@Model.TotalCanReturn()" data-lineItem-link="@Model.LineItem.LineItemId" class="button-black jsReturnLineItem" data-toggle="modal" data-target="#returnSettingModal" @(!Model.Shipment.OrderShipmentStatus.Equals(OrderShipmentStatus.Shipped) || !Model.CanReturnOrder() ? "disabled" : "")>
+                        <button type="submit" id="return-@Model.LineItem.LineItemId" data-shipment-link="@Model.Shipment.ShipmentId" data-order-link="@Model.PurchaseOrder.OrderGroupId" data-total-return="@Model.TotalCanReturn()" data-lineItem-link="@Model.LineItem.LineItemId" class="button-black jsReturnLineItem" data-bs-toggle="modal" data-bs-target="#returnSettingModal" @(!Model.Shipment.OrderShipmentStatus.Equals(OrderShipmentStatus.Shipped) || !Model.CanReturnOrder() ? "disabled" : "")>
                             Return
                         </button>
                     }

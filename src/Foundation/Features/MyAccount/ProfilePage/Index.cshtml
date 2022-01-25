@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-12">
                             <p class="title">@Html.TranslateFallback("/Dashboard/Labels/ContactInformation", "Contact Information")</p>
-                            <a href="javascript:void(0);" data-target=".jsProfileContainerEdit" class="account-link jsEditProfile">@Html.TranslateFallback("/Shared/Edit", "Edit")</a>
+                            <a href="javascript:void(0);" data-bs-target=".jsProfileContainerEdit" class="account-link jsEditProfile">@Html.TranslateFallback("/Shared/Edit", "Edit")</a>
                             <p>
                                 <span class="jsFirstName">@Model.CustomerContact.FirstName </span>
                                 <span class="jsLastName">@Model.CustomerContact.LastName</span>
@@ -141,7 +141,7 @@
                             </ul>
                         </div>
                         <div>
-                            <a class="account-link cursor-pointer" data-toggle="collapse" data-target="#loyalty-program" href="javascript:void(0);">
+                            <a class="account-link cursor-pointer" data-bs-toggle="collapse" data-bs-target="#loyalty-program" href="javascript:void(0);">
                                 <i data-feather="info"></i>
                                 About loyalty program
                             </a>

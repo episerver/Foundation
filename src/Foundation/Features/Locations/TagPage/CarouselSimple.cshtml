@@ -9,7 +9,7 @@
         <ul class="carousel-indicators">
             @for (int i = 0; i < Model.Items.Count; i++)
             {
-                <li data-target="#tag-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                <li data-bs-target="#tag-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
             }
         </ul>
         <!-- The slideshow -->
