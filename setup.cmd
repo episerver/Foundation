@@ -100,7 +100,7 @@ cd %ROOTPATH%
 
 echo ## Clean and build ##
 echo ## Clean and build ## >> Build\Logs\Build.log				 
-::"%InstallDir%%msBuildPath%" Foundation.sln /t:Clean,Build  >> Build\Logs\Build.log
+"%InstallDir%%msBuildPath%" Foundation.sln /t:Clean,Build  >> Build\Logs\Build.log
 
 set sql=sqlcmd -S %SQLSERVER% %ADDITIONAL_SQLCMD%
 echo ## %sql% ##
@@ -118,7 +118,9 @@ echo ## Dropping user ##
 echo ## Dropping user ## >> Build\Logs\Database.log
 %sql% -Q "if exists (select loginname from master.dbo.syslogins where name = '%user%') EXEC sp_droplogin @loginame='%user%'" >> Build\Logs\Database.log
 
-powershell -command "&{.\build\build.ps1 -server %SQLSERVER% -additionalSQL %ADDITIONAL_SQLCMD% -appName %APPNAME% "}" 
+dotnet tool install EPiServer.Net.Cli --global --add-source https://nuget.optimizely.com/feed/packages.svc/
+dotnet-episerver create-cms-database ".\src\Foundation\Foundation.csproj" -S "%SQLSERVER%" %ADDITIONAL_SQLCMD%  --database-name "%APPNAME%.Cms"
+dotnet-episerver create-commerce-database ".\src\Foundation\Foundation.csproj" -S "%SQLSERVER%" %ADDITIONAL_SQLCMD%  --database-name "%APPNAME%.Commerce" --reuse-cms-user
 
 echo ## Installing foundation configuration ##
 echo ## Installing foundation configuration ## >> Build\Logs\Database.log
