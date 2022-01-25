@@ -88,8 +88,8 @@ namespace Foundation
             services.ConfigureContentApiOptions(o =>
             {
                 o.EnablePreviewFeatures = true;
-                o.IncludeEmptyContentProperties = false;
-                o.FlattenPropertyModel = true;
+                o.IncludeEmptyContentProperties = true;
+                o.FlattenPropertyModel = false;
                 o.IncludeMasterLanguage = false; 
                 
             });
@@ -123,7 +123,7 @@ namespace Foundation
                     {
                         ContentDeliveryApiOptionsDefaults.Scope,
                         ContentManagementApiOptionsDefaults.Scope,
-                        ContentDefinitionsApiOptionsDefaults.Scope
+                        ContentDefinitionsApiOptionsDefaults.Scope,
                     }
                 };
 

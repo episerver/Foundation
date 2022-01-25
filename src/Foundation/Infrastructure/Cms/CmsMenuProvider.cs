@@ -2,7 +2,6 @@
 using EPiServer.Shell;
 using EPiServer.Shell.Navigation;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,13 +12,9 @@ namespace Foundation.Infrastructure.Cms
     {
         private const string MainMenuPath = MenuPaths.Global + "/extensions";
 
-
-
         public IEnumerable<MenuItem> GetMenuItems()
         {
             var menuItems = new List<MenuItem>();
-
-
 
             menuItems.Add(new SectionMenuItem("Extensions", MainMenuPath)
             {
@@ -27,17 +22,16 @@ namespace Foundation.Infrastructure.Cms
                 SortIndex = 6000
             });
 
-            //menuItems.Add(new UrlMenuItem("Bulk Update", MainMenuPath + "/bulkupdate", "/bulkupdate")
-            //{
-            //    SortIndex = 100,
-            //});
+            menuItems.Add(new UrlMenuItem("Bulk Update", MainMenuPath + "/bulkupdate", "/episerver/foundation/bulkupdate")
+            {
+                SortIndex = 100,
+            });
 
             menuItems.Add(new FoundationAdminMenuItem("Coupons", MainMenuPath + "/coupons", "/episerver/foundation/promotions")
             {
                 SortIndex = 200,
                 Paths = new[] { "foundation/promotions", "foundation/editPromotionCoupons" }
             });
-
 
             return menuItems;
         }
