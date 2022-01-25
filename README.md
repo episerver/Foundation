@@ -11,12 +11,15 @@ Foundation offers a starting point that is intuitive, well-structured and modula
 You will need these to run locally on your machine.
 
 [Net 5](https://dotnet.microsoft.com/download/dotnet/5.0) sdk is required to use with visual studio.  Runtime maybe sufficent to just run the application.
+
 [Node JS](https://nodejs.org/en/download/)
 
 Mac/Linux
+
 [Docker](https://docs.docker.com/desktop/mac/install/)
 
 Windows
+
 [Sql Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
 ---
