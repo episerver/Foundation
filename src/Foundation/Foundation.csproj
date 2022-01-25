@@ -37,6 +37,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="lang\**\*" />
+		<None Update="App_Data\**" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="Features\Blocks\CommentsBlock\**" />
