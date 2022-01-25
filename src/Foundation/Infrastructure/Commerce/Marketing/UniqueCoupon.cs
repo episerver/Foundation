@@ -13,5 +13,6 @@ namespace Foundation.Infrastructure.Commerce.Marketing
         public DateTime Created { get; set; }
         public int MaxRedemptions { get; set; }
         public int UsedRedemptions { get; set; }
+        public string ActionType { get; set; }
     }
 }

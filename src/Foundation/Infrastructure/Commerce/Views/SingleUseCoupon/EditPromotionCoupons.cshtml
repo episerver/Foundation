@@ -1,6 +1,6 @@
 ﻿@using EPiServer.Shell
 
-@inherits WebViewPage<Foundation.Commerce.Marketing.PromotionCouponsViewModel>
+@model Foundation.Infrastructure.Commerce.Marketing.PromotionCouponsViewModel
 
 <head>
     <title>Edit promotion coupons</title>
@@ -128,7 +128,7 @@
 </div>
 
 @section AdditionalScripts {
-    <script type="text/javascript" src="~/Assets/js/extensions/Coupons.js"></script>
+    <script type="text/javascript" src="~/js/extensions/Coupons.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             Coupons.init();

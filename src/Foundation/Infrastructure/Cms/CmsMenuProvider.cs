@@ -1,6 +1,10 @@
 ﻿using EPiServer.Security;
+using EPiServer.Shell;
 using EPiServer.Shell.Navigation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Foundation.Infrastructure.Cms
 {
@@ -23,17 +27,35 @@ namespace Foundation.Infrastructure.Cms
                 SortIndex = 6000
             });
 
+            //menuItems.Add(new UrlMenuItem("Bulk Update", MainMenuPath + "/bulkupdate", "/bulkupdate")
+            //{
+            //    SortIndex = 100,
+            //});
 
-
-            menuItems.Add(new UrlMenuItem("Bulk Update", MainMenuPath + "/bulkupdate", "/bulkupdate")
+            menuItems.Add(new FoundationAdminMenuItem("Coupons", MainMenuPath + "/coupons", "/episerver/foundation/promotions")
             {
-                SortIndex = 100,
+                SortIndex = 200,
+                Paths = new[] { "foundation/promotions", "foundation/editPromotionCoupons" }
             });
 
 
-
-
             return menuItems;
+        }
+    }
+
+    public class FoundationAdminMenuItem : UrlMenuItem
+    {
+        public IEnumerable<string> Paths { get; set; }
+
+        public FoundationAdminMenuItem(string text, string path, string url) : base(text, path, url)
+        {
+        }
+
+        public override bool IsSelected(HttpContext requestContext)
+        {
+            Validate.RequiredParameter("requestContext", requestContext);
+            var requestUrl = requestContext.Request != null ? requestContext.Request.Path.Value.Trim('/') : null;
+            return Paths.Any(x =>  requestUrl.Contains(x));
         }
     }
 }
