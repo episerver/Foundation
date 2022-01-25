@@ -73,7 +73,6 @@
 		<Content Remove="Features\Blog\BlogCommentBlock\**" />
 		<Content Remove="Features\Community\**" />
 		<Content Remove="Features\MultiShipment\**" />
-		<Content Remove="Infrastructure\Cms\Views\BulkUpdate\**" />
 		<Content Remove="Infrastructure\Kpi\**" />
 		<Content Remove="Infrastructure\Plugins\**" />
 		<Content Remove="Infrastructure\PowerSlices\**" />
@@ -90,7 +89,6 @@
 		<EmbeddedResource Remove="Features\Blog\BlogCommentBlock\**" />
 		<EmbeddedResource Remove="Features\Community\**" />
 		<EmbeddedResource Remove="Features\MultiShipment\**" />
-		<EmbeddedResource Remove="Infrastructure\Cms\Views\BulkUpdate\**" />
 		<EmbeddedResource Remove="Infrastructure\Kpi\**" />
 		<EmbeddedResource Remove="Infrastructure\Plugins\**" />
 		<EmbeddedResource Remove="Infrastructure\PowerSlices\**" />
@@ -107,14 +105,12 @@
 		<None Remove="Features\Blog\BlogCommentBlock\**" />
 		<None Remove="Features\Community\**" />
 		<None Remove="Features\MultiShipment\**" />
-		<None Remove="Infrastructure\Cms\Views\BulkUpdate\**" />
 		<None Remove="Infrastructure\Kpi\**" />
 		<None Remove="Infrastructure\Plugins\**" />
 		<None Remove="Infrastructure\PowerSlices\**" />
 		<None Remove="Infrastructure\Social\**" />
 		<Compile Remove="Features\Media\FoundationPdfFile.cs" />
 		<Compile Remove="Features\Media\FoundationPdfFileViewModel.cs" />
-		<Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
 		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
 		<Compile Remove="Infrastructure\Commerce\Markets\AJAXLocalizationFilterAttribute.cs" />
 		<Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
