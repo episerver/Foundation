@@ -164,7 +164,7 @@
                         @foreach (var user in Model.DemoUsers)
                         {
                             var url = Url.Action("Login", "PublicApi");
-                            <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetDisplayUrl())" class="list-group--header__item">
+                            <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetEncodedPathAndQuery())" class="list-group--header__item">
                                 <p>@user.FullName</p>
                                 <p class="sub-title">@user.Description</p>
                             </a>
