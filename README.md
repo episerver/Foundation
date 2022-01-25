@@ -1,5 +1,8 @@
 <a href="https://github.com/episerver/Foundation"><img src="http://ux.episerver.com/images/logo.png" title="Foundation" alt="Foundation"></a>
 
+# Legacy Full Framework version
+  This version is built for 4.8.  For the latest version please use the [main branch](https://github.com/episerver/Foundation/tree/main)
+  
 ## Foundation
 
 Foundation offers a starting point that is intuitive, well-structured and modular allowing developers to select Episerver products as projects to include or exclude from their solution. 
