@@ -59,7 +59,7 @@
                         {
                             <li>
                                 <div class="dropdown">
-                                    <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-toggle="dropdown" data-offset="-81, -1" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
+                                    <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-bs-toggle="dropdown" data-offset="-81, -1" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
                                         <i data-feather="heart"></i>
                                         <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
                                     </div>
@@ -69,7 +69,7 @@
                         }
                         <li>
                             <div class="dropdown">
-                                <div class="icon-menu icon-menu--has-badge jsCartBtn" data-toggle="dropdown" data-offset="-162, -1" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
+                                <div class="icon-menu icon-menu--has-badge jsCartBtn" data-bs-toggle="dropdown" data-offset="-162, -1" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
                                     <i data-feather="shopping-cart"></i>
                                     <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
                                 </div>
@@ -80,7 +80,7 @@
                         {
                             <li>
                                 <div class="dropdown">
-                                    <div class="icon-menu icon-menu--has-badge jsSharedCartBtn" data-toggle="dropdown" data-offset="-162, -1" data-flip="false" reload="0" data-cartcontainer="#jsSharedCartContainer" data-reloadurl="/sharedCart/LoadMiniSharedCart" title="Shared Cart">
+                                    <div class="icon-menu icon-menu--has-badge jsSharedCartBtn" data-bs-toggle="dropdown" data-offset="-162, -1" data-flip="false" reload="0" data-cartcontainer="#jsSharedCartContainer" data-reloadurl="/sharedCart/LoadMiniSharedCart" title="Shared Cart">
                                         <i data-feather="shopping-bag"></i>
                                         <span class="icon-menu__badge">@((int)Model.SharedMiniCart.ItemCount)</span>
                                     </div>
@@ -120,7 +120,7 @@
                     {
                         <li>
                             <div class="dropdown">
-                                <div class="icon-menu" data-toggle="dropdown" data-offset="-324, -1" data-flip="false" id="js-profile">
+                                <div class="icon-menu" data-bs-toggle="dropdown" data-offset="-324, -1" data-flip="false" id="js-profile">
                                     <i data-feather="user"></i>
                                 </div>
                                 @await Html.PartialAsync("_Users", Model)
