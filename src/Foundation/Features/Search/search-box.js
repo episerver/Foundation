@@ -1,4 +1,4 @@
-﻿import Popper from "popper.js";
+﻿import { createPopper } from "@popperjs/core";
 
 export default class SearchBox {
     constructor() {
@@ -116,11 +116,11 @@ export default class SearchBox {
             if (!this.desktop && containerPopover === '#jsResultSearch') {
                 const reference = $(divInputElement);
                 const popover = $(containerPopover);
-                this.desktop = new Popper(reference, popover);
+                this.desktop = createPopper(reference, popover);
             } else if (!this.mobile && containerPopover === '#jsResultSearchMobile') {
                 const reference = $(divInputElement);
                 const popover = $(containerPopover);
-                this.mobile = new Popper(reference, popover, {
+                this.mobile = createPopper(reference, popover, {
                     modifiers: {
                         preventOverflow: {
                             padding: 0

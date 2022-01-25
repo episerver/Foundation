@@ -23,14 +23,15 @@ namespace Foundation.Infrastructure.Commerce.Marketing
             _couponService = couponService;
         }
 
-        //[MenuItem("/global/extensions/coupons", TextResourceKey = "/Shared/Coupons", SortIndex = 200)]
+        
         [HttpGet]
+        [Route("episerver/foundation/promotions", Name = "promotions")]
         public ActionResult Index()
         {
             var promotions = GetPromotions(_contentLoader.GetDescendents(GetCampaignRoot()))
                 .ToList();
 
-            return View(new PromotionsViewModel
+            return View("/Infrastructure/Commerce/Views/SingleUseCoupon/Index.cshtml", new PromotionsViewModel
             {
                 Promotions = promotions
             });
@@ -38,6 +39,7 @@ namespace Foundation.Infrastructure.Commerce.Marketing
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("episerver/foundation/promotions", Name = "promotionsPost")]
         public ActionResult Index(PagingInfo pagingInfo)
         {
             var promotions = GetPromotions(_contentLoader.GetDescendents(GetCampaignRoot()))
@@ -52,12 +54,13 @@ namespace Foundation.Infrastructure.Commerce.Marketing
         }
 
         [HttpGet]
+        [Route("episerver/foundation/editPromotionCoupons", Name = "editPromotionCoupons")]
         public ActionResult EditPromotionCoupons(int id)
         {
             var promotion = _contentLoader.Get<PromotionData>(new ContentReference(id));
             var coupons = _couponService.GetByPromotionId(id);
 
-            return View(new PromotionCouponsViewModel
+            return View("/Infrastructure/Commerce/Views/SingleUseCoupon/EditPromotionCoupons.cshtml", new PromotionCouponsViewModel
             {
                 Coupons = coupons ?? new List<UniqueCoupon>(),
                 Promotion = promotion,
@@ -68,9 +71,10 @@ namespace Foundation.Infrastructure.Commerce.Marketing
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public string UpdateOrDeleteCoupon(UniqueCoupon model, string actionType)
+        [Route("episerver/foundation/updateOrDeleteCoupon", Name = "updateOrDeleteCoupon")]
+        public string UpdateOrDeleteCoupon([FromForm] UniqueCoupon model)
         {
-            if (actionType.Equals("update", StringComparison.Ordinal))
+            if (model.ActionType.Equals("update", StringComparison.Ordinal))
             {
                 var updated = false;
                 var coupon = _couponService.GetById(model.Id);
@@ -96,7 +100,8 @@ namespace Foundation.Infrastructure.Commerce.Marketing
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Generate(PromotionCouponsViewModel model)
+        [Route("episerver/foundation/generateCoupon", Name = "generateCoupon")]
+        public ActionResult Generate([FromForm] PromotionCouponsViewModel model)
         {
             var couponRecords = new List<UniqueCoupon>();
             for (var i = 0; i < model.Quantity; i++)
@@ -114,33 +119,22 @@ namespace Foundation.Infrastructure.Commerce.Marketing
             }
 
             _couponService.SaveCoupons(couponRecords);
-            return RedirectToAction("EditPromotionCoupons", new { id = model.PromotionId });
+            return RedirectToRoute("editPromotionCoupons", new { id = model.PromotionId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteAll(PromotionCouponsViewModel model)
+        [Route("episerver/foundation/deleteAllCoupons", Name = "deleteAllCoupons")]
+        public ActionResult DeleteAll([FromForm] PromotionCouponsViewModel model)
         {
             var deleted = _couponService.DeleteByPromotionId(model.PromotionId);
-            return RedirectToAction("EditPromotionCoupons", new { id = model.PromotionId });
-        }
-
-        private ContentReference GetCampaignRoot()
-        {
-            return _contentLoader.GetChildren<SalesCampaignFolder>(ContentReference.RootPage)
-                .FirstOrDefault()?.ContentLink ?? ContentReference.EmptyReference;
-        }
-
-        private List<PromotionData> GetPromotions(IEnumerable<ContentReference> references)
-        {
-            return _contentLoader.GetItems(references, ContentLanguage.PreferredCulture)
-                .OfType<PromotionData>()
-                .ToList();
+            return RedirectToRoute("editPromotionCoupons", new { id = model.PromotionId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public FileResult Download(PromotionCouponsViewModel model)
+        [Route("episerver/foundation/downloadCoupons", Name = "downloadCoupons")]
+        public FileResult Download([FromForm] PromotionCouponsViewModel model)
         {
             var coupons = _couponService.GetByPromotionId(model.PromotionId);
 
@@ -163,6 +157,19 @@ namespace Foundation.Infrastructure.Commerce.Marketing
             }
 
             return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", $"{model.PromotionId}.csv");
+        }
+
+        private ContentReference GetCampaignRoot()
+        {
+            return _contentLoader.GetChildren<SalesCampaignFolder>(ContentReference.RootPage)
+                .FirstOrDefault()?.ContentLink ?? ContentReference.EmptyReference;
+        }
+
+        private List<PromotionData> GetPromotions(IEnumerable<ContentReference> references)
+        {
+            return _contentLoader.GetItems(references, ContentLanguage.PreferredCulture)
+                .OfType<PromotionData>()
+                .ToList();
         }
     }
 }

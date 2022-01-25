@@ -18,6 +18,7 @@ using Foundation.Infrastructure.Display;
 using Geta.NotFoundHandler.Infrastructure.Configuration;
 using Geta.NotFoundHandler.Infrastructure.Initialization;
 using Geta.NotFoundHandler.Optimizely;
+using Jhoose.Security.DependencyInjection;
 using Mediachase.Commerce.Anonymous;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Builder;
@@ -45,15 +46,6 @@ namespace Foundation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<DataAccessOptions>(o =>
-            {
-                o.ConnectionStrings.Add(new ConnectionStringOptions
-                {
-                    ConnectionString = _configuration.GetConnectionString("EcfSqlConnection"),
-                    Name = "EcfSqlConnection"
-                });
-            });
-
             services.AddCmsAspNetIdentity<SiteUser>(o =>
             {
                 if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
@@ -88,7 +80,7 @@ namespace Foundation
             services.AddDisplay();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
-
+            
             //site specific
             services.AddEmbeddedLocalization<Startup>();
             services.Configure<OrderOptions>(o => o.DisableOrderDataLocalization = true);
@@ -148,13 +140,14 @@ namespace Foundation
 
             services.AddNotFoundHandler(o => o.UseSqlServer(_configuration.GetConnectionString("EPiServerDB")), policy => policy.RequireRole(Roles.CmsAdmins));
             services.AddOptimizelyNotFoundHandler();
+            services.AddJhooseSecurity(_configuration);
             services.Configure<ProtectedModuleOptions>(x =>
             {
-                if (!x.Items.Any(x => x.Name.Equals("foundation")))
+                if (!x.Items.Any(x => x.Name.Equals("Foundation")))
                 {
                     x.Items.Add(new ModuleDetails
                     {
-                        Name = "foundation"
+                        Name = "Foundation"
                     });
                 }
             });
@@ -175,7 +168,6 @@ namespace Foundation
             app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "Default", pattern: "{controller}/{action}/{id?}");
