@@ -42,7 +42,7 @@ namespace Foundation.Features.Blocks.HeroBlock
 
         public void SetItem(ItemModel itemModel)
         {
-            itemModel.Description = Callout?.CalloutContent.ToHtmlString();
+            itemModel.Description = Callout?.CalloutContent?.ToHtmlString();
             itemModel.Image = BackgroundImage;
         }
 
