@@ -24,8 +24,8 @@
 		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.6" />
 		<PackageReference Include="EPiServer.Telemetry.UI" Version="2.0.1" />
 		<PackageReference Include="FileHelpers" Version="3.5.1" />
-		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.3" />
-		<PackageReference Include="Jhoose.Security.Admin" Version="1.0.1" />
+		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.4" />
+		<PackageReference Include="Jhoose.Security.Admin" Version="1.1.0.79" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
 		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
 		<PackageReference Include="Schema.NET" Version="11.0.0" />
