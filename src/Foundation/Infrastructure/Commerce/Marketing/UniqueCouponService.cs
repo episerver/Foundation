@@ -62,6 +62,8 @@ namespace Foundation.Infrastructure.Commerce.Marketing
                 {
                     InvalidateCouponCache(coupon.Id);
                 }
+                int promoId = coupons[0].PromotionId;
+                InvalidatePromotionCache(promoId);
 
                 return true;
             }
