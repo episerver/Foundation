@@ -15,7 +15,7 @@
         var inst = typeof (e) !== 'undefined' ? e.data.inst : this;
         $('.loading-box').show();
         let filter = $('.content-group-filter').val();
-        axios.get("bulkupdate/getcontenttypes/?type=" + filter)
+        axios.get("bulkupdate/getcontenttypes/" + filter)
             .then(function (result) {
                 $('.content-type-filter').empty();
                 $.each(result.data,
@@ -115,7 +115,7 @@
         var language = $('.content-language-filter').val();
         var keyword = $('.content-name-filter').val();
 
-        axios.get("bulkupdate/get?contentTypeId=" + contentTypeId + "&language=" + language + "&properties=" + properties.join() + "&keyword=" + keyword)
+        axios.get("bulkupdate/getContent?contentTypeId=" + contentTypeId + "&language=" + language + "&properties=" + properties.join() + "&keyword=" + keyword)
             .then(function (result) {
                 inst.contents = result.data;
                 if (result.data.length > 0) {
