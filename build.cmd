@@ -33,7 +33,7 @@ CALL npm run dev
 cd %ROOTPATH%
 
 echo ## Clean and build ##
-::"%InstallDir%%msBuildPath%" Foundation.sln /t:Clean,Build
+"%InstallDir%%msBuildPath%" Foundation.sln /t:Clean,Build
 cd %ROOTPATH%
 :error
 if NOT "%errorMessage%"=="" echo %errorMessage%

@@ -23,7 +23,7 @@ namespace Foundation.Infrastructure.Display
             "/Features/{3}/{0}.cshtml",
             "/Features/{3}/{4}/{1}/{0}.cshtml",
             "/Features/{3}/{4}/{0}.cshtml",
-            "/FormsViews/Views/ElementBlocks/{0}.cshtml"
+            "/Features/Shared/Views/ElementBlocks/{0}.cshtml"
         };
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context,
