@@ -84,7 +84,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
                 scope.SaveChanges();
             }
 
-            using (var stream = new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data\Customers.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, @"App_Data", @"Customers.xml"), FileMode.Open))
             {
                 ProcessCustomers(stream);
                 ProcessOrganizations(stream);

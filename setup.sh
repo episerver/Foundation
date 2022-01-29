@@ -7,7 +7,9 @@ add_sql_container()
     if [ $( docker ps -a | grep sql_server_optimizely | wc -l ) -gt 0 ]; then
         echo "sql_server_optimizely exists"
     else
-        docker run -d --name sql_server_optimizely -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Episerver123!' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
+        sudo docker run -d --name sql_server_optimizely -h $1 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Episerver123!' \
+           -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
+        docker cp ./build sql_server_optimizely:/build
     fi
 }
 
@@ -24,7 +26,7 @@ dotnet nuget add source https://nuget.episerver.com/feed/packages.svc -n Optimiz
 dotnet dev-certs https --trust
 
 dotnet build
-add_sql_container
+add_sql_container "$SQLSERVER"
 
 cms_db=$APPNAME.Cms
 commerce_db=$APPNAME.Commerce
@@ -46,10 +48,10 @@ docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER 
 docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "if db_id('$commerce_db') is not null ALTER DATABASE [$commerce_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE"
 docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "if db_id('$commerce_db') is not null DROP DATABASE [$commerce_db]"
 
-dotnet-episerver create-cms-database "./src/Foundation/Foundation.csproj" -S "$SQLSERVER" -U sa -P $password --database-name "$APPNAME.Cms"  --database-user "$user" --database-password $password
-dotnet-episerver create-commerce-database "./src/Foundation/Foundation.csproj" -S "$server" %ADDITIONAL_SQLCMD%  --database-name "%APPNAME%.Commerce" --reuse-cms-user
+dotnet-episerver create-cms-database "./src/Foundation/Foundation.csproj" -S $SQLSERVER -U sa -P $password --database-name "$cms_db"  --database-user $user --database-password $password
+dotnet-episerver create-commerce-database "./src/Foundation/Foundation.csproj" -S $SQLSERVER -U sa -P $password --database-name "$commerce_db" --reuse-cms-user
 
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./Build/SqlScripts/FoundationConfigurationSchema.sql" -v appname=$APPNAME
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./Build/SqlScripts/UniqueCouponSchema.sql"
+docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./build/SqlScripts/FoundationConfigurationSchema.sql" -v appname=$APPNAME
+docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./build/SqlScripts/UniqueCouponSchema.sql"
 
 #dotnet run --project src/Foundation/Foundation.csproj

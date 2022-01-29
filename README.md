@@ -36,33 +36,35 @@ Windows
 
 ```
 open command prompt as administrator
-git clone git@github.com:episerver/Foundation.git
+git clone https://github.com/episerver/Foundation.git
 cd foundation
 git checkout main
 setup.cmd 
-dotnet run
+dotnet run --project .\src\Foundation\Foundation.csproj
 ```
 
 ### Mac
 
 ```
 Open a Terminal window
-git clone git@github.com:episerver/Foundation.git
-cd foundation
+git clone https://github.com/episerver/Foundation.git
+cd Foundation
 git checkout main
+chmod u+x setup.sh
 ./setup.sh
-dotnet run
+dotnet run --project ./src/Foundation/Foundation.csproj
 ```
 
 ### Linux
 
 ```
 Open a bash terminal window
-git clone git@github.com:episerver/Foundation.git
-cd foundation
+git clone https://github.com/episerver/Foundation.git
+cd Foundation
 git checkout main
+chmod u+x setup.sh
 ./setup.sh
-dotnet run
+dotnet run --project ./src/Foundation/Foundation.csproj
 ```
 
 ---

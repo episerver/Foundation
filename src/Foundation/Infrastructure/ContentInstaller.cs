@@ -129,7 +129,7 @@ namespace Foundation.Infrastructure
                 _contentRootService.Register<SettingsFolder>(SettingsFolder.SettingsRootName + "IMPORT", SettingsFolder.SettingsRootGuid, ContentReference.RootPage);
             }
 
-            CreateSite(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation.episerverdata"),
+            CreateSite(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "foundation.episerverdata"),
                     FileMode.Open,
                     FileAccess.Read,
                     FileShare.Read),
@@ -139,8 +139,8 @@ namespace Foundation.Infrastructure
             ServiceLocator.Current.GetInstance<ISettingsService>().UpdateSettings();
 
             _principalAccessor.Principal = new GenericPrincipal(new GenericIdentity("Importer"), null);
-            CreateCatalog(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation_fashion.zip"), FileMode.Open),
-                Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/foundation_fashion.zip"));
+            CreateCatalog(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "foundation_fashion.zip"), FileMode.Open),
+                Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "foundation_fashion.zip"));
 
             var searchManager = new SearchManager(Mediachase.Commerce.Core.AppContext.Current.ApplicationName, _searchOptions, _serviceProvider, _indexBuilder);
             searchManager.BuildIndex(true);
@@ -236,7 +236,7 @@ namespace Foundation.Infrastructure
                 throw new Exception("File is required");
             }
             var name = fileName.Substring(fileName.LastIndexOf("\\") == 0 ? 0 : fileName.LastIndexOf("\\") + 1);
-            var path = Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/Catalog");
+            var path = Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "Catalog");
             var zipFile = Path.Combine(path, name);
             var zipDirectory = new DirectoryInfo(Path.Combine(path, name.Replace(".zip", "")));
             if (zipDirectory.Exists)

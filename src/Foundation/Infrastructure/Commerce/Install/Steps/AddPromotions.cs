@@ -38,7 +38,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
         private void ConfigureMarketing()
         {
             //ImportEpiserverData(null);
-            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/promotions.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data", @"promotions.xml"), FileMode.Open))
             {
                 foreach (var xCampaign in GetXElements(stream, "Campaign"))
                 {
