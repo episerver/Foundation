@@ -29,7 +29,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
-            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/warehouses.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data", @"warehouses.xml"), FileMode.Open))
             {
                 foreach (var xWarehouse in GetXElements(stream, "Warehouse"))
                 {

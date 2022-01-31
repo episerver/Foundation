@@ -25,6 +25,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         public override string Description => "Adds taxes to Foundation.";
 
-        protected override void ExecuteInternal(IProgressMessenger progressMessenger) => _taxImportExport.Import(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data\Taxes.csv"), ',');
+        protected override void ExecuteInternal(IProgressMessenger progressMessenger) => 
+            _taxImportExport.Import(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data", @"Taxes.csv"), ',');
     }
 }
