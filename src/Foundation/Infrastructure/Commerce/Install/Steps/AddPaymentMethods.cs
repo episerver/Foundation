@@ -31,7 +31,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
 
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
-            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/paymentMethods.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data", @"PaymentMethods.xml"), FileMode.Open))
             {
                 var allMarkets = MarketService.GetAllMarkets().Where(x => x.IsEnabled).ToList();
                 foreach (var language in allMarkets.SelectMany(x => x.Languages).Distinct())

@@ -16,7 +16,7 @@ namespace Foundation
             {
                 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
-                .WriteTo.File("app_data/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("App_Data/log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
             }
 

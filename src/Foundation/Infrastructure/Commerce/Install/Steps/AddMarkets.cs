@@ -28,7 +28,7 @@ namespace Foundation.Infrastructure.Commerce.Install.Steps
         protected override void ExecuteInternal(IProgressMessenger progressMessenger)
         {
             progressMessenger.AddProgressMessageText("Creating markets...", false, 0);
-            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data/markets.xml"), FileMode.Open))
+            using (var stream = new FileStream(Path.Combine(WebHostEnvironment.ContentRootPath, @"App_Data", @"markets.xml"), FileMode.Open))
             {
                 foreach (var xMarket in GetXElements(stream, "Market"))
                 {
