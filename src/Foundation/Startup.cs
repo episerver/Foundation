@@ -12,6 +12,7 @@ using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Infrastructure;
+using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Display;
@@ -80,7 +81,8 @@ namespace Foundation
             services.AddDisplay();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
-            
+            services.AddTinyMceConfiguration();
+
             //site specific
             services.AddEmbeddedLocalization<Startup>();
             services.Configure<OrderOptions>(o => o.DisableOrderDataLocalization = true);
