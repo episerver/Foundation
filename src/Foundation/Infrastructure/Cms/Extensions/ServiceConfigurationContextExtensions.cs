@@ -6,9 +6,9 @@ namespace Foundation.Infrastructure.Cms.Extensions
 {
     public static class ServiceConfigurationContextExtensions
     {
-        public static void ConfigureFoundationCms(this ServiceConfigurationContext context)
+        public static void AddTinyMceConfiguration(this IServiceCollection services)
         {
-            context.Services.Configure<TinyMceConfiguration>(config =>
+            services.Configure<TinyMceConfiguration>(config =>
             {
                 config.Default()
                     .AddPlugin("media wordcount anchor code textcolor colorpicker")
@@ -17,6 +17,7 @@ namespace Foundation.Infrastructure.Cms.Extensions
                     .AddSetting("image_advtab", true);
 
                 config.Default()
+                    .AddEpiserverSupport()
                     .AddExternalPlugin("icons", "/ClientResources/Scripts/fontawesomeicons.js")
                     .AddSetting("extended_valid_elements", "i[class], span")
                     .ContentCss(new[] { "/ClientResources/Styles/fontawesome.min.css",
