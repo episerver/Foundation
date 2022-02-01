@@ -76,7 +76,6 @@ namespace Foundation.Infrastructure
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
             _services = context.Services;
-            context.ConfigureFoundationCms();
             _services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             ServiceCollectionServiceExtensions.AddScoped(_services, x => {
                 var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
