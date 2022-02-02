@@ -400,7 +400,7 @@ namespace Foundation.Infrastructure.Cms.Settings
             {
                 return Guid.Empty;
             }
-            var site = _siteDefinitionResolver.GetByHostname(request.Host.Host, false, out var hostname);
+            var site = _siteDefinitionResolver.GetByHostname(request.Host.Host, true, out var hostname);
             if (site == null)
             {
                 return Guid.Empty;
