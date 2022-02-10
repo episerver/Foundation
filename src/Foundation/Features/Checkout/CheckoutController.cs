@@ -19,11 +19,13 @@ using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Commerce.GiftCard;
 using Foundation.Infrastructure.Personalization;
+using Foundation.Infrastructure.Helpers;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,7 +125,7 @@ namespace Foundation.Features.Checkout
             viewModel.BillingAddress = _addressBookService.ConvertToModel(CartWithValidationIssues.Cart.GetFirstForm()?.Payments.FirstOrDefault()?.BillingAddress);
             _addressBookService.LoadAddress(viewModel.BillingAddress);
 
-            var shipmentBillingTypes = TempData["ShipmentBillingTypes"] as List<KeyValuePair<string, int>>;
+            var shipmentBillingTypes = TempData.Get<List<KeyValuePair<string, int>>>("ShipmentBillingTypes");
 
             if (shipmentBillingTypes != null && shipmentBillingTypes.Any(x => x.Key == "Billing"))
             {
@@ -170,7 +172,7 @@ namespace Foundation.Features.Checkout
                 ViewBag.ErrorMessages = (string)TempData[Constant.ErrorMessages];
             }
 
-            var tempDataState = TempData["ModelState"] as List<KeyValuePair<string, string>>;
+            var tempDataState = TempData.Get<List<KeyValuePair<string, string>>>("ModelState");
             if (tempDataState != null)
             {
                 foreach (var e in tempDataState)
@@ -495,8 +497,8 @@ namespace Foundation.Features.Checkout
             {
                 var stateValues = new List<KeyValuePair<string, string>>();
                 stateValues.AddRange(ModelState.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.Errors.FirstOrDefault().ErrorMessage)));
-                TempData["ModelState"] = stateValues;
-                TempData["ShipmentBillingTypes"] = errorTypes;
+                TempData.Set("ModelState", stateValues);
+                TempData.Set("ShipmentBillingTypes", errorTypes);
                 return RedirectToAction("Index");
             }
 
