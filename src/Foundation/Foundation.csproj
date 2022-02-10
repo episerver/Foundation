@@ -19,6 +19,7 @@
 		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
 		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
 		<PackageReference Include="EPiServer.Forms" Version="5.0.1" />
+		<PackageReference Include="EPiServer.Labs.ContentManager" Version="1.0.1" />
 		<PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.0.0" />
 		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.0.1" />
 		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.6" />
