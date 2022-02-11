@@ -9,16 +9,19 @@
 		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.6" />
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
 		<PackageReference Include="EPiServer.Commerce" Version="14.1.2" />
-		<PackageReference Include="EPiServer.CMS" Version="12.2.1" />
-		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.2.0" />
+		<PackageReference Include="EPiServer.CMS" Version="12.3.0" />
+		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.3.0" />
+		<PackageReference Include="EPiServer.CMS.UI" Version="12.3.0" />
+		<PackageReference Include="EPiServer.CMS.UI.Core" Version="12.3.0" />
 		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.0.1" />
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.0.1" />
 		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.0.1" />
-		<PackageReference Include="EPiServer.Framework" Version="12.2.0" />
-		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.2.0" />
+		<PackageReference Include="EPiServer.Framework" Version="12.3.0" />
+		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.3.0" />
 		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
 		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
 		<PackageReference Include="EPiServer.Forms" Version="5.0.1" />
+		<PackageReference Include="EPiServer.Hosting" Version="12.3.0" />
 		<PackageReference Include="EPiServer.Labs.ContentManager" Version="1.0.1" />
 		<PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.0.0" />
 		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.0.1" />
