@@ -114,18 +114,19 @@ export default class SearchBox {
         const inst = this;
         if (val) {
             if (!this.desktop && containerPopover === '#jsResultSearch') {
-                const reference = $(divInputElement);
-                const popover = $(containerPopover);
+                const reference = document.querySelector(divInputElement);
+                const popover = document.querySelector(containerPopover);
                 this.desktop = createPopper(reference, popover);
             } else if (!this.mobile && containerPopover === '#jsResultSearchMobile') {
-                const reference = $(divInputElement);
-                const popover = $(containerPopover);
+                const reference = document.querySelector(divInputElement);
+                const popover = document.querySelector(containerPopover);
                 this.mobile = createPopper(reference, popover, {
-                    modifiers: {
-                        preventOverflow: {
-                            padding: 0
-                        }
-                    }
+                    modifiers: [{
+                        name: 'preventOverflow', 
+                        options: {
+                            padding: 0,
+                        },
+                    },]
                 });
             } else if (this.desktop) {
                 this.desktop.update();
