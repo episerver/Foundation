@@ -29,6 +29,11 @@ namespace Foundation.Features.Search
         private readonly IContentLoader _contentLoader;
         private readonly ISettingsService _settingsService;
 
+        public class QuickSearchTerm
+        {
+            public string search { get; set; }
+        }
+
         public SearchController(
             ISearchViewModelFactory viewModelFactory,
             ISearchService searchService,
@@ -150,7 +155,7 @@ namespace Foundation.Features.Search
         }
 
         [HttpPost]
-        public ActionResult QuickSearch([FromBody] string search = "")
+        public ActionResult QuickSearch([FromBody] QuickSearchTerm quicksearchterm)
         {
             var redirectUrl = "";
             var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
@@ -162,7 +167,7 @@ namespace Foundation.Features.Search
             var searchSettings = _settingsService.GetSiteSettings<SearchSettings>();
             if (searchSettings?.ShowProductSearchResults ?? true)
             {
-                var productResults = _searchService.QuickSearch(search, searchSettings?.SearchCatalog ?? 0);
+                var productResults = _searchService.QuickSearch(quicksearchterm.search, searchSettings?.SearchCatalog ?? 0);
                 model.ProductViewModels = productResults;
                 productCount = productResults?.Count() ?? 0;
 
@@ -184,7 +189,7 @@ namespace Foundation.Features.Search
             {
                 var contentResult = _searchService.SearchContent(new FilterOptionViewModel()
                 {
-                    Q = search,
+                    Q = quicksearchterm.search,
                     PageSize = 5,
                     Page = 1,
                     IncludeImagesContent = searchSettings?.IncludeImagesInContentsSearchResults ?? true
@@ -197,7 +202,7 @@ namespace Foundation.Features.Search
             {
                 //var pdfResult = _searchService.SearchPdf(new FilterOptionViewModel()
                 //{
-                //    Q = search,
+                //    Q = quicksearchterm.search,
                 //    PageSize = 5,
                 //    Page = 1
                 //});
