@@ -1,4 +1,6 @@
-<a href="https://github.com/episerver/Foundation"><img src="http://ux.episerver.com/images/logo.png" title="Foundation" alt="Foundation"></a>
+## NOTE: this branch is deprecated -- use the [main branch](https://github.com/episerver/Foundation/tree/main) for CMS 12 / .NET 5.
+
+---
 
 ## Foundation 
 
