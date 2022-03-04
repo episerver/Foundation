@@ -11,6 +11,7 @@
 		<PackageReference Include="EPiServer.Commerce" Version="14.1.2" />
 		<PackageReference Include="EPiServer.CMS" Version="12.3.0" />
 		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.3.0" />
+		<PackageReference Include="EPiServer.CMS.Core" Version="12.3.0" />
 		<PackageReference Include="EPiServer.CMS.UI" Version="12.3.0" />
 		<PackageReference Include="EPiServer.CMS.UI.Core" Version="12.3.0" />
 		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.0.1" />
