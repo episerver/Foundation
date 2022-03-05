@@ -4,6 +4,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Find;
+using EPiServer.Find.Api;
 using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
@@ -184,6 +185,12 @@ namespace Foundation.Features.Search
                 .GetFilter(new NestedFilterExpression<TSource, TListItem>(nestedExpression, filterExpression, search.Client.Conventions).Expression);
 
             return search.OrFilter(filter);
+        }
+
+        public static ITypeSearch<TSource> ThenByScore<TSource>(this ITypeSearch<TSource> search)
+        {
+            return new Search<TSource, IQuery>(search, context =>
+                context.RequestBody.Sort.Add(new Sorting("_score")));
         }
     }
 }

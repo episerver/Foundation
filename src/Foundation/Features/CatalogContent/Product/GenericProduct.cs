@@ -21,7 +21,6 @@ namespace Foundation.Features.CatalogContent.Product
     public class GenericProduct : ProductContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         #region Content
-
         [Searchable]
         [CultureSpecific]
         [Tokenize]
@@ -114,7 +113,17 @@ namespace Foundation.Features.CatalogContent.Product
             Order = 80)]
         [SelectOne(SelectionFactoryType = typeof(ProductStatusSelectionFactory))]
         public virtual string ProductStatus { get; set; }
+        #endregion
 
+        #region SearchSettings
+        [Range(1, 5)]
+        [Display(Name = "Search Boost (1-5)", GroupName = Infrastructure.TabNames.SearchSettings,
+            Description = "Boost product in search results with default sort", Order = 1)]
+        public virtual int Boost { get; set; }
+
+        [Display(Name = "Bury", GroupName = Infrastructure.TabNames.SearchSettings,
+            Description = "This will determine whether or not to hide product in search results.", Order = 2)]
+        public virtual bool Bury { get; set; }
         #endregion
 
         #region Manufacturer
@@ -173,6 +182,8 @@ namespace Foundation.Features.CatalogContent.Product
 
             AssociationsTitle = "You May Also Like";
             ProductStatus = "Active";
+            Boost = 1;
+            Bury = false;
         }
 
         //public void SetItem(ItemModel itemModel)

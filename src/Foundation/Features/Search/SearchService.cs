@@ -563,9 +563,21 @@ namespace Foundation.Features.Search
 
             query = FilterSelected(query, filterOptions.FacetGroups);
             query = ApplyFilters(query, filters);
-            query = OrderBy(query, filterOptions);
+            if ((filterOptions.Sort == "Position" || filterOptions.Sort == "Recommended")
+                    && filterOptions.SortDirection == "Asc")
+            {
+                query = query.BoostMatching(x => (x as GenericProduct).Boost.Match(2), 1.05);
+                query = query.BoostMatching(x => (x as GenericProduct).Boost.Match(3), 1.1);
+                query = query.BoostMatching(x => (x as GenericProduct).Boost.Match(4), 1.15);
+                query = query.BoostMatching(x => (x as GenericProduct).Boost.Match(5), 1.2);
+                query = query.ThenByScore();
+            } else
+            {
+                query = OrderBy(query, filterOptions);
+            }
+
             //Exclude products from search
-            //query = query.Filter(x => (x as ProductContent).ExcludeFromSearch.Match(false));
+            query = query.Filter(x => (x as GenericProduct).Bury.Match(false));
 
             if (catalogId != 0)
             {
@@ -682,6 +694,7 @@ namespace Foundation.Features.Search
                 if (commerceFilterOptionViewModel.SortDirection.Equals("Asc"))
                 {
                     query = query.OrderBy(x => x.DefaultPrice());
+                    query = query.ThenByScore();
                     return query;
                 }
                 query = query.OrderByDescending(x => x.DefaultPrice());

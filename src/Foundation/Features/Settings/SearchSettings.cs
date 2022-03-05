@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {
-    [SettingsContentType(DisplayName = "Search Settings",
+    [SettingsContentType(DisplayName = "Search & Catalog Settings",
         GUID = "d4171337-70a4-476a-aa3c-0d976ac185e8",
         SettingsName = "Search Settings")]
     public class SearchSettings : SettingsBase, IFacetConfiguration
@@ -49,6 +49,10 @@ namespace Foundation.Features.Settings
             Order = 300)]
         [EditorDescriptor(EditorDescriptorType = typeof(IgnoreCollectionEditorDescriptor<FacetFilterConfigurationItem>))]
         public virtual IList<FacetFilterConfigurationItem> SearchFiltersConfiguration { get; set; }
+
+        [SelectOne(SelectionFactoryType = typeof(CurrencySelectionFactory))]
+        [Display(Name = "Currency", GroupName = TabNames.SearchSettings, Order = 210)]
+        public virtual string Currency { get; set; }
     }
 
     public class SearchOptionSelectionFactory : ISelectionFactory

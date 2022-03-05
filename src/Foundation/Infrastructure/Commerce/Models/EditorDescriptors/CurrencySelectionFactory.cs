@@ -4,7 +4,7 @@ using Mediachase.Commerce.Markets;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation
+namespace Foundation.Infrastructure.Commerce.Models.EditorDescriptors
 {
     public class CurrencySelectionFactory : ISelectionFactory
     {
