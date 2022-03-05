@@ -270,6 +270,9 @@ namespace Foundation.Features.Search.ProductSearchBlock
                 }
             }
 
+            // Add bury filter
+            filters.Add(new PrefixFilter("Bury$$bool", "false"));
+
             if (productSearchBlock.Filters == null)
             {
                 return filters;
