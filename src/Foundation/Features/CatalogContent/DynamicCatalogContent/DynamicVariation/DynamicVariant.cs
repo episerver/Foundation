@@ -7,6 +7,7 @@ using EPiServer.Shell.ObjectEditing;
 using EPiServer.Validation;
 using EPiServer.Web;
 using Foundation.Features.CatalogContent.Variation;
+using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
