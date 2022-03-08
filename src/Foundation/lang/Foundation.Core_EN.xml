@@ -655,7 +655,8 @@
       <Labels>
         <PaymentPlanID>ID</PaymentPlanID>
         <PaymentPlanDate>Date</PaymentPlanDate>
-        <ActiveStatus>Active Status</ActiveStatus>
+        <PaymentPlanStartDate>Date Started</PaymentPlanStartDate>
+        <ActiveStatus>Active?</ActiveStatus>
         <TotalPrice>Price</TotalPrice>
       </Labels>
       <Detail>
@@ -668,6 +669,7 @@
         <CycleLength>Cycle Length</CycleLength>
         <CycleMode>Cycle Mode</CycleMode>
         <EndDate>End Date</EndDate>
+        <NoSubscription>No Subscription</NoSubscription>
       </Detail>
     </PaymentPlanHistory>
     <ReturnOrderSetting>

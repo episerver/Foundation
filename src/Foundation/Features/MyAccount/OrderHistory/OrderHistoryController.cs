@@ -55,7 +55,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
             PaymentMethodViewModelFactory paymentMethodViewModelFactory,
             ICookieService cookieService,
             ISettingsService settingsService) :
-            base(confirmationService, addressBookService, orderGroupCalculator, urlResolver, customerService)
+            base(addressBookService, orderGroupCalculator, urlResolver, customerService)
         {
             _addressBookService = addressBookService;
             _orderRepository = orderRepository;
@@ -70,14 +70,14 @@ namespace Foundation.Features.MyAccount.OrderHistory
         [AcceptVerbs(new string[] { "GET", "POST" })]
         public ActionResult Index(OrderHistoryPage currentPage, OrderFilter filter, int? page, int? size, int? isPaging)
         {
-            if (isPaging.HasValue)
-            {
-                filter = GetFilter();
-            }
-            else
-            {
-                SetCookieFilter(filter);
-            }
+            //if (isPaging.HasValue)
+            //{
+            //    filter = GetFilter();
+            //}
+            //else
+            //{
+            //    SetCookieFilter(filter);
+            //}
             var pageNum = page ?? 1;
             var pageSize = size ?? 10;
             var orders = _orderRepository.Load<IPurchaseOrder>(PrincipalInfo.CurrentPrincipal.GetContactId(), _cartService.DefaultCartName);

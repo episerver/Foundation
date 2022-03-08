@@ -4,6 +4,7 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Globalization;
 using EPiServer.ServiceLocation;
+using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Commerce.Install;
@@ -22,6 +23,7 @@ namespace Foundation.Infrastructure.Commerce
         {
             var _services = context.Services;
             _services.AddSingleton<ICurrentMarket, CurrentMarket>();
+            _services.AddSingleton<IAddressBookService, AddressBookService>();
             _services.AddSingleton<ICustomerService, CustomerService>();
             _services.AddSingleton<IFileHelperService, FileHelperService>();
             _services.AddTransient<ILoyaltyService, LoyaltyService>();

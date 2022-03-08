@@ -550,7 +550,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Reorder([FromQuery] string orderId)
+        public async Task<ActionResult> Reorder(string orderId)
         {
             if (!int.TryParse(orderId, out var orderIntId))
             {

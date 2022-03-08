@@ -17,7 +17,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanID", "ID")</th>
-                    <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanDate", "Date")</th>
+                    <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanStartDate", "Date Started")</th>
                     <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/TotalPrice", "Price")</th>
                     <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/ActiveStatus", "Active Status")</th>
                 </tr>
@@ -25,18 +25,25 @@
             <tbody>
                 @foreach (var order in Model.PaymentPlans)
                 {
-                    <tr>
-                        <td><a href="@(Model.PaymentPlanDetailsPageUrl)?paymentPlanId=@order.Id">#@order.Id</a></td>
-                        <td>@order.Created.ToString()</td>
-                        <td><span class="price">@order.GetTotal().ToString()</span></td>
-                        <td><em>@order.IsActive</em></td>
-                    </tr>
+                <tr>
+                    <td><a href="@(Model.PaymentPlanDetailsPageUrl)?paymentPlanId=@order.Id">#@order.Id</a></td>
+                    <td>@order.Created.ToString()</td>
+                    <td><span class="price">@order.GetTotal().ToString()</span></td>
+                    <td>
+                        <em>
+                            @if (order.IsActive)
+                            {<span>@Html.TranslateFallback("/common/yes", "Yes")</span> }
+                            else
+                            { <span>@Html.TranslateFallback("/common/no", "No")</span>}
+                        </em>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
     }
     else
     {
-        <p>No subscription</p>
+<p>@Html.TranslateFallback("/PaymentPlanHistory/Detail/NoSubscription", "No Subscription")</p>
     }
 </div>
