@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace Foundation.Features.MyAccount
 {
-    public class MyAccountNavigationComponent : ViewComponent
+    public class MyAccountNavigationViewComponent : ViewComponent
     {
         private readonly IContentLoader _contentLoader;
         private readonly LocalizationService _localizationService;
@@ -27,7 +27,7 @@ namespace Foundation.Features.MyAccount
         private readonly UrlResolver _urlResolver;
         private readonly ISettingsService _settingsService;
 
-        public MyAccountNavigationComponent(
+        public MyAccountNavigationViewComponent(
             IContentLoader contentLoader,
             LocalizationService localizationService,
             IOrganizationService organizationService,

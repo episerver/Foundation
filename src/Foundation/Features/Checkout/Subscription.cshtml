@@ -9,7 +9,7 @@
     <div class="col-12 checkout--panel-block">
         <label class="checkbox">
             @Html.CheckBoxFor(x => x.IsUsePaymentPlan)
-            <span class="title">@Html.TranslateFallback("/Shared/CreateSubscription", "Create subscription of cart")</span>
+            <span class="title">@Html.TranslateFallback("/Shared/CreateSubscription", "Create subscription")</span>
             <span class="checkmark"></span>
         </label>
     </div>
@@ -17,14 +17,7 @@
     <div class="col-12 jsSubscription display-none">
         <div class="row">
             <div class="col-6 flex-start">
-                <label style="margin-right: 15px;">Every</label>
-                @Html.TextBoxFor(x => x.PaymentPlanSetting.CycleLength, new { @class = "textbox", type = "number" })
-                <span> day(s)</span>
-            </div>
-
-            <div class="col-6 flex-end">
-                <span class="mr-2">End date </span>
-                @Html.TextBoxFor(x => x.PaymentPlanSetting.EndDate, new { type = "date" })
+                @Html.DropDownListFor(x => x.SelectedSubscriptionID, Model.AvailableSubscriptionOptions, new { @class = "select-menu" })
             </div>
         </div>
     </div>

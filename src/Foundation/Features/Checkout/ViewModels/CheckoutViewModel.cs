@@ -5,6 +5,7 @@ using Foundation.Features.MyOrganization;
 using Foundation.Features.Shared;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Orders;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 
@@ -26,6 +27,10 @@ namespace Foundation.Features.Checkout.ViewModels
         {
             Payments = new List<PaymentOptionBase>();
         }
+
+        public List<SelectListItem> AvailableSubscriptionOptions { get; set; }
+
+        public int SelectedSubscriptionID { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of all coupon codes that have been applied.

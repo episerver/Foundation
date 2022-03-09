@@ -1,11 +1,13 @@
 ﻿using EPiServer.Commerce.Order;
 using EPiServer.Core;
+using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Commerce.Customer.Services;
+using Mediachase.Commerce;
 //using Foundation.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +24,8 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
             IOrderGroupCalculator orderGroupCalculator,
             UrlResolver urlResolver, ICustomerService customerService,
             IContextModeResolver contextModeResolver) :
-            base(confirmationService, addressBookService, orderGroupCalculator, urlResolver, customerService)
+            base(new ConfirmationService(ServiceLocator.Current.GetInstance<IOrderRepository>(), ServiceLocator.Current.GetInstance<ICurrentMarket>()), 
+                addressBookService, orderGroupCalculator, urlResolver, customerService)
         {
             //_campaignService = campaignService;
             _contextModeResolver = contextModeResolver;

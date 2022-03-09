@@ -26,7 +26,20 @@ namespace Foundation.Features.MyAccount.OrderConfirmation
         private readonly UrlResolver _urlResolver;
         protected readonly ICustomerService _customerService;
 
-        protected OrderConfirmationControllerBase(IConfirmationService confirmationService,
+        protected OrderConfirmationControllerBase(
+            IAddressBookService addressBookService,
+            IOrderGroupCalculator orderGroupTotalsCalculator,
+            UrlResolver urlResolver,
+            ICustomerService customerService)
+        {
+            _addressBookService = addressBookService;
+            _orderGroupCalculator = orderGroupTotalsCalculator;
+            _urlResolver = urlResolver;
+            _customerService = customerService;
+        }
+
+        protected OrderConfirmationControllerBase(
+            IConfirmationService confirmationService,
             IAddressBookService addressBookService,
             IOrderGroupCalculator orderGroupTotalsCalculator,
             UrlResolver urlResolver,

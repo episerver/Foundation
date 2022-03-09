@@ -1,5 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.ServiceLocation;
+using Mediachase.Commerce;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,37 @@ namespace Foundation.Infrastructure.Find.Facets.Config
 
         public virtual List<FacetDefinition> GetDefaultFacetDefinitions()
         {
-            return new List<FacetDefinition>();
+            var brand = new FacetStringDefinition
+            {
+                FieldName = "Brand",
+                DisplayName = "Brand"
+            };
+
+            var color = new FacetStringListDefinition
+            {
+                DisplayName = "Color",
+                FieldName = "AvailableColors"
+            };
+
+            var size = new FacetStringListDefinition
+            {
+                DisplayName = "Size",
+                FieldName = "AvailableSizes"
+            };
+
+            var priceRanges = new FacetNumericRangeDefinition(ServiceLocator.Current.GetInstance<ICurrentMarket>())
+            {
+                DisplayName = "Price",
+                FieldName = "DefaultPrice",
+                BackingType = typeof(double)
+            };
+            priceRanges.Range.Add(new SelectableNumericRange() { To = 50 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 50, To = 100 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 100, To = 500 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 500, To = 1000 });
+            priceRanges.Range.Add(new SelectableNumericRange() { From = 1000 });
+
+            return new List<FacetDefinition>() { priceRanges, brand, size, color };
         }
 
         public virtual FacetDefinition GetFacetDefinition(FacetFilterConfigurationItem facetConfiguration)

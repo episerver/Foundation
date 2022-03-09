@@ -64,7 +64,7 @@ namespace Foundation.Features.CatalogContent.Services
             {
                 CustomerPricing = new List<CustomerPricing>
                 {
-                    new CustomerPricing((CustomerPricing.PriceType)5, string.Empty),
+                    new CustomerPricing((CustomerPricing.PriceType)3, string.Empty),
                 },
                 Currencies = new List<Currency> { currency },
                 ReturnCustomerPricing = true

@@ -11,6 +11,7 @@ using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,11 +80,19 @@ namespace Foundation.Features.Checkout.ViewModels
                 CurrentCustomer = _customerService.GetCurrentContactViewModel(),
                 IsOnHoldBudget = CheckForOnHoldBudgets(),
                 Payment = paymentOption,
+                AvailableSubscriptionOptions = new List<SelectListItem>()
+                {
+                    new SelectListItem("Monthly For A Year", "Monthly"),
+                    new SelectListItem("Bi-Monthly For A Year", "2Month")
+                },
                 PaymentPlanSetting = new PaymentPlanSetting()
                 {
-                    CycleMode = Mediachase.Commerce.Orders.PaymentPlanCycle.None,
-                    IsActive = false,
-                    StartDate = DateTime.UtcNow
+                    CycleMode = Mediachase.Commerce.Orders.PaymentPlanCycle.Months,
+                    IsActive = true,
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow,
+                    MaxCyclesCount = 12,
+                    CycleLength = 1
                 },
             };
 

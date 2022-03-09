@@ -55,8 +55,9 @@
                 }
                 else
                 {
-                    <div class="col-lg-3">
-                        @Html.PropertyFor(x => x.CurrentContent.FeaturedProducts)
+                    <div class="category-page__facets col-lg-3 jsFacets">
+                        @await Html.PartialAsync("_CategoriesFilter", Model.CategoriesFilter)
+                        @await Html.PartialAsync("_Facet", Model.FilterOption)
                     </div>
                     <div class="col-lg-9">
                         @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
