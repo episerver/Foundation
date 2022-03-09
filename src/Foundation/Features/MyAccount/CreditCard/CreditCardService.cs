@@ -277,6 +277,10 @@ namespace Foundation.Features.MyAccount.CreditCard
                 creditCard.OrganizationId =
                     PrimaryKeyId.Parse(creditCardModel.OrganizationId);
             }
+            else
+            {
+                creditCard.ContactId = CustomerContext.Current.CurrentContact.PrimaryKeyId;
+            }
 
             if (!string.IsNullOrEmpty(creditCardModel.CreditCardId))
             {

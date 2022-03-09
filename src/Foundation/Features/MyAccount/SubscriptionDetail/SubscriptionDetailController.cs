@@ -13,6 +13,7 @@ using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace Foundation.Features.MyAccount.SubscriptionDetail
@@ -20,10 +21,10 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
     public class SubscriptionDetailController : PageController<SubscriptionDetailPage>
     {
         private readonly ISettingsService _settingsService;
-        private readonly AddressBookService _addressBookService;
+        private readonly IAddressBookService _addressBookService;
         private readonly IContentLoader _contentLoader;
 
-        public SubscriptionDetailController(AddressBookService addressBookService,
+        public SubscriptionDetailController(IAddressBookService addressBookService,
             IContentLoader contentLoader,
             ISettingsService settingsService)
         {
@@ -36,10 +37,22 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
         {
             var paymentDetail = OrderContext.Current.Get<PaymentPlan>(paymentPlanId);
 
+            string subscriptionType = "Monthly";
+            if (paymentDetail.CycleLength == 2)
+            {
+                subscriptionType = "2Month";
+            }
+
             var viewModel = new SubscriptionDetailViewModel(currentPage)
             {
                 CurrentContent = currentPage,
-                PaymentPlan = paymentDetail
+                PaymentPlan = paymentDetail,
+                SubscriptionOptions = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("Monthly For A Year", "Monthly"),
+                    new KeyValuePair<string, string>("Bi-Monthly For A Year", "2Month")
+                },
+                SelectedSubscriptionOption = subscriptionType
             };
 
             //Get order that created by 
@@ -88,6 +101,65 @@ namespace Foundation.Features.MyAccount.SubscriptionDetail
             viewModel.Orders = orders;
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeSubscriptionStatus(int orderGroupId = 0)
+        {
+            var paymentDetail = OrderContext.Current.Get<PaymentPlan>(orderGroupId);
+            if (paymentDetail.IsActive)
+            {
+                paymentDetail.Status = "On Hold";
+            }
+            else
+            {
+                paymentDetail.Status = "InProgress";
+            }
+            paymentDetail.IsActive = (!paymentDetail.IsActive);
+            paymentDetail.AcceptChanges();
+
+            //redirect to ?paymentPlanId=@order.Id">#@order.Id
+            var queryCollection = new NameValueCollection
+            {
+                {"paymentPlanId", orderGroupId.ToString() }
+            };
+
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var detailPage = referenceSettings?.PaymentPlanDetailsPage ?? ContentReference.EmptyReference;
+
+            string redirectString = new UrlBuilder(UrlResolver.Current.GetUrl(detailPage)) { QueryCollection = queryCollection }.ToString();
+            return Redirect(redirectString);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeSubscriptionSetting(int orderGroupId = 0, string SubscriptionOption = "Monthly")
+        {
+            var paymentDetail = OrderContext.Current.Get<PaymentPlan>(orderGroupId);
+            if (paymentDetail.CycleLength == 1)
+            {
+                paymentDetail.CycleLength = 2;
+                paymentDetail.MaxCyclesCount = 6;
+            }
+            else
+            {
+                paymentDetail.CycleLength = 1;
+                paymentDetail.MaxCyclesCount = 12;
+            }
+            paymentDetail.AcceptChanges();
+
+            //redirect to ?paymentPlanId=@order.Id">#@order.Id
+            var queryCollection = new NameValueCollection
+            {
+                {"paymentPlanId", orderGroupId.ToString() }
+            };
+
+            var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
+            var detailPage = referenceSettings?.PaymentPlanDetailsPage ?? ContentReference.EmptyReference;
+
+            string redirectString = new UrlBuilder(UrlResolver.Current.GetUrl(detailPage)) { QueryCollection = queryCollection }.ToString();
+            return Redirect(redirectString);
         }
     }
 }

@@ -301,11 +301,12 @@ namespace Foundation.Features.Checkout.Services
 
             IPaymentPlan paymentPlan;
             paymentPlan = _orderRepository.Load<IPaymentPlan>(orderReference.OrderGroupId);
-            paymentPlan.CycleMode = PaymentPlanCycle.Days;
-            paymentPlan.CycleLength = paymentPlanSetting.CycleLength;
-            paymentPlan.StartDate = DateTime.Now.AddDays(paymentPlanSetting.CycleLength);
-            paymentPlan.EndDate = paymentPlanSetting.EndDate;
-            paymentPlan.IsActive = paymentPlanSetting.IsActive;
+            paymentPlan.CycleMode = PaymentPlanCycle.Months;
+            paymentPlan.CycleLength = 1;
+            paymentPlan.MaxCyclesCount = 12;
+            paymentPlan.StartDate = DateTime.Now;
+            paymentPlan.EndDate = DateTime.Now.AddYears(1);
+            paymentPlan.IsActive = true;
 
             var principal = PrincipalInfo.CurrentPrincipal;
             AddNoteToCart(paymentPlan, $"Note: New payment plan placed by {principal.Identity.Name} in 'vnext site'.", OrderNoteTypes.System.ToString(), principal.GetContactId());

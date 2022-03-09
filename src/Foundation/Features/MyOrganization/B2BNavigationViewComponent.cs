@@ -10,14 +10,14 @@ using System;
 
 namespace Foundation.Features.MyOrganization
 {
-    public class B2BNavigationComponent : ViewComponent
+    public class B2BNavigationViewComponent : ViewComponent
     {
         private readonly IContentLoader _contentLoader;
         private readonly IOrganizationService _organizationService;
         private readonly IB2BNavigationService _b2bNavigationService;
         private readonly ISettingsService _settingsService;
 
-        public B2BNavigationComponent(IContentLoader contentLoader,
+        public B2BNavigationViewComponent(IContentLoader contentLoader,
             IOrganizationService organizationService,
             IB2BNavigationService b2bNavigationService,
             ISettingsService settingsService)

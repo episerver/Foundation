@@ -17,13 +17,40 @@
         @Html.TranslateFallback("/PaymentPlanHistory/Detail/OrderTotal", "OrderTotal"): @Model.PaymentPlan.GetTotal() <br />
         @Html.TranslateFallback("/PaymentPlanHistory/Detail/Active", "Active"): @Model.PaymentPlan.IsActive <br />
         @Html.TranslateFallback("/PaymentPlanHistory/Detail/Status", "Status"): @Model.PaymentPlan.Status
+        <br />
+        <br />
+        @using (Html.BeginForm("ChangeSubscriptionStatus", "SubscriptionDetail", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("orderGroupId", Model.PaymentPlan.OrderGroupId)
+            <button type="submit" class="button-black jsReorder">
+                @if (Model.PaymentPlan.IsActive)
+                {
+                    <span style="color:red;">Stop Subscription</span> }
+                else
+                {
+                    <span style="color:green;">Restart Subscription</span>}
+            </button>}
+        <br />
+        @using (Html.BeginForm("ChangeSubscriptionSetting", "SubscriptionDetail", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("orderGroupId", Model.PaymentPlan.OrderGroupId) @(await Component.InvokeAsync("Dropdown",
+                new { list = Model.SubscriptionOptions,
+                    selectedValue = Model.SelectedSubscriptionOption,
+                    selectorClassItem = "jsSelectColorSize",
+                    name = "SubscriptionOption"
+                }))
+            <button type="submit" class="button-black jsReorder">
+                <span>Change Subscription Cadence</span>
+            </button>}
     </div>
     <div class="col-xs-12 col-6">
-        @Html.TranslateFallback("/PaymentPlanHistory/Detail/LastTransaction", "Last Transaction"): @Model.PaymentPlan.LastTransactionDate <br />
-        @Html.TranslateFallback("/PaymentPlanHistory/Detail/Completed", "Completed"): @Model.PaymentPlan.CompletedCyclesCount <br />
-        @Html.TranslateFallback("/PaymentPlanHistory/Detail/CycleLength", "Cycle Length"): @Model.PaymentPlan.CycleLength <br />
-        @Html.TranslateFallback("/PaymentPlanHistory/Detail/CycleMode", "Cycle Mode"): @Model.PaymentPlan.CycleMode <br />
-        @Html.TranslateFallback("/PaymentPlanHistory/Detail/EndDate", "End Date"): @Model.PaymentPlan.EndDate
+        Last Payment: @Model.PaymentPlan.LastTransactionDate.ToShortDateString() <br />
+        Subscription Cycles Completed: @Model.PaymentPlan.CompletedCyclesCount <br />
+        Subscription: Every @Model.PaymentPlan.CycleLength  @Model.PaymentPlan.CycleMode (s)<br />
+        <span>Number of Cycles In Subscription</span>: @Model.PaymentPlan.MaxCyclesCount <br />
+        @Html.TranslateFallback("/PaymentPlanHistory/Detail/EndDate", "End Date"): @Model.PaymentPlan.EndDate.ToShortDateString()
     </div>
 </div>
 <br />
