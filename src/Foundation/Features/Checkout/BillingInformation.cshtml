@@ -13,7 +13,7 @@
                         {
 
                             <div>
-                                <label class="checkbox">
+                                <label class="checkbox mb-2">
                                     @Html.TranslateFallback("Use shipping address as billing address", "Use shipping address as billing address")
                                     @Html.RadioButtonFor(x => x.BillingAddressType, 2, new { @class = "radio jsBillingAddress" })
                                     <span class="checkmark"></span>
@@ -23,7 +23,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div>
-                                <label class="checkbox">
+                                <label class="checkbox mb-2">
                                     @Html.TranslateFallback("/Checkout/Billing/ExistingAddress", "Bill to existing address")
                                     @Html.RadioButtonFor(x => x.BillingAddressType, 1, new
                                {
@@ -34,7 +34,7 @@
                             </div>
                         }
                         <div>
-                            <label class="checkbox">
+                            <label class="checkbox mb-2">
                                 @Html.TranslateFallback("/Checkout/Billing/NewAddress", "Bill to new address")
                                 @Html.RadioButtonFor(x => x.BillingAddressType, 0, new { @class = "radio jsBillingAddress" })
                                 <span class="checkmark"></span>
