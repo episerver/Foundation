@@ -15,7 +15,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <div>
-                            <label class="checkbox">
+                            <label class="checkbox mb-2">
                                 @Html.TranslateFallback("/Checkout/Shipment/ExistingAddress", "Ship to existing address")
                                 @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 1, new { @class = "radio jsSingleAddress" })
                                 <span class="checkmark"></span>
@@ -24,7 +24,7 @@
                         </div>
                     }
                     <div>
-                        <label class="checkbox">
+                        <label class="checkbox mb-2">
                             @Html.TranslateFallback("/Checkout/Shipment/NewAddress", "Ship to new address")
                             @Html.RadioButtonFor(x => x.Shipments[index].ShippingAddressType, 0, new { @class = "radio jsSingleAddress" })
                             <span class="checkmark"></span>
