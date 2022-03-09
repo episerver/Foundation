@@ -45,11 +45,15 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)$/i,
+                test: /\.(jpe?g|png|gif|svg)$/i,
                 loader: "file-loader",
                 options: {
                     name: '../vendors/[name].[ext]',
                 }
+            },
+            {
+                test: /\.(woff|woff2|ttf|eot|otf)$/i,
+                type: 'asset/resource',
             },
         ],
     },
