@@ -8,7 +8,7 @@ namespace Foundation.Infrastructure.Display
 {
     public class FeatureViewLocationExpander : IViewLocationExpander
     {
-        private const string ChildFeature = "childfeature";
+        private const string ChildFeature = "childFeature";
         private const string Feature = "feature";
         private readonly List<string> _viewLocationFormats = new List<string>()
         {
@@ -40,7 +40,7 @@ namespace Foundation.Infrastructure.Display
             }
 
             var controllerActionDescriptor = context.ActionContext.ActionDescriptor as ControllerActionDescriptor;
-            if (controllerActionDescriptor != null && controllerActionDescriptor.Properties.ContainsKey("feature"))
+            if (controllerActionDescriptor != null && controllerActionDescriptor.Properties.ContainsKey(Feature))
             {
                 string featureName = controllerActionDescriptor.Properties[Feature] as string;
                 string childFeatureName = null;
