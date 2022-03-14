@@ -67,4 +67,10 @@ chmod u+x setup.sh
 dotnet run --project ./src/Foundation/Foundation.csproj
 ```
 
+### View the site
+
+After completing the setup steps and running the solution, access the site at <a href="http://localhost:5000">http://localhost:5000</a>.
+
+To change the default port, modify the file <a href="https://github.com/episerver/Foundation/blob/main/src/Foundation/Properties/launchSettings.json">/src/Foundation/Properties/launchSettings.json</a>.
+
 ---
