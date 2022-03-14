@@ -6,7 +6,7 @@
 {
     <div class="row">
         <div class="col-12">
-            <label class="checkbox jsSelectDelivery">
+            <label class="checkbox jsSelectDelivery mb-2">
                 @Html.TranslateFallback("/Stores/Delivery", "Delivery")
                 <input type="radio" name="store" value="delivery" checked="checked" />
                 <span class="radio"></span>
@@ -15,7 +15,7 @@
         @if (Model.Stores != null && Model.Stores.Count > 0)
         {
             <div class="col-12">
-                <label class="checkbox jsSelectDelivery">
+                <label class="checkbox jsSelectDelivery mb-2">
                     @Html.TranslateFallback("/Stores/InStorePickup", "In Store Pickup")
                     <input type="radio" name="store" value="instore" />
                     <span class="radio"></span>
