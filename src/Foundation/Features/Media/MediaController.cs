@@ -67,22 +67,22 @@ namespace Foundation.Features.Media
                     }
 
                     return await Task.FromResult(View("~/Features/Media/ImageMedia.cshtml", imageViewModel));
-                //case FoundationPdfFile pdfFile:
-                //    var pdfViewModel = new FoundationPdfFileViewModel
-                //    {
-                //        Height = pdfFile.Height
-                //    };
+                case FoundationPdfFile pdfFile:
+                    var pdfViewModel = new FoundationPdfFileViewModel
+                    {
+                        Height = pdfFile.Height
+                    };
 
-                //    if (PageEditing.PageIsInEditMode)
-                //    {
-                //        pdfViewModel.PdfLink = _urlResolver.GetUrl(pdfFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
-                //    }
-                //    else
-                //    {
-                //        pdfViewModel.PdfLink = _urlResolver.GetUrl(pdfFile.ContentLink);
-                //    }
+                    if (_contextModeResolver.CurrentMode == ContextMode.Edit)
+                    {
+                        pdfViewModel.PdfLink = _urlResolver.GetUrl(pdfFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                    }
+                    else
+                    {
+                        pdfViewModel.PdfLink = _urlResolver.GetUrl(pdfFile.ContentLink);
+                    }
 
-                //    return View("~/Features/Media/PdfFile.cshtml", pdfViewModel);
+                    return await Task.FromResult(View("~/Features/Media/PdfFile.cshtml", pdfViewModel));
                 default:
                     return await Task.FromResult(View("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name));
             }
