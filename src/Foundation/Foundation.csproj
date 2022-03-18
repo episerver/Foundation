@@ -26,6 +26,7 @@
 		<PackageReference Include="EPiServer.Labs.ContentManager" Version="1.0.1" />
 		<PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.0.0" />
 		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.0.1" />
+		<PackageReference Include="EPiServer.PdfPreview" Version="2.0.0" />
 		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.6" />
 		<PackageReference Include="EPiServer.Telemetry.UI" Version="2.0.1" />
 		<PackageReference Include="FileHelpers" Version="3.5.1" />
@@ -114,12 +115,9 @@
 		<None Remove="Infrastructure\Plugins\**" />
 		<None Remove="Infrastructure\PowerSlices\**" />
 		<None Remove="Infrastructure\Social\**" />
-		<Compile Remove="Features\Media\FoundationPdfFile.cs" />
-		<Compile Remove="Features\Media\FoundationPdfFileViewModel.cs" />
 		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
 		<Compile Remove="Infrastructure\Commerce\Markets\AJAXLocalizationFilterAttribute.cs" />
 		<Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
-		<Content Remove="Features\Media\PdfFile.cshtml" />
 		<Folder Include="wwwroot\" />
 		<None Include="Features\Shared\Components\Dropdown\Default.cshtml" />
 		<None Include="Features\Shared\Components\Money\Default.cshtml" />
