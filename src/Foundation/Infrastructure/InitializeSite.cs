@@ -15,6 +15,7 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.ContentQuery;
+using EPiServer.Web.Hosting;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.PageExtensions;
@@ -57,7 +58,9 @@ using Mediachase.MetaDataPlus.Configurator;
 using PowerSlice;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Owin;
 using System.Web.Mvc;
@@ -207,6 +210,10 @@ namespace Foundation.Infrastructure
                 .ProjectImageUriFrom(page => new Uri(context.Locate.Advanced.GetInstance<UrlResolver>().GetUrl(page.PageImage), UriKind.Relative));
 
             SearchClient.Instance.Conventions.ForInstancesOf<LocationItemPage>().IncludeField(dp => dp.TagString());
+
+            var virtualPathMappedProvider = new VirtualPathMappedProvider("Favicon", new NameValueCollection());
+            virtualPathMappedProvider.PathMappings.Add("/util/images/favicon.ico", "/favicon.ico");
+            HostingEnvironment.RegisterVirtualPathProvider(virtualPathMappedProvider);
         }
 
         public void Uninitialize(InitializationEngine context)
