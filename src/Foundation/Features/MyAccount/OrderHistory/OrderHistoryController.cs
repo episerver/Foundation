@@ -47,7 +47,6 @@ namespace Foundation.Features.MyAccount.OrderHistory
 
         public OrderHistoryController(IAddressBookService addressBookService,
             IOrderRepository orderRepository,
-            ConfirmationService confirmationService,
             ICartService cartService,
             IOrderGroupCalculator orderGroupCalculator,
             IContentLoader contentLoader,

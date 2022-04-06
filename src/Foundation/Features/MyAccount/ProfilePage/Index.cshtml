@@ -15,7 +15,7 @@
         <div class="welcome-msg">
             <strong>@Html.TranslateFallback("/Dashboard/Labels/Hello", "Hello"), @Model.CustomerContact.FirstName @Model.CustomerContact.LastName!</strong>
             <div class="row">
-                @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
+                @if ((Model.CurrentContent?.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
                 {
                     <div class="col-12">
                         @Html.PropertyFor(m => m.CurrentContent.MainBody)
