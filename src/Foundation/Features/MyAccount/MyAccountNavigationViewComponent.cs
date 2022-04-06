@@ -75,7 +75,7 @@ namespace Foundation.Features.MyAccount
             var menuItems = layoutsettings.MyAccountMenu;
             if (menuItems == null)
             {
-                return View("_ProfileSidebar.cshtml", model);
+                return View("/Features/MyAccount/_ProfileSidebar.cshtml", model);
             }
 
             var wishlist = referenceSettings.WishlistPage != null ? _contentLoader.Get<PageData>(referenceSettings.WishlistPage) : null;
@@ -113,7 +113,7 @@ namespace Foundation.Features.MyAccount
 
             model.MenuItemCollection.AddRange(menuItems);
 
-            return View("_ProfileSidebar.cshtml", model);
+            return View("/Features/MyAccount/_ProfileSidebar.cshtml", model);
         }
     }
 }

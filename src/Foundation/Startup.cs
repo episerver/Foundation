@@ -48,6 +48,11 @@ namespace Foundation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<DataAccessOptions>(options => options.ConnectionStrings.Add(new ConnectionStringOptions
+            {
+                Name = "EcfSqlConnection",
+                ConnectionString = _configuration.GetConnectionString("EcfSqlConnection")
+            }));
             services.AddCmsAspNetIdentity<SiteUser>(o =>
             {
                 if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
