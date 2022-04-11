@@ -14,7 +14,12 @@ export class ProductSearch {
     this.facetClass = "jsFacet";
 
     this.params = "";
-    this.rootUrl = window.location.href.substr(0, window.location.href.indexOf('?'));
+    let queryStringPos = window.location.href.indexOf('?');
+    if (queryStringPos === -1) {
+        this.rootUrl = window.location.href;
+    } else {
+        this.rootUrl = window.location.href.substr(0, window.location.href.indexOf('?'));
+    }
     // to get information page
     this.pageInfoClass = ".jsPageInfo";
     this.pageSizeInfoClass = ".jsPageSizeInfo";
