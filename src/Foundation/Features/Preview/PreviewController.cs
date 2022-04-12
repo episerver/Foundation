@@ -47,8 +47,8 @@ namespace Foundation.Features.Preview
 
             if (!supportedDisplayOptions.Any(x => x.Supported))
             {
-                var itemType = currentContent.GetType();
-                if (itemType.Name.Contains("MenuItemBlock")) // handle exception while previewing menu item
+                //var itemType = currentContent.GetType();
+                if (currentContent is MenuItemBlock) // itemType.Name.Contains("MenuItemBlock") handle exception while previewing menu item
                     return View("~/Features/Preview/Index.cshtml", model);
                 else
                 {
