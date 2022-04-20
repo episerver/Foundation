@@ -179,7 +179,7 @@ namespace Foundation.Features.MyAccount.AddressBook
             return !_customerService.GetCurrentContact()?
                 .Contact?
                 .ContactAddresses
-                .Any(x => x.Name.Equals(addressModel.Name, StringComparison.InvariantCultureIgnoreCase) && x.Name != addressModel.AddressId)
+                .Any(x => x.Name.Equals(addressModel.Name, StringComparison.InvariantCultureIgnoreCase) && x.AddressId.ToString() != addressModel.AddressId)
                 ?? false;
         }
 

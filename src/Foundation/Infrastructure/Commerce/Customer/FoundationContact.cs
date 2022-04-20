@@ -27,6 +27,10 @@ namespace Foundation.Infrastructure.Commerce.Customer
             set => Contact.FirstName = value;
         }
 
+        public IEnumerable<CreditCard> CreditCards
+        {
+            get => Contact.ContactCreditCards;
+        }
         public string LastName
         {
             get => Contact.LastName;

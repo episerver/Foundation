@@ -1,3 +1,4 @@
+using EPiServer.Core;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Customer;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Foundation.Features.MyAccount.CreditCard
         {
         }
 
+        public int ContentReference { get; set; }
         public CreditCardModel CreditCard { get; set; }
         public bool IsB2B { get; set; }
         public List<FoundationOrganization> Organizations { get; set; }

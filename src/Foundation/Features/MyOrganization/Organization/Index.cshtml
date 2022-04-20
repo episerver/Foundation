@@ -20,7 +20,7 @@
         }
         @if (Model.IsAdmin)
         {
-            <a href="@Url.Action("Edit", "Organization")" class="button-black">
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "Edit")" class="button-black">
                 @Html.TranslateFallback("/Shared/Edit", "Edit")
             </a>
         }
@@ -44,7 +44,7 @@
 {
     <div class="row">
         <div class="col-12">
-            <a href="@Url.Action("AddSub", "Organization")" class="button-black pull-right">Add New</a>
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddSub")" class="button-black pull-right">Add New</a>
             <h4 class="title">Suborganizations</h4>
         </div>
         <div class="col-12"><br /></div>

@@ -19,18 +19,11 @@
     <section>
         <div class="section-title spacer-bottom-m">
             <br />
-            @if (Model.Organizations != null && Model.Organizations.Count == 0)
-            {
-                <a href="@Url.Action("AddUser", "Users")" class="button-black btn-sm">
-                    @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
-                </a>
-            }
-            else
-            {
-                <a href="@Url.Action("AddUser", "Users")" class="button-black btn-sm">
-                    @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
-                </a>
-            }
+            
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddUser")" class="button-black btn-sm">
+                @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
+            </a>
+            
             <div class="pull-right" id="searchUsersOrganiztion">
                 <div class="custom-search search-box">
                     <input type="text" id="jsSearchUsersOrganizationTxt" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
@@ -62,13 +55,13 @@
                         <td>@user.UserRole</td>
                         <td>@user.FoundationOrganization.Name</td>
                         <td class="text-right">
-                            <a href="@Url.Action("EditUser","Users", new {id = user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(user.IsAdmin ? "disabled" : "")>
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditUser?id=" + user.ContactId)" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(user.IsAdmin ? "disabled" : "")>
                                 <i data-feather="edit"></i>
                             </a>
-                            <a href="@Url.Action("RemoveUser","Users", new {id = user.ContactId})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(user.IsAdmin ? "disabled" : "")>
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "RemoveUser?id=" + user.ContactId)" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(user.IsAdmin ? "disabled" : "")>
                                 <i data-feather="trash"></i>
                             </a>
-                            <a href="@Url.Action("ImpersonateUser","Users", new {email = user.Email})" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Impersonate", "Impersonate")" @(user.IsAdmin ? "disabled" : "")>
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "ImpersonateUser?email=" + user.Email)" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Impersonate", "Impersonate")" @(user.IsAdmin ? "disabled" : "")>
                                 <i data-feather="eye"></i>
                             </a>
                         </td>

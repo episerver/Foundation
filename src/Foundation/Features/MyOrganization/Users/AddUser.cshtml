@@ -86,7 +86,7 @@
                 <button type="submit" class="button-black">
                     @Html.TranslateFallback("/Shared/Add", "Add")
                 </button>
-                <a href="@Url.Action("Index", "Users")" class="button-transparent-black">@Html.TranslateFallback("/Shared/Cancel", "Cancel")</a>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">@Html.TranslateFallback("/Shared/Cancel", "Cancel")</a>
             </div>
         }
     </section>

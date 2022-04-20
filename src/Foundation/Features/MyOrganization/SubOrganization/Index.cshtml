@@ -13,7 +13,7 @@
         <h2 class="h3">@Html.TranslateFallback("/B2B/Organization/SubInfo", "Suborganization Info")</h2>
         @if (Model.IsAdmin)
         {
-            <a href="@Url.Action("Edit", "SubOrganization" , new {suborg=Model.SubOrganizationModel.OrganizationId})" class="button-black">Edit</a>
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "Edit?organizationId=" + Model.SubOrganizationModel.OrganizationId)" class="button-black">Edit</a>
         }
     </div>
 </div>
