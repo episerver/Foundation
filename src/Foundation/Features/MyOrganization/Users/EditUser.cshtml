@@ -47,7 +47,7 @@
             </div>
             <div class="spacer-top-l">
                 <button type="submit" class="button-black">Save</button>
-                <a href="@Url.Action("Index", "Users")" class="button-transparent-black">Cancel</a>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">Cancel</a>
             </div>
             @Html.HiddenFor(m => m.Contact.ContactId)
         }

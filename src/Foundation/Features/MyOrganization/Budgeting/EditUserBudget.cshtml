@@ -82,7 +82,7 @@
                 <button type="button" data-budget-id="@Model.NewBudgetOption.BudgetId" class="button-black jsSaveBudget">
                     @Html.TranslateFallback("/Shared/Save", "Save")
                 </button>
-                <a href="@Url.Action("Index", "Budgeting")" class="button-transparent-black cancelUpdateBudget">
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black cancelUpdateBudget">
                     @Html.TranslateFallback("/Shared/Cancel", "Cancel")
                 </a>
             </div>

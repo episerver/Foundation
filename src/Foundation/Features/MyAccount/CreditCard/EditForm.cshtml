@@ -98,6 +98,7 @@ else
 
         @Html.HiddenFor(x => x.CreditCard.CreditCardId)
         @Html.HiddenFor(x => x.IsB2B)
+        @Html.Hidden("ContentReference", Model.CurrentContent.ContentLink.ID.ToString())
 
         if (!(bool)ViewData["IsReadOnly"])
         {

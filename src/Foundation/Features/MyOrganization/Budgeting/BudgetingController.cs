@@ -48,7 +48,7 @@ namespace Foundation.Features.MyOrganization.Budgeting
             var viewModel = new BudgetingPageViewModel
             {
                 CurrentContent = currentPage,
-                IsSubOrganization = isSubOrgSelected,
+                IsSubOrganization = !selectedOrg.SubOrganizations?.Any() ?? false,
                 OrganizationBudgets = new List<BudgetViewModel>(),
                 SubOrganizationsBudgets = new List<BudgetViewModel>(),
                 PurchasersSpendingLimits = new List<BudgetViewModel>()

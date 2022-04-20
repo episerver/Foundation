@@ -15,7 +15,9 @@
             <div class="col-xs-12 col-md-3">
                 @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
                 {
-                    <a class="button-transparent-black" href="@Url.Action("EditForm", "AddressBook")">@Html.TranslateFallback("/AddressBook/Form/Label/NewAddress", "New Address")</a>
+                    <a class="button-transparent-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm")">
+                        @Html.TranslateFallback("/AddressBook/Form/Label/NewAddress", "New Address")
+                    </a>
                 }
             </div>
         </div>
@@ -37,10 +39,10 @@
                             @await Html.PartialAsync("_Address", address)
                             @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
                             {
-                                using (Html.BeginForm("Remove", "AddressBook", new { addressId = address.AddressId }, FormMethod.Post))
+                                using (Html.BeginForm(FormMethod.Post, new { action = (Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm?addressId=" + address.AddressId) }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <a class="button-black" href="@Url.Action("EditForm", "AddressBook", new { addressid = address.AddressId })">@Html.Translate("/AddressBook/Form/Label/Edit")</a>
+                                    <a class="button-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm?addressId=" + address.AddressId)">@Html.Translate("/AddressBook/Form/Label/Edit")</a>
                                     <button type="submit" class="button-black pull-right" onclick="return confirm('@Html.TranslateFallback("/Shared/Common/DeleteItemConfirmation", "Are you sure you want to delete the address?")');">@Html.TranslateFallback("/AddressBook/Form/Label/Delete", "Delete")</button>
                                 }
                             }

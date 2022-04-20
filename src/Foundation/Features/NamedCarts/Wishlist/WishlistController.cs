@@ -113,7 +113,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddToCart(RequestParamsToCart param) // only use Code
+        public async Task<JsonResult> AddToCart([FromBody] RequestParamsToCart param) // only use Code
         {
             if (WishList.Cart == null)
             {

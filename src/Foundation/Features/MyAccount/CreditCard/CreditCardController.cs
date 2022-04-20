@@ -1,5 +1,7 @@
 ﻿using EPiServer;
+using EPiServer.Core;
 using EPiServer.Web.Mvc;
+using EPiServer.Web.Routing;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
@@ -19,6 +21,7 @@ namespace Foundation.Features.MyAccount.CreditCard
         private readonly ICreditCardService _creditCardService;
         private readonly IOrganizationService _organizationService;
         private readonly ICustomerService _customerService;
+        private readonly IUrlResolver _urlResolver;
 
         /// <summary>
         /// Construct credit card controller
@@ -27,16 +30,19 @@ namespace Foundation.Features.MyAccount.CreditCard
         /// <param name="creditCardService">Service to manipulate credit card data</param>
         /// <param name="organizationService">Service to manipulate organization data</param>
         /// <param name="customerService">Service to manipute </param>
+        /// <param name="urlResolver">The url resolve</param>
         public CreditCardController(
             IContentLoader contentLoader,
             ICreditCardService creditCardService,
             IOrganizationService organizationService,
-            ICustomerService customerService)
+            ICustomerService customerService,
+            IUrlResolver urlResolver)
         {
             _contentLoader = contentLoader;
             _creditCardService = creditCardService;
             _organizationService = organizationService;
             _customerService = customerService;
+            _urlResolver = urlResolver;
         }
 
         /// <summary>
@@ -44,15 +50,16 @@ namespace Foundation.Features.MyAccount.CreditCard
         /// </summary>
         /// <param name="currentPage">Current credit card page</param>
         /// <returns></returns>
-        public ActionResult Index(CreditCardPage currentPage) => currentPage.B2B ? B2B(currentPage) : List(currentPage);
+        [HttpGet]
+        public ActionResult Index(CreditCardPage currentPage) =>  List(currentPage);
 
-        /// <summary>
-        /// List all credit card of current user, with b2b navigation on view
-        /// </summary>
-        /// <param name="currentPage">Current credit card page</param>
-        /// <returns></returns>
-        [NavigationAuthorize("Admin")]
-        public ActionResult B2B(CreditCardPage currentPage) => List(currentPage);
+        ///// <summary>
+        ///// List all credit card of current user, with b2b navigation on view
+        ///// </summary>
+        ///// <param name="currentPage">Current credit card page</param>
+        ///// <returns></returns>
+        //[NavigationAuthorize("Admin")]
+        //public ActionResult B2B(CreditCardPage currentPage) => List(currentPage);
 
         /// <summary>
         /// List all credit card of current user
@@ -79,7 +86,7 @@ namespace Foundation.Features.MyAccount.CreditCard
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Remove(string creditCardId)
+        public ActionResult Remove([FromQuery] string creditCardId)
         {
             _creditCardService.Delete(creditCardId);
             return RedirectToAction("Index");
@@ -146,10 +153,10 @@ namespace Foundation.Features.MyAccount.CreditCard
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(CreditCardViewModel viewModel)
+        public ActionResult Save([FromForm] CreditCardViewModel viewModel)
         {
             _creditCardService.Save(viewModel.CreditCard);
-            return RedirectToAction("Index");
+            return Redirect(_urlResolver.GetUrl(new ContentReference(viewModel.ContentReference)));
         }
     }
 }

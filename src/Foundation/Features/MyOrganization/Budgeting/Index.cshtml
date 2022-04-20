@@ -81,7 +81,7 @@
             <br />
             @if (Model.IsAdmin)
             {
-                <a href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @Model.CurrentBudgetViewModel.BudgetId})" class="button-black">
+                <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditBudget?budgetId=" + @Model.CurrentBudgetViewModel.BudgetId)" class="button-black">
                     @Html.TranslateFallback("/Shared/Edit", "Edit")
                 </a>
             }
@@ -95,7 +95,7 @@
         @if (Model.IsSubOrganization)
         {
             <div class="col-12">
-                <a href="@Url.Action("AddBudgetToUser", "Budgeting")" class="button-black pull-right">
+                <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddBudgetToUser")" class="button-black pull-right">
                     @Html.TranslateFallback("/B2B/Budgeting/AddUser", "Add User")
                 </a>
                 <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/PurchaserSpendingLimits", "")</h4>
@@ -127,7 +127,7 @@
                                     <td>@purchaser.DueDate.ToString("MMMM dd, yyyy")</td>
                                     <td>@(purchaser.Status == "Planned" ? "Current" : purchaser.Status)</td>
                                     <td class="text-center" data-budget-id="@purchaser.BudgetId">
-                                        <a class="text-dark" href="@Url.Action("EditUserBudget", "Budgeting", new {budgetId = @purchaser.BudgetId})">
+                                        <a class="text-dark" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditUserBudget?budgetId=" + purchaser.BudgetId)">
                                             <i data-feather="edit"></i>
                                         </a>
                                     </td>
@@ -169,7 +169,7 @@
                                     <td>@suborganizationBudget.DueDate.ToString("MMMM dd, yyyy")</td>
                                     <td>@(suborganizationBudget.Status == "Planned" ? "Current" : @suborganizationBudget.Status)</td>
                                     <td class="text-center" data-budget-id="@suborganizationBudget.BudgetId">
-                                        <a class="text-dark" href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @suborganizationBudget.BudgetId})">
+                                        <a class="text-dark" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditBudget?budgetId=" + suborganizationBudget.BudgetId)">
                                             <i data-feather="edit"></i>
                                         </a>
                                     </td>
@@ -184,7 +184,7 @@
     <hr />
     <div class="row">
         <div class="col-12">
-            <a href="@Url.Action("AddBudget", "Budgeting")" class="button-black pull-right">
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddBudget")" class="button-black pull-right">
                 @Html.TranslateFallback("/B2B/Budgeting/NewBudget", "New Budget")
             </a>
             @if (Model.IsSubOrganization)
@@ -223,7 +223,7 @@
                             <td>@organizationBudget.DueDate.ToString("MMMM dd, yyyy")</td>
                             <td>@(organizationBudget.IsCurrentBudget ? "Current" : @organizationBudget.Status)</td>
                             <td class="text-center" data-budget-id="@organizationBudget.BudgetId">
-                                <a class="text-dark" href="@Url.Action("EditBudget", "Budgeting", new {budgetId = @organizationBudget.BudgetId})">
+                                <a class="text-dark" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditBudget?budgetId=" + @organizationBudget.BudgetId)">
                                     <i data-feather="edit"></i>
                                 </a>
                             </td>

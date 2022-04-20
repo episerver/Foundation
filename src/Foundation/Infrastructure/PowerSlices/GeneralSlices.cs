@@ -6,9 +6,9 @@ using EPiServer.Find;
 using EPiServer.Shell.Rest;
 using EPiServer.Shell.Services.Rest;
 using Foundation.Features.Shared;
+using Microsoft.AspNetCore.Http;
 using PowerSlice;
 using System.Linq;
-using AlloyTemplates;
 
 namespace Foundation.Infrastructure.PowerSlices
 {
@@ -21,11 +21,18 @@ namespace Foundation.Infrastructure.PowerSlices
 
     public class MyContentSlice : ContentSliceBase<IContent>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public MyContentSlice(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         public override string Name => "My content";
 
         protected override ITypeSearch<IContent> Filter(ITypeSearch<IContent> searchRequest, ContentQueryParameters parameters)
         {
-            var userName = HttpContextHelper.Current.User.Identity.Name;
+            var userName = _httpContextAccessor.HttpContext.User.Identity.Name;
             return searchRequest.Filter(x => x.MatchTypeHierarchy(typeof(IChangeTrackable)) & ((IChangeTrackable)x).CreatedBy.Match(userName));
         }
 
@@ -34,11 +41,17 @@ namespace Foundation.Infrastructure.PowerSlices
 
     public class MyPagesSlice : ContentSliceBase<FoundationPageData>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public MyPagesSlice(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
         public override string Name => "My pages";
 
         protected override ITypeSearch<FoundationPageData> Filter(ITypeSearch<FoundationPageData> searchRequest, ContentQueryParameters parameters)
         {
-            var userName = HttpContextHelper.Current.User.Identity.Name;
+            var userName = _httpContextAccessor.HttpContext.User.Identity.Name;
             return searchRequest.Filter(x => x.MatchTypeHierarchy(typeof(IChangeTrackable)) & ((IChangeTrackable)x).CreatedBy.Match(userName));
         }
 

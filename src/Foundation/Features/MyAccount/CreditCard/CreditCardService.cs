@@ -202,12 +202,13 @@ namespace Foundation.Features.MyAccount.CreditCard
         public IList<CreditCardModel> List(bool isOrganization = false, bool isUsingToPurchase = false)
         {
             var currentContact = _customerContext.CurrentContact;
+            var contactCreditCards = _customerContext.GetContactCreditCards(currentContact);
             var creditCards = new List<CreditCardModel>();
 
             //Get credit card of current contact
             if (currentContact != null && !isOrganization)
             {
-                AddRangeCreditCard(currentContact, null, creditCards, currentContact.ContactCreditCards);
+                AddRangeCreditCard(currentContact, null, creditCards, contactCreditCards);
             }
 
             if (isUsingToPurchase || isOrganization)
