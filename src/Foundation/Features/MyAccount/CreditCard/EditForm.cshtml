@@ -104,6 +104,6 @@ else
         {
             <button type="submit" class="button-black">@Html.TranslateFallback("/Shared/Save", "Save")</button>
         }
-        @Html.ActionLink(Html.TranslateFallback("/Shared/Cancel", "Cancel").ToString(), "Index", "CreditCard", null, new { @class = "button-transparent-black" })
+        <a class="button-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink))">@Html.TranslateFallback("/Shared/Cancel", "Cancel").ToString()</a>
     }
 }
