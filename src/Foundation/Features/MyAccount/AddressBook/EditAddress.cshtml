@@ -118,7 +118,7 @@
         }
         @if (!string.IsNullOrEmpty(Model.Address.AddressId))
         {
-            @Html.ActionLink(Html.TranslateFallback("/AddressBook/Form/Label/Cancel", "Cancel").ToString(), "Index", "AddressBook", new { }, new { @class = "button-black" })
+            <a class="button-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink))">@Html.TranslateFallback("/AddressBook/Form/Label/Cancel", "Cancel").ToString()</a>
         }
     </div>
         }
