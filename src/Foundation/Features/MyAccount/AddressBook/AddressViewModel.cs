@@ -8,5 +8,6 @@ namespace Foundation.Features.MyAccount.AddressBook
 
         public AddressViewModel(AddressBookPage currentPage) : base(currentPage) { }
         public AddressViewModel() : base() { }
+        public int ContentReference { get; set; }
     }
 }
