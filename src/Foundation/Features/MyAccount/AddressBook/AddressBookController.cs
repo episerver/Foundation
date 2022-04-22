@@ -23,6 +23,7 @@ namespace Foundation.Features.MyAccount.AddressBook
         private readonly ICustomerService _customerService;
         private readonly ISettingsService _settingsService;
         private readonly IPageRouteHelper _pageRouteHelper;
+        private readonly IUrlResolver _urlResolver;
 
         public AddressBookController(
             IContentLoader contentLoader,
@@ -30,7 +31,8 @@ namespace Foundation.Features.MyAccount.AddressBook
             LocalizationService localizationService,
             ICustomerService customerService,
             ISettingsService settingsService,
-            IPageRouteHelper pageRouteHelper)
+            IPageRouteHelper pageRouteHelper,
+            IUrlResolver urlResolver)
         {
             _contentLoader = contentLoader;
             _addressBookService = addressBookService;
@@ -38,6 +40,7 @@ namespace Foundation.Features.MyAccount.AddressBook
             _customerService = customerService;
             _settingsService = settingsService;
             _pageRouteHelper = pageRouteHelper;
+            _urlResolver = urlResolver;
         }
 
         [HttpGet]
@@ -93,7 +96,7 @@ namespace Foundation.Features.MyAccount.AddressBook
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Save(AddressViewModel viewModel, string returnUrl = "")
+        public IActionResult Save([FromForm] AddressViewModel viewModel, string returnUrl = "")
         {
             var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
             if (string.IsNullOrEmpty(viewModel.Address.Name))
@@ -117,7 +120,7 @@ namespace Foundation.Features.MyAccount.AddressBook
 
             if (string.IsNullOrEmpty(returnUrl))
             {
-                return RedirectToAction("Index", new { node = referenceSettings?.AddressBookPage ?? ContentReference.StartPage });
+                return Redirect(_urlResolver.GetUrl(new ContentReference(viewModel.ContentReference)));
             }
 
             return Redirect(returnUrl);
@@ -138,7 +141,8 @@ namespace Foundation.Features.MyAccount.AddressBook
         {
             _addressBookService.SetPreferredShippingAddress(addressId);
             var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            return RedirectToAction("Index", new { node = referenceSettings?.AddressBookPage ?? ContentReference.StartPage });
+            var addressRootPage = referenceSettings?.AddressBookPage ?? ContentReference.StartPage;
+            return Redirect(_urlResolver.GetUrl(new ContentReference(addressRootPage.ID)));
         }
 
         [HttpPost]
@@ -147,7 +151,8 @@ namespace Foundation.Features.MyAccount.AddressBook
         {
             _addressBookService.SetPreferredBillingAddress(addressId);
             var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            return RedirectToAction("Index", new { node = referenceSettings?.AddressBookPage ?? ContentReference.StartPage });
+            var addressRootPage = referenceSettings?.AddressBookPage ?? ContentReference.StartPage;
+            return Redirect(_urlResolver.GetUrl(new ContentReference(addressRootPage.ID)));
         }
 
         public IActionResult OnSaveException(ExceptionContext filterContext)

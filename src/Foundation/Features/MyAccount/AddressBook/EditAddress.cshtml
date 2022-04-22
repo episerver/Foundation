@@ -111,6 +111,7 @@
                 </label>
             </div>
             @Html.HiddenFor(x => x.Address.AddressId)
+            @Html.Hidden("ContentReference", Model.CurrentContent.ContentLink.ID.ToString())
     <div class="form-group">
         @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
         {
