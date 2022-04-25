@@ -132,7 +132,8 @@ namespace Foundation.Features.MyAccount.AddressBook
         {
             _addressBookService.Delete(addressId);
             var referenceSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            return RedirectToAction("Index", new { node = referenceSettings?.AddressBookPage ?? ContentReference.StartPage });
+            var addressRootPage = referenceSettings?.AddressBookPage ?? ContentReference.StartPage;
+            return Redirect(_urlResolver.GetUrl(new ContentReference(addressRootPage.ID)));
         }
 
         [HttpPost]
