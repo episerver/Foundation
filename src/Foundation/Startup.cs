@@ -5,6 +5,7 @@ using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
+using EPiServer.Labs.BlockEnhancements;
 using EPiServer.Labs.ContentManager;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
@@ -168,6 +169,17 @@ namespace Foundation
 
             // Add ContentManager
             services.AddContentManager();
+
+            // Add BlockEnhancements
+            services.AddBlockEnhancements();
+            services.Configure<BlockEnhancementsOptions>(options =>
+            {
+                //var blockEnhancements = new BlockEnhancementsOptions
+                options.LocalContentFeatureEnabled = false;
+                options.HideForThisFolder = false;
+                options.AllowQuickEditOnSharedBlocks = true;
+                options.PublishPageWithBlocks = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
