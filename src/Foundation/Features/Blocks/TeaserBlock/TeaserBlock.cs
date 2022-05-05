@@ -39,7 +39,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         [Display(Name = "Heading style", GroupName = TabNames.Header, Order = 12)]
         public virtual string HeadingStyle { get; set; }
 
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Heading color", GroupName = TabNames.Header, Order = 13)]
         public virtual string HeadingColor
         {
@@ -52,7 +52,7 @@ namespace Foundation.Features.Blocks.TeaserBlock
         [CultureSpecific]
         [Display(GroupName = TabNames.Text, Order = 30)]
         public virtual XhtmlString Text { get; set; }
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Text color", GroupName = TabNames.Text, Order = 50)]
         public virtual string TextColor
         {

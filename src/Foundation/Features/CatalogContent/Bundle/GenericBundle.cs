@@ -15,7 +15,7 @@ namespace Foundation.Features.CatalogContent.Bundle
         DisplayName = "Fashion Bundle",
         MetaClassName = "FashionBundle",
         Description = "Displays a bundle, which is collection of individual fashion variants.")]
-    [ImageUrl("~/content/icons/pages/cms-icon-page-21.png")]
+    [ImageUrl("~/content/icons/pages/CMS-icon-page-21.png")]
     public class GenericBundle : BundleContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         [Searchable]

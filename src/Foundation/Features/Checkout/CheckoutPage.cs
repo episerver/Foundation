@@ -12,7 +12,7 @@ namespace Foundation.Features.Checkout
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
     [AvailableContentTypes(Include = new[] { typeof(OrderConfirmationPage) }, IncludeOn = new[] { typeof(HomePage) })]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-08.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-08.png")]
     public class CheckoutPage : FoundationPageData
     {
     }

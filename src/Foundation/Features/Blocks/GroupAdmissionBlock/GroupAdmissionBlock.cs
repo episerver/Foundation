@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
         GUID = "611697e3-3638-445c-a45c-6454eaa5b7b1",
         Description = "Configures the properties of a group admission block view",
         GroupName = GroupNames.Social)]
-    [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
+    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
     public class GroupAdmissionBlock : BlockData
     {
         /// <summary>

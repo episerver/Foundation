@@ -32,7 +32,7 @@ namespace Foundation.Features.Shared
         }
 
         [Display(Name = "Background color", GroupName = TabNames.BlockStyling, Order = 3)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string BackgroundColor
         {
             get { return this.GetPropertyValue(page => page.BackgroundColor) ?? "#00000000"; }

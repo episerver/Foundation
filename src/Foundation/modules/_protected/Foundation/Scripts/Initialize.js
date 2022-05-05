@@ -26,8 +26,8 @@
                     if (componentDefinition.widgetType === "epi/shell/widget/WidgetSwitcher") {
                         aspect.around(widget, "viewComponentChangeRequested", function (originalMethod) {
                             return function () {
-                                if (arguments[0] === "epi-cms/contentediting/CreateContent") {
-                                    arguments[0] = "foundation/contentediting/CreateContent";
+                                if (arguments[0] === "epi-cms/ContentEditing/CreateContent") {
+                                    arguments[0] = "foundation/ContentEditing/CreateContent";
                                 }
                                 originalMethod.apply(this, arguments);
                             };
