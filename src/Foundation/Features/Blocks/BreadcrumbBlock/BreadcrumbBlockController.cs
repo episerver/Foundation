@@ -1,6 +1,7 @@
 ﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
+using EPiServer.Globalization;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Foundation.Features.Blocks.BreadcrumbBlock
 
                 foreach (var page in ancestors)
                 {
-                    breadcrumb.Add(new BreadcrumbItem(page, Url));
+                    breadcrumb.Add(new BreadcrumbItem(_contentLoader.Get<PageData>(page.ContentLink, ContentLanguage.PreferredCulture), Url));
                 }
 
                 breadcrumb.Add(new BreadcrumbItem(_contentLoader.Get<IContent>(destination) as PageData, Url));
