@@ -6,6 +6,7 @@
 		<PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Advanced.CMS.AdvancedReviews" Version="1.1.0" />
 		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.6" />
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
 		<PackageReference Include="EPiServer.Commerce" Version="14.2.1" />
