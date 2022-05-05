@@ -1,4 +1,5 @@
-﻿using EPiServer.Authorization;
+﻿using Advanced.CMS.AdvancedReviews;
+using EPiServer.Authorization;
 using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Cms.Internal;
 using EPiServer.ContentDefinitionsApi;
@@ -180,6 +181,9 @@ namespace Foundation
                 options.AllowQuickEditOnSharedBlocks = true;
                 options.PublishPageWithBlocks = true;
             });
+
+            // Add AdvancedReviews
+            services.AddAdvancedReviews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
