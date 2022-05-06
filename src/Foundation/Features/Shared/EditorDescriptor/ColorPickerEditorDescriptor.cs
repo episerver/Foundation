@@ -8,7 +8,7 @@ namespace Foundation.Features.Shared.EditorDescriptors
     [EditorDescriptorRegistration(TargetType = typeof(string), UIHint = "ColorPicker")]
     public class ColorPickerEditorDescriptor : EditorDescriptor
     {
-        private const string _editingClient = "foundation/editors/ColorPicker";
+        private const string _editingClient = "foundation/Editors/ColorPicker";
 
         public ColorPickerEditorDescriptor()
         {

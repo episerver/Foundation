@@ -17,7 +17,7 @@ namespace Foundation.Features.CatalogContent.Product
         MetaClassName = "GenericProduct",
         DisplayName = "Generic Product",
         Description = "Generic product supports mutiple products")]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-23.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-23.png")]
     public class GenericProduct : ProductContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
         #region Content

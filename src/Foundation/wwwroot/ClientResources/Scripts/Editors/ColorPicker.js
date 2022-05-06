@@ -20,7 +20,7 @@
         _WidgetsInTemplateMixin,
         _ValueRequiredMixin,
     ) {
-        return declare("foundation/editors/ColorPicker", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin, _CssStateMixin, _ValueRequiredMixin],
+        return declare("foundation/Editors/ColorPicker", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin, _CssStateMixin, _ValueRequiredMixin],
             {
                 templateString:
                     `<div style="min-width: 250px" 

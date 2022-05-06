@@ -10,7 +10,7 @@ namespace Foundation.Features.Blocks.FeedBlock
         GUID = "2bb4ac6d-6f09-4d38-adb0-5dc2bcf310ac",
         Description = "Configures the properties of a feed block frontend view",
         GroupName = GroupNames.Social)]
-    [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
+    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
     public class FeedBlock : FoundationBlockData
     {
         /// <summary>

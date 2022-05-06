@@ -5,7 +5,7 @@
     "dojo/aspect",
     "dojo/dom-style",
     "dojo/dom-class",
-    "epi-cms/contentediting/CreateContent",
+    "epi-cms/ContentEditing/CreateContent",
     "epi/shell/widget/SearchBox"
 ], function (
     declare,

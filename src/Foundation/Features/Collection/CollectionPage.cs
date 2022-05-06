@@ -15,7 +15,7 @@ namespace Foundation.Features.Collection
         GUID = "e5c11d0c-6932-4888-a610-1474e73b66d1",
         Description = "Collection page",
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-04.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-04.png")]
     public class CollectionPage : FoundationPageData
     {
         [AllowedTypes(typeof(BreadcrumbBlock))]

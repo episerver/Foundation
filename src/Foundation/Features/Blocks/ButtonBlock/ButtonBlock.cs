@@ -45,7 +45,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
 
         [CultureSpecific]
         [Searchable(false)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Button Text color", GroupName = TabNames.Text, Order = 50)]
         public virtual string ButtonTextColor
         {
@@ -69,7 +69,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
 
         [CultureSpecific]
         [Searchable(false)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Button background color", GroupName = TabNames.Background, Order = 20)]
         public virtual string ButtonBackgroundColor
         {
@@ -96,7 +96,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
 
         [CultureSpecific]
         [Searchable(false)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Button Border color", GroupName = TabNames.Border, Order = 30)]
         public virtual string ButtonBorderColor
         {
