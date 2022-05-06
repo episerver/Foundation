@@ -12,7 +12,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         Description = "Page for managing cart",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-08.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-08.png")]
     public class CartPage : FoundationPageData
     {
         [CultureSpecific]

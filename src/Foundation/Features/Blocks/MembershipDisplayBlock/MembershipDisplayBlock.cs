@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.MembershipDisplayBlock
         GUID = "0d5075ad-31ea-40cb-ae8f-a88b519db35f",
         Description = "Configures the properties of a membership display block view",
         GroupName = GroupNames.Social)]
-    [ImageUrl("~/assets/icons/cms/blocks/cms-icon-block-25.png")]
+    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
     public class MembershipDisplayBlock : FoundationBlockData
     {
         /// <summary>

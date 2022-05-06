@@ -12,7 +12,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderPage
         GUID = "9F846F7D-2DFA-4983-815D-C09B12CEF993",
         AvailableInEditMode = false,
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-14.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-14.png")]
     public class QuickOrderPage : FoundationPageData, IDisableOPE
     {
         [CultureSpecific]

@@ -11,7 +11,7 @@ namespace Foundation.Features.MyOrganization.QuickOrderBlock
         GUID = "003076FD-659C-485E-9480-254A447CC809",
         Description = "Used to quick order a list of products",
         GroupName = GroupNames.Commerce)]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-14.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-14.png")]
     public class QuickOrderBlock : FoundationBlockData
     {
         [CultureSpecific]

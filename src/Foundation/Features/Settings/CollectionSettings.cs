@@ -58,15 +58,15 @@ namespace Foundation.Features.Settings
         public virtual IList<ColorModel> ButtonTextColor { get; set; }
 
         [Display(Name = "Banner background color", GroupName = TabNames.Colors, Order = 60)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string BannerBackgroundColor { get; set; }
 
         [Display(Name = "Banner text color", GroupName = TabNames.Colors, Order = 70)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string BannerTextColor { get; set; }
 
         [Display(Name = "Link color", GroupName = TabNames.Colors, Order = 80)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string LinkColor { get; set; }
 
         #endregion
@@ -78,7 +78,7 @@ namespace Foundation.Features.Settings
         public string ColorName { get; set; }
 
         [Display(Name = "Color code")]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public string ColorCode { get; set; }
     }
 

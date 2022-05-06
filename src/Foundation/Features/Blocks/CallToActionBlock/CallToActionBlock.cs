@@ -26,7 +26,7 @@ namespace Foundation.Features.Blocks.CallToActionBlock
         public virtual XhtmlString Subtext { get; set; }
 
         [Display(Name = "Text color", GroupName = SystemTabNames.Content, Order = 30)]
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string TextColor { get; set; }
         #endregion
 

@@ -14,7 +14,7 @@ namespace Foundation.Features.Locations.LocationItemPage
         GUID = "ac26ee4b-104f-4719-8aab-ad6d3fcb0d75",
         Description = "Used to display the details of a location",
         GroupName = TabNames.Location)]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-27.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-27.png")]
     public class LocationItemPage : FoundationPageData
     {
         [StringLength(5000)]

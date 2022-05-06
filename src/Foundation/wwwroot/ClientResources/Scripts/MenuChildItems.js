@@ -2,7 +2,7 @@
     "dojo/_base/array",
     "dojo/_base/declare",
     "dojo/_base/lang",
-    "epi-cms/contentediting/editors/CollectionEditor",
+    "epi-cms/ContentEditing/Editors/CollectionEditor",
     "foundation/MenuChildItems"
 ],
     function (

@@ -10,7 +10,7 @@ namespace Foundation.Features.MyAccount.OrderHistory
         Description = "Page for customer to view their order history.",
         GroupName = GroupNames.Commerce,
         AvailableInEditMode = false)]
-    [ImageUrl("/icons/cms/pages/cms-icon-page-15.png")]
+    [ImageUrl("/icons/cms/pages/CMS-icon-page-15.png")]
     public class OrderHistoryPage : FoundationPageData
     {
     }

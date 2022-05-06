@@ -64,11 +64,11 @@ namespace Foundation.Features.Blocks.HeroBlock
         [Display(Name = "Text placement", Order = 20)]
         public virtual string CalloutContentAlignment { get; set; }
 
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Text color", Description = "Sets text color of callout content", Order = 30)]
         public virtual string CalloutTextColor { get; set; }
 
-        [ClientEditor(ClientEditingClass = "foundation/editors/ColorPicker")]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         [Display(Name = "Background color", Order = 40)]
         public virtual string BackgroundColor { get; set; }
 
