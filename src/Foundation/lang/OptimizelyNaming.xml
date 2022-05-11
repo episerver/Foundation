@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<languages>
+    <language name="English" id="en">
+        <episerver>
+            <cms>
+                <homeview>
+                    <title>Optimizely CMS - Edit</title>
+                </homeview>
+            </cms>
+        </episerver>
+    </language>
+</languages>
