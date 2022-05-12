@@ -14,6 +14,13 @@
                   <aboutepiserver>About Optimizely</aboutepiserver>
                 </texts>
               </resources>
+              <ui>
+                <resources>
+                  <dashboardview>
+                    <title>Optimizely - Dashboard</title>
+                  </dashboardview>
+                </resources>
+              </ui>
             </shell>
         </episerver>
     </language>
