@@ -8,6 +8,13 @@
                     <title>Optimizely CMS - Edit</title>
                 </homeview>
             </cms>
+            <shell>
+              <resources>
+                <texts>
+                  <aboutepiserver>About Optimizely</aboutepiserver>
+                </texts>
+              </resources>
+            </shell>
         </episerver>
     </language>
 </languages>
