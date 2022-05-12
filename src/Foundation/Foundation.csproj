@@ -1974,6 +1974,7 @@
     <Content Include="lang\EPiServer.ContentApi.OAuth.UI_en.xml" />
     <Content Include="lang\Episerver.ContentManager_EN.xml" />
     <Content Include="lang\Optimizely.Labs.MarketingAutomationIntegration.ODP.Forms_EN.xml" />
+    <Content Include="lang\OptimizelyNaming.xml" />
     <Content Include="license.txt" />
     <Content Include="modules\_protected\CookieDropBlock\Images\block-type-thumbnail-cookiedrop.png" />
     <Content Include="modules\_protected\EPiServer.ContentDeliveryApi.OAuth\ContentApiUserSettings.ascx" />
