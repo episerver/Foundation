@@ -108,6 +108,17 @@ namespace Foundation
             services.AddContentDeliveryApi()
                 .WithFriendlyUrl()
                 .WithSiteBasedCors();
+            services.AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options => {
+                options.SiteDefinitionApiEnabled = true;
+            })
+               .WithFriendlyUrl()
+               .WithSiteBasedCors();
+
+            // Content Delivery Search API
+            services.AddContentSearchApi(o =>
+            {
+                o.MaximumSearchResults = 100;
+            });
 
             // Content Definitions API
             services.AddContentDefinitionsApi(options =>
@@ -117,11 +128,12 @@ namespace Foundation
             });
 
             // Content Management
-            services.AddContentManagementApi(c =>
+            services.AddContentManagementApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
             {
                 // Accept anonymous calls
-                c.DisableScopeValidation = true;
+                options.DisableScopeValidation = true;
             });
+
             services.AddOpenIDConnect<SiteUser>(options =>
             {
                 //options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
