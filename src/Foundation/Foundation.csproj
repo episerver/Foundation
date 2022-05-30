@@ -1,126 +1,129 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<VersionPrefix>2021.04.1.0</VersionPrefix>
-		<VersionSuffix></VersionSuffix>
-		<PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Advanced.CMS.AdvancedReviews" Version="1.1.0" />
-		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.6" />
-		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
-		<PackageReference Include="EPiServer.Commerce" Version="14.2.1" />
-		<PackageReference Include="EPiServer.CMS" Version="12.6.0" />
-		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.5.0" />
-		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.3.0" />
-		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.3.0" />
-		<PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.3.0" />
-		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.3.0" />
-		<PackageReference Include="EPiServer.Framework" Version="12.5.0" />
-		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.5.0" />
-		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
-		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
-		<PackageReference Include="EPiServer.Forms" Version="5.1.0" />
-		<PackageReference Include="EPiServer.Hosting" Version="12.5.0" />
-		<PackageReference Include="EPiServer.Labs.BlockEnhancements" Version="1.0.2" />
-		<PackageReference Include="EPiServer.Labs.ContentManager" Version="1.0.2" />
-		<PackageReference Include="EPiServer.Labs.LanguageManager" Version="5.0.2" />
-		<PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.0.0" />
-		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.3.0" />
-		<PackageReference Include="EPiServer.PdfPreview" Version="2.1.1" />
-		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.9" />
-		<PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.0" />
-		<PackageReference Include="FileHelpers" Version="3.5.1" />
-		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.4" />
-		<PackageReference Include="Geta.Optimizely.Categories" Version="1.0.0" />
+
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <VersionPrefix>2021.04.1.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Advanced.CMS.AdvancedReviews" Version="1.1.0" />
+    <PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="1.0.6" />
+    <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
+    <PackageReference Include="EPiServer.Commerce" Version="14.2.1" />
+    <PackageReference Include="EPiServer.CMS" Version="12.6.0" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.5.0" />
+    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.3.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.3.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.3.0" />
+    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.3.0" />
+    <PackageReference Include="EPiServer.Framework" Version="12.5.0" />
+    <PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.5.0" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
+    <PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
+    <PackageReference Include="EPiServer.Forms" Version="5.1.0" />
+    <PackageReference Include="EPiServer.Hosting" Version="12.5.0" />
+    <PackageReference Include="EPiServer.Labs.BlockEnhancements" Version="1.0.2" />
+    <PackageReference Include="EPiServer.Labs.ContentManager" Version="1.0.2" />
+    <PackageReference Include="EPiServer.Labs.LanguageManager" Version="5.0.2" />
+    <PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.0.0" />
+    <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.3.0" />
+    <PackageReference Include="EPiServer.PdfPreview" Version="2.1.1" />
+    <PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.9" />
+    <PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.0" />
+    <PackageReference Include="FileHelpers" Version="3.5.1" />
+    <PackageReference Include="Geta.Optimizely.Categories" Version="1.0.0" />
 		<PackageReference Include="Geta.Optimizely.Categories.Find" Version="1.0.0" />
-		<PackageReference Include="Jhoose.Security.Admin" Version="1.2.2.148" />
-		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
-		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
-		<PackageReference Include="PowerSlice" Version="5.0.0" />
-		<PackageReference Include="Schema.NET" Version="11.0.1" />
-		<PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
-		<PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.5" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-		<PackageReference Include="Wangkanai.Detection" Version="4.0.0" />
-		<PackageReference Include="Serilog" Version="2.10.0" />
-		<PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
-		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="lang\**\*" />
-		<None Update="App_Data\**" CopyToOutputDirectory="PreserveNewest" />
-		<None Update="modules\_protected\Foundation\**" CopyToOutputDirectory="PreserveNewest" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Remove="Features\Blocks\CommentsBlock\**" />
-		<Compile Remove="Features\Blocks\FeedBlock\**" />
-		<Compile Remove="Features\Blocks\GroupAdmissionBlock\**" />
-		<Compile Remove="Features\Blocks\GroupCreationBlock\**" />
-		<Compile Remove="Features\Blocks\LikeButtonBlock\**" />
-		<Compile Remove="Features\Blocks\MembershipAffiliationBlock\**" />
-		<Compile Remove="Features\Blocks\MembershipDisplayBlock\**" />
-		<Compile Remove="Features\Blocks\RatingBlock\**" />
-		<Compile Remove="Features\Blocks\SubscriptionBlock\**" />
-		<Compile Remove="Features\Blog\BlogCommentBlock\**" />
-		<Compile Remove="Features\Community\**" />
-		<Compile Remove="Features\MultiShipment\**" />
-		<Compile Remove="Infrastructure\Cms\Views\**" />
-		<Compile Remove="Infrastructure\Commerce\Views\**" />
-		<Compile Remove="Infrastructure\Kpi\**" />
-		<Compile Remove="Infrastructure\Plugins\**" />
-		<Compile Remove="Infrastructure\Services\**" />
-		<Compile Remove="Infrastructure\Social\**" />
-		<Content Remove="Features\Blocks\CommentsBlock\**" />
-		<Content Remove="Features\Blocks\FeedBlock\**" />
-		<Content Remove="Features\Blocks\GroupAdmissionBlock\**" />
-		<Content Remove="Features\Blocks\GroupCreationBlock\**" />
-		<Content Remove="Features\Blocks\LikeButtonBlock\**" />
-		<Content Remove="Features\Blocks\MembershipAffiliationBlock\**" />
-		<Content Remove="Features\Blocks\MembershipDisplayBlock\**" />
-		<Content Remove="Features\Blocks\RatingBlock\**" />
-		<Content Remove="Features\Blocks\SubscriptionBlock\**" />
-		<Content Remove="Features\Blog\BlogCommentBlock\**" />
-		<Content Remove="Features\Community\**" />
-		<Content Remove="Features\MultiShipment\**" />
-		<Content Remove="Infrastructure\Kpi\**" />
-		<Content Remove="Infrastructure\Plugins\**" />
-		<Content Remove="Infrastructure\Social\**" />
-		<EmbeddedResource Remove="Features\Blocks\CommentsBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\FeedBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\GroupAdmissionBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\GroupCreationBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\LikeButtonBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\MembershipAffiliationBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\MembershipDisplayBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\RatingBlock\**" />
-		<EmbeddedResource Remove="Features\Blocks\SubscriptionBlock\**" />
-		<EmbeddedResource Remove="Features\Blog\BlogCommentBlock\**" />
-		<EmbeddedResource Remove="Features\Community\**" />
-		<EmbeddedResource Remove="Features\MultiShipment\**" />
-		<EmbeddedResource Remove="Infrastructure\Kpi\**" />
-		<EmbeddedResource Remove="Infrastructure\Plugins\**" />
-		<EmbeddedResource Remove="Infrastructure\Social\**" />
-		<None Remove="Features\Blocks\CommentsBlock\**" />
-		<None Remove="Features\Blocks\FeedBlock\**" />
-		<None Remove="Features\Blocks\GroupAdmissionBlock\**" />
-		<None Remove="Features\Blocks\GroupCreationBlock\**" />
-		<None Remove="Features\Blocks\LikeButtonBlock\**" />
-		<None Remove="Features\Blocks\MembershipAffiliationBlock\**" />
-		<None Remove="Features\Blocks\MembershipDisplayBlock\**" />
-		<None Remove="Features\Blocks\RatingBlock\**" />
-		<None Remove="Features\Blocks\SubscriptionBlock\**" />
-		<None Remove="Features\Blog\BlogCommentBlock\**" />
-		<None Remove="Features\Community\**" />
-		<None Remove="Features\MultiShipment\**" />
-		<None Remove="Infrastructure\Kpi\**" />
-		<None Remove="Infrastructure\Plugins\**" />
-		<None Remove="Infrastructure\Social\**" />
-		<Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
-		<Compile Remove="Infrastructure\Commerce\Markets\AJAXLocalizationFilterAttribute.cs" />
-		<Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
-		<Folder Include="wwwroot\" />
-		<None Include="Features\Shared\Components\Dropdown\Default.cshtml" />
-		<None Include="Features\Shared\Components\Money\Default.cshtml" />
-	</ItemGroup>
+    <PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.4" />
+    <PackageReference Include="Jhoose.Security.Admin" Version="1.2.2.148" />
+    <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
+    <PackageReference Include="Powell.CouponCode" Version="1.0.3" />
+    <PackageReference Include="PowerSlice" Version="5.0.0" />
+    <PackageReference Include="Schema.NET" Version="11.0.1" />
+    <PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
+    <PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.5" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="UNRVLD.ODP.VisitorGroups" Version="1.1.2" />
+    <PackageReference Include="Wangkanai.Detection" Version="4.0.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="lang\**\*" />
+    <None Update="App_Data\**" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="modules\_protected\Foundation\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Features\Blocks\CommentsBlock\**" />
+    <Compile Remove="Features\Blocks\FeedBlock\**" />
+    <Compile Remove="Features\Blocks\GroupAdmissionBlock\**" />
+    <Compile Remove="Features\Blocks\GroupCreationBlock\**" />
+    <Compile Remove="Features\Blocks\LikeButtonBlock\**" />
+    <Compile Remove="Features\Blocks\MembershipAffiliationBlock\**" />
+    <Compile Remove="Features\Blocks\MembershipDisplayBlock\**" />
+    <Compile Remove="Features\Blocks\RatingBlock\**" />
+    <Compile Remove="Features\Blocks\SubscriptionBlock\**" />
+    <Compile Remove="Features\Blog\BlogCommentBlock\**" />
+    <Compile Remove="Features\Community\**" />
+    <Compile Remove="Features\MultiShipment\**" />
+    <Compile Remove="Infrastructure\Cms\Views\**" />
+    <Compile Remove="Infrastructure\Commerce\Views\**" />
+    <Compile Remove="Infrastructure\Kpi\**" />
+    <Compile Remove="Infrastructure\Plugins\**" />
+    <Compile Remove="Infrastructure\Services\**" />
+    <Compile Remove="Infrastructure\Social\**" />
+    <Content Remove="Features\Blocks\CommentsBlock\**" />
+    <Content Remove="Features\Blocks\FeedBlock\**" />
+    <Content Remove="Features\Blocks\GroupAdmissionBlock\**" />
+    <Content Remove="Features\Blocks\GroupCreationBlock\**" />
+    <Content Remove="Features\Blocks\LikeButtonBlock\**" />
+    <Content Remove="Features\Blocks\MembershipAffiliationBlock\**" />
+    <Content Remove="Features\Blocks\MembershipDisplayBlock\**" />
+    <Content Remove="Features\Blocks\RatingBlock\**" />
+    <Content Remove="Features\Blocks\SubscriptionBlock\**" />
+    <Content Remove="Features\Blog\BlogCommentBlock\**" />
+    <Content Remove="Features\Community\**" />
+    <Content Remove="Features\MultiShipment\**" />
+    <Content Remove="Infrastructure\Kpi\**" />
+    <Content Remove="Infrastructure\Plugins\**" />
+    <Content Remove="Infrastructure\Social\**" />
+    <EmbeddedResource Remove="Features\Blocks\CommentsBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\FeedBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\GroupAdmissionBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\GroupCreationBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\LikeButtonBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\MembershipAffiliationBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\MembershipDisplayBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\RatingBlock\**" />
+    <EmbeddedResource Remove="Features\Blocks\SubscriptionBlock\**" />
+    <EmbeddedResource Remove="Features\Blog\BlogCommentBlock\**" />
+    <EmbeddedResource Remove="Features\Community\**" />
+    <EmbeddedResource Remove="Features\MultiShipment\**" />
+    <EmbeddedResource Remove="Infrastructure\Kpi\**" />
+    <EmbeddedResource Remove="Infrastructure\Plugins\**" />
+    <EmbeddedResource Remove="Infrastructure\Social\**" />
+    <None Remove="Features\Blocks\CommentsBlock\**" />
+    <None Remove="Features\Blocks\FeedBlock\**" />
+    <None Remove="Features\Blocks\GroupAdmissionBlock\**" />
+    <None Remove="Features\Blocks\GroupCreationBlock\**" />
+    <None Remove="Features\Blocks\LikeButtonBlock\**" />
+    <None Remove="Features\Blocks\MembershipAffiliationBlock\**" />
+    <None Remove="Features\Blocks\MembershipDisplayBlock\**" />
+    <None Remove="Features\Blocks\RatingBlock\**" />
+    <None Remove="Features\Blocks\SubscriptionBlock\**" />
+    <None Remove="Features\Blog\BlogCommentBlock\**" />
+    <None Remove="Features\Community\**" />
+    <None Remove="Features\MultiShipment\**" />
+    <None Remove="Infrastructure\Kpi\**" />
+    <None Remove="Infrastructure\Plugins\**" />
+    <None Remove="Infrastructure\Social\**" />
+    <Compile Remove="Infrastructure\Cms\Extensions\IAppBuilderExtensions.cs" />
+    <Compile Remove="Infrastructure\Commerce\Markets\AJAXLocalizationFilterAttribute.cs" />
+    <Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
+    <Folder Include="wwwroot\" />
+    <None Include="Features\Shared\Components\Dropdown\Default.cshtml" />
+    <None Include="Features\Shared\Components\Money\Default.cshtml" />
+  </ItemGroup>
 </Project>
