@@ -33,6 +33,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
+using UNRVLD.ODP.VisitorGroups.Initilization;
 
 namespace Foundation
 {
@@ -196,6 +197,8 @@ namespace Foundation
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
+
+            services.AddODPVisitorGroups();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
