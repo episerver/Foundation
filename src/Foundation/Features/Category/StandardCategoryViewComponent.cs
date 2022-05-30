@@ -1,17 +1,20 @@
 ﻿using EPiServer;
 using EPiServer.Core.Html;
 using Foundation.Features.Shared;
+using Geta.Optimizely.Categories;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Foundation.Features.Category
 {
-    public class StandardCategoryComponent : ViewComponent
+    public class StandardCategoryViewComponent : ViewComponent
     {
         private readonly IContentLoader _contentLoader;
+        private const string ViewName = "~/Features/Category/_Preview.cshtml";
 
-        public StandardCategoryComponent(
+        public StandardCategoryViewComponent(
             IContentLoader contentLoader)
         {
             _contentLoader = contentLoader;
@@ -22,9 +25,9 @@ namespace Foundation.Features.Category
             var model = new CategoryFoundationPageViewModel(pageData)
             {
                 PreviewText = GetPreviewText(pageData),
-                //Categories = pageData.Categories.Select(x => _contentLoader.Get<CategoryData>(x) as StandardCategory)
+                Categories = pageData.Categories.Select(x => _contentLoader.Get<CategoryData>(x) as StandardCategory)
             };
-            return View("_Preview", model);
+            return View(ViewName, model);
         }
 
         private string GetPreviewText(FoundationPageData page)
