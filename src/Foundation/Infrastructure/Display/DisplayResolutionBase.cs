@@ -6,12 +6,14 @@ namespace Foundation.Infrastructure.Display
 {
     public abstract class DisplayResolutionBase : IDisplayResolution
     {
+        private readonly string _localizationKey;
+        private string _name;
         private Injected<LocalizationService> LocalizationService { get; set; }
 
-        protected DisplayResolutionBase(string name, int width, int height)
+        protected DisplayResolutionBase(string localizationKey, int width, int height)
         {
+            _localizationKey = localizationKey;
             Id = GetType().FullName;
-            Name = Translate(name);
             Width = width;
             Height = height;
         }
@@ -24,7 +26,11 @@ namespace Foundation.Infrastructure.Display
         /// <summary>
         /// Gets the name of resolution
         /// </summary>
-        public string Name { get; protected set; }
+        public string Name
+        {
+            get => _name ?? Translate(_localizationKey);
+            protected set => _name = value;
+        }
 
         /// <summary>
         /// Gets the resolution width in pixels
@@ -36,12 +42,11 @@ namespace Foundation.Infrastructure.Display
         /// </summary>
         public int Height { get; protected set; }
 
-        private string Translate(string resurceKey)
+        private string Translate(string resourceKey)
         {
-
-            if (!LocalizationService.Service.TryGetString(resurceKey, out var value))
+            if (!LocalizationService.Service.TryGetString(resourceKey, out var value))
             {
-                value = resurceKey;
+                value = resourceKey;
             }
 
             return value;
