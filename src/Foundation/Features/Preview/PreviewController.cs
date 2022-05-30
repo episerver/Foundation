@@ -4,6 +4,7 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
 using EPiServer.Web;
 using EPiServer.Web.Mvc;
+using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -46,11 +47,17 @@ namespace Foundation.Features.Preview
 
             if (!supportedDisplayOptions.Any(x => x.Supported))
             {
-                return new ViewResult
+                if (currentContent is MenuItemBlock) //handle exception while previewing menu item
+                    return View("~/Features/Preview/Index.cshtml", model);
+                else
                 {
-                    ViewName = "~/Features/Preview/Index.cshtml",
-                    ViewData = { Model = model }
-                };
+                    return new ViewResult
+                    {
+                        ViewName = "~/Features/Preview/Index.cshtml",
+                        ViewData = { Model = model }
+                    };
+                }
+
             }
             foreach (var displayOption in supportedDisplayOptions)
             {
