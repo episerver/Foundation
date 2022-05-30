@@ -32,6 +32,8 @@
 		<PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.0" />
 		<PackageReference Include="FileHelpers" Version="3.5.1" />
 		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="1.0.4" />
+		<PackageReference Include="Geta.Optimizely.Categories" Version="1.0.0" />
+		<PackageReference Include="Geta.Optimizely.Categories.Find" Version="1.0.0" />
 		<PackageReference Include="Jhoose.Security.Admin" Version="1.2.2.148" />
 		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
 		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
