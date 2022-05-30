@@ -24,7 +24,7 @@ namespace Foundation.Features.Category
             pagination.Categories = categories;
             var model = new CategorySearchViewModel(currentContent)
             {
-                //SearchResults = _searchService.SearchByCategory(pagination)
+                SearchResults = _searchService.SearchByCategory(pagination)
             };
             return View(model);
         }
@@ -35,7 +35,7 @@ namespace Foundation.Features.Category
             pagination.Categories = categories;
             var model = new CategorySearchViewModel(currentContent)
             {
-                //SearchResults = _searchService.SearchByCategory(pagination)
+                SearchResults = _searchService.SearchByCategory(pagination)
             };
             return PartialView("_PageListing", model);
         }

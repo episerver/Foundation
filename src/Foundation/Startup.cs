@@ -22,6 +22,9 @@ using Foundation.Infrastructure.Display;
 using Geta.NotFoundHandler.Infrastructure.Configuration;
 using Geta.NotFoundHandler.Infrastructure.Initialization;
 using Geta.NotFoundHandler.Optimizely;
+using Geta.Optimizely.Categories.Configuration;
+using Geta.Optimizely.Categories.Find.Infrastructure.Initialization;
+using Geta.Optimizely.Categories.Infrastructure.Initialization;
 using Jhoose.Security.DependencyInjection;
 using Mediachase.Commerce.Anonymous;
 using Mediachase.Commerce.Orders;
@@ -197,7 +200,7 @@ namespace Foundation
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
-
+            services.AddGetaCategories();
             services.AddODPVisitorGroups();
         }
 
@@ -209,6 +212,9 @@ namespace Foundation
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseGetaCategories();
+            app.UseGetaCategoriesFind();
 
             app.UseAnonymousId();
             app.UseStaticFiles();

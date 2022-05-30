@@ -3,7 +3,7 @@ using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using Foundation.Features.Shared;
 using Foundation.Infrastructure;
-using Geta.EpiCategories;
+using Geta.Optimizely.Categories;
 using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Category

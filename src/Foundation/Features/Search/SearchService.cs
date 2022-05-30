@@ -18,6 +18,7 @@ using Foundation.Features.CatalogContent;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Services;
+using Foundation.Features.Category;
 using Foundation.Features.Media;
 using Foundation.Features.MyOrganization.QuickOrderPage;
 using Foundation.Features.MyOrganization.Users;
@@ -31,6 +32,8 @@ using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Infrastructure.Find;
 using Foundation.Infrastructure.Find.Facets;
+using Geta.Optimizely.Categories;
+using Geta.Optimizely.Categories.Find.Extensions;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Pricing;
@@ -58,8 +61,8 @@ namespace Foundation.Features.Search
         IEnumerable<SkuSearchResultModel> SearchSkus(string query);
         ContentSearchViewModel SearchContent(FilterOptionViewModel filterOptions);
         //ContentSearchViewModel SearchPdf(FilterOptionViewModel filterOptions);
-        //CategorySearchResults SearchByCategory(Pagination pagination);
-        //ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent;
+        CategorySearchResults SearchByCategory(Pagination pagination);
+        ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent;
     }
 
     public class SearchService : ISearchService
@@ -328,54 +331,54 @@ namespace Foundation.Features.Search
         //    return model;
         //}
 
-        //public CategorySearchResults SearchByCategory(Pagination pagination)
-        //{
-        //    if (pagination == null)
-        //    {
-        //        pagination = new Pagination();
-        //    }
+        public CategorySearchResults SearchByCategory(Pagination pagination)
+        {
+            if (pagination == null)
+            {
+                pagination = new Pagination();
+            }
 
-        //    var query = _findClient.Search<FoundationPageData>();
-        //    query = query.FilterByCategories(pagination.Categories);
+            var query = _findClient.Search<FoundationPageData>();
+            query = query.FilterByCategories(pagination.Categories);
 
-        //    if (pagination.Sort == CategorySorting.PublishedDate.ToString())
-        //    {
-        //        if (pagination.SortDirection.ToLower() == "asc")
-        //        {
-        //            query = query.OrderBy(x => x.StartPublish);
-        //        }
-        //        else
-        //        {
-        //            query = query.OrderByDescending(x => x.StartPublish);
-        //        }
-        //    }
+            if (pagination.Sort == CategorySorting.PublishedDate.ToString())
+            {
+                if (pagination.SortDirection.ToLower() == "asc")
+                {
+                    query = query.OrderBy(x => x.StartPublish);
+                }
+                else
+                {
+                    query = query.OrderByDescending(x => x.StartPublish);
+                }
+            }
 
-        //    if (pagination.Sort == CategorySorting.Name.ToString())
-        //    {
-        //        if (pagination.SortDirection.ToLower() == "asc")
-        //        {
-        //            query = query.OrderBy(x => x.Name);
-        //        }
-        //        else
-        //        {
-        //            query = query.OrderByDescending(x => x.Name);
-        //        }
-        //    }
+            if (pagination.Sort == CategorySorting.Name.ToString())
+            {
+                if (pagination.SortDirection.ToLower() == "asc")
+                {
+                    query = query.OrderBy(x => x.Name);
+                }
+                else
+                {
+                    query = query.OrderByDescending(x => x.Name);
+                }
+            }
 
-        //    query = query.Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize);
-        //    var results = query.GetContentResult();
-        //    var model = new CategorySearchResults
-        //    {
-        //        Pagination = pagination,
-        //        RelatedPages = results
-        //    };
-        //    model.Pagination.TotalMatching = results.TotalMatching;
-        //    model.Pagination.TotalPage = (model.Pagination.TotalMatching / pagination.PageSize) + (model.Pagination.TotalMatching % pagination.PageSize > 0 ? 1 : 0);
+            query = query.Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize);
+            var results = query.GetContentResult();
+            var model = new CategorySearchResults
+            {
+                Pagination = pagination,
+                RelatedPages = results
+            };
+            model.Pagination.TotalMatching = results.TotalMatching;
+            model.Pagination.TotalPage = (model.Pagination.TotalMatching / pagination.PageSize) + (model.Pagination.TotalMatching % pagination.PageSize > 0 ? 1 : 0);
 
-        //    return model;
-        //}
+            return model;
+        }
 
-        //public ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent => query.FilterByCategories(categories);
+        public ITypeSearch<T> FilterByCategories<T>(ITypeSearch<T> query, IEnumerable<ContentReference> categories) where T : ICategorizableContent => query.FilterByCategories(categories);
 
         private List<int> GetPages(BaseInclusionExclusionPage currentContent, int page, int count)
         {

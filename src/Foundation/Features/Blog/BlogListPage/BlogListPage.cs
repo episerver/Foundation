@@ -6,7 +6,7 @@ using EPiServer.Shell.ObjectEditing;
 using Foundation.Features.Shared;
 using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure;
-//using Geta.EpiCategories.DataAnnotations;
+using Geta.Optimizely.Categories.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -42,7 +42,7 @@ namespace Foundation.Features.Blog.BlogListPage
         [Display(Name = "Include teaser text", GroupName = TabNames.BlogList, Order = 50)]
         public virtual bool IncludeTeaserText { get; set; }
 
-        //[Categories]
+        [Categories]
         [Display(
             Name = "Category filter (match all selected)",
             Description = "Categories to filter the list on",
