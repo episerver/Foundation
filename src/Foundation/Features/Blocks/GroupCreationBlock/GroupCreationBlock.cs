@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
         GUID = "efed721d-05bf-4d69-8e27-b907699a13c3",
         Description = "Configures the properties of a group creation block view",
         GroupName = GroupNames.Social)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
+    [ImageUrl("~/icons/cms/blocks/CMS-icon-block-25.png")]
     public class GroupCreationBlock : BlockData
     {
         /// <summary>

@@ -6,13 +6,14 @@ using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.GroupAdmissionBlock
 {
     /// <summary>
     /// The GroupAdmissionBlockController handles rendering the Group Admission block view for adding new members to a group
     /// </summary>
-    public class GroupAdmissionBlockController : SocialBlockController<GroupAdmissionBlock>
+    public class GroupAdmissionBlockComponent : SocialBlockComponent<GroupAdmissionBlock>
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommunityRepository _communityRepository;
@@ -25,7 +26,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
         /// <summary>
         /// Constructor for admission block
         /// </summary>
-        public GroupAdmissionBlockController(IUserRepository userRepository,
+        public GroupAdmissionBlockComponent(IUserRepository userRepository,
             ICommunityRepository communityRepository,
             ICommunityMemberRepository memberRepository,
             ICommunityMembershipModerationRepository moderationRepository,
@@ -42,7 +43,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
         /// </summary>
         /// <param name="currentBlock">The current block instance.</param>
         /// <returns></returns>
-        public override ActionResult Index(GroupAdmissionBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(GroupAdmissionBlock currentBlock)
         {
             var currentPageLink = _pageRouteHelper.PageLink;
 
@@ -69,7 +70,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
             ModelState.Clear();
 
             //Return block view
-            return PartialView("~/Features/Blocks/GroupAdmissionBlock/GroupAdmissionBlock.cshtml", blockModel);
+            return await Task.FromResult(View("~/Features/Blocks/GroupAdmissionBlock/GroupAdmissionBlock.cshtml", blockModel));
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Foundation.Features.Blocks.GroupAdmissionBlock
                 AddMessage(MessageKey, new MessageViewModel(ex.Message, ErrorMessage));
             }
 
-            return Redirect(UrlResolver.Current.GetUrl(blockModel.CurrentLink));
+            return new RedirectResult(UrlResolver.Current.GetUrl(blockModel.CurrentLink));
         }
 
         /// <summary>

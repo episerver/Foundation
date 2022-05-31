@@ -5,6 +5,7 @@ using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Common;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.SubscriptionBlock
 {
@@ -12,8 +13,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
     /// The SubscriptionBlockController handles the rendering of the subscription block frontend view as well
     /// as the posting of new subscriptions.
     /// </summary>
-    [TemplateDescriptor(Default = true)]
-    public class SubscriptionBlockController : SocialBlockController<SubscriptionBlock>
+    public class SubscriptionBlockComponent : SocialBlockComponent<SubscriptionBlock>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPageSubscriptionRepository _subscriptionRepository;
@@ -29,7 +29,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public SubscriptionBlockController(IUserRepository userRepository,
+        public SubscriptionBlockComponent(IUserRepository userRepository,
             IPageSubscriptionRepository pageSubscriptionRepository,
             IPageRepository pageRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
@@ -44,7 +44,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
         /// </summary>
         /// <param name="currentBlock">The current frontend block instance.</param>
         /// <returns>The action's result.</returns>
-        public override ActionResult Index(SubscriptionBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(SubscriptionBlock currentBlock)
         {
             // Create a subscription block view model to fill the frontend block view
             var blockViewModel = new SubscriptionBlockViewModel(currentBlock, _pageRouteHelper.PageLink)
@@ -57,7 +57,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
             SetBlockViewModelProperties(blockViewModel);
 
             // Render the frontend block view
-            return PartialView("~/Features/Blocks/SubscriptionBlock/SubscriptionBlock.cshtml", blockViewModel);
+            return await Task.FromResult(View("~/Features/Blocks/SubscriptionBlock/SubscriptionBlock.cshtml", blockViewModel));
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Foundation.Features.Blocks.SubscriptionBlock
                 AddMessage(MessageKey, new MessageViewModel(ex.Message, ErrorMessage));
             }
 
-            return Redirect(UrlResolver.Current.GetUrl(formViewModel.CurrentLink));
+            return new RedirectResult(UrlResolver.Current.GetUrl(formViewModel.CurrentLink));
         }
 
         /// <summary>

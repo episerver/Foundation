@@ -9,14 +9,14 @@ using Foundation.Social.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.MembershipDisplayBlock
 {
     /// <summary>
     /// The MembershipDisplayController handles the rendering of the list of members from the designated group configured in the admin view
     /// </summary>
-    [TemplateDescriptor(Default = true)]
-    public class MembershipDisplayBlockController : SocialBlockController<MembershipDisplayBlock>
+    public class MembershipDisplayBlockComponent : SocialBlockComponent<MembershipDisplayBlock>
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommunityRepository _communityRepository;
@@ -26,7 +26,7 @@ namespace Foundation.Features.Blocks.MembershipDisplayBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public MembershipDisplayBlockController(ICommunityRepository communityRepository,
+        public MembershipDisplayBlockComponent(ICommunityRepository communityRepository,
             ICommunityMemberRepository memberRepository,
             IUserRepository userRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
@@ -40,7 +40,7 @@ namespace Foundation.Features.Blocks.MembershipDisplayBlock
         /// Render the membership display block view.
         /// </summary>
         /// <param name="currentBlock">The current block instance.</param>
-        public override ActionResult Index(MembershipDisplayBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(MembershipDisplayBlock currentBlock)
         {
             //Populate model to pass to the membership display view
             var membershipDisplayBlockModel = new MembershipDisplayBlockViewModel(currentBlock);
@@ -78,7 +78,7 @@ namespace Foundation.Features.Blocks.MembershipDisplayBlock
             }
 
             //Return block view with populated model
-            return PartialView("~/Features/Blocks/MembershipDisplayBlock/MembershipDisplayBlock.cshtml", membershipDisplayBlockModel);
+            return await Task.FromResult(View("~/Features/Blocks/MembershipDisplayBlock/MembershipDisplayBlock.cshtml", membershipDisplayBlockModel));
         }
 
         public List<CommunityMemberViewModel> Adapt(List<CommunityMember> socialMembers) => socialMembers.Select(x => new CommunityMemberViewModel(x.Company, _userRepository.ParseUserUri(x.User))).ToList();

@@ -18,6 +18,7 @@ namespace Foundation.Infrastructure.Cms.Users
 
         [NotMapped] public string Password { get; set; }
 
+        [NotMapped]
         public bool NewsLetter { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(IUserClaimsPrincipalFactory<SiteUser> manager)

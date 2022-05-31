@@ -1,5 +1,5 @@
 ﻿using EPiServer.Cms.UI.AspNetIdentity;
-using Foundation.Cms.Identity;
+using Foundation.Infrastructure.Cms.Users;
 using Foundation.Social.Models;
 using System.Security.Principal;
 
@@ -22,7 +22,7 @@ namespace Foundation.Social.Repositories.Common
         /// <returns></returns>
         public string GetUserId(IPrincipal user)
         {
-            var userId = user.Identity.GetUserId();
+            var userId = user.Identity.Name;
             if (string.IsNullOrWhiteSpace(userId))
             {
                 return string.Empty;
@@ -43,7 +43,7 @@ namespace Foundation.Social.Repositories.Common
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var user = _manager.FindById(id);
+                var user = _manager.FindByIdAsync(id).GetAwaiter().GetResult();
                 if (user != null)
                 {
                     userName = user.UserName;

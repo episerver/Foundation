@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
         GUID = "d7f22a41-a26c-4e85-b4a5-15929d4222fc",
         Description = "Configures the properties of a membership affiliation block view",
         GroupName = GroupNames.Social)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
+    [ImageUrl("~/icons/cms/blocks/CMS-icon-block-25.png")]
     public class MembershipAffiliationBlock : FoundationBlockData
     {
         /// <summary>

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.LikeButtonBlock
 {
@@ -17,8 +18,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
     /// if the user is not logged in (anonymous), they can "like" the page as many times
     /// as they choose.
     /// </summary>
-    [TemplateDescriptor(Default = true)]
-    public class LikeButtonBlockController : BlockController<LikeButtonBlock>
+    public class LikeButtonBlockComponent : AsyncBlockComponent<LikeButtonBlock>
     {
         private readonly IRatingService _ratingService;
         private readonly IRatingStatisticsService _ratingStatisticsService;
@@ -28,7 +28,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public LikeButtonBlockController(IRatingService ratingService, IRatingStatisticsService ratingStatisticsService, IPageRouteHelper pageRouteHelper)
+        public LikeButtonBlockComponent(IRatingService ratingService, IRatingStatisticsService ratingStatisticsService, IPageRouteHelper pageRouteHelper)
         {
             _ratingStatisticsService = ratingStatisticsService;
             // This is all wired up by the installation of the EPiServer.Social.Ratings.Site package
@@ -43,11 +43,11 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
         /// </summary>
         /// <param name="currentBlock">The current block instance.</param>
         /// <returns>Result of the redirect to the current page.</returns>
-        public override ActionResult Index(LikeButtonBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(LikeButtonBlock currentBlock)
         {
             var pageLink = _pageRouteHelper.PageLink;
             var targetPageRef = Reference.Create(PermanentLinkUtility.FindGuid(pageLink).ToString());
-            var anonymousUser = User.Identity.GetUserId() == null ? true : false;
+            var anonymousUser = string.IsNullOrEmpty(User.Identity.Name) ? true : false;
 
             // Create a rating block view model to fill the frontend block view
             var blockModel = new LikeButtonBlockViewModel(currentBlock)
@@ -127,7 +127,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
                 // should handle each one accordingly -- see rating service documentation
             }
 
-            return PartialView("~/Features/Blocks/Views/LikeButtonBlock.cshtml", blockModel);
+            return await Task.FromResult(View("~/Features/Blocks/Views/LikeButtonBlock.cshtml", blockModel));
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
                 // should handle each one accordingly -- see rating service documentation
             }
 
-            return Redirect(UrlResolver.Current.GetUrl(likeButtonBlock.Link));
+            return new RedirectResult(UrlResolver.Current.GetUrl(likeButtonBlock.Link));
         }
 
         private Reference GetRaterRef()
@@ -167,7 +167,7 @@ namespace Foundation.Features.Blocks.LikeButtonBlock
             Reference raterUserRef;
 
             // If we have a user identity use it;  if not we generate a unique anonymous user for the rater reference
-            var userIdentity = User.Identity.GetUserId();
+            var userIdentity = User.Identity.Name;
             if (userIdentity != null)
             {
                 raterUserRef = Reference.Create(userIdentity);

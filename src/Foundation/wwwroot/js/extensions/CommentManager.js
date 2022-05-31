@@ -10,7 +10,7 @@
         if (c === true) {
             $('.grid-icon__loading').show();
             $.ajax({
-                url: '/moderation/Approve',
+                url: '/episerver/foundation/moderation/Approve',
                 type: 'POST',
                 data: {
                     id: e.currentTarget.attributes["commentId"].value
@@ -30,7 +30,7 @@
         if (c === true) {
             $('.grid-icon__loading').show();
             $.ajax({
-                url: '/moderation/Delete',
+                url: '/episerver/foundation/moderation/Delete',
                 type: 'POST',
                 dataType: 'text',
                 data: {

@@ -7,14 +7,14 @@ using Foundation.Social.Repositories.Groups;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.MembershipAffiliationBlock
 {
     /// <summary>
     /// The MembershipDisplayController handles the rendering of the list of members from the designated group configured in the admin view
     /// </summary>
-    [TemplateDescriptor(Default = true)]
-    public class MembershipAffiliationBlockController : SocialBlockController<MembershipAffiliationBlock>
+    public class MembershipAffiliationBlockComponent : SocialBlockComponent<MembershipAffiliationBlock>
     {
         private readonly IUserRepository _userRepository;
         private readonly ICommunityRepository _communityRepository;
@@ -24,7 +24,7 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public MembershipAffiliationBlockController(IUserRepository userRepository,
+        public MembershipAffiliationBlockComponent(IUserRepository userRepository,
             ICommunityRepository communityRepository,
             ICommunityMemberRepository communityMemberRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
@@ -38,7 +38,7 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
         /// Render the membership display block view.
         /// </summary>
         /// <param name="currentBlock">The current block instance.</param>
-        public override ActionResult Index(MembershipAffiliationBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(MembershipAffiliationBlock currentBlock)
         {
             //Populate model to pass to the membership affiliation view
             var membershipAffiliationBlockModel = new MembershipAffiliationBlockViewModel(currentBlock);
@@ -70,7 +70,7 @@ namespace Foundation.Features.Blocks.MembershipAffiliationBlock
             }
 
             //Return block view with populated model
-            return PartialView("~/Features/Blocks/MembershipAffiliationBlock/MembershipAffiliationBlock.cshtml", membershipAffiliationBlockModel);
+            return await Task.FromResult(View("~/Features/Blocks/MembershipAffiliationBlock/MembershipAffiliationBlock.cshtml", membershipAffiliationBlockModel));
         }
 
         /// <summary>

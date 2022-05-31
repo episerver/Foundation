@@ -4,10 +4,10 @@
 
 <div class="row">
     <div class="col-md-4">
-        @Html.PropertyFor(x => x.CurrentContent.Ratings, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
-        @Html.PropertyFor(x => x.CurrentContent.Subscriptions, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
-        @Html.PropertyFor(x => x.CurrentContent.Memberships, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
-        @Html.PropertyFor(x => x.CurrentContent.GroupAdmission, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
+        @Html.PropertyFor(x => x.CurrentContent.Ratings)
+        @Html.PropertyFor(x => x.CurrentContent.Subscriptions)
+        @Html.PropertyFor(x => x.CurrentContent.Memberships)
+        @Html.PropertyFor(x => x.CurrentContent.GroupAdmission)
     </div>
     <div class="col-md-8">
         <h1 class="mt-0" @Html.EditAttributes(x => x.CurrentContent.PageName)>@Model.CurrentContent.PageName</h1>
@@ -15,7 +15,7 @@
         <div class="clearfix" @Html.EditAttributes(x => x.CurrentContent.MainBody)>
             @Html.DisplayFor(m => m.CurrentContent.MainBody)
         </div>
-        @Html.PropertyFor(x => x.CurrentContent.MainContentArea, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
-        @Html.PropertyFor(x => x.CurrentContent.Comments, new { Tag = EPiBootstrapArea.ContentAreaTags.FullWidth })
+        @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        @Html.PropertyFor(x => x.CurrentContent.Comments)
     </div>
 </div>

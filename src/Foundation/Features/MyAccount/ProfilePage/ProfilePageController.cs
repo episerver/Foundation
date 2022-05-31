@@ -68,8 +68,7 @@ namespace Foundation.Features.MyAccount.ProfilePage
             user.FirstName = contact.FirstName = viewModel.FirstName;
             user.LastName = contact.LastName = viewModel.LastName;
             contact.Contact.BirthDate = viewModel.DateOfBirth;
-            user.NewsLetter = viewModel.SubscribesToNewsletter;
-
+            contact.AcceptMarketingEmail = viewModel.SubscribesToNewsletter;
             UserManager.UpdateAsync(user)
                 .GetAwaiter()
                 .GetResult();
