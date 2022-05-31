@@ -1,5 +1,8 @@
 <a href="https://github.com/episerver/Foundation"><img src="https://www.optimizely.com/globalassets/02.-global-images/navigation/optimizely_logo_navigation.svg" title="Foundation" alt="Foundation"></a>
 
+# Latest version
+  This version is built for net6.0.  For the legacy full framework version please use the [full-framework/master](https://github.com/episerver/Foundation/tree/full-framework/master)
+
 ## Foundation 
 
 Foundation offers a starting point that is intuitive, well-structured and modular allowing developers to explore CMS, Commerce, Personalization, Search amd Navigaion, Data Platform and Experimentation.
