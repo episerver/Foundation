@@ -3,13 +3,14 @@ using Foundation.Social;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.GroupCreationBlock
 {
     /// <summary>
     /// The GroupCreationBlockController handles rendering the Group Creation block view for adding new groups
     /// </summary>
-    public class GroupCreationBlockController : SocialBlockController<GroupCreationBlock>
+    public class GroupCreationBlockComponent : SocialBlockComponent<GroupCreationBlock>
     {
         private readonly ICommunityRepository _communityRepository;
         private readonly ICommunityMembershipModerationRepository _moderationRepository;
@@ -20,7 +21,7 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public GroupCreationBlockController(ICommunityRepository communityRepository,
+        public GroupCreationBlockComponent(ICommunityRepository communityRepository,
             ICommunityMembershipModerationRepository moderationRepository,
             IPageRouteHelper pageRouteHelper) : base(pageRouteHelper)
         {
@@ -32,7 +33,7 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
         /// Render the GroupCreationBlock view.
         /// </summary>
         /// <param name="currentBlock">The current block instance.</param>
-        public override ActionResult Index(GroupCreationBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(GroupCreationBlock currentBlock)
         {
             var currentPageLink = _pageRouteHelper.PageLink;
 
@@ -46,7 +47,7 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
             ModelState.Clear();
 
             //Return the block view with populated model
-            return PartialView("~/Features/Blocks/Views/GroupCreationBlock.cshtml", groupCreationBlockModel);
+            return await Task.FromResult(View("~/Features/Blocks/Views/GroupCreationBlock.cshtml", groupCreationBlockModel));
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Foundation.Features.Blocks.GroupCreationBlock
         public ActionResult Submit(GroupCreationBlockViewModel model)
         {
             AddGroup(model);
-            return Redirect(UrlResolver.Current.GetUrl(model.CurrentLink));
+            return new RedirectResult(UrlResolver.Current.GetUrl(model.CurrentLink));
         }
 
         /// <summary>

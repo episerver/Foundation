@@ -103,7 +103,6 @@ namespace Foundation.Features.Api
                 FirstName = viewModel.Address.FirstName,
                 LastName = viewModel.Address.LastName,
                 RegistrationSource = "Registration page",
-                NewsLetter = viewModel.Newsletter,
                 IsApproved = true
             };
 

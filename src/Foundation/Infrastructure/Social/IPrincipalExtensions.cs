@@ -6,7 +6,7 @@ namespace Foundation.Social
     {
         public static string GetUserId(IPrincipal user)
         {
-            var userId = user.Identity.GetUserId();
+            var userId = user.Identity.Name;
             if (string.IsNullOrWhiteSpace(userId))
             {
                 return string.Empty;

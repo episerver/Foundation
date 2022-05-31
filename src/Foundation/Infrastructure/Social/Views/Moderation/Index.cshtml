@@ -1,6 +1,7 @@
 ﻿@using EPiServer.Shell
 @using NonFactors.Mvc.Grid
-@inherits WebViewPage<Foundation.Social.Moderation.ModerationViewModel>
+@using Microsoft.AspNetCore.Html
+@model Foundation.Social.Moderation.ModerationViewModel
 <head>
     <title>Comments Manager</title>
 </head>
@@ -37,7 +38,6 @@
                                         pager.RowsPerPage = 20;
                                     })
                                     .Id("comment-grid")
-                                    .UsingFilterMode(GridFilterMode.Row)
                                     .Filterable()
                                     .Sortable()
                                 )
@@ -53,8 +53,8 @@
     </div>
 </main>
 @section AdditionalScripts {
-    <script src="~/Assets/js/vendors/gijgo/gijgo.min.js" type="text/javascript"></script>
-    <script src="~/Assets/js/extensions/CommentManager.js" type="text/javascript" ></script>
+    <script src="~/js/vendors/gijgo/gijgo.min.js" type="text/javascript"></script>
+    <script src="~/js/extensions/CommentManager.js" type="text/javascript" ></script>
     <script type="text/javascript">
         $(document).ready(function () {
             CommentManager.init();
@@ -63,6 +63,6 @@
 }
 
 @section AdditionalStyles {
-    <link href="~/Assets/scss/vendors/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Assets/scss/extensions/comments.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/vendors/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/extensions/comments.css" rel="stylesheet" type="text/css" />
 }

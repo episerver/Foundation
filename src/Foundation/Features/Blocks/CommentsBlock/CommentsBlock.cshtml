@@ -20,7 +20,7 @@
                 @Html.HiddenFor(m => m.CurrentPageLink)
                 @Html.HiddenFor(m => m.SendActivity)
                 <div>
-                    @Html.TextArea(name: "Body", htmlAttributes: new
+                    @Html.TextArea("Body", htmlAttributes: new
                     {
                         placeholder = "Enter your comment",
                         maxlength = Model.CommentMaxLength,

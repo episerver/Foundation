@@ -1,19 +1,18 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Comments;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Comments;
 using Foundation.Social.Repositories.Common;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.CommentsBlock
 {
-    [TemplateDescriptor(Default = true)]
-    public class CommentsBlockController : SocialBlockController<CommentsBlock>
+    public class CommentsBlockComponent : SocialBlockComponent<CommentsBlock>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPageCommentRepository _commentRepository;
@@ -28,7 +27,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public CommentsBlockController(IUserRepository userRepository,
+        public CommentsBlockComponent(IUserRepository userRepository,
             IPageCommentRepository pageCommentRepository,
             IPageRepository pageRepository,
             ICommunityActivityRepository communityActivityRepository,
@@ -45,7 +44,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
         /// </summary>
         /// <param name="currentBlock">The current frontend block instance.</param>
         /// <returns>The action's result.</returns>
-        public override ActionResult Index(CommentsBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(CommentsBlock currentBlock)
         {
             var pageReference = _pageRouteHelper.PageLink;
             var pageId = _pageRepository.GetPageId(pageReference);
@@ -74,7 +73,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
                 blockViewModel.Messages.Add(new MessageViewModel(ex.Message, ErrorMessage));
             }
 
-            return PartialView("~/Features/Blocks/CommentsBlock/CommentsBlock.cshtml", blockViewModel);
+            return await Task.FromResult(View("~/Features/Blocks/CommentsBlock/CommentsBlock.cshtml", blockViewModel));
         }
 
         /// <summary>
@@ -103,7 +102,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
                 AddMessage(MessageKey, new MessageViewModel(errors.First(), ErrorMessage));
             }
 
-            return Redirect(UrlResolver.Current.GetUrl(formViewModel.CurrentPageLink));
+            return new RedirectResult(UrlResolver.Current.GetUrl(formViewModel.CurrentPageLink));
         }
 
         /// <summary>

@@ -118,10 +118,7 @@ echo ## Dropping user ##
 echo ## Dropping user ## >> Build\Logs\Database.log
 %sql% -Q "if exists (select loginname from master.dbo.syslogins where name = '%user%') EXEC sp_droplogin @loginame='%user%'" >> Build\Logs\Database.log
 
-REM Temporary update to force EPiServer.Net.Cli v1.0.0 until more troubleshooting can be done on v2.0.0
-REM dotnet tool update EPiServer.Net.Cli --global --add-source https://nuget.optimizely.com/feed/packages.svc/
-dotnet tool uninstall EPiServer.Net.Cli --global
-dotnet tool install EPiServer.Net.Cli --version 1.0.0 --global --add-source https://nuget.optimizely.com/feed/packages.svc/
+dotnet tool update EPiServer.Net.Cli --global --add-source https://nuget.optimizely.com/feed/packages.svc/
 dotnet-episerver create-cms-database ".\src\Foundation\Foundation.csproj" -S "%SQLSERVER%" %ADDITIONAL_SQLCMD%  --database-name "%APPNAME%.Cms"
 dotnet-episerver create-commerce-database ".\src\Foundation\Foundation.csproj" -S "%SQLSERVER%" %ADDITIONAL_SQLCMD%  --database-name "%APPNAME%.Commerce" --reuse-cms-user
 

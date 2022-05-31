@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blog.BlogCommentBlock
 {
@@ -17,8 +18,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
     /// The CommentsBlockController handles the rendering of the comment block frontend view as well
     /// as the posting of new comments.
     /// </summary>
-    [TemplateDescriptor(Default = true)]
-    public class BlogCommentBlockController : BlockController<BlogCommentBlock>
+    public class BlogCommentBlockComponent : AsyncBlockComponent<BlogCommentBlock>
     {
         private readonly IBlogCommentRepository _commentRepository;
         private readonly IPageRepository _pageRepository;
@@ -35,7 +35,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public BlogCommentBlockController(IBlogCommentRepository commentRepository, IPageRepository pageRepository, IPageRouteHelper pageRouteHelper)
+        public BlogCommentBlockComponent(IBlogCommentRepository commentRepository, IPageRepository pageRepository, IPageRouteHelper pageRouteHelper)
         {
             _commentRepository = commentRepository;
             _pageRepository = pageRepository;
@@ -47,10 +47,10 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         /// </summary>
         /// <param name="currentBlock">The current frontend block instance.</param>
         /// <returns>The action's result.</returns>
-        public override ActionResult Index(BlogCommentBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(BlogCommentBlock currentBlock)
         {
             var pagingInfo = new PagingInfo(_pageRouteHelper.PageLink.ID, currentBlock.CommentsPerPage == 0 ? RecordPerPage : currentBlock.CommentsPerPage, 1);
-            return GetComment(pagingInfo, currentBlock);
+            return await GetComment(pagingInfo, currentBlock);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
         /// <param name="pagingInfo">Paging info of block</param>
         /// <param name="currentBlock">The current frontend block instance.</param>
         /// <returns>The action's result.</returns>
-        public ActionResult GetComment(PagingInfo pagingInfo, BlogCommentBlock currentBlock)
+        public async Task<IViewComponentResult> GetComment(PagingInfo pagingInfo, BlogCommentBlock currentBlock)
         {
             var pageId = pagingInfo.PageId;
             var pageIndex = pagingInfo.PageNumber;
@@ -93,7 +93,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
                 blockViewModel.Messages.Add(ex.Message);
             }
 
-            return PartialView("~/Features/Blog/BlogCommentBlock/Index.cshtml", blockViewModel);
+            return await Task.FromResult(View("~/Features/Blog/BlogCommentBlock/Index.cshtml", blockViewModel));
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Foundation.Features.Blog.BlogCommentBlock
                 AddMessage(MessageKey, errors.First());
             }
 
-            return Redirect(UrlResolver.Current.GetUrl(formViewModel.CurrentPageLink));
+            return new RedirectResult(UrlResolver.Current.GetUrl(formViewModel.CurrentPageLink));
         }
 
         /// <summary>

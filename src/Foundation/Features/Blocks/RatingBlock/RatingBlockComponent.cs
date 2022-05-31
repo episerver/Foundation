@@ -12,6 +12,7 @@ using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.ViewModels;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.RatingBlock
 {
@@ -21,8 +22,7 @@ namespace Foundation.Features.Blocks.RatingBlock
     /// This controller also allows a logged in user to rate a page which that user has not
     /// yet rated or view the rating that user has already submitted in the past for that page.
     /// </summary>
-    [TemplateDescriptor(Default = true)]
-    public class RatingBlockController : SocialBlockController<RatingBlock>
+    public class RatingBlockComponent : SocialBlockComponent<RatingBlock>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPageRatingRepository _ratingRepository;
@@ -39,7 +39,7 @@ namespace Foundation.Features.Blocks.RatingBlock
         /// <summary>
         /// Constructor
         /// </summary>
-        public RatingBlockController(
+        public RatingBlockComponent(
             IUserRepository userRepository,
             IPageRatingRepository ratingRepository,
             IPageRepository pageRepository,
@@ -61,7 +61,7 @@ namespace Foundation.Features.Blocks.RatingBlock
         /// </summary>
         /// <param name="currentBlock">The current frontend block instance.</param>
         /// <returns>The index action result.</returns>
-        public override ActionResult Index(RatingBlock currentBlock)
+        protected override async Task<IViewComponentResult> InvokeComponentAsync(RatingBlock currentBlock)
         {
             var target = _pageRouteHelper.Page.ContentGuid.ToString();
 
@@ -109,7 +109,7 @@ namespace Foundation.Features.Blocks.RatingBlock
                 GetRatingStatistics(target, blockModel);
             }
 
-            return PartialView("~/Features/Blocks/RatingBlock/RatingBlock.cshtml", blockModel);
+            return await Task.FromResult(View("~/Features/Blocks/RatingBlock/RatingBlock.cshtml", blockModel));
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Foundation.Features.Blocks.RatingBlock
                 // Add a rating activity
                 AddActivity(ratingForm.SubmittedRating.Value);
             }
-            return Redirect(UrlResolver.Current.GetUrl(ratingForm.CurrentLink));
+            return new RedirectResult(UrlResolver.Current.GetUrl(ratingForm.CurrentLink));
         }
 
         /// <summary>

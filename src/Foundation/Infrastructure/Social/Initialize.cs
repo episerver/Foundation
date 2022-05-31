@@ -9,7 +9,7 @@ using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
 using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.Services;
-
+using Microsoft.Extensions.DependencyInjection;
 namespace Foundation.Social
 {
     [InitializableModule]

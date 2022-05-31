@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Foundation.Social
 {
-    public abstract class SocialBlockController<T> : BlockController<T> where T : BlockData
+    public abstract class SocialBlockComponent<T> : AsyncBlockComponent<T> where T : BlockData
     {
         protected readonly IPageRouteHelper _pageRouteHelper;
 
-        protected SocialBlockController(IPageRouteHelper pageRouteHelper) => _pageRouteHelper = pageRouteHelper;
+        protected SocialBlockComponent(IPageRouteHelper pageRouteHelper) => _pageRouteHelper = pageRouteHelper;
 
         public List<MessageViewModel> RetrieveMessages(string key)
         {

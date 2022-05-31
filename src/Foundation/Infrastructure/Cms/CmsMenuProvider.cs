@@ -33,6 +33,11 @@ namespace Foundation.Infrastructure.Cms
                 Paths = new[] { "foundation/promotions", "foundation/editPromotionCoupons" }
             });
 
+            menuItems.Add(new UrlMenuItem("Comments Manager", MainMenuPath + "/commentsmanager", "/episerver/foundation/moderation")
+            {
+                SortIndex = 200,
+            });
+
             return menuItems;
         }
     }

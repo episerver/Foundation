@@ -13,7 +13,7 @@ namespace Foundation.Features.Blocks.CommentsBlock
         GUID = "b8a110ff-a8e2-4c17-9706-ce777694ebd4",
         Description = "Configures the frontend view properties of a comment block",
         GroupName = GroupNames.Social)]
-    [ImageUrl("~/assets/icons/cms/blocks/CMS-icon-block-25.png")]
+    [ImageUrl("~/icons/cms/blocks/CMS-icon-block-25.png")]
     public class CommentsBlock : FoundationBlockData
     {
         /// <summary>
