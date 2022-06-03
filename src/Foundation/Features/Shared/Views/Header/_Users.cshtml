@@ -7,17 +7,17 @@
     <div class="login-users dropdown-menu dropdown-menu--customized">
         <ul class="login-users__tabs nav nav-tabs" id="loginUsersTab" role="tablist">
             <li class="login-users__item nav-item">
-                <a class="login-users__item-link nav-link" id="login-selector-signin-tab" data-toggle="tab" data-target="#login-selector-signin" role="tab" aria-controls="login-selector-signin" aria-selected="false">
+                <a class="login-users__item-link nav-link" id="login-selector-signin-tab" data-bs-toggle="tab" data-target="#login-selector-signin" role="tab" aria-controls="login-selector-signin" aria-selected="false">
                     @Html.TranslateFallback("/Header/SignIn", "Sign in")
                 </a>
             </li>
             <li class="login-users__item nav-item">
-                <a class="login-users__item-link nav-link" id="login-selector-signup-tab" data-toggle="tab" data-target="#login-selector-signup" role="tab" aria-controls="login-selector-signup" aria-selected="false">
+                <a class="login-users__item-link nav-link" id="login-selector-signup-tab" data-bs-toggle="tab" data-target="#login-selector-signup" role="tab" aria-controls="login-selector-signup" aria-selected="false">
                     @Html.TranslateFallback("/Shared/SignUp", "Sign up")
                 </a>
             </li>
             <li class="login-users__item nav-item">
-                <a class="login-users__item-link nav-link active" id="login-selector-users-tab" data-toggle="tab" data-target="#login-selector-users" role="tab" aria-controls="login-selector-users" aria-selected="true">
+                <a class="login-users__item-link nav-link active" id="login-selector-users-tab" data-bs-toggle="tab" data-target="#login-selector-users" role="tab" aria-controls="login-selector-users" aria-selected="true">
                     @Html.TranslateFallback("/Shared/Users", "Users")
                 </a>
             </li>

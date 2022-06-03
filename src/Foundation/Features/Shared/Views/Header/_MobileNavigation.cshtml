@@ -69,13 +69,13 @@
     <!-- Side menu of Navigation bar for Mobile -->
     <div class="d-sm-block d-lg-none offside-navbar" id="offside-menu-mobile">
         <div class="offside-navbar--nav nav nav-tabs">
-            <a class="offside-navbar--nav__item active" data-toggle="tab" href="#mobile-menu">
+            <a class="offside-navbar--nav__item active" data-bs-toggle="tab" href="#mobile-menu">
                 <div class="icon-menu-description">
                     <i data-feather="menu"></i>
                     <span>Menu</span>
                 </div>
             </a>
-            <a class="offside-navbar--nav__item" data-toggle="tab" href="#mobile-account">
+            <a class="offside-navbar--nav__item" data-bs-toggle="tab" href="#mobile-account">
                 <div class="icon-menu-description">
                     <i data-feather="user"></i>
                     <span>Account</span>
@@ -84,14 +84,14 @@
 
             @if (Model.ShowCommerceControls && Request.IsAuthenticated)
             {
-                <a class="offside-navbar--nav__item jsCartBtn" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0" data-toggle="tab" href="#mobile-cart">
+                <a class="offside-navbar--nav__item jsCartBtn" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0" data-bs-toggle="tab" href="#mobile-cart">
                     <div class="icon-menu-description icon-menu-description--has-badge">
                         <i data-feather="shopping-cart"></i>
                         <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
                         <span>Cart</span>
                     </div>
                 </a>
-                <a class="offside-navbar--nav__item jsWishlistBtn" reload="0" data-cartcontainer="#mobile-wishlist" data-reloadurl="/wishlist/LoadMobileWishlistItems" data-toggle="tab" href="#mobile-wishlist">
+                <a class="offside-navbar--nav__item jsWishlistBtn" reload="0" data-cartcontainer="#mobile-wishlist" data-reloadurl="/wishlist/LoadMobileWishlistItems" data-bs-toggle="tab" href="#mobile-wishlist">
                     <div class="icon-menu-description icon-menu-description--has-badge">
                         <i data-feather="heart"></i>
                         <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
@@ -100,7 +100,7 @@
                 </a>
                 if (Model.ShowSharedCart)
                 {
-                    <a class="offside-navbar--nav__item jsSharedCartBtn" reload="0" data-cartcontainer="#mobile-sharedcart" data-reloadurl="/sharedcart/LoadMobileSharedCartItems" data-toggle="tab" href="#mobile-sharedcart">
+                    <a class="offside-navbar--nav__item jsSharedCartBtn" reload="0" data-cartcontainer="#mobile-sharedcart" data-reloadurl="/sharedcart/LoadMobileSharedCartItems" data-bs-toggle="tab" href="#mobile-sharedcart">
                         <div class="icon-menu-description icon-menu-description--has-badge">
                             <i data-feather="shopping-cart"></i>
                             <span class="icon-menu__badge">@((int)Model.SharedMiniCart.ItemCount)</span>
@@ -149,7 +149,7 @@
                     @if (Model.ShowCommerceControls)
                     {
                         @*<li class="offside-navbar--menu__item">
-                                <a class="flex-start" href="#" data-toggle="modal" data-target="#selectMarket">
+                                <a class="flex-start" href="#" data-bs-toggle="modal" data-target="#selectMarket">
                                     Market:&nbsp;
                                     <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
                                     <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>

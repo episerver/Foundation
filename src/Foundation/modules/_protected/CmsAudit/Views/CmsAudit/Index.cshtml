@@ -16,7 +16,7 @@
 				@for (var i = 0; i < Model.Sites.Count; i++)
 				{
 					<li role="presentation" class="@(i == 0 ? "active" : "")">
-						<a href="#tab-@Model.Sites[i].SiteDefo.Id" aria-controls="home" role="tab" data-toggle="tab">@Model.Sites[i].SiteDefo.Name</a>
+						<a href="#tab-@Model.Sites[i].SiteDefo.Id" aria-controls="home" role="tab" data-bs-toggle="tab">@Model.Sites[i].SiteDefo.Name</a>
 					</li>
 				}
 			</ul>
