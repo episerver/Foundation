@@ -134,7 +134,7 @@
                                             var group = tab.SubGroups[k];
                                             var groupKey = string.Join("-", tab.GroupName, group.GroupName).Replace(" ", "");
                                             <li class="nav-item">
-                                                <a class="nav-link @(k == 0?"active":"")" data-toggle="tab" href="#@groupKey">
+                                                <a class="nav-link @(k == 0?"active":"")" data-bs-toggle="tab" href="#@groupKey">
                                                     @group.GroupName
                                                 </a>
                                             </li>
