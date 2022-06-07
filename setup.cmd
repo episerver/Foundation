@@ -171,15 +171,15 @@ md "%SOURCEPATH%\appdata\db" 2>nul >> Build\Logs\Database.log
 %sql% -Q "SET NOCOUNT ON; SELECT ServerProperty('Edition')" -h -1 | findstr /c:"SQL Azure" 1>nul
 
 IF %ERRORLEVEL% EQU 0 (
-	echo ## Creating user in azure sql##
-	echo ## Creating user in azure sql## >> Build\Logs\Database.log
+	echo ## Creating user in azure sql ##
+	echo ## Creating user in azure sql ## >> Build\Logs\Database.log
 	%sql% -d %cms_db% -Q "CREATE USER %user% WITH PASSWORD='%password%'" >> Build\Logs\Database.log
 	%sql% -d %cms_db% -Q "ALTER ROLE db_owner ADD MEMBER %user%" >> Build\Logs\Database.log
 	%sql% -d %commerce_db% -Q "CREATE USER %user% WITH PASSWORD='%password%'" >> Build\Logs\Database.log
 	%sql% -d %commerce_db% -Q "ALTER ROLE db_owner ADD MEMBER %user%" >> Build\Logs\Database.log
 ) else (
-	echo ## Creating user##
-	echo ## Creating user## >> Build\Logs\Database.log
+	echo ## Creating user ##
+	echo ## Creating user ## >> Build\Logs\Database.log
 	%sql% -Q "EXEC sp_addlogin @loginame='%user%', @passwd='%password%', @defdb='%cms_db%'" >> Build\Logs\Database.log
 	%sql% -d %cms_db% -Q "EXEC sp_adduser @loginame='%user%'" >> Build\Logs\Database.log
 	%sql% -d %cms_db% -Q "EXEC sp_addrolemember N'db_owner', N'%user%'" >> Build\Logs\Database.log
