@@ -1,8 +1,7 @@
-﻿@using EPiServer.Web.Mvc.Html
+@using EPiServer.Web.Mvc.Html
 @using Foundation.Features.StandardPage
 @inject IContextModeResolver contextModeResolver
 @model StandardPageViewModel
-
 @{
     var heroClass = "";
     var boxClass = "";
@@ -20,10 +19,10 @@
             break;
     }
 }
-
+@Html.FullRefreshPropertiesMetaData(new string[] { "PageImage", "BackgroundImage", "BackgroundVideo" })
 <div class="row">
     <div class="col-12 standard-page__container">
-        <div class="standard-page__hero @heroClass">
+        <div class="standard-page__hero @heroClass" @Html.EditAttributes(x => x.CurrentContent.BackgroundImage)>
             @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundVideo))
             {
                 <video class="standard-page__video @heroClass" autoplay loop playsinline muted>
@@ -32,8 +31,17 @@
             }
             else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.BackgroundImage))
             {
+                var url = Url.ContentUrl(Model.CurrentContent.BackgroundImage);
+                if (url.Contains("?"))
+                {
+                    url = url + "&width=1440&format=webp";
+                }
+                else
+                {
+                    url = url + "?width=1440&format=webp";
+                }
                 <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");"></div>
-                <img class="standard-page__banner lazyload" src="@Url.ContentUrl(Model.CurrentContent.BackgroundImage)?width=1440&format=webp" />
+                <img class="standard-page__banner lazyload" src="@url?width=1440&format=webp" />
                 <div class="hero__gradient">
                 </div>
             }
