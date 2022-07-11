@@ -166,6 +166,7 @@ ul.none-style-type {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    display: block !important;
 
     .screen-width-wrapper {
         @include media-breakpoint-up(xl) {
