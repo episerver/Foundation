@@ -7,7 +7,6 @@ using EPiServer.ContentManagementApi;
 using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.Labs.BlockEnhancements;
-using EPiServer.Labs.ContentManager;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Modules;
@@ -183,9 +182,6 @@ namespace Foundation
                     options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 });
 
-            // Add ContentManager
-            services.AddContentManager();
-
             // Add BlockEnhancements
             services.AddBlockEnhancements();
             services.Configure<BlockEnhancementsOptions>(options =>
@@ -201,7 +197,9 @@ namespace Foundation
             services.AddAdvancedReviews();
             services.AddGetaCategories();
             services.AddODPVisitorGroups();
-           
+
+            // Add Welcome DAM
+            services.AddDAMUi();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
