@@ -10,6 +10,7 @@
 			</displaychannel>
 		</displaychannels>
 		<displayoptions>
+			<screen>Screen Width</screen>
 			<full>Full (1/1)</full>
 			<half>Half (1/2)</half>
 			<narrow>Narrow (1/3)</narrow>

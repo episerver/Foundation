@@ -9,6 +9,7 @@ namespace Foundation.Infrastructure.Display
         {
             services.Configure<DisplayOptions>(displayOption =>
             {
+                displayOption.Add("screen", "/displayoptions/screen", "screen-width-block", "", "epi-icon__layout--screen");
                 displayOption.Add("full", "/displayoptions/full", "col-12", "", "epi-icon__layout--full");
                 displayOption.Add("half", "/displayoptions/half", "col-6", "", "epi-icon__layout--half");
                 displayOption.Add("wide", "/displayoptions/wide", "col-8", "", "epi-icon__layout--two-thirds");
