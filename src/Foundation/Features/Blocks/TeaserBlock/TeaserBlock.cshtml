@@ -34,6 +34,12 @@
                         <div class="teaser-block__heading" style="font-size: @(Model.CurrentBlock.HeadingSize)px; text-decoration: @Model.CurrentBlock.HeadingStyle" @Html.EditAttributes(x => x.CurrentBlock.Heading)>
                             @Model.CurrentBlock.Heading
                         </div>
+                        @if (Model.CurrentBlock.SecondImage == null)
+                        {
+                        <div class="teaser-block__text" style="@Model.CurrentBlock.TextColor; margin-top:10px;" @Html.EditAttributes(x => x.CurrentBlock.Text)>
+                            @Html.Raw(Model.CurrentBlock.Text)
+                        </div>
+                        }
                     </div>
                 </div>
             }
@@ -63,16 +69,7 @@
                     </div>
                 </div>
             }
-            else
-            {
-                <div class="row">
-                    <div class="col-12">
-                        <div class="teaser-block__text" style="color: @Model.CurrentBlock.TextColor;" @Html.EditAttributes(x => x.CurrentBlock.Text)>
-                            @Html.Raw(Model.CurrentBlock.Text)
-                        </div>
-                    </div>
-                </div>
-            }
+            
         }
     </div>
 }
