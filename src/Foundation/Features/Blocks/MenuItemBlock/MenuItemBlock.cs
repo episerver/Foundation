@@ -44,7 +44,7 @@ namespace Foundation.Features.Blocks.MenuItemBlock
 
         [JsonIgnore]
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<GroupLinkCollection>))]
-        [ClientEditor(ClientEditingClass = "foundation/MenuChildItems")]
+        //[ClientEditor(ClientEditingClass = "foundation/MenuChildItems")]
         [Display(Name = "Child items", GroupName = SystemTabNames.Content, Order = 80)]
         public virtual IList<GroupLinkCollection> ChildItems { get; set; }
     }
