@@ -20,10 +20,10 @@
     data.requestFrom = "axios";
     axios.post(url, data)
       .then(function (result) {
-        if (result.data.StatusCode == 0) {
-          notification.warning(result.data.Message);
+        if (result.data.statusCode == 0) {
+          notification.warning(result.data.message);
         }
-        if (result.data.StatusCode == 1) {
+        if (result.data.statusCode == 1) {
           let checkoutLink = "";
           let cartLink = "";
           if ($('#checkoutBtnId')) {
@@ -34,7 +34,7 @@
             cartLink = $('#cartBtnId').attr('href');
           }
 
-          let message = result.data.Message;
+          let message = result.data.message;
           if (isAddToCart) {
             let bottomNotification = `\n<div style='display: flex; justify-content: space-between; margin-top: 15px;'>
                             <a href='`+ cartLink + `' class='btn-notification'>View Cart</a>
@@ -45,7 +45,7 @@
 
           notification.success(message, false);
 
-          if (callback) callback(result.data.CountItems);
+          if (callback) callback(result.data.countItems);
         }
       })
       .catch(function (error) {
@@ -182,8 +182,8 @@
         let url = $(this).attr('url');
         axios.post(url)
           .then(function (result) {
-            notification.success(result.data.Message);
-            cartHelper.setCartReload(result.data.CountItems);
+            notification.success(result.data.message);
+            cartHelper.setCartReload(result.data.countItems);
           })
           .catch(function (error) {
             notification.error(error);

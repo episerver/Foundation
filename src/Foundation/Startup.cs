@@ -176,11 +176,11 @@ namespace Foundation
                 }
             });
             // Don't camelCase Json output -- leave property names unchanged
-            services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                });
+            //services.AddControllers()
+            //    .AddJsonOptions(options =>
+            //    {
+            //        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //    });
 
             // Add BlockEnhancements
             services.AddBlockEnhancements();
