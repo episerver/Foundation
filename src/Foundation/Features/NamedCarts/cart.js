@@ -1,12 +1,12 @@
 ﻿export class Cart {
   changeInfoCart(result) {
-    $('.largecart-Subtotal').html("$" + result.data.SubTotal.Amount);
-    $('.largecart-TotalDiscount').html("$" + result.data.TotalDiscount.Amount);
-    $('.largecart-TaxTotal').html("$" + result.data.TaxTotal.Amount);
-    $('.largecart-ShippingTotal').html("$" + result.data.ShippingTotal.Amount);
-    $('.largecart-Total').html("$" + result.data.Total.Amount);
+    $('.largecart-Subtotal').html("$" + result.data.subTotal.amount);
+    $('.largecart-TotalDiscount').html("$" + result.data.totalDiscount.amount);
+    $('.largecart-TaxTotal').html("$" + result.data.taxTotal.amount);
+    $('.largecart-ShippingTotal').html("$" + result.data.shippingTotal.amount);
+    $('.largecart-Total').html("$" + result.data.total.amount);
 
-    cartHelper.setCartReload(result.data.CountItems);
+    cartHelper.setCartReload(result.data.countItems);
   }
 
   removeItem(url, elementClick, typeCart) {
@@ -19,29 +19,29 @@
 
     axios.post(url, data)
       .then(function (result) {
-        if (result.data.StatusCode == 0) {
-          notification.error(result.data.Message);
+        if (result.data.statusCode == 0) {
+          notification.error(result.data.message);
         }
-        else if (result.data.StatusCode == 1) {
+        else if (result.data.statusCode == 1) {
           if (typeCart == 'cart') {
             $('.countItemCartHeader').each(function (i, el) {
               $(el).html(result.data.CountItems);
             });
             $('.amountCartHeader').each(function (i, el) {
-              $(el).html("$" + result.data.SubTotal.Amount);
+              $(el).html("$" + result.data.subTotal.amount);
             });
           }
 
           if (typeCart !== 'large-cart' && typeCart !== "shared-cart-large") {
             elementClick.parents('.cart__row').first().remove();
-            if (typeCart == "cart") cartHelper.setCartReload(result.data.CountItems);
-            else if (typeCart == "shared-cart") cartHelper.setSharedCartReload(result.data.CountItems);
-            else cartHelper.setWishlistReload(result.data.CountItems);
+            if (typeCart == "cart") cartHelper.setCartReload(result.data.countItems);
+            else if (typeCart == "shared-cart") cartHelper.setSharedCartReload(result.data.countItems);
+            else cartHelper.setWishlistReload(result.data.countItems);
 
           } else { // if large cart, large shared 
             if (typeCart == "shared-cart-large") {
               elementClick.parents('tr').first().remove();
-              cartHelper.setSharedCartReload(result.data.CountItems);
+              cartHelper.setSharedCartReload(result.data.countItems);
             } else {
               elementClick.parents('.product-tile-list__item').first().remove();
               inst.changeInfoCart(result);
@@ -49,7 +49,7 @@
           }
         }
         else {
-          notification.error(result.data.Message);
+          notification.error(result.data.message);
         }
       })
       .catch(function (error) {
@@ -67,14 +67,14 @@
     var code = $(element).attr('code');
     axios.post(url, { Code: code })
       .then(function (result) {
-        if (result.data.StatusCode === 1) {
+        if (result.data.statusCode === 1) {
           inst.changeInfoCart(result);
           element.parents('.product-tile-list__item').first().remove();
 
           cartHelper.AddWishlist();
-          notification.success(result.data.Message);
+          notification.success(result.data.message);
         } else {
-          notification.warning(result.data.Message);
+          notification.warning(result.data.message);
         }
       })
       .catch(function (error) {
@@ -119,16 +119,16 @@
     $(element).attr('disabled', 'disabled');
     axios.post(url, data)
       .then(function (result) {
-        switch (result.data.StatusCode) {
+        switch (result.data.statusCode) {
           case 0:
-            $(element).siblings('.required').html(result.data.Message);
-            notification.warning(result.data.Message);
+            $(element).siblings('.required').html(result.data.message);
+            notification.warning(result.data.message);
             break;
           case -1:
-            notification.error(result.data.Message);
+            notification.error(result.data.message);
             break;
           default:
-            notification.success(result.data.Message);
+            notification.success(result.data.message);
             inst.changeInfoCart(result);
             var subtotal = parseFloat($(element).attr('unitPrice')) * qty;
             $('.subtotal-' + code).html($(element).attr('currency') + subtotal);
