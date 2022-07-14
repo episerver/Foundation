@@ -3,8 +3,8 @@
         $('.loading-box').show();
         axios(options)
             .then(function (result) {
-                $('.jsFirstName').html(result.data.FirstName);
-                $('.jsLastName').html(result.data.LastName);
+                $('.jsFirstName').html(result.data.firstName);
+                $('.jsLastName').html(result.data.lastName);
                 notification.success("Update profile successfully.");
             })
             .catch(function (error) {
