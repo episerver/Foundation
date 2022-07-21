@@ -21,7 +21,7 @@ export default class OrderDetails {
                 let data = form.serialize();
                 axios.post(url, data)
                     .then(function (result) {
-                        let newNote = inst.noteTemplate.replace("@title", result.data.Title).replace("@type", result.data.Type).replace("@detail", result.data.Detail);
+                        let newNote = inst.noteTemplate.replace("@title", result.data.title).replace("@type", result.data.type).replace("@detail", result.data.detail);
                         $('#noteListing').append(newNote);
                         form[0].reset();
                     })
