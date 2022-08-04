@@ -69,7 +69,16 @@
                     </div>
                 </div>
             }
-            
+            else
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <div class="teaser-block__text" style="color: @Model.CurrentBlock.TextColor;" @Html.EditAttributes(x => x.CurrentBlock.Text)>
+                            @Html.Raw(Model.CurrentBlock.Text)
+                        </div>
+                    </div>
+                </div>
+            }
         }
     </div>
 }
