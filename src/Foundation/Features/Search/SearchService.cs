@@ -521,7 +521,7 @@ namespace Foundation.Features.Search
                     results.Add(item as EntryContentBase);
                 }
             }
-            return ListExtensions.DistinctByImpl(results, (e) => e.ContentGuid);
+            return ListExtensions.DistinctBy(results, (e) => e.ContentGuid);
         }
 
         private ProductSearchResults GetSearchResults(IContent currentContent,
