@@ -16,11 +16,11 @@ namespace Foundation.Features.Blocks.CarouselBlock
     public class CarouselBlock : FoundationBlockData
     {
         [CultureSpecific]
-        [AllowedTypes(new[] { typeof(HeroBlock.HeroBlock), typeof(ImageMediaData) })]
+        [AllowedTypes(new[] { typeof(HeroBlock.HeroBlock), typeof(ImageMediaData), typeof(MediaData) })]
         [Display(
             Name = "Carousel items",
             GroupName = "Carousel",
-            Description = "List of carousel items",
+            Description = "List of carousel items",            
             Order = 10)]
 
         public virtual ContentArea CarouselItems { get; set; }
