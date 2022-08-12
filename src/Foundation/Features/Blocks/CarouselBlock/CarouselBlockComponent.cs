@@ -42,6 +42,30 @@ namespace Foundation.Features.Blocks.CarouselBlock
                     {
                         model.Items.Add(new CarouselItem() { HeroBlock = new BlockViewModel<HeroBlock.HeroBlock>((HeroBlock.HeroBlock)carouselItem) });
                     }
+                    else if (carouselItem is ImageData)
+                    {
+                        var carouselImage = new CarouselImage()
+                        {
+                            Heading = "",
+                            Description = "",
+                            Image = ((ImageData)carouselItem).ContentLink
+
+                        };
+
+                        model.Items.Add(new CarouselItem() { CarouselImage = carouselImage });
+                    }
+                    //else // for any none-image or hero block
+                    //{
+                    //    var carouselImage = new CarouselImage()
+                    //    {
+                    //        Heading = "Not supported",
+                    //        Description = "Only support images or hero blocks",
+                    //        Image = ((MediaData)carouselItem).ContentLink
+                    //    };
+
+                    //    model.Items.Add(new CarouselItem() { CarouselImage = carouselImage });
+                    //}
+
                 }
             }
 
