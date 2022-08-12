@@ -176,7 +176,7 @@ namespace Foundation.Features.CatalogContent
                     Sku = x.Code,
                     Name = x.Name,
                     Size = x is GenericVariant ? $"{(x as GenericVariant).Color} {(x as GenericVariant).Size}" : "",
-                    ImageUrl = string.IsNullOrEmpty(variantImage) ? "http://placehold.it/54x54/" : variantImage,
+                    ImageUrl = string.IsNullOrEmpty(variantImage) ? "https://placehold.jp/54x54.png" : variantImage,
                     DiscountedPrice = GetDiscountPrice(variantDefaultPrice, market, currency),
                     ListingPrice = variantDefaultPrice?.UnitPrice ?? new Money(0, currency),
                     StockQuantity = _quickOrderService.GetTotalInventoryByEntry(x.Code)
