@@ -33,6 +33,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 using System.Linq;
 using UNRVLD.ODP.VisitorGroups.Initilization;
 
@@ -200,6 +201,13 @@ namespace Foundation
 
             // Add Welcome DAM
             services.AddDAMUi();
+
+            //Configure GeoLocation for Visitor Groups, etc
+            services.AddMaxMindGeolocationProvider(o =>
+            {
+                o.DatabasePath = Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data", "GeoLite2-City.mmdb");
+                o.LocationsDatabasePath = Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data", "GeoLite2-City-Locations-en.csv");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
