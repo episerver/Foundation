@@ -3,8 +3,6 @@
 export default class Checkout {
   addPaymentClick() {
     let inst = this;
-    //$('.jsAddPayment').click(function () {
-      
       if (document.querySelector(".jsAddPayment") == null) return;
       document.querySelector(".jsAddPayment").addEventListener("click", function (e) {
           console.log(" addPaymentClick ");
@@ -12,14 +10,11 @@ export default class Checkout {
               notification.error("You have to select Credit card");
               return;
           }
-
-          //$('.loading-box').show();
           document.querySelector(".loading-box").style.display = 'block'; // show
 
           let url = document.querySelector(".jsAddPayment").getAttribute("url");
           console.log(url);
-          //let url = this.attr('url');
-          //let checked = $('.jsChangePayment:checked');
+
           let checked = document.querySelector('.jsChangePayment:checked');
           let methodId = checked.getAttribute('methodId');
           let keyword = checked.getAttribute('keyword');
@@ -36,15 +31,16 @@ export default class Checkout {
           let data = new FormData(form);
           console.log(data);
           // Convert to an object
-          let formObj = data.serializeObject + '&' + $.param(additionVal);
+          //console.log(JSON.stringify(data));
+          let formObj = JSON.stringify(data) + '&' + $.param(additionVal);
           console.log(formObj);
           axios.post(url, formObj)
               .then(function (result) {
                   if (result.status != 200) {
                       notification.error(result);
                   } else {
-                      //$('#paymentBlock').html(result.data);
-                      document.getElementById('paymentBlock').innerHTML = result.data;
+                      console.log(result.data);
+                      //document.getElementById('paymentBlock').innerHTML = result.data;
                       feather.replace();
                       inst.initPayment();
                   }
@@ -52,17 +48,13 @@ export default class Checkout {
               .catch(function (error) {
                   if (error.response.status == 400) {
                       document.querySelector("#giftcard-alert").innerHTML = error.response.statusText;
-                      //$("#giftcard-alert").html(error.response.statusText);
-                      //$("#giftcard-console.log").removeClass("alert-info");
-                      document.querySelector("#giftcard-alert").removeClass("alert-info");
-                      //$("#giftcard-alert").addClass("alert-danger");
-                      document.querySelector("#giftcard-alert").addClass("alert-danger");
+                      document.querySelector("#giftcard-alert").classList.remove("alert-info");
+                      document.querySelector("#giftcard-alert").classList.add("alert-danger");
                   } else {
                       notification.error(error);
                   }
               })
               .finally(function () {
-                  //$('.loading-box').hide();
                   document.querySelector(".loading-box").style.display = "none";
               });
           });
@@ -72,17 +64,12 @@ export default class Checkout {
     removePayment(element) {
         console.log(" removePayment ");
     let inst = this;
-    //$('.loading-box').show();
         document.querySelector(".loading-box").style.display = "block";
         console.log(element);
-    //let url = $(element).data('url');
         let url = element.getAttribute("data-url");
         
-    //let methodId = $(element).data('method-id');
         let methodId = element.getAttribute("data-method-id");
-    //////let keyword = $(element).data('keyword');
     let keyword = element.getAttribute("data-keyword");
-    //////let paymentTotal = $(element).data('amount');
         let paymentTotal = element.getAttribute("data-amount");
 
         let additionVal = {
@@ -106,61 +93,28 @@ export default class Checkout {
         notification.error(error);
       })
       .finally(function () {
-        //$('.loading-box').hide();
           document.querySelector(".loading-box").style.display = "none";
       });
   }
 
   removePaymentClick() {
       let inst = this;
-    //$('.jsRemovePayment').each(function (i, e) {
-    //  console.log(i, e);
-    //  $(e).click(function () {
-    //    console.log(i, e);
-    //    inst.removePayment(e);
-    //  });
-    //});
       if (document.querySelector(".jsRemovePayment") == null) return;
       console.log(" removePaymentClick ");
-      Array.from(document.getElementsByClassName("jsRemovePayment")).forEach(function (el, i) {
-        el.addEventListener('click', inst.removePayment(el));
-    });
-    
+      document.querySelector(".jsRemovePayment").addEventListener("click", function () {
+          console.log("inside remove payment click listener");
+          inst.removePayment(document.querySelector(".jsRemovePayment"))
+      });
   }
 
   paymentMethodChange() {
       let inst = this;
-      
-    //$('.jsChangePayment').each(function (i, e) {
-    //  $(e).change(function () {
-    //    $('.jsPaymentMethod').siblings('.loading-box').first().show();
-    //    let url = $(e).attr('url');
-    //    let methodId = $(e).attr('methodid');
-    //    let keyword = $(e).attr('keyword');
-    //    let data = {
-    //      PaymentMethodId: methodId,
-    //      SystemKeyword: keyword
-    //    };
-
-    //    axios.post(url, data)
-    //      .then(function (result) {
-    //        $('.jsPaymentMethod').html(result.data);
-    //        feather.replace();
-    //        inst.creditCardChange();
-    //      })
-    //      .catch(function (error) {
-    //        notification.error(error);
-    //      })
-    //      .finally(function () {
-    //        $('.loading-box').hide();
-    //      });
-    //  });
-    //});
 
       if (document.querySelector(".jsChangePayment") == null) return;
       console.log(" paymentMethodChange ");
       Array.from(document.getElementsByClassName("jsChangePayment")).forEach(function (el, i) {
-        el.addEventListener("change", function () {
+          el.addEventListener("change", function () {
+              console.log("inside remove payment click listener");
             document.querySelector(".loading-box").style.display = 'block'; // show
             let url = el.getAttribute('url');
             let methodId = el.getAttribute('methodid');
@@ -187,14 +141,6 @@ export default class Checkout {
   }
 
     creditCardChange() {
-    //$('.jsSelectCreditCard').each(function (i, e) {
-    //  $(e).change(function () {
-    //    $('.selectCreditCardType').hide();
-    //    let targetId = $(e).val();
-    //    $(targetId).show();
-    //  });
-    //});
-
         if (document.querySelector(".jsSelectCreditCard") == null) return;
         console.log(" creditCardChange ");
         var inputs = document.getElementsByClassName('jsSelectCreditCard');
@@ -220,27 +166,8 @@ export default class Checkout {
     inst.creditCardChange();
   }
 
-  ///
-
   // Shipping Address
     formShippingAddressChange() {
-
-        //console.log(" formShippingAddressChange ");
-    //$('.jsSingleAddress').each(function (i, e) {
-    //  $(e).change(function () {
-    //    let shippingRow = $(e).parents('.jsShippingAddressRow').first();
-    //    let value = $(this).val();
-    //    $('#AddressType').val(value);
-    //    if (value == 0) {
-    //      shippingRow.find('.jsOldShippingAddressForm').hide();
-    //      shippingRow.find('.jsNewShippingAddressForm').show();
-    //    } else {
-    //      shippingRow.find('.jsOldShippingAddressForm').show();
-    //      shippingRow.find('.jsNewShippingAddressForm').hide();
-    //    }
-
-    //  });
-    //});
         var inputs = document.getElementsByClassName('jsSingleAddress');
         Array.from(inputs).forEach(function (el, index, array) {
             el.addEventListener("change", function () {
@@ -259,25 +186,6 @@ export default class Checkout {
   }
 
     formBillingAddressChange() {
-
-        
-    //$('.jsBillingAddress').each(function (i, e) {
-    //  $(e).click(function () {
-    //    let value = $(e).val();
-    //    $('#AddressType').val(value);
-    //    if (value == 0) {
-    //      $('#oldBillingAddressForm').hide();
-    //      $('#newBillingAddressForm').show();
-    //    } else if (value == 1) {
-    //      $('#oldBillingAddressForm').show();
-    //      $('#newBillingAddressForm').hide();
-    //    } else if (value == 2) {
-    //      $('#oldBillingAddressForm').hide();
-    //      $('#newBillingAddressForm').hide();
-    //    }
-    //  });
-    //});
-
         console.log(" formBillingAddressChange ");
 
         var inputs = document.getElementsByClassName('jsBillingAddress');
@@ -323,12 +231,6 @@ export default class Checkout {
 
   applyCouponCode() {
       let inst = this;
-    //$('.jsCouponCode').keypress(function (e) {
-    //  if (e.keyCode == 13) {
-    //    $('.jsAddCoupon').click();
-    //    return false;
-    //  }
-    //});
       if (document.querySelector(".jsCouponCode") == null) return;
       document.querySelector('.jsCouponCode').addEventListener("keypress", function (e) {
           console.log(" applyCouponCode  ");
@@ -339,40 +241,6 @@ export default class Checkout {
         }
     });
 
-    //$('.jsAddCoupon').click(function () {
-    //  let e = this;
-    //  let form = $(this).parents('.jsAddCouponContainer').first();
-    //  let url = form.attr('action');
-    //  let couponCode = form.find('.jsCouponCode').val();
-    //  let data = convertFormData({ couponCode: couponCode });
-
-    //  axios.post(url, data)
-    //    .then(function (r) {
-    //      if (r.status == 200) {
-    //        $('.jsCouponLabel').removeClass('hidden');
-    //        if ($(e).hasClass('jsInCheckout')) {
-    //          $('.jsCouponListing').append(inst.couponTemplate(couponCode, "jsInCheckout"));
-    //        } else {
-    //          $('.jsCouponListing').append(inst.couponTemplate(couponCode, ""));
-    //        }
-
-    //        inst.removeCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
-    //        $('.jsCouponReplaceHtml').html(r.data);
-    //        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
-    //        feather.replace();
-    //        if ($(e).hasClass('jsInCheckout')) {
-    //          inst.initPayment();
-    //        }
-    //        form.find('.jsCouponCode').val("");
-    //        $('.jsCouponErrorMess').hide();
-    //      } else {
-    //        $('.jsCouponErrorMess').show();
-    //      }
-    //    })
-    //    .catch(function (e) {
-    //      notification.error(e);
-    //    });
-    //});
       if (document.querySelector(".jsAddCoupon") == null) return;
       document.querySelector('.jsAddCoupon').addEventListener("click", function () {
         let form = document.getElementsByClassName("jsAddCouponContainer");
@@ -388,17 +256,18 @@ export default class Checkout {
         axios.post(url, data)
             .then(function (r) {
                 if (r.status == 200) {
-                    //document.querySelector('.jsCouponLabel').removeClass('hidden');
-                    //console.log(document.querySelector('.jsCouponLabel').classList);
-                    document.querySelector('.jsCouponLabel').classList.remove('hidden');
+                     document.querySelector('.jsCouponLabel').classList.remove('hidden');
                     if (document.querySelector(".jsInCheckout") != null) {
                         document.querySelector('.jsCouponListing').innerHTML = inst.couponTemplate(couponCode, "jsInCheckout");
                     } else {
                         document.querySelector('.jsCouponListing').innerHTML = inst.couponTemplate(couponCode, "");
                     }
-                    ////inst.removeCouponCode($('.jsRemoveCoupon[data-couponcode=' + couponCode + ']'));
-                    ////document.querySelector('.jsCouponReplaceHtml').innerHTML = r.data;
-                    ////document.querySelector('.jsOrderSummary').innerHTML = (document.querySelector('.jsOrderSummaryInPayment').innerHTML);
+                    document.querySelector('.jsRemoveCoupon').addEventListener("click", function () {
+                        inst.removeCouponCode(document.querySelector('.jsRemoveCoupon'));
+                    });
+                    //inst.removeCouponCode(document.querySelectorAll('.jsRemoveCoupon'), "test");
+                    document.querySelector('.jsCouponReplaceHtml').innerHTML = r.data;
+                    document.querySelector('.jsOrderSummary').innerHTML = document.querySelector('.jsOrderSummaryInPayment').innerHTML;
                     feather.replace();
                     if (document.querySelector(".jsInCheckout") != null) {
                         inst.initPayment();
@@ -416,60 +285,28 @@ export default class Checkout {
   }
 
     removeCouponCode(selector) {
-        console.log("removeCouponCode with selector")
+        console.log("removeCouponCode with selectors" + " " + selector )
     let inst = this;
     if (selector) {
       inst.removeCoupon(selector);
     } else {
-      //$('.jsRemoveCoupon').each(function (i, e) {
-      //  inst.removeCoupon(e);
-      //});
         if (document.querySelector(".jsRemoveCoupon") == null) return;
         console.log(" removeCouponCode ");
-        Array.from(document.querySelectorAll(".jsRemoveCoupon")).forEach(function (el, i) {
+        Array.from(document.querySelector(".jsRemoveCoupon")).forEach(function (el, i) {
             inst.removeCoupon(el);
         });
     }
   }
 
-  //removeCoupon(e) {
-  //  let inst = this;
-  //  $(e).click(function () {
-  //    let element = $(this);
-  //    let url = $('#jsRenoveCouponUrl').val();
-  //    let couponCode = $(this).data('couponcode');
-  //    let data = convertFormData({ couponCode: couponCode });
-
-  //    axios.post(url, data)
-  //      .then(function (r) {
-  //        element.remove();
-  //        let coupons = $('.jsCouponListing').find('.jsRemoveCoupon');
-  //        if (coupons.length == 0) {
-  //          $('.jsCouponLabel').addClass('hidden');
-  //        }
-  //        $('.jsCouponReplaceHtml').html(r.data);
-  //        $('.jsOrderSummary').html($('.jsOrderSummaryInPayment').html());
-  //        if ($(e).hasClass('jsInCheckout')) {
-  //          feather.replace();
-  //          inst.initPayment();
-  //        }
-
-  //        $('.jsCouponErrorMess').hide();
-  //      })
-  //      .catch(function (e) {
-  //        notification.error(e);
-  //      });
-  //  });
-  //}
-
     removeCoupon(e) {
         
         let inst = this;
+        console.log(this);
         if (e == null) return;
-        console.log(" removeCoupon ");
-        e.addEventListener("click", function (e,i) {
-            let url = document.querySelector('#jsRenoveCouponUrl').value;
-
+        console.log(e + " removeCoupon ");
+       //e.addEventListener("click", function (e,i) {
+        //let url = document.querySelector('#jsRenoveCouponUrl').getAttribute("value");
+        let url = "/Checkout/RemoveCouponCode";
             
             let couponCode = document.querySelector('.jsRemoveCoupon').getAttribute("data-couponcode");
 
@@ -478,26 +315,18 @@ export default class Checkout {
 
         axios.post(url, data)
             .then(function (r) {
-                //element.remove();
                 let coupons = document.querySelector(".jsCouponListing");
                 coupons.removeChild(document.querySelector(".jsRemoveCoupon"));
-                //console.log("r data " + r.data); 
-                //console.log(document.querySelector('.jsCouponLabel').classList);
                     document.querySelector('.jsCouponLabel').classList.add('hidden');
-                //document.querySelector('.jsCouponReplaceHtml').innerHTML =  r.data;
-                //document.querySelector(('.jsOrderSummary').innerHTML = document.querySelector('.jsOrderSummaryInPayment').innerHTML;
+                document.querySelector('.jsCouponReplaceHtml').innerHTML =  r.data;
+                document.querySelector('.jsOrderSummary').innerHTML = document.querySelector('.jsOrderSummaryInPayment').innerHTML;
                 console.log(e.classList);
-                //if (e.classList.value.contains('jsInCheckout')) {
-                //    feather.replace();
-                //    inst.initPayment();
-                //}
-
                 document.querySelector('.jsCouponErrorMess').style.display = "none";
             })
             .catch(function (e) {
                 notification.error(e);
             });
-    });
+    //});
 }
 
   couponTemplate(couponCode, jsInCheckout) {
@@ -655,7 +484,8 @@ export default class Checkout {
                 .then(function (r) {
                     if (quantity == 0) {
                         let parent = document.querySelector('.jsShipmentRow');
-                        document.querySelector("jsCartItem").remove();
+                        if (document.querySelector("jsCartItem") != null)
+                            document.querySelector("jsCartItem").remove();
 
                         if (parent.querySelectorAll('.jsCartItem').length == 0) {
                             parent.remove();
@@ -680,7 +510,7 @@ export default class Checkout {
                     }
                     console.log("i am here 1" + document.querySelector('.jsCouponReplaceHtml'))
                     document.querySelector('.jsCouponReplaceHtml').innerHTML = r.data;
-                    console.log("i am here 2")
+                    console.log("i am here 2" + document.querySelector('.jsOrderSummaryInPayment').innerHTML)
                     document.querySelector('.jsOrderSummary').innerHTML = (document.querySelector('.jsOrderSummaryInPayment').innerHTML);
                     console.log("i am here 3")
                     cartHelper.setCartReload(document.querySelector('.jsTotalQuantityCheckout').value);
