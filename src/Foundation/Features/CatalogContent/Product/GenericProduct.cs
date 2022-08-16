@@ -119,7 +119,16 @@ namespace Foundation.Features.CatalogContent.Product
         [Range(1, 5)]
         [Display(Name = "Search Boost (1-5)", GroupName = Infrastructure.TabNames.SearchSettings,
             Description = "Boost product in search results with default sort", Order = 1)]
-        public virtual int Boost { get; set; }
+        public virtual int Boost
+        {
+            get
+            {
+                var boost = this.GetPropertyValue(p => p.Boost);
+
+                return boost == 0 ? 1 : boost;
+            }
+            set => this.SetPropertyValue(p => p.Boost, value);
+        }
 
         [Display(Name = "Bury", GroupName = Infrastructure.TabNames.SearchSettings,
             Description = "This will determine whether or not to hide product in search results.", Order = 2)]
