@@ -208,6 +208,12 @@ namespace Foundation
                 o.DatabasePath = Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data", "GeoLite2-City.mmdb");
                 o.LocationsDatabasePath = Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data", "GeoLite2-City-Locations-en.csv");
             });
+
+            // URLs for files in contentassets folder shows friendly URL
+            services.Configure<RoutingOptions>(o =>
+            {
+                o.ContentAssetsBasePath = ContentAssetsBasePath.ContentOwner;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
