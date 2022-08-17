@@ -20,7 +20,7 @@ namespace Foundation.Features.Media
         public override void SetDefaultValues(ContentType contentType)
         {
             base.SetDefaultValues(contentType);
-            Height = 500;
+            Height = 500; 
         }
     }
 }
