@@ -18,7 +18,7 @@ namespace Foundation.Features.Events.CalendarBlock
         {
             var model = new CalendarBlockViewModel(currentBlock);
 
-            return await Task.FromResult(View("~/Features/CmsPages/Events/CalendarBlock/Views/index.cshtml", model));
+            return await Task.FromResult(View("~/Features/Events/CalendarBlock/index.cshtml", model));
         }
     }
 }
