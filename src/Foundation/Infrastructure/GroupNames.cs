@@ -11,7 +11,7 @@ namespace Foundation.Infrastructure
 
         [Display(Order = 520)]
         public const string Commerce = "Commerce";
-
+        
         [Display(Order = 530)]
         public const string Account = "Account";
 
@@ -23,6 +23,9 @@ namespace Foundation.Infrastructure
 
         [Display(Order = 570)]
         public const string Forms = "Forms";
+
+        [Display(Order = 575)]
+        public const string LocationBlocks = "Location Blocks";
 
         [Display(Order = 580)]
         public const string Multimedia = "Multimedia";
