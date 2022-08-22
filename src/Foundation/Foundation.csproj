@@ -19,11 +19,12 @@
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.5.0" />
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.5.0" />
 		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.5.0" />
+		<PackageReference Include="EPiServer.Forms.Samples" Version="4.0.0" />
 		<PackageReference Include="EPiServer.Framework" Version="12.8.0" />
 		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.8.0" />
 		<PackageReference Include="EPiServer.Find.Cms" Version="14.0.4" />
 		<PackageReference Include="EPiServer.Find.Commerce" Version="12.0.1" />
-		<PackageReference Include="EPiServer.Forms" Version="5.2.0" />
+		<PackageReference Include="EPiServer.Forms" Version="5.2.1" />
 		<PackageReference Include="EPiServer.Hosting" Version="12.8.0" />
 		<PackageReference Include="EPiServer.Labs.BlockEnhancements" Version="1.1.1" />
 		<PackageReference Include="EPiServer.Labs.LanguageManager" Version="5.1.0" />
