@@ -16,7 +16,7 @@ namespace Foundation.Features.Locations.Blocks
     [ContentType(DisplayName = "Filter Distances Block",
         GUID = "eab40a8c-9006-4766-a87e-1dec153e735f",
         Description = "Distance facets for locations",
-        GroupName = TabNames.Location)]
+        GroupName = GroupNames.LocationBlocks)]
     [ImageUrl("/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage.LocationListPage) })]
     public class FilterDistancesBlock : FoundationBlockData, IFilterBlock
