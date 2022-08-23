@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Please copy this lang file into /wwwroot/lang folder-->
+<languages>
+	<language name="English" id="en">
+		<episerver>
+			<forms>
+				<externalsystems>
+					<optimizely.labs.marketingautomationintegration.odp.odpexternalsystem>
+						<displayname>ODP System Database</displayname>
+					</optimizely.labs.marketingautomationintegration.odp.odpexternalsystem>
+				</externalsystems>
+			</forms>
+		</episerver>
+	</language>
+</languages>
