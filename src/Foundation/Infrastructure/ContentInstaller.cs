@@ -137,11 +137,10 @@ namespace Foundation.Infrastructure
                 ContentReference.RootPage);
 
             ServiceLocator.Current.GetInstance<ISettingsService>().UpdateSettings();
+            _principalAccessor.Principal = new GenericPrincipal(new GenericIdentity("Importer"), null);
 
-            
             if (File.Exists(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "foundation_fashion.zip")))
             {
-                _principalAccessor.Principal = new GenericPrincipal(new GenericIdentity("Importer"), null);
                 CreateCatalog(new FileStream(Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "foundation_fashion.zip"), FileMode.Open),
                     Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data", "foundation_fashion.zip"));
             }
