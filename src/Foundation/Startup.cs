@@ -32,6 +32,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Optimizely.Labs.MarketingAutomationIntegration.ODP;
 using System;
 using System.IO;
 using System.Linq;
@@ -214,6 +215,10 @@ namespace Foundation
             {
                 o.ContentAssetsBasePath = ContentAssetsBasePath.ContentOwner;
             });
+
+            // Add ODP MA Connector (note: requires API key in appsettings.json)
+            services.AddMarketingAutomationIntegrationODP(_configuration);
+            services.AddFormRepositoryWorkAround();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
