@@ -7,6 +7,7 @@ using EPiServer.ContentManagementApi;
 using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.Labs.BlockEnhancements;
+using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Modules;
@@ -219,6 +220,10 @@ namespace Foundation
             // Add ODP MA Connector (note: requires API key in appsettings.json)
             services.AddMarketingAutomationIntegrationODP(_configuration);
             services.AddFormRepositoryWorkAround();
+
+            // Add A/B Testing Gadget
+            // https://github.com/episerver/content-ab-testing
+            services.AddABTesting(_configuration.GetConnectionString("EPiServerDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
