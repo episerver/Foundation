@@ -40,7 +40,7 @@
                 {
                     url = url + "?width=1440&format=webp";
                 }
-                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");"></div>
+                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N", System.Globalization.CultureInfo.InvariantCulture) ?? "1");"></div>
                 <img class="standard-page__banner lazyload" src="@url" />
                 <div class="hero__gradient">
                 </div>
@@ -59,7 +59,7 @@
                 <img class="standard-page__banner lazyload" data-src="@url" />
                 <div class="hero__gradient">
                 </div>
-                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N") ?? "1");">
+                <div class="standard-page__background" style="background:@Model.CurrentContent.BackgroundColor;opacity:@(Model.CurrentContent.BackgroundOpacity?.ToString("N", System.Globalization.CultureInfo.InvariantCulture) ?? "1");">
                 </div>
             }
         </div>
