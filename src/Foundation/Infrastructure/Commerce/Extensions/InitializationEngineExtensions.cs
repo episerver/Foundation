@@ -1,4 +1,6 @@
 ﻿using EPiServer.Commerce.Routing;
+using EPiServer.Core;
+using EPiServer.Core.Routing;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using Foundation.Infrastructure.Commerce.Install;
@@ -11,6 +13,7 @@ using Mediachase.Commerce.Orders;
 using Mediachase.Data.Provider;
 using Mediachase.MetaDataPlus;
 using Mediachase.MetaDataPlus.Configurator;
+using SonDo.Infrastructure.Routing;
 using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Extensions
@@ -19,6 +22,9 @@ namespace Foundation.Infrastructure.Commerce.Extensions
     {
         public static void InitializeFoundationCommerce(this InitializationEngine context)
         {
+            ServiceLocator.Current.GetInstance<PartialRouteHandler>()
+                .RegisterPartialRouter(new PartialRouter<PageData, PageData>(new MarketPageDataPartialRouting()));
+            
             CatalogRouteHelper.MapDefaultHierarchialRouter(false);
             AddBusinessFoundationIfNeccessary(context);
             AddOrderMetaFieldsIfNesccessary();
