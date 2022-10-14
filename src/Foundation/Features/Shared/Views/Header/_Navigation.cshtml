@@ -26,10 +26,20 @@
                         }
                         else
                         {
-                            <picture class="img-fluid">
-                                <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp" />
-                                <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
-                            </picture>
+                            @if (@Url.ContentUrl(Model.LayoutSettings.SiteLogo).Contains("?"))
+                            {
+                                <picture class="img-fluid">
+                                    <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)&format=webp&width=225" type="image/webp" />
+                                    <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)&width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
+                                </picture>
+                            }
+                            else
+                            {
+                                <picture class="img-fluid">
+                                    <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp" />
+                                    <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />                                   
+                                </picture>
+                            }
                         }
                     </a>
                 </div>
