@@ -12,10 +12,10 @@ export default class CalendarBlock {
         calendarBlocks.forEach((item, index) => {
             let url = "";
             if (item.dataset.blockViewmode === "Upcoming") {
-                url = "CalendarBlock/UpcomingEvents";
+                url = "/CalendarBlock/UpcomingEvents";
             }
             else {
-                url = "CalendarBlock/CalendarEvents";
+                url = "/CalendarBlock/CalendarEvents";
             }
 
             let data = {

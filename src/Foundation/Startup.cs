@@ -7,6 +7,7 @@ using EPiServer.ContentManagementApi;
 using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.Labs.BlockEnhancements;
+using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Modules;
@@ -32,7 +33,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Optimizely.Labs.MarketingAutomationIntegration.ODP;
 using System;
+using System.IO;
 using System.Linq;
 using UNRVLD.ODP.VisitorGroups.Initilization;
 
@@ -200,6 +203,27 @@ namespace Foundation
 
             // Add Welcome DAM
             services.AddDAMUi();
+
+            //Configure GeoLocation for Visitor Groups, etc
+            services.AddMaxMindGeolocationProvider(o =>
+            {
+                o.DatabasePath = Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data", "GeoLite2-City.mmdb");
+                o.LocationsDatabasePath = Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data", "GeoLite2-City-Locations-en.csv");
+            });
+
+            // URLs for files in contentassets folder shows friendly URL
+            services.Configure<RoutingOptions>(o =>
+            {
+                o.ContentAssetsBasePath = ContentAssetsBasePath.ContentOwner;
+            });
+
+            // Add ODP MA Connector (note: requires API key in appsettings.json)
+            services.AddMarketingAutomationIntegrationODP(_configuration);
+            services.AddFormRepositoryWorkAround();
+
+            // Add A/B Testing Gadget
+            // https://github.com/episerver/content-ab-testing
+            services.AddABTesting(_configuration.GetConnectionString("EPiServerDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,7 +13,7 @@ namespace Foundation.Features.Locations.Blocks
     [ContentType(DisplayName = "Filter Continents Block",
         GUID = "9103a763-4c9c-431e-bc11-f2794c3b4b80",
         Description = "Continent facets for locations",
-        GroupName = TabNames.Location)]
+        GroupName = GroupNames.LocationBlocks)]
     [ImageUrl("/icons/cms/blocks/map.png")]
     [AvailableContentTypes(Include = new Type[] { typeof(LocationListPage.LocationListPage) })]
     public class FilterContinentsBlock : FoundationBlockData, IFilterBlock

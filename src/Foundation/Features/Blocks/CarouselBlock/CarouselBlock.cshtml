@@ -24,24 +24,32 @@
         <div class="@(item.i == 0 ? "carousel-item active" : "carousel-item")">
             @if (item.value.HeroBlock != null)
             {
-                @await Html.PartialAsync("HeroBlock", item.value.HeroBlock)
-            }
-            else if (item.value.CarouselImage != null)
-            {
-                <a href="@(item.value.CarouselImage.ItemURL != null ? Url.ContentUrl(item.value.CarouselImage.ItemURL) : "#")">
-                    <picture class="img-fluid">
-                        <source data-srcset="@Url.ContentUrl(item.value.CarouselImage.Image)?format=webp" type="image/webp">
-                        <img class="img-fluid" loading="lazy" src="@Url.ContentUrl(item.value.CarouselImage.Image)"/>
-                    </picture>
-                </a>
-                if (!string.IsNullOrWhiteSpace(item.value.CarouselImage.Heading))
-                {
-                    <div class="carousel-caption animated fadeInUpBig">
-                        <h3>@item.value.CarouselImage.Heading</h3>
-                        <p>@item.value.CarouselImage.Description</p>
-                    </div>
-                }
-            }
+                        @await Html.PartialAsync("/Features/Blocks/HeroBlock/HeroBlock.cshtml", item.value.HeroBlock)
+                    }
+                    else if (item.value.CarouselImage != null)
+                    {
+@*                        if (item.value.CarouselImage.Heading != "Not supported")
+                        {*@
+                            <a href="@(item.value.CarouselImage.ItemURL != null ? Url.ContentUrl(item.value.CarouselImage.ItemURL) : "#")">
+                                <picture class="img-fluid">
+                                    <source data-srcset="@Url.ContentUrl(item.value.CarouselImage.Image)?format=webp" type="image/webp">
+                                    <img class="img-fluid" loading="lazy" src="@Url.ContentUrl(item.value.CarouselImage.Image)"/>
+                                </picture>
+                            </a>
+                            if (!string.IsNullOrWhiteSpace(item.value.CarouselImage.Heading))
+                            {
+                                <div class="carousel-caption animated fadeInUpBig">
+                                    <h3>@item.value.CarouselImage.Heading</h3>
+                                    <p>@item.value.CarouselImage.Description</p>
+                                </div>
+                            }
+@*                        }
+                        else
+                        {
+                             <h3>"@Url.ContentUrl(item.value.CarouselImage.Image)" is not supported media type.</h3>
+                             <p>@item.value.CarouselImage.Description</p>   
+                        }*@
+                    }
         </div>
     }
     </div>

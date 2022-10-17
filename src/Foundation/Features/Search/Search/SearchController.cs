@@ -114,14 +114,14 @@ namespace Foundation.Features.Search
 
             if (searchSettings?.ShowPdfSearchResults ?? true)
             {
-                //viewModel.PdfSearchResult = _searchService.SearchPdf(new FilterOptionViewModel()
-                //{
-                //    Q = filterOptions.Q,
-                //    PageSize = 5,
-                //    Page = filterOptions.SearchPdf ? filterOptions.Page : 1,
-                //    SectionFilter = filterOptions.SectionFilter
-                //});
-                viewModel.PdfSearchResult = null;
+                viewModel.PdfSearchResult = _searchService.SearchPdf(new FilterOptionViewModel()
+                {
+                    Q = filterOptions.Q,
+                    PageSize = 5,
+                    Page = filterOptions.SearchPdf ? filterOptions.Page : 1,
+                    SectionFilter = filterOptions.SectionFilter
+                });
+                //viewModel.PdfSearchResult = null;
             }
 
             var productCount = viewModel.ProductViewModels?.Count() ?? 0;
@@ -200,15 +200,15 @@ namespace Foundation.Features.Search
 
             if (searchSettings?.ShowPdfSearchResults ?? true)
             {
-                //var pdfResult = _searchService.SearchPdf(new FilterOptionViewModel()
-                //{
-                //    Q = quicksearchterm.search,
-                //    PageSize = 5,
-                //    Page = 1
-                //});
-                model.PdfSearchResult = null;
-                //pdfCount = pdfResult?.Hits.Count() ?? 0;
-                pdfCount = 0;
+                var pdfResult = _searchService.SearchPdf(new FilterOptionViewModel()
+                {
+                    Q = quicksearchterm.search,
+                    PageSize = 5,
+                    Page = 1
+                });
+                model.PdfSearchResult = pdfResult;
+                pdfCount = pdfResult?.Hits.Count() ?? 0;
+                //pdfCount = 0;
             }
 
             if (productCount + contentCount + pdfCount == 1)

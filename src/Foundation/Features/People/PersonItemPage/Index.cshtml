@@ -8,7 +8,7 @@
         @Html.PropertyFor(x => x.CurrentContent.Name)
     </h1>
     <h2>
-        @Html.PropertyFor(x => x.CurrentContent.JobTitle),
+        @Html.PropertyFor(x => x.CurrentContent.JobTitle) @if (Model.CurrentContent.JobTitle != null && Model.CurrentContent.Location != null) { @Html.Encode(", ") }
         @Model.CurrentContent.Location
     </h2>
     <div class="row contact">
