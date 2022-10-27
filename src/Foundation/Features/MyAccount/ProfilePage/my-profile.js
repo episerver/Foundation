@@ -4,8 +4,6 @@ import * as axios from "axios";
 export default class MyProfile {
     saveProfile(options) {
         document.querySelector(".loading-box").style.display = 'block'; // show
-        console.log(options.data);
-        console.log(options.url);
         axios.post(options.url, options.data)
             .then(function (result) {
                 document.querySelector('.jsFirstName').innerHTML = result.data.firstName;
