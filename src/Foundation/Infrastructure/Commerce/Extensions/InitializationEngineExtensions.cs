@@ -23,7 +23,7 @@ namespace Foundation.Infrastructure.Commerce.Extensions
         public static void InitializeFoundationCommerce(this InitializationEngine context)
         {
             ServiceLocator.Current.GetInstance<PartialRouteHandler>()
-                .RegisterPartialRouter(new PartialRouter<PageData, PageData>(new MarketPageDataPartialRouting()));
+                .RegisterPartialRouter(new PartialRouter<PageData, PageData>(new MarketHierarchicalPageDataPartialRouting()));
             
             CatalogRouteHelper.MapDefaultHierarchialRouter(false);
             AddBusinessFoundationIfNeccessary(context);

@@ -1,21 +1,23 @@
 using EPiServer;
 using EPiServer.Core;
-using System.Globalization;
 using EPiServer.Core.Routing;
 using EPiServer.Core.Routing.Pipeline;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using EPiServer.Web.Routing.Segments;
 using Mediachase.Commerce;
+using Mediachase.Commerce.Extensions;
 using Mediachase.Commerce.Markets;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace SonDo.Infrastructure.Routing;
 
-public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, IPartialRouter
+public class MarketHierarchicalPageDataPartialRouting : IPartialRouter<PageData, PageData>, IPartialRouter
 {
     private readonly IMarketService _marketService;
     private readonly ICurrentMarket _currentMarket;
@@ -28,9 +30,10 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
     private readonly IContentLanguageSettingsHandler _contentLanguageSettingsHandler;
     private const string VirtualPathCachePrefix = "EP:PageDataRouterVPath";
 
+    [NonSerialized] private static readonly ILogger _log = LogManager.GetLogger(typeof(MarketHierarchicalPageDataPartialRouting));
     public const string SegmentName = "market";
 
-    public MarketPageDataPartialRouting()
+    public MarketHierarchicalPageDataPartialRouting()
         : this(
             ServiceLocator.Current.GetInstance<IMarketService>(),
             ServiceLocator.Current.GetInstance<ICurrentMarket>(),
@@ -45,7 +48,7 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
     {
     }
 
-    public MarketPageDataPartialRouting(
+    public MarketHierarchicalPageDataPartialRouting(
         IMarketService marketService,
         ICurrentMarket currentMarket,
         IContentLanguageAccessor contentLanguageAccessor,
@@ -77,39 +80,67 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
         }
     }
 
-    public virtual object RoutePartial(PageData content, UrlResolverContext urlResolverContext)
+    public virtual object RoutePartial(PageData content, UrlResolverContext urlGeneratorContext)
     {
-        if (!content.ContentLink.CompareToIgnoreWorkID(RouteStartingPoint))
-            return null;
-        var remainingSegment = urlResolverContext.GetNextSegment(urlResolverContext.RemainingSegments);
-        if (string.IsNullOrEmpty(remainingSegment.Next.ToString()))
+        if (_log.IsDebugEnabled())
+            _log.DebugBeginMethod(nameof(GetPartialVirtualPath), content, urlGeneratorContext);
+
+        var currentMarket = _currentMarket.GetCurrentMarket();
+        var marketId = currentMarket.MarketId.ToString().ToLower();
+
+        var cultureInfo = urlGeneratorContext.RequestedLanguage ?? _contentLanguageAccessor.Language;
+        if (!TryGetVirtualPath(_httpContextAccessor.HttpContext, content, cultureInfo?.Name, marketId, out var virtualPath))
             return null;
 
-        if (ProcessMarketSegment(urlResolverContext, remainingSegment))
+        var editOrPreviewMode = SegmentHelper.GetModifiedVirtualPathInEditOrPreviewMode
+            (content.ContentLink, virtualPath, urlGeneratorContext.ContextMode);
+
+        return new PartialRouteData()
         {
-            remainingSegment = urlResolverContext.GetNextSegment(urlResolverContext.RemainingSegments);
-        }
-
-        var cultureInfo = urlResolverContext.RequestedLanguage ?? _contentLanguageAccessor.Language;
-        var startingPage = _contentLoader.Get<PageData>(RouteStartingPoint);
-        var pageData = GetPageContentRecursive(startingPage, remainingSegment, urlResolverContext, cultureInfo);
-
-        if (pageData != null)
-            urlResolverContext.Content = pageData;
-        return pageData;
+            BasePathRoot = SiteDefinition.Current.RootPage,
+            PartialVirtualPath = !String.IsNullOrEmpty(editOrPreviewMode) ? $"{marketId}/{editOrPreviewMode}" : string.Empty
+        };
     }
 
     public virtual PartialRouteData GetPartialVirtualPath(PageData content, UrlGeneratorContext urlGeneratorContext)
     {
+        if (_log.IsDebugEnabled())
+            _log.DebugBeginMethod(nameof(GetPartialVirtualPath), content, urlGeneratorContext);
+
         var currentMarket = _currentMarket.GetCurrentMarket();
         var marketId = currentMarket.MarketId.ToString().ToLower();
 
         var cultureInfo = urlGeneratorContext.Language ?? _contentLanguageAccessor.Language;
-        string virtualPath;
-        if (!TryGetVirtualPath(_httpContextAccessor.HttpContext, content, cultureInfo?.Name, out virtualPath))
+        if (!TryGetVirtualPath(_httpContextAccessor.HttpContext, content, cultureInfo?.Name, marketId, out var virtualPath))
             return null;
 
-        return new PartialRouteData() { BasePathRoot = SiteDefinition.Current.RootPage, PartialVirtualPath = !String.IsNullOrEmpty(virtualPath) ? $"{marketId}/{virtualPath}" : string.Empty };
+        var editOrPreviewMode = SegmentHelper.GetModifiedVirtualPathInEditOrPreviewMode
+            (content.ContentLink, virtualPath, urlGeneratorContext.ContextMode);
+
+        return new PartialRouteData()
+        {
+            BasePathRoot = SiteDefinition.Current.RootPage,
+            PartialVirtualPath = !String.IsNullOrEmpty(editOrPreviewMode) ? $"{marketId}/{editOrPreviewMode}" : string.Empty
+        };
+    }
+
+    private bool ProcessMarketSegment(UrlResolverContext context, Segment segment)
+    {
+        var marketSegment = segment.Next;
+        var marketId = new MarketId(marketSegment.ToString());
+
+        var market = _marketService.GetMarket(marketId);
+        if (market == null) return false;
+
+        // Set current market in case the market segment is not the same as current one.
+        var currentMarket = _currentMarket.GetCurrentMarket();
+        if (marketId != currentMarket.MarketId)
+            _currentMarket.SetCurrentMarket(marketId);
+
+        context.RouteValues[SegmentName] = marketSegment;
+        context.RemainingSegments = segment.Remaining;
+
+        return true;
     }
 
     protected virtual PageData GetPageContentRecursive(
@@ -168,9 +199,10 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
         HttpContext context,
         PageData content,
         string language,
+        string marketId,
         out string virtualPath)
     {
-        virtualPath = (string)null;
+        virtualPath = null;
         if (content == null)
             return false;
         if (content.ContentLink.CompareToIgnoreWorkID(RouteStartingPoint))
@@ -181,30 +213,34 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
 
         if (ContentReference.IsNullOrEmpty(content.ParentLink))
             return false;
-        string virtualPathCacheKey = GetVirtualPathCacheKey(content.ContentLink, language);
-        if (context != null && context.Items.ContainsKey(virtualPathCacheKey) && context.Items[virtualPathCacheKey] is Tuple<bool, string> tuple)
+        string virtualPathCacheKey = BuildVirtualPathCacheKey(content.ContentLink, language, marketId);
+        if (context != null && context.Items.ContainsKey(virtualPathCacheKey) && context.Items[virtualPathCacheKey] is Tuple<bool, string> tuple1)
         {
-            virtualPath = tuple.Item2;
-            return tuple.Item1;
+            virtualPath = tuple1.Item2;
+            return tuple1.Item1;
         }
 
-        bool returnVirtualPath = false;
-        if (TryGetRouteSegment(content.ContentLink, language, out var segment)
-            && _contentLoader.TryGet(content.ParentLink, out PageData content1)
-            && TryGetVirtualPath(context, content1, language, out var virtualPath2))
+        bool retVal = false;
+        string segment;
+        PageData nextContent;
+        string nextVirtualPath;
+        if (TryGetRouteSegment(content.ContentLink, language, out segment)
+            && _contentLoader.TryGet(content.ParentLink, out nextContent)
+            && TryGetVirtualPath(context, nextContent, language, marketId, out nextVirtualPath))
         {
-            virtualPath = string.IsNullOrEmpty(virtualPath2) ? segment : virtualPath2 + "/" + segment;
-            returnVirtualPath = true;
+            virtualPath = string.IsNullOrEmpty(nextVirtualPath) ? segment : nextVirtualPath + "/" + segment;
+            retVal = true;
         }
 
-        if (context == null)
-            return returnVirtualPath;
+        if (context != null)
+        {
+            Tuple<bool, string> tuple2 = new Tuple<bool, string>(retVal, virtualPath);
+            context.Items[virtualPathCacheKey] = tuple2;
+        }
 
-        Tuple<bool, string> tuple2 = new Tuple<bool, string>(returnVirtualPath, virtualPath);
-        context.Items[virtualPathCacheKey] = tuple2;
-
-        return returnVirtualPath;
+        return retVal;
     }
+
 
     private bool TryGetRouteSegment(ContentReference contentLink, string language, out string segment)
     {
@@ -220,24 +256,6 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
         {
             return false;
         }
-
-        return true;
-    }
-
-    private bool ProcessMarketSegment(UrlResolverContext context, Segment segment)
-    {
-        var marketSegment = segment.Next;
-        var marketId = new MarketId(marketSegment.ToString());
-
-        var market = _marketService.GetMarket(marketId);
-        if (market == null) return false;
-
-        var currentMarket = _currentMarket.GetCurrentMarket();
-        if (marketId != currentMarket.MarketId)
-            _currentMarket.SetCurrentMarket(marketId);
-
-        context.RouteValues[SegmentName] = marketSegment;
-        context.RemainingSegments = segment.Remaining;
 
         return true;
     }
@@ -298,8 +316,8 @@ public class MarketPageDataPartialRouting : IPartialRouter<PageData, PageData>, 
 
     private bool IsValidRoutedContent(PageData content) => content != null;
 
-    private string GetVirtualPathCacheKey(ContentReference contentLink, string language)
-        => VirtualPathCachePrefix + language + "/" +
+    private string BuildVirtualPathCacheKey(ContentReference contentLink, string marketId, string language)
+        => $"{VirtualPathCachePrefix}{language}/{marketId}" +
            contentLink.ID.ToString(CultureInfo.InvariantCulture) + ":" +
            contentLink.WorkID.ToString(CultureInfo.InvariantCulture);
 }
