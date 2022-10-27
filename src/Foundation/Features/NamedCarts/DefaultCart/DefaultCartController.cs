@@ -757,9 +757,17 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 _orderRepository.Delete(CartWithValidationIssues.Cart.OrderLink);
                 _cart = null;
             }
+
             //var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage);
-            var redirect = currentPage.LinkURL;
-            return Json(redirect);
+            //var redirect = currentPage.LinkURL;
+            //return Json(redirect);
+            return Json(new ChangeCartJsonResult
+            {
+                StatusCode = 1,
+                Message = " All items cleared from cart.",
+                CountItems = (int)CartWithValidationIssues.Cart.GetAllLineItems().Sum(x => x.Quantity),
+                SubTotal = CartWithValidationIssues.Cart.GetSubTotal()
+            });
         }
 
         [HttpPost]

@@ -1,6 +1,7 @@
 ﻿export class Cart {
     changeInfoCart(result) {
         document.querySelector('.largecart-Subtotal').innerHTML = "$" + result.data.subTotal.amount;
+        if (document.querySelector('.largecart-TotalDiscount') != null)
         document.querySelector('.largecart-TotalDiscount').innerHTML = "$" + result.data.totalDiscount.amount;
         document.querySelector('.largecart-TaxTotal').innerHTML = "$" + result.data.taxTotal.amount;
         document.querySelector('.largecart-ShippingTotal').innerHTML = "$" + result.data.shippingTotal.amount;
@@ -23,6 +24,7 @@
                 }
                 else if (result.data.statusCode == 1) {
                     if (typeCart == 'cart') {
+                        //console.log("inside else if if");
                         Array.from(document.querySelectorAll(".countItemCartHeader")).forEach(function (el, i) {
                             el.innerHTML = result.data.CountItems;
                         });
@@ -32,12 +34,14 @@
                     }
 
                     if (typeCart !== 'large-cart' && typeCart !== "shared-cart-large") {
+                        console.log("inside else 2 if if");
                         elementClick.closest('.cart__row').remove();
                         if (typeCart == "cart") cartHelper.setCartReload(result.data.countItems);
                         else if (typeCart == "shared-cart") cartHelper.setSharedCartReload(result.data.countItems);
                         else cartHelper.setWishlistReload(result.data.countItems);
 
                     } else { // if large cart, large shared 
+                        //console.log("inside else 2 if else");
                         if (typeCart == "shared-cart-large") {
                             elementClick.closest('tr').remove();
                             cartHelper.setSharedCartReload(result.data.countItems);
@@ -135,7 +139,6 @@
                         inst.changeInfoCart(result);
                         var subtotal = parseFloat(element.getAttribute('unitPrice')) * qty;
                         document.querySelector('.subtotal-' + code).innerHTML = (element.getAttribute('currency') + subtotal);
-                        
                         element.closest('.product-tile-list__item').querySelector('.currentVariantInfo').getAttribute('quantity', qty);
                         break;
                 }
@@ -159,7 +162,9 @@
                 axios.post(url)
                     .then(function (result) {
                         notification.success("Delete cart successfully.");
-                        setTimeout(function () { window.location.href = result.data; }, 1000);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
                     })
                     .catch(function (error) {
                         notification.error(error);
