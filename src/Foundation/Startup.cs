@@ -140,7 +140,12 @@ namespace Foundation
                 options.DisableScopeValidation = true;
             });
 
-            services.AddOpenIDConnect<SiteUser>(options =>
+            services.AddOpenIDConnect<SiteUser>(
+                useDevelopmentCertificate: true,
+                signingCertificate: null,
+                encryptionCertificate: null,
+                createSchema: true,
+                options =>
             {
                 //options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
                 var application = new OpenIDConnectApplication()
