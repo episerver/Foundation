@@ -7,6 +7,7 @@ using EPiServer.ContentManagementApi;
 using EPiServer.Data;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.Labs.BlockEnhancements;
+using EPiServer.Labs.ContentManager;
 using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceLocation;
@@ -229,6 +230,9 @@ namespace Foundation
             // Add A/B Testing Gadget
             // https://github.com/episerver/content-ab-testing
             services.AddABTesting(_configuration.GetConnectionString("EPiServerDB"));
+
+            // Add ContentManager
+            services.AddContentManager();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
