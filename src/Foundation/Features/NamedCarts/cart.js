@@ -24,7 +24,6 @@
                 }
                 else if (result.data.statusCode == 1) {
                     if (typeCart == 'cart') {
-                        //console.log("inside else if if");
                         Array.from(document.querySelectorAll(".countItemCartHeader")).forEach(function (el, i) {
                             el.innerHTML = result.data.CountItems;
                         });
@@ -34,14 +33,12 @@
                     }
 
                     if (typeCart !== 'large-cart' && typeCart !== "shared-cart-large") {
-                        console.log("inside else 2 if if");
                         elementClick.closest('.cart__row').remove();
                         if (typeCart == "cart") cartHelper.setCartReload(result.data.countItems);
                         else if (typeCart == "shared-cart") cartHelper.setSharedCartReload(result.data.countItems);
                         else cartHelper.setWishlistReload(result.data.countItems);
 
                     } else { // if large cart, large shared 
-                        //console.log("inside else 2 if else");
                         if (typeCart == "shared-cart-large") {
                             elementClick.closest('tr').remove();
                             cartHelper.setSharedCartReload(result.data.countItems);

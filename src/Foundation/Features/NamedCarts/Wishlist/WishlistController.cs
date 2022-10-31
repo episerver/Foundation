@@ -185,7 +185,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         }
 
         [HttpPost]
-        public ActionResult ChangeCartItem(RequestParamsToCart param)
+        public ActionResult ChangeCartItem([FromBody]  RequestParamsToCart param)
         {
             ModelState.Clear();
             var productName = "";
@@ -370,7 +370,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                 return Json(new ChangeCartJsonResult
                 {
                     StatusCode = 1,
-                    Message = "Add all LineItems from the wishlist to the cart.",
+                    Message = "Added all LineItems from the wishlist to the cart.",
                     CountItems = (int)Cart.Cart.GetAllLineItems().Sum(x => x.Quantity),
                 });
             }
