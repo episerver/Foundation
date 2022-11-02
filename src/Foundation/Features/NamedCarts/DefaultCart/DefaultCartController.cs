@@ -303,7 +303,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         public JsonResult RedirectToCart(string message)
         {
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            if (referencePages?.CartPage.IsNullOrEmpty() ?? false)
+            if (!referencePages?.CartPage.IsNullOrEmpty() ?? false)
             {
                 var cartPage = _contentLoader.Get<CartPage>(referencePages.CartPage);
                 return Json(new { Redirect = cartPage.StaticLinkURL, Message = message });
