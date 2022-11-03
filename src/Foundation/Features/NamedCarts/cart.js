@@ -175,7 +175,8 @@
 
     loadMiniCartClick(urlLoadCart, clickSelector, reloadSelector) {
         var inst = this;
-        $(clickSelector).click(function () {
+        
+        clickSelector.addEventListener("click", function () {
             var isNeedReload = clickSelector.getAttribute('reload');
             if (isNeedReload == 1) { // reload mini cart
                 document.querySelector(reloadSelector + " .loading-cart").style.display = "block";
