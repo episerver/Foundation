@@ -10,7 +10,7 @@ using Foundation.Infrastructure;
 namespace Foundation.Features.Blocks.ModalBlock
 {
     [ContentType(DisplayName = "Modal Block",
-        GUID = "CE1D5328-CC98-4383-8A75-669DCD64908E",
+        GUID = "FC6DA151-097A-442F-9583-0DD937B3E3E2",
         Description = "Adds modal block (pop-up) to the page",
         GroupName = GroupNames.Content)]
     [ImageUrl("/icons/cms/blocks/CMS-icon-block-03.png")]
