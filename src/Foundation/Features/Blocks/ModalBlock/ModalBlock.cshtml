@@ -1,0 +1,69 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.ModalBlock
+
+@model ModalBlock
+@*@model IBlockViewModel<ModalBlock>*@
+
+@*@{ var modalId = (((IContent)Model).Name).Replace(" ", ""); }*@
+@{
+    var modalId = "mymodal"; 
+}
+
+<div class="modal-block @Model.CssClass">
+    @if (Model.ShowModalOpenButton)
+    {
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@modalId">
+          @Model.ModalOpenButtonText
+        </button>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="@(modalId)Label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          @if (!Model.HideModalTitle)
+          {
+            <div class="modal-header">
+              <h5 class="modal-title" id="@(modalId)Label">@Model.ModalTitle</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          }
+          <div class="modal-body">
+            @Html.PropertyFor(m => m.ModalContentArea)
+          </div>
+          @if (!Model.HideModalFooter)
+          {
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Model.ModalCloseButtonText</button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+</div>
+
+@if (Model.ShowModalOnPageLoad)
+{
+    <!-- Show modal automatically on page load -->
+    <script>
+        $(document).ready(function(){
+            $("#@(modalId)").modal('show');
+        });
+    </script>
+}
+
+<style>
+    .modal-body::before {
+        content: "";
+        background-image: url('@Url.ContentUrl(Model.ModalBackgroundImage)');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        left: 0px;
+        opacity: .2;
+    }
+</style>
