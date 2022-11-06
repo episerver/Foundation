@@ -86,7 +86,7 @@ namespace Foundation.Features.Blocks.ModalBlock
         {
             base.SetDefaultValues(contentType);
             HideModalTitle = false;
-            HideModalFooter = true;
+            HideModalFooter = false;
             ModalCloseButtonText = "Close";
             ShowModalOnPageLoad = true;
             ShowModalOpenButton = false;

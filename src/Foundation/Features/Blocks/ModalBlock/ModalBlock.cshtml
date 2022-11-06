@@ -2,12 +2,8 @@
 @using Foundation.Features.Blocks.ModalBlock
 
 @model ModalBlock
-@*@model IBlockViewModel<ModalBlock>*@
 
-@*@{ var modalId = (((IContent)Model).Name).Replace(" ", ""); }*@
-@{
-    var modalId = "mymodal"; 
-}
+@{ var modalId = (((IContent)Model).Name).Replace(" ", ""); }
 
 <div class="modal-block @Model.CssClass">
     @if (Model.ShowModalOpenButton)
@@ -48,7 +44,7 @@
     <!-- Show modal automatically on page load -->
     <script>
         $(document).ready(function(){
-            $("#@(modalId)").modal('show');
+            jQuery("#@(modalId)").modal('show');
         });
     </script>
 }
