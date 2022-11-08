@@ -102,7 +102,9 @@ export class ProductSearch {
     }
 
     removeTag(inputName) {
-        document.getElementsByName(inputName).setAttribute('checked', false);
+        Array.from(document.getElementsByName(inputName)).forEach(function (el, i) {
+            el.setAttribute('checked', false);
+        });
         this.search();
     }
 
