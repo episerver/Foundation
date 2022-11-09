@@ -25,6 +25,7 @@
 		<PackageReference Include="EPiServer.Framework" Version="12.9.3" />
 		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.9.3" />
 		<PackageReference Include="EPiServer.Forms" Version="5.3.0" />
+		<PackageReference Include="EPiServer.GoogleAnalytics" Version="3.0.0" />
 		<PackageReference Include="EPiServer.Hosting" Version="12.9.3" />
 		<PackageReference Include="EPiServer.Labs.BlockEnhancements" Version="1.1.1" />
 		<PackageReference Include="EPiServer.Labs.ContentManager" Version="1.1.0" />
