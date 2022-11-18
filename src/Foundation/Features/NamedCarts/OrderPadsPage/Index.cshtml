@@ -6,7 +6,9 @@
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
-
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 
 <section>
@@ -65,7 +67,7 @@
                                             <td>@lineItem.Quantity</td>
                                             <td class="text-right">
                                                 <div class="action-buttons wishlist-actions">
-                                                    @using (@Html.BeginForm("AddToCart", "DefaultCart", FormMethod.Post, new { data_container = "MiniCart" }))
+                                                    @using (@Html.BeginForm("AddToCart", "DefaultCart", FormMethod.Post, new { data_container = "MiniCart" , style= "float:left"}))
                                                     {
                                                         @Html.AntiForgeryToken()
                                                         @Html.Hidden("code", @lineItem.Code)
@@ -73,7 +75,7 @@
                                                             <i data-feather="shopping-cart"></i>
                                                         </button>
                                                     }
-                                                    @using (@Html.BeginForm("RemoveCartItem", "WishList", FormMethod.Post, new { data_container = "WishListMiniCart" }))
+                                                    @using (@Html.BeginForm("RemoveCartItem", "WishList", FormMethod.Post, new { data_container = "WishListMiniCart", style= "float:left" }))
                                                     {
                                                         @Html.Hidden("code", @lineItem.Code)
                                                         @Html.Hidden("userId", @user.UserId)

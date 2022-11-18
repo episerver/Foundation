@@ -17,6 +17,9 @@
         let thirdRow = '.third-row';
 
         $table = document.querySelector(".table");
+        if (document.querySelector(".table") == null) {
+            return;
+        }
         $firstRows = $table.querySelector(firstRow);   //$(firstRow, $table); // $('.sub-organization-row');
         $secondRows = $table.querySelector(secondRow); //$(secondRow, $table); // $('.user-row');
         $thirdRows = $table.querySelector(thirdRow); //$(thirdRow, $table); // $('.product-row');
@@ -30,7 +33,8 @@
 
                 inst.bindEvents();
             }
-        }
+         }
+        
     }
 
 
@@ -87,6 +91,7 @@
         });
 
         let $thirdRows = document.querySelector(".table").querySelector(".third-row")
+        let $expandSecondRowsBtn = document.querySelector(".second-row").querySelector('.btn-xs');
         if ($thirdRows != null) {
             $expandSecondRowsBtn.addEventListener("click", function (e) {
 
@@ -99,13 +104,13 @@
                     $thisIcon.classList.add('feather-minus');
                     $thisIcon.classList.remove('feather-plus');
                     $thisIcon.innerHTML = minusIcon;
-                    $firstRows.parentNode.querySelector('.' + dataToExpandClassForProducts).classList.add('tr-show');
+                    $firstRows.parentNode.querySelector('.third-row' ).classList.add('tr-show');
                 }
                 else {
                     $thisIcon.classList.add('feather-plus');
                     $thisIcon.classList.remove('feather-minus');
                     $thisIcon.innerHTML = plusIcon;
-                    $firstRows.parentNode.querySelector('.' + dataToExpandClassForProducts).classList.remove('tr-show');
+                    $firstRows.parentNode.querySelector('.third-row').classList.remove('tr-show');
                     $this.classList.add('js-third-row-collapsed');
                 }
             });
