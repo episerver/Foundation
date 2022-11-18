@@ -3,6 +3,7 @@ using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Framework.Localization;
 using EPiServer.Globalization;
 using EPiServer.Web.Mvc;
+using EPiServer.Web.Routing;
 using Foundation.Features.MyAccount.ResetPassword;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.MyOrganization.SubOrganization;
@@ -156,8 +157,8 @@ namespace Foundation.Features.MyOrganization.Users
         public ActionResult UpdateUser(UsersPageViewModel viewModel)
         {
             _customerService.EditContact(viewModel.Contact);
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", UrlResolver.Current.GetUrl(viewModel.CurrentContent.ContentLink));
+            
         }
 
         [HttpPost]
@@ -192,7 +193,8 @@ namespace Foundation.Features.MyOrganization.Users
                 await SaveUser(viewModel);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", UrlResolver.Current.GetUrl(viewModel.CurrentContent.ContentLink));
+            //return RedirectToAction("Index");
         }
 
         [NavigationAuthorize("Admin")]

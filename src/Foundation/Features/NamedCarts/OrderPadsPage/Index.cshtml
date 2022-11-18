@@ -30,9 +30,9 @@
                 {
                     <tr class="first-row">
                         <td colspan="8">
-                            <a href="#" class="btn-xs btn-dark btn-xs js-second-row-collapsed" data-expand="@organization.OrganizationId">
+                            <div style="cursor:pointer; width: 28px;" class="btn-xs btn-dark btn-xs js-second-row-collapsed" data-expand="@organization.OrganizationId">
                                 <i data-feather="plus" aria-hidden="true"></i>
-                            </a>
+                            </div>
                             <span>@organization.OrganizationName</span>
                         </td>
                     </tr>
@@ -43,9 +43,9 @@
                             <tr class="second-row @organization.OrganizationId">
                                 <td></td>
                                 <td colspan="7">
-                                    <a href="#" class="btn-xs btn-dark btn-xs js-third-row-collapsed" data-expand="@user.UserId">
+                                    <div style="cursor:pointer; width: 28px;" class="btn-xs btn-dark btn-xs js-third-row-collapsed" data-expand="@user.UserId">
                                         <i data-feather="plus" aria-hidden="true"></i>
-                                    </a>
+                                    </div>
                                     <span>@user.UserName</span>
                                 </td>
                             </tr>
