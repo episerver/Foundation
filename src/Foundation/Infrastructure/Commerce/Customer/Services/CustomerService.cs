@@ -222,7 +222,7 @@ namespace Foundation.Infrastructure.Commerce.Customer.Services
 
         public virtual async Task SignOutAsync()
         {
-            //await SignInManager().SignOutAsync();
+            await SignInManager().SignOutAsync();
             //TrackingCookieManager.SetTrackingCookie(Guid.NewGuid().ToString());
         }
 

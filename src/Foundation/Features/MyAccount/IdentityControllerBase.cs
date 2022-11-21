@@ -48,12 +48,12 @@ namespace Foundation.Features.MyAccount
             return RedirectToAction("Index", new { node = ContentReference.StartPage });
         }
 
-        [HttpGet]
-        public async Task<IActionResult> SignOut()
-        {
-            await CustomerService.SignOutAsync();
-            return RedirectToAction("Index", new { node = ContentReference.StartPage });
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> SignOut(string returnUrl)
+        //{
+        //    await CustomerService.SignOutAsync();
+        //    return RedirectToAction("Index", new { node = ContentReference.StartPage });
+        //}
 
         public void AddErrors(IEnumerable<string> errors)
         {
