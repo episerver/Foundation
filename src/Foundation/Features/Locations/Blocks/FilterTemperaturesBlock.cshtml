@@ -5,7 +5,7 @@
 <div>
     <h4>
         <i class="fa fa-thermometer-half "></i>
-        @(string.IsNullOrEmpty(ViewData["FilterTitle"].ToString()) ? Html.TranslateFallback("/Locations/Temperature", "Temperature") : ViewData["FilterTitle"].ToString())
+        @(ViewData["FilterTitle"] == null ? Html.TranslateFallback("/Locations/Temperature", "Temperature") : ViewData["FilterTitle"].ToString())
     </h4>
     <ul class="portfolio-cats">
         <li>
