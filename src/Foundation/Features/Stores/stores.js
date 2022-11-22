@@ -39,7 +39,7 @@ export default class Stores {
                 source: (request, response) => {
                     axios.get("https://dev.virtualearth.net/REST/v1/Locations", {
                         params: {
-                            key: "AuibkvTRtqcZejANEGiUdQy-cK0YFg3bmdujv1KtWbntImss26tSlHfs3JUVDvi2",
+                            key: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I",
                             q: request.term
                         }
                     })
@@ -85,7 +85,7 @@ export default class Stores {
 
     loadMapScenario() {
         this.storeMap = new Microsoft.Maps.Map('#storeMap', {
-            credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I"
+            credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I" 
         });
         this.storeInfobox = new Microsoft.Maps.Infobox(this.storeMap.getCenter(), { visible: false });
         this.storeInfobox.setMap(this.storeMap);
