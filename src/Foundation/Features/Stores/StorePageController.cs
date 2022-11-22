@@ -31,19 +31,19 @@ namespace Foundation.Features.Stores
             return View(store);
         }
 
-        [HttpGet]
-        public IActionResult GetStoreLocator()
-        {
-            var currentStore = _storeService.GetCurrentStoreViewModel();
-            var storesViewModel = new StoreViewModel
-            {
-                ShowDelivery = false,
-                SelectedStore = currentStore != null ? currentStore.Code : "",
-                SelectedStoreName = currentStore != null ? currentStore.Name : "",
-                Stores = _storeService.GetAllStoreViewModels(),
-            };
-            return PartialView("_Stores", storesViewModel);
-        }
+        //[HttpGet]
+        //public IActionResult GetStoreLocator()
+        //{
+        //    var currentStore = _storeService.GetCurrentStoreViewModel();
+        //    var storesViewModel = new StoreViewModel
+        //    {
+        //        ShowDelivery = false,
+        //        SelectedStore = currentStore != null ? currentStore.Code : "",
+        //        SelectedStoreName = currentStore != null ? currentStore.Name : "",
+        //        Stores = _storeService.GetAllStoreViewModels(),
+        //    };
+        //    return PartialView("_Store", storesViewModel);
+        //}
 
         [HttpPost]
         public IActionResult SetDefaultStore(string storeCode)
