@@ -85,7 +85,7 @@ export default class Locations {
         );
 
         $(document).on('slideStop', '#slider-range', () => {
-            var newVal = $('#slider-range').val().split(",");
+            var newVal = document.querySelector('#slider-range').value.split(",");
             instance.tempvals = newVal;
             instance.doAjaxCallback(document.querySelectorAll('.filterblock'));
         });
