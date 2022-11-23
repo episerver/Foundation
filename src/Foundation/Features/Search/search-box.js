@@ -223,7 +223,7 @@ export default class SearchBox {
     ProcessImage() {
         let inst = this;
         Array.from(document.querySelectorAll(".jsSearchImage")).forEach(function (el, i) {
-            console.log("inside process image");
+            //console.log("inside process image");
             let fileId = el.getAttribute('data-input');
             el.addEventListener("click", function () {
                 console.log(fileId);

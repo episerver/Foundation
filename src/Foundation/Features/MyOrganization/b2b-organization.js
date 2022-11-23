@@ -38,7 +38,6 @@
 
             function delegateSelector(selector, event, childSelector, handler) {
                 let inst = this;
-                console.log("delegate");
                 var is = function (el, selector) {
                     return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
                 };
@@ -55,19 +54,13 @@
 
 
             delegateSelector('#suborg-form', "click", '.delete-address-icon', function (e) {
-                console.log(e);
-                console.log(e.target);
-                console.log(e.target.closest('.location-row'));
                 let parent = e.target.closest('.location-row');
-                    console.log(parent);
                     if (document.querySelector("#suborg-form").querySelectorAll(".location-row").length > 1) {
                         parent.style.display = "none";
                         parent.querySelector('input[name*=Name]').value = "removed";
                         parent.querySelector('input[name*=Street]').value = "0";
                         parent.querySelector('input[name*=City]').value = "0";
                         parent.querySelector('input[name*=PostalCode]').value = "0";
-                        console.log(parent.querySelector('input[name*=PostalCode]'));
-                        console.log(parent.querySelector('select[name*=CountryCode]'));
                         parent.querySelector('select[name*=CountryCode]').value = "0";
                         
                         parent.classList.remove('location-row')
@@ -75,23 +68,6 @@
                     }
             });
 
-            //document.querySelectorAll('.delete-address-icon').forEach(function (el, i) {
-            //    el.addEventListener("click", function (element) {
-            //        console.log(element);
-            //        let parent = el.closest('.location-row');
-            //        console.log(parent);
-            //        if (document.querySelector("#suborg-form").querySelectorAll(".location-row").length > 1) {
-            //            parent.style.display = "none";
-            //            parent.querySelector('input[name*=Name]').value = "removed";
-            //            parent.querySelector('input[name*=Street]').value = "0";
-            //            parent.querySelector('input[name*=City]').value = "0";
-            //            parent.querySelector('input[name*=PostalCode]').value = "0";
-            //            parent.querySelector('input[name*=Country]').value = "0";
-            //            parent.classList.remove('location-row')
-            //            parent.classList.add('location-row-removed');
-            //        }
-            //    });
-            //});
 
         }, false);
 
