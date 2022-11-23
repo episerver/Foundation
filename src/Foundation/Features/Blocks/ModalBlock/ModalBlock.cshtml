@@ -39,14 +39,29 @@
     </div>
 </div>
 
-@if (Model.ShowModalOnPageLoad)
-{
-    <!-- Show modal automatically on page load -->
-    <script>
-        $(document).ready(function(){
-            jQuery("#@(modalId)").modal('show');
-        });
-    </script>
+@if (!Html.IsInEditMode()) {
+  if (Model.ShowModalOnPageLoad)
+  {
+      <!-- Show modal automatically on page load -->
+      <script>
+          $(document).ready(function(){
+              jQuery("#@(modalId)").modal('show');
+          });
+      </script>
+  }
+  if (Model.ShowModalOnExitIntent) {
+      <!-- Show modal automatically when mouse leaves page -->
+      <script>
+          const mouseEvent = e => {
+              if (!e.toElement && !e.relatedTarget) {
+                document.removeEventListener('mouseout', mouseEvent);
+                jQuery("#@(modalId)").modal('show');
+              }
+          };
+
+          document.addEventListener('mouseout', mouseEvent);
+      </script>
+  }
 }
 
 <style>

@@ -31,6 +31,13 @@ namespace Foundation.Features.Blocks.ModalBlock
         public virtual bool HideModalTitle { get; set; }
 
         [CultureSpecific]
+        [Display(Name = "Show modal automatically on exit intent (when mouse leaves page)",
+         Description = "Check this box to pop up the modal when the visitor's mouse leaves the page",
+         Order = 3,
+         GroupName = SystemTabNames.Content)]
+        public virtual bool ShowModalOnExitIntent { get; set; }
+
+        [CultureSpecific]
         [Display(Name = "Modal title",
          Order = 10)]
         public virtual string ModalTitle { get; set; }
