@@ -235,7 +235,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult ChangeAddress(CheckoutPage currentPage, UpdateAddressViewModel addressViewModel)
+        public IActionResult ChangeAddress(CheckoutPage currentPage, [FromBody] UpdateAddressViewModel addressViewModel)
         {
             ModelState.Clear();
             try
