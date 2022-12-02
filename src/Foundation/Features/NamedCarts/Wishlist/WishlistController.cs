@@ -217,7 +217,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         }
 
         [HttpPost]
-        public async Task<JsonResult> RemoveWishlistItem(RequestParamsToCart param) // only use Code
+        public async Task<JsonResult> RemoveWishlistItem([FromBody] RequestParamsToCart param) // only use Code
         {
             var productName = "";
             var entryLink = _referenceConverter.GetContentLink(param.Code);
