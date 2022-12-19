@@ -6,6 +6,7 @@ using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Cms.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +23,7 @@ namespace Foundation.Infrastructure.Cms
             context.Services.AddSingleton<IUserService, UserService>();
             context.Services.AddTransient<ICookieService, CookieService>();
             context.Services.AddSingleton<ISettingsService, SettingsService>();
+            context.Services.AddSingleton<IAuthorizationMiddlewareResultHandler, LoginRedirectAuthorizationMiddlewareResultHandler>();
         }
 
         void IInitializableModule.Initialize(InitializationEngine context)

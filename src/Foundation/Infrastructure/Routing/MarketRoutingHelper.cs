@@ -3,7 +3,7 @@ using Mediachase.Commerce.Markets;
 using Mediachase.Commerce;
 
 namespace SonDo.Infrastructure.Routing;
-{
+
     public class MarketRoutingHelper
     {
         public const string SegmentName = "market";
@@ -27,4 +27,3 @@ namespace SonDo.Infrastructure.Routing;
         }
 
     }
-}
