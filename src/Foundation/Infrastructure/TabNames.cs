@@ -21,6 +21,10 @@ namespace Foundation.Infrastructure
         [RequiredAccess(AccessLevel.Edit)]
         public const string Header = "Header";
 
+        [Display(Order = 55)]
+        [RequiredAccess(AccessLevel.Edit)]
+        public const string TopBanner = "Top Banner";
+
         [Display(Order = 60)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string Footer = "Footer";
