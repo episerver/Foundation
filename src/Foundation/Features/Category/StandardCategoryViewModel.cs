@@ -1,6 +1,4 @@
-﻿using Foundation.Features.Shared;
-
-namespace Foundation.Features.Category
+﻿namespace Foundation.Features.Category
 {
     public class StandardCategoryViewModel : ContentViewModel<StandardCategory>
     {

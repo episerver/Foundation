@@ -1,5 +1,4 @@
 ﻿using Foundation.Social.ViewModels;
-using System.Collections.Generic;
 
 namespace Foundation.Social.Moderation
 {

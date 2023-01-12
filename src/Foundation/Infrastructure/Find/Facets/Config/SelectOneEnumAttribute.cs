@@ -1,6 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
-using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 namespace Foundation.Infrastructure.Find.Facets.Config
 {

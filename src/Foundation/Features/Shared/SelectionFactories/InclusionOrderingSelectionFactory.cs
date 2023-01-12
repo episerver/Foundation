@@ -1,6 +1,3 @@
-using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
 namespace Foundation.Features.Shared.SelectionFactories
 {
     public class InclusionOrderingSelectionFactory : ISelectionFactory

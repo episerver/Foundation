@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Foundation.Social.ViewModels
 {
     public class ReviewsViewModel

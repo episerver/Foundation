@@ -1,10 +1,4 @@
-﻿using EPiServer.Commerce.Marketing;
-using EPiServer.Commerce.Order;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using System.Linq;
-
-namespace Foundation.Features.Checkout.ViewModels
+﻿namespace Foundation.Features.Checkout.ViewModels
 {
     public class OrderSummaryViewModelFactory
     {

@@ -1,9 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Blocks.TextBlock
 {
     [ContentType(DisplayName = "Text Block",

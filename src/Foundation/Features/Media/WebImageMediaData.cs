@@ -1,7 +1,4 @@
-﻿
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Framework.Blobs;
+﻿using EPiServer.Framework.Blobs;
 using EPiServer.Framework.DataAnnotations;
 
 namespace Foundation.Features.Media

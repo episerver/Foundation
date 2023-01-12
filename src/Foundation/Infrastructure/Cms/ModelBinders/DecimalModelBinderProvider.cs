@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Cms.ModelBinders
 {

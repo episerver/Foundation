@@ -1,7 +1,3 @@
-using Foundation.Infrastructure.Cms.Attributes;
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.MyAccount.ProfilePage
 {
     public class AccountInformationViewModel

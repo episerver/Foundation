@@ -1,8 +1,5 @@
-﻿using EPiServer.Commerce.Order;
-using Mediachase.Commerce.Orders;
+﻿using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Managers;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.MyAccount.OrderDetails
 {

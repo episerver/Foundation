@@ -1,14 +1,5 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Social.Common;
+﻿using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.LikeButtonBlock
 {

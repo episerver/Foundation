@@ -4,7 +4,6 @@ using EPiServer.Find.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Find.Facets
 {

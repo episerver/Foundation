@@ -1,7 +1,4 @@
-﻿using EPiServer.Core;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.MenuItemBlock
+﻿namespace Foundation.Features.Blocks.MenuItemBlock
 {
     public class MenuItemViewModel
     {

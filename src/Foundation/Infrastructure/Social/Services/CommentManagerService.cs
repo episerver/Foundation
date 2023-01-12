@@ -1,6 +1,5 @@
 ﻿using EPiServer.Social.Comments.Core;
 using Foundation.Social.ViewModels;
-using System.Collections.Generic;
 
 namespace Foundation.Social.Services
 {

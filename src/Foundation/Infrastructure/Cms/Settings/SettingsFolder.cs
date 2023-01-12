@@ -1,11 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using System;
-
-namespace Foundation.Infrastructure.Cms.Settings
+﻿namespace Foundation.Infrastructure.Cms.Settings
 {
     [ContentType(GUID = "c709627f-ca9f-4c77-b0fb-8563287ebd93")]
     [AvailableContentTypes(Include = new[] { typeof(SettingsBase), typeof(SettingsFolder) })]

@@ -1,15 +1,10 @@
-using EPiServer;
 using EPiServer.Find;
 using EPiServer.Find.Api.Facets;
 using EPiServer.Find.Api.Querying;
 using EPiServer.Find.Api.Querying.Filters;
 using EPiServer.Find.Api.Querying.Queries;
 using EPiServer.Find.Helpers;
-using EPiServer.ServiceLocation;
 using Foundation.Infrastructure.Find.Facets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace Foundation.Infrastructure.Find

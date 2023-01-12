@@ -1,9 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.Find.Statistics.Api;
+﻿using EPiServer.Find.Statistics.Api;
 using EPiServer.Personalization.Commerce.Tracking;
 using Foundation.Features.CatalogContent;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Search
 {

@@ -1,10 +1,7 @@
-﻿using EPiServer.Commerce.Order;
-using Foundation.Features.MyAccount.AddressBook;
+﻿using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce;
 using Mediachase.Commerce.Orders;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyAccount.OrderDetails
 {

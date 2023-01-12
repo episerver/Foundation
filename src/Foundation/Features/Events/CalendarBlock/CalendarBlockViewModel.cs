@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-
-namespace Foundation.Features.Events.CalendarBlock
+﻿namespace Foundation.Features.Events.CalendarBlock
 {
     public class CalendarBlockViewModel
     {

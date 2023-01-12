@@ -1,16 +1,9 @@
 ﻿using Castle.Core.Internal;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
 using Foundation.Features.MyOrganization;
 using Foundation.Infrastructure.Cms.Users;
 using Mediachase.Commerce.Customers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure.Commerce.Customer.Services
 {

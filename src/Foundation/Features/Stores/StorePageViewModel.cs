@@ -1,6 +1,4 @@
-﻿using Foundation.Features.Shared;
-
-namespace Foundation.Features.Stores
+﻿namespace Foundation.Features.Stores
 {
     public class StorePageViewModel : ContentViewModel<StorePage>
     {

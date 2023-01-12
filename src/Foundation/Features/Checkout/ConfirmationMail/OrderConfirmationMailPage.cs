@@ -1,7 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.MyAccount.ResetPassword;
-using Foundation.Infrastructure;
+﻿using Foundation.Features.MyAccount.ResetPassword;
 
 namespace Foundation.Features.Checkout.ConfirmationMail
 {

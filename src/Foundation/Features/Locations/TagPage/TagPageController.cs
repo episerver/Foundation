@@ -1,12 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Find;
+﻿using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using EPiServer.Web.Mvc;
 using Foundation.Features.Media;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Locations.TagPage
 {

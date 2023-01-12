@@ -1,9 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Foundation.Features.Markets
 {

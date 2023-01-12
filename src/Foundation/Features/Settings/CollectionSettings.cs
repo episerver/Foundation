@@ -1,13 +1,7 @@
 ﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Cms.Settings;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {

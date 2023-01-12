@@ -1,17 +1,13 @@
 ﻿using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Marketing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Globalization;
-using EPiServer.ServiceLocation;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Commerce.Install;
 using Foundation.Infrastructure.Commerce.Install.Steps;
 using Foundation.Infrastructure.Commerce.Marketing;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure.Commerce

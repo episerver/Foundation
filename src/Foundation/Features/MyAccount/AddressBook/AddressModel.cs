@@ -1,7 +1,3 @@
-using Foundation.Infrastructure.Cms.Attributes;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.MyAccount.AddressBook
 {
     public class AddressModel

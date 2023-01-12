@@ -3,9 +3,6 @@ using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
 using Foundation.Social.Composites;
 using Foundation.Social.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Services
 {

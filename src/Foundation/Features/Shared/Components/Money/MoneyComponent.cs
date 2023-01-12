@@ -1,7 +1,4 @@
-﻿using Mediachase.Commerce;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Foundation.Features.Shared.Components.Money
+﻿namespace Foundation.Features.Shared.Components.Money
 {
     public class MoneyViewComponent : ViewComponent
     {

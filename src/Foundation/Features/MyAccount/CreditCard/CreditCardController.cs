@@ -1,13 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Foundation.Features.MyOrganization.Organization;
+﻿using Foundation.Features.MyOrganization.Organization;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyAccount.CreditCard
 {

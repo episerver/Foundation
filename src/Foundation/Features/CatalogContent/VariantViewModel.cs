@@ -1,5 +1,3 @@
-using Mediachase.Commerce;
-
 namespace Foundation.Features.CatalogContent
 {
     public class VariantViewModel

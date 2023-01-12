@@ -1,5 +1,4 @@
 ﻿using EPiServer.Cms.TinyMce.Core;
-using EPiServer.ServiceLocation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure.Cms.Extensions

@@ -1,5 +1,3 @@
-using EPiServer.DataAnnotations;
-
 namespace Foundation.Infrastructure.Cms
 {
     /// <summary>

@@ -1,8 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.SpecializedProperties;
+﻿using EPiServer.SpecializedProperties;
 using Foundation.Features.Header;
 using Foundation.Features.Home;
-using System;
 namespace Foundation.Features.MyOrganization
 {
     public class B2BNavigationViewModel

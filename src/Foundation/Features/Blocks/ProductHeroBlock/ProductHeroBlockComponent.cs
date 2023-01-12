@@ -1,14 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Foundation.Features.Blocks.ProductHeroBlock
 {

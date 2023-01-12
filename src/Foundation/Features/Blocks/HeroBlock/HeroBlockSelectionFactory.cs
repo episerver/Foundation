@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.HeroBlock
+﻿namespace Foundation.Features.Blocks.HeroBlock
 {
     public class CalloutContentAlignmentSelectionFactory : ISelectionFactory
     {

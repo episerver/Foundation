@@ -1,11 +1,6 @@
-﻿using EPiServer.Commerce.Order;
-using Foundation.Features.Checkout.Payments;
+﻿using Foundation.Features.Checkout.Payments;
 using Foundation.Infrastructure.Commerce.GiftCard;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Customers;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

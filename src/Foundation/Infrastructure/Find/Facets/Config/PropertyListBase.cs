@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Framework.Serialization;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.Framework.Serialization;
 using Newtonsoft.Json;
 
 namespace Foundation.Infrastructure.Find.Facets.Config

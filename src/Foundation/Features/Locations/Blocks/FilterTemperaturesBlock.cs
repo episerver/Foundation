@@ -1,11 +1,4 @@
-﻿using EPiServer.DataAnnotations;
-using EPiServer.Find;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using EPiServer.Find;
 
 namespace Foundation.Features.Locations.Blocks
 {

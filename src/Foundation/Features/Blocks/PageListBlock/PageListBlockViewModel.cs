@@ -1,8 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.PageListBlock
+﻿namespace Foundation.Features.Blocks.PageListBlock
 {
     public class PageListBlockViewModel : BlockViewModel<PageListBlock>
     {

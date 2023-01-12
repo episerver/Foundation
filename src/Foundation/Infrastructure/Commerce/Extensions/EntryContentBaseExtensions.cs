@@ -1,20 +1,8 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.SpecializedProperties;
-using EPiServer.Core;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Find.Commerce.Services.Internal;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Cms;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.InventoryService;
 using Mediachase.Commerce.Markets;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Extensions
 {

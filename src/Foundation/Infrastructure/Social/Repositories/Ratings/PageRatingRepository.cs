@@ -1,12 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.Social.Common;
+﻿using EPiServer.Social.Common;
 using EPiServer.Social.Ratings.Core;
 using Foundation.Social.Models.Ratings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Repositories.Ratings
 {
@@ -216,7 +210,7 @@ namespace Foundation.Social.Repositories.Ratings
 
             var topRated = GetTopRatedPagesForUser(userId).ToList();
 
-            foreach (var page in topRated.OfType<ICategorizable>())
+            foreach (var page in topRated.OfType<EPiServer.Core.ICategorizable>())
             {
                 foreach (var categoryId in page.Category)
                 {

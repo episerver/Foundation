@@ -1,13 +1,8 @@
-using EPiServer.Commerce.Order;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization;
-using Foundation.Features.Shared;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

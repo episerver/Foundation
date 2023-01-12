@@ -1,8 +1,5 @@
-﻿using EPiServer.Core;
-using EPiServer.ServiceLocation;
-using EPiServer.Social.Comments.Core;
+﻿using EPiServer.Social.Comments.Core;
 using EPiServer.Social.Common;
-using System.Collections.Generic;
 
 namespace Foundation.Social
 {

@@ -1,9 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Orders;
+﻿using Mediachase.Commerce.Orders;
 
 namespace Foundation.Features.Checkout.Payments
 {

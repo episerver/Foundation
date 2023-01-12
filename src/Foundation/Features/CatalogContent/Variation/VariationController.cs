@@ -1,11 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Framework.DataAnnotations;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.CatalogContent.Variation
 {

@@ -1,17 +1,11 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.ServiceLocation;
-using Foundation.Features.Checkout.Services;
+﻿using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Budgeting;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Plugins.Payment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.Payments
 {

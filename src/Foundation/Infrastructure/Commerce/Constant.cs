@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Foundation.Infrastructure.Commerce
 {
     public static class Constant

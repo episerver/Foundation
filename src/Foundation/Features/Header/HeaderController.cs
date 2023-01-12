@@ -1,8 +1,5 @@
-﻿using EPiServer.Web.Routing;
-using Foundation.Features.Home;
+﻿using Foundation.Features.Home;
 using Foundation.Features.MyAccount.AddressBook;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Header
 {

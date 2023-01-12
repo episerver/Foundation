@@ -1,4 +1,3 @@
-using EPiServer.Web;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure.Display

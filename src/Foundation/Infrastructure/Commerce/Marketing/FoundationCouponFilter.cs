@@ -1,9 +1,5 @@
-﻿using EPiServer.Commerce.Marketing;
-using EPiServer.Security;
+﻿using EPiServer.Security;
 using Mediachase.Commerce.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Marketing
 {

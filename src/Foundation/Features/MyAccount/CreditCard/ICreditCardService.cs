@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Features.MyAccount.CreditCard
+﻿namespace Foundation.Features.MyAccount.CreditCard
 {
     /// <summary>
     /// All action on credit card data

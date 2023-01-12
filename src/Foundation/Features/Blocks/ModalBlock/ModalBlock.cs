@@ -1,13 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using EPiServer.Shell.ObjectEditing.EditorDescriptors;
-using EPiServer.Web;
-using Foundation.Infrastructure;
-
-namespace Foundation.Features.Blocks.ModalBlock
+﻿namespace Foundation.Features.Blocks.ModalBlock
 {
     [ContentType(DisplayName = "Modal Block",
         GUID = "FC6DA151-097A-442F-9583-0DD937B3E3E2",

@@ -1,14 +1,6 @@
-using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.DataAnnotations;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
 using Foundation.Features.CatalogContent;
-using Foundation.Features.Shared;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Search.Category
 {

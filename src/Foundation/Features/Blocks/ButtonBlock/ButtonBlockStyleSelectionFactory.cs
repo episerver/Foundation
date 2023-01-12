@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.ButtonBlock
+﻿namespace Foundation.Features.Blocks.ButtonBlock
 {
     public static class ButtonBlockStyles
     {

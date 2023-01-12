@@ -1,12 +1,9 @@
 ﻿using EPiServer.Social.Groups.Core;
-using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Moderation;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.GroupAdmissionBlock
 {

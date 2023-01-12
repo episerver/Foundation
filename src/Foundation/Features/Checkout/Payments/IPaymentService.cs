@@ -1,5 +1,4 @@
 using Foundation.Features.Checkout.ViewModels;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.Payments
 {

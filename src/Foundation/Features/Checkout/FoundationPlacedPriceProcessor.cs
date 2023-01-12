@@ -1,14 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Order;
-using Foundation.Infrastructure.Commerce;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
+﻿using Foundation.Infrastructure.Commerce;
 using Mediachase.Commerce.Customers;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout
 {

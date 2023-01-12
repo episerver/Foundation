@@ -1,10 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Media;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using Foundation.Features.Media;
 
 namespace Foundation.Features.Blocks.CarouselBlock
 {

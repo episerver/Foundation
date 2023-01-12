@@ -1,8 +1,6 @@
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Infrastructure.Commerce.Customer;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.MyOrganization
 {
@@ -37,7 +35,7 @@ namespace Foundation.Features.MyOrganization
 
         [Display(Name = "Email *:")]
         [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
+        [Infrastructure.Cms.Attributes.EmailAddress(ErrorMessage = "Invalid email address")]
         public string Email { get; set; }
 
         [Display(Name = "Organization")]

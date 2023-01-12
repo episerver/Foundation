@@ -3,10 +3,7 @@ using EPiServer.Logging;
 using Mediachase.Data.Provider;
 using Microsoft.Data.SqlClient;
 using Powells.CouponCode;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Marketing
 {

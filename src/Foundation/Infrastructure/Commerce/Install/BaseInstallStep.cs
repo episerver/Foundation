@@ -1,17 +1,12 @@
-﻿using EPiServer;
-using EPiServer.Logging;
-using Mediachase.Commerce.Catalog;
+﻿using EPiServer.Logging;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Shared;
 using Mediachase.Data.Provider;
 using Mediachase.MetaDataPlus.Configurator;
 using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 

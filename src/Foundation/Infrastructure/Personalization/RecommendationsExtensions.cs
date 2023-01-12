@@ -1,10 +1,6 @@
 ﻿using EPiServer.Personalization.Commerce.Extensions;
 using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.Tracking.Commerce.Data;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Personalization
 {

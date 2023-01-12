@@ -1,7 +1,5 @@
 using EPiServer.Find.Cms;
 using EPiServer.Personalization;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Http;
 
 namespace Foundation.Features.Locations.LocationListPage
 {

@@ -1,11 +1,7 @@
 ﻿using EPiServer.Cms.UI.Admin.ContentTypes.Internal;
 using EPiServer.Cms.UI.VisitorGroups.Controllers.Internal;
-using EPiServer.Core;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Shell;
-using EPiServer.Web;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Display
 {

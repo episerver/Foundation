@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using System;
-
 namespace Foundation.Features.MyAccount.Bookmarks
 {
     [ApiController]

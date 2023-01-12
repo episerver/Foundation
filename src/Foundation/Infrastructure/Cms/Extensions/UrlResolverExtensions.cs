@@ -1,8 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Routing;
-using Microsoft.AspNetCore.Http;
-
-namespace Foundation.Infrastructure.Cms.Extensions
+﻿namespace Foundation.Infrastructure.Cms.Extensions
 {
     public static class UrlResolverExtensions
     {

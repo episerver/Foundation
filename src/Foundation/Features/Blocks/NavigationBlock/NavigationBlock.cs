@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Cms;
-using System.ComponentModel.DataAnnotations;
+﻿using Foundation.Infrastructure.Cms;
 
 namespace Foundation.Features.Blocks.NavigationBlock
 {

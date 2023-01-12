@@ -1,12 +1,4 @@
-﻿using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Features.CatalogContent.Services
+﻿namespace Foundation.Features.CatalogContent.Services
 {
     public interface IPricingService
     {

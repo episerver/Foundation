@@ -1,13 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
-using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
+﻿using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
-using System;
-using System.Net;
 
 namespace Foundation.Infrastructure.Cms.Extensions
 {

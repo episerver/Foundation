@@ -1,8 +1,5 @@
 using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Infrastructure.Commerce.Customer;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyOrganization
 {

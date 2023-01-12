@@ -1,6 +1,4 @@
-﻿using EPiServer;
-using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Markets;
+﻿using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Orders.ImportExport;
 using Mediachase.Commerce.Shared;
 using Microsoft.AspNetCore.Hosting;

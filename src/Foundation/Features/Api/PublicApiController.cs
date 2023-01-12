@@ -1,21 +1,9 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.Localization;
-using EPiServer.Web.Routing;
-using Foundation.Features.Login;
+﻿using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Helpers;
 using Foundation.Infrastructure.Personalization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Foundation.Features.Api

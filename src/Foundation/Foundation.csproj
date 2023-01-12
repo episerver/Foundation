@@ -6,45 +6,45 @@
 		<PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Advanced.CMS.AdvancedReviews" Version="1.2.0" />
-		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="2.1.1" />
+		<PackageReference Include="Advanced.CMS.AdvancedReviews" Version="1.3.2" />
+		<PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="2.1.2" />
 		<PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="6.0.0" />
-		<PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.0.0" />
-		<PackageReference Include="EPiServer.Commerce" Version="14.6.0" />
-		<PackageReference Include="EPiServer.CMS" Version="12.13.1" />
-		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.9.3" />
-		<PackageReference Include="EPiServer.CMS.Core" Version="12.9.3" />
-		<PackageReference Include="EPiServer.CMS.UI" Version="12.13.1" />
-		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.5.0" />
-		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.5.0" />
-		<PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.5.0" />
-		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.5.0" />
-		<PackageReference Include="EPiServer.Find.Cms" Version="14.2.1" />
+		<PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.1.0" />
+		<PackageReference Include="EPiServer.Commerce" Version="14.9.0" />
+		<PackageReference Include="EPiServer.CMS" Version="12.15.1" />
+		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.11.0" />
+		<PackageReference Include="EPiServer.CMS.Core" Version="12.11.0" />
+		<PackageReference Include="EPiServer.CMS.UI" Version="12.15.0" />
+		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.6.0" />
+		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.6.0" />
+		<PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.6.0" />
+		<PackageReference Include="EPiServer.ContentManagementApi" Version="3.6.0" />
+		<PackageReference Include="EPiServer.Find.Cms" Version="14.2.4" />
 		<PackageReference Include="EPiServer.Find.Commerce" Version="12.1.1" />
 		<PackageReference Include="EPiServer.Forms.Samples" Version="4.0.0" />
-		<PackageReference Include="EPiServer.Framework" Version="12.9.3" />
-		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.9.3" />
-		<PackageReference Include="EPiServer.Forms" Version="5.3.0" />
-		<PackageReference Include="EPiServer.GoogleAnalytics" Version="3.0.0" />
-		<PackageReference Include="EPiServer.Hosting" Version="12.9.3" />
+		<PackageReference Include="EPiServer.Framework" Version="12.11.0" />
+		<PackageReference Include="EPiServer.Framework.AspNetCore" Version="12.11.0" />
+		<PackageReference Include="EPiServer.Forms" Version="5.3.1" />
+		<PackageReference Include="EPiServer.GoogleAnalytics" Version="3.0.1" />
+		<PackageReference Include="EPiServer.Hosting" Version="12.11.0" />
 		<PackageReference Include="EPiServer.Labs.BlockEnhancements" Version="1.1.1" />
 		<PackageReference Include="EPiServer.Labs.ContentManager" Version="1.1.0" />
 		<PackageReference Include="EPiServer.Labs.LanguageManager" Version="5.1.2" />
-		<PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.1.1" />
+		<PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.1.2" />
 		<PackageReference Include="EPiServer.Marketing.Testing" Version="3.1.1" />
-		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.5.0" />
+		<PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.6.0" />
 		<PackageReference Include="EPiServer.PdfPreview" Version="2.1.2" />
-		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.13" />
-		<PackageReference Include="EPiServer.Personalization.MaxMindGeolocation" Version="2.2.0" />
+		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.18" />
+		<PackageReference Include="EPiServer.Personalization.MaxMindGeolocation" Version="2.3.0" />
 		<PackageReference Include="EPiServer.Session" Version="2.1.0" />
 		<PackageReference Include="EPiServer.Social.Framework" Version="2.0.2" />
 		<PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.1" />
-		<PackageReference Include="EPiServer.TinyMCESpellChecker" Version="3.0.0" />
-		<PackageReference Include="FileHelpers" Version="3.5.1" />
-		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="5.0.1" />
+		<PackageReference Include="EPiServer.TinyMCESpellChecker" Version="3.0.2" />
+		<PackageReference Include="FileHelpers" Version="3.5.2" />
+		<PackageReference Include="Geta.NotFoundHandler.Optimizely" Version="5.0.4" />
 		<PackageReference Include="Geta.Optimizely.Categories" Version="1.0.0" />
 		<PackageReference Include="Geta.Optimizely.Categories.Find" Version="1.0.0" />
-		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="7.0.1" />
+		<PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="7.1.0" />
 		<PackageReference Include="Optimizely.Labs.MarketingAutomationIntegration.ODP" Version="1.0.2" />
 		<PackageReference Include="Powell.CouponCode" Version="1.0.3" />
 		<PackageReference Include="PowerSlice" Version="5.1.0" />
@@ -52,9 +52,9 @@
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 		<PackageReference Include="System.Linq.Async" Version="6.0.1" />
 		<PackageReference Include="UNRVLD.ODP.VisitorGroups" Version="1.2.0.23" />
-		<PackageReference Include="Wangkanai.Detection" Version="5.2.1" />
-		<PackageReference Include="Serilog" Version="2.11.0" />
-		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Wangkanai.Detection" Version="6.11.3" />
+		<PackageReference Include="Serilog" Version="2.12.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
 	</ItemGroup>
 	<ItemGroup>

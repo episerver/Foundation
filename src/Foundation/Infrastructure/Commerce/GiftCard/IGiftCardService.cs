@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Infrastructure.Commerce.GiftCard
+﻿namespace Foundation.Infrastructure.Commerce.GiftCard
 {
     public interface IGiftCardService
     {

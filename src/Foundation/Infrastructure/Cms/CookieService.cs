@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-
-namespace Foundation.Infrastructure.Cms
+﻿namespace Foundation.Infrastructure.Cms
 {
     public interface ICookieService
     {

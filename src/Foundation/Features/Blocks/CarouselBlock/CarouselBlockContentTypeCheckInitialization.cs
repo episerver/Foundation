@@ -1,8 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework;
+﻿using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
 using Foundation.Features.Media;
 
 namespace Foundation.Features.Blocks.CarouselBlock

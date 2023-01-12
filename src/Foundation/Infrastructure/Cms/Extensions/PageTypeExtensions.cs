@@ -1,7 +1,3 @@
-using EPiServer.DataAbstraction;
-using EPiServer.ServiceLocation;
-using System;
-
 namespace Foundation.Infrastructure.Cms.Extensions
 {
     public static class PageTypeExtensions

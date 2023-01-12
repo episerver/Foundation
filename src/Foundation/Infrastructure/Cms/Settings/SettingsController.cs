@@ -1,9 +1,6 @@
-﻿using EPiServer.Data;
-using EPiServer.ServiceLocation;
-using EPiServer.Shell.Modules;
+﻿using EPiServer.Shell.Modules;
 using EPiServer.Shell.ViewComposition;
 using EPiServer.Shell.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Infrastructure.Cms.Settings
 {
@@ -25,8 +22,8 @@ namespace Foundation.Infrastructure.Cms.Settings
 
         public ActionResult Index(ShellModule module, string controller)
         {
-            Validator.ValidateArgNotNull("module", module);
-            Validator.ValidateArgNotNull("controller", controller);
+            EPiServer.Data.Validator.ValidateArgNotNull("module", module);
+            EPiServer.Data.Validator.ValidateArgNotNull("controller", controller);
 
             var view = _viewManager.GetView(module, controller);
             var viewModel = _bootstrapper.CreateViewModel(view.Name, ControllerContext, module.Name);

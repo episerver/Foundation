@@ -1,6 +1,4 @@
 ﻿using Foundation.Features.CatalogContent;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
 
 namespace Foundation.Features.NewProducts
 {

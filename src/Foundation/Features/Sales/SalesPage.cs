@@ -1,8 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using static Foundation.Features.Shared.SelectionFactories.InclusionOrderingSelectionFactory;
+﻿using static Foundation.Features.Shared.SelectionFactories.InclusionOrderingSelectionFactory;
 
 namespace Foundation.Features.Sales
 {

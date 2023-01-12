@@ -1,15 +1,7 @@
-﻿using EPiServer.DataAnnotations;
-using EPiServer.Find;
+﻿using EPiServer.Find;
 using EPiServer.Find.Api.Facets;
 using EPiServer.Find.Framework;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Find;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Locations.Blocks
 {

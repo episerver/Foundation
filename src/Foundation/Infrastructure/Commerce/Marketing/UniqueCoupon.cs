@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Foundation.Infrastructure.Commerce.Marketing
+﻿namespace Foundation.Infrastructure.Commerce.Marketing
 {
     public class UniqueCoupon
     {

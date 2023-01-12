@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Foundation.Features.Stores
 {
     public class StoreViewModel

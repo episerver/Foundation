@@ -1,19 +1,8 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using EPiServer.Filters;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.Validation;
-using EPiServer.Web;
 using Foundation.Features.Folder;
-using Foundation.Features.Shared;
-using Foundation.Features.Shared.SelectionFactories;
-using Foundation.Infrastructure;
 using Geta.Optimizely.Categories.DataAnnotations;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Features.Blocks.PageListBlock
 {

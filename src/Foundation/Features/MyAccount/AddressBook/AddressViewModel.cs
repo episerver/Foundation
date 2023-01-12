@@ -1,5 +1,3 @@
-using Foundation.Features.Shared;
-
 namespace Foundation.Features.MyAccount.AddressBook
 {
     public class AddressViewModel : ContentViewModel<AddressBookPage>

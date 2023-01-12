@@ -1,5 +1,4 @@
 ﻿using EPiServer.Personalization.Commerce.Tracking;
-using System.Collections.Generic;
 
 namespace Foundation.Features.CatalogContent.Bundle
 {

@@ -1,17 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Cms.Shell;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
+﻿using EPiServer.Cms.Shell;
 using EPiServer.Tracking.Commerce.Data;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce.Catalog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent
 {

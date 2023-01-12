@@ -1,10 +1,7 @@
 ﻿using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.Commerce.Customers;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Routing;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce
 {

@@ -1,7 +1,4 @@
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using EPiServer.Security;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Infrastructure
 {

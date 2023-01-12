@@ -1,7 +1,4 @@
-﻿using EPiServer.Web;
-using Microsoft.AspNetCore.Http;
-
-namespace Foundation.Features.Preview
+﻿namespace Foundation.Features.Preview
 {
     public class PartialViewDisplayChannel : DisplayChannel
     {

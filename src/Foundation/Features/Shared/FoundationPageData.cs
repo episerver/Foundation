@@ -1,18 +1,9 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 //using EPiServer.Labs.ContentManager.Cards;
 //using EPiServer.Labs.ContentManager.Dashboard;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
 using Foundation.Features.Blocks.ButtonBlock;
-using Foundation.Features.Shared.SelectionFactories;
-using Foundation.Infrastructure;
 using Geta.Optimizely.Categories;
 using Geta.Optimizely.Categories.DataAnnotations;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Shared
 {

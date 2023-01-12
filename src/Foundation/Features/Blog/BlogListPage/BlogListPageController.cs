@@ -1,21 +1,11 @@
-﻿using EPiServer;
-using EPiServer.Cms.Shell;
-using EPiServer.Core;
+﻿using EPiServer.Cms.Shell;
 using EPiServer.Core.Html;
 using EPiServer.Filters;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.Category;
-using Foundation.Features.Shared.SelectionFactories;
 using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Cms.Extensions;
 using Geta.Optimizely.Categories;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 

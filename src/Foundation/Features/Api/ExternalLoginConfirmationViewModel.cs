@@ -1,5 +1,3 @@
-using Foundation.Infrastructure.Cms.Attributes;
-
 namespace Foundation.Features.Api
 {
     public class ExternalLoginConfirmationViewModel

@@ -1,12 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Marketing;
-using EPiServer.Core;
-using Mediachase.Commerce;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Commerce.Markets
+﻿namespace Foundation.Infrastructure.Commerce.Markets
 {
     public class MarketContentLoader
     {
