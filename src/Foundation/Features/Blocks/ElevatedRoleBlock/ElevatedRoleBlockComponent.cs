@@ -1,9 +1,6 @@
-﻿using EPiServer.Web.Mvc;
-using Foundation.Features.CatalogContent;
+﻿using Foundation.Features.CatalogContent;
 using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.Commerce.Customers;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.ElevatedRoleBlock
 {

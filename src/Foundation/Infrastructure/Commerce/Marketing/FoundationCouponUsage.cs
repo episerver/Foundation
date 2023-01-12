@@ -1,10 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Marketing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Commerce.Marketing
+﻿namespace Foundation.Infrastructure.Commerce.Marketing
 {
     public class FoundationCouponUsage : ICouponUsage
     {

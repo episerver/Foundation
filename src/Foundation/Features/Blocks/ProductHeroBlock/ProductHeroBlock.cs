@@ -1,15 +1,4 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Shared;
-using Foundation.Features.Shared.SelectionFactories;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Cms.Attributes;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.Blocks.ProductHeroBlock
+﻿namespace Foundation.Features.Blocks.ProductHeroBlock
 {
     [ContentType(DisplayName = "Product Hero Block",
         GUID = "6b43692b-6abd-49b1-b5f2-48ffbb8e626a",

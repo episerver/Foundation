@@ -1,11 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.Blocks.Healthbot
+﻿namespace Foundation.Features.Blocks.Healthbot
 {
     [ContentType(DisplayName = "Health chatbot",
         GUID = "18A7B10E-451C-4223-BAD0-36BD224E3927",

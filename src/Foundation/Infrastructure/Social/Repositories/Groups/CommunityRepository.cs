@@ -2,8 +2,6 @@
 using EPiServer.Social.Groups.Core;
 using Foundation.Social.ExtensionData;
 using Foundation.Social.Models.Groups;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Repositories.Groups
 {

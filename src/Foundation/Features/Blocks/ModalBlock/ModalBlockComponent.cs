@@ -1,8 +1,4 @@
-﻿using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace Foundation.Features.Blocks.ModalBlock
+﻿namespace Foundation.Features.Blocks.ModalBlock
 {
     public class ModalBlockComponent : AsyncBlockComponent<ModalBlock>
     {

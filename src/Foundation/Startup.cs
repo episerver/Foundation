@@ -5,19 +5,13 @@ using EPiServer.ContentApi.Cms.Internal;
 using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Data;
-using EPiServer.Framework.Web.Resources;
 using EPiServer.Labs.BlockEnhancements;
 using EPiServer.Labs.ContentManager;
 using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
-using EPiServer.ServiceLocation;
 using EPiServer.Shell.Modules;
 using EPiServer.TinyMCESpellChecker;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Payments;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Display;
@@ -36,9 +30,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Optimizely.Labs.MarketingAutomationIntegration.ODP;
-using System;
 using System.IO;
-using System.Linq;
 using UNRVLD.ODP.VisitorGroups.Initilization;
 
 namespace Foundation
@@ -200,7 +192,7 @@ namespace Foundation
                 //var blockEnhancements = new BlockEnhancementsOptions
                 options.LocalContentFeatureEnabled = false;
                 options.HideForThisFolder = false;
-                options.AllowQuickEditOnSharedBlocks = true;
+                options.AllowQuickEditOnSharedBlocks = false;
                 options.PublishPageWithBlocks = true;
             });
 

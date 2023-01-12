@@ -1,9 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Blog.BlogCommentBlock
 {
     [ContentType(DisplayName = "Blog Comment Block",

@@ -1,16 +1,9 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Core;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Commerce.Services;
-using Mediachase.Commerce.Catalog;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Features.Search
 {

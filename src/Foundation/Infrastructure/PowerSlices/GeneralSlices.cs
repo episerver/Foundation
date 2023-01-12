@@ -1,14 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Cms.Shell.UI.Rest.ContentQuery;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
+﻿using EPiServer.Cms.Shell.UI.Rest.ContentQuery;
 using EPiServer.Find;
 using EPiServer.Shell.Rest;
-using EPiServer.Shell.Services.Rest;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Http;
 using PowerSlice;
-using System.Linq;
 
 namespace Foundation.Infrastructure.PowerSlices
 {
@@ -75,7 +68,7 @@ namespace Foundation.Infrastructure.PowerSlices
             var originalContentRange = base.ExecuteQuery(parameters);
             var filteredResults = originalContentRange.Items.Where(IsNotReferenced).ToList();
 
-            var itemRange = new ItemRange
+            var itemRange = new EPiServer.Shell.Services.Rest.ItemRange
             {
                 Total = filteredResults.Count,
                 Start = parameters.Range.Start,
@@ -106,7 +99,7 @@ namespace Foundation.Infrastructure.PowerSlices
             var originalContentRange = base.ExecuteQuery(parameters);
             var filteredResults = originalContentRange.Items.Where(IsNotReferenced).ToList();
 
-            var itemRange = new ItemRange
+            var itemRange = new EPiServer.Shell.Services.Rest.ItemRange
             {
                 Total = filteredResults.Count,
                 Start = parameters.Range.Start,

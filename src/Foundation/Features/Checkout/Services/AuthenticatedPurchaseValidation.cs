@@ -1,7 +1,5 @@
-using EPiServer.Framework.Localization;
 using Foundation.Features.Checkout.ViewModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.Services
 {

@@ -1,8 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Foundation.Features.StandardPage
+﻿namespace Foundation.Features.StandardPage
 {
     public class StandardPageController : PageController<StandardPage>
     {

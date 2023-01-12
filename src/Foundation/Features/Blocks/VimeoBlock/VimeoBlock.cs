@@ -1,10 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace Foundation.Features.Blocks.VimeoBlock

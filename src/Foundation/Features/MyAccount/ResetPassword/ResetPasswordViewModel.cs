@@ -1,7 +1,4 @@
-﻿using Foundation.Features.Shared;
-using Foundation.Infrastructure.Cms.Attributes;
-
-namespace Foundation.Features.MyAccount.ResetPassword
+﻿namespace Foundation.Features.MyAccount.ResetPassword
 {
     public class ResetPasswordViewModel : ContentViewModel<ResetPasswordPage>
     {

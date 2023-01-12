@@ -1,5 +1,4 @@
 using EPiServer.Social.Comments.Core;
-using System;
 
 namespace Foundation.Social.ViewModels
 {

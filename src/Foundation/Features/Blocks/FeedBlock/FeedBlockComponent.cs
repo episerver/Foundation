@@ -1,16 +1,11 @@
 ﻿using EPiServer.Social.ActivityStreams.Core;
 using EPiServer.Social.Common;
-using EPiServer.Web.Routing;
 using Foundation.Social;
 using Foundation.Social.Adapters;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.FeedBlock
 {

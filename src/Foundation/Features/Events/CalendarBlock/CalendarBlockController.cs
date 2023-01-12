@@ -1,12 +1,5 @@
-using EPiServer;
-using EPiServer.Core;
 using Foundation.Features.Events.CalendarEvent;
-using Foundation.Infrastructure.Cms.Extensions;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Events.CalendarBlock
 {

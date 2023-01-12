@@ -1,10 +1,4 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using Foundation.Features.Locations.Blocks;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Locations.LocationListPage
 {

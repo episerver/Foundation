@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Mvc.Html;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.NavigationBlock
+﻿namespace Foundation.Features.Blocks.NavigationBlock
 {
     public class NavigationBlockViewModel : BlockViewModel<NavigationBlock>
     {

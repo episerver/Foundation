@@ -1,16 +1,8 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Tracking.Commerce;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Tracking.Commerce;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent.Bundle
 {

@@ -1,12 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Marketing;
-using EPiServer.Core;
-using EPiServer.Globalization;
+﻿using EPiServer.Globalization;
 using Foundation.Infrastructure.Cms;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Foundation.Infrastructure.Commerce.Marketing

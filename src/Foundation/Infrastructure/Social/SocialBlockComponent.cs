@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Social
+﻿namespace Foundation.Social
 {
     public abstract class SocialBlockComponent<T> : AsyncBlockComponent<T> where T : BlockData
     {

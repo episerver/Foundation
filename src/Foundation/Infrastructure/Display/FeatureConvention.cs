@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using System;
-using System.Linq;
 using System.Reflection;
 
 namespace Foundation.Infrastructure.Display

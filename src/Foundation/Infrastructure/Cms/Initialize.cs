@@ -1,8 +1,5 @@
 ﻿using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Cms.Users;

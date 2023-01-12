@@ -1,11 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Find;
 //using EPiServer.Find.Commerce;
-using EPiServer.ServiceLocation;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Folder;
@@ -16,12 +11,7 @@ using Foundation.Features.MyOrganization;
 using Foundation.Features.Search;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Find;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure
 {

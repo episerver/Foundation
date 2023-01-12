@@ -1,8 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Commerce.Extensions
+﻿namespace Foundation.Infrastructure.Commerce.Extensions
 {
     public static class CartExtensions
     {

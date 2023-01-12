@@ -1,6 +1,4 @@
-﻿using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-namespace Foundation.Features.People.PersonItemPage
+﻿namespace Foundation.Features.People.PersonItemPage
 {
     public class PersonItemPageController : PageController<PersonPage>
     {

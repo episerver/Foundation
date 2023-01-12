@@ -1,7 +1,4 @@
-using EPiServer.Commerce.Catalog.ContentTypes;
 using Foundation.Features.Stores;
-using Mediachase.Commerce;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

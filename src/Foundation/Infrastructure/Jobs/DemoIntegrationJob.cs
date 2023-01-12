@@ -1,18 +1,11 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.PlugIn;
+﻿using EPiServer.PlugIn;
 using EPiServer.Scheduler;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using Foundation.Features.CatalogContent;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.InventoryService;
-using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Jobs
 {

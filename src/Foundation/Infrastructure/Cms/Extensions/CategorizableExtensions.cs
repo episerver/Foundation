@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.ServiceLocation;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Cms.Extensions
+﻿namespace Foundation.Infrastructure.Cms.Extensions
 {
     /// <summary>
     /// Provides extension methods for categorizable content
@@ -18,7 +12,7 @@ namespace Foundation.Infrastructure.Cms.Extensions
         /// <param name="content"></param>
         /// <returns>CSS classes associated with the content's theme(s), or an empty string array if no theme is applicable</returns>
         /// <remarks>Content's categorization may map to more than one theme. This method assumes there are website categories called "Meet", "Track", and "Plan"</remarks>
-        public static string[] GetThemeCssClassNames(this ICategorizable content)
+        public static string[] GetThemeCssClassNames(this EPiServer.Core.ICategorizable content)
         {
             if (content.Category == null)
             {

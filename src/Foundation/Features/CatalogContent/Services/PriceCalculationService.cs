@@ -1,12 +1,5 @@
 ﻿using EPiServer.Security;
-using EPiServer.ServiceLocation;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Services
 {

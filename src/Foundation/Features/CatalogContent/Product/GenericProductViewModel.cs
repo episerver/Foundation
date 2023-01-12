@@ -1,6 +1,5 @@
 using EPiServer.Personalization.Commerce.Tracking;
 using Foundation.Features.CatalogContent.Variation;
-using System.Collections.Generic;
 
 namespace Foundation.Features.CatalogContent.Product
 {

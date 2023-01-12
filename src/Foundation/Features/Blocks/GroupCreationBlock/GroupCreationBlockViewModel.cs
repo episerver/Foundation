@@ -1,6 +1,4 @@
-using EPiServer.Core;
 using Foundation.Social;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Blocks.GroupCreationBlock
 {

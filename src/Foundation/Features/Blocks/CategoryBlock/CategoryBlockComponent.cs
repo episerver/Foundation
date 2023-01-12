@@ -1,13 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.Find.Commerce;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EPiServer.Find.Commerce;
 
 namespace Foundation.Features.Blocks.CategoryBlock
 {

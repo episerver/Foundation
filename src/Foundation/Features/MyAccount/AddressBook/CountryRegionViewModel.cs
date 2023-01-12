@@ -1,6 +1,3 @@
-using Foundation.Infrastructure.Cms.Attributes;
-using System.Collections.Generic;
-
 namespace Foundation.Features.MyAccount.AddressBook
 {
     public class CountryRegionViewModel

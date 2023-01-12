@@ -1,10 +1,4 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Mvc;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using EPiServer.Framework.DataAnnotations;
 
 namespace Foundation.Features.CatalogContent.Product
 {

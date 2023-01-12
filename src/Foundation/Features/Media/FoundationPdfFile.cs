@@ -1,8 +1,5 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.PdfPreview.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Media
 {

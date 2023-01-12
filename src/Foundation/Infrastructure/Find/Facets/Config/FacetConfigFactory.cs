@@ -1,12 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
-using Mediachase.Commerce;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Find.Facets.Config
+﻿namespace Foundation.Infrastructure.Find.Facets.Config
 {
     public class FacetConfigFactory : IFacetConfigFactory
     {

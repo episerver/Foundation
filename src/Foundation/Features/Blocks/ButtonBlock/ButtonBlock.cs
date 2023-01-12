@@ -1,13 +1,3 @@
-using EPiServer;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Blocks.ButtonBlock
 {
     [ContentType(DisplayName = "Button Block",

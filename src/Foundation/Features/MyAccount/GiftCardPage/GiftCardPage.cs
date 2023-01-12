@@ -1,7 +1,3 @@
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-
 namespace Foundation.Features.MyAccount.GiftCardPage
 {
     [ContentType(DisplayName = "Gift Card Page",

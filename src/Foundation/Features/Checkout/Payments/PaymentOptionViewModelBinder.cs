@@ -1,12 +1,7 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.ServiceLocation;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Checkout.Payments
 {

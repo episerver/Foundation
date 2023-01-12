@@ -1,7 +1,6 @@
 ﻿using Advanced.CMS.ExternalReviews;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure.ExternalReviews

@@ -1,11 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.Globalization;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.Globalization;
 using Foundation.Infrastructure.Cms;
-using Mediachase.Commerce;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Markets
 {

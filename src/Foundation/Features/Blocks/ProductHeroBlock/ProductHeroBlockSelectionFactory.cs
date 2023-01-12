@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.ProductHeroBlock
+﻿namespace Foundation.Features.Blocks.ProductHeroBlock
 {
     public class ProductHeroBlockLayoutSelectionFactory : ISelectionFactory
     {

@@ -3,8 +3,6 @@ using EPiServer.Social.Common;
 using Foundation.Social.Adapters;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Repositories.ActivityStreams
 {

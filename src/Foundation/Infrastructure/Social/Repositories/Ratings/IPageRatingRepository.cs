@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Social.Models.Ratings;
-using System.Collections.Generic;
+﻿using Foundation.Social.Models.Ratings;
 
 namespace Foundation.Social.Repositories.Ratings
 {

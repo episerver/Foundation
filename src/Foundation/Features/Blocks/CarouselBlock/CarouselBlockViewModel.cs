@@ -1,8 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.CarouselBlock
+﻿namespace Foundation.Features.Blocks.CarouselBlock
 {
     public class CarouselBlockViewModel : BlockViewModel<CarouselBlock>
     {

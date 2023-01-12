@@ -1,4 +1,3 @@
-using EPiServer.Core;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.NamedCarts.Wishlist;
 

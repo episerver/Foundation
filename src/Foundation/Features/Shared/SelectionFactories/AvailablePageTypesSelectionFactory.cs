@@ -1,10 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.ServiceLocation;
-using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Features.Shared.SelectionFactories
+﻿namespace Foundation.Features.Shared.SelectionFactories
 {
     public class AvailablePageTypesSelectionFactory : ISelectionFactory
     {

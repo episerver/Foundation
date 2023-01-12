@@ -1,7 +1,5 @@
-﻿using EPiServer.Core;
-using Foundation.Infrastructure.Cms;
+﻿using Foundation.Infrastructure.Cms;
 using Foundation.Social.Models.Comments;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Blog.BlogCommentBlock
 {

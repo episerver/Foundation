@@ -1,8 +1,4 @@
-﻿using EPiServer.Framework.Localization;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Foundation.Infrastructure.Find.Facets.Config
 {

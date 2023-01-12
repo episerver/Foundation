@@ -1,21 +1,14 @@
 ﻿//using EPiBootstrapArea;
 //using EPiBootstrapArea.Initialization;
-using EPiServer;
 using EPiServer.Commerce.Internal.Migration;
 using EPiServer.Commerce.Marketing.Internal;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
 using EPiServer.Find.ClientConventions;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework;
 using EPiServer.Find.UnifiedSearch;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
 using EPiServer.Shell.ContentQuery;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Features.Blog.BlogItemPage;
 using Foundation.Features.CatalogContent;
 using Foundation.Features.CatalogContent.Product;
@@ -35,14 +28,10 @@ using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.Search;
-using Foundation.Features.Settings;
-using Foundation.Features.Shared;
 using Foundation.Features.Stores;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Cms.Settings;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Commerce.GiftCard;
-using Foundation.Infrastructure.Commerce.Markets;
 using Foundation.Infrastructure.Display;
 using Foundation.Infrastructure.Find.Facets;
 using Foundation.Infrastructure.Find.Facets.Config;
@@ -54,9 +43,6 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using PowerSlice;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure
 {

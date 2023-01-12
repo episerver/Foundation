@@ -1,13 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Foundation.Features.Blocks.NavigationBlock
+﻿namespace Foundation.Features.Blocks.NavigationBlock
 {
     public class NavigationBlockComponent : AsyncBlockComponent<NavigationBlock>
     {

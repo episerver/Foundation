@@ -1,12 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Find;
+﻿using EPiServer.Find;
 using EPiServer.Logging;
 using EPiServer.Personalization;
-using EPiServer.ServiceLocation;
-using Microsoft.AspNetCore.Http;
-using System;
 using System.IO;
-using System.Net;
 using System.Text;
 
 namespace Foundation.Infrastructure.Find

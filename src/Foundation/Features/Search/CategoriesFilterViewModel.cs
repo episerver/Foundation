@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Features.Search
+﻿namespace Foundation.Features.Search
 {
     public class CategoriesFilterViewModel
     {

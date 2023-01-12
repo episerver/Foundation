@@ -1,7 +1,4 @@
-﻿using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.CategoryBlock
+﻿namespace Foundation.Features.Blocks.CategoryBlock
 {
     public class CategoryBlockViewModel : BlockViewModel<CategoryBlock>
     {

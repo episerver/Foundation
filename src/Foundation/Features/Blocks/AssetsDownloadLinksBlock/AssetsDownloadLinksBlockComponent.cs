@@ -1,15 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock.Component
+﻿namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock.Component
 {
     public class AssetsDownloadLinksBlockComponent : AsyncBlockComponent<AssetsDownloadLinksBlock>
     {

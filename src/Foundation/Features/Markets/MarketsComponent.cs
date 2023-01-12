@@ -1,12 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Commerce;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
+﻿using Foundation.Infrastructure.Commerce;
 using Mediachase.Commerce.Markets;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace Foundation.Features.Markets
 {

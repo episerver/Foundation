@@ -2,8 +2,6 @@
 using EPiServer.Social.Common;
 using Foundation.Social.Models.Comments;
 using Foundation.Social.Repositories.Common;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Repositories.Comments
 {

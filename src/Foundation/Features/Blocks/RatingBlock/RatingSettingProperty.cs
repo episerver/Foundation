@@ -1,4 +1,3 @@
-using EPiServer.Core;
 using EPiServer.PlugIn;
 using Newtonsoft.Json;
 

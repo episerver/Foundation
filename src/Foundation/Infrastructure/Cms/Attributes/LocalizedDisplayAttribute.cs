@@ -1,5 +1,4 @@
-﻿using EPiServer.Framework.Localization;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Foundation.Infrastructure.Cms.Attributes
 {

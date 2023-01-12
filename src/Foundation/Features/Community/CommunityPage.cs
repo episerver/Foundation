@@ -1,12 +1,8 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Blocks.CommentsBlock;
+﻿using Foundation.Features.Blocks.CommentsBlock;
 using Foundation.Features.Blocks.GroupAdmissionBlock;
 using Foundation.Features.Blocks.MembershipDisplayBlock;
 using Foundation.Features.Blocks.RatingBlock;
 using Foundation.Features.Blocks.SubscriptionBlock;
-using Foundation.Features.Shared;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Community
 {

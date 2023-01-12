@@ -1,6 +1,4 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Routing;
-using Foundation.Features.Community;
+﻿using Foundation.Features.Community;
 using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Groups;
@@ -10,9 +8,6 @@ using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.Repositories.Ratings;
 using Foundation.Social.ViewModels;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.RatingBlock
 {

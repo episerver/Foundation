@@ -1,6 +1,5 @@
 ﻿using EPiServer.Security;
 using Mediachase.Commerce.Security;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
 {

@@ -1,12 +1,4 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using EPiServer.Find;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Locations.LocationItemPage
 {

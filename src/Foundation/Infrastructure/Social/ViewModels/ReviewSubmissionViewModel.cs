@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Social.ViewModels
 {
     public class ReviewSubmissionViewModel

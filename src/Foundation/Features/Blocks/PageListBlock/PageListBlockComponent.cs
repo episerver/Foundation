@@ -1,13 +1,6 @@
-using EPiServer;
-using EPiServer.Core;
 using EPiServer.Filters;
-using EPiServer.Web.Mvc;
 using Foundation.Features.Folder;
 using Foundation.Infrastructure.Cms;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.PageListBlock
 {

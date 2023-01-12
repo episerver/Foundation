@@ -1,16 +1,7 @@
-using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.Localization;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Features.Home;
-using Foundation.Features.Settings;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Linq;
 
 namespace Foundation.Features.MyAccount.AddressBook
 {

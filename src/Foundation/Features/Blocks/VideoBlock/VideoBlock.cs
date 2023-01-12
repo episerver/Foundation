@@ -1,10 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Blocks.VideoBlock
 {
     [ContentType(DisplayName = "Video Block",

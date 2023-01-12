@@ -1,16 +1,8 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Core;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Mvc.Html;
-using Foundation.Features.Checkout.Services;
+﻿using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Orders;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.ConfirmationMail
 {

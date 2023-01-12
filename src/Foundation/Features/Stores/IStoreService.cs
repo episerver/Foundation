@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Features.Stores
+﻿namespace Foundation.Features.Stores
 {
     public interface IStoreService
     {

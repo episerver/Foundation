@@ -1,7 +1,4 @@
-﻿using EPiServer.DataAnnotations;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Cms.Settings;
-using System.ComponentModel.DataAnnotations;
+﻿using Foundation.Infrastructure.Cms.Settings;
 
 namespace Foundation.Features.Settings
 {

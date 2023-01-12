@@ -1,9 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace Foundation.Features.Events.CalendarBlock
+﻿namespace Foundation.Features.Events.CalendarBlock
 {
     public class CalendarBlockComponent : AsyncBlockComponent<CalendarBlock>
     {

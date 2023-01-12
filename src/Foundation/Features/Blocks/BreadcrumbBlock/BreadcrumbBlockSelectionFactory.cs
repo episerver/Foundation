@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.BreadcrumbBlock
+﻿namespace Foundation.Features.Blocks.BreadcrumbBlock
 {
     public class BreadcrumbSeparatorSelectionFactory : ISelectionFactory
     {

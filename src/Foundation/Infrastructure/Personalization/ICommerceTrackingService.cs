@@ -1,9 +1,4 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Order;
-using EPiServer.Tracking.Commerce.Data;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using EPiServer.Tracking.Commerce.Data;
 
 namespace Foundation.Infrastructure.Personalization
 {

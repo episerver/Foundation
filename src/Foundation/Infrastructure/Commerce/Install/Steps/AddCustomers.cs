@@ -1,22 +1,15 @@
-﻿using EPiServer;
-using EPiServer.Shell.Security;
-using Foundation.Infrastructure.Cms.Extensions;
+﻿using EPiServer.Shell.Security;
 using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.BusinessFoundation.Data.Meta.Management;
 using Mediachase.BusinessFoundation.Data.Modules;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Core.RecentReferenceHistory;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Shared;
 using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Install.Steps

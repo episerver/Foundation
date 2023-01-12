@@ -1,8 +1,5 @@
-using EPiServer.DataAnnotations;
 using Foundation.Features.Home;
 using Foundation.Features.MyAccount.OrderConfirmation;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
 
 namespace Foundation.Features.Checkout
 {

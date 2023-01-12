@@ -1,7 +1,4 @@
-﻿using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.MyOrganization.Budgeting
+﻿namespace Foundation.Features.MyOrganization.Budgeting
 {
     public class BudgetingPageViewModel : ContentViewModel<BudgetingPage>
     {

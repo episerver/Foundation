@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Mvc.Html;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.BreadcrumbBlock
+﻿namespace Foundation.Features.Blocks.BreadcrumbBlock
 {
     public class BreadcrumbBlockViewModel : BlockViewModel<BreadcrumbBlock>
     {

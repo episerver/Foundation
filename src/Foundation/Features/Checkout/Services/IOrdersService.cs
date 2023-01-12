@@ -1,9 +1,6 @@
-﻿using EPiServer.Commerce.Order;
-using Foundation.Features.MyOrganization;
+﻿using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Orders;
 using Mediachase.Commerce.Orders;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.Services
 {

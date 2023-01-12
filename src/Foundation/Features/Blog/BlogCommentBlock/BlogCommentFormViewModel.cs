@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-
-namespace Foundation.Features.Blog.BlogCommentBlock
+﻿namespace Foundation.Features.Blog.BlogCommentBlock
 {
     /// <summary>
     /// A view model for submitting a BlogComment.

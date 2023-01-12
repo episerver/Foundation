@@ -1,9 +1,4 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Media
 {

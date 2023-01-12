@@ -1,6 +1,4 @@
-﻿using Foundation.Features.Shared;
-
-namespace Foundation.Features.MyOrganization.SubOrganization
+﻿namespace Foundation.Features.MyOrganization.SubOrganization
 {
     public class SubOrganizationPageViewModel : ContentViewModel<SubOrganizationPage>
     {

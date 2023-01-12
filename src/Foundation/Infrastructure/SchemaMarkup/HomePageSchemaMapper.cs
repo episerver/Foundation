@@ -1,12 +1,7 @@
-﻿using EPiServer.Web;
-using Foundation.Features.Home;
-using Foundation.Features.Settings;
+﻿using Foundation.Features.Home;
 using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
 using Schema.NET;
-using System;
-using System.Linq;
 
 namespace Foundation.Infrastructure.SchemaMarkup
 {

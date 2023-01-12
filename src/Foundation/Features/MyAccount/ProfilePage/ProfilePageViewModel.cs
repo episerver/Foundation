@@ -1,9 +1,7 @@
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Commerce.Customer;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyAccount.ProfilePage
 {

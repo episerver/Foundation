@@ -1,8 +1,3 @@
-using EPiServer.Core;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Foundation.Features.Locations.LocationItemPage
 {
     public class LocationItemViewModel : ContentViewModel<LocationItemPage>

@@ -1,6 +1,4 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
-using System.Collections.Generic;
+﻿using EPiServer.Commerce.Catalog.Linking;
 
 namespace Foundation.Features.CatalogContent.Package
 {

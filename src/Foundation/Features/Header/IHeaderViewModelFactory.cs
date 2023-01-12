@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Features.Home;
+﻿using Foundation.Features.Home;
 
 namespace Foundation.Features.Header
 {

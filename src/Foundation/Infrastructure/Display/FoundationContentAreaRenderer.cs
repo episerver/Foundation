@@ -1,9 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Core.Html.StringParsing;
-using EPiServer.Web.Mvc.Html;
+﻿using EPiServer.Core.Html.StringParsing;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 
 namespace Foundation.Infrastructure.Display
 {

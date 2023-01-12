@@ -1,5 +1,3 @@
-using System;
-
 namespace Foundation.Features.Checkout.ViewModels
 {
     public class ShippingMethodInfoModel

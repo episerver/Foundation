@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor;
-
-namespace Foundation.Infrastructure.Display
+﻿namespace Foundation.Infrastructure.Display
 {
     public static class RazorExtensions
     {

@@ -1,11 +1,7 @@
 ﻿using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.ServiceLocation;
 using Foundation.Features.MyOrganization;
 using Foundation.Infrastructure.Cms.Users;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure.Commerce.Customer.Services
 {

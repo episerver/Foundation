@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Media;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
+﻿using Foundation.Features.Media;
 
 namespace Foundation.Features.Blocks.CarouselBlock
 {

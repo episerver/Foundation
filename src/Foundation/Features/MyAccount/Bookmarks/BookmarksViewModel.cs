@@ -1,6 +1,4 @@
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Customer;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyAccount.Bookmarks
 {

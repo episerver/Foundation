@@ -1,7 +1,6 @@
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.Commerce.Customers;
-using System;
 
 namespace Foundation.Infrastructure.Commerce.Customer
 {

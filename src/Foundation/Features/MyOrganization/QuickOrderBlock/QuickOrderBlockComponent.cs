@@ -1,27 +1,13 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Mvc.Html;
-using Foundation.Features.CatalogContent.Services;
+﻿using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyOrganization.QuickOrderPage;
 using Foundation.Features.NamedCarts;
 using Foundation.Features.Search;
-using Foundation.Features.Settings;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
 {

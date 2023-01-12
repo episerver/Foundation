@@ -1,12 +1,7 @@
-﻿using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Cms.Settings;
+﻿using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 using Foundation.Infrastructure.Find.Facets;
 using Foundation.Infrastructure.Find.Facets.Config;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {

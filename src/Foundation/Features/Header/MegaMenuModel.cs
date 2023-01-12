@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Features.Header
+﻿namespace Foundation.Features.Header
 {
     public class MegaMenuModel
     {

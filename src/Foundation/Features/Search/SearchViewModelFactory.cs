@@ -1,22 +1,11 @@
-using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 //using EPiServer.Find.Commerce;
 using EPiServer.Find.Framework.BestBets;
 using EPiServer.Framework.Cache;
-using EPiServer.Framework.Localization;
-using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent;
-using Foundation.Infrastructure.Cms.Extensions;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Linq;
-using Wangkanai.Detection;
 using Wangkanai.Detection.Models;
 using Wangkanai.Detection.Services;
 

@@ -1,7 +1,4 @@
-using EPiServer.Core;
 using Foundation.Social;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Blocks.RatingBlock
 {

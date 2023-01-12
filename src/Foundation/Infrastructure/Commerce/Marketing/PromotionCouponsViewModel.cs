@@ -1,8 +1,4 @@
-﻿using EPiServer.Commerce.Marketing;
-using Foundation.Infrastructure.Cms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using Foundation.Infrastructure.Cms;
 
 namespace Foundation.Infrastructure.Commerce.Marketing
 {

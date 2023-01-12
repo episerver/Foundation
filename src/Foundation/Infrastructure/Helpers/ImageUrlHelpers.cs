@@ -1,8 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc.Html;
-//using ImageProcessor.Web.Episerver;
-using Microsoft.AspNetCore.Mvc;
+﻿//using ImageProcessor.Web.Episerver;
 
 namespace Foundation.Infrastructure.Helpers
 {

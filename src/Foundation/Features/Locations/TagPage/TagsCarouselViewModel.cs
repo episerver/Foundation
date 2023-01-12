@@ -1,7 +1,4 @@
-﻿using EPiServer.Core;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Locations.TagPage
+﻿namespace Foundation.Features.Locations.TagPage
 {
     public class TagsCarouselViewModel
     {

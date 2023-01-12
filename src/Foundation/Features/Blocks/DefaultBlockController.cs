@@ -1,11 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
+﻿using EPiServer.Framework.DataAnnotations;
 
 namespace Foundation.Features.Blocks
 {

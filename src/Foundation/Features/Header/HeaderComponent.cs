@@ -1,6 +1,4 @@
-﻿using EPiServer.Web.Routing;
-using Foundation.Features.Home;
-using Microsoft.AspNetCore.Mvc;
+﻿using Foundation.Features.Home;
 
 namespace Foundation.Features.Header
 {

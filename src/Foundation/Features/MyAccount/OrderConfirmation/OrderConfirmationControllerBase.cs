@@ -1,20 +1,11 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Order;
-using EPiServer.Security;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Security;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.MyAccount.OrderConfirmation
 {

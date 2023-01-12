@@ -1,5 +1,3 @@
-using EPiServer.Core;
-
 namespace Foundation.Features.Blocks.LikeButtonBlock
 {
     public class LikeButtonBlockViewModel

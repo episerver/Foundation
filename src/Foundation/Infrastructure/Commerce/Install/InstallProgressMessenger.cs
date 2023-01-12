@@ -1,7 +1,5 @@
 ﻿using EPiServer.Logging;
 using Mediachase.Commerce.Shared;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Commerce.Install
 {

@@ -1,14 +1,8 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
 using EPiServer.Framework.Web.Mvc;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
 using Foundation.Features.Home;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using System.Linq;
 
 namespace Foundation.Features.Preview
 {

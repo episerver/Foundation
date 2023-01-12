@@ -1,10 +1,6 @@
-using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.BusinessFoundation.Data.Meta.Management;
-using Mediachase.Commerce;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Commerce.Customer
 {

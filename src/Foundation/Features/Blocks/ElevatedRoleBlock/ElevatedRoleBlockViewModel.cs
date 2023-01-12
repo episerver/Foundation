@@ -1,6 +1,4 @@
-﻿using Foundation.Features.Shared;
-
-namespace Foundation.Features.Blocks.ElevatedRoleBlock
+﻿namespace Foundation.Features.Blocks.ElevatedRoleBlock
 {
     public class ElevatedRoleBlockViewModel : IBlockViewModel<ElevatedRoleBlock>
     {
