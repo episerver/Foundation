@@ -1,6 +1,7 @@
 using EPiServer.Filters;
 using Foundation.Features.Folder;
 using Foundation.Infrastructure.Cms;
+using Geta.Optimizely.Categories;
 
 namespace Foundation.Features.Blocks.PageListBlock
 {
@@ -84,12 +85,12 @@ namespace Foundation.Features.Blocks.PageListBlock
             }
             if (currentBlock.CategoryListFilter != null && currentBlock.CategoryListFilter.Any())
             {
-                //pages = pages.Where(x =>
-                //{
-                //    var categories = (x as ICategorizableContent)?.Categories;
-                //    return categories != null &&
-                //           categories.Intersect(currentBlock.CategoryListFilter).Any();
-                //});
+                pages = pages.Where(x =>
+                {
+                    var categories = (x as ICategorizableContent)?.Categories;
+                    return categories != null &&
+                           categories.Intersect(currentBlock.CategoryListFilter).Any();
+                });
             }
             pages = pages.Where(x => x.VisibleInMenu);
 
