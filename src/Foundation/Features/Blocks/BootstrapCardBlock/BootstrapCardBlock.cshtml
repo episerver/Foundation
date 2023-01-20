@@ -65,7 +65,11 @@
 		<div class="card-text">@Html.PropertyFor(m => m.CurrentBlock.CardContentArea, new {Tag = ""})</div>
 		@if (!@Model.CurrentBlock.CardButtonText.IsNullOrEmpty()) 
 			{
-				<a class="btn btn-primary" href="@Url.ContentUrl(Model.CurrentBlock.CardButtonLink)" role="button">@Html.PropertyFor(m => m.CurrentBlock.CardButtonText)</a>
+				<a class="btn btn-primary @(Model.CurrentBlock.CardClickable ? "stretched-link" : "")" href="@Url.ContentUrl(Model.CurrentBlock.CardButtonLink)" role="button">@Html.PropertyFor(m => m.CurrentBlock.CardButtonText)</a>
+			}
+			else if(!Url.ContentUrl(Model.CurrentBlock.CardButtonLink).IsNullOrEmpty() && Model.CurrentBlock.CardClickable)
+			{
+				<a class="btn-none stretched-link" href="@Url.ContentUrl(Model.CurrentBlock.CardButtonLink)">@Html.PropertyFor(m => m.CurrentBlock.CardButtonText)</a>
 			}
 		@if(@Model.CurrentBlock.CardLinks != null) 
 		{
@@ -90,6 +94,13 @@
     .bootstrapcardblock .card-footer {
         padding: 0.5rem 1rem;
     }
+	a.btn-none {
+		opacity: 0;
+		overflow: hidden;
+		height: 0;
+		width: 0;
+		display: block;
+	}
 </style>
 
 @if (!@Model.CurrentBlock.CardButtonText.IsNullOrEmpty() && @Model.CurrentBlock.CardLinks != null) {
