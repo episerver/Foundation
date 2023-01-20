@@ -85,6 +85,12 @@ namespace Foundation.Features.Blocks.BootstrapCardBlock
          GroupName = SystemTabNames.Content)]
         public virtual Url CardButtonLink { get; set; }
 
+        [Display(Name = "Make entire card clickable?",
+         Description = "Click anywhere on card to browse to URL defined in button (instead of only clicking the button)?",
+         Order = 125,
+         GroupName = SystemTabNames.Content)]
+        public virtual bool CardClickable { get; set; }
+
         [CultureSpecific]
         //[UIHint("FooterColumnNavigation")]
         [Display(Name = "Card Links (0-3 links supported)",
