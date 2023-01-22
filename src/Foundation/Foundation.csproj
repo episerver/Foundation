@@ -37,6 +37,7 @@
 		<PackageReference Include="EPiServer.PdfPreview" Version="2.1.2" />
 		<PackageReference Include="EPiServer.Personalization.Commerce" Version="4.0.18" />
 		<PackageReference Include="EPiServer.Personalization.MaxMindGeolocation" Version="2.3.0" />
+		<PackageReference Include="EPiServer.ServiceApi.Commerce" Version="6.3.0" />
 		<PackageReference Include="EPiServer.Session" Version="2.1.0" />
 		<PackageReference Include="EPiServer.Social.Framework" Version="2.0.2" />
 		<PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.1" />
