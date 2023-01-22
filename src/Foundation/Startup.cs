@@ -9,6 +9,7 @@ using EPiServer.Labs.BlockEnhancements;
 using EPiServer.Labs.ContentManager;
 using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
+using EPiServer.ServiceApi;
 using EPiServer.Shell.Modules;
 using EPiServer.TinyMCESpellChecker;
 using Foundation.Features.Checkout.Payments;
@@ -152,6 +153,7 @@ namespace Foundation
                         ContentDeliveryApiOptionsDefaults.Scope,
                         ContentManagementApiOptionsDefaults.Scope,
                         ContentDefinitionsApiOptionsDefaults.Scope,
+                        ServiceApiOptionsDefaults.Scope
                     }
                 };
 
