@@ -10,8 +10,8 @@ namespace Foundation.Infrastructure.Cms.Extensions
             services.Configure<TinyMceConfiguration>(config =>
             {
                 config.Default()
-                    .AddPlugin("media wordcount anchor code")
-                    .Toolbar("blocks | epi-personalized-content epi-link anchor numlist bullist indent outdent bold italic underline | code",
+                    .AddPlugin("media wordcount anchor code searchreplace")
+                    .Toolbar("blocks | epi-personalized-content epi-link anchor numlist bullist indent outdent bold italic underline code",
                         "alignleft aligncenter alignright alignjustify | image epi-image-editor media | epi-dnd-processor | forecolor backcolor | removeformat | searchreplace fullscreen")
                     .AddSetting("image_caption", true)
                     .AddSetting("image_advtab", true)
