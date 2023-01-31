@@ -1,5 +1,6 @@
 ﻿using Advanced.CMS.AdvancedReviews;
 using EPiServer.Authorization;
+using EPiServer.Cms.TinyMce.SpellChecker;
 using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Cms.Internal;
 using EPiServer.ContentDefinitionsApi;
@@ -90,6 +91,7 @@ namespace Foundation
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
             services.AddTinyMceConfiguration();
+            services.AddTinyMceSpellChecker();
 
             //site specific
             services.AddEmbeddedLocalization<Startup>();
