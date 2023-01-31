@@ -11,7 +11,6 @@ using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceApi;
 using EPiServer.Shell.Modules;
-using EPiServer.TinyMCESpellChecker;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
@@ -91,7 +90,6 @@ namespace Foundation
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
             services.AddDetection();
             services.AddTinyMceConfiguration();
-            services.AddTinyMceSpellChecker();
 
             //site specific
             services.AddEmbeddedLocalization<Startup>();
