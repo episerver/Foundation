@@ -9,6 +9,7 @@
             ShowPublishDate = block.IncludePublishDate;
             Padding = block.Padding;
             SetPreviewOptionValue(block.PreviewOption);
+            BootstrapCardRatio = block.BootstrapCardRatioOption;
         }
 
         public string Heading { get; set; }
@@ -27,6 +28,7 @@
             else if (option.Equals("1"))
                 PreviewOption = 12;
         }
+        public string BootstrapCardRatio { get; set; }
     }
 
     public class PageListPreviewViewModel
@@ -47,5 +49,6 @@
             ShowIntroduction = block.IncludeTeaserText;
             ShowPublishDate = block.IncludePublishDate;
         }
+        public string BootstrapCardRatio { get; set; }
     }
 }
