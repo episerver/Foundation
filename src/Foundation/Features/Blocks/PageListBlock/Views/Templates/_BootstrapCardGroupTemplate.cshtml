@@ -1,0 +1,47 @@
+﻿@model PageListBlockViewModel
+@using EPiServer.Core.Html
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
+
+@{
+    int col = 12/Model.PreviewOption;
+}
+
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    <div class="row row-cols-1 row-cols-md-@col g-4">
+        @foreach (var pageModel in Model.Pages)
+        {
+            var foundationPage = pageModel.Page as FoundationPageData;
+            var imageCol = pageModel.PreviewOption == PreviewOptions.Full ? 12 : (pageModel.PreviewOption == PreviewOptions.Half ? 6 : 4);
+            <div class="col">
+	                <div class="card h-100">
+                        <div class="ratio @(Model.BootstrapCardRatio != null ? @Model.BootstrapCardRatio : "ratio-4x3")">
+			                <img class="card-img-top" src="@Url.ContentUrl(foundationPage.PageImage)" alt="@foundationPage.MetaTitle" />
+                        </div>
+	                    <div class="card-body">		
+					        <h5 class="card-title">@(@Html.Raw(TextIndexer.StripHtml(pageModel != null ? foundationPage.MetaTitle : pageModel.Page.Name, 40)) + "...")</h5>
+                            @if(Model.ShowIntroduction) {
+                                    <div class="card-text">
+                                        <p>@Html.Raw(TextIndexer.StripHtml(foundationPage.TeaserText, 200))</p>
+                                    </div>
+                            }
+                            <a class="btn-none stretched-link" href="@pageModel.Page.ContentLink.GetPublicUrl()"></a>
+	                    </div>
+                        @if(Model.ShowPublishDate)
+                        {
+                            <div class="card-footer text-muted">
+                                @foundationPage.StartPublish.Value.ToString("dd MMM yyyy")
+                            </div>
+                        }
+                  </div>
+            </div>
+
+        }
+                <style>
+                    .ratio .card-img-top {
+                        object-fit: cover;
+                    }
+                </style>
+    </div>
+}
