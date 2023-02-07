@@ -9,6 +9,7 @@
         public const string Highlight = "Highlight";
         public const string Card = "Card";
         public const string Insight = "Insight";
+        public const string BootstrapCardGroup = "Bootstrap Card Group";
     }
 
     public class TemplateListSelectionFactory : ISelectionFactory
@@ -24,6 +25,7 @@
                 new SelectItem { Value = TemplateSelections.Highlight, Text = "Highlight panel"},
                 new SelectItem { Value = TemplateSelections.Card, Text = "Card"},
                 new SelectItem { Value = TemplateSelections.Insight, Text = "Insight"},
+                new SelectItem { Value = TemplateSelections.BootstrapCardGroup, Text = "Bootstrap Card Group"},
             };
         }
     }

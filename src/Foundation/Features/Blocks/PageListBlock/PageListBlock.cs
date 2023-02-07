@@ -50,7 +50,10 @@ namespace Foundation.Features.Blocks.PageListBlock
         [Display(Name = "Include all levels", GroupName = SystemTabNames.Content, Order = 90)]
         public virtual bool Recursive { get; set; }
 
-        [Display(Name = "Template of pages listing", GroupName = SystemTabNames.Content, Order = 100)]
+        [Display(Name = "Page Listing Display Style", 
+            Description = "Display template to use for page list",
+            GroupName = SystemTabNames.Content, 
+            Order = 100)]
         [SelectOne(SelectionFactoryType = typeof(TemplateListSelectionFactory))]
         public virtual string Template { get; set; }
 
@@ -58,11 +61,18 @@ namespace Foundation.Features.Blocks.PageListBlock
         [SelectOne(SelectionFactoryType = typeof(PreviewOptionSelectionFactory))]
         public virtual string PreviewOption { get; set; }
 
-        [Display(Name = "Overlay color (only for Card template)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 120)]
+        [Display(Name = "Bootstrap Card Image Display Ratio (Bootstrap Card Group display only)", 
+            Description = "Display ratio for card image when using Bootstrap Card Group template",
+            GroupName = SystemTabNames.Content, 
+            Order = 115)]
+        [SelectOne(SelectionFactoryType = typeof(BootstrapCardRatioSelectionFactory))]
+        public virtual string BootstrapCardRatioOption { get; set; }
+
+        [Display(Name = "Overlay color (non-Bootstrap Card template only)", Description = "Apply for non-Bootstrap Card template", GroupName = SystemTabNames.Content, Order = 120)]
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string OverlayColor { get; set; }
 
-        [Display(Name = "Overlay text color (only for Card template)", Description = "Apply for Card template", GroupName = SystemTabNames.Content, Order = 130)]
+        [Display(Name = "Overlay text color (non-Bootstrap Card template only)", Description = "Apply for non-Bootstrap Card template", GroupName = SystemTabNames.Content, Order = 130)]
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
         public virtual string OverlayTextColor { get; set; }
 
@@ -75,6 +85,7 @@ namespace Foundation.Features.Blocks.PageListBlock
             IncludePublishDate = false;
             Template = TemplateSelections.Grid;
             PreviewOption = PreviewOptions.Full;
+            BootstrapCardRatioOption = BootstrapCardRatioSelections.FourThree;
             SortOrder = FilterSortOrder.PublishedDescending;
             OverlayColor = "black";
             OverlayTextColor = "white";
