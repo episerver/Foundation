@@ -53,7 +53,7 @@
 		<PackageReference Include="Schema.NET" Version="11.0.1" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 		<PackageReference Include="System.Linq.Async" Version="6.0.1" />
-		<PackageReference Include="UNRVLD.ODP.VisitorGroups" Version="1.2.0.23" />
+		<PackageReference Include="UNRVLD.ODP.VisitorGroups" Version="1.3.0" />
 		<PackageReference Include="Wangkanai.Detection" Version="6.11.3" />
 		<PackageReference Include="Serilog" Version="2.12.0" />
 		<PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
