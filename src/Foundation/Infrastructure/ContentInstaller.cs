@@ -17,16 +17,12 @@ namespace Foundation.Infrastructure
 {
     public class ContentInstaller : IBlockingFirstRequestInitializer
     {
-        private readonly UIUserProvider _uIUserProvider;
-        private readonly UIRoleProvider _uIRoleProvider;
-        private readonly UISignInManager _uISignInManager;
         private readonly ISiteDefinitionRepository _siteDefinitionRepository;
         private readonly ContentRootService _contentRootService;
         private readonly IContentRepository _contentRepository;
         private readonly IDataImporter _dataImporter;
         private readonly IScheduledJobExecutor _scheduledJobExecutor;
         private readonly IScheduledJobRepository _scheduledJobRepository;
-        private readonly ISettingsService _settingsService;
         private readonly ILanguageBranchRepository _languageBranchRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly EventedIndexingSettings _eventedIndexingSettings;
@@ -35,16 +31,12 @@ namespace Foundation.Infrastructure
         private readonly IndexBuilder _indexBuilder;
         private readonly IPrincipalAccessor _principalAccessor;
 
-        public ContentInstaller(UIUserProvider uIUserProvider,
-            UISignInManager uISignInManager,
-            UIRoleProvider uIRoleProvider,
-            ISiteDefinitionRepository siteDefinitionRepository,
+        public ContentInstaller(ISiteDefinitionRepository siteDefinitionRepository,
             ContentRootService contentRootService,
             IContentRepository contentRepository,
             IDataImporter dataImporter,
             IScheduledJobExecutor scheduledJobExecutor,
             IScheduledJobRepository scheduledJobRepository,
-            ISettingsService settingsService,
             ILanguageBranchRepository languageBranchRepository,
             IWebHostEnvironment webHostEnvironment,
             EventedIndexingSettings eventedIndexingSettings,
@@ -53,16 +45,12 @@ namespace Foundation.Infrastructure
             IndexBuilder indexBuilder,
             IPrincipalAccessor principalAccessor)
         {
-            _uIUserProvider = uIUserProvider;
-            _uISignInManager = uISignInManager;
-            _uIRoleProvider = uIRoleProvider;
             _siteDefinitionRepository = siteDefinitionRepository;
             _contentRootService = contentRootService;
             _contentRepository = contentRepository;
             _dataImporter = dataImporter;
             _scheduledJobExecutor = scheduledJobExecutor;
             _scheduledJobRepository = scheduledJobRepository;
-            _settingsService = settingsService;
             _languageBranchRepository = languageBranchRepository;
             _webHostEnvironment = webHostEnvironment;
             _eventedIndexingSettings = eventedIndexingSettings;
@@ -77,7 +65,6 @@ namespace Foundation.Infrastructure
         public async Task InitializeAsync(HttpContext httpContext)
         {
             InstallDefaultContent(httpContext);
-            _settingsService.InitializeSettings();
             await Task.CompletedTask;
         }
 
