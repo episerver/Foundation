@@ -64,8 +64,9 @@
   }
 }
 
+@if (!@Model.ModalBackgroundImage.IsNullOrEmpty()) {
 <style>
-    .modal-body::before {
+    .modal-content::before {
         content: "";
         background-image: url('@Url.ContentUrl(Model.ModalBackgroundImage)');
         background-repeat: no-repeat;
@@ -77,4 +78,8 @@
         left: 0px;
         opacity: .2;
     }
+    .modal-footer {
+        z-index: 1;
+    }
 </style>
+}
