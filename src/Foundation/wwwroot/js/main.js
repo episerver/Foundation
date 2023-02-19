@@ -1,4 +1,4 @@
-﻿import "bootstrap";
+﻿window.bootstrap = require('bootstrap');
 import "../scss/main.scss"
 require("easy-autocomplete");
 import "bootstrap-notify";
