@@ -1,22 +1,27 @@
 ﻿@using EPiServer.Web.Mvc.Html
 @using Foundation.Features.Blocks.ModalBlock
-
+@using System.Text.RegularExpressions
 @model ModalBlock
 
-@{ var modalId = (((IContent)Model).Name).Replace(" ", ""); }
-
-<div class="modal-block @Model.CssClass">
+@{
+    var modalId = Regex.Replace((((IContent)Model).Name), @"[^A-Za-z0-9\.\,_]", "_");
+}
+<div class="modal-block p-1 @Model.CssClass">
     @if (Model.ShowModalOpenButton)
     {
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@modalId">
-          @Model.ModalOpenButtonText
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@modalId"
+            style="width: @(Model.ModalOpenButtonWidth == 0 ? "100%" : Model.ModalOpenButtonWidth + "px")"
+            @Html.EditAttributes(m => m.ModalOpenButtonText)>
+            @Model.ModalOpenButtonText
         </button>
     }
 
+    @if (!Html.IsInEditMode())
+    {
     <!-- Modal -->
     <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="@(modalId)Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered @Model.ModalSize">
         <div class="modal-content">
           @if (!Model.HideModalTitle)
           {
@@ -25,29 +30,78 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
           }
+          @if (!Model.ModalBackgroundImage.IsNullOrEmpty()) {
+              <div class="modal-image"></div>
+          }
           <div class="modal-body">
             @Html.PropertyFor(m => m.ModalContentArea)
           </div>
           @if (!Model.HideModalFooter)
           {
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Model.ModalCloseButtonText</button>
-            </div>
+              <div class="modal-footer">
+                @if (!@Model.ModalCloseButtonText.IsNullOrEmpty()) 
+                {
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Model.ModalCloseButtonText</button>
+                }
+                @if (!@Model.ModalPrimaryButtonText.IsNullOrEmpty()) 
+                {
+                    <a class="btn btn-primary" href="@Url.ContentUrl(Model.ModalPrimaryButtonLink)" role="button">@Model.ModalPrimaryButtonText</a>
+                }
+              </div>
           }
         </div>
       </div>
-    </div>
+        </div>
+    } 
+    else
+    {
+    <!-- On-Page Editing Modal -->
+    <div class="modal position-static d-block" id="@modalId" tabindex="-1" aria-labelledby="@(modalId)Label" >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          @if (!Model.HideModalTitle)
+          {
+            <div class="modal-header">
+              <h5 class="modal-title" id="@(modalId)Label" @Html.EditAttributes(m => m.ModalTitle)>@Model.ModalTitle</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          }
+          @if (!Model.ModalBackgroundImage.IsNullOrEmpty()) {
+              <div class="modal-image"></div>
+          }
+          <div class="modal-body">
+            @Html.PropertyFor(m => m.ModalContentArea, new {Tag = ""})
+          </div>
+          @if (!Model.HideModalFooter)
+          {
+              <div class="modal-footer">
+                @if (!@Model.ModalCloseButtonText.IsNullOrEmpty()) 
+                {
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @Html.EditAttributes(m => m.ModalCloseButtonText)>@Model.ModalCloseButtonText</button>
+                }
+                @if (!@Model.ModalPrimaryButtonText.IsNullOrEmpty()) 
+                {
+                    <a class="btn btn-primary" href="@Url.ContentUrl(Model.ModalPrimaryButtonLink)" role="button" @Html.EditAttributes(m => m.ModalPrimaryButtonText)>@Model.ModalPrimaryButtonText</a>
+                }
+              </div>
+          }
+        </div>
+      </div>
+        </div>
+    } 
+
 </div>
 
 @if (!Html.IsInEditMode()) {
   if (Model.ShowModalOnPageLoad)
   {
-      <!-- Show modal automatically on page load -->
-      <script>
-          $(document).ready(function(){
-              jQuery("#@(modalId)").modal('show');
-          });
-      </script>
+    <!-- Show modal automatically on page load -->
+    <script type="text/javascript">
+      window.onload = () => {
+          const myModal = new bootstrap.Modal('#@(modalId)');
+          myModal.show();
+    }
+    </script>
   }
   if (Model.ShowModalOnExitIntent) {
       <!-- Show modal automatically when mouse leaves page -->
@@ -55,18 +109,45 @@
           const mouseEvent = e => {
               if (!e.toElement && !e.relatedTarget) {
                 document.removeEventListener('mouseout', mouseEvent);
-                jQuery("#@(modalId)").modal('show');
+                const myModal = new bootstrap.Modal('#@(modalId)');
+                myModal.show();
               }
           };
 
           document.addEventListener('mouseout', mouseEvent);
       </script>
   }
+  if (Model.ShowModalOnScrollPercentage > 0) {
+      <!-- Show modal automatically when visitor scrolls page X % -->
+      <script>        
+        const scrollEvent = () => {
+            if ($(window).scrollTop() > ($(document).height() - $(window).height())*@(Model.ShowModalOnScrollPercentage)/100) {
+                document.removeEventListener('scroll', scrollEvent);
+                const myModal = new bootstrap.Modal('#@(modalId)');
+                myModal.show();
+            }
+        };
+
+        document.addEventListener('scroll', scrollEvent);
+      </script>
+  }
+  if (Model.ShowModalAfterXSeconds > 0)
+  {
+      <!-- Show modal automatically on page load -->
+      <script>
+          window.onload = () => {
+              const myModal = new bootstrap.Modal('#@(modalId)');
+              setTimeout(function(){
+                  myModal.show();
+              }, @(Model.ShowModalAfterXSeconds)*1000);
+          }
+      </script>
+  }
 }
 
 @if (!@Model.ModalBackgroundImage.IsNullOrEmpty()) {
 <style>
-    .modal-content::before {
+    #@modalId .modal-content::before {
         content: "";
         background-image: url('@Url.ContentUrl(Model.ModalBackgroundImage)');
         background-repeat: no-repeat;
@@ -78,8 +159,23 @@
         left: 0px;
         opacity: .2;
     }
-    .modal-footer {
+    #@modalId .modal-footer {
         z-index: 1;
     }
 </style>
+}
+
+@if(!Model.ModalBackdropImage.IsNullOrEmpty())
+{
+    <style>
+        div#@(modalId).modal.show {
+            background-image: url('@Url.ContentUrl(Model.ModalBackdropImage)');
+            z-index: 2005;
+        }
+        div#@(modalId).modal.fade {
+            background-image: url('@Url.ContentUrl(Model.ModalBackdropImage)');
+            transition: opacity 0.15s linear;
+            z-index: 2005;
+        }
+    </style>
 }
