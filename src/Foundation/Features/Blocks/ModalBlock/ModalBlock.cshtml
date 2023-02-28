@@ -145,6 +145,18 @@
   }
 }
 
+<!-- If modal includes a video, stop playing when modal is closed -->
+<script>
+    if (document.querySelector('#@(modalId) iframe') != null) {
+        const @(modalId)El = document.getElementById('@(modalId)')
+        @(modalId)El.addEventListener('hidden.bs.modal', event => {
+          var src = @(modalId)El.querySelector('iframe').getAttribute('src');
+          @(modalId)El.querySelector('iframe').setAttribute('src', src);
+        })
+    }
+</script>
+
+
 @if (!@Model.ModalBackgroundImage.IsNullOrEmpty()) {
 <style>
     #@modalId .modal-content::before {
