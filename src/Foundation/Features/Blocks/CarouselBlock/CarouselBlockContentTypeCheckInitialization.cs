@@ -37,10 +37,10 @@ namespace Foundation.Features.Blocks.CarouselBlock
                     foreach (var contentAreaItem in carouselBlock.CarouselItems.FilteredItems)
                     {
                         var carouselItem = _contentLoader.Get<IContentData>(contentAreaItem.ContentLink);
-                        if (carouselItem is not ImageMediaData && carouselItem is not ImageData && carouselItem is not HeroBlock.HeroBlock)
+                        if (carouselItem is not ImageMediaData && carouselItem is not ImageData && carouselItem is not HeroBlock.HeroBlock && carouselItem is not ContainerBlock.ContainerBlock)
                         {
                             cancelPublish = true;
-                            cancelReason = "Carousel Block only allows images and Hero blocks, please remove other asset types.";
+                            cancelReason = " Carousel Block only allows images, Hero blocks and Containers. Please remove other asset types.";
                         }
                     }
                 }

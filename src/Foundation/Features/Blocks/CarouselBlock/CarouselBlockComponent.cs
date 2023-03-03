@@ -36,6 +36,10 @@ namespace Foundation.Features.Blocks.CarouselBlock
                     {
                         model.Items.Add(new CarouselItem() { HeroBlock = new BlockViewModel<HeroBlock.HeroBlock>((HeroBlock.HeroBlock)carouselItem) });
                     }
+                    else if (carouselItem is ContainerBlock.ContainerBlock)
+                    {
+                        model.Items.Add(new CarouselItem() { ContainerBlock = new BlockViewModel<ContainerBlock.ContainerBlock>((ContainerBlock.ContainerBlock)carouselItem) });
+                    }
                     else if (carouselItem is ImageData)
                     {
                         var carouselImage = new CarouselImage()
