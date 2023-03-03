@@ -8,6 +8,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
     [ImageUrl("/icons/cms/blocks/CMS-icon-block-26.png")]
     public class ButtonBlock : FoundationBlockData
     {
+      
         #region Content
         [CultureSpecific]
         [Display(Name = "Label", Order = 10, GroupName = SystemTabNames.Content)]
@@ -150,6 +151,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
         #endregion
         public override void SetDefaultValues(ContentType contentType)
         {
+         
             base.SetDefaultValues(contentType);
             ButtonTextUppercase = true;
             ButtonBackgroundColor = "#ffffffff";
