@@ -63,7 +63,7 @@ namespace Foundation.Infrastructure.Helpers
 
             //get fonts
             var settings = _settingsService.Value.GetSiteSettings<FontSettings>();
-            if (settings.FontFields != null)
+            if (settings != null && settings.FontFields != null)
             {
                 for (var i = 0; i < settings.FontFields.Count; i++)
                 {
@@ -73,18 +73,11 @@ namespace Foundation.Infrastructure.Helpers
                         outputCss.AppendLine(settings.FontFields[i].FontImport);
                         outputCss.AppendLine("</style>");
 
-                        //if (settings.FontFields[i].SetAsGlobal)
-                        //{
-                        //    outputCss.AppendLine("<style>");
-                        //    outputCss.AppendLine("*{");
-                        //    outputCss.AppendLine(String.Format("font-family: '{0}';", settings.FontFields[i].FontName));
-                        //    outputCss.AppendLine("}");
-                        //    outputCss.AppendLine("</style>");
-                        //}
+                        
                     }
                 }
 
-                if (!settings.GlobalFontDropDown.IsNullOrEmpty())
+                if (!settings.GlobalFontDropDown.IsNullOrEmpty() && settings.GlobalFontDropDown != "Initial")
                 {
                     outputCss.AppendLine("<style>");
                     outputCss.AppendLine("*{");
@@ -95,7 +88,7 @@ namespace Foundation.Infrastructure.Helpers
             }
 
             //get custom fonts
-            if (settings.CustomFonts != null)
+            if (settings != null && settings.CustomFonts != null)
             {
                 for (var i = 0; i < settings.CustomFonts.Count; i++)
                 {
@@ -108,14 +101,7 @@ namespace Foundation.Infrastructure.Helpers
                         outputCss.AppendLine("}");
                         outputCss.AppendLine("</style>");
 
-                        //if (settings.CustomFonts[i].SetAsGlobal)
-                        //{
-                        //    outputCss.AppendLine("<style>");
-                        //    outputCss.AppendLine("*{");
-                        //    outputCss.AppendLine(String.Format("font-family: '{0}';", settings.CustomFonts[i].FontName));
-                        //    outputCss.AppendLine("}"); outputCss.AppendLine("</style>");
-                        //}
-
+                        
                     }
                 }
             }

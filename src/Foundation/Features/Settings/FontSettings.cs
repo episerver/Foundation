@@ -43,15 +43,11 @@ namespace Foundation.Features.Settings
         [PropertyDefinitionTypePlugIn]
         public class CustomFontFieldsProperty : PropertyList<CustomFontModel> { }
 
-        //[Display(
-        //    Name = "Font Folder content",
-        //    Description = "Folder with links",
-        //    GroupName = "Custom Fonts",
-        //    Order = 10)]
-        //[AllowedTypes(new[] { typeof(ContentFolder) })]
-        //public virtual ContentReference FontFolder { get; set; }
-
-
+        public override void SetDefaultValues(ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+            GlobalFontDropDown = "Initial";
+        }
     }
 
     public class GlobalFontSelectionFactory : ISelectionFactory
@@ -62,6 +58,8 @@ namespace Foundation.Features.Settings
         public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
         {
             SortedDictionary<string, string> fonts = new SortedDictionary<string, string>();
+
+            
 
             var settings = _settingsService.Value.GetSiteSettings<FontSettings>();
 
@@ -89,14 +87,12 @@ namespace Foundation.Features.Settings
                 }
             }
 
+            fonts.Add("- Default Site Font -", "Initial");
 
             return fonts.Select(x => new SelectItem { Text = x.Key, Value = x.Value });
-
-           
+       
         }
     }
-
-    
 
     public class FontModel
     {
@@ -108,9 +104,6 @@ namespace Foundation.Features.Settings
 
         [Display(Name = "Font Import")]
         public string FontImport { get; set; }
-
-       
-
 
     }
 
@@ -124,8 +117,6 @@ namespace Foundation.Features.Settings
 
         [Display(Name = "Font File")]
         public LinkItemCollection FontFile { get; set; }
-
-       
 
         internal IEnumerable<object> Where(Func<object, bool> value) => throw new NotImplementedException();
     }
@@ -150,4 +141,6 @@ namespace Foundation.Features.Settings
         // Properties
         public string Style { get; set; }
     }
+
+
 }

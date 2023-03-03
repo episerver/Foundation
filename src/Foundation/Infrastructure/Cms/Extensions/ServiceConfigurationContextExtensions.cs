@@ -45,13 +45,12 @@ namespace Foundation.Infrastructure.Cms.Extensions
 
                 var fontImports = "";
 
-                if (settings.FontFields != null)
+                if (settings != null && settings.FontFields != null)
                 {
                     for (var i = 0; i < settings.FontFields.Count; i++)
                     {
                         if (settings.FontFields[i].EnableFont)
                         {
-                            //fontFormats += string.Format("{0}={0};", settings.FontFields[i].FontName);
                             FontFormats.Add(string.Format("{0}={0}", settings.FontFields[i].FontName));
 
                             fontImports += string.Format("{0}", settings.FontFields[i].FontImport);
@@ -59,14 +58,13 @@ namespace Foundation.Infrastructure.Cms.Extensions
                         }
                     }
                 }
-                if (settings.CustomFonts != null)
+                if (settings != null && settings.CustomFonts != null)
                 {
                     for (var i = 0; i < settings.CustomFonts.Count; i++)
                     {
                         if (settings.CustomFonts[i].EnableFont)
                         {
 
-                            //fontFormats += string.Format("{0}={0};", settings.CustomFonts[i].FontName);
                             FontFormats.Add(string.Format("{0}={0}", settings.CustomFonts[i].FontName));
                             fontImports += string.Format("@import url('{0}');", settings.CustomFonts[i].FontFile[0].GetMappedHref());
                         }
@@ -75,12 +73,6 @@ namespace Foundation.Infrastructure.Cms.Extensions
 
                 FontFormats.Sort();
                 var fonts = string.Join(";", FontFormats);
-
-                //var FontsInFolder = new List<MediaData>();
-                //var rootContent = _contentLoader.Get<IContent>(settings.FontFolder);
-
-                //var assets = new List<MediaData>();
-                //assets = _contentLoader.GetChildren<MediaData>(settings.FontFolder).ToList();
 
 
                 config.Default()
