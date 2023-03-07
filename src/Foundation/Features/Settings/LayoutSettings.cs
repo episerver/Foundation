@@ -1,7 +1,15 @@
-﻿using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Core;
+using EPiServer.DataAbstraction;
+using EPiServer.DataAnnotations;
+using EPiServer.Framework.DataAnnotations;
+using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
+using EPiServer.Web;
 using Foundation.Features.Blocks.MenuItemBlock;
+using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.Settings;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {
@@ -64,6 +72,14 @@ namespace Foundation.Features.Settings
         [Display(Name = "Copyright", GroupName = TabNames.Footer, Order = 130)]
         public virtual string FooterCopyrightText { get; set; }
 
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Footer Background color", GroupName = TabNames.Footer, Order = 140)]
+        public virtual string FooterBackgroundColor { get; set; }
+
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Footer Text Color", GroupName = TabNames.Footer, Order = 150)]
+        public virtual string FooterTextColor { get; set; }
+
         #endregion
 
         #region Menu   
@@ -83,6 +99,14 @@ namespace Foundation.Features.Settings
         [CultureSpecific]
         [Display(Name = "Organization menu", GroupName = TabNames.Menu, Order = 50)]
         public virtual LinkItemCollection OrganizationMenu { get; set; }
+
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Main Menu First Level Backgroud color", GroupName = TabNames.Menu, Order = 60)]
+        public virtual string MenuBackgroundColor { get; set; }
+
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Main Menu First Level Text Color", GroupName = TabNames.Menu, Order = 701)]
+        public virtual string MenuTextColor { get; set; }
 
         #endregion
 
@@ -111,8 +135,20 @@ namespace Foundation.Features.Settings
         public virtual bool StickyTopHeader { get; set; }
 
         [CultureSpecific]
+        [Display(Name = "Hide Top Banner", GroupName = TabNames.TopBanner, Order = 10)]
+        public virtual bool HideBannerText { get; set; }
+
+        [CultureSpecific]
         [Display(Name = "Banner text", GroupName = TabNames.Header, Order = 20)]
         public virtual XhtmlString BannerText { get; set; }
+
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Banner Backgroud color", GroupName = TabNames.TopBanner, Order = 30)]
+        public virtual string BannerBackgroundColor { get; set; }
+
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Banner Text Color", GroupName = TabNames.TopBanner, Order = 40)]
+        public virtual string BannerTextColor { get; set; }
 
         #endregion
 
@@ -120,6 +156,8 @@ namespace Foundation.Features.Settings
         {
             base.SetDefaultValues(contentType);
             LargeHeaderMenu = false;
+            BannerBackgroundColor = "#000000FF";
+            BannerTextColor = "#FFFFFFFF";
         }
     }
 

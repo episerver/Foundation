@@ -18,6 +18,8 @@ namespace Foundation.Infrastructure.Helpers
         private const string _scriptFormat = "<script src=\"{0}\"></script>";
         private const string _metaFormat = "<meta name=\"{0}\" property=\"{0}\" content=\"{1}\" />";
 
+        private const string _customFontSrc = "src: url(\"{0}\")";
+
         private static readonly Lazy<IContentLoader> _contentLoader =
             new Lazy<IContentLoader>(() => ServiceLocator.Current.GetInstance<IContentLoader>());
 
@@ -57,6 +59,51 @@ namespace Foundation.Infrastructure.Helpers
                 outputCss.AppendLine(!string.IsNullOrWhiteSpace(startPage.Css) ? startPage.Css : "");
                 outputCss.AppendLine(!string.IsNullOrWhiteSpace(sitePageData.Css) && !(sitePageData is HomePage) ? sitePageData.Css : "");
                 outputCss.AppendLine("</style>");
+            }
+
+            //get fonts
+            var settings = _settingsService.Value.GetSiteSettings<FontSettings>();
+            if (settings != null && settings.FontFields != null)
+            {
+                for (var i = 0; i < settings.FontFields.Count; i++)
+                {
+                    if (settings.FontFields[i].EnableFont)
+                    {
+                        outputCss.AppendLine("<style>");
+                        outputCss.AppendLine(settings.FontFields[i].FontImport);
+                        outputCss.AppendLine("</style>");
+
+                        
+                    }
+                }
+
+                if (!settings.GlobalFontDropDown.IsNullOrEmpty() && settings.GlobalFontDropDown != "Initial")
+                {
+                    outputCss.AppendLine("<style>");
+                    outputCss.AppendLine("*{");
+                    outputCss.AppendLine(String.Format("font-family: '{0}';", settings.GlobalFontDropDown));
+                    outputCss.AppendLine("}");
+                    outputCss.AppendLine("</style>");
+                }
+            }
+
+            //get custom fonts
+            if (settings != null && settings.CustomFonts != null)
+            {
+                for (var i = 0; i < settings.CustomFonts.Count; i++)
+                {
+                    if (settings.CustomFonts[i].EnableFont)
+                    {
+                        outputCss.AppendLine("<style>");
+                        outputCss.AppendLine("@font-face {");
+                        outputCss.AppendLine(String.Format("font-family: '{0}';", settings.CustomFonts[i].FontName));
+                        AppendFiles(settings.CustomFonts[i].FontFile, outputCss, _customFontSrc);
+                        outputCss.AppendLine("}");
+                        outputCss.AppendLine("</style>");
+
+                        
+                    }
+                }
             }
 
             return new HtmlString(outputCss.ToString());
