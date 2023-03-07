@@ -73,7 +73,7 @@ namespace Foundation.Features.Settings
         public virtual string FooterCopyrightText { get; set; }
 
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
-        [Display(Name = "Footer Backgroud color", GroupName = TabNames.Footer, Order = 140)]
+        [Display(Name = "Footer Background color", GroupName = TabNames.Footer, Order = 140)]
         public virtual string FooterBackgroundColor { get; set; }
 
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
@@ -135,7 +135,7 @@ namespace Foundation.Features.Settings
         public virtual bool StickyTopHeader { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Hide Banner text", GroupName = TabNames.TopBanner, Order = 10)]
+        [Display(Name = "Hide Top Banner", GroupName = TabNames.TopBanner, Order = 10)]
         public virtual bool HideBannerText { get; set; }
 
         [CultureSpecific]
