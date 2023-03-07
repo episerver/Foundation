@@ -14,6 +14,8 @@
     {
         public CarouselImage CarouselImage { get; set; }
         public IBlockViewModel<HeroBlock.HeroBlock> HeroBlock { get; set; }
+
+        public IBlockViewModel<ContainerBlock.ContainerBlock> ContainerBlock { get; set; }
     }
 
     public class CarouselImage

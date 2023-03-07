@@ -10,7 +10,7 @@ namespace Foundation.Features.Blocks.CarouselBlock
     public class CarouselBlock : FoundationBlockData
     {
         [CultureSpecific]
-        [AllowedTypes(new[] { typeof(HeroBlock.HeroBlock), typeof(ImageMediaData), typeof(MediaData) })]
+        [AllowedTypes(new[] { typeof(HeroBlock.HeroBlock), typeof(ImageMediaData), typeof(MediaData), typeof(ContainerBlock.ContainerBlock) })]
         [Display(
             Name = "Carousel items",
             GroupName = "Carousel",
@@ -59,12 +59,28 @@ namespace Foundation.Features.Blocks.CarouselBlock
 
         [CultureSpecific]
         [Display(
+            Name = "Fade",
+            GroupName = "Carousel",
+            Description = "If set, the carousely transition will fade",
+            Order = 40)]
+        public virtual bool Fade { get; set; }
+
+        [CultureSpecific]
+        [Display(
             Name = "Interval in milliseconds",
             GroupName = "Carousel",
             Description = "The amount of time in milliseconds before automatically advancing to the next slide. Defaults to 5 seconds",
-            Order = 40)]
+            Order = 50)]
         [Range(1000, 300000)] // Between 1s and 5mins
         public virtual int Interval { get; set; }
+
+        [CultureSpecific]
+        [SelectOne(SelectionFactoryType = typeof(CarouselThemeSelectionFactory))]
+        [Display(
+           Name = "Indicator color theme",
+           GroupName = "Carousel",
+           Order = 60)]
+        public virtual string Theme { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
@@ -73,7 +89,20 @@ namespace Foundation.Features.Blocks.CarouselBlock
             ShowControls = true;
             ShowIndicators = true;
             AutoPlay = true;
+            Fade = false;
             Interval = 5000;
+            Theme = "light";
+        }
+        public class CarouselThemeSelectionFactory : ISelectionFactory
+        {
+            public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
+            {
+                return new List<SelectItem>
+                {
+                    new SelectItem { Text = "Light", Value = "light" },
+                    new SelectItem { Text = "Dark", Value = "dark" },
+                };
+            }
         }
     }
 }

@@ -3,7 +3,14 @@
 @model Foundation.Features.Settings.LayoutSettings
 
 <hr class="bottom-line">
-<footer class="footer">
+
+<style>
+    footer.footer a{
+        color: @Html.PropertyFor(x => x.FooterTextColor);
+    }
+</style>
+
+<footer class="footer" style="background-color: @Html.PropertyFor(x => x.FooterBackgroundColor); color: @Html.PropertyFor(x => x.FooterTextColor);">
     <div class="container">
         <h5 class="footer__introduction">
             @Html.PropertyFor(x => x.Introduction)
