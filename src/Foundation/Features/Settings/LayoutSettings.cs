@@ -105,7 +105,7 @@ namespace Foundation.Features.Settings
         public virtual string MenuBackgroundColor { get; set; }
 
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
-        [Display(Name = "Main Menu First LevelText Color", GroupName = TabNames.Menu, Order = 701)]
+        [Display(Name = "Main Menu First Level Text Color", GroupName = TabNames.Menu, Order = 701)]
         public virtual string MenuTextColor { get; set; }
 
         #endregion
