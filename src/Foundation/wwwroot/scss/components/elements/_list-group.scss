@@ -1,5 +1,5 @@
 .list-group--header {
-    width: 100%;
+    width: 100%; 
 
     .list-group--header__item {
         margin: 0;
@@ -16,6 +16,31 @@
 
         p {
             margin-bottom: 0;
+        }
+
+        &:has(.content__betbest) {
+            border: 2px solid rgba(255, 129, 16, 1);
+            padding: 1rem;
+            background-color: rgba(255, 129, 16,.05);
+            position: relative;
+        }
+
+        &:has(.content__betbest):hover {
+            background-color: rgba(255, 129, 16,.10);
+        }
+
+        &:has(.content__betbest):after {
+            content: "Best Bet";
+            position: absolute;
+            right: 1rem;
+            text-transform: uppercase;
+            color: rgba(255, 129, 16,1);
+            font-size: smaller;
+        }
+
+        &:has(.content__betbest) svg {
+            fill: #fff;
+            stroke: rgba(255, 129, 16,1);
         }
     }
 }
@@ -203,4 +228,19 @@ ul.loyal--group {
         width: 100%;
         padding: 8px;
     }
+}
+
+
+div.row:has(.jsProducts) h2:before {
+    content: 'Product Results for: "';
+    font-weight: 100;
+}
+
+div.row:has(.jsProducts) h2:after {
+    content: '"';
+    font-weight: 100;
+}
+
+#contentResult h2:after {
+    content: ' Results';
 }
