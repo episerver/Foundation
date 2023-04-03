@@ -4,9 +4,6 @@
 
 @{
 
-    Random rnd = new Random();
-    int num = rnd.Next();
-
     var style = "";
 
     if (Model.CurrentBlock.TextColorOverdrive)
@@ -14,7 +11,7 @@
         style += $"color: {Model.CurrentBlock.ButtonTextColor};";
 
          <style>
-            #button-@num a:hover{
+            #button-@(((IContent)Model.CurrentBlock).ContentLink.ID) a:hover{
                 color: @Model.CurrentBlock.ButtonTextHoverColor !important;
             }
         </style>
@@ -26,7 +23,7 @@
         style += $"border-radius: {Model.CurrentBlock.BorderRadius}px;";
 
         <style>
-            #button-@num a:hover{
+            #button-@(((IContent)Model.CurrentBlock).ContentLink.ID) a:hover{
                 border-color: @Model.CurrentBlock.ButtonBorderHoverColor !important;
             }
         </style>
@@ -46,7 +43,7 @@
         style += "background : transparent;";
 
         <style>
-            #button-@num a:hover{
+            #button-@(((IContent)Model.CurrentBlock).ContentLink.ID) a:hover{
                 background-color: @Model.CurrentBlock.ButtonBackgroundHoverColor !important;
             }
         </style>
@@ -56,7 +53,7 @@
         style += $"background-color:{Model.CurrentBlock.ButtonBackgroundColor};";
 
         <style>
-            #button-@num a:hover{
+            #button-@(((IContent)Model.CurrentBlock).ContentLink.ID) a:hover{
                 background-color: @Model.CurrentBlock.ButtonBackgroundHoverColor !important;
             }
         </style>
@@ -64,7 +61,7 @@
 }
 
 
-<div id="button-@num"
+<div id="button-@(((IContent)Model.CurrentBlock).ContentLink.ID)"
      style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;"
      class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
     <a style="@style"
