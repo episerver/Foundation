@@ -13,7 +13,7 @@ else
         <div class="container" style="@(Model.LargeHeaderMenu ? "max-width: 1750px;" : "")">
             <div class="row">
                 <div class="col-12">
-                    <div class="top-header__banner-text">
+                    <div class="top-header__banner-text" style="text-align:@Html.PropertyFor(x => x.LayoutSettings.TopBannerAlign);">
                         @Html.PropertyFor(x => x.LayoutSettings.BannerText)
                     </div>
                     @if (Model.ShowCommerceControls)

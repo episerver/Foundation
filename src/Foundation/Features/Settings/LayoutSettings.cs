@@ -133,21 +133,30 @@ namespace Foundation.Features.Settings
         [CultureSpecific]
         [Display(Name = "Sticky header", GroupName = TabNames.Header, Order = 50)]
         public virtual bool StickyTopHeader { get; set; }
+        
+        #endregion
+
+        #region TopBanner
 
         [CultureSpecific]
         [Display(Name = "Hide Top Banner", GroupName = TabNames.TopBanner, Order = 10)]
         public virtual bool HideBannerText { get; set; }
 
         [CultureSpecific]
-        [Display(Name = "Banner text", GroupName = TabNames.Header, Order = 20)]
+        [SelectOne(SelectionFactoryType = typeof(TopBannerAlignSelectionFactory))]
+        [Display(Name = "Top Banner Alignment", GroupName = TabNames.TopBanner, Order = 20)]
+        public virtual string TopBannerAlign { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Banner text", GroupName = TabNames.TopBanner, Order = 30)]
         public virtual XhtmlString BannerText { get; set; }
 
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
-        [Display(Name = "Banner Backgroud color", GroupName = TabNames.TopBanner, Order = 30)]
+        [Display(Name = "Banner Backgroud color", GroupName = TabNames.TopBanner, Order = 40)]
         public virtual string BannerBackgroundColor { get; set; }
 
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
-        [Display(Name = "Banner Text Color", GroupName = TabNames.TopBanner, Order = 40)]
+        [Display(Name = "Banner Text Color", GroupName = TabNames.TopBanner, Order = 50)]
         public virtual string BannerTextColor { get; set; }
 
         #endregion
@@ -158,6 +167,7 @@ namespace Foundation.Features.Settings
             LargeHeaderMenu = false;
             BannerBackgroundColor = "#000000FF";
             BannerTextColor = "#FFFFFFFF";
+            TopBannerAlign = "center";
         }
     }
 
@@ -169,6 +179,19 @@ namespace Foundation.Features.Settings
             {
                 new SelectItem {Text = "Center logo", Value = "CenterLogo"},
                 new SelectItem {Text = "Left logo", Value = "LeftLogo"}
+            };
+        }
+    }
+
+    public class TopBannerAlignSelectionFactory : ISelectionFactory
+    {
+        public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
+        {
+            return new ISelectItem[]
+            {
+                new SelectItem {Text = "Left", Value = "left"},
+                new SelectItem {Text = "Center", Value = "center"},
+                new SelectItem {Text = "Right", Value = "right"}
             };
         }
     }
