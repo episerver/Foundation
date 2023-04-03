@@ -93,24 +93,31 @@
 
 <style>
     
-    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout > div {
-        background-color: @Model.CurrentBlock.Callout.BackgroundColor;
-        opacity: @calloutOpacity;
-        @if (Model.CurrentBlock.Callout.BackgroundColorBehindText)
-        {
-            <text>
+    @if (Model.CurrentBlock.Callout.BackgroundColorBehindText)
+    {
+        <text>
+            #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout > div {
+                background-color: @Model.CurrentBlock.Callout.BackgroundColor;
+                opacity: @calloutOpacity;
                 display:inline-block;
                 padding: 1rem;
-            </text>
-        }
+            }
+        </text>
     }
 
-    /*#heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
-        background-color: @Model.CurrentBlock.Callout.BackgroundColor;
-        opacity: @calloutOpacity
-    }*/
+    @if (!Model.CurrentBlock.Callout.BackgroundColorBehindText)
+    {
+        <text>
+        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
+            background-color: @Model.CurrentBlock.Callout.BackgroundColor;
+            opacity: @calloutOpacity
+        }
+        </text>
+
+    }
 
     #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout a:not(.button-origin) {
         color: @Model.CurrentBlock.Callout.CalloutTextColor
     }
+
 </style>
