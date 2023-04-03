@@ -106,6 +106,83 @@ namespace Foundation.Infrastructure.Helpers
                 }
             }
 
+ //style settings
+            var styleSettings = _settingsService.Value.GetSiteSettings<StyleSettings>();
+
+            if (styleSettings != null && styleSettings.OverrideGlobalButtonStyles)
+            {
+
+                //set button padding
+                var buttonPadding = ".25rem";
+                switch (styleSettings.ButtonTextPadding)
+                {
+                    case "p-5":
+                        buttonPadding = "1rem 2rem";
+                        break;
+                    case "p-3":
+                        buttonPadding = ".5rem 1rem";
+                        break;
+                    case "p-1":
+                        buttonPadding = ".25rem .5rem";
+                        break;
+                }
+
+                //set border radius
+                var buttonBorderRadius = "0";
+                switch (styleSettings.ButtonBorderRadius)
+                {
+                    case "p-5":
+                        buttonBorderRadius = "100px";
+                        break;
+                    case "p-3":
+                        buttonBorderRadius = "16px";
+                        break;
+                    case "p-1":
+                        buttonBorderRadius = "5px";
+                        break;
+                }
+
+                outputCss.AppendLine("<style>");
+                
+                outputCss.AppendLine(".btn, .button-origin, a.button-use-global, .formcontainerblock .EPiServerForms .FormSubmitButton{");
+                outputCss.AppendLine("border-style: solid; text-decoration:none;");
+                outputCss.AppendLine(String.Format("color: {0};", styleSettings.ButtonTextColor));
+                outputCss.AppendLine(String.Format("font-size: {0};", styleSettings.ButtonTextFontSize));
+                outputCss.AppendLine(String.Format("border-radius: {0};", buttonBorderRadius));
+                outputCss.AppendLine(String.Format("background-color: {0};", styleSettings.ButtonBackgroundColor));
+                outputCss.AppendLine(String.Format("border-color: {0};", styleSettings.ButtonBorderColor));
+                outputCss.AppendLine(String.Format("border-width: {0}px;", styleSettings.ButtonBorderWidth));
+                outputCss.AppendLine(String.Format("padding: {0};", buttonPadding));
+                outputCss.AppendLine(String.Format("text-transform: {0};", styleSettings.ButtonUppercase ? "uppercase" : "capitalize"));
+                outputCss.AppendLine("}");
+                
+                outputCss.AppendLine(".btn:hover, .button-origin:hover,  a.button-use-global:hover, .formcontainerblock .EPiServerForms .FormSubmitButton:hover{");
+                outputCss.AppendLine(String.Format("background-color: {0};", styleSettings.ButtonHoverBackgroundColor));
+                outputCss.AppendLine(String.Format("border-color: {0};", styleSettings.ButtonBorderHoverColor));
+                outputCss.AppendLine(String.Format("color: {0};", styleSettings.ButtonTextHoverColor));
+                outputCss.AppendLine("}");
+                
+                outputCss.AppendLine(".formcontainerblock{");
+                outputCss.AppendLine(String.Format("text-align: {0};", styleSettings.FormAlign));
+                outputCss.AppendLine("}");
+
+                outputCss.AppendLine("</style>");
+
+
+            }
+            if (styleSettings != null && styleSettings.OverrideCardStyles)
+            {
+                outputCss.AppendLine("<style>");
+                outputCss.AppendLine(".card.page-teaser-card{");
+                outputCss.AppendLine(String.Format("min-height: {0};", styleSettings.CardMinHeight));
+                outputCss.AppendLine("}");
+                outputCss.AppendLine(".card > img{");
+                outputCss.AppendLine(String.Format("height: {0};", styleSettings.CardImageHeight));
+                outputCss.AppendLine("object-fit: cover;}");
+                outputCss.AppendLine(".card a{position: absolute; bottom: 1rem;}");
+                outputCss.AppendLine("</style>");
+            }
+            
             return new HtmlString(outputCss.ToString());
         }
 
