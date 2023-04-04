@@ -106,7 +106,7 @@ namespace Foundation.Infrastructure.Helpers
                 }
             }
 
- //style settings
+            //style settings
             var styleSettings = _settingsService.Value.GetSiteSettings<StyleSettings>();
 
             if (styleSettings != null && styleSettings.OverrideGlobalButtonStyles)
@@ -170,7 +170,6 @@ namespace Foundation.Infrastructure.Helpers
 
 
             }
-            
             if (styleSettings != null && styleSettings.OverrideCardStyles)
             {
                 outputCss.AppendLine("<style>");

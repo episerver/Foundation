@@ -2,6 +2,7 @@
 {
     public static class ButtonBlockStyles
     {
+        public const string UseGlobal = "button-use-global";
         public const string SetManually = "button-set-manually";
         public const string TransparentBlack = "button-transparent-black";
         public const string TransparentWhite = "button-transparent-white";
@@ -17,6 +18,7 @@
         {
             return new List<SelectItem>
             {
+                new SelectItem { Text = "Use Global", Value = ButtonBlockStyles.UseGlobal },
                 new SelectItem { Text = "Set Manually", Value = ButtonBlockStyles.SetManually },
                 new SelectItem { Text = "Transparent Black", Value = ButtonBlockStyles.TransparentBlack },
                 new SelectItem { Text = "Transparent White", Value = ButtonBlockStyles.TransparentWhite },
