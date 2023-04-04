@@ -170,6 +170,7 @@ namespace Foundation.Infrastructure.Helpers
 
 
             }
+            
             if (styleSettings != null && styleSettings.OverrideCardStyles)
             {
                 outputCss.AppendLine("<style>");
