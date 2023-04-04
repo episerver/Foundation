@@ -1,3 +1,5 @@
+using Foundation.Features.Blocks.ButtonBlock;
+
 namespace Foundation.Features.Blocks.TeaserBlock
 {
     [ContentType(DisplayName = "Teaser Block",
