@@ -173,7 +173,7 @@ namespace Foundation.Infrastructure.Helpers
             if (styleSettings != null && styleSettings.OverrideCardStyles)
             {
                 outputCss.AppendLine("<style>");
-                outputCss.AppendLine(".card{");
+                outputCss.AppendLine(".card.page-teaser-card{");
                 outputCss.AppendLine(String.Format("min-height: {0};", styleSettings.CardMinHeight));
                 outputCss.AppendLine("}");
                 outputCss.AppendLine(".card > img{");
@@ -182,7 +182,7 @@ namespace Foundation.Infrastructure.Helpers
                 outputCss.AppendLine(".card a{position: absolute; bottom: 1rem;}");
                 outputCss.AppendLine("</style>");
             }
-
+            
             return new HtmlString(outputCss.ToString());
         }
 

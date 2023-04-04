@@ -103,6 +103,10 @@ namespace Foundation.Features.Shared
         #region Teaser
 
         [CultureSpecific]
+        [Display(Name = "Display as Card", GroupName = TabNames.Teaser, Order = 0)]
+        public virtual bool DisplayAsCard { get; set; }
+
+        [CultureSpecific]
         [Searchable(false)]
         [SelectOne(SelectionFactoryType = typeof(BlockRatioSelectionFactory))]
         [Display(Name = "Teaser ratio (width-height)", GroupName = TabNames.Teaser, Order = 50)]
