@@ -30,7 +30,7 @@
             </style>
         </text>
     }
-    <div class="card @hasMinHeight" style="@minCardHeight">
+    <div class="card @hasMinHeight @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" style="@minCardHeight">
 
         @if (Model.CurrentBlock.Image != null)
         {
