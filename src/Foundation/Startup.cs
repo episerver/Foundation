@@ -4,6 +4,7 @@ using EPiServer.Authorization;
 using EPiServer.Cms.TinyMce.SpellChecker;
 using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Cms.Internal;
+using EPiServer.ContentApi.Commerce;
 using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Data;
@@ -126,6 +127,12 @@ namespace Foundation
             // Content Delivery Forms API
             services.AddFormsApi();
 
+            // Content Delivery Commerce API
+            services.AddCommerceApi<SiteUser>(OpenIDConnectOptionsDefaults.AuthenticationScheme, o =>
+            {
+                o.DisableScopeValidation = true;
+            });
+
             // Content Definitions API
             services.AddContentDefinitionsApi(options =>
             {
@@ -157,6 +164,7 @@ namespace Foundation
                         ContentDeliveryApiOptionsDefaults.Scope,
                         ContentManagementApiOptionsDefaults.Scope,
                         ContentDefinitionsApiOptionsDefaults.Scope,
+                        CommerceApiOptionsDefaults.Scope,
                         ServiceApiOptionsDefaults.Scope
                     }
                 };
@@ -166,6 +174,16 @@ namespace Foundation
                 application.RedirectUris.Add(new Uri("https://oauth.pstmn.io/v1/callback"));
                 options.Applications.Add(application);
                 options.AllowResourceOwnerPasswordFlow = true;
+
+                options.Applications.Add(new OpenIDConnectApplication()
+                {
+                    ClientId = "anon-client",
+                    Scopes = {
+                        CommerceApiOptionsDefaults.Scope,
+                        "anonymous_id"
+                    }
+                });
+                options.AllowAnonymousFlow = true;
             });
             
             services.AddOpenIDConnectUI();
