@@ -123,6 +123,9 @@ namespace Foundation
                 o.MaximumSearchResults = 100;
             });
 
+            // Content Delivery Forms API
+            services.AddFormsApi();
+
             // Content Definitions API
             services.AddContentDefinitionsApi(options =>
             {
@@ -193,9 +196,9 @@ namespace Foundation
             services.Configure<BlockEnhancementsOptions>(options =>
             {
                 //var blockEnhancements = new BlockEnhancementsOptions
-                options.LocalContentFeatureEnabled = false;
-                options.HideForThisFolder = false;
-                options.AllowQuickEditOnSharedBlocks = false;
+                //options.LocalContentFeatureEnabled = false;
+                //options.HideForThisFolder = false;
+                //options.AllowQuickEditOnSharedBlocks = false;
                 options.PublishPageWithBlocks = true;
             });
 
