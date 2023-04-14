@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<VersionPrefix>2021.04.1.0</VersionPrefix>
-		<VersionSuffix></VersionSuffix>
-		<PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
-	</PropertyGroup>
-	<ItemGroup>
+  <PropertyGroup>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <VersionPrefix>2021.04.1.0</VersionPrefix>
+	  <VersionSuffix></VersionSuffix>
+	  <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
+  </PropertyGroup>
+  <ItemGroup>
     <!-- Optimizely CMS and Commerce, with OIDC provider and other main packages -->
     <PackageReference Include="EPiServer.CMS" Version="12.18.0" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.13.1" />
@@ -13,7 +13,6 @@
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.1.1" />
     <PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.1.1" />
     <PackageReference Include="EPiServer.Commerce" Version="14.11.0" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Forms" Version="3.7.0" />
     <PackageReference Include="EPiServer.Hosting" Version="12.13.1" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.7.0" />
     <PackageReference Include="EPiServer.Session" Version="2.1.0" />
@@ -22,6 +21,7 @@
     <!-- APIs -->
     <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.7.0" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.7.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Forms" Version="3.7.0" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.7.0" />
     <PackageReference Include="EPiServer.ContentManagementApi" Version="3.7.0" />
     <PackageReference Include="EPiServer.ServiceApi.Commerce" Version="6.3.0" />
@@ -77,21 +77,21 @@
     <PackageReference Include="Serilog" Version="2.12.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="lang\**\*" />
-		<None Update="App_Data\**" CopyToOutputDirectory="PreserveNewest" />
-		<None Update="modules\_protected\Foundation\**" CopyToOutputDirectory="PreserveNewest" />
-		<Compile Remove="Features\MultiShipment\**" />
-		<Compile Remove="Infrastructure\Plugins\**" />
-		<Content Remove="Features\MultiShipment\**" />
-		<Content Remove="Infrastructure\Plugins\**" />
-		<EmbeddedResource Remove="Features\MultiShipment\**" />
-		<EmbeddedResource Remove="Infrastructure\Plugins\**" />
-		<None Remove="Features\MultiShipment\**" />
-		<Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
-		<Compile Remove="Infrastructure\Kpi\FilledInFormKpi.cs" />
-		<Folder Include="Infrastructure\Kpi\" />
-		<Folder Include="wwwroot\" />
-	</ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+	  <EmbeddedResource Include="lang\**\*" />
+	  <None Update="App_Data\**" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="modules\_protected\Foundation\**" CopyToOutputDirectory="PreserveNewest" />
+	  <Compile Remove="Features\MultiShipment\**" />
+	  <Compile Remove="Infrastructure\Plugins\**" />
+	  <Content Remove="Features\MultiShipment\**" />
+	  <Content Remove="Infrastructure\Plugins\**" />
+	  <EmbeddedResource Remove="Features\MultiShipment\**" />
+	  <EmbeddedResource Remove="Infrastructure\Plugins\**" />
+	  <None Remove="Features\MultiShipment\**" />
+	  <Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
+	  <Compile Remove="Infrastructure\Kpi\FilledInFormKpi.cs" />
+	  <Folder Include="Infrastructure\Kpi\" />
+	  <Folder Include="wwwroot\" />
+  </ItemGroup>
 </Project>
