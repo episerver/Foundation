@@ -8,7 +8,6 @@ using EPiServer.ContentApi.Commerce;
 using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Data;
-using EPiServer.Labs.BlockEnhancements;
 using EPiServer.Labs.ContentManager;
 using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
@@ -208,17 +207,6 @@ namespace Foundation
             //    {
             //        options.JsonSerializerOptions.PropertyNamingPolicy = null;
             //    });
-
-            // Add BlockEnhancements
-            services.AddBlockEnhancements();
-            services.Configure<BlockEnhancementsOptions>(options =>
-            {
-                //var blockEnhancements = new BlockEnhancementsOptions
-                //options.LocalContentFeatureEnabled = false;
-                //options.HideForThisFolder = false;
-                //options.AllowQuickEditOnSharedBlocks = false;
-                options.PublishPageWithBlocks = true;
-            });
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
