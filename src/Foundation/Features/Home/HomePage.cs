@@ -10,10 +10,12 @@ namespace Foundation.Features.Home
     {
         [CultureSpecific]
         [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 190)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea TopContentArea { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 210)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea BottomContentArea { get; set; }
     }
 }

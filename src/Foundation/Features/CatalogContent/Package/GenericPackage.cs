@@ -31,6 +31,7 @@ namespace Foundation.Features.CatalogContent.Package
             Name = "Content area",
             Description = "This will display the content area.",
             Order = 25)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]

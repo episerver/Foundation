@@ -79,6 +79,7 @@ namespace Foundation.Features.Blocks.ModalBlock
         [Display(Name = "Modal body",
          Order = 100,
          GroupName = SystemTabNames.Content)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea ModalContentArea { get; set; }
 
         [GroupingHeader("Modal Block Footer Options")]

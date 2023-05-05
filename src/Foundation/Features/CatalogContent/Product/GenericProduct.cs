@@ -84,6 +84,7 @@ namespace Foundation.Features.CatalogContent.Product
         [Display(Name = "Content area",
             GroupName = SystemTabNames.Content,
             Order = 65)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]

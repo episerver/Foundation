@@ -28,6 +28,7 @@ namespace Foundation.Features.Shared
 
         [CultureSpecific]
         [Display(Name = "Main content area", GroupName = SystemTabNames.Content, Order = 200)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea MainContentArea { get; set; }
 
         #endregion

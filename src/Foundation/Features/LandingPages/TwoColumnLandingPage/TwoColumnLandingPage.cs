@@ -11,6 +11,7 @@ namespace Foundation.Features.LandingPages.TwoColumnLandingPage
     {
         [CultureSpecific]
         [Display(Name = "Right content area", GroupName = SystemTabNames.Content, Order = 210)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea RightContentArea { get; set; }
 
         [CultureSpecific]
