@@ -33,6 +33,7 @@ namespace Foundation.Features.CatalogContent.Variation
 
         [CultureSpecific]
         [Display(Name = "Content area", Order = 20)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]

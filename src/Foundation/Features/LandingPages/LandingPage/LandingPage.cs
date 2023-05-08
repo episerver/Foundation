@@ -8,6 +8,7 @@ namespace Foundation.Features.LandingPages.LandingPage
     public class LandingPage : FoundationPageData
     {
         [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 90)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea TopContentArea { get; set; }
     }
 }
