@@ -37,7 +37,6 @@
     <PackageReference Include="Advanced.CMS.GroupingHeader" Version="3.0.0" />
     <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="6.0.0" />
     <PackageReference Include="EPiServer.GoogleAnalytics" Version="4.0.0" />
-    <PackageReference Include="EPiServer.Labs.BlockEnhancements" Version="1.1.2" />
     <PackageReference Include="EPiServer.Labs.ContentManager" Version="1.1.0" />
     <PackageReference Include="EPiServer.Labs.LanguageManager" Version="5.1.2" />
     <PackageReference Include="EPiServer.PdfPreview" Version="2.1.3" />

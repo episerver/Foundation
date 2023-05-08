@@ -24,7 +24,8 @@ namespace Foundation.Features.Preview
             _displayOptions = displayOptions;
         }
 
-        public ActionResult RenderResult(IContent currentContent)
+        //public ActionResult RenderResult(IContent currentContent)
+        public IActionResult Index(IContent currentContent)
         {
             //As the layout requires a page for title etc we "borrow" the start page
             var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);

@@ -8,6 +8,7 @@ namespace Foundation.Features.Blocks.ContainerBlock
     public class ContainerBlock : FoundationBlockData
     {
         [Display(Name = "Main content area")]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea MainContentArea { get; set; }
 
         [Display(Name = "CSS class")]

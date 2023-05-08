@@ -11,10 +11,12 @@ namespace Foundation.Features.LandingPages.ThreeColumnLandingPage
     {
         [CultureSpecific]
         [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 190)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea LeftContentArea { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Right content area", GroupName = SystemTabNames.Content, Order = 210)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea RightContentArea { get; set; }
 
         [CultureSpecific]

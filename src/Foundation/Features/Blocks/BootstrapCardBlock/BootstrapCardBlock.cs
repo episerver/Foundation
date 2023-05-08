@@ -58,6 +58,7 @@ namespace Foundation.Features.Blocks.BootstrapCardBlock
         [Display(Name = "Card body",
          Order = 40,
          GroupName = SystemTabNames.Content)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea CardContentArea { get; set; }
 
         [CultureSpecific]

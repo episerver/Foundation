@@ -20,6 +20,7 @@ namespace Foundation.Features.Locations.LocationItemPage
         public virtual ContentReference Image { get; set; }
 
         [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 220)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea LeftContentArea { get; set; }
 
         [Display(Name = "New location", GroupName = SystemTabNames.Content, Order = 230)]
