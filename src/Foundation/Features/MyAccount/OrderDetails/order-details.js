@@ -1,4 +1,5 @@
 ﻿import * as $ from "jquery";
+//declare var $: any;
 import * as axios from "axios";
 
 export default class OrderDetails {
@@ -13,23 +14,23 @@ export default class OrderDetails {
 
     saveNoteClick() {
         let inst = this;
-        $(this.divContainer).find('.jsAddNote').each(function (i, e) {
-            $(e).click(function () {
-                $('.loading-box').show();
-                let form = $(this).closest('form');
-                let url = form[0].action;
-                let data = form.serialize();
+        Array.from(document.querySelectorAll(".jsAddNote")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                document.querySelector(".loading-box").style.display = 'block'; // show
+                let form = el.closest('form');
+                let url = form.getAttribute("action");
+                let data = new FormData(form);
                 axios.post(url, data)
                     .then(function (result) {
                         let newNote = inst.noteTemplate.replace("@title", result.data.title).replace("@type", result.data.type).replace("@detail", result.data.detail);
-                        $('#noteListing').append(newNote);
-                        form[0].reset();
+                        document.querySelector("#noteListing").insertAdjacentHTML("afterend" ,newNote);
+                        form.reset();
                     })
                     .catch(function (error) {
                         notification.error(error);
                     })
                     .finally(function () {
-                        $('.loading-box').hide();
+                        document.querySelector(".loading-box").style.display = 'none'; // show
                     });
 
                 return false;
@@ -42,62 +43,57 @@ export default class OrderDetails {
     }
 
     returnItemClick() {
-        $(this.divContainer).find('.jsReturnLineItem').each(function (i, e) {
-            $(e).click(function () {
-                let modal = $('#returnSettingModal');
-                let btnSubmitModal = modal.find('#btnSubmitReturnOrder');
+        Array.from(document.querySelectorAll(".jsReturnLineItem")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let btnSubmitModal = document.querySelector('#btnSubmitReturnOrder');
+                btnSubmitModal.setAttribute("data-order-link", el.getAttribute('data-order-link'));
+                btnSubmitModal.setAttribute("data-shipment-link", el.getAttribute('data-shipment-link'));
+                btnSubmitModal.setAttribute("data-lineItem-link", el.getAttribute('data-lineitem-link'));
+                btnSubmitModal.setAttribute("data-total-return", el.getAttribute('data-total-return'));
 
-                $(btnSubmitModal).attr("data-order-link", $(this).data('order-link'));
-                $(btnSubmitModal).attr("data-shipment-link", $(this).data('shipment-link'));
-                $(btnSubmitModal).attr("data-lineItem-link", $(this).data('lineitem-link'));
-                $(btnSubmitModal).attr("data-total-return", $(this).data('total-return'));
-
-                let txtQuantity = modal.find('input[id="txtQuantity"]');
-                $(txtQuantity).val(parseInt($(this).data('total-return')));
+                let txtQuantity = document.querySelector('input[id="txtQuantity"]');
+                txtQuantity.setAttribute("value", parseInt(btnSubmitModal.getAttribute("data-total-return")));
             });
         });
     }
 
+    
     submitReturnItemClick() {
-        $(this.divContainer).find('.jsCreateReturn').each(function (i, e) {
-            $(e).click(function () {
-                $('.loading-box').show();
-                let form = $(this).closest('form');
-                let url = form[0].action;
-                let data = new FormData();
-                let itemId = $(this).data('lineitem-link');
-                data.append("orderGroupId", $(this).data('order-link'));
-                data.append("shipmentId", $(this).data('shipment-link'));
-                data.append("lineItemId", $(this).data('lineitem-link'));
-                data.append("returnQuantity", $(this).data('total-return'));
-                data.append("reason", $("#optReason option:selected").text());
-                data.append("__RequestVerificationToken", form.find('input[name="__RequestVerificationToken"]').first().val());
-                //{
-                //    orderGroupId: $(this).data('order-link'),
-                //    shipmentId: $(this).data('shipment-link'),
-                //    lineItemId: $(this).data('lineitem-link'),
-                //    returnQuantity: $(this).data('total-return'),
-                //    reason: $("#optReason option:selected").text(),
-                //    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
-                //}
+        Array.from(document.querySelectorAll(".jsCreateReturn")).forEach(function (el, i) {
+            el.addEventListener("click",function () {
+                document.querySelector(".loading-box").style.display = 'block'; // show
+                let form = el.closest('form');
+                let url = form.getAttribute("action");
+                let data = new FormData(form);
+                let itemId = el.getAttribute('data-lineitem-link');
+                data.append("orderGroupId", el.getAttribute('data-order-link'));
+                data.append("shipmentId", el.getAttribute('data-shipment-link'));
+                data.append("lineItemId", el.getAttribute('data-lineitem-link'));
+                data.append("returnQuantity", el.getAttribute('data-total-return'));
+                var sel = document.getElementById("optReason");
+                var text = sel.options[sel.selectedIndex].text;
+                data.append("reason", text);
                 axios.post(url, data)
                     .then(function (result) {
                         notification.success('Success');
-                        $('#returnSettingModal').modal('hide');
-                        $('#return-' + itemId).prop('disabled', true);
+                        document.querySelector('#return-' + itemId).setAttribute("disabled", "true");
+                        //$("#returnSettingModal").modal("hide");
                     })
                     .catch(function (error) {
                         notification.error(error);
                     })
                     .finally(function () {
-                        $('.loading-box').hide();
+                        document.querySelector(".loading-box").style.display = 'none'; // show
                     });
             });
         });
     }
 
+    
+
     initReturnOrder() {
         this.returnItemClick();
         this.submitReturnItemClick();
     }
+
 }

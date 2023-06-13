@@ -4,6 +4,7 @@
 
 @{
     Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+     var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
 }
 
 <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
@@ -21,7 +22,7 @@
 }
 else
 {
-    using (Html.BeginForm("Save", "CreditCard", FormMethod.Post))
+    using (Html.BeginForm("Save", PageFriendlyURL, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <h3>

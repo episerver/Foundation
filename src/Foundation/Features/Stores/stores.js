@@ -12,7 +12,7 @@ export default class Stores {
     }
 
     init() {
-        if ($("#storeMap").length === 0) {
+        if (document.querySelector("#storeMap") === null) {
             return;
         }
 
@@ -22,19 +22,22 @@ export default class Stores {
             instance.loadMapScenario();
         }
 
-        $(document).on('keyup', '#searchMapInput', (e) => {
+        let searchInput = document.querySelector("#searchMapInput");
+        searchInput.addEventListener('keyup', (e) => {
             if (e.keyCode === 13) {
                 e.preventDefault();
                 this.search();
             }
+        }); 
+
+        document.querySelector('.use-current-location').addEventListener("click", function () {
+            instance.useCurrentLocation();
         });
 
-        $(document).on('click', '.use-current-location', this.useCurrentLocation);
-
-        $(document).ready(() => {
+        document.addEventListener("DOMContentLoaded", function () {
             $("#searchMapInput").autocomplete({
                 source: (request, response) => {
-                    axios.get("http://dev.virtualearth.net/REST/v1/Locations", {
+                    axios.get("https://dev.virtualearth.net/REST/v1/Locations", {
                         params: {
                             key: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I",
                             q: request.term
@@ -82,7 +85,7 @@ export default class Stores {
 
     loadMapScenario() {
         this.storeMap = new Microsoft.Maps.Map('#storeMap', {
-            credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I"
+            credentials: "Agf8opFWW3n3881904l3l0MtQNID1EaBrr7WppVZ4v38Blx9l8A8x86aLVZNRv2I" 
         });
         this.storeInfobox = new Microsoft.Maps.Infobox(this.storeMap.getCenter(), { visible: false });
         this.storeInfobox.setMap(this.storeMap);
@@ -92,18 +95,19 @@ export default class Stores {
 
     showStoreLocation() {
         let locations = [];
-        $('.store-detail__store-locator').each((index, element) => {
+        document.querySelectorAll('.store-detail__store-locator').forEach((element, index) => {
             locations.push({
-                address: $(element).attr('address'),
-                html: $(element).closest('.store-detail').clone()
+                address: element.getAttribute('address'),
+                html: element.closest('.store-detail').cloneNode()
             });
-        });
 
-        for (let i = 0; i < locations.length; i++) {
-            const loc = locations[i];
-            $(loc.html).removeClass("row").find("div").removeClass("col").removeClass("col-auto");
-            this.getStoreLocation(loc.address, $(loc.html).prop('outerHTML'));
-        }
+            let elementStoreDetail = element.closest('.store-detail');
+            elementStoreDetail.classList.remove("row");
+            elementStoreDetail.querySelector("div").classList.remove("col");
+            elementStoreDetail.querySelector(".col-auto").classList.remove(".col-auto");
+            this.getStoreLocation(elementStoreDetail.querySelector(".store-detail__store-locator").getAttribute("address"), element.closest('.store-detail').outerHTML);
+
+        });
     }
 
     getStoreLocation(address, html) {
@@ -161,7 +165,7 @@ export default class Stores {
                 this.storeMap.entities.pop();
                 this.searched = false;
             }
-            let address = $('#searchMapInput').val();
+            let address = document.querySelector('#searchMapInput').value;
             let searchRequest = {
                 where: address,
                 callback: (r) => {
@@ -214,7 +218,8 @@ export default class Stores {
                 });
 
                 this.storeMap.entities.push(pushpin);
-                this.markers.push(r.results[0].location);
+                //console.log(r);
+                //this.markers.push(r.results[0].location);
 
                 this.storeMap.setView({
                     bounds: Microsoft.Maps.LocationRect.fromLocations(this.markers)
@@ -231,11 +236,12 @@ export default class Stores {
 
     setDefaultStore() {
         let instance = this;
-        $('.set-default-store').each((index, element) => {
-            $(element).click((e) => {
-                axios.post("/StorePage/SetDefaultStore", { storeCode: e.target.dataset.code })
+        document.querySelectorAll('.set-default-store').forEach((el, i) => {
+            el.addEventListener("click" , function(e) {
+                var data = { storeCode: e.target.getAttribute("data-code") };
+                axios.post("/StorePage/SetDefaultStore?storeCode=" + e.target.getAttribute("data-code"), data)
                     .then((response) => {
-                        $("#storeName").text(e.target.dataset.name);
+                        document.querySelector("#storeName").innerText = e.target.getAttribute("data-name");
                         instance.storeInfobox.setOptions({ visible: false });
                     })
                     .catch((error) => {
