@@ -198,7 +198,7 @@ export default class Checkout {
 
     checkoutAsGuestOrRegister() {
         if (document.querySelector(".jsContinueCheckoutMethod") == null) return;
-    document.getElementsByClassName('jsContinueCheckoutMethod').addEventListener("click" ,function () {
+    document.getElementsByClassName('jsContinueCheckoutMethod')[0].addEventListener("click" ,function () {
         let type = document.querySelector('input[name="checkoutMethod"]:checked').value;
         if (type == 'register') {
             document.querySelector('#js-profile-popover').style.display = "block";
@@ -214,7 +214,7 @@ export default class Checkout {
       if (document.querySelector(".jsCouponCode") == null) return;
       document.querySelector('.jsCouponCode').addEventListener("keypress", function (e) {
         if (e.keyCode == 13) {
-            document.getElementsByClassName('jsAddCoupon').addEventListener("click", function () {
+            document.getElementsByClassName('jsAddCoupon')[0].addEventListener("click", function () {
                 return false;
             });
         }
@@ -222,7 +222,7 @@ export default class Checkout {
 
       if (document.querySelector(".jsAddCoupon") == null) return;
       document.querySelector('.jsAddCoupon').addEventListener("click", function () {
-        let form = document.getElementsByClassName("jsAddCouponContainer");
+        let form = document.getElementsByClassName[0]("jsAddCouponContainer");
           let couponButton = document.querySelector(".jsAddCoupon");
           let couponContainer = document.querySelector(".jsAddCouponContainer");
           let url = couponContainer.getAttribute("action");

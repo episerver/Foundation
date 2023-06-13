@@ -175,7 +175,8 @@ export default class ProductDetail {
         if (obj == null) return;
         obj.addEventListener("change", function () {
             document.querySelector('.addToCart').setAttribute('qty', obj.value);
-            document.querySelector('.jsBuyNow').setAttribute('qty', obj.value);
+            if (document.querySelector('.jsBuyNow') != null)
+                document.querySelector('.jsBuyNow').setAttribute('qty', obj.value);
         });
     }
 

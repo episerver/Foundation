@@ -48,7 +48,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         public ActionResult LoadMiniSharedCart()
         {
             var viewModel = _cartViewModelFactory.CreateMiniCartViewModel(SharedCart.Cart, true);
-            return PartialView("~/Features/Shared/Foundation/Header/_MiniSharedCartItems.cshtml", viewModel);
+            return PartialView("~/Features/Shared/Views/Header/_MiniSharedCartItems.cshtml", viewModel);
         }
 
         public PartialViewResult LoadMobileSharedCartItems()
@@ -58,7 +58,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         }
 
         [HttpPost]
-        public ActionResult AddToCart(RequestParamsToCart param)
+        public ActionResult AddToCart([FromBody] RequestParamsToCart param)
         {
             ModelState.Clear();
 
@@ -92,7 +92,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         }
 
         [HttpPost]
-        public ActionResult ChangeCartItem(RequestParamsToCart param)
+        public ActionResult ChangeCartItem([FromBody] RequestParamsToCart param)
         {
             ModelState.Clear();
 
@@ -124,7 +124,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
         }
 
         [HttpPost]
-        public ActionResult RemoveCartItem(RequestParamsToCart param)
+        public ActionResult RemoveCartItem([FromBody] RequestParamsToCart param)
         {
             ModelState.Clear();
             var organizationId = param.OrganizationId;
@@ -171,7 +171,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
             foreach (var lineItem in allLineItem)
             {
                 _cartService.AddToCart(savedCart,
-                    new RequestParamsToCart { Code = lineItem.Code, Quantity = lineItem.Quantity, Store = "delivery", SelectedStore = "", DynamicCodes = lineItem.Properties["VariantOptionCodes"].ToString().Split(',').ToList() });
+                    new RequestParamsToCart { Code = lineItem.Code, Quantity = lineItem.Quantity, Store = "delivery", SelectedStore = "", DynamicCodes = lineItem.Properties["VariantOptionCodes"]?.ToString().Split(',').ToList() });
             }
 
             //Used saved cart to place
@@ -188,7 +188,7 @@ namespace Foundation.Features.NamedCarts.SharedCart
                 _cartService.DeleteCart(sharedCart);
                 _cartService.LoadOrCreateCart(_cartService.DefaultSharedCartName, OrganizationId);
 
-                return RedirectToAction("Index", "SharedCart");
+                return RedirectToAction("Index", UrlResolver.Current.GetUrl(referencePages?.OrganizationMainPage));
             }
 
             return RedirectToAction("Index", new { Node = referencePages?.OrderHistoryPage ?? ContentReference.StartPage });

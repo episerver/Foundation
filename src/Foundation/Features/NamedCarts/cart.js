@@ -184,7 +184,7 @@
                     .then(function (result) {
                         document.querySelector(reloadSelector + " .cart-item-listing").innerHTML = result.data;
                         inst.initRemoveItem(reloadSelector);
-                        document.querySelector(clickSelector).setAttribute('reload', 0);
+                        document.querySelector(reloadSelector).setAttribute('reload', 0);
                     })
                     .catch(function (error) {
                         notification.error(error);
