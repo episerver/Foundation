@@ -1,11 +1,7 @@
-﻿using EPiServer;
-using Foundation.Infrastructure.Cms.Extensions;
-using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Inventory;
+﻿using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Shared;
 using Microsoft.AspNetCore.Hosting;
-using System;
 using System.IO;
 
 namespace Foundation.Infrastructure.Commerce.Install.Steps

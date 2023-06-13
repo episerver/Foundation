@@ -1,11 +1,7 @@
-using EPiServer.Core;
 using EPiServer.Personalization.Commerce.Tracking;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.NamedCarts.DefaultCart;
-using Foundation.Features.Shared;
-using Mediachase.Commerce;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Header
 {

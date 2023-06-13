@@ -1,9 +1,6 @@
-﻿using EPiServer.Commerce.Order;
-using Mediachase.BusinessFoundation.Data;
+﻿using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Shared;
-using System;
 
 namespace Foundation.Infrastructure.Commerce.GiftCard
 {

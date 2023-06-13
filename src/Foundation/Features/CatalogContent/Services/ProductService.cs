@@ -1,23 +1,11 @@
-using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Globalization;
 using EPiServer.Personalization.Commerce.Tracking;
-using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Stores;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Services
 {

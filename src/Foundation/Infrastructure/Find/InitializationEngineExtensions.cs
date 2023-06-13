@@ -1,12 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.Framework.Initialization;
 using Foundation.Infrastructure.Find.Facets;
 using Foundation.Infrastructure.Find.Facets.Config;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Find
 {

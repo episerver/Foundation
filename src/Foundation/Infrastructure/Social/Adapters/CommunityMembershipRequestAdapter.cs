@@ -3,7 +3,6 @@ using EPiServer.Social.Moderation.Core;
 using Foundation.Social.ExtensionData;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
-using System.Linq;
 
 namespace Foundation.Social.Adapters
 {

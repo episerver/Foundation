@@ -1,7 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.Blobs;
-using Microsoft.AspNetCore.Mvc;
+﻿using EPiServer.Framework.Blobs;
 using System.IO;
 
 namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock

@@ -1,7 +1,4 @@
 ﻿using Foundation.Infrastructure.Cms;
-using Mediachase.Commerce;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Markets
 {

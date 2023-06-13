@@ -1,6 +1,4 @@
 using Foundation.Features.Stores;
-using Mediachase.Commerce;
-using System;
 
 namespace Foundation.Features.CatalogContent
 {

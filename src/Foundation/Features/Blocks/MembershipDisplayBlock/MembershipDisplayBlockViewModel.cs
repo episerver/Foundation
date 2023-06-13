@@ -1,6 +1,5 @@
 using Foundation.Social;
 using Foundation.Social.ViewModels;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Blocks.MembershipDisplayBlock
 {

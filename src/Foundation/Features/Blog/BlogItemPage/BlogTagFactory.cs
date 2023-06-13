@@ -1,13 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Cms.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Features.Blog.BlogItemPage
+﻿namespace Foundation.Features.Blog.BlogItemPage
 {
     public class BlogTagFactory
     {

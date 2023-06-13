@@ -1,9 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-
-namespace Foundation.Features.Blocks.OrderSearchBlock
+﻿namespace Foundation.Features.Blocks.OrderSearchBlock
 {
     [ContentType(DisplayName = "Order Search Block",
         GUID = "dd74d77f-3dce-4956-87fc-39bdbeebaf9c",

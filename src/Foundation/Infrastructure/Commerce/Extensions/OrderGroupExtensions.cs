@@ -1,6 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using Mediachase.Commerce.Orders;
-using System;
+﻿using Mediachase.Commerce.Orders;
 
 namespace Foundation.Infrastructure.Commerce.Extensions
 {

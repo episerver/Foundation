@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.CallToActionBlock
+﻿namespace Foundation.Features.Blocks.CallToActionBlock
 {
     class BackgroundImageSelectionFactory : ISelectionFactory
     {

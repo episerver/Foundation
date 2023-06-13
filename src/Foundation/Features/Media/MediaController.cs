@@ -1,11 +1,5 @@
-﻿using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Media
 {

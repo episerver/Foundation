@@ -1,7 +1,4 @@
-﻿using EPiServer.DataAnnotations;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Infrastructure
+﻿namespace Foundation.Infrastructure
 {
     [GroupDefinitions]
     public static class GroupNames

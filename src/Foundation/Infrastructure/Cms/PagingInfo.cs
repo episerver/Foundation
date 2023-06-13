@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Foundation.Infrastructure.Cms
+﻿namespace Foundation.Infrastructure.Cms
 {
     public class PagingInfo
     {

@@ -1,12 +1,6 @@
 ﻿using Foundation.Features.CatalogContent.Product;
 using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Cms.Extensions;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
 using Schema.NET;
-using System;
-using System.Linq;
 
 namespace Foundation.Infrastructure.SchemaMarkup
 {

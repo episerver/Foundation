@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Foundation.Social.Models.Groups
+﻿namespace Foundation.Social.Models.Groups
 {
     public class CommunityMembershipRequest
     {

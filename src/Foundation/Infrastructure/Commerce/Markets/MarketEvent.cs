@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Foundation.Infrastructure.Commerce.Markets
+﻿namespace Foundation.Infrastructure.Commerce.Markets
 {
     public static class MarketEvent
     {

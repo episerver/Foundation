@@ -1,6 +1,3 @@
-using Mediachase.Commerce;
-using System.Collections.Generic;
-
 namespace Foundation.Features.Checkout.ViewModels
 {
     public class OrderSummaryViewModel

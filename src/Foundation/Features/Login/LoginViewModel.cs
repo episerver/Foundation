@@ -1,6 +1,3 @@
-using EPiServer.Core;
-using Foundation.Infrastructure.Cms.Attributes;
-
 namespace Foundation.Features.Login
 {
     public class LoginViewModel

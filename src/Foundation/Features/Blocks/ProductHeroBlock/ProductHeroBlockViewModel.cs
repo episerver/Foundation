@@ -1,6 +1,4 @@
-﻿using Foundation.Features.Shared;
-
-namespace Foundation.Features.Blocks.ProductHeroBlock
+﻿namespace Foundation.Features.Blocks.ProductHeroBlock
 {
     public class ProductHeroBlockViewModel : BlockViewModel<ProductHeroBlock>
     {

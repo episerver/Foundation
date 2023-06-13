@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Foundation.Social.Models.Comments
+﻿namespace Foundation.Social.Models.Comments
 {
     public class BlogComment
     {

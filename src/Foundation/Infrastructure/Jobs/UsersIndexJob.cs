@@ -2,13 +2,9 @@ using EPiServer.Find;
 using EPiServer.Logging;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
-using EPiServer.ServiceLocation;
 using Foundation.Features.MyOrganization.Users;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Jobs
 {

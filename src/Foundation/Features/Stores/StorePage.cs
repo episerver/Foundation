@@ -1,7 +1,3 @@
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-
 namespace Foundation.Features.Stores
 {
     [ContentType(DisplayName = "Store Page",

@@ -1,7 +1,4 @@
 ﻿using EPiServer.Data.Dynamic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Blog.BlogItemPage
 {

@@ -1,15 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Order;
+﻿using EPiServer.Commerce.Catalog;
 using EPiServer.Commerce.Reporting.Order.ReportingModels;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Http;
-using System;
 
 
 namespace Foundation.Infrastructure.Commerce.Extensions

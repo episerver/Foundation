@@ -1,9 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Core.Html;
-using Foundation.Features.Shared;
+﻿using EPiServer.Core.Html;
 using Geta.Optimizely.Categories;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 

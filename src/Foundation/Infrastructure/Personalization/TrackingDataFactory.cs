@@ -1,11 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Tracking.Commerce;
-using EPiServer.Web;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 
 namespace Foundation.Infrastructure.Personalization
 {

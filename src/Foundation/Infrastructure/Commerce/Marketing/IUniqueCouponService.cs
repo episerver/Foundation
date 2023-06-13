@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Infrastructure.Commerce.Marketing
+﻿namespace Foundation.Infrastructure.Commerce.Marketing
 {
     public interface IUniqueCouponService
     {

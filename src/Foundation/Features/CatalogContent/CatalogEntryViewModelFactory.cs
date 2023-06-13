@@ -1,12 +1,7 @@
-using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.SpecializedProperties;
-using EPiServer.Core;
 using EPiServer.Data;
 using EPiServer.Filters;
 using EPiServer.Security;
-using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Package;
 using Foundation.Features.CatalogContent.Product;
@@ -14,18 +9,10 @@ using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Media;
 using Foundation.Features.Stores;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.InventoryService;
-using Mediachase.Commerce.Pricing;
 using Mediachase.Commerce.Security;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent
 {

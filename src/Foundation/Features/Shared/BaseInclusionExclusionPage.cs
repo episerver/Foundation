@@ -1,12 +1,4 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.DataAnnotations;
-using EPiServer.Commerce.Marketing.DataAnnotations;
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Shared.SelectionFactories;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using EPiServer.Commerce.Catalog.DataAnnotations;
 
 namespace Foundation.Features.Shared
 {

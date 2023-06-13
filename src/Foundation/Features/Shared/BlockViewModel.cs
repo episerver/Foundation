@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-
-namespace Foundation.Features.Shared
+﻿namespace Foundation.Features.Shared
 {
     public class BlockViewModel<T> : IBlockViewModel<T> where T : BlockData
     {

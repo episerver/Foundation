@@ -1,5 +1,4 @@
 ﻿using Foundation.Infrastructure.Find.Facets.Config;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Find.Facets
 {

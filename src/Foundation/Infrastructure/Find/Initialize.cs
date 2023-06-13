@@ -1,10 +1,8 @@
 ﻿using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
 using Foundation.Infrastructure.Find.Facets;
 using Foundation.Infrastructure.Find.Facets.Config;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Find
 {

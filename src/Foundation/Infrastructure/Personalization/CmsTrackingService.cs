@@ -1,9 +1,5 @@
-﻿using EPiServer.Core;
-using EPiServer.Editor;
+﻿using EPiServer.Editor;
 using EPiServer.Tracking.Core;
-using Foundation.Infrastructure.Helpers;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure.Personalization
 {

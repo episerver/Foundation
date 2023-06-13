@@ -1,7 +1,5 @@
 ﻿using Foundation.Features.Blog.BlogItemPage;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Cms;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Blog.BlogListPage
 {

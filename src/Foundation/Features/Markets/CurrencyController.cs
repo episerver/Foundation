@@ -1,7 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using Foundation.Features.Checkout.Services;
-using Foundation.Infrastructure.Commerce.Markets;
-using Microsoft.AspNetCore.Mvc;
+﻿using Foundation.Features.Checkout.Services;
 using Newtonsoft.Json;
 
 namespace Foundation.Features.Markets

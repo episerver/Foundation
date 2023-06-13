@@ -1,8 +1,5 @@
-﻿using EPiServer.Commerce.Order;
-using Foundation.Features.Checkout.ViewModels;
-using Mediachase.Commerce;
+﻿using Foundation.Features.Checkout.ViewModels;
 using Mediachase.Commerce.Orders;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.Services
 {

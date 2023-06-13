@@ -1,30 +1,19 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Data;
+﻿using EPiServer.Data;
 using EPiServer.Filters;
 using EPiServer.Find.Helpers;
 using EPiServer.Framework.Cache;
-using EPiServer.Framework.Localization;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Home;
 using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.Bookmarks;
-using Foundation.Features.Settings;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Customers;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Header
 {

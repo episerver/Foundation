@@ -1,5 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using Mediachase.Commerce.Orders;
+﻿using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Plugins.Payment;
 
 namespace Foundation.Features.Checkout.Payments

@@ -1,16 +1,9 @@
-﻿using EPiServer;
-using EPiServer.ContentApi.Core.Configuration;
+﻿using EPiServer.ContentApi.Core.Configuration;
 using EPiServer.ContentApi.Core.Serialization;
 using EPiServer.ContentApi.Core.Serialization.Models;
-using EPiServer.Core;
 using EPiServer.Data.Entity;
-using EPiServer.DataAbstraction;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Cms
 {

@@ -1,8 +1,4 @@
-﻿using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
-
-namespace Foundation.Infrastructure.Display
+﻿namespace Foundation.Infrastructure.Display
 {
     public abstract class DisplayResolutionBase : IDisplayResolution
     {

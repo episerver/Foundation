@@ -1,7 +1,4 @@
-﻿using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Category
+﻿namespace Foundation.Features.Category
 {
     public class CategoryFoundationPageViewModel : ContentViewModel<FoundationPageData>
     {

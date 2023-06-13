@@ -1,15 +1,8 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Mvc.Html;
-using Foundation.Features.Home;
+﻿using Foundation.Features.Home;
 using Foundation.Features.Login;
-using Foundation.Features.Settings;
 using Foundation.Infrastructure.Cms.Settings;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Newtonsoft.Json;
-using System;
 
 namespace Foundation.Infrastructure.Helpers
 {

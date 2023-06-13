@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.StandardPage
+﻿namespace Foundation.Features.StandardPage
 {
     public class StandardPageTopPaddingModeSelectionFactory : ISelectionFactory
     {

@@ -1,6 +1,3 @@
-using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Foundation.Features.MyAccount.Bookmarks
 {
     /// <summary>

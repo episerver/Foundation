@@ -1,7 +1,3 @@
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-
 namespace Foundation.Features.MyAccount.Bookmarks
 {
     [ContentType(DisplayName = "Bookmarks Page",

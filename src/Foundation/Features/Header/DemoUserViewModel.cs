@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Foundation.Features.Header
+﻿namespace Foundation.Features.Header
 {
     public class DemoUserViewModel
     {

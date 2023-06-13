@@ -1,6 +1,4 @@
-﻿using EPiServer.Commerce.Marketing;
-using Foundation.Infrastructure.Cms;
-using System.Collections.Generic;
+﻿using Foundation.Infrastructure.Cms;
 
 namespace Foundation.Infrastructure.Commerce.Marketing
 {

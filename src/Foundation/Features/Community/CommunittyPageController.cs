@@ -1,8 +1,4 @@
-﻿using EPiServer.Web.Mvc;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Foundation.Features.Community
+﻿namespace Foundation.Features.Community
 {
     public class CommunittyPageController : PageController<CommunityPage>
     {

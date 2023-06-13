@@ -1,8 +1,6 @@
 ﻿using EPiServer.Social.ActivityStreams.Core;
 using EPiServer.Social.Common;
 using Foundation.Social.Models.ActivityStreams;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Repositories.ActivityStreams
 {

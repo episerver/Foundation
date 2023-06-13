@@ -1,9 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Filters;
-using EPiServer.ServiceLocation;
-using System;
-using System.Collections.Generic;
+﻿using EPiServer.Filters;
 using System.Globalization;
 
 namespace Foundation.Infrastructure.Cms

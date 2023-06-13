@@ -1,8 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.Shell.ObjectEditing;
-using Mediachase.Commerce.Markets;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Mediachase.Commerce.Markets;
 
 namespace Foundation.Infrastructure.Commerce.Models.EditorDescriptors
 {

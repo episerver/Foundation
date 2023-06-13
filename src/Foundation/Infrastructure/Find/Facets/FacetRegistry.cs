@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Foundation.Infrastructure.Find.Facets
 {
     public class FacetRegistry : IFacetRegistry

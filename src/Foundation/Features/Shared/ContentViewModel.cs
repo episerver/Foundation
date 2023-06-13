@@ -1,12 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Globalization;
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
+﻿using EPiServer.Globalization;
 using Foundation.Features.Home;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms;
-using Microsoft.AspNetCore.Html;
 
 namespace Foundation.Features.Shared
 {

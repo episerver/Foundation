@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure.Cms.ModelBinders
 {

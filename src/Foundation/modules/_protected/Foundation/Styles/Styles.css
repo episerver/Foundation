@@ -6,9 +6,9 @@
     min-height: 60px !important;
 }
 
-.epi-form-container__section .epiTinyMCEEditor iframe {
+/*.epi-form-container__section .epiTinyMCEEditor iframe {
     height: 200px !important;
-}
+}*/
 
 .epi-viewPort-320x692 {
     background: url('/imgs/iphone11.png') no-repeat center center;

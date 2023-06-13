@@ -1,10 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.Recommendations.WidgetBlock
+﻿namespace Foundation.Features.Recommendations.WidgetBlock
 {
     [ContentType(DisplayName = "Recommendation Widget",
         GUID = "d5cc427b-afa4-4c4d-8986-eb5f73e0b9fe",

@@ -1,12 +1,5 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Shared.SelectionFactories;
-using Foundation.Infrastructure;
 using Geta.Optimizely.Categories;
 using Geta.Optimizely.Categories.DataAnnotations;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Shared
 {

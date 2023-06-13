@@ -1,5 +1,4 @@
 ﻿using Foundation.Social.Models.Groups;
-using System.Collections.Generic;
 
 namespace Foundation.Social.Repositories.Groups
 {

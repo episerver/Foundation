@@ -1,14 +1,4 @@
-using EPiServer.Commerce.Marketing;
-using EPiServer.Commerce.Order;
-using EPiServer.Commerce.SpecializedProperties;
-using EPiServer.Core;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Markets;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Services
 {
@@ -117,7 +107,7 @@ namespace Foundation.Features.CatalogContent.Services
             return (IEnumerable<DiscountedEntry>)source;
         }
 
-        public IPriceValue GetDiscountPrice(Price price, ContentReference contentLink, Currency currency, IMarket market)
+        public IPriceValue GetDiscountPrice(EPiServer.Commerce.SpecializedProperties.Price price, ContentReference contentLink, Currency currency, IMarket market)
         {
             var discountedPrice = _promotionEngine.GetDiscountPrices(new[] { contentLink }, market, currency, _referenceConverter, _lineItemCalculator);
             if (discountedPrice.Any())

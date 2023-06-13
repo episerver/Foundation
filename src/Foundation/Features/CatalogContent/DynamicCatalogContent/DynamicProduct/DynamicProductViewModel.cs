@@ -1,13 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.Personalization.Commerce.Tracking;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Personalization.Commerce.Tracking;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Features.CatalogContent.Product;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
 {

@@ -1,12 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Find;
+﻿using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Locations.LocationItemPage
 {

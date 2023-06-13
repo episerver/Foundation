@@ -1,5 +1,4 @@
 ﻿using EPiServer.Commerce.Catalog.DataAnnotations;
-using EPiServer.DataAnnotations;
 using Foundation.Features.CatalogContent.Product;
 
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct

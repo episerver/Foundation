@@ -1,11 +1,4 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
+using Foundation.Features.Blocks.ButtonBlock;
 
 namespace Foundation.Features.Blocks.TeaserBlock
 {
@@ -71,6 +64,9 @@ namespace Foundation.Features.Blocks.TeaserBlock
         [Display(Name = "Image size (%)", GroupName = TabNames.Image, Order = 41)]
         public virtual int ImageSize { get; set; }
 
+        [Display(Name = "Max Image Height (px)", GroupName = TabNames.Image, Order = 42)]
+        public virtual int MaxImageHeight { get; set; }
+
         [CultureSpecific]
         [UIHint(UIHint.Image)]
         [Display(Name = "Second Image", GroupName = TabNames.Image, Order = 45)]
@@ -81,10 +77,36 @@ namespace Foundation.Features.Blocks.TeaserBlock
         public virtual int SecondImageSize { get; set; }
         #endregion
 
+        #region Button
+
+        [CultureSpecific]
+        [Display(Name = "Button label", GroupName = TabNames.Button, Order = 10)]
+        public virtual string TeaserButtonText { get; set; }
+
+        [CultureSpecific]
+        [Searchable(false)]
+        [SelectOne(SelectionFactoryType = typeof(ButtonBlockStyleSelectionFactory))]
+        [Display(Name = "Button theme", GroupName = TabNames.Button, Order = 20)]
+        public virtual string TeaserButtonStyle { get; set; }
+
+        [Display(Name = "Align button to bottom of card", GroupName = TabNames.Button, Order = 300)]
+        public virtual bool AlignButtonBottom { get; set; }
+
+        #endregion
+
         #region Style
+        
+        [CultureSpecific]
+        [Display(Name = "Display as Card", GroupName = TabNames.BlockStyling, Order = 100)]
+        public virtual bool DisplayAsCard { get; set; }
+
         [SelectOne(SelectionFactoryType = typeof(TeaserBlockHeightStyleSelectionFactory))]
         [Display(Name = "Height", GroupName = TabNames.BlockStyling, Order = 100)]
         public virtual string Height { get; set; }
+
+        [Display(Name = "Min Card Height (px)", GroupName = TabNames.BlockStyling, Order = 120)]
+        public virtual int MinCardHeight { get; set; }
+
         #endregion
 
         public override void SetDefaultValues(ContentType contentType)
@@ -98,6 +120,10 @@ namespace Foundation.Features.Blocks.TeaserBlock
             SecondImageSize = 100;
             BackgroundColor = "transparent";
             TextColor = "#000000ff";
+            MaxImageHeight = 0;
+            MinCardHeight = 0;
+            TeaserButtonText = "Read More";
+            AlignButtonBottom = false;
         }
 
         //public void SetItem(ItemModel itemModel)

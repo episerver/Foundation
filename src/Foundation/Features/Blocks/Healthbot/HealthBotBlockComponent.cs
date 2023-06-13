@@ -1,11 +1,4 @@
-﻿using EPiServer.Framework.Web.Resources;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Foundation.Features.Blocks.Healthbot
+﻿namespace Foundation.Features.Blocks.Healthbot
 {
     public class HealthChatBotBlockController : AsyncBlockComponent<HealthChatbotBlock>
     {

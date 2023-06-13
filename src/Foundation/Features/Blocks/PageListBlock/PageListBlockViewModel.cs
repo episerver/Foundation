@@ -1,8 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.PageListBlock
+﻿namespace Foundation.Features.Blocks.PageListBlock
 {
     public class PageListBlockViewModel : BlockViewModel<PageListBlock>
     {
@@ -13,6 +9,7 @@ namespace Foundation.Features.Blocks.PageListBlock
             ShowPublishDate = block.IncludePublishDate;
             Padding = block.Padding;
             SetPreviewOptionValue(block.PreviewOption);
+            BootstrapCardRatio = block.BootstrapCardRatioOption;
         }
 
         public string Heading { get; set; }
@@ -31,6 +28,7 @@ namespace Foundation.Features.Blocks.PageListBlock
             else if (option.Equals("1"))
                 PreviewOption = 12;
         }
+        public string BootstrapCardRatio { get; set; }
     }
 
     public class PageListPreviewViewModel
@@ -51,5 +49,6 @@ namespace Foundation.Features.Blocks.PageListBlock
             ShowIntroduction = block.IncludeTeaserText;
             ShowPublishDate = block.IncludePublishDate;
         }
+        public string BootstrapCardRatio { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.ViewModels;
-using System.Collections.Generic;
 
 namespace Foundation.Social.Repositories.ActivityStreams
 {

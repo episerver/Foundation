@@ -1,9 +1,5 @@
 ﻿using EPiServer.Data;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 
 namespace Foundation.Infrastructure.Cms.Extensions
 {

@@ -1,9 +1,5 @@
-﻿using Foundation.Infrastructure.Commerce.Extensions;
-using Mediachase.BusinessFoundation.Data;
+﻿using Mediachase.BusinessFoundation.Data;
 using Mediachase.Commerce.Customers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.GiftCard
 {

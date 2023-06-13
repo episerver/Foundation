@@ -1,18 +1,9 @@
 ﻿using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
 using EPiServer.PlugIn;
-using EPiServer.Shell.ObjectEditing;
-using EPiServer.Web;
 using Foundation.Features.Folder;
 using Foundation.Features.Media;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.Settings;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {

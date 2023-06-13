@@ -1,14 +1,9 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Checkout.Services;
+﻿using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Foundation.Features.NamedCarts.OrderPadsPage
 {

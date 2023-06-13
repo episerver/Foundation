@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-
-namespace Foundation.Infrastructure.Helpers
+﻿namespace Foundation.Infrastructure.Helpers
 {
     public static class ContextHelpers
     {

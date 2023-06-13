@@ -1,7 +1,4 @@
-﻿using Mediachase.Commerce;
-using System.Collections.Generic;
-
-namespace Foundation.Features.NamedCarts
+﻿namespace Foundation.Features.NamedCarts
 {
     public class ChangeCartJsonResult
     {

@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.MyOrganization.QuickOrderBlock
 {
     public class QuickOrderProductViewModel

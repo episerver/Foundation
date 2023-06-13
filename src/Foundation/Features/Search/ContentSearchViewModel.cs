@@ -1,9 +1,4 @@
 ﻿using EPiServer.Find.UnifiedSearch;
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
-using System.Net;
 
 namespace Foundation.Features.Search
 {

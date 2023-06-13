@@ -1,5 +1,3 @@
-using EPiServer.Commerce.Order;
-
 namespace Foundation.Features.Checkout.ViewModels
 {
     public class UsersOrderPadViewModel

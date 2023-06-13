@@ -1,6 +1,3 @@
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
 namespace Foundation.Features.Blocks.LikeButtonBlock
 {
     /// <summary>

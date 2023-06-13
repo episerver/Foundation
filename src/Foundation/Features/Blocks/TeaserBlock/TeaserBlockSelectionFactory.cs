@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.TeaserBlock
+﻿namespace Foundation.Features.Blocks.TeaserBlock
 {
     public class TeaserBlockElementAlignmentSelectionFactory : ISelectionFactory
     {
@@ -57,4 +54,6 @@ namespace Foundation.Features.Blocks.TeaserBlock
             };
         }
     }
+
+    
 }

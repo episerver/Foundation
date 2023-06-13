@@ -1,13 +1,7 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Routing;
-using Foundation.Social;
+﻿using Foundation.Social;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.MembershipAffiliationBlock
 {

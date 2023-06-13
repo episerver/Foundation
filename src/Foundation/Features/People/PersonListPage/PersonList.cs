@@ -1,8 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.People.PersonItemPage;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
+﻿using Foundation.Features.People.PersonItemPage;
 
 namespace Foundation.Features.People.PersonListPage
 {

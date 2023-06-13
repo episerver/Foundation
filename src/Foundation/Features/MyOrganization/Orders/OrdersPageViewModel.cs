@@ -1,7 +1,4 @@
-﻿using Foundation.Features.Shared;
-using System.Collections.Generic;
-
-namespace Foundation.Features.MyOrganization.Orders
+﻿namespace Foundation.Features.MyOrganization.Orders
 {
     public class OrdersPageViewModel : ContentViewModel<OrdersPage>
     {

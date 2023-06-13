@@ -1,10 +1,3 @@
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Events.CalendarEvent
 {
     [ContentType(DisplayName = "Calendar Event Page",

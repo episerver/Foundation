@@ -1,10 +1,4 @@
-﻿using EPiServer.Commerce.Marketing;
-using EPiServer.DataAbstraction;
-using EPiServer.Framework.Web;
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Shared;
+﻿using EPiServer.Framework.Web;
 
 namespace Foundation.Infrastructure.Display
 {

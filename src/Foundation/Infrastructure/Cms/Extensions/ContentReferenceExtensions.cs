@@ -1,14 +1,6 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Filters;
+﻿using EPiServer.Filters;
 using EPiServer.Globalization;
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Cms.Extensions
 {

@@ -1,5 +1,4 @@
 ﻿using Foundation.Features.CatalogContent.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Recommendations
 {

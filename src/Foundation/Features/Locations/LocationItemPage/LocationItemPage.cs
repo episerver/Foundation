@@ -1,12 +1,4 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using EPiServer.Find;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Locations.LocationItemPage
 {
@@ -28,6 +20,7 @@ namespace Foundation.Features.Locations.LocationItemPage
         public virtual ContentReference Image { get; set; }
 
         [Display(Name = "Left content area", GroupName = SystemTabNames.Content, Order = 220)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea LeftContentArea { get; set; }
 
         [Display(Name = "New location", GroupName = SystemTabNames.Content, Order = 230)]

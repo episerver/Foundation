@@ -1,15 +1,7 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using Foundation.Features.MyAccount.CreditCard;
-using Foundation.Infrastructure.Cms.Attributes;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
+﻿using Foundation.Features.MyAccount.CreditCard;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;

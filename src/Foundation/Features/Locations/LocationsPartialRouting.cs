@@ -3,8 +3,6 @@ using EPiServer.Core.Routing.Pipeline;
 using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Framework;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Locations
 {

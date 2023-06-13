@@ -1,5 +1,4 @@
 ﻿using Mediachase.BusinessFoundation.Data.Business;
-using System;
 
 namespace Foundation.Infrastructure.Commerce.Extensions
 {

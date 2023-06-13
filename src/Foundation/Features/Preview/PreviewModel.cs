@@ -1,7 +1,3 @@
-using EPiServer.Core;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
-
 namespace Foundation.Features.Preview
 {
     public class PreviewModel : ContentViewModel<FoundationPageData>

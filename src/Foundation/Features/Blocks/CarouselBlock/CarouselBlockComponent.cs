@@ -1,10 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Media;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using Foundation.Features.Media;
 
 namespace Foundation.Features.Blocks.CarouselBlock
 {
@@ -41,6 +35,10 @@ namespace Foundation.Features.Blocks.CarouselBlock
                     else if (carouselItem is HeroBlock.HeroBlock)
                     {
                         model.Items.Add(new CarouselItem() { HeroBlock = new BlockViewModel<HeroBlock.HeroBlock>((HeroBlock.HeroBlock)carouselItem) });
+                    }
+                    else if (carouselItem is ContainerBlock.ContainerBlock)
+                    {
+                        model.Items.Add(new CarouselItem() { ContainerBlock = new BlockViewModel<ContainerBlock.ContainerBlock>((ContainerBlock.ContainerBlock)carouselItem) });
                     }
                     else if (carouselItem is ImageData)
                     {

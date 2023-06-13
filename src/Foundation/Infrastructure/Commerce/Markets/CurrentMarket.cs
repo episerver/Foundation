@@ -1,9 +1,7 @@
 ﻿using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Markets;
-using System;
 
 namespace Foundation.Infrastructure.Commerce.Markets
 {

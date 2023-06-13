@@ -1,7 +1,4 @@
-﻿using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Foundation.Features.Stores
+﻿namespace Foundation.Features.Stores
 {
     public class StorePageController : PageController<StorePage>
     {

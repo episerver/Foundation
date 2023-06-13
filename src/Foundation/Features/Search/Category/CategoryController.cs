@@ -1,13 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Web.Routing;
-using Foundation.Features.CatalogContent;
+﻿using Foundation.Features.CatalogContent;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Personalization;
 //using Foundation.Social.Services;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Search.Category
 {

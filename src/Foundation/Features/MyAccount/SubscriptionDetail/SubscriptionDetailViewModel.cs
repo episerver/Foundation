@@ -1,7 +1,5 @@
 using Foundation.Features.MyAccount.OrderHistory;
-using Foundation.Features.Shared;
 using Mediachase.Commerce.Orders;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyAccount.SubscriptionDetail
 {

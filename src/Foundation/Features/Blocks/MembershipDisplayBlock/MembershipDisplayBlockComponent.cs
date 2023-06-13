@@ -1,15 +1,9 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Social.Groups.Core;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Social.Groups.Core;
 using Foundation.Social;
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.MembershipDisplayBlock
 {

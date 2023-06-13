@@ -1,8 +1,4 @@
 using Foundation.Features.MyAccount.AddressBook;
-using Mediachase.Commerce;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

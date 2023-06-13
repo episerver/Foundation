@@ -1,9 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Find.Facets.Config
+﻿namespace Foundation.Infrastructure.Find.Facets.Config
 {
     public class EnumSelectionFactory<TEnum> : ISelectionFactory where TEnum : struct, IConvertible
     {

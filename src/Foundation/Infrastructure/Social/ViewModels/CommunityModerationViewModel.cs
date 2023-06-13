@@ -1,6 +1,5 @@
 using Foundation.Social.Models.Groups;
 using Foundation.Social.Models.Moderation;
-using System.Collections.Generic;
 
 namespace Foundation.Social.ViewModels
 {

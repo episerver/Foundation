@@ -1,10 +1,6 @@
 ﻿using Foundation.Features.Blocks.OrderSearchBlock;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Customer;
 using Mediachase.Commerce.Orders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

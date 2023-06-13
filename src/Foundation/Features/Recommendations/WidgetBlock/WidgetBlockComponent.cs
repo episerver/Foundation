@@ -1,12 +1,6 @@
-﻿using EPiServer.Framework.Web.Resources;
-using EPiServer.Web.Mvc;
-using Foundation.Features.CatalogContent.Services;
+﻿using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Services;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Recommendations.WidgetBlock
 {

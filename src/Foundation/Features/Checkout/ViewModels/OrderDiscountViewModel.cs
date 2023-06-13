@@ -1,5 +1,3 @@
-using Mediachase.Commerce;
-
 namespace Foundation.Features.Checkout.ViewModels
 {
     public class OrderDiscountViewModel

@@ -1,13 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Foundation.Features.Checkout.Services;
-using Foundation.Features.Settings;
+﻿using Foundation.Features.Checkout.Services;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Foundation.Features.MyOrganization.Orders
 {

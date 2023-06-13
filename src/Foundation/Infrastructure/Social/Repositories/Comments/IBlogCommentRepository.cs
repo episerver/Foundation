@@ -1,5 +1,4 @@
 ﻿using Foundation.Social.Models.Comments;
-using System.Collections.Generic;
 
 namespace Foundation.Social.Repositories.Comments
 {
