@@ -6,14 +6,14 @@
     
     onChooseEvent(element) {
         let selectedItemData = element.getSelectedItemData();
-        let form = $('#addUserForm');
-        form.find('input[name*=Email]').val(selectedItemData.Email);
-        form.find('input[name*=FirstName]').val(selectedItemData.FirstName);
-        form.find('input[name*=LastName]').val(selectedItemData.LastName);
+        let form = document.querySelector('#addUserForm');
+        form.querySelector('input[name*=Email]').value = selectedItemData.Email;
+        form.querySelector('input[name*=FirstName]').value = selectedItemData.FirstName;
+        form.querySelector('input[name*=LastName]').value = selectedItemData.LastName;
     }
 
     lookupUser() {
-        let $autocompleteInput = $('#addUsersAutocomplete');
+        let autocompleteInput = document.querySelector('#addUsersAutocomplete');
         let options = {
             url: function (phrase) {
                 return "/Users/GetUsers?query=" + phrase;
@@ -28,16 +28,16 @@
             },
             theme: "fullwidth"
         };
-        $autocompleteInput.easyAutocomplete(options);
+        autocompleteInput.easyAutocomplete(options);
     }
 
     searchUsersEvent() {
         let inst = this;
-        $('#jsSearchUsersOrganizationBtn').click(function () {
+        document.querySelector('#jsSearchUsersOrganizationBtn').addEventListener("click", function () {
             inst.searchUsers();
         })
 
-        $('#jsSearchUsersOrganizationTxt').keyup(function (e) {
+        document.querySelector('#jsSearchUsersOrganizationTxt').addEventListener("keyup", function (e) {
             if (e.keyCode == 13) {
                 inst.searchUsers();
             }
@@ -45,13 +45,13 @@
     }
 
     searchUsers() {
-        let query = $('#jsSearchUsersOrganizationTxt').val().toLowerCase();
-        let users = $('.jsUsersOrganiztionListing').find('.jsRowUser');
-        users.each(function (i, e) {
-            if ($(e).data('name').toLowerCase().includes(query) || $(e).data('email').toLowerCase().includes(query)) {
-                $(e).css('display', 'table-row');
+        let query = document.querySelector('#jsSearchUsersOrganizationTxt').value.toLowerCase();
+        let users = document.querySelector('.jsUsersOrganiztionListing').querySelectorAll('.jsRowUser');
+        users.forEach(function (el, i) {
+            if (el.getAttribute('data-name').toLowerCase().includes(query) || el.getAttribute('data-email').toLowerCase().includes(query)) {
+                el.style.display ='table-row';
             } else {
-                $(e).css('display', 'none');
+                el.style.display = 'table-row';
             }
         })
     }

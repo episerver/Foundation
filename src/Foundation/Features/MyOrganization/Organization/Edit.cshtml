@@ -1,6 +1,6 @@
 ﻿@using EPiServer.Web.Mvc.Html
 @using Foundation.Features.MyOrganization.Organization
-
+@using EPiServer.Web.Routing;
 @model OrganizationPageViewModel
 
 @{
@@ -25,7 +25,11 @@
     </div>
 </div>
 <div class="row">
-    @using (Html.BeginForm("Save", "Organization", FormMethod.Post, new { @class = "col-12" }))
+    @{
+        
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+    }
+    @using (Html.BeginForm("Save", PageFriendlyURL, FormMethod.Post, new { @class = "col-12" }))
     {
         @Html.AntiForgeryToken()
         <div class="row">

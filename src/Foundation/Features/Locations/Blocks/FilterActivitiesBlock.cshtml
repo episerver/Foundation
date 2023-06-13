@@ -15,7 +15,7 @@
 <div class="filterblock" data-filtertype="a" id="activity-filter">
     <h4>
         <i class="fa fa-tags"></i>
-        @(string.IsNullOrEmpty(ViewData["FilterTitle"].ToString()) ? Html.TranslateFallback("/Locations/Activities", "Activities") : ViewData["FilterTitle"].ToString())
+        @(ViewData["FilterTitle"] == null ? Html.TranslateFallback("/Locations/Activities", "Activities") : ViewData["FilterTitle"].ToString())
     </h4>
     <ul class="portfolio-cats">
         <li>
@@ -23,7 +23,7 @@
                 <label>
                     <input class="select-all" type="checkbox" @(!filterActivities.Any() ? "checked=checked" : "")>
                     <strong>
-                        @(string.IsNullOrEmpty(ViewData["AllConditionText"].ToString()) ? Html.TranslateFallback("/Locations/AllActivities", "All activities") : ViewData["AllConditionText"].ToString())
+                        @(ViewData["AllConditionText"]== null ? Html.TranslateFallback("/Locations/AllActivities", "All activities") : ViewData["AllConditionText"].ToString())
                     </strong>
                 </label>
             </span>

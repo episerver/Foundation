@@ -283,7 +283,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         public JsonResult RedirectToCart(string message)
         {
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            if (referencePages?.CartPage.IsNullOrEmpty() ?? false)
+            if (!referencePages?.CartPage.IsNullOrEmpty() ?? false)
             {
                 var cartPage = _contentLoader.Get<CartPage>(referencePages.CartPage);
                 return Json(new { Redirect = cartPage.StaticLinkURL, Message = message });
@@ -737,9 +737,17 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 _orderRepository.Delete(CartWithValidationIssues.Cart.OrderLink);
                 _cart = null;
             }
+
             //var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage);
-            var redirect = currentPage.LinkURL;
-            return Json(redirect);
+            //var redirect = currentPage.LinkURL;
+            //return Json(redirect);
+            return Json(new ChangeCartJsonResult
+            {
+                StatusCode = 1,
+                Message = " All items cleared from cart.",
+                CountItems = (int)CartWithValidationIssues.Cart.GetAllLineItems().Sum(x => x.Quantity),
+                SubTotal = CartWithValidationIssues.Cart.GetSubTotal()
+            });
         }
 
         [HttpPost]
