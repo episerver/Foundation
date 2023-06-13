@@ -1,57 +1,115 @@
-﻿export default class MyProfile {
+﻿import * as $ from "jquery";
+import * as axios from "axios";
+
+export default class MyProfile {
     saveProfile(options) {
-        $('.loading-box').show();
-        axios(options)
+        document.querySelector(".loading-box").style.display = 'block'; // show
+        axios.post(options.url, options.data)
             .then(function (result) {
-                $('.jsFirstName').html(result.data.firstName);
-                $('.jsLastName').html(result.data.lastName);
+                document.querySelector('.jsFirstName').innerHTML = result.data.firstName;
+                document.querySelector('.jsLastName').innerHTML = result.data.lastName;
                 notification.success("Update profile successfully.");
             })
             .catch(function (error) {
                 notification.error(error);
             })
             .finally(function () {
-                $('.loading-box').hide();
+                document.querySelector(".loading-box").style.display = 'none'; // show
             })
     }
 
     editProfileClick() {
-        $('.jsEditProfile').each(function (i, e) {
-            $(e).click(function () {
-                let targetSelector = $(this).data('target');
-                $(targetSelector).slideToggle();
+        let inst = this;
+        Array.from(document.getElementsByClassName("jsEditProfile")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+/*                ToggleEditProfile() {*/
+                    let targetSelector = ".jsProfileContainerEdit"; //$(this).data('bs-target');
+                    let container = document.querySelector(targetSelector);
+
+                    if (!container.classList.contains('active')) {
+                        container.classList.add('active');
+                        container.style.height = 'auto';
+
+                        let height = container.clientHeight + "px";
+
+                        container.style.height = '0px';
+
+                        setTimeout(function () {
+                            container.style.height = height;
+                        }, 0);
+                    } else {
+                        container.style.height = '0px';
+
+                        container.addEventListener('transitionend', function () {
+                            container.classList.remove('active');
+                        }, {
+                            once: true
+                        });
+                    }
+                //}
             })
         })
     }
 
+    ToggleEditProfile() {
+        let targetSelector = ".jsProfileContainerEdit"; //$(this).data('bs-target');
+        let container = document.querySelector(targetSelector);
+
+        if (!container.classList.contains('active')) {
+            container.classList.add('active');
+            container.style.height = 'auto';
+
+            let height = container.clientHeight + "px";
+
+            container.style.height = '0px';
+
+            setTimeout(function () {
+                container.style.height = height;
+            }, 0);
+        } else {
+            container.style.height = '0px';
+
+            container.addEventListener('transitionend', function () {
+                container.classList.remove('active');
+            }, {
+                once: true
+            });
+        }
+    }
+
     saveProfileClick() {
         let inst = this;
-        $('.jsSaveProfile').click(function () {
-            let container = $(this).parents('.jsProfileContainerEdit').first();
-            let firstName = $(container).find('.jsProfileFirstNameEdit').first().val();
-            let lastName = $(container).find('.jsProfileLastNameEdit').first().val();
-            let birth = $(container).find('.jsProfileBirthDateEdit').first().val();
-            let newsLetter = $(container).find('.jsProfileNewsLetterEdit').first().is(':checked');
-            let token = $(container).find('.jsTokenProfileEdit').first().find('input').first().val();
+        Array.from(document.getElementsByClassName("jsSaveProfile")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let container = document.querySelector('.jsProfileContainerEdit');
+                let firstName = document.querySelector('.jsProfileFirstNameEdit').value;
+                let lastName = document.querySelector('.jsProfileLastNameEdit').value;
+                let birth = document.querySelector('.jsProfileBirthDateEdit').value;
+                let newsLetter = $(container).find('.jsProfileNewsLetterEdit').first().is(':checked');
+                let token = document.getElementsByName('__RequestVerificationToken')[0].value;
+                let url = el.closest('form').getAttribute("action");
 
-            let data = new FormData();
-            data.append("FirstName", firstName)
-            data.append("LastName", lastName)
-            data.append("DateOfBirth", birth)
-            data.append("SubscribesToNewsletter", newsLetter)
-            data.append("__RequestVerificationToken", token)
+                let data = new FormData();
+                data.append("FirstName", firstName)
+                data.append("LastName", lastName)
+                data.append("DateOfBirth", birth)
+                data.append("SubscribesToNewsletter", newsLetter)
+                data.append("__RequestVerificationToken", token)
 
-            let options = {
-                method: 'post',
-                headers: { 'content-type': 'application/x-www-form-urlencoded; charset=utf-8' },
-                data: data,
-                url: $(this).closest('form')[0].action
-            }
+                let options = {
+                    method: 'post',
+                    headers: { 'content-type': 'application/x-www-form-urlencoded; charset=utf-8' },
+                    data: data,
+                    url: url
+                }
 
-            inst.saveProfile(options);
-            $(this).parents('.jsProfileContainerEdit').first().fadeToggle();
+                inst.saveProfile(options);
+                inst.ToggleEditProfile();
+                //$(this).parents('.jsProfileContainerEdit').first().fadeToggle();
 
-            return false;
-        })
+                return false;
+            });
+
+        });
     }
 }

@@ -34,7 +34,7 @@
                 </button>
             }
         }
-        <button id="clearCart" class="button-transparent-black btn-lower" title="Clear Cart" name="update_cart_action" type="Submit" url="@Url.Action("ClearCart", "DefaultCart")">
+        <button id="clearCart" class="button-transparent-black btn-lower" title="Clear Cart" name="update_cart_action" type="button" url="@Url.Action("ClearCart", "DefaultCart")">
             <i data-feather="alert-circle"></i>
             <span>@Html.TranslateFallback("/Cart/Labels/ClearCart", "Clear Cart")</span>
         </button>

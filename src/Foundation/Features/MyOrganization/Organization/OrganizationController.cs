@@ -1,4 +1,4 @@
-﻿using Foundation.Features.MyAccount.AddressBook;
+using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Budgeting;
 using Foundation.Features.MyOrganization.SubOrganization;
 using Foundation.Infrastructure.Cms;
@@ -164,7 +164,7 @@ namespace Foundation.Features.MyOrganization.Organization
             {
                 _organizationService.UpdateOrganization(viewModel.Organization);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", UrlResolver.Current.GetUrl(viewModel.CurrentContent.ContentLink));
         }
 
         [HttpPost]
@@ -183,7 +183,8 @@ namespace Foundation.Features.MyOrganization.Organization
             viewModel.NewSubOrganization.Locations = updatedLocations;
 
             _organizationService.CreateSubOrganization(viewModel.NewSubOrganization);
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return RedirectToAction("Index", UrlResolver.Current.GetUrl(viewModel.CurrentContent.ContentLink));
         }
     }
 }

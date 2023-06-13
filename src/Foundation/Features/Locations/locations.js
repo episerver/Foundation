@@ -12,7 +12,7 @@ export default class Locations {
     }
 
     init() {
-        if ($("#locationMap").length === 0) {
+        if (document.querySelector("#locationMap") === null) {
             return;
         }
 
@@ -47,12 +47,12 @@ export default class Locations {
     showLocations() {
         let locations = [];
         let instance = this;
-        $('#locations .locationArticle').each(function () {
+        document.querySelectorAll('#locations .locationArticle').forEach(function (el,i) {
             locations.push({
-                name: $(this).attr('data-mapname'),
-                lat: $(this).attr('data-maplat'),
-                lon: $(this).attr('data-maplon'),
-                url: $(this).attr('data-mapurl')
+                name: el.getAttribute('data-mapname'),
+                lat: el.getAttribute('data-maplat'),
+                lon: el.getAttribute('data-maplon'),
+                url: el.getAttribute('data-mapurl')
             });
         });
 
@@ -85,48 +85,84 @@ export default class Locations {
         );
 
         $(document).on('slideStop', '#slider-range', () => {
-            var newVal = $('#slider-range').val().split(",");
+            var newVal = document.querySelector('#slider-range').value.split(",");
             instance.tempvals = newVal;
-            instance.doAjaxCallback($('.filterblock'));
+            instance.doAjaxCallback(document.querySelectorAll('.filterblock'));
         });
 
-        $(document).off('change', '.filterblock input[type=checkbox].select-all');
-        $(document).off('change', '.filterblock input[type=checkbox].select-some');
-        $(document).off('change', '.filterblock input[type=checkbox]');
+        document.querySelector(".filterblock input[type=checkbox].select-all").removeEventListener("change", instance.removeFilters, false);
+        document.querySelector(".filterblock input[type=checkbox].select-some").removeEventListener("change", instance.removeFilters, false);
+        document.querySelector(".filterblock input[type=checkbox]").removeEventListener("change", instance.removeFilters, false);
+        //$(document).off('change', '.filterblock input[type=checkbox].select-all');
+        //$(document).off('change', '.filterblock input[type=checkbox].select-some');
+        //$(document).off('change', '.filterblock input[type=checkbox]');
 
-        $(document).on('change', ".filterblock input[type=checkbox].select-all", function (event) {
-            if ($(event.target).prop('checked')) {
-                $(event.target).closest('.filterblock').find('input[type=checkbox].select-some').prop('checked', false);
+        instance.delegateSelector('.location-filter', "change", ".filterblock input[type=checkbox].select-all", function (e) {
+            if (e.target.checked) {
+                //console.log("inside first if")
+                e.target.closest('.filterblock').querySelector('input[type=checkbox].select-some').checked = false;
             }
         });
 
-        $(document).on('change', ".filterblock input[type=checkbox].select-some", function (event) {
-            if ($(event.target).prop('checked')) {
-                $(event.target).closest('.filterblock').find('input[type=checkbox].select-all').prop('checked', false);
+        //$(document).on('change', ".filterblock input[type=checkbox].select-all", function (event) {
+        //    //console.log(event.target);
+        //    if ($(event.target).prop('checked')) {
+        //        $(event.target).closest('.filterblock').find('input[type=checkbox].select-some').prop('checked', false);
+        //    }
+        //});
+
+        instance.delegateSelector('.location-filter', "change", ".filterblock input[type=checkbox].select-some", function (e) {
+            //console.log(e.target);
+            //console.log(e.target.checked);
+            if (e.target.checked) {
+                //console.log("inside second if")
+                e.target.closest('.filterblock').querySelector('input[type=checkbox].select-all').checked = false;
             }
             else {
-                if ($(event.target).closest('.filterblock').find("input[type=checkbox]:checked").length === 0) {
-                    $(event.target).closest('.filterblock').find('input[type=checkbox].select-all').prop('checked', true);
+                //console.log("inside second else")
+                if (e.target.closest('.filterblock').querySelector("input[type=checkbox]:checked").length === 0) {
+                    e.target.closest('.filterblock').querySelector('input[type=checkbox].select-all').checked = true;
                 }
             }
         });
-
-        $(document).on('change', ".filterblock input[type=checkbox]", function () {
-            var triggerFilterId = $(this).closest('.filterblock').attr('id');
-            var filtersToUpdate = $('.filterblock:not([id=' + triggerFilterId + '])');
-            if ($(this).is('.select-all')) {
-                filtersToUpdate = $('.filterblock');
+        //$(document).on('change', ".filterblock input[type=checkbox].select-some", function (event) {
+        //    if ($(event.target).prop('checked')) {
+        //        $(event.target).closest('.filterblock').find('input[type=checkbox].select-all').prop('checked', false);
+        //    }
+        //    else {
+        //        if ($(event.target).closest('.filterblock').find("input[type=checkbox]:checked").length === 0) {
+        //            $(event.target).closest('.filterblock').find('input[type=checkbox].select-all').prop('checked', true);
+        //        }
+        //    }
+        //});
+        //'.location-filter'
+        instance.delegateSelector('.location-filter', "change", ".filterblock input[type=checkbox]", function (e) {
+            //console.log(e.target);
+            //console.log(e.target.checked);
+            var triggerFilterId = e.target.closest('.filterblock').getAttribute('id');
+            var filtersToUpdate = document.querySelectorAll('.filterblock:not([id=' + triggerFilterId + '])');
+            if (e.target.classList.contains('select-all')) {
+                //console.log("inside third if")
+                filtersToUpdate = document.querySelectorAll('.filterblock');
             }
-            instance.doAjaxCallback(filtersToUpdate);
+            instance.doAjaxCallback(filtersToUpdate); 
         });
+        //$(document).on('change', ".filterblock input[type=checkbox]", function () {
+        //    var triggerFilterId = $(this).closest('.filterblock').attr('id');
+        //    var filtersToUpdate = document.querySelectorAll('.filterblock:not([id=' + triggerFilterId + '])');
+        //    if ($(this).is('.select-all')) {
+        //        filtersToUpdate = document.querySelectorAll('.filterblock');
+        //    }
+        //    instance.doAjaxCallback(filtersToUpdate);
+        //});
     }
 
     setFilterSelection() {
-        $('.filterblock').each(function () {
-            if ($(this).find('input[type = checkbox]').attr('checked')) {
-                $(this).addClass('selected');
+        document.querySelectorAll('.filterblock').forEach(function (el, i) {
+            if (el.querySelector('input[type = checkbox]').getAttribute('checked')) {
+                el.classList.add('selected');
             } else {
-                $(this).removeClass('selected');
+                el.classList.remove('selected');
             }
         });
     }
@@ -134,14 +170,14 @@ export default class Locations {
     getFilterUrl() {
 
         var uri = new Uri(location.pathname);
-        $('.filterblock').each(function (i, e) {
-            var filterName = $(e).attr('data-filtertype');
+        document.querySelectorAll('.filterblock').forEach(function (el, i) {
+            var filterName = el.getAttribute('data-filtertype');
             var value = '';
-            $(e).find('input[type=checkbox].select-some:checked').each(function (j, k) {
+            el.querySelectorAll('input[type=checkbox].select-some:checked').forEach(function (k, j) {
                 if (value !== '') {
                     value += ',';
                 }
-                value += $(k).val();
+                value += k.value;
             });
             uri.replaceQueryParam(filterName, value);
         });
@@ -151,22 +187,52 @@ export default class Locations {
 
     doAjaxCallback(filtersToUpdate) {
         let instance = this;
-        $('.loading-box').show();
+        document.querySelector('.loading-box').style.display = "block";
 
         axios.get(instance.getFilterUrl())
             .then(function (result) {
-                var fetched = $(result.data);
-                $('#locations').html(fetched.find('#locations').html());
+                var newFetchedElement = document.createElement("div");
+                newFetchedElement.innerHTML = result.data;
+                var fetched = newFetchedElement;
+                document.querySelector('#locations').innerHTML = fetched.querySelector('#locations').innerHTML;
                 instance.loadMapScenario();
-                filtersToUpdate.each(function () {
-                    $(this).html(fetched.find('#' + $(this).attr('id')).html());
+                filtersToUpdate.forEach(function (m, n) {
+                    m.innerHTML = fetched.querySelector('#' + m.getAttribute('id')).innerHTML;
                 });
             })
             .catch(function (error) {
                 notification.error(error);
             })
             .finally(function () {
-                setTimeout($('.loading-box').hide(), 300);
+                setTimeout(instance.hideLoadingBox(), 300);
             });
+
+
+        
+    }
+
+    hideLoadingBox() {
+        document.querySelector('.loading-box').style.display = "none";
+    }
+
+    delegateSelector(selector, event, childSelector, handler) {
+        //console.log(selector);
+        let inst = this;
+        var is = function (el, selector) {
+            return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+        };
+
+        var elements = document.querySelectorAll(selector);
+        [].forEach.call(elements, function (el, i) {
+            el.addEventListener(event, function (e) {
+                if (is(e.target, childSelector)) {
+                    handler(e);
+                }
+            });
+        });
+    }
+
+    removeFilters() {
+        return false;
     }
 }

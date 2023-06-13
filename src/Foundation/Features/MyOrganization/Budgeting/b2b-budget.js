@@ -24,30 +24,30 @@
 
     saveNewBudget() {
         let inst = this;
-        $(this.divContainer).find('.jsSaveBudget').each(function (i, e) {
-            $(e).click(function () {
-                let form = $(e).closest('form');
 
-                let url = form[0].action;
+        Array.from(document.querySelectorAll(".jsSaveBudget")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let form = el.closest('form');
+
+                let url = form.action;
                 let model = new FormData();
                 let budgetModel = {
-                    amount: $(form).find('#amount').val(),
-                    status: $(form).find('select[name="statusBudget"]').val(),
-                    currency: $(form).find('select[name="currencyBudget"]').val(),
-                    startDateTime: $(form).find('#startDate').val(),
-                    finishDateTime: $(form).find('#endDate').val(),
-                    userEmail: $(form).find('#userEmail').val(),
-                    budgetId: $(this).data('budget-id'),
-                    __RequestVerificationToken: $(form).find('input[name="__RequestVerificationToken"]').val(),
-                }
+                    amount: form.querySelector('#amount').value,
+                    status: form.querySelector('select[name="statusBudget"]').value,
+                    currency: form.querySelector('select[name="currencyBudget"]').value,
+                    startDateTime: form.querySelector('#startDate').value,
+                    finishDateTime: form.querySelector('#endDate').value,
+                    budgetId: el.getAttribute('data-budget-id'),
+                        __RequestVerificationToken: document.querySelector('input[name="__RequestVerificationToken"]').value
+                };
 
                 let error = inst.validateBudget(budgetModel);
                 if (error != "") {
-                    $(form).find('#BudgetWarningMessage').html(error);
+                    form.querySelector('#BudgetWarningMessage').innerHTML = error;
                 } else {
-                    $(form).find('#BudgetWarningMessage').html("");
+                    form.querySelector('#BudgetWarningMessage').innerHTML = "";
                     model = inst.convertFormData(budgetModel);
-                    $('.loading-box').show();
+                    document.querySelector(".loading-box").style.display = 'block';
                     axios.post(url, model)
                         .then(function (result) {
                             if (result.data.result == "true") {
@@ -60,10 +60,10 @@
                             notification.error(error);
                         })
                         .finally(function () {
-                            $('.loading-box').hide();
+                            document.querySelector(".loading-box").style.display = 'none';
                         });
                 }
-                
+
             });
         });
     }

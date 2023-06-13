@@ -7,6 +7,9 @@
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
 
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div>
@@ -27,7 +30,7 @@
         <div class="section-title spacer-bottom-l">
             <h2 class="h3">@Html.TranslateFallback("/B2B/Users/UserDetails", "User Details")</h2>
         </div>
-        @using (Html.BeginForm("AddUser", "Users", FormMethod.Post, new { @id = "addUserForm" }))
+        @using (Html.BeginForm("AddUser", PageFriendlyURL, FormMethod.Post, new { @id = "addUserForm" }))
         {
             <div class="form-group">
                 @Html.LabelFor(x => x.Contact.FirstName)

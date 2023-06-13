@@ -40,8 +40,10 @@
                             }
                         }
                     }
-                    </ div >
-                    <div class="col-md-9">
+                    </div >
+                    </div>
+                </div>
+                                    <div class="col-md-9">
                         <div id="locations">
                             @foreach (var location in Model.Locations)
                             {
@@ -51,7 +53,7 @@
                                         <div class="location__body">
                                             <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>
                                             <div class="row">
-                                                if (!ContentReference.IsNullOrEmpty(location.Image))
+                                                @if (!ContentReference.IsNullOrEmpty(location.Image))
                                                 {
                                                 <div class="col-lg-5">
                                                     <img class="location__img lazyload" data-src="@Url.ContentUrl(location.Image)?format=webp" alt="@location.Name" />
@@ -104,6 +106,4 @@
                                 </article>
                             }
                         </div>
-                    </div>
-                </div>
             </div>
