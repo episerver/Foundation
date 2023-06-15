@@ -44,8 +44,9 @@
     <PackageReference Include="Geta.Optimizely.Categories" Version="1.0.0" />
     <PackageReference Include="Geta.Optimizely.Categories.Find" Version="1.0.0" />
     <PackageReference Include="Optimizely.Labs.MarketingAutomationIntegration.ODP" Version="1.0.2" />
+	 <PackageReference Include="Epicweb.Optimizely.AIAssistant" Version="0.0.0.12" />
 
-    <!-- Optimizely Forms & Marketing Automation Connectors -->
+	  <!-- Optimizely Forms & Marketing Automation Connectors -->
     <PackageReference Include="EPiServer.Forms" Version="5.5.1" />
     <PackageReference Include="EPiServer.Forms.Samples" Version="4.1.0" />
     <PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.1.2" />

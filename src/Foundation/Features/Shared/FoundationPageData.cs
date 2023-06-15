@@ -1,5 +1,6 @@
 //using EPiServer.Labs.ContentManager.Cards;
 //using EPiServer.Labs.ContentManager.Dashboard;
+using Epicweb.Optimizely.AIAssistant;
 using EPiServer.SpecializedProperties;
 using Foundation.Features.Blocks.ButtonBlock;
 using Geta.Optimizely.Categories;
@@ -36,6 +37,7 @@ namespace Foundation.Features.Shared
         #region Metadata
 
         [CultureSpecific]
+        [UIHint(AIHint.Input)]
         [Display(Name = "Title", GroupName = TabNames.MetaData, Order = 100)]
         public virtual string MetaTitle
         {
@@ -51,12 +53,12 @@ namespace Foundation.Features.Shared
         }
 
         [CultureSpecific]
-        [UIHint(UIHint.Textarea)]
+        [UIHint(AIHint.Textarea)]
         [Display(GroupName = TabNames.MetaData, Order = 200)]
         public virtual string Keywords { get; set; }
 
         [CultureSpecific]
-        [UIHint(UIHint.Textarea)]
+        [UIHint(AIHint.Textarea)]
         [Display(Name = "Page description", GroupName = TabNames.MetaData, Order = 300)]
         public virtual string PageDescription { get; set; }
 
@@ -124,7 +126,7 @@ namespace Foundation.Features.Shared
         public virtual ContentReference TeaserVideo { get; set; }
 
         [CultureSpecific]
-        [UIHint(UIHint.Textarea)]
+        [UIHint(AIHint.Textarea)]
         [Display(Name = "Text", GroupName = TabNames.Teaser, Order = 300)]
         public virtual string TeaserText
         {

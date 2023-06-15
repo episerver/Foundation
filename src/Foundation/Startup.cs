@@ -1,5 +1,6 @@
 ﻿using Advanced.CMS.AdvancedReviews;
 using Advanced.CMS.GroupingHeader;
+using Epicweb.Optimizely.AIAssistant;
 using EPiServer.Authorization;
 using EPiServer.Cms.TinyMce.SpellChecker;
 using EPiServer.ContentApi.Cms;
@@ -243,6 +244,9 @@ namespace Foundation
             // Add GroupingHeader
             // https://github.com/advanced-cms/grouping-header/
             services.AddGroupingHeader();
+
+            // Add AI Assistant on SEO
+            services.AddAIAssistant();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

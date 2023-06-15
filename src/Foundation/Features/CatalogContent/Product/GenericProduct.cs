@@ -1,3 +1,4 @@
+using Epicweb.Optimizely.AIAssistant;
 using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
@@ -12,6 +13,64 @@ namespace Foundation.Features.CatalogContent.Product
     [ImageUrl("/icons/cms/pages/CMS-icon-page-23.png")]
     public class GenericProduct : ProductContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
     {
+
+        #region SEO
+
+        //override and hide, use own implementation
+        [ScaffoldColumn(false)]
+        public override SeoInformation SeoInformation { get; set; }
+
+        [CultureSpecific]
+        [UIHint(AIHint.Input)]
+        [Display(Name = "SEO title", GroupName = Infrastructure.TabNames.MetaData, Order = 20)]
+        public virtual string SEOTitle { 
+            get {
+                var metaTitle = this.GetPropertyValue(p => p.SEOTitle);
+                // Use explicitly set meta title, otherwise fall back to SeoInformation or page name
+                return metaTitle ?? this.SeoInformation?.Title ?? this.DisplayName;
+                } 
+            set 
+            {
+                SeoInformation.Title = value;
+                this.SetPropertyValue(p => p.SEOTitle, value);
+            }
+        }
+
+        [CultureSpecific]
+        [UIHint(AIHint.Textarea)]
+        [Display(Name = "SEO description", GroupName = Infrastructure.TabNames.MetaData, Order = 25)]
+        public virtual string SEODescription {
+            get { 
+                string meta = this.GetPropertyValue(p => p.SEODescription);
+                // Use explicitly set meta title, otherwise fall back to SeoInformation
+                return meta ?? SeoInformation?.Description;
+             }
+            set
+            {
+                SeoInformation.Description = value;
+                this.SetPropertyValue(p => p.SEODescription, value);
+            }
+        }
+
+        [CultureSpecific]
+        [UIHint(AIHint.Textarea)]
+        [Display(Name = "SEO keywords", GroupName = Infrastructure.TabNames.MetaData, Order = 30)]
+        public virtual string SEOKeywords
+        {
+            get
+            {
+                string meta = this.GetPropertyValue(p => p.SEOKeywords);
+                // Use explicitly set meta title, otherwise fall back to SeoInformation
+                return meta ?? SeoInformation?.Keywords;
+            }
+            set {
+                SeoInformation.Keywords = value;
+                this.SetPropertyValue(p => p.SEOKeywords, value); 
+            }
+        }
+
+        #endregion
+
         #region Content
         [Searchable]
         [CultureSpecific]
@@ -187,11 +246,5 @@ namespace Foundation.Features.CatalogContent.Product
             Boost = 1;
             Bury = false;
         }
-
-        //public void SetItem(ItemModel itemModel)
-        //{
-        //    itemModel.Description = Description?.ToHtmlString();
-        //    itemModel.Image = CommerceMediaCollection.FirstOrDefault()?.AssetLink;
-        //}
-    }
+    }    
 }

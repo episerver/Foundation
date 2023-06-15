@@ -1,3 +1,4 @@
+using Epicweb.Optimizely.AIAssistant;
 using EPiServer.Find;
 
 namespace Foundation.Features.Locations.LocationItemPage
@@ -10,7 +11,7 @@ namespace Foundation.Features.Locations.LocationItemPage
     public class LocationItemPage : FoundationPageData
     {
         [StringLength(5000)]
-        [UIHint(UIHint.Textarea)]
+        [UIHint(AIHint.Textarea)]
         [Display(Name = "Intro text", GroupName = SystemTabNames.Content, Order = 10)]
         public virtual string MainIntro { get; set; }
 
