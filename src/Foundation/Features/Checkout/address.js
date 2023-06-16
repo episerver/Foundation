@@ -1,6 +1,6 @@
 ﻿import * as $ from "jquery";
 import * as axios from "axios";
-
+import Dropdown from "../../wwwroot/js/common/dropdown";
 export default class Address {
     init() {
         this.countryClick();
@@ -11,62 +11,66 @@ export default class Address {
         if (selector == undefined || selector == "") {
             selector = ".jsCountrySelectionContainer";
         }
+        window.addEventListener('load', function () {
+            var inputs = document.querySelectorAll(selector);
+            if (inputs == null) return;
+            Array.from(inputs).forEach(function (el, i) {
+                let element = el;
+                var countrySelectBox = el.querySelector(".select-menu");
+                countrySelectBox.addEventListener("change", function () {
+                    let countryCode = countrySelectBox.options[countrySelectBox.selectedIndex].value;
+                    let region = countrySelectBox.options[countrySelectBox.selectedIndex].value;
+                    let inputName = document.getElementsByClassName("jsRegionName")[0].getAttribute("value");
+                    axios.get("/addressbook/GetRegions?countryCode=" + countryCode + "&region=" + region + "&inputName=" + inputName)
+                        .then(function (r) {
+                            var region1 = document.querySelectorAll('.jsCountryRegionContainer');
+                            if (region1.length > 1) {
+                                region1[0].innerHTML = r.data;
+                                region1[1].innerHTML = r.data;
+                            }
+                            else {
+                                region1[0].innerHTML = r.data;
+                            }
+                            feather.replace();
+                            let dropdown = new Dropdown(region);
+                            dropdown.init();
+                        })
+                        .catch(function (e) {
+                            notification.error(e);
+                        });
+                });
 
-        $(selector).change(function () {
-            let countryCode = $(this).find('option:selected').val();
-            let region = $(this).find('option:selected').val();
-            let inputName = $(this).closest('form').find('.jsRegionName').val();
-            let element = $(this);
-            axios.get("/addressbook/GetRegions?countryCode=" + countryCode + "&region=" + region + "&inputName=" + inputName)
-                .then(function (r) {
-                    if ($(element).parents('form').length > 0) {
-                        let region = $(element).closest('form').find('.jsCountryRegionContainer').first();
-                        region.html(r.data);
-                    } else {
-                        let region = $(element).parent().siblings('.jsCountryRegionContainer').first();
-                        region.html(r.data);
-                    }
-
-                    feather.replace();
-                    let dropdown = new Dropdown(region);
-                    dropdown.Init();
-                })
-                .catch(function (e) {
-                    notification.error(e);
-                })
-        })
+            });
+        });
+        
     }
 
     loadAddressInRegisterUser() {
         let inst = this;
-        $('.jsCountrySelectionRegisterUser').click(function () {
-            let element = this;
-            let data = $(this).find('.jsCountryOptionName').val();
-            if ($(this).find('option').length == 0) {
-                axios.get('/header/getcountryoptions?inputName=' + data)
-                    .then(function (r) {
-                        let html = $(r.data).html();
-                        $(element).html(html);
-                        feather.replace();
-                        let dropdown = new Dropdown(element);
-                        dropdown.Init();
-                        inst.countryClick(element);
+        var inputs = document.querySelectorAll(".jsCountrySelectionRegisterUser");
+        if (inputs == null) return;
 
-                        $('#login-selector-signup').click(function (e) {
-                            if (!($(e.target).parents('.dropdown').children('.dropdown__selected').length > 0 || $(e.target).hasClass('.dropdown'))) {
-                                $('.dropdown__group').hide();
-                            }
-                        });
+        Array.from(inputs).forEach(function (el, i) {
+            let element = el;
+            let inputName = el.querySelector(".jsCountryOptionName").getAttribute("value");
+            axios.get('/header/getcountryoptions?inputName=' + inputName)
+                .then(function (r) {
+                    
+                    const htmlElement = document.createElement("div");
+                    htmlElement.innerHTML= r.data;
+                    el.innerHTML = htmlElement.getElementsByClassName("jsCountrySelectionContainer")[0].innerHTML;
+                    feather.replace();
+                    let dropdown = new Dropdown(element);
+                    dropdown.Init();
+                    inst.countryClick(element);
+                })
+                .catch(function (e) {
 
-                        $(element).find('.dropdown__selected').first().click();
-                    })
-                    .catch(function (e) {
+                })
+                .finally(function () {
+                });
 
-                    })
-                    .finally(function () {
-
-                    })
-            }
-        })
+        });
+ 
     }
 }

@@ -18,62 +18,69 @@ export default class SearchBox {
         }
         let typingTimer;
 
+        if (document.querySelector("#js-searchbutton") != null) {
+            document.querySelector("#js-searchbutton").addEventListener("click", function () {
+                inst.expandSearchBox();
+            });
+        }
 
-        $("#js-searchbutton").click(function () {
-            inst.expandSearchBox();
-        });
-        $("#js-searchbox-close").click(function () {
-            inst.collapseSearchBox();
-        });
-        $(".jsSearchText").each(function (i, e) {
+        if (document.querySelector("#js-searchbox-close") != null) {
+            document.querySelector("#js-searchbox-close").addEventListener("click", function () {
+                inst.collapseSearchBox();
+            });
+        }
+        if (document.querySelector(".jsSearchText") != null) {
+            Array.from(document.querySelectorAll(".jsSearchText")).forEach(function (el, i) {
 
-            inst.boxContent = $($(e).data('result-container'))[0];
-            if ($("#searchOption").val() != "QuickSearch") {
-                inst.AutoSearch(e);
-                $(e).on("keyup", function () {
-                    clearTimeout(typingTimer);
-                    const val = $(this).val();
-                    if(val != ""){
-                        typingTimer = setTimeout(function () {
-                            let e = $.Event("keypress", { which: 13 });
-                            $('.js-searchbox-input').trigger(e);
-                        }, 5000);
-                    }
-                });
-            } else {
-                $(e).on("keyup", function () {
-                    clearTimeout(typingTimer);
-                    const val = $(this).val();
-                    const container = $(this).data('result-container');
-                    const divParent = "#" + $(this).parent().attr('id');
-                    if(val != ""){
-                        typingTimer = setTimeout(function () {
-                            inst.Search(val, divParent, container);
-                        }, 1000);
-                    }
-                });
-            }
-
-            $(e).on('keypress',
-                function (e) {
-                    if (e.which == 13) {
-                        const searchUrl = $(this).data('search');
-                        const val = $(this).val();
-                        if(val != ""){
-                            let url = `${searchUrl}?search=${val}`;
-                            if ($(this).attr('id') == 'js-searchbox-input') {
-                                let confidence = $('#searchConfidence').val();
-                                url += "&Confidence=" + confidence;
-                            }
-                            location.href = url;
+                inst.boxContent = el.getAttribute('data-result-container');
+                if (document.querySelector("#searchOption").value != "QuickSearch") {
+                    inst.AutoSearch(el);
+                    el.addEventListener("keyup", function () {
+                        clearTimeout(typingTimer);
+                        const val = el.value;
+                        if (val != "") {
+                            typingTimer = setTimeout(function () {
+                                //let e = $.Event("keypress", { which: 13 });
+                                var ev = new KeyboardEvent('keypress', { which: 13 });
+                                el.dispatchEvent(ev);
+                                //$('.js-searchbox-input').trigger(e);
+                            }, 5000);
                         }
-                    }
-                });
-        });
+                    });
+                } else {
+                    el.addEventListener("keyup", function () {
+                        clearTimeout(typingTimer);
+                        const val = el.value;
+                        const container = el.getAttribute('data-result-container');
+                        const divParent = "#" + el.parentNode.getAttribute('id');
+                        if (val != "") {
+                            typingTimer = setTimeout(function () {
+                                inst.Search(val, divParent, container);
+                            }, 1000);
+                        }
+                    });
+                }
 
+                el.addEventListener('keypress',
+                    function (e) {
+                        if (e.which == 13) {
+                            const searchUrl = el.getAttribute('data-search');
+                            const val = el.value;
+                            if (val != "") {
+                                let url = `${searchUrl}?search=${val}`;
+                                if (el.classList.contains('js-searchbox-input')) {
+                                    let confidence = document.querySelector('#searchConfidence').value;
+                                    url += "&Confidence=" + confidence;
+                                }
+                                location.href = url;
+                            }
+                        }
+                    });
+            });
+        }
         document.addEventListener("click", function (e) {
             if (inst.box && inst.boxContent && inst.btn) {
-                if (inst.box.contains(e.target) || inst.btn.contains(e.target) || inst.boxContent.contains(e.target)) {
+                if (inst.box.contains(e.target) || inst.btn.contains(e.target) || document.querySelector(inst.boxContent).contains(e.target)) {
                     return;
                 }
 
@@ -109,7 +116,7 @@ export default class SearchBox {
         let waitTimer;
         clearTimeout(waitTimer);
         waitTimer = setTimeout(function () {
-            $(containerPopover + ' .loading-cart').show();
+            document.querySelector(containerPopover + ' .loading-cart').style.display = "block";
         }, 500);
         const inst = this;
         if (val) {
@@ -153,15 +160,15 @@ export default class SearchBox {
                 })
                 .then(function ({ data }) {
                     inst.searching = false;
-                    $(containerPopover).find('.js-searchbox-content').first().html(data);
+                    document.querySelector(containerPopover).querySelector('.js-searchbox-content').innerHTML = data;
                     clearTimeout(waitTimer);
-                    $(containerPopover + ' .loading-cart').hide();
+                    document.querySelector(containerPopover + ' .loading-cart').style.display = "none";
                 })
                 .catch(function (response) {
                     if (!axios.isCancel(response)) {
                         inst.searching = false;
                         clearTimeout(waitTimer);
-                        $(containerPopover + ' .loading-cart').hide();
+                        document.querySelector(containerPopover + ' .loading-cart').style.display = "none";
                     }
                 });
 
@@ -182,10 +189,13 @@ export default class SearchBox {
                     enabled: false
                 },
                 onChooseEvent: function () {
-                    let keyword = $(e).getSelectedItemData().query;
-                    $(e).val(keyword);
-                    let e = $.Event("keypress", { which: 13 });
-                    $(e).trigger(e);
+                    console.log("keyword");
+
+                    console.log(document.querySelector(e).getSelectedItemData().query)
+                    let keyword = document.querySelector(e).getSelectedItemData().query;
+                    document.querySelector(e).value = keyword;
+                    var ev = new KeyboardEvent('keypress', { which: 13 });
+                    e.dispatchEvent(ev);
                 }
             },
             listLocation: "hits",
@@ -202,27 +212,39 @@ export default class SearchBox {
     }
 
     showPopover(containerPopover) {
-        $(containerPopover).show();
+        document.querySelector(containerPopover).style.display = "block";
     }
 
     hidePopover() {
-        $('.searchbox-popover').hide();
+        document.querySelector('.searchbox-popover').style.dsiplay = "none";
     }
 
     // Search Image
     ProcessImage() {
         let inst = this;
-        $('.jsSearchImage').each(function (i, e) {
-            let fileId = $(e).data('input');
-            $(e).click(function () {
-                $(fileId).click();
+        Array.from(document.querySelectorAll(".jsSearchImage")).forEach(function (el, i) {
+            //console.log("inside process image");
+            let fileId = el.getAttribute('data-input');
+            el.addEventListener("click", function () {
+                console.log(fileId);
+                document.querySelector(fileId).addEventListener("click", function (event) {
+                    // If the clicked element doesn't have the right selector, bail
+                    if (!event.target.matches('.click-me')) return;
+
+                    // Don't follow the link
+                    event.preventDefault();
+
+                    // Log the clicked element in the console
+                    console.log(event.target);
+
+                }, false);
             });
 
             $(fileId).change(function () {
                 try {
-                    $('.loading-box').show();
+                    document.querySelector('.loading-box').style.display = "block";
                     let files = this.files;
-                    $(".validateErrorMsg").hide();
+                    document.querySelector(".validateErrorMsg").style.display = "none";
                     inst.InputValidation(files);
                 } catch (e) {
                     console.log(e);

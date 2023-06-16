@@ -218,7 +218,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult ChangeAddress(CheckoutPage currentPage, UpdateAddressViewModel addressViewModel)
+        public IActionResult ChangeAddress(CheckoutPage currentPage, [FromBody] UpdateAddressViewModel addressViewModel)
         {
             ModelState.Clear();
             try
@@ -482,7 +482,8 @@ namespace Foundation.Features.Checkout
                 stateValues.AddRange(ModelState.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.Errors.FirstOrDefault().ErrorMessage)));
                 TempData.Set("ModelState", stateValues);
                 TempData.Set("ShipmentBillingTypes", errorTypes);
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return Json(new { Status = false, Message = stateValues.Select(x => $"{x.Key},{x.Value}") });
             }
 
             try
@@ -491,7 +492,8 @@ namespace Foundation.Features.Checkout
                 if (purchaseOrder == null)
                 {
                     TempData[Constant.ErrorMessages] = "There is no payment was processed";
-                    return RedirectToAction("Index");
+                    return Json(new { Status = false, Message = "There is no payment was processed" });
+                    //return RedirectToAction("Index");
                 }
 
                 if (checkoutViewModel.BillingAddressType == 0)
@@ -525,12 +527,15 @@ namespace Foundation.Features.Checkout
                 //await _checkoutService.CreateBoughtProductsSegments(CartWithValidationIssues.Cart);
                 await _recommendationService.TrackOrder(HttpContext, purchaseOrder);
 
-                return Redirect(_checkoutService.BuildRedirectionUrl(checkoutViewModel, purchaseOrder, confirmationSentSuccessfully));
+                string redirectURL = _checkoutService.BuildRedirectionUrl(checkoutViewModel, purchaseOrder, confirmationSentSuccessfully);
+                    return Json(new { Status = true, RedirectUrl = redirectURL });
+                //return Redirect(redirectURL);
             }
             catch (Exception e)
             {
                 TempData[Constant.ErrorMessages] = e.Message;
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return Json(new { Status = false, Message = e.Message });
             }
         }
 
@@ -566,6 +571,7 @@ namespace Foundation.Features.Checkout
             }
 
             viewModel.Payment = paymentOption;
+            viewModel.OrderSummary = _orderSummaryViewModelFactory.CreateOrderSummaryViewModel(CartWithValidationIssues.Cart);
             _checkoutService.CreateAndAddPaymentToCart(CartWithValidationIssues.Cart, viewModel);
             _orderRepository.Save(CartWithValidationIssues.Cart);
 
@@ -766,7 +772,7 @@ namespace Foundation.Features.Checkout
         }
 
         [HttpPost]
-        public IActionResult SeparateShipment(CheckoutPage currentPage, RequestParamsToCart param)
+        public IActionResult SeparateShipment(CheckoutPage currentPage, [FromBody] RequestParamsToCart param)
         {
             var result = _cartService.SeparateShipment(CartWithValidationIssues.Cart, param.Code, (int)param.Quantity, param.ShipmentId, param.ToShipmentId, param.DeliveryMethodId, param.SelectedStore);
 

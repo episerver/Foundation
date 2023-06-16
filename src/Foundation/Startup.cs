@@ -267,6 +267,7 @@ namespace Foundation
             app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseAnonymousCartMerging();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "Default", pattern: "{controller}/{action}/{id?}");

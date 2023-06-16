@@ -9,7 +9,10 @@
 
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 @Html.PropertyFor(model => model.CurrentContent.MainContentArea)
-
+<style>
+.table .thead-dark th{color:white; width:15%}
+.table .thead-dark td{width:15%}
+</style>
 <div class="orders-page-filter">
     <div>
         @Html.Translate("/B2B/Orders/FilterByStatus")
@@ -25,7 +28,7 @@
         <option value="PendingApproval">@Html.TranslateFallback("/B2B/Orders/PendingApproval", "Pending Approval")</option>
     </select>
 </div>
-<table class="table">
+<table class="table" style="width:100%;">
     <thead class="thead-dark">
         <tr>
             <th>@Html.Translate("/B2B/Orders/OrderNo")</th>

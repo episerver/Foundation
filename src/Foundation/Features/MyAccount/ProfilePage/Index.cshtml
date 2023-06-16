@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-12">
                             <p class="title">@Html.TranslateFallback("/Dashboard/Labels/ContactInformation", "Contact Information")</p>
-                            <a href="javascript:void(0);" data-bs-target=".jsProfileContainerEdit" class="account-link jsEditProfile">@Html.TranslateFallback("/Shared/Edit", "Edit")</a>
+                            <div data-bs-target=".jsProfileContainerEdit" style="text-decoration:underline; cursor:pointer" class="account-link jsEditProfile">@Html.TranslateFallback("/Shared/Edit", "Edit")</div>
                             <p>
                                 <span class="jsFirstName">@Model.CustomerContact.FirstName </span>
                                 <span class="jsLastName">@Model.CustomerContact.LastName</span>
@@ -191,7 +191,7 @@
                     </div>
                 </div>
 
-                @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12 display-none" }))
+                @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12" }))
                 {
                     <div class="jsTokenProfileEdit">@Html.AntiForgeryToken()</div>
                     <div class="row col-12 input-block">
@@ -219,7 +219,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 input-block">
-                            <button class="button-transparent-black jsSaveProfile">Save</button>
+                            <button class="button-transparent-black jsSaveProfile" type="button">Save</button>
                         </div>
                     </div>
                 }
@@ -249,6 +249,15 @@
         </div>
     </div>
 </div>
+<style>
+.jsProfileContainerEdit {
+    transition: height .25s ease;
+    overflow: hidden;
+}
+.jsProfileContainerEdit:not(.active) {
+    display: none;
+}
+</style>
 @*<div class="row">
         <div class="col-12">
             @Html.PropertyFor(x => x.CurrentContent.MembershipAffiliation)
