@@ -45,7 +45,9 @@ namespace Foundation.Features.Media
                         Name = image.Name,
                         Description = image.Description,
                         ImageAlignment = image.ImageAlignment,
-                        PaddingStyles = image.PaddingStyles
+                        PaddingStyles = image.PaddingStyles,
+                        AltText = image.AltText,
+                        Title = image.Title
                     };
 
                     if (_contextModeResolver.CurrentMode == ContextMode.Edit)
