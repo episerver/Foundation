@@ -146,6 +146,9 @@ namespace Foundation
                 options.DisableScopeValidation = true;
             });
 
+            // Service API configuration
+            services.AddServiceApiAuthorization(OpenIDConnectOptionsDefaults.AuthenticationScheme);
+
             services.AddOpenIDConnect<SiteUser>(
                 useDevelopmentCertificate: true,
                 signingCertificate: null,
