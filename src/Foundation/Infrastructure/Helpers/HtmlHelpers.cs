@@ -413,21 +413,23 @@ namespace Foundation.Infrastructure.Helpers
                 return new HtmlString("");
             }
 
-            var output = new StringBuilder(string.Empty);
+                var output = new StringBuilder(string.Empty);
+            var product = entryContentBase as GenericProduct;
 
-            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Title))
+            if (!string.IsNullOrWhiteSpace(product?.SEOTitle))
             {
-                output.AppendLine(string.Format(_metaFormat, "title", entryContentBase.SeoInformation.Title));
+                output.AppendLine(string.Format(_metaFormat, "title", product.SEOTitle));
             }
 
-            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Keywords))
+            if (!string.IsNullOrWhiteSpace(product?.SEOKeywords))
             {
-                output.AppendLine(string.Format(_metaFormat, "keyword", entryContentBase.SeoInformation.Keywords));
+                output.AppendLine(string.Format(_metaFormat, "keyword", product.SEOKeywords));
             }
 
-            if (!string.IsNullOrWhiteSpace(entryContentBase.SeoInformation.Description))
+
+            if (!string.IsNullOrWhiteSpace(product?.SEODescription))
             {
-                output.AppendLine(string.Format(_metaFormat, "description", entryContentBase.SeoInformation.Description));
+                output.AppendLine(string.Format(_metaFormat, "description", product.SEODescription));
             }
             else
             {
