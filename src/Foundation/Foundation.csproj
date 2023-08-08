@@ -7,13 +7,13 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Optimizely CMS and Commerce, with OIDC provider and other main packages -->
-    <PackageReference Include="EPiServer.CMS" Version="12.22.1" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.15.1" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.15.1" />
+    <PackageReference Include="EPiServer.CMS" Version="12.22.3" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.16.0" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.16.0" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.4.1" />
     <PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.3.3" />
-    <PackageReference Include="EPiServer.Commerce" Version="14.13.1" />
-    <PackageReference Include="EPiServer.Hosting" Version="12.15.1" />
+    <PackageReference Include="EPiServer.Commerce" Version="14.14.0" />
+    <PackageReference Include="EPiServer.Hosting" Version="12.16.0" />
     <PackageReference Include="EPiServer.Labs.ProjectEnhancements" Version="1.0.0" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.8.1" />
     <PackageReference Include="EPiServer.Session" Version="2.1.0" />
@@ -47,7 +47,7 @@
     <PackageReference Include="Optimizely.Labs.MarketingAutomationIntegration.ODP" Version="1.0.2" />
 
     <!-- Optimizely Forms & Marketing Automation Connectors -->
-    <PackageReference Include="EPiServer.Forms" Version="5.5.1" />
+    <PackageReference Include="EPiServer.Forms" Version="5.6.0" />
     <PackageReference Include="EPiServer.Forms.Samples" Version="4.2.0" />
     <PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.1.2" />
 
@@ -59,7 +59,7 @@
     <PackageReference Include="EPiServer.Personalization.MaxMindGeolocation" Version="2.3.0" />
 
     <!-- A/B Testing -->
-    <PackageReference Include="EPiServer.Marketing.Testing" Version="3.1.1" />
+    <PackageReference Include="EPiServer.Marketing.Testing" Version="3.1.2" />
 
     <!-- Social -->
     <PackageReference Include="EPiServer.Social.Framework" Version="2.0.2" />
