@@ -1,9 +1,6 @@
-﻿using EPiServer.Core;
-using Foundation.Cms;
-using Foundation.Cms.Extensions;
-using Foundation.Features.Blog.BlogItemPage;
+﻿using Foundation.Features.Blog.BlogItemPage;
+using Foundation.Infrastructure.Cms;
 using Schema.NET;
-using System;
 
 namespace Foundation.Infrastructure.SchemaMarkup
 {
@@ -14,10 +11,11 @@ namespace Foundation.Infrastructure.SchemaMarkup
     {
         public Thing Map(BlogItemPage content)
         {
-            var posting = new BlogPosting
+            return new BlogPosting
             {
                 Headline = content.Name,
                 Description = content.TeaserText ?? content.PageDescription ?? string.Empty,
+                Image = (content?.PageImage?.Get<MediaData>() as MediaData)?.GetUri(true) ?? null,
                 Author = new Person
                 {
                     Name = content.Author ?? string.Empty
@@ -25,13 +23,6 @@ namespace Foundation.Infrastructure.SchemaMarkup
                 DatePublished = new DateTimeOffset(content.StartPublish ?? content.Changed),
                 DateModified = new DateTimeOffset(content.Changed)
             };
-
-            if (content != null && !ContentReference.IsNullOrEmpty(content.PageImage))
-            {
-                posting.Image = (content.PageImage.Get<MediaData>() as MediaData)?.GetUri(true);
-            }
-
-            return posting;
         }
     }
 }
