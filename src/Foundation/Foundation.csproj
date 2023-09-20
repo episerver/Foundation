@@ -8,12 +8,12 @@
   <ItemGroup>
     <!-- Optimizely CMS and Commerce, with OIDC provider and other main packages -->
     <PackageReference Include="EPiServer.CMS" Version="12.22.6" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.17.1" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.17.1" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.18.0" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.18.0" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.4.2" />
     <PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.3.3" />
     <PackageReference Include="EPiServer.Commerce" Version="14.15.0" />
-    <PackageReference Include="EPiServer.Hosting" Version="12.17.1" />
+    <PackageReference Include="EPiServer.Hosting" Version="12.18.0" />
     <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="2.0.1" />
     <PackageReference Include="EPiServer.Labs.ProjectEnhancements" Version="1.0.0" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.8.1" />
@@ -38,7 +38,7 @@
     <PackageReference Include="Advanced.CMS.AdvancedReviews" Version="1.3.6" />
     <PackageReference Include="Advanced.CMS.GroupingHeader" Version="3.0.0" />
     <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="6.0.0" />
-    <PackageReference Include="EPiServer.GoogleAnalytics" Version="4.1.0" />
+    <PackageReference Include="EPiServer.GoogleAnalytics" Version="4.2.0" />
     <PackageReference Include="EPiServer.Labs.ContentManager" Version="1.1.0" />
     <PackageReference Include="EPiServer.Labs.LanguageManager" Version="5.1.3" />
     <PackageReference Include="EPiServer.PdfPreview" Version="2.1.3" />
@@ -48,12 +48,12 @@
     <PackageReference Include="Optimizely.Labs.MarketingAutomationIntegration.ODP" Version="1.0.2" />
 
     <!-- Optimizely Forms & Marketing Automation Connectors -->
-    <PackageReference Include="EPiServer.Forms" Version="5.6.0" />
+    <PackageReference Include="EPiServer.Forms" Version="5.6.1" />
     <PackageReference Include="EPiServer.Forms.Samples" Version="4.2.0" />
     <PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.1.2" />
 
     <!-- ImageSharp wrapper for Optimizely CMS -->
-    <PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="2.1.3" />
+    <PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="2.2.0" />
 
     <!-- Personalization -->
     <PackageReference Include="EPiServer.Personalization.Commerce" Version="4.1.4" />
