@@ -155,13 +155,29 @@ export default class ProductDetail {
         let inst = this;
         Array.from(document.querySelectorAll(".jsSelectColorSize")).forEach(function (el, i) {
             el.addEventListener("change", function () {
-                var objColor = document.getElementsByName("color")[0];
-                var selectedOptionColor = objColor.options[objColor.selectedIndex];
-                let color = selectedOptionColor.value;
+                var objColor = document.getElementsByName("color");
+                var color = "";
+                if (objColor.length > 0) {
+                    var objColorVal = objColor[0];
+                    var selectedOptionColor = objColorVal.options[objColorVal.selectedIndex];
+                    //var selectedOptionColor = objColor.options[objColor.selectedIndex];
+                    color = selectedOptionColor.value;
+                }
+                else {
+                    color = "";
+                }
 
-                var objSize = document.getElementsByName("size")[0];
-                var selectedOptionSize = objSize.options[objSize.selectedIndex];
-                let size = selectedOptionSize.value;
+                var objSize = document.getElementsByName("size");
+                var size = "";
+                if (objSize.length > 0) {
+                    var objSizeVal = objSize[0];
+                    var selectedOptionSize = objSizeVal.options[objSizeVal.selectedIndex];
+                    //var selectedOptionColor = objColor.options[objColor.selectedIndex];
+                    size = selectedOptionSize.value;
+                }
+                else {
+                    size = "";
+                }
 
                 let productCode = document.querySelector("#productCode").value;
                 let data = { productCode: productCode, color: color, size: size, isQuickView: isQuickView };
