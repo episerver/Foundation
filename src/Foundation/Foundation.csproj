@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Optimizely CMS and Commerce, with OIDC provider and other main packages -->
+    <PackageReference Include="Advanced.CMS.BulkEdit" Version="1.2.1" />
     <PackageReference Include="EPiServer.CMS" Version="12.26.1" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.20.1" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.20.1" />

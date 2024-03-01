@@ -1,4 +1,5 @@
 ﻿using Advanced.CMS.AdvancedReviews;
+using Advanced.CMS.BulkEdit;
 using Advanced.CMS.GroupingHeader;
 using EPiServer.Authorization;
 using EPiServer.Cms.TinyMce.SpellChecker;
@@ -246,6 +247,8 @@ namespace Foundation
             // Add GroupingHeader
             // https://github.com/advanced-cms/grouping-header/
             services.AddGroupingHeader();
+            // Bulk Edit add-on
+            services.AddBulkEdit();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
