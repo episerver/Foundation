@@ -76,8 +76,8 @@ namespace Foundation.Infrastructure.Cms.Extensions
 
 
                 config.Default()
-                    .AddPlugin("media wordcount anchor code searchreplace")
-                    .Toolbar("blocks fontfamily fontsize | epi-personalized-content epi-link anchor numlist bullist indent outdent bold italic underline code",
+                    .AddPlugin("media wordcount anchor code searchreplace table")
+                    .Toolbar("blocks fontfamily fontsize | epi-personalized-content epi-link anchor numlist bullist indent outdent bold italic underline table code",
                         "alignleft aligncenter alignright alignjustify | image epi-image-editor media | epi-dnd-processor | forecolor backcolor | removeformat | searchreplace fullscreen")
                     .AddSetting("image_caption", true)
                     .AddSetting("image_advtab", true)
