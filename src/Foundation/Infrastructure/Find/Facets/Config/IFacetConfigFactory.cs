@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Infrastructure.Find.Facets.Config
+﻿namespace Foundation.Infrastructure.Find.Facets.Config
 {
     public interface IFacetConfigFactory
     {

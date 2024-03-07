@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-
-namespace Foundation.Social.Repositories.Common
+﻿namespace Foundation.Social.Repositories.Common
 {
     /// <summary>
     ///     This interface represents common page related operations used by the Episerver Social sample.

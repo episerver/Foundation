@@ -1,12 +1,5 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.DataAnnotations;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
+﻿using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.CatalogContent.Bundle
 {
@@ -40,6 +33,7 @@ namespace Foundation.Features.CatalogContent.Bundle
 
         [CultureSpecific]
         [Display(Name = "Content area", Order = 25)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]

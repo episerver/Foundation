@@ -1,13 +1,5 @@
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
-using EPiServer.Framework.Localization;
-using EPiServer.Web.Routing;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

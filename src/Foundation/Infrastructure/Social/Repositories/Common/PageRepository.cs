@@ -1,8 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using System;
-
-namespace Foundation.Social.Repositories.Common
+﻿namespace Foundation.Social.Repositories.Common
 {
     /// <summary>
     ///     This class encapsulates common page related operations used by the Episerver Social sample.

@@ -1,8 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAnnotations;
-using System;
-
-namespace Foundation.Test
+﻿namespace Foundation.Test
 {
     [ContentType(GUID = "14bbf4a1-cd38-47f0-a550-1028cc989c4f",
         AvailableInEditMode = true)]

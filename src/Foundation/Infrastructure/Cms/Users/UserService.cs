@@ -1,9 +1,6 @@
 ﻿using Castle.Core.Internal;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Framework.Localization;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure.Cms.Users
 {

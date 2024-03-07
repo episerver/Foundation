@@ -4,9 +4,6 @@ using Episerver.Marketing.Connector.Forms;
 using Episerver.Marketing.Connector.Forms.Repositories;
 using Episerver.Marketing.Connector.Framework;
 using Episerver.Marketing.Connector.Framework.Data;
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Foundation.Infrastructure;

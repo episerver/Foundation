@@ -1,6 +1,5 @@
 using Foundation.Features.Login;
 using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Features.Shared;
 
 namespace Foundation.Features.Checkout
 {

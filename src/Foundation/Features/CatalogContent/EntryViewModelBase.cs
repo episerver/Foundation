@@ -1,11 +1,4 @@
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
-using Foundation.Features.Shared;
 using Foundation.Features.Stores;
-using Mediachase.Commerce;
-using System.Collections.Generic;
 
 namespace Foundation.Features.CatalogContent
 {

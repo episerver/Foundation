@@ -1,10 +1,6 @@
-using EPiServer.Commerce.Order;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.NamedCarts;
-using Mediachase.Commerce;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.Services
 {

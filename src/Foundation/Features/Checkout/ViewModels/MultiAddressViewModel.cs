@@ -1,6 +1,4 @@
 ﻿using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Features.Shared;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Checkout.ViewModels
 {

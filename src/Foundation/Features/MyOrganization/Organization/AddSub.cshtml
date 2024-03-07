@@ -8,6 +8,9 @@
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
     Model.NewSubOrganization.Locations.Add(new B2BAddressViewModel());
 }
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
 
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div class="row">
@@ -17,7 +20,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        @using (Html.BeginForm("SaveSub", "Organization", FormMethod.Post, new { @class = "suborg-form", @id = "suborg-form" }))
+        @using (Html.BeginForm("SaveSub", PageFriendlyURL, FormMethod.Post, new { @class = "suborg-form", @id = "suborg-form" }))
         {
             @Html.AntiForgeryToken()
             <div class="row">
@@ -88,9 +91,9 @@
                     @Html.ValidationMessageFor(x => x.NewSubOrganization.Locations[0].CountryCode)
                 </div>
                 <div class="col-1">
-                    <a href="#" class="btn-icon delete-address-icon">
+                    <div class="btn-icon delete-address-icon" style="cursor:pointer">
                         <i data-feather="trash-2"></i>
-                    </a>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="button-black js-cloner" data-bs-target="location-row">Add row</button>

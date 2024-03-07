@@ -9,11 +9,11 @@
 }
 else
 {
-    <div class="top-header">
+    <div class="top-header" style="@(Model.LayoutSettings.HideBannerText ? "display:none;" : "") background-color: @Html.PropertyFor(x => x.LayoutSettings.BannerBackgroundColor); color: @Html.PropertyFor(x => x.LayoutSettings.BannerTextColor); ">
         <div class="container" style="@(Model.LargeHeaderMenu ? "max-width: 1750px;" : "")">
             <div class="row">
                 <div class="col-12">
-                    <div class="top-header__banner-text">
+                    <div class="top-header__banner-text" style="text-align:@Html.PropertyFor(x => x.LayoutSettings.TopBannerAlign);">
                         @Html.PropertyFor(x => x.LayoutSettings.BannerText)
                     </div>
                     @if (Model.ShowCommerceControls)
@@ -34,7 +34,18 @@ else
     </div>
 }
 
-<header class="header @(Model.LayoutSettings.StickyTopHeader ? "sticky-top" : "")">
+<header class="header @(Model.LayoutSettings.StickyTopHeader ? "sticky-top" : "")" style="background-color: @Model.LayoutSettings.MenuBackgroundColor; color: @Model.LayoutSettings.MenuTextColor;">
+
+    <style>
+        li.navigation__item > a {
+            color: @Model.LayoutSettings.MenuTextColor;
+        }
+
+        .navigation__item:hover {
+            border-bottom-color: @Model.LayoutSettings.MenuTextColor;
+        }
+    </style>
+
     <div class="header__wrapper">
         @await Html.PartialAsync("_MobileNavigation", Model)
         @await Html.PartialAsync("_Navigation", Model)

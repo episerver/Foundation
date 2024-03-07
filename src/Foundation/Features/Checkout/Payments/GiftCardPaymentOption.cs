@@ -1,14 +1,7 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using Foundation.Infrastructure.Commerce.GiftCard;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
+﻿using Foundation.Infrastructure.Commerce.GiftCard;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.Payments
 {

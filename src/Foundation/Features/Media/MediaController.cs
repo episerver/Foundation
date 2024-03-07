@@ -1,11 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
+﻿using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Foundation.Features.Media
 {
@@ -51,7 +46,9 @@ namespace Foundation.Features.Media
                         Name = image.Name,
                         Description = image.Description,
                         ImageAlignment = image.ImageAlignment,
-                        PaddingStyles = image.PaddingStyles
+                        PaddingStyles = image.PaddingStyles,
+                        AltText = image.AltText,
+                        Title = image.Title
                     };
 
                     if (_contextModeResolver.CurrentMode == ContextMode.Edit)
@@ -70,7 +67,13 @@ namespace Foundation.Features.Media
                 case FoundationPdfFile pdfFile:
                     var pdfViewModel = new FoundationPdfFileViewModel
                     {
-                        Height = pdfFile.Height
+                        Name = pdfFile.Name,
+                        Title = pdfFile.Title,
+                        Description = pdfFile.Description,
+                        Height = pdfFile.Height,
+                        DisplayAsPreview = pdfFile.DisplayAsPreview,
+                        ShowDescription = pdfFile.ShowDescription,
+                        ShowIcon = pdfFile.ShowIcon
                     };
 
                     if (_contextModeResolver.CurrentMode == ContextMode.Edit)
@@ -83,6 +86,27 @@ namespace Foundation.Features.Media
                     }
 
                     return await Task.FromResult(View("~/Features/Media/PdfFile.cshtml", pdfViewModel));
+                case StandardFile standardFile:
+                    var standardFileViewModel = new StandardFileViewModel
+                    {
+                        Name = standardFile.Name,
+                        Title = standardFile.Title,
+                        Description = standardFile.Description,
+                        ShowDescription = standardFile.ShowDescription,
+                        ShowIcon = standardFile.ShowIcon,
+                        FileExtension = Path.GetExtension(standardFile.Name)
+                    };
+
+                    if (_contextModeResolver.CurrentMode == ContextMode.Edit)
+                    {
+                        standardFileViewModel.FileLink = _urlResolver.GetUrl(standardFile.ContentLink, null, new VirtualPathArguments { ContextMode = ContextMode.Default });
+                    }
+                    else
+                    {
+                        standardFileViewModel.FileLink = _urlResolver.GetUrl(standardFile.ContentLink);
+                    }
+
+                    return await Task.FromResult(View("~/Features/Media/StandardFile.cshtml", standardFileViewModel));
                 default:
                     return await Task.FromResult(View("~/Features/Media/Index.cshtml", currentContent.GetType().BaseType.Name));
             }

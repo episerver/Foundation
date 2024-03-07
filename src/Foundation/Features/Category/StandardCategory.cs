@@ -1,10 +1,5 @@
-﻿using EPiServer.DataAnnotations;
-using EPiServer.SpecializedProperties;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
+﻿using EPiServer.SpecializedProperties;
 using Geta.Optimizely.Categories;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Category
 {

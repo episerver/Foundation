@@ -1,8 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using Foundation.Features.Shared;
-using System.Linq;
-
-namespace Foundation.Features.StandardPage
+﻿namespace Foundation.Features.StandardPage
 {
     public class StandardPageViewModel : ContentViewModel<StandardPage>
     {

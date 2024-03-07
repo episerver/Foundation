@@ -1,19 +1,8 @@
-using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
-using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Product;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.CatalogContent.Variation;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.Services
 {

@@ -1,16 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.Framework.Localization;
-using EPiServer.Web.Routing;
-using Foundation.Infrastructure.Find.Facets;
+﻿using Foundation.Infrastructure.Find.Facets;
 using Mediachase.Search;
 using Mediachase.Search.Extensions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Search
 {

@@ -1,7 +1,4 @@
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
 using Foundation.Features.Shared.EditorDescriptors;
-using Foundation.Infrastructure;
 
 namespace Foundation.Features.NamedCarts.SharedCart
 {

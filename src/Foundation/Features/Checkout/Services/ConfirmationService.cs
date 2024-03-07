@@ -1,8 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Commerce.Order.Internal;
-using Mediachase.Commerce;
-using System;
-using System.Linq;
+﻿using EPiServer.Commerce.Order.Internal;
 
 namespace Foundation.Features.Checkout.Services
 {

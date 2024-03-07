@@ -1,9 +1,5 @@
 ﻿using EPiServer.Security;
 using EPiServer.Shell;
-using EPiServer.Shell.Navigation;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Cms
 {

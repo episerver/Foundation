@@ -1,13 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Web.Routing;
-using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
+﻿using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Infrastructure.Cms;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
 {

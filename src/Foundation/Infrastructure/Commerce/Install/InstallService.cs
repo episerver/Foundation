@@ -1,13 +1,9 @@
 ﻿using EPiServer.Logging;
-using EPiServer.ServiceLocation;
 using Mediachase.Commerce.Catalog.ImportExport;
 using Mediachase.Data.Provider;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Install
 {

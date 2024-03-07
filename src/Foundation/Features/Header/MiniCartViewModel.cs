@@ -1,7 +1,4 @@
-using EPiServer.Core;
 using Foundation.Features.Checkout.ViewModels;
-using Mediachase.Commerce;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Header
 {

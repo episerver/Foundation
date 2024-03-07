@@ -1,6 +1,3 @@
-using Foundation.Features.Shared;
-using System.Collections.Generic;
-
 namespace Foundation.Features.Locations.TagPage
 {
     public class TagsViewModel : ContentViewModel<TagPage>

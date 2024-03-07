@@ -1,22 +1,11 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.Find;
+﻿using EPiServer.Find;
 using EPiServer.Find.Cms;
 using EPiServer.Find.Commerce;
 using EPiServer.Find.Commerce.Services.Internal;
 using EPiServer.Find.Framework.Statistics;
 using Foundation.Features.MyOrganization.QuickOrderBlock;
 using Foundation.Features.MyOrganization.QuickOrderPage;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.InventoryService;
-using Mediachase.Commerce.Pricing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Services
 {

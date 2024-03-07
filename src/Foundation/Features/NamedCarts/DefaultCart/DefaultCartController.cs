@@ -1,39 +1,19 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
-using EPiServer.Security;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Mvc.Html;
-using EPiServer.Web.Routing;
+﻿using EPiServer.Security;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.Header;
 using Foundation.Features.MyAccount.OrderConfirmation;
-using Foundation.Features.Settings;
-using Foundation.Infrastructure;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.NamedCarts.DefaultCart
 {
@@ -303,7 +283,7 @@ namespace Foundation.Features.NamedCarts.DefaultCart
         public JsonResult RedirectToCart(string message)
         {
             var referencePages = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            if (referencePages?.CartPage.IsNullOrEmpty() ?? false)
+            if (!referencePages?.CartPage.IsNullOrEmpty() ?? false)
             {
                 var cartPage = _contentLoader.Get<CartPage>(referencePages.CartPage);
                 return Json(new { Redirect = cartPage.StaticLinkURL, Message = message });
@@ -757,9 +737,17 @@ namespace Foundation.Features.NamedCarts.DefaultCart
                 _orderRepository.Delete(CartWithValidationIssues.Cart.OrderLink);
                 _cart = null;
             }
+
             //var viewModel = _cartViewModelFactory.CreateLargeCartViewModel(CartWithValidationIssues.Cart, currentPage);
-            var redirect = currentPage.LinkURL;
-            return Json(redirect);
+            //var redirect = currentPage.LinkURL;
+            //return Json(redirect);
+            return Json(new ChangeCartJsonResult
+            {
+                StatusCode = 1,
+                Message = " All items cleared from cart.",
+                CountItems = (int)CartWithValidationIssues.Cart.GetAllLineItems().Sum(x => x.Quantity),
+                SubTotal = CartWithValidationIssues.Cart.GetSubTotal()
+            });
         }
 
         [HttpPost]

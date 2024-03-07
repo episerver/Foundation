@@ -1,12 +1,6 @@
-using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Marketing;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
 using EPiServer.Logging;
 using EPiServer.Security;
-using EPiServer.Web;
 using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.ViewModels;
@@ -14,18 +8,11 @@ using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.NamedCarts;
 using Foundation.Infrastructure.Commerce;
-using Foundation.Infrastructure.Commerce.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Security;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Text;
 
 namespace Foundation.Features.Checkout.Services

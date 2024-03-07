@@ -1,5 +1,3 @@
-using EPiServer.Core;
-
 namespace Foundation.Social.ViewModels
 {
     public class RatingFormViewModel

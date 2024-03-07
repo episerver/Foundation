@@ -1,10 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.Blocks.GoogleMapsBlock
+﻿namespace Foundation.Features.Blocks.GoogleMapsBlock
 {
     [ContentType(DisplayName = "Google Maps Block",
         GUID = "8fc31051-6d22-4445-b92d-7c394267fa49",

@@ -1,7 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.SpecializedProperties;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using EPiServer.SpecializedProperties;
 
 namespace Foundation.Infrastructure.Cms.Attributes
 {

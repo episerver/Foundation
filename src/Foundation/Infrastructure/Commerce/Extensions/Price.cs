@@ -1,8 +1,4 @@
-﻿using Mediachase.Commerce;
-using Mediachase.Commerce.Pricing;
-using System;
-
-namespace Foundation.Infrastructure.Commerce.Extensions
+﻿namespace Foundation.Infrastructure.Commerce.Extensions
 {
     /// <summary>
     /// Represents a price definition in a catalog entry.

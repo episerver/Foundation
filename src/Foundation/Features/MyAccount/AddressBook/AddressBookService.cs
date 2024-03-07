@@ -1,7 +1,5 @@
-﻿using EPiServer.Commerce.Order;
-using Foundation.Features.Checkout.ViewModels;
+﻿using Foundation.Features.Checkout.ViewModels;
 using Foundation.Features.MyOrganization;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.BusinessFoundation.Data;
@@ -9,9 +7,6 @@ using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders.Dto;
 using Mediachase.Commerce.Orders.Managers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.MyAccount.AddressBook
 {

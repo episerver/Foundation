@@ -1,17 +1,9 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Framework.Web.Resources;
-using EPiServer.Personalization.Commerce.Tracking;
+﻿using EPiServer.Personalization.Commerce.Tracking;
 using EPiServer.Tracking.Commerce.Data;
-using EPiServer.Web;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout.Services;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Recommendations.WidgetBlock
 {

@@ -1,9 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Mvc;
-using Foundation.Features.Search;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using Foundation.Features.Search;
 
 namespace Foundation.Features.Category
 {

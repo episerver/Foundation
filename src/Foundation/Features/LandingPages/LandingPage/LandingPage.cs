@@ -1,10 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.LandingPages.LandingPage
 {
     [ContentType(DisplayName = "Single Column Landing Page",
@@ -15,6 +8,7 @@ namespace Foundation.Features.LandingPages.LandingPage
     public class LandingPage : FoundationPageData
     {
         [Display(Name = "Top content area", GroupName = SystemTabNames.Content, Order = 90)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea TopContentArea { get; set; }
     }
 }

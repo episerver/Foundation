@@ -1,13 +1,6 @@
 ﻿using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Core;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.MyAccount
 {
@@ -48,12 +41,12 @@ namespace Foundation.Features.MyAccount
             return RedirectToAction("Index", new { node = ContentReference.StartPage });
         }
 
-        [HttpGet]
-        public async Task<IActionResult> SignOut()
-        {
-            await CustomerService.SignOutAsync();
-            return RedirectToAction("Index", new { node = ContentReference.StartPage });
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> SignOut(string returnUrl)
+        //{
+        //    await CustomerService.SignOutAsync();
+        //    return RedirectToAction("Index", new { node = ContentReference.StartPage });
+        //}
 
         public void AddErrors(IEnumerable<string> errors)
         {

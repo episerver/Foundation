@@ -1,8 +1,3 @@
-using EPiServer.Core;
-using Foundation.Features.Shared;
-using System;
-using System.Collections.Generic;
-
 namespace Foundation.Features.Blog.BlogItemPage
 {
     public class BlogItemPageViewModel : ContentViewModel<BlogItemPage>

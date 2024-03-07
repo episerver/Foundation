@@ -1,13 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using EPiServer.Web;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.People.PersonItemPage
+﻿namespace Foundation.Features.People.PersonItemPage
 {
     [ContentType(DisplayName = "Person Item Page",
         GUID = "b5af511b-96c9-4ad7-828f-254924542430",

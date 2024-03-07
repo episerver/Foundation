@@ -1,18 +1,7 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Tracking.Commerce;
 using EPiServer.Tracking.Commerce.Data;
 using EPiServer.Tracking.Core;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Infrastructure.Personalization
 {

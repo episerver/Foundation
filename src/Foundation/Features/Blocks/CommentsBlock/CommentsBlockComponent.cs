@@ -1,14 +1,9 @@
-﻿using EPiServer.Web.Routing;
-using Foundation.Social;
+﻿using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Models.Comments;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Comments;
 using Foundation.Social.Repositories.Common;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.CommentsBlock
 {

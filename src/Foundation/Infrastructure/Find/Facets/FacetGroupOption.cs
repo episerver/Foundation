@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Foundation.Infrastructure.Find.Facets
+﻿namespace Foundation.Infrastructure.Find.Facets
 {
     public class FacetGroupOption
     {

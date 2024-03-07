@@ -1,32 +1,15 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.Order;
-using EPiServer.Core;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Filters;
 using EPiServer.Tracking.Commerce;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Features.CatalogContent.Bundle;
 using Foundation.Features.CatalogContent.Services;
 using Foundation.Features.Checkout;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.Checkout.ViewModels;
-using Foundation.Features.Settings;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Foundation.Infrastructure.Personalization;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.NamedCarts.Wishlist
 {
@@ -185,7 +168,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         }
 
         [HttpPost]
-        public ActionResult ChangeCartItem(RequestParamsToCart param)
+        public ActionResult ChangeCartItem([FromBody]  RequestParamsToCart param)
         {
             ModelState.Clear();
             var productName = "";
@@ -217,7 +200,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
         }
 
         [HttpPost]
-        public async Task<JsonResult> RemoveWishlistItem(RequestParamsToCart param) // only use Code
+        public async Task<JsonResult> RemoveWishlistItem([FromBody] RequestParamsToCart param) // only use Code
         {
             var productName = "";
             var entryLink = _referenceConverter.GetContentLink(param.Code);
@@ -370,7 +353,7 @@ namespace Foundation.Features.NamedCarts.Wishlist
                 return Json(new ChangeCartJsonResult
                 {
                     StatusCode = 1,
-                    Message = "Add all LineItems from the wishlist to the cart.",
+                    Message = "Added all LineItems from the wishlist to the cart.",
                     CountItems = (int)Cart.Cart.GetAllLineItems().Sum(x => x.Quantity),
                 });
             }

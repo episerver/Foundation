@@ -1,16 +1,9 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Order;
-using EPiServer.Logging;
-using EPiServer.Web.Mvc;
+﻿using EPiServer.Logging;
 using Foundation.Features.Checkout.Services;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.Commerce.Orders;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Foundation.Features.MyAccount.OrderDetails

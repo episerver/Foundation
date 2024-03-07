@@ -1,9 +1,4 @@
-﻿using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Shared.SelectionFactories
+﻿namespace Foundation.Features.Shared.SelectionFactories
 {
     public class MarginSelectionFactory : ISelectionFactory
     {

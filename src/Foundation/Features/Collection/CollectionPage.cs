@@ -1,13 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Web;
-using Foundation.Features.Blocks.BreadcrumbBlock;
+﻿using Foundation.Features.Blocks.BreadcrumbBlock;
 using Foundation.Features.Blocks.CategoryBlock;
 using Foundation.Features.Search.ProductSearchBlock;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Collection
 {

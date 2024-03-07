@@ -97,7 +97,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        @if (Model.HasOrganization)
+        @if (Model.HasOrganization && Model.CartItems.Count() > 0)
         {
             using (@Html.BeginForm("RequestSharedCartQuote", "SharedCart", FormMethod.Post, new { @class = "d-inline-block mr-2" }))
             {

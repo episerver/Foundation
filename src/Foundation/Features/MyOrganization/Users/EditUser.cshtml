@@ -5,14 +5,16 @@
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
-
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div>
     <section class="spacer-bottom-l">
         <div class="section-title spacer-bottom-l">
             <h2 class="h3">@Html.TranslateFallback("/B2B/Users/EditUserRole", "Editing user role")</h2>
         </div>
-        @using (Html.BeginForm("UpdateUser", "Users", FormMethod.Post, new { @id = "editUserForm" }))
+        @using (Html.BeginForm("UpdateUser", PageFriendlyURL, FormMethod.Post, new { @id = "editUserForm" }))
         {
             <div class="form-group">
                 <label>@Html.TranslateFallback("/Shared/Name", "Name")</label>

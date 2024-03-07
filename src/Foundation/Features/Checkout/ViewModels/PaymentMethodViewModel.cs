@@ -1,6 +1,3 @@
-using EPiServer.Commerce.Order;
-using System;
-
 namespace Foundation.Features.Checkout.ViewModels
 {
     public class PaymentMethodViewModel

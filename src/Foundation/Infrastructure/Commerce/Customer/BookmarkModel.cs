@@ -1,6 +1,3 @@
-using EPiServer.Core;
-using System;
-
 namespace Foundation.Infrastructure.Commerce.Customer
 {
     public class BookmarkModel

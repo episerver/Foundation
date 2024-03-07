@@ -1,11 +1,7 @@
-﻿using EPiServer.Framework.DataAnnotations;
-using EPiServer.Web.Routing;
-using Foundation.Social;
+﻿using Foundation.Social;
 using Foundation.Social.Models.ActivityStreams;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Common;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Blocks.SubscriptionBlock
 {

@@ -56,32 +56,62 @@
     }
 }
 <div class="@Model.Padding @Model.Margin">
-    <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect && !Html.IsInEditMode() ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
-        <div class="teaser__image" @Html.EditAttributes(m => m.PageImage)
-             style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
-        </div>
-        @if (!ContentReference.IsNullOrEmpty(Model.TeaserVideo) && ContentReference.IsNullOrEmpty(Model.PageImage))
-        {
-            <div class="teaser__video">
+
+    @if (@Model.DisplayAsCard)
+    {
+
+        <div class="card page-teaser-card">
+
+            @if (!ContentReference.IsNullOrEmpty(Model.PageImage))
+            {
+                <img class="card-img-top" src="@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)" alt="Card image cap">
+            }
+
+            @if (!ContentReference.IsNullOrEmpty(Model.TeaserVideo) && ContentReference.IsNullOrEmpty(Model.PageImage))
+            {
                 <video autoplay loop playsinline muted>
                     <source src="@Url.ContentUrl(Model.TeaserVideo)" type="video/mp4">
                 </video>
+            }
+
+            <div class="card-body">
+                <h5 @Html.EditAttributes(x => x.PageName) class="card-title">@Model.PageName</h5>
+                <p class="card-text" @Html.EditAttributes(x => x.TeaserText)>@Model.TeaserText</p>
+                <a href="@Url.ContentUrl(Model.ContentLink)" class="btn btn-primary @Model.TeaserButtonStyle" @Html.EditAttributes(x => x.TeaserButtonText)>@Model.TeaserButtonText</a>
             </div>
-        }
-        <div class="screen-width-wrapper">
-            <div class="teaser-text @textStyle screen-width-container">
-                <h2 @Html.EditAttributes(x => x.PageName)>@Model.PageName</h2>
-                <div class="teaser-text__details">
-                    @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
-                    {
-                        <p @Html.EditAttributes(x => x.TeaserText)>@Model.TeaserText</p>
-                    }
-                    @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
-                    {
-                        <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)" @Html.EditAttributes(x => x.TeaserButtonText)>@Model.TeaserButtonText</a>
-                    }
+        </div>
+    }
+
+    else
+    {
+
+        <div class="teaser @Model.ThemeCssClass @Model.AlignmentCssClass @(Model.ApplyHoverEffect && !Html.IsInEditMode() ? "teaser--hover-effect" : "teaser--show-details")" style="@teaserRatio">
+            <div class="teaser__image" @Html.EditAttributes(m => m.PageImage)
+             style="background-image: url('@Url.WebPFallbackImageUrl(Model.PageImage, 1440, null)'">
+            </div>
+            @if (!ContentReference.IsNullOrEmpty(Model.TeaserVideo) && ContentReference.IsNullOrEmpty(Model.PageImage))
+            {
+                <div class="teaser__video">
+                    <video autoplay loop playsinline muted>
+                        <source src="@Url.ContentUrl(Model.TeaserVideo)" type="video/mp4">
+                    </video>
+                </div>
+            }
+            <div class="screen-width-wrapper">
+                <div class="teaser-text @textStyle screen-width-container">
+                    <h2 @Html.EditAttributes(x => x.PageName)>@Model.PageName</h2>
+                    <div class="teaser-text__details">
+                        @if (!String.IsNullOrWhiteSpace(Model.TeaserText))
+                        {
+                            <p @Html.EditAttributes(x => x.TeaserText)>@Model.TeaserText</p>
+                        }
+                        @if (!String.IsNullOrWhiteSpace(Model.TeaserButtonText))
+                        {
+                            <a class="@Model.TeaserButtonStyle" href="@Url.ContentUrl(Model.ContentLink)" @Html.EditAttributes(x => x.TeaserButtonText)>@Model.TeaserButtonText</a>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>

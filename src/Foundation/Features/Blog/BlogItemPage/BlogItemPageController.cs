@@ -1,15 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Cms.Shell;
+﻿using EPiServer.Cms.Shell;
 using EPiServer.Core.Html;
-using EPiServer.Web.Mvc;
-using EPiServer.Web.Routing;
 using Foundation.Features.Category;
-using Foundation.Features.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 

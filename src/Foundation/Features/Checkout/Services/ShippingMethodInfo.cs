@@ -1,5 +1,3 @@
-using System;
-
 namespace Foundation.Features.Checkout.Services
 {
     public class ShippingMethodInfo

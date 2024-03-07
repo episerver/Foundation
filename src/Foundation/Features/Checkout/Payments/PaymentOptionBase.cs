@@ -1,11 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using EPiServer.Framework.Localization;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
-using System;
-using System.Linq;
-
-namespace Foundation.Features.Checkout.Payments
+﻿namespace Foundation.Features.Checkout.Payments
 {
     public abstract class PaymentOptionBase : IPaymentMethod
     {

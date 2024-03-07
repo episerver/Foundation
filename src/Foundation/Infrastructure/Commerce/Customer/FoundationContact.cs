@@ -1,9 +1,6 @@
-using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.Commerce.Customers;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Commerce.Customer
 {

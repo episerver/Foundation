@@ -1,11 +1,3 @@
-using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.ServiceLocation;
-using EPiServer.Shell.ObjectEditing;
-using Mediachase.Commerce.Catalog;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Foundation.Infrastructure.Commerce.Models.EditorDescriptors
 {
     public class CatalogSelectionFactory : ISelectionFactory

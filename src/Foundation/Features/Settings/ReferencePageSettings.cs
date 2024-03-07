@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Checkout;
+﻿using Foundation.Features.Checkout;
 using Foundation.Features.Checkout.ConfirmationMail;
 using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Features.MyAccount.OrderConfirmation;
@@ -17,9 +15,7 @@ using Foundation.Features.NamedCarts.OrderPadsPage;
 using Foundation.Features.NamedCarts.SharedCart;
 using Foundation.Features.NamedCarts.Wishlist;
 using Foundation.Features.Search.Search;
-using Foundation.Infrastructure;
 using Foundation.Infrastructure.Cms.Settings;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Settings
 {

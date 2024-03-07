@@ -1,8 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using Foundation.Features.Settings;
-using Foundation.Infrastructure.Cms.Settings;
-using Microsoft.AspNetCore.Mvc;
+﻿using Foundation.Infrastructure.Cms.Settings;
 
 namespace Foundation.Features.MyAccount.AddressBook
 {

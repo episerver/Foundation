@@ -1,6 +1,3 @@
-using Mediachase.Commerce;
-using System;
-
 namespace Foundation.Features.Checkout.ViewModels
 {
     public class ShippingMethodViewModel

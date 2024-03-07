@@ -1,12 +1,7 @@
 using Foundation.Features.MyOrganization.Budgeting;
-using Foundation.Infrastructure.Cms.Attributes;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.Commerce.Customers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.MyOrganization.Organization
 {

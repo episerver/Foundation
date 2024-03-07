@@ -1,14 +1,8 @@
-using EPiServer;
-using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Home;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using System.Linq;
 
 namespace Foundation.Features.Preview
 {
@@ -30,7 +24,8 @@ namespace Foundation.Features.Preview
             _displayOptions = displayOptions;
         }
 
-        public ActionResult RenderResult(IContent currentContent)
+        //public ActionResult RenderResult(IContent currentContent)
+        public IActionResult Index(IContent currentContent)
         {
             //As the layout requires a page for title etc we "borrow" the start page
             var startPage = _contentLoader.Get<HomePage>(ContentReference.StartPage);

@@ -1,12 +1,4 @@
-﻿using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.Blocks.BreadcrumbBlock
+﻿namespace Foundation.Features.Blocks.BreadcrumbBlock
 {
     [ContentType(DisplayName = "Breadcrumb Block",
         GUID = "DE43EB04-0D26-442A-91FC-E36E14A352B6",

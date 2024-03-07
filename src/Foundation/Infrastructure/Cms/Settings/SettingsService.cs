@@ -1,17 +1,9 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAccess;
+﻿using EPiServer.DataAccess;
 using EPiServer.Framework.TypeScanner;
 using EPiServer.Globalization;
 using EPiServer.Logging;
 using EPiServer.Security;
-using EPiServer.Web;
-using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Cms.Settings
 {

@@ -5,18 +5,20 @@
     }
 
     filterByStatus() {
-        $('.jsFilterOrderByStatus').change(function () {
-            var status = $(this).val();
+        if (document.querySelector('.jsFilterOrderByStatus') == null) return;
+        document.querySelector('.jsFilterOrderByStatus').addEventListener("change", function (element) {
+            var status = element.target.value;
             if (status == '') {
-                $('.jsOrderRow').each(function (i, e) {
-                    $(e).show();
+                Array.from(document.querySelectorAll(".jsOrderRow")).forEach(function (el, i) {
+                    el.style.display = 'block'; 
                 })
             } else {
-                $('.jsOrderRow').each(function (i, e) {
-                    if ($(e).hasClass(status)) {
-                        $(e).show();
+                Array.from(document.querySelectorAll(".jsOrderRow")).forEach(function (el, i) {
+                    if (el.classList.contains(status)) {
+                        //el.style.display = 'block';
+                        el.removeAttribute("style");
                     } else {
-                        $(e).hide();
+                        el.style.display = 'none';
                     }
                 })
             }
@@ -24,13 +26,15 @@
     }
 
     approveOder() {
-        $('.jsApproveOrder').click(function () {
-            $('.loading-box').show();
-            var form = $(this).closest("form");
-            var orderLink = $(this).data("order-link");
+        if (document.querySelector('.jsApproveOrder') == null) return;
+        document.querySelector('.jsApproveOrder').addEventListener("click", function (element) {
+            document.querySelector(".loading-box").style.display = 'block'; 
+            var form = element.closest("form");
+            var orderLink = element.getAttirbute("data-order-link");
             var data = { orderGroupId: orderLink };
             var postData = convertFormData(data);
-            axios.post(form[0].action, postData)
+            var url = form.getAttirbute("action");
+            axios.post(url, postData)
                 .then(function (r) {
                     if (r.data.Status == true) {
                         notification.success("Success");
@@ -43,7 +47,7 @@
                     notification.error(e);
                 })
                 .finally(function () {
-                    $('.loading-box').hide();
+                    document.querySelector(".loading-box").style.display = 'none';
                 })
         })
     }

@@ -1,5 +1,4 @@
 using EPiServer.Shell;
-using System.Collections.Generic;
 
 namespace Foundation.Features.Blocks.ProductFilterBlocks
 {

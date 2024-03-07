@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Shared.Components.Dropdown
+﻿namespace Foundation.Features.Shared.Components.Dropdown
 {
     public class DropdownViewComponent : ViewComponent
     {

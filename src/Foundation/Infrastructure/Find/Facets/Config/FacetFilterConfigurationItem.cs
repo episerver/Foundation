@@ -1,10 +1,5 @@
-﻿using EPiServer.DataAnnotations;
-using EPiServer.Globalization;
-using System;
-using System.Collections.Generic;
+﻿using EPiServer.Globalization;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Find.Facets.Config
 {

@@ -2,7 +2,6 @@
 using EPiServer.Core;
 using EPiServer.Core.Routing;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
 using Foundation.Infrastructure.Commerce.Install;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Meta.Management;
@@ -14,7 +13,6 @@ using Mediachase.Data.Provider;
 using Mediachase.MetaDataPlus;
 using Mediachase.MetaDataPlus.Configurator;
 using SonDo.Infrastructure.Routing;
-using System.Linq;
 
 namespace Foundation.Infrastructure.Commerce.Extensions
 {

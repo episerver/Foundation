@@ -1,18 +1,9 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 //using EPiServer.Labs.ContentManager.Cards;
 //using EPiServer.Labs.ContentManager.Dashboard;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
 using Foundation.Features.Blocks.ButtonBlock;
-using Foundation.Features.Shared.SelectionFactories;
-using Foundation.Infrastructure;
 using Geta.Optimizely.Categories;
 using Geta.Optimizely.Categories.DataAnnotations;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.Shared
 {
@@ -37,6 +28,7 @@ namespace Foundation.Features.Shared
 
         [CultureSpecific]
         [Display(Name = "Main content area", GroupName = SystemTabNames.Content, Order = 200)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea MainContentArea { get; set; }
 
         #endregion
@@ -110,6 +102,10 @@ namespace Foundation.Features.Shared
         #endregion
 
         #region Teaser
+
+        [CultureSpecific]
+        [Display(Name = "Display as Card", GroupName = TabNames.Teaser, Order = 0)]
+        public virtual bool DisplayAsCard { get; set; }
 
         [CultureSpecific]
         [Searchable(false)]

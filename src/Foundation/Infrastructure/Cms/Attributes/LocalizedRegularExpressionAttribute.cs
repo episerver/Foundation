@@ -1,7 +1,4 @@
-﻿using EPiServer.Framework.Localization;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Infrastructure.Cms.Attributes
+﻿namespace Foundation.Infrastructure.Cms.Attributes
 {
     public class LocalizedRegularExpressionAttribute : RegularExpressionAttribute
     {

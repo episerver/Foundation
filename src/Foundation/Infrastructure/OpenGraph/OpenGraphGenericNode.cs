@@ -1,6 +1,5 @@
 ﻿using Boxed.AspNetCore.TagHelpers.OpenGraph;
 using Foundation.Infrastructure.OpenGraph.Extensions;
-using System;
 using System.Text;
 
 namespace Foundation.Infrastructure.OpenGraph

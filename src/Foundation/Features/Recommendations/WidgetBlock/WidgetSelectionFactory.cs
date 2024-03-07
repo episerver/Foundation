@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Recommendations.WidgetBlock
+﻿namespace Foundation.Features.Recommendations.WidgetBlock
 {
     public class WidgetSelectionFactory : ISelectionFactory
     {

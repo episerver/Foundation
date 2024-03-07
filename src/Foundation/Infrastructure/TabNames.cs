@@ -1,7 +1,4 @@
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using EPiServer.Security;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Infrastructure
 {
@@ -20,6 +17,10 @@ namespace Foundation.Infrastructure
         [Display(Order = 50)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string Header = "Header";
+
+        [Display(Order = 55)]
+        [RequiredAccess(AccessLevel.Edit)]
+        public const string TopBanner = "Top Banner";
 
         [Display(Order = 60)]
         [RequiredAccess(AccessLevel.Edit)]

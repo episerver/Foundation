@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-
-namespace Foundation.Infrastructure.Cms.Extensions
+﻿namespace Foundation.Infrastructure.Cms.Extensions
 {
     public static class StringExtensions
     {

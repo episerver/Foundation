@@ -1,5 +1,3 @@
-using System;
-
 namespace Foundation.Social.ViewModels
 {
     public class CommunityFeedItemViewModel

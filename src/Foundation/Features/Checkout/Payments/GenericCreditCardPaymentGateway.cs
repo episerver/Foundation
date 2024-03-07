@@ -1,5 +1,4 @@
-﻿using EPiServer.Commerce.Order;
-using Mediachase.Commerce.Orders;
+﻿using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Plugins.Payment;
 
 namespace Foundation.Features.Checkout.Payments
@@ -9,9 +8,14 @@ namespace Foundation.Features.Checkout.Payments
         public PaymentProcessingResult ProcessPayment(IOrderGroup orderGroup, IPayment payment)
         {
             var creditCardPayment = (ICreditCardPayment)payment;
-            return creditCardPayment.CreditCardNumber.EndsWith("4")
-                ? PaymentProcessingResult.CreateUnsuccessfulResult("Invalid credit card number.")
-                : PaymentProcessingResult.CreateSuccessfulResult("");
+            return PaymentProcessingResult.CreateSuccessfulResult("");
+            //if (creditCardPayment.CreditCardNumber.EndsWith("4"))
+            //{
+            //    return PaymentProcessingResult.CreateUnsuccessfulResult("Invalid credit card number.");
+            //}
+            //else { 
+            //    return PaymentProcessingResult.CreateSuccessfulResult("");
+            //}
         }
 
         /// <inheritdoc />

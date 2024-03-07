@@ -6,15 +6,14 @@
     }
 
     setMarket() {
-        $('.jsMarketSelector').each(function (i, e) {
-            $(e).click(function () {
-                let form = $(this).closest('form');
-                let url = form.attr('action');
-                let method = form.attr('method');
+        Array.from(document.querySelectorAll(".jsMarketSelector")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let form = el.closest('form');
+                let url = form.getAttribute('action');
+                let method = form.getAttribute('method');
                 let bodyFormData = new FormData();
-                bodyFormData.set('__RequestVerificationToken', $("input[name=__RequestVerificationToken]", form).val());
-                bodyFormData.set('MarketId', $("input[name=MarketId]", e).val());
-
+                bodyFormData.append('__RequestVerificationToken', document.querySelector("input[name=__RequestVerificationToken]").value);
+                bodyFormData.append('MarketId', el.querySelector("input[name=MarketId]").value);
                 axios({
                     url: url,
                     method: method,
@@ -29,15 +28,14 @@
     }
 
     setLanguage() {
-        $('.jsLanguageSelector').each(function (i, e) {
-            $(e).click(function () {
-                let form = $(this).closest('form');
-                let url = form.attr('action');
-                let method = form.attr('method');
+        Array.from(document.querySelectorAll(".jsLanguageSelector")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let form = el.closest('form');
+                let url = form.getAttribute('action');
+                let method = form.getAttribute('method');
                 let bodyFormData = new FormData();
-                bodyFormData.set('__RequestVerificationToken', $("input[name=__RequestVerificationToken]", form).val());
-                bodyFormData.set('Language', $("input[name=Language]", e).val());
-
+                bodyFormData.append('__RequestVerificationToken', document.querySelector("input[name=__RequestVerificationToken]").value);
+                bodyFormData.append('Language', el.querySelector("input[name=Language]").value);
                 axios({
                     url: url,
                     method: method,
@@ -47,20 +45,21 @@
                 }).catch(function (e) {
                     notification.error(e);
                 });
+
             });
         });
     }
 
     setCurrency() {
-        $('.jsCurrencySelector').each(function (i, e) {
-            $(e).click(function () {
-                let form = $(this).closest('form');
-                let url = form.attr('action');
-                let method = form.attr('method');
-                let bodyFormData = new FormData();
-                bodyFormData.set('__RequestVerificationToken', $("input[name=__RequestVerificationToken]", form).val());
-                bodyFormData.set('CurrencyCode', $("input[name=CurrencyCode]", e).val());
 
+        Array.from(document.querySelectorAll(".jsCurrencySelector")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let form = el.closest('form');
+                let url = form.getAttribute('action');
+                let method = form.getAttribute('method');
+                let bodyFormData = new FormData();
+                bodyFormData.append('__RequestVerificationToken', document.querySelector("input[name=__RequestVerificationToken]").value);
+                bodyFormData.append('CurrencyCode', el.querySelector("input[name=CurrencyCode]").value);
                 axios({
                     url: url,
                     method: method,
@@ -70,6 +69,7 @@
                 }).catch(function (e) {
                     notification.error(e);
                 });
+
             });
         });
     }

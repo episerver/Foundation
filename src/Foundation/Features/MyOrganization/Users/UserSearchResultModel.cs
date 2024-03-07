@@ -1,5 +1,3 @@
-using System;
-
 namespace Foundation.Features.MyOrganization.Users
 {
     public class UserSearchResultModel

@@ -1,17 +1,9 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Marketing;
-using EPiServer.Commerce.Marketing.Internal;
-using EPiServer.Commerce.Order;
+﻿using EPiServer.Commerce.Marketing.Internal;
 using EPiServer.Commerce.Order.Internal;
-using EPiServer.Core;
 using EPiServer.Framework.Cache;
 using EPiServer.Security;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Marketing;
-using Mediachase.Commerce.Pricing;
 using Mediachase.Commerce.Security;
-using System.Linq;
 
 namespace Foundation.Features.CatalogContent.Services
 {

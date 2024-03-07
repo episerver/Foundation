@@ -1,13 +1,3 @@
-using EPiServer;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Blocks.ButtonBlock
 {
     [ContentType(DisplayName = "Button Block",
@@ -18,6 +8,7 @@ namespace Foundation.Features.Blocks.ButtonBlock
     [ImageUrl("/icons/cms/blocks/CMS-icon-block-26.png")]
     public class ButtonBlock : FoundationBlockData
     {
+      
         #region Content
         [CultureSpecific]
         [Display(Name = "Label", Order = 10, GroupName = SystemTabNames.Content)]
@@ -37,6 +28,24 @@ namespace Foundation.Features.Blocks.ButtonBlock
         #endregion
 
         #region Button Text
+
+        [CultureSpecific]
+        [Display(Name = "Uppercase", Order = 0, GroupName = TabNames.Text)]
+        public virtual bool ButtonTextUppercase { get; set; }
+
+
+        [SelectOne(SelectionFactoryType = typeof(PaddingSelectionFactory))]
+        [Display(Name = "Text Padding", GroupName = TabNames.Text, Order = 10)]
+        public virtual string TextPadding
+        {
+            get => this.GetPropertyValue(page => page.TextPadding) ?? "";
+            set => this.SetPropertyValue(page => page.TextPadding, value);
+        }
+
+        [Display(Name = "Font Size (px)", GroupName = TabNames.Text, Order = 20)]
+        [RegularExpression("^[+]?\\d*$", ErrorMessage = "Font Size must be non-negative")]
+        public virtual int FontSize { get; set; }
+
         [CultureSpecific]
         [Searchable(false)]
         [Display(Name = "Use Custom Text Color", GroupName = TabNames.Text,
@@ -51,6 +60,16 @@ namespace Foundation.Features.Blocks.ButtonBlock
         {
             get { return this.GetPropertyValue(page => page.ButtonTextColor) ?? "#000000ff"; }
             set { this.SetPropertyValue(page => page.ButtonTextColor, value); }
+        }
+
+        [CultureSpecific]
+        [Searchable(false)]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Button Text Hover color", GroupName = TabNames.Text, Order = 50)]
+        public virtual string ButtonTextHoverColor
+        {
+            get { return this.GetPropertyValue(page => page.ButtonTextHoverColor) ?? "#000000ff"; }
+            set { this.SetPropertyValue(page => page.ButtonTextHoverColor, value); }
         }
 
         #endregion
@@ -76,6 +95,17 @@ namespace Foundation.Features.Blocks.ButtonBlock
             get { return this.GetPropertyValue(page => page.ButtonBackgroundColor) ?? "#ffffffff"; }
             set { this.SetPropertyValue(page => page.ButtonBackgroundColor, value); }
         }
+
+        [CultureSpecific]
+        [Searchable(false)]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Button background hover color", GroupName = TabNames.Background, Order = 30)]
+        public virtual string ButtonBackgroundHoverColor
+        {
+            get { return this.GetPropertyValue(page => page.ButtonBackgroundHoverColor) ?? "#000000ff"; }
+            set { this.SetPropertyValue(page => page.ButtonBackgroundHoverColor, value); }
+        }
+
         #endregion
 
         #region Border
@@ -94,6 +124,10 @@ namespace Foundation.Features.Blocks.ButtonBlock
         [RegularExpression("^[+]?\\d*$", ErrorMessage = "BorderWidth must be non-negative")]
         public virtual int BorderWidth { get; set; }
 
+        [Display(Name = "Border Radius (px)", GroupName = TabNames.Border, Order = 25)]
+        [RegularExpression("^[+]?\\d*$", ErrorMessage = "Border radius must be non-negative")]
+        public virtual int BorderRadius { get; set; }
+
         [CultureSpecific]
         [Searchable(false)]
         [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
@@ -104,19 +138,33 @@ namespace Foundation.Features.Blocks.ButtonBlock
             set { this.SetPropertyValue(page => page.ButtonBorderColor, value); }
         }
 
+        [CultureSpecific]
+        [Searchable(false)]
+        [ClientEditor(ClientEditingClass = "foundation/Editors/ColorPicker")]
+        [Display(Name = "Button Border Hover color", GroupName = TabNames.Border, Order = 40)]
+        public virtual string ButtonBorderHoverColor
+        {
+            get { return this.GetPropertyValue(page => page.ButtonBorderHoverColor) ?? "#ffffffff"; }
+            set { this.SetPropertyValue(page => page.ButtonBorderHoverColor, value); }
+        }
+
         #endregion
         public override void SetDefaultValues(ContentType contentType)
         {
+         
             base.SetDefaultValues(contentType);
+            ButtonTextUppercase = true;
             ButtonBackgroundColor = "#ffffffff";
             ButtonTextColor = "#000000ff";
             ButtonBorderColor = "#000000ff";
             ShowTransparentBackground = false;
             BorderStyle = "none";
             BorderWidth = 1;
+            BorderRadius = 4;
             BackgroundColorOverdrive = false;
             TextColorOverdrive = false;
             BorderStyleOverdrive = false;
+            FontSize = 16;
         }
 
         public class BorderStyleSelectionFactory : ISelectionFactory

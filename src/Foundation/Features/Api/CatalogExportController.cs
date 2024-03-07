@@ -1,22 +1,8 @@
-﻿using EPiServer;
-using EPiServer.Framework.Blobs;
+﻿using EPiServer.Framework.Blobs;
 using EPiServer.Logging;
 using Mediachase.Commerce.Catalog.ImportExport;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Mediachase.Commerce.Catalog;
-using EPiServer.Commerce.Catalog.ContentTypes;
 using System.IO;
 using System.IO.Compression;
-using System.Net.Http.Headers;
-using Microsoft.Net.Http.Headers;
-using EPiServer.Authorization;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Foundation.Features.Api
 {

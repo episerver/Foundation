@@ -1,11 +1,5 @@
-﻿using EPiServer.Core;
-using EPiServer.Web.Routing;
-using Foundation.Features.Checkout.Services;
-using Foundation.Infrastructure.Cms.Extensions;
-using Foundation.Infrastructure.Commerce.Markets;
-using Mediachase.Commerce;
+﻿using Foundation.Features.Checkout.Services;
 using Mediachase.Commerce.Markets;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Foundation.Features.Markets

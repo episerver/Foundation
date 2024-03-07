@@ -1,6 +1,4 @@
-﻿using EPiServer.DataAnnotations;
-
-namespace Foundation.Infrastructure.Cms.Attributes
+﻿namespace Foundation.Infrastructure.Cms.Attributes
 {
     public class ContentImageAttribute : ImageUrlAttribute
     {

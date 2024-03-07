@@ -1,7 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using Microsoft.AspNetCore.Http;
-
-namespace Foundation.Infrastructure.Cms
+﻿namespace Foundation.Infrastructure.Cms
 {
     public static class TrackingCookieManager
     {

@@ -1,8 +1,6 @@
 ﻿using EPiServer.Framework.Blobs;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
-using EPiServer.ServiceLocation;
-using System;
 using System.IO;
 using System.Text;
 

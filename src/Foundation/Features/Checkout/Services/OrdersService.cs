@@ -1,19 +1,13 @@
-﻿using EPiServer.Commerce.Marketing;
-using EPiServer.Commerce.Order;
-using EPiServer.Logging;
+﻿using EPiServer.Logging;
 using EPiServer.Security;
 using Foundation.Features.MyOrganization;
 using Foundation.Features.MyOrganization.Orders;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Foundation.Infrastructure.Commerce.Extensions;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Checkout.Services
 {

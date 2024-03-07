@@ -1,13 +1,5 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.Web.Routing;
-using Foundation.Features.MyAccount.ResetPassword;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
-using System;
-using System.Collections.Specialized;
+﻿using Foundation.Features.MyAccount.ResetPassword;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace Foundation.Features.Shared
 {

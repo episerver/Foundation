@@ -1,13 +1,4 @@
-﻿using EPiServer.Commerce;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
+﻿namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
 {
     [ContentType(DisplayName = "Assets Download Links Block",
         GUID = "F8C78C8A-9EB8-4171-8A0B-8CA4B190DE3E",
@@ -23,7 +14,7 @@ namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
             Order = 10)]
         [Required]
         [AllowedTypes(new[] { typeof(ContentFolder), typeof(CatalogContentBase) })]
-        [UIHint(UIHint.AllContent)]
+        [UIHint(EPiServer.Commerce.UIHint.AllContent)]
         public virtual ContentReference RootContent { get; set; }
 
         [Display(

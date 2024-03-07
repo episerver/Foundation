@@ -1,6 +1,5 @@
 ﻿using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
-using EPiServer.ServiceLocation;
 using Foundation.Social.Adapters;
 using Foundation.Social.Repositories.ActivityStreams;
 using Foundation.Social.Repositories.Comments;

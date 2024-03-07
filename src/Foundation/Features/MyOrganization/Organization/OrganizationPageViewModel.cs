@@ -1,6 +1,4 @@
-﻿using EPiServer.Core;
-using Foundation.Features.MyOrganization.SubOrganization;
-using Foundation.Features.Shared;
+﻿using Foundation.Features.MyOrganization.SubOrganization;
 
 namespace Foundation.Features.MyOrganization.Organization
 {

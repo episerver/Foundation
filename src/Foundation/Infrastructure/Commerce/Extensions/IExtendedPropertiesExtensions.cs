@@ -1,5 +1,4 @@
 ﻿using EPiServer.Commerce.Storage;
-using System;
 
 namespace Foundation.Infrastructure.Commerce.Extensions
 {

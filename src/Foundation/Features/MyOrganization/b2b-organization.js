@@ -1,57 +1,77 @@
 ﻿export default class B2bOrganization {
     init() {
-        $(document).ready(function () {
-            let $cloner = $('.js-cloner');
-
-            $cloner.each(function () {
-                $(this).click(function (e) {
-                    let $this = $(this);
-
+        document.addEventListener('DOMContentLoaded', function () {
+            Array.from(document.querySelectorAll(".js-cloner")).forEach(function (el, i) {
+                el.addEventListener("click", function (e) {
                     e.preventDefault();
-                    let $rowToClone = $this.siblings('.location-row').last();
-                    let $clone = $rowToClone.clone();
-                    $clone.find('input').each(function () {
-                        let $this = $(this);
-                        //New Name
-                        let nameAttr = $this.attr('name');
+
+                    let rowToClone = el.parentNode.querySelector('.location-row');
+                    let clone = rowToClone.cloneNode(true);
+                    clone.querySelectorAll('input').forEach(function (clonedEl, clonedIndex) {
+
+                        let nameAttr = clonedEl.getAttribute('name');
                         let arrNum = nameAttr.match(/\d+/);
                         let nr = arrNum ? arrNum[0] : 0;
                         let subStr = nameAttr.substring(0, nameAttr.indexOf(nr));
                         let endStr = nameAttr.substring(nameAttr.indexOf(nr) + 1, nameAttr.length);
                         let newName = subStr + (++nr) + endStr;
-                        $this.attr('name', newName);
+                        clonedEl.setAttribute('name', newName);
+                        //console.log(newName);
                         //New Id
-                        let idAttr = $this.attr('id');
+                        let idAttr = clonedEl.getAttribute('id');
                         let idAttrNum = nameAttr.match(/\d+/);
                         let idNr = idAttrNum ? idAttrNum[0] : 0;
                         let subIdStr = idAttr.substring(0, idAttr.indexOf(idNr));
                         let endIdStr = idAttr.substring(idAttr.indexOf(idNr) + 1, idAttr.length);
                         let newId = subIdStr + (++idNr) + endIdStr;
-                        $this.attr('id', newId);
-                        $this.val('');
+                        //console.log(newId);
+                        clonedEl.setAttribute('id', newId);
+                        clonedEl.value = '';
 
-                        let validation = $this.siblings().last();
-                        validation.attr('data-valmsg-for', newName);
+                        let validation = clonedEl.parentNode.lastChild;
+                        console.log(validation);
+                        //validation.setAttribute('data-valmsg-for', newName);
                     });
-                    $clone.insertBefore($this);
+                    document.querySelector("#suborg-form").insertBefore(clone, rowToClone);
                 });
             });
 
-            $('#suborg-form').on('click', '.delete-address-icon', function (e) {
-                e.preventDefault();
+            function delegateSelector(selector, event, childSelector, handler) {
+                let inst = this;
+                var is = function (el, selector) {
+                    return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+                };
 
-                let $deleteIcon = $(this);
-                if ($('#suborg-form').find('.location-row').length > 1) {
-                    let parent = $deleteIcon.closest('.location-row');
-                    parent.hide();
-                    parent.find('input[name*=Name]').val("removed");
-                    parent.find('input[name*=Street]').val("0");
-                    parent.find('input[name*=City]').val("0");
-                    parent.find('input[name*=PostalCode]').val("0");
-                    parent.find('input[name*=Country]').val("0");
-                    parent.removeClass('location-row').addClass('location-row-removed');
-                }
+                var elements = document.querySelectorAll(selector);
+                [].forEach.call(elements, function (el, i) {
+                    el.addEventListener(event, function (e) {
+                        if (is(e.target, childSelector)) {
+                            handler(e);
+                        }
+                    });
+                });
+            }
+
+
+            delegateSelector('#suborg-form', "click", '.delete-address-icon', function (e) {
+                let parent = e.target.closest('.location-row');
+                    if (document.querySelector("#suborg-form").querySelectorAll(".location-row").length > 1) {
+                        parent.style.display = "none";
+                        parent.querySelector('input[name*=Name]').value = "removed";
+                        parent.querySelector('input[name*=Street]').value = "0";
+                        parent.querySelector('input[name*=City]').value = "0";
+                        parent.querySelector('input[name*=PostalCode]').value = "0";
+                        parent.querySelector('select[name*=CountryCode]').value = "0";
+                        
+                        parent.classList.remove('location-row')
+                        parent.classList.add('location-row-removed');
+                    }
             });
-        });
+
+
+        }, false);
+
     }
+
+
 }

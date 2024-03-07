@@ -1,13 +1,7 @@
-﻿using EPiServer;
-using EPiServer.Commerce.Catalog.ContentTypes;
-using EPiServer.Commerce.Catalog.Linking;
+﻿using EPiServer.Commerce.Catalog.Linking;
 using Foundation.Infrastructure.Cms;
-using Mediachase.Commerce;
-using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.InventoryService;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.Stores
 {

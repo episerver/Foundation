@@ -1,15 +1,7 @@
-using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.DataAnnotations;
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web;
 using Foundation.Features.Blocks.ElevatedRoleBlock;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
-using System.ComponentModel.DataAnnotations;
 
 namespace Foundation.Features.CatalogContent.Variation
 {
@@ -41,6 +33,7 @@ namespace Foundation.Features.CatalogContent.Variation
 
         [CultureSpecific]
         [Display(Name = "Content area", Order = 20)]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea ContentArea { get; set; }
 
         [CultureSpecific]

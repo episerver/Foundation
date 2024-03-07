@@ -1,8 +1,3 @@
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-
 namespace Foundation.Features.MyAccount.OrderHistory
 {
     [ContentType(DisplayName = "Order History Page",

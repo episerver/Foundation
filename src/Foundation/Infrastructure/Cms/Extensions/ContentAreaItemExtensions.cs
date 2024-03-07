@@ -1,11 +1,4 @@
-﻿using EPiServer;
-using EPiServer.Core;
-using EPiServer.ServiceLocation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Foundation.Infrastructure.Cms.Extensions
+﻿namespace Foundation.Infrastructure.Cms.Extensions
 {
     public static class ContentAreaItemExtensions
     {

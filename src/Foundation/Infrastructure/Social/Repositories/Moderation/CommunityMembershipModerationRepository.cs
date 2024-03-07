@@ -7,8 +7,6 @@ using Foundation.Social.Models.Moderation;
 using Foundation.Social.Repositories.Common;
 using Foundation.Social.Repositories.Groups;
 using Foundation.Social.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Social.Repositories.Moderation
 {

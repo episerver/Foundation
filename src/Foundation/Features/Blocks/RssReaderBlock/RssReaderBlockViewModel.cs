@@ -1,7 +1,4 @@
-﻿using EPiServer.Core;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.RssReaderBlock
+﻿namespace Foundation.Features.Blocks.RssReaderBlock
 {
     public class RssReaderBlockViewModel
     {

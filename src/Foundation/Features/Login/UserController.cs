@@ -1,11 +1,6 @@
-﻿using EPiServer.Core;
-using EPiServer.Framework.Localization;
-using EPiServer.Web.Mvc.Html;
-using Foundation.Features.MyAccount.AddressBook;
-using Foundation.Features.Settings;
+﻿using Foundation.Features.MyAccount.AddressBook;
 using Foundation.Infrastructure.Attributes;
 using Foundation.Infrastructure.Cms.Settings;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Features.Login
 {

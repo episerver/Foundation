@@ -5,7 +5,9 @@
 @{
     Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
 }
-
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
 @Html.PropertyFor(model => model.CurrentContent.MainBody)
 <div class="row">
     <div class="col-12">
@@ -20,7 +22,7 @@
     </div>
 </div>
 <div class="row">
-    @using (Html.BeginForm("NewBudget", "Budgeting", FormMethod.Post, new { @class = "col-12" }))
+    @using (Html.BeginForm("NewBudget", PageFriendlyURL, FormMethod.Post, new { @class = "col-12" }))
     {
         @Html.AntiForgeryToken()
         <div class="row">

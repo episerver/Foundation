@@ -46,7 +46,7 @@ export default class ProductDetail {
 
     changeVariant(data, callback) {
         let inst = this;
-        $(inst.divContainerId).find('.loading-box').show();
+        document.querySelector('.loading-box').style.display = "block";
         axios.get('/product/selectVariant', { params: data })
             .then(function (result) {
                 if (!callback) {
@@ -74,29 +74,51 @@ export default class ProductDetail {
                 $('#quickView .modal-body').html('');
             })
             .finally(function () {
-                $(inst.divContainerId).find('.loading-box').hide();
+                document.querySelector('.loading-box').style.display = "none";
             });
     }
 
     inStorePickupClick() {
         let inst = this;
-        $(this.divContainerId).find('.jsSelectDelivery').each(function (i, e) {
-            $(e).click(function () {
-                let valueChecked = $(this).find('input').first().val();
-                $(inst.divContainerId).find('.addToCart').attr('store', valueChecked);
-                $(inst.divContainerId).find('.jsBuyNow').attr('store', valueChecked);
+        Array.from(document.querySelectorAll(".jsSelectDelivery")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                //let valueChecked = el.closest('input').firstChild().value;
+                //$(inst.divContainerId).find('.addToCart').attr('store', valueChecked);
+                //$(inst.divContainerId).find('.jsBuyNow').attr('store', valueChecked);
+                //if (valueChecked === 'instore') {
+                //    let selectedStore = $(inst.divContainerId).find('#selectedStore').val();
+                //    $(inst.divContainerId).find('.addToCart').attr('selectedStore', selectedStore);
+                //    $(inst.divContainerId).find('.jsBuyNow').attr('selectedStore', selectedStore);
+                //    if (!$(inst.divContainerId).find('#pickupStoreBox').is(':visible')) {
+                //        $(inst.divContainerId).find('#pickupStoreBox').fadeToggle();
+                //    }
+                //} else {
+                //    $(inst.divContainerId).find('.addToCart').attr('selectedStore', '');
+                //    $(inst.divContainerId).find('.jsBuyNow').attr('selectedStore', '');
+                //    if ($(inst.divContainerId).find('#pickupStoreBox').is(':visible')) {
+                //        $(inst.divContainerId).find('#pickupStoreBox').fadeOut(300);
+                //    }
+                //}
+                console.log(el.querySelector('input').value);
+                let valueChecked = el.querySelector('input').value;
+                
+                document.querySelector(inst.divContainerId).querySelector('.addToCart').setAttribute('store', valueChecked);
+                if (document.querySelector(inst.divContainerId).querySelector('.jsBuyNow') != null)
+                    document.querySelector(inst.divContainerId).querySelector('.jsBuyNow').setAttribute('store', valueChecked);
                 if (valueChecked === 'instore') {
-                    let selectedStore = $(inst.divContainerId).find('#selectedStore').val();
-                    $(inst.divContainerId).find('.addToCart').attr('selectedStore', selectedStore);
-                    $(inst.divContainerId).find('.jsBuyNow').attr('selectedStore', selectedStore);
+                    let selectedStore = document.querySelector(inst.divContainerId).querySelector('#selectedStore').value;
+                    document.querySelector(inst.divContainerId).querySelector('.addToCart').setAttribute('selectedStore', selectedStore);
+                    if (document.querySelector(inst.divContainerId).querySelector('.jsBuyNow') != null)
+                        document.querySelector(inst.divContainerId).querySelector('.jsBuyNow').setAttribute('selectedStore', selectedStore);
                     if (!$(inst.divContainerId).find('#pickupStoreBox').is(':visible')) {
-                        $(inst.divContainerId).find('#pickupStoreBox').fadeToggle();
+                        $(inst.divContainerId).find('#pickupStoreBox').fadeToggle(); //need to rewrite in javascript
                     }
                 } else {
-                    $(inst.divContainerId).find('.addToCart').attr('selectedStore', '');
-                    $(inst.divContainerId).find('.jsBuyNow').attr('selectedStore', '');
+                    document.querySelector(inst.divContainerId).querySelector('.addToCart').setAttribute('selectedStore', "");
+                    if (document.querySelector(inst.divContainerId).querySelector('.jsBuyNow') != null)
+                        document.querySelector(inst.divContainerId).querySelector('.jsBuyNow').setAttribute('selectedStore', "");
                     if ($(inst.divContainerId).find('#pickupStoreBox').is(':visible')) {
-                        $(inst.divContainerId).find('#pickupStoreBox').fadeOut(300);
+                        $(inst.divContainerId).find('#pickupStoreBox').fadeOut(300); //need to rewrite in javascript
                     }
                 }
             });
@@ -105,33 +127,59 @@ export default class ProductDetail {
 
     selectStoreClick() {
         let inst = this;
-        $(this.divContainerId).find('.jsSelectStore').each(function (i, e) {
-            $(e).click(function () {
-                let storeCode = $(this).attr('data');
-                $(inst.divContainerId).find('#selectedStore').val(storeCode);
-                $(inst.divContainerId).find('.selectedStoreIcon').each(function (j, s) {
-                    $(s).hide();
-                });
-                $(inst.divContainerId).find('.jsSelectStore').each(function (j, s) {
-                    $(s).show();
+        if (document.querySelector(this.divContainerId) == null) return;
+        if ( document.querySelector(this.divContainerId).querySelectorAll('.jsSelectStore') == null) return;
+        Array.from(document.querySelector(this.divContainerId).querySelectorAll('.jsSelectStore')).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let storeCode = el.getAttribute('data');
+                document.querySelector(inst.divContainerId).querySelector('#selectedStore').setAttribute("value", storeCode);
+
+                Array.from(document.querySelectorAll('.selectedStoreIcon')).forEach(function (obj, j) {
+                    obj.style.display = "none";
                 });
 
-                $(this).hide();
-                $(this).siblings('.selectedStoreIcon').show();
+                    Array.from(document.querySelectorAll('.jsSelectStore')).forEach(function (obj, j) {
+                    obj.style.display = "block";
+                });
 
-                $(inst.divContainerId).find('.addToCart').attr('selectedStore', storeCode);
-                $(inst.divContainerId).find('.jsBuyNow').attr('selectedStore', storeCode);
+                el.style.display = "none";
+                el.parentNode.querySelector('.selectedStoreIcon').style.display = "block";
+
+                document.querySelector(inst.divContainerId).querySelector('.addToCart').setAttribute('selectedStore', storeCode);
+                document.querySelector(inst.divContainerId).querySelector('.jsBuyNow').setAttribute('selectedStore', storeCode);
             });
         });
     }
 
     selectColorSizeClick(isQuickView, callback) {
         let inst = this;
-        $(this.divContainerId).find(".jsSelectColorSize").each(function (i, e) {
-            $(e).change(function () {
-                let color = $(inst.divContainerId).find("select[name='color']").val();
-                let size = $(inst.divContainerId).find("select[name='size']").val();
-                let productCode = $(inst.divContainerId).find("#productCode").val();
+        Array.from(document.querySelectorAll(".jsSelectColorSize")).forEach(function (el, i) {
+            el.addEventListener("change", function () {
+                var objColor = document.getElementsByName("color");
+                var color = "";
+                if (objColor.length > 0) {
+                    var objColorVal = objColor[0];
+                    var selectedOptionColor = objColorVal.options[objColorVal.selectedIndex];
+                    //var selectedOptionColor = objColor.options[objColor.selectedIndex];
+                    color = selectedOptionColor.value;
+                }
+                else {
+                    color = "";
+                }
+
+                var objSize = document.getElementsByName("size");
+                var size = "";
+                if (objSize.length > 0) {
+                    var objSizeVal = objSize[0];
+                    var selectedOptionSize = objSizeVal.options[objSizeVal.selectedIndex];
+                    //var selectedOptionColor = objColor.options[objColor.selectedIndex];
+                    size = selectedOptionSize.value;
+                }
+                else {
+                    size = "";
+                }
+
+                let productCode = document.querySelector("#productCode").value;
                 let data = { productCode: productCode, color: color, size: size, isQuickView: isQuickView };
                 inst.changeVariant(data, callback);
             });
@@ -139,37 +187,55 @@ export default class ProductDetail {
     }
 
     changeQuantityKeyup() {
-        $('#qty').change(function () {
-            $('.addToCart').attr('qty', $(this).val());
-            $('.jsBuyNow').attr('qty', $(this).val());
+        let obj = document.querySelector('#qty');
+        if (obj == null) return;
+        obj.addEventListener("change", function () {
+            document.querySelector('.addToCart').setAttribute('qty', obj.value);
+            if (document.querySelector('.jsBuyNow') != null)
+                document.querySelector('.jsBuyNow').setAttribute('qty', obj.value);
         });
     }
 
     changeImageClick() {
-        $(this.divContainerId).find('.jsProductImageSelect').each(function (i, e) {
-            $(e).click(function () {
+        let inst = this;
+        if (document.querySelector(this.divContainerId) == null) return;
+        if (document.querySelector(this.divContainerId).querySelectorAll('.jsProductImageSelect') == null) return;
+       Array.from(document.querySelector(this.divContainerId).querySelectorAll('.jsProductImageSelect')).forEach(function (el, i) {
+           el.addEventListener("click", function () {
                 let type = "Image";
-                let mediaTag = $(this).find('img');
-                if (!mediaTag.is(":visible")) {
+               let mediaTag = el.querySelector('img');
+               let isVisible = inst.isElementVisible(el);
+               console.log(isVisible);
+               if (isVisible) {
                     let type = "Video";
-                    mediaTag = $(this).find('video');
-                }
-                let urlImg = mediaTag.attr('src');
+                   mediaTag = el.querySelector('video');
+               }
+
+                let urlImg = mediaTag.getAttribute('src');
                 if (type == "Image") {
-                    $('.jsProductImageShow').find('img').attr('src', urlImg);
-                    $('.jsProductImageShow').find('img').css("display", "inline");
-                    $('.jsProductImageShow').find('video').css("display", "none");
-                    $('.zoomImg').attr('src', urlImg);
+                    document.querySelector('.jsProductImageShow').querySelector('img').setAttribute('src', urlImg);
+                    document.querySelector('.jsProductImageShow').querySelector('img').setAttribute("style", "display:inline;");
+                    document.querySelector('.jsProductImageShow').querySelector('video').setAttribute("style", "display:none;");
+                    document.querySelector('.zoomImg').setAttribute('src', urlImg);
                 } else {
-                    $('.jsProductImageShow').find('video').attr('src', urlImg);
-                    $('.jsProductImageShow').find('img').css("display", "none");
-                    $('.jsProductImageShow').find('video').css("display", "inline");
-                }
+                    document.querySelector('.jsProductImageShow').querySelector('video').attr('src', urlImg);
+                    document.querySelector('.jsProductImageShow').querySelector('img').setAttribute("style", "display:none;");
+                    document.querySelector('.jsProductImageShow').querySelector('video').setAttribute("style", "display:inline;");
+               }
+
+
             });
         });
     }
 
+    isElementVisible(el) {
+        let isVisible = (window.getComputedStyle(el).display === "none")
+        return isVisible;
+    }
+
+    /////need to rewrite in javascript
     zoomImage() {
+        let inst = this;
         $(this.divContainerId).find('.jsProductImageShow').each(function (i, e) {
             if ($(e).find('img').is(":visible")) {
                 let urlImg = $(e).find('img').attr('src');
@@ -184,54 +250,58 @@ export default class ProductDetail {
     }
 
     buyNowClick() {
-        $(this.divContainerId).find('.jsBuyNow').each(function (i, e) {
-            $(e).click(async function () {
-                $('.loading-box').show();
-                let code = $(this).attr('data');
+        if (document.querySelector(this.divContainerId) == null) return;
+        if (document.querySelector(this.divContainerId).querySelectorAll('.jsBuyNow') == null) return;
+        Array.from(document.querySelector(this.divContainerId).querySelectorAll('.jsBuyNow')).forEach(function (el, i) {
+            el.addEventListener("click", async function () {
+                document.querySelector(".loading-box").style.display = 'block'; // show
+                let code = el.getAttribute('data');
                 let data = {
                     Code: code
                 };
 
-                if ($(this).attr('qty')) data.Quantity = $(this).attr('qty');
-                if ($(this).attr('store')) data.Store = $(this).attr('store');
-                if ($(this).attr('selectedStore')) data.SelectedStore = $(this).attr('selectedStore');
-                let url = $(this).attr('url');
-
+                if (el.getAttribute('qty')) data.Quantity = el.getAttribute('qty');
+                if (el.getAttribute('store')) data.Store = el.getAttribute('store');
+                if (el.getAttribute('selectedStore')) data.SelectedStore = el.getAttribute('selectedStore');
+                let url = el.getAttribute('url');
                 try {
                     const r = await axios.post(url, data);
-                    if (r.data.Message) {
-                        notification.error(r.data.Message);
+                    if (r.data.message) {
+                        notification.error(r.data.message);
                         setTimeout(function () {
-                            window.location.href = r.data.Redirect;
+                            window.location.href = r.data.redirect;
                         }, 1000);
                     } else {
-                        window.location.href = r.data.Redirect;
+                        window.location.href = r.data.redirect;
                     }
                 } catch (e) {
                     notification.error(e);
                 } finally {
-                    $('.loading-box').hide();
+                    document.querySelector(".loading-box").style.display = 'none'; // hide
                 }
             })
         })
     }
 
     selectDynamicVariantChange() {
-        $(this.divContainerId).find('.jsDynamicVariants').each(function (i, e) {
-            $(e).change(function () {
-                $('.loading-box').show();
+        if (document.querySelectorAll(".jsDynamicVariants") == null) return;
+        Array.from(document.querySelectorAll(".jsDynamicVariants")).forEach(function (el, i) {
+            el.addEventListener("change", function () {
+                document.querySelector(".loading-box").style.display = 'block'; 
                 let search = new URLSearchParams(location.search);
-                search.set('variationCode', $(this).val());
+                search.set('variationCode', el.value);
                 location.search = search.toString();
             })
         })
     }
 
     onToggleVariantSubgroup() {
-        $(this.divContainerId).find('.variant-options-section .nav-tabs a').on('shown.bs.tab', function (event) {
-            let tabId = $(event.target).attr('href').substring(1);
-            let $tabElement = $('.tab-pane#' + tabId);
-            $tabElement.find('.jsDynamicOptionsInSubgroup').eq(0).click();
+        if (document.querySelector(this.divContainerId) == null) return;
+        if (document.querySelector(this.divContainerId).querySelector('.variant-options-section .nav-tabs a') == null) return;
+        documetn.querySelector(this.divContainerId).querySelector('.variant-options-section .nav-tabs a').addEventListener('click', function (event) {
+            let tabId = event.getAttribute('href').substring(1);
+            let tabElement = document.querySelector('.tab-pane#' + tabId);
+            tabElement.querySelector('.jsDynamicOptionsInSubgroup').addEventListener("click", function () { });
         });
     }
 
@@ -242,13 +312,16 @@ export default class ProductDetail {
         this.selectColorSizeClick(false,
             function (result) {
                 if (result.status == 200) {
-                    let breadCrumb = $('.bread-crumb').html();
-                    let review = $('.jsReviewRating').html();
-                    $(inst.divContainerId).html(result.data);
-                    $('.bread-crumb').html(breadCrumb);
-                    $('.jsReviewRating').html(review);
-                    $(inst.divContainerId).off();
-                    $(inst.divContainerId).val(productCode);
+                    let breadCrumb = document.querySelector('.bread-crumb').innerHTML;
+                    let review = "";
+                    if (document.querySelector('.jsReviewRating') != null)
+                        review = document.querySelector('.jsReviewRating').innerHTML;
+                    document.querySelector(inst.divContainerId).innerHTML = result.data;
+                    document.querySelector('.bread-crumb').innerHTML = breadCrumb;
+                    if (document.querySelector('.jsReviewRating') != null)
+                        document.querySelector('.jsReviewRating').innerHTML = review;
+                    //$(inst.divContainerId).off();
+                    document.querySelector(inst.divContainerId).value = productCode;
                     feather.replace();
                     let dropdown = new Dropdown(inst.divContainerId);
                     dropdown.init();
@@ -270,15 +343,16 @@ export default class ProductDetail {
         this.buyNowClick();
         this.selectDynamicVariantChange();
         this.onToggleVariantSubgroup();
+        this.closeQuickViewModal();
     }
 
     initQuickView() {
         let inst = this;
-        $('.jsQuickView').each(function (i, e) {
-            $(e).click(function () {
-                let code = $(this).attr('data');
-                let productCode = $(this).attr('productCode');
-                let url = $(this).attr('urlQuickView');
+        Array.from(document.querySelectorAll(".jsQuickView")).forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                let code = el.getAttribute('data');
+                let productCode = el.getAttribute('productcode');
+                let url = el.getAttribute('urlquickview');
                 if (url == undefined || url == "") {
                     url = "/product/quickview";
                 }
@@ -287,4 +361,23 @@ export default class ProductDetail {
             });
         });
     }
+
+    //need to rewrite in javascript
+    closeQuickViewModal() {
+        document.querySelector(".close").addEventListener("click", function () {
+            console.log("inside close click event");
+
+            //$(document).ready(function ($) {
+            //    //event.preventDefault();
+            //    jQuery.noConflict();
+            //    $('#quickView').modal('hide');
+
+            //});
+        });
+        
+    }
+
+
+
+    
 }

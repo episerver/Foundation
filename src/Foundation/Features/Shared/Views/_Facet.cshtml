@@ -6,14 +6,14 @@
     Layout = null;
 }
 
-<div class="bblock block-layered-nav jsSearchFacets">
+<div class="selection-wrapper bblock block-layered-nav jsSearchFacets">
     @if (Model.FacetGroups.Any(x => x.Facets.Any(y => y.Selected)))
     {
-        <div class="block-title">
+        <div class="selection--cm__label block-title">
             @Html.TranslateFallback("/Category/Filters", "Filters")
         </div>
-        <div class="block-content">
-            <ul class="nav">
+        <div class="mb-2 block-content">
+            <ul class="selection--cm nav">
                 @for (var i = 0; i < Model.FacetGroups.Count; i++)
                 {
                     var facetGroup = Model.FacetGroups[i];
@@ -24,11 +24,12 @@
                         {
                             continue;
                         }
-                        <li class="facet-active">
-                            <label class="selected-filter">
+                        <li class="selection--cm__inline-item facet-active">
+                            <label class="filters-tag selected-filter">
                                 @Html.CheckBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Selected", i, j),
-                                    new { @class = "jsSearchFacet position-absolute", @style = "z-index: -100;", data_facetkey = facet.Key, @checked = "checked" })
-                                @facet.Name <span class="glyphicon glyphicon-remove"></span>
+                                    new { @class = "jsSearchFacetSelected position-absolute", @style = "z-index: -100;", data_facetkey = facet.Key, @checked = "checked" })
+                                @facet.Name 
+                                <span class="glyphicon glyphicon-remove filters-tag__remove jsRemoveTag"><i data-feather="x" width="12px"></i></span>
                             </label>
                             @Html.TextBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Key", i, j), facet.Key, new { @hidden = "true" })
                             @Html.TextBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Name", i, j), facet.Name, new { @hidden = "true" })
@@ -39,11 +40,11 @@
                     @Html.TranslateFallback("/Facet/Choices", "Products:") <strong>@Model.TotalCount</strong>
                 </li>
             </ul>
-            <button type="button" class="btn btn-sm btn-block btn-primary jsSearchFacetRemoveAll">@Html.TranslateFallback("/Category/RemoveAll", "Remove")</button>
+            <button type="button" class="button-black full-width btn btn-sm btn-block btn-primary jsSearchFacetRemoveAll">@Html.TranslateFallback("/Category/RemoveAll", "Remove")</button>
         </div>
     }
 
-    <div class="block-title" style="font-size: large; font-weight: bolder;padding-bottom: 10px; padding-top: 5px;">
+    <div class="selection--cm__label block-title" style="font-size: large; font-weight: bolder;padding-bottom: 10px; padding-top: 5px;">
         @Html.TranslateFallback("/Category/ShopBy", "Shop By") 
     </div>
     <div class="block-content">
@@ -52,12 +53,12 @@
             var facetGroup = Model.FacetGroups[i];
 
             <dl id="narrow-by-list">
-                <dt class="odd">
-                    @facetGroup.GroupName
+                <dt class="odd jsFirstLi">
+                    <span class="jsFirstSpan selection--cm__sub-label">@facetGroup.GroupName</span>
                     @Html.TextBox(string.Format("FilterOption.FacetGroups[{0}].GroupFieldName", i), facetGroup.GroupFieldName, new { @hidden = "true" })
                 </dt>
                 <dd class="odd">
-                    <ol>
+                    <ul class="selection--cm__dropdown" style="list-style:none;">
                         @for (var j = 0; j < facetGroup.Facets.Count; j++)
                         {
                             var facet = facetGroup.Facets[j];
@@ -69,7 +70,7 @@
                                 <label class="facet-link">
                                     @Html.CheckBox(string.Format("FilterOption.FacetGroups[{0}].Facets[{1}].Selected", i, j),
                                         facet.Selected,
-                                        new { @class = "jsSearchFacet position-absolute", @style = "z-index: -100;", data_facetkey = @facet.Key })
+                                        new { @class = "jsSearchFacet position-absolute", @style = "z-index: -100;     margin-left: -30px; margin-top: 3px", data_facetkey = @facet.Key })
                                     @facet.Name (@facet.Count)
                                 </label>
                                 
@@ -83,7 +84,7 @@
                                 })
                             </li>
                         }
-                    </ol>
+                    </ul>
                 </dd>
             </dl>
         }

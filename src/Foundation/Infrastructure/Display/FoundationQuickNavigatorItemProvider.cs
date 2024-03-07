@@ -1,11 +1,7 @@
 ﻿using EPiServer.Cms.UI.Admin.ContentTypes.Internal;
 using EPiServer.Cms.UI.VisitorGroups.Controllers.Internal;
-using EPiServer.Core;
 using EPiServer.Security;
-using EPiServer.ServiceLocation;
 using EPiServer.Shell;
-using EPiServer.Web;
-using System.Collections.Generic;
 
 namespace Foundation.Infrastructure.Display
 {
@@ -27,7 +23,7 @@ namespace Foundation.Infrastructure.Display
             if (accessor.Principal.IsInRole("CmsAdmins"))
             {
                 menuItems.Add("Admin mode",
-                    new QuickNavigatorMenuItem("/shell/cms/menu/admin", Paths.ToResource(typeof(ContentTypesController).Assembly, "default"), null, "true", null));
+                    new QuickNavigatorMenuItem("/shell/cms/menu/admin", Paths.ToResource(typeof(ContentTypeController).Assembly, "default"), null, "true", null));
             }
 
             return menuItems;

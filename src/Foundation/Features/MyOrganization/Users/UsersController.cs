@@ -1,28 +1,15 @@
-﻿using EPiServer;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Framework.Localization;
 using EPiServer.Globalization;
-using EPiServer.Web.Mvc;
 using Foundation.Features.MyAccount.ResetPassword;
 using Foundation.Features.MyOrganization.Organization;
 using Foundation.Features.MyOrganization.SubOrganization;
 using Foundation.Features.Search;
-using Foundation.Features.Settings;
-using Foundation.Features.Shared;
 using Foundation.Infrastructure.Cms;
-using Foundation.Infrastructure.Cms.Attributes;
-using Foundation.Infrastructure.Cms.Extensions;
 using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Cms.Users;
 using Foundation.Infrastructure.Commerce;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Foundation.Features.MyOrganization.Users
@@ -156,8 +143,8 @@ namespace Foundation.Features.MyOrganization.Users
         public ActionResult UpdateUser(UsersPageViewModel viewModel)
         {
             _customerService.EditContact(viewModel.Contact);
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", UrlResolver.Current.GetUrl(viewModel.CurrentContent.ContentLink));
+            
         }
 
         [HttpPost]
@@ -192,7 +179,8 @@ namespace Foundation.Features.MyOrganization.Users
                 await SaveUser(viewModel);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", UrlResolver.Current.GetUrl(viewModel.CurrentContent.ContentLink));
+            //return RedirectToAction("Index");
         }
 
         [NavigationAuthorize("Admin")]

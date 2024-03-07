@@ -1,5 +1,3 @@
-using EPiServer.Core;
-
 namespace Foundation.Features.Blocks.CommentsBlock
 {
     public class CommentFormViewModel

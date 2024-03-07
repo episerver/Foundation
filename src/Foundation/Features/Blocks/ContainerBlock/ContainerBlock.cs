@@ -1,9 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
-using Foundation.Features.Shared;
-using Foundation.Infrastructure;
-using System.ComponentModel.DataAnnotations;
-
 namespace Foundation.Features.Blocks.ContainerBlock
 {
     [ContentType(DisplayName = "Container Block",
@@ -14,6 +8,7 @@ namespace Foundation.Features.Blocks.ContainerBlock
     public class ContainerBlock : FoundationBlockData
     {
         [Display(Name = "Main content area")]
+        [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea MainContentArea { get; set; }
 
         [Display(Name = "CSS class")]

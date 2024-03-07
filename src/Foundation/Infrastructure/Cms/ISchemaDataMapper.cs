@@ -1,5 +1,4 @@
-﻿using EPiServer.Core;
-using Schema.NET;
+﻿using Schema.NET;
 
 namespace Foundation.Infrastructure.Cms
 {

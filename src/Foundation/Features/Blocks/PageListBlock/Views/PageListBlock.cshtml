@@ -16,6 +16,10 @@
             {
                 switch (Model.CurrentBlock.Template)
                 {
+                    case TemplateSelections.BootstrapCardGroup:
+                        @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_BootstrapCardGroupTemplate.cshtml", Model)
+                        break;
+                        
                     case TemplateSelections.Grid:
                         @await Html.PartialAsync("/Features/Blocks/PageListBlock/Views/Templates/_GridTemplate.cshtml", Model)
                         break;

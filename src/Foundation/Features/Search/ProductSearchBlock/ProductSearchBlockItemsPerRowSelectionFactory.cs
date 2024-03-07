@@ -1,7 +1,4 @@
-﻿using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Search.ProductSearchBlock
+﻿namespace Foundation.Features.Search.ProductSearchBlock
 {
     public class ProductSearchBlockItemsPerRowSelectionFactory : ISelectionFactory
     {

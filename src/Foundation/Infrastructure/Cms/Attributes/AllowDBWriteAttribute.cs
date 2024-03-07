@@ -1,5 +1,4 @@
 ﻿using EPiServer.Data;
-using EPiServer.ServiceLocation;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Routing;

@@ -1,7 +1,4 @@
-﻿using EPiServer.Core;
-using System.Collections.Generic;
-
-namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
+﻿namespace Foundation.Features.Blocks.AssetsDownloadLinksBlock
 {
     public class AssetsDownloadLinksBlockViewModel
     {

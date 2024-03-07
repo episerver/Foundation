@@ -1,7 +1,4 @@
-﻿using EPiServer.Commerce.Catalog.ContentTypes;
-using System.Collections.Generic;
-
-namespace Foundation.Features.CatalogContent.Variation
+﻿namespace Foundation.Features.CatalogContent.Variation
 {
     public abstract class VariantViewModelBase<TVariant> : EntryViewModelBase<TVariant> where TVariant : VariationContent
     {

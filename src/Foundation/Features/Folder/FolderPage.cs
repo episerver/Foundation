@@ -1,6 +1,3 @@
-using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAnnotations;
 using Foundation.Features.Home;
 
 namespace Foundation.Features.Folder

@@ -1,13 +1,9 @@
-﻿using EPiServer.Framework.Localization;
-using Foundation.Features.MyOrganization.Organization;
+﻿using Foundation.Features.MyOrganization.Organization;
 using Foundation.Infrastructure.Commerce.Customer;
 using Foundation.Infrastructure.Commerce.Customer.Services;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.BusinessFoundation.Data.Business;
 using Mediachase.Commerce.Customers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Foundation.Features.MyAccount.CreditCard
 {

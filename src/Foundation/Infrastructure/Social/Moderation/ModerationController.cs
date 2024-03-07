@@ -1,6 +1,4 @@
 ﻿using Foundation.Social.Services;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Foundation.Social.Moderation
 {
