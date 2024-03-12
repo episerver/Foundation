@@ -10,8 +10,6 @@
     <PackageReference Include="EPiServer.CMS" Version="12.27.1" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.20.3" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.20.3" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.20.1" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.20.1" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
     <PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.3.8" />
     <PackageReference Include="EPiServer.Commerce" Version="14.18.0" />
