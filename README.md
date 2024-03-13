@@ -41,7 +41,6 @@ Windows
 open command prompt as administrator
 git clone https://github.com/episerver/Foundation.git
 cd foundation
-git checkout main
 setup.cmd 
 dotnet run --project .\src\Foundation\Foundation.csproj
 ```
@@ -52,7 +51,6 @@ dotnet run --project .\src\Foundation\Foundation.csproj
 Open a Terminal window
 git clone https://github.com/episerver/Foundation.git
 cd Foundation
-git checkout main
 chmod u+x setup.sh
 ./setup.sh
 dotnet run --project ./src/Foundation/Foundation.csproj
@@ -64,7 +62,6 @@ dotnet run --project ./src/Foundation/Foundation.csproj
 Open a bash terminal window
 git clone https://github.com/episerver/Foundation.git
 cd Foundation
-git checkout main
 chmod u+x setup.sh
 ./setup.sh
 dotnet run --project ./src/Foundation/Foundation.csproj
