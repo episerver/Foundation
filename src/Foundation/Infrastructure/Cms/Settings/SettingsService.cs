@@ -1,9 +1,12 @@
 ﻿using EPiServer.DataAccess;
+using EPiServer.Events;
+using EPiServer.Events.Clients;
 using EPiServer.Framework.TypeScanner;
 using EPiServer.Globalization;
 using EPiServer.Logging;
 using EPiServer.Security;
 using System.Collections.Concurrent;
+using System.Security.Policy;
 
 namespace Foundation.Infrastructure.Cms.Settings
 {
@@ -16,6 +19,7 @@ namespace Foundation.Infrastructure.Cms.Settings
         void UnintializeSettings();
         void UpdateSettings(Guid siteId, IContent content, bool isContentNotPublished);
         void UpdateSettings();
+        void SettingsEvent_Raised(object sender, EventNotificationEventArgs e);
     }
 
     public static class ISettingsServiceExtensions
@@ -55,6 +59,7 @@ namespace Foundation.Infrastructure.Cms.Settings
         private readonly ISiteDefinitionResolver _siteDefinitionResolver;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IContextModeResolver _contextModeResolver;
+        private readonly IEventRegistry _eventRegistry;
 
         public SettingsService(
             IContentRepository contentRepository,
@@ -67,7 +72,8 @@ namespace Foundation.Infrastructure.Cms.Settings
             ISiteDefinitionRepository siteDefinitionRepository,
             ISiteDefinitionResolver siteDefinitionResolver,
             IHttpContextAccessor httpContextAccessor,
-            IContextModeResolver contextModeResolver)
+            IContextModeResolver contextModeResolver,
+            IEventRegistry eventRegistry)
         {
             _contentRepository = contentRepository;
             _contentVersionRepository = contentVersionRepository;
@@ -80,6 +86,7 @@ namespace Foundation.Infrastructure.Cms.Settings
             _siteDefinitionResolver = siteDefinitionResolver;
             _httpContextAccessor = httpContextAccessor;
             _contextModeResolver = contextModeResolver;
+            _eventRegistry = eventRegistry;
         }
 
         public ConcurrentDictionary<string, Dictionary<Type, object>> SiteSettings { get; } = new ConcurrentDictionary<string, Dictionary<Type, object>>();
@@ -140,6 +147,45 @@ namespace Foundation.Infrastructure.Cms.Settings
             return default;
         }
 
+        public void SettingsEvent_Raised(object sender, EventNotificationEventArgs e)
+        {
+            if (e.RaiserId == Initialize.SettingsRaiserId)
+            {
+                return;
+            }
+
+            var eventParameter = e.Param as SettingsEvent;
+            if (eventParameter == null)
+            {
+                return;
+            }
+
+            if (eventParameter.IsDelete)
+            {
+                if (eventParameter.SiteId == Guid.Empty)
+                {
+                    return;
+                }
+
+                foreach(var key in SiteSettings.Keys.Where(x => x.Contains(eventParameter.SiteId.ToString(), StringComparison.OrdinalIgnoreCase)))
+                {
+                    SiteSettings.TryRemove(key, out var value);
+                }
+            }
+            
+            if (!ContentReference.TryParse(eventParameter.ContentReference, out var reference))
+            {
+                return;
+            }
+
+            if (!_contentRepository.TryGet<IContent>(reference, out var content))
+            {
+                return;
+            }
+
+            UpdateSettings(eventParameter.SiteId, content, !eventParameter.IsPublished);
+        }
+
         public void UpdateSettings(Guid siteId, IContent content, bool isContentNotPublished)
         {
             var contentType = content.GetOriginalType();
@@ -192,6 +238,12 @@ namespace Foundation.Infrastructure.Cms.Settings
                     SiteSettings[siteId.ToString() + $"-{contentLanguage}"][contentType] = content;
                     SiteSettings[$"{siteId}-common-draft-{contentLanguage}"][contentType] = content;
                 }
+                _eventRegistry.Get(Initialize.SettingsEventId).Raise(Initialize.SettingsRaiserId, new SettingsEvent
+                {
+                    ContentReference = content.ContentLink.ToString(),
+                    SiteId = siteId,
+                    IsPublished = !isContentNotPublished
+                });
             }
             catch (KeyNotFoundException keyNotFoundException)
             {
@@ -326,6 +378,17 @@ namespace Foundation.Infrastructure.Cms.Settings
             }
 
             _contentRepository.Delete(folder.ContentLink, true, AccessLevel.NoAccess);
+            foreach (var key in SiteSettings.Keys.Where(x => x.Contains(e.Site.Id.ToString(), StringComparison.OrdinalIgnoreCase)))
+            {
+                SiteSettings.TryRemove(key, out var value);
+            }
+            _eventRegistry.Get(Initialize.SettingsEventId).Raise(Initialize.SettingsRaiserId, new SettingsEvent
+            {
+                ContentReference = null,
+                SiteId = e.Site.Id,
+                IsPublished = false,
+                IsDelete = true
+            });
         }
 
         private void SiteUpdated(object sender, SiteDefinitionEventArgs e)
