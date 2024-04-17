@@ -3,17 +3,17 @@
   <Organizations>
     <Organization>
       <Id>2fb3117e-8aa0-469d-b0ff-56dd1a3329bf</Id>
-      <Name>Smith Construction</Name>
+      <Name>Turner Construction</Name>
       <Users>
         <User>
-          <Email>admin@smith.com</Email>
-          <FirstName>John</FirstName>
-          <LastName>Smith</LastName>
+          <Email>admin@turner.com</Email>
+          <FirstName>Deb</FirstName>
+          <LastName>Turner</LastName>
           <Roles></Roles>
           <B2BRole>Admin</B2BRole>
           <Location></Location>
           <ShowInDemoUserMenu>3</ShowInDemoUserMenu> <!--1 - Never, 2- Always, 3 - Commerce only-->
-          <DemoUserTitle>Smith Construction Admin </DemoUserTitle>
+          <DemoUserTitle>Turner Construction Admin </DemoUserTitle>
           <DemoUserDescription>Has a customer catalog for subset of products</DemoUserDescription>
           <DemoSort>2</DemoSort>
           <Addresses>
@@ -109,8 +109,8 @@
             </User>
             <User>
               <Email>b2bApprover@episerver.com</Email>
-              <FirstName>Don</FirstName>
-              <LastName>Juan</LastName>
+              <FirstName>Emily</FirstName>
+              <LastName>Johnson</LastName>
               <Roles></Roles>
               <B2BRole>Approver</B2BRole>
               <Location></Location>
@@ -147,8 +147,8 @@
   </Organizations>
   <Customer>
     <Email>salesrep@example.com</Email>
-    <FirstName>Ed</FirstName>
-    <LastName>Kennedy</LastName>
+    <FirstName>Jane</FirstName>
+    <LastName>Optimizer</LastName>
     <Roles>SalesRep</Roles>
     <ShowInDemoUserMenu>3</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
     <DemoUserTitle>Sales rep </DemoUserTitle>
