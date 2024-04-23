@@ -12,21 +12,21 @@
     <PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.21.2" />
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="4.7.2" />
     <PackageReference Include="EPiServer.CMS.WelcomeIntegration.UI" Version="1.3.8" />
-    <PackageReference Include="EPiServer.Commerce" Version="14.19.0" />
+    <PackageReference Include="EPiServer.Commerce" Version="14.20.0" />
     <PackageReference Include="EPiServer.Hosting" Version="12.21.2" />
     <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="2.0.2" />
     <PackageReference Include="EPiServer.Labs.ProjectEnhancements" Version="1.0.0" />
-    <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.10.2" />
+    <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.11.0" />
     <PackageReference Include="EPiServer.Session" Version="2.1.0" />
     <PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.1" />
 
     <!-- APIs -->
-    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.10.2" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.10.2" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Commerce" Version="3.10.2" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Forms" Version="3.10.2" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.10.2" />
-    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.11.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.11.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Commerce" Version="3.11.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Forms" Version="3.11.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.11.0" />
+    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.11.0" />
     <PackageReference Include="EPiServer.ServiceApi.Commerce" Version="7.0.4" />
 
     <!-- Optimizely Search & Navigation -->
@@ -49,7 +49,7 @@
     <PackageReference Include="Optimizely.Labs.MarketingAutomationIntegration.ODP" Version="1.0.2" />
 
     <!-- Optimizely Forms & Marketing Automation Connectors -->
-    <PackageReference Include="EPiServer.Forms" Version="5.8.1" />
+    <PackageReference Include="EPiServer.Forms" Version="5.8.2" />
     <PackageReference Include="EPiServer.Forms.Samples" Version="4.2.2" />
     <PackageReference Include="EPiServer.Marketing.Automation.Forms" Version="3.1.3" />
 
@@ -57,7 +57,7 @@
     <PackageReference Include="Baaijte.Optimizely.ImageSharp.Web" Version="2.2.2" />
 
     <!-- Personalization -->
-    <PackageReference Include="EPiServer.Personalization.Commerce" Version="4.1.14" />
+    <PackageReference Include="EPiServer.Personalization.Commerce" Version="4.1.15" />
     <PackageReference Include="EPiServer.Personalization.MaxMindGeolocation" Version="2.3.0" />
 
     <!-- A/B Testing -->
