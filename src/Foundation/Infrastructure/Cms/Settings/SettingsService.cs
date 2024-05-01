@@ -388,11 +388,12 @@ namespace Foundation.Infrastructure.Cms.Settings
         private Guid ResolveSiteId()
         {
             var request = _httpContextAccessor.HttpContext?.Request;
-            if (request == null)
+            var host = "localhost";
+            if (request != null)
             {
-                return Guid.Empty;
+                host = request.Host.Host;
             }
-            var site = _siteDefinitionResolver.GetByHostname(request.Host.Host, true, out var hostname);
+            var site = _siteDefinitionResolver.GetByHostname(host, true, out var hostname);
             if (site == null)
             {
                 return Guid.Empty;

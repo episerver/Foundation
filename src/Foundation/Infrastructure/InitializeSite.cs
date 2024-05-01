@@ -181,8 +181,13 @@ namespace Foundation.Infrastructure
 
         private void ContextOnInitComplete(object sender, EventArgs eventArgs)
         {
-            //_services.AddTransient<ContentAreaRenderer, FoundationContentAreaRenderer>();
-            var settings = _locator.GetInstance<ISettingsService>().GetSiteSettings<SearchSettings>();
+            var settingsService = _locator.GetInstance<ISettingsService>();
+            var settings = settingsService.GetSiteSettings<SearchSettings>();
+            if (settings == null)
+            {
+                settingsService.InitializeSettings();
+                settings = settingsService.GetSiteSettings<SearchSettings>();
+            }
             if (settings != null)
             {
                 InitializeFacets(settings.SearchFiltersConfiguration);
