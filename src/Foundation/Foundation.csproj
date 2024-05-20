@@ -47,6 +47,7 @@
     <PackageReference Include="Geta.Optimizely.Categories" Version="1.1.1" />
     <PackageReference Include="Geta.Optimizely.Categories.Find" Version="1.1.1" />
     <PackageReference Include="Optimizely.Labs.MarketingAutomationIntegration.ODP" Version="1.0.2" />
+    <PackageReference Include="TinymceDamPicker" Version="1.2.4" />
 
     <!-- Optimizely Forms & Marketing Automation Connectors -->
     <PackageReference Include="EPiServer.Forms" Version="5.8.2" />

@@ -34,6 +34,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Optimizely.Labs.MarketingAutomationIntegration.ODP;
 using System.IO;
+using TinymceDamPicker;
 using UNRVLD.ODP.VisitorGroups.Initilization;
 
 namespace Foundation
@@ -249,6 +250,9 @@ namespace Foundation
             services.AddGroupingHeader();
             // Bulk Edit add-on
             services.AddBulkEdit();
+
+            // Adds the DAM selector button
+            services.AddDamSelectButton();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
