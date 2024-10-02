@@ -10,10 +10,12 @@ using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Data;
 using EPiServer.Labs.ContentManager;
+using EPiServer.Labs.ProjectEnhancements;
 using EPiServer.Marketing.Testing.Web.Initializers;
 using EPiServer.OpenIDConnect;
 using EPiServer.ServiceApi;
 using EPiServer.Shell.Modules;
+using EPiServer.Social.Framework;
 using Foundation.Features.Checkout.Payments;
 using Foundation.Infrastructure.Cms.ModelBinders;
 using Foundation.Infrastructure.Cms.Users;
@@ -88,7 +90,7 @@ namespace Foundation
             .AddRazorOptions(ro => ro.ViewLocationExpanders.Add(new FeatureViewLocationExpander()));
 
             services.AddCommerce();
-            services.AddFind();
+            //services.AddFind(); // Note: currently added via AddContentSearchApi()
             services.AddSocialFramework();
             services.AddDisplay();
             services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
@@ -250,6 +252,9 @@ namespace Foundation
             services.AddGroupingHeader();
             // Bulk Edit add-on
             services.AddBulkEdit();
+
+            // Project Enhancements
+            services.AddProjectEnhancements();
 
             // Adds the DAM selector button
             services.AddDamSelectButton();
