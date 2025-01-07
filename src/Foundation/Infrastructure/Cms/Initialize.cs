@@ -23,10 +23,12 @@ namespace Foundation.Infrastructure.Cms
 
         void IInitializableModule.Initialize(InitializationEngine context)
         {
+            context.Locate.Advanced.GetInstance<ISettingsService>().InitializeSettings();
         }
 
         void IInitializableModule.Uninitialize(InitializationEngine context)
         {
+            
         }
     }
 }
