@@ -52,7 +52,10 @@
         @Html.RenderHeaderScriptsForCommerce(Model.CurrentContent)
     }
 </head>
-<body>
-    @RenderBody()
-</body>
+@{ 
+var direction = "ltr"; 
+if (System.Globalization.CultureInfo.CurrentCulture.TextInfo.IsRightToLeft) {         
+direction = "rtl"; } 
+} 
+<body dir=@direction>
 </html>
