@@ -53,7 +53,7 @@ namespace Foundation.Infrastructure
     public class InitializeSite : IConfigurableModule
     {
         private IServiceCollection _services;
-        private IServiceProvider _locator;
+        private IServiceProvider _locator;  
 
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
@@ -155,7 +155,7 @@ namespace Foundation.Infrastructure
         {
             _locator = context.Locate.Advanced;
             var manager = context.Locate.Advanced.GetInstance<MigrationManager>();
-            if (manager.SiteNeedsToBeMigrated())
+            if (false)
             {
                 manager.Migrate();
             }
@@ -195,7 +195,7 @@ namespace Foundation.Infrastructure
         {
             if (contentEventArgs.Content is IFacetConfiguration facetConfiguration)
             {
-                InitializeFacets(facetConfiguration.SearchFiltersConfiguration);
+               
             }
         }
 
