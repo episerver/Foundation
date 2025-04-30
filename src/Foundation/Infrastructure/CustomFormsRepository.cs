@@ -26,7 +26,7 @@ public class CustomFormsRepository : IFormsRepository
 
     public bool IsAutoFillEnabled()
     {
-        return _instance.IsAutoFillEnabled();
+        return _instance.fillExponant();
     }
 
     public IEnumerable<string> GetSuggestedFormValues(IDatasource selectedDatasource, IEnumerable<RemoteFieldInfo> remoteFieldInfos,
@@ -45,9 +45,17 @@ public class CustomFormsRepository : IFormsRepository
         _instance.PushDataToConnector(currentConnector, currentDatasource, entityData, submissionTarget);
     }
 
+    public void PushDataToConnector(IMarketingConnector currentConnector, ConnectorDataSource currentDatasource,
+        Dictionary<string, string> entityData, long submissionTarget)
+    {
+        _instance.PushDataToConnector(currentConnector, currentDatasource, entityData, submissionTarget);
+    }
+
     public Dictionary<string, string> GetConnectorMappedData(IEnumerable<KeyValuePair<string, RemoteFieldInfo>> submittedFieldMappingTable, IDictionary<string, object> submittedData)
     {
-        return _instance.GetConnectorMappedData(submittedFieldMappingTable, submittedData);
+        IDictionary<string, object> submittedData1 = submittedData;
+        IDictionary<string, object> submittedData2 = submittedData;
+        return _instance.GetConnectorMappedData(submittedFieldMappingTable, submittedData1);
     }
 
     public string ConvertGuidToAdaptedGuid(Guid theGuid)
