@@ -41,17 +41,17 @@ npm ci
 npm run dev
 cd ../..
 
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "EXEC msdb.dbo.sp_delete_database_backuphistory N'$cms_db'"
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "if db_id('$cms_db') is not null ALTER DATABASE [$cms_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE"
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "if db_id('$cms_db') is not null DROP DATABASE [$cms_db]"
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "EXEC msdb.dbo.sp_delete_database_backuphistory N'$commerce_db'"
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "if db_id('$commerce_db') is not null ALTER DATABASE [$commerce_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE"
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -Q "if db_id('$commerce_db') is not null DROP DATABASE [$commerce_db]"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -Q "EXEC msdb.dbo.sp_delete_database_backuphistory N'$cms_db'"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -Q "if db_id('$cms_db') is not null ALTER DATABASE [$cms_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -Q "if db_id('$cms_db') is not null DROP DATABASE [$cms_db]"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -Q "EXEC msdb.dbo.sp_delete_database_backuphistory N'$commerce_db'"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -Q "if db_id('$commerce_db') is not null ALTER DATABASE [$commerce_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -Q "if db_id('$commerce_db') is not null DROP DATABASE [$commerce_db]"
 
 dotnet-episerver create-cms-database "./src/Foundation/Foundation.csproj" -S $SQLSERVER -U sa -P $password --database-name "$cms_db"  --database-user $user --database-password $password
 dotnet-episerver create-commerce-database "./src/Foundation/Foundation.csproj" -S $SQLSERVER -U sa -P $password --database-name "$commerce_db" --reuse-cms-user
 
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./build/SqlScripts/FoundationConfigurationSchema.sql" -v appname=$APPNAME
-docker exec -it sql_server_optimizely /opt/mssql-tools/bin/sqlcmd -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./build/SqlScripts/UniqueCouponSchema.sql"
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./build/SqlScripts/FoundationConfigurationSchema.sql" -v appname=$APPNAME
+docker exec -it sql_server_optimizely /opt/mssql-tools18/bin/sqlcmd -C -S $SQLSERVER -U SA -P $password -d $commerce_db -b -i "./build/SqlScripts/UniqueCouponSchema.sql"
 
 #dotnet run --project src/Foundation/Foundation.csproj
