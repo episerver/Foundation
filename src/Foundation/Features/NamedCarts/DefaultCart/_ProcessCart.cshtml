@@ -1,0 +1,122 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Header
+
+@model LargeCartViewModel
+
+<div class="row">
+    <div class="large-cart--block col-sm-4">
+        <h3>@Html.TranslateFallback("/Cart/Labels/EstimateShipping", "Estimate Shipping and Tax")</h3>
+        @using (Html.BeginForm("EstimateShipping", "DefaultCart", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <p>@Html.TranslateFallback("/Cart/Labels/ShippingEstimate", "Enter your destination to get a shipping estimate.")</p>
+            <ul class="form-list">
+                <li>
+                    <label for="country">Country <span class="required">*</span></label>
+                    <div class="input-box">
+                        @{
+                            var contries = Model.AddressModel.CountryOptions.Select(x =>
+                            {
+                                return new KeyValuePair<string, string>(x.Name, x.Code);
+                            });
+                        }
+                        @Html.DisplayFor(model => Model.AddressModel.CountryOptions, "CountryOptions",
+                                                    new { SelectItem = Model.AddressModel.CountryCode, Name = "AddressModel.CountryCode" })
+                    </div>
+                </li>
+                <li class="jsCountryRegionContainer">
+                    @Html.EditorFor(x => x.AddressModel.CountryRegion, new { Name = "AddressModel.CountryRegion.Region" })
+                </li>
+                <li class="large-cart__margin-top">
+                    <label for="postcode">Zip/Postal Code</label>
+                    <div class="input-box">
+                        @Html.TextBoxFor(x => x.AddressModel.PostalCode, new { @class = "textbox validate-postcode" })
+                    </div>
+                </li>
+            </ul>
+            <div class="large-cart__margin-top">
+                @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+                {
+                    <button class="button-transparent-black btn-lower" title="Get a Quote" type="Submit">
+                        <span>
+                            <i data-feather="file-text"></i>
+                            @Html.TranslateFallback("/Cart/Labels/Estimate", "Estimate")
+                        </span>
+                    </button>
+                }
+            </div>
+        }
+    </div>
+    <div class="large-cart--block col-sm-4">
+        <h3>@Html.TranslateFallback("/Checkout/Coupons/Heading", "Coupons and Promotional Codes")</h3>
+        <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
+        @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+        {
+            <form class="jsAddCouponContainer" action="@Url.Action("AddCouponCode", "DefaultCart")" method="post">
+                @Html.AntiForgeryToken()
+                <div>
+                    <input type="text" name="couponCode" class="textbox jsCouponCode">
+                </div>
+                @{
+                    var couponError = ViewBag.CouponError != null ? (bool)ViewBag.CouponError : false;
+                }
+                <div class="large-cart__margin-top couponcode-errormessage required jsCouponErrorMess @(couponError ? "" : "display-none")">
+                    <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
+                </div>
+                <div class="large-cart__margin-top">
+                    <span class="input-group-btn">
+                        <button type="button" class="button-transparent-black jsAddCoupon">
+                            @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
+                        </button>
+                    </span>
+                </div>
+            </form>
+
+        }
+        <div class="col-xs-12">
+            <h5 class="jsCouponLabel title @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
+                @Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")
+            </h5>
+
+            <div class="jsCouponListing">
+                <input type="hidden" id="jsRenoveCouponUrl" value="@Url.Action("RemoveCouponCode", "DefaultCart")" />
+                @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
+                {
+                    foreach (var couponCode in Model.AppliedCouponCodes)
+                    {
+                        <label class="filters-tag jsRemoveCoupon" data-couponcode="@couponCode" data-url="@Url.Action("RemoveCouponCode", "DefaultCart")">
+                            <span>@couponCode</span>
+                            <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
+                        </label>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="large-cart--block col-sm-4">
+        <div class="jsCouponReplaceHtml">
+            @await Html.PartialAsync("_CartSummary", Model)
+        </div>
+        <ul>
+            <li>
+                <button class="button-black--icon" title="Proceed to Checkout" type="button" onclick="window.location.href = '@Url.ContentUrl(Model.CheckoutPage)'">
+                    <span>
+                        <i data-feather="check"></i>
+                        @Html.TranslateFallback("/Cart/Labels/Checkout", "Check Out")
+                    </span>
+                </button>
+            </li>
+            <li>
+                <br>
+            </li>
+            @*<li>
+                    <a class="account-link" title="Checkout with Multiple Addresses" href="@Url.ContentUrl(Model.MultiShipmentPage)">
+                        @Html.TranslateFallback("/Cart/Labels/MultipleAddresses", "Multiple Addresses")
+                    </a>
+                </li>*@
+            <li>
+                <br>
+            </li>
+        </ul>
+    </div>
+</div>

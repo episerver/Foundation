@@ -1,0 +1,145 @@
+﻿@using EPiServer.Web;
+@using EPiServer.Web.Routing
+@using Foundation.Features.Header
+@using Foundation.Features.Blocks.MenuItemBlock
+
+@model HeaderViewModel
+
+@Html.FullRefreshPropertiesMetaData(new[] { "MainMenu", "SiteLogo" })
+
+<!-- Navigation bar for Desktop -->
+<div class="display-none d-lg-block">
+    <nav class="container @(Model.LargeHeaderMenu ? "large-header-menu" : "")">
+        <div class="row no-gutters">
+            <div class="navigation">
+                <div class="navigation__left" @Html.EditAttributes(x => x.LayoutSettings.MainMenu)>
+                    @await Html.PartialAsync("_Menu", Model.MenuItems ?? new List<MenuItemViewModel>())
+                </div>
+                <div class="navigation__logo @(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
+                     style="@(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
+                    <a href="/">
+                        @if (Html.IsInEditMode())
+                        {
+                            <div @Html.EditAttributes(x => x.LayoutSettings.SiteLogo)>
+                                <img class="img-fluid" src="@UrlResolver.Current.GetUrl(Model.LayoutSettings.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })" />
+                            </div>
+                        }
+                        else
+                        {
+                            @if (@Url.ContentUrl(Model.LayoutSettings.SiteLogo).Contains("?"))
+                            {
+                                <picture class="img-fluid">
+                                    <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)&format=webp&width=225" type="image/webp" />
+                                    <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)&width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
+                                </picture>
+                            }
+                            else
+                            {
+                                <picture class="img-fluid">
+                                    <source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp" />
+                                    <img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?width=225" class="img-fluid lazyload" @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />                                   
+                                </picture>
+                            }
+                        }
+                    </a>
+                </div>
+                <ul class="navigation__right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (Model.IsBookmarked)
+                        {
+                            <li>
+                                <div class="icon-menu" id="jsBookmarkToggle" contentId="@Model.CurrentContentGuid" bookmarked="true" title="Remove bookmark">
+                                    <i data-feather="bookmark" style="fill: black;"></i>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="icon-menu" id="jsBookmarkToggle" contentId="@Model.CurrentContentGuid" title="Bookmark">
+                                    <i data-feather="bookmark" style="fill: none;"></i>
+                                </div>
+                            </li>
+                        }
+                    }
+                    @if (!Model.IsReadonlyMode && Model.ShowCommerceControls)
+                    {
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <div class="dropdown">
+                                    <div class="icon-menu icon-menu--has-badge jsWishlistBtn" data-bs-toggle="dropdown" data-offset="-81, -1" data-flip="false" id="js-wishlist" reload="0" data-cartcontainer="#js-wishlist-popover" data-reloadurl="/wishlist/LoadWishlistItems" title="Wishlist">
+                                        <i data-feather="heart"></i>
+                                        <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                                    </div>
+                                    @await Html.PartialAsync("_MiniWishlist", Model.WishListMiniCart)
+                                </div>
+                            </li>
+                        }
+                        <li>
+                            <div class="dropdown">
+                                <div class="icon-menu icon-menu--has-badge jsCartBtn" data-bs-toggle="dropdown" data-offset="-162, -1" data-flip="false" id="js-cart" reload="0" data-cartcontainer="#js-cart-popover" data-reloadurl="/defaultcart/LoadCartItems" title="Cart">
+                                    <i data-feather="shopping-cart"></i>
+                                    <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
+                                </div>
+                                @await Html.PartialAsync("_HeaderCart", Model.MiniCart)
+                            </div>
+                        </li>
+                        if (!Model.IsReadonlyMode && Model.ShowSharedCart)
+                        {
+                            <li>
+                                <div class="dropdown">
+                                    <div class="icon-menu icon-menu--has-badge jsSharedCartBtn" data-bs-toggle="dropdown" data-offset="-162, -1" data-flip="false" reload="0" data-cartcontainer="#jsSharedCartContainer" data-reloadurl="/sharedCart/LoadMiniSharedCart" title="Shared Cart">
+                                        <i data-feather="shopping-bag"></i>
+                                        <span class="icon-menu__badge">@((int)Model.SharedMiniCart.ItemCount)</span>
+                                    </div>
+                                    @await Html.PartialAsync("_MiniSharedCart", Model.SharedMiniCart)
+                                </div>
+                            </li>
+                        }
+                    }
+                    <li>
+                        <div class="icon-menu" id="js-searchbutton">
+                            <i data-feather="search"></i>
+                        </div>
+                        <div class="searchbox" id="js-searchbox">
+                            <i class="icon-left" data-feather="search"></i>
+                            <input type="hidden" id="searchOption" value="@Model.SearchSettings.SearchOption" />
+                            <input placeholder="Search" class="js-searchbox-input jsSearchText"
+                                   data-search="@Url.ContentUrl(Model.ReferencePageSettings.SearchPage)"
+                                   data-result-container="#jsResultSearch" />
+                            <input type="hidden" id="searchConfidence" value="1" />
+                            <input class="hidden" type="file" id="fileSearchInput" />
+                            <div class="icon-right">
+                                <i data-feather="camera" class="jsSearchImage" data-input="#fileSearchInput"></i>
+                                <i data-feather="x" id="js-searchbox-close"></i>
+                            </div>
+                        </div>
+                        <div class="searchbox-popover display-none" id="jsResultSearch">
+                            <div class="position-relative">
+                                <div class="loading-cart" hidden>
+                                    <div class="loader"></div>
+                                </div>
+                                <div class="js-searchbox-content">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    @if (!Model.IsReadonlyMode)
+                    {
+                        <li>
+                            <div class="dropdown">
+                                <div class="icon-menu" data-bs-toggle="dropdown" data-offset="-324, -1" data-flip="false" id="js-profile">
+                                    <i data-feather="user"></i>
+                                </div>
+                                @await Html.PartialAsync("_Users", Model)
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- END - Navigation bar for Desktop -->

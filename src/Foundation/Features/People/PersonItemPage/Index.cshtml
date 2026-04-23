@@ -1,0 +1,37 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.People.PersonItemPage
+
+@model PersonItemViewModel
+
+<div class="col-12">
+    <h1>
+        @Html.PropertyFor(x => x.CurrentContent.Name)
+    </h1>
+    <h2>
+        @Html.PropertyFor(x => x.CurrentContent.JobTitle) @if (Model.CurrentContent.JobTitle != null && Model.CurrentContent.Location != null) { @Html.Encode(", ") }
+        @Model.CurrentContent.Location
+    </h2>
+    <div class="row contact">
+        <div class="col-6">
+            <div class="product-tile-grid">
+                @Html.PropertyFor(x => x.CurrentContent.Image)
+            </div>
+        </div>
+        <div class="col-6 detail-contact">
+            <h2>Contact</h2>
+            <p>Tel: <a href="tel:@Model.CurrentContent.Phone">@Html.PropertyFor(x => x.CurrentContent.Phone)</a></p>
+            <p>Email: <a href="mailto:@Model.CurrentContent.Email">@Html.PropertyFor(x => x.CurrentContent.Email)</a></p>
+            <p>Sector: @Model.CurrentContent.Sector</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.About)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        </div>
+    </div>
+</div>

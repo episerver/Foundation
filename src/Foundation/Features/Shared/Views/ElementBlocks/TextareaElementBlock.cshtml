@@ -1,0 +1,25 @@
+@*
+    ====================================
+    Version: 5.0.0.0. Modified: 20210818
+    ====================================
+*@
+
+@using EPiServer.Forms.Helpers.Internal
+@using EPiServer.Forms.Implementation.Elements
+@model TextareaElementBlock
+
+@{
+    var formElement = Model.FormElement;
+    var labelText = Model.Label;
+    var cssClasses = Model.GetValidationCssClasses();
+}
+@using (Html.BeginElement(Model, new { @class = "FormTextbox FormTextbox--Textarea" + cssClasses, data_f_type = "textbox", data_f_modifier = "textarea" }))
+{
+    <label for="@formElement.Guid" class="Form__Element__Caption">@labelText</label>
+    <textarea name="@formElement.ElementName" id="@formElement.Guid" class="FormTextbox__Input form-control"
+        @(!string.IsNullOrWhiteSpace(Model.PlaceHolder) ? Html.Raw($"placeholder=\"{Model.PlaceHolder}\""): "")
+        data-f-label="@labelText" data-f-datainput
+        @Html.Raw(Model.AttributesString) aria-describedby="@Util.GetAriaDescribedByElementName(formElement.ElementName)"
+        aria-invalid="@Util.GetAriaInvalidByValidationCssClasses(cssClasses)" >@Model.GetDefaultValue()</textarea>
+    @Html.ValidationMessageFor(Model)
+}

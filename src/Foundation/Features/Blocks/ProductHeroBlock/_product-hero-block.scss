@@ -1,0 +1,22 @@
+﻿.product-hero-block {
+    display: flex;
+
+    @include media-breakpoint-down(md) {
+        flex-wrap: wrap;
+    }
+
+    &__column {
+        display: flex;
+        flex: 0 0 50%;
+
+        @include media-breakpoint-down(md) {
+            flex: 0 0 100%;
+        }
+    }
+
+    &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

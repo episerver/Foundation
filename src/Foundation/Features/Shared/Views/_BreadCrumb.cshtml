@@ -1,0 +1,11 @@
+﻿@model List<KeyValuePair<string, string>>
+
+<ul class="bread-crumb">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var b in Model)
+        {
+            <li><a href="@b.Value">@b.Key</a></li>
+        }
+    }
+</ul>

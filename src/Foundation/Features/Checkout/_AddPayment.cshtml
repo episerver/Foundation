@@ -1,0 +1,77 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
+
+@{
+    var totalItem = Model.Shipments.SelectMany(x => x.CartItems).Sum(x => x.Quantity);
+}
+
+<h4>@Html.TranslateFallback("/Shared/Payments", "Payments")</h4>
+<input type="hidden" class="jsTotalQuantityCheckout" value="@((int)totalItem)" />
+@if (Model.Payments.Any())
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <p class="title">Payment Type</p>
+                </div>
+                <div class="col-4">
+                    <p class="title">Amount</p>
+                </div>
+                <div class="col-2">
+
+                </div>
+            </div>
+            @foreach (var payment in Model.Payments)
+            {
+                <div class="row">
+                    <div class="col-6">
+                        @payment.Description
+                    </div>
+                    <div class="col-4">
+                        @payment.Amount.ToString()
+                    </div>
+                    <div class="col-2">
+                        <i data-feather="x" class="cursor-pointer jsRemovePayment" data-amount="@payment.Amount" data-method-id="@payment.PaymentMethodId" data-keyword="@payment.SystemKeyword"
+                           data-url="@Url.Action("RemovePayment", "Checkout", null)"></i>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+<hr />
+
+@if (Model.OrderSummary.PaymentTotal != 0)
+{
+    { await Html.RenderPartialAsync("Payment", Model); }
+    <div class="form-group">
+        @Html.LabelFor(model => model.OrderSummary.PaymentTotal)
+        @Html.TextBoxFor(model => model.OrderSummary.PaymentTotal, new { @class = "textbox" })
+        @Html.ValidationMessageFor(model => model.OrderSummary.PaymentTotal)
+    </div>
+
+    if (ViewData.ModelState["SelectedPayment"] != null && ViewData.ModelState["SelectedPayment"].Errors.Count > 0)
+    {
+        <div class="address-required-message alert alert-danger square-box">
+            <h6>Payment Method is invalid</h6>
+        </div>
+    }
+    if (ViewData.ModelState["PaymentTotal"] != null && ViewData.ModelState["PaymentTotal"].Errors.Count > 0)
+    {
+        <div class="address-required-message alert alert-danger square-box">
+            <h6>Payments total is invalid</h6>
+        </div>
+    }
+
+    <div class="form-group">
+        <button type="button" class="jsAddPayment button-black" url="@Url.Action("UpdatePayment", "Checkout")">
+            @Html.TranslateFallback("/Shared/AddPayment", "Add Payment")
+        </button>
+    </div>
+}
+
+<div class="jsOrderSummaryInPayment display-none">
+    @await Html.PartialAsync("_OrderSummary", Model.OrderSummary)
+</div>

@@ -1,0 +1,35 @@
+@*
+    ====================================
+    Version: 5.0.0.0. Modified: 20210818
+    ====================================
+*@
+
+@using EPiServer.Forms.Implementation.Elements
+@using EPiServer.Forms.Helpers.Internal
+@model SubmitButtonElementBlock
+
+@{ var formElement = Model.FormElement;
+    var buttonText = Model.Label;
+    var buttonDisableState = Model.GetFormSubmittableStatus(ViewContext.HttpContext);
+    var cssClasses = Model.GetValidationCssClasses(); }
+
+<button id="@formElement.Guid"
+        name="submit"
+        type="submit"
+        value="@formElement.Guid"
+        data-f-is-finalized="@Model.FinalizeForm.ToString().ToLower()"
+        data-f-is-progressive-submit="true"
+        data-f-type="submitbutton"
+        data-f-element-name="@formElement.ElementName"
+        @Html.Raw(Model.AttributesString)
+        @buttonDisableState
+        class="@(Model.Image == null ? "Form__Element FormExcludeDataRebind FormSubmitButton button-transparent-black " + cssClasses : "Form__Element FormExcludeDataRebind FormSubmitButton FormImageSubmitButton " + cssClasses)">
+    @if (Model.Image == null)
+    {
+        @buttonText
+    }
+    else 
+    {
+        <img src="@Model.Image.Path" data-f-is-progressive-submit="true" data-f-is-finalized="@Model.FinalizeForm.ToString().ToLower()" alt="@buttonText" />
+    }
+</button>

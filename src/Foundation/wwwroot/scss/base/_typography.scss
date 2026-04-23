@@ -1,0 +1,71 @@
+body {
+    color: $text-color;
+    font-size: $text-font-size;
+    font-family: $text-font-stack;
+    line-height: $text-line-height;
+}
+
+.title {
+    color: $text-light-color;
+}
+
+.sub-title {
+    color: $text-light-color;
+    font-size: 80%;
+}
+
+.light-text {
+    color: grey;
+}
+
+.content {
+    color: #666666;
+}
+
+.color-light {
+    color: white;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.light-svg {
+    fill: grey;
+    color: white;
+}
+
+.light-border-svg {
+    fill: white;
+    color: grey;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+}
+
+.error {
+    margin-bottom: 15px;
+}
+
+li.current {
+    font-weight: bold;
+    background-color: #f5f5f5;
+}
+
+.word-break {
+    word-break: break-word;
+}
+
+.download-file {
+    color: steelblue;
+
+    &:hover {
+        color: steelblue;
+    }
+}

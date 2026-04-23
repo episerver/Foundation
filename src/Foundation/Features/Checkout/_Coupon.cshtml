@@ -1,0 +1,50 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
+
+<div class="row">
+    <div class="col-12 checkout--panel-block">
+        <div class="checkout--panel">
+            <div class="checkout__panel-heading">
+                <h4 class="panel-title">@Html.TranslateFallback("/Checkout/Coupons/Heading", "Coupons and Promotional Codes")</h4>
+            </div>
+            <div class="checkout__panel-body">
+                <label for="coupon_code">@Html.TranslateFallback("/Checkout/Coupons/CouponCode/Info", "Got a Coupon Code? Enter it and we will apply that to your cart as well.")</label>
+                @if (!((bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"])))
+                {
+                    <div class="jsAddCouponContainer" action="@Url.Action("AddCouponCode", "Checkout")">
+                        <div class="full-width flex-between checkout--panel-block">
+                            <input type="text" class="textbox jsCouponCode">
+                            <button type="button" class="button-black jsAddCoupon jsInCheckout">
+                                @Html.TranslateFallback("/Checkout/Coupons/CouponCode/Button", "Apply")
+                            </button>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger square-box jsCouponErrorMess display-none">
+                        <p>@Html.TranslateFallback("/Checkout/Coupons/CouponCode/ErrorMessage", "The coupon code you entered is invalid.")</p>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="jsCouponLabel @(Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any() ? "" : "hidden")">
+                            @Html.TranslateFallback("/Checkout/Coupons/AppliedCoupons/Heading", "Coupons have been applied:")
+                        </h5>
+                        <div class="jsCouponListing">
+                            <input type="hidden" id="jsRenoveCouponUrl" value="@Url.Action("RemoveCouponCode", "Checkout")" />
+                            @if (Model.AppliedCouponCodes != null && Model.AppliedCouponCodes.Any())
+                            {
+                                foreach (var couponCode in Model.AppliedCouponCodes)
+                                {
+                                    <label class="filters-tag jsRemoveCoupon jsInCheckout" data-couponcode="@couponCode">
+                                        <span>@couponCode</span>
+                                        <span class="filters-tag__remove"><i class="cursor-pointer" data-feather="x" width="12"></i></span>
+                                    </label>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

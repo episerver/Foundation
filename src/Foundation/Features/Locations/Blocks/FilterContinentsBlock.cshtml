@@ -1,0 +1,43 @@
+@using Foundation.Features.Locations.LocationListPage
+@model LocationListViewModel
+
+@{
+    var continents = Model.Locations
+        .Where(l => !string.IsNullOrWhiteSpace(l.Continent))
+        .Select(l => l.Continent.Trim())
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .OrderBy(c => c)
+        .ToList();
+
+    var selectedContinents = (Model.QueryString["continent"].ToString() ?? "")
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(c => c.Trim())
+        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+    bool allSelected = selectedContinents.Count == 0;
+}
+
+<div class="filterblock" id="filterContinents" data-filtertype="continent">
+    <h4>
+        <i class="fa fa-globe"></i>
+        @Html.TranslateFallback("/Locations/Continent", "Continent")
+    </h4>
+    <ul class="portfolio-cats">
+        <li>
+            <label>
+                <input type="checkbox" class="select-all" @(allSelected ? "checked=\"checked\"" : "") />
+                @Html.TranslateFallback("/common/all", "All")
+            </label>
+        </li>
+        @foreach (var continent in continents)
+        {
+            <li>
+                <label>
+                    <input type="checkbox" class="select-some" value="@continent"
+                           @(selectedContinents.Contains(continent) ? "checked=\"checked\"" : "") />
+                    @continent
+                </label>
+            </li>
+        }
+    </ul>
+</div>

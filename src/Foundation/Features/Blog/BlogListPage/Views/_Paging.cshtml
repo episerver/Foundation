@@ -1,0 +1,87 @@
+﻿@using Foundation.Features.Blog.BlogListPage
+@using Foundation.Features.Shared.SelectionFactories
+
+@model BlogListPageViewModel
+
+@using (Html.BeginForm("BlogListBlock", "Test", FormMethod.Get, new { id = "jsGetBlogItemListPage" }))
+{
+    <input hidden id="RequestUrl" type="text" value="/BlogListPage/GetItemList" />
+    <input hidden id="PageId" name="PageId" type="text" value="@Model.PagingInfo.PageId" />
+    <input hidden id="PageNumber" name="PageNumber" type="text" value="@Model.PagingInfo.PageNumber" />
+    <input hidden id="PageSize" name="PageSize" type="text" value="@Model.PagingInfo.PageSize" />
+}
+
+@if (Model.CurrentContent.Template == TemplateSelections.Card || Model.CurrentContent.Template == TemplateSelections.Insight)
+{
+    <div class="flex-center jsLoadMoreDiv">
+        <button class="button-transparent-black @(Model.PagingInfo.PageCount <= Model.PagingInfo.PageNumber ? "" : "jsLoadMoreBlogs")"
+                pageNumber="@Model.PagingInfo.PageNumber"
+                pageId="@Model.PagingInfo.PageId"
+                pageCount="@Model.PagingInfo.PageCount"
+                @(Model.PagingInfo.PageCount <= Model.PagingInfo.PageNumber? "disabled" : "")>
+            @(Model.PagingInfo.PageCount <= Model.PagingInfo.PageNumber ? "No More" : "Load More")
+        </button>
+    </div>
+}
+else
+{
+    <div class="col-12 toolbar">
+        <div class="toolbar__left">
+            <strong>
+                @Model.PagingInfo.TotalRecord @Html.TranslateFallback("/Blog/Items", "Items")
+            </strong>
+        </div>
+        <div class="toolbar__center">
+            @if (Model.PagingInfo.PageCount > 1)
+            {
+                <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
+                <ul class="pagination">
+                    <li class="jsPaginateBlog " data="1">
+                        <a href="javascript:void(0)">
+                            &laquo;
+                        </a>
+                    </li>
+                    @for (int pageNo = 1; pageNo <= Model.PagingInfo.PageCount; pageNo++)
+                    {
+                        <li class="@(Model.PagingInfo.PageNumber == pageNo ? "active" : "") jsPaginateBlog" data="@pageNo">
+                            <a href="javascript:void(0)">
+                                @pageNo.ToString()
+                            </a>
+                        </li>
+                    }
+                    <li class="jsPaginateBlog " data="@Model.PagingInfo.Pages.Last()">
+                        <a href="javascript:void(0)">
+                            &raquo;
+                        </a>
+                    </li>
+                </ul>
+            }
+        </div>
+        <div class="toolbar__right">
+            <div id="limiter">
+                <label>@Html.TranslateFallback("/Search/View", "View"): </label>
+                <ul class="selection">
+                    <li>
+                        <a href="#">
+                            @Model.PagingInfo.PageSize
+                            <i style="font-size: 5px;" data-feather="chevron-down"></i>
+                        </a>
+                        <ul class="selection__dropdown">
+                            <li>
+                                <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.PagingInfo.PageSize == 15 ? 20 : 15)">@(Model.PagingInfo.PageSize == 15 ? 20 : 15)</a>
+                            </li>
+                            <li>
+                                <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.PagingInfo.PageSize == 30 || Model.PagingInfo.PageSize == 35 ? 20 : 30)">@(Model.PagingInfo.PageSize == 30 || Model.PagingInfo.PageSize == 35 ? 20 : 30)</a>
+                            </li>
+                            <li>
+                                <a class="jsPageSizeBlog " href="javascript:void(0)" data="@(Model.PagingInfo.PageSize == 35 ? 30 : 35)">@(Model.PagingInfo.PageSize == 35 ? 30 : 35)</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+

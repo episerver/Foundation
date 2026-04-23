@@ -1,0 +1,112 @@
+﻿@using Foundation.Features.CatalogContent.Product
+
+@model GenericProductViewModel
+
+<input type="hidden" name="productCode" id="productCode" value="@Model.Product.Code" />
+<div class="row">
+    <div class="col-md-4 col-sm-12">
+        <picture class="img-fluid">
+            <source data-srcset="@Model.Images.ElementAt(0)?width=1440&format=webp" type="image/webp" alt="@Model.Product.Code">
+            <img class="img-fluid jsProductImageShow lazyload" data-src="@Model.Images.ElementAt(0)?width=1440" loading="lazy" alt="@Model.Product.Code" />
+        </picture>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <h4 class="title">@Html.PropertyFor(x => x.Variant.DisplayName)</h4>
+        <h4 class="title sub-title">@Html.PropertyFor(x => x.Product.Brand)</h4>
+        <div class="row">
+            <div class="col-12">
+                @if (Model.DiscountedPrice < Model.ListingPrice)
+                {
+                    <span class="price__old">@Model.ListingPrice.ToString()</span>
+                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                }
+                else
+                {
+                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                }
+                @if (Model.HasSaleCode)
+                {
+                    @await Html.PartialAsync("_WarningHasSaleCode", null)
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Color", "Colors")</label>
+                @{
+                    var colors = new List<KeyValuePair<string, string>>();
+                    foreach (var c in Model.Colors)
+                    {
+                        colors.Add(new KeyValuePair<string, string>(c.Text, c.Value));
+                    }
+                }
+                @(await Component.InvokeAsync("Dropdown", new { list = colors,
+                    selectedValue = Model.Color,
+                    selectorClassItem = "jsSelectColorSize",
+                    name = "color"
+                }))
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label class="title">@Html.TranslateFallback("/ProductPage/VariationSelection/Size", "Sizes")</label>
+                @{
+                    var sizes = new List<KeyValuePair<string, string>>();
+                    foreach (var c in Model.Sizes)
+                    {
+                        sizes.Add(new KeyValuePair<string, string>(c.Text + (c.Disabled ? " (out of stock)" : ""), c.Value));
+                    }
+                }
+                @(await Component.InvokeAsync("Dropdown", new { list = sizes,
+                    selectedValue = Model.Size,
+                    selectorClassItem = "jsSelectColorSize",
+                    name = "size"
+                }))
+            </div>
+        </div>
+        @await Html.PartialAsync("_Store", Model.Stores)
+        @if (!Model.HasOrganization)
+        {
+            <div class="row">
+                <div class="col">
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Variant.Code" qty="1" store="delivery" selectedStore=""
+                                style="margin-right: 10px;">
+                            <i data-feather="shopping-cart"></i> Add to cart
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" style="margin-right: 10px;" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="button-transparent-black--icon addToWishlist" data="@Model.Variant.Code"><i data-feather="heart"></i> Add to Wishlist</button>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-12">
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Variant.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="button-transparent-black--icon addToWishlist" data="@Model.Variant.Code"><i data-feather="heart"></i> Add to Wishlist</button>
+                        <button class="button-transparent-black--icon addToSharedCart" data="@Model.Variant.Code"><i data-feather="shopping-cart"></i> Add to SharedCart</button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

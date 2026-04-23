@@ -1,0 +1,92 @@
+﻿@using Foundation.Features.Search
+
+@model FilterOptionViewModel
+
+<div class="col-12 toolbar">
+    <div class="toolbar__left">
+        <div class="view-mode">
+            <span title="Grid" class="view-button @(Model.ViewSwitcher == "Grid" ? "button-active" : "") button-grid jsViewMode jsUpdatePage" data="Grid">
+                <i data-feather="grid"></i>
+            </span>
+            <span title="List" class="view-button @(Model.ViewSwitcher == "List" ? "button-active" : "") button-list jsViewMode jsUpdatePage" data="List">
+                <i data-feather="list"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="toolbar__center">
+        @if (Model.Pages != null && Model.Pages.Count > 0)
+        {
+            <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
+            <ul class="pagination">
+                <li class="jsPaginate jsUpdatePage" data="1">
+                    <a href="javascript:void(0)">
+                        &laquo;
+                    </a>
+                </li>
+                @foreach (var page in Model.Pages)
+                {
+                    <li class="@(Model.Page == page ? "active" : "") jsPaginate jsUpdatePage" data="@(page)">
+                        <a href="javascript:void(0)">
+                            @(page.ToString())
+                        </a>
+                    </li>
+                }
+                <li class="jsPaginate jsUpdatePage" data="@Model.Pages.Last()">
+                    <a href="javascript:void(0)">
+                        &raquo;
+                    </a>
+                </li>
+            </ul>
+        }
+    </div>
+
+    <div class="toolbar__right">
+        <div id="limiter">
+            <label>@Html.TranslateFallback("/Search/View", "View"): </label>
+            <ul class="selection">
+                <li>
+                    <a href="#">
+                        @Model.PageSize
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="selection__dropdown">
+                        <li>
+                            <a class="jsPageSize jsUpdatePage" href="javascript:void(0)" data="@(Model.PageSize == 15 ? 20 : 15)">@(Model.PageSize == 15 ? 20 : 15)</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSize jsUpdatePage" href="javascript:void(0)" data="@(Model.PageSize == 30 || Model.PageSize == 35 ? 20 : 30)">@(Model.PageSize == 30 || Model.PageSize == 35 ? 20 : 30)</a>
+                        </li>
+                        <li>
+                            <a class="jsPageSize jsUpdatePage" href="javascript:void(0)" data="@(Model.PageSize == 35 ? 30 : 35)">@(Model.PageSize == 35 ? 30 : 35)</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="sort-by">
+            <label class="left">@Html.TranslateFallback("/Search/SortBy", "Sort By"): </label>
+            <ul class="selection">
+                <li>
+                    <a href="#">
+                        @(string.IsNullOrEmpty(Model.Sort) ? "Position" : Model.Sort)
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="selection__dropdown">
+                        <li>
+                            <a href="javascript:void(0)" class="jsSort jsUpdatePage" data="Name">@Html.TranslateFallback("/Search/Name", "Name")</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="jsSort jsUpdatePage" data="Price">@Html.TranslateFallback("/Search/Price", "Price")</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="jsSort jsUpdatePage" data="Position">@Html.TranslateFallback("/Search/Position", "Position")</a></li>
+                        <li><a href="javascript:void(0)" class="jsSort jsUpdatePage" data="Recommended">@Html.TranslateFallback("/Search/Recommended", "Recommended")</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="left box-sort jsSortDirection jsUpdatePage" data="@(Model.SortDirection.Equals("Asc") ? "Desc" : "Asc")" title="@(Model.SortDirection.Equals("Asc") ? Html.TranslateFallback("/Search/SetDescending", "Set Descending Direction") : Html.TranslateFallback("/Search/SetAscending", "Set Ascending Direction")))">
+                <i data-feather="@(Model.SortDirection.Equals("Asc") ? "arrow-down" : "arrow-up")"></i>
+            </a>
+        </div>
+    </div>
+</div>

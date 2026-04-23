@@ -1,0 +1,94 @@
+﻿@using Foundation.Features.MyOrganization.Budgeting
+
+@model BudgetingPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/EditPurchaserBudget", "Edit Purchaser Budget")</h4>
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("UpdateUserBudget", "Budgeting", FormMethod.Post, new { @class = "col-12" }))
+    {
+        <div class="row">
+            <div class="col-12 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Allocated", "Allocated")</label>
+                <input id="amount" type="text" class="textbox" value="@Model.NewBudgetOption.Amount.ToString("N")" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/SpentBudget", "Spent Budget")</label>
+                <input type="text" class="textbox" value="@Model.NewBudgetOption.SpentBudget.ToString("N")" disabled />
+            </div>
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Remaining", "Remaining")</label>
+                <input type="text" class="textbox" value="@Model.NewBudgetOption.RemainingBudget.ToString("N")" disabled />
+                <small>@Html.TranslateFallback("/B2B/Budgeting/CalculatedDate", "Calculated Date")</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</label>
+                <div class="custom-date-input">
+                    <input type="date" id="startDate" value="@Model.NewBudgetOption.StartDate.ToString("yyyy-MM-dd")" class="form-control square-box" @(Model.NewBudgetOption.IsCurrentBudget ? "disabled" : "") />
+                </div>
+            </div>
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/DueDate", "Due Date")</label>
+                <div class="custom-date-input">
+                    <input type="date" id="endDate" value="@Model.NewBudgetOption.DueDate.ToString("yyyy-MM-dd")" class="form-control square-box" @(Model.NewBudgetOption.IsCurrentBudget ? "disabled" : "") />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</label>
+                <div>
+                    @{
+                        var statuses = new List<KeyValuePair<string, string>>();
+                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/Planned", "Planned").ToString(), "Planned"));
+                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/OnHold", "OnHold").ToString(), "OnHold"));
+                    }
+                    @(await Component.InvokeAsync("Dropdown", new { list = statuses,
+                        selectedValue = "",
+                        selectorClassItem = "statusBudget",
+                        name = "statusBudget"}))
+                </div>
+            </div>
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Currency", "Currency")</label>
+                <div>
+                    @{
+                        var currencies = new List<KeyValuePair<string, string>>();
+                        currencies.Add(new KeyValuePair<string, string>(Model.NewBudgetOption.Currency, Model.NewBudgetOption.Currency));
+                    }
+
+                    @(await Component.InvokeAsync("Dropdown", new { list = currencies,
+                        selectedValue = "",
+                        selectorClassItem = "currencyBudget",
+                        name = "currencyBudget"
+                    }))
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="button" data-budget-id="@Model.NewBudgetOption.BudgetId" class="button-black jsSaveBudget">
+                    @Html.TranslateFallback("/Shared/Save", "Save")
+                </button>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black cancelUpdateBudget">
+                    @Html.TranslateFallback("/Shared/Cancel", "Cancel")
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="BudgetWarningMessage" class="col-12 required"></div>
+        </div>
+    }
+</div>

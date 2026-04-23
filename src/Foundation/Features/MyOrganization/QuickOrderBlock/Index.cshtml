@@ -1,0 +1,91 @@
+﻿@using Foundation.Features.MyOrganization.QuickOrderBlock
+
+@model QuickOrderViewModel
+
+<h3>@Html.PropertyFor(m => m.CurrentBlock.Title)</h3>
+<div class="row">
+    <div class="col-12">
+        @Html.PropertyFor(m => m.CurrentBlock.MainBody)
+    </div>
+</div>
+
+@using (Html.BeginForm("Import", "QuickOrderBlock", FormMethod.Post, new { @class = "jsQuickOrderBlockForm", @enctype = "multipart/form-data" }))
+{
+    var countRow = Model.ProductsList == null ? 0 : Model.ProductsList.Count;
+    @Html.AntiForgeryToken()
+    <input id="currentTotalProduct" type="hidden" class="hidden" value="@countRow" />
+    <div class="jsProductListing">
+        @if (Model.ProductsList != null && Model.ProductsList.Count > 0)
+        {
+            for (int i = 0; i < Model.ProductsList.Count; i++)
+            {
+                <div class="row js-product-row" data-order="@i">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                        @Html.TextBoxFor(x => x.ProductsList[i].ProductName, new { @class = "form-control square-box", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        @Html.TextBoxFor(x => x.ProductsList[i].Sku, new { @class = "form-control square-box position-relative", required = "required" })
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        @Html.TextBoxFor(x => x.ProductsList[i].UnitPrice, "{0:0.00}", new { @class = "form-control square-box", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        @Html.TextBoxFor(x => x.ProductsList[i].Quantity, new { @class = "form-control square-box", required = "required" })
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        @Html.TextBoxFor(x => x.ProductsList[i].TotalPrice, "{0:0.00}", new { @class = "form-control square-box", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-1">
+                        <a href="#" class="btn btn-danger jsDeleteRow">
+                            <i data-feather="trash-2"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row js-product-row" data-order="0">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                    @Html.TextBoxFor(x => x.ProductsList[0].ProductName, new { @class = "form-control square-box", @readonly = "readonly", placeholder = "Product name" })
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    @Html.TextBoxFor(x => x.ProductsList[0].Sku, new { @class = "form-control square-box position-relative", required = "required", placeholder = "Sku code" })
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    @Html.TextBoxFor(x => x.ProductsList[0].UnitPrice, "{0:0.00}", new { @class = "form-control square-box", @readonly = "readonly", placeholder = "Unit price" })
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    @Html.TextBoxFor(x => x.ProductsList[0].Quantity, new { @class = "form-control square-box", required = "required", placeholder = "Quantity" })
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    @Html.TextBoxFor(x => x.ProductsList[0].TotalPrice, "{0:0.00}", new { @class = "form-control square-box", @readonly = "readonly", placeholder = "Total price" })
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-1">
+                    <a href="#" class="btn btn-danger jsDeleteRow">
+                        <i data-feather="trash-2"></i>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a class="button-transparent-black jsAddNewRow" href="javascript:void(0);"><i data-feather="plus"></i></a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            <input type="file" class="hidden" data-interface="lattice" data-label="Upload CSV" id="fileUploaded">
+            <button type="button" class="button-black jsUploadCSVBtn">
+                <i data-feather="upload"></i>
+                <span class="jsLabelUpload"></span>
+            </button>
+            <button type="submit" class="button-black jsAddToCartQuickOrderBtn">
+                <i data-feather="shopping-cart"></i>
+                @Html.TranslateFallback("/Product/Button/AddToCart", "Add To Cart")
+            </button>
+        </div>
+    </div>
+}

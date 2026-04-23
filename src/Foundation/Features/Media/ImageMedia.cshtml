@@ -1,0 +1,12 @@
+﻿@using Foundation.Features.Media
+
+@model ImageMediaDataViewModel
+
+@if (!string.IsNullOrEmpty(Model.ImageLink))
+{
+    <a href="@(string.IsNullOrEmpty(Model.LinkToContent) ? "#" : Url.ContentUrl(Model.LinkToContent))">
+        <div class = "d-flex" style="@Model.ImageAlignment; @Model.PaddingStyles">
+            <img data-src="@Url.ContentUrl(Model.ImageLink)?format=webp" alt="@(Model.AltText ?? Model.Description)" title="@(Model.Title ?? Model.Name)" class="img-fluid lazyload" />
+        </div>
+    </a>
+}

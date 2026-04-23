@@ -1,0 +1,114 @@
+﻿@using EPiServer.Commerce.Order
+@using Mediachase.Commerce.Orders
+@using EPiServer.Commerce.Catalog.ContentTypes
+@using Foundation.Features.MyAccount.OrderDetails
+@using Foundation.Features.CatalogContent.Variation
+@using Foundation.Infrastructure.Commerce.Extensions
+
+@model OrderDetailsItemViewModel
+
+@{
+    var variant = Model.LineItem.GetEntryContent<EntryContentBase>() as GenericVariant;
+    var isQuoteRequestStatus = ((bool)(ViewData["isQuoteRequestStatus"] ?? false));
+    var isQuote = ((bool)(ViewData["isQuote"] ?? false));
+}
+
+<div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+    <picture class="img-fluid">
+        <source data-srcset="@Model.LineItem.GetThumbnailUrl()?format=webp" type="image/webp">
+        <img data-src="@Model.LineItem.GetThumbnailUrl()" class="img-fluid lazyload" alt="" />
+    </picture>
+</div>
+<div class="col-md-10 col-lg-10 col-sm-9 col-xs-9">
+    <div class="product-tile-list__right-box">
+        <div class="title">
+            <a href="@Model.LineItem.GetUrl()" class="account-link">@Model.LineItem.GetEntryContentBase().DisplayName</a>
+        </div>
+        <div class="content product-tile-list__content">
+            <div class="row">
+                <div class="col-md-1 col-xs-6 large-cart__label">
+                    <label class="title">Price: </label>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    @if (isQuoteRequestStatus)
+                    {
+                        using (Html.BeginForm("ChangePrice", "OrderDetails", FormMethod.Post, new { data_container = "orderDetailsView" }))
+                        {
+                            @Html.Hidden("shipmentId", Model.Shipment.ShipmentId)
+                            @Html.Hidden("orderGroupId", Model.PurchaseOrder.Id)
+                            @Html.Hidden("lineItemId", Model.LineItem.LineItemId)
+                            @Html.TextBox("placedPrice", Model.LineItem.PlacedPrice.ToString("f2"), new { @class = "textbox jsChangeDetailsPrice", size = 4 })
+                        }
+                    }
+                    else
+                    {
+                        <span class="price__discount">@Model.LineItem.GetDiscountedPrice(((IPurchaseOrder)Model.PurchaseOrder).Currency).ToString()</span>
+                    }
+                </div>
+            </div>
+            @if (variant != null)
+            {
+                <div class="row">
+                    <div class="col-md-1 col-xs-6 large-cart__label">
+                        <label class="title">Size: </label>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <input type="text" disabled class="textbox" value="@variant.Size" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 col-xs-6 large-cart__label">
+                        <label class="title">Color: </label>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <input type="text" disabled class="textbox" value="@variant.Color" />
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-1 col-sm-6 large-cart__label">
+                    <label class="title">Quantity: </label>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    @if (isQuoteRequestStatus)
+                    {
+                        using (Html.BeginForm("ChangeQuantity", "OrderDetails", FormMethod.Post, new { data_container = "orderDetailsView" }))
+                        {
+                            @Html.Hidden("shipmentId", Model.Shipment.ShipmentId)
+                            @Html.Hidden("orderGroupId", Model.PurchaseOrder.Id)
+                            @Html.Hidden("lineItemId", Model.LineItem.LineItemId)
+                            @Html.TextBox("quantity", Model.LineItem.Quantity.ToString("0"), new { @class = "textbox jsChangeDetailsQuantity", size = 4 })
+                        }
+                    }
+                    else
+                    {
+                        <span class="title">
+                            @Model.LineItem.Quantity.ToString("0")
+                        </span>
+                    }
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p class="title">
+                        Sub total:
+                        <span class="price__discount subtotal-@Model.LineItem.Code">
+                            @Model.LineItem.GetExtendedPrice(((IPurchaseOrder)Model.PurchaseOrder).Currency).ToString()
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 required pb-2">
+                    @Model.ReturnFormStatus
+                </div>
+                <div class="col-12">
+                    @if (!isQuote)
+                    {
+                        <button type="submit" id="return-@Model.LineItem.LineItemId" data-shipment-link="@Model.Shipment.ShipmentId" data-order-link="@Model.PurchaseOrder.OrderGroupId" data-total-return="@Model.TotalCanReturn()" data-lineItem-link="@Model.LineItem.LineItemId" class="button-black jsReturnLineItem" data-bs-toggle="modal" data-bs-target="#returnSettingModal" @(!Model.Shipment.OrderShipmentStatus.Equals(OrderShipmentStatus.Shipped) || !Model.CanReturnOrder() ? "disabled" : "")>
+                            Return
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

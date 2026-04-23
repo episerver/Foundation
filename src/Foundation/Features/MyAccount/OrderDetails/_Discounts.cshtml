@@ -1,0 +1,49 @@
+﻿@using Mediachase.Commerce
+@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.OrderDetails
+
+@model OrderDetailsViewModel
+
+@{
+    var promotions = Model.PurchaseOrder.GetFirstForm().Promotions;
+}
+
+@if (promotions != null && promotions.Count > 0)
+{
+    <div class="row">
+        <div class="col-12">
+            <h4>Discounts</h4>
+            <table class="table table-striped no-border">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.TranslateFallback("/Shared/DiscountType", "Discount Type")
+                        </th>
+                        <th>
+                            @Html.TranslateFallback("/Shared/Name", "Name")
+                        </th>
+                        <th>
+                            @Html.TranslateFallback("/Shared/Description", "Description")
+                        </th>
+                        <th>
+                            @Html.TranslateFallback("/Shared/SavedAmount", "Saved Amount")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var promotion in promotions)
+                    {
+                        <tr>
+                            <td>@promotion.DiscountType.ToString()</td>
+                            <td>@promotion.Name</td>
+                            <td>@promotion.Description</td>
+                            <td>@(new Money(@promotion.SavedAmount, @Model.PurchaseOrder.Currency))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+}

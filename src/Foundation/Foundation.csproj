@@ -1,0 +1,149 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <VersionPrefix>2021.04.1.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <PackageVersion Condition=" '$(PackageVersion)' == '' ">$(VersionPrefix)$(VersionSuffix)</PackageVersion>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Optimizely CMS and Commerce, with OIDC provider and other main packages -->
+    <!-- AdaptiveImages removed: no CMS 13 version (requires EPiServer.CMS < 13.0.0 and ImageSharp < 3.0.0). -->
+    <!-- AdaptiveImages.Unsplash removed: depends on AdaptiveImages. -->
+    <!-- Baaijte.Optimizely.ImageSharp.Web removed: no CMS 13 version (< 13.0.0 constraint). Use EPiServer.ImageLibrary.ImageSharp instead. -->
+    <PackageReference Include="EPiServer.CMS" Version="13.0.1" />
+    <PackageReference Include="EPiServer.Cms.UI.AspNetIdentity" Version="13.0.1" />
+    <PackageReference Include="EPiServer.OptimizelyIdentity" Version="13.0.1" />
+    <!-- EPiServer.CMS.AspNetCore.HtmlHelpers and TagHelpers absorbed into EPiServer.CMS 13.0.1 meta-package; add back if restore fails -->
+    <!-- EPiServer.CMS.WelcomeIntegration.UI removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <PackageReference Include="EPiServer.CMS.TinyMce" Version="13.0.1" />
+    <PackageReference Include="EPiServer.Cms.UI.VisitorGroups" Version="13.0.1" />
+    <PackageReference Include="EPiServer.Commerce" Version="15.0.0-preview1" />
+    <!-- Commerce.ODP 15.0.0-preview1 does not exist yet; override transitive pin to latest available (14.45.3). NU1605 suppressed. -->
+    <PackageReference Include="EPiServer.Commerce.ODP" Version="14.45.3">
+      <NoWarn>NU1605</NoWarn>
+    </PackageReference>
+    <PackageReference Include="EPiServer.Hosting" Version="13.0.1" />
+    <!-- Updated from 1.0.1 to 13.0.0 for CMS 13 compatibility. -->
+    <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="13.0.1" />
+    <!-- EPiServer.Labs.ContentManager.Core removed: superseded by built-in CMS 13 Content Manager. -->
+    <!-- EPiServer.Labs.ProjectEnhancements removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- EPiServer.MarketingAutomationIntegration.ExactTarget removed: user decision. -->
+    <!-- EPiServer.OpenIDConnect.UI removed: no CMS 13 version (requires EPiServer.CMS.AspNetCore.Templating < 13.0.0). -->
+    <!-- EPiServer.OptimizelyIdentity: DXP cloud auth; not needed for self-hosted CMS 13. -->
+    <!-- EPiServer.Session removed: targets net5/net6 only, not net10 -->
+    <!-- EPiServer.Telemetry.UI removed: CMS 12 only; telemetry already disabled in Startup.cs -->
+    <!-- APIs: Content Delivery API removed — EPiServer.ContentDeliveryApi.* requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ContentDefinitionsApi removed: requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ContentDeliveryApi.Cms removed: requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ContentDeliveryApi.Commerce removed: requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ContentDeliveryApi.Forms removed: requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ContentDeliveryApi.Search removed: requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ContentManagementApi removed: requires EPiServer.CMS.UI.Core < 13.0.0 -->
+    <!-- EPiServer.ServiceApi.Commerce removed: requires EPiServer.Commerce.Core >= 14.15.5 && < 15.0.0 -->
+    <!-- Optimizely Search & Navigation (Find) removed: no CMS 13 version; replaced by Graph below -->
+    <!-- EPiServer.Find.Cms removed: no CMS 13 version -->
+    <!-- EPiServer.Find.Commerce removed: no CMS 13 version -->
+    <!-- Phase 4: Optimizely Graph / Content Graph -->
+    <PackageReference Include="Optimizely.Graph.Cms" Version="13.0.1" />
+    <PackageReference Include="Optimizely.Graph.Cms.Query" Version="13.0.1" />
+    <PackageReference Include="EPiServer.Cms.UI.ContentManager" Version="13.0.1" />
+    <PackageReference Include="Optimizely.Cmp.Client" Version="1.1.0" />
+    <!-- Optimizely.Cms.Cmp.Publishing removed: no CMS 13 version (requires EPiServer.CMS.UI < 13.0.0). -->
+    <!-- PowerSlice removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- Productivity enhancements, Tools, Other Add-ons -->
+    <PackageReference Include="Advanced.CMS.AdvancedReviews" Version="2.0.0" />
+    <!-- Advanced.CMS.BulkEdit removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- Advanced.CMS.GroupingHeader removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="6.0.0" />
+    <!-- EPiServer.GoogleAnalytics removed: no CMS 13 version. Replace with direct GA4 tag in _MasterLayout.cshtml. -->
+    <!-- EPiServer.Labs.ContentManager removed: superseded by built-in CMS 13 Content Manager. -->
+    <!-- EPiServer.Labs.LanguageManager removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- EPiServer.PdfPreview removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- Geta.NotFoundHandler.Optimizely removed: no CMS 13 version. Custom 404 middleware to be implemented. -->
+    <!-- Geta.Optimizely.Categories removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- Geta.Optimizely.Categories.Find removed: no CMS 13 version + depends on Find. -->
+    <!-- Optimizely.Labs.MarketingAutomationIntegration.ODP removed: no CMS 13 version. -->
+    <!-- Updated from 2.1.8 to 3.1.12: CMS 13 transitively requires >= 3.1.12. -->
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <!-- TinymceDamPicker removed: no CMS 13 version. -->
+    <!-- Optimizely Forms & Marketing Automation Connectors -->
+    <PackageReference Include="EPiServer.Events.ChangeNotification" Version="13.0.1" />
+    <!-- Updated from 5.10.7: Forms 6.0.0 is the CMS 13 version (removes IBlobFactory, IGeolocationResult deps). -->
+    <PackageReference Include="EPiServer.Forms" Version="6.0.0" />
+    <!-- EPiServer.Forms.Samples removed: latest 4.2.7 requires Forms < 6.0.0 and CMS < 13.0.0 (net6 only). -->
+    <!-- EPiServer.Marketing.Automation.Forms removed: ExactTarget dependency removed. -->
+    <!-- Personalization -->
+    <!-- EPiServer.Personalization.Commerce removed: no CMS 13 version (requires Commerce < 15). -->
+    <!-- EPiServer.Personalization.MaxMindGeolocation removed: depends on Personalization.Commerce. -->
+    <!-- A/B Testing -->
+    <!-- EPiServer.Marketing.Testing removed: explicitly requires CMS < 13.0.0. -->
+    <!-- Social -->
+    <!-- EPiServer.Social.Framework removed: user decision + deprecated. -->
+    <!-- Visitor group criterion for ODP -->
+    <!-- UNRVLD.ODP.VisitorGroups removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <!-- Misc -->
+    <PackageReference Include="FileHelpers" Version="3.5.2" />
+    <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="7.1.0" />
+    <PackageReference Include="Powell.CouponCode" Version="1.0.3" />
+    <PackageReference Include="Schema.NET" Version="11.0.1" />
+    <!-- Updated from 6.0.1: Commerce.Core 15.0.0-preview1 transitively requires >= 10.0.2. -->
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.2" />
+    <!-- Updated from 6.0.1: Commerce.Core 15.0.0-preview1 transitively requires >= 7.0.0. -->
+    <PackageReference Include="System.Linq.Async" Version="7.0.0" />
+    <PackageReference Include="Wangkanai.Detection" Version="6.11.3" />
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="lang\**\*" />
+    <Content Include="lang\**\*" CopyToPublishDirectory="PreserveNewest" />
+    <None Update="App_Data\**" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="modules\_protected\Foundation\**" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Remove="Features\MultiShipment\**" />
+    <Compile Remove="Infrastructure\Plugins\**" />
+    <Content Remove="Features\MultiShipment\**" />
+    <Content Remove="Infrastructure\Plugins\**" />
+    <EmbeddedResource Remove="Features\MultiShipment\**" />
+    <EmbeddedResource Remove="Infrastructure\Plugins\**" />
+    <None Remove="Features\MultiShipment\**" />
+    <Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
+    <Compile Remove="Infrastructure\Kpi\FilledInFormKpi.cs" />
+    <!-- Optimizely Find removed: no CMS 13 version. Graph replacement in Phase 4. -->
+    <!-- Exclude entire Infrastructure\Find directory (15 files have EPiServer.Find imports). -->
+    <Compile Remove="Infrastructure\Find\**" />
+    <Content Remove="Infrastructure\Find\**" />
+    <EmbeddedResource Remove="Infrastructure\Find\**" />
+    <!-- Re-include Infrastructure\Find files that have NO EPiServer.Find.* imports. -->
+    <!-- Stubs for Find-dependent types are in Features\Search\FindTypeStubs.cs. -->
+    <Compile Include="Infrastructure\Find\Facets\FacetGroupOption.cs" />
+    <Compile Include="Infrastructure\Find\Facets\FacetOption.cs" />
+    <Compile Include="Infrastructure\Find\Facets\IFacetRegistry.cs" />
+    <Compile Include="Infrastructure\Find\Facets\FacetRegistry.cs" />
+    <Compile Include="Infrastructure\Find\Facets\IFacetConfiguration.cs" />
+    <Compile Include="Infrastructure\Find\Facets\Config\FacetEnums.cs" />
+    <Compile Include="Infrastructure\Find\Facets\Config\FacetFilterConfigurationItem.cs" />
+    <Compile Include="Infrastructure\Find\Facets\Config\SelectOneEnumAttribute.cs" />
+    <Compile Include="Infrastructure\Find\Facets\Config\IFacetConfigFactory.cs" />
+    <Compile Include="Infrastructure\Find\Facets\Config\IgnoreCollectionEditorDescriptor.cs" />
+    <!-- FacetFilterConfigurationProperty is now at Features\Settings\FacetFilterConfigurationProperty.cs
+         (moved out of excluded Infrastructure\Find directory so [PropertyDefinitionTypePlugIn] scanner discovers it) -->
+    <Compile Include="Infrastructure\Find\Initialize.cs" />
+    <!-- Locations: re-enabled in Phase 4. Controllers rewritten to use IContentLoader (no Find/geo-search). -->
+    <!-- ProductFilterBlocks re-enabled in Phase 5: see Features\Blocks\ProductFilterBlocks\ -->
+    <!-- PersonListPage: re-enabled in Phase 4. Controller rewritten to use IContentLoader. -->
+    <!-- FoundationCatalogContentEventListener, FoundationFindConventions: deleted (Graph handles indexing automatically). -->
+    <!-- UsersIndexJob: deleted (Graph handles user indexing automatically). -->
+    <!-- BulkUpdateController uses ContentApi (CDAPI) types removed in CMS 13. -->
+    <Compile Remove="Infrastructure\Cms\BulkUpdateController.cs" />
+    <!-- AdaptiveImages removed: AdaptiveBootstrapCardBlock and AdaptiveHeroBlock depend on it. -->
+    <Compile Remove="Features\Blocks\AdaptiveBootstrapCardBlock\**" />
+    <Content Remove="Features\Blocks\AdaptiveBootstrapCardBlock\**" />
+    <Compile Remove="Features\Blocks\AdaptiveHeroBlock\**" />
+    <Content Remove="Features\Blocks\AdaptiveHeroBlock\**" />
+    <!-- ProductFilterBlocks re-enabled: rebuilt using in-memory LINQ predicates (no EPiServer.Find dependency). -->
+    <Folder Include="Infrastructure\Kpi\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+</Project>

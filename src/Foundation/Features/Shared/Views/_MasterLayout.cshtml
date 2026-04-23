@@ -1,0 +1,65 @@
+@model IContentViewModel<IContent>
+@inject IContextModeResolver contextModeResolver
+<!DOCTYPE html>
+<html lang="en" class="@(contextModeResolver.CurrentMode == ContextMode.Edit ? "editMode" : "")">
+<head>
+    @if (!this.ViewContext.IsInEditMode()) {
+    <script type='text/javascript'>
+        var zaius = window['zaius']||(window['zaius']=[]);zaius.methods=["initialize","onload","customer","entity","event","subscribe","unsubscribe","consent","identify","anonymize","dispatch"];zaius.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);zaius.push(t);return zaius}};(function(){for(var i=0;i<zaius.methods.length;i++){var method=zaius.methods[i];zaius[method]=zaius.factory(method)}var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src=("https:"===document.location.protocol?"https://":"http://")+"d1igp3oop3iho5.cloudfront.net/v2/W4WzcEs-ABgXorzY7h1LCQ/zaius-min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+        zaius.event('pageview');
+    </script>
+    <script src="~/js/OdpJsTracking.js"></script>
+    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    @Html.CanonicalLink()
+    @if (Model.CurrentContent is EntryContentBase)
+    {
+        @Html.RenderMetaDataForCommerce(Model.CurrentContent)
+        @Html.RenderExtendedCssForCommerce(Model.CurrentContent)
+
+        if (Model.CurrentContent is EntryContentBase)
+        {
+            <title>@((Model.CurrentContent as EntryContentBase).DisplayName)</title>
+        }
+        else
+        {
+            <title>Model.CurrentContent?.Name</title>
+        }
+    }
+    else
+    {
+        @Html.RenderMetaData(Model.CurrentContent)
+        <title> @Model.CurrentContent?.Name</title>
+    }
+
+    @if (Model.CurrentContent is not null)
+    {
+        @Html.RenderOpenGraphMetaData(Model)
+    }
+   
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Thasadith&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="~/icons/episerver.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/icons/episerver.png" type="image/x-icon" />
+    <link href="~/scss/main.min.css" rel="stylesheet" type="text/css" />
+    @RenderSection("AdditionalStyles", required: false)
+    @Html.RequiredClientResources("Header")
+    @if (Model.CurrentContent is not null)
+    {
+        @Html.RenderExtendedCss(Model.CurrentContent)
+        @Html.RenderHeaderScripts(Model.CurrentContent)
+    }
+    @if (Model.CurrentContent is EntryContentBase || Model.CurrentContent is CatalogContentBase)
+    {
+        @Html.RenderHeaderScriptsForCommerce(Model.CurrentContent)
+    }
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

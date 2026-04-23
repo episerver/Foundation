@@ -1,0 +1,68 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model OrderSummaryViewModel
+
+<div class="checkout--bill__group">
+    <div class="checkout--bill__item">
+        <div class="flex-between">
+            <p class="title">@Html.TranslateFallback("/Checkout/SubTotal", "Sub Total For Your Items")</p>
+            <p class="title">@Model.SubTotal.ToString()</p>
+        </div>
+    </div>
+    @if (Model.OrderDiscounts != null && Model.OrderDiscounts.Any())
+    {
+        <div class="checkout--bill__item">
+            <div class="flex-between">
+                <p class="title"> @Html.TranslateFallback("/Checkout/OrderLevelDiscounts", "Additional Order Level Discounts")</p>
+                <p class="title">- @Model.OrderDiscountTotal.ToString()</p>
+            </div>
+
+            @foreach (var discount in Model.OrderDiscounts)
+            {
+                <div class="flex-between">
+                    <span>@discount.DisplayName</span>
+                    <span>- @discount.Discount.ToString()</span>
+                </div>
+            }
+        </div>
+    }
+    <div class="checkout--bill__item">
+        <div class="flex-between">
+            <p class="title">@Html.Translate("/Checkout/ShippingAndTax")</p>
+            <p class="title pull-right">@Model.ShippingTaxTotal.ToString()</p>
+        </div>
+        @if (Model.ShippingDiscountTotal != 0)
+        {
+            <div class="checkout--bill__sub-item">
+                <div class="flex-between">
+                    <span>@Html.Translate("/Checkout/ShippingSubtotal")</span>
+                    <span>@Model.ShippingSubtotal.ToString()</span>
+                </div>
+            </div>
+            <div class="checkout--bill__sub-item">
+                <div class="flex-between">
+                    <span>@Html.Translate("/Checkout/ShippingDiscount")</span>
+                    <span>- @Model.ShippingDiscountTotal.ToString()</span>
+                </div>
+            </div>
+        }
+        <div class="checkout--bill__sub-item">
+            <div class="flex-between">
+                <span>@Html.Translate("/Checkout/ShippingTotal")</span>
+                <span>@Model.ShippingTotal.ToString()</span>
+            </div>
+        </div>
+        <div class="checkout--bill__sub-item">
+            <div class="flex-between">
+                <span>@Html.Translate("/Checkout/TaxTotal")</span>
+                <span>@Model.TaxTotal.ToString()</span>
+            </div>
+        </div>
+    </div>
+    <div class="checkout--bill__item">
+        <div class="flex-between">
+            <p class="title">@Html.TranslateFallback("/Checkout/CartTotal", "Total for cart")</p>
+            <p class="title">@Model.CartTotal.ToString()</p>
+        </div>
+    </div>
+</div>

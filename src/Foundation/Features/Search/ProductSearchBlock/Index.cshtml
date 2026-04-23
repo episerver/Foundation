@@ -1,0 +1,38 @@
+﻿@using Foundation.Features.Search.ProductSearchBlock
+
+@model ProductSearchResultViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="row">
+        <div class="col-12">
+            <h2>@Html.PropertyFor(p => p.Heading)</h2>
+        </div>
+    </div>
+
+    @if (Model.Products != null && Model.Products.Any())
+    {
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                if (Model.ItemsPerRow == 6)
+                {
+                    <div class="col-sm-12 col-md-4 col-lg-2">
+                        @await Html.PartialAsync("_ProductGridItem", product)
+                    </div>
+                }
+                else if (Model.ItemsPerRow == 4)
+                {
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        @await Html.PartialAsync("_ProductGridItem", product)
+                    </div>
+                }
+                else
+                {
+                    <div class="col col-6 col-lg-4">
+                        @await Html.PartialAsync("_ProductGridItem", product)
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

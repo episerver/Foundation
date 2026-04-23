@@ -1,0 +1,37 @@
+﻿@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+
+@model SearchViewModel<SearchResultPage>
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.PdfSearchResult != null && Model.PdfSearchResult.Hits != null && Model.PdfSearchResult.Hits.Any())
+{
+    <ul class="style-list-none">
+        <li class="searchbox__heading">
+            <b>Documents</b>
+        </li>
+        @foreach (var content in Model.PdfSearchResult.Hits)
+        {
+
+            <li class="searchbox__row">
+                <a href="@content.Url" class="searchbox__product-name">
+                    @Html.Raw(content.Title)
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <ul class="style-list-none">
+        <li class="searchbox__row searchbox__heading">
+            <b>Documents</b>
+        </li>
+        <li class="searchbox__row">
+            <p class="searchbox__notfound">No result found.</p>
+        </li>
+    </ul>
+}

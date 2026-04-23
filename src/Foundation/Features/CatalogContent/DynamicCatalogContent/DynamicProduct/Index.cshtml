@@ -1,0 +1,18 @@
+﻿@using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
+@inject IContextModeResolver contextModeResolver
+@model DynamicProductViewModel
+
+<div class="row product-detail dynamic-product">
+    @await Html.PartialAsync("_ProductDetail", Model)
+</div>
+
+@if ((Model.CurrentContent.ContentArea != null && !Model.CurrentContent.ContentArea.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
+{
+    <div class="row product-detail__contentarea">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.ContentArea)
+        </div>
+    </div>
+}
+
+@* Recommendations removed: EPiServer.Personalization.Commerce has no CMS 13 version. *@

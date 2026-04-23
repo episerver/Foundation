@@ -1,0 +1,46 @@
+using Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicVariation;
+using Foundation.Infrastructure.Cms;
+using Foundation.Infrastructure.Commerce.Customer.Services;
+
+namespace Foundation.Features.CatalogContent.DynamicCatalogContent.DynamicProduct
+{
+    public class DynamicProductController : CatalogContentControllerBase<DynamicProduct>
+    {
+        private readonly bool _isInEditMode;
+        private readonly CatalogEntryViewModelFactory _viewModelFactory;
+
+        public DynamicProductController(IsInEditModeAccessor isInEditModeAccessor,
+            CatalogEntryViewModelFactory viewModelFactory,
+            //IReviewService reviewService,
+            //IReviewActivityService reviewActivityService,
+            ReferenceConverter referenceConverter,
+            IContentLoader contentLoader,
+            UrlResolver urlResolver,
+            ILoyaltyService loyaltyService) : base(referenceConverter, contentLoader, urlResolver, /*reviewService, reviewActivityService,*/ loyaltyService)
+        {
+            _isInEditMode = isInEditModeAccessor();
+            _viewModelFactory = viewModelFactory;
+        }
+
+        [HttpGet]
+        public ActionResult Index(DynamicProduct currentContent, string variationCode = "", bool skipTracking = false)
+        {
+            var viewModel = _viewModelFactory.Create<DynamicProduct, DynamicVariant, DynamicProductViewModel>(currentContent, variationCode);
+
+            if (_isInEditMode && viewModel.Variant == null)
+            {
+                return View(viewModel);
+            }
+
+            if (viewModel.Variant == null)
+            {
+                return NotFound();
+            }
+
+            viewModel.GenerateVariantGroup();
+            currentContent.AddBrowseHistory();
+            viewModel.BreadCrumb = GetBreadCrumb(currentContent.Code);
+            return View("", viewModel);
+        }
+    }
+}

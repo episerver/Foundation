@@ -1,0 +1,14 @@
+﻿@using Foundation.Features.Checkout.Payments
+
+@model  BudgetPaymentOption
+
+@Html.HiddenFor(model => model.PaymentMethodId)
+
+<br />
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-info square-box">
+            @Html.TranslateFallback("/Checkout/Payment/Methods/BudgetPayment/Description", "You will be deducted from your credit account.")
+        </div>
+    </div>
+</div>

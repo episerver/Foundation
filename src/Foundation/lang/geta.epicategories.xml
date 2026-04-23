@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+    <language name="English" id="en">
+        <contenttypes>
+            <categorydata>
+                <create>New Category</create>
+                <name>Category</name>
+                <newitemdefaultname>New Category</newitemdefaultname>
+                <properties>
+                    <description>
+                        <caption>Description</caption>
+                    </description>
+                    <isselectable>
+                        <caption>Is selectable</caption>
+                    </isselectable>
+                </properties>
+            </categorydata>
+        </contenttypes>
+        <cms>
+            <searchprovider>
+                <categories>
+                    <name>Categories</name>
+                </categories>
+                <findcategories>
+                    <name>Find categories</name>
+                </findcategories>
+            </searchprovider>
+        </cms>
+        <getacategories>
+            <treecomponent>
+                <title>Categories</title>
+                <description>Category management</description>
+            </treecomponent>
+        </getacategories>
+    </language>
+    <language name="Swedish" id="sv">
+        <contenttypes>
+            <categorydata>
+                <create>Ny kategori</create>
+                <name>Kategori</name>
+                <newitemdefaultname>Ny kategori</newitemdefaultname>
+                <properties>
+                    <description>
+                        <caption>Beskrivning</caption>
+                    </description>
+                    <isselectable>
+                        <caption>Kan väljas</caption>
+                    </isselectable>
+                </properties>
+            </categorydata>
+        </contenttypes>
+        <cms>
+            <searchprovider>
+                <categories>
+                    <name>Kategorier</name>
+                </categories>
+                <findcategories>
+                    <name>Find kategorier</name>
+                </findcategories>
+            </searchprovider>
+        </cms>
+        <getacategories>
+            <treecomponent>
+                <title>Kategorier</title>
+                <description>Hantera kategorier</description>
+            </treecomponent>
+        </getacategories>
+    </language>
+    <language name="Norwegian" id="no">
+        <contenttypes>
+            <categorydata>
+                <create>Ny kategori</create>
+                <name>Kategori</name>
+                <newitemdefaultname>Ny kategori</newitemdefaultname>
+                <properties>
+                    <description>
+                        <caption>Beskrivelse</caption>
+                    </description>
+                    <isselectable>
+                        <caption>Kan velges</caption>
+                    </isselectable>
+                </properties>
+            </categorydata>
+        </contenttypes>
+        <cms>
+            <searchprovider>
+                <categories>
+                    <name>Kategorier</name>
+                </categories>
+                <findcategories>
+                    <name>Find kategorier</name>
+                </findcategories>
+            </searchprovider>
+        </cms>
+        <getacategories>
+            <treecomponent>
+                <title>Kategorier</title>
+                <description>Håndtere kategorier</description>
+            </treecomponent>
+        </getacategories>
+    </language>
+    <language name="Finnish" id="fi">
+        <contenttypes>
+            <categorydata>
+                <create>Uusi kategoria</create>
+                <name>Kategoria</name>
+                <newitemdefaultname>Uusi kategoria</newitemdefaultname>
+                <properties>
+                    <description>
+                        <caption>Kuvaus</caption>
+                    </description>
+                    <isselectable>
+                        <caption>Valittavissa</caption>
+                    </isselectable>
+                </properties>
+            </categorydata>
+        </contenttypes>
+        <cms>
+            <searchprovider>
+                <categories>
+                    <name>Kategoriat</name>
+                </categories>
+                <findcategories>
+                    <name>Find kategoriat</name>
+                </findcategories>
+            </searchprovider>
+        </cms>
+        <getacategories>
+            <treecomponent>
+                <title>Kategoriat</title>
+                <description>Geta kategorioiden ylläpito</description>
+            </treecomponent>
+        </getacategories>
+    </language>
+</languages>

@@ -1,0 +1,381 @@
+﻿@using Foundation.Features.Header
+
+@model HeaderViewModel
+
+<!-- Navigation bar for Mobile -->
+<div class="mobile-navigation-wrapper">
+    <div class="d-sm-block d-lg-none">
+        <!-- Navigation -->
+        <div class="mobile-navigation">
+            <!-- Left Menu -->
+            <div class="mobile-navigation__left">
+                <div class="mobile-navigation__item" id="open-offside-menu">
+                    <div class="hamburger-menu">
+                        <span class="hamburger-menu__line"></span>
+                        <span class="hamburger-menu__line"></span>
+                        <span class="hamburger-menu__line"></span>
+                    </div>
+                </div>
+                <div class="mobile-navigation__item" style="@(Model.LayoutSettings.HeaderMenuStyle == "LeftLogo" ? "order: -1" : "")">
+                    <a href="/" class="mobile-navigation__logo">
+                        @if (Html.IsInEditMode())
+                        {
+                            <!-- In Edit Mode -->
+                            <div @Html.EditAttributes(x => x.LayoutSettings.SiteLogo)>
+                                <img class="img-fluid" src="@UrlResolver.Current.GetUrl(Model.LayoutSettings.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })" />
+                            </div>
+                        }
+                        else {
+                            <!-- NOT In Edit Mode -->
+                            @if (@Url.ContentUrl(Model.LayoutSettings.SiteLogo).Contains("?"))
+                            {
+								<picture class="img-fluid">
+									<source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)&format=webp&width=225" type="image/webp" />
+									<img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" class="img-fluid lazyload" 
+									 @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
+								</picture>
+                            }
+                            else
+                            {
+								<picture class="img-fluid">
+									<source data-srcset="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" type="image/webp" />
+									<img data-src="@Url.ContentUrl(Model.LayoutSettings.SiteLogo)?format=webp&width=225" class="img-fluid lazyload" 
+									 @Html.EditAttributes(x => x.LayoutSettings.SiteLogo) />
+								</picture>
+                            }
+                        }
+                    </a>
+                </div>
+
+                <!-- Search box -->
+                <div class="mobile-navigation__search-box display-none" id="mobile-searchbox" style="display: none;">
+                    <div class="icon-menu">
+                        <i data-feather="search"></i>
+                    </div>
+                    <input class="mobile-navigation__search-text jsSearchText js-searchbox-input" type="text" placeholder="Search"
+                           data-search="@Url.ContentUrl(Model.ReferencePageSettings.SearchPage)"
+                           data-result-container="#jsResultSearchMobile"/>
+                    <div class="searchbox-popover display-none" id="jsResultSearchMobile">
+                        <div class="position-relative">
+                            <div class="loading-cart" hidden>
+                                <div class="loader"></div>
+                            </div>
+                            <div class="js-searchbox-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Menu -->
+            <div class="mobile-navigation__right">
+                <div class="icon-menu" id="open-searh-box">
+                    <i data-feather="search"></i>
+                </div>
+
+                <!-- Close Search box -->
+                <div class="icon-right border-right display-none w-auto" id="close-search-box">
+                    <i data-feather="camera" class="jsSearchImage mr-2" data-input="#fileSearchInput"></i>
+                    <i data-feather="x"></i>
+                </div>
+
+                <div class="display-none d-sm-block">
+                    <div class="icon-menu jsCartBtn jsOpenCartMobile" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0">
+                        <span class="none-border icon-menu--has-badge">
+                            <i data-feather="shopping-cart"></i>
+                            <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side menu of Navigation bar for Mobile -->
+    <div class="d-sm-block d-lg-none offside-navbar" id="offside-menu-mobile">
+        <div class="offside-navbar--nav nav nav-tabs">
+            <a class="offside-navbar--nav__item active" data-bs-toggle="tab" href="#mobile-menu">
+                <div class="icon-menu-description">
+                    <i data-feather="menu"></i>
+                    <span>Menu</span>
+                </div>
+            </a>
+            <a class="offside-navbar--nav__item" data-bs-toggle="tab" href="#mobile-account">
+                <div class="icon-menu-description">
+                    <i data-feather="user"></i>
+                    <span>Account</span>
+                </div>
+            </a>
+
+            @if (Model.ShowCommerceControls)
+            {
+                <a class="offside-navbar--nav__item jsCartBtn" data-cartcontainer="#mobile-cart" data-reloadurl="/defaultcart/LoadMobileCartItems" reload="0" data-bs-toggle="tab" href="#mobile-cart">
+                    <div class="icon-menu-description icon-menu-description--has-badge">
+                        <i data-feather="shopping-cart"></i>
+                        <span class="icon-menu__badge">@((int)Model.MiniCart.ItemCount)</span>
+                        <span>Cart</span>
+                    </div>
+                </a>
+                <a class="offside-navbar--nav__item jsWishlistBtn" reload="0" data-cartcontainer="#mobile-wishlist" data-reloadurl="/wishlist/LoadMobileWishlistItems" data-bs-toggle="tab" href="#mobile-wishlist">
+                    <div class="icon-menu-description icon-menu-description--has-badge">
+                        <i data-feather="heart"></i>
+                        <span class="icon-menu__badge">@((int)Model.WishListMiniCart.ItemCount)</span>
+                        <span>Favorite</span>
+                    </div>
+                </a>
+                if (Model.ShowSharedCart)
+                {
+                    <a class="offside-navbar--nav__item jsSharedCartBtn" reload="0" data-cartcontainer="#mobile-sharedcart" data-reloadurl="/sharedcart/LoadMobileSharedCartItems" data-bs-toggle="tab" href="#mobile-sharedcart">
+                        <div class="icon-menu-description icon-menu-description--has-badge">
+                            <i data-feather="shopping-cart"></i>
+                            <span class="icon-menu__badge">@((int)Model.SharedMiniCart.ItemCount)</span>
+                            <span>Shared</span>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+
+        <div class="tab-content offside-navbar__tab-content">
+            <div id="mobile-menu" class="tab-pane fade show active">
+                <ul class="offside-navbar--menu">
+                    @if (Model.MenuItems != null && Model.MenuItems.Count > 0)
+                    {
+                        foreach (var item in Model.MenuItems)
+                        {
+                            <li class="offside-navbar--menu__item jsFirstLi">
+                                <a href="@item.Uri">@item.Name</a>
+                                @if (item.ChildLinks != null && item.ChildLinks.Count > 0)
+                                {
+                                    <i data-feather="chevron-up" class="collapsed expand-collapse-child hidden jsExpandCollapse"></i>
+                                    <i data-feather="chevron-down" class="expanded expand-collapse-child jsExpandCollapse"></i>
+                                    <ul class="offside-navbar--menu child-menu">
+                                        @foreach (var child in item.ChildLinks)
+                                        {
+                                            <li class="offside-navbar--menu__item main-category">
+                                                @child.MainCategoryText
+                                            </li>
+                                            if (child.ListCategories != null)
+                                            {
+                                                foreach (var childLink in child.ListCategories)
+                                                {
+                                                    <li class="offside-navbar--menu__item">
+                                                        <a href="@Url.GetFriendlyUrl(childLink.Href)">@childLink.Text</a>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                }
+
+                            </li>
+                        }
+                    }
+                    @if (Model.ShowCommerceControls)
+                    {
+                        @*<li class="offside-navbar--menu__item">
+                                <a class="flex-start" href="#" data-bs-toggle="modal" data-bs-target="#selectMarket">
+                                    Market:&nbsp;
+                                    <img src="@Model.Markets.CurrentMarket.FlagUrl" class="market-selector__market-icon">
+                                    <p class="market-selector__market-text">@Model.Markets.CurrentMarket.Text</p>
+                                </a>
+                            </li>*@
+                    }
+
+                </ul>
+            </div>
+
+            <div id="mobile-account" class="tab-pane fade">
+                @await Html.PartialAsync("_MobileUsers", Model)
+            </div>
+
+            @if (Model.ShowCommerceControls)
+            {
+                <div id="mobile-cart" class="tab-pane fade">
+                    @await Html.PartialAsync("_MobileMiniCart", Model.MiniCart)
+                </div>
+                <div id="mobile-wishlist" class="tab-pane fade">
+                    @await Html.PartialAsync("_MobileMiniWishlist", Model.WishListMiniCart)
+                </div>
+
+                if (Model.ShowSharedCart)
+                {
+                    <div id="mobile-sharedcart" class="tab-pane fade">
+                        @await Html.PartialAsync("_MobileMiniSharedCart", Model.SharedMiniCart)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <!-- END - Side menu of Navigation bar for Mobile -->
+
+    @if (Model.ShowCommerceControls)
+    {
+        <!-- Modal Select Market -->
+        @*<div class="modal fade" id="selectMarket" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content square-box">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Market</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="market-list__list">
+                            <ul>
+                                @foreach (var market in Model.Markets.Markets)
+                                {
+                                    <li>
+                                        @using (Html.BeginForm("Set", "Market", new { marketId = market.Value }, FormMethod.Post, null))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <button class="btn btn-none market-list__item jsMarketSelector">
+                                                <img src="@market.FlagUrl" class="market-selector__market-icon">
+                                                <p class="market-selector__market-text">@market.Text</p>
+                                            </button>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="button-transparent-black" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="button-black">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    }
+
+    <!-- Modal Register In Mobile-->
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="modal fade" id="registerMobile" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content  square-box">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Market</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="offside-navbar--menu child-menu d-block">
+
+                            @using (Html.BeginForm("RegisterAccount", "PublicApi", FormMethod.Post, new { @role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(x => x.RegisterAccountViewModel.Address.Name)
+
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.RegisterAccountViewModel.Email, new { @class = "label" })
+                                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Email, new { @class = "textbox-small" })
+                                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Email)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.RegisterAccountViewModel.Password, new { @class = "label" })
+                                        @Html.PasswordFor(x => x.RegisterAccountViewModel.Password, new { @class = "textbox-small" })
+                                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Password)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.RegisterAccountViewModel.Password2, new { @class = "label" })
+                                        @Html.PasswordFor(x => x.RegisterAccountViewModel.Password2, new { @class = "textbox-small" })
+                                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Password2)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(x => x.RegisterAccountViewModel.Address.FirstName, new { @class = "label" })
+                                                @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.FirstName, new { @class = "textbox-small" })
+                                                @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.FirstName)
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(x => x.RegisterAccountViewModel.Address.LastName, new { @class = "label" })
+                                                @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.LastName, new { @class = "textbox-small" })
+                                                @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.LastName)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.RegisterAccountViewModel.Address.Line1, new { @class = "label" })
+                                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.Line1, new { @class = "textbox-small" })
+                                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.Line1)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.RegisterAccountViewModel.Address.Line2, new { @class = "label" })
+                                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.Line2, new { @class = "textbox-small" })
+                                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.Line2)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                @Html.LabelFor(x => x.RegisterAccountViewModel.Address.City, new { @class = "label" })
+                                                @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.City, new { @class = "textbox-small" })
+                                                @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.City)
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Html.LabelFor(x => x.RegisterAccountViewModel.Address.PostalCode, new { @class = "label" })
+                                                @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.PostalCode, new { @class = "textbox-small" })
+                                                @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.PostalCode)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.RegisterAccountViewModel.Address.CountryCode, new { @class = "label" })
+                                        @Html.DisplayFor(model => model.RegisterAccountViewModel.Address.CountryOptions, "CountryOptions",
+                                                    new
+                                                         {
+                                                             SelectItem = Model.RegisterAccountViewModel.Address.CountryCode,
+                                                        Name = "RegisterAccountViewModel.Address.CountryCode",
+                                                        DivSelection = "jsCountrySelectionRegisterUser"
+                                                         })
+                                        @*@Html.DropDownListFor(x => x.RegisterAccountViewModel.Address.CountryCode, new SelectList(Model.RegisterAccountViewModel.Address.CountryOptions, "Code", "Name", Model.RegisterAccountViewModel.Address.CountryCode), new { @class = "select-menu-small jsChangeCountry" })*@
+                                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.CountryCode)
+                                        @Html.Hidden("address-htmlfieldprefix", "RegisterAccountViewModel.Address")
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group jsCountryRegionContainer">
+                                        @{
+                                            var viewData = new ViewDataDictionary(this.ViewData);
+                                            var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
+                                            viewData.Add(regionName);
+                                        }
+                                        @await Html.PartialAsync("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            @Html.CheckBoxFor(x => x.RegisterAccountViewModel.Newsletter, new { @class = "form-check-input" })
+                                            @Html.TranslateFallback("/Registration/Form/Label/Newsletter", "Send me email updates about the latest products and promotions.")
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button type="submit" class="button-black--icon jsUsersSignupBtn">@Html.Translate("/Registration/Form/Label/Submit")</button>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- END - Navigation bar for Mobile -->

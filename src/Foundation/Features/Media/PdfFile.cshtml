@@ -1,0 +1,20 @@
+﻿@using Foundation.Features.Media
+
+@model FoundationPdfFileViewModel
+
+@if (Model.DisplayAsPreview) {
+    <div class="row">
+        <div class="col-12">
+            <div class="jsPdfPreview" height="@Model.Height" mediaId="@Model.Id" mediaUrl="@Model.PdfLink"></div>
+        </div>
+    </div>
+}
+else {
+    <div class="pdf-file">
+        @if (Model.ShowIcon)
+        {
+            <img data-src="/icons/filetypes/pdf.png" alt="PDF" class="img-fluid lazyload" />
+        }
+        <a href="@Model.PdfLink" download>@(Model.Title ?? Model.Name)</a>@(Model.ShowDescription && !string.IsNullOrEmpty(Model.Description) ? " -- " + Model.Description : "")
+    </div>
+}

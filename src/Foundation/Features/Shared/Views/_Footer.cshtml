@@ -1,0 +1,73 @@
+﻿@using EPiServer.SpecializedProperties;
+
+@model Foundation.Features.Settings.LayoutSettings
+
+<hr class="bottom-line">
+
+<style>
+    footer.footer a{
+        color: @Html.PropertyFor(x => x.FooterTextColor);
+    }
+</style>
+
+<footer class="footer" style="background-color: @Html.PropertyFor(x => x.FooterBackgroundColor); color: @Html.PropertyFor(x => x.FooterTextColor);">
+    <div class="container">
+        <h5 class="footer__introduction">
+            @Html.PropertyFor(x => x.Introduction)
+        </h5>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <h3 class="footer__heading" @Html.EditAttributes(x => x.CompanyHeader)> @Html.DisplayFor(x => x.CompanyHeader)</h3>
+                @if (Model.CompanyPhone != null)
+                {
+                    <div>Phone:&nbsp<a href="tel:@Html.DisplayFor(x => x.CompanyPhone)" @Html.EditAttributes(x => x.CompanyPhone)>@Html.DisplayFor(x => x.CompanyPhone)</a></div>
+                }
+                @if (Model.CompanyEmail != null)
+                {
+                    <div>Email:&nbsp<a href="mailto:@Html.DisplayFor(x => x.CompanyEmail)" @Html.EditAttributes(x => x.CompanyEmail)>@Html.DisplayFor(x => x.CompanyEmail)</a></div>
+                }
+                <a @Html.EditAttributes(x => x.CompanyAddress)>@Html.DisplayFor(x => x.CompanyAddress)</a>
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <h3 class="footer__heading" @Html.EditAttributes(x => x.LinksHeader)> @Html.DisplayFor(x => x.LinksHeader)</h3>
+
+                @if (Model != null)
+                {
+                    <div @Html.EditAttributes(x => x.Links)>
+                        @foreach (var item in Model.Links ?? new LinkItemCollection())
+                        {
+                            <a class="footer__link" href="@Url.PageUrl(item.Href)">
+                                @item.Text
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <h3 class="footer__heading" @Html.EditAttributes(x => x.SocialHeader)>@Html.DisplayFor(x => x.SocialHeader)</h3>
+
+                @if (Model != null)
+                {
+                    <div @Html.EditAttributes(x => x.SocialLinks)>
+                        @foreach (var item in Model.SocialLinks ?? new LinkItemCollection())
+                        {
+                            <a class="footer__link" href="@Url.PageUrl(item.Href)" target="_blank">
+                                @item.Text
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 col-lg-4">
+                @Html.PropertyFor(x => x.ContentArea)
+            </div>
+        </div>
+
+        <div class="footer__subtext row no-gutters">
+            <div class="col-auto">© @DateTime.Now.Year.ToString()<span>&nbsp;</span></div>
+            <div class="col">
+                @Html.PropertyFor(x => x.FooterCopyrightText)
+            </div>
+        </div>
+    </div>
+</footer>

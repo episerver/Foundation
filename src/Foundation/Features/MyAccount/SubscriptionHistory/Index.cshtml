@@ -1,0 +1,49 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.SubscriptionHistory
+
+@model SubscriptionHistoryViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="subscription-section">
+    <div class="page-title">
+        <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+    </div>
+    @if (Model.PaymentPlans.Any())
+    {
+        <table class="table table-sm table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanID", "ID")</th>
+                    <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/PaymentPlanStartDate", "Date Started")</th>
+                    <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/TotalPrice", "Price")</th>
+                    <th>@Html.TranslateFallback("/PaymentPlanHistory/Labels/ActiveStatus", "Active Status")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.PaymentPlans)
+                {
+                <tr>
+                    <td><a href="@(Model.PaymentPlanDetailsPageUrl)?paymentPlanId=@order.Id">#@order.Id</a></td>
+                    <td>@order.Created.ToString()</td>
+                    <td><span class="price">@order.GetTotal().ToString()</span></td>
+                    <td>
+                        <em>
+                            @if (order.IsActive)
+                            {<span>@Html.TranslateFallback("/common/yes", "Yes")</span> }
+                            else
+                            { <span>@Html.TranslateFallback("/common/no", "No")</span>}
+                        </em>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+<p>@Html.TranslateFallback("/PaymentPlanHistory/Detail/NoSubscription", "No Subscription")</p>
+    }
+</div>

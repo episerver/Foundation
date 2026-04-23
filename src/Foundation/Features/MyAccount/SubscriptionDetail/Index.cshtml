@@ -1,0 +1,89 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.SubscriptionDetail
+
+@model SubscriptionDetailViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="page-title">
+    <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-6">
+        @Html.TranslateFallback("/PaymentPlanHistory/Detail/OrderNo", "Order No"): @Model.PaymentPlan.OrderGroupId <br />
+        @Html.TranslateFallback("/PaymentPlanHistory/Detail/OrderTotal", "OrderTotal"): @Model.PaymentPlan.GetTotal() <br />
+        @Html.TranslateFallback("/PaymentPlanHistory/Detail/Active", "Active"): @Model.PaymentPlan.IsActive <br />
+        @Html.TranslateFallback("/PaymentPlanHistory/Detail/Status", "Status"): @Model.PaymentPlan.Status
+        <br />
+        <br />
+        @using (Html.BeginForm("ChangeSubscriptionStatus", "SubscriptionDetail", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("orderGroupId", Model.PaymentPlan.OrderGroupId)
+            <button type="submit" class="button-black jsReorder">
+                @if (Model.PaymentPlan.IsActive)
+                {
+                    <span style="color:red;">Stop Subscription</span> }
+                else
+                {
+                    <span style="color:green;">Restart Subscription</span>}
+            </button>}
+        <br />
+        @using (Html.BeginForm("ChangeSubscriptionSetting", "SubscriptionDetail", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("orderGroupId", Model.PaymentPlan.OrderGroupId) @(await Component.InvokeAsync("Dropdown",
+                new { list = Model.SubscriptionOptions,
+                    selectedValue = Model.SelectedSubscriptionOption,
+                    selectorClassItem = "jsSelectColorSize",
+                    name = "SubscriptionOption"
+                }))
+            <button type="submit" class="button-black jsReorder">
+                <span>Change Subscription Cadence</span>
+            </button>}
+    </div>
+    <div class="col-xs-12 col-6">
+        Last Payment: @Model.PaymentPlan.LastTransactionDate.ToShortDateString() <br />
+        Subscription Cycles Completed: @Model.PaymentPlan.CompletedCyclesCount <br />
+        Subscription: Every @Model.PaymentPlan.CycleLength  @Model.PaymentPlan.CycleMode (s)<br />
+        <span>Number of Cycles In Subscription</span>: @Model.PaymentPlan.MaxCyclesCount <br />
+        @Html.TranslateFallback("/PaymentPlanHistory/Detail/EndDate", "End Date"): @Model.PaymentPlan.EndDate.ToShortDateString()
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered" id="my-orders-table">
+            <thead class="thead-dark">
+                <tr class="first last">
+                    <th>@Html.TranslateFallback("/OrderHistory/Labels/OrderID", "Order ID")</th>
+                    <th>@Html.TranslateFallback("/OrderHistory/Labels/OrderDate", "Date")</th>
+                    <th>@Html.TranslateFallback("/OrderHistory/Labels/ShippedTo", "Shipped")</th>
+                    <th><span class="nobr">@Html.TranslateFallback("/OrderHistory/Labels/TotalPrice", "Price")</span></th>
+                    <th>@Html.TranslateFallback("/OrderHistory/Labels/Status", "Status")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders.Orders)
+                {
+                    <tr>
+                        <td><a href="@(Model.Orders.OrderDetailsPageUrl)?orderGroupId=@order.PurchaseOrder.OrderLink.OrderGroupId">#@order.PurchaseOrder.OrderNumber</a></td>
+
+                        <td>@order.PurchaseOrder.Created.ToString()</td>
+                        <td>
+                            @foreach (var shippingAddress in order.ShippingAddresses)
+                            {
+                                @await Html.PartialAsync("_Address", shippingAddress)
+                            }
+                        </td>
+                        <td><span class="price">@order.PurchaseOrder.GetTotal().ToString()</span></td>
+                        <td><em>@order.PurchaseOrder.OrderStatus</em></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

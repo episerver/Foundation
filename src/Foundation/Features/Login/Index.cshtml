@@ -1,0 +1,68 @@
+﻿@using Foundation.Features.Login
+
+@model UserViewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_LoginLayout.cshtml";
+    var logo = Model.Logo;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 login__group">
+            @using (Html.BeginForm("InternalLogin", "PublicApi", FormMethod.Post, new { @class = "login__form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.LoginViewModel.ReturnUrl)
+                if (!string.IsNullOrEmpty(logo))
+                {
+                    <div class="row">
+                        <div class="col-12 login__row">
+                            <a href="/">
+                                <img data-src="@logo?format=webp" class="img-fluid lazyload login__logo" alt="Home" />
+                            </a>
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-12">
+                        @Html.TextBoxFor(x => x.LoginViewModel.Email, new { @class = "login__input", placeholder = "Email" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.PasswordFor(x => x.LoginViewModel.Password, new { @class = "login__input", placeholder = "Password" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <label>
+                            @Html.CheckBoxFor(x => x.LoginViewModel.RememberMe)
+                            Remember?
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <div id="login-signin-errormessage" class="text-danger"></div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <input type="submit" name="login" value="Login" class="button-black full-width jsUsersSigninBtn" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 login__row--bottom">
+                        <a href="@Model.ResetPasswordUrl" class="account-link">Forgot password?</a>
+                        <a href="/user/register" class="account-link">Sign Up</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

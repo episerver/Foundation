@@ -1,0 +1,95 @@
+﻿@using Foundation.Features.MyAccount.AddressBook
+
+@model AddressCollectionViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 jsAddressBook">
+        <div class="row mypages-header">
+            <div class="col-xs-12 col-md-12">
+                <h3>@Html.TranslateFallback("/AddressBook/Available", "Available Address")</h3>
+            </div>
+            <div class="col-xs-12 col-md-3">
+                @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+                {
+                    <a class="button-transparent-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm")">
+                        @Html.TranslateFallback("/AddressBook/Form/Label/NewAddress", "New Address")
+                    </a>
+                }
+            </div>
+        </div>
+
+        @foreach (var address in Model.Addresses)
+        {
+            <div class="row address-block">
+                <div class="col-xs-12 col-md-12">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <h4>
+                                @Html.Hidden("addressId", address.AddressId)
+                                @address.Name
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            @await Html.PartialAsync("_Address", address)
+                            <div style="display: inline-flex; gap: 20px;">
+                            @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+                            {
+                                using (Html.BeginForm(FormMethod.Post, new { action = (Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm?addressId=" + address.AddressId) }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a class="button-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm?addressId=" + address.AddressId)">@Html.Translate("/AddressBook/Form/Label/Edit")</a>
+                                }
+                                using (Html.BeginForm(FormMethod.Post, new { action = (Url.ContentUrl(Model.CurrentContent.ContentLink) + "Remove?addressId=" + address.AddressId) }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="button-black pull-right" onclick="return confirm('@Html.TranslateFallback("/Shared/Common/DeleteItemConfirmation", "Are you sure you want to delete the address?")');">@Html.TranslateFallback("/AddressBook/Form/Label/Delete", "Delete")</button>
+                                }
+                            }
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            @if (address.BillingDefault)
+                            {
+                                <strong class="small text-success">@Html.TranslateFallback("/AddressBook/Form/Label/BillingAddress", "Billing Address")</strong><br />
+                            }
+                            else
+                            {
+                                if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+                                {
+                                    using (Html.BeginForm("SetPreferredBillingAddress", "AddressBook", new { addressId = address.AddressId }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="button-black  full-width mt-1">@Html.TranslateFallback("/AddressBook/Form/Label/SetBillingAddress", "Set billing address")</button>
+                                        <br />
+                                    }
+                                }
+                            }
+                            @if (address.ShippingDefault)
+                            {
+                                <strong class="small text-success">@Html.TranslateFallback("/AddressBook/Form/Label/ShippingAddress", "Shipping Address")</strong><br />
+                            }
+                            else
+                            {
+                                if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+                                {
+                                    using (Html.BeginForm("SetPreferredShippingAddress", "AddressBook", new { addressId = address.AddressId }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="button-black  full-width btn-lower mt-1">@Html.TranslateFallback("/AddressBook/Form/Label/SetShippingAddress", "Set shipping address")</button>
+                                        <br />
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

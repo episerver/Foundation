@@ -1,0 +1,9 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Checkout.ViewModels 
+
+@model CheckoutViewModel
+
+<div>
+  @Html.PropertyFor(m => m.CurrentContent.MainBody)
+</div>

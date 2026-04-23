@@ -1,0 +1,57 @@
+﻿@using Foundation.Features.Header
+
+@model MiniCartViewModel
+
+<div class="cart__row">
+    <p class="cart__heading">@Model.Label</p>
+</div>
+<div class="cart__items">
+    @foreach (var shipment in Model.Shipments)
+    {
+        foreach (var item in shipment.CartItems)
+        {
+            <div class="cart__row">
+                <div>
+                    <picture class="cart__product-img">
+                        <source data-srcset="@item.ImageUrl?format=webp&width=60" type="image/webp">
+                        <img data-src="@item.ImageUrl?width=60" class="cart__product-img lazyload" loading="lazy" />
+                    </picture>
+                </div>
+                <div class="cart__product">
+                    <a class="account-link" href="@item.Url">@item.DisplayName</a>
+                    <p class="cart__product-price">
+                        @if (item.DiscountedUnitPrice.HasValue)
+                        {
+                            <span class="price__old">@item.PlacedPrice.ToString()</span>
+                            <span class="price__discount">@item.DiscountedUnitPrice.ToString()</span>
+                        }
+                        else
+                        {
+                            <span class="price__discount">@item.PlacedPrice.ToString()</span>
+                        }
+                    </p>
+                    <span class="cart__product-remove jsRemoveCartItem" type="cart" shipmentId="@shipment.ShipmentId" code="@item.Code">
+                        Remove
+                    </span>
+                </div>
+                <p class="cart__product-count">
+                    @((int)item.Quantity) items
+                </p>
+            </div>
+        }
+    }
+</div>
+<div class="cart__footer">
+    <p class="cart__subtotal">
+        Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total.ToString()</span>
+    </p>
+    <div class="cart__actions">
+        <button id="checkoutBtnId" class="button-transparent-black jsCheckoutBtn" onclick="window.location.href='@Url.ContentUrl(Model.CheckoutPage)'"
+                href='@Url.ContentUrl(Model.CheckoutPage)'>
+            Checkout
+        </button>
+        <button id="cartBtnId" class="button-black" onclick="window.location.href='@Url.ContentUrl(Model.CartPage)'" href="@Url.ContentUrl(Model.CartPage)">
+            View details
+        </button>
+    </div>
+</div>

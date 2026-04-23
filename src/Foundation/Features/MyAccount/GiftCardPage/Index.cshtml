@@ -1,0 +1,46 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyAccount.GiftCardPage
+
+@model GiftCardViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-9">
+        <div class="gift-card-section">
+            <div class="page-title">
+                <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+            </div>
+            @if (Model.GiftCardList.Any())
+            {
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.TranslateFallback("/GiftCard/GiftCardName", "Gift card name")</th>
+                            <th>@Html.TranslateFallback("/GiftCard/InitialAmount", "Initial amount")</th>
+                            <th>@Html.TranslateFallback("/GiftCard/RemainBalance", "Remain balance")</th>
+                            <th>@Html.TranslateFallback("/GiftCard/RedemptionCode", "Redemption code")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var giftcard in Model.GiftCardList)
+                        {
+                            <tr>
+                                <td>@giftcard.GiftCardName</td>
+                                <td>@decimal.Round(giftcard.InitialAmount) USD</td>
+                                <td>@decimal.Round(giftcard.RemainBalance) USD</td>
+                                <td>@giftcard.RedemptionCode</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No giftcard</p>
+            }
+        </div>
+    </div>
+</div>

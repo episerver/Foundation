@@ -1,0 +1,57 @@
+﻿@using Foundation.Features.Stores
+
+@model StorePageViewModel
+
+<div class="container">
+    <h1 class="heading-title">Store Locator</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="storesSelector">
+                <div class="row">
+                    <div class="col-md-12 col-lg-4">
+                        <input id="selectedStore" name="selectedStore" type="hidden" value="@Model.StoreViewModel.SelectedStore" />
+                        <div class="panel">
+                            <div class="panel__heading">
+                                <h3 class="panel__title">Selected Store:</h3>
+                            </div>
+                            <div class="panel__body">
+                                <span id="storeName">
+                                    @Model.StoreViewModel.SelectedStoreName
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-8">
+                        @foreach (var store in Model.StoreViewModel.Stores)
+                        {
+                            <div class="row store-detail">
+                                <div class="col store-detail__info">
+                                    <h4>@store.Name</h4>
+                                    <span>@store.Line1</span>
+                                    @if (!string.IsNullOrEmpty(store.Line2))
+                                    {
+                                        <span>store.Line2</span>
+                                    }
+                                    <span class="store-detail__store-locator" address="@string.Format("{0}, {1}, {2}, {3}", store.Line1, store.Line2, store.City, store.CountryName)"></span>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="button-transparent-black set-default-store" type="button" data-code="@store.Code" data-name="@store.Name">
+                                        Set Default
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="use-current-location">
+                <i data-feather="map-pin"></i><div>Use current location</div>
+            </div>
+            <div id="storeMap">
+                <input id="searchMapInput" class="textbox" type="text" placeholder="Search place...">
+            </div>
+        </div>
+    </div>
+</div>

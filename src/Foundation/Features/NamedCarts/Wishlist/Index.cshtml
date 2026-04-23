@@ -1,0 +1,23 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model WishListViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+    ViewBag.IsWishList = true;
+    string displayNoItemMsg = Model.CartItems.Any() ? "none" : string.Empty;
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="my-account">
+            <div class="page-title">
+                <h2>@(Model.HasOrganization ? Html.Raw("Order Pad") : Html.PropertyFor(x => x.CurrentContent.Name))</h2>
+            </div>
+            <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+            <div id="my-wishlist">
+                @await Html.PartialAsync("_WishlistListItem", Model)
+            </div>
+        </div>
+    </div>
+</div>

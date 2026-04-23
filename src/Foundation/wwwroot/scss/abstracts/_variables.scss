@@ -1,0 +1,32 @@
+﻿/* Container */
+$container-max-width: 1440px;
+
+/* Color */
+$color-primary: #000;
+$color-dark: #202020;
+$color-grey: #eee;
+$color-darkgrey: #ddd;
+$color-lightgrey: #f5f5f5;
+$color-red: #ff0000;
+$color-muted: #ccc;
+$color-white: #fff;
+$color-yellow: #fec84d;
+$color-black: #262626;
+
+/* Text */
+$text-color: $color-primary;
+$text-font-size: 0.875rem;
+$text-font-size-small: 0.75rem;
+$text-font-stack: "Roboto", "Arial", sans-serif;
+$text-line-height: 1.5;
+$text-light-color: #555;
+
+/* Navigation */
+$navigation-height: 80px;
+
+/* Textbox */
+$textbox-height: 2.5rem;
+$textbox-height-small: 1.875rem;
+
+/* Dropdown */
+$shadow-dropdown: 0 3px 4px rgba(0, 0, 0, 0.25);

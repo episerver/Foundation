@@ -1,0 +1,11 @@
+﻿@using Foundation.Features.Blocks.IframeBlock
+@model IBlockViewModel<IframeBlock>
+
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="iframeBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;"
+     class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    
+     <div class="ratio @Model.CurrentBlock.IframeRatio">
+        <iframe src="@Model.CurrentBlock.Url" allowfullscreen></iframe>
+    </div>
+
+</div>

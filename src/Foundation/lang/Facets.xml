@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <language name="English" id="en">
+    <facetregistry>
+      <brand>
+        Brand
+      </brand>
+      <availableColors>
+        Color
+      </availableColors>
+      <availableSizes>
+        Size
+      </availableSizes>
+      <defaultprice>
+        Price
+      </defaultprice>
+    </facetregistry>
+  </language>
+</languages>

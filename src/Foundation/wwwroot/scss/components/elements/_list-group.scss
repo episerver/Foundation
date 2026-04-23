@@ -1,0 +1,246 @@
+.list-group--header {
+    width: 100%; 
+
+    .list-group--header__item {
+        margin: 0;
+        border-bottom: 1px solid $color-darkgrey;
+        padding: 15px;
+        display: block;
+        color: black;
+        text-decoration: none;
+
+        &:hover {
+            background-color: #eee;
+            transition: 0.2s;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        &:has(.content__betbest) {
+            border: 2px solid rgba(255, 129, 16, 1);
+            padding: 1rem;
+            background-color: rgba(255, 129, 16,.05);
+            position: relative;
+        }
+
+        &:has(.content__betbest):hover {
+            background-color: rgba(255, 129, 16,.10);
+        }
+
+        &:has(.content__betbest):after {
+            content: "Best Bet";
+            position: absolute;
+            right: 1rem;
+            text-transform: uppercase;
+            color: rgba(255, 129, 16,1);
+            font-size: smaller;
+        }
+
+        &:has(.content__betbest) svg {
+            fill: #fff;
+            stroke: rgba(255, 129, 16,1);
+        }
+    }
+}
+
+.list-event {
+    padding-top: 15px;
+}
+
+.content-search-results {
+    .list-group--header__item {
+        padding: 15px 0px;
+        border: none;
+
+        &:hover {
+            background-color: white;
+        }
+
+        &:hover .title {
+            text-decoration: underline;
+        }
+    }
+
+    .content__item {
+        padding-left: 0px;
+        padding-right: 0px;
+
+        .title {
+            font-size: 18px;
+        }
+
+        .sub-title {
+            font-size: 90%;
+        }
+    }
+
+    .content__betbest {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+ul.pagination {
+    margin-bottom: 0;
+
+    & li {
+        display: inline-block;
+        background-color: $color-grey;
+        color: black;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 10px;
+        cursor: pointer;
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        &:hover {
+            background-color: black;
+            color: white;
+
+            & a {
+                color: white;
+            }
+        }
+
+        &.active {
+            background-color: black;
+            color: white;
+
+            & a {
+                color: white;
+            }
+        }
+
+        & a {
+            color: black;
+        }
+    }
+}
+
+
+.sidebar {
+    &--container {
+        width: 100%;
+    }
+
+    &--group {
+        width: 100%;
+        margin: 15px 0 15px 0;
+        border-top: 1px solid black;
+    }
+
+    &__item {
+        width: 100%;
+        padding: 15px;
+        color: black;
+        border-bottom: 1px solid #eeeeee;
+
+        & a {
+            color: black;
+
+            &:hover {
+                text-decoration: none;
+                opacity: 0.7;
+            }
+        }
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+}
+
+ul.list-group--info {
+    width: 100%;
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+
+    & li {
+        width: 100%;
+        padding: 15px;
+        border-top: 1px solid #eeeeee;
+    }
+}
+
+ul.loyalty-statistics li {
+    padding: 15px 0px;
+}
+
+ul.checkout__status-bar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    & li {
+        flex: 1 0 0;
+        display: flex;
+        border-top: 3px solid #eeeeee;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &.active {
+            border-color: black;
+
+            & > .triangle {
+                position: absolute;
+                top: 0;
+                left: calc(50% - 5px);
+                width: 0px;
+                height: 0px;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid black;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    ul.checkout__status-bar {
+        display: block;
+
+        & li {
+            flex: 0 0 100%;
+            /*display: block;*/
+            margin: 0 0 auto;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+ul.loyal--group {
+    width: 100%;
+    margin-top: 15px;
+    padding-left: 0px;
+
+    & li {
+        width: 100%;
+        padding: 8px;
+    }
+}
+
+
+div.row:has(.jsProducts) h2:before {
+    content: 'Product Results for: "';
+    font-weight: 100;
+}
+
+div.row:has(.jsProducts) h2:after {
+    content: '"';
+    font-weight: 100;
+}
+
+#contentResult h2:after {
+    content: ' Results';
+}

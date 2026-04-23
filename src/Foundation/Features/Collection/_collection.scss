@@ -1,0 +1,25 @@
+﻿.mediablock-container {
+    display: flex;
+
+    div {
+        width: 100%;
+    }
+}
+
+.mediablock__img {
+    max-width: 100%;
+}
+
+.mediablock__content {
+    display: flex;
+    align-items: center;
+}
+
+.mediablock__title,
+.mediablock__description {
+}
+
+.mediablock__title {
+    margin-bottom: 10px;
+    text-align: center;
+}

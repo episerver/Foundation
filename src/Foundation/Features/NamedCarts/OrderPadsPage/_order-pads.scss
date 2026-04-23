@@ -1,0 +1,29 @@
+﻿.expandable-table {
+    table-layout: fixed;
+
+    th {
+        &.empty {
+            width: 50px;
+        }
+    }
+
+    .second-row,
+    .third-row {
+        display: none;
+
+        &.tr-show {
+            display: table-row;
+        }
+    }
+
+    a.btn-xs {
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+}

@@ -1,0 +1,40 @@
+﻿.profile-sidebar {
+    &__title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    &__group {
+        margin: 15px 0 35px 0;
+        border-top: 1px solid black;
+        list-style: none;
+        padding: 0;
+    }
+
+    &__item {
+        color: black;
+        border-bottom: 1px solid $color-grey;
+
+        & a {
+            color: black;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+        }
+
+        &:hover {
+            background-color: $color-lightgrey;
+        }
+    }
+
+    &__suborganization {
+        @extend .profile-sidebar__item;
+        padding-left: 12px;
+
+        & a {
+            font-style: italic;
+        }
+    }
+}

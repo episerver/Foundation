@@ -1,0 +1,57 @@
+﻿@using Foundation.Features.MyOrganization.Users
+
+@model UsersPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div>
+    <section class="spacer-bottom-l">
+        <div class="section-title spacer-bottom-l">
+            <h2 class="h3">@Html.TranslateFallback("/B2B/Users/EditUserRole", "Editing user role")</h2>
+        </div>
+        @using (Html.BeginForm("UpdateUser", PageFriendlyURL, FormMethod.Post, new { @id = "editUserForm" }))
+        {
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/Shared/Name", "Name")</label>
+                <br />
+                @Html.TextBoxFor(x => x.Contact.FullName, new { disabled = "disabled", @class = "textbox" })
+            </div>
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/Shared/Email", "Email")</label>
+                <br />
+                @Html.TextBoxFor(x => x.Contact.Email, new { disabled = "disabled", @class = "textbox" })
+            </div>
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/B2B/Organization/Organization", "Organization")</label>
+                <br />
+                @Html.TextBoxFor(x => x.Contact.FoundationOrganization.Name, new { disabled = "disabled", @class = "textbox" })
+            </div>
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/Shared/Role", "Role")</label>
+                <br />
+                @Html.DropDownListFor(m => m.Contact.UserRole, new SelectList(new List<SelectListItem>
+                                                            {
+                                                                new SelectListItem {Text = "Approver", Value = "Approver"},
+                                                                new SelectListItem {Text = "Purchaser", Value = "Purchaser"}
+                                                            }, "Value", "Text", Model.Contact.UserRole), new { @class = "textbox" })
+            </div>
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/B2B/Users/Location", "Location")</label>
+                <br />
+                @Html.DropDownListFor(
+                           model => model.Contact.UserLocationId,
+                           new SelectList(Model.SubOrganization.Locations, "AddressId", "Name", Model.Contact.UserLocationId), new { @id = "select-location", @class = "textbox" })
+            </div>
+            <div class="spacer-top-l">
+                <button type="submit" class="button-black">Save</button>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">Cancel</a>
+            </div>
+            @Html.HiddenFor(m => m.Contact.ContactId)
+        }
+    </section>
+</div>

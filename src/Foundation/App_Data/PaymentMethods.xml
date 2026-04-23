@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PaymentMethods>
+  <PaymentMethod>
+    <Name>Credit card</Name>
+    <SystemKeyword>GenericCreditCard</SystemKeyword>
+    <Description>Credit card payment</Description>
+    <PaymentClass>Mediachase.Commerce.Orders.CreditCardPayment, Mediachase.Commerce</PaymentClass>
+    <GatewayClass>Foundation.Features.Checkout.Payments.GenericCreditCardPaymentGateway, Foundation</GatewayClass>
+    <IsDefault>true</IsDefault>
+    <SortOrder>1</SortOrder>
+  </PaymentMethod>
+  <PaymentMethod>
+    <Name>Cash on delivery</Name>
+    <SystemKeyword>CashOnDelivery</SystemKeyword>
+    <Description>The payment is settled as part of the order delivery.</Description>
+    <PaymentClass>Mediachase.Commerce.Orders.OtherPayment, Mediachase.Commerce</PaymentClass>
+    <GatewayClass>Mediachase.Commerce.Plugins.Payment.GenericPaymentGateway, Mediachase.Commerce.Plugins.Payment</GatewayClass>
+    <IsDefault>false</IsDefault>
+    <SortOrder>2</SortOrder>
+  </PaymentMethod>
+  <PaymentMethod>
+    <Name>Budget Payment</Name>
+    <SystemKeyword>BudgetPayment</SystemKeyword>
+    <Description>Budget Payment</Description>
+    <PaymentClass>Mediachase.Commerce.Orders.OtherPayment, Mediachase.Commerce</PaymentClass>
+    <GatewayClass>Foundation.Features.Checkout.Payments.BudgetPaymentGateway, Foundation</GatewayClass>
+    <IsDefault>false</IsDefault>
+    <SortOrder>3</SortOrder>
+  </PaymentMethod>
+  <PaymentMethod>
+    <Name>Gift Card</Name>
+    <SystemKeyword>GiftCardPayment</SystemKeyword>
+    <Description>Gift card payment</Description>
+    <PaymentClass>Mediachase.Commerce.Orders.GiftCardPayment, Mediachase.Commerce</PaymentClass>
+    <GatewayClass>Foundation.Features.Checkout.Payments.GiftCardPaymentGateway, Foundation</GatewayClass>
+    <IsDefault>false</IsDefault>
+    <SortOrder>4</SortOrder>
+  </PaymentMethod>
+</PaymentMethods>

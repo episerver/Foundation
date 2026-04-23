@@ -1,0 +1,25 @@
+﻿.profile {
+    &--group {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    &__item {
+        border-bottom: 1px solid #eeeeee;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        width: 100%;
+
+        &:last-child {
+            border: none;
+        }
+
+        .profile__component {
+            margin-bottom: 10px;
+        }
+
+        .button-black--icon {
+            padding-top: 8px;
+        }
+    }
+}

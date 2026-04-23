@@ -1,0 +1,137 @@
+﻿@model BlogListPageViewModel
+@using Foundation.Features.Blog.BlogListPage
+
+@{
+    var insightBlogs = Model.Blogs.Take(3);
+    var insightReverseBlogs = Model.Blogs.Skip(3).Take(3).Reverse();
+}
+<div class="row jsBlogListLoadMore">
+    <!-- Insight blogs -->
+    @if (insightBlogs.Any())
+    {
+        var index = 0;
+        <div class="col-12 insight">
+            @foreach (var blog in insightBlogs)
+            {
+                var typeIndex = index % 3;
+                var insightClass = "insight__large";
+                switch (typeIndex)
+                {
+                    case 1:
+                        insightClass = "insight__small--image";
+                        break;
+                    case 2:
+                        insightClass = "insight__small--text";
+                        break;
+                    default:
+                        break;
+
+                }
+                index++;
+
+                <div class="@insightClass">
+                    @if (typeIndex == 0)
+                    {
+                        <div class="insight__thumbnail insight__thumbnail--large">
+                            @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
+                            {
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
+                            }
+                        </div>
+                    }
+                    @if (typeIndex == 1)
+                    {
+                        <div class="insight__thumbnail insight__thumbnail--small">
+                            @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
+                            {
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
+                            }
+                        </div>
+                    }
+                    <div class="insight__description">
+                        <div class="insight__tag">
+                            @foreach (var tag in blog.Tags)
+                            {
+                                <a title="@tag.Title" href="@tag.Url">#@tag.Title</a>
+                            }
+                        </div>
+                        <a class="link" href="@blog.CurrentContent.ContentLink.GetPublicUrl()">
+                            <h4>@blog.CurrentContent.MetaTitle</h4>
+                        </a>
+                        <div class="insight__date">
+                            @blog.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")
+                        </div>
+                        <div class="insight__sumary">@Html.Raw(blog.PreviewText)</div>
+                        <a class="read-more" href="@blog.CurrentContent.ContentLink.GetPublicUrl()">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Insight blogs -->
+    @if (insightReverseBlogs.Any())
+    {
+        var index = 0;
+        <div class="col-12 insight insight--reverse">
+            @foreach (var blog in insightReverseBlogs)
+            {
+                var typeIndex = index % 3;
+                var insightClass = "insight__large";
+                switch (typeIndex)
+                {
+                    case 1:
+                        insightClass = "insight__small--image";
+                        break;
+                    case 2:
+                        insightClass = "insight__small--text";
+                        break;
+                    default:
+                        break;
+                }
+                index++;
+
+                <div class="@insightClass">
+                    @if (typeIndex == 0)
+                    {
+                        <div class="insight__thumbnail insight__thumbnail--large">
+                            @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
+                            {
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
+                            }
+                        </div>
+                    }
+                    @if (typeIndex == 1)
+                    {
+                        <div class="insight__thumbnail insight__thumbnail--small">
+                            @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
+                            {
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
+                            }
+                        </div>
+                    }
+                    <div class="insight__description">
+                        <div class="insight__tag">
+                            @foreach (var tag in blog.Tags)
+                            {
+                                <a title="@tag.Title" href="@tag.Url">#@tag.Title</a>
+                            }
+                        </div>
+                        <a class="link" href="@blog.CurrentContent.ContentLink.GetPublicUrl()">
+                            <h4>@blog.CurrentContent.MetaTitle</h4>
+                        </a>
+                        <div class="insight__date">
+                            @blog.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")
+                        </div>
+                        <div class="insight__sumary">@Html.Raw(blog.PreviewText)</div>
+                        <a class="read-more" href="@blog.CurrentContent.ContentLink.GetPublicUrl()">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,23 @@
+﻿.search-page {
+    &__products {
+        > div {
+            align-items: flex-end;
+        }
+
+        .product-tile-grid {
+            margin-bottom: 30px;
+        }
+    }
+
+    .toolbar {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .search-page {
+        &__facets {
+            order: 1;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+﻿@using EPiServer.Editor
+@using Foundation.Features.Locations.LocationItemPage
+@inject IContextModeResolver contextModeResolver
+@model LocationItemViewModel
+
+<section class="main-container col2-right-layout">
+    <div class="main container">
+        <div class="row container--gutter-layout">
+            <div class="col-md-3">
+                @await Html.PartialAsync("Navigation", Model.LocationNavigation)
+                @Html.PropertyFor(x => x.CurrentContent.LeftContentArea)
+            </div>
+            <div class="col-md-9">
+                <section>
+                    <h2 class="section-title no-margin-top">@Html.PropertyFor(x => x.CurrentContent.PageName)</h2>
+                    @Html.PropertyFor(x => x.Image, new { CssClass = "img-responsive imageborder" })
+                    <div class="location-info">
+                        <i class="fa fa-globe"></i> @Model.CurrentContent.Continent / @Model.CurrentContent.Country
+                        <div class="clearfix"></div>
+                        @*<div @Html.EditAttributes(x => x.CurrentContent.Categories)>
+                                @if (Model.Tags != null)
+                                {
+                                    <i class="fa fa-tags"></i>
+                                    foreach (var tag in Model.Tags)
+                                    {
+                                        <span data-epi-block-id="@tag.ContentLink.ToString()">
+                                            <a href="@Url.ContentUrl(tag.ContentLink)"><span class="badge badge-round">@tag.Name</span></a>
+                                        </span>
+                                    }
+                                }
+                            </div>*@
+                    </div>
+                    @Html.FullRefreshPropertiesMetaData(new[] { "Categories" })
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentContent.MainIntro) || contextModeResolver.CurrentMode == ContextMode.Edit)
+                    {
+                        <p class="lead location-main-intro" @Html.EditAttributes(x => x.CurrentContent.MainIntro)>@Model.CurrentContent.MainIntro</p>
+                    }
+                    @Html.PropertyFor(x => x.CurrentContent.MainBody)
+                    <div class="clearfix">
+                        @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>

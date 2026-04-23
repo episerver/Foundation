@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ShippingMethods>
+  <ShippingMethod>
+    <Name>Free</Name>
+    <Description>Free {0} (5-7 day)({1})</Description>
+    <CostInUSD>0</CostInUSD>
+    <SortOrder>1</SortOrder>
+  </ShippingMethod>
+  <ShippingMethod>
+    <Name>Regular</Name>
+    <Description>Regular {0} (2 days)({1})</Description>
+    <CostInUSD>10</CostInUSD>
+    <SortOrder>2</SortOrder>
+  </ShippingMethod>
+  <ShippingMethod>
+    <Name>Express</Name>
+    <Description>Express {0} (1 day)({1})</Description>
+    <CostInUSD>25</CostInUSD>
+    <SortOrder>3</SortOrder>
+  </ShippingMethod>
+</ShippingMethods>

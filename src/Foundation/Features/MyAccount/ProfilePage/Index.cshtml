@@ -1,0 +1,270 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.ProfilePage
+@inject IContextModeResolver contextModeResolver
+@model ProfilePageViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="my-account">
+    <div class="page-title">
+        <h2>@Html.TranslateFallback("/Dashboard/Labels/MyDashboard", "My Dashboard")</h2>
+    </div>
+    <div class="dashboard">
+        <div class="welcome-msg">
+            <strong>@Html.TranslateFallback("/Dashboard/Labels/Hello", "Hello"), @Model.CustomerContact.FirstName @Model.CustomerContact.LastName!</strong>
+            <div class="row">
+                @if ((Model.CurrentContent?.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
+                {
+                    <div class="col-12">
+                        @Html.PropertyFor(m => m.CurrentContent.MainBody)
+                    </div>
+                }
+                <div class="col-12">
+                    @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+                </div>
+            </div>
+        </div>
+        <div class="address-block recent-orders">
+            <div class="flex-between">
+                <h4>@Html.TranslateFallback("/Dashboard/Labels/RecentOrders", "Recent Orders")</h4>
+                @Html.ActionLink("View All", "ViewAll", "OrderHistory", null, new { @class = "account-link" })
+            </div>
+
+            @if (Model.Orders != null && Model.Orders.Any())
+            {
+                <ul class="profile--group">
+                    @foreach (var order in Model.Orders)
+                    {
+                        <li class="profile__item style-list-none">
+                            <div class="row">
+                                <div class="col-6 content">
+                                    <div class="row profile__component">
+                                        <span class="col-4 title">Order</span>
+                                        <span class="col-8">@order.PurchaseOrder.OrderNumber</span>
+                                    </div>
+                                    <div class="row profile__component">
+                                        <span class="col-4 title">Price</span>
+                                        <span class="col-8 price__discount">@order.PurchaseOrder.GetTotal().ToString()</span>
+                                    </div>
+                                    <div class="row profile__component">
+                                        <span class="col-4 title">Status</span>
+                                        <span class="col-8 font-italic">@order.PurchaseOrder.OrderStatus</span>
+                                    </div>
+                                    <div class="row profile__component">
+                                        <span class="col-4 title">Date</span>
+                                        <span class="col-8">@order.PurchaseOrder.Created.ToLongDateString()</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 profile__component">
+                                    <span class="title">Shipped</span>
+                                    @foreach (var shippingAddress in order.ShippingAddresses)
+                                    {
+                                        @await Html.PartialAsync("_Address", shippingAddress)
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    @using (Html.BeginForm("Reorder", "DefaultCart", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("orderId", order.OrderGroupId)
+                                        <button type="submit" data-order-link="@order.OrderGroupId" class="button-black--icon jsReorder">
+                                            <i data-feather="credit-card"></i>
+                                            @Html.TranslateFallback("/Dashboard/Labels/Reorder", "Reorder")
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="address-block">
+            <div class="page-title">
+                <h4>@Html.TranslateFallback("/Dashboard/Labels/AccountInformation", "Account Information")</h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="title">@Html.TranslateFallback("/Dashboard/Labels/ContactInformation", "Contact Information")</p>
+                            <div data-bs-target=".jsProfileContainerEdit" style="text-decoration:underline; cursor:pointer" class="account-link jsEditProfile">@Html.TranslateFallback("/Shared/Edit", "Edit")</div>
+                            <p>
+                                <span class="jsFirstName">@Model.CustomerContact.FirstName </span>
+                                <span class="jsLastName">@Model.CustomerContact.LastName</span>
+                                <br>
+                                <span>@(Model.SiteUser != null ? Model.SiteUser.Email : null)</span>
+                                <br>
+                                <a class="account-link" href="@Url.ContentUrl(Model.ResetPasswordPage)">
+                                    @Html.TranslateFallback("/Dashboard/Labels/ChangePassword", "Change Password")
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="title">@Html.TranslateFallback("/Dashboard/Labels/Newsletters", "Newsletters")</p>
+                            @*<a href="#" class="account-link">@Html.TranslateFallback("/Shared/Edit", "Edit")</a>*@
+                            <p> You are currently not subscribed to any newsletter. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bblock block-account">
+                        <div class="title">
+                            Loyalty statistics
+                        </div>
+                        <div class="">
+                            <ul class="list-group--info loyalty-statistics">
+                                <li>
+                                    <span class="light-text">Points:</span> @Model.CustomerContact.Points
+                                </li>
+                                <li>
+                                    <span class="light-text">Number Of Orders:</span> @Model.CustomerContact.NumberOfOrders
+                                </li>
+                                <li>
+                                    <span class="light-text">Number Of Reviews:</span> @Model.CustomerContact.NumberOfReviews
+                                </li>
+                                <li>
+                                    @{ var tier = Model.CustomerContact.CustomerTier.ToString(); }
+                                    <span class="light-text">Tier:</span>
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/@(tier).svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/@(tier).svg" class="tier-icon lazyload" />
+                                    </picture>@tier
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <a class="account-link cursor-pointer" data-bs-toggle="collapse" data-bs-target="#loyalty-program" href="javascript:void(0);">
+                                <i data-feather="info"></i>
+                                About loyalty program
+                            </a>
+                            <ul id="loyalty-program" class="loyal--group collapse">
+                                <li class="style-list-none">*All orders and reviews before Loyalty program started will not count and get points.</li>
+                                <li class="style-list-none">*A order - 10 points.</li>
+                                <li class="style-list-none">*A review - 1 point.</li>
+                                <li class="style-list-none">*Tiers and points:</li>
+                                <li class="style-list-none">
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/classic.svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/classic.svg" class="tier-icon lazyload" />
+                                    </picture>Classic: 0 - 100 points
+                                </li>
+                                <li class="style-list-none">
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/bronze.svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/bronze.svg" class="tier-icon lazyload" />
+                                    </picture>Bronze: 101 - 200 points
+                                </li>
+                                <li class="style-list-none">
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/silver.svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/silver.svg" class="tier-icon lazyload" />
+                                    </picture>Silver: 201 - 500 points
+                                </li>
+                                <li class="style-list-none">
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/gold.svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/gold.svg" class="tier-icon lazyload" />
+                                    </picture>Gold: 501 - 1000 points
+                                </li>
+                                <li class="style-list-none">
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/platium.svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/platium.svg" class="tier-icon lazyload" />
+                                    </picture>Platium: 1001 - 2000 points
+                                </li>
+                                <li class="style-list-none">
+                                    <picture class="tier-icon">
+                                        <source data-srcset="/icons/tiers/diamond.svg?format=webp" type="image/webp">
+                                        <img data-src="/icons/tiers/diamond.svg" class="tier-icon lazyload" />
+                                    </picture>Diamond: Over 2000 points
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                @using (Html.BeginForm("Save", "ProfilePage", FormMethod.Post, new { @class = "jsProfileContainerEdit col-12" }))
+                {
+                    <div class="jsTokenProfileEdit">@Html.AntiForgeryToken()</div>
+                    <div class="row col-12 input-block">
+                        <label>@Html.TranslateFallback("/Shared/Address/Form/Label/FirstName", "First Name")</label>
+                        @Html.TextBoxFor(x => x.CustomerContact.FirstName, new { @class = "textbox jsProfileFirstNameEdit" })
+                    </div>
+                    <div class="row col-12 input-block">
+                        <label>@Html.TranslateFallback("/Shared/Address/Form/Label/LastName", "Last Name")</label>
+                        @Html.TextBoxFor(x => x.CustomerContact.LastName, new { @class = "textbox jsProfileLastNameEdit" })
+                    </div>
+                    <div class="row">
+                        <div class="col-12 input-block">
+                            <div>
+                                <label>@Html.TranslateFallback("/Shared/Address/Form/Label/DateOfBirth", "Date Of Birth")</label>
+                                <input type="date" value="@(Model.CustomerContact.BirthDate.HasValue ? Model.CustomerContact.BirthDate.Value.ToString("yyyy-MM-dd") : "")" class="form-control form-square jsProfileBirthDateEdit" />
+                            </div>
+                            <div>
+                                <label class="checkbox">
+                                    @Html.TranslateFallback("/AccountInformation/Form/SubscribesToNewsletter", "Subscribes To Newsletter")
+                                    @Html.CheckBoxFor(x => x.SiteUser.NewsLetter, new { @class = "jsProfileNewsLetterEdit" })
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 input-block">
+                            <button class="button-transparent-black jsSaveProfile" type="button">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="address-block">
+            <div class="row">
+                <div class="col-12">
+                    <h4>@Html.TranslateFallback("/Dashboard/Labels/AddressBook", "Address Book")</h4>
+                    <a href="@Url.ContentUrl(Model.AddressBookPage)" class="sub-title account-link">@Html.TranslateFallback("/Dashboard/Labels/ManageAddresses", "Manage Addresses")</a>
+                </div>
+                <div class="col-sm-6">
+                    <p class="title">@Html.TranslateFallback("/Dashboard/Labels/PrimaryBillingAddress", "Primary Billing Address")</p>
+                    @if (Model.Addresses.Any(x => x.BillingDefault))
+                    {
+                        @await Html.PartialAsync("_Address", Model.Addresses.FirstOrDefault(x => x.BillingDefault))
+                    }
+                </div>
+                <div class="col-sm-6">
+                    <p class="title">@Html.TranslateFallback("/Dashboard/Labels/PrimaryShippingAddress", "Primary Shipping Address")</p>
+                    @if (Model.Addresses.Any(x => x.ShippingDefault))
+                    {
+                        @await Html.PartialAsync("_Address", Model.Addresses.FirstOrDefault(x => x.ShippingDefault))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+.jsProfileContainerEdit {
+    transition: height .25s ease;
+    overflow: hidden;
+}
+.jsProfileContainerEdit:not(.active) {
+    display: none;
+}
+</style>
+@*<div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MembershipAffiliation)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.ActivityFeed)
+        </div>
+    </div>*@

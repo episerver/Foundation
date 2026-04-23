@@ -1,0 +1,43 @@
+﻿.large-cart {
+    & .row {
+        margin-right: 0px;
+    }
+
+    .cart-item {
+        &__remove {
+            color: #f50500;
+        }
+    }
+
+    &--btn-group__bottom {
+        padding-top: 15px;
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__margin-btn {
+        margin-right: 20px;
+    }
+
+    &__margin-top {
+        margin-top: 15px;
+    }
+
+    &--block {
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+    }
+}

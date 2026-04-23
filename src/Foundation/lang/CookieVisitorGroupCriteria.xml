@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <language name="English" id="en">
+    <enums>
+      <cookievisitorgroupcriteria>
+        <enums>
+          <cookievaluecondition>
+            <is>Is equal to</is>
+            <contains>Contains</contains>
+            <doesnotcontain>Does not contain</doesnotcontain>
+            <isnot>Is not equal to</isnot>
+            <startswith>Starts with</startswith>
+            <endswith>Ends with</endswith>
+          </cookievaluecondition>
+          <cookieexistscondition>
+            <exists>Exists</exists>
+            <doesnotexist>Does not exist</doesnotexist>
+          </cookieexistscondition>
+        </enums>
+      </cookievisitorgroupcriteria>
+    </enums>
+  </language>
+</languages>

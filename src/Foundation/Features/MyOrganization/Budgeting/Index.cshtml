@@ -1,0 +1,240 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.Budgeting
+
+@model BudgetingPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        @if (Model.IsSubOrganization)
+        {
+            <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/CurrentSuborganizationBudget", "Current Suborganization Budget")</h4>
+        }
+        else
+        {
+            <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/CurrentOrganizationBudget", "Current Organization Budget")</h4>
+        }
+    </div>
+    @if (Model.CurrentBudgetViewModel != null)
+    {
+        <div class="col-12">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/Budget", "Budget")
+                </div>
+                <div class="col-xs-6">
+                    <strong>@Model.CurrentBudgetViewModel.Amount.ToString("N") @Model.CurrentBudgetViewModel.Currency</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/Unallocated", "Unallocated")
+                </div>
+                <div class="col-xs-6">
+                    <strong>@Model.CurrentBudgetViewModel.UnAllocatedAmount.ToString("N") @Model.CurrentBudgetViewModel.Currency</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/Spent", "Spent")
+                </div>
+                <div class="col-xs-6">
+                    <strong>@Model.CurrentBudgetViewModel.SpentBudget.ToString("N") @Model.CurrentBudgetViewModel.Currency</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/Remaining", "Remaining")
+                </div>
+                <div class="col-xs-6">
+                    <strong class="text-success">@Model.CurrentBudgetViewModel.RemainingBudget.ToString("N") @Model.CurrentBudgetViewModel.Currency</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")
+                </div>
+                <div class="col-xs-6">
+                    <strong>@Model.CurrentBudgetViewModel.StartDate.ToString("MMMM dd, yyyy")</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/EndDate", "End Date")
+                </div>
+                <div class="col-xs-6">
+                    <strong>@Model.CurrentBudgetViewModel.DueDate.ToString("MMMM dd, yyyy")</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    @Html.TranslateFallback("/B2B/Budgeting/Status", "Status")
+                </div>
+                <div class="col-xs-6">
+                    <strong>@(Model.CurrentBudgetViewModel.Status == "Planned" ? "Active" : Model.CurrentBudgetViewModel.Status)</strong>
+                </div>
+            </div>
+            <br />
+            @if (Model.IsAdmin)
+            {
+                <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditBudget?budgetId=" + @Model.CurrentBudgetViewModel.BudgetId)" class="button-black">
+                    @Html.TranslateFallback("/Shared/Edit", "Edit")
+                </a>
+            }
+        </div>
+    }
+</div>
+<hr />
+@if (Model.IsAdmin)
+{
+    <div class="row">
+        @if (Model.IsSubOrganization)
+        {
+            <div class="col-12">
+                <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddBudgetToUser")" class="button-black pull-right">
+                    @Html.TranslateFallback("/B2B/Budgeting/AddUser", "Add User")
+                </a>
+                <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/PurchaserSpendingLimits", "")</h4>
+            </div>
+            <div class="col-12"><br /></div>
+            <div class="col-12">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Budget", "Budget")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Spent", "Spent")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/EndDate", "End Date")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (@Model.PurchasersSpendingLimits != null)
+                        {
+                            foreach (var purchaser in Model.PurchasersSpendingLimits)
+                            {
+                                <tr>
+                                    <td><a href="#" class="link">@purchaser.PurchaserName</a></td>
+                                    <td>@purchaser.Amount.ToString("N") @purchaser.Currency</td>
+                                    <td>@purchaser.SpentBudget.ToString("N") @purchaser.Currency</td>
+                                    <td>@purchaser.StartDate.ToString("MMMM dd, yyyy")</td>
+                                    <td>@purchaser.DueDate.ToString("MMMM dd, yyyy")</td>
+                                    <td>@(purchaser.Status == "Planned" ? "Current" : purchaser.Status)</td>
+                                    <td class="text-center" data-budget-id="@purchaser.BudgetId">
+                                        <a class="text-dark" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditUserBudget?budgetId=" + purchaser.BudgetId)">
+                                            <i data-feather="edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="col-12">
+                <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/CurrentSuborganizationBudgets", "Current Suborganization Budgets")</h4>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Budget", "Budget")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Spent", "Spent")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Unallocated", "Unallocated")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/EndDate", "End Date")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</th>
+                            <th>@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (@Model.SubOrganizationsBudgets != null)
+                        {
+                            foreach (var suborganizationBudget in Model.SubOrganizationsBudgets)
+                            {
+                                <tr>
+                                    <td><a href="#" class="link">@suborganizationBudget.OrganizationName</a></td>
+                                    <td>@suborganizationBudget.Amount.ToString("N") @suborganizationBudget.Currency</td>
+                                    <td>@suborganizationBudget.SpentBudget.ToString("N") @suborganizationBudget.Currency</td>
+                                    <td>@suborganizationBudget.UnAllocatedAmount.ToString("N") @suborganizationBudget.Currency</td>
+                                    <td>@suborganizationBudget.StartDate.ToString("MMMM dd, yyyy")</td>
+                                    <td>@suborganizationBudget.DueDate.ToString("MMMM dd, yyyy")</td>
+                                    <td>@(suborganizationBudget.Status == "Planned" ? "Current" : @suborganizationBudget.Status)</td>
+                                    <td class="text-center" data-budget-id="@suborganizationBudget.BudgetId">
+                                        <a class="text-dark" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditBudget?budgetId=" + suborganizationBudget.BudgetId)">
+                                            <i data-feather="edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddBudget")" class="button-black pull-right">
+                @Html.TranslateFallback("/B2B/Budgeting/NewBudget", "New Budget")
+            </a>
+            @if (Model.IsSubOrganization)
+            {
+                <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/SuborganizationBudgetTimeline", "Suborganization Budget Timeline")</h4>
+            }
+            else
+            {
+                <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/OrganizationBudgetTimeline", "Organization Budget Timeline")</h4>
+            }
+        </div>
+        <div class="col-12"><br /></div>
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Budget", "Budget")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Spent", "Spent")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Unallocated", "Unallocated")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/EndDate", "End Date")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var organizationBudget in Model.OrganizationBudgets)
+                    {
+                        <tr>
+                            <td><a href="#" class="link">@organizationBudget.OrganizationName</a></td>
+                            <td>@organizationBudget.Amount.ToString("N") @organizationBudget.Currency</td>
+                            <td>@organizationBudget.SpentBudget.ToString("N") @organizationBudget.Currency</td>
+                            <td>@organizationBudget.UnAllocatedAmount.ToString("N") @organizationBudget.Currency</td>
+                            <td>@organizationBudget.StartDate.ToString("MMMM dd, yyyy")</td>
+                            <td>@organizationBudget.DueDate.ToString("MMMM dd, yyyy")</td>
+                            <td>@(organizationBudget.IsCurrentBudget ? "Current" : @organizationBudget.Status)</td>
+                            <td class="text-center" data-budget-id="@organizationBudget.BudgetId">
+                                <a class="text-dark" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditBudget?budgetId=" + @organizationBudget.BudgetId)">
+                                    <i data-feather="edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>
+        .table .thead-dark th{color:white; width:15%}
+        .table .thead-dark td{width:15%}
+     </style>
+}

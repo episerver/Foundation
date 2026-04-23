@@ -1,0 +1,227 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
+@{
+    var errorMessages = ViewBag.ErrorMessages != null ? (string)ViewBag.ErrorMessages : string.Empty;
+}
+
+<div class="col-12">
+    <h3 class="checkout-title">SECURE CHECKOUT</h3>
+</div>
+
+@if (!string.IsNullOrEmpty(errorMessages))
+{
+    <div class="col-12 error">
+        <p>@errorMessages</p>
+    </div>
+}
+
+@using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "row jsCheckoutForm", id = "jsCheckoutForm", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-8 col-xs-12">
+        <div class="card items border-radius-none">
+            <div class="card-body flex-between">
+                @if (Context.Request.Headers["UrlReferrer"].ToString() != null)
+                {
+                    <a class="button-white" href="@Context.Request.Headers["UrlReferrer"].ToString()">Back</a>
+                }
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <button class="button-black" type="button" data-bs-toggle="modal" data-bs-target="#newAddressModal">Add New Address</button>
+                }
+            </div>
+        </div>
+        <br />
+        @await Html.PartialAsync("ShippingInformation", Model)
+        <div class="card items border-radius-none">
+            <div class="card-body">
+                @await Html.PartialAsync("BillingInformation", Model)
+            </div>
+        </div>
+        <br />
+        <div class="card items border-radius-none">
+            <div class="card-body">
+                @await Html.PartialAsync("Subscription", Model)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+        <div class="card summary border-radius-none">
+            <div class="card-body">
+                @await Html.PartialAsync("_Coupon", Model)
+                <div class="row">
+                    <div class="col-12 jsOrderSummary">
+                        @await Html.PartialAsync("_OrderSummary", Model.OrderSummary)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" id="btnPlaceOrder" class="button-black full-width">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="shipmentListing" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content  square-box">
+            <div class="modal-header">
+                <h5 class="modal-title">Select shipment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body user-menu">
+                <input type="hidden" id="lineItemInfomation" data-url="@Url.Action("SeparateShipment")" data-code="" data-shipmentid="" data-qty="" data-store="delivery" data-selectedstore="" />
+                @for (var i = 0; i < Model.Shipments.Count; i++)
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="button-white full-width jsSelectShipment" data-shipmentid="@Model.Shipments[i].ShipmentId">Shipment @(i + 1)</a>
+                        </div>
+                    </div>
+                    <br />
+                }
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="button-white full-width jsSelectShipment" data-shipmentid="0">New Shipment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button-black full-width" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newAddressModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        @using (Html.BeginForm("AddAddress", "Checkout", FormMethod.Post, new { @class = "jsFormNewAddress" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("AddressReturnUrl", Url.Action("Index", "Checkout"), new { @class = "jsAddressReturnUrl" })
+            <div class="modal-content  square-box">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body user-menu">
+                    <ul class="style-list-none">
+                        <li>
+                            <div class="row">
+                                <div class="col-12 jsAddressError">
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    @Html.Label("Name")
+                                    @Html.TextBox("Name", "", new { @class = "textbox", autofocus = "autofocus" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("FirstName")
+                                    @Html.TextBox("FirstName", "", new { @class = "textbox" })
+                                </div>
+
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("LastName")
+                                    @Html.TextBox("LastName", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Email")
+                                    @Html.TextBox("Email", "", new { @class = "textbox" })
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Organization")
+                                    @Html.TextBox("Organization", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Line1")
+                                    @Html.TextBox("Line1", "", new { @class = "textbox" })
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("Line2")
+                                    @Html.TextBox("Line2", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("City")
+                                    @Html.TextBox("City", "", new { @class = "textbox" })
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6">
+                                    @Html.Label("PostalCode")
+                                    @Html.TextBox("PostalCode", "", new { @class = "textbox" })
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-6 jsCountryRegionContainer">
+                                    <label>Country/Region</label>
+                                    <input type="hidden" class="jsRegionName" value="CountryRegion.Region" )" />
+                                    @{
+                                        var regionValues = new List<KeyValuePair<string, string>>();
+                                        foreach (var a in Model.BillingAddress.CountryRegion.RegionOptions)
+                                        {
+                                            regionValues.Add(new KeyValuePair<string, string>(a, a));
+                                        }
+                                    }
+
+                                    @(await Component.InvokeAsync("Dropdown", new { list = regionValues,
+                                        selectedValue = "",
+                                        selectorClassItem = "jsRegionSelectionContainer",
+                                        name = "CountryRegion.Region"
+                                    }))
+                                </div>
+                                <div class="form-group col-xs-12 col-md-6 jsCountrySelectionContainer">
+                                    <label>Country</label>
+                                    @{
+                                        var countryValues = new List<KeyValuePair<string, string>>();
+                                        foreach (var a in Model.BillingAddress.CountryOptions)
+                                        {
+                                            countryValues.Add(new KeyValuePair<string, string>(a.Name, a.Code));
+                                        }
+                                    }
+                                    @(await Component.InvokeAsync("Dropdown", new { list = countryValues,
+                                        selectedValue = "",
+                                        selectorClassItem = "",
+                                        name = "CountryCode"
+                                    }))
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer flex-between">
+                    <button type="button" class="button-black jsSaveAddress">Save</button>
+                    <button type="button" class="button-white" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

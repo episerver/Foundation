@@ -1,0 +1,36 @@
+﻿@using Foundation.Features.MyAccount.OrderDetails
+
+@model OrderDetailsViewModel
+
+<div class="row">
+    <div class="col-12">
+        <h4>Quote Notes</h4>
+        <div id="noteListing">
+            @foreach (var orderNote in Model.PurchaseOrder.Notes.OrderByDescending(x => x.Created))
+            {
+                <div class="order-detail__note-block">
+                    <p class="title">@orderNote.Title</p>
+                    <p class="sub-title">Type: @orderNote.Type</p>
+                    <p>@orderNote.Detail</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12">
+        <h4>@Html.TranslateFallback("/Shared/AddNote", "Add Note")</h4>
+        @using (Html.BeginForm("AddNote", "OrderDetails", FormMethod.Post, new { data_container = "orderDetailsView" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.TextArea("note", new { @class = "form-control square-box", @rows = 4 })
+            @Html.Hidden("orderGroupId", Model.PurchaseOrder.OrderLink.OrderGroupId)
+            <br />
+            <button type="button" role="button" class="button-transparent-black jsAddNote">
+                @Html.TranslateFallback("/Shared/Save", "Save")
+            </button>
+        }
+    </div>
+</div>

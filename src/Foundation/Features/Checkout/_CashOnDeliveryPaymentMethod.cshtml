@@ -1,0 +1,14 @@
+﻿@using Foundation.Features.Checkout.Payments
+
+@model CashOnDeliveryPaymentOption
+
+@Html.HiddenFor(model => model.PaymentMethodId)
+
+<br />
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-info square-box">
+            @Html.TranslateFallback("/Checkout/Payment/Methods/CashOnDelivery/Description", "You pay for your order when picking up your delivery at your local post office.")
+        </div>
+    </div>
+</div>

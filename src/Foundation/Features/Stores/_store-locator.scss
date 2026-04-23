@@ -1,0 +1,98 @@
+﻿.heading-title {
+    font-size: 30px;
+    margin: 20px 0 10px 0;
+    padding-left: 0;
+}
+
+.panel {
+    border: 1px solid black;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+    &__heading {
+        background: #ff553e;
+        border-color: #ff553e;
+        color: #fff;
+        padding: 10px 15px;
+        border-bottom: 1px solid transparent;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    &__title {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    &__body {
+        padding: 15px 10px;
+    }
+}
+
+.store-detail {
+    margin-bottom: 20px;
+
+    &__info {
+        > h4 {
+            font-size: $text-font-size;
+            font-weight: 700;
+            line-height: 1.14;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        > span {
+            display: block;
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.43;
+            letter-spacing: 0.5px;
+            color: #7f7f7f;
+        }
+    }
+
+    &__store-locator {
+        display: none;
+    }
+}
+
+.use-current-location {
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+    width: fit-content;
+    cursor: pointer;
+
+    > div {
+        position: absolute;
+        bottom: -4px;
+        left: 25px;
+        width: max-content;
+    }
+}
+
+#storeMap {
+    width: auto;
+    min-height: 450px;
+    position: relative;
+}
+
+@media (min-width: 1200px) {
+    #storeMap {
+        height: 600px;
+    }
+}
+
+#searchMapInput {
+    z-index: 1;
+    left: 0;
+    position: absolute;
+    width: 35%;
+    opacity: 0.9;
+    border: none;
+
+    &::placeholder {
+        color: #333;
+        font-style: italic;
+    }
+}

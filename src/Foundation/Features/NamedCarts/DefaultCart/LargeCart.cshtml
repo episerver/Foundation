@@ -1,0 +1,64 @@
+﻿@using Foundation.Features.Header
+
+@model LargeCartViewModel
+
+@{
+//if (Request.IsAjaxRequest())
+//{
+//    Layout = null;
+//}
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title">
+            <h1 class="heading-title">@Html.PropertyFor(x => x.CurrentContent.Name)</h1>
+        </div>
+        @if (ViewBag.QuoteMessage != null && !string.IsNullOrEmpty(ViewBag.QuoteMessage))
+        {
+            <div class="alert alert-success">
+                @ViewBag.QuoteMessage
+            </div>
+        }
+
+        @if (ViewBag.ErrorMessage != null && !string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert alert-warning">
+                @Model.Message
+            </div>
+        }
+        @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+
+        @if (Model.Shipments.Any())
+        {
+            <div id="cartItemsId">
+                @await Html.PartialAsync("_CartItems", Model)
+            </div>
+        }
+        else
+        {
+            <p>The cart is empty.</p>
+        }
+    </div>
+</div>
+
+@Html.PropertyFor(x => x.CurrentContent.BottomContentArea)
+
+@if (Model.Shipments.Any())
+{
+    <div class="row">
+        <div class="col-12">
+            @if (Model.Shipments.Any())
+            {
+                @await Html.PartialAsync("_ProcessCart", Model)
+            }
+        </div>
+    </div>
+}

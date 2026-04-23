@@ -1,0 +1,98 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.Checkout.ViewModels
+
+@model OrderPadsPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+
+<section>
+    <table id="firstTable" class="table table-striped expandable-table">
+        <thead class="thead-dark">
+            <tr>
+                <th class="empty"></th>
+                <th class="empty"></th>
+                <th>@Html.TranslateFallback("/B2B/OrderPad/Sku", "Sku")</th>
+                <th>@Html.TranslateFallback("/B2B/OrderPad/ProductTitle", "Product Title")</th>
+                <th>@Html.TranslateFallback("/B2B/OrderPad/Amount", "Amount")</th>
+                <th>@Html.TranslateFallback("/B2B/OrderPad/CreatedOn", "Created on")</th>
+                <th>@Html.TranslateFallback("/Shared/Quantity", "Quantity")</th>
+                <th class="text-right">@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.OrganizationOrderPadList != null && Model.OrganizationOrderPadList.Any())
+            {
+                foreach (var organization in Model.OrganizationOrderPadList)
+                {
+                    <tr class="first-row">
+                        <td colspan="8">
+                            <div style="cursor:pointer; width: 28px;" class="btn-xs btn-dark btn-xs js-second-row-collapsed" data-expand="@organization.OrganizationId">
+                                <i data-feather="plus" aria-hidden="true"></i>
+                            </div>
+                            <span>@organization.OrganizationName</span>
+                        </td>
+                    </tr>
+                    if (organization.UsersOrderPad != null && organization.UsersOrderPad.Any())
+                    {
+                        foreach (var user in organization.UsersOrderPad)
+                        {
+                            <tr class="second-row @organization.OrganizationId">
+                                <td></td>
+                                <td colspan="7">
+                                    <div style="cursor:pointer; width: 28px;" class="btn-xs btn-dark btn-xs js-third-row-collapsed" data-expand="@user.UserId">
+                                        <i data-feather="plus" aria-hidden="true"></i>
+                                    </div>
+                                    <span>@user.UserName</span>
+                                </td>
+                            </tr>
+                            if (user.WishCartList != null)
+                            {
+                                if (user.WishCartList.GetAllLineItems().Any())
+                                {
+                                    foreach (var lineItem in user.WishCartList.GetAllLineItems())
+                                    {
+                                        <tr class="third-row @user.UserId">
+                                            <td></td>
+                                            <td></td>
+                                            <td><a href="#">#@lineItem.Code</a></td>
+                                            <td>@lineItem.DisplayName</td>
+                                            <td>@lineItem.PlacedPrice.ToString("N") @user.WishCartList.Currency.CurrencyCode</td>
+                                            <td>@user.WishCartList.Created.ToShortDateString()</td>
+                                            <td>@lineItem.Quantity</td>
+                                            <td class="text-right">
+                                                <div class="action-buttons wishlist-actions">
+                                                    @using (@Html.BeginForm("AddToCart", "DefaultCart", FormMethod.Post, new { data_container = "MiniCart" , style= "float:left"}))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        @Html.Hidden("code", @lineItem.Code)
+                                                        <button type="submit" role="button" class="btn-xs link jsAddToCart">
+                                                            <i data-feather="shopping-cart"></i>
+                                                        </button>
+                                                    }
+                                                    @using (@Html.BeginForm("RemoveCartItem", "WishList", FormMethod.Post, new { data_container = "WishListMiniCart", style= "float:left" }))
+                                                    {
+                                                        @Html.Hidden("code", @lineItem.Code)
+                                                        @Html.Hidden("userId", @user.UserId)
+                                                        <button role="button" type="submit" class="btn-xs link">
+                                                            <i data-feather="trash"></i>
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</section>

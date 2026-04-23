@@ -1,0 +1,116 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Infrastructure.Commerce.Extensions
+@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.Checkout.ConfirmationMail
+
+@model OrderConfirmationViewModel<OrderConfirmationMailPage>
+
+@{
+    Layout = null;
+    string fontFamily = @"font-family: ""Helvetica Neue"", Helvetica, Arial, sans-serif; font-size: 10pt; line-height: 1.5em;";
+    string horizontalLineStyle = "border-top: 1px solid #c7c7c7;";
+    string cellPadding = "padding: 5px;";
+}
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <table style="width: 900px; margin:50px; @fontFamily">
+        <tr>
+            <td>
+                @Html.PropertyFor(x => x.CurrentContent.MainBody)
+
+                @if (Model.HasOrder)
+                {
+                    <h2>@Html.Translate("/OrderHistory/Labels/OrderID") @Model.OrderId</h2>
+                    @Html.Translate("/OrderHistory/Labels/OrderDate") @Model.Created
+
+                    <table style="width:100%; vertical-align: top; @fontFamily">
+                        <thead>
+                            <tr>
+                                <td style="@cellPadding">@Html.Translate("/OrderConfirmation/Labels/Product")</td>
+                                <td style="text-align: right; @cellPadding">@Html.Translate("/OrderConfirmation/Labels/Quantity")</td>
+                                <td style="text-align: right; @cellPadding">@Html.Translate("/OrderConfirmationMail/UnitPrice")</td>
+                                <td style="text-align: right; @cellPadding">@Html.Translate("/OrderConfirmationMail/Price")</td>
+                                <td style="text-align: right; @cellPadding">@Html.Translate("/OrderConfirmationMail/Discount")</td>
+                                <td style="text-align: right; @cellPadding">@Html.Translate("/OrderConfirmation/Labels/Total")</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ILineItem lineItem in Model.Items)
+                            {
+                                <tr>
+                                    <td style="@horizontalLineStyle @cellPadding"><a href="@lineItem.GetFullUrl()">@lineItem.GetEntryContent().DisplayName</a></td>
+                                    <td style="text-align: right; @horizontalLineStyle @cellPadding">@lineItem.Quantity.ToString("0")</td>
+                                    <td style="text-align: right; @horizontalLineStyle @cellPadding">@lineItem.PlacedPrice.ToString()</td>
+                                    <td style="text-align: right; @horizontalLineStyle @cellPadding">@((lineItem.PlacedPrice * lineItem.Quantity).ToString())</td>
+                                    <td style="text-align: right; @horizontalLineStyle @cellPadding">@lineItem.GetEntryDiscount().ToString()</td>
+                                    <td style="text-align: right; @horizontalLineStyle @cellPadding">@lineItem.GetDiscountedPrice(Model.Currency).ToString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <table style="width:100%; vertical-align: top; @fontFamily">
+                        <tbody>
+                            <tr>
+                                <td style="width:80%; text-align: right; @horizontalLineStyle @cellPadding">@Html.Translate("/OrderConfirmationMail/OrderLevelDiscounts")</td>
+                                <td style="width:20%; text-align: right; @horizontalLineStyle @cellPadding">- @Model.OrderLevelDiscountTotal.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Html.Translate("/OrderConfirmationMail/HandlingCost")</td>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Model.HandlingTotal.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Html.Translate("/OrderConfirmationMail/ShippingSubtotal")</td>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Model.ShippingSubTotal.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Html.Translate("/OrderConfirmationMail/ShippingDiscount")</td>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">- @Model.ShippingDiscountTotal.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Html.Translate("/OrderConfirmationMail/ShippingCost")</td>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Model.ShippingTotal.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Html.Translate("/OrderConfirmationMail/TaxCost")</td>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding">@Model.TaxTotal.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding"><strong>@Html.Translate("/OrderConfirmationMail/Total")</strong></td>
+                                <td style="text-align: right; @horizontalLineStyle @cellPadding"><strong>@Model.CartTotal.ToString()</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table style="width:100%; @fontFamily">
+                        <tr>
+                            <td style="vertical-align:top; width:50%;">
+                                <h4>@Html.Translate("/OrderConfirmation/BillingDetails")</h4>
+                                @await Html.PartialAsync("_Address", Model.BillingAddress)
+
+                                <h4>@Html.Translate("/OrderConfirmation/ShippingDetails")</h4>
+                                @foreach (var shippingAddress in Model.ShippingAddresses)
+                                {
+                                    @await Html.PartialAsync("_Address", shippingAddress)
+                                }
+                            </td>
+                            <td style="vertical-align:top; width:50%;">
+                                @foreach (var payment in Model.Payments)
+                                {
+                                    await Html.RenderPartialAsync("~/Features/MyAccount/OrderConfirmation/_" + payment.PaymentMethodName + "Confirmation.cshtml", payment);
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

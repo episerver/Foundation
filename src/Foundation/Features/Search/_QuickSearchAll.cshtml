@@ -1,0 +1,23 @@
+﻿@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+
+@model SearchViewModel<SearchResultPage>
+
+@{
+    Layout = null;
+}
+
+@{
+    if (Model.ShowProductSearchResults)
+    {
+        await Html.RenderPartialAsync("_QuickSearch", Model.ProductViewModels);
+    }
+    if (Model.ShowContentSearchResults)
+    {
+        await Html.RenderPartialAsync("_QuickSearchContent", Model);
+    }
+    if (Model.ShowPdfSearchResults)
+    {
+        await Html.RenderPartialAsync("_QuickSearchPdf", Model);
+    }
+}

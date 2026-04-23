@@ -1,0 +1,50 @@
+.bottom-line {
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.footer {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    &__introduction {
+        text-align: center;
+        font-size: 22px;
+        line-height: 25px;
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
+
+    &__heading {
+        font-size: 15px;
+        line-height: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    &__subtext {
+        font-size: 12px;
+        color: #666666;
+        padding-top: 40px
+    }
+
+    &__form {
+        display: flex;
+        margin-bottom: 8px;
+    }
+
+    &__link {
+        display: flex;
+    }
+
+    a {
+        color: #000;
+
+        &:hover {
+            color: #000;
+        }
+    }
+}

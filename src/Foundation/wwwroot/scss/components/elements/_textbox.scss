@@ -1,0 +1,26 @@
+.textbox {
+    padding: 0 10px;
+    height: $textbox-height;
+    font-size: $text-font-size;
+    font-weight: 400;
+    border: 1px solid $color-darkgrey;
+    width: 100%;
+
+    &:focus,
+    &:active {
+        outline: 0;
+    }
+
+    &-big {
+        font-size: 16px;
+    }
+
+    &-small {
+        padding: 0 10px;
+        height: $textbox-height-small;
+        font-size: $text-font-size-small;
+        font-weight: 400;
+        border: 1px solid $color-darkgrey;
+        width: 100%;
+    }
+}

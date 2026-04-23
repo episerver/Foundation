@@ -1,0 +1,47 @@
+﻿@using Foundation.Features.Header
+@using Foundation.Features.MyAccount.ProfilePage
+
+@model AccountInformationViewModel
+
+<section class="main-container col2-right-layout container--gutter">
+    <div class="main container">
+        <div class="row container--gutter-inner">
+            <div class="col-sm-9">
+                <div class="page-title">
+                    <h1 class="heading-title">@Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account")</h1>
+                </div>
+                @using (Html.BeginForm("Save", "AccountInformation", FormMethod.Post, new { }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.FirstName)
+                        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.FirstName)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.LastName)
+                        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.LastName)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.DateOfBirth)
+                        @Html.EditorFor(x => x.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(x => x.DateOfBirth)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.SubscribesToNewsletter)
+                        @Html.CheckBoxFor(x => x.SubscribesToNewsletter, new { @class = "form-check-input" })
+                        @Html.ValidationMessageFor(x => x.SubscribesToNewsletter)
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">@Html.TranslateFallback("/AddressBook/Form/Label/Submit", "Submit")</button>
+                    </div>
+                }
+            </div>
+            @{
+                //Html.RenderAction("MyAccountMenu", "MyAccountNavigation", new { id = MyAccountPageType.Link });
+                @(await Component.InvokeAsync("MyAccountNavigation", new { id = MyAccountPageType.Link }))
+            }
+        </div>
+    </div>
+</section>

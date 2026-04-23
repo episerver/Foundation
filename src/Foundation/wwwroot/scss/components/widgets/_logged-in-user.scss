@@ -1,0 +1,36 @@
+﻿.logged-in-user {
+    width: 405px;
+    box-shadow: $shadow-dropdown;
+    padding: 15px;
+    background-color: #fff;
+    z-index: 700;
+    border: 0;
+    border-radius: 0;
+
+    .user-menu {
+        &__title {
+            padding: 12px;
+
+            > p {
+                margin-bottom: 0;
+            }
+        }
+
+        &__list {
+            margin-top: 10px;
+        }
+
+        &__item {
+            border-top: 1px solid $color-grey;
+            padding: 12px;
+            display: block;
+            color: black;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #eee;
+                transition: 0.2s;
+            }
+        }
+    }
+}

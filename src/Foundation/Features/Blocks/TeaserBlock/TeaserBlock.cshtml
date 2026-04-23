@@ -1,0 +1,140 @@
+@using Foundation.Features.Blocks.TeaserBlock
+
+@model IBlockViewModel<TeaserBlock>
+
+@Html.FullRefreshPropertiesMetaData(new[] { "Image", "SecondImage" })
+
+@if (Model.CurrentBlock.DisplayAsCard)
+{
+    var maxImageHeight = "max-height: auto;";
+    @if (Model.CurrentBlock.MaxImageHeight != 0)
+    {
+        maxImageHeight = string.Format("{0}px;", @Model.CurrentBlock.MaxImageHeight.ToString());
+    }
+    var minCardHeight = "auto";
+    var hasMinHeight = "";
+    @if (Model.CurrentBlock.MinCardHeight != 0)
+    {
+        minCardHeight = string.Format("min-height: {0}px", @Model.CurrentBlock.MinCardHeight.ToString());
+        hasMinHeight = "has-min-height";
+    }
+
+    @if (Model.CurrentBlock.AlignButtonBottom)
+    {
+        <text>
+            <style>
+                .teaserblock .card.has-min-height a.btn {
+                    position: absolute;
+                    bottom: 1rem;
+                }
+            </style>
+        </text>
+    }
+    <div class="card @hasMinHeight @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)" style="@minCardHeight">
+
+        @if (Model.CurrentBlock.Image != null)
+        {
+            <img class="img-fluid lazyload" style="width: @(Model.CurrentBlock.ImageSize)%; max-height: @maxImageHeight; object-fit:cover;" data-src="@Url.ContentUrl(Model.CurrentBlock.Image)" />
+        }
+
+        <div class="card-body">
+            <h5 class="card-title" style="font-size: @(Model.CurrentBlock.HeadingSize)px; text-decoration: @Model.CurrentBlock.HeadingStyle; color: @Model.CurrentBlock.HeadingColor;">@Model.CurrentBlock.Heading</h5>
+            <div class="card-text" style="color: @Model.CurrentBlock.TextColor;">
+                @Html.PropertyFor(m => m.CurrentBlock.Text)
+            </div>
+            <a href="@Url.ContentUrl(Model.CurrentBlock.Link)" class="btn btn-primary @Model.CurrentBlock.TeaserButtonStyle">@Model.CurrentBlock.TeaserButtonText</a>
+        </div>
+    </div>
+}
+
+else
+{
+@using (Html.BeginConditionalLink(!ContentReference.IsNullOrEmpty(Model.CurrentBlock.Link),
+    Url.PageLinkUrl(Model.CurrentBlock.Link),
+    Model.CurrentBlock.Heading))
+{
+
+    <div class="teaser-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)"
+         style="background-color: @Model.CurrentBlock.BackgroundColor; color: @Model.CurrentBlock.HeadingColor;
+        opacity:@Model.CurrentBlock.BlockOpacity; height: @(Model.CurrentBlock.Height)px;">
+
+        @if (!Model.CurrentBlock.Description.IsNullOrEmpty())
+        {
+            <div class="row">
+                <div class="col-12">
+                    <p class="teaser-block__description" @Html.EditAttributes(x => x.CurrentBlock.Description)>@Model.CurrentBlock.Description</p>
+                </div>
+            </div>
+        }
+        
+            
+            else
+            {
+
+                if (Model.CurrentBlock.Image != null)
+                {
+                    <div class="row pt-3">
+                        <div class="col-4">
+                            <div @Html.EditAttributes(x => x.CurrentBlock.Image)>
+                                <img class="img-fluid lazyload" style="width: @(Model.CurrentBlock.ImageSize)%" data-src="@Url.ContentUrl(Model.CurrentBlock.Image)" />
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="teaser-block__heading" style="font-size: @(Model.CurrentBlock.HeadingSize)px; text-decoration: @Model.CurrentBlock.HeadingStyle" @Html.EditAttributes(x => x.CurrentBlock.Heading)>
+                                @Model.CurrentBlock.Heading
+                            </div>
+                            @if (Model.CurrentBlock.SecondImage == null)
+                            {
+                                <div class="teaser-block__text" style="@Model.CurrentBlock.TextColor; margin-top:10px;" @Html.EditAttributes(x => x.CurrentBlock.Text)>
+                                    @Html.Raw(Model.CurrentBlock.Text)
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row pt-3">
+                        <div class="col-12">
+                            <div class="teaser-block__heading" style="font-size: @(Model.CurrentBlock.HeadingSize)px; text-decoration: @Model.CurrentBlock.HeadingStyle" @Html.EditAttributes(x => x.CurrentBlock.Heading)>
+                                @Model.CurrentBlock.Heading
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                if (Model.CurrentBlock.SecondImage != null)
+                {
+                    <div class="row">
+                        <div class="col-4">
+                            <div @Html.EditAttributes(x => x.CurrentBlock.SecondImage)>
+                                <img class="img-fluid lazyload" style="width: @(Model.CurrentBlock.SecondImageSize)%" data-src="@Url.ContentUrl(Model.CurrentBlock.SecondImage)" />
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="teaser-block__text" style="@Model.CurrentBlock.TextColor;" @Html.EditAttributes(x => x.CurrentBlock.Text)>
+                                @Html.Raw(Model.CurrentBlock.Text)
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    if (Model.CurrentBlock.Image == null)
+                    {
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="teaser-block__text" style="color: @Model.CurrentBlock.TextColor;" @Html.EditAttributes(x => x.CurrentBlock.Text)>
+                                    @Html.Raw(Model.CurrentBlock.Text)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+           
+        
+    </div>
+}
+}

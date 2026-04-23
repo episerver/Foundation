@@ -1,0 +1,14 @@
+﻿@using Foundation.Features.Header
+
+@model MiniCartViewModel
+
+<div class="cart dropdown-menu dropdown-menu--customized" id="jsSharedCartContainer">
+    <div style="position: relative;">
+        <div class="loading-cart" hidden>
+            <div class="loader"></div>
+        </div>
+        <div class="cart-item-listing">
+            @await Html.PartialAsync("_MiniSharedCartItems", Model)
+        </div>
+    </div>
+</div>

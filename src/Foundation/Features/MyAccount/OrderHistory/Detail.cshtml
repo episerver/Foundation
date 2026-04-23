@@ -1,0 +1,135 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using EPiServer.Commerce.Order
+@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.Header
+@using Foundation.Features.MyAccount.OrderHistory
+@using Foundation.Infrastructure.Commerce.Extensions
+
+@model OrderConfirmationViewModel<OrderHistoryPage>
+
+<section class="main-container col2-right-layout">
+    <div class="main container">
+        <div class="row">
+            <div class="col-main col-sm-9">
+                <div class="page-title">
+                    <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+
+                </div>
+                <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+                <div class="row checkout">
+                    <div class="col-md-12">
+                        @if (Model.HasOrder)
+                        {
+                            <div class="row hidden-xs hidden-sm">
+                                <div class="col-md-7">@Html.TranslateFallback("/OrderConfirmation/Labels/Product", "Product")</div>
+                                <div class="col-md-1 text-right">@Html.TranslateFallback("/OrderConfirmation/Labels/Quantity", "Quantity")</div>
+                                <div class="col-md-1 text-right">@Html.TranslateFallback("/OrderConfirmationMail/UnitPrice", "Unit price")</div>
+                                <div class="col-md-1 text-right">@Html.TranslateFallback("/OrderConfirmationMail/Price", "Price")</div>
+                                <div class="col-md-1 text-right">@Html.TranslateFallback("/OrderConfirmationMail/Discount", "Discount")</div>
+                                <div class="col-md-1 text-right">@Html.TranslateFallback("/OrderConfirmation/Labels/Total", "Total")</div>
+                            </div>
+
+                            foreach (ILineItem lineItem in Model.Items)
+                            {
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-1 col-xs-3">
+                                        <a href="@lineItem.GetUrl()" class="link--black"><img src="@lineItem.GetThumbnailUrl()" /></a>
+                                    </div>
+                                    <div class="col-md-6 col-xs-9">
+                                        <a href="@lineItem.GetUrl()" class="link--black">@lineItem.GetEntryContent().DisplayName</a>
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 text-right">
+                                        <label class="col-xs-8 visible-xs visible-sm">@Html.TranslateFallback("/OrderConfirmation/Labels/Quantity", "Quantity")</label>
+                                        @lineItem.Quantity.ToString("0")
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 text-right">
+                                        <label class="col-xs-8 visible-xs visible-sm text-right">@Html.TranslateFallback("/OrderConfirmationMail/UnitPrice", "Unit price")</label>
+                                        @*@Helpers.RenderMoney(lineItem.PlacedPrice, Model.Currency)*@
+                                        @{await Component.InvokeAsync("Money", new { amount = lineItem.PlacedPrice, currency = Model.Currency });}
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 text-right">
+                                        <label class="col-xs-8 visible-xs visible-sm text-right">@Html.TranslateFallback("/OrderConfirmationMail/Price", "Price")</label>
+                                        @*@Helpers.RenderMoney(lineItem.PlacedPrice * lineItem.Quantity, Model.Currency)*@
+                                        @{await Component.InvokeAsync("Money", new { amount = lineItem.PlacedPrice * lineItem.Quantity, currency = Model.Currency });}
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 text-right">
+                                        <label class="col-xs-8 visible-xs visible-sm text-right">@Html.Translate("/OrderConfirmationMail/Discount")</label>
+                                        @*@Helpers.RenderMoney(lineItem.GetEntryDiscount(), Model.Currency)*@
+                                        @{await Component.InvokeAsync("Money", new { amount = lineItem.GetEntryDiscount(), currency = Model.Currency });}
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 text-right">
+                                        <label class="col-xs-8 visible-xs visible-sm text-right">@Html.TranslateFallback("/OrderConfirmation/Labels/Total", "Total")</label>
+                                        @*@Helpers.RenderMoney(lineItem.GetDiscountedPrice(Model.Currency))*@
+                                        @{await Component.InvokeAsync("Money", new { amount = lineItem.GetDiscountedPrice(Model.Currency), currency = Model.Currency });}
+                                    </div>
+                                </div>
+                            }
+
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right col-md-10">@Html.TranslateFallback("/OrderConfirmationMail/OrderLevelDiscounts", "Additional discounts")</td>
+                                        <td class="total-price text-right col-md-2">- @Model.OrderLevelDiscountTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/HandlingCost", "Handling cost")</td>
+                                        <td class="total-price text-right">@Model.HandlingTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingSubtotal", "Shipping Subtotal")</td>
+                                        <td class="total-price text-right">@Model.ShippingSubTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingDiscount", "Shipping Discount")</td>
+                                        <td class="total-price text-right">- @Model.ShippingDiscountTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/ShippingCost", "Shipping cost")</td>
+                                        <td class="total-price text-right">@Model.ShippingTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">@Html.TranslateFallback("/OrderConfirmationMail/TaxCost", "Tax Cost")</td>
+                                        <td class="total-price text-right">@Model.TaxTotal.ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right"><strong>@Html.TranslateFallback("/OrderConfirmationMail/Total", "Total")</strong></td>
+                                        <td class="total-price text-right"><strong>@Model.CartTotal.ToString()</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="well">
+                                        <h4>@Html.TranslateFallback("/OrderConfirmation/BillingDetails", "Billing Details")</h4>
+                                        @await Html.PartialAsync("_Address", Model.BillingAddress)
+
+                                        <h4>@Html.TranslateFallback("/OrderConfirmation/ShippingDetails", "Shipping Details")</h4>
+                                        @foreach (var shippingAddress in Model.ShippingAddresses)
+                                        {
+                                            @await Html.PartialAsync("_Address", shippingAddress)
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    @foreach (var payment in Model.Payments)
+                                    {
+                                        await Html.RenderPartialAsync("_" + payment.PaymentMethodName + "Confirmation", payment);
+                                    }
+                                </div>
+                            </div>
+                            <hr>
+                        }
+                        else
+                        {
+                            @Html.TranslateFallback("/OrderConfirmation/NoOrder", "Can't show order details in on-page editing mode until at least one order has been created.")
+                        }
+                    </div>
+                </div>
+            </div>
+            @(await Component.InvokeAsync("MyAccountNavigation", new { id = MyAccountPageType.Link }))
+        </div>
+    </div>
+</section>

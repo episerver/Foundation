@@ -1,0 +1,210 @@
+.mobile-navigation {
+    display: flex;
+    height: $navigation-height;
+    align-items: center;
+
+    &__left {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    &__logo {
+        img {
+            max-height: $navigation-height - 10px;
+        }
+    }
+
+    &__search-box {
+        background-color: #ffffff;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        z-index: 10;
+    }
+
+    &__item {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &__right {
+        display: flex;
+    }
+
+    &__search-text {
+        width: 100%;
+        height: 30px;
+        border: 0;
+        border-left: 1px solid black;
+        padding: 15px;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    @media (max-width: 375px) {
+        height: 60px;
+
+        .mobile-navigation__item {
+            padding-right: 0;
+        }
+
+        .icon-menu {
+            width: 40px;
+            height: 60px;
+        }
+
+        .searchbox-popover {
+            width: calc(100% + 40px);
+        }
+    }
+}
+
+.offside-navbar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -500px;
+    background-color: #ffffff;
+    z-index: 1000;
+    border-right: 1px solid #eeeeee;
+    padding-top: 36px;
+
+    &__tab-content {
+        width: 100%;
+    }
+
+    &--nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 80px;
+        border-bottom: 1px solid #eeeeee;
+
+        &__item {
+            color: $text-color;
+            text-decoration: none;
+            cursor: pointer;
+            flex: 1 1 80px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #eeeeee;
+
+            &:last-child {
+                border-right: 0;
+            }
+
+            > span {
+                position: absolute;
+                bottom: 0;
+            }
+
+            .icon-menu {
+                width: 100%;
+            }
+
+            &:hover {
+                color: $text-color;
+                text-decoration: none;
+            }
+
+            &.active {
+                background-color: #f5f5f5;
+            }
+        }
+    }
+
+    &--menu {
+        width: 100%;
+        user-select: none;
+        cursor: pointer;
+        list-style: none;
+        padding: 0;
+
+        &__item {
+            width: 100%;
+            padding: 15px;
+            border-bottom: 1px solid #eeeeee;
+            text-transform: uppercase;
+            color: black;
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+            }
+
+            .expand-collapse-child {
+                float: right;
+                cursor: pointer;
+                opacity: 0.8;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            img {
+                width: 20px;
+                height: 20px;
+                border-radius: 20%;
+            }
+
+            &.expanded {
+                padding-bottom: 0;
+            }
+
+            .main-category {
+                font-weight: bold;
+            }
+        }
+
+        &.child-menu {
+            margin-top: 15px;
+            margin-left: -15px;
+            margin-right: -15px;
+            width: calc(100% + 30px);
+            padding-left: 15px;
+            padding-right: 15px;
+            background-color: #f9f9f9;
+            display: none;
+            position: relative;
+        }
+    }
+
+    &--sub-menu {
+        width: 100%;
+        background-color: #f9f9f9;
+
+        &__item {
+            width: 100%;
+            padding: 15px;
+            border-bottom: 1px solid #eeeeee;
+            color: black;
+        }
+    }
+}
+
+.show-side-nav {
+    left: 0;
+    transition: 0.5s;
+}
+
+.hide-side-nav {
+    left: -500px;
+    transition: 0.5s;
+}
+
+.market-list__list {
+    & ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+}

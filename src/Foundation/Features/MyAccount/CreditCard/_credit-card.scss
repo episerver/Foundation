@@ -1,0 +1,33 @@
+﻿.credit-card-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    > .btn {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        h5 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        h5,
+        p {
+            line-height: 1.5;
+        }
+
+        &:last-child {
+            margin-top: 10px;
+        }
+    }
+
+    form {
+        display: inline-block;
+    }
+}

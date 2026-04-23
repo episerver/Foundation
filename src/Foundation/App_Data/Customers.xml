@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Customers>
+  <Organizations>
+    <Organization>
+      <Id>2fb3117e-8aa0-469d-b0ff-56dd1a3329bf</Id>
+      <Name>Turner Construction</Name>
+      <Users>
+        <User>
+          <Email>admin@turner.com</Email>
+          <FirstName>Deb</FirstName>
+          <LastName>Turner</LastName>
+          <Roles></Roles>
+          <B2BRole>Admin</B2BRole>
+          <Location></Location>
+          <ShowInDemoUserMenu>3</ShowInDemoUserMenu> <!--1 - Never, 2- Always, 3 - Commerce only-->
+          <DemoUserTitle>Turner Construction Admin </DemoUserTitle>
+          <DemoUserDescription>Has a customer catalog for subset of products</DemoUserDescription>
+          <DemoSort>2</DemoSort>
+          <Addresses>
+            <Address>
+              <Name>Work</Name>
+              <Line1>4118 Blueberry Lane</Line1>
+              <City>Sprinfield</City>
+              <CountryCode>USA</CountryCode>
+              <CountryName>United States</CountryName>
+              <RegionCode>VA</RegionCode>
+              <RegionName>Virginia</RegionName>
+              <PostalCode>22153</PostalCode>
+            </Address>
+          </Addresses>
+        </User>
+      </Users>
+      <CreditCards>
+        <CreditCard>
+          <Number>454459555999559</Number>
+          <CardType>Visa</CardType>
+          <LastFour>9559</LastFour>
+          <ExpirationYear>2025</ExpirationYear>
+          <ExpirationMonth>12</ExpirationMonth>
+        </CreditCard>
+      </CreditCards>
+    </Organization>
+    <Organization>
+      <Id>51A37560-D10E-4D31-97D4-A1309469C323</Id>
+      <Name>Emerging Markets Inc</Name>
+      <Users>
+        <User>
+          <Email>b2badmin@episerver.com</Email>
+          <FirstName>Mike</FirstName>
+          <LastName>Jones</LastName>
+          <Roles></Roles>
+          <B2BRole>Admin</B2BRole>
+          <Location></Location>
+          <ShowInDemoUserMenu>3</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
+          <DemoUserTitle>Emerging Markets Admin </DemoUserTitle>
+          <DemoUserDescription>Has admin rights for organization</DemoUserDescription>
+          <DemoSort>3</DemoSort>
+          <Addresses>
+            <Address>
+              <Name>Work</Name>
+              <Line1>12345 Any street</Line1>
+              <City>Anytown</City>
+              <CountryCode>USA</CountryCode>
+              <CountryName>United States</CountryName>
+              <RegionCode>CA</RegionCode>
+              <RegionName>California</RegionName>
+              <PostalCode>92544</PostalCode>
+            </Address>
+          </Addresses>
+        </User>
+      </Users>
+      <CreditCards>
+        <CreditCard>
+          <Number>454459555999559</Number>
+          <CardType>Visa</CardType>
+          <LastFour>9559</LastFour>
+          <ExpirationYear>2025</ExpirationYear>
+          <ExpirationMonth>12</ExpirationMonth>
+        </CreditCard>
+      </CreditCards>
+      <SubOrganizations>
+        <SubOrganization>
+          <Id>E662711F-EB91-467C-9DBF-B98B7CE5098B</Id>
+          <Name>EM Inc Colombia</Name>
+          <Users>
+            <User>
+              <Email>b2bPurchaser@episerver.com</Email>
+              <FirstName>Paul</FirstName>
+              <LastName>Wall</LastName>
+              <Roles></Roles>
+              <B2BRole>Purchaser</B2BRole>
+              <Location></Location>
+              <ShowInDemoUserMenu>3</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
+              <DemoUserTitle>Emerging Markets Purchaser </DemoUserTitle>
+              <DemoUserDescription>Has purchasing rights for organization</DemoUserDescription>
+              <DemoSort>5</DemoSort>
+              <Addresses>
+                <Address>
+                  <Name>Work</Name>
+                  <Line1>12345 Any street</Line1>
+                  <City>Anytown</City>
+                  <CountryCode>USA</CountryCode>
+                  <CountryName>United States</CountryName>
+                  <RegionCode>FL</RegionCode>
+                  <RegionName>Florida</RegionName>
+                  <PostalCode>32004</PostalCode>
+                </Address>
+              </Addresses>
+            </User>
+            <User>
+              <Email>b2bApprover@episerver.com</Email>
+              <FirstName>Emily</FirstName>
+              <LastName>Johnson</LastName>
+              <Roles></Roles>
+              <B2BRole>Approver</B2BRole>
+              <Location></Location>
+              <ShowInDemoUserMenu>3</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
+              <DemoUserTitle>Emerging Markets Approver </DemoUserTitle>
+              <DemoUserDescription>Has approver rights for organization</DemoUserDescription>
+              <DemoSort>6</DemoSort>
+              <Addresses>
+                <Address>
+                  <Name>Work</Name>
+                  <Line1>12345 Any street</Line1>
+                  <City>Anytown</City>
+                  <CountryCode>USA</CountryCode>
+                  <CountryName>United States</CountryName>
+                  <RegionCode>CO</RegionCode>
+                  <RegionName>Colorado</RegionName>
+                  <PostalCode>80019</PostalCode>
+                </Address>
+              </Addresses>
+            </User>
+          </Users>
+          <CreditCards>
+            <CreditCard>
+              <Number>454459555999589</Number>
+              <CardType>Visa</CardType>
+              <LastFour>9589</LastFour>
+              <ExpirationYear>2025</ExpirationYear>
+              <ExpirationMonth>12</ExpirationMonth>
+            </CreditCard>
+          </CreditCards>
+        </SubOrganization>
+      </SubOrganizations>
+    </Organization>
+  </Organizations>
+  <Customer>
+    <Email>salesrep@example.com</Email>
+    <FirstName>Jane</FirstName>
+    <LastName>Optimizer</LastName>
+    <Roles>SalesRep</Roles>
+    <ShowInDemoUserMenu>3</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
+    <DemoUserTitle>Sales rep </DemoUserTitle>
+    <DemoUserDescription>Has sales rep role</DemoUserDescription>
+    <DemoSort>7</DemoSort>
+    <Addresses>
+      <Address>
+        <Name>Work</Name>
+        <Line1>4118 Blueberry Lane</Line1>
+        <City>Sprinfield</City>
+        <CountryCode>USA</CountryCode>
+        <CountryName>United States</CountryName>
+        <RegionCode>VA</RegionCode>
+        <RegionName>Virginia</RegionName>
+        <PostalCode>22153</PostalCode>
+      </Address>
+    </Addresses>
+  </Customer>
+  <Customer>
+    <Email>admin@example.com</Email>
+    <FirstName>Perry</FirstName>
+    <LastName>Riley</LastName>
+    <Roles>Administrators,WebAdmins</Roles>
+    <ShowInDemoUserMenu>2</ShowInDemoUserMenu><!--1 - Never, 2- Always, 3 - Commerce only-->
+    <DemoUserTitle>Global Admin </DemoUserTitle>
+    <DemoUserDescription>Has global admin rights</DemoUserDescription>
+    <DemoSort>1</DemoSort>
+    <Addresses>
+      <Address>
+        <Name>Home</Name>
+        <Line1>4118 Blueberry Lane</Line1>
+        <City>Sprinfield</City>
+        <CountryCode>USA</CountryCode>
+        <CountryName>United States</CountryName>
+        <RegionCode>VA</RegionCode>
+        <RegionName>Virginia</RegionName>
+        <PostalCode>22153</PostalCode>
+      </Address>
+    </Addresses>
+    <CreditCards>
+      <CreditCard>
+        <Number>454459555999589</Number>
+        <CardType>Visa</CardType>
+        <LastFour>9589</LastFour>
+        <ExpirationYear>2025</ExpirationYear>
+        <ExpirationMonth>12</ExpirationMonth>
+      </CreditCard>
+    </CreditCards>
+  </Customer>
+</Customers>

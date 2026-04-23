@@ -1,0 +1,35 @@
+﻿@using Foundation.Features.Header
+
+@model MiniCartViewModel
+
+@foreach (var shipment in Model.Shipments)
+{
+    foreach (var item in shipment.CartItems)
+    {
+        <div class="cart__row">
+            <div>
+                <img data-src="@item.ImageUrl?format=webp&width=60" class="cart__product-img lazyload" loading="lazy" />
+            </div>
+            <div class="cart__product">
+                <a class="account-link" href="@item.Url">@item.DisplayName.MakeCompactString(20)</a>
+                <p class="cart__product-price">
+                    @if (item.DiscountedUnitPrice.HasValue)
+                    {
+                        <span class="price__old">@item.PlacedPrice.ToString()</span>
+                        <span class="price__discount">@item.DiscountedUnitPrice.ToString()</span>
+                    }
+                    else
+                    {
+                        <span class="price__discount">@item.PlacedPrice.ToString()</span>
+                    }
+                </p>
+                <span class="cart__product-remove jsRemoveCartItem" type="cart" shipmentId="@shipment.ShipmentId" code="@item.Code">
+                    Remove
+                </span>
+            </div>
+            <p class="cart__product-count">
+                @((int)item.Quantity) items
+            </p>
+        </div>
+    }
+}

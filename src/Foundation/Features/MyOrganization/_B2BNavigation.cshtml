@@ -1,0 +1,26 @@
+﻿@using Foundation.Features.Header
+@using Foundation.Features.MyOrganization
+@using Foundation.Infrastructure.Commerce.Extensions
+
+@model B2BNavigationViewModel
+
+@if (Model.UserLinks != null && Model.UserLinks.Any())
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="profile-sidebar">
+                <div class="profile-sidebar__title">@Html.TranslateFallback("/Dashboard/Labels/MyOrganization", "My Organization")</div>
+                <ul class="profile-sidebar__group">
+                    @foreach (var userLink in Model.UserLinks)
+                    {
+                        var selected = userLink.GetContentReference() == Model.CurrentContentLink;
+                        var url = Url.PageUrl(userLink.Href);
+                        <li class="@(selected ? "current" : "") profile-sidebar__item">
+                            <a href="@url">@userLink.Text</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}

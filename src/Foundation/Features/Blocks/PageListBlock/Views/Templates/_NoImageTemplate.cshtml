@@ -1,0 +1,44 @@
+@model PageListBlockViewModel
+@* CMS 13 removed: EPiServer.Core.Html.TextIndexer removed. *@
+@* @using EPiServer.Core.Html *@
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
+@using System.Text.RegularExpressions
+@using System.Net
+
+@{
+    // CMS 13 removed: TextIndexer.StripHtml replaced with local function.
+    Func<string, int, string> StripHtml = (html, max) => {
+        if (string.IsNullOrEmpty(html)) return string.Empty;
+        var s = Regex.Replace(html, "<[^>]+>", string.Empty);
+        s = WebUtility.HtmlDecode(s);
+        return max > 0 && s.Length > max ? s.Substring(0, max) : s;
+    };
+}
+
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    <div class="row">
+        @foreach (var pageModel in Model.Pages)
+        {
+            var foundationPage = pageModel.Page as FoundationPageData;
+            var imageCol = pageModel.PreviewOption == PreviewOptions.Full ? 12 : (pageModel.PreviewOption == PreviewOptions.Half ? 6 : 4);
+            var textCol = imageCol == 12 ? 12 : 12 - imageCol;
+
+            <a class="col-@imageCol preview--image-top" href="@pageModel.Page.ContentLink.GetPublicUrl()">
+                <h4>
+                    @(@Html.Raw(StripHtml(pageModel != null ? foundationPage.MetaTitle : pageModel.Page.Name, 55)) + "...")
+                </h4>
+                @if (Model.ShowPublishDate)
+                {
+                    <p class="sub-title">@pageModel.Page.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                }
+                @if (pageModel != null && Model.ShowIntroduction)
+                {
+                    <br />
+                    <p class="light-text">@Html.Raw(StripHtml(foundationPage.TeaserText, 200))</p>
+                }
+            </a>
+        }
+    </div>
+}

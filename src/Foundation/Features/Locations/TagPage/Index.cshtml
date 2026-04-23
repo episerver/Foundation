@@ -1,0 +1,128 @@
+﻿@using Foundation.Features.Locations.TagPage
+@inject IContextModeResolver contextModeResolver
+@model TagsViewModel
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-title">
+                @Html.PropertyFor(x => x.CurrentContent.Name)
+                @((Model.Continent != null) ? string.Format(" {0} ", Html.Translate("/Shared/In")) + Model.Continent : "")
+                @((Model.AdditionalCategories != null) ? string.Format(" {0} ", Html.Translate("/Shared/With")) + string.Join(", ", Model.AdditionalCategories.ToArray()) : "")
+            </h2>
+        </div>
+        <div class="col-md-12">
+            @await Html.PartialAsync("CarouselSimple", Model.Carousel)
+        </div>
+        <div class="col-md-12">
+            @Html.PropertyFor(m => m.CurrentContent.TopContentArea, new { CssClass = "row" })
+        </div>
+        <div class="col-md-12">
+            @if (!string.IsNullOrWhiteSpace(Model.CurrentContent.MainIntro) || contextModeResolver.CurrentMode == ContextMode.Edit)
+            {
+                <p class="lead location-main-intro" @Html.EditAttributes(x => x.CurrentContent.MainIntro)>@Model.CurrentContent.MainIntro</p>
+            }
+            @Html.PropertyFor(x => x.CurrentContent.MainBody)
+        </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
+        <div class="col-md-12">
+            <div id="locations">
+                @if (string.IsNullOrEmpty(Model.Continent))
+                {
+                    foreach (var lst in Model.Locations.GroupBy(dp => dp.Continent).OrderBy(dp => dp.Key))
+                    {
+                        <a href="@Url.GetSegmentedUrl(Model.CurrentContent,lst.Key)">
+                            <h2 class="section-lines">@lst.Key</h2>
+                        </a>
+                        foreach (var location in lst.ToList())
+                        {
+                            <article class="post animated fadeInRight animation-delay-8 locationArticle"
+                                     data-maplat="@location.Latitude" data-maplon="@location.Longitude"
+                                     data-mapname="@location.PageName" data-mapurl="@location.LinkURL">
+                                <div class="location">
+                                    <div class="location__body">
+                                        <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>
+                                        <div class="row">
+                                            @if (!ContentReference.IsNullOrEmpty(location.Image))
+                                            {
+                                                <div class="col-lg-5">
+                                                    <img src="@Url.ContentUrl(location.Image)" class="location__img img-responsive" alt="@location.Name">
+                                                </div>
+                                                <div class="col-lg-7 location__description">
+                                                    @location.MainIntro
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-lg-12 location__description">
+                                                    @location.MainIntro
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="location__footer">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <i class="fa fa-globe"></i> @location.Continent / @location.Country
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var location in Model.Locations.OrderBy(dp => dp.Promoted).ThenBy(dp => dp.Name))
+                    {
+                        <article class="post animated fadeInRight animation-delay-8 locationArticle"
+                                 data-maplat="@location.Latitude" data-maplon="@location.Longitude"
+                                 data-mapname="@location.PageName" data-mapurl="@location.LinkURL">
+                            <div class="location">
+                                <div class="location__body">
+                                    <h3 class="location__title"><a href="@Url.ContentUrl(location.ContentLink)" class="transicion">@location.Name</a></h3>
+                                    <div class="row">
+                                        @if (!ContentReference.IsNullOrEmpty(location.Image))
+                                        {
+                                            <div class="col-lg-5">
+                                                <img src="@Url.ContentUrl(location.Image)" class="location__img img-responsive" alt="@location.Name">
+                                            </div>
+                                            <div class="col-lg-7 location__description">
+                                                @location.MainIntro
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-lg-12 location__description">
+                                                @location.MainIntro
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="location__footer">
+                                    <div class="row">
+                                        <div class="col-lg-10 col-md-9 col-xs-8">
+                                            <i class="fa fa-globe"></i> @location.Continent / @location.Country
+                                        </div>
+                                        <div class="col-lg-2 col-md-3 col-xs-4">
+                                            <a href="@Url.ContentUrl(location.ContentLink)" class="pull-right">@Html.TranslateFallback("/common/readmore", "Read more »")</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-12">
+            @Html.PropertyFor(m => m.CurrentContent.BottomArea, new { CssClass = "row" })
+        </div>
+    </div>
+</section>

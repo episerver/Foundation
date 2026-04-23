@@ -1,0 +1,92 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.ODP.ODPEventTrackingBlock
+
+@model ODPEventTrackingBlock
+
+<style>
+    .opti-block-odpeventtracking-details {
+        padding: 1rem;
+        background: repeating-linear-gradient( -55deg, #fefefe50, #fefefe50 10px, #f2f2f250 10px, #f2f2f250 20px );
+        border: 1px solid #ccc;
+        margin: 1rem 0;
+        position:relative;
+    }
+
+    .opti-block-odpeventtracking-details ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+    }
+    .opti-block-odpeventtracking-details > p {
+        position: absolute;
+        right: 1rem;
+        font-size: .9em;
+    }
+</style>
+
+<div class="opti-block-odpeventtracking">
+
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        @if ((this.ViewContext.IsInEditMode() && Model.ShowSnippetEditMode) || (!this.ViewContext.IsInEditMode() && Model.ShowSnippetFrontEnd))
+        {
+            <div class="opti-block-odpeventtracking-details">
+
+                <p><em>ODP Time Stamp: <strong>@(Model.HasEventDate(Model.EventTime) ? @Model.EventTime : "Now")</strong></em></p>
+
+                <code>
+                    &lt;script&gt;<br/>
+                        zaius.event("@(Model.Other.IsNullOrEmpty() ? Model.EventType : Model.Other)", { action: "@Model.EventAction" @*@(Model.Search_Term != null ? string.Format(", search_term: \"{0}\" ", Model.Search_Term) : "" )*@  @(Model.Campaign != null ? string.Format(", campaign: \"{0}\" ", Model.Campaign) : "" ) @(Model.Email != null ? string.Format(", email: \"{0}\" ", Model.Email) : "" ), ts: "@Model.ConvertToEpoch(Model.EventTime.ToString())" });<br/>
+                    &lt;/script&gt;
+                </code>
+            </div>
+        }
+    } 
+
+    @if (!this.ViewContext.IsInEditMode()) {
+
+        @if(Model.HasEventDate(Model.EventTime))
+        {
+            <script>
+            document.getElementById("executeODPEvents").addEventListener("click", function() {
+
+                zaius.event(
+                    "@(Model.Other.IsNullOrEmpty() ? Model.EventType : Model.Other)" , 
+                    { action: 
+                        "@Model.EventAction" 
+                        @if(Model.Campaign != null){ 
+                            <text>, campaign: "</text> @Html.Raw(Model.Campaign) <text>"</text> 
+                        } 
+                        @if(Model.Email != null){
+                            <text>, email: "</text> @Model.Email <text>"</text>
+                        },
+                        ts: "@Model.ConvertToEpoch(Model.EventTime.ToString())"
+                    }); 
+            });
+
+        </script>
+        }
+        else
+        {
+            <script>
+
+            zaius.event(
+                "@(Model.Other.IsNullOrEmpty() ? Model.EventType : Model.Other)" , 
+                { action: 
+                    "@Model.EventAction" 
+                    @if(Model.Campaign != null){ 
+                        <text>, campaign: "</text> @Html.Raw(Model.Campaign) <text>"</text> 
+                    } 
+                    @if(Model.Email != null){
+                        <text>, email: "</text> @Model.Email <text>"</text>
+                    }
+                }); 
+
+            
+            </script>
+        }
+
+
+      
+    }
+</div>

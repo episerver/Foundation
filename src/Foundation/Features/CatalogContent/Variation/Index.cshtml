@@ -1,0 +1,66 @@
+﻿@using Foundation.Features.CatalogContent.Variation
+
+@model GenericVariantViewModel
+
+<div class="row product-detail">
+    @await Html.PartialAsync("_VariantDetail", Model)
+</div>
+
+@if ((Model.CurrentContent.ContentArea != null && !Model.CurrentContent.ContentArea.IsEmpty) || Html.IsInEditMode())
+{
+    <div class="row product-detail__contentarea">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.ContentArea)
+        </div>
+    </div>
+}
+
+<div class="row product-tabs">
+    <div class="col-12">
+        <ul class="nav nav-tabs product-tab" id="loginUsersTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link product-tab__item active" data-bs-toggle="tab" href="#product_tabs_description">
+                    @Html.TranslateFallback("/Shared/ProductDescription", "Product Description")
+                </a>
+            </li>
+            @*<li class="nav-item">
+                <a class="nav-link product-tab__item" data-bs-toggle="tab" href="#product_tabs_reviews">
+                    @Html.TranslateFallback("/Shared/Reviews", "Reviews")
+                </a>
+            </li>*@
+            <li class="nav-item">
+                <a class="nav-link product-tab__item" data-bs-toggle="tab" href="#product_tabs_associations">
+                    @if (!string.IsNullOrEmpty(Model.CurrentContent.AssociationsTitle) || Html.IsInEditMode())
+                    {
+                        @Html.PropertyFor(x => x.CurrentContent.AssociationsTitle)
+                    }
+                    else
+                    {
+                        @Html.TranslateFallback("/Shared/StaticAssociations", "You May Also Like")
+                    }
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane product-tab__content fade in active show" id="product_tabs_description">
+                @Html.PropertyFor(x => x.CurrentContent.Description)
+            </div>
+            @*<div class="tab-pane product-tab__content fade" id="product_tabs_reviews">
+                @await Html.PartialAsync("_ReviewForm", new ReviewSubmissionViewModel(Model.CurrentContent.Code))-->
+                <div>
+                        @Html.Partial("_Reviews", Model.Reviews)
+                    </div>
+            </div>*@
+            <div class="tab-pane product-tab__content product-tab__association fade" id="product_tabs_associations">
+                <div class="row">
+                    @foreach (var association in Model.StaticAssociations.Take(4))
+                    {
+                        <div class="col-3">
+                            @await Html.PartialAsync("_Product", association)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

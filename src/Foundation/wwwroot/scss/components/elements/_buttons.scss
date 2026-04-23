@@ -1,0 +1,158 @@
+%button-base {
+    display: inline-block;
+    border-radius: 0;
+    min-width: 100px;
+    font-size: $text-font-size;
+    line-height: $text-font-size;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 20px;
+    border: 1px solid black;
+    user-select: none;
+    background-color: transparent;
+    transition: color 0.15s;
+    text-decoration: none;
+    min-height: 40px;
+    min-width: 100px;
+
+    &:active {
+        border-color: #d3d9df;
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        color: #fff;
+        background: #333;
+        border: 1px solid black;
+        text-decoration: none;
+    }
+
+    &:disabled {
+        color: #fff;
+        background-color: #7f7f7f;
+        border-color: #7f7f7f;
+    }
+
+    &--icon {
+        height: 40px;
+        padding-top: 8px;
+        text-transform: none;
+    }
+}
+
+.button-origin {
+    @extend %button-base;
+}
+
+.button-transparent-black {
+    @extend %button-base;
+    background: transparent;
+    color: black;
+
+    &--icon {
+        @extend .button-transparent-black;
+        @extend %button-base--icon;
+    }
+}
+
+.button-transparent-white {
+    @extend %button-base;
+    background: transparent;
+    color: white;
+    border-color: white;
+
+    &:hover {
+        border-color: white !important;
+        color: black !important;
+        background-color: white !important;
+    }
+}
+
+.button-black {
+    @extend %button-base;
+    background-color: black;
+    color: white;
+
+    &--icon {
+        @extend .button-black;
+        @extend %button-base--icon;
+    }
+}
+
+.button-white {
+    @extend %button-base;
+    background: white;
+    color: black;
+
+    &:hover {
+        border-color: white !important;
+    }
+}
+
+.button-yellow-black {
+    @extend %button-base;
+    background: $color-yellow;
+    border: 1px solid $color-yellow;
+    color: $color-white;
+
+    &:hover {
+        background: $color-black !important;
+        border: 1px solid $color-black !important;
+        color: $color-white !important;
+    }
+}
+
+.button-yellow-white {
+    @extend %button-base;
+    background: $color-yellow;
+    border: 1px solid $color-yellow;
+    color: $color-white;
+
+    &:hover {
+        background: $color-white !important;
+        border: 1px solid $color-white !important;
+        color: $color-black !important;
+    }
+}
+
+a[class^="button-"], a[class*="button-"] {
+    padding-top: 12px;
+}
+
+.btn-icon {
+    background-color: black;
+    color: white;
+    padding: 8px 10px 8px 10px;
+    border-radius: 0;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+    }
+}
+
+.btn-notification {
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+    border: 1px #468847 solid;
+    text-decoration: none;
+    color: #468847;
+    background-color: white;
+    font-weight: normal;
+
+    &:hover {
+        text-decoration: none;
+        background-color: whitesmoke;
+        color: #468847;
+    }
+}

@@ -1,0 +1,49 @@
+﻿@model Foundation.Infrastructure.Commerce.Marketing.PromotionsViewModel
+
+<head>
+    <title>Coupons</title>
+</head>
+<main class="dash-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card spur-card">
+                    <div class="card-header">
+                        <div class="spur-card-icon">
+                            <i class="fas fa-gifts"></i>
+                        </div>
+                        <div class="spur-card-title">Coupons management</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <h6>List of promotions</h6>
+                        </div>
+                        <div class="form-group">
+                            <div class="mvc-grid">
+                                <table class="gift-cards-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Promotions)
+                                        {
+                                            <tr>
+                                                <td><a class="account-link" href="@Url.Action("EditPromotionCoupons", new { id = item.ContentLink.ID})">@item.Name</a></td>
+                                                <td>@item.DiscountType.ToString()</td>
+                                                <td>@item.IsActive.ToString()</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

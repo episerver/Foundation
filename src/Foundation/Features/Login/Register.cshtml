@@ -1,0 +1,130 @@
+﻿@using Foundation.Features.Login
+
+@model UserViewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_LoginLayout.cshtml";
+
+    var logo = Model.Logo;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 login__group">
+            @using (Html.BeginForm("RegisterAccount", "PublicApi", FormMethod.Post, new { @role = "form", @class = "login__form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.RegisterAccountViewModel.Address.Name)
+
+                if (!string.IsNullOrEmpty(logo))
+                {
+                    <div class="row">
+                        <div class="col-12 login__row">
+                            <a href="/">
+                                <img data-src="@logo?format=webp" class="img-fluid lazyload login__logo" alt="Home" />
+                            </a>
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-12">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Email, new { @class = "login__input", placeholder = "Email" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Email)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.PasswordFor(x => x.RegisterAccountViewModel.Password, new { @class = "login__input", placeholder = "Password" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Password)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.PasswordFor(x => x.RegisterAccountViewModel.Password2, new { @class = "login__input", placeholder = "Confirm Password" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Password2)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.FirstName, new { @class = "login__input", placeholder = "FirstName" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.FirstName)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.LastName, new { @class = "login__input", placeholder = "LastName" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.LastName)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.Line1, new { @class = "login__input", placeholder = "Address Line 1" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.Line1)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.Line2, new { @class = "login__input", placeholder = "Address Line 2" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.Line2)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.City, new { @class = "login__input", placeholder = "City" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.City)
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.PostalCode, new { @class = "login__input", placeholder = "PostalCode" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.PostalCode)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        @Html.LabelFor(x => x.RegisterAccountViewModel.Address.CountryCode, new { @class = "label" })
+                        @Html.DisplayFor(model => model.RegisterAccountViewModel.Address.CountryOptions, "CountryOptions",
+                                                new { SelectItem = Model.RegisterAccountViewModel.Address.CountryCode, Name = "RegisterAccountViewModel.Address.CountryCode" })
+                        @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.CountryCode)
+                        @Html.Hidden("address-htmlfieldprefix", "RegisterAccountViewModel.Address")
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12 jsCountryRegionContainer">
+                        @{
+                            var viewData = new ViewDataDictionary(this.ViewData);
+                            var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
+                            viewData.Add(regionName);
+                        }
+                        @await Html.PartialAsync("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <label>
+                            @Html.CheckBoxFor(x => x.RegisterAccountViewModel.Newsletter)
+                            @Html.TranslateFallback("/Registration/Form/Label/Newsletter", "Send me email updates about the latest products and promotions.")
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="button-black full-width jsUsersSignupBtn">@Html.Translate("/Registration/Form/Label/Submit")</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/user" class="button-black full-width">Login</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

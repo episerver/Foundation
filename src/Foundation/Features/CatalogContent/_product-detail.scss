@@ -1,0 +1,307 @@
+﻿.product-detail {
+    &__image {
+        > ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+            margin-top: 15px;
+            list-style: none;
+            padding: 0;
+
+            > li {
+                & img, & video {
+                    vertical-align: -1px;
+                    width: 65px;
+                    height: 100px;
+                    border: 1px solid #eee;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+
+    &__rating {
+        display: flex;
+
+        > span {
+            margin-top: 3px;
+            margin-left: 10px;
+            color: #666666;
+        }
+    }
+
+    &__selection {
+        margin-bottom: 20px;
+    }
+
+    &__buy {
+        margin-top: 20px;
+
+        > div:last-child {
+            padding: 0;
+
+            > button:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &__social-icon {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__contentarea {
+        margin-top: 20px;
+    }
+
+    &.dynamic-product {
+        .price__old, .price__discount {
+            font-size: 1.5rem;
+        }
+
+        .variant-selector {
+            .tab-header {
+                padding: 12px;
+                background-color: #737373;
+                color: #f5f5f5;
+                margin-bottom: 15px;
+            }
+
+            .variants-container {
+                .variant {
+                    padding: 0 10px 15px 10px;
+
+                    &__content {
+                    }
+                }
+            }
+        }
+
+        .variant-options-section {
+            margin-bottom: 30px;
+
+            .tab-header {
+                padding: 12px;
+                background-color: #737373;
+                color: #f5f5f5;
+                margin-bottom: 15px;
+            }
+
+            .nav-tabs {
+                background-color: #f5f5f5;
+
+                .nav-link {
+                    padding: 12px;
+                    color: #000;
+
+                    &.active {
+                        color: #000;
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            .tab-pane {
+                padding: 15px 15px 0 15px;
+                border-style: solid;
+                border-color: rgba(0, 0, 0, 0.15);
+                border-width: 0 0.5px 0.5px 0.5px;
+            }
+
+            .variant-option-container {
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+
+                .variant-option {
+                    width: 120px;
+                    margin-right: 15px;
+                    margin-bottom: 15px;
+                    border: 0.5px solid rgba(0, 0, 0, 0.15);
+
+                    &__image {
+                        width: 100%;
+                        height: 80px;
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                    }
+
+                    &__content {
+                        margin-top: 7px;
+                        padding: 7px;
+
+                        .price {
+                            display: flex;
+                            justify-content: flex-end;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.social-icon {
+    padding: 0;
+
+    &__item {
+        margin-right: 5px;
+        width: 40px;
+        height: 40px;
+        border: 2px solid #eeeeee;
+        border-radius: 50%;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: grey;
+
+            & svg {
+                fill: grey;
+                color: white;
+            }
+        }
+    }
+}
+
+.social-fa {
+    a {
+        color: grey;
+    }
+
+    &:hover {
+        & a {
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+
+.store-pickup {
+    display: none;
+
+    &__item {
+        margin-top: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+}
+
+.product-tabs {
+    margin-top: 20px;
+}
+
+.product-tab {
+    background-color: #f5f5f5;
+
+    &__item {
+        padding: 22px;
+        color: black;
+
+        &:hover {
+            border-color: transparent !important;
+            color: black;
+        }
+
+        &.nav-link.active {
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            border-bottom: 2px solid black;
+            background: black;
+            color: white;
+            border-radius: 0;
+        }
+    }
+
+    &__content {
+        padding: 15px;
+
+        .required.error {
+            background: white;
+            padding: 0;
+            color: red;
+        }
+    }
+
+    &__review {
+        display: flex;
+        width: 100%;
+        padding: 15px 0px;
+        border-bottom: 1px solid #eeeeee;
+
+        &__right {
+            margin-right: 30px;
+        }
+
+        h5 {
+            margin-bottom: 0px;
+        }
+
+        p {
+            margin-bottom: 0px;
+        }
+    }
+
+    &__association {
+        padding: 15px 0px;
+    }
+}
+
+.review__rating {
+    padding-right: 15px;
+}
+
+.review__detail {
+    padding-left: 15px;
+    border-left: 1px solid #eeeeee;
+}
+
+#reviewsListing {
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.mailTo {
+    a {
+        text-decoration: none;
+        color: #666;
+    }
+
+    a:hover {
+        color: black;
+        opacity: 0.7;
+    }
+}
+
+.product-zoom-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    &--container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding-right: 30px;
+
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+    }
+}
+
+.zoomImg {
+    width: 100%;
+
+    @media screen and (max-width: 767px) {
+        display: none !important;
+    }
+}

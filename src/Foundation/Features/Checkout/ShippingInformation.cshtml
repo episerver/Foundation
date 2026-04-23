@@ -1,0 +1,137 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.CatalogContent.Variation
+
+@model CheckoutViewModel
+
+<div class="row">
+    <div class="col-12">
+        @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
+        {
+            <div class="card items border-radius-none jsShipmentRow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="title">
+                                        @Html.TranslateFallback("/Checkout/Shipment/Labels/Shipment", "Shipment") @shipmentIndex @Html.TranslateFallback("/Checkout/Shipment/Labels/Of", "of") @Model.Shipments.Count()
+                                    </h4>
+                                    <div class="light-text">
+                                        <strong>
+                                            @Html.Translate("/Shipment/ShippingTo")
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
+                                    {
+                                        var variant = cartItem.Entry as GenericVariant;
+                                        var viewData = new ViewDataDictionary(this.ViewData);
+                                        viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
+                                        <div class="checkout__cart-item jsCartItem">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <picture class="items__img">
+                                                        <source data-srcset="@cartItem.ImageUrl?format=webp" type="image/webp">
+                                                        <img data-src="@cartItem.ImageUrl" class="items__img lazyload" alt="@cartItem.DisplayName" title="@cartItem.DisplayName" />
+                                                    </picture>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h5 class="items__item">
+                                                        <a href="@cartItem.Url">@cartItem.DisplayName</a>
+                                                    </h5>
+                                                    @if (variant != null)
+                                                    {
+                                                        <p class="items__item-meta">
+                                                            Size: @(string.IsNullOrEmpty(variant.Size) ? "N/A" : variant.Size), Color: @(string.IsNullOrEmpty(variant.Color) ? "N/A" : variant.Color)
+                                                        </p>
+                                                    }
+                                                    @if (cartItem.IsDynamicProduct)
+                                                    {
+                                                        <div>
+                                                            <label class="title">Base Price: </label>
+                                                            <span class="price__discount">@cartItem.BasePrice.ToString()</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="title">Option Price: </label>
+                                                            <span class="price__discount">@cartItem.OptionPrice.ToString()</span>
+                                                        </div>
+                                                    }
+                                                    <p>
+                                                        Price:
+                                                        @if (cartItem.DiscountedUnitPrice.HasValue)
+                                                        {
+                                                            <span class="price__old">@cartItem.PlacedPrice.ToString()</span>
+                                                            <span class="price__discount">@cartItem.DiscountedUnitPrice.ToString()</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="price__discount">@cartItem.PlacedPrice.ToString()</span>
+                                                        }
+                                                    </p>
+                                                    <div class="items__quantity-row">
+                                                        <span class="items__quantity">
+                                                            Quantity
+                                                        </span>
+                                                        <input type="number" class="textbox jsChangeQuantityItemCheckout w-auto" name="@cartItem.Entry.Code"
+                                                               value="@((int)cartItem.Quantity)"
+                                                               data-code="@cartItem.Entry.Code"
+                                                               data-url="@Url.Action("ChangeCartItem", "Checkout")"
+                                                               data-shipmentId="@Model.Shipments[shipmentIndex - 1].ShipmentId" />
+                                                    </div>
+                                                    <br />
+                                                    <div class="@(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "" : "hidden" )">
+                                                        <button type="button" class="button-white jsSeparateHint
+                                                                @(cartItem.Quantity > 1 || Model.Shipments[shipmentIndex - 1].CartItems.Count > 1 ? "jsSeparateBtn" : "")"
+                                                                data-bs-toggle="modal" data-bs-target="#shipmentListing"
+                                                                data-code="@cartItem.Entry.Code"
+                                                                data-shipmentid="@Model.Shipments[shipmentIndex - 1].ShipmentId"
+                                                                data-qty="@cartItem.Quantity"
+                                                                data-delivery="@Model.Shipments[shipmentIndex - 1].ShippingMethodId"
+                                                                data-selectedstore="@Model.Shipments[shipmentIndex - 1].WarehouseCode">
+                                                            <i class="fas fa-cut"></i>
+                                                            <span> @Html.TranslateFallback("Ship to different address", "Ship to different address")</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Shipping methods-->
+                        <div class="col-xs-12 col-md-4">
+                            <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryOption", "Choose delivery option")</p><br />
+                            <ul class="checkout__delivery-block style-list-none jsShippingMethodContainer" url="@Url.Action("UpdateShippingMethods", "Checkout")">
+                                @foreach (var shippingMethodViewModel in Model.Shipments[shipmentIndex - 1].ShippingMethods)
+                                {
+                                    <li>
+                                        <label class="checkbox">
+                                            @shippingMethodViewModel.DisplayName @shippingMethodViewModel.Price.ToString()
+                                            @Html.RadioButtonFor(model => Model.Shipments[shipmentIndex - 1].ShippingMethodId, shippingMethodViewModel.Id, new { @value = shippingMethodViewModel.Id, @class = "jsChangeShipment", instorepickup = shippingMethodViewModel.IsInstorePickup })
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--Shipment Address-->
+                    <br />
+                    @{
+                        var newViewData = new ViewDataDictionary(this.ViewData);
+                        newViewData.Add(new KeyValuePair<string, object>("ShipmentIndex", shipmentIndex - 1));
+                    }
+
+                    @await Html.PartialAsync("SingleAddress", Model, newViewData)
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿@using Foundation.Infrastructure.Helpers
+@using Foundation.Features.Blocks.AdaptiveHeroBlock
+@using System.Globalization
+@using AdaptiveImages.Core
+
+@model IBlockViewModel<AdaptiveHeroBlock>
+
+@{
+    var blockRatio = string.Empty;
+    switch (Model.CurrentBlock.BlockRatio)
+    {
+        case "5:1":
+            blockRatio = "padding-bottom: 20%";
+            break;
+        case "4:1":
+            blockRatio = "padding-bottom: 25%";
+            break;
+        case "3:1":
+            blockRatio = "padding-bottom: 33%";
+            break;
+        case "16:9":
+            blockRatio = "padding-bottom: 55%";
+            break;
+        case "3:2":
+            blockRatio = "padding-bottom: 65%";
+            break;
+        case "4:3":
+            blockRatio = "padding-bottom: 75%";
+            break;
+        case "1:1":
+            blockRatio = "padding-bottom: 100%";
+            break;
+        case "2:3":
+            blockRatio = "padding-bottom: 150%";
+            break;
+        case "9:16":
+            blockRatio = "padding-bottom: 175%";
+            break;
+        default:
+            blockRatio = "padding-bottom: 50%";
+            break;
+    }
+
+    NumberFormatInfo nfi = new NumberFormatInfo();
+    nfi.NumberDecimalSeparator = ".";
+    var calloutOpacity = Model.CurrentBlock.Callout.CalloutOpacity.ToString(nfi);
+}
+
+<div blockId="@(((IContent)Model.CurrentBlock).ContentLink.ID)" id="heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID)" name="@(((IContent)Model.CurrentBlock).Name)" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="hero-block" style="@blockRatio">
+        @if (Html.IsInEditMode())
+        {
+            if (Model.CurrentBlock.HeroAdaptiveImage.IsSet())
+            {
+                var imageUrlLarge = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroAdaptiveImage.Large).GetUrl();
+                var imageUrlMedium = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroAdaptiveImage.Medium).GetUrl();
+                var imageUrlSmall = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroAdaptiveImage.Small).GetUrl();
+
+                <style>
+                    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                        background-image: url("@imageUrlSmall");
+                    }
+                    @@media (min-width: 540px) {
+                        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                            background-image: url("@imageUrlSmall");
+                        }
+                    }
+                    @@media (min-width: 768px) {
+                        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                            background-image: url("@imageUrlMedium");
+                        }
+                    }
+                    @@media (min-width: 1280px) {
+                        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                            background-image: url("@imageUrlLarge");
+                        }
+                    }
+                </style>
+
+                <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.HeroAdaptiveImage)> </div>
+            }
+            else
+            {
+                var imageUrl = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroImage).GetUrl();
+                <div class="hero-block__image" @Html.EditAttributes(m => m.CurrentBlock.HeroImage)
+                     style="background-image: url('@imageUrl')">
+                </div>
+            }
+        }
+        else
+        {
+            if (Model.CurrentBlock.HeroAdaptiveImage.IsSet())
+            {
+                var imageUrlLarge = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroAdaptiveImage.Large).GetUrl();
+                var imageUrlMedium = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroAdaptiveImage.Medium).GetUrl();
+                var imageUrlSmall = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroAdaptiveImage.Small).GetUrl();
+
+                <style>
+                    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                        background-image: url("@Html.Raw(imageUrlSmall)");
+                    }
+                    @@media (min-width: 540px) {
+                        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                            background-image: url("@Html.Raw(imageUrlSmall)");
+                        }
+                    }
+                    @@media (min-width: 768px) {
+                        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                            background-image: url("@Html.Raw(imageUrlMedium)");
+                        }
+                    }
+                    @@media (min-width: 1280px) {
+                        #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .hero-block__image {
+                            background-image: url("@Html.Raw(imageUrlLarge)");
+                        }
+                    }
+                </style>
+
+                <div class="hero-block__image"> </div>
+            }
+            else if (Model.CurrentBlock.HeroImage.IsSet())
+            {
+                var imageUrl = Model.GetImageRenderSettings(x => x.CurrentBlock.HeroImage).GetUrl();
+
+                <div class="hero-block__image"
+                     style="background-image: url('@imageUrl')">
+                </div>
+            }
+        }
+        @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo) &&
+        !Model.CurrentBlock.HeroImage.IsSet())
+        {
+            <div class="hero-block__video">
+                <video autoplay loop playsinline muted>
+                    <source src="@Url.ContentUrl(Model.CurrentBlock.MainBackgroundVideo)" type="video/mp4">
+                </video>
+            </div>
+        }
+        <div class="hero-block__overlay" style="background-color: @Model.CurrentBlock.BackgroundColor; opacity: @Model.CurrentBlock.BlockOpacity"></div>
+        <div class="screen-width-wrapper">
+            <div class="hero-block__callout screen-width-container" style="justify-content: @Model.CurrentBlock.Callout.CalloutPosition;">
+                @if (!Url.ContentUrl(Model.CurrentBlock.Link).IsNullOrEmpty() && ContentReference.IsNullOrEmpty(Model.CurrentBlock.MainBackgroundVideo))
+                {
+                    <div class="hero-block-link" onclick="location.href='@Url.ContentUrl(Model.CurrentBlock.Link)'"></div>
+                }
+                <div class="callout @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="color: @Model.CurrentBlock.Callout.CalloutTextColor; text-align: @Model.CurrentBlock.Callout.CalloutContentAlignment;">
+                    @Html.PropertyFor(m => m.CurrentBlock.Callout)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout:after {
+        background-color: @Model.CurrentBlock.Callout.BackgroundColor;
+        opacity: @calloutOpacity
+    }
+
+    #heroBlock-@(((IContent)Model.CurrentBlock).ContentLink.ID) .callout a:not(.button-origin) {
+        color: @Model.CurrentBlock.Callout.CalloutTextColor
+    }
+</style>

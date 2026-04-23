@@ -1,0 +1,95 @@
+﻿@using Foundation.Features.MyOrganization.Budgeting
+
+@model BudgetingPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        @if (@Model.IsSubOrganization)
+        {
+            <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/NewSuborganizationBudget", "New Suborganization Budget")</h4>
+        }
+        else
+        {
+            <h4 class="title">@Html.TranslateFallback("/B2B/Budgeting/NewOrganizationBudget", "New Organization Budget")</h4>
+        }
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("NewBudget", PageFriendlyURL, FormMethod.Post, new { @class = "col-12" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-12 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Allocated", "Allocated")</label>
+                <input id="amount" type="text" class="textbox" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</label>
+                <div class="custom-date-input">
+                    <input type="date" id="startDate" class="form-control square-box" />
+                </div>
+            </div>
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/DueDate", "Due Date")</label>
+                <div class="custom-date-input">
+                    <input type="date" id="endDate" class="form-control square-box" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</label>
+                <div>
+                    @{
+                        var statuses = new List<KeyValuePair<string, string>>();
+                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/Planned", "Planned").ToString(), "Planned"));
+                        statuses.Add(new KeyValuePair<string, string>(Html.TranslateFallback("/B2B/Budgeting/OnHold", "OnHold").ToString(), "OnHold"));
+                    }
+                    @(await Component.InvokeAsync("Dropdown", new { list = statuses,
+                        selectedValue = "",
+                        selectorClassItem = "statusBudget",
+                        name = "statusBudget"}))
+                </div>
+            </div>
+            <div class="col-6 form-group">
+                <label>@Html.TranslateFallback("/B2B/Budgeting/Currency", "Currency")</label>
+                <div>
+                    @{
+                        var currencies = new List<KeyValuePair<string, string>>();
+                        foreach (var option in Model.AvailableCurrencies)
+                        {
+                            currencies.Add(new KeyValuePair<string, string>(option, option));
+                        }
+                    }
+                    @(await Component.InvokeAsync("Dropdown", new { list = currencies,
+                        selectedValue = "",
+                        selectorClassItem = "currencyBudget",
+                        name = "currencyBudget"
+                    }))
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="button-black jsSaveBudget">
+                    @Html.TranslateFallback("/Shared/Save", "Save")
+                </button>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">
+                    @Html.TranslateFallback("/Shared/Cancel", "Cancel")
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="BudgetWarningMessage" class="col-12 required"></div>
+        </div>
+    }
+</div>

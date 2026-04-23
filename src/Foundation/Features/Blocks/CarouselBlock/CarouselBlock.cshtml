@@ -1,0 +1,101 @@
+﻿@model Foundation.Features.Blocks.CarouselBlock.CarouselBlockViewModel
+
+
+
+
+@if (Model.Items != null)
+{
+    <div id="tag-carousel" class="carousel slide @(Model.CurrentBlock.CarouselControls.Fade ? "carousel-fade" : "")"
+     @(Model.CurrentBlock.CarouselControls.AutoPlay == true ? "data-bs-ride=carousel" : "")
+     @(Model.CurrentBlock.CarouselControls.Interval > 0 ? "data-bs-interval=" + @Model.CurrentBlock.CarouselControls.Interval : "data-bs-interval=5000")
+     @Html.EditAttributes(x => x.CurrentBlock.CarouselItems)>
+        <!-- Indicators -->
+        @if (Model.CurrentBlock.CarouselControls.ShowIndicators == true)
+        {
+            <div class="carousel-indicators">
+                @for (int i = 0; i < Model.Items.Count; i++)
+                {
+                    <button type="button" data-bs-target="#tag-carousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" @(i == 0 ? "aria-current=\"true\"" : "") aria-label="Slide @i"></button>
+                }
+            </div>
+        }
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            @foreach (var item in Model.Items.Select((value, i) => new { i, value }))
+            {
+                <div class="@(item.i == 0 ? "carousel-item active" : "carousel-item")">
+                    @if (item.value.HeroBlock != null)
+                    {
+                        @await Html.PartialAsync("/Features/Blocks/HeroBlock/HeroBlock.cshtml", item.value.HeroBlock)
+                    }
+                    else if (item.value.ContainerBlock != null)
+                    {
+                        @await Html.PartialAsync("/Features/Blocks/ContainerBlock/ContainerBlock.cshtml", item.value.ContainerBlock)
+                    }
+                    else if (item.value.CarouselImage != null)
+                    {
+                        @*                        if (item.value.CarouselImage.Heading != "Not supported")
+            {*@
+                        <a href="@(item.value.CarouselImage.ItemURL != null ? Url.ContentUrl(item.value.CarouselImage.ItemURL) : "#")">
+                            <picture class="img-fluid">
+                                <source data-srcset="@Url.ContentUrl(item.value.CarouselImage.Image)?format=webp" type="image/webp">
+                                <img class="img-fluid" loading="lazy" src="@Url.ContentUrl(item.value.CarouselImage.Image)" />
+                            </picture>
+                        </a>
+                        if (!string.IsNullOrWhiteSpace(item.value.CarouselImage.Heading))
+                        {
+                            <div class="carousel-caption animated fadeInUpBig">
+                                <h3>@item.value.CarouselImage.Heading</h3>
+                                <p>@item.value.CarouselImage.Description</p>
+                            </div>
+                        }
+                        @*                        }
+            else
+            {
+            <h3>"@Url.ContentUrl(item.value.CarouselImage.Image)" is not supported media type.</h3>
+            <p>@item.value.CarouselImage.Description</p>
+            }*@
+                    }
+                </div>
+            }
+        </div>
+        <!-- Left and right controls -->
+        @if (Model.CurrentBlock.CarouselControls.ShowControls)
+        {
+            @if (Model.CurrentBlock.CarouselControls.Theme == "dark")
+            {
+                <style>
+                    .carousel-control-prev-icon {
+                        background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23000%27%3e%3cpath d=%27M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z%27/%3e%3c/svg%3e") !important;
+                    }
+
+                    .carousel-control-next-icon {
+                        background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23000%27%3e%3cpath d=%27M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e") !important;
+                    }
+
+                    .carousel-indicators [data-bs-target] {
+                        background-color: #000;
+                    }
+                </style>
+            }
+            <a class="carousel-control-prev" href="#tag-carousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#tag-carousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        }
+    </div>
+}
+else
+{
+    <div id="tag-carousel" class="carousel slide"
+     @Html.EditAttributes(x => x.CurrentBlock.CarouselItems)>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+        </div>
+    </div>
+
+}

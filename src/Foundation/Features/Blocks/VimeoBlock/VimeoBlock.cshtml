@@ -1,0 +1,31 @@
+@using Foundation.Features.Blocks.VimeoBlock
+
+@model  IBlockViewModel<VimeoBlock>
+
+@{
+    var iframeUrl = @Model.CurrentBlock.VimeoVideo.GetIframeUrl(Model.CurrentBlock.HasCoverImage);
+}
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    @if (Model.CurrentBlock.HasHeadingText)
+    {
+        <div class="media">
+            <h1 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h1>
+            @Html.PropertyFor(x => x.CurrentBlock.MainBody)
+        </div>
+    }
+    @if (Model.CurrentBlock.HasVideo)
+    {
+        <div class="vimeo-container">
+            @if (Model.CurrentBlock.HasCoverImage)
+            {
+                <a href="javascript:;" class="starter"><span class="sr-only">Play video</span></a>
+                <img data-src="@Url.ContentUrl(Model.CurrentBlock.CoverImage)?format=webp" class="img-fluid lazyload" />
+            }
+            @if (!string.IsNullOrEmpty(iframeUrl))
+            {
+                <iframe id="@Model.CurrentBlock.VimeoVideo.Id" src="@iframeUrl" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            }
+        </div>
+    }
+</div>

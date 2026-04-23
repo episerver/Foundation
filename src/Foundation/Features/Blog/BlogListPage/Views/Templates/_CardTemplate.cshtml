@@ -1,0 +1,66 @@
+﻿@using Foundation.Features.Blog.BlogListPage
+
+@model BlogListPageViewModel
+
+@{
+    int index = 1;
+    int col = 12;
+}
+<div class="row jsBlogListLoadMore">
+    <div class="row">
+        @foreach (var blog in Model.Blogs)
+        {
+            if (index % 6 < 4) { col = 4; }
+            if (index % 6 >= 4) { col = 6; }
+            if (index % 6 == 0) { col = 12; }
+            index++;
+            <div class="col-xs-12 col-sm-6 col-md-@col">
+                <div class="preview__card">
+                    <div class="preview__card--show">
+                        <div class="card--top">
+                            @if (!ContentReference.IsNullOrEmpty(blog.CurrentContent.PageImage))
+                            {
+                                <img data-src="@Url.ContentUrl(blog.CurrentContent.PageImage)" class="lazyload" />
+                            }
+                        </div>
+                        <div class="card--bottom">
+                            <div class="card--bottom__title">
+                                <span>
+                                    @foreach (var tag in blog.Tags)
+                                    {
+                                        <b><a class="account-link" title="@tag.Title" href="@tag.Url">#@tag.Title</a></b>
+                                    }
+                                </span>
+                                <a class="account-link">
+                                    <h4>@blog.CurrentContent.MetaTitle</h4>
+                                </a>
+                            </div>
+                            <div class="card--bottom__date">
+                                <small>
+                                    <i>
+                                        @blog.CurrentContent.StartPublish.Value.ToString("dd MMM yyyy")
+                                    </i>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview__card--middle">
+                        <div class="triangle-side"></div>
+                        <div class="triangle-center"></div>
+                        <div class="triangle-side"></div>
+                    </div>
+                    <div class="preview__card--overlay"
+                         style="background-color: @Model.CurrentContent.OverlayColor; color: @Model.CurrentContent.OverlayTextColor">
+                        <div class="preview__card--description">
+                            <p>@Html.Raw(blog.PreviewText)</p>
+                            <a href="@blog.CurrentContent.ContentLink.GetPublicUrl()">
+                                Read more
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+</div>

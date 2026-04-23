@@ -1,0 +1,150 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Features.MyAccount.OrderHistory
+
+@model OrderHistoryViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="page-title">
+    <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+</div>
+<p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+
+@await Html.PartialAsync("_OrderFilterBox", Model.Filter)
+
+<div class="recent-orders">
+    @if (Model.Orders != null && Model.Orders.Count > 0)
+    {
+        foreach (var order in Model.Orders)
+        {
+            <div class="order__item">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="order--box">
+                            <div class="title">
+                                <a class="account-link" href="@(Model.OrderDetailsPageUrl)?orderGroupId=@order.PurchaseOrder.OrderLink.OrderGroupId">#@order.PurchaseOrder.OrderNumber</a>
+                                <p class="sub-title">@order.PurchaseOrder.Created.ToString()</p>
+                            </div>
+
+                            <div class="content product-tile-list__content">
+                                <div>
+                                    <label class="title">@Html.TranslateFallback("/OrderHistory/Labels/TotalPrice", "Price"): </label>
+                                    <span class="price__discount">@order.PurchaseOrder.GetTotal().ToString()</span>
+                                </div>
+
+                                <div>
+                                    <label class="title">@Html.TranslateFallback("/OrderHistory/Labels/Status", "Status"): </label>
+                                    <span class="font-italic">@order.PurchaseOrder.OrderStatus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="order--box">
+                            <label class="title">@Html.TranslateFallback("/OrderHistory/Labels/ShippedTo", "Shipped")</label>
+                            @foreach (var shippingAddress in order.ShippingAddresses)
+                            {
+                                @await Html.PartialAsync("_Address", shippingAddress)
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 order--box">
+                        @using (Html.BeginForm("SaveAsPaymentPlan", "OrderHistory", FormMethod.Post, new { @class = "order--form-group", data_container = "MiniCart" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("orderId", order.PurchaseOrder.OrderLink.OrderGroupId.ToString())
+                            @Html.DropDownListFor(x => x.CycleMode, Model.Modes, new { @class = "select-menu" })
+                            @Html.TextBoxFor(x => x.CycleLength, new { @class = "textbox", type = "number" })
+                            <button type="submit" role="button" class="button-black--icon" data-container="MiniCart">
+                                New Subscription
+                            </button>
+                        }
+                    </div>
+
+                </div>
+                <div class="row product--container">
+                    <div class="col-12">
+                        @using (Html.BeginForm("Reorder", "DefaultCart", FormMethod.Post, new { @class = "form-inline", data_container = "MiniCart" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("orderId", order.PurchaseOrder.OrderLink.OrderGroupId.ToString())
+                            <button type="submit" role="button" class="button-black--icon" data-container="MiniCart">
+                                <i data-feather="credit-card"></i>
+                                <span>@Html.TranslateFallback("/OrderHistory/Labels/ReOrder", "ReOrder")</span>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>The list is empty.</p>
+    }
+</div>
+
+<div class="toolbar">
+    <div class="toolbar__left">
+        <strong>
+            @Model.PagingInfo.TotalRecord @Html.TranslateFallback("/Blog/Items", "Items")
+        </strong>
+    </div>
+    <div class="toolbar__center">
+        @if (Model.PagingInfo.PageCount > 1)
+        {
+            <label>@Html.TranslateFallback("/Search/Page", "Page"):</label>
+            <ul class="pagination">
+                <li>
+                    <a href="@Model.OrderHistoryUrl?page=1&size=@Model.PagingInfo.PageSize&isPaging=1">
+                        &laquo;
+                    </a>
+                </li>
+                @for (int page = 1; page <= Model.PagingInfo.PageCount; page++)
+                {
+                    <li class="@(Model.PagingInfo.PageNumber == page ? "active" : "")">
+                        <a href="@Model.OrderHistoryUrl?page=@(page)&size=@Model.PagingInfo.PageSize&isPaging=1">
+                            @(page).ToString()
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="@Model.OrderHistoryUrl?page=@Model.PagingInfo.PageCount&size=@Model.PagingInfo.PageSize&isPaging=1">
+                        &raquo;
+                    </a>
+                </li>
+            </ul>
+        }
+    </div>
+    <div class="toolbar__right">
+        <div>
+            <label>@Html.TranslateFallback("/Search/View", "View"): </label>
+            <ul class="selection">
+                <li>
+                    <a href="javascript:void(0);">
+                        @Model.PagingInfo.PageSize
+                        <i data-feather="chevron-down"></i>
+                    </a>
+                    <ul class="selection__dropdown">
+                        <li>
+                            <a href="@Model.OrderHistoryUrl?size=10&isPaging=1">10</a>
+                        </li>
+                        <li>
+                            <a href="@Model.OrderHistoryUrl?size=20&isPaging=1">20</a>
+                        </li>
+                        <li>
+                            <a href="@Model.OrderHistoryUrl?size=30&isPaging=1">30</a>
+                        </li>
+                        <li>
+                            <a href="@Model.OrderHistoryUrl?size=-1&isPaging=1">All</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

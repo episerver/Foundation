@@ -1,0 +1,16 @@
+﻿@model EPiServer.Commerce.Order.ICreditCardPayment 
+
+<div>
+    <h4>@Html.Translate("/OrderConfirmation/PaymentDetails")</h4>
+    <p>
+        @Html.Translate("/OrderConfirmation/PaymentInfo/CardType"): @Model.CardType<br>
+        @Html.Translate("/OrderConfirmation/PaymentInfo/Owner"): @Model.CustomerName<br>
+        @Html.Translate("/OrderConfirmation/PaymentInfo/CardNumber"): ************@Model.CreditCardNumber.Substring(Model.CreditCardNumber.Length - 4)<br>
+        @Html.Translate("/OrderConfirmation/PaymentInfo/ExpirationDate"): @Model.ExpirationMonth/@Model.ExpirationYear<br>
+        @Html.Translate("/OrderConfirmation/PaymentInfo/CVV"): **
+        @if (Model.CreditCardSecurityCode.Length > 0)
+        {
+            @Model.CreditCardSecurityCode.Substring(Model.CreditCardSecurityCode.Length - 1)
+        }
+    </p>
+</div>

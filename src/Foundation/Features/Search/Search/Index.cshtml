@@ -1,0 +1,208 @@
+﻿@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+@using Foundation.Features.CatalogContent
+@using System.Web;
+@inject IContextModeResolver contextModeResolver
+@model SearchViewModel<SearchResultPage>
+
+@{
+    //if (Request.IsAjaxRequest())
+    //{
+    //    Layout = null;
+    //}
+}
+
+<div class="category-page">
+    <div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.TopContentArea, new { CssClass = "row" })
+        </div>
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || contextModeResolver.CurrentMode == ContextMode.Edit)
+        {
+            <div class="col-12">
+                @Html.PropertyFor(m => m.CurrentContent.MainBody)
+            </div>
+        }
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        </div>
+    </div>
+    @if (Model.ShowProductSearchResults)
+    {
+        <div class="row">
+            @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { @class = "jsSearchForm col-12" }))
+            {
+                <input class="jsPageInfo" hidden id="FilterOption_Page" name="FilterOption.Page" type="text" value="@Model.FilterOption.Page" />
+                <input class="jsPageSizeInfo" hidden id="FilterOption_PageSize" name="FilterOption.PageSize" type="text" value="@Model.FilterOption.PageSize" />
+                <input class="jsSortInfo" hidden id="FilterOption_Sort" name="FilterOption.Sort" type="text" value="@Model.FilterOption.Sort" />
+                <input class="jsSortDirectionInfo" hidden id="FilterOption_SortDirection" name="FilterOption.SortDirection" type="text" value="@Model.FilterOption.SortDirection" />
+                <input class="jsViewModeInfo" hidden id="FilterOption_ViewSwitcher" name="FilterOption.ViewSwitcher" type="text" value="@Model.FilterOption.ViewSwitcher" />
+
+                <div class="row">
+                    <div class="category-page__facets col-lg-3 jsFacets">
+                        @await Html.PartialAsync("_CategoriesFilter", Model.CategoriesFilter)
+                        @if (Model.ProductViewModels != null)
+                        {
+                            @await Html.PartialAsync("_Facet", Model.FilterOption)
+                        }
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>@Model.Query</h2>
+                                @if (Model.FilterOption.Confidence > 0 && Model.FilterOption.Confidence < 1)
+                                {
+                                    <p><b>Confidence: </b>@Model.FilterOption.Confidence.ToString("p")</p>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            @await Html.PartialAsync("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                        </div>
+                        <div class="category-page__products jsProducts">
+                            @if (!string.IsNullOrWhiteSpace(Model.Query))
+                            {
+                                if (Model.DidYouMeans != null && Model.DidYouMeans.Hits.Any())
+                                {
+                                    <div class="alert alert-info">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <i class="fa fa-info"></i> @Html.TranslateFallback("/Search/DidYouMean", "Did you mean"):
+                                        @{ var first = true; }
+                                        @foreach (var item in Model.DidYouMeans.Hits)
+                                        {
+                                            var suggestion = HttpUtility.HtmlEncode(item.Suggestion);
+                                            if (!first)
+                                            {
+                                                <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
+                                            }
+                                            <strong>@Html.ActionLink(suggestion, null, new { search = suggestion })</strong>
+                                            first = false;
+                                        }
+                                    </div>
+                                }
+                            }
+                            @if (Model.FilterOption.TotalCount > 0)
+                            {
+                                if (Model.FilterOption.ViewSwitcher == "Grid")
+                                {
+                                    @await Html.PartialAsync("~/Features/Shared/Views/_ProductGrid.cshtml", Model.ProductViewModels ?? new List<ProductTileViewModel>())
+                                }
+                                else
+                                {
+                                    @await Html.PartialAsync("~/Features/Shared/Views/_ProductList.cshtml", Model.ProductViewModels ?? new List<ProductTileViewModel>())
+                                }
+                            }
+                            else
+                            {
+                                <h4>No products matched your search criteria.</h4>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    @if (Model.ShowContentSearchResults && Model.ContentSearchResult != null)
+    {
+        <br />
+        <div class="row">
+            <div class="col-lg-3">
+                @await Html.PartialAsync("_FacetContent", Model)
+            </div>
+            <div class="col-lg-9">
+                @{
+                    if (!Model.ShowProductSearchResults)
+                    {
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>@Model.Query</h2>
+                                @if (Model.FilterOption.Confidence > 0)
+                                {
+                                    <p><b>Confidence: </b>@Model.FilterOption.Confidence.ToString("p")</p>
+                                }
+                            </div>
+                        </div>
+                    }
+                    ViewDataDictionary contentViewData = new ViewDataDictionary(this.ViewData);
+                    contentViewData.Add(new KeyValuePair<string, object>("SearchLabel", "Content"));
+                    contentViewData.Add(new KeyValuePair<string, object>("FilterId", "SearchContent"));
+
+                    if (!string.IsNullOrWhiteSpace(Model.Query))
+                    {
+                        if (Model.DidYouMeans != null && Model.DidYouMeans.Hits.Any())
+                        {
+                            <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-info"></i> @Html.TranslateFallback("/Search/DidYouMean", "Did you mean"):
+                                @{ var first = true; }
+                                @foreach (var item in Model.DidYouMeans.Hits)
+                                {
+                                    var suggestion = HttpUtility.HtmlEncode(item.Suggestion);
+                                    if (!first)
+                                    {
+                                        <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
+                                    }
+                                    <strong>@Html.ActionLink(suggestion, null, new { search = suggestion })</strong>
+                                    first = false;
+                                }
+                            </div>
+                        }
+                    }
+                    await Html.RenderPartialAsync("_SearchContent", Model, contentViewData);
+                }
+            </div>
+        </div>
+    }
+    @if (Model.ShowPdfSearchResults && Model.PdfSearchResult != null)
+    {
+        <br />
+        <div class="row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-9">
+                @{
+                    if (!Model.ShowProductSearchResults)
+                    {
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>@Model.Query</h2>
+                                @if (Model.FilterOption.Confidence > 0)
+                                {
+                                    <p><b>Confidence: </b>@Model.FilterOption.Confidence.ToString("p")</p>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    ViewDataDictionary pdfViewData = new ViewDataDictionary(this.ViewData);
+                    pdfViewData.Add(new KeyValuePair<string, object>("SearchLabel", "Documents"));
+                    pdfViewData.Add(new KeyValuePair<string, object>("FilterId", "SearchPdf"));
+
+                    if (!string.IsNullOrWhiteSpace(Model.Query))
+                    {
+                        if (Model.DidYouMeans != null && Model.DidYouMeans.Hits.Any())
+                        {
+                            <div class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-info"></i> @Html.TranslateFallback("/Search/DidYouMean", "Did you mean"):
+                                @{ var first = true; }
+                                @foreach (var item in Model.DidYouMeans.Hits)
+                                {
+                                    var suggestion = HttpUtility.HtmlEncode(item.Suggestion);
+                                    if (!first)
+                                    {
+                                        <text>@Html.TranslateFallback("/Shared/Or", "or")</text>
+                                    }
+                                    <strong>@Html.ActionLink(suggestion, null, new { search = suggestion })</strong>
+                                    first = false;
+                                }
+                            </div>
+                        }
+                    }
+                    await Html.RenderPartialAsync("_SearchPdf", Model, pdfViewData);
+                }
+            </div>
+        </div>
+    }
+    @* Recommendations removed: EPiServer.Personalization.Commerce has no CMS 13 version. *@
+</div>

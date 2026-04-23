@@ -1,0 +1,24 @@
+﻿@using EPiServer.Web;
+@using EPiServer.Web.Routing;
+@using Foundation.Features.Header
+
+@model HeaderLogoViewModel
+
+<div class="header">
+    <div class="container @(Model.LargeHeaderMenu ? "large-header-menu" : "")">
+        <div class="header__logo @(Model.HeaderMenuStyle == "LeftLogo" ? "flex-start" : "flex-center")"
+             style="@(Model.HeaderMenuStyle == "LeftLogo" ? "order: -1; width: auto;" : "")">
+            <a href="/">
+                @if (Html.IsInEditMode())
+                {
+                    <img class="img-fluid" src="@UrlResolver.Current.GetUrl(Model.SiteLogo, null, new VirtualPathArguments() { ContextMode = ContextMode.Default })"
+                         @Html.EditAttributes(x => x.SiteLogo) />
+                }
+                else
+                {
+                    <img data-src="@Url.ContentUrl(Model.SiteLogo)?format=webp" class="img-fluid lazyload" @Html.EditAttributes(x => x.SiteLogo) />
+                }
+            </a>
+        </div>
+    </div>
+</div>

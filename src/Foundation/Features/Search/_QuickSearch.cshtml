@@ -1,0 +1,45 @@
+﻿@using Foundation.Features.CatalogContent
+
+@model IEnumerable<ProductTileViewModel>
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Any())
+{
+    <ul class="style-list-none">
+        <li class="searchbox__heading">
+            <b>Products</b>
+        </li>
+        <div class="searchbox__product-list">
+            <ul>
+                @foreach (var product in Model)
+                {
+                    <li class="searchbox__row">
+                        <img data-src="@product.ImageUrl?format=webp&width=60" class="searchbox__product-img lazyload" loading="lazy" />
+                        <div class="searchbox__product">
+                            <a class="searchbox__product-name" href="@product.Url">
+                                @product.DisplayName
+                            </a>
+                            <p class="searchbox__product-price">
+                                @product.PlacedPrice.ToString()
+                            </p>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </ul>
+}
+else
+{
+    <ul class="style-list-none">
+        <li class="searchbox__row searchbox__heading">
+            <b>Products</b>
+        </li>
+        <li class="searchbox__row">
+            <p class="searchbox__notfound">No result found.</p>
+        </li>
+    </ul>
+}

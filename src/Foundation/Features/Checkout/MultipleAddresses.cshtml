@@ -1,0 +1,134 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.CatalogContent.Variation 
+
+@model MultiAddressViewModel
+
+@{
+    var addressSeletions = new List<KeyValuePair<string, string>>();
+    if (Model.AvailableAddresses.Any())
+    {
+        foreach (var a in Model.AvailableAddresses)
+        {
+            addressSeletions.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
+        }
+    }
+}
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("_CheckoutStatusBar", 2)
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-12">
+        <a class="btn btn-light" href="@Url.Action("SingleShipment", new { node = Model.CurrentContent.ContentLink })"
+           title="@Html.TranslateFallback("/Checkout/Shipment/SingleShipment", "Ship to single address")">
+            <span>
+                @Html.TranslateFallback("/Checkout/Shipment/SingleShipment", "Ship to single address")
+            </span>
+        </a>
+        <a class="btn btn-light pull-right" href="javascript:void(0);"
+           title="@Html.TranslateFallback("/Checkout/MultiShipment/AddNewAddress", "Add new address")"
+           data-bs-toggle="modal" data-bs-target="#AddressDialog">
+            <span>
+                @Html.TranslateFallback("/Checkout/MultiShipment/AddNewAddress", "Add new address")
+            </span>
+        </a>
+    </div>
+</div>
+
+@using (Html.BeginForm("UpdateMultipleShipmentAddresses", "Checkout", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-12">
+            <h2>@Html.TranslateFallback("/Checkout/MultiShipment/Heading", "SHIP TO MULTIPLE ADDRESSES")</h2>
+            <p class="sub-title">@Html.TranslateFallback("/Checkout/MultiShipment/ApplicableItems", "Please select shipping address for applicable items")</p>
+        </div>
+    </div>
+
+    for (int index = 0; index < Model.CartItems.Count(); index++)
+    {
+        @Html.HiddenFor(model => model.CartItems[index].Code);
+        @Html.HiddenFor(model => model.CartItems[index].DisplayName);
+        @Html.HiddenFor(model => model.CartItems[index].Quantity);
+        @Html.HiddenFor(model => model.CartItems[index].IsGift);
+        var hasDiscount = Model.CartItems[index].DiscountedUnitPrice.HasValue;
+
+        <div class="row" class="border-bottom">
+            <div class="col-xs-12 col-sm-6">
+                <div class="row product-tile-list__item">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="product-tile-list__image">
+                            <img class="img-fluid" src="@Model.CartItems[index].ImageUrl" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-xs-6">
+                        <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/Item", "Item")</p>
+                        <a href="@Model.CartItems[index].Url" class="account-link">@Model.CartItems[index].DisplayName</a>
+                        <br />
+                        <span class="title light-text">@Model.CartItems[index].Brand</span>
+                        <p>
+                            <span class="title">Price: </span>
+                            @if (hasDiscount)
+                            {
+                                <span class="price__old">@Model.CartItems[index].PlacedPrice.ToString()</span>
+                                <span class="price__discount">@Model.CartItems[index].DiscountedUnitPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@Model.CartItems[index].PlacedPrice.ToString()</span>
+                            }
+                        </p>
+
+                        <p>
+                            <span class="title">@Html.TranslateFallback("/ProductPage/Size", "Size"): </span>
+                            @{
+                                var variant = Model.CartItems[index].Entry as GenericVariant;
+                                if (variant != null && variant.Size != null)
+                                {
+                                    @Html.Hidden("size", variant.Size.Trim())
+                                    <span>@variant.Size</span>
+                                }
+                            }
+
+                            @*@Helpers.RenderSize(Model.CartItems[index].Entry)*@
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 p-2">
+                <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryAddress", "Delivery address")</p>
+
+                @(await Component.InvokeAsync("Dropdown", new { list = addressSeletions,
+                    selectedValue = "",
+                    selectorClassItem = "",
+                    name = "CartItems[" + index + "].AddressId"
+                }))
+                @Html.ValidationMessageFor(model => Model.CartItems[index].AddressId, null, new { @class = "required" })
+            </div>
+        </div>
+    }
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <input type="submit" class="btn btn-light btn-lower pull-right" value="@Html.TranslateFallback("/Checkout/MultiShipment/ContinueShippingInformation", "Continue to Shipping Information")" />
+        </div>
+    </div>
+}
+
+<div id="AddressDialog" class="modal fade square-box" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new address</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!--Change to Component-->
+                @*@Html.Action("AddNewAddress", "AddressBook", new { multiShipmentUrl = Context.Request.Path })*@
+                @(await Component.InvokeAsync("NewAddress", new { multiShipmentUrl = Context.Request.Path }))
+            </div>
+        </div>
+    </div>
+</div>

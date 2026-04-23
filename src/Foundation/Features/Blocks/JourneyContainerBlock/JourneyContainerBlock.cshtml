@@ -1,0 +1,47 @@
+﻿@using Foundation.Features.Blocks.JourneyContainerBlock
+
+@model IBlockViewModel<JourneyContainerBlock>
+
+    <style>
+        .row.journey-action-button {
+    width: 100%;
+}
+
+.row.journey-action-button {
+    text-align: center;
+    margin: 1rem auto;
+}
+.row.journey-action-button > button {
+    display: inline-block;
+    width: auto;
+    margin: auto;
+}
+
+    </style>
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" 
+    class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin +  " " + Model.CurrentBlock.CssClass)">
+    
+    <div class="row journey-action-button">
+        <h1>ODP Journey Container Block</h1>
+        <p>Clicking button will execute all ODP events in this container starting at <strong>@Model.CurrentBlock.JourneyStartTime</strong></p>
+        <button id="executeODPEvents">Execute ODP Events</button>
+    </div>
+    
+    @Html.PropertyFor(m => m.CurrentBlock.MainContentArea)
+
+    <script>
+
+        document.getElementById("executeODPEvents").addEventListener("click", function() {
+            var el = document.querySelector("#executeODPEvents"),
+            elChild = "<span id='odp-execute-confirm'>ODP Events Executed</span>";
+            el.insertAdjacentHTML("afterend", elChild);
+
+            setTimeout(function(){
+                document.querySelector('#odp-execute-confirm').remove();
+            }, 5000);
+        
+        });
+
+    </script>
+</div>

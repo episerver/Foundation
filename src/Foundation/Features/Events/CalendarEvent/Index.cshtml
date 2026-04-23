@@ -1,0 +1,45 @@
+﻿@using Foundation.Features.Events.CalendarEvent
+
+@model ContentViewModel<CalendarEventPage>
+
+<div class="row">
+    <div class="col-12">
+        <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <strong>Start Date: </strong>
+        <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EventStartDate)>
+            @Model.CurrentContent.EventStartDate
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <strong>End Date: </strong>
+        <div class="date-heading-section" @Html.EditAttributes(m => m.CurrentContent.EventEndDate)>
+            @Model.CurrentContent.EventEndDate
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <strong>Location: </strong>@Html.PropertyFor(x => x.CurrentContent.Location)
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h4>@Html.PropertyFor(x => x.CurrentContent.TeaserText)</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @Html.PropertyFor(m => m.CurrentContent.MainBody)
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+    </div>
+</div>

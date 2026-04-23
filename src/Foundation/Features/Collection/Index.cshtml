@@ -1,0 +1,36 @@
+@using Foundation.Features.Collection
+
+@model ContentViewModel<CollectionPage>
+
+@Html.PropertyFor(x => x.CurrentContent.Navigation)
+
+<br />
+<div class="row">
+    <div class="col-12 mediablock-container">
+        <div class="row">
+            <div class="col-4">
+                @if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Image))
+                {
+                    <img data-src="@Url.ContentUrl(Model.CurrentContent.Image)?format=webp" class="img-fluid lazyload" />
+                }
+                else if (!ContentReference.IsNullOrEmpty(Model.CurrentContent.Video))
+                {
+                    <video class="teaser__video" autoplay loop playsinline muted>
+                        <source src="@Url.ContentUrl(Model.CurrentContent.Video)" type="video/mp4">
+                    </video>
+                }
+            </div>
+            <div class="col-8 mediablock__content">
+                <div>
+                    <div class="mediablock__title">
+                        <h2>@Model.CurrentContent.CollectionName</h2>
+                    </div>
+                    <p class="mediablock__description">@Html.PropertyFor(x => x.CurrentContent.Description)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+@Html.PropertyFor(x => x.CurrentContent.Products)

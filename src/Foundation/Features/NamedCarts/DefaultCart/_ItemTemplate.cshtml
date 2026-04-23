@@ -1,0 +1,127 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+@using Foundation.Features.CatalogContent.Variation
+
+@model CartItemViewModel
+
+@{
+    var variant = Model.Entry as GenericVariant;
+    var isDisabledEdit = ((bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]));
+}
+
+<input type="hidden" class="currentVariantInfo"
+       url="@Url.Action("ChangeCartItem", "DefaultCart", null)"
+       value="@Model.Code" shipmentId="@ViewData["ShipmentId"]" size="@(variant != null ? variant.Size : "")" quantity="@Model.Quantity" />
+<div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+    <div class="product-tile-list__image">
+        <a href="@Model.Url">
+            <picture class="img-fluid">
+                <source data-srcset="@Model.ImageUrl?format=webp" type="image/webp">
+                <img data-src="@Model.ImageUrl" class="img-fluid lazyload" alt="" />
+            </picture>
+        </a>
+    </div>
+</div>
+<div class="col-md-10 col-lg-10 col-sm-9 col-xs-9">
+    <div class="product-tile-list__right-box">
+        <div class="title">
+            <a href="@Model.Url" class="account-link">@Model.DisplayName</a>
+            @if (!isDisabledEdit)
+            {
+                <div class="action-icons pull-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn-link large-cart__margin-btn jsMoveToWishlist hover-feather-icon" title="Move to wishlist" code="@Model.Code" url="@Url.Action("MoveToWishlist", "DefaultCart", null)" href="javascript:void(0);">
+                            <span><i data-feather="heart"></i></span>
+                        </a>
+                    }
+                    <a class="btn-link cart-item__remove jsRemoveCartItem" code="@Model.Code" type="large-cart" shipmentId="@ViewData["ShipmentId"]" title="Delete Item" href="javascript:void(0)">
+                        <span><i data-feather="trash-2"></i></span>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="content product-tile-list__content">
+            <div>
+                @Html.Raw(Model.Description)
+            </div>
+            @if (Model.IsDynamicProduct)
+            {
+                <div>
+                    <label class="title">Base Price: </label>
+                    <span class="price__discount">@Model.BasePrice.ToString()</span>
+                </div>
+                <div>
+                    <label class="title">Option Price: </label>
+                    <span class="price__discount">@Model.OptionPrice.ToString()</span>
+                </div>
+            }
+            <div>
+                <label class="title">Price: </label>
+                @if (Model.DiscountedUnitPrice.HasValue)
+                {
+                    <span class="price__old">@Model.PlacedPrice.ToString()</span>
+                    <span class="price__discount">@Model.DiscountedUnitPrice.ToString()</span>
+                }
+                else
+                {
+                    <span class="price__discount">@Model.PlacedPrice.ToString()</span>
+                }
+            </div>
+            @if (variant != null && !Model.IsDynamicProduct)
+            {
+                <div class="row">
+                    <div class="col-md-1 col-xs-6 large-cart__label">
+                        <label class="title">Size: </label>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        @if (isDisabledEdit)
+                        {
+                            <input type="text" disabled class="textbox" value="@variant.Size" />
+                        }
+                        else
+                        {
+                            var sizes = Model.AvailableSizes.Select(x =>
+                            {
+                                return new KeyValuePair<string, string>(x, x);
+                            });
+                            @*@Helpers.RenderDropdown(sizes, variant.Size, "jsChangeSizeVariantLargeCart", "size" + Model.Code);*@
+                            @(await Component.InvokeAsync("Dropdown",
+                            new { list = sizes,
+                                selectedValue = variant.Size,
+                                selectorClassItem = "jsChangeSizeVariantLargeCart",
+                                name = "size" + Model.Code
+                            }))
+                        }
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-1 col-sm-6 large-cart__label">
+                    <label class="title">Quantity: </label>
+                </div>
+                <div class="col-md-3 col-sm-6 large-cart__label">
+                    @*@using (Html.BeginForm("ChangeCartItem", "DefaultCart", FormMethod.Post, new { data_container = "CheckoutView" })){}*@
+                    @if (isDisabledEdit)
+                    {
+                        <input type="number" name="quantity-@Model.Code" class="textbox" value="@((int)Model.Quantity)" disabled />
+                    }
+                    else
+                    {
+                        <input type="number" name="quantity-@Model.Code"
+                               class="textbox jsChangeQuantityCartItem"
+                               url="@Url.Action("ChangeCartItem", "DefaultCart", null)"
+                               code="@Model.Code" shipmentId="@ViewData["ShipmentId"]" value="@((int)Model.Quantity)"
+                               unitPrice="@(Model.DiscountedUnitPrice.HasValue ? Model.DiscountedUnitPrice.Value.Amount : Model.PlacedPrice.Amount)"
+                               currency="@Model.DiscountedPrice.ToString().FirstOrDefault()" />
+
+                        <div class="required"></div>
+                    }
+                </div>
+                <div class="col-md-6 col-sm-12 large-cart__label">
+                    <p class="title">Sub total: <span class="price__discount subtotal-@Model.Code">@Model.DiscountedPrice.ToString()</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

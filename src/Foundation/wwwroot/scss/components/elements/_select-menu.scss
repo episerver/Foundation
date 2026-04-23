@@ -1,0 +1,163 @@
+%select-menu-style {
+    width: 100%;
+    border: 1px solid $color-darkgrey;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+
+    &:focus, :active {
+        outline: 0;
+    }
+}
+
+.select-menu {
+    @extend %select-menu-style;
+    height: 40px;
+
+    & option {
+        @extend %select-menu-style;
+        height: 40px;
+    }
+}
+
+.select-menu-small {
+    @extend %select-menu-style;
+    height: 30px;
+    font-size: 12px;
+}
+
+.selection {
+    position: relative;
+    background-color: $color-grey;
+    color: black;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin: 0 10px 0 10px;
+    list-style: none;
+    padding: 0;
+
+    & li {
+        padding: 10px;
+        border-bottom: 1px solid $color-grey;
+        width: 100%;
+
+        & a {
+            display: flex;
+            justify-content: space-between;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            & svg {
+                width: 14px;
+            }
+        }
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    & a {
+        color: black;
+    }
+
+    & &__dropdown {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        z-index: 100;
+        visibility: hidden;
+        background-color: $color-lightgrey;
+        color: black;
+        list-style: none;
+        padding: 0;
+
+        & li {
+            border-bottom: 1px $color-grey solid;
+            border-left: 1px $color-grey solid;
+            border-right: 1px $color-grey solid;
+
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+
+    &:hover {
+        .selection__dropdown {
+            visibility: visible;
+        }
+    }
+}
+
+.selection--cm {
+    border-bottom: 1px solid $color-grey;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+
+    &__label {
+        font-size: 1.2em;
+        font-weight: bold;
+        padding-bottom: 10px;
+        border-bottom: 1px solid black;
+    }
+
+    &__sub-label {
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+
+    &__link {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        line-height: 26px;
+    }
+
+    & .pull-right {
+        float: right;
+    }
+
+    &__expand, &__collapse {
+        opacity: 0.8;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    & a {
+        color: black;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    & li {
+        padding: 10px;
+    }
+
+    &__inline-item {
+        display: inline-block;
+    }
+
+    & .active {
+        font-weight: bold;
+    }
+
+    & &__dropdown {
+        margin-left: 15px;
+        list-style: none;
+        padding: 0;
+    }
+}
+
+.selection-wrapper {
+    margin-top: 25px;
+}

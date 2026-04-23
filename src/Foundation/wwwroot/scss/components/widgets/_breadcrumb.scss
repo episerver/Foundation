@@ -1,0 +1,30 @@
+﻿.bread-crumb {
+    list-style-type: none;
+    display: flex;
+    color: grey;
+    text-transform: uppercase;
+    float: right;
+
+    @media (max-width: 991.98px) {
+        float: none;
+        padding: 20px 0;
+    }
+
+    & li {
+        &:not(:last-child)::after {
+            content: "/";
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        & a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+                opacity: 0.8;
+                text-decoration: underline;
+            }
+        }
+    }
+}

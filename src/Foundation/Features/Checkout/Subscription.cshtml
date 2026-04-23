@@ -1,0 +1,24 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
+
+<div class="row">
+    <div class="col-12">
+        <h4 class="title">@Html.TranslateFallback("/Shared/Subscription", "Subscription")</h4>
+    </div>
+    <div class="col-12 checkout--panel-block">
+        <label class="checkbox">
+            @Html.CheckBoxFor(x => x.IsUsePaymentPlan)
+            <span class="title">@Html.TranslateFallback("/Shared/CreateSubscription", "Create subscription")</span>
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-12 jsSubscription display-none">
+        <div class="row">
+            <div class="col-6 flex-start">
+                @Html.DropDownListFor(x => x.SelectedSubscriptionID, Model.AvailableSubscriptionOptions, new { @class = "select-menu" })
+            </div>
+        </div>
+    </div>
+</div>

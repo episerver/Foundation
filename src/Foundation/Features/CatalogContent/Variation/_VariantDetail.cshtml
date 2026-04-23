@@ -1,0 +1,122 @@
+﻿@using Foundation.Features.CatalogContent.Variation
+
+@model GenericVariantViewModel
+
+@{
+    var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
+}
+
+<input type="hidden" name="productCode" id="productCode" value="@Model.CurrentContent.Code" />
+<div class="col-12">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            @await Html.PartialAsync("_Images", Model.Media)
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="product-detail__title">
+                @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb ?? new List<KeyValuePair<string, string>>())
+                <h5>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h5>
+                <h6 class="light-text">@*@Html.PropertyFor(x => x.CurrentContent.Brand)*@</h6>
+                <p class="sub-title">@Model.CurrentContent.Code</p>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    @if (Model.IsAvailable)
+                    {
+                        <div class="d-inline-block">
+                            @if (Model.DiscountedPrice < Model.ListingPrice)
+                            {
+                                <span class="price__old">@Model.ListingPrice.ToString()</span>
+                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                            }
+                            @if (Model.HasSaleCode)
+                            {
+                                @await Html.PartialAsync("_WarningHasSaleCode", null)
+                            }
+                        </div>
+                        if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
+                        {
+                            <span class="price__discount pl-2">
+                                @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
+                            </span>
+                        }
+                        <span class="pull-right in-stock text-success">
+                            <i data-feather="check-circle"></i>
+                            @Model.InStockQuantity In Stock
+                        </span>
+                    }
+                    else
+                    {
+                        if (Model.DiscountedPrice > 0 || Model.ListingPrice > 0)
+                        {
+                            <div class="d-inline-block">
+                                @if (Model.DiscountedPrice < Model.ListingPrice)
+                                {
+                                    <span class="price__old">@Model.ListingPrice.ToString()</span>
+                                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                                }
+                                else
+                                {
+                                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                                }
+
+                                @if (Model.HasSaleCode)
+                                {
+                                    @await Html.PartialAsync("_WarningHasSaleCode", null)
+                                }
+                            </div>
+                        }
+                        if (Model.SubscriptionPrice.HasValue && Model.SubscriptionPrice.Value.Amount > 0)
+                        {
+                            <span class="price__discount pl-2">
+                                @Html.TranslateFallback("/Shared/SubscriptionPrice", "Subscription Price"): @Model.SubscriptionPrice.ToString()
+                            </span>
+                        }
+                        <span class="pull-right in-stock">
+                            <i data-feather="x-circle"></i>
+                            @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
+                        </span>
+                    }
+                </div>
+            </div>
+            <br />
+            @Html.PropertyFor(x => x.CurrentContent.Description)
+            <br />
+            <hr />
+            @await Html.PartialAsync("_Store", Model.Stores)
+            @await Html.PartialAsync("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    <span class="light-text cursor-pointer link mailTo">
+                        <a href="mailto:?Subject=@shareTitle&body=@shareUrl" title="Share by Email">
+                            <i class="light-svg" data-feather="mail"></i>
+                            Email to a friend
+                        </a>
+                    </span>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="light-text cursor-pointer link addToWishlist" data="@Model.CurrentContent.Code">
+                            <i class="light-svg" data-feather="heart"></i>
+                            Add to wishlist
+                        </span>
+                        if (Model.HasOrganization)
+                        {
+                            <span class="light-text cursor-pointer link addToSharedCart" data="@Model.CurrentContent.Code">
+                                <i class="light-svg" data-feather="shopping-cart"></i>
+                                Add to sharedcart
+                            </span>
+                        }
+                    }
+                </div>
+            </div>
+            @await Html.PartialAsync("_SocialIconsListing", Model.CurrentContent.DisplayName)
+        </div>
+    </div>
+</div>

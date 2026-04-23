@@ -1,0 +1,53 @@
+﻿@using Foundation.Features.Search
+
+@model CategoriesFilterViewModel
+
+<div class="selection--cm__label"> @Html.TranslateFallback("/Shared/Categories", "Categories") </div>
+<ul class="selection--cm" id="jsCategoriesFilter">
+    @foreach (var category in Model.Categories)
+    {
+        <li class="jsFirstLi">
+            <a href="@category.Url" title="@category.DisplayName" class="@(category.IsActive ? "active" : "")">
+                @category.DisplayName
+                @if (category.IsBestBet)
+                {
+                    <i class="fas fa-star"></i>
+                }
+            </a>
+            <i data-feather="plus" class="selection--cm__expand jsExpandCollapse pull-right"></i>
+            <i data-feather="minus" class="selection--cm__collapse jsExpandCollapse pull-right hidden"></i>
+            <ul class="selection--cm__dropdown hidden">
+                @foreach (var child in category.Children)
+                {
+                    <li>
+                        <a href="@child.Url" title="@child.DisplayName" class="@(child.IsActive ? "active" : "")">
+                            @child.DisplayName
+                            @if (child.IsBestBet)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                        </a>
+                        @if (child.Children.Any())
+                        {
+                            <span class="subDropdown minus"></span>
+                            <ul class="level1">
+                                @foreach (var childOfChild in child.Children)
+                                {
+                                    <li>
+                                        <a href="@childOfChild.Url" title="@childOfChild.DisplayName" class="@(childOfChild.IsActive ? "active" : "")">
+                                            @childOfChild.DisplayName
+                                            @if (childOfChild.IsBestBet)
+                                            {
+                                                <i class="fas fa-star"></i>
+                                            }
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

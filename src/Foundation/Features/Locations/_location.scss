@@ -1,0 +1,447 @@
+.location {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 15px 0;
+}
+
+.location__body {
+    padding: 15px;
+}
+
+.location__title {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.location__img {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+.location__description {
+    font-size: 13px;
+    margin: 0;
+
+    @include media-breakpoint-down(md) {
+        padding-top: 10px;
+    }
+}
+
+.location__footer {
+    position: relative;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+    font-size: 13px;
+
+    i {
+        font-size: 11px;
+        margin-right: 2px;
+    }
+
+    > .row {
+        padding: 10px 15px;
+        margin: 0;
+
+        > div {
+            padding: 0;
+        }
+    }
+}
+
+.location__badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #777777;
+    border-radius: 10px;
+}
+
+.location__more {
+    float: right;
+    top: 0;
+}
+
+#locationMap {
+    width: auto;
+    min-height: 450px;
+    position: relative;
+}
+
+.portfolio-row label,
+.portfolio-cats label {
+    font-weight: normal;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.portfolio-cats li span {
+    padding: 2px 10px;
+}
+
+.portfolio-row {
+    padding: 7px 10px;
+    border-left: solid 3px #ddd;
+    margin: 0;
+    text-decoration: none;
+    color: #333;
+}
+
+#slider-rangeData .slider-selection {
+    background: #5e9ae2; /* Old browsers */
+    background: linear-gradient(to right, #0000ff 0%,#ff0000 100%); /* W3C */
+    display: block;
+}
+
+.portfolio-row .ui-widget-header {
+    background: transparent;
+}
+
+.col-verticalaligned {
+    -moz-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    -o-transform: translateY(50%);
+    -webkit-transform: translateY(50%);
+    transform: translateY(50%);
+}
+
+#flightaccordion .progress {
+    margin-bottom: 0;
+}
+
+#flightaccordion .row {
+    display: table;
+}
+
+#flightaccordion .row > div {
+    display: table-cell;
+    float: none;
+    vertical-align: middle;
+}
+
+.location-filter {
+    width: 100%;
+    padding-top: 15px;
+}
+
+.location-info {
+    position: relative;
+    background: #f5f5f5;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px 15px;
+}
+
+.location-main-intro {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.portfolio-menu {
+    background-color: #f9f9f9;
+    margin-bottom: 40px;
+}
+
+.portfolio-menu h3 {
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #000;
+    padding: 10px 10px;
+    border-left: solid 3px #000;
+    margin: 0;
+    font-weight: 400;
+}
+
+.portfolio-menu h3 i,
+.portfolio-menu h4 i {
+    font-size: .85em;
+    margin-right: 5px;
+}
+
+.portfolio-menu h4 {
+    font-size: 1.2em;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 10px 10px;
+    border-left: solid 3px #000;
+    margin: 0;
+    font-weight: 400;
+}
+
+.portfolio-cats,
+.portfolio-cols,
+.portfolio-desc {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    list-style-position: outside;
+    box-sizing: border-box;
+}
+
+.portfolio-cats li span {
+    padding: 7px 10px;
+    border-left: solid 3px #ddd;
+    display: block;
+    margin: 0;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.portfolio-cats li span:hover,
+.portfolio-cats li span.active,
+.portfolio-cats li span.active:hover {
+    color: #000;
+    border-color: #000;
+}
+
+.portfolio-cats li span.active {
+    font-weight: 600;
+}
+
+.portfolio-cols li {
+    float: left;
+    width: 25%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.portfolio-cols li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0;
+    border-right: solid 1px #ddd;
+    padding: 7px 0;
+}
+
+.portfolio-desc li:first-child a,
+.portfolio-cols li:first-child a {
+    border-left: solid 3px #ddd;
+}
+
+.portfolio-desc li:last-child a,
+.portfolio-cols li:last-child a {
+    border-right: none;
+}
+
+.portfolio-cols li a.active,
+.portfolio-desc li a.active,
+.portfolio-cols li a.active:focus,
+.portfolio-desc li a.active:focus,
+.portfolio-cols li a.active:hover,
+.portfolio-desc li a.active:hover {
+    background-color: #4d7db3;
+    color: #fff;
+    font-weight: normal;
+}
+
+.portfolio-desc li {
+    float: left;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.portfolio-desc li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1em;
+    margin: 0;
+    padding: 0;
+    border-right: solid 1px #ddd;
+    padding: 5px 0;
+}
+
+.portfolio-item-caption {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.portfolio-item-caption h1,
+.portfolio-item-caption h2,
+.portfolio-item-caption h3,
+.portfolio-item-caption h4,
+.portfolio-item-caption h5,
+.portfolio-item-caption h6 {
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.portfolio-topbar {
+    background-color: #f9f9f9;
+    margin-bottom: 30px;
+    border-top: solid 1px #eee;
+    border-left: solid 1px #eee;
+}
+
+.portfolio-topbar h1,
+.portfolio-topbar h2,
+.portfolio-topbar h3,
+.portfolio-topbar h4,
+.portfolio-topbar h5,
+.portfolio-topbar h6 {
+    display: block;
+    text-align: center;
+    font-size: 1.3em;
+    margin: 0;
+    padding: 8px 0;
+    line-height: 1;
+    border-right: solid 1px #eee;
+}
+
+.portfolio-topbar-cats li,
+.portfolio-topbar-cols li,
+.portfolio-topbar-desc li {
+    float: left;
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+.portfolio-topbar-cats,
+.portfolio-topbar-cols,
+.portfolio-topbar-desc {
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    float: left;
+}
+
+.portfolio-topbar-cats li span {
+    display: inline-block;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-bottom: solid 3px #eee;
+}
+
+.portfolio-topbar-cats li span.active,
+.portfolio-topbar-cats li span.active:hover {
+    border-bottom: solid 3px #4d7db3;
+}
+
+.topbar-border {
+    display: block;
+    width: 100%;
+    padding: 5px 12px;
+    border-bottom: solid 3px #eee;
+    border-right: solid 1px #eee;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .portfolio-topbar-cats li span {
+        padding: 5px 9px;
+    }
+}
+
+.portfolio-topbar-cols {
+    display: block;
+    width: 100%;
+}
+
+.portfolio-topbar-cols li {
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+
+.portfolio-topbar-cols li a {
+    display: block;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-bottom: solid 3px #eee;
+    text-decoration: none;
+    color: #333;
+}
+
+.portfolio-topbar-cols li a.active,
+.portfolio-topbar-cols li a.active:hover,
+.portfolio-topbar-desc li a.active,
+.portfolio-topbar-desc li a.active:hover {
+    border-bottom-color: #4d7db3;
+}
+
+.portfolio-topbar-cols li a:hover,
+.portfolio-topbar-desc li a:hover,
+.portfolio-topbar-cats li span:hover {
+    border-bottom-color: #999;
+}
+
+.portfolio-topbar-cols li:last-child,
+.portfolio-topbar-desc li:last-child {
+    border-right: solid 1px #eee;
+}
+
+.portfolio-topbar .col-md-8 {
+    padding-right: 0;
+}
+
+.portfolio-topbar .col-md-2.port-fix {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.portfolio-topbar .col-md-2 {
+    padding-left: 0;
+}
+
+.portfolio-topbar-desc li {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.portfolio-topbar-desc {
+    display: block;
+    width: 100%;
+}
+
+.portfolio-topbar-desc li a {
+    display: block;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-bottom: solid 3px #eee;
+    text-decoration: none;
+    color: #333;
+}
+
+.ec-filters-menu ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.ec-filters-menu ul li a {
+    display: block;
+    color: #333;
+    border-left: solid 3px #ddd;
+    padding-left: 15px;
+    text-decoration: none;
+}
+
+.ec-filters-menu ul li a:hover {
+    border-color: #000;
+    color: #000;
+}
+
+.ec-filters-menu ul li a.active {
+    border-color: #4d7db3;
+    color: #4d7db3;
+}
+
+@media (min-width: 1200px) {
+    #locationMap {
+        height: 600px;
+    }
+}

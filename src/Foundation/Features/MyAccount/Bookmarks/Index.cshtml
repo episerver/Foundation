@@ -1,0 +1,59 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyAccount.Bookmarks
+
+@model BookmarksViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="my-account">
+    <div class="page-title">
+        <h1 class="heading-title">
+            @Html.PropertyFor(x => x.CurrentContent.Name)
+        </h1>
+    </div>
+    <div class="row">
+        @if ((Model.CurrentContent.MainBody != null && !Model.CurrentContent.MainBody.IsEmpty) || Html.IsInEditMode())
+        {
+            <div class="col-12">
+                @Html.PropertyFor(m => m.CurrentContent.MainBody)
+            </div>
+        }
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        </div>
+    </div>
+    <div id="my-bookmarks">
+        @foreach (var bookmark in Model.Bookmarks)
+        {
+            <div class="row product-tile-list__item" id="bookmark-@bookmark.ContentGuid">
+                <div class="col-md-4 col-lg-2 col-sm-6 col-xs-6">
+                    <div class="product-tile-list__image">
+                        <picture class="image-full-width">
+                            <source data-srcset="~/icons/cms/pages/CMS-icon-page-23.png?format=webp" type="image/webp">
+                            <img data-src="~/icons/cms/pages/CMS-icon-page-23.png" class="image-full-width lazyload" alt="" />
+                        </picture>
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-10 col-sm-6 col-xs-6">
+                    <div class="product-tile-list__right-box">
+                        <div class="title">
+                            <a href="@bookmark.Url" class="account-link" target="_blank"><h5>@bookmark.Name</h5></a>
+                        </div>
+
+                        <div class="content product-tile-list__content">
+                            <div>
+                                <a href="@bookmark.Url" class="account-link" target="_blank">@(Context.Request.Path.Value) @bookmark.Url</a>
+                            </div>
+                            <div class="action-icons">
+                                <a class="account-link" href="@bookmark.Url" target="_blank" title="View page"><span><i data-feather="eye"></i></span></a>
+                                <a class="account-link jsRemoveBookmark" contentguid="@bookmark.ContentGuid" href="#" title="Remove bookmark"><span><i data-feather="trash-2"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@using Foundation.Features.Markets
+
+@model MarketViewModel
+
+<div class="market-selector dropdown display-none d-lg-block">
+    <div class="market-selector__wrapper" data-bs-toggle="dropdown" data-offset="0, -1" data-flip="false">
+        <img class="market-selector__market-icon lazyload" data-src="@Model.CurrentMarket.FlagUrl" />
+        <p class="market-selector__market-text"> | @Model.CurrentLanguage | @Model.CurrentCurrency</p>
+        <div class="market-selector__dropdown-icon">
+            <i data-feather="chevron-down"></i>
+        </div>
+    </div>
+    <div class="market-panel dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMarket">
+        <div class="market-list">
+            <form action="/Market/Set?contentLink=@Model.ContentLink" method="post">
+                @Html.AntiForgeryToken()
+                <div class="market-list__label">Market: @Model.CurrentMarket.DisplayName</div>
+                <div class="market-list__list">
+                    @foreach (var item in Model.Markets)
+                    {
+                        <div class="market-selector__wrapper jsMarketSelector">
+                            <input type="hidden" name="MarketId" value="@item.Value" />
+                            <img class="market-selector__market-icon lazyload" data-src="@item.FlagUrl" />
+                            <p class="market-selector__market-text">@item.DisplayName</p>
+                        </div>
+                    }
+                </div>
+            </form>
+        </div>
+        <div class="language-list">
+            @using (Html.BeginForm("Set", "Language", new { contentLink = Model.ContentLink }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="language-list__label">Language: @Model.CurrentLanguage</div>
+                <div class="language-list__list">
+                    @foreach (var item in Model.Languages)
+                    {
+                        <div class="language-list__language-text jsLanguageSelector">
+                            <input type="hidden" name="Language" value="@item.Value" />
+                            @item.DisplayName
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="currency-list">
+            <form action="/Currency/Set?contentLink=@Model.ContentLink" method="post">
+                @Html.AntiForgeryToken()
+                <div class="currency-list__label">Currency: @Model.CurrentCurrency</div>
+                <div class="currency-list__list">
+                    @foreach (var item in Model.Currencies)
+                    {
+                        <div class="language-list__language-text jsCurrencySelector">
+                            <input type="hidden" name="CurrencyCode" value="@item.Value" />
+                            @item.DisplayName - @item.Symbol
+                        </div>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

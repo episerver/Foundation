@@ -1,0 +1,28 @@
+﻿@using Foundation.Features.Header
+
+@model MiniCartViewModel
+
+<div class="position-relative">
+    <div class="loading-cart" hidden>
+        <div class="loader"></div>
+    </div>
+    <div class="cart-item-listing">
+        @await Html.PartialAsync("_MobileMiniCartItems", Model)
+    </div>
+
+    <div class="cart__footer">
+        <p class="cart__subtotal">
+            Subtotal (<span class="countItemCartHeader">@((int)Model.ItemCount)</span> items): <span class="amountCartHeader">@Model.Total.ToString()</span>
+        </p>
+        <div class="cart__actions">
+            <button href="@Url.ContentUrl(Model.CheckoutPage)" class="button-transparent-black" onclick="window.location.href=$(this).attr('href')">
+                Checkout
+            </button>
+        </div>
+        <div class="cart__actions">
+            <button href="@Url.ContentUrl(Model.CartPage)" class="button-black" onclick="window.location.href=$(this).attr('href')">
+                View details
+            </button>
+        </div>
+    </div>
+</div>

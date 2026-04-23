@@ -1,0 +1,55 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.Orders
+
+@model OrdersPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+@Html.PropertyFor(model => model.CurrentContent.MainContentArea)
+<style>
+.table .thead-dark th{color:white; width:15%}
+.table .thead-dark td{width:15%}
+</style>
+<div class="orders-page-filter">
+    <div>
+        @Html.Translate("/B2B/Orders/FilterByStatus")
+    </div>
+    <select class="select-menu jsFilterOrderByStatus">
+        <option value="">@Html.TranslateFallback("/B2B/Orders/All", "All")</option>
+        <option value="OnHold">@Html.TranslateFallback("/B2B/Orders/OnHold", "On Hold")</option>
+        <option value="InProgress">@Html.TranslateFallback("/B2B/Orders/InProgress", "In Progress")</option>
+        <option value="Completed">@Html.TranslateFallback("/B2B/Orders/Completed", "Completed")</option>
+        <option value="RequestQuotation">@Html.TranslateFallback("/B2B/Orders/RequestQuote", "Request Quote")</option>
+        <option value="RequestQuotationFinished">@Html.TranslateFallback("/B2B/Orders/RequestQuoteFinished", "Request Quote Finished")</option>
+        <option value="QuoteExpired">@Html.TranslateFallback("/B2B/Orders/QuoteExpired", "Quote Expired")</option>
+        <option value="PendingApproval">@Html.TranslateFallback("/B2B/Orders/PendingApproval", "Pending Approval")</option>
+    </select>
+</div>
+<table class="table" style="width:100%;">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.Translate("/B2B/Orders/OrderNo")</th>
+            <th>@Html.Translate("/B2B/Orders/PlacedOn")</th>
+            <th>@Html.Translate("/Shared/Amount")</th>
+            <th>@Html.Translate("/B2B/Suborganization")</th>
+            <th>@Html.Translate("/Shared/User")</th>
+            <th>@Html.Translate("/B2B/Budgeting/Status")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.OrdersOrganization)
+        {
+            <tr class="orderElement jsOrderRow @order.Status">
+                <td><a href="@(Model.OrderDetailsPageUrl)?orderGroupId=@order.OrderGroupId">#@order.OrderNumber</a></td>
+                <td>@order.PlacedOrderDate</td>
+                <td>@order.Currency @order.Ammount</td>
+                <td>@order.SubOrganization</td>
+                <td>@order.User</td>
+                <td>@order.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+@* EPiServer.Find removed: @using EPiServer.Find removed. Phase 4 will restore. *@
+@using EPiServer.Shell.Web.Mvc.Html
+@using Foundation.Features.Search
+@using Foundation.Features.Search.Search
+
+@model SearchViewModel<SearchResultPage>
+
+@{
+    Layout = null;
+}
+
+<div class="bblock block-layered-nav jsSearchFacets">
+    <div class="selection--cm__label">
+        @Html.TranslateFallback("/Category/ContentFilters", "Content Filters")
+    </div>
+    <ul class="selection--cm">
+        <li class="selection--cm__inline-item">
+            Filtered by:
+            @{
+                if (string.IsNullOrEmpty(Model.ContentSearchResult.SectionFilter))
+                {
+                    <label class="content-filters-tag">
+                        All
+                    </label>
+                }
+                else
+                {
+                    <label class="content-filters-tag">
+                        @Model.ContentSearchResult.SectionFilter
+                    </label>
+                }
+            }
+        </li>
+        @* EPiServer.Find removed: FilterFacet/TermsFacetFor extension methods removed. Phase 4 will restore facet sections. *@
+        @if (Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null)
+        {
+            <li class="">
+                <span class="selection--cm__sub-label">
+                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")">All</a>
+                </span>
+            </li>
+        }
+    </ul>
+</div>

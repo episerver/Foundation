@@ -1,0 +1,91 @@
+﻿@using System.Net;
+@using Foundation.Features.CatalogContent.Bundle;
+
+@model GenericBundleViewModel
+
+@{
+    var isBundle = new KeyValuePair<string, object>("IsBundle", true);
+    var viewData = new ViewDataDictionary(this.ViewData);
+    viewData.Add(isBundle);
+    var shareTitle = Uri.EscapeUriString("Check out this product: " + Model.CurrentContent.DisplayName);
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
+}
+
+<input type="hidden" name="productCode" id="productCode" value="@Model.Bundle.Code" />
+<div class="col-12">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            @await Html.PartialAsync("_Images", Model.Media)
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="product-detail__title">
+                @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
+                <h5>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h5>
+                @*<h6 class="light-text">@Html.PropertyFor(x => x.Product.Brand)</h6>*@
+                <p class="sub-title">@Model.CurrentContent.Code</p>
+            </div>
+            <hr />
+            @await Html.PartialAsync("_Rating", Model)
+            <hr />
+            @if (Model.IsAvailable)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <span class="pull-right in-stock text-success">
+                            <i data-feather="check-circle"></i>
+                            In Stock
+                        </span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <span class="pull-right in-stock">
+                            <i data-feather="x-circle"></i>
+                            @Html.TranslateFallback("/Product/NotAvailable", "Not Available")
+                        </span>
+                    </div>
+                </div>
+            }
+            <br />
+            @Html.PropertyFor(x => x.CurrentContent.Description)
+            <br />
+            <hr />
+            @if (Model.Entries != null && Model.Entries.Any())
+            {
+                @await Html.PartialAsync("_ListVariants", Model.Entries, viewData)
+                @await Html.PartialAsync("_Store", Model.Stores)
+                @await Html.PartialAsync("_BuyNow", new Tuple<string, int, bool>(Model.CurrentContent.Code, Model.MinQuantity, Model.IsAvailable))
+            }
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    <span class="light-text cursor-pointer link mailTo">
+                        <a href="mailto:?Subject=@shareTitle&body=@shareUrl" title="Share by Email">
+                            <i class="light-svg" data-feather="mail"></i>
+                            Email to a friend
+                        </a>
+                    </span>
+                    @if (User.Identity.IsAuthenticated && Model.Entries.Any())
+                    {
+                        <span class="light-text cursor-pointer link addToWishlist" data="@Model.CurrentContent.Code">
+                            <i class="light-svg" data-feather="heart"></i>
+                            Add to wishlist
+                        </span>
+
+                        if (Model.HasOrganization)
+                        {
+                            <span class="light-text cursor-pointer link addToSharedCart" data="@Model.CurrentContent.Code">
+                                <i class="light-svg" data-feather="shopping-cart"></i>
+                                Add to sharedcart
+                            </span>
+                        }
+                    }
+                </div>
+            </div>
+            @await Html.PartialAsync("_SocialIconsListing", Model.CurrentContent.DisplayName)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+@* Activities were stored as CMS categories (TagString); categories are not populated in the current setup.
+   The filterblock DOM structure is preserved so the locations.js checkbox delegates don't break. *@
+@using Foundation.Features.Locations.LocationListPage
+@model LocationListViewModel
+
+<div class="filterblock" id="filterActivities" data-filtertype="activities">
+    <h4>
+        <i class="fa fa-tag"></i>
+        @Html.TranslateFallback("/Locations/Activities", "Activities")
+    </h4>
+    <ul class="portfolio-cats">
+        <li>
+            <label>
+                <input type="checkbox" class="select-all" checked="checked" />
+                @Html.TranslateFallback("/common/all", "All")
+            </label>
+        </li>
+    </ul>
+</div>

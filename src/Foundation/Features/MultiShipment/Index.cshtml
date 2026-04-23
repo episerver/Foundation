@@ -1,0 +1,183 @@
+﻿@using System.Linq
+@using EPiServer.Web.Mvc.Html
+@model MultiShipmentViewModel
+@{
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+
+    var addressSeletions = new List<KeyValuePair<string, string>>();
+    if (Model.AvailableAddresses.Any())
+    {
+        foreach (var a in Model.AvailableAddresses)
+        {
+            addressSeletions.Add(new KeyValuePair<string, string>(a.Name, a.AddressId));
+        }
+    }
+}
+
+<div class="container-fluid margin-bottom-lg" id="CheckoutView" data-url="@Url.Action("MultiShipment")">
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="row section-box checkout">
+            <div class="col-12 text-left">
+                <h1 class="heading-title">@Html.TranslateFallback("/Checkout/MultiShipment/Heading", "Ship to multiple addresses")</h1>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <h4>
+                        @Html.TranslateFallback("/Checkout/MultiShipment/SubheadingFirst", "Addresses need to be saved in your")
+                        <a class="account-link" href="@Url.ContentUrl(Model.StartPage.AddressBookPage)">@Html.TranslateFallback("/Checkout/MultiShipment/SubheadingAddress", "address book")</a>
+                        @Html.TranslateFallback("/Checkout/MultiShipment/SubheadingSecond", "before being available.")
+                    </h4>
+                }
+            </div>
+        </div>
+
+
+        for (int index = 0; index < Model.CartItems.Count(); index++)
+        {
+            @Html.HiddenFor(model => model.CartItems[index].Code);
+            @Html.HiddenFor(model => model.CartItems[index].DisplayName);
+            @Html.HiddenFor(model => model.CartItems[index].Quantity);
+            @Html.HiddenFor(model => model.CartItems[index].IsGift);
+
+            bool hasDiscount = Model.CartItems[index].DiscountedUnitPrice.HasValue;
+            string productLevelClass = hasDiscount ? "has-discount" : string.Empty;
+
+        <div class="row @productLevelClass border-bottom">
+            <div class="col-xs-12 col-sm-6">
+                <div class="row product-tile-list__item">
+                    <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+                        <div class="product-tile-list__image">
+                            <img class="img-fluid" src="@Model.CartItems[index].ImageUrl" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-lg-10 col-sm-9 col-xs-9">
+                        <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/Item", "Item")</p>
+                        <a href="@Model.CartItems[index].Url" class="account-link">@Model.CartItems[index].DisplayName</a>
+                        <br />
+                        <span class="title light-text">@Model.CartItems[index].Brand</span>
+                        <p>
+                            <span class="title">Price: </span>
+                            @if (hasDiscount)
+                            {
+                                <span class="price__old">@Helpers.RenderMoney(Model.CartItems[index].PlacedPrice)</span>
+                                <span class="price__discount">@Helpers.RenderMoney(Model.CartItems[index].DiscountedUnitPrice.Value)</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@Helpers.RenderMoney(Model.CartItems[index].PlacedPrice)</span>
+                            }
+                        </p>
+
+                        <p>
+                            <span class="title">@Html.TranslateFallback("/ProductPage/Size", "Size"): </span>
+                            @Helpers.RenderSize(Model.CartItems[index].Entry)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 pt-2 pb-2">
+                <p class="title">@Html.TranslateFallback("/Checkout/MultiShipment/DeliveryAddress", "Delivery address")</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @*var dropDownPlaceholder = Model.AvailableAddresses.Any() ? Html.Translate("/Checkout/MultiShipment/SelectDeliveryAddress") : Html.Translate("/Checkout/MultiShipment/NoAddressFound");
+                    @Html.DropDownListFor(model => Model.CartItems[index].AddressId, new SelectList(Model.AvailableAddresses, "AddressId", "Name", Model.CartItems[index].AddressId), dropDownPlaceholder, new { @class = "form-control address-dropdown" })*@
+
+                    @Helpers.RenderDropdown(addressSeletions, "", "", "CartItems[" + index + "].AddressId")
+
+                    <br />
+                    <button type="button" class="btn btn-dark btn-lower" data-url="@Url.Action("EditForm", "AddressBook")" data-toggle="modal" data-target="#AddressDialog">
+                        @Html.TranslateFallback("/Checkout/MultiShipment/AddNewAddress", "Add new address")
+                    </button>
+                    
+                    @Html.ValidationMessageFor(model => Model.CartItems[index].AddressId, null, new { @class = "required" })
+                }
+                else
+                {
+
+                    @Html.HiddenFor(model => Model.CartItems[index].AddressId, new { @value = Model.CartItems[index].AddressId })
+                    @Html.HiddenFor(model => Model.AvailableAddresses[index].AddressId, new { @value = Model.AvailableAddresses[index].AddressId })
+                    @Html.HiddenFor(model => Model.AvailableAddresses[index].Name, new { @value = Model.AvailableAddresses[index].Name })
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+
+                            @Html.LabelFor(model => Model.AvailableAddresses[index].FirstName)
+                            @Html.TextBoxFor(model => Model.AvailableAddresses[index].FirstName, new { @class = "textbox" })
+                            @Html.ValidationMessageFor(model => Model.AvailableAddresses[index].FirstName)
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => Model.AvailableAddresses[index].LastName)
+                            @Html.TextBoxFor(model => Model.AvailableAddresses[index].LastName, new { @class = "textbox" })
+                            @Html.ValidationMessageFor(model => Model.AvailableAddresses[index].LastName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => Model.AvailableAddresses[index].Line1)
+                        @Html.TextBoxFor(model => Model.AvailableAddresses[index].Line1, new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => Model.AvailableAddresses[index].Line1)
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => Model.AvailableAddresses[index].PostalCode)
+                            @Html.TextBoxFor(model => Model.AvailableAddresses[index].PostalCode, new { @class = "textbox" })
+                            @Html.ValidationMessageFor(model => Model.AvailableAddresses[index].PostalCode)
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            @Html.LabelFor(model => Model.AvailableAddresses[index].City)
+                            @Html.TextBoxFor(model => Model.AvailableAddresses[index].City, new { @class = "textbox" })
+                            @Html.ValidationMessageFor(model => Model.AvailableAddresses[index].City)
+                        </div>
+                    </div>
+
+                    @Html.EditorFor(model => model.AvailableAddresses[index].CountryRegion, new { Name = "AvailableAddresses[" + index + "].CountryRegion.Region" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => Model.AvailableAddresses[index].CountryCode)
+                        @*@Html.DropDownListFor(model => Model.AvailableAddresses[index].CountryCode,
+                                new SelectList(Model.AvailableAddresses[index].CountryOptions, "Code", "Name", Model.AvailableAddresses[index].CountryCode), new { @class = "form-control jsChangeCountry" })*@
+
+                        @Html.DisplayFor(x => x.AvailableAddresses[index].CountryOptions, "CountryOptions", new { Name = "AvailableAddresses[" + index + "].CountryCode" })
+
+                        @Html.ValidationMessageFor(model => Model.AvailableAddresses[index].CountryCode)
+                        @Html.Hidden("address-htmlfieldprefix", String.Format("AvailableAddresses[{0}].CountryRegion", index))
+                    </div>
+                }
+            </div>
+            
+        </div>
+        }
+
+
+        <div class="row mt-2">
+            <div class="col-xs-12">
+                @if (!((bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"])))
+                {
+                    <input type="submit" class="btn btn-dark" value="@Html.Translate("/Checkout/MultiShipment/Continue")" />
+                }
+                <a href="@Model.ReferrerUrl" class="btn btn-light">@Html.Translate("/AddressBook/Form/Label/Cancel")</a>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="AddressDialog" class="modal fade square-box" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new address</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("AddNewAddress", "AddressBook", new { multiShipmentUrl = Request.Url.PathAndQuery })
+            </div>
+        </div>
+    </div>
+</div>

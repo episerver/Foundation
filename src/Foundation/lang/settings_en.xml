@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<languages>
+  <language name="English" id="en">
+    <contentrepositories>
+      <settings>
+        <customselecttitle>Setting</customselecttitle>
+        <name>Settings</name>
+      </settings>
+      <globalsettings>
+        <customselecttitle>Site setting</customselecttitle>
+        <name>Site settings</name>
+      </globalsettings>
+    </contentrepositories>
+    <contenttypes>
+      <settingsbase>
+        <compare>
+          <onlyoneversion>There is only one version of this setting. There is nothing to compare with.</onlyoneversion>
+        </compare>
+        <copy>
+          <multiple>
+            <title>Copy settings</title>
+          </multiple>
+          <single>
+            <title>Copy setting</title>
+          </single>
+        </copy>
+        <create>New setting</create>
+        <createdescription>Select where you want the setting to be created. Folders can be managed in the setting library in the assets pane.</createdescription>
+        <deletelanguagebranchdescription>Are you sure you want to permanently delete all versions of the setting &lt;strong&gt;{0}&lt;/strong&gt; in &lt;strong&gt;{1}&lt;/strong&gt;?&lt;br /&gt;This action cannot be undone.</deletelanguagebranchdescription>
+        <forthis>For This {0}</forthis>
+        <languagenotifications>
+          <fallback>This setting is shown in {1} on the website because it has not been published in {0} and a fallback language has been activated.</fallback>
+          <missing>This setting is in {1}. It does not exist in {0}. It will not be visible on the website.</missing>
+          <replacement>For visitors, this block is replaced by a version in {1}.</replacement>
+        </languagenotifications>
+        <move>
+          <multiple>
+            <confirmation>Would you like to move {0} settings?</confirmation>
+            <title>Move settings</title>
+          </multiple>
+          <single>
+            <confirmation>Would you like to move this setting?</confirmation>
+            <title>Move setting</title>
+          </single>
+        </move>
+        <movedescription>This change will take effect immediately and any published content that is moved will remain published in the new location.</movedescription>
+        <movetotrash>Move settings to Trash</movetotrash>
+        <movetotrashdescription>Would you like to move &lt;strong&gt;{0}&lt;/strong&gt; settings to the trash?</movetotrashdescription>
+        <movetotrashsingleitem>Move setting to Trash</movetotrashsingleitem>
+        <movetotrashsingleitemdescription>Would you like to move the setting &lt;strong&gt;{0}&lt;/strong&gt; to the trash?</movetotrashsingleitemdescription>
+        <name>Setting</name>
+        <newitemdefaultname>New setting</newitemdefaultname>
+        <othertypes>Other setting types</othertypes>
+        <reference>
+          <multiple>
+            <notused>No other content uses these settings. They can safely be moved to the trash.</notused>
+            <used>These settings are used in the following places. To avoid errors on the site, make sure that the settings are not used anywhere.</used>
+          </multiple>
+          <single>
+            <notused>No other content uses this setting. It can safely be moved to the trash.</notused>
+            <used>The setting is used in the following places. To avoid errors on the site, make sure that the setting is not used anywhere.</used>
+          </single>
+        </reference>
+        <referencesdescription>The setting &lt;strong&gt;{0}&lt;/strong&gt; is used in the following places.</referencesdescription>
+        <selectparent>Select Folder</selectparent>
+        <suggestedtypes>Suggested setting types</suggestedtypes>
+      </settingsbase>
+    </contenttypes>
+    <episerver>
+      <cms>
+        <components>
+          <settings>
+            <title>Settings</title>
+            <description>The settings</description>
+          </settings>
+          <globalsettings>
+            <title>Site settings</title>
+            <description>The site settings</description>
+          </globalsettings>
+        </components>
+      </cms>
+    </episerver>
+    <edit>
+      <deletesetting>
+        <deletenotsupported>A site setting cannot be deleted</deletenotsupported>
+      </deletesetting>
+    </edit>
+  </language>
+</languages>

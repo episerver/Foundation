@@ -1,0 +1,70 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model WishListViewModel
+
+<input type="hidden" id="countWishListInPage" value="@((int)Model.ItemCount)" />
+@if (Model.CartItems != null && Model.CartItems.Any())
+{
+    foreach (var product in Model.CartItems)
+    {
+        <div class="row product-tile-list__item">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
+                <div class="product-tile-list__image">
+                    <img data-src="@product.ImageUrl?format=webp" class="img-fluid lazyload" alt="" />
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 col-sm-6 col-xs-6">
+                <div class="product-tile-list__right-box">
+                    <div class="title">
+                        <a href="@product.Url" class="account-link"><h5>@product.DisplayName</h5></a>
+                    </div>
+                    <div class="content product-tile-list__content">
+                        <div>
+                            @Html.Raw(product.Description)
+                        </div>
+                        <div>
+                            <label class="title">Price: </label>
+                            @if (product.DiscountedUnitPrice.HasValue)
+                            {
+                                <span class="price__old">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">@product.DiscountedUnitPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">@product.PlacedPrice.ToString()</span>
+                            }
+                        </div>
+                        <div class="action-icons">
+                            <a class="account-link addToCart" data="@product.Code" href="#"><span><i data-feather="shopping-cart"></i></span></a>
+                            <a class="account-link deleteLineItemWishlist" data="@product.Code" href="#"><span><i data-feather="trash-2"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+    <div class="row">
+        <d>
+            @if (Model.HasOrganization)
+            {
+                using (@Html.BeginForm("RequestWishListQuote", "WishList", FormMethod.Post, new { @style = "display: inline-block; margin-right: 15px" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="button-transparent-black">
+                        <span>@Html.TranslateFallback("/Shared/RequestQuote", "Request Quote")</span>
+                    </button>
+                }
+            }
+            <button class="button-transparent-black--icon jsAddAllToCart" title="Add All to Cart" type="button" url="@Url.Action("AddAllToCart")">
+                <span>
+                    <i data-feather="plus"></i>
+                    @Html.TranslateFallback("/WishList/AddAll", "Add to Cart")
+                </span>
+            </button>
+    </div>
+}
+else
+{
+    <p>The list is empty.</p>
+}

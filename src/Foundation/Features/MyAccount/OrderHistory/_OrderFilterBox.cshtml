@@ -1,0 +1,80 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model OrderFilter
+
+<form action="@Url.Action("Index", "OrderHistory", Model)" method="post" class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <label>Ship To Address</label>
+                @(await Component.InvokeAsync("Dropdown", new { list = Model.Addresses,
+                    selectedValue = Model.AddressId,
+                    selectorClassItem = "",
+                    name = "AddressId" }))
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <label>Status</label>
+                @(await Component.InvokeAsync("Dropdown", new { list = Model.OrderStatuses.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.ToString())),
+                    selectedValue = Model.OrderStatusId.ToString(),
+                    selectorClassItem = "",
+                    name = "OrderStatusId"
+                }))
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <label>PO #</label>
+                <input type="text" name="PurchaseOrderNumber" value="@Model.PurchaseOrderNumber" class="form-control square-box" />
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <label>Order #</label>
+                <input type="text" name="OrderGroupId" value="@Model.OrderGroupId" class="form-control square-box" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Order Total</label>
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label class="mr-1"><i>From </i></label>
+                        <input type="number" name="PriceFrom" value="@Model.PriceFrom" class="square-box form-control" />
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label class="mr-1"><i>To </i></label>
+                        <input type="number" name="PriceTo" value="@Model.PriceTo" class="square-box form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Date Range</label>
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label class="mr-1"><i>From </i></label>
+                        <input type="date" name="DateFrom" class="square-box form-control" value="@(Model.DateFrom.HasValue ? Model.DateFrom.Value.ToString("yyyy-MM-dd"): "")" />
+                    </div>
+                    <div class="col-6 flex-start">
+                        <label class="mr-1"><i>To </i></label>
+                        <input type="date" name="DateTo" class="square-box form-control" value="@(Model.DateTo.HasValue ? Model.DateTo.Value.ToString("yyyy-MM-dd"): "")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Product #</label>
+                <input type="text" name="Keyword" class="form-control square-box" value="@Model.Keyword" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12 flex-end">
+                <a class="button-white mr-2" href="@Context.Request.Path">Clear</a>
+                <button type="submit" class="button-black">Search</button>
+            </div>
+        </div>
+    </div>
+</form>

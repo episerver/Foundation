@@ -1,0 +1,35 @@
+﻿@using Foundation.Features.Media
+@model StandardFileViewModel
+
+@{
+    var iconType = string.Empty;
+    switch (Model.FileExtension)
+    {
+        case ".docx":
+            iconType = "docx.png";
+            break;
+        case ".xlsx":
+            iconType = "xlsx.png";
+            break;
+        case ".pptx":
+            iconType = "pptx.png";
+            break;
+        case ".txt":
+            iconType = "txt-color.png";
+            break;
+        default:
+            iconType = "default.png";
+            break;
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.FileLink))
+{
+    <div class="standard-file">
+        @if (Model.ShowIcon)
+        {
+            <img data-src="/icons/filetypes/@iconType" alt="@iconType" class="img-fluid lazyload" />
+        }        
+        <a href="@Model.FileLink" download>@(Model.Title ?? Model.Name)</a>@(Model.ShowDescription && !string.IsNullOrEmpty(Model.Description) ? " -- " + Model.Description : "")
+    </div>
+}

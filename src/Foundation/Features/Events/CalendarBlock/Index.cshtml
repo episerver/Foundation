@@ -1,0 +1,10 @@
+﻿@using Foundation.Features.Events.CalendarBlock
+
+@model CalendarBlockViewModel
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" 
+     class="calendar-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)"
+     id="calendar-block-@Model.BlockId"
+     data-block-id="@Model.BlockId"
+     data-block-viewmode="@Model.CurrentBlock.ViewMode">
+</div>

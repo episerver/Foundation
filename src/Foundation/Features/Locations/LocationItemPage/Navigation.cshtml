@@ -1,0 +1,32 @@
+﻿@using Foundation.Features.Locations.LocationItemPage
+
+@model LocationNavigationModel
+
+<h2 class="section-title no-margin-top">Other Locations</h2>
+<div class="row">
+    @if (Model.CloseBy.Any())
+    {
+        <div class="col-xs-12 col-sm-6 col-md-12 ec-filters-menu">
+            <h4>Close by</h4>
+            <ul>
+                @foreach (var location in Model.CloseBy)
+                {
+                    <li>
+                        @Html.PageLink(location)
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    <div class="col-xs-12 col-sm-6 col-md-12 ec-filters-menu">
+        <h4>@Model.CurrentLocation.Continent</h4>
+        <ul>
+            @foreach (var location in Model.ContinentLocations)
+            {
+                <li class="@(Model.CurrentLocation.PageLink.CompareToIgnoreWorkID(location.PageLink) ? "active" : "")">
+                    @Html.PageLink(location)
+                </li>
+            }
+        </ul>
+    </div>
+</div>

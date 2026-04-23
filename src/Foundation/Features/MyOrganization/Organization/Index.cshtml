@@ -1,0 +1,97 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.Organization
+
+@model OrganizationPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        @if (Model.Organization.ParentOrganizationId == Guid.Empty)
+        {
+            <h4 class="title">@Html.TranslateFallback("/B2B/Organization/Info", "Organization Info")</h4>
+        }
+        else
+        {
+            <h4 class="title">@Html.TranslateFallback("/B2B/Organization/SubInfo", "Suborganization Info")</h4>
+        }
+        @if (Model.IsAdmin)
+        {
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "Edit")" class="button-black">
+                @Html.TranslateFallback("/Shared/Edit", "Edit")
+            </a>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 form-group">
+        <label>@(Model.Organization.ParentOrganizationId == Guid.Empty ? Html.TranslateFallback("/Shared/Name", "Name") : string.Format("{0} {1}", Html.TranslateFallback("/B2B/SubOrganization", "Suborganization"), Html.TranslateFallback("/Shared/Name", "Name")))</label>
+        <br />
+        <input type="text" disabled value="@Model.Organization.Name" class="textbox" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 form-group">
+        <label>@Html.TranslateFallback("/Shared/Address/Form/Label/Address", "Address")</label>
+        <br />
+        <textarea rows="3" class="textbox" disabled>@Model.Organization.Address.Name : @Model.Organization.Address.AddressString</textarea>
+    </div>
+</div>
+@if (Model.Organization.ParentOrganizationId == Guid.Empty)
+{
+    <div class="row">
+        <div class="col-12">
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddSub")" class="button-black pull-right">Add New</a>
+            <h4 class="title">Suborganizations</h4>
+        </div>
+        <div class="col-12"><br /></div>
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/SpentBudget", "Spent Budget")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Allocated", "Allocated")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/StartDate", "Start Date")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/EndDate", "End Date")</th>
+                        <th>@Html.TranslateFallback("/B2B/Budgeting/Status", "Status")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Organization != null && Model.Organization.SubOrganizations != null && Model.Organization.SubOrganizations.Any())
+                    {
+                        foreach (var subOrganization in Model.Organization.SubOrganizations)
+                        {
+                            <tr>
+                                <td><a href="@(Url.ContentUrl(Model.SubOrganizationPage))?suborg=@(subOrganization.OrganizationId)">@subOrganization.Name</a></td>
+                                @if (subOrganization.CurrentBudgetViewModel != null)
+                                {
+                                    <td>@subOrganization.CurrentBudgetViewModel.SpentBudget.ToString("N") @subOrganization.CurrentBudgetViewModel.Currency</td>
+                                    <td>@subOrganization.CurrentBudgetViewModel.Amount.ToString("N") @subOrganization.CurrentBudgetViewModel.Currency</td>
+                                    <td>@subOrganization.CurrentBudgetViewModel.StartDate.ToString("MMMM dd, yyyy")</td>
+                                    <td>@subOrganization.CurrentBudgetViewModel.DueDate.ToString("MMMM dd, yyyy")</td>
+                                    <td>@subOrganization.CurrentBudgetViewModel.Status</td>
+                                }
+                                else
+                                {
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <style>
+        .table .thead-dark th{color:white; width:15%}
+        .table .thead-dark td{width:15%}
+     </style>
+}

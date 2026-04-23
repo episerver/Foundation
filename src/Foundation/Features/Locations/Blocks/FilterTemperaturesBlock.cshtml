@@ -1,0 +1,29 @@
+@using Foundation.Features.Locations.LocationListPage
+@model LocationListViewModel
+
+@{
+    // Parse current temperature range from the ?t=min,max query param set by the JS slider.
+    var tempParam = Model.QueryString["t"].ToString();
+    var tempMin = "-20";
+    var tempMax = "40";
+    if (!string.IsNullOrEmpty(tempParam))
+    {
+        var parts = tempParam.Split(',');
+        if (parts.Length == 2) { tempMin = parts[0]; tempMax = parts[1]; }
+    }
+}
+
+<div>
+    <h4>
+        <i class="fa fa-thermometer-half"></i>
+        @(ViewData["FilterTitle"] == null ? Html.TranslateFallback("/Locations/Temperature", "Temperature") : ViewData["FilterTitle"].ToString())
+    </h4>
+    <ul class="portfolio-cats">
+        <li>
+            <span class="w-100 text-center">
+                <input id="slider-range" data-slider-id="slider-rangeData" type="text" style="width:95%;"
+                       data-temp-min="@tempMin" data-temp-max="@tempMax" />
+            </span>
+        </li>
+    </ul>
+</div>

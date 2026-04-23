@@ -1,0 +1,21 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model OrderSearchBlockViewModel
+
+@if (Model.Orders != null && Model.Orders.Count > 0)
+{
+    foreach (var order in Model.Orders)
+    {
+        <tr>
+            <th><a href="@Model.OrderDetailUrl?orderGroupId=@order.OrderGroupId">@order.OrderGroupId</a> </th>
+            <td>@order.PurchaseOrder.Created</td>
+            <td>@string.Join(", ", order.OrderPayments.Select(x => x.PaymentMethodName))</td>
+            <td>@order.OrderTotal</td>
+            <td>@order.PurchaseOrder.OrderStatus</td>
+        </tr>
+    }
+}
+else
+{
+    <p>No results.</p>
+}

@@ -1,0 +1,128 @@
+@* CMS 13 removed: EPiServer.Core.Html.TextIndexer removed. *@
+@* @using EPiServer.Core.Html *@
+@using Foundation.Features.Blocks.PageListBlock
+@using Foundation.Features.Shared.SelectionFactories
+@using System.Text.RegularExpressions
+@using System.Net
+
+@model PageListBlockViewModel
+
+@{
+    // CMS 13 removed: TextIndexer.StripHtml replaced with local function.
+    Func<string, int, string> StripHtml = (html, max) => {
+        if (string.IsNullOrEmpty(html)) return string.Empty;
+        var s = Regex.Replace(html, "<[^>]+>", string.Empty);
+        s = WebUtility.HtmlDecode(s);
+        return max > 0 && s.Length > max ? s.Substring(0, max) : s;
+    };
+}
+
+@if (Model.Pages != null && Model.Pages.Any())
+{
+    var flip = false;
+    foreach (var page in Model.Pages)
+    {
+        page.Flip = flip;
+        var imageCol = page.PreviewOption == PreviewOptions.Half ? 6 : 4;
+        var textCol = imageCol == 12 ? 12 : 12 - imageCol;
+        var foundationPage = page.Page as FoundationPageData;
+
+        if (!foundationPage.Highlight)
+        {
+            <div class="row">
+                @if (!page.Flip)
+                {
+                    <div class="col-xs-12 col-@imageCol">
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                        {
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            }
+                        }
+                    </div>
+                }
+                <div class="col-xs-12 col-@textCol">
+                    <h4 class="title">
+                        <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">@foundationPage.MetaTitle</a>
+                    </h4>
+                    @if (page.ShowPublishDate)
+                    {
+                        <p class="sub-title">@foundationPage.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                    }
+                    @if (page.ShowIntroduction)
+                    {
+                        <br />
+                        <p class="light-text">@Html.Raw(StripHtml(foundationPage.TeaserText, 200))</p>
+                    }
+                </div>
+                @if (page.Flip)
+                {
+                    <div class="col-xs-12 col-@imageCol">
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                        {
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="img-fluid page-list-block-preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="screen-width-block">
+                <div class="row">
+                    <div class="col-xs-12 col-@imageCol">
+                        @if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.TeaserVideo))
+                        {
+                            <video class="video-fluid" autoplay loop playsinline muted>
+                                <source src="@Url.ContentUrl(foundationPage.TeaserVideo)" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            if (foundationPage != null && !ContentReference.IsNullOrEmpty(foundationPage.PageImage))
+                            {
+                                <img class="img-fluid preview--image-top__image lazyload" data-src="@Url.ContentUrl(foundationPage.PageImage)" />
+                            }
+                        }
+                    </div>
+                    <div class="col-xs-12 col-@textCol">
+                        <h4 class="title">
+                            <a class="link" href="@foundationPage.ContentLink.GetPublicUrl()">@foundationPage.MetaTitle</a>
+                        </h4>
+                        @if (page.ShowPublishDate)
+                        {
+                            <p class="sub-title">@foundationPage.StartPublish.Value.ToString("dd MMM yyyy")</p>
+                        }
+                        @if (page.ShowIntroduction)
+                        {
+                            <br />
+                            <p class="light-text">@Html.Raw(StripHtml(foundationPage.TeaserText, 200))</p>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        }
+        <hr />
+        if (!(page.Page as FoundationPageData).Highlight)
+        {
+            flip = !flip;
+        }
+    }
+}

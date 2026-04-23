@@ -1,0 +1,90 @@
+﻿@using AdaptiveImages.Core
+@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.AdaptiveBootstrapCardBlock
+@using Foundation.Infrastructure.Helpers
+@using System.Globalization
+
+@*@model Foundation.Features.Blocks.BootstrapCardBlock.BootstrapCardBlock*@
+
+@model IBlockViewModel<AdaptiveBootstrapCardBlock>
+@Html.FullRefreshPropertiesMetaData(new[] { "CardAdaptiveImage" })
+
+<div class="@Model.CurrentBlock.CssClass">
+    @* Note: should check most fields if empty first *@
+	<div class="card">
+    <h6 class="card-header">
+      @Html.PropertyFor(m => m.CurrentBlock.CardHeader)
+    </h6>
+	  @*<img class="card-img-top" src='@Url.ContentUrl(Model.CurrentBlock.CardImage)' alt="">*@
+      @if (Html.IsInEditMode())
+        {
+            @*var imageUrl = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage).GetUrl();*@
+            var imageUrlLarge = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage.Large).GetUrl();
+            var imageUrlMedium = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage.Medium).GetUrl();
+            var imageUrlSmall = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage.Small).GetUrl();
+            @*<img class="card-img-top" @Html.EditAttributes(m => m.CurrentBlock.CardAdaptiveImage) src='@Html.PropertyFor(m => m.CurrentBlock.CardAdaptiveImage)' alt="">*@
+            
+            <picture class="card-img-top" >
+                <source srcset="@imageUrlLarge" media="(min-width: 1280px)" />
+	            <source srcset="@imageUrlMedium" media="(min-width: 768px)" />
+	            <source srcset="@imageUrlSmall" media="(min-width: 540px)" />
+	            <img @Html.EditAttributes(m => m.CurrentBlock.CardAdaptiveImage) src="@imageUrlSmall" class="card-img-top" />
+            </picture>
+            
+            @*<div class="card-img-top" @Html.EditAttributes(m => m.CurrentBlock.CardImage)
+                 style="background-image: url('@imageUrl')">
+            </div>*@
+        }
+        else
+        {
+            if (Model.CurrentBlock.CardAdaptiveImage.IsSet())
+            {
+                @*var imageUrl = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage).GetUrl();*@
+                @*<img class="card-img-top" src='@Html.PropertyFor(m => m.CurrentBlock.CardAdaptiveImage)' alt="">*@
+
+                var imageUrlLarge = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage.Large).GetUrl();
+                var imageUrlMedium = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage.Medium).GetUrl();
+                var imageUrlSmall = Model.GetImageRenderSettings(x => x.CurrentBlock.CardAdaptiveImage.Small).GetUrl();
+                @*<img class="card-img-top" @Html.EditAttributes(m => m.CurrentBlock.CardAdaptiveImage) src='@Html.PropertyFor(m => m.CurrentBlock.CardAdaptiveImage)' alt="">*@
+            
+                <picture class="card-img-top" >
+                    <source srcset="@imageUrlLarge" media="(min-width: 1280px)" />
+	                <source srcset="@imageUrlMedium" media="(min-width: 768px)" />
+	                <source srcset="@imageUrlSmall" media="(min-width: 540px)" />
+	                <img src="@imageUrlSmall" class="card-img-top" />
+                </picture>
+                
+                @*
+                <img class="card-img-top" src=url('@imageUrl') alt="">
+                <div class="card-img-top"
+                     style="background-image: url('@imageUrl')">
+                </div>*@
+            }
+        }
+
+	  <div class="card-body">
+	    <h5 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h5>
+      <h6 class="card-subtitle mb-2 text-muted">@Html.PropertyFor(m => m.CurrentBlock.CardSubtitle)</h6>
+	    <p class="card-text">@Html.PropertyFor(m => m.CurrentBlock.CardContentArea, new {Tag = ""})</p>
+	  </div>
+	  @* <ul class="list-group list-group-flush">
+	    <li class="list-group-item">Cras justo odio</li>
+	    <li class="list-group-item">Dapibus ac facilisis in</li>
+	    <li class="list-group-item">Vestibulum at eros</li>
+	  </ul>
+	  <div class="card-body">
+	    <a href="#" class="card-link">Card link</a>
+	    <a href="#" class="card-link">Another link</a>
+	  </div> *@
+    <div class="card-footer text-muted">
+      @Html.PropertyFor(m => m.CurrentBlock.CardFooter)
+    </div>
+  </div> 
+  
+</div>
+
+<style>
+    .bootstrapadaptivecardblock .card-footer {
+        padding: 0.5rem 1rem;
+    }
+</style>

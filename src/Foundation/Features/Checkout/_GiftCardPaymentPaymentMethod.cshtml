@@ -1,0 +1,13 @@
+﻿@using Foundation.Features.Checkout.Payments
+
+@model GiftCardPaymentOption
+
+@Html.HiddenFor(model => model.PaymentMethodId)
+
+<div id="giftcard-alert" class="alert alert-info">
+    @Html.Translate("/Checkout/Payment/Methods/GiftCardPayment/Description")
+</div>
+<div class="avaiableGiftCard">
+    @Html.DropDownListFor(model => model.SelectedGiftCardId, Model.AvailableGiftCards, new { @class = "select-menu" })
+    @Html.ValidationMessageFor(model => model.SelectedGiftCardId)
+</div>

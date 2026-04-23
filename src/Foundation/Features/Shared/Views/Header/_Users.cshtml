@@ -1,0 +1,196 @@
+﻿@using Foundation.Features.Header
+
+@model HeaderViewModel
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="login-users dropdown-menu dropdown-menu--customized">
+        <ul class="login-users__tabs nav nav-tabs" id="loginUsersTab" role="tablist">
+            <li class="login-users__item nav-item">
+                <button class="login-users__item-link nav-link active" id="login-selector-signin-tab" data-bs-toggle="tab" data-bs-target="#login-selector-signin" type="button" role="tab" aria-controls="login-selector-signin" aria-selected="true">
+                    @Html.TranslateFallback("/Header/SignIn", "Sign in")
+                </button>
+            </li>
+            <li class="login-users__item nav-item">
+                <button class="login-users__item-link nav-link" id="login-selector-signup-tab" data-bs-toggle="tab" data-bs-target="#login-selector-signup" type="button" role="tab" aria-controls="login-selector-signup" aria-selected="false">
+                    @Html.TranslateFallback("/Shared/SignUp", "Sign up")
+                </button>
+            </li>
+            @if (Model.DemoUsers.Any())
+            {
+                <li class="login-users__item nav-item">
+                    <button class="login-users__item-link nav-link" id="login-selector-users-tab" data-bs-toggle="tab" data-bs-target="#login-selector-users" type="button" role="tab" aria-controls="login-selector-users" aria-selected="false">
+                        @Html.TranslateFallback("/Shared/Users", "Users")
+                    </button>
+                </li>
+            }
+        </ul>
+        <div class="login-users__content tab-content">
+            <div class="tab-pane fade show active" id="login-selector-signin" role="tabpanel" aria-labelledby="login-selector-signin-tab">
+                @using (Html.BeginForm("InternalLogin", "PublicApi", FormMethod.Post, new { @role = "form" }))
+                {
+                    @Html.HiddenFor(x => x.LoginViewModel.ReturnUrl)
+                    @Html.AntiForgeryToken()
+                    <div class="login-user__signin-form">
+                        <div class="alert alert-danger display-none" id="login-signin-errormessage">
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LoginViewModel.Email, new { @class = "label" })
+                            @Html.TextBoxFor(x => x.LoginViewModel.Email, new { @class = "textbox", autofocus = "autofocus" })
+                            @Html.ValidationMessageFor(x => x.LoginViewModel.Email)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LoginViewModel.Password, new { @class = "label" })
+                            @Html.PasswordFor(x => x.LoginViewModel.Password, new { @class = "textbox" })
+                            @Html.ValidationMessageFor(x => x.LoginViewModel.Password)
+                        </div>
+                        <div class="form-check">
+                            @Html.CheckBoxFor(x => x.LoginViewModel.RememberMe, new { @class = "form-check-input" })
+                            <label class="form-check-label">
+                                @Html.TranslateFallback("/Login/Form/Label/RememberMe", "Remember Me")
+                            </label>
+                        </div>
+                        <div class="login-users__bottom">
+                            <button type="button" class="button-black jsUsersSigninBtn">
+                                <span>@Html.TranslateFallback("/Login/Form/Label/Login", "Login")</span>
+                            </button>
+                            @if (Model.LoginViewModel.ResetPasswordPage != null)
+                            {
+                                <a class="forgot-word" href="@Url.ContentUrl(Model.LoginViewModel.ResetPasswordPage)">@Html.Translate("/Login/Form/Label/ForgotPasswordLink")</a>
+                            }
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="tab-pane fade" id="login-selector-signup" role="tabpanel" aria-labelledby="login-selector-signup-tab">
+                @using (Html.BeginForm("RegisterAccount", "PublicApi", FormMethod.Post, new { @role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.RegisterAccountViewModel.Address.Name)
+
+                    <div class="header-box login-users-signupbox">
+                        <div class="alert alert-danger display-none" id="login-signup-errormessage">
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegisterAccountViewModel.Email, new { @class = "label" })
+                            @Html.TextBoxFor(x => x.RegisterAccountViewModel.Email, new { @class = "textbox-small" })
+                            @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Email)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegisterAccountViewModel.Password, new { @class = "label" })
+                            @Html.PasswordFor(x => x.RegisterAccountViewModel.Password, new { @class = "textbox-small" })
+                            @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Password)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegisterAccountViewModel.Password2, new { @class = "label" })
+                            @Html.PasswordFor(x => x.RegisterAccountViewModel.Password2, new { @class = "textbox-small" })
+                            @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Password2)
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(x => x.RegisterAccountViewModel.Address.FirstName, new { @class = "label" })
+                                    @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.FirstName, new { @class = "textbox-small" })
+                                    @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.FirstName)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(x => x.RegisterAccountViewModel.Address.LastName, new { @class = "label" })
+                                    @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.LastName, new { @class = "textbox-small" })
+                                    @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.LastName)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegisterAccountViewModel.Address.Line1, new { @class = "label" })
+                            @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.Line1, new { @class = "textbox-small" })
+                            @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.Line1)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegisterAccountViewModel.Address.Line2, new { @class = "label" })
+                            @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.Line2, new { @class = "textbox-small" })
+                            @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.Line2)
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    @Html.LabelFor(x => x.RegisterAccountViewModel.Address.City, new { @class = "label" })
+                                    @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.City, new { @class = "textbox-small" })
+                                    @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.City)
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(x => x.RegisterAccountViewModel.Address.PostalCode, new { @class = "label" })
+                                    @Html.TextBoxFor(x => x.RegisterAccountViewModel.Address.PostalCode, new { @class = "textbox-small" })
+                                    @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.PostalCode)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegisterAccountViewModel.Address.CountryCode, new { @class = "label" })
+                            @Html.DisplayFor(model => model.RegisterAccountViewModel.Address.CountryOptions, "CountryOptions",
+                                                    new
+                                                         {
+                                                             SelectItem = Model.RegisterAccountViewModel.Address.CountryCode,
+                                                        Name = "RegisterAccountViewModel.Address.CountryCode",
+                                                        DivSelection = "jsCountrySelectionRegisterUser"
+                                                         })
+                            @Html.ValidationMessageFor(x => x.RegisterAccountViewModel.Address.CountryCode)
+                            @Html.Hidden("address-htmlfieldprefix", "RegisterAccountViewModel.Address")
+                        </div>
+                        <div class="form-group jsCountryRegionContainer">
+                            @{
+                                var viewData = new ViewDataDictionary(this.ViewData);
+                                var regionName = new KeyValuePair<string, object>("RegionName", "RegisterAccountViewModel.Address.CountryRegion.Region");
+                                viewData.Add(regionName);
+                            }
+                            @await Html.PartialAsync("_AddressRegion", Model.RegisterAccountViewModel.Address.CountryRegion, viewData)
+                        </div>
+                        <div class="form-check">
+                            @Html.CheckBoxFor(x => x.RegisterAccountViewModel.Newsletter, new { @class = "form-check-input" })
+                            <label class="form-check-label">
+                                @Html.TranslateFallback("/Registration/Form/Label/Newsletter", "Send me email updates about the latest products and promotions.")
+                            </label>
+                        </div>
+                        <div class="login-users__bottom">
+                            <button type="submit" class="button-black jsUsersSignupBtn">@Html.Translate("/Registration/Form/Label/Submit")</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.DemoUsers.Any())
+            {
+                <div class="tab-pane fade" id="login-selector-users" role="tabpanel" aria-labelledby="login-selector-users-tab">
+                    <div class="list-group--header">
+                        @foreach (var user in Model.DemoUsers)
+                        {
+                            var url = Url.Action("Login", "PublicApi");
+                            <a href="@(url + "?userName=" + user.Email + "&returnUrl=" + this.Url.ActionContext.HttpContext.Request.GetEncodedPathAndQuery())" class="list-group--header__item">
+                                <p>@user.FullName</p>
+                                <p class="sub-title">@user.Description</p>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="logged-in-user dropdown-menu dropdown-menu--customized">
+        <div class="user-menu">
+            <div class="user-menu__title">
+                <h4>@(Model.LabelSettings.MyAccountLabel.IsNullOrEmpty() ? Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account") : Model.LabelSettings.MyAccountLabel)</h4>
+                <p>  @Html.TranslateFallback("/Header/Hello", "Hello") @Model.Name!</p>
+            </div>
+            <div class="user-menu__list">
+                @foreach (var menuItem in Model.UserLinks)
+                {
+                    <a class="user-menu__item" title="@menuItem.Title" href="@Url.ContentUrl(new EPiServer.Url(menuItem.Href))">
+                        @menuItem.Text
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+}

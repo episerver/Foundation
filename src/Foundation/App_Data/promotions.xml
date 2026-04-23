@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Campaigns>
+  <Campaign>
+    <Name>Foundation</Name>
+    <StartDate></StartDate>
+    <EndDate></EndDate>
+    <IsActive>True</IsActive>
+    <Promotions>
+      <Promotion>
+        <Name>20 % off Mens Shoes</Name>
+        <Type>BuyQuantityGetItemDiscount</Type>
+        <Description></Description>
+        <IsActive>True</IsActive>
+        <Condition>
+          <Codes>
+            <Code>shoes</Code>
+          </Codes>
+          <RequiredQuanity>1</RequiredQuanity>
+          <Amount>
+            <Value></Value>
+            <Currency></Currency>
+          </Amount>
+        </Condition>
+        <Target>
+          <Codes>
+            <Code>shoes</Code>
+          </Codes>
+        </Target>
+        <Discount>
+          <UseAmounts>False</UseAmounts>
+          <Percentage>20</Percentage>
+          <Amount>
+            <Value></Value>
+            <Currency></Currency>
+          </Amount>
+        </Discount>
+        <Banner>/Catalog/Promotions/20% off this season's shoes</Banner>
+      </Promotion>
+      <Promotion>
+        <Name>$50 off Order over $500</Name>
+        <Type>SpendAmountGetOrderDiscount</Type>
+        <Description></Description>
+        <IsActive>True</IsActive>
+        <Condition>
+          <Codes>
+            <Code></Code>
+          </Codes>
+          <RequiredQuanity></RequiredQuanity>
+          <Amount>
+            <Value>500</Value>
+            <Currency>USD</Currency>
+          </Amount>
+        </Condition>
+        <Target>
+          <Codes>
+            <Code></Code>
+          </Codes>
+        </Target>
+        <Discount>
+          <UseAmounts>True</UseAmounts>
+          <Percentage></Percentage>
+          <Amount>
+            <Value>50</Value>
+            <Currency>USD</Currency>
+          </Amount>
+        </Discount>
+        <Banner>/Catalog/Promotions/$50 off orders over $500</Banner>
+      </Promotion>
+      <Promotion>
+        <Name>$10 off shipping from Women's Shoes</Name>
+        <Type>BuyQuantityGetShippingDiscount</Type>
+        <Description></Description>
+        <IsActive>True</IsActive>
+        <Condition>
+          <Codes>
+            <Code>shoes-w</Code>
+          </Codes>
+          <RequiredQuanity>1</RequiredQuanity>
+          <Amount>
+            <Value></Value>
+            <Currency></Currency>
+          </Amount>
+        </Condition>
+        <Target>
+          <Codes>
+            <Code></Code>
+          </Codes>
+        </Target>
+        <Discount>
+          <UseAmounts>True</UseAmounts>
+          <Percentage></Percentage>
+          <Amount>
+            <Value>10</Value>
+            <Currency>USD</Currency>
+          </Amount>
+        </Discount>
+        <Banner>/Catalog/Promotions/$10 off shipping on women's shoes</Banner>
+      </Promotion>
+    </Promotions>
+  </Campaign>
+</Campaigns>

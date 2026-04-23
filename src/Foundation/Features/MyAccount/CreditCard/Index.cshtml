@@ -1,0 +1,56 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyAccount.CreditCard
+
+@model CreditCardCollectionViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+}
+
+<div class="page-title">
+    <h2>@Html.PropertyFor(x => x.CurrentContent.Name)</h2>
+</div>
+<p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+<div class="">
+    <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm")" class="button-transparent-black">
+        @Html.TranslateFallback("/CreditCard/AddNew/Header", "Add New Credit Card")
+    </a>
+    @foreach (var credit in Model.CreditCards)
+    {
+        var creditId = !@Model.CurrentContact.IsAdmin && @credit.Organization != null ? "" : credit.CreditCardId;
+
+        <div class="row credit-card-section">
+            <div class="col-xs-12 col-md-12">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <h5>
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm?creditCardId=" + creditId)" data-user="@credit.CreditCardNumber">******@credit.LastFourDigit</a>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div>Type: @credit.CreditCardType</div>
+                        <div>Expiration: @credit.ExpirationMonth/@credit.ExpirationYear</div>
+                        <div>Organization: @(credit.Organization != null ? (credit.Organization.Name ?? "None") : "None")</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditForm?creditCardId=" + creditId)" class="icon-button" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(!Model.CurrentContact.IsAdmin && credit.Organization != null ? "disabled" : "")>
+                            <i data-feather="edit-2"></i>
+                        </a>
+                        @using (Html.BeginForm("Remove", "CreditCard", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("creditCardId", creditId)
+                            <button type="submit" class="icon-button" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(!Model.CurrentContact.IsAdmin && credit.Organization != null ? "disabled" : "") onclick="return confirm('@Html.Translate("/Shared/Common/DeleteItemConfirmation")');">
+                                <i data-feather="trash-2"></i>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

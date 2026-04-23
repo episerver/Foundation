@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<languages>
+  <language name="English" id="en">
+    <admin>
+      <edituser>
+        <contentapisettings>
+          <description>Settings for managing a user in the Content Api</description>
+          <displayname>Api Authorization Settings</displayname>
+          
+          <refreshtokens>
+            <name>Refresh Tokens</name>
+            <description>The following refresh tokens are issued for use in client applications. Refresh tokens may be revoked for a given client to require re-authentication in each client application.</description>
+            <messages>
+              <notokens>No refresh tokens found.</notokens>
+            </messages>
+            <fields>
+              <clientid>Client ID</clientid>
+              <issued>Issued</issued>
+              <expires>Expires</expires>
+            </fields>
+            <actions>
+              <revoke>Revoke</revoke>
+            </actions>
+          </refreshtokens>
+        </contentapisettings>
+      </edituser>
+    </admin>
+  </language>
+</languages>

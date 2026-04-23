@@ -1,0 +1,53 @@
+@using EPiServer.Commerce.Catalog.ContentTypes
+@using EPiServer.Framework.Web.Mvc.Html
+@model IContentViewModel<IContent>
+@inject Foundation.Features.Header.IHeaderViewModelFactory factory
+
+@{
+    Layout = "~/Features/Shared/Views/_MasterLayout.cshtml";
+}
+
+@section AdditionalStyles {
+    @RenderSection("AdditionalStyles", required: false)
+}
+
+<div class="loading-box display-none">
+    <div class="loader"></div>
+</div>
+
+@await Html.RenderEPiServerQuickNavigatorAsync()
+
+@{
+    var foundationPageData = Model.CurrentContent as IFoundationContent;
+}
+
+@if (!foundationPageData?.HideSiteHeader ?? false)
+{
+    await Html.RenderPartialAsync("_Header", factory.CreateHeaderViewModel(Model.CurrentContent, Model.StartPage));
+}
+else
+{
+    await Html.RenderPartialAsync("_HeaderLogo", factory.CreateHeaderLogoViewModel());
+}
+
+<div class="container">
+    @RenderBody()
+</div>
+
+@if (!foundationPageData?.HideSiteFooter ?? false)
+{
+    await Html.RenderPartialAsync("_Footer", Html.GetLayoutSettings());
+}
+
+@await Html.PartialAsync("_QuickViewModal")
+
+<script src="~/js/main.min.js"></script>
+
+@RenderSection("AdditionalScripts", required: false)
+@Html.RequiredClientResources("Footer")
+@Html.RenderFooterScripts(Model.CurrentContent)
+@if (Model.CurrentContent is EntryContentBase || Model.CurrentContent is CatalogContentBase)
+{
+    @Html.RenderFooterScriptsForCommerce(Model.CurrentContent)
+}
+@Model.SchemaMarkup

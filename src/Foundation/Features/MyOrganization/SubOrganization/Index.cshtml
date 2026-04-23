@@ -1,0 +1,61 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.SubOrganization
+
+@model SubOrganizationPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        <h2 class="h3">@Html.TranslateFallback("/B2B/Organization/SubInfo", "Suborganization Info")</h2>
+        @if (Model.IsAdmin)
+        {
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "Edit?organizationId=" + Model.SubOrganizationModel.OrganizationId)" class="button-black">Edit</a>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 form-group">
+        <label>@Html.Translate("/B2B/Organization/ParentOrganization")</label>
+        <br />
+        <input type="text" class="textbox" value="@Model.SubOrganizationModel.ParentOrganization.Name" disabled />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 form-group">
+        @Html.LabelFor(x => x.SubOrganizationModel.Name)
+        <br />
+        <input type="text" class="textbox" value="@Model.SubOrganizationModel.Name" disabled />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h4 class="title">@Html.TranslateFallback("/B2B/Organization/Locations", "Locations")</h4>
+    </div>
+    <div class="col-12"><br /></div>
+    <div class="col-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                    <th>@Html.TranslateFallback("/Shared/Address/Label/Address", "Address")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.SubOrganizationModel.Locations != null && Model.SubOrganizationModel.Locations.Any())
+                {
+                    foreach (var location in Model.SubOrganizationModel.Locations)
+                    {
+                        <tr>
+                            <td>@(location.Name)</td>
+                            <td>@(location.AddressString)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

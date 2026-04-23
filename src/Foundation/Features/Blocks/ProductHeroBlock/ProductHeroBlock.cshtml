@@ -1,0 +1,30 @@
+﻿@using Foundation.Features.Blocks.ProductHeroBlock
+
+@model ProductHeroBlockViewModel
+
+@{
+    string imageUrl = string.Empty;
+    var blockLayout = Model.CurrentBlock.Layout.Equals("CalloutRight", StringComparison.OrdinalIgnoreCase) ? "order: 1" : "";
+
+    if (Model.CurrentBlock.Image.ImageWidth > 0 && Model.CurrentBlock.Image.ImageHeight > 0)
+    {
+        imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
+            : Model.ImageUrl + "?format=webp";
+    }
+    else
+    {
+        imageUrl = string.IsNullOrEmpty(Model.ImageUrl) ? ""
+           : Model.ImageUrl + "?format=webp";
+    }
+}
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="product-hero-block @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="product-hero-block__column  @(Model.CurrentBlock.Callout.Padding + " " + Model.CurrentBlock.Callout.Margin)" style="@blockLayout; background-color: @Model.CurrentBlock.Callout.BackgroundColor;">
+        @Html.PropertyFor(x => x.CurrentBlock.Callout.Text)
+    </div>
+    <div class="product-hero-block__column" style="@Model.ImagePosition">
+        <div class="product-hero-block__image">
+            <img class="img-fluid lazyload" data-src="@imageUrl" />
+        </div>
+    </div>
+</div>

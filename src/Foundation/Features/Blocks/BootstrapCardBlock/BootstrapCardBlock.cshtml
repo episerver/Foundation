@@ -1,0 +1,112 @@
+﻿@using EPiServer.SpecializedProperties
+@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.BootstrapCardBlock
+@using Foundation.Infrastructure.Helpers
+@using System.Globalization
+
+@model IBlockViewModel<BootstrapCardBlock>
+
+@Html.FullRefreshPropertiesMetaData(new[] { "CardImage", "CardHeader" })
+
+<div class="@Model.CurrentBlock.CssClass @(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+	<div class="card @Model.CurrentBlock.CardAlignment">
+	@if (!@Model.CurrentBlock.CardHeader.IsNullOrEmpty()) 
+	{ 
+			<h6 class="card-header">@Html.PropertyFor(m => m.CurrentBlock.CardHeader)</h6>
+	}
+	else
+	{
+		@if (Html.IsInEditMode())
+		{
+			<div>@Html.PropertyFor(m => m.CurrentBlock.CardHeader)</div>
+		}
+	}
+
+	@if (Html.IsInEditMode())
+	{
+		<img class="card-img-top" @Html.EditAttributes(m => m.CurrentBlock.CardImage)
+				src='@Url.ContentUrl(Model.CurrentBlock.CardImage)'>
+	}
+	else
+	{
+		if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.CardImage))
+		{
+			<img class="card-img-top" @Html.EditAttributes(m => m.CurrentBlock.CardImage)
+					src='@Url.ContentUrl(Model.CurrentBlock.CardImage)'>
+		}
+	}
+
+	<div class="card-body">
+		
+		@if (!@Model.CurrentBlock.CardTitle.IsNullOrEmpty()) { 
+			switch (@Model.CurrentBlock.CardTitleSize) {
+				case "h5":
+					<h5 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h5>
+					break;
+				case "h4":
+					<h4 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h4>
+					break;
+				case "h3":
+					<h3 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h3>
+					break;
+				case "h2":
+					<h2 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h2>
+					break;
+				case "h1":
+					<h1 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h1>
+					break;
+				default:
+					<h5 class="card-title">@Html.PropertyFor(m => m.CurrentBlock.CardTitle)</h5>
+					break;
+			}
+		}
+
+		@if (!@Model.CurrentBlock.CardSubtitle.IsNullOrEmpty()) { <h6 class="card-subtitle mb-2 text-muted">@Html.PropertyFor(m => m.CurrentBlock.CardSubtitle)</h6> }
+		<div class="card-text">@Html.PropertyFor(m => m.CurrentBlock.CardContentArea, new {Tag = ""})</div>
+		@if (!@Model.CurrentBlock.CardButtonText.IsNullOrEmpty()) 
+			{
+				<a class="btn btn-primary @(Model.CurrentBlock.CardClickable ? "stretched-link" : "")" href="@Url.ContentUrl(Model.CurrentBlock.CardButtonLink)" role="button">@Html.PropertyFor(m => m.CurrentBlock.CardButtonText)</a>
+			}
+			else if(!Url.ContentUrl(Model.CurrentBlock.CardButtonLink).IsNullOrEmpty() && Model.CurrentBlock.CardClickable)
+			{
+				<a class="btn-none stretched-link" href="@Url.ContentUrl(Model.CurrentBlock.CardButtonLink)">@Html.PropertyFor(m => m.CurrentBlock.CardButtonText)</a>
+			}
+		@if(@Model.CurrentBlock.CardLinks != null) 
+		{
+			<div @Html.EditAttributes(x => x.CurrentBlock.CardLinks)>
+				@foreach (var item in Model.CurrentBlock.CardLinks ?? new LinkItemCollection())
+				{
+					<a href="@Url.PageUrl(item.Href)" class="card-link">@item.Text</a>
+				}
+			</div>
+		}
+	</div>
+	@if (!@Model.CurrentBlock.CardFooter.IsNullOrEmpty())
+	{
+		<div class="card-footer text-muted">
+			@Html.PropertyFor(m => m.CurrentBlock.CardFooter)
+		</div>
+	}
+  </div>
+</div>
+
+<style>
+    .bootstrapcardblock .card-footer {
+        padding: 0.5rem 1rem;
+    }
+	a.btn-none {
+		opacity: 0;
+		overflow: hidden;
+		height: 0;
+		width: 0;
+		display: block;
+	}
+</style>
+
+@if (!@Model.CurrentBlock.CardButtonText.IsNullOrEmpty() && @Model.CurrentBlock.CardLinks != null) {
+<style>
+	.bootstrapcardblock a.btn.btn-primary {
+		margin-bottom: 15px !important;
+	}
+</style>
+}

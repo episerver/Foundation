@@ -1,0 +1,16 @@
+﻿@using Foundation.Features.MyAccount.AddressBook
+
+@model AddressViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <p>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </p>
+    </div>
+    <div class="modal-body row">
+        <div class="container-fluid">
+            @await Html.PartialAsync("EditAddress", Model)
+        </div>
+    </div>
+</div>

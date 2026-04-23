@@ -1,0 +1,83 @@
+@using Foundation.Features.Search
+@using Foundation.Features.Search.Category
+@inject IContextModeResolver contextModeResolver
+@model SearchViewModel<GenericNode>
+
+@{
+    //if (Request.IsAjaxRequest())
+    //{
+    //    Layout = null;
+    //}
+}
+
+@Html.FullRefreshPropertiesMetaData(new[] { "FeaturedProducts" })
+
+<div class="category-page">
+    <div class="row">
+        <div class="col-12">
+            @Html.PropertyFor(x => x.CurrentContent.TopContentArea, new { CssClass = "row" })
+        </div>
+    </div>
+    <div class="row">
+        @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { @class = "jsSearchForm col-12" }))
+        {
+            <input class="jsPageInfo" hidden id="FilterOption_Page" name="FilterOption.Page" type="text" value="@Model.FilterOption.Page" />
+            <input class="jsPageSizeInfo" hidden id="FilterOption_PageSize" name="FilterOption.PageSize" type="text" value="@Model.FilterOption.PageSize" />
+            <input class="jsSortInfo" hidden id="FilterOption_Sort" name="FilterOption.Sort" type="text" value="@Model.FilterOption.Sort" />
+            <input class="jsSortDirectionInfo" hidden id="FilterOption_SortDirection" name="FilterOption.SortDirection" type="text" value="@Model.FilterOption.SortDirection" />
+            <input class="jsViewModeInfo" hidden id="FilterOption_ViewSwitcher" name="FilterOption.ViewSwitcher" type="text" value="@Model.FilterOption.ViewSwitcher" />
+
+            <div class="row">
+                @if (contextModeResolver.CurrentMode == ContextMode.Edit)
+                {
+                    //Model.FilterOption.ViewSwitcher = string.IsNullOrEmpty(Model.CurrentContent.DefaultTemplate) ? "Grid" : Model.CurrentContent.DefaultTemplate;
+                    <div class="category-page__facets col-lg-3 jsFacets">
+                        @await Html.PartialAsync("_CategoriesFilter", Model.CategoriesFilter)
+                        @await Html.PartialAsync("_Facet", Model.FilterOption)
+                    </div>
+                    <div class="col-lg-9">
+                        @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
+                        <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
+                        <div class="row">
+                            @await Html.PartialAsync("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                        </div>
+                        <div class="category-page__products jsProducts">
+                            @if (Model.FilterOption.ViewSwitcher == "Grid")
+                            {
+                                @await Html.PartialAsync("_ProductGrid", Model.ProductViewModels)
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync("_ProductList", Model.ProductViewModels)
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="category-page__facets col-lg-3 jsFacets">
+                        @await Html.PartialAsync("_CategoriesFilter", Model.CategoriesFilter)
+                        @await Html.PartialAsync("_Facet", Model.FilterOption)
+                    </div>
+                    <div class="col-lg-9">
+                        @await Html.PartialAsync("_BreadCrumb", Model.BreadCrumb)
+                        <h2>@Html.PropertyFor(x => x.CurrentContent.DisplayName)</h2>
+                        <div class="row">
+                            @await Html.PartialAsync("~/Features/Search/_Toolbar.cshtml", Model.FilterOption)
+                        </div>
+                        <div class="category-page__products jsProducts">
+                            @if (Model.FilterOption.ViewSwitcher == "Grid")
+                            {
+                                @await Html.PartialAsync("_ProductGrid", Model.ProductViewModels)
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync("_ProductList", Model.ProductViewModels)
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

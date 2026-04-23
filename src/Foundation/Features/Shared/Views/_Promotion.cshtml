@@ -1,0 +1,53 @@
+﻿@using EPiServer.Commerce.Marketing
+@using EPiServer.Commerce.Marketing.Promotions
+
+@model PromotionData
+
+@{
+    PropertyData pd = Model.Property.FirstOrDefault(p => p.PropertyValueType == typeof(DiscountItems));
+}
+
+@if (Model.Banner != null)
+{
+    <div class="teaser teaser-content-align--center" style="padding-bottom: 50%">
+        @if (pd != null)
+        {
+            <div class="teaser__image " style="background-image: url('@Url.ContentUrl(Model.Banner)')"></div>
+            <div class="screen-width-wrapper">
+                <div class="teaser-text screen-width-container">
+                    <div class="teaser-text__details">
+                        <a href="/DiscountPage/Index?promotionId=@Model.ContentGuid"><h2>@Model.Name</h2></a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="teaser__image " style="background-image: url('@Url.ContentUrl(Model.Banner)')"></div>
+            <div class="screen-width-wrapper">
+                <div class="teaser-text screen-width-container">
+                    <div class="teaser-text__details">
+                        <h2>@Model.Name</h2>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="promotion" style="text-align: center;">
+        @if (pd != null)
+        {
+            <a href="/DiscountPage/Index?promotionId=@Model.ContentGuid">
+                <h2>@Model.Name</h2>
+            </a>
+        }
+        else
+        {
+            <h2>@Model.Name</h2>
+        }
+        <p>@Model.Description</p>
+    </div>
+}
+

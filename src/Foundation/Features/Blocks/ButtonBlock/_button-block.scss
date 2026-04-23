@@ -1,0 +1,36 @@
+﻿.button-block {
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+        color: #000;
+    }
+
+    &--blue {
+        color: #007BFF;
+
+        &:hover {
+            color: #007BFF;
+        }
+    }
+
+    &--orange {
+        color: #F7542B;
+
+        &:hover {
+            color: #F7542B;
+        }
+    }
+
+    &--italic {
+        font-style: italic;
+    }
+
+    &--big {
+        font-size: 35px;
+    }
+
+    &--bordered {
+        border: 1px solid black;
+    }
+}

@@ -1,0 +1,96 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using EPiServer.Shell.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.Users
+
+@model UsersPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div>
+    <section class="spacer-bottom-l">
+        <div class="section-title spacer-bottom-l">
+            <h2 class="h3">@Html.TranslateFallback("/B2B/Users/Lookup", "Look up user or fill in their details")</h2>
+        </div>
+        <div class="custom-search search-box">
+            <input type="text" id="addUsersAutocomplete" class="textbox border-0 w-100" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
+            <i id="js-reset-icon" class="close-icon display-none" data-feather="x"></i>
+            <a href="javascript:void(0);"><i id="js-search-icon" class="icon-search" data-feather="search" aria-hidden="true"></i></a>
+        </div>
+        <button class="btn js-autocomplete-result display-none" type="button">
+            <span class="js-user-name v-align-middle"></span><span class="js-close-icon close-icon v-align-middle"></span>
+        </button>
+    </section>
+    <section class="spacer-bottom-l">
+        <div class="section-title spacer-bottom-l">
+            <h2 class="h3">@Html.TranslateFallback("/B2B/Users/UserDetails", "User Details")</h2>
+        </div>
+        @using (Html.BeginForm("AddUser", PageFriendlyURL, FormMethod.Post, new { @id = "addUserForm" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(x => x.Contact.FirstName)
+                <br />
+                @Html.TextBoxFor(x => x.Contact.FirstName, new { @class = "textbox" })
+                @Html.ValidationMessageFor(x => x.Contact.FirstName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Contact.LastName)
+                <br />
+                @Html.TextBoxFor(x => x.Contact.LastName, new { @class = "textbox" })
+                @Html.ValidationMessageFor(x => x.Contact.LastName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Contact.Email)
+                <br />
+                @Html.TextBoxFor(x => x.Contact.Email, new { @class = "textbox", required = "required" })
+                @Html.ValidationMessageFor(x => x.Contact.Email)
+            </div>
+            <div class="form-group display-none" id="organization-div">
+                @Html.LabelFor(x => x.Contact.FoundationOrganization, Html.TranslateFallback("/B2B/SubOrganization", "SubOrganization"))
+                <br />
+                <div class="custom-select">
+                    <span class="custom-select-split"></span>
+                    <span class="custom-select-arrow arrow-down"></span>
+                    @Html.ValidationMessageFor(model => model.Contact.FoundationOrganization.OrganizationId)
+                </div>
+            </div>
+            <div class="form-group">
+                <label>@Html.TranslateFallback("/Shared/Role", "Role")</label>
+                <br />
+                @Html.DropDownListFor(m => m.Contact.UserRole, new SelectList(new List<SelectListItem>
+                                                            {
+                                                                new SelectListItem { Text = "Admin", Value = "Admin" },
+                                                                new SelectListItem { Text = "Approver", Value = "Approver" },
+                                                                new SelectListItem { Text = "Purchaser", Value = "Purchaser" }
+                                                            }, "Value", "Text", Model.Contact.UserRole), new { @id = "select-role", @class = "textbox" })
+            </div>
+            <div class="form-group display-none" id="location-div">
+                <label>@Html.LabelFor(x => x.Contact.UserLocationId)</label>
+                <br />
+                <div class="custom-select">
+                    <span class="custom-select-split"></span>
+                    <span class="custom-select-arrow arrow-down"></span>
+                    @Html.DropDownListFor(model => model.Contact.UserLocationId, new List<SelectListItem>(), "Select location", new { @id = "select-location" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Contact.UserLocationId)
+            </div>
+            if (Model.Contact.ShowOrganizationError)
+            {
+                <div class="form-group">
+                    <p class="text-danger">@Html.TranslateFallback("/B2B/Users/Already", "Already")</p>
+                </div>
+            }
+            <div class="spacer-top-l">
+                <button type="submit" class="button-black">
+                    @Html.TranslateFallback("/Shared/Add", "Add")
+                </button>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">@Html.TranslateFallback("/Shared/Cancel", "Cancel")</a>
+            </div>
+        }
+    </section>
+</div>

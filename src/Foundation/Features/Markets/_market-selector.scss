@@ -1,0 +1,120 @@
+%market-label-base {
+    padding: 7px 0 7px 15px;
+    user-select: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: $color-darkgrey;
+
+    > p {
+        margin-bottom: 0;
+    }
+}
+
+%market-list-text-base {
+    padding: 7px 0 7px 25px;
+    cursor: pointer;
+
+    &:hover {
+        background: $color-lightgrey;
+    }
+}
+
+.market-selector {
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    transform: translateY(-40%);
+    right: 15px;
+    user-select: none;
+    outline: none;
+
+    &__wrapper {
+        display: flex;
+        top: 8px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    &__market-icon {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        margin: 2px 6px 0 0;
+    }
+
+    &__market-text {
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+
+    &__dropdown-icon {
+        margin-left: 15px;
+        margin-right: 8px;
+    }
+}
+
+.market-panel {
+    width: 195px;
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    background-color: #fff;
+    margin-top: 5px;
+    margin-left: -10px;
+    font-size: inherit;
+}
+
+.market-list {
+    &__label {
+        @extend %market-label-base;
+    }
+
+    &__list {
+        max-height: 140px;
+        overflow: auto;
+
+        > .market-selector__wrapper {
+            padding: 7px 0 7px 25px;
+            user-select: none;
+
+            > p {
+                margin-bottom: 0;
+            }
+
+            &:hover {
+                background: $color-lightgrey;
+            }
+        }
+    }
+}
+
+.language-list {
+    &__list {
+        max-height: 140px;
+        overflow: auto;
+    }
+
+    &__label {
+        @extend %market-label-base;
+    }
+
+    &__language-text {
+        @extend %market-list-text-base;
+    }
+}
+
+.currency-list {
+    &__list {
+        max-height: 140px;
+        overflow: auto;
+    }
+
+    &__label {
+        @extend %market-label-base;
+    }
+
+    &__currency-text {
+        @extend %market-list-text-base;
+    }
+}

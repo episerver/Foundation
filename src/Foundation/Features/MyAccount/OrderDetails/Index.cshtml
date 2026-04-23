@@ -1,0 +1,185 @@
+﻿@using EPiServer.Commerce.Order
+@using Foundation.Infrastructure.Commerce.Customer
+@using Foundation.Features.MyAccount.OrderDetails
+@using Constants = Foundation.Infrastructure.Commerce.Constant
+
+@model OrderDetailsViewModel
+
+@{
+    Layout = "~/Features/MyAccount/_MyAccountLayout.cshtml";
+    if (Model.IsOrganizationOrder)
+    {
+        Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+    }
+}
+
+@if (Model.PurchaseOrder != null)
+{
+    var isQuote = Model.PurchaseOrder.Properties[Constants.Quote.QuoteStatus] != null;
+    var isQuoteRequestStatus = isQuote && Model.PurchaseOrder.Properties[Constants.Quote.QuoteStatus].ToString().Equals(Constants.Quote.RequestQuotation);
+    var orderForm = Model.PurchaseOrder.GetFirstForm();
+
+    <div class="row">
+        <div class="col-12">
+            <h1 class="heading-title">
+                @Html.PropertyFor(x => x.CurrentContent.Name)
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <h4>@Html.TranslateFallback("/OrderHistory/Labels/OrderID", "Order ID") @Model.PurchaseOrder.OrderNumber</h4>
+            @if (string.Join(", ", orderForm.Payments.Select(x => x.PaymentMethodName)).Equals("BudgetPayment"))
+            {
+                <p class="text-success">
+                    <strong>@Html.TranslateFallback("/OrderHistory/Detail/OrganizationOrder", "Organization Order")</strong>
+                </p>
+            }
+            <p>
+                @Html.TranslateFallback("/OrderHistory/Labels/OrderDate", "Date") @Model.PurchaseOrder.Created.ToLongDateString()
+                <br />
+                @Html.TranslateFallback("/OrderHistory/Labels/Status", "Status") <strong>@(Model.OrderStatus)</strong>
+                <br />
+                @if (orderForm.Payments.Any())
+                {
+
+                    <span>@Html.TranslateFallback("/OrderHistory/Detail/Payments", "Payments")</span>
+                    @orderForm.Payments.First().PaymentMethodName;
+                    <br />
+                }
+                @if (isQuote && Model.PurchaseOrder.Properties[Constants.Quote.QuoteStatus].ToString().Equals("RequestQuotationFinished"))
+                {
+                    @Html.DisplayName("New Total") <strong> @Model.PurchaseOrder.GetTotal().ToString() </strong> <br />
+                    @Html.DisplayName("Old Total") <strong> @Model.PurchaseOrder.Currency.Format.CurrencySymbol@(decimal.Parse(Model.PurchaseOrder.Properties["PreQuoteTotal"].ToString()).ToString("N")) </strong>
+                }
+                else
+                {
+                    @Html.TranslateFallback("/OrderHistory/Labels/TotalPrice", "Price") <strong> @Model.PurchaseOrder.GetTotal().ToString() </strong> <br />
+                }
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <h4>@Html.TranslateFallback("/OrderHistory/Labels/ShippedTo", "Shipped")</h4>
+            @foreach (var shippingAddress in Model.ShippingAddresses)
+            {
+                @(await Html.PartialAsync("_Address", shippingAddress))
+            }
+        </div>
+        <div class="col-12">
+            @if (!isQuote)
+            {
+                using (Html.BeginForm("Reorder", "DefaultCart", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("orderId", Model.OrderGroupId)
+                    <button type="submit" data-order-link="@Model.OrderGroupId" class="button-black jsReorder">
+                        @Html.TranslateFallback("/OrderHistory/Labels/Reorder", "Reorder")
+                    </button>
+                }
+            }
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            <h4>Order Items</h4>
+
+            @foreach (var item in Model.Items)
+            {
+                var viewData = new ViewDataDictionary(this.ViewData);
+                viewData.Add("isQuoteRequestStatus", isQuoteRequestStatus);
+                viewData.Add("isQuote", isQuote);
+
+                <div class="row order-detail__item">
+                    @await Html.PartialAsync("_ItemTemplate", item, ViewData)
+                </div>
+            }
+            <br />
+            @if (Model.IsOrganizationOrder && Model.CurrentCustomer.Role == B2BUserRoles.Approver)
+            {
+                if (Model.QuoteStatus != null && Model.QuoteStatus.Equals("RequestQuotationFinished"))
+                {
+                    using (Html.BeginForm("LoadOrder", "Checkout", FormMethod.Post))
+                    {
+                        <button type="button" class="button-black jsCartLoadOrder" aria-expanded="false" data-order-link="@Model.OrderGroupId">
+                            @Html.TranslateFallback("/Header/MiniCart/Button/GoToCheckout", "Go To Checkout")
+                        </button>
+                    }
+                }
+
+                if (!Model.IsPaymentApproved)
+                {
+                    using (Html.BeginForm("ApproveOrder", "OrderDetails", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="button" data-order-link="@Model.OrderGroupId" class="button-black jsApproveOrder" aria-expanded="false">
+                            @Html.TranslateFallback("/OrderHistory/Detail/Approve", "Approve")
+                        </button>
+                    }
+                }
+            }
+            @if (Context.User.Identity.IsAuthenticated && string.IsNullOrEmpty(Model.PurchaseOrder.Properties[Constants.Quote.QuoteStatus] as string) && Model.CurrentCustomer.Role == B2BUserRoles.Purchaser)
+            {
+                using (@Html.BeginForm("RequestQuoteById", "DefaultCart", FormMethod.Post))
+                {
+                    @Html.Hidden("orderId", Model.OrderGroupId)
+                    ;
+                    <div class="cart-item">
+                        <button type="submit" class="button-black" aria-expanded="false">
+                            @Html.TranslateFallback("/Header/MiniCart/Button/RequestQuotation", "Request Quotation")
+                        </button>
+                    </div>
+                }
+            }
+            <div id="BudgetWarningMessage" class="col-md-5 col-xs-12 alert alert-danger pull-right" hidden>
+                <button type="button" class="close" data-hide="alert">&times;</button>
+                <span class="warning-message warning-message-data"></span>
+                <a class="hidden cancelUpdateBudget" href="@Url.Action("Index", "OrderDetails", new {currentPage = Model.CurrentContent.ContentLink, orderGroupId = @Model.OrderGroupId})"></a>
+            </div>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("_Discounts", Model)
+
+    <br />
+
+    if (isQuote)
+    {
+        @await Html.PartialAsync("_QuoteNotes", Model)
+    }
+
+    <div class="modal fade" id="returnSettingModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@Html.TranslateFallback("/ReturnOrderSetting/Header", "Return Detail")</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <lable>@Html.TranslateFallback("/ReturnOrderSetting/Quantity", "Quantity"):</lable>
+                    <input type="text" class="textbox" id="txtQuantity" disabled />
+                    <br /> <br />
+                    <lable>@Html.TranslateFallback("/ReturnOrderSetting/Reason/Lable", "Reason"):</lable>
+                    <select class="select-menu" id="optReason">
+                        <option value="1">@Html.TranslateFallback("/ReturnOrderSetting/Reason/Faulty", "Faulty")</option>
+                        <option value="3">@Html.TranslateFallback("/ReturnOrderSetting/Reason/IncorrectItem", "Incorrect Item")</option>
+                        <option value="2">@Html.TranslateFallback("/ReturnOrderSetting/Reason/UnwantedGift", "Unwanted Gift")</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    @using (Html.BeginForm("CreateReturn", "OrderDetails", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="button" id="btnSubmitReturnOrder" data-shipment-link="0" data-order-link="0" data-total-return="0" data-lineItem-link="0" class="button-black jsCreateReturn">
+                            Return
+                        </button>
+                        <button type="button" id="btnCloseDlg" class="button-black" data-dismiss="modal">
+                            @Html.TranslateFallback("/ReturnOrderSetting/Close", "Close")
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

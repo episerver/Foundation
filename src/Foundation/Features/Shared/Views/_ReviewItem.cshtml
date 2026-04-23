@@ -1,0 +1,26 @@
+﻿@*@model ReviewViewModel
+
+<li class="col-12">
+    <div class="product-tab__review">
+        <div class="review__right review__rating">
+            <div class="rating non-border small rate-@((int)Model.Rating)">
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+            </div>
+        </div>
+        <div class="review__left review__detail">
+            <h5 class="title">@Model.Title</h5>
+            <p>
+                <small>@Html.TranslateFallback("/Reviews/ReviewBy", "Review By")</small>
+                <small class="title"><b><i>@Model.Nickname</i></b></small>
+                <small>
+                    @Html.TranslateFallback("/Shared/On", "on") @Model.AddedOn.ToString()
+                </small>
+            </p>
+            <p>  @Model.Body</p>
+        </div>
+    </div>
+</li>*@

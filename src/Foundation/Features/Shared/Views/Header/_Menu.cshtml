@@ -1,0 +1,106 @@
+﻿@using Foundation.Features.Blocks.MenuItemBlock
+
+@model List<MenuItemViewModel>
+
+@{
+    int column = 1;
+    int totalChild;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul class="navigation__left--menu">
+        @foreach (var menuItem in Model)
+        {
+            <li class="navigation__item">
+                <a href="@(string.IsNullOrEmpty(menuItem.Uri) ? "javascript:void(0);" : menuItem.Uri)" class="nav-category">
+                    @menuItem.Name
+                </a>
+                @if (menuItem.ChildLinks != null && menuItem.ChildLinks.Count > 0)
+                {
+                    <div class="mega-container">
+                        <div class="mega-menu--header__item">
+                            <div class="col-md-auto mega-menu-wrapper">
+                                <div class="row">
+                                    @{
+                                        totalChild = menuItem.ChildLinks.Count > 4 ? 4 : menuItem.ChildLinks.Count;
+                                        column = 12 / totalChild;
+                                        var index = 0;
+
+                                        foreach (var childHeader in menuItem.ChildLinks)
+                                        {
+                                            <div class="col-@column">
+                                                <ul class="category__item">
+                                                    <li class="main-category">@childHeader.MainCategoryText</li>
+                                                    @foreach (var childLink in childHeader.ListCategories)
+                                                    {
+                                                        <li>
+                                                            <a class="link" href="@Url.GetFriendlyUrl(childLink.Href)">
+                                                                @childLink.Text
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                            index++;
+
+                                            if (index > column) { break; }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="row mega-menu--image-box__lg">
+                                <div class="category__image col-lg-6">
+                                    @if (!string.IsNullOrEmpty(menuItem.ImageUrl))
+                                    {
+                                        <picture class="img-fluid">
+                                            <source data-srcset="@menuItem.ImageUrl?width=510&format=webp" type="image/webp">
+                                            <img class="img-fluid lazyload" data-src="@menuItem.ImageUrl?width=510" loading="lazy" />
+                                        </picture>
+                                    }
+                                </div>
+                                <div class="col-lg-6 flex-center">
+                                    <div>
+                                        @if (!string.IsNullOrEmpty((menuItem.ButtonLink)))
+                                        {
+                                            <a href="@menuItem.ButtonLink" class="mega-menu__title">
+                                                @Html.Raw(menuItem.TeaserText)
+                                            </a>
+                                        }
+                                        @if (!string.IsNullOrEmpty(menuItem.ButtonText) && !string.IsNullOrEmpty(menuItem.ButtonLink))
+                                        {
+                                            <a href="@menuItem.ButtonLink" class="button-transparent-black">@menuItem.ButtonText</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mega-menu--image-box__sm">
+                                <div class="box-image-btn-text">
+                                    @if (!string.IsNullOrEmpty(menuItem.ImageUrl))
+                                    {
+                                        <picture class="img-fluid">
+                                            <source data-srcset="@menuItem.ImageUrl?width=510&format=webp" type="image/webp">
+                                            <img class="img-fluid lazyload" data-src="@menuItem.ImageUrl?width=510" loading="lazy" />
+                                        </picture>
+                                    }
+                                    <div class="button-text">
+                                        @if (!string.IsNullOrEmpty(menuItem.ButtonLink))
+                                        {
+                                            <a href="@menuItem.ButtonLink" class="mega-menu__title--inverse">
+                                                @Html.Raw(menuItem.TeaserText)
+                                            </a>
+                                        }
+                                        @if (!string.IsNullOrEmpty(menuItem.ButtonLink) && !string.IsNullOrEmpty(menuItem.ButtonText))
+                                        {
+                                            <a href="@menuItem.ButtonLink" class="button-white">@menuItem.ButtonText</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+}

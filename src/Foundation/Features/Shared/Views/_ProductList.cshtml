@@ -1,0 +1,85 @@
+﻿@using Foundation.Features.CatalogContent
+@using Foundation.Features.CatalogContent.Bundle
+@using Foundation.Features.CatalogContent.Package
+
+@model IEnumerable<ProductTileViewModel>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var product in Model)
+    {
+        var urlQuickView = "/product/quickview";
+        if (product.EntryType.Equals(typeof(GenericBundle)))
+        {
+            urlQuickView = "/Bundle/QuickView";
+        }
+        if (product.EntryType.Equals(typeof(GenericPackage)))
+        {
+            urlQuickView = "/Package/QuickView";
+        }
+
+        <div class="row product-tile-list__item">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
+                <div class="product-tile-list__image">
+                    <img data-src="@product.ImageUrl?format=webp" class="img-fluid lazyload" alt="" />
+                </div>
+                @if (product.IsBestBetProduct && product.HasBestBetStyle)
+                {
+                    <div class="product-tile-list__bestbet" title="Best bet"><i data-feather="award"></i></div>
+                }
+            </div>
+            <div class="col-md-8 col-lg-9 col-sm-6 col-xs-6">
+                <div class="product-tile-list__right-box">
+                    <div class="title">
+                        <a href="@product.Url" class="account-link"><h5>@product.DisplayName</h5></a>
+                    </div>
+
+                    @*<div class="rating rate-@((int)product.ReviewStatistics.OverallRating)">
+                            <i data-feather="star"></i>
+                            <i data-feather="star"></i>
+                            <i data-feather="star"></i>
+                            <i data-feather="star"></i>
+                            <i data-feather="star"></i>
+                            <span class="content">@product.ReviewStatistics.TotalRatings Review(s)</span>
+                        </div>*@
+
+                    <div class="content product-tile-list__content">
+                        <div>
+                            @Html.Raw(product.Description)
+                        </div>
+                        <div>
+                            @if (product.DiscountedPrice != product.PlacedPrice)
+                            {
+                                <span class="price__old">@product.PlacedPrice.ToString()</span>
+                                <span class="price__discount">@product.DiscountedPrice.ToString()</span>
+                            }
+                            else
+                            {
+                                <span class="price__discount">
+                                    @Html.Raw(product.PlacedPrice != 0 ? product.PlacedPrice.ToString() : "&nbsp;")
+                                </span>
+                            }
+                        </div>
+                        @if (!Html.IsReadOnlyMode())
+                        {
+                            <div class="action-icons">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <span class="hover-feather-icon addToWishlist" data="@product.FirstVariationCode"><i data-feather="heart"></i></span>
+                                }
+                                <span class="jsQuickView hover-feather-icon"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#quickView"
+                                      data="@product.FirstVariationCode"
+                                      productCode="@product.Code"
+                                      urlQuickView="@urlQuickView"><i data-feather="eye"></i></span>
+                                <span class="addToCart hover-feather-icon" data="@product.FirstVariationCode"><i data-feather="shopping-cart"></i></span>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

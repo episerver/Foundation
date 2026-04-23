@@ -1,0 +1,138 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.ODP.ODPUpdateProfileBlock
+
+@model ODPUpdateProfileBlock
+
+<style>
+    .opti-block-odpupdateprofile-details {
+        padding: 1rem;
+        background: repeating-linear-gradient( -55deg, #fefefe50, #fefefe50 10px, #f2f2f250 10px, #f2f2f250 20px );
+        border: 1px solid #ccc;
+        margin: 1rem 0;
+        position:relative;
+    }
+
+    .opti-block-odpupdateprofile-details ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+    }
+    .opti-block-odpupdateprofile-details > p {
+        position: absolute;
+        right: 1rem;
+        font-size: .9em;
+    }
+</style>
+
+
+<div class="opti-block-odpupdateprofile">
+    <div class="opti-block-odpupdateprofile">
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        @if((this.ViewContext.IsInEditMode() && Model.ShowSnippetEditMode) || (!this.ViewContext.IsInEditMode() && Model.ShowSnippetFrontEnd))
+        {
+                <div class="opti-block-odpupdateprofile-details">
+
+                     <p><em>ODP Time Stamp: <strong>@(Model.HasEventDate(Model.EventTime) ? @Model.EventTime : "Now")</strong></em></p>
+
+                    <code>
+                        &lt;script&gt;<br/>
+                        zaius.customer(
+                        @if (!Model.EmailAddress.IsNullOrEmpty()) {<text>{ email: "@Model.EmailAddress" },</text>}
+
+                            @if(Model.Fields != null && Model.Fields.Count > 0)
+                            { 
+                                <text>{</text>
+                                @for(var i = 0; i < Model.Fields.Count; i++){ 
+                                    @string.Format("{0}: \"{1}\"{2} ",  @Model.Fields[i].Other != "" ? @Model.Fields[i].Other : @Model.Fields[i].Field,  @Model.Fields[i].Value, i == @Model.Fields.Count - 1 ? "" : ", " ) 
+                                }
+                                <text>}</text>
+                            }
+                        );
+                        <br/>
+                        @if (Model.PushEvent)
+                        {
+                             <code>
+                                 zaius.event("profile", { action: "update", campaign: "
+                             
+                                  @if(Model.Fields != null && Model.Fields.Count > 0)
+                                        { 
+                                            
+                                            @for(var i = 0; i < Model.Fields.Count; i++){ 
+                                                @string.Format("{0}: \"{1}\"{2} ",  @Model.Fields[i].Other != "" ? @Model.Fields[i].Other : @Model.Fields[i].Field,  @Model.Fields[i].Value, i == @Model.Fields.Count - 1 ? "" : ", " ) 
+                                            }
+                                            
+                                        }
+                                  ", ts: "@Model.ConvertToEpoch(Model.EventTime.ToString())" });
+                            </code>
+                            <br/>
+                        }
+                        &lt;/script&gt;
+                </code>
+            </div> 
+        }
+    }
+
+    @if (!this.ViewContext.IsInEditMode()){
+
+        @if(Model.HasEventDate(Model.EventTime))
+        {
+            <script>
+                document.getElementById("executeODPEvents").addEventListener("click", function() {
+  
+                    zaius.customer(
+                        @if (!Model.EmailAddress.IsNullOrEmpty()) {<text>{ email: "@Model.EmailAddress" },</text>} 
+                        @if(Model.Fields != null){ 
+                            <text>{</text> 
+                            @for(var i = 0; i < Model.Fields.Count; i++) { 
+                                @(Model.Fields[i].Other != "" ? Model.Fields[i].Other : Model.Fields[i].Field) <text>: "</text> @Html.Raw(Model.Fields[i].Value) <text>"</text> 
+                                @if(i != Model.Fields.Count - 1){
+                                    <text>, </text> 
+                                }   
+                            }
+                            <text>}</text> 
+
+                        });
+
+                        @if (Model.PushEvent)
+                        {
+                            <text>zaius.event("profile", { action: "update", campaign:"@for(var i = 0; i < Model.Fields.Count; i++) {@(Model.Fields[i].Other != "" ? Model.Fields[i].Other : Model.Fields[i].Field) <text>: '</text> @Html.Raw(Model.Fields[i].Value) <text>'</text> if(i != Model.Fields.Count - 1){<text>, </text>}}", ts: "@Model.ConvertToEpoch(Model.EventTime.ToString())" });</text>
+                        }  
+  
+                });
+           
+            </script>
+        }
+        else
+        {
+            <script>
+               
+            function updateODPProfile() {
+                zaius.customer(
+                    @if (!Model.EmailAddress.IsNullOrEmpty()) {<text>{ email: "@Model.EmailAddress" },</text>} 
+                    @if(Model.Fields != null){ 
+                        <text>{</text> 
+                        @for(var i = 0; i < Model.Fields.Count; i++) { 
+                            @(Model.Fields[i].Other != "" ? Model.Fields[i].Other : Model.Fields[i].Field) <text>: "</text> @Html.Raw(Model.Fields[i].Value) <text>"</text> 
+                            @if(i != Model.Fields.Count - 1){
+                                <text>, </text> 
+                            }   
+                        }
+                        <text>}</text> 
+
+                    });
+
+                    @if (Model.PushEvent)
+                    {
+                        <text>zaius.event("profile", { action: "update", campaign:"@for(var i = 0; i < Model.Fields.Count; i++) {@(Model.Fields[i].Other != "" ? Model.Fields[i].Other : Model.Fields[i].Field) <text>: '</text> @Html.Raw(Model.Fields[i].Value) <text>'</text> if(i != Model.Fields.Count - 1){<text>, </text>}}" });</text>
+                    }  
+            }
+            setTimeout(updateODPProfile, 1000);
+           
+            </script>
+        }
+
+        
+     }
+    </div>
+</div>

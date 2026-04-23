@@ -1,0 +1,72 @@
+﻿@using Foundation.Features.CatalogContent.Package
+
+@model GenericPackageViewModel
+
+<input type="hidden" name="productCode" id="productCode" value="@Model.Package.Code" />
+<div class="row">
+    <div class="col-md-4 col-sm-12">
+        <picture class="img-fluid">
+            <source data-srcset="@Model.Images.ElementAt(0)?width=1440&format=webp" type="image/webp" alt="@Model.Package.Code">
+            <img class="img-fluid lazyload" data-src="@Model.Images.ElementAt(0)?width=1440" loading="lazy" alt="@Model.Package.Code" />
+        </picture>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <h4 class="title">@Html.PropertyFor(x => x.Package.Name)</h4>
+        <div class="row">
+            <div class="col-12">
+                @if (Model.DiscountedPrice < Model.ListingPrice)
+                {
+                    <span class="price__old">@Model.ListingPrice.ToString()</span>
+                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                }
+                else
+                {
+                    <span class="price__discount">@Model.DiscountedPrice.ToString()</span>
+                }
+            </div>
+        </div>
+        @await Html.PartialAsync("_ListVariants", Model.Entries)
+        @await Html.PartialAsync("_Store", Model.Stores)
+        @if (!Model.HasOrganization)
+        {
+            <div class="row">
+                <div class="col-6">
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Package.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="col-6">
+                        <button class="button-black--icon addToWishlist" data="@Model.Package.Code"><i data-feather="heart"></i> Add to Wishlist</button>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-12">
+                    @if (Model.IsAvailable)
+                    {
+                        <button class="button-black--icon addToCart" data="@Model.Package.Code" qty="1" store="delivery" selectedStore=""><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    else
+                    {
+                        <button class="button-black--icon" disabled><i data-feather="shopping-cart"></i> Add to cart</button>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="button-transparent-black--icon addToWishlist" data="@Model.Package.Code"><i data-feather="heart"></i> Add to Wishlist</button>
+                        <button class="button-transparent-black--icon addToSharedCart" data="@Model.Package.Code"><i data-feather="shopping-cart"></i> Add to SharedCart</button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

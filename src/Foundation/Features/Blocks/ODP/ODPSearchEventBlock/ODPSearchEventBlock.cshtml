@@ -1,0 +1,63 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.Blocks.ODP.ODPSearchEventBlock
+
+@model ODPSearchEventBlock
+
+<style>
+    .opti-block-odp-code {
+        padding: 1rem;
+        background: repeating-linear-gradient( -55deg, #fefefe50, #fefefe50 10px, #f2f2f250 10px, #f2f2f250 20px );
+        border: 1px solid #ccc;
+        margin: 1rem 0;
+        position:relative;
+    }
+    .opti-block-odp-code > p {
+        position: absolute;
+        right: 1rem;
+        font-size: .9em;
+    }
+</style>
+
+<div class="opti-block-odp-container">
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        @if ((this.ViewContext.IsInEditMode() && Model.ShowSnippetEditMode) || (!this.ViewContext.IsInEditMode() && Model.ShowSnippetFrontEnd))
+        {
+            <div class="opti-block-odp-code">
+
+                <p><em>ODP Time Stamp: <strong>@(Model.HasEventDate(Model.EventTime) ? @Model.EventTime : "Now")</strong></em></p>
+
+                <code>
+                    &lt;script&gt;<br/>
+                        zaius.event("navigation", { action: "search", search_term: "@Model.SearchTerm", campaign: "Searched for '@Model.SearchTerm'", ts: "@Model.ConvertToEpoch(Model.EventTime.ToString())" });<br/>
+                    &lt;/script&gt;
+                </code>
+            </div>
+        }
+    } 
+
+    @if (!this.ViewContext.IsInEditMode()) {
+
+        @if(Model.HasEventDate(Model.EventTime))
+        {
+           <script>
+               document.getElementById("executeODPEvents").addEventListener("click", function() {
+               
+                   zaius.event("navigation", { action: "search", search_term: "@Model.SearchTerm", campaign: "Searched for '@Model.SearchTerm'", ts: "@Model.ConvertToEpoch(Model.EventTime.ToString())" });
+            
+               });
+
+            </script>
+        }
+        else
+        {
+           <script>
+               
+                zaius.event("navigation", { action: "search", search_term: "@Model.SearchTerm", campaign: "Searched for '@Model.SearchTerm'" });
+            
+            </script>
+        }
+
+       
+    }
+</div>

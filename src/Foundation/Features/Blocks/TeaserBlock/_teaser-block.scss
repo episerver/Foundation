@@ -1,0 +1,12 @@
+﻿.teaser-block {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__heading {
+        text-align: initial;
+    }
+
+    &__text {
+        text-align: initial;
+    }
+}

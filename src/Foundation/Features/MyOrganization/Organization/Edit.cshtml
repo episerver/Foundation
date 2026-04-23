@@ -1,0 +1,100 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization.Organization
+@using EPiServer.Web.Routing;
+@model OrganizationPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        @if (Model.Organization.OrganizationId == Guid.Empty)
+        {
+            <h4 class="title">
+                @Html.TranslateFallback("/B2B/Organization/AddNew", "Add New Organization")
+            </h4>
+        }
+        else
+        {
+            <h4 class="title">
+                @Html.TranslateFallback("/B2B/Organization/EditParent", "Edit Parent Organization")
+            </h4>
+        }
+    </div>
+</div>
+<div class="row">
+    @{
+        
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+    }
+    @using (Html.BeginForm("Save", PageFriendlyURL, FormMethod.Post, new { @class = "col-12" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-12 form-group">
+                @Html.LabelFor(x => x.Organization.Name)
+                <br />
+                @Html.TextBoxFor(x => x.Organization.Name, new { @class = "textbox ", autofocus = "autofocus", @maxlength = "100" })
+                @Html.ValidationMessageFor(x => x.Organization.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                @Html.LabelFor(x => x.Organization.Address.Name)
+                @Html.TextBoxFor(x => x.Organization.Address.Name, new { @class = "textbox", @maxlength = "80" })
+                @Html.ValidationMessageFor(x => x.Organization.Address.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 form-group">
+                @Html.LabelFor(x => x.Organization.Address.Street)
+            </div>
+            <div class="col-8 form-group">
+                @Html.LabelFor(x => x.Organization.Address.City)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 form-group">
+                @Html.TextBoxFor(x => x.Organization.Address.Street, new { @class = "textbox", @maxlength = "80" })
+                @Html.ValidationMessageFor(x => x.Organization.Address.Street)
+            </div>
+            <div class="col-8 form-group">
+                @Html.TextBoxFor(x => x.Organization.Address.City, new { @class = "textbox", @maxlength = "64" })
+                @Html.ValidationMessageFor(x => x.Organization.Address.City)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 form-group">
+                @Html.LabelFor(x => x.Organization.Address.PostalCode)
+            </div>
+            <div class="col-8 form-group">
+                @Html.LabelFor(x => x.Organization.Address.CountryCode)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 form-group">
+                @Html.TextBoxFor(x => x.Organization.Address.PostalCode, new { @class = "textbox", @maxlength = "20" })
+                @Html.ValidationMessageFor(x => x.Organization.Address.PostalCode)
+            </div>
+            <div class="col-8 form-group">
+                @Html.DisplayFor(x => x.Organization.Address.CountryOptions, "CountryOptions", new { Name = "Organization.Address.CountryCode", SelectItem = Model.Organization.Address.CountryCode })
+                @*@Html.DropDownListFor(x => x.Organization.Address.CountryCode, new SelectList(Model.Organization.Address.CountryOptions, "Code", "Name", Model.Organization.Address.CountryCode), new { @class = "select-menu" })*@
+                @Html.ValidationMessageFor(x => x.Organization.Address.CountryCode)
+            </div>
+        </div>
+        @Html.HiddenFor(x => x.Organization.Address.AddressId)
+        @Html.HiddenFor(x => x.Organization.OrganizationId)
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="button-black">
+                    @Html.TranslateFallback("/Shared/Save", "Save")
+                </button>
+                <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">
+                    @Html.TranslateFallback("/Shared/Cancel", "Cancel")
+                </a>
+            </div>
+        </div>
+    }
+</div>

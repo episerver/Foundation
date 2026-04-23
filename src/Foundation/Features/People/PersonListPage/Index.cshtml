@@ -1,0 +1,123 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.People.PersonListPage
+
+@model PersonListViewModel
+
+<div class="col-12">
+    <h1>@Html.PropertyFor(x => x.CurrentContent.MetaTitle)</h1>
+    <div class="row person-filter-block">
+        <div class="col-md-12 col-lg-8">
+            <input type="text" id="txtName" class="FormTextbox__Input textbox" placeholder="Name">
+        </div>
+         <div class="col-lg-2" hidden="">
+             <select name="color" class="select-menu" id="slSector">
+                 <option value="" selected>All</option>
+                 @foreach (var sector in Model.Sectors)
+                 {
+                     <option value="@sector.Value">
+                         @sector.Text
+                     </option>
+                 }
+             </select>
+         </div>
+         <div class="col-lg-2" hidden="">
+             <select name="color" class="select-menu" id="slLocation">
+                 <option value="" selected>All</option>
+                 @foreach (var location in Model.Locations)
+                 {
+                     <option value="@location.Value">
+                         @location.Text
+                     </option>
+                 }
+             </select>
+         </div>
+        <div class="col-lg-2">
+            <button type="button" class="button-transparent-black" id="btnSearch">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search icon-left"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Search</span>
+            </button>
+        </div>
+        <div class="col-lg-2">
+            <button type="button" class="button-transparent-black" id="btnClear">
+                <span><b>X</b> Clear</span>
+            </button>
+        </div>
+    </div>
+    <div class="row person-list-block">
+        <div class="col-lg-3">
+            <div class="selection--cm__label">Refine</div>
+            <ul class="selection--cm">
+                <li class="jsFirstLi">
+                    <a href="javascript:void(0)" title="Sector">
+                        Sector
+                    </a>
+                    <i data-feather="plus" class="selection--cm__expand jsExpandCollapse pull-right"></i>
+                    <i data-feather="minus" class="selection--cm__collapse jsExpandCollapse pull-right hidden"></i>
+                    <ul id="ulSector" class="selection--cm__dropdown hidden">
+                        <li data-sector="">
+                            <a href="javascript:void(0)">
+                                All
+                            </a>
+                        </li>
+                        @foreach (var sector in Model.Sectors)
+                        {
+                            <li data-sector="@sector.Value">
+                                <a href="javascript:void(0)">
+                                    @sector.Text
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li class="jsFirstLi">
+                    <a href="javascript:void(0)" title="Sector">
+                        Location
+                    </a>
+                    <i data-feather="plus" class="selection--cm__expand jsExpandCollapse pull-right"></i>
+                    <i data-feather="minus" class="selection--cm__collapse jsExpandCollapse pull-right hidden"></i>
+                    <ul id="ulLocation" class="selection--cm__dropdown hidden">
+                        <li data-location="">
+                            <a href="javascript:void(0)">
+                                All
+                            </a>
+                        </li>
+                        @foreach (var location in Model.Locations)
+                        {
+                            <li data-location="@location.Value">
+                                <a href="javascript:void(0)">
+                                    @location.Text
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <div id="people" class="row">
+                @foreach (var person in Model.Persons)
+                {
+                    <div class="col-xs-12 col-sm-3 col-lg-3 h-50">
+                        <a href="@Url.ContentUrl(person.ContentLink)">
+                            <img class="img-fluid person_image" src="@Url.ContentUrl(person.Image)" alt="@person.Name">
+                        </a>
+                        <div class="detail-info">
+                            <p><b>Name:</b> @person.PageName</p>
+                            <p><b>Job Title:</b> @person.JobTitle</p>
+                            <p><b>Tel:</b> <a href="tel:@person.Phone">@person.Phone</a></p>
+                            <p><b>Email:</b> <a href="mailto:@person.Email">@person.Email</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" id="mainContentArea">
+            @Html.PropertyFor(x => x.CurrentContent.MainContentArea)
+        </div>
+    </div>
+</div>
+<script>
+    var names = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Names));
+</script>

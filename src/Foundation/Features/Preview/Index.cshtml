@@ -1,0 +1,34 @@
+﻿@using Foundation.Features.Preview
+
+@model PreviewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="preview">Preview</h1>
+            @foreach (var area in Model.Areas)
+            {
+                if (area.Supported)
+                {
+                    <div class="clearfix preview_supported">
+                        @await Html.PartialAsync("TemplateHint", string.Format(Html.TranslateFallback("/preview/heading", "The content '{0}' when displayed as '{1}'").ToString(), Model.PreviewContent.Name, Html.Translate(area.AreaName)))
+                        @Html.DisplayFor(x => area.ContentArea, new { Tag = area.AreaTag })
+                    </div>
+                }
+                else
+                {
+                    @await Html.PartialAsync("TemplateHint", string.Format(Html.TranslateFallback("/preview/norenderer", "The content '{0}' cannot be displayed as {1}").ToString(), Model.PreviewContent.Name, area.AreaName))
+                }
+            }
+
+            @if (!Model.Areas.Any())
+            {
+                @await Html.PartialAsync("TemplateHint", string.Format(Html.TranslateFallback("/preview/norendereratall", "No renderer found for '{0}'").ToString(), Model.PreviewContent.Name))
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@using Foundation.Features.Header
+
+@model LargeCartViewModel
+
+<div class="large-cart">
+    @foreach (var shipment in Model.Shipments)
+    {
+        foreach (var cartItem in shipment.CartItems)
+        {
+            var viewData = new ViewDataDictionary(this.ViewData);
+            viewData.Add(new KeyValuePair<string, object>("ShipmentId", shipment.ShipmentId));
+            <div class="row product-tile-list__item jsCartItem">
+                @await Html.PartialAsync("_ItemTemplate", cartItem, viewData)
+            </div>
+        }
+    }
+    <div class="large-cart--btn-group__bottom">
+        <button onclick="window.location.href = '@Model.ReferrerUrl'" class="button-transparent-black btn-lower" title="@Html.TranslateFallback("/Checkout/Continue/Button", "Continue shopping")">
+            <span>
+                <i data-feather="arrow-right-circle"></i>
+                @Html.TranslateFallback("/Checkout/Continue/Button", "Continue shopping")
+            </span>
+        </button>
+        @if (Model.HasOrganization)
+        {
+            using (@Html.BeginForm("RequestQuote", "DefaultCart", FormMethod.Post, new { @class = "form-horizontal-block" }))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn--light btn-lower jsCartRequestQuote">
+                    <span>
+                        <i data-feather="arrow-right-circle"></i>
+                        @Html.TranslateFallback("/Shared/RequestQuote", "Request Quote")
+                    </span>
+                </button>
+            }
+        }
+        <button id="clearCart" class="button-transparent-black btn-lower" title="Clear Cart" name="update_cart_action" type="button" url="@Url.Action("ClearCart", "DefaultCart")">
+            <i data-feather="alert-circle"></i>
+            <span>@Html.TranslateFallback("/Cart/Labels/ClearCart", "Clear Cart")</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@using Foundation.Features.MyAccount.AddressBook
+
+@model AddressModel
+
+<address>
+    <p>
+        @{
+            string[] addressValues = null;
+            // CMS 13: EPiServer.Framework.Validator obsolete. Use standard .NET Regex instead.
+            System.Text.RegularExpressions.Regex email = new System.Text.RegularExpressions.Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+            switch (Model.CountryCode)
+            {
+                case "AUS":
+                case "CAN":
+                case "USA":
+                    addressValues = new string[] { Model.Organization, Model.FirstName + " " + Model.LastName, Model.Email, Model.Line1, Model.Line2, Model.City + ", " + Model.PostalCode + ", " + Model.CountryRegion.Region, Model.CountryName };
+                    break;
+                case "GBR":
+                    addressValues = new string[] { Model.Organization, Model.FirstName + " " + Model.LastName, Model.Email, Model.Line1, Model.Line2, Model.City, Model.CountryRegion.Region, Model.PostalCode, Model.CountryName };
+                    break;
+                default:
+                    addressValues = new string[] { Model.Organization, Model.FirstName + " " + Model.LastName, Model.Email, Model.Line1, Model.Line2, Model.PostalCode + " " + Model.City, Model.CountryRegion.Region, Model.CountryName };
+                    break;
+            }
+
+            foreach (string value in addressValues)
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (email.IsMatch(value))
+                    {
+                        <a href="mailto:@value" class="account-link">@value</a><br />
+                    }
+                    else
+                    {
+                        <span>@value</span><br />
+                    }
+                }
+            }
+        }
+    </p>
+</address>

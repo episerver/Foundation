@@ -1,0 +1,33 @@
+﻿@model string
+
+@{
+    var shareTitle = Uri.EscapeUriString("Check out this product: " + Model);
+    var shareUrl = WebUtility.UrlEncode(Context.Request.Path.ToString());
+}
+
+<div class="row product-detail__social-icon">
+    <div class="col-12">
+        <ul class="social-icon">
+            <li class="social-icon__item social-fa cursor-pointer">
+                <a class="footer__link" href="https://www.facebook.com/sharer.php?u=@shareUrl" target="_blank" title="Share on Facebook">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+            </li>
+            <li class="social-icon__item social-fa cursor-pointer">
+                <a class="footer__link" href="https://twitter.com/share?url=@shareUrl&text=@shareTitle&via=Episerver" target="_blank" title="Share on Twitter">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+            </li>
+            <li class="social-icon__item social-fa cursor-pointer">
+                <a class="footer__link " href="https://www.linkedin.com/shareArticle?url=@shareUrl&title=@shareTitle" target="_blank" title="Share on Linkedin">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+            </li>
+            <li class="social-icon__item social-fa cursor-pointer">
+                <a class="footer__link" href="https://pinterest.com/pin/create/bookmarklet/?url=@shareUrl&description=@shareTitle" target="_blank" title="Share on Pinterest">
+                    <i class="fab fa-pinterest-p fa-lg"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

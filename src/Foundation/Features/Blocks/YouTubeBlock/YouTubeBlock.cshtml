@@ -1,0 +1,23 @@
+@using Foundation.Features.Blocks.YouTubeBlock
+
+@model  IBlockViewModel<YouTubeBlock>
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div class="row">
+        @if (Model.CurrentBlock.HasHeadingText)
+        {
+            <div class="col-12">
+                <h1 @Html.EditAttributes(x => x.CurrentBlock.Heading)>@Model.CurrentBlock.Heading</h1>
+                @Html.PropertyFor(x => x.CurrentBlock.MainBody)
+            </div>
+        }
+        @if (Model.CurrentBlock.HasVideo)
+        {
+            <div class="col-12">
+                <div class="ratio ratio-16x9">
+                    <iframe src="@Model.CurrentBlock.YouTubeLink" style="max-width: 100%; height: 100%;" allowfullscreen></iframe>
+                </div>
+            </div>
+        }
+    </div>
+</div>

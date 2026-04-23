@@ -1,0 +1,73 @@
+﻿@using Foundation.Features.MyOrganization.Users
+
+@model UsersPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+    var impersonate = ViewBag.Impersonate != null ? (bool)ViewBag.Impersonate : true;
+}
+
+@if (!impersonate)
+{
+    <div class="error">
+        <p>Impersonate fail.</p>
+    </div>
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="spacer-left-l">
+    <section>
+        <div class="section-title spacer-bottom-m">
+            <br />
+            
+            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "AddUser")" class="button-black btn-sm">
+                @Html.TranslateFallback("/B2B/Users/AddUser", "Add User")
+            </a>
+            
+            <div class="pull-right" id="searchUsersOrganiztion">
+                <div class="custom-search search-box">
+                    <input type="text" id="jsSearchUsersOrganizationTxt" class="textbox" autocomplete="off" placeholder="@Html.TranslateFallback("/Shared/Search", "Search")" />
+                    <a id="jsSearchUsersOrganizationBtn" href="javascript:void(0);"><i class="icon-search" data-feather="search" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+        </div>
+        @if (Model.Organizations != null && Model.Organizations.Count == 0)
+        {
+            <p>@Html.TranslateFallback("/B2B/Users/NoOrgs", "At least one sub-organization needs to be configured before adding a user.")</p>
+        }
+        <table class="table jsUsersOrganiztionListing">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.TranslateFallback("/Shared/Name", "Name")</th>
+                    <th>@Html.TranslateFallback("/Shared/Address/Form/Label/Address", "Address")</th>
+                    <th class="static-width">@Html.TranslateFallback("/Shared/Role", "Role")</th>
+                    <th>@Html.TranslateFallback("/B2B/Oganization/Organization", "Organization")</th>
+                    <th class="text-right">@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</th>
+                </tr>
+            </thead>
+            <tbody class="js-users-table-body">
+                @foreach (var user in Model.Users)
+                {
+                    <tr class="jsRowUser" data-name="@user.FullName" data-email="@user.Email">
+                        <td><a href="#" data-user="@user.FullName">@user.FullName</a></td>
+                        <td class="user-email">@user.Email</td>
+                        <td>@user.UserRole</td>
+                        <td>@user.FoundationOrganization.Name</td>
+                        <td class="text-right">
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "EditUser?id=" + user.ContactId)" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Edit", "Edit")" @(user.IsAdmin ? "disabled" : "")>
+                                <i data-feather="edit"></i>
+                            </a>
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "RemoveUser?id=" + user.ContactId)" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Remove", "Remove")" @(user.IsAdmin ? "disabled" : "")>
+                                <i data-feather="trash"></i>
+                            </a>
+                            <a href="@(Url.ContentUrl(Model.CurrentContent.ContentLink) + "ImpersonateUser?email=" + user.Email)" class="btn-xs link" title="@Html.TranslateFallback("/Shared/Impersonate", "Impersonate")" @(user.IsAdmin ? "disabled" : "")>
+                                <i data-feather="eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

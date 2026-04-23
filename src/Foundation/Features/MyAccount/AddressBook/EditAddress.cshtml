@@ -1,0 +1,127 @@
+﻿@using Foundation.Features.Header
+@using Foundation.Features.MyAccount.AddressBook
+
+@model AddressViewModel
+
+@{
+    var isMultiShipment = (bool)(ViewData["IsInMultiShipment"] == null ? false : ViewData["IsInMultiShipment"]);
+    var multiShipmentPageUrl = ViewData["MultiShipmentUrl"];
+}
+
+@if (!isMultiShipment)
+{
+    <div class="col-md-12 col-lg-3">
+        @(await Component.InvokeAsync("MyAccountNavigation", new { id = MyAccountPageType.Link }))
+    </div>
+}
+
+<div class="@(isMultiShipment ? "col-12" : "col-md-12 col-lg-9")">
+    @if (!isMultiShipment)
+    {
+        <div class="col-12 page-title">
+            <h2>@Html.TranslateFallback("/Dashboard/Labels/MyAccount", "My Account")</h2>
+        </div>
+    }
+    <p>@Html.PropertyFor(model => model.CurrentContent.MainBody)</p>
+    <div class="col-xs-12 col-md-12 jsAddressBook">
+        @using (Html.BeginForm("Save", "AddressBook", new { returnUrl = isMultiShipment ? multiShipmentPageUrl : "" }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <h4>
+                @if (!string.IsNullOrEmpty(Model.Address.AddressId))
+                {
+                    @Html.TranslateFallback("/AddressBook/Edit/Header", "Edit")
+                }
+                else
+                {
+                    @Html.TranslateFallback("/AddressBook/AddNew/Header", "Add new")
+                }
+            </h4>
+            if (!String.IsNullOrEmpty(Model.Address.ErrorMessage))
+            {
+                <div class="alert alert-danger">@Model.Address.ErrorMessage</div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address.Name)
+                @Html.TextBoxFor(x => x.Address.Name, new { @class = "textbox", autofocus = "autofocus" })
+                @Html.ValidationMessageFor(x => x.Address.Name, null, new { @class = "required" })
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    @Html.LabelFor(x => x.Address.FirstName)
+                    @Html.TextBoxFor(x => x.Address.FirstName, new { @class = "textbox" })
+                    @Html.ValidationMessageFor(x => x.Address.FirstName, null, new { @class = "required" })
+                </div>
+                <div class="form-group col">
+                    @Html.LabelFor(x => x.Address.LastName)
+                    @Html.TextBoxFor(x => x.Address.LastName, new { @class = "textbox" })
+                    @Html.ValidationMessageFor(x => x.Address.LastName, null, new { @class = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address.Line1)
+                @Html.TextBoxFor(x => x.Address.Line1, new { @class = "textbox" })
+                @Html.ValidationMessageFor(x => x.Address.Line1, null, new { @class = "required" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address.Line2)
+                @Html.TextBoxFor(x => x.Address.Line2, new { @class = "textbox" })
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    @Html.LabelFor(x => x.Address.PostalCode)
+                    @Html.TextBoxFor(x => x.Address.PostalCode, new { @class = "textbox" })
+                    @Html.ValidationMessageFor(x => x.Address.PostalCode, null, new { @class = "required" })
+                </div>
+                <div class="form-group col">
+                    @Html.LabelFor(x => x.Address.City)
+                    @Html.TextBoxFor(x => x.Address.City, new { @class = "textbox" })
+                    @Html.ValidationMessageFor(x => x.Address.City, null, new { @class = "required" })
+                </div>
+            </div>
+            <div class="form-group jsCountryRegionContainer">
+                @Html.DisplayFor(x => x.Address.CountryRegion, new { Name = "Address.CountryRegion.Region" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address.CountryCode)
+                @Html.DisplayFor(x => x.Address.CountryOptions, "CountryOptions", new { Name = "Address.CountryCode", SelectItem = Model.Address.CountryCode })
+                @Html.ValidationMessageFor(x => x.Address.CountryCode, null, new { @class = "required" })
+                @Html.Hidden("address-htmlfieldprefix", "Address.CountryRegion")
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address.DaytimePhoneNumber)
+                @Html.TextBoxFor(x => x.Address.DaytimePhoneNumber, new { @class = "textbox" })
+                @Html.ValidationMessageFor(x => x.Address.DaytimePhoneNumber, null, new { @class = "required" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Address.Email)
+                @Html.TextBoxFor(x => x.Address.Email, new { @class = "textbox" })
+                @Html.ValidationMessageFor(x => x.Address.Email, null, new { @class = "required" })
+            </div>
+            <div class="form-group">
+                <label class="checkbox">
+                    @Html.CheckBoxFor(x => x.Address.ShippingDefault) @Html.DisplayNameFor(x => x.Address.ShippingDefault)
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="checkbox">
+                    @Html.CheckBoxFor(x => x.Address.BillingDefault) @Html.DisplayNameFor(x => x.Address.BillingDefault)
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            @Html.HiddenFor(x => x.Address.AddressId)
+            @Html.Hidden("ContentReference", Model.CurrentContent.ContentLink.ID.ToString())
+    <div class="form-group">
+        @if (!(bool)(ViewData["IsReadOnly"] == null ? false : ViewData["IsReadOnly"]))
+        {
+            <button type="submit" class="button-black">@Html.TranslateFallback("/AddressBook/Form/Label/Submit", "Submit")</button>
+        }
+        @if (!string.IsNullOrEmpty(Model.Address.AddressId))
+        {
+            <a class="button-black" href="@(Url.ContentUrl(Model.CurrentContent.ContentLink))">@Html.TranslateFallback("/AddressBook/Form/Label/Cancel", "Cancel").ToString()</a>
+        }
+    </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿// -----------------------------------------------------------------------------
+// When having several themes, this file contains everything related to the
+// default one.
+// -----------------------------------------------------------------------------
+.nav-pills .nav-link {
+    color: $color-primary;
+    background-color: $color-white;
+}
+
+.nav-pills .nav-link.active, .nav-pills .nav-link:hover {
+    color: $color-white;
+    background-color: $color-primary;
+}
+
+.field-validation-error {
+    color: $color-red;
+}

@@ -1,0 +1,62 @@
+﻿@using EPiServer.Framework.Web.Resources
+@using EPiServer.Shell
+@using EPiServer.Shell.Web.Mvc.Html
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Administration</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../util/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:300,400,500" />
+    <link href="~/scss/vendors/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/vendors/font-awesome-5.9.0/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/extensions/grid-icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/vendors/spur.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/vendors/mvc-grid/mvc-grid.css" rel="stylesheet" type="text/css" />
+    @RenderSection("AdditionalStyles", false)
+    <style>
+        body {
+            margin: 0;
+        }
+
+        input[type='text'] {
+            border: 0 !important;
+            background: none !important;
+        }
+    </style>
+</head>
+<body class="epi-workspace">
+    @Html.AntiForgeryToken()
+    @* CMS 13 removed: CreatePlatformNavigationMenu and ApplyPlatformNavigation removed from IHtmlHelper in CMS 13 shell layout. *@
+    @* @Html.CreatePlatformNavigationMenu() *@
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div>
+        <div class="loading-box" style="display: none">
+            <div class="loader"></div>
+        </div>
+        @RenderBody()
+    </div>
+
+    <script src="~/js/vendors/jquery-3.4.0.min.js" type="text/javascript"></script>
+    <script src="~/js/vendors/popper.min.js" type="text/javascript"></script>
+    <script src="~/js/vendors/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/js/vendors/spur.js" type="text/javascript"></script>
+    <script src="~/js/vendors/mvc-grid.js" type="text/javascript"></script>
+    <script src="~/js/vendors/axios.min.js" type="text/javascript"></script>
+    <script src="~/js/vendors/notify.min.js" type="text/javascript"></script>
+    <script src="~/js/vendors/notify-helper.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            axios.defaults.headers.common['Accept'] = '*/*';
+            window.notification = new NotifyHelper();
+        });
+        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
+            new MvcGrid(element);
+        });
+    </script>
+    @RenderSection("AdditionalScripts", false)
+</body>
+</html>

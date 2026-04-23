@@ -1,0 +1,116 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Foundation.Features.MyOrganization
+@using Foundation.Features.MyOrganization.Organization
+
+@model OrganizationPageViewModel
+
+@{
+    Layout = "~/Features/MyOrganization/_MyOrganizationLayout.cshtml";
+    Model.NewSubOrganization.Locations.Add(new B2BAddressViewModel());
+}
+@{
+        var PageFriendlyURL = UrlResolver.Current.GetUrl(Model.CurrentContent.ContentLink);
+}
+
+@Html.PropertyFor(model => model.CurrentContent.MainBody)
+<div class="row">
+    <div class="col-12">
+        <h4 class="title">@Html.TranslateFallback("/B2B/Organization/AddNewSub", "Add new sub-organization")</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm("SaveSub", PageFriendlyURL, FormMethod.Post, new { @class = "suborg-form", @id = "suborg-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label>@Html.TranslateFallback("/B2B/Organization/ParentOrganization", "Parent organization")</label>
+                    <br />
+                    <input type="text" class="textbox" placeholder="" value="@Model.Organization.Name" disabled />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 form-group">
+                    @Html.LabelFor(x => x.NewSubOrganization.Name)
+                    <br />
+                    @Html.TextBoxFor(x => x.NewSubOrganization.Name, new { @class = "textbox" })
+                    @Html.ValidationMessageFor(x => x.NewSubOrganization.Name)
+                </div>
+            </div>
+            <h4 class="title">@Html.TranslateFallback("/B2B/Organization/Locations", "Locations")</h4>
+            <div class="row">
+                <div class="col-2">
+                    @Html.LabelFor(x => x.Organization.Address.Name)
+                </div>
+                <div class="col-3">
+                    @Html.LabelFor(x => x.Organization.Address.Street)
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-6">
+                            @Html.LabelFor(x => x.Organization.Address.City)
+                        </div>
+                        <div class="col-6">
+                            @Html.LabelFor(x => x.Organization.Address.PostalCode)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    @Html.LabelFor(x => x.Organization.Address.CountryCode)
+                </div>
+                <div class="col-1">
+                    <label>@Html.TranslateFallback("/B2B/Budgeting/Actions", "Actions")</label>
+                </div>
+            </div>
+            <div class="row location-row">
+                <div class="col-2 form-group">
+                    @Html.TextBoxFor(x => x.NewSubOrganization.Locations[0].Name, new { @class = "textbox", required = "required" })
+                    @Html.ValidationMessageFor(x => x.NewSubOrganization.Locations[0].Name)
+                </div>
+                <div class="col-3 form-group">
+                    @Html.TextBoxFor(x => x.NewSubOrganization.Locations[0].Street, new { @class = "textbox", required = "required" })
+                    @Html.ValidationMessageFor(x => x.NewSubOrganization.Locations[0].Street)
+                </div>
+                <div class="col-4 form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            @Html.TextBoxFor(x => x.NewSubOrganization.Locations[0].City, new { @class = "textbox", required = "required" })
+                            @Html.ValidationMessageFor(x => x.NewSubOrganization.Locations[0].City)
+                        </div>
+                        <div class="col-6">
+                            @Html.TextBoxFor(x => x.NewSubOrganization.Locations[0].PostalCode, new { @class = "textbox", required = "required" })
+                            @Html.ValidationMessageFor(x => x.NewSubOrganization.Locations[0].PostalCode)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 form-group">
+                    @Html.DropDownListFor(x => x.NewSubOrganization.Locations[0].CountryCode,
+                                                new SelectList(Model.NewSubOrganization.CountryOptions, "Code", "Name"),
+                                                new { @class = "select-menu" })
+                    @Html.ValidationMessageFor(x => x.NewSubOrganization.Locations[0].CountryCode)
+                </div>
+                <div class="col-1">
+                    <div class="btn-icon delete-address-icon" style="cursor:pointer">
+                        <i data-feather="trash-2"></i>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="button-black js-cloner" data-bs-target="location-row">Add row</button>
+            <div class="row">
+                <div class="col-12 form-group">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 form-group">
+                    <button type="submit" class="button-black">
+                        @Html.TranslateFallback("/Shared/Save", "Save")
+                    </button>
+                    <a href="@Url.ContentUrl(Model.CurrentContent.ContentLink)" class="button-transparent-black">
+                        @Html.TranslateFallback("/Shared/Cancel", "Cancel")
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

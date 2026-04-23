@@ -1,0 +1,16 @@
+﻿namespace Foundation.Infrastructure.Cms.Attributes
+{
+    public class LocalizedCompareAttribute : CompareAttribute
+    {
+        private readonly string _translationPath;
+
+        public LocalizedCompareAttribute(string otherProperty, string translationPath)
+            : base(otherProperty) => _translationPath = translationPath;
+
+        public override string FormatErrorMessage(string name)
+        {
+            // .NET 10: setting ErrorMessage then calling base throws conflict; return directly.
+            return LocalizationService.Current.GetString(_translationPath) ?? name + " does not match.";
+        }
+    }
+}

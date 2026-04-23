@@ -1,0 +1,10 @@
+﻿@using Foundation.Features.Blocks.TwitterBlock
+
+@model IBlockViewModel<TwitterBlock>
+
+<div style="background-color: @Model.CurrentBlock.BackgroundColor; opacity:@Model.CurrentBlock.BlockOpacity;" class="@(Model.CurrentBlock.Padding + " " + Model.CurrentBlock.Margin)">
+    <div style="max-height: 500px; overflow-x:hidden; overflow-y:auto;">
+        <a class="twitter-timeline" href="https://twitter.com/@Model.CurrentBlock.AccountName" data-screen-name="@Model.CurrentBlock.AccountName" data-widget-id="481169132436484096" data-tweet-limit="@Model.CurrentBlock.NumberOfItems" data-theme="light">Tweets from @@@Model.CurrentBlock.AccountName</a>
+        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    </div>
+</div>

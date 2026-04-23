@@ -1,0 +1,68 @@
+﻿@using Foundation.Features.Checkout.Payments
+
+@model GenericCreditCardPaymentOption
+
+@Html.HiddenFor(model => model.CardType)
+
+<div class="row">
+    <div class="col-12 checkout--credit__container">
+        <div class="row">
+            <div class="col-6">
+                <label class="checkbox">
+                    Available credit cards
+                    <input class="radio jsSelectCreditCard" id="availableCreditType" name="CreditType" type="radio" value="#avaiableCreditCard" @(Model.UseSelectedCreditCard ? "checked='checked'" : "")>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-6">
+                <label class="checkbox">
+                    New credit card
+                    <input class="radio jsSelectCreditCard" id="newCreditType" name="CreditType" type="radio" value="#newCreditCard" @(!Model.UseSelectedCreditCard ? "checked='checked'" : "")>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        @Html.HiddenFor(x => x.UseSelectedCreditCard, Model.UseSelectedCreditCard)
+
+        <div id="avaiableCreditCard" class="selectCreditCardType @(!Model.UseSelectedCreditCard ? "display-none" : "")">
+            @Html.DropDownListFor(x => x.SelectedCreditCardId, Model.AvaiableCreditCards, new { @class = "select-menu" })
+            @Html.ValidationMessageFor(model => model.SelectedCreditCardId)
+        </div>
+
+        <div id="newCreditCard" class="selectCreditCardType @(Model.UseSelectedCreditCard ? "display-none" : "")">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreditCardName)
+                @Html.TextBoxFor(model => model.CreditCardName, new { @class = "textbox" })
+                @Html.ValidationMessageFor(model => model.CreditCardName)
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.CreditCardNumber)
+                    @Html.TextBoxFor(model => model.CreditCardNumber, new { @class = "textbox" })
+                    @Html.ValidationMessageFor(model => model.CreditCardNumber)
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.CreditCardSecurityCode)
+                    @Html.TextBoxFor(model => model.CreditCardSecurityCode, new { @class = "textbox", maxlength = "3" })
+                    @Html.ValidationMessageFor(model => model.CreditCardSecurityCode)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.ExpirationYear)
+                    @Html.DropDownListFor(model => model.ExpirationYear, Model.Years, new { @class = "select-menu" })
+                    @Html.ValidationMessageFor(model => model.ExpirationYear)
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.ExpirationMonth)
+                    @Html.DropDownListFor(model => model.ExpirationMonth, Model.Months, new { @class = "select-menu" })
+                    @Html.ValidationMessageFor(model => model.ExpirationMonth)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

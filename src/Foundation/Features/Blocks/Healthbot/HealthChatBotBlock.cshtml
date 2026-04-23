@@ -1,0 +1,18 @@
+﻿@model IBlockViewModel<Foundation.Features.Blocks.Healthbot.HealthChatbotBlock>
+
+@Html.PropertyFor(x => x.CurrentBlock.HeaderText)
+
+<div id="healthwebchat" class="overflow-auto" role="main" style="height: @(Model.CurrentBlock.HeightInPixels)px;"></div>
+<script>
+    window.WebChat.renderWebChat(
+        {
+            directLine: window.WebChat.createDirectLine({
+                token: '@Model.CurrentBlock.DirectLineToken'
+            }),
+            locale: 'en-US',
+            botAvatarInitials: 'WC',
+            userAvatarInitials: 'WW'
+        },
+        document.getElementById('healthwebchat')
+    );
+</script>

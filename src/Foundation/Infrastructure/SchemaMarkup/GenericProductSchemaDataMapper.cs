@@ -1,0 +1,91 @@
+﻿using Foundation.Features.CatalogContent.Product;
+using Foundation.Infrastructure.Cms;
+using Schema.NET;
+using System.Text.RegularExpressions;
+
+namespace Foundation.Infrastructure.SchemaMarkup
+{
+    /// <summary>
+    /// Map GenericProduct to Schema.org product object
+    /// </summary>
+    public class GenericProductSchemaDataMapper : ISchemaDataMapper<GenericProduct>
+    {
+        private readonly ICurrentMarket _currentMarket;
+        private readonly ICurrencyService _currencyService;
+
+        public GenericProductSchemaDataMapper(ICurrentMarket currentMarket, ICurrencyService currencyService)
+        {
+            _currentMarket = currentMarket;
+            _currencyService = currencyService;
+        }
+
+        public Thing Map(GenericProduct content)
+        {
+            var variants = content.VariationContents();
+
+            //Set availability based on inventory
+            var availability = ItemAvailability.OutOfStock;
+            var inventories = content.Inventories();
+            if (inventories.Any(x => !x.IsTracked || x.InStockQuantity > x.ReorderMinQuantity))
+            {
+                availability = ItemAvailability.InStock;
+            }
+            else if (inventories.Any(x => x.InStockQuantity > 0))
+            {
+                availability = ItemAvailability.LimitedAvailability;
+            }
+
+            //Set prices or price range
+            var prices = content.Prices().Where(x => x.UnitPrice.Currency.Equals(_currencyService.GetCurrentCurrency()));
+            var minPrice = prices.Any() ? prices.Min(x => x.UnitPrice) : new Money();
+            var maxPrice = prices.Any() ? prices.Max(x => x.UnitPrice) : new Money();
+            var priceEndDate = prices.Any() ?
+                prices.Where(x => x.UnitPrice.Equals(minPrice) || x.UnitPrice.Equals(maxPrice)).Min(x => x.ValidUntil ?? DateTime.MaxValue)
+                : DateTime.Now;
+
+            var offer = new Offer
+            {
+                PriceCurrency = minPrice.Currency.CurrencyCode,
+                ItemCondition = OfferItemCondition.NewCondition,
+                Availability = availability
+            };
+
+            //Handle single price vs price range
+            if (minPrice.Equals(maxPrice))
+            {
+                offer.Price = minPrice.Amount;
+                offer.PriceValidUntil = priceEndDate;
+            }
+            else
+            {
+                offer.PriceSpecification = new PriceSpecification
+                {
+                    MinPrice = minPrice.Amount,
+                    MaxPrice = maxPrice.Amount,
+                    ValidThrough = new DateTimeOffset(priceEndDate)
+                };
+            }
+
+            return new Product
+            {
+                Name = content.DisplayName,
+                Image = content.CommerceMediaCollection?.Select(x => x.AssetLink.GetUri(content.Language.Name, true)).ToList(),
+                // CMS 13 removed: EPiServer.Core.Html.TextIndexer removed. Strip HTML manually.
+                Description = StripHtml(content.LongDescription?.ToHtmlString()),
+                Sku = variants.Select(x => x.Code).ToList(),
+                Brand = new Brand
+                {
+                    Name = content.Brand ?? string.Empty
+                },
+                Offers = offer
+            };
+        }
+        // CMS 13 removed: TextIndexer.StripHtml removed. Replacement using Regex.
+        private static string StripHtml(string html)
+        {
+            if (string.IsNullOrEmpty(html)) return string.Empty;
+            var stripped = Regex.Replace(html, "<[^>]+>", string.Empty);
+            return System.Net.WebUtility.HtmlDecode(stripped);
+        }
+    }
+}

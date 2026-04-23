@@ -1,0 +1,72 @@
+﻿@using Foundation.Features.Checkout.ViewModels
+
+@model CheckoutViewModel
+
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 checkout--panel-block">
+                <div class="checkout--panel">
+                    <div class="checkout__panel-heading">
+                        <h3>@Html.TranslateFallback("/Checkout/Billing/Payment", "Payment")</h3>
+                    </div>
+                    <div class="checkout__panel-body">
+                        <p class="title light-text">
+                            @if (Model.SelectedPayment != null)
+                            {
+                                @Model.SelectedPayment
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        @for (var shipmentIndex = 1; shipmentIndex <= Model.Shipments.Count(); shipmentIndex++)
+        {
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="panel-title">
+                                Shipment @shipmentIndex of @Model.Shipments.Count() - @Model.Shipments[shipmentIndex - 1].CurrentShippingMethodName - @Model.Shipments[shipmentIndex - 1].CurrentShippingMethodPrice.ToString()
+                            </h3>
+                            <strong>
+                                @Html.TranslateFallback("/Shipment/ShippingTo", "Shipping To"):
+                            </strong>
+                            @string.Format("{0}, {1}, {2}, {3}", Model.Shipments[shipmentIndex - 1].Address.Line1,
+                                Model.Shipments[shipmentIndex - 1].Address.City,
+                                Model.Shipments[shipmentIndex - 1].Address.CountryRegion.Region,
+                                Model.Shipments[shipmentIndex - 1].Address.PostalCode)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+
+                            @foreach (var cartItem in Model.Shipments[shipmentIndex - 1].CartItems)
+                            {
+                                var viewData = new ViewDataDictionary(this.ViewData);
+                                viewData.Add(new KeyValuePair<string, object>("IsReadOnly", true));
+                                <div class="checkout__cart-item">
+                                    <div class="row">
+                                        @await Html.PartialAsync("~/Features/NamedCarts/DefaultCart/_ItemTemplate.cshtml", cartItem, viewData)
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="title checkout--panel-block">
+                                        Total:
+                                        @Model.Shipments[shipmentIndex - 1].GetShipmentItemsTotal(Model.Currency).ToString()
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>

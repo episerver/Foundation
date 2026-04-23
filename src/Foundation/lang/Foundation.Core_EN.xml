@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<languages>
+  <language name="English" id="en">
+    <Header>
+      <Cookie>
+        <CookieUse>We use cookies</CookieUse>
+        <Ok>Ok</Ok>
+      </Cookie>
+      <Search>
+        <Placeholder>search</Placeholder>
+      </Search>
+      <Account>
+        <SignIn>Sign in</SignIn>
+        <SignOut>Sign out</SignOut>
+      </Account>
+      <MiniCart>
+        <Button>
+          <Close>Close</Close>
+          <GoToCheckout>Checkout</GoToCheckout>
+          <ViewCart>View cart</ViewCart>
+          <ViewWishlist>View Wishlist</ViewWishlist>
+        </Button>
+      </MiniCart>
+      <Market>
+        <Labels>
+          <Market>Market</Market>
+          <Language>Language</Language>
+          <Currency>Currency</Currency>
+        </Labels>
+      </Market>
+      <SignIn>Sign in</SignIn>
+      <SignUp>Sign up</SignUp>
+      <Users>Users</Users>
+      <Login>Login</Login>
+      <Hello>Hello</Hello>
+      <GlobalAdmin>Global Admin</GlobalAdmin>
+      <GlobalAdminDescription>Has global admin rights</GlobalAdminDescription>
+      <CustomerCatalog>Customer Catalog Organization Admin</CustomerCatalog>
+      <CustomerCatalogDescription>Has a customer catalog for subset of products available</CustomerCatalogDescription>
+      <B2BAdmin>B2B Organization Admin</B2BAdmin>
+      <B2BAdminDescription>Has admin rights for organization</B2BAdminDescription>
+      <B2BPurchaser>B2B Organization Purchaser</B2BPurchaser>
+      <B2BPurchaserDescription>Has purchasing rights for organization</B2BPurchaserDescription>
+      <B2BApprover>B2B Approver</B2BApprover>
+      <B2BApproverDescription>Has order approval rights for organization</B2BApproverDescription>
+      <SalesRep>Sales Rep</SalesRep>
+      <SalesRepDescription>Has sales rep role</SalesRepDescription>
+      <Menu>Menu</Menu>
+      <BackAsAdmin>Back as Admin</BackAsAdmin>
+      <Home>Home</Home>
+      <Pages>Pages</Pages>
+    </Header>
+    <Facet>
+      <Choices>Products:</Choices>
+      <Category>Category</Category>
+    </Facet>
+    <Footer>
+      <Subscribe>Subscribe</Subscribe>
+      <CompanyInformation>
+        <Header>Company information</Header>
+        <Text>Company information should go here for at least a few rows, like org number and an address.</Text>
+      </CompanyInformation>
+      <Newsletter>
+        <Header>Sign Up to our newsletter</Header>
+        <Button>Sign me up</Button>
+      </Newsletter>
+      <Social>Be Social</Social>
+      <FollowUs>Follow Us</FollowUs>
+      <FreeShipping>FREE SHIPPING on order over $99</FreeShipping>
+      <NeedHelp>Need Help +1 800 123 1234</NeedHelp>
+      <MoneyBack>Money Back Guarantee</MoneyBack>
+      <Returns>30 days return Service</Returns>
+      <Products>Product</Products>
+      <Company>The Company</Company>
+      <News>News &amp; Events</News>
+      <CustomerZone>Customer Zone</CustomerZone>
+    </Footer>
+    <SearchPageTemplate>
+      <SearchButton>Search</SearchButton>
+      <suggestion>Did you mean</suggestion>
+      <peoplealsosearchedfor>People also searched for</peoplealsosearchedfor>
+      <result>Result</result>
+      <searchfor>Search for</searchfor>
+      <resultedin>Resulted in</resultedin>
+      <hits>hits</hits>
+      <zero>0</zero>
+    </SearchPageTemplate>
+    <Product>
+      <Quickview>Quickview</Quickview>
+      <Details>Details</Details>
+      <NotAvailable>Not available</NotAvailable>
+      <Details></Details>
+      <Dropdown>
+        <Currency>Show prices in</Currency>
+      </Dropdown>
+      <Button>
+        <AddToCart>Add to cart</AddToCart>
+        <AddToWishList>Add to wish list</AddToWishList>
+      </Button>
+    </Product>
+    <ProductPage>
+      <AddedToWishList>Item added to wish list</AddedToWishList>
+      <NotAddedToWishList>The item could not be added to wish list</NotAddedToWishList>
+      <Price>Price</Price>
+      <Size>Size</Size>
+      <ListingPrice>Listing Price</ListingPrice>
+      <DiscountedPrice>Discounted Price</DiscountedPrice>
+      <PriceMissing>Not set for this market</PriceMissing>
+      <VariationSelection>
+        <Color>Select Color</Color>
+        <Size>Select Size</Size>
+      </VariationSelection>
+    </ProductPage>
+    <Checkout>
+      <EmptyCart>Your cart is empty.</EmptyCart>
+      <Coupons>
+        <Heading>Coupons and Promotional Codes</Heading>
+        <CouponCode>
+          <Info>Got a Coupon Code? Enter it and we will apply that to your cart as well.</Info>
+          <Button>Apply</Button>
+          <ErrorMessage>The coupon code you entered is invalid.</ErrorMessage>
+        </CouponCode>
+        <AppliedCoupons>
+          <Heading>Coupons have been applied:</Heading>
+          <RemoveButton>Remove</RemoveButton>
+        </AppliedCoupons>
+      </Coupons>
+      <Continue>
+        <Button>Continue shopping</Button>
+      </Continue>
+      <Payment>
+        <Heading>Payment details</Heading>
+        <Labels>
+          <ChoosePayment>Choose payment</ChoosePayment>
+        </Labels>
+        <Empty>
+          <ChoosePayment>Payment is required</ChoosePayment>
+        </Empty>
+        <Errors>
+          <PreProcessingFailure>There was some issue with product {0} in your cart.</PreProcessingFailure>
+          <NoShippingRate>No shipping rate found for this shipment.</NoShippingRate>
+          <RemovedDueToUnavailableItem>The product {0} is not available in store and was removed from your cart.</RemovedDueToUnavailableItem>
+          <RemovedDueToInsufficientQuantityInInventory>The product {0} is sold out and was removed from your cart.</RemovedDueToInsufficientQuantityInInventory>
+          <RemovedDueToInvalidPrice>The product {0} does not have a valid price and was removed from your cart.</RemovedDueToInvalidPrice>
+          <CannotProcessDueToMissingOrderStatus>Cannot process product {0} because of missing order status.</CannotProcessDueToMissingOrderStatus>
+          <PlacedPricedChanged>The price for product {0} has changed since it was added to your cart.</PlacedPricedChanged>
+          <AdjustedQuantity>The quantity of product {0} has changed.</AdjustedQuantity>
+          <ProcessingPaymentFailure>Failed to process your payment.</ProcessingPaymentFailure>
+        </Errors>
+        <Methods>
+          <CashOnDelivery>
+            <Description>You pay for your order when picking up your delivery at your local post office.</Description>
+          </CashOnDelivery>
+          <BudgetPayment>
+            <Description>You will be deducted from your credit account.</Description>
+          </BudgetPayment>
+          <GiftCardPayment>
+            <Description>You will be deducted from your gift card. The price will be converted to USD when you purchase.</Description>
+          </GiftCardPayment>
+          <CreditCard>
+            <Labels>
+              <CreditCardName>Full name on card:</CreditCardName>
+              <CreditCardNumber>Credit card number:</CreditCardNumber>
+              <CreditCardSecurityCode>Security code:</CreditCardSecurityCode>
+              <ExpirationMonth>Expiration month:</ExpirationMonth>
+              <ExpirationYear>Expiration year:</ExpirationYear>
+              <SelectCreditCard>Select credit card</SelectCreditCard>
+            </Labels>
+            <Empty>
+              <CreditCardName>Full name is required</CreditCardName>
+              <CreditCardNumber>Credit card number is required</CreditCardNumber>
+              <CreditCardSecurityCode>Security code is required</CreditCardSecurityCode>
+              <ExpirationMonth>Expiration month is required</ExpirationMonth>
+              <ExpirationYear>Expiration Year is required</ExpirationYear>
+              <SelectCreditCard>Credit card is required</SelectCreditCard>
+            </Empty>
+            <ValidationErrors>
+              <CreditCardNumber>The credit card number is not valid. Last digit should be 4</CreditCardNumber>
+              <CreditCardSecurityCode>The CSV code should be 3 digits</CreditCardSecurityCode>
+              <ExpirationMonth>Expiration month can't be older than the current month</ExpirationMonth>
+              <ExpirationYear>Expiration year can't be older than the current year</ExpirationYear>
+              <InvalidCreditCard>The credit card is not available or you don't have permission to use it</InvalidCreditCard>
+            </ValidationErrors>
+          </CreditCard>
+        </Methods>
+      </Payment>
+      <Billing>
+        <Heading>Billing address</Heading>
+        <ExistingAddress>Bill to existing address</ExistingAddress>
+        <NewAddress>Bill to new address</NewAddress>
+        <Payment>Payment</Payment>
+      </Billing>
+      <Shipment>
+        <ShippingTo>Shipping to:</ShippingTo>
+        <SingleShipment>Ship to single address</SingleShipment>
+        <AlternativeAddress>Alternative shipping address</AlternativeAddress>
+        <Heading>Shipping details</Heading>
+        <Labels>
+          <ChooseDelivery>Choose delivery</ChooseDelivery>
+          <Shipment>Shipment</Shipment>
+          <Of>of</Of>
+        </Labels>
+        <Empty>
+          <ChooseDelivery>Delivery is required</ChooseDelivery>
+        </Empty>
+        <NewAddress>Ship to new address</NewAddress>
+        <ExistingAddress>Ship to existing address</ExistingAddress>
+      </Shipment>
+      <PaymentPlan>
+        <UseSubscription>Use Subscription</UseSubscription>
+        <Months>months</Months>
+      </PaymentPlan>
+      <OrderSummary>Cart/Order summary</OrderSummary>
+      <SubTotal>Sub Total For Your Items</SubTotal>
+      <OrderLevelDiscounts>Additional Order Level Discounts</OrderLevelDiscounts>
+      <ShippingAndTax>Shipping &amp; Tax</ShippingAndTax>
+      <ShippingSubtotal>Shipping Subtotal</ShippingSubtotal>
+      <ShippingTotal>Shipping Total</ShippingTotal>
+      <ShippingDiscount>Shipping Discount</ShippingDiscount>
+      <ShippingAddresses>Shipping Addresses</ShippingAddresses>
+      <ShippingMethod>Shipping Method</ShippingMethod>
+      <TaxTotal>Tax</TaxTotal>
+      <CartTotal>Total for cart</CartTotal>
+      <PlaceOrder>Place order</PlaceOrder>
+      <Change>Change</Change>
+      <PaymentMethod>Payment Method</PaymentMethod>
+      <InvalidOperation>Checkout Invalid Operation Error</InvalidOperation>
+      <Address>
+        <Labels>
+          <FirstName>First name:</FirstName>
+          <LastName>Last name:</LastName>
+          <Email>Email address:</Email>
+          <Address>Shipping address:</Address>
+          <Country>Country:</Country>
+          <City>City:</City>
+          <ZipCode>Zip code:</ZipCode>
+          <SaveAddress>Save address</SaveAddress>
+          <AddressId>Selected address</AddressId>
+        </Labels>
+        <Empty>
+          <FirstName>First name is required</FirstName>
+          <LastName>Last name is required</LastName>
+          <Email>Email address is required</Email>
+          <Address>Shipping address is required</Address>
+          <Country>Country is required</Country>
+          <City>City is required</City>
+          <ZipCode>Zip code is required</ZipCode>
+        </Empty>
+      </Address>
+      <MultiShipment>
+        <Heading>Ship to multiple addresses</Heading>
+        <SubheadingFirst>Addresses need to be saved in your</SubheadingFirst>
+        <SubheadingAddress>address book</SubheadingAddress>
+        <SubheadingSecond>before being available.</SubheadingSecond>
+        <Item>Item</Item>
+        <Continue>Continue</Continue>
+        <DeliveryAddress>Delivery address</DeliveryAddress>
+        <SelectDeliveryAddress>Select delivery address</SelectDeliveryAddress>
+        <SelectAddress>Select address</SelectAddress>
+        <AddNewAddress>Add new address</AddNewAddress>
+        <DeliveryOption>Choose delivery option</DeliveryOption>
+        <NoAddressFound>No addresses exists</NoAddressFound>
+        <Empty>
+          <AddressId>Address is required</AddressId>
+        </Empty>
+        <ApplicableItems>Please select shipping address for applicable items</ApplicableItems>
+        <SendTo>Send to</SendTo>
+        <ContinueShippingInformation>Continue to Shipping Information</ContinueShippingInformation>
+      </MultiShipment>
+      <CheckoutMethod>
+        <CheckoutGuestOrRegister>Checkout as a Guest or Register</CheckoutGuestOrRegister>
+        <Convience>Register with us for future convenience:</Convience>
+        <Guest>Checkout as Guest</Guest>
+        <Register>Register</Register>
+        <SaveTime>Register and save time!</SaveTime>
+        <EasyCheckout>Fast and easy check out</EasyCheckout>
+        <EasyAccess>Easy access to your order history and status</EasyAccess>
+        <AlreadyRegistered>Already registered?</AlreadyRegistered>
+        <PleaseLogin>Please log in below:</PleaseLogin>
+      </CheckoutMethod>
+      <ItemPrice>Item Price</ItemPrice>
+      <ItemQuantity>Item Quantity</ItemQuantity>
+      <ItemName>Item Name</ItemName>
+      <Total>Total</Total>
+      <CheckoutMethod>Checkout Method</CheckoutMethod>
+      <ShippingInformation>Shipping Information</ShippingInformation>
+      <BilllingInformation>Billing Information</BilllingInformation>
+      <PlaceOrder>Place Order</PlaceOrder>
+      <Subscription>Subscription</Subscription>
+      <OrderSuccess>Order Success</OrderSuccess>
+    </Checkout>
+    <OrderConfirmationMail>
+      <OrderDate>Order date:</OrderDate>
+      <DisplayName>Display name</DisplayName>
+      <Discount>Discount</Discount>
+      <OrderLevelDiscounts>Additional discounts</OrderLevelDiscounts>
+      <Quantity>Quantity</Quantity>
+      <UnitPrice>Unit price</UnitPrice>
+      <Price>Price</Price>
+      <LineItemTotal>Total</LineItemTotal>
+      <HandlingCost>Handling cost</HandlingCost>
+      <TaxCost>Tax cost</TaxCost>
+      <ShippingCost>Shipping cost</ShippingCost>
+      <ShippingSubtotal>Shipping Subtotal</ShippingSubtotal>
+      <ShippingDiscount>Shipping Discount</ShippingDiscount>
+      <Total>Total</Total>
+      <ShippingDetails>Shipping details</ShippingDetails>
+      <PaymentDetails>Payment details</PaymentDetails>
+      <PaymentInfo>
+        <CardType>Card type</CardType>
+        <Owner>Owner</Owner>
+        <CardNumber>Card number</CardNumber>
+        <ExpirationDate>Expiration date</ExpirationDate>
+        <CVV>CVV</CVV>
+      </PaymentInfo>
+      <ErrorMessages>
+        <SmtpFailure>Your purchase has been processed but the receipt could not be sent to the address {0}. Make sure to print this page and keep it for further reference.</SmtpFailure>
+      </ErrorMessages>
+    </OrderConfirmationMail>
+    <OrderConfirmation>
+      <SubTotal>Sub Total For Your Items</SubTotal>
+      <OrderLevelDiscounts>Additional Order Level Discounts</OrderLevelDiscounts>
+      <ShippingAndTax>Shipping &amp; Tax</ShippingAndTax>
+      <ShippingCost>Estimated Shipping Costs</ShippingCost>
+      <TaxTotal>Estimated Tax to Be Collected</TaxTotal>
+      <CartTotal>Total for cart</CartTotal>
+      <BillingDetails>Billing details</BillingDetails>
+      <ShippingDetails>Shipping details</ShippingDetails>
+      <PaymentDetails>Payment details</PaymentDetails>
+      <NoOrder>Can't show order details in on-page editing mode until at least one order has been created.</NoOrder>
+      <Labels>
+        <Product>Product</Product>
+        <Price>Your price</Price>
+        <Quantity>Quantity</Quantity>
+        <Total>Total</Total>
+        <Remove>Remove item</Remove>
+        <DiscountsApplied>Item level discounts applied</DiscountsApplied>
+        <YouSave>You saved</YouSave>
+      </Labels>
+      <PaymentInfo>
+        <CardType>Card type</CardType>
+        <Owner>Owner</Owner>
+        <CardNumber>Card number</CardNumber>
+        <ExpirationDate>Expiration date</ExpirationDate>
+        <CVV>CVV</CVV>
+      </PaymentInfo>
+    </OrderConfirmation>
+    <Category>
+      <Sort>
+        <PriceAsc>Price</PriceAsc>
+        <Popularity>Popularity</Popularity>
+        <NewestFirst>Newest first</NewestFirst>
+        <Recommended>Recommended</Recommended>
+      </Sort>
+      <SortBy>Sort by</SortBy>
+      <RemoveAll>Remove all</RemoveAll>
+      <Filters>Filters</Filters>
+      <ShopBy>Shop By</ShopBy>
+      <ContentFilters>Content Filters</ContentFilters>
+      <RecentlyViewed>Recently Viewed</RecentlyViewed>
+    </Category>
+    <Cart>
+      <Heading>Items In Your Cart/Being Ordered</Heading>
+      <Labels>
+        <Product>Product</Product>
+        <Cart>Cart</Cart>
+        <Wishlist>Wish list</Wishlist>
+        <Price>Your price</Price>
+        <Quantity>Quantity</Quantity>
+        <Total>Grand Total</Total>
+        <Remove>Remove item</Remove>
+        <DiscountsApplied>Item level discounts applied</DiscountsApplied>
+        <YouSave>You save</YouSave>
+        <UnitPrice>Unit Price</UnitPrice>
+        <Subtotal>Subtotal</Subtotal>
+        <MoveToWishlist>Move to Wishlist</MoveToWishlist>
+        <TaxTotal>Taxes</TaxTotal>
+        <ShippingTotal>Shipping</ShippingTotal>
+        <Checkout>Proceed to checkout</Checkout>
+        <MultipleAddresses>Checkout with Multiple Addresses</MultipleAddresses>
+        <ClearCart>Clear Cart</ClearCart>
+        <Removetem>Remove Item</Removetem>
+        <EstimateShipping>Estimate Shipping and Tax</EstimateShipping>
+        <ShippingEstimate>Enter your destination to get a shipping estimate.</ShippingEstimate>
+        <Estimate>Estimate</Estimate>
+        <ShoppingCartTotal>Shopping Cart Total</ShoppingCartTotal>
+      </Labels>
+    </Cart>
+    <Registration>
+      <Heading>New customers</Heading>
+      <RegisterAccountConfirmation>
+        <Heading>Congratulations!</Heading>
+        <ConfirmationMessage>Your account {0} has been created, you can now sign in!</ConfirmationMessage>
+      </RegisterAccountConfirmation>
+      <OrderConfirmation>
+        <Heading>Save your information for next time</Heading>
+        <Heading2>You're already registered, you want to bind the order to your account?</Heading2>
+        <AccountCreatedHeading>Success!</AccountCreatedHeading>
+        <AccountCreated>Your account {0} was successfully created and your order has been added to your account.</AccountCreated>
+        <OrderAddedHeading>Success!</OrderAddedHeading>
+        <OrderAdded>Your order has been added to your account.</OrderAdded>
+        <Assign>Add order to account</Assign>
+      </OrderConfirmation>
+      <Form>
+        <Label>
+          <Email>Email Address</Email>
+          <Password>Password</Password>
+          <Password2>Confirm Password</Password2>
+          <FirstName>First Name</FirstName>
+          <LastName>Last Name</LastName>
+          <Address>Address</Address>
+          <Country>Country</Country>
+          <City>City</City>
+          <PostalCode>Postal Code</PostalCode>
+          <ZipCode>Zip Code</ZipCode>
+          <Submit>Create an account</Submit>
+          <Newsletter>Send me email updates about the latest products and promotions.</Newsletter>
+        </Label>
+        <Empty>
+          <Address>An address is required</Address>
+          <Country>Country is required</Country>
+          <City>City is required</City>
+          <PostalCode>Postal Code is required</PostalCode>
+          <Email>Email is required</Email>
+          <Password>Password is required</Password>
+          <Password2>Confirm Password is required</Password2>
+        </Empty>
+        <Error>
+          <InvalidEmail>You have to enter a valid email address</InvalidEmail>
+          <UsedEmail>This email address is already used</UsedEmail>
+          <PasswordMatch>Your passwords has to match</PasswordMatch>
+          <PasswordLength>Your password has to be between 5 and 100 characters long</PasswordLength>
+          <PasswordLength2>Your password has to be between 5 and 100 characters long</PasswordLength2>
+        </Error>
+      </Form>
+    </Registration>
+    <Login>
+      <Form>
+        <Label>
+          <AddressRequirementMessage>In order to finalize your account we need to know your address.</AddressRequirementMessage>
+          <SocialLoginLabel>Log in with {0}</SocialLoginLabel>
+          <Username>Username:</Username>
+          <Heading>Returning customer?</Heading>
+          <LoginMessage>Sign in to your account.</LoginMessage>
+          <Email>Email Address</Email>
+          <Password>Password</Password>
+          <RememberMe>Remember me</RememberMe>
+          <Login>Login</Login>
+          <ForgotPasswordLink>Forgot your password?</ForgotPasswordLink>
+          <SigninFacebook>Signin with Facebook</SigninFacebook>
+          <FacebookTitle>Log in using your Facebook account</FacebookTitle>
+        </Label>
+        <Empty>
+          <Username>Username is required</Username>
+          <Email>Email Address is required</Email>
+          <Password>Password is required</Password>
+        </Empty>
+        <Error>
+          <WrongPasswordOrEmail>You have entered wrong username or password</WrongPasswordOrEmail>
+          <InvalidEmail>You have to enter a valid e-mail address</InvalidEmail>
+          <PasswordLength>Your password has to be between 5 and 100 characters long</PasswordLength>
+        </Error>
+      </Form>
+      <ExternalLoginFailure>
+        <Heading>Could not login</Heading>
+        <Message>Something went wrong when verifying your user account.</Message>
+      </ExternalLoginFailure>
+      <Lockout>
+        <Heading>Your account has been locked</Heading>
+        <Message>As a precaution your account has temporarely been locked due to too many recent login failures. Please come back and try again later.</Message>
+      </Lockout>
+      <BackendLogin>
+        <Heading>Edit view</Heading>
+        <LoginMessage>
+          Your actions require you to log in using your account.
+        </LoginMessage>
+      </BackendLogin>
+    </Login>
+    <ResetPassword>
+      <Mail>
+        <Text>Reset your password using this </Text>
+        <Link>link</Link>
+        <Instructions>Please enter your reset password markup and use a placeholder [MailUrl] for the link so the url can be properly constructed.</Instructions>
+      </Mail>
+      <ForgotPasswordConfirmation>
+        <Heading>Halfway there...</Heading>
+        <Message>Please check your e-mail to reset your password.</Message>
+      </ForgotPasswordConfirmation>
+      <ResetPassword>
+        <Heading>Reset password</Heading>
+        <Message>Enter your e-mail address and a new password.</Message>
+      </ResetPassword>
+      <ResetPasswordConfirmation>
+        <Heading>Password has been reset</Heading>
+        <Message>Well done. Your password was successfully updated. Please </Message>
+        <LoginLink>click here to log in.</LoginLink>
+      </ResetPasswordConfirmation>
+      <Form>
+        <Placeholder>
+          <Email>Enter your e-mail address</Email>
+          <Password>Password</Password>
+          <Password2>Confirm the password</Password2>
+        </Placeholder>
+        <Label>
+          <Email>E-mail:</Email>
+          <Password>New password:</Password>
+          <Password2>New password again:</Password2>
+          <Send>Send</Send>
+          <Reset>Reset</Reset>
+        </Label>
+        <Empty>
+          <Email>E-mail is required</Email>
+          <Password>Password is required</Password>
+          <Password2>You need to confirm your password</Password2>
+        </Empty>
+        <Error>
+          <ExpiredLink>Your link has expired!</ExpiredLink>
+          <InvalidEmail>You have to enter a valid email address</InvalidEmail>
+          <PasswordMatch>Your passwords has to match</PasswordMatch>
+          <PasswordLength>Your password has to be between 5 and 100 characters long</PasswordLength>
+          <PasswordLength2>Your password has to be between 5 and 100 characters long</PasswordLength2>
+        </Error>
+      </Form>
+    </ResetPassword>
+    <AddressBook>
+      <AddNew>
+        <Header>Add a new address</Header>
+        <Button>Save</Button>
+        <CancelButton>Cancel</CancelButton>
+      </AddNew>
+      <Edit>
+        <Header>Edit address</Header>
+      </Edit>
+      <Available>Available Addresses</Available>
+      <IncompletAddress>Incomplete address</IncompletAddress>
+      <NotInlogged>You are not inlogged</NotInlogged>
+      <Form>
+        <Label>
+          <SetShippingAddress>Set as preferred shipping address</SetShippingAddress>
+          <SetBillingAddress>Set as preferred billing address</SetBillingAddress>
+          <AddressName>Address Name</AddressName>
+          <Organization>Organization</Organization>
+          <FirstName>First Name</FirstName>
+          <LastName>Last Name</LastName>
+          <Line1>Address Line 1</Line1>
+          <Line2>Address Line 2</Line2>
+          <City>City</City>
+          <CountryRegion>Country/Region</CountryRegion>
+          <PostalCode>Postal Code</PostalCode>
+          <CountryCode>Country</CountryCode>
+          <DaytimePhoneNumber>Phone Number</DaytimePhoneNumber>
+          <Email>Email Address</Email>
+          <Submit>Save</Submit>
+          <Delete>Delete</Delete>
+          <Edit>Edit</Edit>
+          <Cancel>Cancel</Cancel>
+          <EditAddress>Edit</EditAddress>
+          <NewAddress>New Address</NewAddress>
+          <PrimaryAddress>Primary address</PrimaryAddress>
+          <RemoveAddress>Remove</RemoveAddress>
+          <Address>Address</Address>
+          <Name>Name</Name>
+          <DateModified>Date Modified</DateModified>
+        </Label>
+        <Empty>
+          <Name>Address name is required</Name>
+          <FirstName>First name is required</FirstName>
+          <LastName>Last name is required</LastName>
+          <Line1>Line1 is required</Line1>
+          <City>City is required</City>
+          <CountryRegion>CountryRegion is required</CountryRegion>
+          <PostalCode>Postal code is required</PostalCode>
+          <CountryCode>Country name is required</CountryCode>
+        </Empty>
+        <Error>
+          <InvalidEmail>You have to enter a valid email address</InvalidEmail>
+          <ExistingAddress>An address with the same name already exists</ExistingAddress>
+        </Error>
+      </Form>
+    </AddressBook>
+    <CreditCard>
+      <Available>Available Credit Cards</Available>
+      <Edit>
+        <Header>Edit Credit Card</Header>
+      </Edit>
+      <AddNew>
+        <Header>Add New Credit Card</Header>
+      </AddNew>
+      <Labels>
+        <CreditCardName>Full name on card:</CreditCardName>
+        <CreditCardNumber>Credit card number:</CreditCardNumber>
+        <CreditCardSecurityCode>Security code:</CreditCardSecurityCode>
+        <ExpirationMonth>Expiration month:</ExpirationMonth>
+        <ExpirationYear>Expiration year:</ExpirationYear>
+      </Labels>
+      <Empty>
+        <CreditCardName>Full name is required</CreditCardName>
+        <CreditCardNumber>Credit card number is required</CreditCardNumber>
+        <CreditCardSecurityCode>Security code is required</CreditCardSecurityCode>
+        <ExpirationMonth>Expiration month is required</ExpirationMonth>
+        <ExpirationYear>Expiration Year is required</ExpirationYear>
+        <SelectCreditCard>Credit card is required</SelectCreditCard>
+      </Empty>
+      <ValidationErrors>
+        <CreditCardNumber>The credit card number is not valid. Last digit should be 4</CreditCardNumber>
+        <CreditCardSecurityCode>The CSV code should be 3 digits</CreditCardSecurityCode>
+        <ExpirationMonth>Expiration month can't be older than the current month</ExpirationMonth>
+        <ExpirationYear>Expiration year can't be older than the current year</ExpirationYear>
+        <InvalidCreditCard>The credit card is not available or you don't have permission to use it</InvalidCreditCard>
+      </ValidationErrors>
+    </CreditCard>
+    <GiftCard>
+      <Create>Create</Create>
+      <GiftCardName>Gift card name</GiftCardName>
+      <ContactName>Contact name</ContactName>
+      <InitialAmount>Initial amount</InitialAmount>
+      <RemainBalance>Remain balance</RemainBalance>
+      <IsActive>Is active</IsActive>
+      <RedemptionCode>Redemption code</RedemptionCode>
+      <Actions>Actions</Actions>
+    </GiftCard>
+    <WishList>
+      <Button>
+        <GotoWishListPage>Go to wishlist</GotoWishListPage>
+        <GotoOrderpadPage>Go to orderpad</GotoOrderpadPage>
+      </Button>
+      <NoItems>You don't have any items in your wish list.</NoItems>
+      <DeleteButton>Delete entire wishlist</DeleteButton>
+      <RemoveItem>Remove from wishlist</RemoveItem>
+      <Info>Info</Info>
+      <Share>Share</Share>
+      <AddAll>Add All to Cart</AddAll>
+    </WishList>
+    <OrderHistory>
+      <Labels>
+        <ShippedTo>Shipped</ShippedTo>
+        <ObjectsOrdered>Items</ObjectsOrdered>
+        <OrderID>Order ID</OrderID>
+        <OrderDate>Date</OrderDate>
+        <Amout>Amount</Amout>
+        <Payment>Payment</Payment>
+        <Status>Status</Status>
+        <TotalPrice>Price</TotalPrice>
+        <ReOrder>Reorder</ReOrder>
+        <ReturnStatus>Return Status</ReturnStatus>
+        <ReturnOrder>Return Order</ReturnOrder>
+      </Labels>
+      <Detail>
+        <OrganizationOrder>This is an organization order</OrganizationOrder>
+        <Payments>Payments</Payments>
+        <Approve>Approve</Approve>
+      </Detail>
+    </OrderHistory>
+    <PaymentPlanHistory>
+      <Labels>
+        <PaymentPlanID>ID</PaymentPlanID>
+        <PaymentPlanDate>Date</PaymentPlanDate>
+        <PaymentPlanStartDate>Date Started</PaymentPlanStartDate>
+        <ActiveStatus>Active?</ActiveStatus>
+        <TotalPrice>Price</TotalPrice>
+      </Labels>
+      <Detail>
+        <OrderNo>Order No</OrderNo>
+        <OrderTotal>Order Total</OrderTotal>
+        <Active>Active</Active>
+        <Status>Status</Status>
+        <LastTransaction>Last Transaction</LastTransaction>
+        <Completed>Completed</Completed>
+        <CycleLength>Cycle Length</CycleLength>
+        <CycleMode>Cycle Mode</CycleMode>
+        <EndDate>End Date</EndDate>
+        <NoSubscription>No Subscription</NoSubscription>
+      </Detail>
+    </PaymentPlanHistory>
+    <ReturnOrderSetting>
+      <Header>Return Detail</Header>
+      <Quantity>Quantity</Quantity>
+      <Reason>
+        <Lable>Reason</Lable>
+        <Faulty>Faulty</Faulty>
+        <IncorrectItem>Incorrect Item</IncorrectItem>
+        <UnwantedGift>Unwanted Gift</UnwantedGift>
+      </Reason>
+      <Close>Close</Close>
+    </ReturnOrderSetting>
+    <ProfileStore>
+      <Edit>
+        <Header>EDIT PROFILE STORE</Header>
+      </Edit>
+      <Form>
+        <Label>
+          <Name>Name</Name>
+          <ProfileManager>ProfileManager</ProfileManager>
+          <Email>Email</Email>
+          <JobTitle>JobTitle</JobTitle>
+          <Picture>Picture</Picture>
+          <Website>Website</Website>
+          <Phone>Phone</Phone>
+          <Mobile>Mobile</Mobile>
+          <StreetAddress>Street Address</StreetAddress>
+          <City>City</City>
+          <State>State</State>
+          <Company>Company</Company>
+          <Country>Country</Country>
+          <InferredCountry>InferredCountry</InferredCountry>
+          <Submit>Save</Submit>
+          <AddRow>Add Attribute</AddRow>
+        </Label>
+        <Error>
+          <InvalidPhone>You have to enter a valid phone or mobile</InvalidPhone>
+        </Error>
+      </Form>
+    </ProfileStore>
+    <Search>
+      <BadFirstCharacter>'*' or '?' is not allowed as the first character in a search query</BadFirstCharacter>
+      <Name>Name</Name>
+      <Price>Price</Price>
+      <Position>Position</Position>
+      <SortBy>Sort By</SortBy>
+      <SetAscending>Set Ascending Direction</SetAscending>
+      <SetDescending>Set Descending Direction</SetDescending>
+      <View>View</View>
+      <Page>Page</Page>
+      <DidYouMean>Did you mean</DidYouMean>
+      <NoProducts>No products matched your search criteria.</NoProducts>
+      <SearchBlock>
+        <Info>Info!</Info>
+        <NoResults>No products returned from configured search.</NoResults>
+        <Error>Error!</Error>
+        <FindError>EPiServer Find is not configured or available.</FindError>
+      </SearchBlock>
+      <Recommended>Recommended</Recommended>
+    </Search>
+    <Shared>
+      <Common>
+        <DeleteItemConfirmation>Do you really want to delete this item?</DeleteItemConfirmation>
+      </Common>
+      <Address>
+        <DefaultAddressName>Default</DefaultAddressName>
+        <NewAddress>New address</NewAddress>
+        <RemoveAddress>Remove</RemoveAddress>
+        <Form>
+          <Empty>
+            <FirstName>First name is required</FirstName>
+            <LastName>Last name is required</LastName>
+            <Line1>Shipping address is required</Line1>
+            <CountryCode>Country is required</CountryCode>
+            <City>City is required</City>
+            <PostalCode>Zip code is required</PostalCode>
+            <Email>Email is required</Email>
+            <Name>Name is required</Name>
+            <BillingAddress>Billing address is required</BillingAddress>
+            <ShippingAddress>Shipping address is required</ShippingAddress>
+            <ShippingMethod>Delivery option is required</ShippingMethod>
+          </Empty>
+          <Label>
+            <FirstName>First Name</FirstName>
+            <LastName>Last Name</LastName>
+            <Line1>Address Line 1</Line1>
+            <Line2>Address Line 2</Line2>
+            <City>City</City>
+            <CountryRegion>Country/Region</CountryRegion>
+            <PostalCode>Postal Code</PostalCode>
+            <CountryCode>Country</CountryCode>
+            <Address>Address</Address>
+            <Name>Name</Name>
+            <ShippingAddress>Preferred shipping address</ShippingAddress>
+            <BillingAddress>Preferred billing address</BillingAddress>
+            <DaytimePhoneNumber>Phone Number</DaytimePhoneNumber>
+            <Email>Email Address</Email>
+            <Organization>Organization</Organization>
+          </Label>
+          <Error>
+            <InvalidEmail>You have to enter a valid email address</InvalidEmail>
+            <InvalidInput>The format of the entered value is invalid, avoid using &lt; phrase &gt;</InvalidInput>
+          </Error>
+        </Form>
+      </Address>
+      <Save>Save</Save>
+      <Cancel>Cancel</Cancel>
+      <Name>Name</Name>
+      <Edit>Edit</Edit>
+      <Code>Code</Code>
+      <Package>Package</Package>
+      <AddYourReview>Add Your Review</AddYourReview>
+      <Reviews>Reviews</Reviews>
+      <Instock>In Stock</Instock>
+      <QuickOverview>Quick Overview</QuickOverview>
+      <EmailAFriend>Email to a Friend</EmailAFriend>
+      <ProductDescription>Product Description</ProductDescription>
+      <Documentation>Documentation</Documentation>
+      <SelectMultiple>Select multiple</SelectMultiple>
+      <StaticAssociations>You May Also Like</StaticAssociations>
+      <RelatedProducts>Related Products</RelatedProducts>
+      <RecommendationsForYou>Recommendations for you</RecommendationsForYou>
+      <RequestQuote>Request Quote</RequestQuote>
+      <Back>Back</Back>
+      <Continue>Continue</Continue>
+      <Login>Login</Login>
+      <ChangeUser>Change User</ChangeUser>
+      <Image>Image</Image>
+      <Product>Product</Product>
+      <Price>Price</Price>
+      <Title>Title</Title>
+      <Quantity>Quantity</Quantity>
+      <Amount>Amount</Amount>
+      <User>User</User>
+      <New>New</New>
+      <Sale>Sale</Sale>
+      <Featured>Featured</Featured>
+      <Recommended>Recommended</Recommended>
+      <Sku>SKU</Sku>
+      <Stock>Stock</Stock>
+      <Item>Item</Item>
+      <Size>Size</Size>
+      <YourPrice>Your Price / Unit</YourPrice>
+      <AddToOrderPad>Add To Orderpad</AddToOrderPad>
+      <Location>Location</Location>
+      <On>on</On>
+      <Or>or</Or>
+      <Categories>Categories</Categories>
+      <With>with</With>
+      <In>in</In>
+      <Role>Role</Role>
+      <Add>Add</Add>
+      <Email>Email</Email>
+      <Search>search</Search>
+      <Remove>Remove</Remove>
+      <Impersonate>Impersonate</Impersonate>
+      <SalesRep>Sales Material</SalesRep>
+      <Total>Total</Total>
+      <Note>Note</Note>
+      <AddNote>Add Note</AddNote>
+      <Type>Type</Type>
+      <Description>Description</Description>
+      <DiscountType>Discount Type</DiscountType>
+      <SavedAmount>Saved Amount</SavedAmount>
+      <Coupons>Coupons</Coupons>
+      <Bulk>Bulk Update</Bulk>
+      <CommentsManager>Moderation</CommentsManager>
+      <CmsDashboard>Dashboard</CmsDashboard>
+      <CommerceDashboard>Dashboard</CommerceDashboard>
+      <ReadMore>Read more</ReadMore>
+      <ViewAll>View all</ViewAll>
+      <CampaignDashboard>Dashboard</CampaignDashboard>
+      <GiftCards>Gift cards</GiftCards>
+    </Shared>
+    <Readonly>
+      <Message>The site is currently undergoing maintenance.  Certain features are disabled until the maintenance has completed.</Message>
+      <Login>Login has been disabled because the site is currently undergoing maintenance</Login>
+    </Readonly>
+    <StartPage>
+      <Promotion>
+        <AllItems>Applies to all items</AllItems>
+      </Promotion>
+    </StartPage>
+    <Dashboard>
+      <Labels>
+        <MyDashboard>My Dashboard</MyDashboard>
+        <ViewOrder>View Order</ViewOrder>
+        <Reorder>Reorder</Reorder>
+        <AccountInformation>Account Information</AccountInformation>
+        <PrimaryBillingAddress>Primary Billing Address</PrimaryBillingAddress>
+        <PrimaryShippingAddress>Primary Shipping Address</PrimaryShippingAddress>
+        <AddressBook>Address Book</AddressBook>
+        <ManageAddresses>Manage Addresses</ManageAddresses>
+        <ChangePassword>Reset Password</ChangePassword>
+        <Newsletters>Newsletters</Newsletters>
+        <MyOrders>My Orders</MyOrders>
+        <MyWishlist>My Wishlist</MyWishlist>
+        <AccountDashboard>Account Dashboard</AccountDashboard>
+        <MyProductReviews>My Product Reviews</MyProductReviews>
+        <MyAccount>My Account</MyAccount>
+        <RecentOrders>Recent Orders</RecentOrders>
+        <ContactInformation>Contact Information</ContactInformation>
+        <Edit>Edit</Edit>
+        <Hello>Hello</Hello>
+        <OrderPad>Order Pad</OrderPad>
+        <QuickOrder>Quick Order</QuickOrder>
+        <ContactSalesPerson>Contact My Sales Person</ContactSalesPerson>
+        <Organization>Organization</Organization>
+      </Labels>
+    </Dashboard>
+    <AccountInformation>
+      <Form>
+        <DateOfBirth>Date of Birth</DateOfBirth>
+        <SubscribesToNewsletter>Subscribed to newsletter</SubscribesToNewsletter>
+      </Form>
+    </AccountInformation>
+    <ProductRecommendations>
+      <Label>
+        <RecommendedProducts>Recommended products</RecommendedProducts>
+      </Label>
+    </ProductRecommendations>
+    <preview>
+      <heading>The content '{0}' when displayed as '{1}'</heading>
+      <norenderer>The content '{0}' cannot be displayed as {1}</norenderer>
+      <norendereratall>No renderer found for '{0}'</norendereratall>
+    </preview>
+    <Blog>
+      <Tags>Tags</Tags>
+      <Comments>
+        <Reply>Leave A reply</Reply>
+      </Comments>
+      <ReadMore>Read More</ReadMore>
+      <Posted>The entry was posted on</Posted>
+      <Items>Item(s)</Items>
+      <All>All</All>
+      <Five>5</Five>
+      <Ten>10</Ten>
+      <Fifteen>15</Fifteen>
+      <Twenty>20</Twenty>
+      <PerPage>per page</PerPage>
+      <Archive>Archive</Archive>
+      <Page>Page</Page>
+      <Show>Show</Show>
+    </Blog>
+    <BoughtFrequenty>
+      <Message>Get {0} % off the following products on a recurring order.</Message>
+    </BoughtFrequenty>
+    <Locations>
+      <Activities>Activities</Activities>
+      <AllActivities>All activities</AllActivities>
+      <Continents>Continents</Continents>
+      <AllContinents>All continents</AllContinents>
+      <Distance>Distance</Distance>
+      <AllDistances>All distances</AllDistances>
+      <Temperature>Temperature</Temperature>
+    </Locations>
+    <B2B>
+      <SubOrganization>Suborganization</SubOrganization>
+      <Admin>Admin</Admin>
+      <Approver>Approver</Approver>
+      <Purchaser>Purchaser</Purchaser>
+      <Budgeting>
+        <NewSuborganizationBudget>New Suborganization budget</NewSuborganizationBudget>
+        <NewOrganizationBudget>New organization budget</NewOrganizationBudget>
+        <Currency>Currency</Currency>
+        <Allocated>Allocated</Allocated>
+        <StartDate>Start date</StartDate>
+        <DueDate>Due date</DueDate>
+        <Status>Status</Status>
+        <Planned>Planned</Planned>
+        <OnHold>OnHold</OnHold>
+        <UserEmail>User email</UserEmail>
+        <EditOrganizationBudget>Edit organization budget</EditOrganizationBudget>
+        <EditBudget>Edit Budget</EditBudget>
+        <SpentBudget>Spent budget</SpentBudget>
+        <Remaining>Remaining</Remaining>
+        <CalculatedDate>Calculated based on start date / end date.</CalculatedDate>
+        <EditPurchaserBudget>Edit Purchaser budget</EditPurchaserBudget>
+        <CurrentSuborganizationBudget>Current Suborganization budget</CurrentSuborganizationBudget>
+        <CurrentOrganizationBudget>Current organization budget</CurrentOrganizationBudget>
+        <Budget>Budget</Budget>
+        <Unallocated>Unallocated</Unallocated>
+        <Spent>Spent</Spent>
+        <EndDate>End Date</EndDate>
+        <Actions>Actions</Actions>
+        <PurchaserSpendingLimits>Purchasers spending limits</PurchaserSpendingLimits>
+        <AddUser>Add User</AddUser>
+        <NewBudget>New budget</NewBudget>
+        <SuborganizationBudgetTimeline>Suborganization budget timeline</SuborganizationBudgetTimeline>
+        <OrganizationBudgetTimeline>Organization budget timeline</OrganizationBudgetTimeline>
+        <CurrentSuborganizationBudgets>Current suborganizations budget</CurrentSuborganizationBudgets>
+      </Budgeting>
+      <OrderPad>
+        <Sku>Sku</Sku>
+        <ProductTitle>Product Title</ProductTitle>
+        <CreatedOn>Created on</CreatedOn>
+      </OrderPad>
+      <Orders>
+        <FilterByStatus>Filter by status:</FilterByStatus>
+        <All>All</All>
+        <OnHold>On Hold</OnHold>
+        <InProgress>In Progress</InProgress>
+        <Completed>Completed</Completed>
+        <RequestQuote>Request Quote</RequestQuote>
+        <RequestQuoteFinished>Request Quote Finished</RequestQuoteFinished>
+        <QuoteExpired>Quote Expired</QuoteExpired>
+        <PendingApproval>Pending Approval</PendingApproval>
+        <OrderNo>Order</OrderNo>
+        <PlacedOn>Placed</PlacedOn>
+      </Orders>
+      <Organization>
+        <AddNewSub>Add new sub-organization</AddNewSub>
+        <ParentOrganization>Parent organization</ParentOrganization>
+        <SubOrganizationName>Sub-organization name *:</SubOrganizationName>
+        <SubOrganizationNameRequired>Sub-organization name is required</SubOrganizationNameRequired>
+        <OrganizationName>Organization name *:</OrganizationName>
+        <OrganizationNameRequired>Organization name is required</OrganizationNameRequired>
+        <AddNew>Add New Organization</AddNew>
+        <EditParent>Edit parent organization</EditParent>
+        <EditSub>Edit sub-organization info</EditSub>
+        <Info>Organization Info</Info>
+        <SubInfo>Suborganization Info</SubInfo>
+        <Locations>Locations</Locations>
+        <Organization>Organization</Organization>
+      </Organization>
+      <Users>
+        <Lookup>Look up user or fill in their details</Lookup>
+        <SearchUsers>search for users</SearchUsers>
+        <UserDetails>User Details</UserDetails>
+        <SelectLocation>Select Location</SelectLocation>
+        <Already>This user is already part of an organization.</Already>
+        <EditUserRole>Editing user role</EditUserRole>
+        <Location>Location</Location>
+        <AddUser>Add User</AddUser>
+        <NoOrgs>At least one sub-organization needs to be configured before adding a user.</NoOrgs>
+      </Users>
+    </B2B>
+    <common>
+      <readmore>Read more »</readmore>
+      <more>More »</more>
+      <search>Search</search>
+      <yes>Yes</yes>
+      <no>No</no>
+      <submit>Submit</submit>
+      <cancel>Cancel</cancel>
+      <filters>Filters</filters>
+    </common>
+    <Error>
+      <BackToHome>Back to home</BackToHome>
+    </Error>
+    <Reviews>
+      <WrtieYorOwn>Write Your Own Review</WrtieYorOwn>
+      <Rating>Rating</Rating>
+      <HowRate>How do you rate this product?</HowRate>
+      <Nickname>Nickname</Nickname>
+      <SubmitReview>Submit Review</SubmitReview>
+      <Review>Review</Review>
+      <CustomerReviews>Customer Reviews</CustomerReviews>
+      <ReviewBy>Review By</ReviewBy>
+      <Value>Value</Value>
+    </Reviews>
+    <Stores>
+      <StoreLocator>Store Locator</StoreLocator>
+      <Delivery>Delivery</Delivery>
+      <InStorePickup>In Store Pickup</InStorePickup>
+      <SelectedStore>Selected Store</SelectedStore>
+      <Select>Select</Select>
+      <SetDefaultStore>Set Default store</SetDefaultStore>
+    </Stores>
+    <facetregistry>
+      <brand>
+        Brand
+      </brand>
+      <availableColors>
+        Color
+      </availableColors>
+      <availableSizes>
+        Size
+      </availableSizes>
+      <defaultprice>
+        Price
+      </defaultprice>
+    </facetregistry>
+    <contenttypes>
+      <SiteURLPredefinedHiddenElementBlock>
+        <name>Site URL</name>
+      </SiteURLPredefinedHiddenElementBlock>
+      <featureboxblock>
+        <properties>
+          <iconname>
+            <caption>Icon (Font Awesome)</caption>
+          </iconname>
+        </properties>
+      </featureboxblock>
+      <strategycontainerblock>
+        <properties>
+          <defaultstrategy>
+            <caption>Default strategy</caption>
+          </defaultstrategy>
+        </properties>
+      </strategycontainerblock>
+      <cookiedropblock>
+        <properties>
+          <cookiename>
+            <caption>Cookie name</caption>
+          </cookiename>
+          <cookievalue>
+            <caption>Cookie value</caption>
+          </cookievalue>
+        </properties>
+      </cookiedropblock>
+      <customizedsearchblock>
+        <name>Customized Search Block</name>
+        <properties>
+          <heading>
+            <caption>Heading</caption>
+          </heading>
+          <customizedsearchsettings>
+            <searchphrase>
+              <caption>Search term</caption>
+            </searchphrase>
+            <numberofhits>
+              <caption>Number of results</caption>
+            </numberofhits>
+          </customizedsearchsettings>
+          <customizedsearchadvancedsettings>
+            <includebestbets>
+              <caption>Include Best Bets in Find</caption>
+            </includebestbets>
+            <usesynonyms>
+              <caption>Include Synonyms in Find</caption>
+            </usesynonyms>
+          </customizedsearchadvancedsettings>
+        </properties>
+      </customizedsearchblock>
+    </contenttypes>
+    <BulkUpdate>
+      <ContentGroup>Content Group</ContentGroup>
+      <ContentType>Content Type</ContentType>
+      <Language>Language</Language>
+      <Keyword>Keyword</Keyword>
+      <Properties>Properties</Properties>
+      <ContentFilters>Content Filters</ContentFilters>
+      <ApplyFilters>Apply Filters</ApplyFilters>
+      <Page>Page</Page>
+      <Block>Block</Block>
+      <Media>Media</Media>
+      <Node>Node</Node>
+      <Entry>Entry</Entry>
+      <Campaign>Campaign</Campaign>
+      <Discount>Discount</Discount>
+      <ContentInformation>Content Information</ContentInformation>
+      <FilterDescription>Apply Filters button to see the content information</FilterDescription>
+    </BulkUpdate>
+  </language>
+</languages>

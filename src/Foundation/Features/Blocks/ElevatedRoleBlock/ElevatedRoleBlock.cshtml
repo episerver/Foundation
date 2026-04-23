@@ -1,0 +1,14 @@
+﻿@model Foundation.Features.Blocks.ElevatedRoleBlock.ElevatedRoleBlockViewModel
+
+@if (Model.IsAccess)
+{
+    <div class="container">
+        @Html.PropertyFor(x => x.CurrentBlock.Body)
+        @Html.PropertyFor(m => m.CurrentBlock.MainContentArea)
+    </div>
+}
+else
+{
+    <h1>Access denied.</h1>
+    <p>You don't have permission to access on this area.</p>
+}
