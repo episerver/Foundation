@@ -110,6 +110,33 @@ namespace Foundation.Features.Search
                     IsActive = currentContent != null && currentContent.ContentLink == nodeContent.ContentLink,
                     IsBestBet = false
                 };
+
+                // Load children (e.g. Mens Shoes, Mens Jackets)
+                foreach (var childNode in _contentLoader.GetChildren<NodeContent>(nodeContent.ContentLink))
+                {
+                    var childFilter = new CategoryFilter
+                    {
+                        DisplayName = childNode.DisplayName,
+                        Url = _urlResolver.GetUrl(childNode.ContentLink),
+                        IsActive = currentContent != null && currentContent.ContentLink == childNode.ContentLink,
+                        IsBestBet = false
+                    };
+
+                    // Load grandchildren (third level)
+                    foreach (var grandchildNode in _contentLoader.GetChildren<NodeContent>(childNode.ContentLink))
+                    {
+                        childFilter.Children.Add(new CategoryFilter
+                        {
+                            DisplayName = grandchildNode.DisplayName,
+                            Url = _urlResolver.GetUrl(grandchildNode.ContentLink),
+                            IsActive = currentContent != null && currentContent.ContentLink == grandchildNode.ContentLink,
+                            IsBestBet = false
+                        });
+                    }
+
+                    nodeFilter.Children.Add(childFilter);
+                }
+
                 viewModel.Categories.Add(nodeFilter);
             }
             return viewModel;
