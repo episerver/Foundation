@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-05-07
+**Last updated:** 2026-05-08
 
 ---
 
@@ -32,6 +32,12 @@
   2. **JS**: typo `style.dsiplay` → `style.display` in `hidePopover()`.
   3. **Settings defaults**: `ShowProductSearchResults`, `ShowContentSearchResults`, `ShowPdfSearchResults` booleans in `SearchSettings.cs` defaulted to `false` (C# default). Added `[DefaultValue(true)]` and `[DefaultValue("QuickSearch")]` for `SearchOption`. **NOTE: existing CMS data is unaffected by this — you must manually enable "Show products in search results" in CMS admin → Global Settings Root → [Site] → Search Settings for the deployed site.**
   4. **JS build**: Removed dead import of `Features/Recommendations/WidgetBlock/product-recommendations` from `foundation.commerce.js` (Recommendations feature removed in upgrade; import was breaking webpack build).
+- ✅ Search returning 0 products (in-memory fallback broken) — three additional bugs fixed:
+  1. **Graph 0-result bypass**: `SearchService` only fell back to in-memory on `catch (Exception)`. When Graph returns 0 results (products not yet indexed), no exception is thrown so the fallback never triggered. Fixed by checking `result.Any()` / `(result.Total ?? 0) > 0` before returning Graph results across all search methods.
+  2. **`GetCatalogEntries` with root link returns empty in Commerce 15**: `_contentLoader.GetDescendents(_referenceConverter.GetRootLink())` returns nothing — the catalog system root is not a traversable content tree node. Fixed in `GetCatalogEntries<T>()` in `SearchService.cs`: when the root link is detected, enumerate each top-level `CatalogContent` child of the root and collect their descendants instead (mirrors the access pattern that category browse already uses correctly).
+  3. **AutoSearch path used for all searches**: CMS settings had `SearchOption = "AutoSearch"`, which routed JS to `easyAutocomplete` calling `/find_v2/_autocomplete` (removed EPiServer.Find endpoint). Fixed in `_Navigation.cshtml` — normalise `"AutoSearch"` → `"QuickSearch"` at render time since AutoSearch is non-functional in CMS 13.
+- ✅ Loading box spinner always visible on page load — CSS cascade issue: `.loading-box { display: flex }` in `components/**` (loaded after `base/**`) overrode `.display-none { display: none }` since both are single-class selectors with equal specificity and last-rule wins. Fixed by adding `.loading-box.display-none { display: none }` to `_loading-box.scss` — the two-class selector has specificity (0,2,0) which beats either single-class rule (0,1,0) regardless of cascade order.
+- ✅ Cloudflare CDN serving stale CSS after deployments — CSS `max-age=14400` meant CDN served old CSS for up to 4 hours after a deploy. Fixed by adding `asp-append-version="true"` to the `<link>` and `<script>` tags for `main.min.css` and `main.min.js` in `_MasterLayout.cshtml`, `_Layout.cshtml`, and `_LoginLayout.cshtml`. ASP.NET Core appends a file-content hash to the URL on each deploy, guaranteeing a CDN cache miss automatically.
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
 ---
