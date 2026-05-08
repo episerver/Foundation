@@ -110,19 +110,28 @@ namespace Foundation.Features.Search
                     .GetAsContentAsync()
                     .GetAwaiter().GetResult();
 
-                return new ProductSearchResults
+                // If Graph returned results, use them.
+                // If Graph returned 0, it likely hasn't indexed Commerce products yet — fall through
+                // to in-memory so the site stays functional while indexing is pending.
+                if ((result.Total ?? 0) > 0)
                 {
-                    ProductViewModels = _productService.GetProductTileViewModels(result.Select(e => e.ContentLink)),
-                    FacetGroups = Enumerable.Empty<FacetGroupOption>(),
-                    TotalCount = result.Total ?? 0,
-                    Query = query
-                };
+                    return new ProductSearchResults
+                    {
+                        ProductViewModels = _productService.GetProductTileViewModels(result.Select(e => e.ContentLink)),
+                        FacetGroups = Enumerable.Empty<FacetGroupOption>(),
+                        TotalCount = result.Total ?? 0,
+                        Query = query
+                    };
+                }
+
+                _logger.LogInformation("Graph product search returned 0 results for '{Query}'; falling back to in-memory.", query);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Graph product search failed; falling back to in-memory scan.");
-                return SearchProductsInMemory(currentContent, filterOptions, filters);
             }
+
+            return SearchProductsInMemory(currentContent, filterOptions, filters);
         }
 
         public IEnumerable<ProductTileViewModel> QuickSearch(string query, int catalogId = 0)
@@ -140,18 +149,24 @@ namespace Foundation.Features.Search
                     .GetAsContentAsync()
                     .GetAwaiter().GetResult();
 
-                return _productService.GetProductTileViewModels(result.Select(e => e.ContentLink));
+                // Use Graph results when available; fall through to in-memory if Graph has 0
+                // (indicates products not yet indexed in Content Cloud).
+                if (result.Any())
+                    return _productService.GetProductTileViewModels(result.Select(e => e.ContentLink));
+
+                _logger.LogInformation("Graph quick search returned 0 results for '{Query}'; falling back to in-memory.", query);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Graph quick search failed; falling back to in-memory.");
-                var matches = GetCatalogEntries<ProductContent>(_referenceConverter.GetRootLink())
-                    .Where(e => e.Name.Contains(query, StringComparison.OrdinalIgnoreCase)
-                             || e.Code.Contains(query, StringComparison.OrdinalIgnoreCase))
-                    .Take(6)
-                    .ToList();
-                return _productService.GetProductTileViewModels(matches.Select(e => e.ContentLink));
             }
+
+            var matches = GetCatalogEntries<ProductContent>(_referenceConverter.GetRootLink())
+                .Where(e => e.Name.Contains(query, StringComparison.OrdinalIgnoreCase)
+                         || e.Code.Contains(query, StringComparison.OrdinalIgnoreCase))
+                .Take(6)
+                .ToList();
+            return _productService.GetProductTileViewModels(matches.Select(e => e.ContentLink));
         }
 
         public IEnumerable<ProductTileViewModel> QuickSearch(FilterOptionViewModel filterOptions, int catalogId = 0)
@@ -178,21 +193,27 @@ namespace Foundation.Features.Search
                     .GetAsContentAsync()
                     .GetAwaiter().GetResult();
 
-                var totalCount = result.Total ?? 0;
-                pages = Enumerable.Range(1, Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize))).ToList();
-                return _productService.GetProductTileViewModels(result.Select(p => p.ContentLink));
+                if ((result.Total ?? 0) > 0)
+                {
+                    var totalCount = result.Total ?? 0;
+                    pages = Enumerable.Range(1, Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize))).ToList();
+                    return _productService.GetProductTileViewModels(result.Select(p => p.ContentLink));
+                }
+
+                _logger.LogInformation("Graph new-products query returned 0 results; falling back to in-memory.");
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Graph new-products query failed; falling back to in-memory.");
-                var allProducts = GetCatalogEntries<ProductContent>(_referenceConverter.GetRootLink())
-                    .OrderByDescending(p => p.Created)
-                    .ToList();
-                var totalCount = allProducts.Count;
-                pages = Enumerable.Range(1, Math.Max(1, (int)Math.Ceiling(totalCount / (double)pageSize))).ToList();
-                return _productService.GetProductTileViewModels(
-                    allProducts.Skip(skip).Take(pageSize).Select(p => p.ContentLink));
             }
+
+            var allProducts = GetCatalogEntries<ProductContent>(_referenceConverter.GetRootLink())
+                .OrderByDescending(p => p.Created)
+                .ToList();
+            var count = allProducts.Count;
+            pages = Enumerable.Range(1, Math.Max(1, (int)Math.Ceiling(count / (double)pageSize))).ToList();
+            return _productService.GetProductTileViewModels(
+                allProducts.Skip(skip).Take(pageSize).Select(p => p.ContentLink));
         }
 
         // ── SKU / user search ───────────────────────────────────────────────────────
@@ -237,23 +258,29 @@ namespace Foundation.Features.Search
                     .GetAsContentAsync()
                     .GetAwaiter().GetResult();
 
-                return new ContentSearchViewModel
+                if (result.Any())
                 {
-                    FilterOption = filterOptions,
-                    Hits = result.Select(p => new UnifiedSearchHit
+                    return new ContentSearchViewModel
                     {
-                        Title = p.Name,
-                        Url = _urlResolver.GetUrl(p.ContentLink),
-                        Excerpt = string.Empty,
-                        SearchSection = "Pages"
-                    })
-                };
+                        FilterOption = filterOptions,
+                        Hits = result.Select(p => new UnifiedSearchHit
+                        {
+                            Title = p.Name,
+                            Url = _urlResolver.GetUrl(p.ContentLink),
+                            Excerpt = string.Empty,
+                            SearchSection = "Pages"
+                        })
+                    };
+                }
+
+                _logger.LogInformation("Graph content search returned 0 results for '{Query}'; falling back to in-memory.", query);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Graph content search failed; falling back to in-memory.");
-                return SearchContentInMemory(filterOptions);
             }
+
+            return SearchContentInMemory(filterOptions);
         }
 
         public ContentSearchViewModel SearchPdf(FilterOptionViewModel filterOptions)
@@ -274,26 +301,32 @@ namespace Foundation.Features.Search
                     .GetAsContentAsync()
                     .GetAwaiter().GetResult();
 
-                return new ContentSearchViewModel
+                if (result.Any())
                 {
-                    FilterOption = filterOptions,
-                    Hits = result
-                        .Where(m => m.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-                        .Take(10)
-                        .Select(m => new UnifiedSearchHit
-                        {
-                            Title = m.Name,
-                            Url = _urlResolver.GetUrl(m.ContentLink),
-                            Excerpt = string.Empty,
-                            SearchSection = "PDF"
-                        })
-                };
+                    return new ContentSearchViewModel
+                    {
+                        FilterOption = filterOptions,
+                        Hits = result
+                            .Where(m => m.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                            .Take(10)
+                            .Select(m => new UnifiedSearchHit
+                            {
+                                Title = m.Name,
+                                Url = _urlResolver.GetUrl(m.ContentLink),
+                                Excerpt = string.Empty,
+                                SearchSection = "PDF"
+                            })
+                    };
+                }
+
+                _logger.LogInformation("Graph PDF search returned 0 results for '{Query}'; falling back to in-memory.", query);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Graph PDF search failed; falling back to in-memory.");
-                return SearchPdfInMemory(filterOptions);
             }
+
+            return SearchPdfInMemory(filterOptions);
         }
 
         // ── Sort / outline helpers ──────────────────────────────────────────────────
@@ -387,9 +420,31 @@ namespace Foundation.Features.Search
         /// Uses Get&lt;EntryContentBase&gt; (not Get&lt;IContent&gt;) — Commerce 15 content provider
         /// requires an entry-specific type; Get&lt;IContent&gt; may return a non-castable proxy.
         /// </summary>
+        /// <remarks>
+        /// In Commerce 15, <c>GetDescendents</c> on the catalog system root (from
+        /// <c>ReferenceConverter.GetRootLink()</c>) returns nothing — it only works on
+        /// <c>CatalogContent</c> or <c>NodeContent</c> links.  When the root reference is
+        /// detected, this method enumerates each top-level catalog's descendants instead.
+        /// </remarks>
         private List<T> GetCatalogEntries<T>(ContentReference rootLink) where T : class, IContent
         {
-            return _contentLoader.GetDescendents(rootLink)
+            IEnumerable<ContentReference> refs;
+            var catalogRoot = _referenceConverter.GetRootLink();
+
+            if (!ContentReference.IsNullOrEmpty(rootLink) && rootLink == catalogRoot)
+            {
+                // Catalog root: GetDescendents returns nothing in Commerce 15.
+                // Walk each top-level CatalogContent and collect their descendants.
+                refs = _contentLoader
+                    .GetChildren<EPiServer.Commerce.Catalog.ContentTypes.CatalogContent>(catalogRoot)
+                    .SelectMany(c => _contentLoader.GetDescendents(c.ContentLink));
+            }
+            else
+            {
+                refs = _contentLoader.GetDescendents(rootLink);
+            }
+
+            return refs
                 .Select(r =>
                 {
                     try { return _contentLoader.Get<EntryContentBase>(r) as T; }

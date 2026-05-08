@@ -41,7 +41,7 @@ else
 
 @await Html.PartialAsync("_QuickViewModal")
 
-<script src="~/js/main.min.js"></script>
+<script src="~/js/main.min.js" asp-append-version="true"></script>
 
 @RenderSection("AdditionalScripts", required: false)
 @Html.RequiredClientResources("Footer")

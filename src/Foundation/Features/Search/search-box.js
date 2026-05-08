@@ -33,7 +33,7 @@ export default class SearchBox {
             Array.from(document.querySelectorAll(".jsSearchText")).forEach(function (el, i) {
 
                 inst.boxContent = el.getAttribute('data-result-container');
-                if (document.querySelector("#searchOption").value != "QuickSearch") {
+                if (document.querySelector("#searchOption").value === "AutoSearch") {
                     inst.AutoSearch(el);
                     el.addEventListener("keyup", function () {
                         clearTimeout(typingTimer);
@@ -216,7 +216,7 @@ export default class SearchBox {
     }
 
     hidePopover() {
-        document.querySelector('.searchbox-popover').style.dsiplay = "none";
+        document.querySelector('.searchbox-popover').style.display = "none";
     }
 
     // Search Image

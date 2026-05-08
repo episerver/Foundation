@@ -105,7 +105,7 @@
                         </div>
                         <div class="searchbox" id="js-searchbox">
                             <i class="icon-left" data-feather="search"></i>
-                            <input type="hidden" id="searchOption" value="@Model.SearchSettings.SearchOption" />
+                            <input type="hidden" id="searchOption" value="@(Model.SearchSettings?.SearchOption == "AutoSearch" ? "QuickSearch" : (Model.SearchSettings?.SearchOption ?? "QuickSearch"))" />
                             <input placeholder="Search" class="js-searchbox-input jsSearchText"
                                    data-search="@Url.ContentUrl(Model.ReferencePageSettings.SearchPage)"
                                    data-result-container="#jsResultSearch" />

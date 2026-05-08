@@ -46,7 +46,7 @@
 
     <link rel="icon" href="~/icons/episerver.png" type="image/x-icon" />
     <link rel="shortcut icon" href="~/icons/episerver.png" type="image/x-icon" />
-    <link href="~/scss/main.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/scss/main.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
     @RenderSection("AdditionalStyles", required: false)
     @Html.RequiredClientResources("Header")
     @if (Model.CurrentContent is not null)

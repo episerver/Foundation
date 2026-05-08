@@ -1,4 +1,5 @@
-﻿using Foundation.Infrastructure.Cms.Settings;
+﻿using System.ComponentModel;
+using Foundation.Infrastructure.Cms.Settings;
 using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 // CMS 13 / Phase 3: SearchFiltersConfiguration removed from code model pending Phase 4 Graph replacement.
 // IFacetConfiguration removed from SearchSettings for the same reason.
@@ -12,19 +13,23 @@ namespace Foundation.Features.Settings
     public class SearchSettings : SettingsBase
     {
         [CultureSpecific]
+        [DefaultValue("QuickSearch")]
         [SelectOne(SelectionFactoryType = typeof(SearchOptionSelectionFactory))]
         [Display(Name = "Search option", GroupName = TabNames.SearchSettings, Order = 50)]
         public virtual string SearchOption { get; set; }
 
         [CultureSpecific]
+        [DefaultValue(true)]
         [Display(Name = "Show products in search results", GroupName = TabNames.SearchSettings, Order = 100)]
         public virtual bool ShowProductSearchResults { get; set; }
 
         [CultureSpecific]
+        [DefaultValue(true)]
         [Display(Name = "Show contents in search results", GroupName = TabNames.SearchSettings, Order = 150)]
         public virtual bool ShowContentSearchResults { get; set; }
 
         [CultureSpecific]
+        [DefaultValue(true)]
         [Display(Name = "Show PDFs in search results", GroupName = TabNames.SearchSettings, Order = 175)]
         public virtual bool ShowPdfSearchResults { get; set; }
 

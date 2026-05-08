@@ -1,4 +1,11 @@
-﻿.loading-box {
+﻿// When .display-none is applied alongside .loading-box, hide takes precedence.
+// .loading-box alone has display:flex; this two-class selector (specificity 0,2,0)
+// beats that single-class rule without needing !important on the utility class.
+.loading-box.display-none {
+    display: none;
+}
+
+.loading-box {
     background-color: rgba(0,0,0,0.2);
     width: 100%;
     height: 100%;

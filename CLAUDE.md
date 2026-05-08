@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-04-22
+**Last updated:** 2026-05-07
 
 ---
 
@@ -27,6 +27,11 @@
 - ✅ Dashboard 500 "View 'Save' not found" — `return View("Index", viewModel)` explicit name in `ProfilePageController.Index` (see CMS 13 action routing note below)
 - ✅ My Organization Users 500 — null guard on `currentOrganization?.SubOrganizations` in `UsersController.Index`
 - ✅ My Organization 500 — null guard on `currentOrganization` in `OrganizationController.Index`
+- ✅ Homepage search not finding products — three bugs fixed:
+  1. **JS**: `search-box.js` used `!= "QuickSearch"` which routed all unconfigured-SearchOption searches through the old EPiServer.Find `/find_v2/_autocomplete` endpoint (removed in CMS 13). Fixed to `=== "AutoSearch"` so QuickSearch AJAX dropdown is the default.
+  2. **JS**: typo `style.dsiplay` → `style.display` in `hidePopover()`.
+  3. **Settings defaults**: `ShowProductSearchResults`, `ShowContentSearchResults`, `ShowPdfSearchResults` booleans in `SearchSettings.cs` defaulted to `false` (C# default). Added `[DefaultValue(true)]` and `[DefaultValue("QuickSearch")]` for `SearchOption`. **NOTE: existing CMS data is unaffected by this — you must manually enable "Show products in search results" in CMS admin → Global Settings Root → [Site] → Search Settings for the deployed site.**
+  4. **JS build**: Removed dead import of `Features/Recommendations/WidgetBlock/product-recommendations` from `foundation.commerce.js` (Recommendations feature removed in upgrade; import was breaking webpack build).
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
 ---
