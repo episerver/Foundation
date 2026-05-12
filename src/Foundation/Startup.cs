@@ -221,8 +221,11 @@ namespace Foundation
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
-            // Opal Chat
-            services.AddOpalChat();
+            // Opal Chat — only when InstanceId is configured (i.e. on DXP; not present locally)
+            if (!string.IsNullOrEmpty(_configuration["Optimizely:OpalChat:InstanceId"]))
+            {
+                services.AddOpalChat();
+            }
             // Geta.Optimizely.Categories removed: no CMS 13 version.
             // UNRVLD.ODP.VisitorGroups removed: no CMS 13 version (< 13.0.0 constraint).
 
