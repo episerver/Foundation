@@ -28,7 +28,8 @@ namespace Foundation.Features.MyAccount.Bookmarks
 
         public void Add(Guid contentGuid)
         {
-            var currentContact = CustomerContext.Current.CurrentContact;
+            CustomerContact currentContact = null;
+            try { currentContact = CustomerContext.Current.CurrentContact; } catch { /* BF MetaClass not initialised */ }
             if (currentContact != null)
             {
                 var contentReference = _permanentLinkMapper.Find(contentGuid).ContentReference;
@@ -55,7 +56,8 @@ namespace Foundation.Features.MyAccount.Bookmarks
 
         public List<BookmarkModel> Get()
         {
-            var currentContact = CustomerContext.Current.CurrentContact;
+            CustomerContact currentContact = null;
+            try { currentContact = CustomerContext.Current.CurrentContact; } catch { /* BF MetaClass not initialised */ }
             if (currentContact != null)
             {
                 var contact = new FoundationContact(currentContact);
@@ -67,7 +69,8 @@ namespace Foundation.Features.MyAccount.Bookmarks
 
         public void Remove(Guid contentGuid)
         {
-            var currentContact = CustomerContext.Current.CurrentContact;
+            CustomerContact currentContact = null;
+            try { currentContact = CustomerContext.Current.CurrentContact; } catch { /* BF MetaClass not initialised */ }
             if (currentContact != null)
             {
                 var contact = new FoundationContact(currentContact);

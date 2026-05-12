@@ -26,6 +26,12 @@ namespace Infrastructure.Commerce.Extensions
                     var marketService = ServiceLocator.Current.GetInstance<IMarketService>();
 
                     var currentMarket = _currentMarket.GetCurrentMarket();
+                    if (currentMarket == null)
+                    {
+                        await _next(context);
+                        return;
+                    }
+
                     var cart = orderRepository.LoadCart<ICart>(new Guid(anonymousId), DefaultCartName, currentMarket.MarketId);
 
                     if (cart != null && cart.GetAllLineItems().ToList().Count > 0)
@@ -40,6 +46,8 @@ namespace Infrastructure.Commerce.Extensions
             }
             await _next(context);
         }
-        public string DefaultCartName => "Default" + SiteDefinition.Current.StartPage.ID;
+        // CMS 13: SiteDefinition.Current returns null when no Application is configured for the hostname.
+        // Fall back to ID 0 so the cart name remains stable rather than throwing NullReferenceException.
+        public string DefaultCartName => "Default" + (SiteDefinition.Current?.StartPage?.ID ?? 0);
     }
 }

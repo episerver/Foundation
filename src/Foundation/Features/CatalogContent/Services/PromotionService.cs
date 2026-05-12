@@ -77,7 +77,19 @@ namespace Foundation.Features.CatalogContent.Services
             List<DiscountedEntry> source = new List<DiscountedEntry>();
             HashSet<string> entryCodes = new HashSet<string>(entryLinks.Select<ContentReference, string>(new Func<ContentReference, string>(referenceConverter.GetCode)));
             Dictionary<string, decimal> dictionary = new Dictionary<string, decimal>();
-            foreach (RewardDescription rewardDescription in _promotionEngine.Evaluate(entryLinks, market, marketCurrency, RequestFulfillmentStatus.Fulfilled))
+            IList<RewardDescription> rewards;
+            try
+            {
+                // Materialise eagerly so any lazy-enumeration exception is caught here.
+                rewards = _promotionEngine.Evaluate(entryLinks, market, marketCurrency, RequestFulfillmentStatus.Fulfilled).ToList();
+            }
+            catch
+            {
+                // Commerce Business Foundation MetaClass system not fully initialised
+                // (GetJoinedTableList NullRef). Return no discounts rather than crashing.
+                return source;
+            }
+            foreach (RewardDescription rewardDescription in rewards)
             {
                 HashSet<string> usedCodes = new HashSet<string>();
                 foreach (ILineItem lineItem in rewardDescription.Redemptions.Where<RedemptionDescription>((Func<RedemptionDescription, bool>)(x => x.AffectedEntries != null)).SelectMany<RedemptionDescription, PriceEntry>((Func<RedemptionDescription, IEnumerable<PriceEntry>>)(x => x.AffectedEntries.PriceEntries)).Where<PriceEntry>((Func<PriceEntry, bool>)(x => x != null)).Select<PriceEntry, ILineItem>((Func<PriceEntry, ILineItem>)(x => x.ParentItem)).Where<ILineItem>((Func<ILineItem, bool>)(x => !usedCodes.Contains(x.Code))).Where<ILineItem>((Func<ILineItem, bool>)(x => entryCodes.Contains(x.Code))))

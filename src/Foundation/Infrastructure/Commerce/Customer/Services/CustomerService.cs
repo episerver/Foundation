@@ -112,7 +112,8 @@ namespace Foundation.Infrastructure.Commerce.Customer.Services
 
         public virtual FoundationContact GetCurrentContact()
         {
-            var contact = _customerContext.CurrentContact;
+            CustomerContact contact = null;
+            try { contact = _customerContext.CurrentContact; } catch { /* BF MetaClass not initialised */ }
             if (contact == null)
             {
                 return null;

@@ -110,7 +110,8 @@ namespace Foundation.Features.Checkout.Services
         public virtual LargeCartViewModel CreateLargeCartViewModel(ICart cart, CartPage cartPage)
         {
             var pageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
-            var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
+            Mediachase.Commerce.Customers.CustomerContact contact = null;
+            try { contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact(); } catch { }
             AddressModel addressModel;
             if (cart == null)
             {
@@ -173,7 +174,8 @@ namespace Foundation.Features.Checkout.Services
                 };
             }
 
-            var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
+            Mediachase.Commerce.Customers.CustomerContact contact = null;
+            try { contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact(); } catch { }
             return new WishListViewModel(wishListPage)
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),
@@ -187,7 +189,8 @@ namespace Foundation.Features.Checkout.Services
         {
             var pageSettings = _settingsService.GetSiteSettings<ReferencePageSettings>();
             var labelSettings = _settingsService.GetSiteSettings<LabelSettings>();
-            var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
+            Mediachase.Commerce.Customers.CustomerContact contact = null;
+            try { contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact(); } catch { }
             if (cart == null)
             {
                 return new MiniWishlistViewModel
@@ -215,7 +218,8 @@ namespace Foundation.Features.Checkout.Services
         {
             var wishListLink = _settingsService.GetSiteSettings<ReferencePageSettings>()?.WishlistPage;
             var wishListPage = !wishListLink.IsNullOrEmpty() ? _contentLoader.Get<WishListPage>(wishListLink) : null;
-            var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
+            Mediachase.Commerce.Customers.CustomerContact contact = null;
+            try { contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact(); } catch { }
             if (cart == null && wishListPage != null)
             {
                 return new WishListMiniCartViewModel(wishListPage)
@@ -257,7 +261,8 @@ namespace Foundation.Features.Checkout.Services
                 };
             }
 
-            var contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact();
+            Mediachase.Commerce.Customers.CustomerContact contact = null;
+            try { contact = PrincipalInfo.CurrentPrincipal.GetCustomerContact(); } catch { }
             return new SharedCartViewModel(sharedCartPage)
             {
                 ItemCount = GetLineItemsTotalQuantity(cart),

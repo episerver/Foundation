@@ -70,7 +70,8 @@ namespace Foundation.Features.Header
         public virtual HeaderViewModel CreateHeaderViewModel(IContent content, HomePage home)
         {
             var layoutSettings = _settingsService.GetSiteSettings<LayoutSettings>() ?? new LayoutSettings();
-            var contact = _customerService.GetCurrentContact();
+            FoundationContact contact = null;
+            try { contact = _customerService.GetCurrentContact(); } catch { /* BF MetaClass not initialised */ }
             var isBookmarked = IsBookmarked(content);
             var viewModel = CreateViewModel(content, home, contact, isBookmarked);
             AddCommerceComponents(contact, viewModel);
@@ -339,20 +340,28 @@ namespace Foundation.Features.Header
 
         private List<DemoUserViewModel> GetDemoUsers(bool showCommerceUsers)
         {
-            return _customerContext.GetContacts(0, 1000)
-                .Select(_ => new FoundationContact(_))
-                .Where(_ => showCommerceUsers ? _.ShowInDemoUserMenu > 1 : _.ShowInDemoUserMenu == 2)
-                .Select(_ => new DemoUserViewModel
-                {
-                    Description = _.DemoUserDescription,
-                    Title = _.DemoUserTitle,
-                    Id = _.ContactId,
-                    Email = _.Email,
-                    FullName = _.FullName,
-                    SortOrder = _.DemoSortOrder
-                })
-                .OrderBy(_ => _.SortOrder)
-                .ToList();
+            try
+            {
+                return _customerContext.GetContacts(0, 1000)
+                    .Select(_ => new FoundationContact(_))
+                    .Where(_ => showCommerceUsers ? _.ShowInDemoUserMenu > 1 : _.ShowInDemoUserMenu == 2)
+                    .Select(_ => new DemoUserViewModel
+                    {
+                        Description = _.DemoUserDescription,
+                        Title = _.DemoUserTitle,
+                        Id = _.ContactId,
+                        Email = _.Email,
+                        FullName = _.FullName,
+                        SortOrder = _.DemoSortOrder
+                    })
+                    .OrderBy(_ => _.SortOrder)
+                    .ToList();
+            }
+            catch
+            {
+                // Commerce Business Foundation MetaClass system not fully initialised.
+                return new List<DemoUserViewModel>();
+            }
         }
     }
 }

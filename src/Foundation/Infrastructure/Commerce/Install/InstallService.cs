@@ -92,26 +92,35 @@ namespace Foundation.Infrastructure.Commerce.Install
 
         private FoundationConfiguration GetFoundationConfiguration()
         {
-            using (var connection = new SqlConnection(_connectionStringHandler.Commerce.ConnectionString))
+            try
             {
-                connection.Open();
-                var command = new SqlCommand
+                using (var connection = new SqlConnection(_connectionStringHandler.Commerce.ConnectionString))
                 {
-                    Connection = connection,
-                    CommandType = CommandType.StoredProcedure,
-                    CommandText = "FoundationConfiguration_List",
-                };
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                    connection.Open();
+                    var command = new SqlCommand
                     {
-                        return new FoundationConfiguration
+                        Connection = connection,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = "FoundationConfiguration_List",
+                    };
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            ApplicationName = reader["AppName"].ToString(),
-                            IsInstalled = Convert.ToBoolean(reader["IsInstalled"]),
-                        };
+                            return new FoundationConfiguration
+                            {
+                                ApplicationName = reader["AppName"].ToString(),
+                                IsInstalled = Convert.ToBoolean(reader["IsInstalled"]),
+                            };
+                        }
                     }
                 }
+            }
+            catch (SqlException ex) when (ex.Number == 2812)
+            {
+                // FoundationConfiguration_List stored procedure does not exist.
+                // Treat as not-yet-installed; ShouldInstall() will return false (null config).
+                _logger.Information("FoundationConfiguration_List SP not found — skipping Foundation install check.");
             }
 
             return null;

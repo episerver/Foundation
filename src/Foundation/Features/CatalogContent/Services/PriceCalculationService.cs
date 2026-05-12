@@ -14,10 +14,18 @@ namespace Foundation.Features.CatalogContent.Services
                 new CustomerPricing(CustomerPricing.PriceType.AllCustomers, string.Empty),
                 new CustomerPricing(CustomerPricing.PriceType.UserName, PrincipalInfo.CurrentPrincipal.Identity.Name)
             };
-            if (CustomerContext.Current.CurrentContact != null)
+            try
             {
-                customerPricing.Add(new CustomerPricing(CustomerPricing.PriceType.PriceGroup,
-                                    CustomerContext.Current.CurrentContact.EffectiveCustomerGroup));
+                if (CustomerContext.Current.CurrentContact != null)
+                {
+                    customerPricing.Add(new CustomerPricing(CustomerPricing.PriceType.PriceGroup,
+                                        CustomerContext.Current.CurrentContact.EffectiveCustomerGroup));
+                }
+            }
+            catch
+            {
+                // BF MetaClass NullRef — cls_* tables present but missing PKs/constraints.
+                // Skip customer-group pricing; AllCustomers and UserName tiers still apply.
             }
 
             var filter = new PriceFilter()

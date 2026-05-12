@@ -107,13 +107,13 @@ namespace Foundation.Features.Checkout.Services
             return validationIssues;
         }
 
-        public string DefaultCartName => "Default" + SiteDefinition.Current.StartPage.ID;
+        public string DefaultCartName => "Default" + (SiteDefinition.Current?.StartPage?.ID ?? 0);
 
-        public string DefaultWishListName => "WishList" + SiteDefinition.Current.StartPage.ID;
+        public string DefaultWishListName => "WishList" + (SiteDefinition.Current?.StartPage?.ID ?? 0);
 
-        public string DefaultSharedCartName => "Shared" + SiteDefinition.Current.StartPage.ID;
+        public string DefaultSharedCartName => "Shared" + (SiteDefinition.Current?.StartPage?.ID ?? 0);
 
-        public string DefaultOrderPadName => "OrderPad" + SiteDefinition.Current.StartPage.ID;
+        public string DefaultOrderPadName => "OrderPad" + (SiteDefinition.Current?.StartPage?.ID ?? 0);
 
         public void RecreateLineItemsBasedOnShipments(ICart cart, IEnumerable<CartItemViewModel> cartItems, IEnumerable<AddressModel> addresses)
         {
@@ -418,12 +418,34 @@ namespace Foundation.Features.Checkout.Services
             return validationIssues;
         }
 
-        public CartWithValidationIssues LoadCart(string name, bool validate) => LoadCart(name, _customerContext.CurrentContactId.ToString(), validate);
+        public CartWithValidationIssues LoadCart(string name, bool validate)
+        {
+            string contactId;
+            try { contactId = _customerContext.CurrentContactId.ToString(); }
+            catch { contactId = null; } // BF MetaClass NullRef when GetContactByUserId hits uninitialised cls_* tables
+            return LoadCart(name, contactId, validate);
+        }
 
         public CartWithValidationIssues LoadCart(string name, string contactId, bool validate)
         {
             var validationIssues = new Dictionary<ILineItem, List<ValidationIssue>>();
-            var cart = !string.IsNullOrEmpty(contactId) ? _orderRepository.LoadOrCreateCart<ICart>(new Guid(contactId), name, _currentMarket) : null;
+            // LoadOrCreateCart NullRefs inside Commerce code when GetCurrentMarket() returns null
+            // (happens on DXP when no market is resolved for the request). Guard to return null cart.
+            // Also wraps in try-catch: SerializableCartProvider.InitializeCart calls
+            // CustomerContext.GetContactById which triggers BF MetaClass NullRef on DXP when
+            // cls_* tables are missing PKs (dynamically generated tables copied via SELECT INTO).
+            ICart cart = null;
+            if (!string.IsNullOrEmpty(contactId) && _currentMarket.GetCurrentMarket() != null)
+            {
+                try
+                {
+                    cart = _orderRepository.LoadOrCreateCart<ICart>(new Guid(contactId), name, _currentMarket);
+                }
+                catch
+                {
+                    // Commerce Business Foundation MetaClass system not fully initialised.
+                }
+            }
             if (cart != null)
             {
                 SetCartCurrency(cart, _currencyService.GetCurrentCurrency());

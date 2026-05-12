@@ -27,7 +27,16 @@ namespace Foundation.Infrastructure.Commerce.Markets
             var currentMarket = _cookieService.Get(MarketCookie);
             if (string.IsNullOrEmpty(currentMarket))
             {
-                currentMarket = _customerService.GetCurrentContact()?.UserLocationId;
+                try
+                {
+                    currentMarket = _customerService.GetCurrentContact()?.UserLocationId;
+                }
+                catch
+                {
+                    // Commerce Business Foundation MetaClass system not fully initialised
+                    // (e.g. GetJoinedTableList NullRef on DXP before Application Manager is configured).
+                    // Skip the contact lookup and fall through to the default market.
+                }
                 if (!string.IsNullOrEmpty(currentMarket))
                 {
                     return GetMarket(new MarketId(currentMarket));

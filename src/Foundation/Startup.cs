@@ -1,5 +1,6 @@
 using Advanced.CMS.AdvancedReviews;
 using EPiServer.Authorization;
+using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Cms.UI.VisitorGroups;
 using EPiServer.Personalization.VisitorGroups;
 // CMS 13 removed: EPiServer.Cms.TinyMce.SpellChecker no longer exists in CMS 13.
@@ -54,23 +55,41 @@ namespace Foundation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // EcfSqlConnection falls back to EPiServerDB when not separately configured.
+            // On DXP, only EPiServerDB is injected automatically; Commerce shares the same database.
+            var ecfConnStr = _configuration.GetConnectionString("EcfSqlConnection");
+            if (string.IsNullOrEmpty(ecfConnStr))
+                ecfConnStr = _configuration.GetConnectionString("EPiServerDB");
             services.Configure<DataAccessOptions>(options => options.ConnectionStrings.Add(new ConnectionStringOptions
             {
                 Name = "EcfSqlConnection",
-                ConnectionString = _configuration.GetConnectionString("EcfSqlConnection")
+                ConnectionString = ecfConnStr
             }));
-            // CMS 13: ApplicationBuilderExtensions moved to EPiServer.DependencyInjection namespace.
-            services.AddCmsAspNetIdentity<SiteUser>(o =>
+            // CMS 13: On DXP, Opti ID is mandatory — do NOT call AddCmsAspNetIdentity on non-Development.
+            // AddOptimizelyIdentity is registered below in the non-Development block.
+            if (_webHostingEnvironment.IsDevelopment())
             {
-                if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
+                services.AddCmsAspNetIdentity<SiteUser>(o =>
                 {
-                    o.ConnectionStringOptions = new ConnectionStringOptions
+                    if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
                     {
-                        Name = "EcfSqlConnection",
-                        ConnectionString = _configuration.GetConnectionString("EcfSqlConnection")
-                    };
-                }
-            });
+                        o.ConnectionStringOptions = new ConnectionStringOptions
+                        {
+                            Name = "EcfSqlConnection",
+                            ConnectionString = _configuration.GetConnectionString("EcfSqlConnection")
+                        };
+                    }
+                });
+            }
+            else
+            {
+                // AddCmsAspNetIdentity is not called on DXP (Opti ID is used instead).
+                // CustomerService requires ServiceAccessor<ApplicationSignInManager<SiteUser>> and
+                // ServiceAccessor<ApplicationUserManager<SiteUser>> — register null-returning stubs
+                // so the service can be constructed. Callers must guard for null on non-dev.
+                services.AddSingleton<ServiceAccessor<ApplicationSignInManager<SiteUser>>>(_ => () => null);
+                services.AddSingleton<ServiceAccessor<ApplicationUserManager<SiteUser>>>(_ => () => null);
+            }
 
             //UI
             if (_webHostingEnvironment.IsDevelopment())
@@ -90,6 +109,10 @@ namespace Foundation
             .AddRazorOptions(ro => ro.ViewLocationExpanders.Add(new FeatureViewLocationExpander()));
 
             services.AddCms();
+            if (!_webHostingEnvironment.IsDevelopment())
+            {
+                services.AddCmsCloudPlatformSupport(_configuration);
+            }
             services.AddVisitorGroupsCore();
             services.AddVisitorGroupsMvc();
             services.AddVisitorGroupsUI();
@@ -104,7 +127,13 @@ namespace Foundation
             // services.AddFind();
             // EPiServer.Social.Framework removed (user decision + deprecated)
             services.AddDisplay();
-            services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
+            // ContentInstaller installs demo data and requires UIUserProvider/UISignInManager
+            // (registered by AddCmsAspNetIdentity). On DXP, Opti ID is used and these types
+            // are not available, so only register ContentInstaller in development.
+            if (_webHostingEnvironment.IsDevelopment())
+            {
+                services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(ContentInstaller)));
+            }
             services.AddDetection();
             services.AddTinyMceConfiguration();
             // CMS 13 removed: AddTinyMceSpellChecker no longer exists in CMS 13.
@@ -152,9 +181,20 @@ namespace Foundation
             // services.AddServiceApiAuthorization(OpenIDConnectOptionsDefaults.AuthenticationScheme);
 
             // CMS 13: EPiServer.OpenIDConnect.UI replaced by EPiServer.OptimizelyIdentity.
-            // EPiServer.OptimizelyIdentity requires Optimizely DXP cloud (Turnstile) and does not work self-hosted.
-            // For self-hosted CMS 13, AddCmsAspNetIdentity above is sufficient for local auth.
-            // services.AddOptimizelyIdentity(useAsDefault: false);
+            // Local dev uses AddCmsAspNetIdentity (above). On DXP, Opti ID is mandatory.
+            if (_webHostingEnvironment.IsDevelopment())
+            {
+                // Allow the quick editor to be embedded into CMP via an iframe (ASP.NET Identity cookie).
+                services.ConfigureApplicationCookie(options =>
+                {
+                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                });
+            }
+            else
+            {
+                services.AddOptimizelyIdentity();
+            }
 
             // services.ConfigureContentDeliveryApiSerializer(settings => settings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore);
 
@@ -221,13 +261,6 @@ namespace Foundation
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
 
-            // If using ASP.NET Identity
-            // Allow the quick editor to be embedded into CMP via an iframe
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            });
 
             // CMS 13 removed: CmsServiceOptions and AddDevelopmentSigningCredentials moved/removed.
             // if (_webHostingEnvironment.IsDevelopment())

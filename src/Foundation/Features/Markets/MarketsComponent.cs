@@ -35,6 +35,12 @@ namespace Foundation.Features.Markets
         {
             var currentMarket = _currentMarket.GetCurrentMarket();
 
+            // ICurrentMarket.GetCurrentMarket() returns null on DXP when no Application is configured
+            // (fresh database, before Application Manager is set up). Return an empty view rather than
+            // crashing on currentMarket.MarketId.Value at the cache key lookup below.
+            if (currentMarket == null)
+                return View(ViewName, new MarketViewModel());
+
             // CMS 13: CacheManager obsolete. Use ISynchronizedObjectInstanceCache.
             if (_objectInstanceCache.Get(Constant.CacheKeys.MarketViewModel + "-" + currentMarket.MarketId.Value) is MarketViewModel cache)
             {

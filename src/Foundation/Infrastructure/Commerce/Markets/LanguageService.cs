@@ -52,13 +52,15 @@ namespace Foundation.Infrastructure.Commerce.Markets
                 _cookieService.Set(LanguageCookie, chosenLanguage);
             }
         }
-        public virtual IEnumerable<CultureInfo> GetAvailableLanguages() => CurrentMarket.Languages;
+        public virtual IEnumerable<CultureInfo> GetAvailableLanguages() => CurrentMarket?.Languages ?? Enumerable.Empty<CultureInfo>();
 
         public virtual CultureInfo GetCurrentLanguage()
         {
-            return TryGetLanguage(_cookieService.Get(LanguageCookie), out var cultureInfo)
-                ? cultureInfo
-                : CurrentMarket.DefaultLanguage;
+            if (TryGetLanguage(_cookieService.Get(LanguageCookie), out var cultureInfo))
+                return cultureInfo;
+            // CurrentMarket is null when ICurrentMarket.GetCurrentMarket() returns null (e.g. on DXP
+            // before a market is associated with the current request context). Fall back to English.
+            return CurrentMarket?.DefaultLanguage ?? CultureInfo.GetCultureInfo("en");
         }
 
         private bool TryGetLanguage(string language, out CultureInfo cultureInfo)

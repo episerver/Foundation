@@ -16,10 +16,16 @@ namespace Foundation.Infrastructure.Commerce.Markets
 
         private IMarket CurrentMarket => _currentMarket.GetCurrentMarket();
 
-        public IEnumerable<Currency> GetAvailableCurrencies() => CurrentMarket.Currencies;
+        public IEnumerable<Currency> GetAvailableCurrencies() => CurrentMarket?.Currencies ?? Enumerable.Empty<Currency>();
 
         public virtual Currency GetCurrentCurrency()
         {
+            // CurrentMarket is null when ICurrentMarket.GetCurrentMarket() returns null (e.g. on DXP
+            // before a market is associated with the current request context). Fall back to USD so
+            // Money(0, currency) in CartViewModelFactory does not throw "The currency is empty".
+            if (CurrentMarket == null)
+                return new Currency("USD");
+
             return TryGetCurrency(_cookieService.Get(CurrencyCookie), out var currency)
                 ? currency
                 : CurrentMarket.DefaultCurrency;
