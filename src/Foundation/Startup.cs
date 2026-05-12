@@ -34,6 +34,7 @@ using Microsoft.Extensions.Hosting;
 // using AdaptiveImages.Initialization;
 // using AdaptiveImages.Unsplash;
 using Optimizely.Cms.DependencyInjection;
+using Optimizely.Cms.OpalChat;
 // Optimizely.Cms.Preview1 removed: preview functionality absorbed into CMS 13 main package.
 // Phase 4: Optimizely Graph + Content Manager
 using Optimizely.Graph.DependencyInjection;
@@ -220,6 +221,8 @@ namespace Foundation
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
+            // Opal Chat
+            services.AddOpalChat();
             // Geta.Optimizely.Categories removed: no CMS 13 version.
             // UNRVLD.ODP.VisitorGroups removed: no CMS 13 version (< 13.0.0 constraint).
 
