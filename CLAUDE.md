@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-05-12 (build 1927)
+**Last updated:** 2026-05-13
 
 ---
 
@@ -48,6 +48,7 @@
   4. `CartService.LoadCart(string, bool)` — 2-arg overload was a one-liner that called `CurrentContactId` before reaching the try-catch in the 3-arg overload; expanded to multi-line with its own try-catch (build 1924)
   5. `CustomerService.GetCurrentContact` — wrapped `_customerContext.CurrentContact` in try-catch (build 1925)
 - ✅ DXP 500 — Commerce Admin UI pages (`/ui/Commerce/dashboard`, `/ui/Commerce/catalog`, `/ui/Commerce/marketing`) crashing via `EPiServer.Commerce.Security.Internal.BaseController.Tracking()` → `PrincipalExtensions.GetContactEmail()` → `CustomerContext.GetContactByUserId()` → `MetaClass.GetJoinedTableList()` NullRef. These are Commerce **package** controllers — Foundation code has no try-catch influence over them. Root cause: the DXP combined bacpac's `mcmd_MetaFieldType` table only contains rows 1–25 (standard types from `EPiServer.Commerce.Core.sql`); six custom BF types (IDs 26–31: `OrganizationType`, `BusinessCategory`, `AddressType`, `ContactGroup`, `CreditCardType`, `DemoUserMenu`) that Commerce adds during first-run metadata initialization are absent. Seven fields across four MetaClasses reference these missing types. When BF resolves a field's type → null → NullRef inside `GetJoinedTableList()`. Fix: added `EnsureBFMetaFieldTypes()` to `Program.cs` startup which INSERTs the six missing rows by name if absent. Also added `EnsureBFMetaClassPKs()` (build 1926) which adds `PRIMARY KEY CLUSTERED` to all 8 `cls_*` tables for correct BF query generation (build 1927).
+- ✅ Edit mode preview not updating on content change — `SectionsVisibility.OnPageEditing` defaults to `false` in CMS 13 (Visual Builder is the new default). Fixed by adding `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`.
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
 ---
@@ -225,7 +226,7 @@ Run against `david_cms13-upgrade.DXP`, then re-export with `sqlpackage /Action:E
 3. **Opti ID mandatory** (PaaS) — replaces OpenID Connect / EPiServer identity stack
 4. **Commerce 15 required** — CMS 13 is NOT compatible with Commerce 14
 5. **Site Definitions removed** — replaced by Application model (`IApplicationResolver`)
-6. **On-Page Editing opt-in** — Visual Builder is new default; OPE requires `OnPageEditing = true`
+6. **On-Page Editing opt-in** — Visual Builder is new default; OPE requires `SectionsVisibility.OnPageEditing = true` via `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Without this, the preview iframe does NOT update when content is changed in edit mode. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`.
 7. **Plugin Manager removed** — `EPiServer.PlugIn` system gone from Admin
 8. **Module URL namespace** — changed from `/EPiServer/` to `/Optimizely/`
 9. **New built-in Content Manager** — powered by Graph; EPiServer.Labs.ContentManager superseded

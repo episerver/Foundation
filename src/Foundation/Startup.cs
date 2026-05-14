@@ -33,6 +33,7 @@ using Microsoft.Extensions.Hosting;
 // AdaptiveImages removed: no CMS 13 version (requires EPiServer.CMS < 13.0.0).
 // using AdaptiveImages.Initialization;
 // using AdaptiveImages.Unsplash;
+using EPiServer.Cms.Shell.UI.Configurations;
 using Optimizely.Cms.DependencyInjection;
 using Optimizely.Cms.OpalChat;
 // Optimizely.Cms.Preview1 removed: preview functionality absorbed into CMS 13 main package.
@@ -110,6 +111,10 @@ namespace Foundation
             .AddRazorOptions(ro => ro.ViewLocationExpanders.Add(new FeatureViewLocationExpander()));
 
             services.AddCms();
+            // CMS 13: On-Page Editing (OPE) is disabled by default — Visual Builder is the new default.
+            // Foundation uses traditional MVC rendering, so OPE must be explicitly re-enabled so that
+            // the preview iframe receives content-change notifications from the editor and updates.
+            services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true);
             if (!_webHostingEnvironment.IsDevelopment())
             {
                 services.AddCmsCloudPlatformSupport(_configuration);

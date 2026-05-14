@@ -1,5 +1,6 @@
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.Framework.Web;
+using EPiServer.Framework.Web.Mvc;
 using Foundation.Features.Blocks.MenuItemBlock;
 using Foundation.Features.Home;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -11,6 +12,8 @@ namespace Foundation.Features.Preview
         TemplateTypeCategory = TemplateTypeCategories.MvcController, //Required as controllers for blocks are registered as MvcPartialController by default
         Tags = new[] { RenderingTags.Preview, RenderingTags.Edit },
         AvailableWithoutTag = false)]
+    [VisitorGroupImpersonation]
+    [RequireClientResources]
     public class PreviewController : ActionControllerBase, IRenderTemplate<BlockData>
     {
         private readonly IContentLoader _contentLoader;
