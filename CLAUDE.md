@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-05-13
+**Last updated:** 2026-05-14 (build 1929)
 
 ---
 
@@ -48,7 +48,7 @@
   4. `CartService.LoadCart(string, bool)` — 2-arg overload was a one-liner that called `CurrentContactId` before reaching the try-catch in the 3-arg overload; expanded to multi-line with its own try-catch (build 1924)
   5. `CustomerService.GetCurrentContact` — wrapped `_customerContext.CurrentContact` in try-catch (build 1925)
 - ✅ DXP 500 — Commerce Admin UI pages (`/ui/Commerce/dashboard`, `/ui/Commerce/catalog`, `/ui/Commerce/marketing`) crashing via `EPiServer.Commerce.Security.Internal.BaseController.Tracking()` → `PrincipalExtensions.GetContactEmail()` → `CustomerContext.GetContactByUserId()` → `MetaClass.GetJoinedTableList()` NullRef. These are Commerce **package** controllers — Foundation code has no try-catch influence over them. Root cause: the DXP combined bacpac's `mcmd_MetaFieldType` table only contains rows 1–25 (standard types from `EPiServer.Commerce.Core.sql`); six custom BF types (IDs 26–31: `OrganizationType`, `BusinessCategory`, `AddressType`, `ContactGroup`, `CreditCardType`, `DemoUserMenu`) that Commerce adds during first-run metadata initialization are absent. Seven fields across four MetaClasses reference these missing types. When BF resolves a field's type → null → NullRef inside `GetJoinedTableList()`. Fix: added `EnsureBFMetaFieldTypes()` to `Program.cs` startup which INSERTs the six missing rows by name if absent. Also added `EnsureBFMetaClassPKs()` (build 1926) which adds `PRIMARY KEY CLUSTERED` to all 8 `cls_*` tables for correct BF query generation (build 1927).
-- ✅ Edit mode preview not updating on content change — `SectionsVisibility.OnPageEditing` defaults to `false` in CMS 13 (Visual Builder is the new default). Fixed by adding `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`.
+- ✅ Edit mode preview not updating on content change — `SectionsVisibility.OnPageEditing` defaults to `false` in CMS 13 (Visual Builder is the new default). Fixed by adding `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`. Pre-existing build error also fixed: `PreviewController.cs` was missing `using EPiServer.Framework.Web.Mvc;` (required for `[RequireClientResources]` attribute). Deployed as build 1929.
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
 ---
@@ -77,6 +77,7 @@ GroupNamesCustom, OdpStory).
 - **Build:** `dotnet build src/Foundation/Foundation.csproj -c Release --nologo -v q`
 - **Publish output:** `publish/` (relative to working directory)
 - **Deploy:** stop IIS app pool → `dotnet publish ... -o publish` → start app pool
+- **⚠️ App pool stop takes ~20s** — `Stop-WebAppPool` returns immediately but the process keeps Serilog's log file locked until fully exited. Always poll `Get-WebAppPoolState` until `Stopped` before `Compress-Archive`, otherwise the zip fails. See `C:\Windows\Temp\deploy_1929.ps1` for the correct pattern.
 - **IIS site:** `david_cms13-upgrade` — app pool name matches site name
 - **URL:** `https://cms13-upgrade.opti-demo.online`
 
@@ -121,6 +122,8 @@ Start-EpiDeployment -ProjectId $projectId -DeploymentPackage @('cms.app.YYYY.MM.
 ```
 
 Code zip name must match: `{name}.app.{version}.zip` (or `.nupkg`).
+
+**Latest code deploy:** `cms.app.2026.05.14.1929.zip` — OPE preview fix + PreviewController build fix. Script: `C:\Windows\Temp\deploy_1929.ps1`.
 
 ### Importing a database to DXP Integration
 
