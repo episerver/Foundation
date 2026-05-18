@@ -18,11 +18,8 @@
     <!-- EPiServer.CMS.WelcomeIntegration.UI removed: no CMS 13 version (< 13.0.0 constraint). -->
     <PackageReference Include="EPiServer.CMS.TinyMce" Version="13.0.2" />
     <PackageReference Include="EPiServer.Cms.UI.VisitorGroups" Version="13.0.2" />
-    <PackageReference Include="EPiServer.Commerce" Version="15.0.0-preview1" />
-    <!-- Commerce.ODP 15.0.0-preview1 does not exist yet; override transitive pin to latest available (14.45.3). NU1605 suppressed. -->
-    <PackageReference Include="EPiServer.Commerce.ODP" Version="14.45.3">
-      <NoWarn>NU1605</NoWarn>
-    </PackageReference>
+    <PackageReference Include="EPiServer.Commerce" Version="15.0.0" />
+    <PackageReference Include="EPiServer.Commerce.ODP" Version="15.0.0" />
     <PackageReference Include="EPiServer.CloudPlatform.Cms" Version="13.0.2" />
     <PackageReference Include="EPiServer.Hosting" Version="13.0.2" />
     <!-- Updated from 1.0.1 to 13.0.0 for CMS 13 compatibility. -->

@@ -226,11 +226,11 @@ namespace Foundation
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
-            // Opal Chat — only when InstanceId is configured (i.e. on DXP; not present locally)
-            if (!string.IsNullOrEmpty(_configuration["Optimizely:OpalChat:InstanceId"]))
-            {
-                services.AddOpalChat();
-            }
+            // Opal Chat — registered unconditionally. OpalChatOptionsConfigurer resolves
+            // the InstanceId from the DXP platform context at runtime, not from appsettings,
+            // so guarding on a config key always returned false and prevented registration.
+            // On local dev the widget is simply hidden (no platform context = no InstanceId).
+            services.AddOpalChat();
             // Geta.Optimizely.Categories removed: no CMS 13 version.
             // UNRVLD.ODP.VisitorGroups removed: no CMS 13 version (< 13.0.0 constraint).
 

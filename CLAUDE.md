@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-05-14 (build 1929)
+**Last updated:** 2026-05-18 (build 1931)
 
 ---
 
@@ -48,7 +48,9 @@
   4. `CartService.LoadCart(string, bool)` — 2-arg overload was a one-liner that called `CurrentContactId` before reaching the try-catch in the 3-arg overload; expanded to multi-line with its own try-catch (build 1924)
   5. `CustomerService.GetCurrentContact` — wrapped `_customerContext.CurrentContact` in try-catch (build 1925)
 - ✅ DXP 500 — Commerce Admin UI pages (`/ui/Commerce/dashboard`, `/ui/Commerce/catalog`, `/ui/Commerce/marketing`) crashing via `EPiServer.Commerce.Security.Internal.BaseController.Tracking()` → `PrincipalExtensions.GetContactEmail()` → `CustomerContext.GetContactByUserId()` → `MetaClass.GetJoinedTableList()` NullRef. These are Commerce **package** controllers — Foundation code has no try-catch influence over them. Root cause: the DXP combined bacpac's `mcmd_MetaFieldType` table only contains rows 1–25 (standard types from `EPiServer.Commerce.Core.sql`); six custom BF types (IDs 26–31: `OrganizationType`, `BusinessCategory`, `AddressType`, `ContactGroup`, `CreditCardType`, `DemoUserMenu`) that Commerce adds during first-run metadata initialization are absent. Seven fields across four MetaClasses reference these missing types. When BF resolves a field's type → null → NullRef inside `GetJoinedTableList()`. Fix: added `EnsureBFMetaFieldTypes()` to `Program.cs` startup which INSERTs the six missing rows by name if absent. Also added `EnsureBFMetaClassPKs()` (build 1926) which adds `PRIMARY KEY CLUSTERED` to all 8 `cls_*` tables for correct BF query generation (build 1927).
+- ✅ Opal Chat not available on DXP — `AddOpalChat()` was gated behind `_configuration["Optimizely:OpalChat:InstanceId"]` which is always empty because `OpalChatOptionsConfigurer` resolves the InstanceId from the DXP platform context at runtime, not from appsettings. The guard prevented registration entirely. Fixed by calling `services.AddOpalChat()` unconditionally (`Startup.cs`). Safe on local dev — `InstanceId` is not `[Required]` so `ValidateOnStart` does not fail; widget is simply hidden with no platform context. Deployed as build 1930.
 - ✅ Edit mode preview not updating on content change — `SectionsVisibility.OnPageEditing` defaults to `false` in CMS 13 (Visual Builder is the new default). Fixed by adding `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`. Pre-existing build error also fixed: `PreviewController.cs` was missing `using EPiServer.Framework.Web.Mvc;` (required for `[RequireClientResources]` attribute). Deployed as build 1929.
+- ✅ Commerce upgraded to 15.0.0 GA — removed `EPiServer.Commerce 15.0.0-preview1` + `EPiServer.Commerce.ODP 14.45.3` (with `<NoWarn>NU1605</NoWarn>` workaround). Replaced with `EPiServer.Commerce 15.0.0` + `EPiServer.Commerce.ODP 15.0.0` (clean, no suppression needed). Dependency tree identical to preview1; all transitive DLLs already present. Deployed as build 1931.
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
 ---
@@ -60,7 +62,7 @@ Upgrading the Optimizely Foundation reference implementation from **CMS 12.31.2*
 | Component | Before | After |
 |---|---|---|
 | Optimizely CMS | 12.31.2 | **13.0.1** |
-| Optimizely Commerce | 14.28.0 | **15.0.0-preview1** |
+| Optimizely Commerce | 14.28.0 | **15.0.0** |
 | .NET Target Framework | net6.0 | **net10.0** |
 | Search | EPiServer.Find 16.3.0 | **Optimizely.Graph.Cms 13.0.1** |
 
@@ -123,7 +125,7 @@ Start-EpiDeployment -ProjectId $projectId -DeploymentPackage @('cms.app.YYYY.MM.
 
 Code zip name must match: `{name}.app.{version}.zip` (or `.nupkg`).
 
-**Latest code deploy:** `cms.app.2026.05.14.1929.zip` — OPE preview fix + PreviewController build fix. Script: `C:\Windows\Temp\deploy_1929.ps1`.
+**Latest code deploy:** `cms.app.2026.05.18.1931.zip` — Commerce 15.0.0 GA upgrade (removed preview1 + ODP NU1605 workaround). Script: `C:\Windows\Temp\deploy_1931.ps1`.
 
 ### Importing a database to DXP Integration
 
@@ -295,7 +297,7 @@ Run against `david_cms13-upgrade.DXP`, then re-export with `sqlpackage /Action:E
 | Package | From | To |
 |---|---|---|
 | `EPiServer.CMS` | 12.31.2 | 13.0.1 |
-| `EPiServer.Commerce` | 14.28.0 | 15.0.0-preview1 |
+| `EPiServer.Commerce` | 14.28.0 | 15.0.0 |
 | `EPiServer.Hosting` | 12.21.7 | 13.0.1 |
 | `EPiServer.CMS.TinyMce` | 4.8.0 | 13.0.1 |
 | `EPiServer.Forms` | 5.10.7 | 6.0.0 |
@@ -665,7 +667,7 @@ field mapping in the Graph schema is confirmed. `BuildFilter<T>().And(...)` requ
 
 | Risk | Severity | Mitigation |
 |---|---|---|
-| Commerce 15 is preview only | HIGH | Accepted; monitor for GA release |
+| Commerce 15 — GA released 2026-05-18 | ✅ Resolved | Upgraded to 15.0.0 GA in build 1931 |
 | Many community add-ons have no v13 version | HIGH | Removed; track GitHub for v13 PRs |
 | EPiServer.Find replaced — search uses Graph | LOW | Graph queries implemented; in-memory fallback active until indexing verified |
 | UNRVLD ODP visitor groups not available | MEDIUM | ODP personalisation temporarily disabled |
