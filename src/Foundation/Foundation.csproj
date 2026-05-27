@@ -51,7 +51,8 @@
     <!-- PowerSlice removed: no CMS 13 version (< 13.0.0 constraint). -->
     <!-- Productivity enhancements, Tools, Other Add-ons -->
     <PackageReference Include="Advanced.CMS.AdvancedReviews" Version="2.0.0" />
-    <PackageReference Include="Optimizely.Cms.OpalChat" Version="2.0.0" />
+    <PackageReference Include="Optimizely.Cms.OpalChat" Version="2.0.0" />    
+    <PackageReference Include="Optimizely.Cms.Opal.Tools" Version="13.0.0" />
     <!-- Advanced.CMS.BulkEdit removed: no CMS 13 version (< 13.0.0 constraint). -->
     <!-- Advanced.CMS.GroupingHeader removed: no CMS 13 version (< 13.0.0 constraint). -->
     <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="6.0.0" />

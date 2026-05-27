@@ -36,6 +36,8 @@ using Microsoft.Extensions.Hosting;
 using EPiServer.Cms.Shell.UI.Configurations;
 using Optimizely.Cms.DependencyInjection;
 using Optimizely.Cms.OpalChat;
+using Optimizely.Cms.Opal.Tools;
+using Optimizely.Opal.Tools;
 // Optimizely.Cms.Preview1 removed: preview functionality absorbed into CMS 13 main package.
 // Phase 4: Optimizely Graph + Content Manager
 using Optimizely.Graph.DependencyInjection;
@@ -231,6 +233,10 @@ namespace Foundation
             // so guarding on a config key always returned false and prevented registration.
             // On local dev the widget is simply hidden (no platform context = no InstanceId).
             services.AddOpalChat();
+
+            // Opal Tools
+            services.AddCmsOpalTools();
+
             // Geta.Optimizely.Categories removed: no CMS 13 version.
             // UNRVLD.ODP.VisitorGroups removed: no CMS 13 version (< 13.0.0 constraint).
 
@@ -308,6 +314,7 @@ namespace Foundation
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
                 endpoints.MapContent();
+                endpoints.MapOpalTools("/opal/");
             });
         }
     }
