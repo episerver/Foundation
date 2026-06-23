@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-06-09 (build 1934)
+**Last updated:** 2026-06-23 (build 1935)
 
 ---
 
@@ -51,6 +51,7 @@
 - ✅ Opal Chat not available on DXP — `AddOpalChat()` was gated behind `_configuration["Optimizely:OpalChat:InstanceId"]` which is always empty because `OpalChatOptionsConfigurer` resolves the InstanceId from the DXP platform context at runtime, not from appsettings. The guard prevented registration entirely. Fixed by calling `services.AddOpalChat()` unconditionally (`Startup.cs`). Safe on local dev — `InstanceId` is not `[Required]` so `ValidateOnStart` does not fail; widget is simply hidden with no platform context. Deployed as build 1930.
 - ✅ Edit mode preview not updating on content change — `SectionsVisibility.OnPageEditing` defaults to `false` in CMS 13 (Visual Builder is the new default). Fixed by adding `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`. Pre-existing build error also fixed: `PreviewController.cs` was missing `using EPiServer.Framework.Web.Mvc;` (required for `[RequireClientResources]` attribute). Deployed as build 1929.
 - ✅ Commerce upgraded to 15.0.0 GA — removed `EPiServer.Commerce 15.0.0-preview1` + `EPiServer.Commerce.ODP 14.45.3` (with `<NoWarn>NU1605</NoWarn>` workaround). Replaced with `EPiServer.Commerce 15.0.0` + `EPiServer.Commerce.ODP 15.0.0` (clean, no suppression needed). Dependency tree identical to preview1; all transitive DLLs already present. Deployed as build 1931.
+- ✅ Package upgrade: CMS 13.0.2 → 13.1.0, Commerce 15.0.0 → 15.0.1, Commerce.ODP 15.0.0 → 15.0.1, Optimizely.Cmp.Client 1.1.0 → 1.2.0, all Graph/ContentManager/Forms/Identity packages to 13.1.0. No code changes required — no breaking API changes in either release. `Optimizely.Cms.Opal.Tools` remains at 13.0.0 (no 13.1.0 available). Deployed as build 1935.
 - ✅ Projects feature not enabled in CMS editor — `ProjectUIOptions.ProjectModeEnabled` defaults to `null` and `ProjectGadgetEnabled` defaults to `false` in CMS 13; both must be set explicitly. Fixed by adding `services.Configure<ProjectUIOptions>(o => { o.ProjectModeEnabled = true; o.ProjectGadgetEnabled = true; })` in `Startup.cs` (namespace: `EPiServer.Cms.Shell.UI.Rest.Projects`). Note: this is the built-in CMS 13 Projects feature — `EPiServer.Labs.ProjectEnhancements` (the old add-on) has no CMS 13 version and remains removed. Deployed as build 1934.
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
@@ -62,8 +63,8 @@ Upgrading the Optimizely Foundation reference implementation from **CMS 12.31.2*
 
 | Component | Before | After |
 |---|---|---|
-| Optimizely CMS | 12.31.2 | **13.0.1** |
-| Optimizely Commerce | 14.28.0 | **15.0.0** |
+| Optimizely CMS | 12.31.2 | **13.1.0** |
+| Optimizely Commerce | 14.28.0 | **15.0.1** |
 | .NET Target Framework | net6.0 | **net10.0** |
 | Search | EPiServer.Find 16.3.0 | **Optimizely.Graph.Cms 13.0.1** |
 
@@ -126,7 +127,7 @@ Start-EpiDeployment -ProjectId $projectId -DeploymentPackage @('cms.app.YYYY.MM.
 
 Code zip name must match: `{name}.app.{version}.zip` (or `.nupkg`).
 
-**Latest code deploy:** `cms.app.2026.06.09.1934.zip` — Projects feature enabled (`ProjectUIOptions`). Script: `C:\Windows\Temp\deploy_1934.ps1`.
+**Latest code deploy:** `cms.app.2026.06.23.1935.zip` — CMS 13.1.0 + Commerce 15.0.1 package upgrade. Script: `C:\Windows\Temp\deploy_1935.ps1`.
 
 ### Importing a database to DXP Integration
 

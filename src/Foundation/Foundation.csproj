@@ -11,19 +11,19 @@
     <!-- AdaptiveImages removed: no CMS 13 version (requires EPiServer.CMS < 13.0.0 and ImageSharp < 3.0.0). -->
     <!-- AdaptiveImages.Unsplash removed: depends on AdaptiveImages. -->
     <!-- Baaijte.Optimizely.ImageSharp.Web removed: no CMS 13 version (< 13.0.0 constraint). Use EPiServer.ImageLibrary.ImageSharp instead. -->
-    <PackageReference Include="EPiServer.CMS" Version="13.0.2" />
-    <PackageReference Include="EPiServer.Cms.UI.AspNetIdentity" Version="13.0.2" />
-    <PackageReference Include="EPiServer.OptimizelyIdentity" Version="13.0.2" />
+    <PackageReference Include="EPiServer.CMS" Version="13.1.0" />
+    <PackageReference Include="EPiServer.Cms.UI.AspNetIdentity" Version="13.1.0" />
+    <PackageReference Include="EPiServer.OptimizelyIdentity" Version="13.1.0" />
     <!-- EPiServer.CMS.AspNetCore.HtmlHelpers and TagHelpers absorbed into EPiServer.CMS 13.0.1 meta-package; add back if restore fails -->
     <!-- EPiServer.CMS.WelcomeIntegration.UI removed: no CMS 13 version (< 13.0.0 constraint). -->
-    <PackageReference Include="EPiServer.CMS.TinyMce" Version="13.0.2" />
-    <PackageReference Include="EPiServer.Cms.UI.VisitorGroups" Version="13.0.2" />
-    <PackageReference Include="EPiServer.Commerce" Version="15.0.0" />
-    <PackageReference Include="EPiServer.Commerce.ODP" Version="15.0.0" />
-    <PackageReference Include="EPiServer.CloudPlatform.Cms" Version="13.0.2" />
-    <PackageReference Include="EPiServer.Hosting" Version="13.0.2" />
+    <PackageReference Include="EPiServer.CMS.TinyMce" Version="13.1.0" />
+    <PackageReference Include="EPiServer.Cms.UI.VisitorGroups" Version="13.1.0" />
+    <PackageReference Include="EPiServer.Commerce" Version="15.0.1" />
+    <PackageReference Include="EPiServer.Commerce.ODP" Version="15.0.1" />
+    <PackageReference Include="EPiServer.CloudPlatform.Cms" Version="13.1.0" />
+    <PackageReference Include="EPiServer.Hosting" Version="13.1.0" />
     <!-- Updated from 1.0.1 to 13.0.0 for CMS 13 compatibility. -->
-    <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="13.0.2" />
+    <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="13.1.0" />
     <!-- EPiServer.Labs.ContentManager.Core removed: superseded by built-in CMS 13 Content Manager. -->
     <!-- EPiServer.Labs.ProjectEnhancements removed: no CMS 13 version (< 13.0.0 constraint). -->
     <!-- EPiServer.MarketingAutomationIntegration.ExactTarget removed: user decision. -->
@@ -43,10 +43,10 @@
     <!-- EPiServer.Find.Cms removed: no CMS 13 version -->
     <!-- EPiServer.Find.Commerce removed: no CMS 13 version -->
     <!-- Phase 4: Optimizely Graph / Content Graph -->
-    <PackageReference Include="Optimizely.Graph.Cms" Version="13.0.2" />
-    <PackageReference Include="Optimizely.Graph.Cms.Query" Version="13.0.2" />
-    <PackageReference Include="EPiServer.Cms.UI.ContentManager" Version="13.0.2" />
-    <PackageReference Include="Optimizely.Cmp.Client" Version="1.1.0" />
+    <PackageReference Include="Optimizely.Graph.Cms" Version="13.1.0" />
+    <PackageReference Include="Optimizely.Graph.Cms.Query" Version="13.1.0" />
+    <PackageReference Include="EPiServer.Cms.UI.ContentManager" Version="13.1.0" />
+    <PackageReference Include="Optimizely.Cmp.Client" Version="1.2.0" />
     <!-- Optimizely.Cms.Cmp.Publishing removed: no CMS 13 version (requires EPiServer.CMS.UI < 13.0.0). -->
     <!-- PowerSlice removed: no CMS 13 version (< 13.0.0 constraint). -->
     <!-- Productivity enhancements, Tools, Other Add-ons -->
@@ -68,7 +68,7 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
     <!-- TinymceDamPicker removed: no CMS 13 version. -->
     <!-- Optimizely Forms & Marketing Automation Connectors -->
-    <PackageReference Include="EPiServer.Events.ChangeNotification" Version="13.0.2" />
+    <PackageReference Include="EPiServer.Events.ChangeNotification" Version="13.1.0" />
     <!-- Updated from 5.10.7: Forms 6.0.0 is the CMS 13 version (removes IBlobFactory, IGeolocationResult deps). -->
     <PackageReference Include="EPiServer.Forms" Version="6.0.0" />
     <!-- EPiServer.Forms.Samples removed: latest 4.2.7 requires Forms < 6.0.0 and CMS < 13.0.0 (net6 only). -->
