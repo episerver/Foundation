@@ -34,6 +34,7 @@ using Microsoft.Extensions.Hosting;
 // using AdaptiveImages.Initialization;
 // using AdaptiveImages.Unsplash;
 using EPiServer.Cms.Shell.UI.Configurations;
+using EPiServer.Cms.Shell.UI.Rest.Projects;
 using Optimizely.Cms.DependencyInjection;
 using Optimizely.Cms.OpalChat;
 using Optimizely.Cms.Opal.Tools;
@@ -117,6 +118,13 @@ namespace Foundation
             // Foundation uses traditional MVC rendering, so OPE must be explicitly re-enabled so that
             // the preview iframe receives content-change notifications from the editor and updates.
             services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true);
+            // CMS 13: Projects feature is disabled by default — ProjectModeEnabled defaults to null
+            // and ProjectGadgetEnabled defaults to false. Enable both explicitly.
+            services.Configure<ProjectUIOptions>(o =>
+            {
+                o.ProjectModeEnabled = true;
+                o.ProjectGadgetEnabled = true;
+            });
             if (!_webHostingEnvironment.IsDevelopment())
             {
                 services.AddCmsCloudPlatformSupport(_configuration);
