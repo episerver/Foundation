@@ -1,5 +1,7 @@
 $pathToApp = './publish'
-$appPoolName = 'david_cms13-upgrade'
+# Set this to match your local IIS site / app pool name.
+# Override by passing -appPoolName on the command line or setting $env:IIS_APP_POOL_NAME.
+$appPoolName = if ($env:IIS_APP_POOL_NAME) { $env:IIS_APP_POOL_NAME } else { 'cms13-upgrade' }
 $appcmd = 'C:\Windows\System32\inetsrv\appcmd.exe'
 
 # Stop app pool so w3wp releases all file locks

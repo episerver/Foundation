@@ -75,8 +75,8 @@ namespace Foundation
         {
             // ApplicationHostTable and ApplicationUrlFormatTable are CMS 13 user-defined table types
             // (TVPs) used by ApplicationDB.SaveAsync when saving an Application. On DXP the bacpac
-            // import creates these types in the [david_cms13-upgrade.CmsUser] schema (the local SQL
-            // user's default schema) instead of [dbo]. The CMS inline SQL references them without a
+            // import creates these types in the local SQL user's default schema rather than [dbo].
+            // The CMS inline SQL references them without a
             // schema prefix; DXP Azure SQL users have [dbo] as their default schema so the lookup
             // fails with error 351 "Cannot find data type ApplicationHostTable".
             // Creating them in [dbo] here fixes the lookup on Azure SQL without affecting local dev
