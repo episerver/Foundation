@@ -7,7 +7,10 @@ namespace Foundation.Features.Checkout.Payments
     {
         public PaymentProcessingResult ProcessPayment(IOrderGroup orderGroup, IPayment payment)
         {
-            var creditCardPayment = (ICreditCardPayment)payment;
+            // Commerce 15 removed ICreditCardPayment: GenericCreditCardPaymentOption now creates
+            // a generic IPayment, so casting to the (stubbed) ICreditCardPayment threw
+            // InvalidCastException at runtime and made every credit-card purchase fail.
+            // The cast was dead code — the validation that used it is commented out below.
             return PaymentProcessingResult.CreateSuccessfulResult("");
             //if (creditCardPayment.CreditCardNumber.EndsWith("4"))
             //{

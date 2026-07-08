@@ -70,31 +70,28 @@ namespace Foundation
                 Name = "EcfSqlConnection",
                 ConnectionString = ecfConnStr
             }));
-            // CMS 13: On DXP, Opti ID is mandatory — do NOT call AddCmsAspNetIdentity on non-Development.
-            // AddOptimizelyIdentity is registered below in the non-Development block.
-            if (_webHostingEnvironment.IsDevelopment())
+            // ASP.NET Identity is required in ALL environments: site visitors (demo users,
+            // registration, checkout, my-account pages) sign in with ApplicationSignInManager/
+            // ApplicationUserManager<SiteUser> against AspNetUsers in the Commerce database.
+            // On DXP this coexists with Opti ID: AddOptimizelyIdentity (registered below with
+            // useAsDefault: false) intercepts the authentication schemes ONLY for CMS UI paths
+            // (protected modules, edit/preview context), so editors use Opti ID while site
+            // visitors keep using ASP.NET Identity cookies.
+            // NOTE: previously this was skipped on non-Development and replaced by null-returning
+            // ServiceAccessor stubs, which caused NullReferenceExceptions on customer login
+            // ("Something Went Wrong") and broke profile/order/address pages on deployed sites.
+            services.AddCmsAspNetIdentity<SiteUser>(o =>
             {
-                services.AddCmsAspNetIdentity<SiteUser>(o =>
+                if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
                 {
-                    if (string.IsNullOrEmpty(o.ConnectionStringOptions?.ConnectionString))
+                    o.ConnectionStringOptions = new ConnectionStringOptions
                     {
-                        o.ConnectionStringOptions = new ConnectionStringOptions
-                        {
-                            Name = "EcfSqlConnection",
-                            ConnectionString = _configuration.GetConnectionString("EcfSqlConnection")
-                        };
-                    }
-                });
-            }
-            else
-            {
-                // AddCmsAspNetIdentity is not called on DXP (Opti ID is used instead).
-                // CustomerService requires ServiceAccessor<ApplicationSignInManager<SiteUser>> and
-                // ServiceAccessor<ApplicationUserManager<SiteUser>> — register null-returning stubs
-                // so the service can be constructed. Callers must guard for null on non-dev.
-                services.AddSingleton<ServiceAccessor<ApplicationSignInManager<SiteUser>>>(_ => () => null);
-                services.AddSingleton<ServiceAccessor<ApplicationUserManager<SiteUser>>>(_ => () => null);
-            }
+                        Name = "EcfSqlConnection",
+                        // ecfConnStr falls back to EPiServerDB (DXP injects only EPiServerDB).
+                        ConnectionString = ecfConnStr
+                    };
+                }
+            });
 
             //UI
             if (_webHostingEnvironment.IsDevelopment())
