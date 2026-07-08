@@ -107,6 +107,16 @@ namespace Foundation
                 o.Conventions.Add(new FeatureConvention());
                 o.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                 o.ModelBinderProviders.Insert(0, new PaymentModelBinderProvider());
+                // CMS 13: ContentArea.Tag is now a hard-throwing [Obsolete] getter
+                // (NotSupportedException). MVC model validation calls every public getter on
+                // bound models, and view models that carry content objects (e.g.
+                // CheckoutViewModel.CurrentContent, CheckoutPage action parameters) reach
+                // ContentArea and crash with a 500 before the action runs. Content objects are
+                // not user input — exclude them from validation traversal.
+                o.ModelMetadataDetailsProviders.Add(
+                    new Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider(typeof(EPiServer.Core.IContentData)));
+                o.ModelMetadataDetailsProviders.Add(
+                    new Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider(typeof(EPiServer.Core.ContentArea)));
             })
             .AddRazorOptions(ro => ro.ViewLocationExpanders.Add(new FeatureViewLocationExpander()));
 
