@@ -3,7 +3,8 @@ namespace Foundation.Features.Blocks.HeroBlock
     [ContentType(DisplayName = "Hero Block",
         GUID = "8bdfac81-3dbd-43b9-a092-522bd67ee8b3",
         Description = "Image block with overlay for text",
-        GroupName = GroupNames.Content)]
+        GroupName = GroupNames.Content,
+        CompositionBehaviors = new[] { "SectionEnabled" })]
     [ImageUrl("/icons/cms/blocks/CMS-icon-block-22.png")]
     public class HeroBlock : FoundationBlockData//, IDashboardItem
     {

@@ -5,7 +5,8 @@ namespace Foundation.Features.Blocks.TeaserBlock
     [ContentType(DisplayName = "Teaser Block",
         GUID = "EB67A99A-E239-41B8-9C59-20EAA5936047",
         Description = "Image block with overlay for text",
-        GroupName = GroupNames.Content)]
+        GroupName = GroupNames.Content,
+        CompositionBehaviors = new[] { "SectionEnabled" })]
     //[DefaultDisplayOption(ContentAreaTags.OneThirdWidth)]
     [ImageUrl("/icons/cms/blocks/CMS-icon-block-26.png")]
     public class TeaserBlock : FoundationBlockData//, IDashboardItem
