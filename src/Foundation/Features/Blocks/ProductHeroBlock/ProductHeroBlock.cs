@@ -3,7 +3,8 @@
     [ContentType(DisplayName = "Product Hero Block",
         GUID = "6b43692b-6abd-49b1-b5f2-48ffbb8e626a",
         Description = "Product hero block",
-        GroupName = GroupNames.Commerce)]
+        GroupName = GroupNames.Commerce,
+        CompositionBehaviors = new[] { "SectionEnabled" })]
     [ImageUrl("/icons/cms/blocks/CMS-icon-block-23.png")]
     public class ProductHeroBlock : FoundationBlockData
     {
