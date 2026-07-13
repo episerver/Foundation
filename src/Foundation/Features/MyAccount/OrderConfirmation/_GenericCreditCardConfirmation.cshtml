@@ -1,16 +1,16 @@
-﻿@model EPiServer.Commerce.Order.ICreditCardPayment 
+﻿@model EPiServer.Commerce.Order.IPayment
+
+@* Commerce 15 removed ICreditCardPayment: payments created by
+   GenericCreditCardPaymentOption are generic IPayment (OtherPayment), so the
+   previous @model ICreditCardPayment made Razor throw an InvalidOperationException
+   ("model item ... requires ICreditCardPayment") on the order confirmation page
+   and My Account order details. Card number/expiry/CVV are no longer stored on
+   the payment either, so only the method and cardholder name can be shown. *@
 
 <div>
     <h4>@Html.Translate("/OrderConfirmation/PaymentDetails")</h4>
     <p>
-        @Html.Translate("/OrderConfirmation/PaymentInfo/CardType"): @Model.CardType<br>
-        @Html.Translate("/OrderConfirmation/PaymentInfo/Owner"): @Model.CustomerName<br>
-        @Html.Translate("/OrderConfirmation/PaymentInfo/CardNumber"): ************@Model.CreditCardNumber.Substring(Model.CreditCardNumber.Length - 4)<br>
-        @Html.Translate("/OrderConfirmation/PaymentInfo/ExpirationDate"): @Model.ExpirationMonth/@Model.ExpirationYear<br>
-        @Html.Translate("/OrderConfirmation/PaymentInfo/CVV"): **
-        @if (Model.CreditCardSecurityCode.Length > 0)
-        {
-            @Model.CreditCardSecurityCode.Substring(Model.CreditCardSecurityCode.Length - 1)
-        }
+        @Html.Translate("/OrderConfirmation/PaymentInfo/CardType"): @Html.TranslateFallback("/Checkout/Payment/Methods/CreditCard/Name", "Credit card")<br>
+        @Html.Translate("/OrderConfirmation/PaymentInfo/Owner"): @Model.CustomerName
     </p>
 </div>
