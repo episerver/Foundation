@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-07-13 (build 1937)
+**Last updated:** 2026-07-13 (build 1938)
 
 ---
 
@@ -55,6 +55,8 @@
 - ✅ Machine-specific `david_cms13-upgrade` references removed from source — `Program.cs` comment, `publish.ps1` (`$appPoolName` now reads from `$env:IIS_APP_POOL_NAME`, falls back to `cms13-upgrade`), `teardown.cmd` and `resetup.cmd` parameterized via `%SITENAME%` env var, `CLAUDE.md` updated to use `{sitename}` placeholders. `appsettings.Development.json` and `publish/` output were already gitignored. `.claude/settings.local.json` is machine-specific by design and left as-is.
 - ✅ Customer login "Something Went Wrong" + profile/order/address pages broken on DXP — root cause: `AddCmsAspNetIdentity<SiteUser>` was only called in Development; non-Development registered null-returning stubs for `ServiceAccessor<ApplicationSignInManager>` and `ServiceAccessor<ApplicationUserManager>`, causing NullReferenceExceptions on any customer-facing auth path. Fixed by calling `services.AddCmsAspNetIdentity<SiteUser>` unconditionally in all environments (`Startup.cs`). On DXP, `AddOptimizelyIdentity(useAsDefault: false)` still intercepts auth **only for CMS UI paths** (protected modules, edit/preview context) so editors use Opti ID while site visitors keep using ASP.NET Identity cookies. Deployed as build 1936.
 - ✅ Projects feature not enabled in CMS editor — `ProjectUIOptions.ProjectModeEnabled` defaults to `null` and `ProjectGadgetEnabled` defaults to `false` in CMS 13; both must be set explicitly. Fixed by adding `services.Configure<ProjectUIOptions>(o => { o.ProjectModeEnabled = true; o.ProjectGadgetEnabled = true; })` in `Startup.cs` (namespace: `EPiServer.Cms.Shell.UI.Rest.Projects`). Note: this is the built-in CMS 13 Projects feature — `EPiServer.Labs.ProjectEnhancements` (the old add-on) has no CMS 13 version and remains removed. Deployed as build 1934.
+- ⬆️ Order confirmation crash for credit-card payments — `_GenericCreditCardConfirmation.cshtml` partial was typed to `ICreditCardPayment`, an interface removed in Commerce 15 (only a stub exists in `CommerceTypeStubs.cs`). Razor model binding throws `InvalidOperationException` on the Order Confirmation page and My Account Order Details. Fix: change partial model to `IPayment` (aligning with `_GiftCardPaymentConfirmation.cshtml`); remove card detail rows (number, expiry, CVV) — Commerce 15 no longer stores this on payment objects; display only payment method + `CustomerName`. Also remove dead cast to `ICreditCardPayment` in `GenericCreditCardPaymentGateway.cs`. **Upstream fix in [episerver/Foundation#982](https://github.com/episerver/Foundation/pull/982), not yet pulled into this branch.**
+- ⬆️ Visual Builder experience/section/element types added upstream — PR #982 adds `BlankExperience`, `BlankSection`, and five element content types (`ButtonElement`, `HeadingElement`, `ImageElement`, `ParagraphElement`, `ProductElement`) for headless Visual Builder composition. Six existing blocks (`CallToActionBlock`, `CarouselBlock`, `HeroBlock`, `ProductHeroBlock`, `TeaserBlock`, `TextBlock`) gain `CompositionBehaviors = new[] { "SectionEnabled" }`. `DisplayTemplatesInit.cs` seeds style definitions (heading sizes, button styles, product card variants). **Not yet pulled — requires a `dotnet pull` + build + deploy when ready.**
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
 ---
@@ -129,7 +131,7 @@ Start-EpiDeployment -ProjectId $projectId -DeploymentPackage @('cms.app.YYYY.MM.
 
 Code zip name must match: `{name}.app.{version}.zip` (or `.nupkg`).
 
-**Latest code deploy:** `cms.app.2026.07.10.1937.zip` — GitHub sync. Script: `C:\Windows\Temp\deploy_1937.ps1`.
+**Latest code deploy:** `cms.app.2026.07.13.1938.zip` — CLAUDE.md update (build 1937 entries). Script: `C:\Windows\Temp\deploy_1938.ps1`.
 
 ### Importing a database to DXP Integration
 
@@ -660,7 +662,8 @@ field mapping in the Graph schema is confirmed. `BuildFilter<T>().And(...)` requ
 | Locations feature | ❌ Excluded | `Features/Locations/**` excluded from compilation — needs Find geo-search replaced |
 | ProductFilterBlocks | ❌ Excluded | `Features/Blocks/ProductFilterBlocks/**` excluded — Find Filter API has no direct Graph equivalent |
 | SearchOnSale / SearchUsers | 🔄 Stub | Returns empty; needs Graph or Commerce API implementation |
-| Commerce flow QA | 🔄 Pending | Cart → checkout → order not yet regression tested |
+| Commerce flow QA | 🔄 Pending | Cart → checkout → order not yet regression tested; order confirmation credit-card crash fix pending pull (PR #982) |
+| Visual Builder content types | ⬆️ Not pulled | `BlankExperience`, `BlankSection`, 5 element types, `SectionEnabled` on 6 blocks — from PR #982 (merged 2026-07-13) |
 | Opti ID / auth | 🔄 Self-hosted | Currently using `AddCmsAspNetIdentity` (local auth); Opti ID requires DXP cloud |
 | Content Graph indexing | 🔄 Pending | Initial sync not yet verified |
 | Full regression QA | 🔄 Pending | Deeper crawl + manual commerce/forms/ODP testing |
