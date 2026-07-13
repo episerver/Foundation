@@ -1,6 +1,6 @@
 # Optimizely Foundation: CMS 12 → CMS 13 Upgrade
 
-**Last updated:** 2026-06-23 (build 1935)
+**Last updated:** 2026-07-13 (build 1937)
 
 ---
 
@@ -52,6 +52,8 @@
 - ✅ Edit mode preview not updating on content change — `SectionsVisibility.OnPageEditing` defaults to `false` in CMS 13 (Visual Builder is the new default). Fixed by adding `services.Configure<CmsFeatureOptions>(o => o.SectionsVisibility.OnPageEditing = true)` in `Startup.cs`. Class: `EPiServer.Cms.Shell.UI.Configurations.CmsFeatureOptions`. Pre-existing build error also fixed: `PreviewController.cs` was missing `using EPiServer.Framework.Web.Mvc;` (required for `[RequireClientResources]` attribute). Deployed as build 1929.
 - ✅ Commerce upgraded to 15.0.0 GA — removed `EPiServer.Commerce 15.0.0-preview1` + `EPiServer.Commerce.ODP 14.45.3` (with `<NoWarn>NU1605</NoWarn>` workaround). Replaced with `EPiServer.Commerce 15.0.0` + `EPiServer.Commerce.ODP 15.0.0` (clean, no suppression needed). Dependency tree identical to preview1; all transitive DLLs already present. Deployed as build 1931.
 - ✅ Package upgrade: CMS 13.0.2 → 13.1.0, Commerce 15.0.0 → 15.0.1, Commerce.ODP 15.0.0 → 15.0.1, Optimizely.Cmp.Client 1.1.0 → 1.2.0, all Graph/ContentManager/Forms/Identity packages to 13.1.0. No code changes required — no breaking API changes in either release. `Optimizely.Cms.Opal.Tools` remains at 13.0.0 (no 13.1.0 available). Deployed as build 1935.
+- ✅ Machine-specific `david_cms13-upgrade` references removed from source — `Program.cs` comment, `publish.ps1` (`$appPoolName` now reads from `$env:IIS_APP_POOL_NAME`, falls back to `cms13-upgrade`), `teardown.cmd` and `resetup.cmd` parameterized via `%SITENAME%` env var, `CLAUDE.md` updated to use `{sitename}` placeholders. `appsettings.Development.json` and `publish/` output were already gitignored. `.claude/settings.local.json` is machine-specific by design and left as-is.
+- ✅ Customer login "Something Went Wrong" + profile/order/address pages broken on DXP — root cause: `AddCmsAspNetIdentity<SiteUser>` was only called in Development; non-Development registered null-returning stubs for `ServiceAccessor<ApplicationSignInManager>` and `ServiceAccessor<ApplicationUserManager>`, causing NullReferenceExceptions on any customer-facing auth path. Fixed by calling `services.AddCmsAspNetIdentity<SiteUser>` unconditionally in all environments (`Startup.cs`). On DXP, `AddOptimizelyIdentity(useAsDefault: false)` still intercepts auth **only for CMS UI paths** (protected modules, edit/preview context) so editors use Opti ID while site visitors keep using ASP.NET Identity cookies. Deployed as build 1936.
 - ✅ Projects feature not enabled in CMS editor — `ProjectUIOptions.ProjectModeEnabled` defaults to `null` and `ProjectGadgetEnabled` defaults to `false` in CMS 13; both must be set explicitly. Fixed by adding `services.Configure<ProjectUIOptions>(o => { o.ProjectModeEnabled = true; o.ProjectGadgetEnabled = true; })` in `Startup.cs` (namespace: `EPiServer.Cms.Shell.UI.Rest.Projects`). Note: this is the built-in CMS 13 Projects feature — `EPiServer.Labs.ProjectEnhancements` (the old add-on) has no CMS 13 version and remains removed. Deployed as build 1934.
 - 🔄 New Arrivals page product ordering differs from reference (data difference, low priority)
 
@@ -127,7 +129,7 @@ Start-EpiDeployment -ProjectId $projectId -DeploymentPackage @('cms.app.YYYY.MM.
 
 Code zip name must match: `{name}.app.{version}.zip` (or `.nupkg`).
 
-**Latest code deploy:** `cms.app.2026.06.23.1935.zip` — CMS 13.1.0 + Commerce 15.0.1 package upgrade. Script: `C:\Windows\Temp\deploy_1935.ps1`.
+**Latest code deploy:** `cms.app.2026.07.10.1937.zip` — GitHub sync. Script: `C:\Windows\Temp\deploy_1937.ps1`.
 
 ### Importing a database to DXP Integration
 
