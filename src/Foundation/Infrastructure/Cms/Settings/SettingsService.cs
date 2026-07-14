@@ -260,24 +260,44 @@ namespace Foundation.Infrastructure.Cms.Settings
             var children = _contentRepository.GetChildren<SettingsFolder>(GlobalSettingsRoot).ToList();
             foreach (var site in _siteDefinitionRepository.List())
             {
-                var folder = children.Find(x => x.Name.Equals(site.Name, StringComparison.InvariantCultureIgnoreCase));
-                if (folder != null)
+                // Isolate each site: one site's broken settings (or a failing folder
+                // creation) must never abort the mapping of the remaining sites.
+                // Without this, a second site definition could leave the primary site
+                // with no registered settings at all - empty logo/menus/checkout links
+                // with no runtime errors.
+                try
                 {
-                    foreach (var child in _contentRepository.GetChildren<SettingsBase>(folder.ContentLink))
+                    var folder = children.Find(x => x.Name.Equals(site.Name, StringComparison.InvariantCultureIgnoreCase));
+                    if (folder != null)
                     {
-                        UpdateSettings(site.Id, child, false);
-
-                        // add draft (not published version) settings
-                        var darftContentLink = _contentVersionRepository.LoadCommonDraft(child.ContentLink, ContentLanguage.PreferredCulture.Name);
-                        if (darftContentLink != null)
+                        foreach (var child in _contentRepository.GetChildren<SettingsBase>(folder.ContentLink))
                         {
-                            var settingsDraft = _contentRepository.Get<SettingsBase>(darftContentLink.ContentLink);
-                            UpdateSettings(site.Id, settingsDraft, true);
+                            UpdateSettings(site.Id, child, false);
+
+                            // add draft (not published version) settings; a broken draft
+                            // must not prevent the published settings from registering.
+                            try
+                            {
+                                var darftContentLink = _contentVersionRepository.LoadCommonDraft(child.ContentLink, ContentLanguage.PreferredCulture.Name);
+                                if (darftContentLink != null)
+                                {
+                                    var settingsDraft = _contentRepository.Get<SettingsBase>(darftContentLink.ContentLink);
+                                    UpdateSettings(site.Id, settingsDraft, true);
+                                }
+                            }
+                            catch (Exception draftException)
+                            {
+                                _log.Error($"[Settings] Failed loading draft settings '{child.Name}' for site '{site.Name}': {draftException.Message}", exception: draftException);
+                            }
                         }
+                        continue;
                     }
-                    continue;
+                    CreateSiteFolder(site);
                 }
-                CreateSiteFolder(site);
+                catch (Exception siteException)
+                {
+                    _log.Error($"[Settings] Failed mapping settings for site '{site.Name}' ({site.Id}): {siteException.Message}", exception: siteException);
+                }
             }
         }
 
@@ -391,12 +411,18 @@ namespace Foundation.Infrastructure.Cms.Settings
 
             if (e.Content is SettingsBase)
             {
-                var id = ResolveSiteId();
-                if (id == Guid.Empty)
+                // Resolve the OWNING site from the settings folder the item lives in
+                // (same as PublishedContent). Resolving from the editor's request host
+                // filed drafts under whatever site the CMS host resolves to, poisoning
+                // another site's draft settings in multi-site setups.
+                var parent = _contentRepository.Get<IContent>(e.Content.ParentLink);
+                var site = _siteDefinitionRepository.Get(parent.Name);
+                var id = site?.Id;
+                if (id == null || id == Guid.Empty)
                 {
                     return;
                 }
-                UpdateSettings(id, e.Content, true);
+                UpdateSettings(id.Value, e.Content, true);
             }
         }
 
@@ -410,8 +436,19 @@ namespace Foundation.Infrastructure.Cms.Settings
             var site = _siteDefinitionResolver.GetByHostname(request.Host.Host, true, out var hostname);
             if (site == null)
             {
-                // CMS 13: hostname resolution may not match localhost in dev. Fall back to the first registered site.
-                site = _siteDefinitionRepository.List().FirstOrDefault();
+                // Hostname resolution can miss in local dev (localhost not registered
+                // as a host). Only fall back when there is exactly ONE site - with
+                // multiple sites, picking List().First() silently reads ANOTHER site's
+                // (possibly empty) settings and breaks the storefront with no errors.
+                var allSites = _siteDefinitionRepository.List().ToList();
+                if (allSites.Count == 1)
+                {
+                    site = allSites[0];
+                }
+                else
+                {
+                    _log.Warning($"[Settings] Could not resolve a site for host '{request.Host.Host}' among {allSites.Count} sites; returning no settings.");
+                }
             }
             return site?.Id ?? Guid.Empty;
         }
