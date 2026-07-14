@@ -54,7 +54,9 @@ namespace Foundation.Features.Api
             //set tracking cookie
             TrackingCookieManager.SetTrackingCookie(user.Id);
 
-            return Redirect(returnUrl);
+            // Redirect(null/empty) throws ArgumentNullException (surfaces as unhandled
+            // 500s when the endpoint is hit without a returnUrl, e.g. by warmup probes).
+            return Redirect(string.IsNullOrEmpty(returnUrl) ? "~/" : returnUrl);
         }
 
         [HttpPost]

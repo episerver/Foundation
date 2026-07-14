@@ -270,9 +270,11 @@ namespace Foundation.Infrastructure.Cms.Settings
                     var folder = children.Find(x => x.Name.Equals(site.Name, StringComparison.InvariantCultureIgnoreCase));
                     if (folder != null)
                     {
+                        var mapped = 0;
                         foreach (var child in _contentRepository.GetChildren<SettingsBase>(folder.ContentLink))
                         {
                             UpdateSettings(site.Id, child, false);
+                            mapped++;
 
                             // add draft (not published version) settings; a broken draft
                             // must not prevent the published settings from registering.
@@ -290,9 +292,17 @@ namespace Foundation.Infrastructure.Cms.Settings
                                 _log.Error($"[Settings] Failed loading draft settings '{child.Name}' for site '{site.Name}': {draftException.Message}", exception: draftException);
                             }
                         }
+
+                        // Success summary at Warning so it always surfaces (the default log
+                        // level filter is Warning). Diagnosing missing-settings incidents has
+                        // repeatedly stalled on "no [Settings] output" being ambiguous between
+                        // a silent success and a never-ran mapping; this line removes that
+                        // ambiguity permanently.
+                        _log.Warning($"[Settings] Mapped {mapped} settings item(s) for site '{site.Name}' ({site.Id}).");
                         continue;
                     }
                     CreateSiteFolder(site);
+                    _log.Warning($"[Settings] No settings folder matched site '{site.Name}' ({site.Id}); created a new folder with default (empty) settings.");
                 }
                 catch (Exception siteException)
                 {
