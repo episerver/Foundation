@@ -86,31 +86,45 @@ namespace Foundation.Infrastructure.Cms.Settings
 
         public ContentReference GlobalSettingsRoot { get; set; }
 
+        /// <summary>
+        /// Builds the dictionary key prefix for a site. CMS 13 applications can be
+        /// stored with Guid.Empty as their Id — with more than one site that collapses
+        /// every site into ONE shared bucket, and since the language-key write is
+        /// last-write-wins, the last-mapped site's (typically empty) settings silently
+        /// replace the primary site's. Key by name when the Id cannot discriminate.
+        /// </summary>
+        private static string SiteKey(SiteDefinition site) =>
+            site.Id != Guid.Empty ? site.Id.ToString() : $"site:{site.Name?.ToLowerInvariant()}";
+
         public T GetSiteSettings<T>(Guid? siteId = null)
         {
             var contentLanguage = ContentLanguage.PreferredCulture.Name;
-            if (!siteId.HasValue)
+            string siteKey;
+            if (siteId.HasValue)
             {
-                siteId = ResolveSiteId();
-                // CMS 13: site definition may be stored with Guid.Empty as its Id (if Id was not set at creation).
-                // Don't bail here — SiteSettings is keyed by the same Guid.Empty string used at write time.
-                if (siteId == null)
+                siteKey = siteId.Value.ToString();
+            }
+            else
+            {
+                var site = ResolveSite();
+                if (site == null)
                 {
                     return default;
                 }
+                siteKey = SiteKey(site);
             }
             try
             {
                 if (_contextModeResolver.CurrentMode == ContextMode.Edit)
                 {
-                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + $"-common-draft-{contentLanguage}", out var siteSettings))
+                    if (SiteSettings.TryGetValue($"{siteKey}-common-draft-{contentLanguage}", out var siteSettings))
                     {
                         if (siteSettings.TryGetValue(typeof(T), out var setting))
                         {
                             return (T)setting;
                         }
                     }
-                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + "-common-draft-default", out var defaultSiteSettings))
+                    if (SiteSettings.TryGetValue($"{siteKey}-common-draft-default", out var defaultSiteSettings))
                     {
                         if (defaultSiteSettings.TryGetValue(typeof(T), out var defaultSetting))
                         {
@@ -120,11 +134,11 @@ namespace Foundation.Infrastructure.Cms.Settings
                 }
                 else
                 {
-                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + $"-{contentLanguage}", out var siteSettings) && siteSettings.TryGetValue(typeof(T), out var setting))
+                    if (SiteSettings.TryGetValue($"{siteKey}-{contentLanguage}", out var siteSettings) && siteSettings.TryGetValue(typeof(T), out var setting))
                     {
                         return (T)setting;
                     }
-                    if (SiteSettings.TryGetValue(siteId.Value.ToString() + "-default", out var defaultSiteSettings) && defaultSiteSettings.TryGetValue(typeof(T), out var defaultSetting))
+                    if (SiteSettings.TryGetValue($"{siteKey}-default", out var defaultSiteSettings) && defaultSiteSettings.TryGetValue(typeof(T), out var defaultSetting))
                     {
                         return (T)defaultSetting;
                     }
@@ -142,7 +156,13 @@ namespace Foundation.Infrastructure.Cms.Settings
             return default;
         }
 
-        public void UpdateSettings(Guid siteId, IContent content, bool isContentNotPublished)
+        public void UpdateSettings(Guid siteId, IContent content, bool isContentNotPublished) =>
+            UpdateSettingsCore(siteId.ToString(), content, isContentNotPublished);
+
+        internal void UpdateSettings(SiteDefinition site, IContent content, bool isContentNotPublished) =>
+            UpdateSettingsCore(SiteKey(site), content, isContentNotPublished);
+
+        private void UpdateSettingsCore(string siteKey, IContent content, bool isContentNotPublished)
         {
             var contentType = content.GetOriginalType();
             var contentLanguage = ContentLanguage.PreferredCulture.Name;
@@ -150,49 +170,49 @@ namespace Foundation.Infrastructure.Cms.Settings
             {
                 if (isContentNotPublished)
                 {
-                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-default"))
+                    if (!SiteSettings.ContainsKey($"{siteKey}-default"))
                     {
-                        SiteSettings[$"{siteId}-common-draft-default"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteKey}-common-draft-default"] = new Dictionary<Type, object>();
                     }
 
-                    if (!SiteSettings[$"{siteId}-common-draft-default"].ContainsKey(contentType))
+                    if (!SiteSettings[$"{siteKey}-common-draft-default"].ContainsKey(contentType))
                     {
-                        SiteSettings[$"{siteId}-common-draft-default"][contentType] = content;
+                        SiteSettings[$"{siteKey}-common-draft-default"][contentType] = content;
                     }
 
-                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-{contentLanguage}"))
+                    if (!SiteSettings.ContainsKey($"{siteKey}-{contentLanguage}"))
                     {
-                        SiteSettings[$"{siteId}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteKey}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
                     }
 
-                    SiteSettings[$"{siteId}-common-draft-{contentLanguage}"][contentType] = content;
+                    SiteSettings[$"{siteKey}-common-draft-{contentLanguage}"][contentType] = content;
                 }
                 else
                 {
-                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-default"))
+                    if (!SiteSettings.ContainsKey($"{siteKey}-default"))
                     {
-                        SiteSettings[siteId.ToString() + $"-default"] = new Dictionary<Type, object>();
-                        SiteSettings[$"{siteId}-common-draft-default"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteKey}-default"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteKey}-common-draft-default"] = new Dictionary<Type, object>();
                     }
 
-                    if (!SiteSettings[$"{siteId}-default"].ContainsKey(contentType))
+                    if (!SiteSettings[$"{siteKey}-default"].ContainsKey(contentType))
                     {
-                        SiteSettings[$"{siteId}-default"][contentType] = content;
+                        SiteSettings[$"{siteKey}-default"][contentType] = content;
                     }
 
-                    if (!SiteSettings[$"{siteId}-common-draft-default"].ContainsKey(contentType))
+                    if (!SiteSettings[$"{siteKey}-common-draft-default"].ContainsKey(contentType))
                     {
-                        SiteSettings[$"{siteId}-common-draft-default"][contentType] = content;
+                        SiteSettings[$"{siteKey}-common-draft-default"][contentType] = content;
                     }
 
-                    if (!SiteSettings.ContainsKey(siteId.ToString() + $"-{contentLanguage}"))
+                    if (!SiteSettings.ContainsKey($"{siteKey}-{contentLanguage}"))
                     {
-                        SiteSettings[siteId.ToString() + $"-{contentLanguage}"] = new Dictionary<Type, object>();
-                        SiteSettings[$"{siteId}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteKey}-{contentLanguage}"] = new Dictionary<Type, object>();
+                        SiteSettings[$"{siteKey}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
                     }
 
-                    SiteSettings[siteId.ToString() + $"-{contentLanguage}"][contentType] = content;
-                    SiteSettings[$"{siteId}-common-draft-{contentLanguage}"][contentType] = content;
+                    SiteSettings[$"{siteKey}-{contentLanguage}"][contentType] = content;
+                    SiteSettings[$"{siteKey}-common-draft-{contentLanguage}"][contentType] = content;
                 }
             }
             catch (KeyNotFoundException keyNotFoundException)
@@ -273,7 +293,7 @@ namespace Foundation.Infrastructure.Cms.Settings
                         var mapped = 0;
                         foreach (var child in _contentRepository.GetChildren<SettingsBase>(folder.ContentLink))
                         {
-                            UpdateSettings(site.Id, child, false);
+                            UpdateSettings(site, child, false);
                             mapped++;
 
                             // add draft (not published version) settings; a broken draft
@@ -284,7 +304,7 @@ namespace Foundation.Infrastructure.Cms.Settings
                                 if (darftContentLink != null)
                                 {
                                     var settingsDraft = _contentRepository.Get<SettingsBase>(darftContentLink.ContentLink);
-                                    UpdateSettings(site.Id, settingsDraft, true);
+                                    UpdateSettings(site, settingsDraft, true);
                                 }
                             }
                             catch (Exception draftException)
@@ -345,7 +365,7 @@ namespace Foundation.Infrastructure.Cms.Settings
                 var newSettings = _contentRepository.GetDefault<IContent>(reference, contentType.ID);
                 newSettings.Name = attribute.SettingsName;
                 _contentRepository.Save(newSettings, SaveAction.Publish, AccessLevel.NoAccess);
-                UpdateSettings(siteDefinition.Id, newSettings, false);
+                UpdateSettings(siteDefinition, newSettings, false);
             }
         }
 
@@ -403,12 +423,11 @@ namespace Foundation.Infrastructure.Cms.Settings
                 var parent = _contentRepository.Get<IContent>(e.Content.ParentLink);
                 var site = _siteDefinitionRepository.Get(parent.Name);
 
-                var id = site?.Id;
-                if (id == null || id == Guid.Empty)
+                if (site == null)
                 {
                     return;
                 }
-                UpdateSettings(id.Value, e.Content, false);
+                UpdateSettings(site, e.Content, false);
             }
         }
 
@@ -427,21 +446,20 @@ namespace Foundation.Infrastructure.Cms.Settings
                 // another site's draft settings in multi-site setups.
                 var parent = _contentRepository.Get<IContent>(e.Content.ParentLink);
                 var site = _siteDefinitionRepository.Get(parent.Name);
-                var id = site?.Id;
-                if (id == null || id == Guid.Empty)
+                if (site == null)
                 {
                     return;
                 }
-                UpdateSettings(id.Value, e.Content, true);
+                UpdateSettings(site, e.Content, true);
             }
         }
 
-        private Guid ResolveSiteId()
+        private SiteDefinition ResolveSite()
         {
             var request = _httpContextAccessor.HttpContext?.Request;
             if (request == null)
             {
-                return Guid.Empty;
+                return null;
             }
             var site = _siteDefinitionResolver.GetByHostname(request.Host.Host, true, out var hostname);
             if (site == null)
@@ -460,7 +478,7 @@ namespace Foundation.Infrastructure.Cms.Settings
                     _log.Warning($"[Settings] Could not resolve a site for host '{request.Host.Host}' among {allSites.Count} sites; returning no settings.");
                 }
             }
-            return site?.Id ?? Guid.Empty;
+            return site;
         }
     }
 }
