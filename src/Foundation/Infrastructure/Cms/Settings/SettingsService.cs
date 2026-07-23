@@ -100,12 +100,14 @@ namespace Foundation.Infrastructure.Cms.Settings
         {
             var contentLanguage = ContentLanguage.PreferredCulture.Name;
             string siteKey;
-            if (siteId.HasValue)
+            if (siteId.HasValue && siteId.Value != Guid.Empty)
             {
                 siteKey = siteId.Value.ToString();
             }
             else
             {
+                // Guid.Empty cannot discriminate between sites (see SiteKey) — treat it
+                // the same as "no siteId" and key off the resolved SiteDefinition.
                 var site = ResolveSite();
                 if (site == null)
                 {
@@ -170,7 +172,7 @@ namespace Foundation.Infrastructure.Cms.Settings
             {
                 if (isContentNotPublished)
                 {
-                    if (!SiteSettings.ContainsKey($"{siteKey}-default"))
+                    if (!SiteSettings.ContainsKey($"{siteKey}-common-draft-default"))
                     {
                         SiteSettings[$"{siteKey}-common-draft-default"] = new Dictionary<Type, object>();
                     }
@@ -180,7 +182,7 @@ namespace Foundation.Infrastructure.Cms.Settings
                         SiteSettings[$"{siteKey}-common-draft-default"][contentType] = content;
                     }
 
-                    if (!SiteSettings.ContainsKey($"{siteKey}-{contentLanguage}"))
+                    if (!SiteSettings.ContainsKey($"{siteKey}-common-draft-{contentLanguage}"))
                     {
                         SiteSettings[$"{siteKey}-common-draft-{contentLanguage}"] = new Dictionary<Type, object>();
                     }
