@@ -243,11 +243,20 @@ namespace Foundation
 
             // Add AdvancedReviews
             services.AddAdvancedReviews();
-            // Opal Chat — registered unconditionally. OpalChatOptionsConfigurer resolves
-            // the InstanceId from the DXP platform context at runtime, not from appsettings,
-            // so guarding on a config key always returned false and prevented registration.
-            // On local dev the widget is simply hidden (no platform context = no InstanceId).
+            // Language Manager
+            services.AddLanguageManager();
+            // Opal Chat — registered unconditionally. OpalChatOptionsConfigurer reads
+            // TurnstileEnvironmentInstanceId from IConfiguration (injected by DXP platform).
+            // OpalChat 2.0.0 added ValidateOnStart + [Required] on InstanceId; if the DXP
+            // project doesn't have Opal Chat provisioned, TurnstileEnvironmentInstanceId is
+            // absent and the empty-string default fails validation. PostConfigure sets a
+            // placeholder so the app starts; the widget is simply hidden with no valid InstanceId.
             services.AddOpalChat();
+            services.PostConfigure<OpalChatOptions>(options =>
+            {
+                if (string.IsNullOrWhiteSpace(options.InstanceId))
+                    options.InstanceId = "not-configured";
+            });
 
             // Opal Tools
             services.AddCmsOpalTools();

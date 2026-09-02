@@ -58,7 +58,7 @@
     <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="6.0.0" />
     <!-- EPiServer.GoogleAnalytics removed: no CMS 13 version. Replace with direct GA4 tag in _MasterLayout.cshtml. -->
     <!-- EPiServer.Labs.ContentManager removed: superseded by built-in CMS 13 Content Manager. -->
-    <!-- EPiServer.Labs.LanguageManager removed: no CMS 13 version (< 13.0.0 constraint). -->
+    <PackageReference Include="EPiServer.Labs.LanguageManager" Version="6.0.0" />
     <!-- EPiServer.PdfPreview removed: no CMS 13 version (< 13.0.0 constraint). -->
     <!-- Geta.NotFoundHandler.Optimizely removed: no CMS 13 version. Custom 404 middleware to be implemented. -->
     <!-- Geta.Optimizely.Categories removed: no CMS 13 version (< 13.0.0 constraint). -->
