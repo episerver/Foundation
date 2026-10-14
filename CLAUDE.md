@@ -132,7 +132,7 @@ Start-EpiDeployment -ProjectId $projectId -DeploymentPackage @('cms.app.YYYY.MM.
 
 Code zip name must match: `{name}.app.{version}.zip` (or `.nupkg`).
 
-**Latest code deploy:** `cms.app.2026.09.02.1943.zip` — EPiServer.Labs.LanguageManager 6.0.0. Script: `C:\Windows\Temp\deploy_1943.ps1`.
+**Latest code deploy:** `cms.app.2026.10.14.2013.zip` — Release build from current working tree (2026-10-14).
 
 ### Importing a database to DXP Integration
 
