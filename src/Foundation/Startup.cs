@@ -251,12 +251,14 @@ namespace Foundation
             // project doesn't have Opal Chat provisioned, TurnstileEnvironmentInstanceId is
             // absent and the empty-string default fails validation. PostConfigure sets a
             // placeholder so the app starts; the widget is simply hidden with no valid InstanceId.
-            services.AddOpalChat();
-            services.PostConfigure<OpalChatOptions>(options =>
-            {
-                if (string.IsNullOrWhiteSpace(options.InstanceId))
-                    options.InstanceId = "not-configured";
-            });
+            
+            // no longer required -- https://docs.optimizely.com/cms-13/release-notes#september-211320
+            // services.AddOpalChat();
+            // services.PostConfigure<OpalChatOptions>(options =>
+            // {
+            //     if (string.IsNullOrWhiteSpace(options.InstanceId))
+            //         options.InstanceId = "not-configured";
+            // });
 
             // Opal Tools
             services.AddCmsOpalTools();
