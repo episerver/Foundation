@@ -43,6 +43,9 @@ using Optimizely.Opal.Tools;
 // Phase 4: Optimizely Graph + Content Manager
 using Optimizely.Graph.DependencyInjection;
 using System.IO;
+using Optimizely.Commerce.Opal.Tools;
+using Optimizely.Commerce.Opal.Core;
+using Optimizely.Graph.Commerce;
 
 namespace Foundation
 {
@@ -140,6 +143,7 @@ namespace Foundation
             services.AddVisitorGroupsMvc();
             services.AddVisitorGroupsUI();
             services.AddCommerce();
+            services.AddCommerceGraph();
             // Commerce's CampaignVisitorGroupFilter requires IVisitorGroupRoleRepository.
             // AddVisitorGroupsUI() is UI-only and does not register the runtime service.
             // TryAdd placed after AddVisitorGroupsUI() so the real implementation wins if it is ever registered.
@@ -262,6 +266,7 @@ namespace Foundation
 
             // Opal Tools
             services.AddCmsOpalTools();
+            services.AddCommerceOpalTools();
 
             // Geta.Optimizely.Categories removed: no CMS 13 version.
             // UNRVLD.ODP.VisitorGroups removed: no CMS 13 version (< 13.0.0 constraint).

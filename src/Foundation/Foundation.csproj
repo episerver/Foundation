@@ -24,6 +24,7 @@
     <PackageReference Include="EPiServer.Hosting" Version="13.3.0" />
     <!-- Updated from 1.0.1 to 13.0.0 for CMS 13 compatibility. -->
     <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="13.3.0" />
+    <PackageReference Include="Optimizely.Commerce.Opal.Tools" Version="2.0.0" />
     <!-- EPiServer.Labs.ContentManager.Core removed: superseded by built-in CMS 13 Content Manager. -->
     <!-- EPiServer.Labs.ProjectEnhancements removed: no CMS 13 version (< 13.0.0 constraint). -->
     <!-- EPiServer.MarketingAutomationIntegration.ExactTarget removed: user decision. -->
@@ -45,6 +46,7 @@
     <!-- Phase 4: Optimizely Graph / Content Graph -->
     <PackageReference Include="Optimizely.Graph.Cms" Version="13.3.0" />
     <PackageReference Include="Optimizely.Graph.Cms.Query" Version="13.3.0" />
+    <PackageReference Include="Optimizely.Graph.Commerce" Version="15.2.0" />
     <PackageReference Include="EPiServer.Cms.UI.ContentManager" Version="13.3.0" />
     <PackageReference Include="Optimizely.Cmp.Client" Version="1.2.0" />
     <!-- Optimizely.Cms.Cmp.Publishing removed: no CMS 13 version (requires EPiServer.CMS.UI < 13.0.0). -->
